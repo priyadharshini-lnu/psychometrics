@@ -426,6 +426,18 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     if (columnKey && order === undefined) removeSort()
 
     if (columnKey && order) changeSort(columnKey, order)
+
+    if (!_.isEmpty(filters)) {
+      _.each(filters, (filterValues, columnKey) => {
+        const filterName = `${columnKey}_in`
+        if (filterValues === null) {
+          removeFilter(filterName)
+        } else {
+          const values = filterValues as string[]
+          changeFilter(filterName, values)
+        }
+      })
+    }
   }
 
   const getSortOrder = (column: string): undefined | 'ascend' | 'descend' => {

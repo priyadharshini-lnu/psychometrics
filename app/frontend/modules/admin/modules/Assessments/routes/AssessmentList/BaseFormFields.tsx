@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Form, Input, Select, Spin,
 } from 'antd'
+import cs from 'classnames'
 import { FormInstance } from 'antd/lib/form'
 import { useResources } from '~/hooks/useResources'
 import { Assessment, CATEGORIES } from '~/modules/admin/modules/client/core/assessments'
@@ -51,6 +52,8 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
 
   const ExternalAssessmentFieldsComponent = ExternalAssessmentFields[type]
 
+  const getCategories = () => CATEGORIES.filter(c => !ExternalAssessmentFields[c])
+
 
   return (
     <>
@@ -95,11 +98,12 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
       </Form.Item>
       <Form.Item
         name="category"
+        className={cs({ hidden: !!ExternalAssessmentFieldsComponent })}
         label={I18n.t('common.column.category')}
         rules={[{ required: true }]}
       >
         <Select>
-          {CATEGORIES.map(
+          {getCategories().map(
             c => <Select.Option key={c} value={c}>{I18n.t(`assessments.fields.category.${c}`)}</Select.Option>,
           )}
         </Select>

@@ -76,6 +76,37 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       end
     end
 
+    context 'if category is invalid' do
+      it 'sends validation error' do
+        params = JSON.dump(
+          data: {
+            type: 'assessments',
+            attributes: {
+              name: 'name',
+              disabled: false,
+              type: 'saville',
+              category: 'iiht',
+              description: 'asd',
+              external_settings: {
+                assessment_id: '4c1665e2-eee3-4e92-8f31-70a6b0e55e93'
+              }
+            },
+            relationships: {
+              dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
+              owner: { data: { type: 'clients', id: client.id.to_s } }
+            }
+          }
+        )
+        post '/api/v2/administration/assessments', params: params,
+         headers: { 'Content-type': 'application/vnd.api+json' }
+
+        parsed_response = JSON.parse(response.body)
+        expect(response.status).to eq(422)
+        expect(parsed_response.dig('errors', 0, 'source', 'pointer')).
+          to eq('/data/attributes/category')
+      end
+    end
+
     context 'if assessment_id is not passed' do
       it 'sends validation error' do
         params = JSON.dump(

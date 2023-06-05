@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'swagger_helper'
 
 describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagger.json', type: :request do
-  let!(:assessment) { create(:assessment) }
+  let!(:assessment) { create(:assessment, category: 'psychometric') }
   let!(:superadmin) { create(:superadmin) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
@@ -146,7 +146,7 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
               disabled: false,
               icon_url: '#111',
               type: 'common',
-              category: 'saville',
+              category: 'psychometric',
               created_at: '25 May 2023 / 12:35',
               updated_at: '25 May 2023 / 12:35',
               created_by: 'ROHAN PUJARI',

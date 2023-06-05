@@ -4,6 +4,13 @@ module Api
   module V2
     module Assessment
       class PearsonContract < Api::Base::Contract
+        rule(data: { attributes: :category }) do
+          next unless value
+
+          list = [::Assessment::PEARSON]
+          key.failure(:included_in?, list: list) unless list.include?(value)
+        end
+
         rule(data: { attributes: { external_settings: :assessment_id } }) do
           key.failure(:filled?) unless value
 

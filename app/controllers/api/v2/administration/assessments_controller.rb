@@ -13,17 +13,16 @@ module Api
     }.freeze
 
     def create_contract_based_on_assessment_type
-      integration_contract = INTEGRATIONS_CONTRACTS[params[:data][:attributes][:type]]
-      return integration_contract.new(schema:  Api::V2::Assessment::Schema.create_request) if integration_contract
+      integration_contract = INTEGRATIONS_CONTRACTS[params[:data][:attributes][:type]] ||
+                             Api::V2::Assessment::CommonContract
 
-      Api::V2::Assessment::Schema.create_request
+      integration_contract.new(schema: Api::V2::Assessment::Schema.create_request)
     end
 
     def update_contract_based_on_assessment_type
-      integration_contract = INTEGRATIONS_CONTRACTS[params[:data][:attributes][:type]]
-      return integration_contract.new(schema:  Api::V2::Assessment::Schema.update_request) if integration_contract
-
-      Api::V2::Assessment::Schema.update_request
+      integration_contract = INTEGRATIONS_CONTRACTS[params[:data][:attributes][:type]] ||
+                             Api::V2::Assessment::CommonContract
+      integration_contract.new(schema: Api::V2::Assessment::Schema.update_request)
     end
 
     def toggle_archive

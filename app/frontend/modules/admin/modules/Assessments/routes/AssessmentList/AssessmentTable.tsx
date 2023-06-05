@@ -18,88 +18,93 @@ type Props = {
 
 export const AssessmentTable: React.FC<Props> = ({
   openDrawer,
-}) => (
-  <Resource.Table pagination>
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.id')}
-      id="id"
-      sorter
-      render={assessment => (
-        <Button type="link" href={`/administration/assessments/${assessment.id}`}>
-          {assessment.id}
-        </Button>
-      )}
-    />
-    <Resource.Column<Assessment>
-      id="disabled"
-      title={I18n.t('common.column.active')}
-      render={assessment => <ActiveSwitch assessment={assessment} />}
-    />
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.icon')}
-      id="icon"
-      width={100}
-      render={assessment => (
-        <ResourceAvatar
-          url={assessment.iconUrl}
-          color={assessment.iconColor}
-          name={assessment.name}
-        />
-      )}
-    />
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.name')}
-      id="name"
-      width={400}
-      sorter
-    />
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.dimension')}
-      id="dimension"
-      width={300}
-      render={(_, { dimension }) => dimension?.name}
-    />
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.owner')}
-      id="owner"
-      width={300}
-      render={(_, { owner }) => owner?.name}
-    />
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.type')}
-      id="type"
-      width={300}
-      sorter
-      render={assessment => I18n.t(`assessments.fields.type.${assessment.type}`)}
-    />
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.category')}
-      id="category"
-      width={300}
-      sorter
-      // filters={
-      // settings.categories.map((t: string) => ({ text: I18n.t(`assessments.fields.category.${t}`), value: t }))}
-      // filteredValue={resource.getFilteredValue('category')}
-      render={assessment => I18n.t(`assessments.fields.category.${assessment.category}`)}
-    />
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.updated_at')}
-      id="updated_at"
-      width={300}
-      sorter
-    />
-    <Resource.Column<Assessment>
-      title={I18n.t('common.column.action')}
-      id="action"
-      render={(_, assessment) => (
-        <Dropdown
-          assessment={assessment}
-          openDrawer={openDrawer}
-        />
-      )}
-    />
-  </Resource.Table>
-)
+}) => {
+  const { resource } = useResourceContext<Assessment>()
+  const collectionFilteredValue = resource.getFilteredValue('category_in') as string[] | undefined
+  return (
+    <Resource.Table pagination>
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.id')}
+        id="id"
+        sorter
+        render={assessment => (
+          <Button type="link" href={`/administration/assessments/${assessment.id}`}>
+            {assessment.id}
+          </Button>
+        )}
+      />
+      <Resource.Column<Assessment>
+        id="disabled"
+        title={I18n.t('common.column.active')}
+        render={assessment => <ActiveSwitch assessment={assessment} />}
+      />
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.icon')}
+        id="icon"
+        width={100}
+        render={assessment => (
+          <ResourceAvatar
+            url={assessment.iconUrl}
+            color={assessment.iconColor}
+            name={assessment.name}
+          />
+        )}
+      />
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.name')}
+        id="name"
+        width={400}
+        sorter
+      />
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.dimension')}
+        id="dimension"
+        width={300}
+        render={(_, { dimension }) => dimension?.name}
+      />
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.owner')}
+        id="owner"
+        width={300}
+        render={(_, { owner }) => owner?.name}
+      />
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.type')}
+        id="type"
+        width={300}
+        sorter
+        render={assessment => I18n.t(`assessments.fields.type.${assessment.type}`)}
+      />
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.category')}
+        id="category"
+        width={300}
+        sorter
+        filters={
+          settings.categories.map((t: string) => ({ text: I18n.t(`assessments.fields.category.${t}`), value: t }))
+        }
+        filteredValue={collectionFilteredValue}
+        render={assessment => I18n.t(`assessments.fields.category.${assessment.category}`)}
+      />
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.updated_at')}
+        id="updated_at"
+        width={300}
+        sorter
+      />
+      <Resource.Column<Assessment>
+        title={I18n.t('common.column.action')}
+        id="action"
+        render={(_, assessment) => (
+          <Dropdown
+            assessment={assessment}
+            openDrawer={openDrawer}
+          />
+        )}
+      />
+    </Resource.Table>
+  )
+}
 
 
 const ActiveSwitch: React.FC<{ assessment: Assessment }> = ({ assessment }) => {

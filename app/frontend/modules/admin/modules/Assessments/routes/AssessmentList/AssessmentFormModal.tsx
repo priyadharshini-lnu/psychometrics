@@ -4,6 +4,7 @@ import ResourceFormModal from '~/components/ResourceFormModal'
 import { TYPES } from '~/modules/admin/modules/client/core/assessments'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { BaseFormFields } from './BaseFormFields'
+import { ExternalAssessmentFields } from './ExternalAssessmentFields'
 
 interface Props {
   close(): void
@@ -20,6 +21,7 @@ export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
     form.setFieldValue(['externalSettings', 'assessmentId'], null)
     form.setFieldValue(['externalSettings', 'normId'], null)
     form.setFieldValue(['externalSettings', 'scheduleConfig'], null)
+    form.setFieldValue('category', ExternalAssessmentFields[type] ? type : null)
   }, [type])
 
   return (

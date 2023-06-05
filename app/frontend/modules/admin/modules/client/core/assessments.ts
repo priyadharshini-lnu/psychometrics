@@ -64,11 +64,9 @@ export const CATEGORIES = [
   'threesixty',
   'assessor_form',
   'hogan',
-  'agile',
   'saville',
   'pearson',
   'iiht',
-  'mindmill',
 ]
 
 export const TYPES = [

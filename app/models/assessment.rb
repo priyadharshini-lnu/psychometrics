@@ -24,6 +24,15 @@ class Assessment < ApplicationRecord
     PEARSON = 'pearson',
     IIHT = 'iiht'
   ].freeze
+
+  COMMON_CATEGORIES_TYPES = [
+    PSYCHOMETRIC = 'psychometric',
+    ORGANISATIONAL = 'organisational',
+    CASE_STUDY = 'case_study',
+    THREESIXTY = 'threesixty',
+    ASSESSOR_FORM = 'assessor_form'
+  ].freeze
+
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
     organisational: ORGANISATIONAL,
