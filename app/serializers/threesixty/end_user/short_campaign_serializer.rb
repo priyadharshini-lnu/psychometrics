@@ -12,6 +12,10 @@ module Threesixty
       def timing
         object.assessment.timing
       end
+
+      def campaign_user
+        object.campaign_users.find_by(user_id: instance_options[:current_user])
+      end
     end
   end
 end
