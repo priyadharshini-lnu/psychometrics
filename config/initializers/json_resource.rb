@@ -31,4 +31,5 @@ JSONAPI.configure do |config|
   config.exception_class_whitelist = []
 
   config.always_include_to_one_linkage_data = true
+  config.whitelist_all_exceptions = true
 end

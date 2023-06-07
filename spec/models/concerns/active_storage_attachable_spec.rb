@@ -65,6 +65,24 @@ describe ActiveStorageAttachable do
         %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.users_result_id}/#{@media_resp.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
       )
     end
+
+    context 'without :users_result attribute (for old records)' do
+      before do
+        allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)
+
+        @membership = create(:membership, :for_campaign)
+        @assign = create(:assign, membership: @membership)
+        MediaResponse.new(question: FactoryBot.build(:question), assign: @assign).save(validate: false)
+        @media_response = MediaResponse.last
+        @media_response.as_asset.attach(image)
+      end
+
+      it 'stores correct attachment key' do
+        expect(@media_response.as_asset.key).to match(
+          %r{private/projects/#{@media_response.assign.membership.project_membership.client_id}/media_response/#{@media_response.assign_id}/#{@media_response.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
+        )
+      end
+    end
   end
 
   context 'with invalid content_type' do
