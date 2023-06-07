@@ -13,7 +13,8 @@ module Administration
         wrap_parameters :threesixty_campaign
 
         def show
-          @init_state = {
+          @init_state ||= {}
+          @init_state.merge({
             project: {
               datasheetFields: resource.datasheet_column_names,
               relationships: ::Relationships::ByCampaign.new(resource.campaign).to_a
@@ -41,7 +42,7 @@ module Administration
             datasheet: {
               parentResource: { type: 'new_campaign', id: resource.campaign_id }
             }
-          }
+          })
         end
 
         def index

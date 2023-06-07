@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import { Button, Space } from 'antd'
 import {
-  EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined,
+  EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
 import moment from 'moment'
@@ -140,22 +140,6 @@ export class Header extends Component {
         </Space>
 
         <ul className={cs('panel-controls', styles.controls)}>
-          <li>
-            <Button
-              icon={<i className="fa fa-random" />}
-              className={`btn btn-default ${styles.flow}`}
-              onClick={this.openFlow}
-            >
-              {I18n.t('administration.assessments.flow')}
-            </Button>
-          </li>
-          <li>
-
-            <Button icon={<PartitionOutlined />} onClick={this.showMappingNorms}>
-              {I18n.t('administration.assessments.map_norms')}
-            </Button>
-          </li>
-
           {assessment && (
             <li>
               <div>
@@ -184,7 +168,22 @@ export class Header extends Component {
               )}
               id="main_menu"
             >
-              <MenuItem onSelect={this.openSettings}>Settings...</MenuItem>
+              <MenuItem onSelect={this.openSettings}>
+                <Space>
+                  <SettingOutlined />
+                  Settings...
+                </Space>
+              </MenuItem>
+              <MenuItem onSelect={this.showMappingNorms}>
+                <Space>
+                  <PartitionOutlined />
+                  {I18n.t('administration.assessments.map_norms')}
+                </Space>
+              </MenuItem>
+              <MenuItem onSelect={this.openFlow}>
+                <i className="fa fa-random" />
+                {I18n.t('administration.assessments.flow')}
+              </MenuItem>
               <MenuItem onSelect={this.createBlock}>Add Block</MenuItem>
               <MenuItem onSelect={this.openSearchPopup}>Copy Block From...</MenuItem>
               <MenuItem onSelect={this.export}>Export Translations</MenuItem>
@@ -231,7 +230,7 @@ export class Header extends Component {
             <Tabs active="questions" />
           </li>
           <li>
-            <Button size="large" type="primary" onClick={this.save} disabled={saving}>
+            <Button type="primary" onClick={this.save} disabled={saving}>
               <SaveOutlined />
               {' '}
               {I18n.t('administration.save')}
