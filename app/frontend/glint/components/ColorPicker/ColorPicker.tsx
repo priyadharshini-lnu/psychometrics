@@ -101,6 +101,7 @@ export const ColorPicker: FC<props> = ({
                 onChange={handleColorInputChange}
                 onBlur={handleInputBlur}
                 className={cs([styles.colorInput, 'ant-input'])}
+                data-testid="color-input"
               />
               <Button icon={<CopyOutlined />} onClick={handleCopyButtonClick} className={styles.copyButton} />
             </div>
@@ -112,6 +113,7 @@ export const ColorPicker: FC<props> = ({
                     colors={recommendedColors}
                     onClick={handleColorChange}
                     maxColors={MAX_COLORS}
+                    dataTestid="recommendedColors"
                   />
                 ) : null}
               {updatedRecentColors.length
@@ -121,6 +123,7 @@ export const ColorPicker: FC<props> = ({
                     colors={updatedRecentColors}
                     onClick={handleColorChange}
                     maxColors={MAX_COLORS}
+                    dataTestid="recentlyUsedColors"
                   />
                 ) : null}
             </Space>
@@ -128,8 +131,8 @@ export const ColorPicker: FC<props> = ({
 )}
         overlayClassName={styles.popover}
         trigger="click"
-        visible={isOpen}
-        onVisibleChange={handlePopover}
+        open={isOpen}
+        onOpenChange={handlePopover}
         placement={colorPickerPosition && colorPickerPosition}
         arrowPointAtCenter
       >

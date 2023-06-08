@@ -9,10 +9,11 @@ type props={
   onClick: (color: string) => void
   title?: string
   maxColors?: number
+  dataTestid?: string
 }
 
 export const ColorSwatch:FC<props> = ({
-  colors, onClick, title, maxColors,
+  colors, onClick, title, maxColors, dataTestid,
 }) => {
   const handleSwatchClick = ({ target }) => {
     if (colors.includes(target.id)) {
@@ -27,7 +28,7 @@ export const ColorSwatch:FC<props> = ({
   return (
     <>
       {title || null}
-      <div className={styles.swatchContainer} onClick={handleSwatchClick}>
+      <div data-testid={dataTestid} className={styles.swatchContainer} onClick={handleSwatchClick}>
         {
           colors.slice(0, maxColors || colors.length).map(color => (
             <ColorSwatchItem key={color} color={color} />
@@ -58,6 +59,7 @@ export const ColorSwatchItem:FC<ColorSwatchItemProps> = ({
   }
   return (
     <button
+      data-testid={`swatch-item-${color}`}
       onClick={onClick || (() => null)}
       id={color}
       key={backgroundColor}
