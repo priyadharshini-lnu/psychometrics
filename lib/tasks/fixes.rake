@@ -1,13 +1,6 @@
 # frozen_string_literal: true
 
 namespace :fixes do
-  desc 'count factors in dimensions'
-  task count_factors: :environment do
-    Dimension.all.each do |dimension|
-      dimension.update(factors_count: dimension.factors.count)
-    end
-  end
-
   desc 'fix display logic format'
   task display_logic_format: :environment do
     Question.where.not(display_logic: nil).each do |question|
