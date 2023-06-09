@@ -9,8 +9,8 @@ import Header from '~/modules/survey/layouts/AssessmentPreview/Header'
 import { setStore, getStore } from '~/modules/survey/store/StoreWatchman'
 import styles from '~/modules/survey/layouts/Dashboard/Dashboard.less'
 import { INIT } from '~/modules/survey/core/preview/FlowProcessor/consts'
-import ConnectionCheck from '~/components/ConnectionCheck'
-import { connected, disconnected } from '~/core/connection'
+// import ConnectionCheck from '~/components/ConnectionCheck'
+// import { connected, disconnected } from '~/core/connection'
 import containerStyles from './AssessmentContainer.less'
 import '~/modules/survey/styles/globals.less'
 import '~/modules/survey/utils/i18n'
@@ -82,14 +82,14 @@ class AssessmentContainer extends Component {
 
   render () {
     const {
-      disabled, selectedLocale, type, rstore, showAsSinglePage,
+      disabled, selectedLocale, type, showAsSinglePage,
     } = this.props
     return (
       <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
-        <ConnectionCheck
+        {/* <ConnectionCheck
           onConnected={() => rstore.dispatch(connected())}
           onDisconnected={() => rstore.dispatch(disconnected())}
-        />
+        /> */}
         {type === 'preview_assessment' && <Header langs={this.langPartial} />}
         <DndProvider backend={HTML5Backend}>
           <div className={containerStyles.previewConainer}>
