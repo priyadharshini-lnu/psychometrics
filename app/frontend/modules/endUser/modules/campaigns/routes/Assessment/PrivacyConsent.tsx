@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import {
-  Button, Typography, Layout, Col, Checkbox,
+  Button, Typography, Layout, Col, Checkbox, Space,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from 'modules/endUser/core/rootReducers'
@@ -74,14 +74,16 @@ export const PrivacyConsentComponent: FC<Props> = ({
             : <PageContentSkeleton />
           }
           <div className={styles.footerButtons}>
-            <Checkbox onChange={e => setAccepted(e.target.checked)}>
-              {I18n.t('threesixty.accept_privacy_modal.checkbox')}
-            </Checkbox>
-            <div>
-              <Button type="primary" disabled={!accepted} onClick={accept}>
-                {I18n.t('threesixty.accept_privacy_modal.accept')}
-              </Button>
-            </div>
+            <Space direction="vertical">
+              <Checkbox onChange={e => setAccepted(e.target.checked)}>
+                {I18n.t('threesixty.accept_privacy_modal.checkbox')}
+              </Checkbox>
+              <div>
+                <Button type="primary" disabled={!accepted} onClick={accept}>
+                  {I18n.t('threesixty.accept_privacy_modal.accept')}
+                </Button>
+              </div>
+            </Space>
           </div>
         </Content>
       </Content>

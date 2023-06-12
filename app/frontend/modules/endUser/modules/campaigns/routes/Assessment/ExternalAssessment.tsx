@@ -1,11 +1,13 @@
 import { FC } from 'react'
 import {
-  Layout, Col, Typography, Space, Button,
+  Layout, Col, Typography, Button, Space,
 } from 'antd'
+import cs from 'classnames'
 import {
   PageHeader as GlintPageHeader,
 } from '~/glint'
 import styles from './UserAssessment.less'
+import RedirectIcon from './RedirectIcon'
 
 const { I18n } = window
 const { Content } = Layout
@@ -30,13 +32,16 @@ export const ExternalAssessment: FC<Props> = ({ userAssessmentUrl, onCancel }) =
         </Col>
         <Col span={4} className="ta-e" />
       </GlintPageHeader>
-      <Content className={styles.pageContent}>
+      <Content className={cs(styles.pageContent, styles.external)}>
+        <div className={styles.icon}>
+          <RedirectIcon />
+        </div>
         <div>
           {I18n.t('user_assessments.redirect')}
         </div>
         <div className={styles.footerButtons}>
           <Space>
-            <Button danger onClick={onCancel}>
+            <Button onClick={onCancel}>
               {I18n.t('campaign.time_left.cancel')}
             </Button>
             <Button type="primary" onClick={() => process()}>
