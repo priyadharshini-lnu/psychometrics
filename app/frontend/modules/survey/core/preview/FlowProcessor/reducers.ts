@@ -122,6 +122,7 @@ const HANDLERS = {
     return {
       ...defaultState,
       initialized: true,
+      name: data.name,
       assessmentCategory: data.category,
       type: data.type || 'preview_assessment',
       isThreesixty: data.isThreesixty,
@@ -152,6 +153,8 @@ const HANDLERS = {
       dbResult: _.omit(result, 'media_responses'),
       mediaResponses: humps.camelizeKeys(mediaResponses),
       results: result.results || result.answers || {},
+      campaignUser: result.campaign_user,
+      isTimedCampaign: result.campaign_options?.fixed_time,
       expiryDate: result.expiry_date,
       timerDuration: data.timer_duration,
       metaData: result.meta_data || {},

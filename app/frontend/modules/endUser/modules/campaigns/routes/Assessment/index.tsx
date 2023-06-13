@@ -1,10 +1,8 @@
 import { useEffect, FC, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Redirect, RouteComponentProps, useHistory } from 'react-router-dom'
-import { secondsLeftFromNow } from '~/utils/time'
 import WizardIsRequired from '~/modules/endUser/core/WizardIsRequired'
 import { PrivacyConsent } from './PrivacyConsent'
-import { Timing } from './Timing'
 import { LanguageSelection } from './LanguageSelection'
 import { HoganStep } from './HoganStep'
 import { ExternalAssessment } from './ExternalAssessment'
@@ -42,8 +40,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       id: userAssessmentId,
       selectedLocale,
       availableLocales,
-      isTimedCampaign,
-      campaignExpiryDate,
       privacyConsentRequired,
     },
   },
@@ -57,7 +53,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   }, [])
 
   const [showPolicyAccept, setShowPolicy] = useState(true)
-  const [showTimingConfirmation, setTiming] = useState(true)
   const [locale, setLocale] = useState(selectedLocale)
 
   if (!assessmentId) { return <PageContentSkeleton /> }
@@ -101,22 +96,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       />
     )
   }
-
-  if (showTimingConfirmation && isTimedCampaign && campaignExpiryDate && userAssessmentData.assessmentExtra.timer) {
-    const remainingCampaignTime = secondsLeftFromNow(campaignExpiryDate)
-    if (remainingCampaignTime && remainingCampaignTime < userAssessmentData.assessmentExtra.timer) {
-      return (
-        <Timing
-          assessmentName={userAssessmentData.assessmentName}
-          campaignExpiryDate={campaignExpiryDate}
-          totalAssessmentTime={userAssessmentData.assessmentExtra.timer}
-          ok={() => setTiming(false)}
-          onCancel={backToCampaign}
-        />
-      )
-    }
-  }
-
 
   return <Redirect to={assessmentUrl(userAssessmentData, locale || I18n.currentLocale())} />
 }

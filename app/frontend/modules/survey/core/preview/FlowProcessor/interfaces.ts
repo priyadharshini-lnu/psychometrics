@@ -206,6 +206,7 @@ declare global {
 }
 
 export interface InitData {
+  name: string
   resultsUrl: string
   type: string
   blocks: Block[]
@@ -259,6 +260,8 @@ export interface Result {
   next_assessment_url?: string
   other_pending_assessments_count: number
   seedrandom: string
+  campaign_options: { fixed_time: boolean }
+  campaign_user: { expiry_date: string }
 }
 
 interface SaveResponse {
