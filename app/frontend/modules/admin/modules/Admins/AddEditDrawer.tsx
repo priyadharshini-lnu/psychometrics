@@ -23,7 +23,7 @@ import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
 import { Admin, AdminPermissions, CurrentUserPermissions } from '~/modules/admin/modules/client/core/admin'
-import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import styles from './styles.less'
 import {
   AdminTypes,
@@ -40,7 +40,7 @@ const { Option } = Select
 
 const connecter = connect(
   (state: RootState) => ({
-    currentCampaignId: getCurrentCampaignId(state),
+    currentCampaignId: getCampaignId(state),
   }),
   {},
 )

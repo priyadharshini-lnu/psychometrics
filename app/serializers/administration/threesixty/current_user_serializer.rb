@@ -38,9 +38,11 @@ module Administration
             edit_dimension
             manage_relationships
             regenerate_report
+            manage_admins
           ],
           {
-            project_id: current_project_id
+            project_id: current_project_id,
+            campaign_id: campaign_id
           }
         )
         permissions.transform_keys! { |k| k.camelcase(:lower) }
@@ -54,6 +56,10 @@ module Administration
 
       def current_project_id
         instance_options[:project_id]
+      end
+
+      def campaign_id
+        instance_options[:campaign_id]
       end
     end
   end

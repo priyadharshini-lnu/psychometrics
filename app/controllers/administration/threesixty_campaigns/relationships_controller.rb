@@ -74,6 +74,16 @@ module Administration
       def relationship_params
         params.require(:relationship).permit(:name)
       end
+
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          policy_class: Administration::Threesixty::RelationshipPolicy,
+          threesixty_campaign: threesixty_campaign,
+          project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+        )
+      end
     end
   end
 end

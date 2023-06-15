@@ -55,7 +55,8 @@ module Administration
             allow_results_delete
           ],
           {
-            project_id: threesixty_campaign.campaign.project_id
+            project_id: threesixty_campaign.campaign.project_id,
+            campaign_id: threesixty_campaign.campaign_id
           }
         )
       end

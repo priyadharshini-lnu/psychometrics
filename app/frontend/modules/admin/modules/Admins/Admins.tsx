@@ -24,7 +24,7 @@ import { CountDisplay } from '~/components/CountDisplay'
 import {
   ProjectAdmin, Admin, AdminPermissions, CurrentUserPermissions, AdminListingTR,
 } from '~/modules/admin/modules/client/core/admin'
-import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import Modals from '~/modules/admin/components/Modals/'
 import { DetailsDrawer } from './DetailsDrawer'
@@ -41,7 +41,7 @@ const MODALS = {
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
-    currentCampaignId: getCurrentCampaignId(state),
+    currentCampaignId: getCampaignId(state),
   }),
   {
     openModal,
@@ -77,11 +77,12 @@ const AdminsComponent: React.FC<Props> = ({
   const filterHash = {
     with_role: adminType,
     project_id_eq: projectId,
-    client_id_eq: clientId,
   }
 
   if (adminType === AdminTypes.CampaignAdmin) {
     _.merge(filterHash, { campaign_id_eq: campaignId })
+  } else if (adminType === AdminTypes.ClientAdmin) {
+    _.merge(filterHash, { client_id_eq: clientId })
   }
 
   const {

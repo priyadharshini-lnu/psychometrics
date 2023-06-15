@@ -14,6 +14,10 @@ module Administration
       def message_options?
         has_permission?(:messages, :options)
       end
+
+      def update?
+        has_permission?(:messages, :options)
+      end
     end
   end
 end
