@@ -25,7 +25,7 @@ class Properties extends Component {
 
   componentDidMount () {
     LibraryTransport.init()
-    this.librarySocket = Socket().library()
+    this.librarySocket = Socket.library()
   }
 
   onSelectGraphic = (item) => {
