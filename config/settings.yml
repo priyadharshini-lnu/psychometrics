@@ -510,7 +510,7 @@ providers:
         norm_id: Global
         language_id: en
         assessment_ids:
-          - HPI
+          - HDS
     assessments:
       - id: HPI
         name: HPI
