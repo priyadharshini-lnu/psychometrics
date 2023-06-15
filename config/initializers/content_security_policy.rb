@@ -1,43 +1,45 @@
 # frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 
 # Define an application-wide content security policy
 # For further information see the following documentation
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
-# Rails.application.config.content_security_policy do |policy|
-#   policy.default_src :self, :https
-#   policy.font_src    :self, :https, :data
-#   policy.img_src     :self, :https, :data
-#   policy.object_src  :none
-#   policy.script_src  :self, :https
-# Allow @vite/client to hot reload javascript changes in development
-#    policy.script_src *policy.script_src,
-# .                    :unsafe_eval, "http://#{ ViteRuby.config.host_with_port }" if Rails.env.development?
+unless Rails.env.test?
+  Rails.application.config.content_security_policy_report_only = ENV.fetch('CSP_REPORT_ONLY', 'false') == 'true'
 
-# You may need to enable this in production as well depending on your setup.
-#    policy.script_src *policy.script_src, :blob if Rails.env.test?
+  # rubocop:disable Metrics/BlockLength
+  Rails.application.config.content_security_policy do |policy|
+    protocol = Settings.protocol
+    vite_domain = "#{Settings.domain}:#{ViteRuby.config.port}"
+    websocket_protocol = protocol == 'https' ? 'wss' : 'ws'
 
-#   policy.style_src   :self, :https
-# Allow @vite/client to hot reload style changes in development
-#    policy.style_src *policy.style_src, :unsafe_inline if Rails.env.development?
+    policy.default_src :self
+    policy.font_src    :self, :data
+    policy.img_src     '*', :data
+    policy.media_src   '*'
+    policy.object_src  '*'
+    policy.frame_src   '*'
+    policy.script_src(
+      :self, :unsafe_inline, 'https://speedof.me', 'https://chatwoot.tte-work.com', 'https://svc.webspellchecker.net'
+    )
+    policy.style_src :self, :unsafe_inline
+    policy.connect_src(
+      :self, 'https://speedof.me', 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
+      'wss://*.amazonaws.com:8443'
+    )
 
-#   # If you are using webpack-dev-server then specify webpack-dev-server host
-#   policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
-# Allow @vite/client to hot reload changes in development
-#    policy.connect_src *policy.connect_src, "ws://#{ ViteRuby.config.host_with_port }" if Rails.env.development?
+    if Rails.env.development?
+      policy.script_src(*policy.script_src,
+                        :unsafe_eval, :unsafe_inline, "#{protocol}://#{vite_domain}")
+      policy.connect_src(
+        *policy.connect_src, "#{protocol}://#{vite_domain}", "#{protocol}://*.#{vite_domain}",
+        "#{websocket_protocol}://#{vite_domain}", "#{websocket_protocol}://*.#{vite_domain}"
+      )
+    end
 
-#   # Specify URI for violation reports
-#   # policy.report_uri "/csp-violation-report-endpoint"
-# end
-
-# If you are using UJS then enable automatic nonce generation
-# Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
-
-# Set the nonce only to specific directives
-# Rails.application.config.content_security_policy_nonce_directives = %w(script-src)
-
-# Report CSP violations to a specified URI
-# For further information see the following documentation:
-# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
-# Rails.application.config.content_security_policy_report_only = true
+    policy.report_uri 'https://webhook.site/f4b15a4b-6e16-401b-9bbb-716cb198157a' if Rails.env.production?
+  end
+  # rubocop:enable Metrics/BlockLength
+end
