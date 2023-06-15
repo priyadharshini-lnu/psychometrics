@@ -8,7 +8,7 @@ class ApplicationController < ::BaseController
   before_action :set_client_by_subdomain
   before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   after_action :allow_iframe_for_sso, if: proc { inside_sso_iframe? }
-  after_action :allow_iframe_for_examus, if: proc { inside_examus_iframe? }
+  after_action :allow_iframe_for_examus
   around_action :set_mobility_locale
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -46,18 +46,8 @@ class ApplicationController < ::BaseController
     }
   end
 
-  def inside_examus_iframe?
-    return true if session[:examus_origin]
-    if params['examus-client-origin'].nil? || (!params['examus-client-origin'].end_with?('examus.net') &&
-       !params['examus-client-origin'].end_with?('alemira.com'))
-      return false
-    end
-
-    session[:examus_origin] = params['examus-client-origin']
-  end
-
   def allow_iframe_for_examus
-    response.headers['Content-Security-Policy'] = "frame-ancestors #{session[:examus_origin]}"
+    response.headers['Content-Security-Policy'] = 'frame-ancestors *.proctor.alemira.com'
   end
 
   def inside_sso_iframe?
