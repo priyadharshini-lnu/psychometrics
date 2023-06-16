@@ -67,7 +67,14 @@ class Factor < ApplicationRecord
   }
 
   scope :with_norm, lambda { |norm_id|
-    joins(:factors_norms).where(factors_norms: { norm_id: norm_id })
+    joins(
+      sanitize_sql_array(
+        [
+          'LEFT JOIN factors_norms ON factors_norms.factor_id = factors.id and factors_norms.norm_id = ?',
+          norm_id
+        ]
+      )
+    )
   }
   scope :roots, -> { where(parent_id: nil) }
   scope :no_roots, -> { where.not(parent_id: nil) }
