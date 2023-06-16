@@ -7,7 +7,7 @@ describe Hogan::FetchResults do
   let(:report) { create(:report, :hogan, assessments: [assessment]) }
   let(:user) { create(:user, hogan_credential: build(:hogan_credential)) }
   let(:project) { create(:project) }
-  let(:users_result) { create(:users_result) }
+  let(:users_result) { create(:users_result, without_user_assessment: true) }
   let(:user_assessment) do
     create(:user_assessment, assessment: assessment, users_result: users_result)
   end

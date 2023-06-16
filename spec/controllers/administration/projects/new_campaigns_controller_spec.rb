@@ -22,9 +22,9 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
 
   describe 'fetch_descriptions' do
     it 'passes description with all locales passed in params' do
-      campaign_option = create(:campaign_option, campaign: campaign, description: 'En Desc')
-      Mobility.with_locale('ar') do
-        campaign_option.update(description: 'Ar Desc')
+      campaign_option = campaign.campaign_options
+      Mobility.with_locale('en') do
+        campaign_option.update(description: 'En Desc')
       end
       Mobility.with_locale('ar') do
         campaign_option.update(description: 'Ar Desc')
