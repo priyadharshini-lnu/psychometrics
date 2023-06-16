@@ -193,7 +193,10 @@ type FetchType = ApiActionResponse<{
     edit: boolean
   }
 }>
-type FetchSingleType = ApiActionResponse<UserDetails & { userAssessments: UserAssessment[], userReports: UserReport[]}>
+type FetchSingleType = ApiActionResponse<UserDetails & {
+  userAssessments: UserAssessment[],
+  userReports: UserReport[],
+}>
 type CreateType = ApiActionResponse<User>
 type UpdateType = ApiActionResponse<User>
 type RemoveType = ApiActionResponse<number>

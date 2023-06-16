@@ -42,6 +42,7 @@ module Administration
           'rescore_response',
           %w[remove destroy],
           'reset_progress',
+          'push_webhook',
           %w[reset_results reset]
         ],
         {

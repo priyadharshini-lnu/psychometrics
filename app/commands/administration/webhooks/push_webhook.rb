@@ -2,7 +2,7 @@
 
 module Administration
   module Webhooks
-    class TestWebhook < Rectify::Command
+    class PushWebhook < Rectify::Command
       private_attr_reader :subscription, :event
 
       def initialize(subscription, event)
@@ -16,6 +16,8 @@ module Administration
         broadcast(:error, I18n.t('administration.webhook.request_failure', http_status_code: e.code))
       rescue Faraday::ConnectionFailed, Faraday::TimeoutError, Faraday::SSLError
         broadcast(:error, I18n.t('administration.webhook.connection_failure'))
+      else
+        broadcast(:ok)
       end
     end
   end

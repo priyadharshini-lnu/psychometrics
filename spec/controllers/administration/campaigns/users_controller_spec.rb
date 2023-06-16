@@ -135,7 +135,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'download_report' => true,
         'remove' => true,
         'toggle_access' => true,
-        'view_report' => true
+        'view_report' => true,
+        'push_webhook' => false
       }
     })
   end
@@ -155,7 +156,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'update_norm' => policy.update_norm?,
         'rescore_response' => policy.rescore_response?,
         'remove' => policy.destroy?,
-        'reset_progress' => policy.reset_progress?
+        'reset_progress' => policy.reset_progress?,
+        'push_webhook' => true
       },
       'norm_id' => nil,
       'additional_time' => nil,

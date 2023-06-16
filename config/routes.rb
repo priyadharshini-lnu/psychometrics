@@ -204,6 +204,8 @@ Rails.application.routes.draw do
             put :request_changes
             put :remove_approval
             patch :toggle_user_access
+            get :webhook_payload
+            get :possible_webhook_events
           end
           collection do
             post :regenerate
@@ -288,6 +290,7 @@ Rails.application.routes.draw do
             post :reset
             post :reset_progress
             post :update_additional_time
+            get :webhook_payload
           end
         end
         resources :campaign_assessment_groups, only: %i[index create update destroy] do

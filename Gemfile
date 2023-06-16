@@ -195,7 +195,7 @@ gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 0.8.2'
 gem 'twilio-ruby', '~>  5.58.1'
-gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', ref: 'fee3201'
+gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', ref: '36053b9'
 gem 'workflow-activerecord', '~> 4.1.2'
 
 group :development, :test do

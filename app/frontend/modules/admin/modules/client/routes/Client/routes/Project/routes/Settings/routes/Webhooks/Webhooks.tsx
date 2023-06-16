@@ -16,12 +16,12 @@ import { get as getCurrentUser } from '~/core/currentUser'
 import { Webhook, WebhookTR } from '~/modules/admin/modules/client/core/webhooks'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { AddEditWebhookModal } from './AddEditWebhookModal/AddEditWebhookModal'
-import { TestWebhookModal } from './TestWebhookModal/TestWebhookModal'
+import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import { truncateWithStartEndCharCount } from '~/utils/string'
 
 const MODALS = {
   AddEditWebhookModal,
-  TestWebhookModal,
+  PushWebhookModal,
 }
 
 const connecter = connect(
@@ -223,8 +223,10 @@ interface ActionMenuProps {
   updateWebhook: UpdateResource<Webhook>
   openModal(name: string, data?: {
     webhook: Webhook,
+    projectId?: number,
     updateWebhook?: UpdateResource<Webhook>,
     isEditMode?: boolean
+    testMode?: boolean
   })
 }
 
@@ -251,7 +253,9 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       removeWebhook(webhook)
     }
     if (key === 'send_test') {
-      openModal('TestWebhookModal', { webhook })
+      openModal('PushWebhookModal', {
+        webhook, testMode: true, projectId: webhook.projectId,
+      })
     }
     if (key === 'edit') {
       openModal(

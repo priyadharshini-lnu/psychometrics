@@ -6,7 +6,8 @@ module Administration
       include UserReports::PdfGeneration
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access
-                                            start_qc abort_qc send_for_approval request_changes remove_approval]
+                                            start_qc abort_qc send_for_approval request_changes
+                                            remove_approval webhook_payload]
       before_action :pundit_authorize
 
       def create
@@ -22,6 +23,10 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 422
         end
+      end
+
+      def possible_webhook_events
+        render json: { events: resource.possible_webhook_events }
       end
 
       def destroy
@@ -116,6 +121,25 @@ module Administration
                    include: '**'
           end
         end
+      end
+
+      def webhook_command
+        @webhook_command ||= UserReports::Webhook.new(resource)
+      end
+
+      def webhook_payload
+        data = case params['event_name']
+                 when 'report_available'
+                   webhook_command.report_available_data
+                 when 'results_available'
+                   webhook_command.result_available_data
+               end
+
+        event_payload = Webhook::EVENTS[params['event_name'].to_sym].call(
+          data.merge(project: resource.project, client: resource.project.parent)
+        )
+
+        render json: event_payload.as_json
       end
 
       private

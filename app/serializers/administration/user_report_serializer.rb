@@ -15,6 +15,18 @@ module Administration
       object.pdf.download_url
     end
 
+    def all_assessments_are_completed
+      object.all_assessments_are_completed?
+    end
+
+    def has_report_config
+      object.has_report_data_config?
+    end
+
+    def user_results_exists
+      object.has_user_results?
+    end
+
     def permissions
       GetPermissionsHash.call!(
         Administration::UserReportPolicy,
@@ -24,7 +36,8 @@ module Administration
           %w[view_report show],
           %w[download_report download],
           %w[remove destroy],
-          %w[toggle_access toggle_user_access]
+          %w[toggle_access toggle_user_access],
+          'push_webhook'
         ],
         {
           project_id: campaign.project_id,

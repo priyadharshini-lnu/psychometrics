@@ -3,6 +3,7 @@ import {
   get as getReports, remove, toggleUserAccess, selectRecords,
 } from '~/modules/admin/modules/campaigns/core/userReports'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -12,6 +13,7 @@ const connecter = connect(
     selectRecords,
     remove,
     toggleUserAccess,
+    openModal,
   },
 )
 

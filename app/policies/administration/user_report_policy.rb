@@ -24,6 +24,20 @@ module Administration
         ReportApprovalSetting.notifications(@user.id, campaign_id).exists?(report_id: record.report_id)
     end
 
+    def webhook_payload?
+      has_permission?(:project_settings, :webhooks, project_id: project_id)
+    end
+
+    def possible_webhook_events?
+      has_permission?(:project_settings, :webhooks, project_id: project_id)
+    end
+
+    def push_webhook?
+      !record.external_report? && @user.has_permission?(
+        :project_settings, :webhooks, project_id: project_id
+      ) && (record.publish_results_available? || record.has_user_results?)
+    end
+
     def approve?
       manage_approval?
     end

@@ -2,31 +2,42 @@
 
 module UserAssessments
   class Webhook
-    private_attr_reader :user_assessment, :project
+    private_attr_reader :user_assessment, :project, :webhook_id
 
-    def initialize(user_assessment)
+    def initialize(user_assessment, webhook_id = nil)
       @user_assessment = user_assessment
       @project = user_assessment.campaign.project
+      @webhook_id = webhook_id
     end
 
     def publish_assessment_started
-      data = {
+      WebhookSubscriptions::Publish.call(
+        project, :assessment_started, assessment_started_data, webhook_id
+      )
+    end
+
+    def assessment_started_data
+      {
         campaign: user_assessment.campaign,
         assessment: user_assessment.assessment,
         evaluator: user_assessment.evaluator,
         subject: user_assessment.subject
       }
-      WebhookSubscriptions::Publish.call!(project, :assessment_started, data)
     end
 
     def publish_assessment_completed
-      data = {
+      WebhookSubscriptions::Publish.call(
+        project, :assessment_completed, assessment_completed_data, webhook_id
+      )
+    end
+
+    def assessment_completed_data
+      {
         campaign: user_assessment.campaign,
         assessment: user_assessment.assessment,
         evaluator: user_assessment.evaluator,
         subject: user_assessment.subject
       }
-      WebhookSubscriptions::Publish.call!(project, :assessment_completed, data)
     end
 
     def publish_results_available
@@ -34,14 +45,7 @@ module UserAssessments
         next unless user_report.all_assessments_are_completed?
         next if user_report.report.data_configuration.empty?
 
-        built_results = ::Reports::BuildResults.call!(user_report.report, user_report.user_results)
-        data = {
-          campaign: user_assessment.campaign,
-          subject: user_assessment.subject,
-          report: user_report.report,
-          results: Api::V1::ResultSerializer.new(built_results, user_report: user_report).to_h
-        }
-        WebhookSubscriptions::Publish.call!(project, :results_available, data)
+        UserReports::Webhook.new(user_report).publish_reports_result_available
       end
     end
   end

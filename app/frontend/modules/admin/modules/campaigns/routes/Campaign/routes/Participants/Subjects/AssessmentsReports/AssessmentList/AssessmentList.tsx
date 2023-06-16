@@ -11,6 +11,7 @@ import { State as UserAssessmentState } from '~/modules/admin/modules/campaigns/
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { PropsFromRedux } from './connect'
+import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 
 const { Column } = Table
 const { I18n } = window
@@ -26,9 +27,12 @@ interface OwnProps {
   }
   openModal(name: string, data?: {
      projectId: number
-     userId: number
+     userId?: number
      campaignId: number
-     campaignAssessmentId: number
+     campaignAssessmentId?: number
+     testMode?: boolean
+     parentType?: ParentResourceType
+     parentId?: number
   }): void
 }
 
@@ -117,6 +121,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     reset,
                     campaignId: parsedCampaignId,
                     userId: parsedUserId,
+                    projectId: parsedProjectId,
                     assessment,
                     remove: () => remove(parsedCampaignId, assessment.id),
                     resetProgress,
@@ -140,15 +145,25 @@ interface ActionMenuProps {
   assessment: UserAssessment
   userId: number
   campaignId: number
+  projectId: number
   rescoreResponse(): void
   reset(campaignId: number, assessmentId: number): Promise<unknown>
   resetProgress: Props['resetProgress']
   remove(): void
-  openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
+  openModal(string, data?: {
+    campaignId: number,
+    userId?: number,
+    campaignAssessmentId?: number,
+    parentId?: number,
+    projectId?: number
+    parentType?: ParentResourceType
+    testMode?: boolean
+  }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, reset, remove, resetProgress,
+  rescoreResponse, openModal, campaignId, userId, projectId, assessment,
+  reset, remove, resetProgress,
 }) => {
   const { name, permissions } = assessment
 
@@ -235,6 +250,10 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     label: I18n.t('user_assessments.modals.actions.reset_progress.name'),
   })
 
+  permissions.pushWebhook && menuItems.push({
+    key: 'pushWebhook',
+    label: 'Push Webhook',
+  })
 
   const handleMenuClick = ({ key }) => {
     if (key === 'reset') {
@@ -248,6 +267,15 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
     if (key === 'extend') {
       return openModal('UpdateTimeModal', { campaignId, userId, campaignAssessmentId: assessment.id })
+    }
+    if (key === 'pushWebhook') {
+      return openModal('PushWebhookModal', {
+        campaignId,
+        parentType: ParentResourceType.UserAssessment,
+        parentId: assessment.id,
+        testMode: false,
+        projectId,
+      })
     }
     if (key === 'resetProgress') {
       return handleResetProgress()

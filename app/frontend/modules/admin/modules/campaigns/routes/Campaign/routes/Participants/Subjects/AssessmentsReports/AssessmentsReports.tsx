@@ -13,6 +13,7 @@ import AssessmentList from './AssessmentList'
 import AddReportModal from '../../../AssessmentsReports/routes/Manage/AddReportModal'
 import UpdateNormModal from './UpdateNormModal'
 import UpdateTimeModal from './UpdateTimeModal'
+import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import UpdateCampaignTimeModal from './UpdateCampaignTimeModal'
 import { Strategies } from '../../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
 import { ProctoringSessionList } from './ProctoringSessionList'
@@ -25,6 +26,7 @@ const MODALS = {
   AddReportModal,
   UpdateNormModal,
   UpdateTimeModal,
+  PushWebhookModal,
   UpdateCampaignTimeModal,
 }
 
