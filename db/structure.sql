@@ -1675,7 +1675,7 @@ CREATE TABLE public.factors (
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id integer,
+    dimension_id integer NOT NULL,
     parent_id integer,
     disabled boolean DEFAULT false,
     icon character varying,
@@ -2193,7 +2193,7 @@ ALTER SEQUENCE public.licenses_id_seq OWNED BY public.licenses.id;
 CREATE TABLE public.media_responses (
     id bigint NOT NULL,
     asset character varying,
-    question_id bigint,
+    question_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     users_result_id integer,
@@ -9916,6 +9916,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: media_responses fk_rails_4769c5e3ce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.media_responses
+    ADD CONSTRAINT fk_rails_4769c5e3ce FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
+
+
+--
 -- Name: clients fk_rails_47b47683a3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10177,6 +10185,14 @@ ALTER TABLE ONLY public.sms_histories
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT fk_rails_7a00292b33 FOREIGN KEY (communication_id) REFERENCES public.communications(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factors fk_rails_7b28110d6b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_7b28110d6b FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE CASCADE;
 
 
 --
@@ -11623,6 +11639,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230511105741'),
 ('20230518075547'),
 ('20230518123651'),
+('20230531090612'),
+('20230531090613'),
 ('20230606123535'),
 ('20230615093244');
 
