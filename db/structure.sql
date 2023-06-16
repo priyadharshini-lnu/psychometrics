@@ -89,7 +89,7 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -800,7 +800,8 @@ CREATE TABLE public.campaign_assessments (
     available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
     external_config jsonb,
-    prework boolean DEFAULT false
+    prework boolean DEFAULT false,
+    workshop_activity boolean DEFAULT false NOT NULL
 );
 
 
@@ -821,6 +822,38 @@ CREATE SEQUENCE public.campaign_assessments_id_seq
 --
 
 ALTER SEQUENCE public.campaign_assessments_id_seq OWNED BY public.campaign_assessments.id;
+
+
+--
+-- Name: campaign_assessor_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_assessor_assessments (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    assessment_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_assessor_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_assessor_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_assessor_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_assessor_assessments_id_seq OWNED BY public.campaign_assessor_assessments.id;
 
 
 --
@@ -4371,6 +4404,109 @@ ALTER SEQUENCE public.user_assessments_id_seq OWNED BY public.user_assessments.i
 
 
 --
+-- Name: user_availability_dates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_availability_dates (
+    id bigint NOT NULL,
+    user_id bigint,
+    timezone character varying NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_availability_dates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_availability_dates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_availability_dates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_availability_dates_id_seq OWNED BY public.user_availability_dates.id;
+
+
+--
+-- Name: user_availability_days; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_availability_days (
+    id bigint NOT NULL,
+    user_availability_date_id bigint,
+    day integer DEFAULT 1 NOT NULL,
+    start_time time without time zone NOT NULL,
+    end_time time without time zone NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_availability_days_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_availability_days_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_availability_days_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_availability_days_id_seq OWNED BY public.user_availability_days.id;
+
+
+--
+-- Name: user_bookings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_bookings (
+    id bigint NOT NULL,
+    user_id bigint,
+    start_time timestamp without time zone NOT NULL,
+    end_time timestamp without time zone NOT NULL,
+    booked_by_resource_type character varying,
+    booked_by_resource_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_bookings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_bookings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_bookings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_bookings_id_seq OWNED BY public.user_bookings.id;
+
+
+--
 -- Name: user_profiles; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4754,6 +4890,315 @@ ALTER SEQUENCE public.webhook_subscriptions_id_seq OWNED BY public.webhook_subsc
 
 
 --
+-- Name: workshop_assessors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_assessors (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_assessors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_assessors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_assessors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_assessors_id_seq OWNED BY public.workshop_assessors.id;
+
+
+--
+-- Name: workshop_invite_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invite_logs (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    user_id bigint,
+    created_by_id bigint,
+    action character varying,
+    details json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_invite_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invite_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invite_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invite_logs_id_seq OWNED BY public.workshop_invite_logs.id;
+
+
+--
+-- Name: workshop_invite_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invite_translations (
+    id bigint NOT NULL,
+    title character varying,
+    description character varying,
+    locale character varying NOT NULL,
+    workshop_invite_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_invite_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invite_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invite_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invite_translations_id_seq OWNED BY public.workshop_invite_translations.id;
+
+
+--
+-- Name: workshop_invited_subjects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invited_subjects (
+    id bigint NOT NULL,
+    workshop_invite_id bigint,
+    user_id bigint,
+    status integer DEFAULT 0 NOT NULL,
+    reason text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_invited_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invited_subjects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invited_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invited_subjects_id_seq OWNED BY public.workshop_invited_subjects.id;
+
+
+--
+-- Name: workshop_invites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invites (
+    id bigint NOT NULL,
+    title character varying,
+    description character varying,
+    allow_language_preference boolean DEFAULT false NOT NULL,
+    allowed_languages jsonb DEFAULT '[]'::jsonb,
+    allow_neurodiversity_option boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_invites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invites_id_seq OWNED BY public.workshop_invites.id;
+
+
+--
+-- Name: workshop_invites_workshops; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invites_workshops (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    workshop_invite_id bigint
+);
+
+
+--
+-- Name: workshop_invites_workshops_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invites_workshops_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invites_workshops_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invites_workshops_id_seq OWNED BY public.workshop_invites_workshops.id;
+
+
+--
+-- Name: workshop_managers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_managers (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_managers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_managers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_managers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_managers_id_seq OWNED BY public.workshop_managers.id;
+
+
+--
+-- Name: workshop_subjects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_subjects (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    user_id bigint,
+    attended boolean DEFAULT false NOT NULL,
+    status integer DEFAULT 0 NOT NULL,
+    status_remarks character varying,
+    late_duration integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_subjects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_subjects_id_seq OWNED BY public.workshop_subjects.id;
+
+
+--
+-- Name: workshops; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshops (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    start_time timestamp without time zone NOT NULL,
+    timezone character varying NOT NULL,
+    duration integer NOT NULL,
+    video_call_type integer DEFAULT 0 NOT NULL,
+    meeting_link text,
+    total_seats integer DEFAULT 0 NOT NULL,
+    booked_seats integer DEFAULT 0 NOT NULL,
+    cancellation_lead_time integer DEFAULT 0,
+    reschedule_lead_time integer DEFAULT 0,
+    resources json DEFAULT '[]'::json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshops_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshops_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshops_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshops_id_seq OWNED BY public.workshops.id;
+
+
+--
 -- Name: active_storage_attachments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4884,6 +5329,13 @@ ALTER TABLE ONLY public.campaign_assessment_groups ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.campaign_assessments ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessments_id_seq'::regclass);
+
+
+--
+-- Name: campaign_assessor_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessor_assessments_id_seq'::regclass);
 
 
 --
@@ -5559,6 +6011,27 @@ ALTER TABLE ONLY public.user_assessments ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: user_availability_dates id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_dates ALTER COLUMN id SET DEFAULT nextval('public.user_availability_dates_id_seq'::regclass);
+
+
+--
+-- Name: user_availability_days id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_days ALTER COLUMN id SET DEFAULT nextval('public.user_availability_days_id_seq'::regclass);
+
+
+--
+-- Name: user_bookings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_bookings ALTER COLUMN id SET DEFAULT nextval('public.user_bookings_id_seq'::regclass);
+
+
+--
 -- Name: user_profiles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5619,6 +6092,69 @@ ALTER TABLE ONLY public.webhook_subscription_topics ALTER COLUMN id SET DEFAULT 
 --
 
 ALTER TABLE ONLY public.webhook_subscriptions ALTER COLUMN id SET DEFAULT nextval('public.webhook_subscriptions_id_seq'::regclass);
+
+
+--
+-- Name: workshop_assessors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors ALTER COLUMN id SET DEFAULT nextval('public.workshop_assessors_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invite_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs ALTER COLUMN id SET DEFAULT nextval('public.workshop_invite_logs_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invite_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_translations ALTER COLUMN id SET DEFAULT nextval('public.workshop_invite_translations_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invited_subjects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects ALTER COLUMN id SET DEFAULT nextval('public.workshop_invited_subjects_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invites id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites ALTER COLUMN id SET DEFAULT nextval('public.workshop_invites_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invites_workshops id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites_workshops ALTER COLUMN id SET DEFAULT nextval('public.workshop_invites_workshops_id_seq'::regclass);
+
+
+--
+-- Name: workshop_managers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_managers ALTER COLUMN id SET DEFAULT nextval('public.workshop_managers_id_seq'::regclass);
+
+
+--
+-- Name: workshop_subjects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects ALTER COLUMN id SET DEFAULT nextval('public.workshop_subjects_id_seq'::regclass);
+
+
+--
+-- Name: workshops id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops ALTER COLUMN id SET DEFAULT nextval('public.workshops_id_seq'::regclass);
 
 
 --
@@ -5779,6 +6315,14 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 ALTER TABLE ONLY public.campaign_assessments
     ADD CONSTRAINT campaign_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_assessor_assessments campaign_assessor_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT campaign_assessor_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -6566,6 +7110,30 @@ ALTER TABLE ONLY public.user_assessments
 
 
 --
+-- Name: user_availability_dates user_availability_dates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_dates
+    ADD CONSTRAINT user_availability_dates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_availability_days user_availability_days_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_days
+    ADD CONSTRAINT user_availability_days_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_bookings user_bookings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_bookings
+    ADD CONSTRAINT user_bookings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: user_profiles user_profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6638,6 +7206,78 @@ ALTER TABLE ONLY public.webhook_subscriptions
 
 
 --
+-- Name: workshop_assessors workshop_assessors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors
+    ADD CONSTRAINT workshop_assessors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invite_logs workshop_invite_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT workshop_invite_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invite_translations workshop_invite_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_translations
+    ADD CONSTRAINT workshop_invite_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invited_subjects workshop_invited_subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects
+    ADD CONSTRAINT workshop_invited_subjects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invites workshop_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites
+    ADD CONSTRAINT workshop_invites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invites_workshops workshop_invites_workshops_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites_workshops
+    ADD CONSTRAINT workshop_invites_workshops_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_managers workshop_managers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_managers
+    ADD CONSTRAINT workshop_managers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_subjects workshop_subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT workshop_subjects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshops workshops_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops
+    ADD CONSTRAINT workshops_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: datasheet_column_preference_resource; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6663,6 +7303,13 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 --
 
 CREATE UNIQUE INDEX index_53a664e244a4bc3ce19609177c48692ee2fa83fa ON public.threesixty_instruction_template_translations USING btree (threesixty_instruction_template_id, locale);
+
+
+--
+-- Name: index_57aa4720fb18a9d3160720802166a1fa6020dfdf; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_57aa4720fb18a9d3160720802166a1fa6020dfdf ON public.workshop_invite_translations USING btree (workshop_invite_id, locale);
 
 
 --
@@ -6978,6 +7625,20 @@ CREATE UNIQUE INDEX index_campaign_assessments_on_campaign_id_and_assessment_id 
 --
 
 CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessments USING btree (norm_id);
+
+
+--
+-- Name: index_campaign_assessor_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessor_assessments_on_assessment_id ON public.campaign_assessor_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_campaign_assessor_assessments_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessor_assessments_on_campaign_id ON public.campaign_assessor_assessments USING btree (campaign_id);
 
 
 --
@@ -8325,6 +8986,34 @@ CREATE INDEX index_user_assessments_on_users_result_id ON public.user_assessment
 
 
 --
+-- Name: index_user_availability_dates_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_availability_dates_on_user_id ON public.user_availability_dates USING btree (user_id);
+
+
+--
+-- Name: index_user_availability_days_on_user_availability_date_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_availability_days_on_user_availability_date_id ON public.user_availability_days USING btree (user_availability_date_id);
+
+
+--
+-- Name: index_user_bookings_on_booked_by_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_bookings_on_booked_by_resource ON public.user_bookings USING btree (booked_by_resource_type, booked_by_resource_id);
+
+
+--
+-- Name: index_user_bookings_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_bookings_on_user_id ON public.user_bookings USING btree (user_id);
+
+
+--
 -- Name: index_user_profiles_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8556,6 +9245,125 @@ CREATE INDEX index_webhook_subscriptions_on_project_id ON public.webhook_subscri
 
 
 --
+-- Name: index_workshop_assessors_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_assessors_on_user_id ON public.workshop_assessors USING btree (user_id);
+
+
+--
+-- Name: index_workshop_assessors_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_assessors_on_workshop_id ON public.workshop_assessors USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_invite_logs_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_logs_on_created_by_id ON public.workshop_invite_logs USING btree (created_by_id);
+
+
+--
+-- Name: index_workshop_invite_logs_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_logs_on_user_id ON public.workshop_invite_logs USING btree (user_id);
+
+
+--
+-- Name: index_workshop_invite_logs_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_logs_on_workshop_id ON public.workshop_invite_logs USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_invite_translations_on_description_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_translations_on_description_and_locale ON public.workshop_invite_translations USING btree (description, locale);
+
+
+--
+-- Name: index_workshop_invite_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_translations_on_locale ON public.workshop_invite_translations USING btree (locale);
+
+
+--
+-- Name: index_workshop_invite_translations_on_title_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_translations_on_title_and_locale ON public.workshop_invite_translations USING btree (title, locale);
+
+
+--
+-- Name: index_workshop_invited_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invited_subjects_on_user_id ON public.workshop_invited_subjects USING btree (user_id);
+
+
+--
+-- Name: index_workshop_invited_subjects_on_workshop_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invited_subjects_on_workshop_invite_id ON public.workshop_invited_subjects USING btree (workshop_invite_id);
+
+
+--
+-- Name: index_workshop_invites_workshops_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invites_workshops_on_workshop_id ON public.workshop_invites_workshops USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_invites_workshops_on_workshop_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invites_workshops_on_workshop_invite_id ON public.workshop_invites_workshops USING btree (workshop_invite_id);
+
+
+--
+-- Name: index_workshop_managers_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_managers_on_user_id ON public.workshop_managers USING btree (user_id);
+
+
+--
+-- Name: index_workshop_managers_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_managers_on_workshop_id ON public.workshop_managers USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_subjects_on_user_id ON public.workshop_subjects USING btree (user_id);
+
+
+--
+-- Name: index_workshop_subjects_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_subjects_on_workshop_id ON public.workshop_subjects USING btree (workshop_id);
+
+
+--
+-- Name: index_workshops_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshops_on_campaign_id ON public.workshops USING btree (campaign_id);
+
+
+--
 -- Name: membership_columns_uniq_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8700,6 +9508,22 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: workshop_invite_logs fk_rails_0cb58ea600; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT fk_rails_0cb58ea600 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_bookings fk_rails_0f6d7c0f39; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_bookings
+    ADD CONSTRAINT fk_rails_0f6d7c0f39 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports fk_rails_0fcc82136b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8713,6 +9537,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.assessments_reports
     ADD CONSTRAINT fk_rails_105380adfd FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invites_workshops fk_rails_10a86b74cb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites_workshops
+    ADD CONSTRAINT fk_rails_10a86b74cb FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
 
 
 --
@@ -8857,6 +9689,14 @@ ALTER TABLE ONLY public.user_reports
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_292907b1cc FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_subjects fk_rails_29528926c0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT fk_rails_29528926c0 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
 
 
 --
@@ -9044,6 +9884,22 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: workshop_assessors fk_rails_43709c1a28; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors
+    ADD CONSTRAINT fk_rails_43709c1a28 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_availability_dates fk_rails_4408ce5ec7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_dates
+    ADD CONSTRAINT fk_rails_4408ce5ec7 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: profile_fields fk_rails_44c222c31a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9116,11 +9972,27 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: workshop_assessors fk_rails_524f182ee9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors
+    ADD CONSTRAINT fk_rails_524f182ee9 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
+
+
+--
 -- Name: sms_records fk_rails_58b8df5ee3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.sms_records
     ADD CONSTRAINT fk_rails_58b8df5ee3 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invited_subjects fk_rails_592e1c2e7f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects
+    ADD CONSTRAINT fk_rails_592e1c2e7f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -9180,6 +10052,14 @@ ALTER TABLE ONLY public.reports
 
 
 --
+-- Name: workshop_managers fk_rails_64dc0c729a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_managers
+    ADD CONSTRAINT fk_rails_64dc0c729a FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: webhook_subscriptions fk_rails_68548bd5a8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9225,6 +10105,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.privacy_consents
     ADD CONSTRAINT fk_rails_6cd91d815a FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invite_logs fk_rails_6e03291780; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT fk_rails_6e03291780 FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -9420,6 +10308,14 @@ ALTER TABLE ONLY public.design_settings
 
 
 --
+-- Name: workshop_invited_subjects fk_rails_8ec909c062; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects
+    ADD CONSTRAINT fk_rails_8ec909c062 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
+
+
+--
 -- Name: factors_sub_factors fk_rails_8feda8b335; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9473,6 +10369,14 @@ ALTER TABLE ONLY public.campaign_users
 
 ALTER TABLE ONLY public.threesixty_email_schedules
     ADD CONSTRAINT fk_rails_965ab844ab FOREIGN KEY (template_id) REFERENCES public.threesixty_email_templates(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_invite_translations fk_rails_96cf57bb2e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_translations
+    ADD CONSTRAINT fk_rails_96cf57bb2e FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id);
 
 
 --
@@ -9577,6 +10481,14 @@ ALTER TABLE ONLY public.profile_fields
 
 ALTER TABLE ONLY public.threesixty_reminder_histories
     ADD CONSTRAINT fk_rails_a2f976ebf2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: workshops fk_rails_a420799614; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops
+    ADD CONSTRAINT fk_rails_a420799614 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -9740,6 +10652,14 @@ ALTER TABLE ONLY public.integrations
 
 
 --
+-- Name: workshop_subjects fk_rails_c7aa966031; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT fk_rails_c7aa966031 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_histories fk_rails_c9b5f538f9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9844,11 +10764,35 @@ ALTER TABLE ONLY public.clients_reports
 
 
 --
+-- Name: campaign_assessor_assessments fk_rails_d47904be93; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT fk_rails_d47904be93 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invites_workshops fk_rails_d4e62fe94f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites_workshops
+    ADD CONSTRAINT fk_rails_d4e62fe94f FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
+
+
+--
 -- Name: license_usages fk_rails_d511a75463; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_d511a75463 FOREIGN KEY (assigns_report_id) REFERENCES public.assigns_reports(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_managers fk_rails_d60918274d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_managers
+    ADD CONSTRAINT fk_rails_d60918274d FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
 
 
 --
@@ -9908,6 +10852,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 
 --
+-- Name: user_availability_days fk_rails_dc0c48bc79; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_days
+    ADD CONSTRAINT fk_rails_dc0c48bc79 FOREIGN KEY (user_availability_date_id) REFERENCES public.user_availability_dates(id) ON DELETE CASCADE;
+
+
+--
 -- Name: user_report_comments fk_rails_dc18fe0d04; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9964,6 +10916,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: workshop_invite_logs fk_rails_e5cc12921b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT fk_rails_e5cc12921b FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_evaluators fk_rails_e96676a310; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10001,6 +10961,14 @@ ALTER TABLE ONLY public.user_report_events
 
 ALTER TABLE ONLY public.norms
     ADD CONSTRAINT fk_rails_ecfeaf1ba0 FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: campaign_assessor_assessments fk_rails_ee2e737b88; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT fk_rails_ee2e737b88 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -10655,6 +11623,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230511105741'),
 ('20230518075547'),
 ('20230518123651'),
-('20230606123535');
+('20230606123535'),
+('20230615093244');
 
 

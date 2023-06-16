@@ -17,6 +17,8 @@ class Campaign < ApplicationRecord
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :campaign_options, dependent: :destroy
   has_many :sheets, dependent: :destroy
+  has_many :workshops, dependent: :destroy
+  has_many :campaign_assessor_assessments, dependent: :destroy
   has_one :accesssheet, dependent: :destroy
   has_one :project_datasheet, through: :project, source: :datasheet
   has_one :campaign_datasheet, class_name: 'Datasheet', dependent: :destroy

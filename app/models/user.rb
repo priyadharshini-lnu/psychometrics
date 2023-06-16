@@ -121,7 +121,9 @@ class User < ApplicationRecord
   has_many :report_approvals, dependent: :destroy
   has_many :highlights, dependent: :destroy
   has_many :privacy_consents, dependent: :destroy
-
+  has_many :user_availability_dates, dependent: :destroy
+  has_many :user_availability_days, through: :user_availability_dates
+  has_many :user_bookings
   has_one :security_setting, through: :project
   has_one :user_profile
 
