@@ -14,17 +14,19 @@ interface Props {
 }
 
 export const EditForm: React.FC<Props> = ({ assessment }) => (
-  <Row className="pl">
-    <Col span={12}>
+  <Row>
+    <Col span={12} className="pl">
+      <Collapse defaultActiveKey={['1']}>
+        <Panel
+          header={<Typography.Text strong>{I18n.t('assessments.pages.edit.general_settings')}</Typography.Text>}
+          key="1"
+        >
+          <General assessment={assessment} />
+        </Panel>
+      </Collapse>
+    </Col>
+    <Col span={12} className='pl'>
       <Space direction="vertical" style={{ display: 'flex' }} size="large">
-        <Collapse defaultActiveKey={['1']}>
-          <Panel
-            header={<Typography.Text strong>{I18n.t('assessments.pages.edit.general_settings')}</Typography.Text>}
-            key="1"
-          >
-            <General assessment={assessment} />
-          </Panel>
-        </Collapse>
         <Collapse>
           <Panel
             header={<Typography.Text strong>{I18n.t('assessments.pages.edit.assets')}</Typography.Text>}
