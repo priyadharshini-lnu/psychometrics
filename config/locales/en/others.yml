@@ -854,6 +854,11 @@ en:
         description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or surveys@thetalententerprise.com
         title: Last Request Failed
       submit: Submit
+    pages:
+      edit:
+        assets: Assets
+        general_settings: General Settings
+        translations: Translations
     pickgrouprank:
       items: Items
     proceed: Proceed Anyway
