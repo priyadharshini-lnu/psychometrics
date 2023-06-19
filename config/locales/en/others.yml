@@ -1177,6 +1177,7 @@ en:
       reset_participant: Reset All Participants
     assessments_heading: Your Tasks
     column:
+      assessment_center_activity: Assessment Center Activity
       assessment_name: Assessment name
       assessor_form: Assessor Form
       locales: Locales

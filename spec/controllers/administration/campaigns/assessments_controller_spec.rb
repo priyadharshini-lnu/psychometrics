@@ -117,4 +117,18 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
     expect(campaign_assessment.reload.prework).to eq(false)
     expect(parsed_response).to match(hash_including('prework' => false))
   end
+
+  it '[PUT] update_workshop_activity' do
+    expect(campaign_assessment.workshop_activity).to eq(false)
+    put :update_workshop_activity, params: {
+      id: assessment.id,
+      new_campaign_id: campaign.id,
+      workshop_activity: true
+    }, as: :json
+
+    parsed_response = JSON.parse(response.body)
+
+    expect(campaign_assessment.reload.workshop_activity).to eq(true)
+    expect(parsed_response).to match(hash_including('workshop_activity' => true))
+  end
 end

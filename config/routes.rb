@@ -278,6 +278,7 @@ Rails.application.routes.draw do
             put :update_available_locales
             post :rescore_responses
             put :update_prework
+            put :update_workshop_activity
           end
           collection do
             get :other

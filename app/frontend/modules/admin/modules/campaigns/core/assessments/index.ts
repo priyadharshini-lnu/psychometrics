@@ -20,6 +20,7 @@ import {
   UPDATE_AVAILABLE_LOCALES,
   UPDATE_EXTERNAL_CONFIG,
   UPDATE_PREWORK,
+  UPDATE_WORKSHOP_ACTIVITY,
 } from './actions'
 
 const defaultState: State = {
@@ -155,6 +156,11 @@ const HANDLERS = {
     ))
   ),
   [UPDATE_PREWORK]: (state: State, { response }: ApiActionResponse<Assessment>) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
+      assessment.id === response.id ? response : assessment
+    )))
+  ),
+  [UPDATE_WORKSHOP_ACTIVITY]: (state: State, { response }: ApiActionResponse<Assessment>) => (
     updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
       assessment.id === response.id ? response : assessment
     )))

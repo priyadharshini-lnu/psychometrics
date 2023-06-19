@@ -40,6 +40,7 @@ const AssessmentList: React.FC<Props> = ({
   exportExternalResults,
   updateExternalConfig,
   updatePrework,
+  updateWorkshopActivity,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -57,11 +58,6 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessment_name')}
             key="name"
             dataIndex="name"
-          />
-          <Column
-            title={I18n.t('common.column.category')}
-            key="category"
-            render={({ category }) => _.capitalize(category)}
           />
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
@@ -180,6 +176,17 @@ const AssessmentList: React.FC<Props> = ({
               <Switch
                 checked={prework}
                 onChange={checked => updatePrework(parsedCampaignId, id, checked)}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_assessment.column.assessment_center_activity')}
+            key="workshopActivity"
+            width={150}
+            render={({ id, workshopActivity }) => (
+              <Switch
+                checked={workshopActivity}
+                onChange={checked => updateWorkshopActivity(parsedCampaignId, id, checked)}
               />
             )}
           />

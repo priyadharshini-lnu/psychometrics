@@ -138,6 +138,16 @@ module Administration
                current_user: current_user
       end
 
+      def update_workshop_activity
+        campaign_assessment.update!(workshop_activity: params[:workshop_activity])
+
+        render json: campaign_assessment,
+               serializer: Administration::CampaignAssessmentSerializer,
+               campaign_id: campaign.id,
+               project_id: campaign.project_id,
+               current_user: current_user
+      end
+
       private
 
       def assessment
