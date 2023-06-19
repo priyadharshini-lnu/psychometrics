@@ -25,7 +25,7 @@ export const EditForm: React.FC<Props> = ({ assessment }) => (
         </Panel>
       </Collapse>
     </Col>
-    <Col span={12} className='pl'>
+    <Col span={12} className="pl">
       <Space direction="vertical" style={{ display: 'flex' }} size="large">
         <Collapse>
           <Panel
