@@ -380,6 +380,7 @@ jobs:
           node-env: production
       - run:
           name: Assets precompile
+          no_output_timeout: 15m
           command: |
             if [ -n "<< parameters.asset-host >>" ]; then
               ASSET_HOST=<< parameters.asset-host >> bundle exec rails assets:precompile
