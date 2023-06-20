@@ -379,6 +379,9 @@ jobs:
       - restore_assets_compile_cache:
           node-env: production
       - run:
+          name: Export I18n
+          command: bundle exec rake i18n:js:export
+      - run:
           name: Assets precompile
           no_output_timeout: 15m
           command: |
