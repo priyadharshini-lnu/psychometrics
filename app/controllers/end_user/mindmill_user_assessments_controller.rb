@@ -14,7 +14,7 @@ class EndUser::MindmillUserAssessmentsController < ApplicationController
     if sso_url
       sso_url = "#{sso_url}&URL=#{request.base_url}#{redirect_mindmill_user_assessment_path(params[:id])}"
       user_result.in_progress!
-      return redirect_to sso_url
+      return redirect_to(sso_url, allow_other_host: true)
     end
 
     redirect_to(campaign_path(campaign))

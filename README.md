@@ -8,9 +8,9 @@ Ruby [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/
 
 ## Requisites
 
-Ruby version: 3.1.3
+Ruby version: 3.1.2
 
-Rails version: 6.1.6
+Rails version: 7.0.5
 
 Bundler version: 2.3.17
 

@@ -40,7 +40,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
             description: 'asd',
             external_settings: {
               assessment_id: 'fake_id'
-            }
+            },
+            extra: { icon_color: 'color' }
           },
           relationships: relations
         }

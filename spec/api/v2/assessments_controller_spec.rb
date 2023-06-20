@@ -85,7 +85,8 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
               updated_at: '25 May 2023 / 12:35',
               created_by: 'ROHAN PUJARI',
               description: 'asd',
-              external_settings: {}
+              external_settings: {},
+              extra: { icon_color: 'color' }
             },
             relationships: {
               dimension: { data: { type: 'dimensions', id: '39' } },
@@ -104,7 +105,8 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
                 category: 'psychometric',
                 description: 'name',
                 name: 'name',
-                type: 'common'
+                type: 'common',
+                extra: { icon_color: 'color' }
               },
               relationships: {
                 dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },

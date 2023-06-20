@@ -5,8 +5,10 @@ require 'syslog/logger'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+
   # Code is not reloaded between requests.
   config.cache_classes = true
+
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -36,7 +38,7 @@ Rails.application.configure do
   end
   config.public_file_server.headers = {
     'Cache-Control' => 'public, s-maxage=31536000, max-age=15552000',
-    'Expires' => 1.year.from_now.to_formatted_s(:rfc822)
+    'Expires' => 1.year.from_now.to_fs(:rfc822)
   }
   config.public_file_server.headers['Access-Control-Allow-Origin'] = '*' if Settings.asset_host.present?
   # Compress JavaScripts and CSS.
@@ -44,6 +46,7 @@ Rails.application.configure do
   config.logger = Syslog::Logger.new 'psychometrics'
   # config.assets.css_compressor = :sass
 
+  # Compress CSS using a preprocessor.
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
@@ -60,7 +63,10 @@ Rails.application.configure do
   # TODO: Find a solution and remove this setting
   config.action_dispatch.ip_spoofing_check = false
 
-  # Mount Action Cable outside main process or domain
+  # Store uploaded files on the local file system (see config/storage.yml for options).
+  # config.active_storage.service = :local
+
+  # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
@@ -68,8 +74,8 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = Settings.protocol == 'https'
 
-  # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
+  # Include generic and useful information about system operation, but avoid logging too much
+  # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
@@ -81,17 +87,18 @@ Rails.application.configure do
       url: ENV['REDIS_URL'],
       ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
     }
+    # else
+    #   config.cache_store = :mem_cache_store
   end
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "psychometrics_#{Rails.env}"
-  config.action_mailer.perform_caching = false
+  # config.active_job.queue_name_prefix = 'psychometrics_production'
 
+  config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default charset: 'utf-8'
   config.action_mailer.default_url_options = { host: Settings.domain }
-
   config.action_mailer.smtp_settings = {
     user_name: ENV.fetch('MAIL_USERNAME', nil),
     password: ENV.fetch('MAIL_PASSWORD', nil),
@@ -122,6 +129,8 @@ Rails.application.configure do
 
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
+  # Don't log any deprecations.
+  config.active_support.report_deprecations = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new

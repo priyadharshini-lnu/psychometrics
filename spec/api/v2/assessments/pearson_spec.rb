@@ -44,7 +44,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
             external_settings: {
               assessment_id: 'pearson_id',
               norm_id: 'n1'
-            }
+            },
+            extra: { icon_color: 'color' }
           },
           relationships: {
             dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },

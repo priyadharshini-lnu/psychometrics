@@ -10,11 +10,11 @@ class EndUser::SavilleUserAssessmentsController < ApplicationController
     @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
     @user_assessment.in_progress!
     saville_user_assessment = @user_assessment.saville_user_assessment
-    return redirect_to(saville_user_assessment.url) if saville_user_assessment&.url
+    return redirect_to(saville_user_assessment.url, allow_other_host: true) if saville_user_assessment&.url
 
     ::Saville::AssessmentOrderRequest.call!(@user_assessment)
 
-    redirect_to saville_user_assessment.url
+    redirect_to(saville_user_assessment.url, allow_other_host: true)
   end
 
   def redirect

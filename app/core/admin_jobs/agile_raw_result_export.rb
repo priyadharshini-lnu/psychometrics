@@ -87,7 +87,7 @@ module AdminJobs
 
     def readable_date(timestamp)
       if timestamp.present?
-        DateTime.strptime(timestamp.to_s, '%Q').to_formatted_s(:rfc822)
+        DateTime.strptime(timestamp.to_s, '%Q').to_fs(:rfc822)
       else
         ''
       end

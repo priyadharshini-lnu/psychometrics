@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :user do
+  factory :user, class: 'Users::Regular' do
     sequence(:email) { |n| "user+#{n}.#{rand(1..100)}@example.com" }
     password { 'Password@Strong@129' }
     role { User::REGULAR_ROLE }

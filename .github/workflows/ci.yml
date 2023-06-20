@@ -73,7 +73,7 @@ jobs:
           cp config/database.yml.sample config/database.yml
           cp config/application.yml.sample  config/application.yml
           bundle exec rake parallel:create
-          bundle exec rake parallel:load_structure
+          bundle exec rake parallel:load_schema
 
       - name: Run Javascript Tests
         run: yarn test

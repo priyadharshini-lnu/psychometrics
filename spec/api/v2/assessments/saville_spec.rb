@@ -25,7 +25,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
             description: 'asd',
             external_settings: {
               assessment_id: '4c1665e2-eee3-4e92-8f31-70a6b0e55e93'
-            }
+            },
+            extra: { icon_color: 'color' }
           },
           relationships: {
             dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },

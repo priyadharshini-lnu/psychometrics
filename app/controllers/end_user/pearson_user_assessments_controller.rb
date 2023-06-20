@@ -10,11 +10,11 @@ class EndUser::PearsonUserAssessmentsController < ApplicationController
     @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
     @user_assessment.in_progress!
     pearson_user_assessment = @user_assessment.pearson_user_assessment
-    return redirect_to(pearson_user_assessment.url) if pearson_user_assessment&.url
+    return redirect_to(pearson_user_assessment.url, allow_other_host: true) if pearson_user_assessment&.url
 
     ::Pearson::CreateSchedule.call!(@user_assessment)
 
-    redirect_to pearson_user_assessment.url
+    redirect_to(pearson_user_assessment.url, allow_other_host: true)
   end
 
   def redirect

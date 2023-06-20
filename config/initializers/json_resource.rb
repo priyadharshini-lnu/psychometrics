@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require './app/core/json_api/audit_log_processor'
+
 JSONAPI.configure do |config|
   config.default_processor_klass = JsonApi::AuditLogProcessor
   config.exception_class_whitelist = [Pundit::NotAuthorizedError]

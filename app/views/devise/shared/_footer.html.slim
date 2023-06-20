@@ -5,6 +5,6 @@
     = link_to t('shared.terms_conditions_privacy'), 'https://thetalententerprise.com/privacy-statement/', rel: 'noopener noreferrer', target: '_blank'
     - if @current_project&.privacy_link
       = link_to "#{@current_project.privacy_link.text}", "#{@current_project.privacy_link.link}", target: '_blank'
-  - if @current_project&.secondary_logo&.url
+  - if @current_project&.design_setting&.secondary_logo&.url
     .partner-logo
-      = image_tag(@current_project&.secondary_logo&.url, class: 'logo')
+      = image_tag(@current_project&.design_setting&.secondary_logo&.url, class: 'logo')

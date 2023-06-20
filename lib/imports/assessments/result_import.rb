@@ -107,7 +107,7 @@ module Imports
 
           # Parse answers
           data.each do |key, value|
-            next unless /qid/.match?(key)
+            next unless /qid/.match?(key) # rubocop:disable Performance/StringInclude
 
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).compact_blank.map(&:to_i)

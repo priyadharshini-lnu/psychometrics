@@ -25,7 +25,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
             description: 'asd',
             external_settings: {
               assessment_id: 'HDS'
-            }
+            },
+            extra: { icon_color: 'color' }
           },
           relationships: {
             dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
