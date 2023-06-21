@@ -16,6 +16,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
 
   before_create do
     @model.created_by_id = context[:user].id
+    @model.extra = { enable_video_check: false, enable_audio_check: false, enable_network_check: false }
   end
 
   before_update do
