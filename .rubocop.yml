@@ -8,6 +8,7 @@ AllCops:
     - node_modules/**/*
     - db/schema.rb
     - db/migrate/**/*
+    - db/seeds/**/*
     - bin/*
   UseCache: true
   CacheRootDirectory: tmp
