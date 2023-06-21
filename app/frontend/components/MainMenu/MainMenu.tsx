@@ -130,12 +130,49 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean): MenuItem[] =>
 ].filter(Boolean)
 
 const getSelected = (): string => {
+  if (location.href.match(/\/administration(\/)(norms)/)) {
+    return 'norms'
+  }
+
+  if (location.href.match(/\/administration(\/)(dshboards)/)) {
+    return 'dashboards'
+  }
+
+  if (location.href.match(/\/administration(\/)(dimensions)/)) {
+    return 'dimensions'
+  }
+
   if (location.href.match(/\/administration(\/)(users)/)) {
     return 'users'
   }
 
   if (location.href.match(/\/administration(\/)(assessments)/)) {
     return 'assessments'
+  }
+
+  if (location.href.match(/\/administration(\/)(libraries)/)) {
+    return 'libraries'
+  }
+  if (location.href.match(/\/administration(\/)(communications)/)) {
+    return 'communicationCenter'
+  }
+  if (location.href.match(/\/administration(\/)(reports)/)) {
+    return 'reports'
+  }
+  if (location.href.match(/\/administration(\/)(report_approvals)/)) {
+    return 'reportApprovals'
+  }
+
+  if (location.href.match(/\/administration(\/)(campaign_templates)/)) {
+    return 'campaignTemplates'
+  }
+
+  if (location.href.match(/\/administration(\/)(audit_logs)/)) {
+    return 'auditLogs'
+  }
+
+  if (location.href.match(/\/administration(\/)templates\/(questions|blocks)/)) {
+    return 'questionCenter'
   }
 
   return 'clients'

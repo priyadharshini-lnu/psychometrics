@@ -40,7 +40,7 @@ export default class Header extends Component {
         <ul className={cs('panel-controls', styles.controls)}>
           <li><Tabs active="scoring" /></li>
           <li>
-            <Button size="large" type="primary" onClick={this.save}>
+            <Button type="primary" onClick={this.save}>
               <SaveOutlined />
               {' '}
               Save
