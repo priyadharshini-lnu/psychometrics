@@ -142,11 +142,9 @@ const AddReportModal: React.FC<Props> = ({
                   <Form.Item
                     name={['reportIds', `${id}`]}
                     valuePropName="checked"
-                    label={name}
-                    labelCol={{ span: 22 }}
-                    wrapperCol={{ span: 2 }}
+                    wrapperCol={{ span: 24 }}
                   >
-                    <Checkbox />
+                    <Checkbox>{name}</Checkbox>
                   </Form.Item>
                 )}
               />
