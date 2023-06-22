@@ -511,6 +511,7 @@ providers:
         language_id: en
         assessment_ids:
           - HDS
+          - HPI
     assessments:
       - id: HPI
         name: HPI
