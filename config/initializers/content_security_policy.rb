@@ -42,7 +42,7 @@ unless Rails.env.test?
     policy.object_src  '*'
     policy.frame_src   '*'
     policy.script_src(
-      :self, :unsafe_inline, 'https://speedof.me', 'https://chatwoot.tte-work.com', 'https://svc.webspellchecker.net'
+      :self, :unsafe_eval, :unsafe_inline, 'https://speedof.me', 'https://chatwoot.tte-work.com', 'https://svc.webspellchecker.net'
     )
     policy.style_src :self, :unsafe_inline
     policy.connect_src(
