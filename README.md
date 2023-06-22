@@ -30,23 +30,26 @@ prevent bundle secure warnings with
     rbenv: install [rbenv-gemset plugin](https://github.com/jf/rbenv-gemset) then in the project directory run `$> rbenv gemset create [version] [gemset]`
 
 1. `$> bundle install`
-2. `$> cp config/application.yml.sample config/application.yml`
-3. `$> cp config/database.yml.sample config/database.yml`
-4. `$> cp config/settings/development.yml.sample config/settings/development.yml`
+
+    if error: `An error occurred while installing mimemagic (0.4.3), and Bundler cannot continue.`
+    on mac: `$> brew install shared-mime-info` and try step 1 again.
+3. `$> cp config/application.yml.sample config/application.yml`
+4. `$> cp config/database.yml.sample config/database.yml`
+5. `$> cp config/settings/development.yml.sample config/settings/development.yml`
 
     Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
 
     Edit and setup `database.yml` as appropriate.
 
-5. Create databases `$> bundle exec rake db:create`
+6. Create databases `$> bundle exec rake db:create`
 
     Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
 
-6. `$> yarn install`
+7. `$> yarn install`
 
-7. Install redis.
+8. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
-8. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
+9. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
 Follow the instruction mentioned in the README.md to install and run the serverless framework.
 In the main psychometric repo set environment variable `URL_TO_PDF_LAMBDA_URL` to `http://localhost:3000/dev`
 
