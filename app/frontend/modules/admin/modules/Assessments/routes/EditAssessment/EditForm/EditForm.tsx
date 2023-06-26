@@ -1,14 +1,12 @@
 import React from 'react'
-import {
-  Col, Row, Space, Collapse, Typography,
-} from 'antd'
+import { Col, Row, Space } from 'antd'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { General } from './Sections/General'
 import { Assets } from './Sections/Assets'
 import { Translations } from './Sections/Translations'
+import { Panel } from '~/glint'
 
 const { I18n } = window
-const { Panel } = Collapse
 interface Props {
   assessment: Assessment
 }
@@ -16,33 +14,18 @@ interface Props {
 export const EditForm: React.FC<Props> = ({ assessment }) => (
   <Row>
     <Col span={12} className="pl">
-      <Collapse defaultActiveKey={['1']}>
-        <Panel
-          header={<Typography.Text strong>{I18n.t('assessments.pages.edit.general_settings')}</Typography.Text>}
-          key="1"
-        >
-          <General assessment={assessment} />
-        </Panel>
-      </Collapse>
+      <Panel title={I18n.t('assessments.pages.edit.general_settings')} collapsible>
+        <General assessment={assessment} />
+      </Panel>
     </Col>
     <Col span={12} className="pl">
       <Space direction="vertical" style={{ display: 'flex' }} size="large">
-        <Collapse>
-          <Panel
-            header={<Typography.Text strong>{I18n.t('assessments.pages.edit.assets')}</Typography.Text>}
-            key="1"
-          >
-            <Assets assessment={assessment} />
-          </Panel>
-        </Collapse>
-        <Collapse>
-          <Panel
-            header={<Typography.Text strong>{I18n.t('assessments.pages.edit.translations')}</Typography.Text>}
-            key="1"
-          >
-            <Translations assessment={assessment} />
-          </Panel>
-        </Collapse>
+        <Panel title={I18n.t('assessments.pages.edit.assets')} collapsible>
+          <Assets assessment={assessment} />
+        </Panel>
+        <Panel title={I18n.t('assessments.pages.edit.translations')} collapsible>
+          <Translations assessment={assessment} />
+        </Panel>
       </Space>
     </Col>
   </Row>
