@@ -8,6 +8,7 @@ class Workshop < ApplicationRecord
   has_many :workshop_subjects
   has_many :subjects, through: :workshop_subjects, source: :user
   has_many :workshop_assessors
+  has_many :workshop_resources
   has_many :assessors, through: :workshop_assessors, source: :user
   has_many :workshop_managers
   has_many :managers, through: :workshop_managers, source: :user
