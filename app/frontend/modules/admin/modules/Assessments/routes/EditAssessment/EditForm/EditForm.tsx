@@ -62,6 +62,7 @@ export const EditForm: React.FC<Props> = ({ assessment }) => {
       <Col sm={24} md={16} xl={12} xxl={10}>
         <ResourceForm
           resourceName="assessments"
+          readableResourceName="Assessment"
           resource={assessment}
           showSuccessMessages
           storeManager={{ form }}
