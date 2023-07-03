@@ -23,15 +23,8 @@
     transform: translateX(0%);
     z-index: 500;
   }
-  60% {
-    transform: translateX(100%);
-    z-index: 500;
-  }
-  85% {
-    z-index: 300;
-  }
   100% {
-    transform: translateX(0);
+    transform: translateX(-100%);
     z-index: 300;
   }
 }
@@ -39,15 +32,8 @@
 
 @keyframes show {
   0% {
-    transform: translateX(0);
+    transform: translateX(-100%);
     z-index: 300;
-  }
-  60% {
-    transform: translateX(100%);
-    z-index: 300;
-  }
-  85% {
-    z-index: 500;
   }
   100% {
     transform: translateX(0);

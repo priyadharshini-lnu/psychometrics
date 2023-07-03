@@ -1,16 +1,19 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, Drawer } from 'antd'
 import {
   ArrowLeftOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
+import { useMedia } from 'react-use-media'
 import { UserMenu } from '~/components/MainMenu/MainMenu'
 import styles from './Subnavigation.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
-import { addSubmenu, closeSubmenu, removeSubmenu } from '~/modules/admin/core/ui/menu'
+import {
+  addSubmenu, closeSubmenu, removeSubmenu,
+} from '~/modules/admin/core/ui/menu'
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -38,6 +41,8 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
   currentUser, items, selectedKeys, onSelect, showBack = true,
   showSubmenu, addSubmenu, closeSubmenu, removeSubmenu, collapsed,
 }) => {
+  const [show, setShow] = useState(false)
+
   useEffect(() => {
     addSubmenu()
     return () => {
@@ -45,11 +50,28 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
     }
   }, [])
 
+  useEffect(() => {
+    if (!show && collapsed) {
+      setShow(true)
+    }
+  }, [collapsed])
+
+  const isMobile = useMedia({
+    maxWidth: 1024,
+  })
+
+
   const handleOnSelect = ({ key }): ReturnType<typeof closeSubmenu> | void => {
     if (key === 'back_to_main_menu') {
+      // setShow(false)
       return closeSubmenu()
     }
     onSelect(key)
+  }
+
+  const closeMenu = () => {
+    setShow(false)
+    closeSubmenu()
   }
 
   const itemsWithBack = [showBack ? {
@@ -58,14 +80,8 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
     icon: <ArrowLeftOutlined />,
   } : null, ...items]
 
-  return (
-    <Layout.Sider
-      width={220}
-      theme="light"
-      collapsed={collapsed}
-      collapsedWidth={55}
-      className={cs(styles.sidebar, { [styles.show]: showSubmenu, [styles.hide]: !showSubmenu })}
-    >
+  const menu = (
+    <>
       <UserMenu currentUser={currentUser} collapsed={collapsed} />
       <Menu
         onSelect={handleOnSelect}
@@ -73,6 +89,29 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
         mode="inline"
         items={itemsWithBack}
       />
+    </>
+  )
+
+  return isMobile ? (
+    <Drawer
+      closable={false}
+      bodyStyle={{ padding: 0 }}
+      placement="left"
+      width="220"
+      open={show && !collapsed}
+      onClose={() => closeMenu()}
+    >
+      {menu}
+    </Drawer>
+  ) : (
+    <Layout.Sider
+      width={220}
+      theme="light"
+      collapsed={collapsed}
+      collapsedWidth={55}
+      className={cs(styles.sidebar, { [styles.show]: showSubmenu, [styles.hide]: !showSubmenu })}
+    >
+      {menu}
     </Layout.Sider>
   )
 }
