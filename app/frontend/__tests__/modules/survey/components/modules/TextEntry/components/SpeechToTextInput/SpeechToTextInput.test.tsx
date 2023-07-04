@@ -1,12 +1,9 @@
-import React from 'react'
 import { render, screen } from '@testing-library/react'
 
 import {
   SpeechToTextInput,
   Props,
 } from '~/modules/survey/components/modules/TextEntry/components/SpeechToTextInput/SpeechToTextInput'
-
-global.React = React
 
 test('Should render a button for start dictation', () => {
   const props: Props = {

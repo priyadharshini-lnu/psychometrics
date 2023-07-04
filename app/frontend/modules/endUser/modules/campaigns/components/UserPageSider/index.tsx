@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import {
   HomeOutlined,
   UserOutlined,
+  // CalendarOutlined,
 } from '@ant-design/icons'
 
 
@@ -46,7 +47,13 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
   ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
-}] : [], {
+}] : [],
+// {
+//   key: 'bookings',
+//   label: I18n.t('campaign.dashboard_menu.bookings'),
+//   icon: <CalendarOutlined className={styles.siderIcon} />,
+// },
+{
   key: 'profile',
   label: I18n.t('campaign.dashboard_menu.profile'),
   icon: <UserOutlined className={styles.siderIcon} />,

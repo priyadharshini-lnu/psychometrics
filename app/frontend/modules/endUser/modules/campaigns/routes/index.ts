@@ -11,6 +11,7 @@ import { Nomination } from './Nomination'
 import { Evaluation } from './Evaluation'
 import { Report } from './Report'
 import { Anonym } from './Anonym'
+import { Bookings } from './Bookings'
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
   {
     path: '/threesixty_campaigns/:campaignId',
     main: Campaign,
+    exact: true,
+  },
+  {
+    path: '/bookings',
+    main: Bookings,
     exact: true,
   },
   {

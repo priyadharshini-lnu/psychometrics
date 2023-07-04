@@ -1,7 +1,9 @@
 require('@testing-library/jest-dom')
 const I18n = require('i18n-js')
+const React = require('react')
 
 global.I18n = I18n
+global.React = React
 
 require('../app/assets/javascripts/administration/i18n/translations.js')
 jest.mock('~/modules/reports/cable/Cable.js')

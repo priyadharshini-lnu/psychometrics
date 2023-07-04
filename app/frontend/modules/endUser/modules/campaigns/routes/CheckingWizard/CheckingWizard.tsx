@@ -34,8 +34,6 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 
 const { Step } = Steps
 const { I18n } = window
-const locales = I18n.availableLocales
-const current = I18n.locale
 
 const { Content } = Layout
 
@@ -120,7 +118,7 @@ const CheckingWizardComponent: React.FC<Props> = ({
     <>
       <GlintPageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown locales={locales} current={current} />
+          <LangDropdown />
         </Col>
       </GlintPageHeader>
       {finish ? (

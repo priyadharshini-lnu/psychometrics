@@ -33,6 +33,7 @@ unless Rails.env.test?
   Rails.application.config.content_security_policy do |policy|
     protocol = Settings.protocol
     vite_domain = "#{Settings.domain}:#{ViteRuby.config.port}"
+    mocker_api_domain = "#{Settings.domain}:3037"
     websocket_protocol = protocol == 'https' ? 'wss' : 'ws'
 
     policy.default_src :self
@@ -55,7 +56,8 @@ unless Rails.env.test?
                         :unsafe_eval, :unsafe_inline, "#{protocol}://#{vite_domain}")
       policy.connect_src(
         *policy.connect_src, "#{protocol}://#{vite_domain}", "#{protocol}://*.#{vite_domain}",
-        "#{websocket_protocol}://#{vite_domain}", "#{websocket_protocol}://*.#{vite_domain}"
+        "#{websocket_protocol}://#{vite_domain}", "#{websocket_protocol}://*.#{vite_domain}",
+        "#{protocol}://*.#{mocker_api_domain}", "#{protocol}://#{mocker_api_domain}"
       )
     end
 

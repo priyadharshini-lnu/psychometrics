@@ -1046,6 +1046,10 @@ en:
     sign_out: Login as different user
     sign_up: Sign Up
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
+  bookings:
+    tab_label:
+      bookings: Bookings
+      invites: Invites
   browsers:
     chrome: Google Chrome
     download:
@@ -1078,6 +1082,7 @@ en:
     continue: Continue your tasks
     dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
+      bookings: Bookings
       campaign: Campaign
       change_password: Change Password
       home: Home
