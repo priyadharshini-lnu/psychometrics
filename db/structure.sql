@@ -89,8 +89,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
-
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
 --
@@ -404,8 +402,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -565,12 +563,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -797,8 +795,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL
@@ -4087,8 +4085,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -4752,10 +4749,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -5122,6 +5119,37 @@ ALTER SEQUENCE public.workshop_managers_id_seq OWNED BY public.workshop_managers
 
 
 --
+-- Name: workshop_resources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_resources (
+    id bigint NOT NULL,
+    name character varying,
+    url character varying,
+    workshop_id bigint
+);
+
+
+--
+-- Name: workshop_resources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_resources_id_seq OWNED BY public.workshop_resources.id;
+
+
+--
 -- Name: workshop_subjects; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5173,7 +5201,6 @@ CREATE TABLE public.workshops (
     booked_seats integer DEFAULT 0 NOT NULL,
     cancellation_lead_time integer DEFAULT 0,
     reschedule_lead_time integer DEFAULT 0,
-    resources json DEFAULT '[]'::json,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -6141,6 +6168,13 @@ ALTER TABLE ONLY public.workshop_invites_workshops ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.workshop_managers ALTER COLUMN id SET DEFAULT nextval('public.workshop_managers_id_seq'::regclass);
+
+
+--
+-- Name: workshop_resources id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_resources ALTER COLUMN id SET DEFAULT nextval('public.workshop_resources_id_seq'::regclass);
 
 
 --
@@ -7259,6 +7293,14 @@ ALTER TABLE ONLY public.workshop_invites_workshops
 
 ALTER TABLE ONLY public.workshop_managers
     ADD CONSTRAINT workshop_managers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_resources workshop_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_resources
+    ADD CONSTRAINT workshop_resources_pkey PRIMARY KEY (id);
 
 
 --
@@ -9343,6 +9385,13 @@ CREATE INDEX index_workshop_managers_on_workshop_id ON public.workshop_managers 
 
 
 --
+-- Name: index_workshop_resources_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_resources_on_workshop_id ON public.workshop_resources USING btree (workshop_id);
+
+
+--
 -- Name: index_workshop_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9505,6 +9554,14 @@ ALTER TABLE ONLY public.mindmill_credentials
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT fk_rails_09d354f20c FOREIGN KEY (modified_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_resources fk_rails_0b9b541d1c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_resources
+    ADD CONSTRAINT fk_rails_0b9b541d1c FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
 
 
 --
@@ -10688,7 +10745,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -11645,6 +11702,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230608131329'),
 ('20230608131330'),
 ('20230608131331'),
-('20230615093244');
-
-
+('20230615093244'),
+('20230627162930'),
+('20230627181938');
