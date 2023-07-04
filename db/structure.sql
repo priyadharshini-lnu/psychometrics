@@ -10,34 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -116,105 +88,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 
 SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
---
-
-CREATE VIEW c_10313.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
---
-
-CREATE VIEW c_10463.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.accesssheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'full name'::text) AS "full name",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'roll number'::text) AS "roll number",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'sample'::text) AS sample
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 61)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
---
-
-CREATE VIEW c_10542.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -867,82 +740,6 @@ CREATE SEQUENCE public.bulk_reports_id_seq
 --
 
 ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
-
-
---
--- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10313_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10463_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10501_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10542_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10543_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 72)
-  ORDER BY sheet_rows.id;
 
 
 --
@@ -1876,7 +1673,7 @@ CREATE TABLE public.factors (
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id integer,
+    dimension_id integer NOT NULL,
     parent_id integer,
     disabled boolean DEFAULT false,
     icon character varying,
@@ -2394,7 +2191,7 @@ ALTER SEQUENCE public.licenses_id_seq OWNED BY public.licenses.id;
 CREATE TABLE public.media_responses (
     id bigint NOT NULL,
     asset character varying,
-    question_id bigint,
+    question_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     users_result_id integer,
@@ -3749,6 +3546,20 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -10162,6 +9973,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: media_responses fk_rails_4769c5e3ce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.media_responses
+    ADD CONSTRAINT fk_rails_4769c5e3ce FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
+
+
+--
 -- Name: clients fk_rails_47b47683a3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10423,6 +10242,14 @@ ALTER TABLE ONLY public.sms_histories
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT fk_rails_7a00292b33 FOREIGN KEY (communication_id) REFERENCES public.communications(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factors fk_rails_7b28110d6b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_7b28110d6b FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE CASCADE;
 
 
 --
@@ -11878,5 +11705,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230615093244'),
 ('20230627162930'),
 ('20230627181938');
-
-
