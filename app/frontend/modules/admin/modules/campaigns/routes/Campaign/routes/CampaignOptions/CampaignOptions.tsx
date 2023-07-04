@@ -161,71 +161,81 @@ const CampaignOptions: React.FC<Props> = ({
                   {...parametersForField('proctoringEnabled')}
                 />
 
-                <div className="mbl">
-                  <Row>
-                    <Col span={2}>
-                      <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
-                    </Col>
-                    <Col span={22}>
-                      {Object.keys(options.rules || {}).map(
-                        key => (
-                          <Option
-                            key={key}
-                            label={I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)}
-                            {...parametersForRules(key)}
-                          />
-                        ),
-                      )}
-                    </Col>
-                  </Row>
-                </div>
+                {options.proctoringEnabled && (
+                  <>
+                    <Option
+                      label={I18n.t('administration.campaigns.options.proctoring.trial')}
+                      {...parametersForField('proctoringTrial')}
+                    />
+                    <div className="mbl">
+                      <Row>
+                        <Col span={2}>
+                          <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
+                        </Col>
+                        <Col span={22}>
+                          {Object.keys(options.rules || {}).map(
+                            key => (
+                              <Option
+                                key={key}
+                                label={
+                                  I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)
+                                }
+                                {...parametersForRules(key)}
+                              />
+                            ),
+                          )}
+                        </Col>
+                      </Row>
+                    </div>
 
-                <div className="mbl">
-                  <Row>
-                    <Col span={24}>
+                    <div className="mbl">
                       <Row>
-                        <Col span={2}>
-                          <label>
-                            {I18n.t('administration.campaigns.options.proctoring.identification')}
-                          </label>
-                        </Col>
-                        <Col span={22}>
-                          <Radio.Group
-                            defaultValue="passport"
-                            onChange={saveIdentificationType}
-                            value={options.identification}
-                          >
-                            {Object.entries(identifications).map(
-                              ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                            )}
-                          </Radio.Group>
+                        <Col span={24}>
+                          <Row>
+                            <Col span={2}>
+                              <label>
+                                {I18n.t('administration.campaigns.options.proctoring.identification')}
+                              </label>
+                            </Col>
+                            <Col span={22}>
+                              <Radio.Group
+                                defaultValue="passport"
+                                onChange={saveIdentificationType}
+                                value={options.identification}
+                              >
+                                {Object.entries(identifications).map(
+                                  ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                                )}
+                              </Radio.Group>
+                            </Col>
+                          </Row>
                         </Col>
                       </Row>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col span={24}>
                       <Row>
-                        <Col span={2}>
-                          <label>
-                            {I18n.t('administration.campaigns.options.proctoring.integration_type')}
-                          </label>
-                        </Col>
-                        <Col span={22}>
-                          <Radio.Group
-                            defaultValue="iframe"
-                            onChange={saveIntegrationType}
-                            value={options.integrationType}
-                          >
-                            {Object.entries(integrationTypes).map(
-                              ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
-                            )}
-                          </Radio.Group>
+                        <Col span={24}>
+                          <Row>
+                            <Col span={2}>
+                              <label>
+                                {I18n.t('administration.campaigns.options.proctoring.integration_type')}
+                              </label>
+                            </Col>
+                            <Col span={22}>
+                              <Radio.Group
+                                defaultValue="iframe"
+                                onChange={saveIntegrationType}
+                                value={options.integrationType}
+                              >
+                                {Object.entries(integrationTypes).map(
+                                  ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                                )}
+                              </Radio.Group>
+                            </Col>
+                          </Row>
                         </Col>
                       </Row>
-                    </Col>
-                  </Row>
-                </div>
+                    </div>
+                  </>
+                )}
               </>
             )}
             {/* End Features Check */}

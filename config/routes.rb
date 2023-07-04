@@ -1031,6 +1031,7 @@ Rails.application.routes.draw do
         end
         resources :reports do
           put :update_status
+          get :check_report, on: :member
           get :download, on: :member
         end
         resources :assessments, only: %i[index]
