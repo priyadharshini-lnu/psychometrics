@@ -14,7 +14,7 @@ module Administration
 
         def show
           @init_state ||= {}
-          @init_state.merge({
+          @init_state.merge!({
             project: {
               datasheetFields: resource.datasheet_column_names,
               relationships: ::Relationships::ByCampaign.new(resource.campaign).to_a
