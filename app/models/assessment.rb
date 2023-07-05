@@ -156,7 +156,7 @@ class Assessment < ApplicationRecord
     return unless pearson? || saville?
 
     if saville?
-      Assessments::SavilleSettings.norms(external_assessment_id, external_settings.fetch(:norm_id))
+      Assessments::SavilleSettings.norms(external_assessment_id)
     elsif pearson?
       Assessments::PearsonSettings.norms(external_assessment_id)
     end

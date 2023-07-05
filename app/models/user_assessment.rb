@@ -72,13 +72,21 @@ class UserAssessment < ApplicationRecord
     %i[filter_by_subject_or_assessment]
   end
 
+  def saville_norm_id
+    saville_user_assessment.norm_id
+  end
+
+  def pearson_norm_id
+    pearson_user_assessment.norm_id
+  end
+
   def pearson_assessment_language
     pearson_assessment = PearsonAssessment.find_by(product_id: assessment.external_settings[:assessment_id])
     return unless pearson_assessment
 
     pearson_assessment.norms['items'].find do |norm|
-      norm['normId'] == assessment.external_settings[:norm_id]
-    end.dig['supportedLanguage']
+      norm['normId'] == pearson_norm_id
+    end['supportedLanguage']
   end
 
   def external_user_reports(type)
