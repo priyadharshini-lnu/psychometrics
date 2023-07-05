@@ -13,12 +13,12 @@ interface Props {
 
 export const EditForm: React.FC<Props> = ({ assessment }) => (
   <Row>
-    <Col span={12} className="pl">
+    <Col lg={12} sm={24} className="pl">
       <Panel title={I18n.t('assessments.pages.edit.general_settings')} collapsible>
         <General assessment={assessment} />
       </Panel>
     </Col>
-    <Col span={12} className="pl">
+    <Col lg={12} sm={24} className="pl">
       <Space direction="vertical" style={{ display: 'flex' }} size="large">
         <Panel title={I18n.t('assessments.pages.edit.assets')} collapsible>
           <Assets assessment={assessment} />
