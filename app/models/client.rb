@@ -178,7 +178,7 @@ class Client < ApplicationRecord
   }
 
   def self.ransackable_scopes(_auth_object = nil)
-    %i[filterable_fields projects_of resource_disabled search_query]
+    %i[filterable_fields projects_of resource_disabled search_query has_integration]
   end
 
   def iiht_config
