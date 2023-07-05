@@ -215,6 +215,15 @@ module Swagger
           ),
           WebhookListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Webhook::Schema.multiple_resource_response
+          ),
+          CampaignAssessorAssessmentListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessment::Schema.multiple_resource_response
+          ),
+          CampaignAssessorAssessmentCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessment::Schema.create_request
+          ),
+          CampaignAssessmentAssessorResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessment::Schema.single_resource_response
           )
         }
       }

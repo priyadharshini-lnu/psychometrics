@@ -179,7 +179,7 @@
                       "disabled": false,
                       "icon_url": "#111",
                       "type": "common",
-                      "category": "saville",
+                      "category": "psychometric",
                       "created_at": "25 May 2023 / 12:35",
                       "updated_at": "25 May 2023 / 12:35",
                       "created_by": "ROHAN PUJARI",
@@ -250,8 +250,64 @@
           }
         ],
         "responses": {
-          "202": {
+          "204": {
             "description": "Assessment Deleted"
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_assessor_assessments/": {
+      "get": {
+        "summary": "Webhook List",
+        "operationId": "CampaignAssessorAssessmentList",
+        "description": "Fetch Campaigns Assessor Assessments list",
+        "tags": [
+          "Campaign Assessor Assessment"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[campaign_id_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaigns Assessor Assessment list",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "type": "campaign_assessor_assessments",
+                    "data": {
+                      "id": "1",
+                      "attributes": {
+                        "campaign_id": "1",
+                        "assessment_id": "1"
+                      }
+                    }
+                  }
+                ],
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignAssessorAssessmentListResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -3406,19 +3462,6 @@
                     },
                     "category": {
                       "type": "string",
-                      "enum": [
-                        "psychometric",
-                        "organisational",
-                        "case_study",
-                        "threesixty",
-                        "mindmill",
-                        "hogan",
-                        "agile",
-                        "assessor_form",
-                        "saville",
-                        "pearson",
-                        "iiht"
-                      ],
                       "nullable": false
                     },
                     "timing": {
@@ -3710,19 +3753,6 @@
                   },
                   "category": {
                     "type": "string",
-                    "enum": [
-                      "psychometric",
-                      "organisational",
-                      "case_study",
-                      "threesixty",
-                      "mindmill",
-                      "hogan",
-                      "agile",
-                      "assessor_form",
-                      "saville",
-                      "pearson",
-                      "iiht"
-                    ],
                     "nullable": false
                   },
                   "timing": {
@@ -8411,6 +8441,89 @@
                     "description",
                     "auth_type",
                     "active"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "CampaignAssessorAssessmentListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to campaign_assessor_assessments",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "assessment_id": {
+                      "type": "integer",
+                      "nullable": false
+                    },
+                    "campaign_id": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "assessment_id",
+                    "campaign_id"
                   ],
                   "nullable": false
                 }

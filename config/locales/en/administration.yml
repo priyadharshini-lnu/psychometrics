@@ -431,6 +431,12 @@ en:
         export: Export Assessors
         import: Import Assessors
         tools: Tools
+    assessor_assessment:
+      add: Add
+      modals:
+        add_assessor_assessment:
+          assessment_placeholder: Assessment Name
+      name: Assessor Assessment
     assessor_campaigns:
       statuses:
         completed: Completed

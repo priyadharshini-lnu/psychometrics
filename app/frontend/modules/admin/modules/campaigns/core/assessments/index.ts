@@ -90,7 +90,7 @@ type FetcOtherAssessmentsResponse = t.TypeOf<typeof FetchOtherAssessmentsRespons
 
 export type FetchOtherAssessmentsAction = ApiActionResponse<FetcOtherAssessmentsResponse>
 export const fetchOtherAssessments = (
-  campaignId: string, tableConfig: TableConfig,
+  campaignId: string, tableConfig?: TableConfig,
 ): ApiAction<FetcOtherAssessmentsResponse> => ({
   type: FETCH_OTHER_ASSESSMENTS,
   request: {

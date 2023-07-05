@@ -122,8 +122,11 @@ class Campaign < ApplicationRecord
   end
 
   def assessor_assessments
+    assessor_assessment_ids = campaign_assessor_assessments.select(:assessment_id)
     Assessment.assessor_form.joins(:user_assessments).
-      where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }).uniq
+      where(
+        user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }
+      ).where.not(id: assessor_assessment_ids).uniq
   end
 
   def clone

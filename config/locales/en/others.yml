@@ -1326,6 +1326,7 @@ en:
     assessments_and_reports:
       assessor_assessments: Assessor Assessments
       other_assessments: Other Assessments
+      other_assessor_assessments: Other Assessor Assessments
       other_reports: Other Reports
     card:
       duration: Duration
@@ -1693,6 +1694,8 @@ en:
         uniq_subdomain: Subdomain should be unique.
       admin:
         already_added: Admin with email already added.
+      assessor_assessment:
+        already_added: Assessor Assessment already added to campaign.
       create_superadmin:
         uniq_email: Email should be uniq.
       filled?: can't be blank
