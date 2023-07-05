@@ -10,4 +10,12 @@ if (location.protocol === 'https:') {
   protocol = 'wss:'
 }
 
-export default ActionCable.createConsumer(`${protocol}//${host}/cable`)
+let consumer
+
+const createConsumer = () => {
+  if (consumer) { return consumer }
+  consumer = ActionCable.createConsumer(`${protocol}//${host}/cable`)
+  return consumer
+}
+
+export default createConsumer

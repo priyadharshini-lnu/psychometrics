@@ -737,6 +737,29 @@
       "note": ""
     },
     {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "c77f687b9dc93098cca9e92cbcc15675c8452b226acdba9bf6896c22104c1644",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/administration/assessments/agiles_controller.rb",
+      "line": 26,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:agile).permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Administration::Assessments::AgilesController",
+        "method": "agile_params"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
       "warning_type": "Remote Code Execution",
       "warning_code": 24,
       "fingerprint": "d8d3d24f5ab81f04de2a14da6c7e54bb0144ad82b4f87aa4d87245f9e7920638",

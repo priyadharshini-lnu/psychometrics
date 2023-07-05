@@ -11,7 +11,7 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
   end
 
   def update
-    form = Assessments::AgileForm.from_params(params)
+    form = Assessments::AgileForm.new(agile_params)
     if form.valid?
       resource.agile.update(form.attributes)
       head :ok
@@ -21,6 +21,10 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
   end
 
   private
+
+  def agile_params
+    params.require(:agile).permit!
+  end
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
