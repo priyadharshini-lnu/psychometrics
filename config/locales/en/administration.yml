@@ -431,6 +431,12 @@ en:
         export: Export Assessors
         import: Import Assessors
         tools: Tools
+    assessor_assessment:
+      add: Add
+      modals:
+        add_assessor_assessment:
+          assessment_placeholder: Assessment Name
+      name: Assessor Assessment
     assessor_campaigns:
       statuses:
         completed: Completed
@@ -764,6 +770,7 @@ en:
             allow_voices: Allow Voices
             allow_wrong_gaze_direction: Allow wrong gaze direction
           rules: Rules
+          trial: Proctoring Trial
       users:
         completion_status: Completion Status
         created_by: Created By
@@ -3012,7 +3019,7 @@ en:
       report_approvals: Report Approvals
       report_families: Report Bundles
       reports: Reports
-      show_submenu: Show Submenu
+      show_submenu: Show Sub Menu
       statistics: Statistics
       sub_campaigns: Sub Campaigns
       sub_factors: Sub-Factors

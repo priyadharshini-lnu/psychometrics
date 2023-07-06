@@ -2,11 +2,14 @@ import { useState, FC, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import type { MenuProps } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { Layout, Menu, Avatar } from 'antd'
+import {
+  Layout, Menu, Avatar, Drawer,
+} from 'antd'
 import {
   MonitorOutlined, ArrowRightOutlined, MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons'
+import { useMedia } from 'react-use-media'
 import cs from 'classnames'
 import logo from '~/modules/endUser/assets/images/lighthouseLogoTall.png'
 import logoSmall from '~/modules/auth/media/TTE_Logo_Color_Monogram.png'
@@ -26,6 +29,7 @@ const connecter = connect(
     currentUser: camelizeKeys(getCurrentUser(state)),
     links: state.ui.menu.links,
     hasSubmenu: state.ui.menu.hasSubmenu,
+    showSubmenu: state.ui.menu.showSubmenu,
     collapsed: state.ui.menu.collapsed,
   }),
   {
@@ -180,7 +184,12 @@ const getSelected = (): string => {
 
 export const MainMenuComponent:FC<PropsFromRedux> = ({
   currentUser, hasSubmenu, openSubmenu, collapsed, triggerCollapse, links,
+  showSubmenu,
 }) => {
+  const isMobile = useMedia({
+    maxWidth: 1024,
+  })
+
   const onSelect = ({ key }): ReturnType<typeof openSubmenu> | void => {
     if (key === 'showSubmenu') {
       return openSubmenu()
@@ -188,19 +197,8 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     location.href = links[key]
   }
 
-  return (
-    <Layout.Sider
-      id="top_sidebar"
-      className={styles.menu}
-      width={220}
-      theme="light"
-      collapsed={collapsed}
-      collapsedWidth={55}
-      onCollapse={() => triggerCollapse()}
-    >
-      <div onClick={() => triggerCollapse()} className={styles.trigger}>
-        {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
-      </div>
+  const menu = (
+    <>
       <UserMenu currentUser={currentUser} collapsed={collapsed} />
       <Menu
         theme="light"
@@ -209,8 +207,46 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
         items={menuItems(links, hasSubmenu)}
         onClick={onSelect}
       />
-    </Layout.Sider>
+    </>
   )
+
+  return isMobile
+    ? (
+      <>
+        <div
+          onClick={() => triggerCollapse()}
+          className={cs(styles.trigger, styles.mobile, { [styles.open]: !collapsed })}
+        >
+          {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+        </div>
+        <Drawer
+          closable={false}
+          bodyStyle={{ padding: 0 }}
+          placement="left"
+          width="220"
+          open={!showSubmenu && !collapsed}
+          onClose={() => triggerCollapse()}
+        >
+          {menu}
+        </Drawer>
+      </>
+    )
+    : (
+      <Layout.Sider
+        id="top_sidebar"
+        className={styles.menu}
+        width={220}
+        theme="light"
+        collapsed={collapsed}
+        collapsedWidth={55}
+        onCollapse={() => triggerCollapse()}
+      >
+        <div onClick={() => triggerCollapse()} className={styles.trigger}>
+          {collapsed ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+        </div>
+        {menu}
+      </Layout.Sider>
+    )
 }
 
 export const UserMenu = ({ currentUser, collapsed }) => (

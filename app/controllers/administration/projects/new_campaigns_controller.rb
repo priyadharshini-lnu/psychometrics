@@ -192,12 +192,14 @@ module Administration
       end
 
       def campaign_options_params
-        resource_params.permit(:fixed_time, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions,
-                               :proctoring_enabled, :identification, :description, :integration_type,
-                               rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
-                                          allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
-                                          allow_to_use_messengers allow_wrong_gaze_direction
-                                          allow_to_use_human_assistant ])
+        resource_params.permit(
+          :fixed_time, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions,
+          :proctoring_enabled, :proctoring_trial, :identification, :description, :integration_type,
+          rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
+                     allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
+                     allow_to_use_messengers allow_wrong_gaze_direction
+                     allow_to_use_human_assistant ]
+        )
       end
     end
   end

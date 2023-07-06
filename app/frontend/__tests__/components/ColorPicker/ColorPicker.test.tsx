@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   render, within, fireEvent,
 } from '@testing-library/react'
@@ -7,7 +6,6 @@ import { act } from 'react-dom/test-utils'
 
 import { ColorPicker } from '~/glint'
 
-global.React = React
 const sampleColor = {
   hex: 'DDFFFF',
   rgba: {

@@ -26,7 +26,6 @@ import styles from './styles.less'
 const { Text, Title } = Typography
 const { I18n } = window
 const locales = I18n.availableLocales
-const current = I18n.locale
 const { Content } = Layout
 
 const timeZones = moment.tz.names()
@@ -116,7 +115,7 @@ function ProfileComponent ({
   }
   const headerElement = (
     <Col flex="auto" span={24} className="ta-e">
-      <LangDropdown locales={locales} current={current} />
+      <LangDropdown />
     </Col>
   )
 

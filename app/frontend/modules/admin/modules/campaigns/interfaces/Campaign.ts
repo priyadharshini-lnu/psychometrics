@@ -56,4 +56,5 @@ export interface CampaignOptions {
   descriptionsWithLocales: DescriptionWithLocale[]
   availableDescriptionLocales: string[]
   integrationType: 'iframe' | 'ldb'
+  trial: boolean
 }

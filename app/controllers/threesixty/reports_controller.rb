@@ -66,6 +66,21 @@ module Threesixty
       render json: { success: true }
     end
 
+    def check_report
+      if @user_report.pdf_exists?
+        render json: {
+          type: 'success',
+          message: I18n.t('jobs.threesixty.reports.download.message'),
+          description: I18n.t(
+            'jobs.threesixty.reports.download.description',
+            url: @user_report.pdf.url
+          )
+        }
+      else
+        render json: nil
+      end
+    end
+
     private
 
     def set_user_report

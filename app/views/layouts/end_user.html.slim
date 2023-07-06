@@ -28,8 +28,8 @@ html dir=dir
       div style="color: #fff;width: 100%;padding: 10px;font-size: 14px;background: #fa8c16; text-align: center;"
         = t('maintenance_message', **maintenance_time_frame)
     = yield
-    #notification-center-container
-    = vite_javascript_tag 'notification_center.jsx'
+    / #notification-center-container
+    / = vite_javascript_tag 'notification_center.jsx'
 
   - if @current_project&.enable_live_chat?
     javascript:

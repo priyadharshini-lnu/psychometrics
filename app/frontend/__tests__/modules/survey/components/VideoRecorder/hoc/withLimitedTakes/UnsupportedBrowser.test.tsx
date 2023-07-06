@@ -1,4 +1,3 @@
-import React from 'react'
 import { render } from '@testing-library/react'
 
 import {
@@ -10,7 +9,6 @@ import {
   UA_OPERATING_SYSTEMS,
 } from '~/modules/survey/constants/browser'
 
-global.React = React
 const BrowserSupportForMediaRecorder = {
   and_chr: 90,
   chrome: 49,

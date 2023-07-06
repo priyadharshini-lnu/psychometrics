@@ -27,8 +27,6 @@ import styles from './styles.less'
 
 const { Title, Text } = Typography
 const { I18n } = window
-const locales = I18n.availableLocales
-const current = I18n.locale
 const { Content } = Layout
 
 const mapStateToProps = (state: RootState) => ({
@@ -81,7 +79,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     <>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown locales={locales} current={current} />
+          <LangDropdown />
         </Col>
       </PageHeader>
       <Content className={styles.pageContent}>

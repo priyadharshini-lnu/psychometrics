@@ -29,7 +29,7 @@ const getRealPath = (state, path) => {
 const HANDLERS = {
   [INIT]: (__, { data }) => {
     const { flow } = denormalize(data.result, schema, data.entities)
-    return { elements: _.map(flow.elements, (el, i) => new FlowElement(el, null, i)) }
+    return { elements: _.map((flow?.elements || { elements: [] }), (el, i) => new FlowElement(el, null, i)) }
   },
   [RESET]: (_, { flow }) => flow,
   [UPDATE_TREE]: (_, { flow }) => flow,

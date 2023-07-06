@@ -1031,6 +1031,7 @@ Rails.application.routes.draw do
         end
         resources :reports do
           put :update_status
+          get :check_report, on: :member
           get :download, on: :member
         end
         resources :assessments, only: %i[index]
@@ -1204,6 +1205,7 @@ Rails.application.routes.draw do
 
           resources :campaigns, only: [] do
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
+            jsonapi_resources :campaign_assessor_assessments, only: %i[index create destroy]
           end
           jsonapi_resources :reports, only: [:index]
           resources :user_reports, only: [] do

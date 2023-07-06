@@ -38,6 +38,7 @@ export const Assets: React.FC<Props> = ({ assessment }) => {
   return (
     <ResourceForm
       resourceName="assessments"
+      readableResourceName="Assessment"
       resource={assessment}
       showSuccessMessages
       storeManager={{ form }}

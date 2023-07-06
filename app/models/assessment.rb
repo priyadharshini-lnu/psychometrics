@@ -107,7 +107,9 @@ class Assessment < ApplicationRecord
 
   has_one :agile
 
+  before_create :init_defaults, if: :common?
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
+
   #
   ### END ASSOCIATIONS
 
@@ -247,5 +249,12 @@ class Assessment < ApplicationRecord
 
   def log_attribute_for_delete
     slice(:name)
+  end
+
+  def init_defaults
+    self.flow ||= { elements: [] }
+    self.status = self.class.statuses[:in_progress] unless status
+    self.category = self.class.categories[:psychometric] unless category
+    self.norm_rules ||= {}
   end
 end

@@ -14,7 +14,7 @@ module Administration
 
         def show
           @init_state ||= {}
-          @init_state.merge({
+          @init_state.merge!({
             project: {
               datasheetFields: resource.datasheet_column_names,
               relationships: ::Relationships::ByCampaign.new(resource.campaign).to_a
@@ -132,7 +132,7 @@ module Administration
         def init_breadcrumbs
           client_root_breadcrumb
           add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
-          add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
+          add_breadcrumb project.decorate.display_name, administration_project_new_campaigns_path(project)
           add_breadcrumb(
             t('administration.clients.projects.threesixty_campaigns.index.title'),
             administration_client_project_threesixty_campaigns_path(client, project)
