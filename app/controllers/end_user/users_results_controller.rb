@@ -18,6 +18,8 @@ module EndUser
       @user_assessment.update(last_activity_at: DateTime.current)
       @selected_locale = @user_assessment.selected_locale || user_locale
 
+      UserAssessments::Pass.call!(@user_assessment, @selected_locale) unless @user_assessment.started_at?
+
       render json: @user_assessment.users_result, serializer: UsersResultSerializer,
              campaign: @user_assessment.campaign, participant: @user_assessment,
              current_user: current_user, locale: @selected_locale,
