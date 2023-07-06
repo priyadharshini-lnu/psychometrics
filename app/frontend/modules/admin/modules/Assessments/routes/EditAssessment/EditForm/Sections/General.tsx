@@ -40,6 +40,7 @@ export const General: React.FC<Props> = ({ assessment }) => {
   return (
     <ResourceForm
       resourceName="assessments"
+      readableResourceName={I18n.t('assessments.assessment')}
       resource={assessment}
       showSuccessMessages
       storeManager={{ form }}

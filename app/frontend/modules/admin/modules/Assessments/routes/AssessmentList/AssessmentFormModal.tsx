@@ -27,7 +27,7 @@ export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
   return (
     <ResourceFormModal
       resourceName="assessments"
-      readableResourceName="Assessment"
+      readableResourceName={I18n.t('assessments.assessment')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}

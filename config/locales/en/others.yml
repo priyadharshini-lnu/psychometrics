@@ -744,6 +744,7 @@ en:
         success_message: Asessment %{name} unarchived successfully
     active: Active
     archived: Archived
+    assessment: Assessment
     assessments: Assessments
     audio_response:
       pause: Pause
