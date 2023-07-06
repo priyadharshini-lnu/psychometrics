@@ -61,7 +61,7 @@ module Users
         paths: [
           { name: client.name, value: "/administration/clients/#{client.id}/projects" },
           { name: project.name, value: "/administration/projects/#{project.id}/new_campaigns" },
-          { name: campaign.name, value: build_campain_url(client, project, campaign) }
+          { name: campaign.name, value: "#{build_campain_url(client, project, campaign)}/admins" }
         ]
       }
     end
