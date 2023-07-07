@@ -43,7 +43,7 @@ class UserAssessment < ApplicationRecord
       where('user_assessments.subject_id != user_assessments.evaluator_id')
     end
   }
-  scope :pending_assessments, -> { where.not(status: %i[completed timed_out]) }
+  scope :pending_assessments, -> { where.not(status: %i[completed timed_out ineligible]) }
 
   before_save :set_default_relationship
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
