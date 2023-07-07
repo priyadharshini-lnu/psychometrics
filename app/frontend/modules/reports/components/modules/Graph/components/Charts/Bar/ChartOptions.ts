@@ -37,6 +37,9 @@ export default function ChartOptions (
       height: model.props.position.height,
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
+    accessibility: {
+      enabled: false,
+    },
     title: {
       text: '',
     },
@@ -82,6 +85,12 @@ export default function ChartOptions (
           enabled: !!model.propsshowValues,
           format,
         },
+      },
+      bar: {
+        borderRadius: model.props.barBorderRadius || 0,
+      },
+      column: {
+        borderRadius: model.props.barBorderRadius || 0,
       },
     },
     tooltip: {

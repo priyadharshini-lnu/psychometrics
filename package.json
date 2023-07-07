@@ -84,7 +84,7 @@
     "fp-ts": "^2.11.8",
     "glob": "^7.1.6",
     "green-audio-player": "git+https://github.com/TheTalentEnterprise/green-audio-player.git",
-    "highcharts": "^10.3.3",
+    "highcharts": "^11.1.0",
     "highcharts-custom-events": "^3.0.10",
     "history": "^4.10.1",
     "humps": "^2.0.1",
@@ -231,7 +231,6 @@
     "node-fetch": ">=2.6.7",
     "kind-of": "6.0.3",
     "babel-jest/**/browserslist": "4.16.5",
-    "highcharts-custom-events/highcharts": "^10.3.3",
     "ansi-regex": "^5.0.1",
     "path-parse": "^1.0.7"
   },

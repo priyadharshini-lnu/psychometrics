@@ -21,6 +21,9 @@ export default function ChartOptions (model: PropertiesModel, animation: boolean
     chart: {
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
+    accessibility: {
+      enabled: false,
+    },
     colors: colorsObjectList.map(colorObj => colorObj.color),
     credits: {
       enabled: false,

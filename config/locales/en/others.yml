@@ -2192,6 +2192,7 @@ en:
     builder:
       graph:
         properties:
+          barBorderRadius: Bar Border Radius
           barWeight: Bar Weight
           dataFormat: Data Format
           graphOption3D: 3D

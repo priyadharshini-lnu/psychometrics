@@ -10,6 +10,9 @@ export default function ChartOptions ({ ...model }, animation) {
       height: model.props.position.height,
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
+    accessibility: {
+      enabled: false,
+    },
     title: false,
     subtitle: false,
     colors: _.map(model.props.colors, 'color'),
