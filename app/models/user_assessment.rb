@@ -199,9 +199,9 @@ class UserAssessment < ApplicationRecord
   end
 
   def other_pending_assessments_count
-    return 0 unless campaign_user
+    return 0 if campaign_user.nil? || campaign.threesixty?
 
-    campaign_user.pending_assessments.where.not(id: id).count
+    campaign_user.campaign_user_assessments.pending_assessments.where.not(id: id).count
   end
 
   def self_assessment?

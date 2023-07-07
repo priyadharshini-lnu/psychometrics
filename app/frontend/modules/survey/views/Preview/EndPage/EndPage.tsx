@@ -71,7 +71,7 @@ const EndPage: FC<Props> = ({
             <>
               {otherPendingAssessmentCount > 0 && (
               <Typography.Title level={3}>
-                {`You have ${otherPendingAssessmentCount} pending Tasks.`}
+                {I18n.t('assessments.actions.pending_tasks', { count: otherPendingAssessmentCount })}
               </Typography.Title>
               )}
               <a href={dashboardUrl}>
