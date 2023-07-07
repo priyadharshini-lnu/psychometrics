@@ -62,7 +62,7 @@ describe Users::BuildRolesWithLinks do
     it do
       roles = described_class.call!(regular)
 
-      expect(roles.first[:paths].last[:value]).to eq("/administration/clients/#{campaign.project.client.id}/projects/#{campaign.project.id}/threesixty_campaigns/#{threesixty_campaign.id}/admins") # rubocop:disable Layout/LineLength
+      expect(roles.first[:paths].last[:value]).to eq("/administration/clients/#{campaign.project.client.id}/projects/#{campaign.project.id}/threesixty_campaigns/#{threesixty_campaign.id}") # rubocop:disable Layout/LineLength
     end
   end
 
