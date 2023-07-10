@@ -155,7 +155,7 @@ class CustomPie extends Component {
             // Track for Move
             outerRadius: `${OUTER_RADIUS - RADIUS_INTERVAL * i - i}%`,
             innerRadius: `${OUTER_RADIUS - RADIUS_INTERVAL * (i + 1) - i}%`,
-            backgroundColor: Highcharts.Color(colors[i])
+            backgroundColor: Highcharts.Color.parse(colors[i])
               .setOpacity(0.3)
               .get(),
             borderWidth: 0,
@@ -170,6 +170,8 @@ class CustomPie extends Component {
           labelFormatter () {
             return `<span style="text-weight:bold;color:${this.userOptions.color}">${this.name}</span>`
           },
+          symbolPadding: 0,
+          symbolHeight: 0,
           symbolWidth: 0,
         },
         series,
