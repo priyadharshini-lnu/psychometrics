@@ -51,7 +51,7 @@ module Administration
         has_permission?(:campaigns, :manage_users)
       end
 
-      def download_example_import_fie?
+      def download_example_import_file?
         has_permission?(:campaigns, :view)
       end
     end
