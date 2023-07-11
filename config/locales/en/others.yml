@@ -729,6 +729,9 @@ en:
       extend_time: Extend time
       goto_dashboard: Click here to continue
       next_assessment: Pass To Next Assessment
+      pending_tasks:
+        one: You have one 1 pending task
+        other: You have %{count} pending tasks
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
@@ -2288,6 +2291,7 @@ en:
     builder:
       graph:
         properties:
+          barBorderRadius: Bar Border Radius
           barWeight: Bar Weight
           dataFormat: Data Format
           graphOption3D: 3D

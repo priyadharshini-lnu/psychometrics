@@ -11,6 +11,9 @@ export const defaultChartOptions: ChartOptions = {
     backgroundColor: '',
     animation: false,
   },
+  accessibility: {
+    enabled: false,
+  },
   tooltip: {
     enabled: false,
   },
