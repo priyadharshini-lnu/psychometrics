@@ -1,0 +1,21 @@
+@import "~/styles/ant.variable.less";
+
+.userInfoCard {
+  box-shadow: @card-shadow;
+  min-width: 180px;
+
+  .meta {
+    align-items: center;
+  }
+
+  .remove {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+  }
+
+  :global(.ant-list-item-meta-content) {
+    width: auto;
+  }
+}
