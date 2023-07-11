@@ -236,7 +236,7 @@
     "ansi-regex": "^5.0.1",
     "path-parse": "^1.0.7",
     "semver": "7.5.2",
-    "jsonpath/static-eval/escodegen/optionator": "0.9.3"
+    "optionator": "0.9.3"
   },
   "cssnano": {
     "preset": [
