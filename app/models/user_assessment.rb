@@ -43,7 +43,7 @@ class UserAssessment < ApplicationRecord
       where('user_assessments.subject_id != user_assessments.evaluator_id')
     end
   }
-  scope :pending_assessments, -> { where.not(status: %i[completed timed_out]) }
+  scope :pending_assessments, -> { where.not(status: %i[completed timed_out ineligible]) }
 
   before_save :set_default_relationship
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
@@ -199,9 +199,9 @@ class UserAssessment < ApplicationRecord
   end
 
   def other_pending_assessments_count
-    return 0 unless campaign_user
+    return 0 if campaign_user.nil? || campaign.threesixty?
 
-    campaign_user.pending_assessments.where.not(id: id).count
+    campaign_user.campaign_user_assessments.pending_assessments.where.not(id: id).count
   end
 
   def self_assessment?
