@@ -43,7 +43,7 @@ class UserAssessment < ApplicationRecord
       where('user_assessments.subject_id != user_assessments.evaluator_id')
     end
   }
-  scope :pending_assessments, -> { where.not(status: %i[completed timed_out]) }
+  scope :pending_assessments, -> { where.not(status: %i[completed timed_out ineligible]) }
 
   before_save :set_default_relationship
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
@@ -72,13 +72,21 @@ class UserAssessment < ApplicationRecord
     %i[filter_by_subject_or_assessment]
   end
 
+  def saville_norm_id
+    saville_user_assessment.norm_id
+  end
+
+  def pearson_norm_id
+    pearson_user_assessment.norm_id
+  end
+
   def pearson_assessment_language
     pearson_assessment = PearsonAssessment.find_by(product_id: assessment.external_settings[:assessment_id])
     return unless pearson_assessment
 
     pearson_assessment.norms['items'].find do |norm|
-      norm['normId'] == assessment.external_settings[:norm_id]
-    end.dig['supportedLanguage']
+      norm['normId'] == pearson_norm_id
+    end['supportedLanguage']
   end
 
   def external_user_reports(type)
@@ -191,9 +199,9 @@ class UserAssessment < ApplicationRecord
   end
 
   def other_pending_assessments_count
-    return 0 unless campaign_user
+    return 0 if campaign_user.nil? || campaign.threesixty?
 
-    campaign_user.pending_assessments.where.not(id: id).count
+    campaign_user.campaign_user_assessments.pending_assessments.where.not(id: id).count
   end
 
   def self_assessment?
