@@ -4,10 +4,12 @@ import {
 } from 'antd'
 import { useResources } from '~/hooks/useResources'
 import { ExternalAssessment } from '~/modules/admin/modules/client/core/externalAssessments'
+import { Assessment } from '~/modules/admin/modules/client/core/assessments'
+import { getAllExternalAssessments } from './getAllExternalAssessments'
 
 const { I18n } = window
 
-export const SavilleFields: React.FC = () => {
+export const SavilleFields: React.FC<{ assessment: Assessment | undefined }> = ({ assessment }) => {
   useEffect(() => {
     fetch({ apiConfig: { filter: { type_eq: 'saville' } } })
   }, [])
@@ -23,8 +25,9 @@ export const SavilleFields: React.FC = () => {
       >
         <Select
           notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
+          showSearch
         >
-          {externalAssessments.map(({ id, name }) => (
+          {getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
           ))}
         </Select>

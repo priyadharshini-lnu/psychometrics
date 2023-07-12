@@ -5,10 +5,14 @@ import {
 import { FormInstance } from 'antd/lib/form'
 import { useResources } from '~/hooks/useResources'
 import { ExternalAssessment } from '~/modules/admin/modules/client/core/externalAssessments'
+import { Assessment } from '~/modules/admin/modules/client/core/assessments'
+import { getAllExternalAssessments } from './getAllExternalAssessments'
 
 const { I18n } = window
 
-export const PearsonFields: React.FC<{ form: FormInstance }> = ({ form }) => {
+export const PearsonFields: React.FC<{ form: FormInstance, assessment: Assessment | undefined }> = (
+  { form, assessment },
+) => {
   const assessmentId = Form.useWatch(['externalSettings', 'assessmentId'], form)
 
   useEffect(() => {
@@ -18,7 +22,7 @@ export const PearsonFields: React.FC<{ form: FormInstance }> = ({ form }) => {
   }, [assessmentId])
 
   const {
-    data: assessments, fetch: fetchAssessments, isLoading: assessmentIsLoading,
+    data: externalAssessments, fetch: fetchAssessments, isLoading: assessmentIsLoading,
   } = useResources<ExternalAssessment>('external_assessments')
 
 
@@ -43,7 +47,7 @@ export const PearsonFields: React.FC<{ form: FormInstance }> = ({ form }) => {
           notFoundContent={assessmentIsLoading('fetch') ? <Spin size="small" /> : null}
           filterOption={false}
         >
-          {assessments.map(({ id, name }) => (
+          {getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
           ))}
         </Select>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Assessment < ApplicationRecord
+class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include Copyable
   include RansackSearchableFields
   include SoftDelete
@@ -163,6 +163,29 @@ class Assessment < ApplicationRecord
     saville? || pearson?
   end
 
+  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    return if external_assessment_id.nil? || common?
+
+    case category
+      when 'hogan'
+        Settings.providers.hogan.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
+      when 'saville'
+        Settings.providers.saville.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
+      when 'pearson'
+        PearsonAssessment.find_by(product_id: external_assessment_id)&.title
+      when 'iiht'
+        Iiht::GetAssessments.call!(project).find do |a|
+          a['assessmentIdNumber'].include?(external_assessment_id)
+        end&.fetch('name')
+    end
+  end
+
+  def external_norm_name
+    return if external_norm_id.nil? || common?
+
+    external_norms&.find { |norm| norm[:id] == external_norm_id }&.fetch(:name)
+  end
+
   def external_norms
     return unless pearson? || saville?
 
@@ -175,6 +198,10 @@ class Assessment < ApplicationRecord
 
   def external_assessment_id
     external_settings[:assessment_id]
+  end
+
+  def external_norm_id
+    external_settings[:norm_id]
   end
 
   # Copy assessment

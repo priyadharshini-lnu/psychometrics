@@ -8,10 +8,23 @@ module Api
       case params[:filter][:type_eq]
         when 'pearson'
           data = Assessments::PearsonSettings.norms(params[:filter][:assessment_id_eq])
-          render json: { data: data || [] }
+          render_json_api_response(data)
         else
           render json: { data: [] }
       end
+    end
+
+    def render_json_api_response(data)
+      response = {
+        data: data.map do |attrs|
+          {
+            type: 'ExternalNorm',
+            id: attrs[:id],
+            attributes: attrs.except(:id)
+          }
+        end
+      }
+      render json: response
     end
   end
 end

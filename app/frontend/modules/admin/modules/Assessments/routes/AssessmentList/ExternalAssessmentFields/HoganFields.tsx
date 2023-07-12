@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import {
   Form, Select, Spin,
 } from 'antd'
-import { FormInstance } from 'antd/lib/form'
 import { useResources } from '~/hooks/useResources'
 import { ExternalAssessment } from '~/modules/admin/modules/client/core/externalAssessments'
+import { Assessment } from '~/modules/admin/modules/client/core/assessments'
+import { getAllExternalAssessments } from './getAllExternalAssessments'
 
 const { I18n } = window
 
-export const HoganFields: React.FC<{ form: FormInstance }> = () => {
+export const HoganFields: React.FC<{ assessment: Assessment | undefined }> = ({ assessment }) => {
   useEffect(() => {
     fetch({ apiConfig: { filter: { type_eq: 'hogan' } } })
   }, [])
@@ -25,7 +26,7 @@ export const HoganFields: React.FC<{ form: FormInstance }> = () => {
         <Select
           notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
         >
-          {externalAssessments.map(({ id, name }) => (
+          {getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
           ))}
         </Select>

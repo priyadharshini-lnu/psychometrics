@@ -7,6 +7,7 @@ import { useResources } from '~/hooks/useResources'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { Project } from '~/modules/admin/modules/client/core/projects'
 import { ExternalAssessment } from '~/modules/admin/modules/client/core/externalAssessments'
+import { getAllExternalAssessments } from './getAllExternalAssessments'
 
 const { TextArea } = Input
 const { I18n } = window
@@ -30,13 +31,14 @@ export const IihtFields: React.FC<{ form: FormInstance, assessment: Assessment }
   }
 
   const {
-    data: assessments, fetch: fetchAssessments, isLoading: assessmentIsLoading,
+    data: externalAssessments, fetch: fetchAssessments, isLoading: assessmentIsLoading,
   } = useResources<ExternalAssessment>('external_assessments')
 
 
   const {
     data: projects, fetch: fetchProjects, isLoading: projectIsLoading,
   } = useResources<Project>('projects', { basePath: `clients/${ownerId}` })
+
 
   return (
     <>
@@ -78,9 +80,11 @@ export const IihtFields: React.FC<{ form: FormInstance, assessment: Assessment }
           notFoundContent={assessmentIsLoading('fetch') ? <Spin size="small" /> : null}
           filterOption={false}
         >
-          {!projectId ? [] : assessments.map(({ id, name }) => (
-            <Select.Option key={id} value={id}>{name}</Select.Option>
-          ))}
+          {!projectId ? [] : getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(
+            ({ id, name }) => (
+              <Select.Option key={id} value={id}>{name}</Select.Option>
+            ),
+          )}
         </Select>
       </Form.Item>
       <Form.Item

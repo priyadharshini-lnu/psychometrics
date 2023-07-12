@@ -3,6 +3,15 @@ import ApiAction from 'interfaces/ApiAction'
 import { UploadFile } from 'antd/lib/upload/interface'
 import { createReducer } from '~/utils/redux'
 
+export const ExternalSettingsTR = t.type({
+  assessmentId: t.union([t.string, t.null, t.undefined]),
+  normId: t.union([t.string, t.null, t.undefined]),
+  scheduleConfig: t.union([t.string, t.null, t.undefined]),
+  assessmentName: t.union([t.string, t.null, t.undefined]),
+  normName: t.union([t.string, t.null, t.undefined]),
+})
+export type ExternalSettings = t.TypeOf<typeof ExternalSettingsTR>
+
 export const AssessmentTR = t.type({
   id: t.string,
   name: t.string,
@@ -22,11 +31,7 @@ export const AssessmentTR = t.type({
   enableVideoCheck: t.union([t.boolean, t.null]),
   enableAudioCheck: t.union([t.boolean, t.null]),
   enableNetworkCheck: t.union([t.boolean, t.null]),
-  externalSettings: t.type({
-    assessmentId: t.union([t.string, t.null, t.undefined]),
-    normId: t.union([t.string, t.null, t.undefined]),
-    scheduleConfig: t.union([t.string, t.null, t.undefined]),
-  }),
+  externalSettings: ExternalSettingsTR,
   icon: t.union([t.string, t.null]),
   poster: t.union([t.string, t.null]),
   dimension: t.union([

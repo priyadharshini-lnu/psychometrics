@@ -54,11 +54,18 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   end
 
   def external_settings
-    if @model.external_settings['schedule_config']
-      return @model.external_settings.merge('schedule_config' => @model.external_settings['schedule_config'].to_json)
-    end
+    return {} if @model.common?
 
-    @model.external_settings
+    settings = @model.external_settings
+    if settings['schedule_config']
+      settings = settings.merge(
+        'schedule_config' => settings['schedule_config'].to_json
+      )
+    end
+    settings.merge(
+      assessment_name: @model.external_assessment_name,
+      norm_name: @model.external_norm_name
+    )
   end
 
   def extra

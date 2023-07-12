@@ -9,29 +9,42 @@ module Api
       search = params[:filter][:filterable_fields]
       case params[:filter][:type_eq]
         when 'hogan'
-          render json: { data: hogan_response(search) }
+          render_json_api_response(hogan_assessments(search))
         when 'pearson'
-          render json: { data: pearson_response(search) }
+          render_json_api_response(pearson_assessments(search))
         when 'iiht'
-          render json: { data: iiht_response(search) }
+          render_json_api_response(iiht_assessments(search))
         when 'saville'
-          render json: { data: saville_response(search) }
+          render_json_api_response(saville_assessments(search))
       end
     end
 
     private
 
-    def hogan_response(_search)
+    def render_json_api_response(data)
+      response = {
+        data: data.map do |attrs|
+          {
+            type: 'external_assessments',
+            id: attrs[:id],
+            attributes: attrs.except(:id)
+          }
+        end
+      }
+      render json: response
+    end
+
+    def hogan_assessments(_search)
       Settings.providers.hogan.assessments.map do |a|
-        { id: a.id, type: 'external_assessments', attributes: { name: a.name } }
+        { id: a.id, name: a.name }
       end
     end
 
-    def pearson_response(search)
+    def pearson_assessments(search)
       PearsonAssessment.filterable_fields(search).order(:title).map { |a| { id: a.product_id, name: a.title } }
     end
 
-    def iiht_response(search)
+    def iiht_assessments(search)
       Iiht::GetAssessments.call!(Client.find(params[:filter][:project_id_eq])).
         filter { |a| a['assessmentIdNumber'].include?(search) || a['name'].include?(search) }.
         map do |a|
@@ -39,9 +52,9 @@ module Api
       end
     end
 
-    def saville_response(_search)
+    def saville_assessments(_search)
       Settings.providers.saville.assessments.sort_by { |a| a[:name] }.map do |a|
-        { id: a[:id].downcase, type: 'external_assessments', attributes: { name: a[:name] } }
+        { id: a[:id].downcase, name: a[:name] }
       end
     end
   end

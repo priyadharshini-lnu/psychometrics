@@ -9,6 +9,7 @@ import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import settings from '../../settings'
 import { history } from '~/modules/admin/store'
+import styles from './AssessmentList.less'
 
 const { I18n } = window
 
@@ -28,9 +29,7 @@ export const AssessmentTable: React.FC<Props> = ({
         id="id"
         sorter
         render={assessment => (
-          <Button type="link" href={`/administration/assessments/${assessment.id}`}>
-            {assessment.id}
-          </Button>
+          <AssessmentId assessment={assessment} />
         )}
       />
       <Resource.Column<Assessment>
@@ -106,6 +105,25 @@ export const AssessmentTable: React.FC<Props> = ({
   )
 }
 
+const AssessmentId = ({ assessment }: { assessment: Assessment }) => {
+  if (assessment.category === 'agile') {
+    return (
+      <Button type="link" href={`/administration/assessments/${assessment.id}/agiles`}>
+        {assessment.id}
+      </Button>
+    )
+  }
+
+  if (assessment.type === 'common') {
+    return (
+      <Button type="link" href={`/administration/assessments/${assessment.id}`}>
+        {assessment.id}
+      </Button>
+    )
+  }
+
+  return <div className={styles.assessmentId}>{assessment.id}</div>
+}
 
 const ActiveSwitch: React.FC<{ assessment: Assessment }> = ({ assessment }) => {
   const { resource } = useResourceContext<Assessment>()
