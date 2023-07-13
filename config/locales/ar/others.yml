@@ -176,10 +176,14 @@ ar:
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بالعديد من الأنشطة التي تحتاج إلى إكمالها. يرجى التأكد من التحقق من اكتمال جميع الأنشطة المخصصة عبر جميع الحملات.
     dashboard_menu:
+      bookings: الحجوزات
       campaign: الحملة
+      change_password: تغيير كلمة المرور
       home: الصفحة الرئيسية
       insights: البصائر
+      livechat: دعم مباشر
       profile: تفاصيلي
+      profile_details: تفاصيل
       tasks: مهامي
     details: مشاهدة التفاصيل
     edit_evaluation:
@@ -231,6 +235,11 @@ ar:
       completed: تم اكماله
       in_progress: " على قيد التقدم"
       not_started: لم يبدأ بعد
+  change_password_page:
+    old_password: كلمة المرور القديمة
+    password: كلمة المرور
+    password_confirmation: تأكيد كلمة المرور
+    title: غيّر كلمة المرور
   checking_wizard:
     audio_check:
       access: إذن الدخول

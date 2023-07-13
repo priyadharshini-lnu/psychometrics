@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress,
+  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress, Button,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
@@ -15,8 +15,7 @@ import {
   get as getUser,
   uploadPhoto,
 } from '~/core/currentUser'
-import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
-import { PageHeader } from '~/glint'
+import { DirectionalArrowIcon, PageHeader } from '~/glint'
 import array from '~/utils/array'
 import { CustomField } from './fields/CustomField'
 import { CropperModal } from './CropperModal'
@@ -293,11 +292,14 @@ function ProfileComponent ({
                       ))}
                     </Row>
                     <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
-                      <ButtonWithArrow
-                        label={I18n.t('profile.update')}
+                      <Button
                         type="primary"
                         htmlType="submit"
-                      />
+                        className={styles.actionButton}
+                      >
+                        {I18n.t('profile.update')}
+                        <DirectionalArrowIcon className={styles.buttonIcon} />
+                      </Button>
                     </Space>
                   </Form>
                   <CropperModal

@@ -111,6 +111,16 @@ de:
     wait: wart
   campaign:
     completed: abgeschlossen
+    dashboard_menu:
+      bookings: Buchungen
+      campaign: Kampagne
+      change_password: Kennwort ändern
+      home: Heim
+      insights: Einblicke
+      livechat: Live Unterstützung
+      profile: Profil
+      profile_details: Einzelheiten
+      tasks: Aufgaben
     details: Einzelheiten
     edit_evaluation:
       body: Bitte beachten Sie, dass Sie nach dem Klicken auf "Neu bewerten" zum Beginn der Umfrage weitergeleitet werden, wo Sie die Antworten bearbeiten können. Die vorherigen Antworten sind weiterhin verfügbar, können jedoch nach Bedarf geändert werden. Nach der Bearbeitung müssen Sie die Bewertung erneut einreichen, um den Vorgang abzuschließen.
@@ -134,6 +144,11 @@ de:
     time_left:
       continue: fortfahren
     welcome: Willkommen
+  change_password_page:
+    old_password: Altes Passwort
+    password: Passwort
+    password_confirmation: Password Confirmation
+    title: Kennwort ändern
   checking_wizard:
     audio_check:
       access: Zugriff
