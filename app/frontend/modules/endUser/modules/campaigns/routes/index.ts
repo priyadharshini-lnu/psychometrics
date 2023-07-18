@@ -35,9 +35,8 @@ const routes = [
     exact: true,
   },
   {
-    path: '/bookings',
+    path: '/invites',
     main: Bookings,
-    exact: true,
   },
   {
     path: '/profile_details',

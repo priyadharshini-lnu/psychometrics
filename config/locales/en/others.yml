@@ -1056,6 +1056,9 @@ en:
     sign_up: Sign Up
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
   bookings:
+    buttons:
+      book: Book
+      modify: Modify
     tab_label:
       bookings: Bookings
       invites: Invites

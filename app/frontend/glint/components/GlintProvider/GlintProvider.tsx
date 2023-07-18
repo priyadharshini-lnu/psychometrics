@@ -17,7 +17,8 @@ export const GlintProvider = ({ children }) => {
     maxWidth: 768,
   })
   const isDesktop = useMedia({
-    minWidth: 1025,
+    minWidth: 769,
+    maxWidth: 1024,
   })
 
   return <MediaQueryContext.Provider value={{ isMobile, isTablet, isDesktop }}>{children}</MediaQueryContext.Provider>

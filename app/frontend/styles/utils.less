@@ -98,7 +98,7 @@
 
     // Margin bottom
     .mb@{key} {
-      margin-block-end: @value;
+      margin-bottom: @value !important;
     }
 
     // Padding start
@@ -206,5 +206,22 @@
 
   .clear-float {
     clear: both;
+  }
+
+  // positions
+  .pos {
+    &-rel {
+      position: relative;
+    }
+    &-abs {
+      position: absolute;
+    }
+    &-uns {
+      position: unset;
+    }
+  }
+
+  .text-nowrap {
+    white-space: nowrap;
   }
 }

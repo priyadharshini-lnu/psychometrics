@@ -3,9 +3,12 @@ import userEvent from '@testing-library/user-event'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { act } from 'react-dom/test-utils'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 
-import { BookingsComponent, SKELETON_ROWS } from '~/modules/endUser/modules/campaigns/routes/Bookings/Bookings'
+import { BookingsAndInvitesListComponent, SKELETON_ROWS } from '~/modules/endUser/modules/campaigns/routes/Bookings/routes/BookingsAndInvitesList'
 
+const history = createMemoryHistory()
 const bookingsMockResponse = {
   response: {
     list: [{
@@ -54,14 +57,17 @@ test('should display list of invites and bookings', async () => {
 
   const { findAllByRole, findByTestId } = render(
     <div data-testid="container">
-      <Provider store={createStore(() => 'Test', 'Test')}>
-        <BookingsComponent
-          bookingsLoading={false}
-          invitesLoading={false}
-          fetchInvites={fetchInvites}
-          fetchBookings={fetchBookings}
-        />
-      </Provider>
+      <Router history={history}>
+        <Provider store={createStore(() => 'Test', 'Test')}>
+          <BookingsAndInvitesListComponent
+            bookingsLoading={false}
+            invitesLoading={false}
+            fetchInvites={fetchInvites}
+            fetchBookings={fetchBookings}
+          />
+        </Provider>
+      </Router>
+
     </div>,
   )
   const container = await findByTestId('container')
@@ -83,14 +89,17 @@ test('should display invites count and booking count', async () => {
 
   const { findAllByRole, findByTestId } = render(
     <div data-testid="container">
-      <Provider store={createStore(() => 'Test', 'Test')}>
-        <BookingsComponent
-          bookingsLoading={false}
-          invitesLoading={false}
-          fetchInvites={fetchInvites}
-          fetchBookings={fetchBookings}
-        />
-      </Provider>
+      <Router history={history}>
+        <Provider store={createStore(() => 'Test', 'Test')}>
+          <BookingsAndInvitesListComponent
+            bookingsLoading={false}
+            invitesLoading={false}
+            fetchInvites={fetchInvites}
+            fetchBookings={fetchBookings}
+          />
+        </Provider>
+      </Router>
+
     </div>,
   )
   const container = await findByTestId('container')
@@ -112,14 +121,17 @@ test('should display skeleton for both count & list of Invites and Bookings when
 
   const { findAllByRole, findByTestId } = render(
     <div data-testid="container">
-      <Provider store={createStore(() => 'Test', 'Test')}>
-        <BookingsComponent
-          bookingsLoading={true}
-          invitesLoading={true}
-          fetchInvites={fetchInvites}
-          fetchBookings={fetchBookings}
-        />
-      </Provider>
+      <Router history={history}>
+        <Provider store={createStore(() => 'Test', 'Test')}>
+          <BookingsAndInvitesListComponent
+            bookingsLoading
+            invitesLoading
+            fetchInvites={fetchInvites}
+            fetchBookings={fetchBookings}
+          />
+        </Provider>
+      </Router>
+
     </div>,
   )
   const container = await findByTestId('container')

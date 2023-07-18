@@ -49,7 +49,7 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
   ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
 }] : [],
 // {
-//   key: 'bookings',
+//   key: 'invites',
 //   label: I18n.t('campaign.dashboard_menu.bookings'),
 //   icon: <CalendarOutlined className={styles.siderIcon} />,
 // },

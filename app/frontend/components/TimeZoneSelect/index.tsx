@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment-timezone'
-import { Select } from 'antd'
+import { Select, SelectProps } from 'antd'
 
 const zones = [
   'Pacific/Midway',
@@ -157,7 +157,7 @@ zones
 
 const { Option } = Select
 
-interface Props {
+interface Props extends SelectProps {
   value: string
   label?: string
   onChange(zone: string): void
