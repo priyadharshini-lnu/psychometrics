@@ -8,8 +8,8 @@ import { Datasheet } from './Datasheet'
 import { Admins } from './Admins'
 import CampaignOptions from './CampaignOptions'
 import { Dashboard } from './Dashboard'
-import { Scheduling, AssessmentCenter, Invites } from './Scheduling'
-
+import { Scheduling, WorkshopList, Invites } from './Scheduling'
+import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
@@ -28,7 +28,8 @@ const routes = [
     path: '/scheduling',
     component: Scheduling,
     routes: [
-      { path: '/scheduling/assessment_center', component: AssessmentCenter },
+      { path: '/scheduling/assessment_center', component: WorkshopList },
+      { path: '/scheduling/assessment_center/:id', component: WorkshopPage },
       { path: '/scheduling/invites', component: Invites },
     ],
   },

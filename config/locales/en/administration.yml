@@ -3666,9 +3666,33 @@ en:
       webhooks: Webhooks
     save: Save
     scheduling:
+      columns:
+        assessors: Assessors
+        duration: Duration
+        managers: Mangers
+        start_time: Date & Time
+      date_presets:
+        all_time: All time
+        current_month: Current month
+        current_week: Current week
+        custom: Custom range
+        last_month: Last month
+        last_week: Last week
+        today: Today
+      info:
+        assessors: Assessors
+        booked: Seats Booked
+        duration: Duration
+        link: Meeting link
+        managers: Center Managers
+        remaining: Seats Remaining
+        timezone: Timezone
       tabs:
         assessment_center: Assessment Center
+        assessors: Assessors
         invites: Invites
+        resources: Resources
+        subjects: Subjects
     search: Search
     security_setting:
       180_days: 180 Days

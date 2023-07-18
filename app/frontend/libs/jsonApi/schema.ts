@@ -6,6 +6,7 @@ import { CommentSchema as commentSchema } from '~/modules/admin/modules/campaign
 import { Schema as reportApprovalSettingSchema } from '~/modules/admin/modules/campaigns/core/reportApprovalSettings'
 import { Schema as licensesSchema } from '~/modules/admin/modules/client/core/licenses'
 import { Schema as licenseUsagesSchema } from '~/modules/admin/modules/client/core/license_usages'
+import { Workshops as workshopsSchema } from '~/modules/admin/modules/campaigns/core/workshop'
 
 export const Schema = {
   clients: clientSchema,
@@ -16,4 +17,5 @@ export const Schema = {
   report_approval_settings: reportApprovalSettingSchema,
   licenses: licensesSchema,
   license_usages: licenseUsagesSchema,
+  workshops: workshopsSchema,
 }

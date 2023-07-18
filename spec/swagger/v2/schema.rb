@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/MutableConstant
+# rubocop:disable Style/MutableConstant, Metrics/ModuleLength
 
 Dir["#{__dir__}/definitions/**/*.rb"].each { |file| require file }
 
@@ -224,6 +224,9 @@ module Swagger
           ),
           CampaignAssessmentAssessorResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessorAssessment::Schema.single_resource_response
+          ),
+          WorkshopsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Workshop::Schema.multiple_resource_response
           )
         }
       }
@@ -231,4 +234,4 @@ module Swagger
   end
 end
 
-# rubocop:enable Style/MutableConstant
+# rubocop:enable all

@@ -1,3 +1,3 @@
 export { Scheduling } from './Scheduling'
-export { AssessmentCenter } from './AssessmentCenter'
+export { WorkshopList, WorkshopPage } from './Workshop'
 export { Invites } from './Invites'
