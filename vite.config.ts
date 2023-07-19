@@ -117,9 +117,9 @@ export default defineConfig({
             return 'vendors'
           }
 
-          if (id.includes('/glint/')) {
-            return 'glint'
-          }
+          // if (id.includes('/glint/')) {
+          //   return 'glint'
+          // }
 
           // if (id.includes('modules/reports/')) {
           //   return 'survey'
