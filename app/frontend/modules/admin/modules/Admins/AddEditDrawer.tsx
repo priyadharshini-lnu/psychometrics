@@ -2,8 +2,6 @@ import { FC, useState, useEffect } from 'react'
 import {
   Drawer,
   Form,
-  Row,
-  Col,
   Typography,
   Space,
   Button,
@@ -239,8 +237,34 @@ const AddEditDrawerComponent: FC<Props> = ({
     return null
   }
 
+  const buttons = (
+    <Space>
+      {true && (
+      <Button
+        htmlType="submit"
+        key="submit"
+        form="add_edit_admin_form"
+        type="primary"
+        onClick={() => {
+          form.submit()
+        }}
+      >
+        {actionButtonText}
+      </Button>
+      )}
+      <Button
+        htmlType="reset"
+        form="add_edit_admin_form"
+        onClick={onClose}
+      >
+        {I18n.t('administration.administrators.list.actions.cancel_text')}
+      </Button>
+    </Space>
+  )
+
   return (
     <Drawer
+      title={<Typography.Title level={4}>{drawerTitle}</Typography.Title>}
       placement="right"
       maskClosable={false}
       closable={false}
@@ -248,36 +272,8 @@ const AddEditDrawerComponent: FC<Props> = ({
       zIndex={1001}
       visible={isVisible}
       destroyOnClose
+      extra={buttons}
     >
-      <Row justify="space-between" align="middle" className="mb-4">
-        <Col>
-          <Typography.Title level={4}>{drawerTitle}</Typography.Title>
-        </Col>
-        <Col>
-          <Space>
-            {true && (
-              <Button
-                htmlType="submit"
-                key="submit"
-                form="add_edit_admin_form"
-                type="primary"
-                onClick={() => {
-                  form.submit()
-                }}
-              >
-                {actionButtonText}
-              </Button>
-            )}
-            <Button
-              htmlType="reset"
-              form="add_edit_admin_form"
-              onClick={onClose}
-            >
-              {I18n.t('administration.administrators.list.actions.cancel_text')}
-            </Button>
-          </Space>
-        </Col>
-      </Row>
       <ResourceForm
         resourceName="memberships"
         resource={admin}
