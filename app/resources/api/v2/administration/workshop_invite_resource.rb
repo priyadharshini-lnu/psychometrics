@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration::BaseResource
+  attributes :title, :description, :created_at, :subjects_count, :allowed_languages, :allow_language_preference,
+             :allow_neurodiversity_option
+
+  has_many :workshops
+  has_many :workshop_invited_subjects
+
+  def subjects_count
+    workshop_invited_subjects.count
+  end
+
+  ransack_filters %i[campaign_id_eq workshops_campaign_id_eq title_cont]
+end

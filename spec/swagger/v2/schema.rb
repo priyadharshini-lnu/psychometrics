@@ -225,6 +225,18 @@ module Swagger
           CampaignAssessmentAssessorResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessorAssessment::Schema.single_resource_response
           ),
+          WorkshopResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvite::Schema.single_resource_response
+          ),
+          WorkshopListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvite::Schema.multiple_resource_response
+          ),
+          WorkshopInviteCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvite::Schema.create_request
+          ),
+          WorkshopInviteCreateSubjectsAndTranslations: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvite::Schema.create_subjects_and_translations
+          ),
           WorkshopsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.multiple_resource_response
           )

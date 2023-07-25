@@ -47,12 +47,14 @@ const SchedulingComponent: React.FC<Props> = ({ history, routes }) => {
 
   return (
     <div>
-      <Menu
-        items={menuItems}
-        onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
-        mode="horizontal"
-      />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Menu
+          items={menuItems}
+          onSelect={onSelect}
+          selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+          mode="horizontal"
+        />
+      </div>
       <RouteList routes={routes} urlPrefix={prefix} />
     </div>
   )

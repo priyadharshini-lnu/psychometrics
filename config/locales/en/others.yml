@@ -3231,6 +3231,53 @@ en:
       other: There are %{count} errors, please check your responses
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
+  workshop_invite:
+    actions: Actions
+    add_invite: Add Invite
+    assessment_center: Assessment Center
+    back: Back
+    basic_info:
+      allow_prefered_language: Allow Prefered Language
+      assessment_centers: Assessment Centers
+      assessment_centers_placeholder: Select Assessments Centers
+      description: industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer
+      neurodiversity: Include neurodiversity question
+      prefered_language: Prefered Language
+      prefered_language_placeholder: Select Prefered Language
+      title: Basic Information
+    id: ID
+    invites: Invites
+    next: Next
+    remove: Remove
+    requests: Requests
+    save: Save & Send
+    send_invites:
+      add: Add
+      add_description: You can translate the invite title and description in multiple languages
+      add_language: Add Language
+      description: Candidates will see the following information in their email message and on the booking page.
+      input_label: Add Additional Language
+      input_placehodler: Select Prefered Language
+      title: Invitation (%{lang})
+    steps:
+      add_subjects: Add Subjects
+      basic_info: Basic Info
+      send_invitation: Send Invitation
+    subjects:
+      cancel: Cancel
+      count: "%{count} Subjects"
+      csv_error: 'Row%{index}: user with email %{email} is not in this campaign'
+      description: You can add subjects individually by searching or bulk upload a csv file.
+      import_from_campaign: Add all from campaign
+      import_users: Import Users
+      search_user: Search to add subjects
+      title: Subjects
+      upload: Upload
+      upload_csv: Upload CSV
+    success:
+      continue: Continue
+      message: The invites have been scheduled to be sent
+    title: Title
   'yes': 'Yes'
   your: Your
   yourself: Yourself

@@ -10,6 +10,12 @@ module Api
       def show?
         has_permission?(:workshops, :view)
       end
+
+      class Scope < Scope
+        def resolve
+          user.accessible_records(Workshop, 'workshops.view')
+        end
+      end
     end
   end
 end

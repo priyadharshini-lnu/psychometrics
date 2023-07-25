@@ -89,7 +89,7 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
+-- SET default_table_access_method = heap;
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -11710,5 +11710,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230615093244'),
 ('20230627162930'),
 ('20230627181938');
-
-

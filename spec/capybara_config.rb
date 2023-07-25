@@ -9,6 +9,7 @@ Capybara.default_max_wait_time = 10
 Capybara.register_driver :chrome do |app|
   client = Selenium::WebDriver::Remote::Http::Default.new
   client.read_timeout = 120
+
   profile = Selenium::WebDriver::Chrome::Profile.new
   profile['download.default_directory'] = DownloadHelpers::PATH.to_s
   Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client, profile: profile)

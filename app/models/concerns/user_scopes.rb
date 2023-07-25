@@ -32,6 +32,11 @@ module UserScopes
       ).distinct
     }
 
+    scope :with_campaign_user, lambda { |campaign_id|
+      campaign = Campaign.find(campaign_id)
+      left_joins(:campaign_users).where({ campaign_users: { campaign_id: campaign.id } }).distinct
+    }
+
     # Fileter by role
     scope :with_role, lambda { |role|
       case role
