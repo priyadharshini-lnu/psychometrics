@@ -26,6 +26,7 @@
 }
 
 .additionalDetailsContainer {
+  display: inline-block;
   :global {
     .ant-descriptions-view table {
       table-layout: auto;
@@ -34,4 +35,14 @@
       }
     }
   }
+}
+
+.removeIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 48px;
+  font-size: 12px;
+  cursor: pointer;
+  pointer-events: auto;
 }

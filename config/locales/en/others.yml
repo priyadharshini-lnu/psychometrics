@@ -1893,6 +1893,18 @@ en:
       copy_success_msg: Copied hexcode to clipboard.
       recent_colors: 'Recently used:'
       recommended_colors: 'Recommended:'
+    schedule_availability:
+      end_date: End Date
+      from: From
+      new_schedule: New Schedule
+      new_schedule_description: Start time must be earlier than the end time
+      no_slots: No slots added
+      required_error: can't be empty
+      save: Save
+      saved_schedule_description: Saved availability schedule of user
+      start_date: Start Date
+      timezone_label: TimeZone
+      to: To
   hogan:
     assigns:
       results:

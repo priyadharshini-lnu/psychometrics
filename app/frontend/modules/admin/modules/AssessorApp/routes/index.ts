@@ -4,11 +4,16 @@ import UserDetails from './UserDetails'
 import Evaluation from './Evaluation'
 import ReportPreview from './ReportPreview'
 import { ExternalReportPreview } from './ExternalReportPreview'
+import { AssessorAvailability } from './AssessorAvailability'
 
 const routes = [
   {
     path: '/',
     component: CampaignList,
+  },
+  {
+    path: '/availability',
+    component: AssessorAvailability,
   },
   {
     path: '/campaigns/:campaignId/users/:userId',

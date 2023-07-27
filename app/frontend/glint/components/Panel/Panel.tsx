@@ -1,6 +1,6 @@
 import React from 'react'
 import { Collapse, Divider } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined, CloseOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import { PanelTitle } from './PanelTitle'
 import { useWindowSize } from '~/hooks/useWindowSize'
@@ -15,6 +15,9 @@ interface Props {
   children: React.ReactNode
   additionalDetails?: AdditionsDetailsData
   additionalDetailsLayout?: 'horizontal' | 'vertical'
+  removable?: boolean
+  onRemove?: () => void
+  defaultOpen?: boolean
 }
 
 export const Panel: React.FC<Props> = ({
@@ -24,6 +27,9 @@ export const Panel: React.FC<Props> = ({
   collapsible = false,
   additionalDetails,
   additionalDetailsLayout = 'vertical',
+  removable,
+  onRemove,
+  defaultOpen = true,
 }) => {
   const { width: windowWidth } = useWindowSize()
   const showSidebarForAdditionalDetails = windowWidth > 768 && additionalDetailsLayout === 'vertical'
@@ -31,7 +37,8 @@ export const Panel: React.FC<Props> = ({
   return (
     <div className={styles.collapseContainer}>
       <Collapse
-        defaultActiveKey={['1']}
+        accordion
+        defaultActiveKey={defaultOpen ? ['1'] : ''}
         onChange={() => {}}
         expandIconPosition="end"
         expandIcon={() => (collapsible ? <DownOutlined /> : null)}
@@ -46,10 +53,29 @@ export const Panel: React.FC<Props> = ({
             />
           )}
           key="1"
-          extra={
-            additionalDetails && showSidebarForAdditionalDetails
-              && <AdditionalDetails additionalDetails={additionalDetails} layout="vertical" />
-          }
+          extra={(
+            <>
+              {additionalDetails && showSidebarForAdditionalDetails
+              && (
+              <AdditionalDetails
+                className={cs({ 'me-6': removable })}
+                additionalDetails={additionalDetails}
+                layout="vertical"
+              />
+              )}
+              {removable ? (
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onRemove
+                  }}
+                  className={styles.removeIcon}
+                >
+                  <CloseOutlined />
+                </div>
+              ) : null}
+            </>
+          )}
           className={cs({ [styles.nonCollapsiblePanel]: !collapsible })}
         >
           <Divider plain className={styles.divider} />

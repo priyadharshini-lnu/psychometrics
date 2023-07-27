@@ -1,0 +1,260 @@
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { act } from 'react-dom/test-utils'
+
+import { ScheduleDayTestWrapper } from './ScheduleDayTestWrapper'
+
+test('Clicking on Add icon should show time timepickers', async () => {
+  const user = userEvent.setup()
+  render(
+    <div id="container">
+      <ScheduleDayTestWrapper
+        label="Monday"
+        formName="1"
+      />
+    </div>,
+  )
+  const addTimePicker = screen.getByRole('button', { name: 'add' })
+
+  await act(async () => {
+    await user.click(addTimePicker)
+  })
+  const startTimePicker = screen.getByPlaceholderText('From')
+  const endTimePicker = screen.getByPlaceholderText('To')
+  expect(startTimePicker).toBeInTheDocument()
+  expect(endTimePicker).toBeInTheDocument()
+})
+
+test('Clicking on Remove icon should remove the time pickers', async () => {
+  const user = userEvent.setup()
+  render(
+    <div id="container">
+      <ScheduleDayTestWrapper
+        label="Monday"
+        formName="1"
+      />
+    </div>,
+  )
+  const addTimePicker = screen.getByRole('button', { name: 'add' })
+
+  await act(async () => {
+    await user.click(addTimePicker)
+  })
+  const startTimePicker = screen.getByPlaceholderText('From')
+  expect(startTimePicker).toBeInTheDocument()
+  const endTimePicker = screen.getByPlaceholderText('To')
+  expect(endTimePicker).toBeInTheDocument()
+
+  const removeTimePicker = screen.getByRole('button', { name: 'remove' })
+  await act(async () => {
+    await user.click(removeTimePicker)
+  })
+  expect(endTimePicker).not.toBeInTheDocument()
+  expect(startTimePicker).not.toBeInTheDocument()
+})
+
+describe('Add button should be ', () => {
+  const user = userEvent.setup()
+
+  test('disabled when both start and end times are not picked', async () => {
+    render(
+      <div id="container">
+        <ScheduleDayTestWrapper
+          label="Monday"
+          formName="1"
+        />
+      </div>,
+    )
+
+    let addTimePicker = screen.getByRole('button', { name: 'add' })
+
+    await act(async () => {
+      await user.click(addTimePicker)
+    })
+    addTimePicker = screen.getByRole('button', { name: 'add' })
+    expect(addTimePicker).toBeDisabled()
+  })
+
+  test('disabled when only start time is picked', async () => {
+    render(
+      <div id="container">
+        <ScheduleDayTestWrapper
+          label="Monday"
+          formName="1"
+        />
+      </div>,
+    )
+    let addTimePicker = screen.getByRole('button', { name: 'add' })
+    await act(async () => {
+      await user.click(addTimePicker)
+    })
+    addTimePicker = screen.getByRole('button', { name: 'add' })
+    expect(addTimePicker).toBeDisabled()
+
+    const startTimePicker = screen.getByPlaceholderText('From')
+    await act(async () => {
+      await user.click(startTimePicker)
+    })
+
+    const _1hour = screen.getByText('01')
+    _1hour.style['pointer-events'] = 'auto'
+    await act(async () => {
+      await user.click(_1hour)
+    })
+
+    const timePickerOkButton = screen.getByText('OK')
+    timePickerOkButton.style['pointer-events'] = 'auto'
+    await act(async () => {
+      await user.click(timePickerOkButton)
+    })
+
+    expect(screen.getByDisplayValue('01:00 AM')).toBeInTheDocument()
+    expect(addTimePicker).toBeDisabled()
+  })
+
+  test('disabled when only end time is picked', async () => {
+    render(
+      <div id="container">
+        <ScheduleDayTestWrapper
+          label="Monday"
+          formName="1"
+        />
+      </div>,
+    )
+    let addTimePicker = screen.getByRole('button', { name: 'add' })
+    await act(async () => {
+      await user.click(addTimePicker)
+    })
+    addTimePicker = screen.getByRole('button', { name: 'add' })
+    const endTimePicker = screen.getByPlaceholderText('To')
+
+    await act(async () => {
+      await user.click(endTimePicker)
+    })
+
+    const _1hour = screen.getByText('01')
+    _1hour.style['pointer-events'] = 'auto'
+    await act(async () => {
+      await user.click(_1hour)
+    })
+
+    const timePickerOkButton = screen.getByText('OK')
+    timePickerOkButton.style['pointer-events'] = 'auto'
+    await act(async () => {
+      await user.click(timePickerOkButton)
+    })
+
+    expect(screen.getByDisplayValue('01:00 AM')).toBeInTheDocument()
+    expect(addTimePicker).toBeDisabled()
+  })
+
+  test('enabled when both start and end times are picked', async () => {
+    render(
+      <div id="container">
+        <ScheduleDayTestWrapper
+          label="Monday"
+          formName="1"
+        />
+      </div>,
+    )
+    let addTimePicker = screen.getByRole('button', { name: 'add' })
+    await act(async () => {
+      await user.click(addTimePicker)
+    })
+    addTimePicker = screen.getByRole('button', { name: 'add' })
+    const startTimePicker = screen.getByPlaceholderText('From')
+    const endTimePicker = screen.getByPlaceholderText('To')
+
+    // Pick Start time as 01:00 AM
+    await act(async () => {
+      await user.click(startTimePicker)
+    })
+
+    const _1hour = screen.getByText('01')
+    _1hour.style['pointer-events'] = 'auto'
+    await act(async () => {
+      await user.click(_1hour)
+    })
+
+    let timePickerOkButton = screen.getByText('OK')
+    timePickerOkButton.style['pointer-events'] = 'auto'
+    await act(async () => {
+      await user.click(timePickerOkButton)
+    })
+
+
+    // Pick End time as 02:00 AM
+    await act(async () => {
+      await user.click(endTimePicker)
+    })
+    const _2hour = screen.getAllByText('02')[1]
+    _2hour.style['pointer-events'] = 'auto'
+    await act(async () => {
+      await user.click(_2hour)
+    })
+
+    timePickerOkButton = screen.getAllByText('OK')[1]
+    timePickerOkButton.style['pointer-events'] = 'auto'
+    await act(async () => {
+      await user.click(timePickerOkButton)
+    })
+
+    expect(screen.getByDisplayValue('01:00 AM')).toBeInTheDocument()
+    expect(screen.getByDisplayValue('02:00 AM')).toBeInTheDocument()
+    expect(addTimePicker).not.toBeDisabled()
+  })
+})
+
+test('Time lesser than start time should be disabled while selecting end time', async () => {
+  const user = userEvent.setup()
+  render(
+    <div id="container">
+      <ScheduleDayTestWrapper
+        label="Monday"
+        formName="1"
+      />
+    </div>,
+  )
+  const addTimePicker = screen.getByRole('button', { name: 'add' })
+
+  await act(async () => {
+    await user.click(addTimePicker)
+  })
+  const startTimePicker = screen.getByPlaceholderText('From')
+  expect(startTimePicker).toBeInTheDocument()
+  const endTimePicker = screen.getByPlaceholderText('To')
+  expect(endTimePicker).toBeInTheDocument()
+
+  await act(async () => {
+    await user.click(startTimePicker)
+  })
+
+  const _1hour = screen.getByText('01')
+  const _15mins = screen.getByText('15')
+  const startTimePickerOkButton = screen.getByText('OK')
+  _1hour.style['pointer-events'] = 'auto'
+  _15mins.style['pointer-events'] = 'auto'
+  startTimePickerOkButton.style['pointer-events'] = 'auto'
+  await act(async () => {
+    await user.click(_1hour)
+    await user.click(_15mins)
+    await user.click(startTimePickerOkButton)
+  })
+  expect(screen.getByDisplayValue('01:15 AM')).toBeInTheDocument()
+
+
+  await act(async () => {
+    await user.click(endTimePicker)
+  })
+  const _1hourEndTime = screen.getAllByText('12')[1]
+  const _15minsEndTime = screen.getAllByText('15')[1]
+  _1hourEndTime.style['pointer-events'] = 'auto'
+  _15minsEndTime.style['pointer-events'] = 'auto'
+  const endTimePickerOkButton = screen.getAllByRole('button')[1]
+  await act(async () => {
+    await user.click(_1hourEndTime)
+    await user.click(_15minsEndTime)
+  })
+  expect(screen.queryByDisplayValue('12:15 AM')).toBe(null)
+  expect(endTimePickerOkButton).toBeDisabled()
+})

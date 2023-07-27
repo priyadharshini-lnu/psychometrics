@@ -1,6 +1,9 @@
-import moment from 'moment'
+import _ from 'lodash'
+import moment, { Moment } from 'moment'
 
 const FORMAT = 'DD MMM YYYY / HH:mm'
+
+const allDays = _.range(0, 7)
 
 export const getMinutesAndSeconds = (time: number): string => (
   moment(time * 1000).utc().format('mm:ss')
@@ -49,4 +52,19 @@ export const convertSecondsToMMSS = (totalSeconds: number): string => {
   const secondsFormatted = `${seconds}`.length === 1 ? `0${seconds}` : `${seconds}`
 
   return `${minutesFormatted}:${secondsFormatted}/10:00`
+}
+
+export const getAvailableDays = (startDate?: Moment, endDate?: Moment):number[] => {
+  const availableDays: number[] = []
+  if (startDate && endDate) {
+    const daysDifference = endDate.diff(startDate, 'days')
+    if (daysDifference > 6) {
+      return [...allDays]
+    }
+    for (let diff = 0; diff <= daysDifference; diff += 1) {
+      availableDays.push((startDate.weekday() + diff) % 7)
+    }
+    return [...availableDays]
+  }
+  return [...allDays]
 }
