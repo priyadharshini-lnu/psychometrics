@@ -6,7 +6,7 @@ import { ScheduleAvailability } from '~/glint'
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const initialAvailability = {
   timezone: 'Asia/Baku',
-  startDate: moment(),
+  startDate: moment('26/07/2023', 'DD/MM/YYYY'),
   endDate: moment('05/08/2023', 'DD/MM/YYYY'),
   availabilityDays: [{
     day: 1,
