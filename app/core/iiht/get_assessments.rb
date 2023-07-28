@@ -12,6 +12,8 @@ module Iiht
     end
 
     def call
+      return broadcast :ok, [] unless config
+
       data = Rails.cache.fetch(cache_key, expires_in: 1.day, race_condition_ttl: 1.minute, force: force) do
         load_assessments
       end

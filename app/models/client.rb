@@ -182,7 +182,7 @@ class Client < ApplicationRecord
   end
 
   def iiht_config
-    integrations.iiht.first.iiht_config
+    integrations.iiht.first&.iiht_config
   end
 
   def saml_setting
