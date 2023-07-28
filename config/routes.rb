@@ -1226,6 +1226,12 @@ Rails.application.routes.draw do
               get :search_user
             end
           end
+          resources :workshop_facilitators, only: %i[] do
+            collection do
+              get :search_assessors
+              get :search_managers
+            end
+          end
         end
       end
     end

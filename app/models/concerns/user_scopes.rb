@@ -81,6 +81,7 @@ module UserScopes
     scope :sort_by_full_name_asc, -> { order(first_name: :asc, last_name: :asc) }
     scope :sort_by_full_name_desc, -> { order(first_name: :desc, last_name: :desc) }
     scope :admins, ->(_) { where(project_id: nil) }
+    scope :global_assessors, -> { where(global_assessor: true) }
   end
 
   # rubocop:enable Metrics/BlockLength

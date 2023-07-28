@@ -89,7 +89,7 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
--- SET default_table_access_method = heap;
+SET default_table_access_method = heap;
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -4446,8 +4446,8 @@ CREATE TABLE public.user_availability_days (
     id bigint NOT NULL,
     user_availability_date_id bigint,
     day integer DEFAULT 1 NOT NULL,
-    start_time time without time zone NOT NULL,
-    end_time time without time zone NOT NULL,
+    start_time character varying NOT NULL,
+    end_time character varying NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -4717,7 +4717,8 @@ CREATE TABLE public.users (
     password_changed_at timestamp without time zone,
     photo character varying,
     timezone character varying,
-    force_password_change boolean DEFAULT false
+    force_password_change boolean DEFAULT false,
+    global_assessor boolean DEFAULT false
 );
 
 
@@ -11709,4 +11710,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230608150754'),
 ('20230615093244'),
 ('20230627162930'),
-('20230627181938');
+('20230627181938'),
+('20230717125048'),
+('20230719111228');
+
+
