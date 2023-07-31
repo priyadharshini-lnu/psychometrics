@@ -3666,10 +3666,17 @@ en:
       webhooks: Webhooks
     save: Save
     scheduling:
+      actions:
+        remove:
+          success_message: Assessment Center subject %{subject_name}.
       columns:
+        activity: Activity
         assessors: Assessors
+        attendance: Attendance
         duration: Duration
         managers: Mangers
+        participants: Participants
+        prework: Prework
         start_time: Date & Time
       date_presets:
         all_time: All time
@@ -3687,7 +3694,14 @@ en:
         managers: Center Managers
         remaining: Seats Remaining
         timezone: Timezone
+      status:
+        completed: Completed
+        dropped_out: Dropped Out
+        late: Late
+        no_show: No Show
+        not_started: Not Started
       tabs:
+        activities: Activities
         assessment_center: Assessment Center
         assessors: Assessors
         invites: Invites

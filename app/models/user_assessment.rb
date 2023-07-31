@@ -44,6 +44,14 @@ class UserAssessment < ApplicationRecord
     end
   }
   scope :pending_assessments, -> { where.not(status: %i[completed timed_out ineligible]) }
+  scope :with_campaign_assessments, lambda {
+    joins(
+      'INNER JOIN
+        campaign_assessments ON campaign_assessments.assessment_id = user_assessments.assessment_id
+        AND
+        campaign_assessments.campaign_id = user_assessments.campaign_id'
+    )
+  }
 
   before_save :set_default_relationship
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]

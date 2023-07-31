@@ -1206,7 +1206,10 @@ Rails.application.routes.draw do
           resources :campaigns, only: [] do
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create destroy]
-            jsonapi_resources :workshops, only: %i[index show]
+            jsonapi_resources :workshops, only: %i[index show] do
+              jsonapi_relationships
+              jsonapi_resources :workshop_subjects, only: %i[index update destroy]
+            end
           end
           jsonapi_resources :workshop_invites, only: %i[index create destroy] do
             collection do

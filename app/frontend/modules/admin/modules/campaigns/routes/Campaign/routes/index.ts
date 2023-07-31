@@ -32,6 +32,7 @@ const routes = [
     routes: [
       { path: '/scheduling/assessment_center', component: WorkshopList },
       { path: '/scheduling/assessment_center/:id', component: WorkshopPage },
+      { path: '/scheduling/assessment_center/:id/:tab', component: WorkshopPage },
       { path: '/scheduling/invites', component: Invites },
       { path: '/scheduling/invites/add_invite', component: InvitesForm },
     ],

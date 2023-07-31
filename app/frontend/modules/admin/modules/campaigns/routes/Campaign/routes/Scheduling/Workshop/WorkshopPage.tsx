@@ -1,17 +1,17 @@
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useState } from 'react'
 import {
-  useHistory, useLocation, Link, useParams,
+  useHistory, Link, useParams,
 } from 'react-router-dom'
 import {
-  Menu, Space, Descriptions, Avatar, Skeleton,
+  Space, Descriptions, Avatar, Skeleton, Divider, Radio,
 } from 'antd'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { ArrowLeftOutlined, CopyOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { useResources } from '~/hooks/useResources'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { ResourceAvatar } from '~/glint'
 import styles from './styles.less'
+import { SubjectList } from './SubjectList'
 
 const { I18n } = window
 
@@ -41,9 +41,11 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
 ) || null
 
 export const WorkshopPage: FC = () => {
-  const { id, projectId, campaignId } = useParams<{ id: string, projectId: string, campaignId: string }>()
+  const {
+    id, campaignId, tab,
+  } = useParams<{ id: string, campaignId: string, tab: string | undefined }>()
+  const [currentTab, setCurrentTab] = useState(tab || 'subjects')
   const history = useHistory()
-  const { pathname } = useLocation()
   const { fetchSingle, getResource } = useResources<Workshop>(
     'workshops',
     {
@@ -67,31 +69,6 @@ export const WorkshopPage: FC = () => {
       <Skeleton active />
     )
   }
-
-  const handleOnSelect = ({ key }) => {
-    history.push(
-      `/administration/projects/${projectId}/new_campaigns/${campaignId}/scheduling/assessment_center/${id}/${key}`,
-    )
-  }
-
-  const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
-    if (pathname.endsWith('/subjects')) {
-      return ['subjects']
-    }
-    if (pathname.endsWith('/assessors')) {
-      return ['assessors']
-    }
-    if (pathname.endsWith('/resources')) {
-      return ['resources']
-    }
-    return undefined
-  }
-
-  const menuItems: ItemType[] = [
-    { key: 'subjects', label: I18n.t('administration.scheduling.tabs.subjects') },
-    { key: 'assessors', label: I18n.t('administration.scheduling.tabs.assessors') },
-    { key: 'resources', label: I18n.t('administration.scheduling.tabs.resources') },
-  ]
 
   return (
     <>
@@ -139,14 +116,21 @@ export const WorkshopPage: FC = () => {
             <ResourcesTag resources={workshop.workshopAssessors} />
           </Descriptions.Item>
         </Descriptions>
-      </div>
 
-      <Menu
-        items={menuItems}
-        onSelect={handleOnSelect}
-        selectedKeys={getActiveMenuKey(pathname)}
-        mode="horizontal"
-      />
+        <Divider />
+
+        <div>
+          <div className={styles.controls}>
+            <Radio.Group onChange={e => setCurrentTab(e.target.value)} defaultValue={currentTab}>
+              <Radio.Button value="subjects">{I18n.t('administration.scheduling.tabs.subjects')}</Radio.Button>
+              <Radio.Button value="assessors">{I18n.t('administration.scheduling.tabs.assessors')}</Radio.Button>
+              <Radio.Button value="resources">{I18n.t('administration.scheduling.tabs.resources')}</Radio.Button>
+              <Radio.Button value="activities">{I18n.t('administration.scheduling.tabs.activities')}</Radio.Button>
+            </Radio.Group>
+          </div>
+          {currentTab === 'subjects' && <SubjectList />}
+        </div>
+      </div>
     </>
   )
 }
