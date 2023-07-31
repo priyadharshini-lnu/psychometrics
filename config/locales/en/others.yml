@@ -1893,6 +1893,14 @@ en:
       copy_success_msg: Copied hexcode to clipboard.
       recent_colors: 'Recently used:'
       recommended_colors: 'Recommended:'
+    datepicker_with_ranges:
+      all_time: All Time
+      current_month: Current Month
+      current_week: Current Week
+      last_month: Last Month
+      last_week: Last Week
+      today: Today
+      yesterday: Yesterday
     schedule_availability:
       end_date: End Date
       from: From
