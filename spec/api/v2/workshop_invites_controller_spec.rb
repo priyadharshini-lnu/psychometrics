@@ -7,12 +7,15 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
   let!(:project) { create(:project, subdomain: 'project-subdomain') }
   let!(:campaign) { create(:campaign, project: project) }
   let!(:superadmin) { create(:superadmin) }
+  let!(:workshop) { create(:workshop, campaign: campaign) }
   let!(:workshop_invite) { create(:workshop_invite) }
   let!(:workshop_invite_id) { workshop_invite.id }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
   let!(:user1) { create(:user, email: 'user1@test.test') }
 
-  before { sign_in(superadmin) }
+  before do
+    sign_in(superadmin)
+  end
 
   path '/workshop_invites' do
     get 'Get Workshop List' do
@@ -50,6 +53,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
   end
 
   path '/workshop_invites' do
+    before { create(:campaign_user, campaign: campaign, user: user1) }
     post 'Create a Workshop Invite' do
       operationId 'CreateWorkshop'
       description 'Create new Workshop'
@@ -60,7 +64,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
                 schema: { '$ref' => '#/components/schemas/WorkshopCreateRequest' },
                 required: true
 
-      response '201', 'Workshop Created' do
+      response '200', 'Workshop Created' do
         schema '$ref' => '#/components/schemas/WorkshopResponse'
         examples 'application/json' => {
           data: {
@@ -70,7 +74,12 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
               description: 'Workshop description',
               subjects_count: 1,
               allow_language_preference: true,
-              allow_neurodiversity_option: true
+              allow_neurodiversity_option: true,
+              subjects: [{ user_id: 111 }],
+              translations: [
+                { locale: 'en', title: 'title', description: 'description' },
+                { locale: 'ar', title: 'arabic', description: 'ar_description' }
+              ]
             }
           }
         }
@@ -85,42 +94,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
               attributes: {
                 allow_language_preference: true,
                 allow_neurodiversity_option: true,
-                allowed_languages: []
-              }
-            }
-          }
-        end
-
-        run_test! do |response|
-          workshop_invite_response = JSON.parse(response.body)['data']
-          expect(workshop_invite_response).to have_key('id')
-        end
-      end
-    end
-  end
-
-  path '/workshop_invites/{workshop_invite_id}/create_subjects_and_translations' do
-    before do
-      create(:campaign_user, campaign: campaign, user: user1)
-    end
-    post 'Create a subjects and translations' do
-      operationId 'CreateWorkshop'
-      description 'Create subjects and translations'
-      tags 'Workshops'
-      consumes 'application/vnd.api+json'
-      security [basic: []]
-      parameter name: :workshop_invite_id, in: :path, type: :string
-      parameter name: :body, in: :body,
-                schema: { '$ref' => '#/components/schemas/WorkshopInviteCreateSubjectsAndTranslations' },
-                required: true
-
-      response '200', 'Workshop a subjects and translations created' do
-        let(:body) do
-          {
-            type: 'workshop_invites',
-            data: {
-              id: workshop_invite_id,
-              attributes: {
+                allowed_languages: [],
                 subjects: [{ user_id: user1.id }],
                 translations: [
                   { locale: 'en', title: 'title', description: 'description' },
@@ -131,7 +105,12 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
           }
         end
 
-        run_test! do
+        run_test! do |response|
+          workshop_invite_response = JSON.parse(response.body)['data']
+          expect(workshop_invite_response).to have_key('id')
+
+          workshop_invite = WorkshopInvite.find(workshop_invite_response['id'])
+
           expect(workshop_invite.workshop_invited_subjects.count).to eq(1)
           expect(workshop_invite.workshop_invited_subjects.first.user).to eq(user1)
           expect(workshop_invite.reload.title).to eq('title')

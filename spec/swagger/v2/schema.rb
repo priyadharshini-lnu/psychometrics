@@ -234,9 +234,6 @@ module Swagger
           WorkshopInviteCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopInvite::Schema.create_request
           ),
-          WorkshopInviteCreateSubjectsAndTranslations: Api::Base::GenerateSwagger.call!(
-            Api::V2::WorkshopInvite::Schema.create_subjects_and_translations
-          ),
           WorkshopsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.multiple_resource_response
           ),

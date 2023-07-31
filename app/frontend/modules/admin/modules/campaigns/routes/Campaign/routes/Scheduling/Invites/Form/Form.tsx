@@ -27,7 +27,7 @@ export const InvitesForm = () => {
     })
   }, [])
 
-  const { createResource, memberAction } = useResources<WorkshopInvite>('workshop_invites')
+  const { createResource } = useResources<WorkshopInvite>('workshop_invites')
 
   const submitForm = () => {
     createResource({
@@ -35,18 +35,10 @@ export const InvitesForm = () => {
       allowLanguagePreference: form.getFieldValue('allowLanguagePreference'),
       allowedLanguages: ['en', 'ar'],
       allowNeurodiversityOption: form.getFieldValue('allowNeurodiversityOption'),
-    }, { apiConfig: { filter: { workshops_campaign_id_eq: params.campaignId } } }).then((data) => {
-      memberAction({
-        id: data.id,
-        action: 'create_subjects_and_translations',
-        method: 'post',
-        body: {
-          subjects: form.getFieldValue('subjects').map(user => ({ userId: user.id })),
-          translations: form.getFieldValue('translations') || [],
-        },
-      }).then(() => {
-        showSubmitPage(true)
-      })
+      subjects: form.getFieldValue('subjects').map(user => ({ userId: user.id })),
+      translations: form.getFieldValue('translations') || [],
+    }, { apiConfig: { filter: { workshops_campaign_id_eq: params.campaignId } } }).then(() => {
+      showSubmitPage(true)
     })
   }
 

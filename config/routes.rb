@@ -1209,7 +1209,6 @@ Rails.application.routes.draw do
             jsonapi_resources :workshops, only: %i[index show]
           end
           jsonapi_resources :workshop_invites, only: %i[index create destroy] do
-            post :create_subjects_and_translations
             collection do
               get :import_subjects_from_campaign
               post :import_subjects_from_csv

@@ -9,12 +9,15 @@ module Api
     prepend_before_action :set_workshop, only: %i[create]
     prepend_before_action :set_resource, only: %i[create_subjects_and_translations]
 
-    def create_subjects_and_translations
+    def create
       ActiveRecord::Base.transaction do
+        @workshop_invite = WorkshopInvite.create!(workshop_invite_params)
+        @workshop_invite.workshops << @workshop
         WorkshopInvites::BulkCreateSubjects.call!(@workshop_invite, subjects_params[:subjects])
-        WorkshopInvites::CreateTranslations.call!(@workshop_invite, subjects_params[:translations])
+        WorkshopInvites::CreateTranslations.call!(@workshop_invite, translations_params[:translations])
       end
-      render json: {}
+
+      jsonapi_render json: @workshop_invite
     end
 
     def import_subjects_from_csv
@@ -40,9 +43,17 @@ module Api
       ).resolve.find(params[:workshop_invite_id])
     end
 
+    def workshop_invite_params
+      params.require(:data).require(:attributes).permit(:allow_language_preference, :allow_neurodiversity_option,
+                                                        allowed_languages: [])
+    end
+
     def subjects_params
-      params.require(:data).require(:attributes).permit(subjects: [:user_id],
-                                                        translations: %i[locale title description])
+      params.require(:data).require(:attributes).permit(subjects: [:user_id])
+    end
+
+    def translations_params
+      params.require(:data).require(:attributes).permit(translations: %i[locale title description])
     end
 
     def base_response_meta
