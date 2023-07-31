@@ -404,8 +404,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -565,12 +565,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -797,8 +797,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL
@@ -4088,8 +4088,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -4754,10 +4753,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -4929,13 +4928,13 @@ ALTER SEQUENCE public.workshop_assessors_id_seq OWNED BY public.workshop_assesso
 
 CREATE TABLE public.workshop_invite_logs (
     id bigint NOT NULL,
-    workshop_id bigint,
     user_id bigint,
     created_by_id bigint,
-    action character varying,
     details json,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    workshop_invite_id bigint,
+    action integer
 );
 
 
@@ -9320,10 +9319,10 @@ CREATE INDEX index_workshop_invite_logs_on_user_id ON public.workshop_invite_log
 
 
 --
--- Name: index_workshop_invite_logs_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_workshop_invite_logs_on_workshop_invite_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_workshop_invite_logs_on_workshop_id ON public.workshop_invite_logs USING btree (workshop_id);
+CREATE INDEX index_workshop_invite_logs_on_workshop_invite_id ON public.workshop_invite_logs USING btree (workshop_invite_id);
 
 
 --
@@ -10074,6 +10073,14 @@ ALTER TABLE ONLY public.questions
 
 
 --
+-- Name: workshop_invite_logs fk_rails_5f05631202; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT fk_rails_5f05631202 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id);
+
+
+--
 -- Name: user_assessments fk_rails_60c2fd6734; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10750,7 +10757,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -10991,14 +10998,6 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_e471e365a3 FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
--- Name: workshop_invite_logs fk_rails_e5cc12921b; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.workshop_invite_logs
-    ADD CONSTRAINT fk_rails_e5cc12921b FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
 
 
 --
@@ -11712,6 +11711,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230627162930'),
 ('20230627181938'),
 ('20230717125048'),
-('20230719111228');
+('20230719111228'),
+('20230728040657'),
+('20230728041212'),
+('20230731105207');
 
 
