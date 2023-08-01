@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
-  Row, Col, Form, Input, Button, Switch, Radio, Space, message,
+  Row, Col, Form, Input, Button, Switch, Radio, Space, message, Skeleton,
 } from 'antd'
 import { MailOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
@@ -15,6 +15,7 @@ import {
   validateSettings,
   State as SmtpSetting,
 } from '~/modules/admin/modules/client/core/smtpSetting'
+import { FETCH_SINGLE as FETCH_PROJECT } from '~/modules/admin/modules/client/core/projects'
 import { useUpdateEffect } from '~/hooks/useUpdateEffect'
 import ResourceForm from '~/components/ResourceForm'
 import { isRequestInProgress } from '~/core/request'
@@ -24,6 +25,7 @@ import { TestSettingModal } from './TestSettingModal'
 
 const connector = connect(
   (state: RootState) => ({
+    isProjectLoading: isRequestInProgress(state, FETCH_PROJECT),
     smtpSetting: getSmtpSetting(state),
     isUpdating: isRequestInProgress(state, SAVE_SETTINGS),
     isValidating: isRequestInProgress(state, VALIDATE_SETTINGS),
@@ -52,7 +54,7 @@ const MODALS = {
 }
 
 const SmtpComponent: React.FC<Props> = ({
-  smtpSetting, isUpdating, isValidating, saveSettings, validateSettings, openModal,
+  smtpSetting, isUpdating, isValidating, saveSettings, validateSettings, openModal, isProjectLoading,
 }) => {
   const [form] = Form.useForm()
   const { projectId } = useParams<{ projectId: string }>()
@@ -86,11 +88,13 @@ const SmtpComponent: React.FC<Props> = ({
     }).finally(() => setsubmitFormFor(SubmitFormType.None))
   }
 
+  if (isProjectLoading) return <Skeleton />
+
   return (
     <Row justify="space-between" className="pl">
       <Col sm={24} md={16} xl={12} xxl={10}>
         <ResourceForm
-          resourceName="smtpSetting"
+          resourceName="smtpSettings"
           requestScope="campaigns"
           resourceBaseUrl={`/administration/projects/${projectId}/smtp_settings`}
           resource={smtpSetting}
