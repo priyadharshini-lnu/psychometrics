@@ -5,6 +5,7 @@ class WorkshopInvite < ApplicationRecord
 
   has_many :workshop_invited_subjects, dependent: :destroy
   has_and_belongs_to_many :workshops, dependent: :destroy
+  has_many :workshop_invite_logs
 
   translates :title, :description
 end

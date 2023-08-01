@@ -16,14 +16,16 @@ const bookingsMockResponse = {
       title: 'This is title',
       description: 'Desscription here',
       duration: 3,
-      dateTime: '10 August 2023',
+      status: 'accepted',
+      isActionByCurrentUser: false
     },
     {
       id: 2,
       title: 'This is title',
       description: 'Desscription here',
       duration: 3,
-      dateTime: '10 August 2023',
+      status: 'accepted',
+      isActionByCurrentUser: false
     }],
   },
 }
@@ -33,18 +35,21 @@ const invitesMockResponse = {
       id: 1,
       title: 'This is title',
       description: 'Desscription here',
+      status: 'accepted',
       duration: 3,
     },
     {
       id: 2,
       title: 'This is title',
       description: 'Desscription here',
+      status: 'accepted',
       duration: 3,
     },
     {
       id: 3,
       title: 'This is title',
       description: 'Desscription here',
+      status: 'accepted',
       duration: 3,
     }],
   },

@@ -10,9 +10,19 @@ const InviteTR = t.type({
   title: t.string,
   description: t.string,
   duration: t.number,
+  status: t.string,
 })
 const fetchInvitesResponseTR = t.type({
   list: t.array(InviteTR),
+})
+
+const BookingTR = t.type({
+  id: t.number,
+  title: t.string,
+  description: t.string,
+  duration: t.number,
+  status: t.string,
+  isActionByCurrentUser: t.boolean,
 })
 
 export type Invite = t.TypeOf<typeof InviteTR>
@@ -23,13 +33,14 @@ export const fetchInvites = ():ApiAction<FetchInvitesResponse> => ({
   type: FETCH_INVITES,
   request: {
     typedResponse: fetchInvitesResponseTR,
-    url: '/invites',
+    url: '/workshop_invites',
     loader: true,
-    mocked: true,
+    body: {
+      type: 'invites',
+    },
   },
 })
 
-const BookingTR = t.intersection([InviteTR, t.type({ dateTime: t.string })])
 const fetchBookingsResponseTR = t.type({
   list: t.array(BookingTR),
 })
@@ -42,8 +53,10 @@ export const fetchBookings = ():ApiAction<FetchBookingsResponse> => ({
   type: FETCH_BOOKINGS,
   request: {
     typedResponse: fetchBookingsResponseTR,
-    url: '/bookings',
+    url: '/workshop_bookings',
     loader: true,
-    mocked: true,
+    body: {
+      type: 'bookings',
+    },
   },
 })

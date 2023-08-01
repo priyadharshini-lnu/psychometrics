@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react'
+import _ from 'lodash'
 import {
   Tabs, Row, Col, Space, Typography, Skeleton, Layout,
 } from 'antd'
@@ -11,6 +12,7 @@ import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerT
 import {
   fetchBookings, fetchInvites, Booking, Invite, FETCH_BOOKINGS, FETCH_INVITES,
 } from '~/modules/endUser/modules/campaigns/core/bookings'
+import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { isRequestInProgress } from '~/core/request'
 import styles from './BookingsAndInvitesList.less'
@@ -32,6 +34,14 @@ const { I18n } = window
 const { Text, Title } = Typography
 const SKELETON_ROW_HEIGHT = '20vh'
 export const SKELETON_ROWS = 4
+
+const MODIFY_FOR_STATUSES = [
+  'accepted', 'rescheduled',
+]
+
+const SHOW_STATUSES = [
+  'cancelled', 'requested_cancellation', 'requested_rescheduling',
+]
 
 export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
   fetchBookings, fetchInvites, bookingsLoading, invitesLoading,
@@ -117,22 +127,29 @@ type BookingsListProps = {
   bookings: Booking[]
   loading: boolean
 }
+
 const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => (
   <Row gutter={[0, 12]}>
     {loading ? <FullWidthSkeleton active rows={SKELETON_ROWS} height={SKELETON_ROW_HEIGHT} /> : (
       <>
-        {
-          bookings.map(booking => (
+        {bookings.map((booking) => {
+          const statusElement = _.includes(
+            SHOW_STATUSES, booking.status,
+          ) ? (<StatusText taskStatus={booking.status} />) : (<></>)
+          return (
             <DetailsCard
+              status={statusElement}
               title={booking.title}
               key={booking.id}
               description={booking.description}
               onButtonClick={() => null}
-              buttonText={I18n.t('bookings.buttons.modify')}
-              subtitle={<Subtitle duration={booking.duration} dateTime={booking.dateTime} />}
+              buttonText={_.includes(MODIFY_FOR_STATUSES, booking.status) ? I18n.t('bookings.buttons.modify') : null}
+              subtitle={
+                <Subtitle duration={booking.duration} isActionByCurrentUser={booking.isActionByCurrentUser} />
+              }
             />
-          ))
-        }
+          )
+        })}
       </>
     )}
   </Row>
@@ -141,9 +158,15 @@ const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => (
 type SubtitleProps = {
   duration: number,
   dateTime? : string
+  isActionByCurrentUser?: boolean
 }
-const Subtitle: FC<SubtitleProps> = ({ duration, dateTime }) => (
-  <Space size="large">
+const Subtitle: FC<SubtitleProps> = ({ duration, dateTime, isActionByCurrentUser }) => (
+  <Space direction="vertical">
+    {!_.isNil(isActionByCurrentUser) && (
+      <Text disabled>
+        { isActionByCurrentUser ? I18n.t('bookings.operation_by_admin') : I18n.t('bookings.operation_by_user')}
+      </Text>
+    )}
     <TimerText text={`${duration} mins`} textType="none" className={styles.subtitleIcon} />
     {dateTime && (
     <Space>

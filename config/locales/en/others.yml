@@ -1059,6 +1059,8 @@ en:
     buttons:
       book: Book
       modify: Modify
+    operation_by_admin: Operation performed by admin.
+    operation_by_user: Opertion performed by logged in user.
     tab_label:
       bookings: Bookings
       invites: Invites
@@ -3298,6 +3300,11 @@ en:
       continue: Continue
       message: The invites have been scheduled to be sent
     title: Title
+  workshop_invited_subjects:
+    statuses:
+      cancelled: Cancelled
+      requested_cancellation: Requested Cancellation
+      requested_rescheduling: Requested Rescheduling
   'yes': 'Yes'
   your: Your
   yourself: Yourself

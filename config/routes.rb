@@ -937,6 +937,8 @@ Rails.application.routes.draw do
       post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
+      get :workshop_invites, to: 'workshop_invited_subjects#invites', defaults: { format: :json }
+      get :workshop_bookings, to: 'workshop_invited_subjects#bookings', defaults: { format: :json }
 
       get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect
 
@@ -1091,6 +1093,7 @@ Rails.application.routes.draw do
     get 'upgrade', to: 'home#upgrade'
     get 'profile_details', to: 'end_user/users#dashboard'
     get 'change_password', to: 'end_user/users#dashboard'
+    get 'invites', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 
