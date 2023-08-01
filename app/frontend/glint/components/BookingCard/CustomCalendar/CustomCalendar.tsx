@@ -16,7 +16,7 @@ type Props = {
 } & CalendarProps<Moment>
 
 export const CustomCalendar: FC<Props> = ({ availableDates, onDateSelect, defaultValue }) => {
-  const [currentDate, setCurrentDate] = useState(moment())
+  const [currentDate, setCurrentDate] = useState(defaultValue || moment())
   const formattedAvailableDates = availableDates.map(date => date.format('DD/MM/YYYY'))
 
   return (
