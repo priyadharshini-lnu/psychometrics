@@ -211,6 +211,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const {
       action, method, body, apiConfig,
     } = { apiConfig: options.apiConfig, ...args }
+
+    const newApiConfig = _.merge({}, apiConfig, humps.decamelizeKeys(body || {}))
+
     const memberResponseType = args.responseType || responseType
     const requestKey: RequestType = `${method}/${action}`
     setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
@@ -218,7 +221,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<Record<string, string> | Record<string, string>[]> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([fetchResourceName, action, apiConfig || {}])
+        response = await client.fetch<R>([fetchResourceName, action, newApiConfig || {}])
       } else if (method === 'delete') {
         response = await client.delete([resourceName, action, apiConfig || {}], { url: resourceUrl })
       } else {
