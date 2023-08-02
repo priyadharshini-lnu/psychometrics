@@ -149,6 +149,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         campaign_assessment_id
         prework
         workshop_activity
+        workshop_activity_duration
       ]
     )
     expect(assessment_response).to include({

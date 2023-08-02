@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Row, Col, Switch,
+  Table, Row, Col, Switch, Typography,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
@@ -9,6 +9,7 @@ import _ from 'lodash'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ActionsMenu } from './ActionsMenu'
 import { PropsFromRedux } from './connect'
+import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 
 const { Column } = Table
 const { I18n } = window
@@ -44,6 +45,16 @@ const AssessmentList: React.FC<Props> = ({
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
+
+  function handleWorkshopActivitySwitchToggle (assessment: Assessment, parsedCampaignId: number, checked: boolean) {
+    if (checked) {
+      openModal('WorkshopActivityDurationFormModal', {
+        assessment, updateWorkshopActivity, parsedCampaignId, checked,
+      })
+    } else {
+      updateWorkshopActivity(parsedCampaignId, assessment.id, { workshopActivity: checked })
+    }
+  }
 
   return (
     <Row>
@@ -183,11 +194,18 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessment_center_activity')}
             key="workshopActivity"
             width={150}
-            render={({ id, workshopActivity }) => (
-              <Switch
-                checked={workshopActivity}
-                onChange={checked => updateWorkshopActivity(parsedCampaignId, id, checked)}
-              />
+            render={assessment => (
+              <>
+                <Switch
+                  checked={assessment.workshopActivity}
+                  onChange={checked => handleWorkshopActivitySwitchToggle(assessment, parsedCampaignId, checked)}
+                />
+                {(assessment.workshopActivity && assessment.workshopActivityDuration) ? (
+                  <Typography.Text>
+                    {` ${assessment.workshopActivityDuration} hr`}
+                  </Typography.Text>
+                ) : null}
+              </>
             )}
           />
           <Column

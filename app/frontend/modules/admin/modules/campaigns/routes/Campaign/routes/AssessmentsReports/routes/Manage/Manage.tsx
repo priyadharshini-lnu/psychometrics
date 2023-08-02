@@ -31,6 +31,7 @@ import { useResources } from '~/hooks/useResources'
 import {
   CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
 } from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
+import { WorkshopActivityDurationFormModal } from './AssessmentList/WorkshopActivityDurationFormModal'
 
 const MODALS = {
   AddReportModal,
@@ -45,6 +46,7 @@ const MODALS = {
   UpdateExternalConfigModal,
   UpdateAssessorFormModal,
   AddAssessorAssessmentModal,
+  WorkshopActivityDurationFormModal,
 }
 
 const { I18n } = window

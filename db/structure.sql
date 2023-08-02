@@ -806,7 +806,8 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
-    workshop_activity boolean DEFAULT false NOT NULL
+    workshop_activity boolean DEFAULT false NOT NULL,
+    workshop_activity_duration integer
 );
 
 
@@ -11753,6 +11754,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230728040657'),
 ('20230728041212'),
 ('20230731105207'),
-('20230801083727');
+('20230801083727'),
+('20230801090740');
 
 

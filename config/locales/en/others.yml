@@ -1271,6 +1271,10 @@ en:
       update_time:
         additional_time: Time (min)
         title: Extend Time
+      workshop_activity_duration:
+        form:
+          duration: Duration in hours
+        title: Duration for the workshop activity
     statuses:
       completed: Completed
       in_progress: In Progress

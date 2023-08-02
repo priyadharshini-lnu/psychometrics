@@ -29,12 +29,12 @@ export const updatePrework = (campaignId: number, id: number, prework: boolean) 
 })
 
 export const UPDATE_WORKSHOP_ACTIVITY = 'campaigns/assessments/UPDATE_WORKSHOP_ACTIVITY'
-export const updateWorkshopActivity = (campaignId: number, id: number, workshopActivity: boolean) => ({
+export const updateWorkshopActivity = (campaignId: number, id: number, body) => ({
   type: UPDATE_WORKSHOP_ACTIVITY,
   request: {
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/assessments/${id}/update_workshop_activity`,
-    body: { workshopActivity },
+    body,
   },
 })
 

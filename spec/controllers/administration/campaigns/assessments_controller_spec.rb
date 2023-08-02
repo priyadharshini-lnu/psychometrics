@@ -123,12 +123,14 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
     put :update_workshop_activity, params: {
       id: assessment.id,
       new_campaign_id: campaign.id,
-      workshop_activity: true
+      workshop_activity: true,
+      workshop_activity_duration: 4
     }, as: :json
 
     parsed_response = JSON.parse(response.body)
 
     expect(campaign_assessment.reload.workshop_activity).to eq(true)
     expect(parsed_response).to match(hash_including('workshop_activity' => true))
+    expect(parsed_response).to match(hash_including('workshop_activity_duration' => 4))
   end
 end
