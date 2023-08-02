@@ -47,7 +47,13 @@ describe Api::V2::Administration::WorkshopSubjectsController, swagger_doc: 'v2/s
               links: {
                 self: 'http://www.example.com/api/v2/administration/workshop_subjects/1'
               },
-              attributes: { status: 'not_started', attended: false, preworks: '0/0', workshop_activities: '0/0' },
+              attributes: {
+                attendance_status: 'no_status',
+                attended: false,
+                preworks: '0/0',
+                workshop_activities: '0/0',
+                completion_status: 'not_started'
+              },
               relationships: {
                 user: {
                   data: {
@@ -61,7 +67,8 @@ describe Api::V2::Administration::WorkshopSubjectsController, swagger_doc: 'v2/s
 
         run_test! do |response|
           subject_response = JSON.parse(response.body)['data'].first
-          expect(subject_response).to have_attribute(:status).with_value('not_started')
+          expect(subject_response).to have_attribute(:attendance_status).with_value('no_status')
+          expect(subject_response).to have_attribute(:completion_status).with_value('not_started')
           expect(subject_response).to have_attribute(:attended).with_value(false)
           expect(subject_response).to have_attribute(:preworks).with_value('2/3')
           expect(subject_response).to have_attribute(:workshop_activities).with_value('2/3')

@@ -63,11 +63,20 @@ export const SubjectList: React.FC = () => {
             render={subject => <ActiveSwitch subject={subject} />}
           />
           <Resource.Column<WorkshopSubject>
-            title={I18n.t('common.column.status')}
-            id="status"
-            render={(_, { status }) => (
-              <Tag color={TAG_COLORS[status]}>
-                {I18n.t(`administration.scheduling.status.${status}`)}
+            title={I18n.t('administration.scheduling.attendance_status.column_name')}
+            id="attendanceStatus"
+            render={(_, { attendanceStatus }) => (
+              <Tag color={TAG_COLORS[attendanceStatus]}>
+                {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
+              </Tag>
+            )}
+          />
+          <Resource.Column<WorkshopSubject>
+            title={I18n.t('administration.scheduling.completion_status.column_name')}
+            id="completion_status"
+            render={(_, { completionStatus }) => (
+              <Tag color={TAG_COLORS[completionStatus]}>
+                {I18n.t(`administration.scheduling.completion_status.${completionStatus}`)}
               </Tag>
             )}
           />
@@ -115,11 +124,15 @@ const ResourcesTag: React.FC<ResourceProps> = ({ resource }) => (
 )
 
 const TAG_COLORS = {
+  // attendance statuses
+  no_status: 'default',
+  on_time: 'success',
+  late: 'warning',
+  no_show: 'error',
+  dropped_out: 'warning',
+  // completion statuses
   not_started: 'default',
   completed: 'success',
-  late: 'warning',
-  dropped_out: 'warning',
-  no_show: 'error',
 }
 
 const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {

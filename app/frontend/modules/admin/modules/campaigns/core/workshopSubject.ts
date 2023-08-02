@@ -2,7 +2,8 @@ import * as t from 'io-ts'
 
 export const WorkshopSubjectTR = t.type({
   id: t.string,
-  status: t.string,
+  attendanceStatus: t.string,
+  completionStatus: t.string,
   attended: t.boolean,
   preworks: t.string,
   workshopActivities: t.string,

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration::BaseResource
-  attributes :status, :attended, :preworks, :workshop_activities
+  attributes :attendance_status, :completion_status, :attended, :preworks, :workshop_activities
   delegate :full_name, :email, to: :user
 
   has_one :user

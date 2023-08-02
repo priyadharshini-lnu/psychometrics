@@ -1178,6 +1178,14 @@ en:
       notification: You have %{minutes} minutes and %{seconds} seconds to complete
     ungrouped: Ungrouped tasks
     welcome: Welcome
+    workshops:
+      assessment_center: Assessment Center
+      inactive_message: Currently, you have not been assigned any assessment centers.
+      participate: Participate
+      status:
+        ongoing: On Going
+        upcoming: Upcoming
+      workshop_instructions: Make sure to join assessment center on time.
   campaign_assessment:
     actions:
       export_completion_status: Export Completion Status

@@ -10,7 +10,8 @@ module Api
 
         def self.attributes(attribute, _)
           proc do
-            attribute[:status].filled(:string)
+            attribute[:attendance_status].filled(:string)
+            attribute[:completion_status].filled(:string)
             attribute[:attended].filled(:bool)
           end
         end

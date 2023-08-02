@@ -5,6 +5,7 @@ FactoryBot.define do
     workshop
     user
     attended { false }
-    status { 'not_started' }
+    attendance_status { 'no_status' }
+    completion_status { 'not_started' }
   end
 end

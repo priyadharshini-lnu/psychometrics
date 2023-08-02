@@ -933,6 +933,7 @@ Rails.application.routes.draw do
         get :insights
       end
       get :dashboard, to: 'users#dashboard'
+      get :workshop, to: 'users#workshop'
       get 'policy/:version', to: 'users#policy'
       post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass

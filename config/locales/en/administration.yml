@@ -3675,9 +3675,13 @@ en:
       webhooks: Webhooks
     save: Save
     scheduling:
-      actions:
-        remove:
-          success_message: Assessment Center subject %{subject_name}.
+      attendance_status:
+        column_name: Attendance status
+        dropped_out: Dropped Out
+        late: Late
+        no_show: No Show
+        no_status: No Status
+        on_time: On Time
       columns:
         activity: Activity
         assessors: Assessors
@@ -3687,6 +3691,10 @@ en:
         participants: Participants
         prework: Prework
         start_time: Date & Time
+      completion_status:
+        column_name: Completed
+        completed: Completed
+        not_started: Not Started
       date_presets:
         all_time: All time
         current_month: Current month
@@ -3703,12 +3711,6 @@ en:
         managers: Center Managers
         remaining: Seats Remaining
         timezone: Timezone
-      status:
-        completed: Completed
-        dropped_out: Dropped Out
-        late: Late
-        no_show: No Show
-        not_started: Not Started
       subjects:
         confirm_message: Are you sure you want to delete subject '%{subject_name}'?
         confirm_title: Confirmation required

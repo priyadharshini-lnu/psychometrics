@@ -90,6 +90,24 @@ class EndUser::UsersController < ApplicationController
     end
   end
 
+  def workshop
+    respond_to do |format|
+      format.json do
+        workshop = Workshop.
+                   includes(:workshop_subjects).
+                   where.not(workshop_subjects: { completion_status: :completed }).
+                   where.not(workshop_subjects: { attendance_status: %i[no_show dropped_out] }).
+                   find_by(workshop_subjects: { user_id: current_user.id })
+
+        if workshop
+          render json: workshop, serializer: EndUser::WorkshopSerializer
+        else
+          head :no_content
+        end
+      end
+    end
+  end
+
   private
 
   def select_campaign_url(campaign)
