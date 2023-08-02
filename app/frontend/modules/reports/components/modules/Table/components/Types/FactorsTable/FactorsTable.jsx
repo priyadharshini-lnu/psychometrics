@@ -337,6 +337,14 @@ class FactorsTable extends Component {
     )
   }
 
+  renderNoData () {
+    return (
+      <tr>
+        <td className={styles.description}>{I18nStore.t('reports.modules.factors_table.no_data')}</td>
+      </tr>
+    )
+  }
+
   renderHeader (headerShown) {
     if (!headerShown) {
       return null
@@ -364,11 +372,12 @@ class FactorsTable extends Component {
       backgroundColor: backgroundColor || false,
     }
     this.prepareRows()
+    const hasData = this.factorsData.length > 0
     return (
       <table className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })} style={style}>
-        {this.renderHeader(model.props.showHeader)}
+        {hasData && this.renderHeader(model.props.showHeader)}
         <tbody>
-          {this.renderFactors()}
+          {hasData ? this.renderFactors() : this.renderNoData()}
         </tbody>
       </table>
     )

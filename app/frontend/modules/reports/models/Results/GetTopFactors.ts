@@ -37,7 +37,8 @@ export default {
     }, [])
     const sorted = _.orderBy(factors, ['meanNormScore', 'meanRawScore', 'alias'], ['desc', 'desc', 'asc'])
     return _(sorted)
-      .filter((r: TopFactor) => _.inRange(r.meanNormScore || r.meanRawScore, minValue, maxValue))
       .filter((r: TopFactor, i: number) => i + 1 >= from && i < to).value()
+      // apply score range after getting top min and max items, otherwise the factor ranking becomes undeterministic
+      .filter((r: TopFactor) => _.inRange(r.meanNormScore || r.meanRawScore, minValue, maxValue))
   },
 }

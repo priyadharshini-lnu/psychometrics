@@ -429,6 +429,7 @@ ar:
         your_potential_suitability: الملائمة المحتملة الخاصة بك
       factors_table:
         description: الوصف
+        no_data: لا توجد بيانات متاحة لهذا القسم.
         rank: المرتبة
         score: الدرجة
       gap_assessment:
