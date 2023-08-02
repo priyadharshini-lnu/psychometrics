@@ -1415,6 +1415,7 @@ en:
       cancel: Cancel
       close: Close
       copy: Copy
+      create: Create
       delete: Delete
       edit: Edit
       import: Import
@@ -1449,6 +1450,7 @@ en:
       icon: Icon
       icon_color: Icon color
       id: Id
+      key: Key
       last_name: Last Name
       modified_by: Modified By
       modified_date: Modified Date
@@ -1460,6 +1462,7 @@ en:
       report_id: Report Id
       status: Status
       timing: Timing
+      token: Token
       type: Type
       updated_at: Last Updated
     errors:
@@ -1495,6 +1498,9 @@ en:
       response: Response
       subject: Subject
       view_as: View as
+    tooltips:
+      hide: Hide
+      view: View
     validations:
       should_be_whole_number: should be a whole number
   confirmation:

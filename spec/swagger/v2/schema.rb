@@ -102,6 +102,18 @@ module Swagger
           AssessmentsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Assessment::Schema.multiple_resource_response
           ),
+          ApiKeyListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ApiKey::Schema.multiple_resource_response
+          ),
+          ApiKeyResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ApiKey::Schema.single_resource_response
+          ),
+          ApiKeyCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ApiKey::Schema.create_request
+          ),
+          ApiKeyUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ApiKey::Schema.update_request
+          ),
           AssessmentResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Assessment::Schema.single_resource_response
           ),

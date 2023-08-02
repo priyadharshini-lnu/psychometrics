@@ -1,4 +1,5 @@
 import { UserList } from './UserList'
+import { APIKeysList } from './APIKeysList'
 
 const routes = [
   { redirect: true, from: '', to: '/users' },
@@ -13,6 +14,10 @@ const routes = [
   {
     path: '/superadmins',
     component: () => <UserList userTab="Users::SuperAdmin" />,
+  },
+  {
+    path: '/admins/:adminId/api_keys',
+    component: () => <APIKeysList />,
   },
 ]
 

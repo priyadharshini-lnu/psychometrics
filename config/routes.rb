@@ -1174,6 +1174,7 @@ Rails.application.routes.draw do
             collection do
               post :create_superadmin
             end
+            jsonapi_resources :api_keys, only: %i[index create update]
           end
           jsonapi_resources :assessments do
             post :toggle_archive

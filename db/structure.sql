@@ -339,7 +339,10 @@ CREATE TABLE public.api_keys (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     key character varying,
-    encrypted_token_iv character varying
+    encrypted_token_iv character varying,
+    created_by_id bigint,
+    updated_by_id bigint,
+    description text
 );
 
 
@@ -411,7 +414,8 @@ CREATE TABLE public.assessments (
     project_id bigint,
     created_by_id bigint,
     updated_by_id bigint,
-    external_settings jsonb DEFAULT '{}'::jsonb
+    external_settings jsonb DEFAULT '{}'::jsonb,
+    workshop_activity_duration integer
 );
 
 
@@ -7436,6 +7440,13 @@ CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessm
 
 
 --
+-- Name: index_api_keys_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_keys_on_created_by_id ON public.api_keys USING btree (created_by_id);
+
+
+--
 -- Name: index_api_keys_on_encrypted_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7454,6 +7465,13 @@ CREATE UNIQUE INDEX index_api_keys_on_encrypted_token_iv ON public.api_keys USIN
 --
 
 CREATE UNIQUE INDEX index_api_keys_on_key ON public.api_keys USING btree (key);
+
+
+--
+-- Name: index_api_keys_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_keys_on_updated_by_id ON public.api_keys USING btree (updated_by_id);
 
 
 --
@@ -10553,6 +10571,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: api_keys fk_rails_a12322a5ba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT fk_rails_a12322a5ba FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: profile_fields fk_rails_a132f26c57; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11078,6 +11104,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.clients
     ADD CONSTRAINT fk_rails_f28b175e74 FOREIGN KEY (modified_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: api_keys fk_rails_f435faf77d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT fk_rails_f435faf77d FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
 
 
 --
@@ -11712,8 +11746,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230627181938'),
 ('20230717125048'),
 ('20230719111228'),
+('20230725084846'),
 ('20230728040657'),
 ('20230728041212'),
-('20230731105207');
+('20230731105207'),
+('20230801083727');
 
 

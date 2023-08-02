@@ -108,6 +108,7 @@ en:
             project_admin: Project Admin
       list:
         actions:
+          api_keys: API keys
           cancel_text: Cancel
           change_password: Reset password
           delete: Delete
@@ -146,6 +147,9 @@ en:
           title: Reset admin password
       permissions:
         labels:
+          apiKeys:
+            manage: Manage
+            view: View
           assessments:
             manage: Manage
             view: View
@@ -236,6 +240,11 @@ en:
             reset_password: Reset Password
     all: " - All - "
     any: " - Any - "
+    api_keys:
+      api_keys: Api keys
+      form:
+        description: Description
+        title: api key
     assessments:
       assessment: Assessment
       assigns:

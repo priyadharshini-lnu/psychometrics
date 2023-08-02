@@ -1,81 +1,8 @@
 import React from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import { Menu } from 'antd'
-import {
-  ShopOutlined,
-} from '@ant-design/icons'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import RouteList from '~/components/RouteList'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
-import { history } from '~/modules/admin/store'
-import { RootState } from '~/modules/admin/core/rootReducers'
 import routes from './routes'
 import settings from './settings'
 
-const { I18n } = window
-
-const connecter = connect(
-  (state: RootState) => ({
-    currentUser: getCurrentUser(state),
-  }), {},
+export const Layout: React.FC = () => (
+  <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
 )
-
-type Props = ConnectedProps<typeof connecter>
-
-const LayoutComponent: React.FC<Props> = ({ currentUser }) => {
-  const { pathname } = useLocation()
-  const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/${key}`)
-  }
-
-  const menuItems: ItemType[] = [
-    { key: 'users', icon: <ShopOutlined />, label: I18n.t('users.users') },
-  ]
-
-  isSuperAdmin(currentUser) && (
-    menuItems.push(
-      { key: 'admins', icon: <ShopOutlined />, label: I18n.t('users.admins') },
-      { key: 'superadmins', icon: <ShopOutlined />, label: I18n.t('users.superadmins') },
-    )
-  )
-
-  const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
-    if (pathname.includes('/superadmins')) {
-      return ['superadmins']
-    }
-    if (pathname.includes('/admins')) {
-      return ['admins']
-    }
-    if (pathname.includes('/users')) {
-      return ['users']
-    }
-    return undefined
-  }
-
-  return (
-    <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/administration',
-            label: () => I18n.t('users.dashboard'),
-          },
-          {
-            label: () => I18n.t('users.users'),
-          },
-        ]}
-      />
-      <Menu
-        items={menuItems}
-        onSelect={handleOnSelect}
-        selectedKeys={getActiveMenuKey(pathname)}
-        mode="horizontal"
-      />
-      <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-    </>
-  )
-}
-
-export const Layout = connecter(LayoutComponent)

@@ -267,12 +267,14 @@ const AdminsComponent: React.FC<Props> = ({
                 user: Admin,
               ) => {
                 const {
-                  id, email, firstName, lastName,
+                  id, userId, email, firstName, lastName,
                 } = user
 
                 return (
                   <ActionsMenu
                     id={id}
+                    userId={userId}
+                    currentUser={currentUser}
                     email={email}
                     firstName={firstName}
                     lastName={lastName}
