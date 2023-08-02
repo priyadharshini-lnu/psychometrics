@@ -179,9 +179,17 @@ export default class Result<ExternalScoring = unknown> {
   }
 
   // eslint-disable-next-line arrow-body-style
-  getTopFactors = (from: number, to: number, factorIds: number[], factorType: TopFactorType): TopFactor[] => {
-    return GetTopFactors.run(from, to, factorIds, factorType, this.resultsByFilter, this.dimensionId)
-  }
+  getTopFactors = (
+    from: number,
+    to: number,
+    factorIds: number[],
+    factorType: TopFactorType,
+    minValue?,
+    maxValue?,
+  ): TopFactor[] => GetTopFactors.run(
+    from, to, factorIds, factorType, this.resultsByFilter,
+    this.dimensionId, minValue ?? -Infinity, maxValue ?? Infinity,
+  )
 
   getBranchData = (filterId: string | null, branchName: string): ResultScoring => {
     if (_.isNull(filterId)) return this[branchName] || {}

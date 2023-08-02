@@ -26,7 +26,7 @@ interface Props {
   notApplicableLabel: string
   withImageChoice: boolean
   isImagePreviewEnable: boolean
-  imageChoiceSize: 'small' | 'medium' | 'large'
+  imageChoiceSize: 'xx-small' | 'x-small' | 'small' | 'medium' | 'large'
   choices: number
   choicesTexts: Array<string>
   choicesImages: Array<string>

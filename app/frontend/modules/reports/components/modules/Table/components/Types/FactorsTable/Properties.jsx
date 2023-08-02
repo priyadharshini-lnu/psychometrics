@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
-import { InputNumber } from 'antd'
+import { InputNumber, Row, Col } from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
 import AppStore from '~/modules/reports/store/AppStore'
@@ -13,6 +13,7 @@ import { rgba2hex } from '~/utils/color'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
+
 
 const ALL_FACTORS = 'All Factors'
 
@@ -77,7 +78,8 @@ class Properties extends Component {
 
   changeProp = (propName, e) => {
     const { model } = this.props
-    model.props[propName] = parseInt(e.currentTarget.value, 10)
+    const propValue = parseFloat(e.currentTarget.value, 10)
+    model.props[propName] = isNaN(propValue) ? null : propValue
     model.update()
   }
 
@@ -286,6 +288,27 @@ class Properties extends Component {
                 Reverse order
               </label>
             </div>
+            <div className={cs(styles.label, 'mbs mtl')}>Score Range (&gt;= Min &lt; Max)</div>
+            <div className={styles.selectContainer}>
+              <Row gutter={8}>
+                <Col flex={1}>
+                  <InputNumber
+                    size="small"
+                    style={{ width: 82 }}
+                    defaultValue={model.props.scoreRangeMin}
+                    onBlur={e => this.changeProp('scoreRangeMin', e)}
+                  />
+                </Col>
+                <Col flex={1}>
+                  <InputNumber
+                    size="small"
+                    style={{ width: 82 }}
+                    defaultValue={model.props.scoreRangeMax}
+                    onBlur={e => this.changeProp('scoreRangeMax', e)}
+                  />
+                </Col>
+              </Row>
+            </div>
           </div>
         )}
         {mode === 'orderedFactors' && (
@@ -296,8 +319,12 @@ class Properties extends Component {
         )}
         <hr className={styles.divider} />
         <div className="margin-top-10">
-          <div className={cs(styles.label, 'mbm mtl')}>Max Value</div>
-          <InputNumber defaultValue={model.props.maxScoreValue} onBlur={e => this.changeProp('maxScoreValue', e)} />
+          <div className={cs(styles.label, 'mbs mtl')}>Max Value</div>
+          <InputNumber
+            defaultValue={model.props.maxScoreValue}
+            onBlur={e => this.changeProp('maxScoreValue', e)}
+            size="small"
+          />
         </div>
         <hr className={styles.divider} />
         <div className="margin-top-10">

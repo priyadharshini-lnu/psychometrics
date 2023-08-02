@@ -168,10 +168,14 @@ class FactorsTable extends Component {
   prepareRows () {
     const { module, module: { props } } = this.props
     const sourceFactors = _.get(props, ['source', 'factors'], [])
+    const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
+    const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
     const factorIds = sourceFactors.map(f => f.id)
     if (ResultStore.realResults) {
       if (props.mode === 'topFactors') {
-        this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(props.minPosition, props.maxPosition, factorIds, TopFactorType.Any)
+        this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(
+          props.minPosition, props.maxPosition, factorIds, TopFactorType.Any, scoreRangeMin, scoreRangeMax,
+        )
       } else {
         const factorData = ResultStore.results[module.assessment_id].getTopFactors(0, factorIds.length, factorIds, TopFactorType.Any)
         this.factorsData = _.sortBy(factorData, f => factorIds.indexOf(f.id))

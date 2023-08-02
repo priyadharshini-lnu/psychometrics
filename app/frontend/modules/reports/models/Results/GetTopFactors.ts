@@ -12,6 +12,8 @@ export default {
     factorType: TopFactorType,
     resultsByFilter: ResultsByFilter,
     dimensionId: number,
+    minValue = -Infinity,
+    maxValue = Infinity,
   ): TopFactor[] => {
     if (!resultsByFilter.individual) { return [] }
     const filtered = _.pick(resultsByFilter.individual.scoring, factorIds)
@@ -34,6 +36,8 @@ export default {
       return factors
     }, [])
     const sorted = _.orderBy(factors, ['meanNormScore', 'meanRawScore', 'alias'], ['desc', 'desc', 'asc'])
-    return _.filter(sorted, (r: TopFactor, i: number) => i + 1 >= from && i < to)
+    return _(sorted)
+      .filter((r: TopFactor) => _.inRange(r.meanNormScore || r.meanRawScore, minValue, maxValue))
+      .filter((r: TopFactor, i: number) => i + 1 >= from && i < to).value()
   },
 }

@@ -203,7 +203,7 @@ module Imports
         return nil if date.blank?
         return date if date.is_a?(Date) || date.is_a?(Time)
 
-        DateTime.strptime(date.to_s, '%D %r')
+        DateTime.parse(date.to_s)
       rescue StandardError
         errors.add(:base, I18n.t('administration.imports.errors.result.error',
                                  row: index + SKIP_ROWS, error: "Invalid Date :#{date}"))

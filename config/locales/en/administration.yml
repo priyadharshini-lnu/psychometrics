@@ -3905,10 +3905,12 @@ en:
           enable: With images
           preview: Preview on click
           size:
-            large: Large
-            medium: Medium
-            small: Small
+            large: L
+            medium: M
+            small: S
             title: Grid size
+            x-small: XS
+            xx-small: XXS
         max_duration: Max duration
         multiple_choice_types:
           dropdown: Dropdown

@@ -79,8 +79,8 @@ module Exports
           assigns_report.full_name,
           assigns_report.user_email,
           assigns_report.participant_id,
-          assigns_report.started_at&.strftime('%D %r'),
-          assigns_report.completed_at&.strftime('%D %r')
+          assigns_report.started_at.to_s,
+          assigns_report.completed_at.to_s
         ]
       end
 
