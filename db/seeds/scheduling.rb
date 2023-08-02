@@ -50,14 +50,14 @@ ApplicationRecord.transaction do
     video_call_type: :custom,
     meeting_link: 'https://meet.google.com/abc-defg-hij'
   )
-  work_shop_invite = workshop.workshop_invites.create!(title: 'Workshop Invite Title',
+  workshop_invite = workshop.workshop_invites.create!(title: 'Workshop Invite Title',
                                                       description: 'Workshop Invite Description')
-  work_shop_invite.workshop_invited_subjects.create!(user: subject_user)
+  workshop_invite.workshop_invited_subjects.create!(user: subject_user)
 
-  workshop.workshop_invite_logs.create!(user: subject_user, created_by: subject_user, action: :accepted)
-  workshop.workshop_invite_logs.create!(user: subject_user, created_by: subject_user,
-                                        action: :requested_rescheduling)
-  workshop.workshop_invite_logs.create!(user: subject_user, created_by: center_manager, action: :rescheduled)
+  workshop_invite.workshop_invite_logs.create!(user: subject_user, created_by: subject_user, action: :accepted)
+  workshop_invite.workshop_invite_logs.create!(user: subject_user, created_by: subject_user,
+    action: :requested_rescheduling)
+  workshop_invite.workshop_invite_logs.create!(user: subject_user, created_by: center_manager, action: :rescheduled)
 
   workshop.workshop_subjects.create!(user: subject_user)
   workshop.workshop_assessors.create!(user: assessor_user)
