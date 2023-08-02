@@ -8,6 +8,9 @@ import {
 import { ArrowLeftOutlined, CopyOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+
+import settings from '~/modules/admin/modules/campaigns/settings'
+import routeUtils from '~/utils/route'
 import { useResources } from '~/hooks/useResources'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { ResourceAvatar } from '~/glint'
@@ -47,6 +50,13 @@ export const WorkshopPage: FC = () => {
   } = useParams<{ id: string, campaignId: string, tab: string | undefined }>()
   const [currentTab, setCurrentTab] = useState(tab || 'subjects')
   const history = useHistory()
+  const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
+
+  const handleTabChange = (currentTab) => {
+    routeUtils.moveTo(history, prefixPath, `/assessment_center/${id}/${currentTab}`)
+    setCurrentTab(currentTab)
+  }
+
   const { fetchSingle, getResource } = useResources<Workshop>(
     'workshops',
     {
@@ -129,7 +139,7 @@ export const WorkshopPage: FC = () => {
 
         <div>
           <div className={styles.controls}>
-            <Radio.Group onChange={e => setCurrentTab(e.target.value)} defaultValue={currentTab}>
+            <Radio.Group onChange={e => handleTabChange(e.target.value)} defaultValue={currentTab}>
               <Radio.Button value="subjects">{I18n.t('administration.scheduling.tabs.subjects')}</Radio.Button>
               <Radio.Button value="assessors">{I18n.t('administration.scheduling.tabs.assessors')}</Radio.Button>
               <Radio.Button value="resources">{I18n.t('administration.scheduling.tabs.resources')}</Radio.Button>
