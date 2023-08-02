@@ -3,10 +3,11 @@ import {
   useHistory, Link, useParams,
 } from 'react-router-dom'
 import {
-  Space, Descriptions, Avatar, Skeleton, Divider, Radio,
+  Space, Descriptions, Avatar, Skeleton, Divider, Radio, message,
 } from 'antd'
 import { ArrowLeftOutlined, CopyOutlined } from '@ant-design/icons'
 import moment from 'moment'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useResources } from '~/hooks/useResources'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { ResourceAvatar } from '~/glint'
@@ -98,10 +99,17 @@ export const WorkshopPage: FC = () => {
             <ResourcesTag resources={workshop.workshopManagers} />
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.link')}>
-            <Space>
-              <Link to={{ pathname: workshop.meetingLink }} target="_blank">{workshop.meetingLink}</Link>
-              <CopyOutlined />
-            </Space>
+            { workshop.meetingLink && (
+              <Space>
+                <Link to={{ pathname: workshop.meetingLink }} target="_blank">{workshop.meetingLink}</Link>
+                <CopyToClipboard
+                  text={workshop.meetingLink}
+                  onCopy={() => message.info(I18n.t('common.text.copied'))}
+                >
+                  <CopyOutlined />
+                </CopyToClipboard>
+              </Space>
+            )}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.timezone')}>
             {workshop.timezone}
