@@ -736,7 +736,7 @@ en:
       reevaluate: Re-Evaluate
       remove:
         confirm_message: Are you sure you want to delete the assessment '%{name}'?
-        confirm_title: Confirmation Requred
+        confirm_title: Confirmation Required
         success_message: Asessment %{name} has been removed
       rescore: Rescore
       restore:
@@ -3174,7 +3174,7 @@ en:
       details: Details
       remove:
         confirm_message: Are you sure you want to delete the user with an email '%{email}'?
-        confirm_title: Confirmation Requred
+        confirm_title: Confirmation Required
         success_message: "%{email} has been removed"
       reset_password:
         option: Reset Password

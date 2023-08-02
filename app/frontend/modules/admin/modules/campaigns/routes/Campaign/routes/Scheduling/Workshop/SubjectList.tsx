@@ -149,7 +149,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const handleOnConfirm = () => resource.removeResource(subject.id).then(() => {
     setConfirmation(false)
     message.success(
-      I18n.t('administration.scheduling.actions.remove.success_message', { subject_name: subject?.user?.fullName }),
+      I18n.t('administration.scheduling.subjects.success_message', { subject_email: subject?.user?.email }),
     )
   }).catch(() => {
     message.error(I18n.t('common.errors.something_wrong'))
@@ -165,8 +165,10 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </Button>
           {confirmation && (
             <ConfirmationModal
-              title={I18n.t('assessments.actions.remove.confirm_title')}
-              message={I18n.t('assessments.actions.remove.confirm_message', { name: subject?.user?.fullName })}
+              title={I18n.t('administration.scheduling.subjects.confirm_title')}
+              message={
+                I18n.t('administration.scheduling.subjects.confirm_message', { subject_name: subject?.user?.fullName })
+              }
               onConfirm={handleOnConfirm}
               onCancel={() => setConfirmation(false)}
             />

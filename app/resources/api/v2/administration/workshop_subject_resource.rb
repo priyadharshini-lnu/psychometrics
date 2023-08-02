@@ -33,6 +33,6 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   end
 
   def campaign_workshop_activity
-    @campaign_workshop_activity ||= Campaigns::GetPreworks.call(context[:campaign].id)[:ok]
+    @campaign_workshop_activity ||= Campaigns::GetWorkshopActivity.call(context[:campaign].id)[:ok]
   end
 end

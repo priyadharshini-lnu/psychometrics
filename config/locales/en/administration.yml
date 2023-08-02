@@ -3700,6 +3700,10 @@ en:
         late: Late
         no_show: No Show
         not_started: Not Started
+      subjects:
+        confirm_message: Are you sure you want to delete subject '%{subject_name}'?
+        confirm_title: Confirmation required
+        success_message: Subject with email %{subject_email} removed successfully.
       tabs:
         activities: Activities
         assessment_center: Assessment Center
