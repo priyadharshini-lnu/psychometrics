@@ -3,8 +3,6 @@
 module Imports
   module Translations
     class QuestionImport < TranslationImport
-      TRANSLATABLE_BRANCHES = %w[question].freeze
-
       attr_accessor :question_id, :resource_id
 
       validates :resource_id, presence: true
@@ -48,6 +46,12 @@ module Imports
 
       def assessment
         nil
+      end
+
+      private
+
+      def translatable_branches
+        %w[question].freeze
       end
     end
   end

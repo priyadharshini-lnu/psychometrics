@@ -3,8 +3,6 @@
 module Imports
   module Translations
     class AssessmentImport < TranslationImport
-      TRANSLATABLE_BRANCHES = %w[block question instructions].freeze
-
       attr_accessor :resource_id
 
       validates :resource_id, presence: true
@@ -47,6 +45,10 @@ module Imports
 
       def assessment
         Assessment.find(resource_id)
+      end
+
+      def translatable_branches
+        %w[block question instructions].freeze
       end
     end
   end
