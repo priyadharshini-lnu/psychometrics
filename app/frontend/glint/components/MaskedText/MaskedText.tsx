@@ -19,11 +19,13 @@ export const MaskedText: React.FC<MaskedTextProps> = ({
     <EyeInvisibleOutlined data-testid="masked-text-view" key="copy-icon" />,
     <EyeInvisibleOutlined data-testid="masked-text-hide" key="copied-icon" />,
   ]
+  const tooltips = view ? [I18n.t('common.tooltips.hide'), I18n.t('common.tooltips.hide')]
+    : [I18n.t('common.tooltips.view'), I18n.t('common.tooltips.view')]
   return (
     <Typography.Text
       copyable={{
         icon,
-        tooltips: [I18n.t('common.tooltips.view'), I18n.t('common.tooltips.hide')],
+        tooltips,
         onCopy: () => setView(!view),
       }}
     >
