@@ -3,6 +3,10 @@
 module Api
   module Administration
     class WorkshopPolicy < ::Administration::BasePolicy
+      def create_bulk_workshops?
+        has_permission?(:workshops, :manage)
+      end
+
       def index?
         has_permission?(:workshops, :view)
       end

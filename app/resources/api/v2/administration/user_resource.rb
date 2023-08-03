@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResource
   attributes :name, :email, :first_name, :last_name, :full_name, :updated_at, :disabled, :enable_2fa,
-             :created_by, :modified_by, :role, :project_id
+             :created_by, :modified_by, :role, :project_id, :photo_url
 
   has_one :user_profile, foreign_key_on: :related
   delegate :photo_url, to: :user_profile, allow_nil: true
@@ -11,6 +11,10 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
 
   def full_name
     name
+  end
+
+  def photo_url
+    @model.photo&.url
   end
 
   def name

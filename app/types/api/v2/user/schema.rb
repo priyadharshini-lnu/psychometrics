@@ -37,6 +37,7 @@ module Api
             optional(:created_by).maybe(:string)
             optional(:modified_by).maybe(:string)
             attribute[:role].filled(:string)
+            optional(:photo_url).maybe(:string)
           end
         end
 

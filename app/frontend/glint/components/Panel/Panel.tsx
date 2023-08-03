@@ -15,6 +15,7 @@ interface Props {
   children: React.ReactNode
   additionalDetails?: AdditionsDetailsData
   additionalDetailsLayout?: 'horizontal' | 'vertical'
+  footer?: JSX.Element | null
   removable?: boolean
   onRemove?: () => void
   defaultOpen?: boolean
@@ -27,6 +28,7 @@ export const Panel: React.FC<Props> = ({
   collapsible = false,
   additionalDetails,
   additionalDetailsLayout = 'vertical',
+  footer,
   removable,
   onRemove,
   defaultOpen = true,
@@ -80,6 +82,12 @@ export const Panel: React.FC<Props> = ({
         >
           <Divider plain className={styles.divider} />
           {children}
+          {footer && (
+            <>
+              <Divider plain className={styles.divider} />
+              {footer}
+            </>
+          )}
         </Collapse.Panel>
       </Collapse>
     </div>

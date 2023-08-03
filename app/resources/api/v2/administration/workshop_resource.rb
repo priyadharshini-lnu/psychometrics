@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseResource
-  attributes :start_time, :duration, :booked_seats, :total_seats, :remaining_seats, :timezone, :meeting_link
+  attributes :campaign_id, :start_time, :timezone, :duration, :video_call_type, :total_seats, :cancellation_lead_time,
+             :reschedule_lead_time, :booked_seats, :remaining_seats, :meeting_link
 
   has_many :workshop_managers
   has_many :workshop_assessors

@@ -25,6 +25,10 @@ export const WorkshopTR = t.type({
   ),
 })
 
+export const WorkshopCreateResponseTR = t.type({
+  workshopIds: t.array(t.number),
+})
+
 export const Workshops = {
   type: 'workshops',
   relationships: {

@@ -3,6 +3,42 @@
 module Api
   class V2::Administration::WorkshopsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::Workshop::Schema
+    validates_request_schema :create_bulk_workshops, Api::V2::Workshop::CreateAllContract.new
+
+    def create_bulk_workshops
+      workshops_data = workshop_params[:workshops]
+
+      response = ::Workshops::CreateAll.call(
+        workshops_data,
+        params[:campaign_id]
+      )
+
+      if response && response[:error]
+        render json: { error: response[:error] }, status: 400
+      else
+        render json: { workshop_ids: response[:workshops_ids] }
+      end
+    end
+
+    def workshop_params
+      params.require(:data).require(:attributes).permit(
+        :campaign_id,
+        workshops: [
+          :total_seats,
+          :duration,
+          :cancellation_lead_time,
+          :reschedule_lead_time,
+          :video_call_type,
+          :start_time,
+          :timezone,
+          {
+            workshop_resources: %i[name url],
+            center_manager_ids: [],
+            assessor_ids: []
+          }
+        ]
+      )
+    end
 
     private
 

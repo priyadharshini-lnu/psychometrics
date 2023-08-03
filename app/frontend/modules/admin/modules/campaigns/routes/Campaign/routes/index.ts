@@ -9,7 +9,7 @@ import { Admins } from './Admins'
 import CampaignOptions from './CampaignOptions'
 import { Dashboard } from './Dashboard'
 import {
-  Scheduling, WorkshopList, Invites, InvitesForm,
+  Scheduling, WorkshopList, Invites, InvitesForm, AssessmentCenterForm,
 } from './Scheduling'
 import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 
@@ -31,6 +31,7 @@ const routes = [
     component: Scheduling,
     routes: [
       { path: '/scheduling/assessment_center', component: WorkshopList },
+      { path: '/scheduling/assessment_center/new', component: AssessmentCenterForm },
       { path: '/scheduling/assessment_center/:id', component: WorkshopPage },
       { path: '/scheduling/assessment_center/:id/:tab', component: WorkshopPage },
       { path: '/scheduling/invites', component: Invites },

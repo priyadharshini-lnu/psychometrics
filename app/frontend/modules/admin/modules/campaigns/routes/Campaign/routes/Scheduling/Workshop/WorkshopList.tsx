@@ -1,9 +1,12 @@
 import React from 'react'
 import {
-  Row, DatePicker, Avatar,
+  Row, DatePicker, Avatar, Button, Space,
 } from 'antd'
+import {
+  useLocation, useHistory, Link, useParams,
+} from 'react-router-dom'
+import { PlusOutlined } from '@ant-design/icons'
 import moment, { Moment } from 'moment'
-import { Link, useParams } from 'react-router-dom'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ResourceAvatar } from '~/glint'
@@ -86,6 +89,13 @@ const CURRENT_WEEK: [Moment, Moment] = [
 
 export const WorkshopList: React.FC = () => {
   const { campaignId } = useParams<{ campaignId: string }>()
+  const history = useHistory()
+  const location = useLocation()
+
+  const openForm = () => {
+    history.push(`${location.pathname}/new`)
+  }
+
   const config = {
     trackUrl: true,
     responseType: WorkshopTR,
@@ -105,6 +115,13 @@ export const WorkshopList: React.FC = () => {
       <Resource config={config} name="workshops">
         <Resource.Filter hideSearch placeholder="" name="">
           <WorkshopDatePicker />
+          <Space>
+            <Button type="primary" onClick={openForm}>
+              <PlusOutlined />
+              {' '}
+              {I18n.t('administration.scheduling.assessment_centers.add_assessment_center.name')}
+            </Button>
+          </Space>
         </Resource.Filter>
         <Resource.Table pagination>
           <Resource.Column<Workshop>

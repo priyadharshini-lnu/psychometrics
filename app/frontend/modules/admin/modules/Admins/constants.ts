@@ -104,6 +104,7 @@ export const ClientAdminGrants = {
   registrationCodes: ['view', 'manage'],
   datasheets: ['view', 'manage'],
   auditLogs: ['view'],
+  workshops: ['view', 'manage'],
 }
 
 export const ProjectAdminGrants = {
@@ -152,6 +153,7 @@ export const ProjectAdminGrants = {
   assessors: ['view', 'manage'],
   reports: ['manage'],
   datasheets: ['view', 'manage'],
+  workshops: ['view', 'manage'],
 }
 
 export const CampaignAdminGrants = {
@@ -179,4 +181,5 @@ export const CampaignAdminGrants = {
     'regenerate_report',
     'bulk_regenerate_reports',
   ],
+  workshops: ['view', 'manage'],
 }

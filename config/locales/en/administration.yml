@@ -3675,6 +3675,37 @@ en:
       webhooks: Webhooks
     save: Save
     scheduling:
+      actions:
+        remove:
+          success_message: Assessment Center subject %{subject_name}.
+      add_assessment_center: Add Assessment Center
+      assessment_center_form:
+        assessor_ids_label: Assessor Ids
+        back: Back
+        basic_info_panel:
+          description: Please enter the schedule information below. You can also select multiple dates to create multiple assessment centers.
+          title: Basic Information
+        cancellation_lead_time_label: Lead time for cancellation
+        create: Create
+        dates_error: You can only add up to 5 dates.
+        dates_label: Dates
+        duration_label: Duration
+        manager_ids_label: Center Manager Ids
+        meetings_and_resources: Meetings & Resources
+        name: Add Assessment Center
+        next: Next
+        reschedule_lead_time_label: Lead time for rescheduling
+        resources_panel:
+          description: Add the links to any resources you would like the facilitators to have access to.
+          title: Resources
+        seats_label: Seats
+        time_label: Time
+        timezone_label: Timeozone
+        video_call_type:
+          custom: Custom
+          internal: Internal
+          none: None
+        video_call_type_label: Add Video Call
       attendance_status:
         column_name: Attendance status
         dropped_out: Dropped Out
