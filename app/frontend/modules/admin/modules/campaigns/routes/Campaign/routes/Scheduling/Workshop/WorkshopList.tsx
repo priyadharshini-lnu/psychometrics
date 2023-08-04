@@ -119,7 +119,7 @@ export const WorkshopList: React.FC = () => {
             <Button type="primary" onClick={openForm}>
               <PlusOutlined />
               {' '}
-              {I18n.t('administration.scheduling.assessment_centers.add_assessment_center.name')}
+              {I18n.t('administration.scheduling.add_assessment_center')}
             </Button>
           </Space>
         </Resource.Filter>
