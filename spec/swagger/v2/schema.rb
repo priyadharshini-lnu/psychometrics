@@ -254,6 +254,9 @@ module Swagger
           ),
           WorkshopSubjectsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopSubject::Schema.multiple_resource_response
+          ),
+          WorkshopSubjectsUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopSubject::Schema.update_request
           )
         }
       }

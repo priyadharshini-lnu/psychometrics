@@ -78,4 +78,85 @@ describe Api::V2::Administration::WorkshopSubjectsController, swagger_doc: 'v2/s
       end
     end
   end
+
+  path '/campaigns/{campaign_id}/workshops/{workshop_id}/workshop_subjects/{subject_id}' do
+    patch 'Update Workshop Subject' do
+      operationId 'UpdateWorkshopsSubjects'
+      description 'Update Workshop Subject'
+      tags 'Campaign Scheduling'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :workshop_id, in: :path, type: :string
+      parameter name: :subject_id, in: :path, type: :string
+      parameter name: :body, in: :body,
+                schema: { '$ref' => '#/components/schemas/WorkshopSubjectsUpdateRequest' },
+                required: true
+
+      response '200', 'Workshop Subject updated' do
+        schema '$ref' => '#/components/schemas/WorkshopSubjectsUpdateRequest'
+
+        examples 'application/json' => {
+          data: {
+            id: '2',
+            type: 'workshop_subjects',
+            links: { self: 'http://www.example.com/api/v2/administration/workshop_subjects/2' },
+            attributes: {
+              attendance_status: 'no_show',
+              completion_status: 'not_started', attended: false, preworks: '2/3', workshop_activities: '2/3'
+            },
+            relationships: {
+              user: {
+                links: {
+                  self: 'http://www.example.com/api/v2/administration/workshop_subjects/2/relationships/user',
+                  related: 'http://www.example.com/api/v2/administration/workshop_subjects/2/user'
+                },
+                data: { type: 'users', id: '8' }
+              }
+            }
+          }
+        }
+
+        let(:subject) { create(:workshop_subject, workshop: workshop, attended: true, attendance_status: 'no_status') }
+        let(:subject_id) { subject.id }
+        let(:body) do
+          {
+            data: {
+              id: subject_id.to_s,
+              type: 'workshop_subjects',
+              attributes: {
+                attended: false
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          subject_response = JSON.parse(response.body)['data']
+          expect(subject_response).to have_attribute(:attended).with_value(false)
+          expect(subject_response).to have_attribute(:attendance_status).with_value('no_show')
+        end
+      end
+    end
+
+    delete 'Delete Workshop Subject' do
+      operationId 'DeleteWorkshopsSubjects'
+      description 'Delete Workshop Subject'
+      tags 'Campaign Scheduling'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :workshop_id, in: :path, type: :string
+      parameter name: :subject_id, in: :path, type: :string
+
+      let(:subject_id) { subject.id }
+
+      response '204', 'Workshop Subject deleted' do
+        run_test! do |response|
+          expect(response.body).to eq('')
+          expect { WorkshopSubject.find(subject_id) }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+    end
+  end
 end

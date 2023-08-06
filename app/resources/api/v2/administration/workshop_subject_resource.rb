@@ -8,6 +8,10 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
 
   ransack_filters %i[user_full_name_or_user_email_cont]
 
+  before_update do
+    @model.attendance_status = 'no_show' if @model.attended == true
+  end
+
   def self.records(opts = {})
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, WorkshopSubject]).where(
       workshop_id: opts[:context][:params]['workshop_id']
