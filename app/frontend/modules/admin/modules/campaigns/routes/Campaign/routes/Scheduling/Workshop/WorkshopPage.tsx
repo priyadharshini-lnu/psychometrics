@@ -88,7 +88,7 @@ export const WorkshopPage: FC = () => {
           title={(
             <>
               <Space>
-                <ArrowLeftOutlined onClick={() => history.goBack()} />
+                <ArrowLeftOutlined onClick={() => routeUtils.moveTo(history, prefixPath, '/assessment_center')} />
                 {moment(workshop.startTime).format('Do MMMM YYYY, h:mm a')}
               </Space>
             </>

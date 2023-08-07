@@ -3,7 +3,6 @@ import { Menu } from 'antd'
 import { History } from 'history'
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import moment, { Moment } from 'moment'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
@@ -30,14 +29,8 @@ const SchedulingComponent: React.FC<Props> = ({ history, routes }) => {
   const prefix = `${settings.urlPrefix}/:campaignId`
   const onSelect = ({ key }) => routeUtils.moveTo(history, prefix, key)
 
-  const CURRENT_WEEK: [Moment, Moment] = [
-    moment().startOf('w'),
-    moment().endOf('w'),
-  ]
   const menuItems: ItemType[] = [{
-    key: encodeURI(
-      `/scheduling/assessment_center?q[filter][start_time_between]=${CURRENT_WEEK.toString()}`,
-    ),
+    key: '/scheduling/assessment_center',
     label: I18n.t('administration.scheduling.tabs.assessment_center'),
   },
   {

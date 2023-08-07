@@ -23,6 +23,11 @@ interface ResourcesProps {
   resources: Resource[]
 }
 
+const CURRENT_WEEK: [Moment, Moment] = [
+  moment().startOf('w'),
+  moment().endOf('w'),
+]
+
 const MAX_AVATARS = 3
 const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
   <Avatar.Group maxCount={MAX_AVATARS}>
@@ -39,6 +44,9 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
 
 const WorkshopDatePicker = () => {
   const { resource } = useResourceContext()
+  const [initialStartDate, initialEndDate] = getMomentDateRange(
+    resource.getFilteredValue('start_time_between'),
+  ) || CURRENT_WEEK
   const onDateChange = (dates) => {
     resource.changeFilter('start_time_between', dates.toString())
   }
@@ -53,7 +61,7 @@ const WorkshopDatePicker = () => {
         clearIcon={false}
         onChange={onDateChange}
         format="DD/MMMM/YYYY"
-        defaultValue={CURRENT_WEEK}
+        defaultValue={[initialStartDate, initialEndDate]}
         ranges={{
           Today: [
             moment(), moment(),
@@ -82,11 +90,6 @@ const WorkshopDatePicker = () => {
   )
 }
 
-const CURRENT_WEEK: [Moment, Moment] = [
-  moment().startOf('w'),
-  moment().endOf('w'),
-]
-
 export const WorkshopList: React.FC = () => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const history = useHistory()
@@ -100,6 +103,7 @@ export const WorkshopList: React.FC = () => {
     trackUrl: true,
     responseType: WorkshopTR,
     basePath: `campaigns/${campaignId}/`,
+    initialFilter: { start_time_between: CURRENT_WEEK.toString() },
     apiConfig: {
       include: ['workshop_managers', 'workshop_assessors'],
       include_meta: ['permissions'],
@@ -161,4 +165,11 @@ export const WorkshopList: React.FC = () => {
       </Resource>
     </>
   )
+}
+
+const getMomentDateRange = (dateRangeString) => {
+  if (typeof (dateRangeString) !== 'string') {
+    return undefined
+  }
+  return dateRangeString.split(',').map(dateString => moment(dateString, 'ddd MMM DD YYYY hh:mm:ss Z'))
 }

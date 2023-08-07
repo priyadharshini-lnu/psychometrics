@@ -27,7 +27,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {
-    apiConfig, stateManager, responseType, trackUrl, basePath,
+    apiConfig, stateManager, responseType, trackUrl, basePath, initialFilter,
   } = options
 
   const [camelizeExcept, camelizeOnly] = [apiConfig?.camelizeExcept, apiConfig?.camelizeOnly]
@@ -51,7 +51,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     [state, setState] = useState<ResourceState<R[], M>>(defaultState<R[], M>())
   }
 
-  const queryFromUrl = (trackUrl ? queryString?.q || {} : {}) as UrlQuery
+  const queryFromUrl = (trackUrl ? queryString?.q || { filter: initialFilter }
+    : { filter: initialFilter || {} }) as UrlQuery
   const [queryState, setQueryState] = useState<UrlQuery>(queryFromUrl)
   const isMounted = useMountedState()
   const debounceQueryState = useDebounce(queryState, 300)

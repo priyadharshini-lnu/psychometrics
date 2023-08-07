@@ -62,6 +62,7 @@ export interface Options<R, M> {
   responseType?: ResponseType,
   trackUrl?: boolean,
   basePath?: string,
+  initialFilter?: {[key:string]: unknown},
 }
 
 export interface BaseMeta {
