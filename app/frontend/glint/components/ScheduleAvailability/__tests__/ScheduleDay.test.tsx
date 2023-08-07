@@ -10,7 +10,7 @@ test('Clicking on Add icon should show time timepickers', async () => {
     <div id="container">
       <ScheduleDayTestWrapper
         label="Monday"
-        formName="1"
+        day={1}
       />
     </div>,
   )
@@ -31,7 +31,7 @@ test('Clicking on Remove icon should remove the time pickers', async () => {
     <div id="container">
       <ScheduleDayTestWrapper
         label="Monday"
-        formName="1"
+        day={1}
       />
     </div>,
   )
@@ -61,7 +61,7 @@ describe('Add button should be ', () => {
       <div id="container">
         <ScheduleDayTestWrapper
           label="Monday"
-          formName="1"
+          day={1}
         />
       </div>,
     )
@@ -80,7 +80,7 @@ describe('Add button should be ', () => {
       <div id="container">
         <ScheduleDayTestWrapper
           label="Monday"
-          formName="1"
+          day={1}
         />
       </div>,
     )
@@ -117,7 +117,7 @@ describe('Add button should be ', () => {
       <div id="container">
         <ScheduleDayTestWrapper
           label="Monday"
-          formName="1"
+          day={1}
         />
       </div>,
     )
@@ -153,7 +153,7 @@ describe('Add button should be ', () => {
       <div id="container">
         <ScheduleDayTestWrapper
           label="Monday"
-          formName="1"
+          day={1}
         />
       </div>,
     )
@@ -211,7 +211,7 @@ test('Time lesser than start time should be disabled while selecting end time', 
     <div id="container">
       <ScheduleDayTestWrapper
         label="Monday"
-        formName="1"
+        day={1}
       />
     </div>,
   )

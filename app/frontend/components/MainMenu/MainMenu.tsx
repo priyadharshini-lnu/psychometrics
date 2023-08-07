@@ -126,6 +126,11 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean): MenuItem[] =>
     label: I18n.t('administration.navigation.campaign_templates'),
     icon: <i className="fa fa-gear" />,
   } : null,
+  {
+    key: 'userAvailability',
+    label: I18n.t('administration.navigation.availability'),
+    icon: <i className="fa fa-calendar" />,
+  },
   permissions.auditLogs ? {
     key: 'auditLogs',
     label: I18n.t('administration.navigation.audit_logs'),
@@ -177,6 +182,10 @@ const getSelected = (): string => {
 
   if (location.href.match(/\/administration(\/)templates\/(questions|blocks)/)) {
     return 'questionCenter'
+  }
+
+  if (location.href.match(/\/administration(\/)(user_availabilities)/)) {
+    return 'userAvailability'
   }
 
   return 'clients'

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Form } from 'antd'
 import { ScheduleDay } from '~/glint/components/ScheduleAvailability/ScheduleDay'
 
-export const ScheduleDayTestWrapper = ({ label, formName }) => {
+export const ScheduleDayTestWrapper = ({ label, day }) => {
   const [form] = Form.useForm()
   const [, setFields] = useState({})
   return (
@@ -15,7 +15,7 @@ export const ScheduleDayTestWrapper = ({ label, formName }) => {
       <ScheduleDay
         label={label}
         formInstance={form}
-        formName={formName}
+        day={day}
       />
     </Form>
   )

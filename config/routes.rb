@@ -95,6 +95,7 @@ Rails.application.routes.draw do
   # Administration panel
   #
   namespace :administration do
+    get 'user_availabilities', to: 'user_availabilities#index', as: :user_availabilities
     get 'dashboards', to: 'dashboards#index', as: :dashboard
     get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
     post 'breadcrumbs', to: 'breadcrumbs#index'
@@ -1225,6 +1226,8 @@ Rails.application.routes.draw do
               post :import_subjects_from_csv
             end
           end
+          jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
+
           jsonapi_resources :reports, only: [:index]
           resources :user_reports, only: [] do
             jsonapi_resources :user_report_comments, only: %i[index create update destroy]

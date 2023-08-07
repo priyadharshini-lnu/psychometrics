@@ -14,8 +14,11 @@ const allMinutes = _.range(0, 60, 5)
 
 type Props = {
   label: string,
-  formName: string,
+  day: number,
   formInstance: FormInstance
+  errorMessages?: {
+    [key: string]: Record<string, string>
+  }
 }
 
 const { Text } = Typography
@@ -31,7 +34,10 @@ type DisbledHoursData = {
   startTimeHour?: number
 }
 
-export const ScheduleDay:FC<Props> = ({ label, formInstance, formName }) => {
+export const ScheduleDay:FC<Props> = ({
+  label, formInstance, day, errorMessages,
+}) => {
+  const formName = day.toString()
   const fieldData = formInstance.getFieldValue(formName) || []
 
   const getDisabledHourDataForEndTime = (fieldDataIndex: number):DisbledHoursData => {
@@ -69,68 +75,84 @@ export const ScheduleDay:FC<Props> = ({ label, formInstance, formName }) => {
             {fields.map(({ key, name, ...restField }, index) => {
               const { disabledHours, disabledMins, startTimeHour } = getDisabledHourDataForEndTime(name)
               const startTime = fieldData[name]?.startTime
+              const errors = errorMessages?.[index.toString()] || {}
 
               return (
-                <Row key={key} wrap={false} gutter={[10, 0]}>
-                  <Col span={20}>
-                    <Space direction="horizontal" size="small">
-                      <Form.Item
-                        rules={[{ required: true }]}
-                        {...restField}
-                        name={[name, 'startTime']}
-                        className="mb-3"
-                      >
-                        <TimePicker
-                          placeholder={I18n.t('glint.schedule_availability.from')}
-                          {...defaultTimePickerProps}
-                        />
-                      </Form.Item>
-                      <Form.Item
-                        rules={[{ required: true }]}
-                        name={[name, 'endTime']}
-                        {...restField}
-                        className="mb-3 me-0"
-                      >
-                        <TimePicker
-                          placeholder={I18n.t('glint.schedule_availability.to')}
-                          {...defaultTimePickerProps}
-                          disabledTime={() => ({
-                            disabledHours: () => disabledHours,
-                            disabledMinutes: (hour) => {
-                              if (hour < (startTimeHour || -1)) {
-                                return allMinutes
-                              }
-                              return hour === startTimeHour ? disabledMins : []
-                            },
-                          })}
-                          disabledDate={time => time.isSameOrBefore(startTime)}
-                        />
-                      </Form.Item>
-                    </Space>
-                  </Col>
-                  <Col>
-                    <Space direction="horizontal">
-                      <div className="mb-3">
-                        <LightBackgroundButton
-                          aria-label="add"
-                          disabled={!(fieldData[name]?.startTime && fieldData[name]?.endTime)}
-                          icon={<PlusOutlined />}
-                          onClick={() => add()}
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <LightBackgroundButton
-                          aria-label="remove"
-                          icon={<CloseOutlined />}
-                          onClick={() => {
-                            formInstance.setFieldValue(`label.${name}`, null)
-                            remove(index)
-                          }}
-                        />
-                      </div>
-                    </Space>
-                  </Col>
-                </Row>
+                <>
+                  <Row key={key} wrap={false} gutter={[10, 0]}>
+                    <Col span={20}>
+                      <Space direction="horizontal" size="small" align="baseline">
+                        <Form.Item
+                          rules={[{ required: true }]}
+                          {...restField}
+                          name={[name, 'startTime']}
+                          className="mb-3"
+                          validateStatus={errors.startTime ? 'error' : undefined}
+                          help={errors.startTime}
+                        >
+                          <TimePicker
+                            placeholder={I18n.t('glint.schedule_availability.from')}
+                            {...defaultTimePickerProps}
+                          />
+                        </Form.Item>
+                        <Form.Item
+                          rules={[{ required: true }]}
+                          name={[name, 'endTime']}
+                          {...restField}
+                          className="mb-3 me-0"
+                          validateStatus={errors.endTime ? 'error' : undefined}
+                          help={errors.endTime}
+                        >
+                          <TimePicker
+                            placeholder={I18n.t('glint.schedule_availability.to')}
+                            {...defaultTimePickerProps}
+                            disabledTime={() => ({
+                              disabledHours: () => disabledHours,
+                              disabledMinutes: (hour) => {
+                                if (hour < (startTimeHour || -1)) {
+                                  return allMinutes
+                                }
+                                return hour === startTimeHour ? disabledMins : []
+                              },
+                            })}
+                            disabledDate={time => time.isSameOrBefore(startTime)}
+                          />
+                        </Form.Item>
+                      </Space>
+                    </Col>
+                    <Col>
+                      <Space direction="horizontal">
+                        <div className="mb-3">
+                          <LightBackgroundButton
+                            aria-label="add"
+                            disabled={!(fieldData[name]?.startTime && fieldData[name]?.endTime)}
+                            icon={<PlusOutlined />}
+                            onClick={() => add()}
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <LightBackgroundButton
+                            aria-label="remove"
+                            icon={<CloseOutlined />}
+                            onClick={() => {
+                              formInstance.setFieldValue(`label.${name}`, null)
+                              remove(index)
+                            }}
+                          />
+                        </div>
+                      </Space>
+                    </Col>
+                  </Row>
+                  {errors.base && (
+                  <Row className="mb-3" style={{ marginTop: '-8px' }}>
+                    <Col span={20}>
+                      <Typography.Text type="danger">
+                        {errors.base}
+                      </Typography.Text>
+                    </Col>
+                  </Row>
+                  )}
+                </>
               )
             })}
             {!fields.length
@@ -159,6 +181,13 @@ export const ScheduleDay:FC<Props> = ({ label, formInstance, formName }) => {
           </Form.Item>
         )}
       </Form.List>
+      {errorMessages?.base && (
+      <Row className="mb-3" style={{ marginTop: '-8px' }}>
+        <Col span={18} offset={6}>
+          <Typography.Text type="danger">{errorMessages.base}</Typography.Text>
+        </Col>
+      </Row>
+      )}
     </>
   )
 }

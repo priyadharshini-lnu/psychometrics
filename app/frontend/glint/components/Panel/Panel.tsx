@@ -19,6 +19,7 @@ interface Props {
   removable?: boolean
   onRemove?: () => void
   defaultOpen?: boolean
+  className?: string
 }
 
 export const Panel: React.FC<Props> = ({
@@ -32,12 +33,13 @@ export const Panel: React.FC<Props> = ({
   removable,
   onRemove,
   defaultOpen = true,
+  className,
 }) => {
   const { width: windowWidth } = useWindowSize()
   const showSidebarForAdditionalDetails = windowWidth > 768 && additionalDetailsLayout === 'vertical'
 
   return (
-    <div className={styles.collapseContainer}>
+    <div className={cs(styles.collapseContainer, className)}>
       <Collapse
         accordion
         defaultActiveKey={defaultOpen ? ['1'] : ''}
@@ -69,7 +71,7 @@ export const Panel: React.FC<Props> = ({
                 <div
                   onClick={(e) => {
                     e.stopPropagation()
-                    onRemove
+                    onRemove && onRemove()
                   }}
                   className={styles.removeIcon}
                 >

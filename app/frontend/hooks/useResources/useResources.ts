@@ -104,7 +104,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }):
-    Promise<{ data: R, meta: M }> => {
+    Promise<{ data: R[], meta: M }> => {
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = _.merge({}, apiConfig, args.apiConfig)
 

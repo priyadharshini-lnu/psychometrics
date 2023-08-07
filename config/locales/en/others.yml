@@ -1738,6 +1738,11 @@ en:
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
+      user_availability_date:
+        overlaps_date: Overlaps another availability %{range}
+        overlaps_time: Overlaps interval %{interval}
+        start_date_should_be_less: Start date should be less than end date
+        start_time_should_be_less: Start time should be less than end time
   ecommerce:
     carts:
       show:
@@ -1846,6 +1851,14 @@ en:
     assessment_groups:
       create_success: The group is successfully created
       update_success: The group is successfully updated
+    availability:
+      add_new_availability: Add new availability
+      create_success: Availability created successfully.
+      remove_confirm:
+        content: Are you sure you want to remove the availability?
+        success: Availability removed successfully.
+        title: Remove availability
+      update_success: Availability updated successfully.
     background_reading: Background Reading
     campaign:
       actions:
@@ -1924,7 +1937,7 @@ en:
     schedule_availability:
       end_date: End Date
       from: From
-      new_schedule: New Schedule
+      new_schedule: Add new schedule
       new_schedule_description: Start time must be earlier than the end time
       no_slots: No slots added
       required_error: can't be empty

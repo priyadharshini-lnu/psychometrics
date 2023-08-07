@@ -257,6 +257,18 @@ module Swagger
           ),
           WorkshopSubjectsUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopSubject::Schema.update_request
+          ),
+          UserAvailabilityDateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAvailabilityDate::Schema.single_resource_response
+          ),
+          UserAvailabilityDatesListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAvailabilityDate::Schema.multiple_resource_response
+          ),
+          UserAvailabilityDateCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAvailabilityDate::Schema.create_request
+          ),
+          UserAvailabilityDateUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAvailabilityDate::Schema.update_request
           )
         }
       }

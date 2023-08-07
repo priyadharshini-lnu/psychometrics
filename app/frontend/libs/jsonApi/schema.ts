@@ -7,6 +7,7 @@ import { Schema as reportApprovalSettingSchema } from '~/modules/admin/modules/c
 import { Schema as licensesSchema } from '~/modules/admin/modules/client/core/licenses'
 import { Schema as licenseUsagesSchema } from '~/modules/admin/modules/client/core/license_usages'
 import { Workshops as workshopsSchema } from '~/modules/admin/modules/campaigns/core/workshop'
+import { Schema as userAvailabilityDate } from '~/modules/admin/modules/UserAvailability/core/userAvailabilityDates'
 import { Schema as workshopSubjectsSchema } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 
 export const Schema = {
@@ -19,5 +20,6 @@ export const Schema = {
   licenses: licensesSchema,
   license_usages: licenseUsagesSchema,
   workshops: workshopsSchema,
+  userAvailabilityDate,
   workshopSubjects: workshopSubjectsSchema,
 }
