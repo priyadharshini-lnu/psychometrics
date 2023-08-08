@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import {
-  useHistory, Link, useParams,
+  useHistory, useParams,
 } from 'react-router-dom'
 import {
   Space, Descriptions, Avatar, Skeleton, Divider, Radio, message,
@@ -112,7 +112,7 @@ export const WorkshopPage: FC = () => {
           <Descriptions.Item label={I18n.t('administration.scheduling.info.link')}>
             { workshop.meetingLink && (
               <Space>
-                <Link to={{ pathname: workshop.meetingLink }} target="_blank">{workshop.meetingLink}</Link>
+                <a href={workshop.meetingLink} target="_blank" rel="noreferrer">{workshop.meetingLink}</a>
                 <CopyToClipboard
                   text={workshop.meetingLink}
                   onCopy={() => message.info(I18n.t('common.text.copied'))}

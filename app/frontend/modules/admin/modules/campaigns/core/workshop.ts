@@ -8,7 +8,7 @@ export const WorkshopTR = t.type({
   totalSeats: t.number,
   remainingSeats: t.number,
   timezone: t.string,
-  meetingLink: t.string,
+  meetingLink: t.union([t.string, t.null]),
   workshopManagers: t.array(
     t.type({
       id: t.string,

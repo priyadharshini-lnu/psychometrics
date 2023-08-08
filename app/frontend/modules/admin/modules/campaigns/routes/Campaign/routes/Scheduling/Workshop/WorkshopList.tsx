@@ -13,83 +13,6 @@ import { ResourceAvatar } from '~/glint'
 
 const { I18n } = window
 
-interface Resource {
-  id: string
-  fullName: string
-  photoUrl: string | null
-}
-
-interface ResourcesProps {
-  resources: Resource[]
-}
-
-const CURRENT_WEEK: [Moment, Moment] = [
-  moment().startOf('w'),
-  moment().endOf('w'),
-]
-
-const MAX_AVATARS = 3
-const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
-  <Avatar.Group maxCount={MAX_AVATARS}>
-    {resources.map((resource: Resource) => (
-      <ResourceAvatar
-        key={resource.id}
-        tooltip={resource.fullName}
-        url={resource?.photoUrl}
-        name={resource.fullName}
-      />
-    ))}
-  </Avatar.Group>
-)
-
-const WorkshopDatePicker = () => {
-  const { resource } = useResourceContext()
-  const [initialStartDate, initialEndDate] = getMomentDateRange(
-    resource.getFilteredValue('start_time_between'),
-  ) || CURRENT_WEEK
-  const onDateChange = (dates) => {
-    resource.changeFilter('start_time_between', dates.toString())
-  }
-
-  return (
-    <Row
-      justify="space-between"
-      align="middle"
-      className="pt-4 pb-4 ps-4 pe-4"
-    >
-      <DatePicker.RangePicker
-        clearIcon={false}
-        onChange={onDateChange}
-        format="DD/MMMM/YYYY"
-        defaultValue={[initialStartDate, initialEndDate]}
-        ranges={{
-          Today: [
-            moment(), moment(),
-          ],
-          'Current Week': [
-            moment().startOf('w'), moment().endOf('w'),
-          ],
-          'Last Week': [
-            moment().subtract(1, 'w').startOf('w'), moment().subtract(1, 'w').endOf('w'),
-          ],
-          'Current Month': [
-            moment().startOf('M'), moment().endOf('M'),
-          ],
-          'Last Month': [
-            moment().subtract(1, 'M').startOf('M'), moment().subtract(1, 'M').endOf('M'),
-          ],
-          'All Time': [
-            moment().subtract(100, 'y'), moment().add(100, 'y'),
-          ],
-          Custom: [
-            moment().startOf('M'), moment().endOf('M'),
-          ],
-        }}
-      />
-    </Row>
-  )
-}
-
 export const WorkshopList: React.FC = () => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const history = useHistory()
@@ -166,6 +89,83 @@ export const WorkshopList: React.FC = () => {
         </Resource.Table>
       </Resource>
     </>
+  )
+}
+
+interface Resource {
+  id: string
+  fullName: string
+  photoUrl: string | null
+}
+
+interface ResourcesProps {
+  resources: Resource[]
+}
+
+const CURRENT_WEEK: [Moment, Moment] = [
+  moment().startOf('w'),
+  moment().endOf('w'),
+]
+
+const MAX_AVATARS = 3
+const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
+  <Avatar.Group maxCount={MAX_AVATARS}>
+    {resources.map((resource: Resource) => (
+      <ResourceAvatar
+        key={resource.id}
+        tooltip={resource.fullName}
+        url={resource?.photoUrl}
+        name={resource.fullName}
+      />
+    ))}
+  </Avatar.Group>
+)
+
+const WorkshopDatePicker = () => {
+  const { resource } = useResourceContext()
+  const [initialStartDate, initialEndDate] = getMomentDateRange(
+    resource.getFilteredValue('start_time_between'),
+  ) || CURRENT_WEEK
+  const onDateChange = (dates) => {
+    resource.changeFilter('start_time_between', dates.toString())
+  }
+
+  return (
+    <Row
+      justify="space-between"
+      align="middle"
+      className="pt-4 pb-4 ps-4 pe-4"
+    >
+      <DatePicker.RangePicker
+        clearIcon={false}
+        onChange={onDateChange}
+        format="DD/MMMM/YYYY"
+        defaultValue={[initialStartDate, initialEndDate]}
+        ranges={{
+          Today: [
+            moment(), moment(),
+          ],
+          'Current Week': [
+            moment().startOf('w'), moment().endOf('w'),
+          ],
+          'Last Week': [
+            moment().subtract(1, 'w').startOf('w'), moment().subtract(1, 'w').endOf('w'),
+          ],
+          'Current Month': [
+            moment().startOf('M'), moment().endOf('M'),
+          ],
+          'Last Month': [
+            moment().subtract(1, 'M').startOf('M'), moment().subtract(1, 'M').endOf('M'),
+          ],
+          'All Time': [
+            moment().subtract(100, 'y'), moment().add(100, 'y'),
+          ],
+          Custom: [
+            moment().startOf('M'), moment().endOf('M'),
+          ],
+        }}
+      />
+    </Row>
   )
 }
 
