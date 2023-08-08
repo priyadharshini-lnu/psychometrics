@@ -37,7 +37,7 @@ export const APIKeysTable: React.FC<Props> = ({ openModal }) => (
     />
     <Resource.Column<APIKey>
       title={I18n.t('common.column.description')}
-      id="key"
+      id="description"
       render={apiKey => <Typography.Text>{apiKey.description}</Typography.Text>}
       width={200}
       sorter

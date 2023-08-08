@@ -429,7 +429,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
     if (columnKey && order === undefined) removeSort()
 
-    if (columnKey && order) changeSort(columnKey, order)
+    if (columnKey && order) {
+      const decamelizeColumnKey = humps.decamelize(columnKey)
+      changeSort(decamelizeColumnKey, order)
+    }
 
     if (!_.isEmpty(filters)) {
       _.each(filters, (filterValues, columnKey) => {
@@ -445,9 +448,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const getSortOrder = (column: string): undefined | 'ascend' | 'descend' => {
+    const decamelizeColumnKey = humps.decamelize(column)
     if (!queryState?.sort) { return }
-    if (queryState.sort === column) { return 'ascend' }
-    if (queryState.sort === `-${column}`) { return 'descend' }
+    if (queryState.sort === decamelizeColumnKey) { return 'ascend' }
+    if (queryState.sort === `-${decamelizeColumnKey}`) { return 'descend' }
 
     return undefined
   }

@@ -133,12 +133,14 @@ export const WorkshopList: React.FC = () => {
             id="id"
             width="3%"
             render={(_, { id }) => <Link to={`assessment_center/${id}`}>{id}</Link>}
+            sorter
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.start_time')}
             id="startTime"
             width="15%"
             render={(_, { startTime }) => moment(startTime).format('lll')}
+            sorter
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.duration')}
