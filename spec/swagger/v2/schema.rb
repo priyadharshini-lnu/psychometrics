@@ -258,6 +258,15 @@ module Swagger
           WorkshopSubjectsUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopSubject::Schema.update_request
           ),
+          WorkshopResourcesListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopResource::Schema.multiple_resource_response
+          ),
+          WorkshopResourcesCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopResource::Schema.create_request
+          ),
+          WorkshopResourcesUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopResource::Schema.update_request
+          ),
           UserAvailabilityDateResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::UserAvailabilityDate::Schema.single_resource_response
           ),

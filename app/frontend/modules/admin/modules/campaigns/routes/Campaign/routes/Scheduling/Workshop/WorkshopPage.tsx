@@ -16,6 +16,7 @@ import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/wor
 import { ResourceAvatar } from '~/glint'
 import styles from './styles.less'
 import { SubjectList } from './SubjectList'
+import { ResourceList } from './ResourceList'
 
 const { I18n } = window
 
@@ -134,9 +135,7 @@ export const WorkshopPage: FC = () => {
             <ResourcesTag resources={workshop.workshopAssessors} />
           </Descriptions.Item>
         </Descriptions>
-
         <Divider />
-
         <div>
           <div className={styles.controls}>
             <Radio.Group onChange={e => handleTabChange(e.target.value)} defaultValue={currentTab}>
@@ -147,6 +146,7 @@ export const WorkshopPage: FC = () => {
             </Radio.Group>
           </div>
           {currentTab === 'subjects' && <SubjectList />}
+          {currentTab === 'resources' && <ResourceList />}
         </div>
       </div>
     </>

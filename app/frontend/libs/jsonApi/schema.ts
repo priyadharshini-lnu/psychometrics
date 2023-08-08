@@ -9,6 +9,7 @@ import { Schema as licenseUsagesSchema } from '~/modules/admin/modules/client/co
 import { Workshops as workshopsSchema } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Schema as userAvailabilityDate } from '~/modules/admin/modules/UserAvailability/core/userAvailabilityDates'
 import { Schema as workshopSubjectsSchema } from '~/modules/admin/modules/campaigns/core/workshopSubject'
+import { Schema as workshopResourcesSchema } from '~/modules/admin/modules/campaigns/core/workshopResource'
 
 export const Schema = {
   clients: clientSchema,
@@ -22,4 +23,5 @@ export const Schema = {
   workshops: workshopsSchema,
   userAvailabilityDate,
   workshopSubjects: workshopSubjectsSchema,
+  workshopResources: workshopResourcesSchema,
 }

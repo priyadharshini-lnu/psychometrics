@@ -3722,6 +3722,8 @@ en:
         managers: Mangers
         participants: Participants
         prework: Prework
+        resource_link: Link
+        resource_name: Name
         start_time: Date & Time
       completion_status:
         column_name: Completed
@@ -3743,6 +3745,20 @@ en:
         managers: Center Managers
         remaining: Seats Remaining
         timezone: Timezone
+      resources:
+        back: Back
+        confirm_message: Are you sure you want to delete the resource '%{resource_name}'?
+        confirm_title: Confirmation Required
+        create: Create Resource
+        resource: Resource
+        successful_remove: Assessment Center resource %{resource_name} successfully deleted.
+        update: Update Resource
+      status:
+        completed: Completed
+        dropped_out: Dropped Out
+        late: Late
+        no_show: No Show
+        not_started: Not Started
       subjects:
         confirm_message: Are you sure you want to delete subject '%{subject_name}'?
         confirm_title: Confirmation required

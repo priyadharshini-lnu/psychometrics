@@ -20,8 +20,6 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   end
 
   def self.records(opts = {})
-    ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, Workshop]).where(
-      campaign_id: opts[:context][:params]['campaign_id']
-    )
+    super(opts).where(campaign_id: opts[:context][:params]['campaign_id'])
   end
 end

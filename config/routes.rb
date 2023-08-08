@@ -1218,6 +1218,7 @@ Rails.application.routes.draw do
               end
               jsonapi_relationships
               jsonapi_resources :workshop_subjects, only: %i[index update destroy]
+              jsonapi_resources :workshop_resources
             end
           end
           jsonapi_resources :workshop_invites, only: %i[index create destroy] do
