@@ -39,7 +39,7 @@ export const ExternalAssessment: FC<Props> = ({ userAssessmentUrl, onCancel }) =
         <div>
           {I18n.t('user_assessments.redirect')}
         </div>
-        <div className={styles.footerButtons}>
+        <div className={styles.redirectFooter}>
           <Space>
             <Button onClick={onCancel}>
               {I18n.t('campaign.time_left.cancel')}

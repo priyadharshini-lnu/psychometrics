@@ -5,12 +5,14 @@ import {
   Layout, Col, Input, message, Typography, Space, Button,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
+import cs from 'classnames'
 import {
   PageHeader as GlintPageHeader,
 } from '~/glint'
 import styles from './UserAssessment.less'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { HoganData, loginHogan } from '~/modules/endUser/modules/campaigns/core/campaigns'
+import RedirectIcon from './RedirectIcon'
 
 const { I18n } = window
 const { Content } = Layout
@@ -63,7 +65,7 @@ export const HoganStepComponent: FC<Props> = ({
         </Col>
         <Col span={4} className="ta-e" />
       </GlintPageHeader>
-      <Content className={styles.pageContent}>
+      <Content className={cs(styles.pageContent, styles.external)}>
         {hoganData ? (
           <>
             <form action={hoganData.url} method="post" ref={formRef} style={{ display: 'none' }}>
@@ -77,10 +79,13 @@ export const HoganStepComponent: FC<Props> = ({
               <Input type="hidden" name="DisplayInformedConsent" value={hoganData.displayInformedConsent} />
               <Input type="hidden" name="ReturnURL" value={hoganData.returnUrl} />
             </form>
+            <div className={styles.icon}>
+              <RedirectIcon />
+            </div>
             <div>
               {I18n.t('user_assessments.redirect')}
             </div>
-            <div className={styles.footerButtons}>
+            <div className={styles.redirectFooter}>
               <Space>
                 <Button danger>
                   {I18n.t('campaign.time_left.cancel')}
