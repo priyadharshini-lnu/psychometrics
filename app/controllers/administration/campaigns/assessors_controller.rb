@@ -68,7 +68,7 @@ module Administration
 
       def available_assessments
         query = ::Assessors::AvailableAssessmentsQuery.new(client).query
-        render json: query.select(:id, :name).map { |a| { id: a.id, name: a.name } }
+        render json: query.select(:id, :name).order(:name).map { |a| a.slice(:id, :name) }
       end
 
       def import

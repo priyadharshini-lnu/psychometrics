@@ -30,6 +30,9 @@ const ChatBuilder = lazy(
 const EmailBuilder = lazy(
   () => import('~/modules/survey/components/modules/TextEntry/components/types/Email/Builder'),
 )
+const RichTextBuilder = lazy(
+  () => import('~/modules/survey/components/modules/TextEntry/components/types/RichText/RichText'),
+)
 
 interface Props {
   model: BuilderModel
@@ -70,6 +73,7 @@ const TextEntry: FC<Props> = ({ model }) => {
         {type === 'TimeEntry' && <TimeEntryBuilder />}
         {type === 'Chat' && <ChatBuilder model={model} />}
         {type === 'Email' && <EmailBuilder model={model} />}
+        {type === 'RichText' && <RichTextBuilder model={model} />}
       </Suspense>
     </section>
   )

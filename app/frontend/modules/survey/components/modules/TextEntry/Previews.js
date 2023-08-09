@@ -6,6 +6,7 @@ import DateTimeEntry from './components/types/DateTimeEntryPreview'
 import TimeEntry from './components/types/TimeEntryPreview'
 import Chat from './components/types/Chat/Preview'
 import Email from './components/types/Email/Preview'
+import RichText from './components/types/RichText/RichTextPreview'
 
 export default {
   SingleLine,
@@ -18,4 +19,5 @@ export default {
   TimeEntry,
   Chat,
   Email,
+  RichText,
 }
