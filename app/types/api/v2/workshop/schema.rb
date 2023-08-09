@@ -22,6 +22,22 @@ module Api
           ]
         end
 
+        def self.bulk_update_subjects
+          assessment_data = Dry::Schema.define do
+            required(:type).filled(:string)
+            required(:assessment_id).filled(:string)
+            required(:time).maybe(:string)
+          end
+
+          json_api_attributes do
+            Dry::Schema.define do
+              required(:override_existing).filled(:bool)
+              required(:subject_ids).array(:string)
+              required(:assessments).array(assessment_data)
+            end
+          end
+        end
+
         def self.create_all_request
           json_api_attributes do
             required(:workshops).array(:hash) do

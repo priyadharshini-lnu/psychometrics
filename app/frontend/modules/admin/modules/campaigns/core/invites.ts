@@ -5,7 +5,7 @@ export const WorkshopInviteTR = t.type({
   title: t.string,
   description: t.string,
   duration: t.number,
-  createAt: t.string,
+  createdAt: t.string,
   allowedLanguages: t.array(t.string),
   allowLanguagePreference: t.boolean,
   allowNeurodiversityOption: t.boolean,

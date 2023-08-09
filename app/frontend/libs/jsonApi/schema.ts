@@ -10,6 +10,7 @@ import { Workshops as workshopsSchema } from '~/modules/admin/modules/campaigns/
 import { Schema as userAvailabilityDate } from '~/modules/admin/modules/UserAvailability/core/userAvailabilityDates'
 import { Schema as workshopSubjectsSchema } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { Schema as workshopResourcesSchema } from '~/modules/admin/modules/campaigns/core/workshopResource'
+import { Schema as campaignAssessmentSchema } from '~/modules/admin/modules/campaigns/core/campaignAssessment'
 
 export const Schema = {
   clients: clientSchema,
@@ -24,4 +25,5 @@ export const Schema = {
   userAvailabilityDate,
   workshopSubjects: workshopSubjectsSchema,
   workshopResources: workshopResourcesSchema,
+  campaignAssessments: campaignAssessmentSchema,
 }

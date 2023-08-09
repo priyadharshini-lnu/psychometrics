@@ -27,7 +27,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
       security [basic: []]
 
       response '200', 'Workshop list' do
-        schema '$ref' => '#/components/schemas/WorkshopListResponse'
+        schema '$ref' => '#/components/schemas/WorkshopInviteListResponse'
 
         examples 'application/json' => [{
           type: 'workshop_invites',
@@ -65,7 +65,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
                 required: true
 
       response '200', 'Workshop Created' do
-        schema '$ref' => '#/components/schemas/WorkshopResponse'
+        schema '$ref' => '#/components/schemas/WorkshopInviteResponse'
         examples 'application/json' => {
           data: {
             type: 'workshop_invites',

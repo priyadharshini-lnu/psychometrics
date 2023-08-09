@@ -1,21 +1,50 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Space, Switch, Tag, message, Typography,
+  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
   WorkshopSubject, WorkshopSubjectTR,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
+import { BulkSchedule } from './BulkSchedule/BulkSchedule'
+import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 
 const { I18n } = window
 const { Text } = Typography
 
-export const SubjectList: React.FC = () => {
+interface Props {
+  workshop: Workshop
+}
+
+export const SubjectList: React.FC<Props> = ({ workshop }) => {
   const { id, campaignId } = useParams<{ id: string, campaignId: string }>()
   const [confirmation, setConfirmation] = useState(false)
+  const [openForm, setOpenForm] = useState(false)
+  const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
+  const { memberAction } = useResources('workshops', { })
+
+  const updateSubjets = (data) => {
+    memberAction({
+      id: workshop.id,
+      action: 'bulk_update_subjects',
+      method: 'post',
+      body: data,
+    }).then(() => {
+      setOpenForm(false)
+    })
+  }
+
+  const toggleSelectedSubject = (checked, subject) => {
+    if (checked) {
+      setSelectedSubjects([...selectedSubjects, subject])
+    } else {
+      setSelectedSubjects(selectedSubjects.filter(s => s !== subject))
+    }
+  }
 
   const config = {
     responseType: WorkshopSubjectTR,
@@ -32,9 +61,40 @@ export const SubjectList: React.FC = () => {
   return (
     <>
       <Resource config={config} name="workshop_subjects">
-        <Resource.Filter name="user_full_name_or_user_email_cont" />
+        <Resource.Filter name="user_full_name_or_user_email_cont">
+          <Button
+            disabled={!selectedSubjects.length}
+            type="primary"
+            onClick={() => setOpenForm(true)}
+          >
+            {I18n.t('administration.scheduling.schedule_assessments')}
+          </Button>
+        </Resource.Filter>
         <Resource.Table pagination>
-          <Resource.Column<WorkshopSubject> title={I18n.t('common.column.id')} id="id" width="3%" />
+          <Resource.Column
+            title={() => {
+              const { resource } = useResourceContext<WorkshopSubject>()
+              return (
+                <Space>
+                  <Checkbox onChange={e => setSelectedSubjects(e.target.checked ? resource.data : [])} />
+                  {' '}
+                  {I18n.t('administration.scheduling.id')}
+                </Space>
+              )
+            }}
+            id="id"
+            width="3%"
+            render={subject => (
+              <Space>
+                <Checkbox
+                  checked={selectedSubjects.includes(subject)}
+                  onChange={e => toggleSelectedSubject(e.target.checked, subject)}
+                />
+                {' '}
+                {subject.id}
+              </Space>
+            )}
+          />
           <Resource.Column<WorkshopSubject>
             title={I18n.t('administration.scheduling.columns.participants')}
             id="full_name"
@@ -97,6 +157,12 @@ export const SubjectList: React.FC = () => {
             )}
           />
         </Resource.Table>
+        <BulkSchedule
+          open={openForm}
+          subjects={selectedSubjects}
+          onClose={() => setOpenForm(false)}
+          onSave={updateSubjets}
+        />
       </Resource>
     </>
   )

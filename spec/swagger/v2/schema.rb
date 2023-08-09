@@ -238,9 +238,12 @@ module Swagger
             Api::V2::CampaignAssessorAssessment::Schema.single_resource_response
           ),
           WorkshopResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Workshop::Schema.single_resource_response
+          ),
+          WorkshopInviteResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopInvite::Schema.single_resource_response
           ),
-          WorkshopListResponse: Api::Base::GenerateSwagger.call!(
+          WorkshopInviteListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopInvite::Schema.multiple_resource_response
           ),
           WorkshopInviteCreateRequest: Api::Base::GenerateSwagger.call!(
@@ -254,6 +257,9 @@ module Swagger
           ),
           WorkshopSubjectsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopSubject::Schema.multiple_resource_response
+          ),
+          WorkshopBulkUpdateSubjectsRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Workshop::Schema.bulk_update_subjects
           ),
           WorkshopSubjectsUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopSubject::Schema.update_request
@@ -278,6 +284,9 @@ module Swagger
           ),
           UserAvailabilityDateUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::UserAvailabilityDate::Schema.update_request
+          ),
+          CampaignAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessment::Schema.multiple_resource_response
           )
         }
       }

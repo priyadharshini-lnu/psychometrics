@@ -145,7 +145,7 @@ export const WorkshopPage: FC = () => {
               <Radio.Button value="activities">{I18n.t('administration.scheduling.tabs.activities')}</Radio.Button>
             </Radio.Group>
           </div>
-          {currentTab === 'subjects' && <SubjectList />}
+          {currentTab === 'subjects' && <SubjectList workshop={workshop} />}
           {currentTab === 'resources' && <ResourceList />}
         </div>
       </div>

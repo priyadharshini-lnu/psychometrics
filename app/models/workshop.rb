@@ -13,6 +13,7 @@ class Workshop < ApplicationRecord
   has_many :workshop_managers
   has_many :managers, through: :workshop_managers, source: :user
   has_many :user_bookings, dependent: :destroy, as: :booked_by_resource
+  has_many :campaign_assessments, -> { workshop_activities }, through: :campaign
 
   enum video_call_type: { not_available: 0, internal: 1, custom: 2 }
 end
