@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { useState } from 'react'
 import {
-  Form, Space, Button, Input, Collapse, Alert,
+  Form, Space, Button, Input, Collapse, Alert, Typography,
 } from 'antd'
 import * as t from 'io-ts'
 import moment from 'moment'
@@ -16,6 +16,7 @@ import { useResources } from '~/hooks/useResources'
 import { WorkshopCreateResponseTR, Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
+const { Title } = Typography
 const fieldLayout = {
   labelCol: { span: 24 },
   wrapperCol: { span: 24 },
@@ -154,6 +155,7 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
             <Panel
               title={basicInfoData.dates[index].format('Do, MMMM, YYYY').toString()}
               collapsible
+              additionalDetailsLabelStyle={{ color: '#808080' }}
               additionalDetails={[
                 {
                   label: I18n.t('administration.scheduling.assessment_center_form.timezone_label'),
@@ -172,6 +174,8 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
                 (
                   <>
                     <Form
+                      requiredMark={false}
+                      className={styles.form}
                       layout="vertical"
                       key={`form${index}`}
                       form={form}
@@ -186,7 +190,11 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
                     >
                       <Collapse ghost>
                         <Collapse.Panel
-                          header={I18n.t('administration.scheduling.assessment_center_form.meetings_and_resources')}
+                          header={(
+                            <Title level={5}>
+                              {I18n.t('administration.scheduling.assessment_center_form.meetings_and_resources')}
+                            </Title>
+                          )}
                           key="1"
                         >
                           <ResourcesItems
@@ -211,6 +219,8 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
                 )
               ))}
               <Form
+                requiredMark={false}
+                className={styles.form}
                 layout="vertical"
                 key={`form${index}`}
                 form={form}

@@ -9,15 +9,21 @@ interface AdditionsDetailsProps {
   additionalDetails: AdditionsDetailsData
   layout?: 'horizontal' | 'vertical'
   className?: string
+  labelStyles?: React.CSSProperties
 }
 
 export const AdditionalDetails: React.FC<AdditionsDetailsProps> = ({
-  additionalDetails, layout = 'vertical', className,
+  additionalDetails, layout = 'vertical', className, labelStyles,
 }) => (
   <div className={cs(styles.additionalDetailsContainer, className)}>
-    <Descriptions layout={layout} column={layout === 'horizontal' ? 0 : additionalDetails.length} size="small">
+    <Descriptions
+      colon={layout === 'horizontal'}
+      layout={layout}
+      column={layout === 'horizontal' ? 0 : additionalDetails.length}
+      size="small"
+    >
       {_.map(additionalDetails, data => (
-        <Descriptions.Item label={data.label} key={data.label}>{data.value}</Descriptions.Item>
+        <Descriptions.Item labelStyle={labelStyles} label={data.label} key={data.label}>{data.value}</Descriptions.Item>
       ))}
     </Descriptions>
   </div>

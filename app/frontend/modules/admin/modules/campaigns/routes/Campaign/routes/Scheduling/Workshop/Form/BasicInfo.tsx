@@ -58,7 +58,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
         title={I18n.t('administration.scheduling.assessment_center_form.basic_info_panel.title')}
         description={I18n.t('administration.scheduling.assessment_center_form.basic_info_panel.description')}
       >
-        <Form layout="vertical" form={form} initialValues={initialValues}>
+        <Form requiredMark={false} className={styles.form} layout="vertical" form={form} initialValues={initialValues}>
           <Form.Item
             name="dates"
             label={I18n.t('administration.scheduling.assessment_center_form.dates_label')}
@@ -181,7 +181,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
         title={I18n.t('administration.scheduling.assessment_center_form.resources_panel.title')}
         description={I18n.t('administration.scheduling.assessment_center_form.resources_panel.description')}
       >
-        <Form layout="vertical" form={form} initialValues={initialValues}>
+        <Form requiredMark={false} className={styles.form} layout="vertical" form={form} initialValues={initialValues}>
           <ResourcesItems />
         </Form>
       </Panel>

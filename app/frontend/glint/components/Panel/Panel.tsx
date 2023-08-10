@@ -15,6 +15,7 @@ interface Props {
   children: React.ReactNode
   additionalDetails?: AdditionsDetailsData
   additionalDetailsLayout?: 'horizontal' | 'vertical'
+  additionalDetailsLabelStyle?: React.CSSProperties
   footer?: JSX.Element | null
   removable?: boolean
   onRemove?: () => void
@@ -29,6 +30,7 @@ export const Panel: React.FC<Props> = ({
   collapsible = false,
   additionalDetails,
   additionalDetailsLayout = 'vertical',
+  additionalDetailsLabelStyle,
   footer,
   removable,
   onRemove,
@@ -65,6 +67,7 @@ export const Panel: React.FC<Props> = ({
                 className={cs({ 'me-6': removable })}
                 additionalDetails={additionalDetails}
                 layout="vertical"
+                labelStyles={additionalDetailsLabelStyle}
               />
               )}
               {removable ? (

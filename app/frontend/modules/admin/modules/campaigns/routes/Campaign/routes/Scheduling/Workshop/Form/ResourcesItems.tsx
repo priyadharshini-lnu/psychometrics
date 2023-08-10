@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {
-  Form, Input, Row, Col, Button, Space, Radio,
+  Form, Input, Row, Col, Button, Radio, Typography,
 } from 'antd'
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons'
 import styles from './Form.less'
 
+const { Title } = Typography
 const fieldLayout = {
   labelCol: { span: 24 },
   wrapperCol: { span: 24 },
@@ -52,7 +53,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
           )}
         </>
       )}
-      <label>Resources</label>
+      <Title level={5}>Resources</Title>
       <Form.List name="workshop_resources">
         {(fields, { add, remove }) => (
           <>
@@ -66,20 +67,20 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
                     rules={[{ required: true }]}
                     {...fieldLayout}
                   >
-                    <Input placeholder="Name" />
+                    <Input />
                   </Form.Item>
                 </Col>
                 <Col span={8} offset={1}>
                   <Form.Item
                     {...field}
                     name={[field.name, 'url']}
-                    label="Url"
+                    label="URL"
                     {...fieldLayout}
                   >
-                    <Input placeholder="Url" />
+                    <Input placeholder="Resource Link" />
                   </Form.Item>
                 </Col>
-                <Col span={1}>
+                <Col className="flex items-center justify-center" span={1}>
                   <CloseOutlined
                     className={styles.removeResource}
                     onClick={() => remove(index)}
@@ -87,15 +88,14 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
                 </Col>
               </Row>
             ))}
-            <Space>
-              <Button
-                type="link"
-                icon={<PlusOutlined />}
-                onClick={() => add()}
-              >
-                Add More
-              </Button>
-            </Space>
+            <Button
+              type="link"
+              icon={<PlusOutlined />}
+              onClick={() => add()}
+              className="ps-0"
+            >
+              Add More
+            </Button>
           </>
         )}
       </Form.List>
