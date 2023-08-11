@@ -19,6 +19,10 @@ module Api
         has_permission?(:projects, :manage_users, project_id: @record.project_id)
       end
 
+      def create_global_assessor?
+        @user.is?(:superadmin)
+      end
+
       def reset_password?
         return true if @user.is?(:superadmin)
         return false unless @record.is?(:regular)

@@ -1175,6 +1175,7 @@ Rails.application.routes.draw do
             get :roles
             collection do
               post :create_superadmin
+              post :create_global_assessor
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end

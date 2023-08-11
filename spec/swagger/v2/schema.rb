@@ -171,6 +171,12 @@ module Swagger
           UserListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.multiple_resource_response
           ),
+          UserResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.single_resource_response
+          ),
+          UserCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.create_request
+          ),
           MembershipListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Membership::Schema.multiple_resource_response
           ),

@@ -34,6 +34,7 @@ const TabsComponent: React.FC<Props> = ({ currentUser }) => {
     menuItems.push(
       { key: 'admins', icon: <ShopOutlined />, label: I18n.t('users.admins') },
       { key: 'superadmins', icon: <ShopOutlined />, label: I18n.t('users.superadmins') },
+      { key: 'global-assessors', icon: <ShopOutlined />, label: I18n.t('users.global_assessors') },
     )
   )
 
@@ -43,6 +44,9 @@ const TabsComponent: React.FC<Props> = ({ currentUser }) => {
     }
     if (pathname.includes('/admins')) {
       return ['admins']
+    }
+    if (pathname.includes('/global-assessors')) {
+      return ['global-assessors']
     }
     if (pathname.includes('/users')) {
       return ['users']

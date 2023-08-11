@@ -3,6 +3,7 @@
 module Api
   class V2::Administration::UsersController < Api::V2::Administration::BaseController
     validates_request_schema :create_superadmin, Api::V2::User::CreateSuperadminContract.new
+    validates_request_schema :create_global_assessor, Api::V2::User::CreateGlobalAssessorContract.new
     validates_request_schema :reset_password, Api::V2::User::ResetPasswordContract.new
 
     prepend_before_action :set_resource, only: %i[reset_password roles]
@@ -38,6 +39,11 @@ module Api
       user.save!
       audit! :create_superadmin, user, payload: create_resource_params
       user.invite!(current_user)
+      jsonapi_render json: user
+    end
+
+    def create_global_assessor
+      user = ::Users::CreateOrModifyGlobalAssessor.call!(current_user, create_resource_params)
       jsonapi_render json: user
     end
 

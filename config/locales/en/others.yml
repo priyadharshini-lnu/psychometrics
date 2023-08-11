@@ -3210,12 +3210,14 @@ en:
       reset_password:
         option: Reset Password
     admins: Admins
+    create_global_assessor: Create Global Assessor
     create_superadmin: Create Super Admin
     dashboard: Dashboard
     drawer:
       link: Link
       role: Role
       title: User details
+    global_assessors: Global Assessors
     password_change_success: Password changed successfully. Please login with your new password.
     remove_message: Are you sure?
     roles:

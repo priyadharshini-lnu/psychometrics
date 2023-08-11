@@ -180,4 +180,54 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
       end
     end
   end
+
+  path '/users/create_global_assessor' do
+    post 'Create Global Assessor' do
+      operationId 'CreateGlobalAssessor'
+      description 'Create Global Assessor'
+      tags 'User'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/UserResponse' },
+                required: true
+
+      response '200', 'Global Assessor Created' do
+        schema '$ref' => '#/components/schemas/UserCreateRequest'
+
+        examples 'application/json' => {
+          type: 'users',
+          data: {
+            id: '770',
+            attributes: {
+              email: 'random@gmail.com',
+              first_name: 'John',
+              last_name: 'Doe'
+            }
+          }
+        }
+
+        let(:body) do
+          jsonapi_resource_request(
+            'users',
+            {
+              email: Faker::Internet.email,
+              first_name: Faker::Name.first_name,
+              last_name: Faker::Name.last_name
+            }
+          )
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)['data']
+          expect(data).to have_key('id')
+          expect(data).to have_attribute(:email)
+          expect(data).to have_attribute(:first_name)
+          expect(data).to have_attribute(:last_name)
+          user = User.find_by(email: data['attributes']['email'])
+          expect(user).to eq(User.last)
+          expect(user.global_assessor).to eq(true)
+        end
+      end
+    end
+  end
 end

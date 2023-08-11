@@ -8,13 +8,14 @@ const { I18n } = window
 
 interface Props {
   close(): void
+  userTab: string,
 }
 
-export const UserFormModal: React.FC<Props> = ({ close }) => {
+export const UserFormModal: React.FC<Props> = ({ close, userTab }) => {
   const { resource } = useResourceContext()
 
   const createResource = (body: Record<string, string | undefined | null>) => resource.collectionAction({
-    action: 'create_superadmin',
+    action: userTab === 'Users::SuperAdmin' ? 'create_superadmin' : 'create_global_assessor',
     method: 'post',
     body,
     updateStore: true,

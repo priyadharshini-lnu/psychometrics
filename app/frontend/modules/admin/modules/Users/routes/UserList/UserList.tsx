@@ -39,11 +39,15 @@ const UserListComponent: React.FC<Props> = ({
 }) => {
   const [drawerUser, setDrawerUser] = useState<User | undefined>()
   const [closed, closeModal] = useState(true)
+  let filter: Record<string, string> = { role_eq: userTab }
+  if (userTab === 'Users::GlobalAssessors') {
+    filter = { role_eq: 'Users::Admin', global_assessor_eq: 'true' }
+  }
   const config = {
     trackUrl: true,
     apiConfig: {
       camelizeExcept: ['$[*].enable_2fa', '$.enable_2fa'],
-      filter: { role_eq: userTab },
+      filter,
       include_resource_meta: ['permissions'],
     },
     responseType: UserTR,
@@ -67,7 +71,7 @@ const UserListComponent: React.FC<Props> = ({
         <UserFilter currentUser={currentUser} userTab={userTab} openModal={() => closeModal(false)} />
         <UserTable currentUser={currentUser} userTab={userTab} openDrawer={setDrawerUser} />
         {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
-        {!closed && <UserFormModal close={() => closeModal(true)} />}
+        {!closed && <UserFormModal close={() => closeModal(true)} userTab={userTab} />}
         <Modals modals={MODALS} />
       </Resource>
     </>
