@@ -1228,11 +1228,12 @@ Rails.application.routes.draw do
               post :bulk_update_subjects
             end
           end
-          jsonapi_resources :workshop_invites, only: %i[index create destroy] do
+          jsonapi_resources :workshop_invites, only: %i[index create destroy show] do
             collection do
               get :import_subjects_from_campaign
               post :import_subjects_from_csv
             end
+            jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy]
           end
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
 

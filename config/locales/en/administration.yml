@@ -2800,6 +2800,11 @@ en:
         successfully: Users was successfully imported
       new:
         header: Import Users
+    individual_invite:
+      tabs:
+        assessment_center: Assessment Center
+        cancellation_reschedule: Cancellation/Reschedule Requests
+        subjects: Subjects
     innovation_styles:
       copy:
         error: 'Innovation Style #%{id} was not copied.'
@@ -2909,6 +2914,22 @@ en:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
           tenant_id_present: Tenant id is already present in other project
+    invited_subject:
+      add_btn: Add Subject
+      column:
+        participant: Participant
+      remove_confirm:
+        content: Are you sure you want to remove subject '%{subjectName}'?
+        success: Subject '%{subjectName}'' was successfully removed.
+        title: Remove Subject
+      statuses:
+        accepted: Accepted
+        cancelled: Cancelled
+        pending: Pending
+        requested_cancellation: Requested Cancellation
+        requested_rescheduling: Requested Rescheduling
+        rescheduled: Rescheduled
+      subject: Subject
     libraries:
       create:
         successfully: Item %{name} was successfully created.

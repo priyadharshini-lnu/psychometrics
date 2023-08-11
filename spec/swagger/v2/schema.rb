@@ -291,6 +291,15 @@ module Swagger
           UserAvailabilityDateUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::UserAvailabilityDate::Schema.update_request
           ),
+          WorkshopInvitedSubjectResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvitedSubject::Schema.single_resource_response
+          ),
+          WorkshopInvitedSubjectListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvitedSubject::Schema.multiple_resource_response
+          ),
+          WorkshopInvitedSubjectCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvitedSubject::Schema.create_request
+          ),
           CampaignAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessment::Schema.multiple_resource_response
           )

@@ -1743,6 +1743,8 @@ en:
         overlaps_time: Overlaps interval %{interval}
         start_date_should_be_less: Start date should be less than end date
         start_time_should_be_less: Start time should be less than end time
+      workshop_invited_subject_create:
+        already_exists: Subject already exists in the invite.
   ecommerce:
     carts:
       show:

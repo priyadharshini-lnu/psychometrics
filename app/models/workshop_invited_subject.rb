@@ -14,4 +14,9 @@ class WorkshopInvitedSubject < ApplicationRecord
   scope :bookings, lambda {
     where(status: %i[accepted rescheduled cancelled requested_rescheduling requested_cancellation])
   }
+  scope :filterable_fields, ->(query) { joins(:user).merge(User.filterable_fields(query)) }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filterable_fields]
+  end
 end

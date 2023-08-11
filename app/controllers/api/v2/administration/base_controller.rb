@@ -84,7 +84,7 @@ module Api
     end
 
     def context_for_schema_validation
-      { current_user: current_user, project: project, campaign: campaign }
+      { current_user: current_user, project: project, campaign: campaign, params: params }
     end
 
     def rescue_json_api_error(error)

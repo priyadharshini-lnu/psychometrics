@@ -12,6 +12,7 @@ import {
   Scheduling, WorkshopList, Invites, InvitesForm, AssessmentCenterForm,
 } from './Scheduling'
 import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
+import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
@@ -32,12 +33,14 @@ const routes = [
     routes: [
       { path: '/scheduling/assessment_center', component: WorkshopList },
       { path: '/scheduling/invites', component: Invites },
+      { path: '/scheduling/invites/add_invite', component: InvitesForm },
     ],
   },
   { path: '/scheduling/assessment_center/new', component: AssessmentCenterForm },
   { path: '/scheduling/assessment_center/:id', component: WorkshopPage },
   { path: '/scheduling/assessment_center/:id/:tab', component: WorkshopPage },
   { path: '/scheduling/invites/add_invite', component: InvitesForm },
+  { path: '/scheduling/invites/:inviteId/:tabName', component: IndividualInvite },
   { path: '/assessments_reports/*', component: AssessmentsReports },
   { path: '/assessments_reports', component: AssessmentsReports },
   { path: '/stats', component: Stats },

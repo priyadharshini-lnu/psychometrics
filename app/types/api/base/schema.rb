@@ -135,7 +135,7 @@ module Api
           processed_relationship = {
             required: type == :create && relationship[:relationship] == :one,
             allowed_blank: relationship[:relationship] != :one,
-            links: %i[single_response multiple_response].include?(type)
+            links: links? && %i[single_response multiple_response].include?(type)
           }.merge(relationship)
 
           acc << processed_relationship

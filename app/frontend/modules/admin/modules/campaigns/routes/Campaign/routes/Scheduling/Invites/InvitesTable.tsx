@@ -2,7 +2,9 @@ import {
   Dropdown, Tag, Button,
 } from 'antd'
 import moment from 'moment'
-import { useParams, useLocation, useHistory } from 'react-router-dom'
+import {
+  useParams, useLocation, useHistory, Link,
+} from 'react-router-dom'
 import { WorkshopInvite } from 'modules/admin/modules/campaigns/core/invites'
 import {
   PlusOutlined,
@@ -69,7 +71,12 @@ export const InvitesTable = () => {
           </Button>
         </Resource.Filter>
         <Resource.Table pagination>
-          <Resource.Column<WorkshopInvite> title={I18n.t('workshop_invite.id')} id="id" sorter />
+          <Resource.Column
+            title={I18n.t('workshop_invite.id')}
+            id="id"
+            sorter
+            render={(_, { id }) => <Link to={`${location.pathname}/${id}/subjects`}>{id}</Link>}
+          />
           <Resource.Column<WorkshopInvite> title={I18n.t('workshop_invite.title')} id="title" sorter />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('workshop_invite.assessment_center')}

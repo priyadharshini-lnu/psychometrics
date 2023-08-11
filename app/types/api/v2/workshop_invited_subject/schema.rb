@@ -8,11 +8,15 @@ module Api
           'workshop_invited_subjects'
         end
 
-        def self.attributes(attribute, _)
-          proc do
-            attribute[:workshop_invite_id].filled(:string)
-            attribute[:user_id].filled(:string)
-          end
+        def self.relationships(_)
+          [
+            { name: :user, resource: :users, relationship: :one, required: true },
+            { name: :workshop_invite, resource: :workshop_invites, relationship: :one, required: true }
+          ]
+        end
+
+        def self.links?
+          false
         end
       end
     end

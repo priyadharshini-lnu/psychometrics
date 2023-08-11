@@ -7,6 +7,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def show?
+        has_permission?(:workshops, :view)
+      end
+
       def create_subjects_and_translations?
         has_permission?(:workshops, :manage)
       end
