@@ -11,15 +11,18 @@ module Administration
     end
 
     def show?
-      @user.is?(:superadmin) || @user.has_permission?(:communications, :view, project_id: project_id)
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :view, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
     def copy?
-      @user.is?(:superadmin) || @user.has_permission?(:communications, :manage, project_id: project_id)
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_permission?(:communications, :manage, project_id: project_id)
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
     def new_form?
