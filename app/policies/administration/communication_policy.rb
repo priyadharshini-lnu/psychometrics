@@ -43,7 +43,13 @@ module Administration
           @user.has_permission?(:communications, :view, project_id: project_id)
         end
 
-        scope.where('client_id IN (?) or communications.project_id IN (?)', permitted_client_ids, permitted_project_ids)
+        scope = scope.where(
+          'client_id IN (?) or communications.project_id IN (?)', permitted_client_ids, permitted_project_ids
+        )
+        if @user.is?(:campaign_admin)
+          scope = scope.or(Communication.where(campaign_id: @user.campaign_admin_campaigns))
+        end
+        scope
       end
     end
   end
