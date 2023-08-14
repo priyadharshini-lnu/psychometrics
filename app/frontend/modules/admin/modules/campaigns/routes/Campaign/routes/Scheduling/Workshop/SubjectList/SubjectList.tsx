@@ -3,6 +3,7 @@ import {
   Button, Menu, Space, Switch, Tag, message, Typography, Checkbox,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
@@ -10,11 +11,24 @@ import {
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
-import { BulkSchedule } from './BulkSchedule/BulkSchedule'
+import { BulkSchedule } from '../BulkSchedule/BulkSchedule'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
+// import { EditSubjectDrawer } from './EditSubjectDrawer'
 
 const { I18n } = window
 const { Text } = Typography
+
+const TAG_COLORS = {
+  // attendance statuses
+  no_status: 'default',
+  on_time: 'success',
+  late: 'warning',
+  no_show: 'error',
+  dropped_out: 'warning',
+  // completion statuses
+  not_started: 'default',
+  completed: 'success',
+}
 
 interface Props {
   workshop: Workshop
@@ -26,6 +40,13 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
   const [openForm, setOpenForm] = useState(false)
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
   const { memberAction } = useResources('workshops', { })
+  // const [openEditDrawer, setOpenEditDrawer] = useState(false)
+  // const [currentSubjectId, setCurrentSubjectId] = useState('')
+
+  // const handleEditSubject = (id) => {
+  //   setCurrentSubjectId(id)
+  //   setOpenEditDrawer(true)
+  // }
 
   const updateSubjets = (data) => {
     memberAction({
@@ -99,15 +120,24 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
             title={I18n.t('administration.scheduling.columns.participants')}
             id="full_name"
             width="40%"
-            render={({ user }) => (
-              <Space>
-                <ResourcesTag resource={user} />
-                <Space direction="vertical">
-                  {user?.fullName}
-                  <Text type="secondary" className="fs-12">{user?.email}</Text>
-                </Space>
-              </Space>
-            )}
+            render={({ user }) => {
+              const { id, fullName, photoUrl } = user || {}
+              return (
+                <div
+                  role="button"
+                  tabIndex={-1}
+                  // onClick={() => handleEditSubject(id)}
+                >
+                  <Space>
+                    <ResourceAvatar size="large" key={id} tooltip={fullName} url={photoUrl} name={fullName} />
+                    <Space size={0} direction="vertical">
+                      {user?.fullName}
+                      <Text type="secondary" className="fs-12">{user?.email}</Text>
+                    </Space>
+                  </Space>
+                </div>
+              )
+            }}
           />
           <Resource.Column<WorkshopSubject>
             title={I18n.t('administration.scheduling.columns.prework')}
@@ -164,41 +194,13 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
           onSave={updateSubjets}
         />
       </Resource>
+      {/* <EditSubjectDrawer
+        subjectId={currentSubjectId}
+        onClose={() => setOpenEditDrawer(false)}
+        open={openEditDrawer}
+      /> */}
     </>
   )
-}
-
-interface Resource {
-  id: string
-  fullName: string
-  photoUrl: string | null
-}
-
-interface ResourceProps {
-  resource: Resource
-}
-
-const ResourcesTag: React.FC<ResourceProps> = ({ resource }) => (
-  <div className="mt-1">
-    <ResourceAvatar
-      key={resource.id}
-      tooltip={resource.fullName}
-      url={resource?.photoUrl}
-      name={resource.fullName}
-    />
-  </div>
-)
-
-const TAG_COLORS = {
-  // attendance statuses
-  no_status: 'default',
-  on_time: 'success',
-  late: 'warning',
-  no_show: 'error',
-  dropped_out: 'warning',
-  // completion statuses
-  not_started: 'default',
-  completed: 'success',
 }
 
 const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {

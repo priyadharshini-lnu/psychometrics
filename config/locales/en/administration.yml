@@ -3786,12 +3786,22 @@ en:
         no_show: No Show
         not_started: Not Started
       subjects:
+        activities: Assessment Center Activities
+        add_assessor_form: Add Assessor Form
         assessments: Assessments
+        assessor_form: Assessor Form
+        assessor_forms: Assessor Forms
         confirm_message: Are you sure you want to delete subject '%{subject_name}'?
         confirm_title: Confirmation required
+        copy_link_msg: Link Copied
+        edit_assessor_form: Edit Assessor Form
         form_title: Schedule Assessments
+        language: Language
+        meeting_link_custom: Custom
+        meeting_link_none: None
         no_change: No Change
         override_existing: Override existing schedules for subjects
+        preworks: Preworks
         schedule: Schedule
         success_message: Subject with email %{subject_email} removed successfully.
         unschedule: Unschedule

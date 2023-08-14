@@ -1448,6 +1448,9 @@ en:
       active: Active
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List
+      assessment: Assessment
+      assessment_name: Assessment Name
+      assessor: Assessor
       category: Category
       completion_count: Completion Count
       completion_status: Completion Status
@@ -1464,6 +1467,8 @@ en:
       id: Id
       key: Key
       last_name: Last Name
+      linked_activities: Linked Activities
+      meeting_link: Meeting Link
       modified_by: Modified By
       modified_date: Modified Date
       name: Name
@@ -1472,6 +1477,7 @@ en:
       project: Project
       qc_user_list: QC Users List
       report_id: Report Id
+      schedule_time: Schedule Time
       status: Status
       timing: Timing
       token: Token
@@ -1491,6 +1497,14 @@ en:
       report: Report
       reports: Reports
       sms_invite: SMS Invite
+    status:
+      completed: Completed
+      dropped_out: Dropped Out
+      in_progress: In Progress
+      late: Late
+      no_show: No Show
+      not_started: Not Started
+      on_time: On Time
     text:
       accepted: Accepted
       all_pages: All Pages
