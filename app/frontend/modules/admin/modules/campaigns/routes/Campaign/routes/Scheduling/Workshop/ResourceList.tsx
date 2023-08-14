@@ -8,7 +8,7 @@ import {
 import { ConnectedProps, connect } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { CopyOutlined, PlusOutlined } from '@ant-design/icons'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ConfirmationModal } from '~/glint'
 
@@ -56,12 +56,7 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
             width="40%"
             render={({ url }) => (
               <Space>
-                <Link
-                  to={{ pathname: url }}
-                  target="_blank"
-                >
-                  {url}
-                </Link>
+                <a href={url} target="_blank" rel="noreferrer">{url}</a>
                 <CopyToClipboard
                   text={url}
                   onCopy={() => message.info(I18n.t('common.text.copied'))}
