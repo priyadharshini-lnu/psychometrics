@@ -20,7 +20,7 @@ module Api
       end
 
       def get_related_resources?
-        has_permission?(:workshops, :view)
+        has_permission?(:workshops, :view) || user.assessor?
       end
 
       class Scope < Scope

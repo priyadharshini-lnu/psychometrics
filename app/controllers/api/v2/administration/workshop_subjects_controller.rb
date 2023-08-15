@@ -11,7 +11,11 @@ module Api
             Administration::WorkshopSubjectPolicy,
             context[:user],
             @model,
-            %w[index update destroy],
+            [
+              'index',
+              %w[manage update],
+              'destroy'
+            ],
             { project_id: context[:client_id] }
           )
         }

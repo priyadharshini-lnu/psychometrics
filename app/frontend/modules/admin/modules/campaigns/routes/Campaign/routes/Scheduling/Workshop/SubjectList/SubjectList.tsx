@@ -36,10 +36,6 @@ interface Props {
 
 export const SubjectList: React.FC<Props> = ({ workshop }) => {
   const { id, campaignId } = useParams<{ id: string, campaignId: string }>()
-  const [confirmation, setConfirmation] = useState(false)
-  const [openForm, setOpenForm] = useState(false)
-  const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
-  const { memberAction } = useResources('workshops', { })
   // const [openEditDrawer, setOpenEditDrawer] = useState(false)
   // const [currentSubjectId, setCurrentSubjectId] = useState('')
 
@@ -47,25 +43,6 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
   //   setCurrentSubjectId(id)
   //   setOpenEditDrawer(true)
   // }
-
-  const updateSubjets = (data) => {
-    memberAction({
-      id: workshop.id,
-      action: 'bulk_update_subjects',
-      method: 'post',
-      body: data,
-    }).then(() => {
-      setOpenForm(false)
-    })
-  }
-
-  const toggleSelectedSubject = (checked, subject) => {
-    if (checked) {
-      setSelectedSubjects([...selectedSubjects, subject])
-    } else {
-      setSelectedSubjects(selectedSubjects.filter(s => s !== subject))
-    }
-  }
 
   const config = {
     responseType: WorkshopSubjectTR,
@@ -82,117 +59,7 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
   return (
     <>
       <Resource config={config} name="workshop_subjects">
-        <Resource.Filter name="user_full_name_or_user_email_cont">
-          <Button
-            disabled={!selectedSubjects.length}
-            type="primary"
-            onClick={() => setOpenForm(true)}
-          >
-            {I18n.t('administration.scheduling.schedule_assessments')}
-          </Button>
-        </Resource.Filter>
-        <Resource.Table pagination>
-          <Resource.Column
-            title={() => {
-              const { resource } = useResourceContext<WorkshopSubject>()
-              return (
-                <Space>
-                  <Checkbox onChange={e => setSelectedSubjects(e.target.checked ? resource.data : [])} />
-                  {' '}
-                  {I18n.t('administration.scheduling.id')}
-                </Space>
-              )
-            }}
-            id="id"
-            width="3%"
-            render={subject => (
-              <Space>
-                <Checkbox
-                  checked={selectedSubjects.includes(subject)}
-                  onChange={e => toggleSelectedSubject(e.target.checked, subject)}
-                />
-                {' '}
-                {subject.id}
-              </Space>
-            )}
-          />
-          <Resource.Column<WorkshopSubject>
-            title={I18n.t('administration.scheduling.columns.participants')}
-            id="full_name"
-            width="40%"
-            render={({ user }) => {
-              const { id, fullName, photoUrl } = user || {}
-              return (
-                <div
-                  role="button"
-                  tabIndex={-1}
-                  // onClick={() => handleEditSubject(id)}
-                >
-                  <Space>
-                    <ResourceAvatar size="large" key={id} tooltip={fullName} url={photoUrl} name={fullName} />
-                    <Space size={0} direction="vertical">
-                      {user?.fullName}
-                      <Text type="secondary" className="fs-12">{user?.email}</Text>
-                    </Space>
-                  </Space>
-                </div>
-              )
-            }}
-          />
-          <Resource.Column<WorkshopSubject>
-            title={I18n.t('administration.scheduling.columns.prework')}
-            id="preworks"
-          />
-          <Resource.Column<WorkshopSubject>
-            title={I18n.t('administration.scheduling.columns.activity')}
-            id="workshopActivities"
-          />
-          <Resource.Column<WorkshopSubject>
-            title={I18n.t('administration.scheduling.columns.attendance')}
-            id="attended"
-            render={subject => <ActiveSwitch subject={subject} />}
-          />
-          <Resource.Column<WorkshopSubject>
-            title={I18n.t('administration.scheduling.attendance_status.column_name')}
-            id="attendanceStatus"
-            render={(_, { attendanceStatus }) => (
-              <Tag color={TAG_COLORS[attendanceStatus]}>
-                {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
-              </Tag>
-            )}
-          />
-          <Resource.Column<WorkshopSubject>
-            title={I18n.t('administration.scheduling.completion_status.column_name')}
-            id="completion_status"
-            render={(_, { completionStatus }) => (
-              <Tag color={TAG_COLORS[completionStatus]}>
-                {I18n.t(`administration.scheduling.completion_status.${completionStatus}`)}
-              </Tag>
-            )}
-          />
-          <Resource.Column<WorkshopSubject>
-            title={I18n.t('common.column.action')}
-            id="actions"
-            key="actions"
-            render={subject => (
-              <ConditionalDropdown
-                menu={
-                  ActionsMenu({
-                    subject,
-                    setConfirmation,
-                    confirmation,
-                  }) as React.ReactElement
-                }
-              />
-            )}
-          />
-        </Resource.Table>
-        <BulkSchedule
-          open={openForm}
-          subjects={selectedSubjects}
-          onClose={() => setOpenForm(false)}
-          onSave={updateSubjets}
-        />
+        <SubjectsTable workshop={workshop} />
       </Resource>
       {/* <EditSubjectDrawer
         subjectId={currentSubjectId}
@@ -208,12 +75,156 @@ const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {
 
   return (
     <Switch
-      disabled={!resource.meta.permissions?.update}
+      disabled={!resource.meta.permissions?.manage}
       checked={subject.attended}
       onChange={() => {
         resource.updateResource({ id: subject.id, attended: !subject.attended })
       }}
     />
+  )
+}
+
+const SubjectsTable: React.FC<Props> = ({ workshop }) => {
+  const { resource } = useResourceContext<WorkshopSubject>()
+  const [confirmation, setConfirmation] = useState(false)
+  const [openForm, setOpenForm] = useState(false)
+  const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
+  const { memberAction } = useResources('workshops', { })
+
+  const toggleSelectedSubject = (checked, subject) => {
+    if (checked) {
+      setSelectedSubjects([...selectedSubjects, subject])
+    } else {
+      setSelectedSubjects(selectedSubjects.filter(s => s !== subject))
+    }
+  }
+
+  const updateSubjects = (data) => {
+    memberAction({
+      id: workshop.id,
+      action: 'bulk_update_subjects',
+      method: 'post',
+      body: data,
+    }).then(() => {
+      setOpenForm(false)
+    })
+  }
+
+  return (
+    <>
+      <Resource.Filter name="user_full_name_or_user_email_cont">
+        {resource.meta.permissions?.manage && (
+          <Button
+            disabled={!selectedSubjects.length}
+            type="primary"
+            onClick={() => setOpenForm(true)}
+          >
+            {I18n.t('administration.scheduling.schedule_assessments')}
+          </Button>
+        )}
+      </Resource.Filter>
+      <Resource.Table pagination>
+        <Resource.Column
+          title={() => (
+            <Space>
+              {resource.meta.permissions?.manage && (
+                <Checkbox onChange={e => setSelectedSubjects(e.target.checked ? resource.data : [])} />
+              )}
+              {I18n.t('administration.scheduling.id')}
+            </Space>
+          )}
+          id="id"
+          width="3%"
+          render={subject => (
+            <Space>
+              {resource.meta.permissions?.manage && (
+                <Checkbox
+                  checked={selectedSubjects.includes(subject)}
+                  onChange={e => toggleSelectedSubject(e.target.checked, subject)}
+                />
+              )}
+              {subject.id}
+            </Space>
+          )}
+        />
+        <Resource.Column<WorkshopSubject>
+          title={I18n.t('administration.scheduling.columns.participants')}
+          id="full_name"
+          width="40%"
+          render={({ user }) => {
+            const { id, fullName, photoUrl } = user || {}
+            return (
+              <div
+                role="button"
+                tabIndex={-1}
+                // onClick={() => handleEditSubject(id)}
+              >
+                <Space>
+                  <ResourceAvatar size="large" key={id} tooltip={fullName} url={photoUrl} name={fullName} />
+                  <Space size={0} direction="vertical">
+                    {user?.fullName}
+                    <Text type="secondary" className="fs-12">{user?.email}</Text>
+                  </Space>
+                </Space>
+              </div>
+            )
+          }}
+        />
+        <Resource.Column<WorkshopSubject>
+          title={I18n.t('administration.scheduling.columns.prework')}
+          id="preworks"
+        />
+        <Resource.Column<WorkshopSubject>
+          title={I18n.t('administration.scheduling.columns.activity')}
+          id="workshopActivities"
+        />
+        <Resource.Column<WorkshopSubject>
+          title={I18n.t('administration.scheduling.columns.attendance')}
+          id="attended"
+          render={subject => <ActiveSwitch subject={subject} />}
+        />
+        <Resource.Column<WorkshopSubject>
+          title={I18n.t('administration.scheduling.attendance_status.column_name')}
+          id="attendanceStatus"
+          render={(_, { attendanceStatus }) => (
+            <Tag color={TAG_COLORS[attendanceStatus]}>
+              {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
+            </Tag>
+          )}
+        />
+        <Resource.Column<WorkshopSubject>
+          title={I18n.t('administration.scheduling.completion_status.column_name')}
+          id="completion_status"
+          render={(_, { completionStatus }) => (
+            <Tag color={TAG_COLORS[completionStatus]}>
+              {I18n.t(`administration.scheduling.completion_status.${completionStatus}`)}
+            </Tag>
+          )}
+        />
+        <Resource.Column<WorkshopSubject>
+          title={I18n.t('common.column.action')}
+          id="actions"
+          key="actions"
+          render={subject => (
+            <ConditionalDropdown
+              menu={
+                ActionsMenu({
+                  subject,
+                  setConfirmation,
+                  confirmation,
+                }) as React.ReactElement
+              }
+            />
+          )}
+        />
+      </Resource.Table>
+      <BulkSchedule
+        open={openForm}
+        subjects={selectedSubjects}
+        onClose={() => setOpenForm(false)}
+        onSave={updateSubjects}
+      />
+    </>
   )
 }
 
