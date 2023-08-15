@@ -30,7 +30,8 @@ module Administration
     end
 
     def download_history?
-      @user.is?(:superadmin) || @user.has_permission?(:communications, :view, project_id: project_id)
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
     class Scope < Scope
