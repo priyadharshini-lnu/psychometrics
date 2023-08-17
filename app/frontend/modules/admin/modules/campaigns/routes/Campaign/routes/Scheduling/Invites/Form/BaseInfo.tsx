@@ -1,19 +1,63 @@
 import { useState } from 'react'
 import {
   Button, Select, Switch,
-  Form, Row, Col, Space,
+  Form, Row, Col, Space, Tag,
 } from 'antd'
+import _ from 'lodash'
+import { useParams } from 'react-router-dom'
+import moment from 'moment'
+import { useDebouncedCallback } from 'use-debounce/lib/index'
 import { Panel } from '~/glint/components/Panel/Panel'
+import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
+import { useResources } from '~/hooks/useResources'
 import styles from './Form.less'
 
 const { I18n } = window
 
 export const BaseInfoForm = ({ form, next }) => {
+  const params = useParams<{campaignId: string}>()
   const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferedLanguage'))
+  const [, setSelectedWorkshops] = useState([])
+  const [searchValue, setSearchValue] = useState('')
+  const {
+    data: assessmetnCenters, setData, getResource, fetch: fetchWorkshops,
+  } = useResources<Workshop>('workshops', {
+    basePath: `campaigns/${params.campaignId}`,
+  })
+
   const changePreferredLang = (checked) => {
     form.setFieldValue('allowPreferedLanguage', checked)
     setPreferredLang(checked)
   }
+
+  const changeWorkshops = (value) => {
+    const values = form.getFieldValue('workshopIds') || []
+    setSearchValue('')
+    setData([])
+    if (_.find(values, { id: value })) { return }
+
+    form.setFieldValue('workshopIds', [...values, getResource(value)])
+    setSelectedWorkshops(form.getFieldValue('workshopIds'))
+  }
+
+  const removeWorkshop = (id) => {
+    const values = form.getFieldValue('workshopIds') || []
+    form.setFieldValue('workshopIds', values.filter(w => w.id !== id && w))
+    setSelectedWorkshops(form.getFieldValue('workshopIds'))
+  }
+
+  const [searchWorkshops] = useDebouncedCallback(() => {
+    if (!searchValue) { return }
+
+    fetchWorkshops({
+      apiConfig: {
+        filter: {
+          search_query: searchValue,
+        },
+      },
+    })
+  }, 200)
+
   return (
     <div>
       <Panel
@@ -24,14 +68,35 @@ export const BaseInfoForm = ({ form, next }) => {
           <Col sm={24} md={12} lg={8}>
             <Form layout="vertical" form={form}>
               <Form.Item
-                name="assessment_centers"
+                name="workshops"
                 label={I18n.t('workshop_invite.basic_info.assessment_centers')}
               >
-                <Select
-                  showSearch
-                  placeholder={I18n.t('workshop_invite.basic_info.assessment_centers_placeholder')}
-                  options={[]}
-                />
+                <Row gutter={[16, 16]}>
+                  <Col span={24}>
+                    <Select
+                      showSearch
+                      placeholder={I18n.t('workshop_invite.basic_info.assessment_centers_placeholder')}
+                      options={assessmetnCenters.map(workshop => ({
+                        label: moment(workshop.startTime).format('Do MMMM YYYY, h:mm a'), value: workshop.id,
+                      }))}
+                      onSelect={changeWorkshops}
+                      filterOption={false}
+                      searchValue={searchValue}
+                      value={null}
+                      onSearch={(value) => {
+                        setSearchValue(value)
+                        searchWorkshops()
+                      }}
+                    />
+                  </Col>
+                  <Col span={24}>
+                    {(form.getFieldValue('workshopIds') || []).map(workshop => (
+                      <Tag closable onClose={() => removeWorkshop(workshop.id)}>
+                        {moment(workshop.startTime).format('Do MMMM YYYY, h:mm a')}
+                      </Tag>
+                    ))}
+                  </Col>
+                </Row>
               </Form.Item>
               <Form.Item name="allowPreferedLanguage" valuePropName="checked">
                 <Space>

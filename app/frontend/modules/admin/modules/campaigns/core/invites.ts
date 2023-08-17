@@ -10,6 +10,7 @@ export const WorkshopInviteTR = t.type({
   allowLanguagePreference: t.boolean,
   allowNeurodiversityOption: t.boolean,
   subjects: t.array(t.type({ subjectId: t.string })),
+  workshopIds: t.array(t.string),
   translations: t.array(t.type({
     locale: t.string,
     title: t.string,

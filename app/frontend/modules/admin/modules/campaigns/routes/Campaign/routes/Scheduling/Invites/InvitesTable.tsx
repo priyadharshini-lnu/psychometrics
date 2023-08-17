@@ -81,7 +81,7 @@ export const InvitesTable = () => {
           <Resource.Column<WorkshopInvite>
             title={I18n.t('workshop_invite.assessment_center')}
             id="assessmentCenter"
-            render={data => <Tag>{moment(data.createdAt).format('Do MMMM YYYY, h:mm a')}</Tag>}
+            render={data => <Tag>{moment(data.startTime).format('Do MMMM YYYY, h:mm a')}</Tag>}
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('workshop_invite.subjects')}

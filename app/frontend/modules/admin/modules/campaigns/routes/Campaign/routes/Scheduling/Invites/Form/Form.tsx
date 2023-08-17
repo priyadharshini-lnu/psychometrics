@@ -35,7 +35,8 @@ export const InvitesForm = () => {
       allowLanguagePreference: form.getFieldValue('allowLanguagePreference'),
       allowedLanguages: ['en', 'ar'],
       allowNeurodiversityOption: form.getFieldValue('allowNeurodiversityOption'),
-      subjects: form.getFieldValue('subjects').map(user => ({ userId: user.id })),
+      workshopIds: (form.getFieldValue('workshopIds') || []).map(workshop => workshop.id),
+      subjects: (form.getFieldValue('subjects') || []).map(user => ({ userId: user.id })),
       translations: form.getFieldValue('translations') || [],
     }, { apiConfig: { filter: { workshops_campaign_id_eq: params.campaignId } } }).then(() => {
       showSubmitPage(true)

@@ -16,4 +16,12 @@ class Workshop < ApplicationRecord
   has_many :campaign_assessments, -> { workshop_activities }, through: :campaign
 
   enum video_call_type: { not_available: 0, internal: 1, custom: 2 }
+
+  scope :search_query, lambda { |query|
+    where('TO_CHAR(start_time, \'ddth FMMonth yyyy, HH:MI am\') ILIKE ?', "%#{query}%")
+  }
+
+  def self.ransackable_scopes(_)
+    %i[search_query]
+  end
 end

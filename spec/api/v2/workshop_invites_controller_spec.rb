@@ -8,6 +8,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
   let!(:campaign) { create(:campaign, project: project) }
   let!(:superadmin) { create(:superadmin) }
   let!(:workshop) { create(:workshop, campaign: campaign) }
+  let!(:workshop2) { create(:workshop, campaign: campaign) }
   let!(:workshop_invite) { create(:workshop_invite) }
   let!(:workshop_invite_id) { workshop_invite.id }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
@@ -79,7 +80,8 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
               translations: [
                 { locale: 'en', title: 'title', description: 'description' },
                 { locale: 'ar', title: 'arabic', description: 'ar_description' }
-              ]
+              ],
+              workshop_ids: ['1']
             }
           }
         }
@@ -99,7 +101,8 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
                 translations: [
                   { locale: 'en', title: 'title', description: 'description' },
                   { locale: 'ar', title: 'arabic', description: 'ar_description' }
-                ]
+                ],
+                workshop_ids: [workshop.id.to_s, workshop2.id.to_s]
               }
             }
           }
@@ -117,6 +120,9 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
           expect(workshop_invite.reload.description).to eq('description')
           expect(workshop_invite.translations.find_by(locale: :ar).title).to eq('arabic')
           expect(workshop_invite.translations.find_by(locale: :ar).description).to eq('ar_description')
+          expect(workshop_invite.workshops.count).to eq(2)
+          expect(workshop_invite.workshops).to include(workshop)
+          expect(workshop_invite.workshops).to include(workshop2)
         end
       end
     end

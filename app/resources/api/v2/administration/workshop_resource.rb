@@ -12,6 +12,8 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
     records.where(start_time: (date_range.first...date_range.last))
   }
 
+  ransack_filters %i[search_query]
+
   def remaining_seats
     @model.total_seats - @model.booked_seats
   end

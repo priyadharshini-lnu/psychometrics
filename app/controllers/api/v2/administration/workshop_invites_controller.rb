@@ -3,16 +3,14 @@
 module Api
   class V2::Administration::WorkshopInvitesController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::WorkshopInvite::Schema
-    validates_request_schema :create_subjects_and_translations,
-                             Api::V2::WorkshopInvite::Schema.create_subjects_and_translations
-
-    prepend_before_action :set_workshop, only: %i[create]
-    prepend_before_action :set_resource, only: %i[create_subjects_and_translations]
+    prepend_before_action :set_workshops, only: %i[create]
 
     def create
       ActiveRecord::Base.transaction do
         @workshop_invite = WorkshopInvite.create!(workshop_invite_params)
-        @workshop_invite.workshops << @workshop
+        @workshops.each do |workshop|
+          @workshop_invite.workshops << workshop
+        end
         WorkshopInvites::BulkCreateSubjects.call!(@workshop_invite, subjects_params[:subjects])
         WorkshopInvites::CreateTranslations.call!(@workshop_invite, translations_params[:translations])
       end
@@ -31,16 +29,20 @@ module Api
       jsonapi_render json: users.to_a, options: { resource: Api::V2::Administration::UserResource }
     end
 
-    def set_workshop
-      @workshop = Api::Administration::WorkshopPolicy::Scope.new(
+    def set_workshops
+      @workshops = Api::Administration::WorkshopPolicy::Scope.new(
         current_user, Workshop
-      ).resolve.find_by(campaign_id: params[:filter][:workshops_campaign_id_eq])
+      ).resolve.where(id: workshop_params[:workshop_ids])
     end
 
     def set_resource
       @workshop_invite = Api::Administration::WorkshopInvitePolicy::Scope.new(
         current_user, WorkshopInvite
       ).resolve.find(params[:workshop_invite_id])
+    end
+
+    def workshop_params
+      params.require(:data).require(:attributes).permit(workshop_ids: [])
     end
 
     def workshop_invite_params
