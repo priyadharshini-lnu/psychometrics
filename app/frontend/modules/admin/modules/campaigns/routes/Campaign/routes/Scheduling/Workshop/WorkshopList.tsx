@@ -10,6 +10,7 @@ import moment, { Moment } from 'moment'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ResourceAvatar } from '~/glint'
+import { formatWorkshopDate } from '~/utils/workshop'
 
 const { I18n } = window
 
@@ -62,7 +63,7 @@ export const WorkshopList: React.FC = () => {
             title={I18n.t('administration.scheduling.columns.start_time')}
             id="startTime"
             width="15%"
-            render={(_, { startTime }) => moment(startTime).format('lll')}
+            render={(_, { startTime }) => formatWorkshopDate(startTime)}
             sorter
           />
           <Resource.Column<Workshop>

@@ -9,6 +9,7 @@ import { ArrowLeftOutlined, CopyOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
+import { formatWorkshopDate } from '~/utils/workshop'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
 import { useResources } from '~/hooks/useResources'
@@ -90,7 +91,7 @@ export const WorkshopPage: FC = () => {
             <>
               <Space>
                 <ArrowLeftOutlined onClick={() => routeUtils.moveTo(history, prefixPath, '/assessment_center')} />
-                {moment(workshop.startTime).format('Do MMMM YYYY, h:mm a')}
+                {formatWorkshopDate(workshop.startTime)}
               </Space>
             </>
           )}

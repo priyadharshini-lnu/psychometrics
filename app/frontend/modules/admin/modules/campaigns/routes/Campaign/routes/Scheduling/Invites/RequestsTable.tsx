@@ -1,7 +1,7 @@
 import {
   Table, Tag, Button, List, Avatar, Space,
 } from 'antd'
-import moment from 'moment'
+import { formatWorkshopDate } from '~/utils/workshop'
 import styles from './styles.less'
 
 export const RequestsTable = () => {
@@ -65,7 +65,7 @@ export const RequestsTable = () => {
       title: 'Date/Time',
       key: 'date',
       render (data) {
-        return <Tag>{moment(data.time).format('Do MMMM YYYY, h:mm a')}</Tag>
+        return <Tag>{formatWorkshopDate(data.time)}</Tag>
       },
     },
     {

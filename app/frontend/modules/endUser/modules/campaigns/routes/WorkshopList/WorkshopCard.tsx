@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import moment from 'moment'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { FC } from 'react'
+import { formatWorkshopDate } from '~/utils/workshop'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
 import { DetailsCard } from '~/glint'
 import styles from './styles.less'
@@ -43,7 +44,7 @@ export const WorkshopCard = ({ workshop }) => {
   return (
     <Col lg={12} xs={24} sm={24} className={styles['workshop-container-card']}>
       <DetailsCard
-        title={<TruncatedTitle title={moment(workshop.startTime).format('Do MMMM YYYY, h:mm a')} />}
+        title={<TruncatedTitle title={formatWorkshopDate(workshop.startTime)} />}
         status={(
           <StatusText
             startTime={workshop.startTime}

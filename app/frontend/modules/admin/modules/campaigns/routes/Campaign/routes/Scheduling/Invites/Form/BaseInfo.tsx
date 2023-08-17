@@ -5,8 +5,8 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
-import moment from 'moment'
 import { useDebouncedCallback } from 'use-debounce/lib/index'
+import { formatWorkshopDate } from '~/utils/workshop'
 import { Panel } from '~/glint/components/Panel/Panel'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { useResources } from '~/hooks/useResources'
@@ -77,7 +77,7 @@ export const BaseInfoForm = ({ form, next }) => {
                       showSearch
                       placeholder={I18n.t('workshop_invite.basic_info.assessment_centers_placeholder')}
                       options={assessmetnCenters.map(workshop => ({
-                        label: moment(workshop.startTime).format('Do MMMM YYYY, h:mm a'), value: workshop.id,
+                        label: formatWorkshopDate(workshop.startTime), value: workshop.id,
                       }))}
                       onSelect={changeWorkshops}
                       filterOption={false}
@@ -92,7 +92,7 @@ export const BaseInfoForm = ({ form, next }) => {
                   <Col span={24}>
                     {(form.getFieldValue('workshopIds') || []).map(workshop => (
                       <Tag closable onClose={() => removeWorkshop(workshop.id)}>
-                        {moment(workshop.startTime).format('Do MMMM YYYY, h:mm a')}
+                        {formatWorkshopDate(workshop.startTime)}
                       </Tag>
                     ))}
                   </Col>

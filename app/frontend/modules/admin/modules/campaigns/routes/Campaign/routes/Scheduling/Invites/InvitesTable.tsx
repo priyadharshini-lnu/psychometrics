@@ -1,7 +1,6 @@
 import {
   Dropdown, Tag, Button,
 } from 'antd'
-import moment from 'moment'
 import {
   useParams, useLocation, useHistory, Link,
 } from 'react-router-dom'
@@ -11,6 +10,7 @@ import {
   MoreOutlined,
 } from '@ant-design/icons'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { formatWorkshopDate } from '~/utils/workshop'
 
 const { I18n } = window
 
@@ -81,7 +81,7 @@ export const InvitesTable = () => {
           <Resource.Column<WorkshopInvite>
             title={I18n.t('workshop_invite.assessment_center')}
             id="assessmentCenter"
-            render={data => <Tag>{moment(data.startTime).format('Do MMMM YYYY, h:mm a')}</Tag>}
+            render={data => <Tag>{formatWorkshopDate(data.createdAt)}</Tag>}
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('workshop_invite.subjects')}
