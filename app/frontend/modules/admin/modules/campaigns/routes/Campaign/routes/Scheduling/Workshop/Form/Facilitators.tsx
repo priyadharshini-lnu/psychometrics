@@ -74,28 +74,27 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
     collectionAction: collectionActionFacilitators,
   } = useResources<User>(
     'workshop_facilitators',
-    { responseType: UserTR },
+    { responseType: t.array(UserTR) },
   )
 
   const startDateTime = index => (
-    basicInfoData.dates[index].set({
+    moment.tz(basicInfoData.dates[index].format('YYYY-MM-DD'), basicInfoData.timezone).set({
       hour: basicInfoData.time.hour(),
       minute: basicInfoData.time.minute(),
     })
   )
 
-  const endDateTime = (index) => {
-    const endDate = startDateTime(index).add(moment.duration(basicInfoData.duration, 'seconds'))
-    return moment(endDate).format(moment.defaultFormat)
-  }
+  const endDateTime = index => (
+    startDateTime(index).add(moment.duration(basicInfoData.duration, 'seconds'))
+  )
 
   const searchFacilitators = debounce((value, index, action) => {
     collectionActionFacilitators({
       action,
       method: 'get',
       body: {
-        startDateTime: moment.tz(startDateTime(index), basicInfoData.timezone).toString(),
-        endDateTime: moment.tz(endDateTime(index), basicInfoData.timezone).toString(),
+        startDateTime: startDateTime(index).format(),
+        endDateTime: endDateTime(index).format(),
         campaignId,
         projectId,
         searchTerm: value,
@@ -138,7 +137,7 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
   const handleFormChange = (index) => {
     const updatedFormsData = [...formData]
     updatedFormsData[index] = { ...updatedFormsData[index], ...basicInfoDataWithoutDates }
-    updatedFormsData[index].start_time = startDateTime(index).toString()
+    updatedFormsData[index].start_time = startDateTime(index).format()
     updatedFormsData[index] = _.omit(updatedFormsData[index], 'time')
     updatedFormsData[index].assessor_ids = assessorIds[index].length ? assessorIds[index] : []
     updatedFormsData[index].center_manager_ids = centerManagerIds[index].length ? centerManagerIds[index] : []
@@ -153,7 +152,7 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
         return (
           <>
             <Panel
-              title={basicInfoData.dates[index].format('Do, MMMM, YYYY').toString()}
+              title={basicInfoData.dates[index].format('Do, MMMM, YYYY')}
               collapsible
               additionalDetailsLabelStyle={{ color: '#808080' }}
               additionalDetails={[
@@ -167,7 +166,7 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
                 },
                 {
                   label: I18n.t('administration.scheduling.assessment_center_form.time_label'),
-                  value: startDateTime(index).toString(),
+                  value: startDateTime(index).format('YYYY-MM-DD hh:mm A Z'),
                 },
               ]}
               footer={

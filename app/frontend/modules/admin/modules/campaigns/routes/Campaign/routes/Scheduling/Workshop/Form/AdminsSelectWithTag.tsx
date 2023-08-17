@@ -15,7 +15,6 @@ const UserTR = t.type({
 
 type User = t.TypeOf<typeof UserTR>
 
-
 interface AdminSelectProps {
   options: User[]
   onChange: (selectedValues: string[]) => void
