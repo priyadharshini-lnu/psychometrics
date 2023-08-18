@@ -20,7 +20,7 @@ class CommunicationEmailMailer < ApplicationMailer
       from: smtp_setting.from_name_and_email,
       to: recipient.email,
       subject: @communication_email.communication.subject,
-      template_path: '/mailer/communication_email',
+      template_path: 'mailer/communication_email',
       delivery_method_options: smtp_setting.settings_for_email
     )
     @communication_email.update(sent_at: Time.current)

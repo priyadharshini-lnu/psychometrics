@@ -13,7 +13,7 @@ module ReportApproving
         from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
         to: user.email,
         subject: 'Report approving required',
-        template_path: '/mailer/report_approving',
+        template_path: 'mailer/report_approving',
         template_name: 'approver_notification'
       )
     end

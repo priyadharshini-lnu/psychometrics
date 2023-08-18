@@ -16,7 +16,7 @@ module Threesixty
         reply_to: schedule_email.reply_to_email,
         subject: get_subject(schedule_email, context),
         content_type: 'text/html',
-        template_path: '/mailer/threesixty/schedule_email',
+        template_path: 'mailer/threesixty/schedule_email',
         delivery_method_options: smtp_setting.settings_for_email
       )
     end

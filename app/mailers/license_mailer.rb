@@ -9,7 +9,7 @@ class LicenseMailer < ApplicationMailer
     mail(
       to: @resource.email,
       subject: I18n.t('mailer.license.expire.subject'),
-      template_path: '/mailer/license'
+      template_path: 'mailer/license'
     )
   end
 
@@ -19,7 +19,7 @@ class LicenseMailer < ApplicationMailer
     mail(
       to: @resource.email,
       subject: I18n.t('mailer.license.overuse.subject'),
-      template_path: '/mailer/license'
+      template_path: 'mailer/license'
     )
   end
 
@@ -29,7 +29,7 @@ class LicenseMailer < ApplicationMailer
     mail(
       to: @resource.email,
       subject: I18n.t('mailer.license.weekly_stats.subject'),
-      template_path: '/mailer/license'
+      template_path: 'mailer/license'
     )
   end
 end

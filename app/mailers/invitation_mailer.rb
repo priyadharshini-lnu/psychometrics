@@ -14,7 +14,7 @@ class InvitationMailer < ApplicationMailer
       from: smtp_setting.from_name_and_email,
       to: @resource.email,
       subject: I18n.t('devise.mailer.invitation_instructions.subject'),
-      template_path: '/devise/mailer',
+      template_path: 'devise/mailer',
       template_name: 'invitation_instructions',
       delivery_method_options: smtp_setting.settings_for_email
     )
