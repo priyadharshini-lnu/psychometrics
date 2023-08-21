@@ -19,8 +19,8 @@ module Users
       params = {
         start_date_time: start_date_time,
         end_date_time: end_date_time,
-        start_date: start_date_time.to_date,
-        end_date: end_date_time.to_date,
+        start_date: start_date_time.to_date.advance(days: -1),
+        end_date: end_date_time.to_date.advance(days: 1),
         limit: limit,
         offset: offset
       }

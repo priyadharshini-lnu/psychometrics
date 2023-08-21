@@ -330,4 +330,29 @@ describe Users::SearchByAvailability do
     expect(result.length).to eq(2)
     expect(result.pluck(:id)).to match_array([user1.id, user2.id])
   end
+
+  it 'handles day change due to difference in timezone between saved availability and passed date' do
+    user = create(:user)
+    user_availability_date = create(
+      :user_availability_date,
+      timezone: 'Etc/UTC',
+      user: user,
+      start_date: Date.parse('2023-08-10'),
+      end_date: Date.parse('2023-08-30')
+    )
+    create(
+      :user_availability_day,
+      user_availability_date: user_availability_date,
+      day: 1,
+      start_time: '21:00:00',
+      end_time: '22:00:00'
+    )
+
+    # 2023-08-21 21:00 UTC is 2023-08-22 01:00 (UTC+4). 21st is Monday i.e day 1 of week
+    result = described_class.new(
+      Time.zone.parse('2023-08-22 01:00:00 +0400'), Time.zone.parse('2023-08-22 02:00:00 +0400')
+    ).query
+    expect(result.length).to eq(1)
+    expect(result[0].id).to eq(user.id)
+  end
 end

@@ -38,7 +38,7 @@ module Api
         rule(data: { attributes: :start_date }) do
           start_date = values.dig(:data, :attributes, :start_date)
           end_date = values.dig(:data, :attributes, :end_date)
-          next if Time.zone.parse(start_date) < Time.zone.parse(end_date)
+          next if Date.parse(start_date) <= Date.parse(end_date)
 
           key.failure(:start_date_should_be_less)
         end
