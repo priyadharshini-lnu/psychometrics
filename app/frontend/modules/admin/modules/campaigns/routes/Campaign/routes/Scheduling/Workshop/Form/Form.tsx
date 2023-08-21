@@ -60,7 +60,6 @@ export const AssessmentCenterForm = () => {
           />
         </Col>
       </Row>
-
       {step === 0 && <BasicInfoForm initialValues={basicInfoData} onNext={handleNextForm1} />}
       {step === 1 && <Facilitators basicInfoData={basicInfoData} onPrevious={handlePrevious} />}
     </div>

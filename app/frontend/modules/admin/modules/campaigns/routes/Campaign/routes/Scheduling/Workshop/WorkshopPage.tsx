@@ -3,13 +3,19 @@ import {
   useHistory, useParams,
 } from 'react-router-dom'
 import {
-  Space, Descriptions, Avatar, Skeleton, Divider, Radio, message,
+  Space, Descriptions, Avatar, Skeleton, Divider, Radio, message, Button,
 } from 'antd'
-import { ArrowLeftOutlined, CopyOutlined } from '@ant-design/icons'
+import {
+  ArrowLeftOutlined, CopyOutlined, EditOutlined,
+} from '@ant-design/icons'
 import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { connect, ConnectedProps } from 'react-redux'
 
 import { formatWorkshopDate } from '~/utils/workshop'
+import { openModal } from '~/modules/admin/core/ui/modals'
+import Modals from '~/modules/admin/components/Modals'
+import { WorkshopEditFormModal } from './WorkshopEditFormModal'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
 import { useResources } from '~/hooks/useResources'
@@ -21,10 +27,15 @@ import { ResourceList } from './ResourceList'
 
 const { I18n } = window
 
+const connector = connect(null,
+  { openModal })
+
+type PropsFromRedux = ConnectedProps<typeof connector>
 interface Resource {
   id: string
   fullName: string
   photoUrl: string | null
+  // email: string
 }
 
 interface ResourcesProps {
@@ -46,7 +57,7 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
   )
 ) || null
 
-export const WorkshopPage: FC = () => {
+export const WorkshopPageComponent: FC<PropsFromRedux> = ({ openModal }) => {
   const {
     id, campaignId, tab,
   } = useParams<{ id: string, campaignId: string, tab: string | undefined }>()
@@ -96,7 +107,14 @@ export const WorkshopPage: FC = () => {
             </>
           )}
           column={4}
-          extra={(<></>)}
+          extra={(
+            <Button
+              icon={<EditOutlined />}
+              onClick={() => openModal('WorkshopEditFormModal')}
+              size="large"
+              type="link"
+            />
+          )}
         >
           <Descriptions.Item label={I18n.t('administration.scheduling.info.duration')}>
             {moment.duration(workshop.duration, 'seconds').humanize()}
@@ -150,6 +168,17 @@ export const WorkshopPage: FC = () => {
           {currentTab === 'resources' && <ResourceList />}
         </div>
       </div>
+      <Modals modals={{
+        WorkshopEditFormModal: props => (
+          <WorkshopEditFormModal
+            workshop={workshop}
+            {...props}
+          />
+        ),
+      }}
+      />
     </>
   )
 }
+
+export const WorkshopPage = connector(WorkshopPageComponent)

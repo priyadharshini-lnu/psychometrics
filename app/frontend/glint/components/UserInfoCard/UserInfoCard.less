@@ -1,8 +1,10 @@
 @import "~/styles/ant.variable.less";
+@import "~/styles/spacing.less";
 
 .userInfoCard {
-  box-shadow: @card-shadow;
   min-width: 180px;
+  padding-inline-end: @space-5;
+  box-shadow: @card-shadow;
 
   .meta {
     align-items: center;
@@ -18,4 +20,14 @@
   :global(.ant-list-item-meta-content) {
     width: auto;
   }
+  :global(.ant-list-item-meta-avatar) {
+    margin-inline-end: @space-2;
+  }
+  :global(.ant-list-item-meta-title) {
+    margin-bottom: 0px;
+  }
+}
+
+.transparent {
+  background: transparent;
 }

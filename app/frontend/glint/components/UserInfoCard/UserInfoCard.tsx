@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { Card, List } from 'antd'
 import { CloseOutlined } from '@ant-design/icons'
+import cs from 'classnames'
 
 import { ResourceAvatar } from '~/glint'
 
@@ -13,6 +14,8 @@ type SubjectCardProps = {
   email?: string | React.ReactElement
   avatarUrl?: string
   onRemove?: (id: string | number) => void
+  bordered?: boolean
+  transparent?: boolean
 }
 
 export const UserInfoCard: FC<SubjectCardProps> = ({
@@ -22,15 +25,21 @@ export const UserInfoCard: FC<SubjectCardProps> = ({
   email,
   avatarUrl,
   onRemove,
+  bordered = true,
+  transparent,
 }) => (
-  <Card className={styles.userInfoCard} bodyStyle={{ padding: 8 }}>
+  <Card
+    bordered={bordered}
+    className={cs({ [styles.userInfoCard]: true, [styles.transparent]: transparent })}
+    bodyStyle={{ padding: 8 }}
+  >
     {onRemove ? (
       <div
         data-testid={`remove-userinfo-${id}`}
         className={styles.remove}
         onClick={() => onRemove(id || '')}
       >
-        <CloseOutlined />
+        <CloseOutlined className="fs-12" />
       </div>
     ) : null}
     <List.Item.Meta

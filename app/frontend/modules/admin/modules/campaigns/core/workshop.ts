@@ -1,5 +1,12 @@
 import * as t from 'io-ts'
 
+export const userDetailsTR = t.type({
+  id: t.string,
+  fullName: t.string,
+  photoUrl: t.union([t.string, t.null]),
+  // email: t.string,
+})
+
 export const WorkshopTR = t.type({
   id: t.string,
   startTime: t.string,
@@ -9,25 +16,15 @@ export const WorkshopTR = t.type({
   remainingSeats: t.number,
   timezone: t.string,
   meetingLink: t.union([t.string, t.null]),
-  workshopManagers: t.array(
-    t.type({
-      id: t.string,
-      fullName: t.string,
-      photoUrl: t.union([t.string, t.null]),
-    }),
-  ),
-  workshopAssessors: t.array(
-    t.type({
-      id: t.string,
-      fullName: t.string,
-      photoUrl: t.union([t.string, t.null]),
-    }),
-  ),
+  workshopManagers: t.array(userDetailsTR),
+  workshopAssessors: t.array(userDetailsTR),
 })
 
 export const WorkshopCreateResponseTR = t.type({
   workshopIds: t.array(t.number),
 })
+
+export const userDetailsListTR = t.array(userDetailsTR)
 
 export const Workshops = {
   type: 'workshops',
@@ -42,3 +39,4 @@ export const Workshops = {
 }
 
 export type Workshop = t.TypeOf<typeof WorkshopTR>
+export type UserDetails = t.TypeOf<typeof userDetailsTR>

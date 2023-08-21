@@ -8,12 +8,14 @@ import moment from 'moment'
 import { Store } from 'antd/lib/form/interface'
 import { useParams } from 'react-router-dom'
 import debounce from 'lodash/debounce'
-import { Panel } from '~/glint/components/Panel/Panel'
+
+import { Panel, UsersSelectWithTags } from '~/glint'
 import styles from './Form.less'
-import { AdminsSelectWithTag } from './AdminsSelectWithTag'
 import { ResourcesItems } from './ResourcesItems'
 import { useResources } from '~/hooks/useResources'
-import { WorkshopCreateResponseTR, Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
+import {
+  WorkshopCreateResponseTR, Workshop, UserDetails, userDetailsListTR,
+} from '~/modules/admin/modules/campaigns/core/workshop'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const { Title } = Typography
@@ -44,15 +46,6 @@ interface Errors {
   detail?: string
 }
 
-const UserTR = t.type({
-  id: t.string,
-  name: t.string,
-  photoUrl: t.union([t.null, t.string]),
-  email: t.string,
-})
-
-type User = t.TypeOf<typeof UserTR>
-
 const { I18n } = window
 
 export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => {
@@ -68,13 +61,13 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
       responseType: WorkshopCreateResponseTR,
     },
   )
-  const [users, setUsers] = useState<User[]>([])
+  const [users, setUsers] = useState<UserDetails[]>([])
 
   const {
     collectionAction: collectionActionFacilitators,
-  } = useResources<User>(
+  } = useResources(
     'workshop_facilitators',
-    { responseType: t.array(UserTR) },
+    { responseType: t.array(userDetailsListTR) },
   )
 
   const startDateTime = index => (
@@ -99,7 +92,7 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
         projectId,
         searchTerm: value,
       },
-    }).then((data: User[]) => {
+    }).then((data: UserDetails[]) => {
       setUsers(data)
     })
   }, 50)
@@ -240,9 +233,10 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
                   label={I18n.t('administration.scheduling.assessment_center_form.manager_ids_label')}
                   {...fieldLayout}
                 >
-                  <AdminsSelectWithTag
-                    options={users}
-                    onSearch={(value) => {
+                  <UsersSelectWithTags
+                    preSelectedUsers={[]}
+                    users={users}
+                    onUserSearch={(value) => {
                       searchFacilitators(value, index, 'search_managers')
                     }}
                     onChange={(values) => {
@@ -256,9 +250,10 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
                   label={I18n.t('administration.scheduling.assessment_center_form.assessor_ids_label')}
                   {...fieldLayout}
                 >
-                  <AdminsSelectWithTag
-                    options={users}
-                    onSearch={(value) => {
+                  <UsersSelectWithTags
+                    preSelectedUsers={[]}
+                    users={users}
+                    onUserSearch={(value) => {
                       searchFacilitators(value, index, 'search_assessors')
                     }}
                     onChange={(values) => {

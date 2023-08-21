@@ -3766,6 +3766,7 @@ en:
         link: Meeting link
         managers: Center Managers
         remaining: Seats Remaining
+        search_placehoder: Search by id, email or name
         timezone: Timezone
       modal:
         content: Are you sure you want to delete %{description}?

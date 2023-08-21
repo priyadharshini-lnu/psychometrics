@@ -46,6 +46,7 @@ const SchedulingComponent: React.FC<Props> = ({ history, routes }) => {
           onSelect={onSelect}
           selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
           mode="horizontal"
+          className="w-100"
         />
       </div>
       <RouteList routes={routes} urlPrefix={prefix} />
