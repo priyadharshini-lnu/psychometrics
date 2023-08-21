@@ -58,7 +58,7 @@ export const InvitesTable = () => {
       <Resource
         config={{
           apiConfig: {
-            filter: { workshops_campaign_id_eq: params.campaignId },
+            filter: { campaign_id_eq: params.campaignId },
           },
         }}
         name="workshop_invites"
