@@ -3,18 +3,21 @@ import {
   Form, Radio, Input, Select, FormInstance,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
+
+import { getLanguageNameFromCode } from '~/utils/locales'
+
 import styles from './Questionnaire.less'
 
 type Props = {
-  languages: string[],
-  languagePreference?: boolean,
-  neuroDivergent?: boolean,
+  allowedLanguages: string[],
+  allowLanguagePreference?: boolean,
+  allowNeurodiversity?: boolean,
   formInstance: FormInstance
   initialValues?: Store |undefined
 }
 
 export const Questionnaire: FC<Props> = ({
-  languages, languagePreference, neuroDivergent, formInstance, initialValues,
+  allowedLanguages, allowLanguagePreference, allowNeurodiversity, formInstance, initialValues,
 }) => {
   const [, setFields] = useState({})
   return (
@@ -27,33 +30,49 @@ export const Questionnaire: FC<Props> = ({
       }}
       initialValues={initialValues}
     >
-      {languagePreference ? (
-        <Form.Item name="language" label="Do you have a language preference?">
-          <Radio.Group>
-            <Radio value>Yes</Radio>
-            <Radio value={false}>No</Radio>
-          </Radio.Group>
-        </Form.Item>
+      {allowLanguagePreference ? (
+        <>
+          <Form.Item name="language" label="Do you have a language preference?">
+            <Radio.Group>
+              <Radio value>Yes</Radio>
+              <Radio value={false}>No</Radio>
+            </Radio.Group>
+          </Form.Item>
+          <>
+            {formInstance.getFieldValue('language') || initialValues?.language ? (
+              <Form.Item rules={[{ required: true }]} name="preferredLanguage">
+                <Select>
+                  {allowedLanguages.map(lang => (
+                    <Select.Option
+                      value={lang}
+                      key={lang}
+                    >
+                      {getLanguageNameFromCode(lang)}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            ) : null}
+          </>
+        </>
       ) : null}
-      {formInstance.getFieldValue('language') ? (
-        <Form.Item name="preferredLanguage">
-          <Select defaultValue="English">
-            {languages.map(lang => <Select.Option key={lang}>{lang}</Select.Option>)}
-          </Select>
-        </Form.Item>
-      ) : null}
-      {neuroDivergent ? (
-        <Form.Item name="neurodivergent" label="Are you neurodivergent?">
-          <Radio.Group>
-            <Radio value>Yes</Radio>
-            <Radio value={false}>No</Radio>
-          </Radio.Group>
-        </Form.Item>
-      ) : null}
-      {formInstance.getFieldValue('neurodivergent') ? (
-        <Form.Item name="neurodivergentComment">
-          <Input.TextArea rows={4} placeholder="Your comments" />
-        </Form.Item>
+
+      {allowNeurodiversity ? (
+        <>
+          <Form.Item name="neurodivergent" label="Are you neurodivergent?">
+            <Radio.Group>
+              <Radio value>Yes</Radio>
+              <Radio value={false}>No</Radio>
+            </Radio.Group>
+          </Form.Item>
+          <>
+            {formInstance.getFieldValue('neurodivergent') || initialValues?.neurodivergent ? (
+              <Form.Item rules={[{ required: true }]} name="neurodivergentComments">
+                <Input.TextArea rows={4} placeholder="Your comments" />
+              </Form.Item>
+            ) : null}
+          </>
+        </>
       ) : null}
     </Form>
   )

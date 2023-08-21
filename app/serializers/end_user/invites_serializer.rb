@@ -2,7 +2,7 @@
 
 module EndUser
   class InvitesSerializer < ActiveModel::Serializer
-    attributes :id, :title, :description, :duration, :status
+    attributes :id, :title, :description, :duration, :status, :workshop_invite_id
 
     delegate :title, :description, to: :workshop_invite
 

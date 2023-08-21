@@ -7,8 +7,8 @@ import { TimeSlotSelection, TIME_FORMAT } from '~/glint/components/BookingCard/T
 import { GlintProvider } from '~/glint'
 
 const dateTimeFormatString = 'DD/MM/YYYY hh:mm A'
-const availableSlots = ['2023-07-15T09:00:00.100+05:30', '2023-07-15T09:30:00.100+05:30'].map(date => moment(date))
-const slotToBeSelected = availableSlots[1]
+const availableSlots = [{id: 1, date:'2023-07-15T09:00:00.100+05:30'}, {id:2, date:'2023-07-15T09:30:00.100+05:30'}].map(({id, date}) => ({id, date:moment(date)}))
+const slotToBeSelected = availableSlots[1].date
 
 function createMatchMedia (width) {
   return query => ({
@@ -30,15 +30,15 @@ function resizeScreenSize (width) {
 test('Selecting timeslot calls onTimeSelection handler with proper value', async () => {
   const expectedDateTime = slotToBeSelected.clone().format(dateTimeFormatString)
   let selectedDateTime = ''
-  const handleTimeZoneChange = (date) => {
-    selectedDateTime = date.format(dateTimeFormatString)
+  const handleTimeZoneChange = (dateObj) => {
+    selectedDateTime = dateObj.date.format(dateTimeFormatString)
   }
 
   render(
     <div id="container">
       <TimeSlotSelection
         availableSlots={availableSlots}
-        selectedDate={availableSlots[0]}
+        selectedDate={availableSlots[0].date}
         selectedDateTime={null}
         onTimeSelection={handleTimeZoneChange}
         onCancelDateSelection={() => null}
@@ -62,7 +62,7 @@ test('Selected time should be displayed on top', async () => {
     <div id="container">
       <TimeSlotSelection
         availableSlots={availableSlots}
-        selectedDate={availableSlots[0]}
+        selectedDate={availableSlots[0].date}
         selectedDateTime={slotToBeSelected}
         onTimeSelection={() => null}
         onCancelDateSelection={() => null}
@@ -81,7 +81,7 @@ test('On Desktop - Back icon should be shown only after a time-slot is selected 
     <div id="container">
       <TimeSlotSelection
         availableSlots={availableSlots}
-        selectedDate={availableSlots[0]}
+        selectedDate={availableSlots[0].date}
         selectedDateTime={slotToBeSelected}
         onTimeSelection={handleTimeSelection}
         onCancelDateSelection={() => null}
@@ -110,7 +110,7 @@ test('On Mobile - Back icon should be shown before selecting a time-slot', async
       <GlintProvider>
         <TimeSlotSelection
           availableSlots={availableSlots}
-          selectedDate={availableSlots[0]}
+          selectedDate={availableSlots[0].date}
           selectedDateTime={null}
           onTimeSelection={handleTimeSelection}
           onCancelDateSelection={() => null}
@@ -141,7 +141,7 @@ test('On Mobile - Clicking on Back icon before selecting a time-slot should call
       <GlintProvider>
         <TimeSlotSelection
           availableSlots={availableSlots}
-          selectedDate={availableSlots[0]}
+          selectedDate={availableSlots[0].date}
           selectedDateTime={null}
           onTimeSelection={handleTimeSelection}
           onCancelDateSelection={handleOnCancelDateSelection}
@@ -169,7 +169,7 @@ test('On Mobile - Clicking on Back button after selecting a time-slot should cal
       <GlintProvider>
         <TimeSlotSelection
           availableSlots={availableSlots}
-          selectedDate={availableSlots[0]}
+          selectedDate={availableSlots[0].date}
           selectedDateTime={slotToBeSelected}
           onTimeSelection={handleTimeSelection}
           onCancelDateSelection={handleOnCancelDateSelection}
@@ -200,7 +200,7 @@ test('Questionnaire should be displayed only when date is selected', async () =>
     <div id="container">
       <TimeSlotSelection
         availableSlots={availableSlots}
-        selectedDate={availableSlots[0]}
+        selectedDate={availableSlots[0].date}
         selectedDateTime={null}
         onTimeSelection={handleTimeSelection}
         onCancelDateSelection={handleOnCancelDateSelection}
@@ -216,7 +216,7 @@ test('Questionnaire should be displayed only when date is selected', async () =>
     <div id="container">
       <TimeSlotSelection
         availableSlots={availableSlots}
-        selectedDate={availableSlots[0]}
+        selectedDate={availableSlots[0].date}
         selectedDateTime={slotToBeSelected}
         onTimeSelection={handleTimeSelection}
         onCancelDateSelection={handleOnCancelDateSelection}

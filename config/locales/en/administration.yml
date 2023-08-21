@@ -519,6 +519,14 @@ en:
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Block?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
+    bookings:
+      errors:
+        already_booked: You have already booked a seat for it.
+        already_cancelled: You have already cancelled the booking.
+        cancellation_deadline_passed: Cancellation deadline passed.
+        cancelled_and_rebook_deadline_passed: Cancelled and deadline passed for book again.
+        reschedule_deadline_passed: Reschedule deadline passed.
+        seats_not_available: Seats not available.
     breadcrumbs:
       admins: Admins
       assessments: Assessments

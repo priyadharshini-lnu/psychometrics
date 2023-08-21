@@ -125,7 +125,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
 
 type ButtonWrapperProps = {
   wrapText: string | undefined,
-children: React.ReactElement,
+  children: React.ReactElement,
 }
 
 const ButtonWrapper: FC<ButtonWrapperProps> = ({ wrapText, children }) => (wrapText

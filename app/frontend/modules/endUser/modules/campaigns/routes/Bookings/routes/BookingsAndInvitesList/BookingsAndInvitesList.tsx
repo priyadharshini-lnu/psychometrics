@@ -6,6 +6,7 @@ import {
 import { CalendarOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
+import moment from 'moment-timezone'
 
 import { DetailsCard, FullWidthSkeleton } from '~/glint'
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
@@ -16,6 +17,7 @@ import { StatusText } from '~/modules/endUser/modules/campaigns/components/Statu
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { isRequestInProgress } from '~/core/request'
 import styles from './BookingsAndInvitesList.less'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const connector = connect(
   (state:RootState) => ({
@@ -52,7 +54,10 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
   const location = useLocation()
 
   const handleClickInvite = (id: number) => {
-    history.push(`${location.pathname}/${id}/booking`)
+    history.push(`${location.pathname}/${id}/details?type=invite`)
+  }
+  const handleClickBooking = (id: number) => {
+    history.push(`${location.pathname}/${id}/success`)
   }
   const tabItems = [
     {
@@ -71,7 +76,7 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
         loading={bookingsLoading}
       />,
       key: 'bookings',
-      children: <BookingsList bookings={bookings} loading={bookingsLoading} />,
+      children: <BookingsList onClickBooking={handleClickBooking} bookings={bookings} loading={bookingsLoading} />,
     },
   ]
 
@@ -112,9 +117,17 @@ const InvitesList: FC<InvitesListProps> = ({ invites, loading, onClickInvite }) 
               title={invite.title}
               key={invite.id}
               description={invite.description}
-              onButtonClick={() => onClickInvite(invite.id)}
+              onButtonClick={() => onClickInvite(invite.workshopInviteId)}
               buttonText={I18n.t('bookings.buttons.book')}
-              subtitle={<Subtitle duration={invite.duration} />}
+              subtitle={(
+                <Subtitle
+                  isActionByCurrentUser={null}
+                  duration={
+                    invite.duration
+                  }
+                  timezone=""
+                />
+              )}
             />
           ))
         }
@@ -126,9 +139,10 @@ const InvitesList: FC<InvitesListProps> = ({ invites, loading, onClickInvite }) 
 type BookingsListProps = {
   bookings: Booking[]
   loading: boolean
+  onClickBooking: (id: number) => void
 }
 
-const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => (
+const BookingsList: FC<BookingsListProps> = ({ bookings, loading, onClickBooking }) => (
   <Row gutter={[0, 12]}>
     {loading ? <FullWidthSkeleton active rows={SKELETON_ROWS} height={SKELETON_ROW_HEIGHT} /> : (
       <>
@@ -136,17 +150,37 @@ const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => (
           const statusElement = _.includes(
             SHOW_STATUSES, booking.status,
           ) ? (<StatusText taskStatus={booking.status} />) : (<></>)
+
+          const deadlineToAllowCancelByUser = moment(booking?.date).clone()
+            .subtract(booking?.cancellationLeadTime, 's')
+          const allowBookAgain = booking?.status === 'cancelled' && moment().isSameOrBefore(deadlineToAllowCancelByUser)
+
+          let buttonText = null
+
+          if (_.includes(MODIFY_FOR_STATUSES, booking.status)) {
+            buttonText = I18n.t('bookings.buttons.modify')
+          } else if (allowBookAgain) {
+            buttonText = I18n.t('bookings.buttons.book_again')
+          }
+
           return (
             <DetailsCard
               status={statusElement}
               title={booking.title}
               key={booking.id}
               description={booking.description}
-              onButtonClick={() => null}
-              buttonText={_.includes(MODIFY_FOR_STATUSES, booking.status) ? I18n.t('bookings.buttons.modify') : null}
-              subtitle={
-                <Subtitle duration={booking.duration} isActionByCurrentUser={booking.isActionByCurrentUser} />
-              }
+              onButtonClick={() => onClickBooking(booking.workshopInviteId)}
+              buttonText={buttonText || undefined}
+              subtitle={(
+                <Subtitle
+                  duration={
+                    booking.duration
+                  }
+                  isActionByCurrentUser={booking.isActionByCurrentUser}
+                  dateTime={booking.date}
+                  timezone={booking.timezone}
+                />
+              )}
             />
           )
         })}
@@ -157,25 +191,47 @@ const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => (
 
 type SubtitleProps = {
   duration: number,
-  dateTime? : string
-  isActionByCurrentUser?: boolean
+  dateTime?: string,
+  timezone: string,
+  isActionByCurrentUser: boolean | null
 }
-const Subtitle: FC<SubtitleProps> = ({ duration, dateTime, isActionByCurrentUser }) => (
-  <Space direction="vertical">
-    {!_.isNil(isActionByCurrentUser) && (
-      <Text disabled>
-        { isActionByCurrentUser ? I18n.t('bookings.operation_by_admin') : I18n.t('bookings.operation_by_user')}
-      </Text>
-    )}
-    <TimerText text={`${duration} mins`} textType="none" className={styles.subtitleIcon} />
-    {dateTime && (
-    <Space>
-      <CalendarOutlined className={styles.subtitleIcon} />
-      {`${dateTime} mins`}
+const Subtitle: FC<SubtitleProps> = ({
+  duration, dateTime, timezone, isActionByCurrentUser,
+}) => {
+  let dateTimeWithTimezone
+  let dateTimeWithTimezoneEnd
+
+  if (dateTime && timezone) {
+    dateTimeWithTimezone = moment.tz(dateTime, timezone)
+    dateTimeWithTimezoneEnd = moment.tz(dateTime, timezone).add(duration, 's')
+  }
+
+  return (
+    <Space direction="vertical">
+      <Space>
+        <TimerText
+          text={secondsToDayHoursAndMinutes(duration)}
+          textType="none"
+          className={styles.subtitleIcon}
+        />
+        {dateTime && timezone && (
+          <>
+            <CalendarOutlined className={styles.subtitleIcon} />
+            {dateTimeWithTimezone.format('Do MMMM YYYY')}
+            {dateTimeWithTimezone.format('hh:mmA')}
+            -
+            {dateTimeWithTimezoneEnd?.format('hh:mmA')}
+          </>
+        )}
+      </Space>
+      {!_.isNull(isActionByCurrentUser) && (
+        <Text disabled>
+          { isActionByCurrentUser ? I18n.t('bookings.operation_by_admin') : I18n.t('bookings.operation_by_user')}
+        </Text>
+      )}
     </Space>
-    )}
-  </Space>
-)
+  )
+}
 
 type TabLabelProps = {
   title: string,

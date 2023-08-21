@@ -8,18 +8,18 @@ import cs from 'classnames'
 import { MediaQueryContext } from '~/glint'
 import { InvitationTitle } from './InvitationTitle'
 import { CustomCalendar } from './CustomCalendar'
-import { TimeSlotSelection } from './TimeSlotSelection'
+import { TimeSlotSelection, TimeSlot } from './TimeSlotSelection'
 
 import styles from './BookingCard.less'
 
 type Props = {
   title: string,
   description: string,
-  availableDateTimes: Moment[],
+  availableDateTimes: TimeSlot[],
   currentDateTime: Moment | null,
   questionnaireComponent?: ReactNode
-  onDateTimeSelection: (date: Moment |null) => void
-  calendarDefaultValue?: Moment
+  onDateTimeSelection: (timeSlot: TimeSlot |null) => void
+  bookingTimeZone?: string
 }
 
 export const BookingCard: FC<Props> = ({
@@ -29,27 +29,34 @@ export const BookingCard: FC<Props> = ({
   currentDateTime,
   questionnaireComponent,
   onDateTimeSelection,
-  calendarDefaultValue,
+  bookingTimeZone,
 }) => {
-  const [timeZone, setTimeZone] = useState(moment.tz.guess() || 'Asia/Muscat')
+  const [timeZone, setTimeZone] = useState(bookingTimeZone || 'Asia/Muscat')
   const [selectedDate, setSelectedDate] = useState<Moment | null>(currentDateTime?.tz(timeZone) || null)
   const [availableDateTimesAsPerZone, setAvailableDatesTimeAsPerZone] = useState(availableDateTimes)
-  const [availableSlotsAsPerZone, setAvailableSlotsAsPerZone] = useState<Moment[]>([])
+  const [availableSlotsAsPerZone, setAvailableSlotsAsPerZone] = useState<TimeSlot[]>([])
   const selectedDateTimeAsPerTimeZone = currentDateTime ? currentDateTime.tz(timeZone) : null
   const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext) || { isMobile: null, isTablet: null }
+
+  const currentTimeAsPerZone = moment.tz(timeZone)
   const isSmallScreen = isMobile || isTablet
   const inviteTitleFlex = isDesktop ? '7' : '1 1 50%'
   const calendarFlex = isDesktop ? '8' : '1 1 auto'
+  const futureAvailableDateTimes = availableDateTimesAsPerZone
+    .filter(availableDateTime => availableDateTime.date.isSameOrAfter(currentTimeAsPerZone))
+    .sort((firstDate, secondDate) => firstDate.date.diff(secondDate.date))
+  const firstAvailableDateTimeAsPerZone = futureAvailableDateTimes[0]?.date
 
   useEffect(() => {
     const selectedDateString = selectedDate?.format('DD/MM/YYYY')
     const availableSlotsList = availableDateTimesAsPerZone
-      .filter(date => date.format('DD/MM/YYYY') === selectedDateString)
+      .filter(dateObj => dateObj.date.format('DD/MM/YYYY') === selectedDateString)
     setAvailableSlotsAsPerZone(availableSlotsList)
   }, [])
 
   useEffect(() => {
-    setAvailableDatesTimeAsPerZone(availableDateTimesAsPerZone.map(date => date.tz(timeZone)))
+    setAvailableDatesTimeAsPerZone(availableDateTimesAsPerZone
+      .map(dateObj => ({ id: dateObj.id, date: dateObj.date.tz(timeZone) })))
   }, [timeZone])
 
   const handleTimeZoneChange = (zone) => {
@@ -65,7 +72,7 @@ export const BookingCard: FC<Props> = ({
     selectedDateTimeAsPerTimeZone && onDateTimeSelection(null)
     const selectedDateString = date?.format('DD/MM/YYYY')
     const availableSlotsList = availableDateTimesAsPerZone
-      .filter(date => date.format('DD/MM/YYYY') === selectedDateString)
+      .filter(dateObj => dateObj.date.format('DD/MM/YYYY') === selectedDateString)
     setAvailableSlotsAsPerZone(availableSlotsList)
   }
 
@@ -80,10 +87,10 @@ export const BookingCard: FC<Props> = ({
 
   const calendarComponent = (
     <CustomCalendar
-      availableDates={availableDateTimesAsPerZone}
+      availableDates={availableDateTimesAsPerZone.map(dateObj => dateObj.date)}
       onDateSelect={handleDateSelect}
       value={selectedDate || undefined}
-      defaultValue={calendarDefaultValue || moment()}
+      defaultValue={firstAvailableDateTimeAsPerZone || moment()}
     />
   )
 
@@ -121,7 +128,7 @@ export const BookingCard: FC<Props> = ({
           </Col>
         </>
       )
-  }
+      }
     </Row>
   )
 

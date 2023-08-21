@@ -944,6 +944,16 @@ Rails.application.routes.draw do
 
       get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect
 
+      resources :workshop_invites, only: [] do
+        member do
+          post :book
+          get :fetch_booking
+          get :fetch_invite
+          post :reschedule_or_request_reschedule
+          post :cancel_or_request_cancellation
+        end
+      end
+
       resources :hogan_user_assessments, only: [] do
         member do
           get :redirect
@@ -1096,6 +1106,10 @@ Rails.application.routes.draw do
     get 'profile_details', to: 'end_user/users#dashboard'
     get 'change_password', to: 'end_user/users#dashboard'
     get 'invites', to: 'end_user/users#dashboard'
+    get 'booking', to: 'end_user/users#dashboard'
+    get 'invites/:id/booking', to: 'end_user/users#dashboard'
+    get 'invites/:id/success', to: 'end_user/users#dashboard'
+    get 'invites/:id/details', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 

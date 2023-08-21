@@ -5,6 +5,7 @@ FactoryBot.define do
     title { Faker::Lorem.word }
     description { Faker::Lorem.sentence }
 
-    workshops { [FactoryBot.create(:workshop)] }
+    workshops { [create(:workshop)] }
+    campaign { create(:campaign) }
   end
 end

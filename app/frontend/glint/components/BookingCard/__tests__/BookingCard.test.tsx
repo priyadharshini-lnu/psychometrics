@@ -7,12 +7,12 @@ import { BookingCard } from '~/glint'
 import { TIME_FORMAT } from '~/glint/components/BookingCard/TimeSlotSelection'
 
 
-const availableDates = ['2024-07-15T09:00:00.100+05:30', '2024-07-15T09:30:00.100+05:30'].map(date => moment(date))
-const availableDateStrings = availableDates.map(date => date.date().toString())
+const availableDates = [{id: 1, date:'2024-07-15T09:00:00.100+05:30'}, {id: 2, date:'2024-07-15T09:30:00.100+05:30'}].map(({id, date}) => ({id, date:moment(date)}))
+const availableDateStrings = availableDates.map(({id, date}) => date.date().toString())
 const DATE_TIME_FORMAT = 'DD/MM/YYYY hh:mm a'
-const timeZone = moment.tz.guess() || 'Asia/Muscat'
-const availableDateAsPerTimezone_one = availableDates[0].tz(timeZone).clone()
-const availableDateAsPerTimezone_two = availableDates[1].tz(timeZone).clone()
+const timeZone = moment.tz.guess() || 'Asia/Calcutta'
+const availableDateAsPerTimezone_one = availableDates[0].date.tz(timeZone).clone()
+const availableDateAsPerTimezone_two = availableDates[1].date.tz(timeZone).clone()
 
 test('Selectiong different timezone should update the date and time accordingly', async () => {
   const user = userEvent.setup()
@@ -25,7 +25,8 @@ test('Selectiong different timezone should update the date and time accordingly'
         currentDateTime={null}
         onDateTimeSelection={date => date}
         questionnaireComponent={<div data-testid="questionarrie">Questions</div>}
-        calendarDefaultValue={availableDates[0]}
+        calendarDefaultValue={availableDates[0].date}
+        bookingTimeZone={timeZone}
       />
     </div>,
   )
@@ -67,11 +68,12 @@ test('User should be able to select a available time slot', async () => {
         description="description"
         availableDateTimes={availableDates}
         currentDateTime={null}
-        onDateTimeSelection={(date) => {
-          dateTimeSelectionHandler(date?.format(DATE_TIME_FORMAT))
+        onDateTimeSelection={(dateObj) => {
+          dateTimeSelectionHandler(dateObj?.date?.format(DATE_TIME_FORMAT))
         }}
         questionnaireComponent={<div data-testid="questionarrie">Questions</div>}
-        calendarDefaultValue={availableDates[0]}
+        calendarDefaultValue={availableDates[0].date}
+        bookingTimeZone={timeZone}
       />
     </div>,
   )
@@ -86,7 +88,7 @@ test('User should be able to select a available time slot', async () => {
     await user.click(timeSlotButton)
   })
   expect(dateTimeSelectionHandler).toBeCalledTimes(1)
-  expect(dateTimeSelectionHandler).toHaveBeenLastCalledWith(availableDates[1].clone().format(DATE_TIME_FORMAT))
+  expect(dateTimeSelectionHandler).toHaveBeenLastCalledWith(availableDates[1].date.clone().format(DATE_TIME_FORMAT))
 })
 
 test('Questionnaire section should be shown when currentDateTime is passed', async () => {
@@ -97,12 +99,13 @@ test('Questionnaire section should be shown when currentDateTime is passed', asy
         title="Title"
         description="description"
         availableDateTimes={availableDates}
-        currentDateTime={availableDates[0]}
-        onDateTimeSelection={(date) => {
-          dateTimeSelectionHandler(date?.format(DATE_TIME_FORMAT))
+        currentDateTime={availableDates[0].date}
+        onDateTimeSelection={(dateObj) => {
+          dateTimeSelectionHandler(dateObj?.date?.format(DATE_TIME_FORMAT))
         }}
         questionnaireComponent={<div data-testid="questionarrie">Questions</div>}
-        calendarDefaultValue={availableDates[0]}
+        calendarDefaultValue={availableDates[0].date}
+        bookingTimeZone={timeZone}
       />
     </div>,
   )
@@ -120,18 +123,19 @@ test('Date and time-slot to be pre-selected when currentDateTime is passed', asy
         title="Title"
         description="description"
         availableDateTimes={availableDates}
-        currentDateTime={availableDates[0]}
-        onDateTimeSelection={(date) => {
-          dateTimeSelectionHandler(date?.format(DATE_TIME_FORMAT))
+        currentDateTime={availableDates[0].date}
+        onDateTimeSelection={(dateObj) => {
+          dateTimeSelectionHandler(dateObj?.date?.format(DATE_TIME_FORMAT))
         }}
         questionnaireComponent={<div data-testid="questionarrie">Questions</div>}
-        calendarDefaultValue={availableDates[0]}
+        calendarDefaultValue={availableDates[0].date}
+        bookingTimeZone={timeZone}
       />
     </div>,
   )
 
   // check if time slot is pre-selected
-  const timeSlotText = screen.queryByText(slotToBeSelected.clone().format(TIME_FORMAT))
+  const timeSlotText = screen.queryByText(slotToBeSelected.date.clone().format(TIME_FORMAT))
   expect(timeSlotText?.tagName).not.toBe('SPAN')
   const selectedDateText = screen.getByText('15th Jul,')
   expect(selectedDateText).toBeInTheDocument()

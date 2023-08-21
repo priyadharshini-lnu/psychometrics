@@ -17,6 +17,10 @@ describe EndUser::WorkshopInvitedSubjectsController, type: :controller do
     )
   end
 
+  let(:workshop_subject) do
+    create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
+  end
+
   before(:each) do
     login_user(user)
   end
@@ -36,6 +40,8 @@ describe EndUser::WorkshopInvitedSubjectsController, type: :controller do
 
   describe 'GET bookings' do
     it 'returns bookinbgs' do
+      workshop_subject
+
       get :bookings, params: { type: 'bookings' }
 
       parsed_response = JSON.parse(response.body)

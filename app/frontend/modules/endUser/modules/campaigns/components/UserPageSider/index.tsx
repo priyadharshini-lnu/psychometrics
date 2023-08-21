@@ -106,6 +106,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else {
     activeItem = pathname.slice(1)
+    activeItem = pathname.includes('invites') ? 'invites' : activeItem
     activeItem = pathname === '/profile' ? 'profile_details' : activeItem
     activeItem = activeItem || 'dashboard'
   }

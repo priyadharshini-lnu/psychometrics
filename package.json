@@ -175,7 +175,8 @@
     "wavesurfer.js": "^3.3.3",
     "web-highlighter": "^0.5.0",
     "words-count": "^2.0.2",
-    "zustand": "^4.1.1"
+    "zustand": "^4.1.1",
+    "calendar-link": "2.5.1"
   },
   "devDependencies": {
     "@babel/eslint-plugin": "^7.14.5",

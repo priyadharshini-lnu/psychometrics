@@ -1,1 +1,1 @@
-export { TimeSlotSelection, TIME_FORMAT } from './TimeSlotSelection'
+export { TimeSlotSelection, TIME_FORMAT, type TimeSlot } from './TimeSlotSelection'

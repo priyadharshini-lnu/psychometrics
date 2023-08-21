@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import _ from 'lodash'
-import { Skeleton } from 'antd'
+import { Skeleton, Space } from 'antd'
 import { SkeletonInputProps } from 'antd/lib/skeleton/Input'
 import styles from './FullWidthSkeleton.less'
 
@@ -12,7 +12,7 @@ type Props = {
 } & SkeletonInputProps
 
 export const FullWidthSkeleton:FC<Props> = ({ rows, height, ...props }) => (
-  <>
+  <Space className="w-100" direction="vertical">
     {
       _.range(0, rows || DEFAULT_ROWS).map(number => (
         <Skeleton.Input
@@ -23,5 +23,5 @@ export const FullWidthSkeleton:FC<Props> = ({ rows, height, ...props }) => (
         />
       ))
     }
-  </>
+  </Space>
 )

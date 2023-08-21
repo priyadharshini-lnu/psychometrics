@@ -10,11 +10,15 @@ import styles from './TimeSlotSelection.less'
 
 const { Title } = Typography
 export const TIME_FORMAT = 'hh:mm a'
+export type TimeSlot = {
+  id: number,
+  date: Moment
+}
 type Props = {
-  availableSlots: Moment[]
+  availableSlots: TimeSlot[]
   selectedDate: Moment | null
   selectedDateTime: Moment | null
-  onTimeSelection: (slot: Moment|null) => void
+  onTimeSelection: (slot: TimeSlot|null) => void
   onCancelDateSelection: () => void | null
   questionnaireComponent: ReactNode
 }
@@ -69,7 +73,7 @@ export const TimeSlotSelection:FC<Props> = ({
       {selectedDateTime ? <>{ questionnaireComponent }</> : (
         <>
           {availableSlots.map((slot) => {
-            const formattedTimeText = slot.format(TIME_FORMAT)
+            const formattedTimeText = slot.date.format(TIME_FORMAT)
             return (
               <Button
                 onClick={() => onTimeSelection(slot)}

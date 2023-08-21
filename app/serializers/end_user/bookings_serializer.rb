@@ -2,12 +2,15 @@
 
 module EndUser
   class BookingsSerializer < ActiveModel::Serializer
-    attributes :id, :title, :description, :duration, :status, :is_action_by_current_user
+    attributes :id, :title, :description, :duration, :status, :is_action_by_current_user, :workshop_invite_id, :date,
+               :timezone, :cancellation_lead_time
+
+    delegate :duration, :timezone, :cancellation_lead_time, to: :workshop, allow_nil: true
 
     delegate :title, :description, to: :workshop_invite
 
-    def duration
-      workshop_invite.workshops.first.duration
+    def date
+      workshop.start_time.iso8601
     end
 
     def is_action_by_current_user
@@ -21,6 +24,13 @@ module EndUser
 
     def workshop_invite
       @workshop_invite ||= object.workshop_invite
+    end
+
+    def workshop
+      @workshop ||= WorkshopSubject.find_by(
+        user_id: current_user.id,
+        campaign_id: object.workshop_invite.campaign_id
+      )&.workshop
     end
 
     def current_user

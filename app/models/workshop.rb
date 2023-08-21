@@ -24,4 +24,16 @@ class Workshop < ApplicationRecord
   def self.ransackable_scopes(_)
     %i[search_query]
   end
+
+  def cancellable?
+    Time.current > (start_time - cancellation_lead_time)
+  end
+
+  def reschedulable?
+    Time.current > (start_time - reschedule_lead_time)
+  end
+
+  def seats_available?
+    booked_seats < total_seats
+  end
 end

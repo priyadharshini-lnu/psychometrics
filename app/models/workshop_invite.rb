@@ -6,6 +6,17 @@ class WorkshopInvite < ApplicationRecord
   has_many :workshop_invited_subjects, dependent: :destroy
   has_and_belongs_to_many :workshops, dependent: :destroy
   has_many :workshop_invite_logs
+  belongs_to :campaign
 
   translates :title, :description
+
+  def available_workshops_date_and_id
+    [].tap do |available_dates|
+      workshops.each do |workshop|
+        if workshop.booked_seats != workshop.total_seats
+          available_dates << { id: workshop.id, date: workshop.start_time.iso8601 }
+        end
+      end
+    end
+  end
 end

@@ -55,7 +55,8 @@ export const CustomCalendar: FC<Props> = ({ availableDates, onDateSelect, defaul
         const monthNumber = date.month()
         const dateString = date.format('DD/MM/YYYY')
         const dateExistInCurrentMonth = monthNumber === currentDate.month()
-        const isDateAvailable = formattedAvailableDates.includes(dateString) && dateExistInCurrentMonth
+        const isPastDate = !date.isAfter(moment())
+        const isDateAvailable = formattedAvailableDates.includes(dateString) && dateExistInCurrentMonth && !isPastDate
 
         return (
           <div
@@ -63,6 +64,7 @@ export const CustomCalendar: FC<Props> = ({ availableDates, onDateSelect, defaul
               [styles.dateCell]: true,
               [styles.selectedDate]: isDateAvailable,
               [styles.unavailableDate]: !isDateAvailable,
+              [styles.pastDate]: isPastDate && dateExistInCurrentMonth,
             })}
             onClick={() => {
               isDateAvailable && onDateSelect(date)
