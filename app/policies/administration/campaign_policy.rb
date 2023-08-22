@@ -15,7 +15,7 @@ module Administration
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :view, campaign_id: record.id
-      )
+      ) || (@user.assessor? && @user.assessors_campaings.include?(record))
     end
 
     def edit?
@@ -234,6 +234,8 @@ module Administration
         permitted_campaign_ids = @user.campaign_admin_campaigns.select do |campaign|
           @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
         end.pluck(:id)
+
+        permitted_campaign_ids += @user.assessors_campaings.pluck(:id)
 
         scope.where(
           'id IN (?) OR project_id IN (?)',

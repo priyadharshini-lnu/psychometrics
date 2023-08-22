@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   end
 
   namespace :assessors do
+    get 'assessment_centers', to: 'workshops#index', as: :assessment_centers
+
     constraints(proc { |request| request.format.pdf? || request.format.html? }) do
       resources :campaigns, only: [] do
         resources :user_reports, only: [] do
@@ -360,6 +362,15 @@ Rails.application.routes.draw do
       member do
         post :search_users
         get '*all', to: 'new_projects#show', constraints: { all: /.*/ }
+      end
+    end
+
+    resources :workshops, only: %i[] do
+      resources :users, controller: 'workshops/users' do
+        collection do
+          post :search_subjects
+          post :search_assessors
+        end
       end
     end
 
@@ -1233,15 +1244,17 @@ Rails.application.routes.draw do
               end
               jsonapi_relationships
               jsonapi_resources :workshop_subjects, only: %i[index update destroy]
+              jsonapi_resources :workshop_activities
               jsonapi_resources :workshop_resources
               jsonapi_resources :campaign_assessments, only: %i[index]
             end
           end
-          jsonapi_resources :workshops, only: %i[] do
+          jsonapi_resources :workshops, only: %i[index] do
             member do
               post :bulk_update_subjects
             end
           end
+
           jsonapi_resources :workshop_invites, only: %i[index create destroy show] do
             collection do
               get :import_subjects_from_campaign

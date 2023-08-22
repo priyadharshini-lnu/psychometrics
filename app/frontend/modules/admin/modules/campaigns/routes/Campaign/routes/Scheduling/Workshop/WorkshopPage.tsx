@@ -23,6 +23,7 @@ import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/wor
 import { ResourceAvatar } from '~/glint'
 import styles from './styles.less'
 import { SubjectList } from './SubjectList'
+import { Activities } from './Activities'
 import { ResourceList } from './ResourceList'
 
 const { I18n } = window
@@ -166,6 +167,7 @@ export const WorkshopPageComponent: FC<PropsFromRedux> = ({ openModal }) => {
           </div>
           {currentTab === 'subjects' && <SubjectList workshop={workshop} />}
           {currentTab === 'resources' && <ResourceList />}
+          {currentTab === 'activities' && <Activities />}
         </div>
       </div>
       <Modals modals={{

@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import {
   MonitorOutlined, ArrowRightOutlined, MenuUnfoldOutlined,
-  MenuFoldOutlined,
+  MenuFoldOutlined, CalendarOutlined,
 } from '@ant-design/icons'
 import { useMedia } from 'react-use-media'
 import cs from 'classnames'
@@ -41,6 +41,7 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 interface Permissions {
   dashboards?: string
   assessorDashboard?: string
+  assessorWorkshops?: string
   clients?: string
   users?: string
   norms?: string
@@ -70,6 +71,11 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean): MenuItem[] =>
     key: 'assessorDashboard',
     label: I18n.t('administration.navigation.assessor_dashboard'),
     icon: <i className="fa fa-dashboard" />,
+  } : null,
+  permissions.assessorWorkshops ? {
+    key: 'assessorWorkshops',
+    label: I18n.t('administration.navigation.assessor_workshops'),
+    icon: <CalendarOutlined />,
   } : null,
   permissions.clients ? {
     key: 'clients',

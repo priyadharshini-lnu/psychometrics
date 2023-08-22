@@ -1451,6 +1451,7 @@ en:
       archive: Archive
       cancel: Cancel
       close: Close
+      continue: Continue
       copy: Copy
       create: Create
       delete: Delete
@@ -1468,6 +1469,7 @@ en:
       unresolve: Unresolve
       update: Update
       upload: Upload
+      view: View
     column:
       action: Action
       active: Active

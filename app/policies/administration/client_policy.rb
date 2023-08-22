@@ -129,9 +129,11 @@ module Administration
           @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
         end.pluck(:project_id)
 
+        assessor_campaigns_ids = @user.assessors_campaings.pluck(:project_id)
+
         clients_scope = scope.where(
           id: (permitted_client_admin_clients_ids + permitted_project_admin_client_ids +
-            permitted_campaign_admin_project_ids)
+            permitted_campaign_admin_project_ids + assessor_campaigns_ids)
         )
 
         clients = clients_scope.not_retails.select(:id, :ancestry)

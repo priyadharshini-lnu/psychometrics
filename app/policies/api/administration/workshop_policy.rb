@@ -19,11 +19,25 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def get_related_resources?
+        true
+      end
+
       class Scope < Scope
+        attr_reader :campaign_id
+
+        def initialize(user, scope, opts = {})
+          @user = user
+          @scope = [scope].flatten.last
+          @campaign_id = opts[:campaign_id]
+        end
+
         def resolve
           return scope if user.superadmin?
-          return user.accessible_records(Workshop, 'workshops.view') if
-            user.has_permssion?(:workshops, :view, campaign_id: campaign_id)
+
+          if campaign_id && user.has_permssion?(:workshops, :view, campaign_id: campaign_id)
+            return user.accessible_records(Workshop, 'workshops.view')
+          end
 
           Workshop.includes(:workshop_assessors).where(workshop_assessors: { user_id: user.id })
         end

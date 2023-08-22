@@ -18,7 +18,8 @@ module Api
         def self.relationships(_)
           [
             { name: :managers, resource: :workshop_managers, relationship: :many, required: false },
-            { name: :assessors, resource: :workshop_assessors, relationship: :many, required: false }
+            { name: :assessors, resource: :workshop_assessors, relationship: :many, required: false },
+            { name: :campaign, resource: :campaigns, relationship: :one, required: false }
           ]
         end
 

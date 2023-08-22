@@ -67,7 +67,7 @@ module Api
 
     def set_workshop
       @workshop = Api::Administration::WorkshopPolicy::Scope.new(
-        current_user, Workshop
+        current_user, Workshop, campaign_id: params[:campaign_id]
       ).resolve.find(params[:id])
     end
 

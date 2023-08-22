@@ -245,6 +245,10 @@ en:
       form:
         description: Description
         title: api key
+    assessment_center:
+      current: Current
+      past: Past
+      upcoming: Upcoming
     assessments:
       assessment: Assessment
       assigns:
@@ -3023,6 +3027,7 @@ en:
       admins: Admins
       assessments: Assessments
       assessor_dashboard: Assessor Dashboard
+      assessor_workshops: Assessment Center
       audit_logs: Audit Logs
       availability: Availability
       back_to_main: Main Menu
@@ -3708,6 +3713,7 @@ en:
       actions:
         remove:
           success_message: Assessment Center subject %{subject_name}.
+      add_activity: Add Activity
       add_assessment_center: Add Assessment Center
       assessment_center_form:
         assessor_ids_label: Assessor Ids
@@ -3745,15 +3751,20 @@ en:
         on_time: On Time
       columns:
         activity: Activity
+        assessor: Assessor
         assessors: Assessors
         attendance: Attendance
+        campaign_name: Campaign Name
         duration: Duration
         managers: Mangers
         participants: Participants
         prework: Prework
         resource_link: Link
         resource_name: Name
+        schedule_time: Schedule Time
         start_time: Date & Time
+        status: Status
+        subject: Subject
       completion_status:
         column_name: Completed
         completed: Completed

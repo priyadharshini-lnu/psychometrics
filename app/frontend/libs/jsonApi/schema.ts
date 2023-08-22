@@ -1,3 +1,4 @@
+import { Schema as activitiesSchema } from '~/modules/admin/modules/campaigns/core/workshopActivity'
 import { Schema as clientSchema } from '~/modules/admin/modules/client/core/clients'
 import { Schema as assessmentSchema } from '~/modules/admin/modules/client/core/assessments'
 import { Schema as dashboardSchema } from '~/modules/admin/modules/campaigns/core/dashboard'
@@ -30,4 +31,5 @@ export const Schema = {
   workshop_resources: workshopResourcesSchema,
   workshop_invited_subjects: workshopInviteSubjectsSchema,
   campaign_assessments: campaignAssessmentSchema,
+  user_assessments: activitiesSchema,
 }

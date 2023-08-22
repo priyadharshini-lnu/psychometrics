@@ -7,9 +7,25 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   has_many :workshop_managers
   has_many :workshop_assessors
   has_many :workshop_subjects
+  has_one :campaign
 
   filter :start_time_between, apply: lambda { |records, date_range, _options|
     records.where(start_time: (date_range.first...date_range.last))
+  }
+
+  filter :date_filter, apply: lambda { |records, val, _options|
+    results = records
+    if val[0] == 'current'
+      results = records.where('start_time < ? and start_time + duration * interval \'1 second\' > ?',
+                              Time.current, Time.current)
+    end
+    if val[0] == 'upcoming'
+      results = records.where('start_time > ?', Time.current)
+    end
+    if val[0] == 'past'
+      results = records.where('start_time + duration * interval \'1 second\' < ?', Time.current)
+    end
+    results
   }
 
   ransack_filters %i[search_query]
@@ -23,6 +39,8 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   end
 
   def self.records(opts = {})
+    return super if opts[:context][:user].assessor?
+
     super(opts).where(campaign_id: opts[:context][:params]['campaign_id'])
   end
 end

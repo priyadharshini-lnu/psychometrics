@@ -75,7 +75,7 @@ module Administration
     class Scope
       attr_reader :user, :scope
 
-      def initialize(user, scope)
+      def initialize(user, scope, _opts = {})
         @user = user
         @scope = [scope].flatten.last
       end

@@ -264,6 +264,9 @@ module Swagger
           WorkshopSubjectsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopSubject::Schema.multiple_resource_response
           ),
+          AssessorWorkshopsResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Assessors::Workshop::Schema.multiple_resource_response
+          ),
           WorkshopBulkUpdateSubjectsRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.bulk_update_subjects
           ),
@@ -302,6 +305,9 @@ module Swagger
           ),
           CampaignAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessment::Schema.multiple_resource_response
+          ),
+          UserAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAssessment::Schema.multiple_resource_response
           )
         }
       }

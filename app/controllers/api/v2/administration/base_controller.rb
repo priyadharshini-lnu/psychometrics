@@ -181,7 +181,7 @@ module Api
         nil,
         policy_class: policy_class,
         project_id: project_id || params[:client_id],
-        campaign_id: campaign_id
+        campaign_id: campaign_id || params[:campaign_id]
       )
     end
 

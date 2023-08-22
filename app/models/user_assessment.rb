@@ -6,7 +6,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :norm
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
-  belongs_to :assessor
+  belongs_to :assessor, primary_key: :user_id, foreign_key: :evaluator_id
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by
@@ -51,6 +51,10 @@ class UserAssessment < ApplicationRecord
         AND
         campaign_assessments.campaign_id = user_assessments.campaign_id'
     )
+  }
+  scope :with_workshop_activities, lambda {
+    where('campaign_assessments.workshop_activity = TRUE OR user_assessments.relationship_id = ?',
+          Relationship.assessor_relationship)
   }
 
   before_save :set_default_relationship

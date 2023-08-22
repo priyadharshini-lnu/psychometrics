@@ -14,6 +14,7 @@ module Administration
       {}.tap do |links|
         links['dashboards'] = administration_dashboard_path if show_dashboard?
         links['assessor_dashboard'] = assessors_dashboard_path if policy(%i[assessors campaign]).index?
+        links['assessor_workshops'] = assessors_assessment_centers_path if policy(%i[assessors workshop]).index?
         links['clients'] = administration_root_path if policy(%i[administration client]).index?
         links['users'] = administration_users_path if policy(%i[administration user]).index?
         links['norms'] = administration_norms_path if policy(%i[administration norm]).index?
