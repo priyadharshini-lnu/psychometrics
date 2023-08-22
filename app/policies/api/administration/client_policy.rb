@@ -3,6 +3,10 @@
 module Api
   module Administration
     class ClientPolicy < ::Administration::ClientPolicy
+      def client_auditlog_export_setting?
+        index?
+      end
+
       class Scope < Scope
         def resolve
           ::Administration::ClientPolicy::Scope.new(user, Client).resolve.tenancies

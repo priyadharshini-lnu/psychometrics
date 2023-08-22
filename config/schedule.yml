@@ -82,3 +82,8 @@ recalculate_proctoring_credits:
   class: Licenses::RecalculateProctoringCredits
   queue_as: cron_tasks
 
+export_auditlogs:
+  cron: "*/15 * * * *" # Every 15 minutes
+  class: ClientAuditlogExportSettings::ExportAllAuditLogsJob
+  queue_as: cron_tasks
+

@@ -16,6 +16,16 @@ redis_connection = if Rails.env.development?
 Sidekiq.configure_server do |config|
   pool_size = ENV.fetch('SIDEKIQ_DB_POOL', Sidekiq.options[:concurrency] + 2)
   config.redis = redis_connection.merge(size: pool_size)
+
+  config.client_middleware do |chain|
+    chain.add SidekiqUniqueJobs::Middleware::Client
+  end
+
+  config.server_middleware do |chain|
+    chain.add SidekiqUniqueJobs::Middleware::Server
+  end
+
+  SidekiqUniqueJobs::Server.configure(config)
   # Rails.application.config.after_initialize do
   #   Rails.logger.info("DB Connection Pool size for Sidekiq Server before disconnect
   # is: #{ActiveRecord::Base.connection.pool.instance_variable_get('@size')}")
@@ -34,6 +44,10 @@ end
 
 Sidekiq.configure_client do |config|
   config.redis = redis_connection
+
+  config.client_middleware do |chain|
+    chain.add SidekiqUniqueJobs::Middleware::Client
+  end
 end
 
 # calling Sidekiq::Cron::Job is moved to application.rb in Rails.application.config.to_prepare

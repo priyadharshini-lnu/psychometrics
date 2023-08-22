@@ -378,6 +378,41 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: assessment_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessment_translations (
+    id bigint NOT NULL,
+    name text,
+    description text,
+    timing text,
+    locale character varying NOT NULL,
+    assessment_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: assessment_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessment_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessment_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessment_translations_id_seq OWNED BY public.assessment_translations.id;
+
+
+--
 -- Name: assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1084,6 +1119,48 @@ CREATE SEQUENCE public.campaigns_id_seq
 --
 
 ALTER SEQUENCE public.campaigns_id_seq OWNED BY public.campaigns.id;
+
+
+--
+-- Name: client_auditlog_export_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.client_auditlog_export_settings (
+    id bigint NOT NULL,
+    destination_type smallint,
+    active boolean DEFAULT false,
+    description character varying,
+    s3_access_key_id character varying,
+    encrypted_s3_secret_access_key character varying,
+    encrypted_s3_secret_access_key_iv character varying,
+    s3_bucket_name character varying,
+    s3_bucket_folder character varying,
+    s3_region character varying,
+    s3_endpoint character varying,
+    last_exported_at timestamp(6) without time zone,
+    client_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: client_auditlog_export_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.client_auditlog_export_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: client_auditlog_export_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.client_auditlog_export_settings.id;
 
 
 --
@@ -5299,6 +5376,13 @@ ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api
 
 
 --
+-- Name: assessment_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations ALTER COLUMN id SET DEFAULT nextval('public.assessment_translations_id_seq'::regclass);
+
+
+--
 -- Name: assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5422,6 +5506,13 @@ ALTER TABLE ONLY public.campaign_users ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.campaigns ALTER COLUMN id SET DEFAULT nextval('public.campaigns_id_seq'::regclass);
+
+
+--
+-- Name: client_auditlog_export_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_auditlog_export_settings ALTER COLUMN id SET DEFAULT nextval('public.client_auditlog_export_settings_id_seq'::regclass);
 
 
 --
@@ -6281,6 +6372,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
+-- Name: assessment_translations assessment_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT assessment_translations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: assessments_clients assessments_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6422,6 +6521,14 @@ ALTER TABLE ONLY public.campaign_users
 
 ALTER TABLE ONLY public.campaigns
     ADD CONSTRAINT campaigns_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: client_auditlog_export_settings client_auditlog_export_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_auditlog_export_settings
+    ADD CONSTRAINT client_auditlog_export_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -7491,6 +7598,20 @@ CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
 
 
 --
+-- Name: index_assessment_t18n_tables_on_assessment_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_assessment_t18n_tables_on_assessment_id_and_locale ON public.assessment_translations USING btree (assessment_id, locale);
+
+
+--
+-- Name: index_assessment_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_translations_on_locale ON public.assessment_translations USING btree (locale);
+
+
+--
 -- Name: index_assessments_clients_on_client_id_and_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7789,6 +7910,13 @@ CREATE INDEX index_campaign_users_on_user_id ON public.campaign_users USING btre
 --
 
 CREATE INDEX index_campaigns_on_project_id ON public.campaigns USING btree (project_id);
+
+
+--
+-- Name: index_client_auditlog_export_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_auditlog_export_settings_on_client_id ON public.client_auditlog_export_settings USING btree (client_id);
 
 
 --
@@ -11073,6 +11201,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: assessment_translations fk_rails_e8b68f05ba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT fk_rails_e8b68f05ba FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
 -- Name: threesixty_evaluators fk_rails_e96676a310; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11150,6 +11286,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.clients
     ADD CONSTRAINT fk_rails_f28b175e74 FOREIGN KEY (modified_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: client_auditlog_export_settings fk_rails_f330a54325; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_auditlog_export_settings
+    ADD CONSTRAINT fk_rails_f330a54325 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -11803,6 +11947,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230808200613'),
 ('20230809193337'),
 ('20230809193508'),
+('20230810103629'),
 ('20230811114945'),
 ('20230821100124');
 

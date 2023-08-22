@@ -262,3 +262,5 @@ gem 'xml-simple', '~> 1.1.5'
 gem 'sidekiq_alive', '~> 2.1.4'
 
 gem 'psych', '3.3.2'
+
+gem 'sidekiq-unique-jobs', '~> 7.1'

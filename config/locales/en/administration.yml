@@ -3855,6 +3855,26 @@ en:
       send_unlock_email: Send unlock email
       tfa_enabled: Enable Two Factor Authentication
       update_success_msg: Password settings successfull updated
+    settings:
+      siem:
+        description: Description
+        destination_type: Destination Type
+        destination_types:
+          s3: S3
+          s3_compatible: S3 Compatible
+        enabled: Enabled
+        readable_resource_name: SIEM settings
+        s3_access_key_id: Access Key ID
+        s3_bucket_folder: S3 Bucket Folder
+        s3_bucket_name: S3 Bucket Name
+        s3_endpoint: S3 Endpoint
+        s3_region: S3 Region
+        s3_secret_access_key: Secret Access Key
+        send_test_log: Send Test Log
+        send_test_log_error_message: Test log has not been sent to your bucket, check your settings
+        send_test_log_success_message: Test log has been successfully sent to your bucket
+      tabs:
+        siem: SIEM
     sheets:
       column:
         add_column: Add Column

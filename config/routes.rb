@@ -1180,6 +1180,14 @@ Rails.application.routes.draw do
         namespace :administration do
           jsonapi_resources :clients do
             jsonapi_relationships
+            jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
+              member do
+                post :test_connection
+              end
+              collection do
+                get :create_or_get
+              end
+            end
             jsonapi_resources :projects, only: %i[index create update]
             jsonapi_resources :licenses, only: %i[index create update] do
               jsonapi_resources :license_usages, only: %i[index] do

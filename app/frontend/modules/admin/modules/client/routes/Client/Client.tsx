@@ -3,7 +3,7 @@ import { useParams, useHistory, useLocation } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
-  ShopOutlined,
+  ShopOutlined, UserOutlined, SettingOutlined,
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
@@ -41,6 +41,9 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
     if (pathname.includes('/admins')) {
       return ['admins']
     }
+    if (pathname.includes('/settings')) {
+      return ['settings']
+    }
     return undefined
   }
 
@@ -56,6 +59,8 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
         return I18n.t('common.model.projects')
       case 'admins':
         return I18n.t('administration.breadcrumbs.admins')
+      case 'settings':
+        return I18n.t('administration.breadcrumbs.settings')
       default:
         return ''
     }
@@ -66,8 +71,14 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
 
   isSuperAdmin(currentUser) && menuItems.push({
     key: 'admins',
-    icon: <ShopOutlined />,
+    icon: <UserOutlined />,
     label: I18n.t('administration.breadcrumbs.client_admins'),
+  })
+
+  isSuperAdmin(currentUser) && menuItems.push({
+    key: 'settings',
+    icon: <SettingOutlined />,
+    label: I18n.t('administration.breadcrumbs.settings'),
   })
 
   return (

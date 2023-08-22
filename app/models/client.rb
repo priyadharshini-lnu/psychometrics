@@ -101,6 +101,7 @@ class Client < ApplicationRecord
   has_many :sheets, foreign_key: :project_id, dependent: :destroy
   has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
   has_one :privacy_link, dependent: :destroy
+  has_one :client_auditlog_export_setting, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
   accepts_nested_attributes_for :privacy_link, allow_destroy: true
