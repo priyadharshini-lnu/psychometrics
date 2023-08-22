@@ -39,6 +39,7 @@ interface Props {
     }[]
   }
   onPrevious: () => void
+  onSubmit: (workshop) => void
 }
 
 interface Errors {
@@ -48,7 +49,7 @@ interface Errors {
 
 const { I18n } = window
 
-export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => {
+export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious, onSubmit }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const { projectId } = useParams<{ projectId: string }>()
 
@@ -122,8 +123,9 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious }) => 
       },
     ).catch((errors) => {
       setErrors(errors.base)
-    }).then(() => {
+    }).then((response) => {
       setDisableCreate(true)
+      onSubmit(response)
     })
   }
 

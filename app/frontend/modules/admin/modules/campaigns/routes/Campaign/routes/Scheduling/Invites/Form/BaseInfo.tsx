@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Button, Select, Switch,
-  Form, Row, Col, Space, Tag,
+  Form, Row, Col, Space, Tag, FormInstance,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
@@ -14,7 +14,16 @@ import styles from './Form.less'
 
 const { I18n } = window
 
-export const BaseInfoForm = ({ form, next }) => {
+interface Props {
+  form: FormInstance
+  next: () => void
+  prev?: () => void
+  workshops?: Workshop[]
+}
+
+export const BaseInfoForm: React.FC<Props> = ({
+  form, next, prev, workshops,
+}) => {
   const params = useParams<{campaignId: string}>()
   const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferredLanguage'))
   const [, setSelectedWorkshops] = useState([])
@@ -24,6 +33,13 @@ export const BaseInfoForm = ({ form, next }) => {
   } = useResources<Workshop>('workshops', {
     basePath: `campaigns/${params.campaignId}`,
   })
+
+  useEffect(() => {
+    if (workshops) {
+      form.setFieldValue('workshopIds', [...workshops])
+      setSelectedWorkshops(form.getFieldValue('workshopIds'))
+    }
+  }, [workshops])
 
   const changePreferredLang = (checked) => {
     form.setFieldValue('allowPreferredLanguage', checked)
@@ -77,6 +93,7 @@ export const BaseInfoForm = ({ form, next }) => {
                       {I18n.t('workshop_invite.basic_info.assessment_centers_hint')}
                     </div>
                     <Select
+                      disabled={workshops && (workshops.length > 0)}
                       showSearch
                       placeholder={I18n.t('workshop_invite.basic_info.assessment_centers_placeholder')}
                       options={assessmetnCenters.map(workshop => ({
@@ -94,7 +111,7 @@ export const BaseInfoForm = ({ form, next }) => {
                   </Col>
                   <Col span={24}>
                     {(form.getFieldValue('workshopIds') || []).map(workshop => (
-                      <Tag closable onClose={() => removeWorkshop(workshop.id)}>
+                      <Tag closable={!(workshops && workshops.length > 0)} onClose={() => removeWorkshop(workshop.id)}>
                         {formatWorkshopDate(workshop.startTime)}
                       </Tag>
                     ))}
@@ -111,23 +128,22 @@ export const BaseInfoForm = ({ form, next }) => {
               </Form.Item>
               {preferredLang
               && (
-              <Form.Item
-                name="preferred_language"
-                label={I18n.t('workshop_invite.basic_info.preferred_language')}
-              >
-                <Select
-                  showSearch
-                  defaultValue="en"
-                  placeholder={I18n.t('workshop_invite.basic_info.preferred_language_placeholder')}
-                  options={[
-                    { value: 'en', label: 'English' },
-                    { value: 'ar', label: 'Arabic' },
-                  ]}
-                />
-              </Form.Item>
+                <Form.Item
+                  name="preferred_language"
+                  label={I18n.t('workshop_invite.basic_info.preferred_language')}
+                >
+                  <Select
+                    showSearch
+                    defaultValue="en"
+                    placeholder={I18n.t('workshop_invite.basic_info.preferred_language_placeholder')}
+                    options={[
+                      { value: 'en', label: 'English' },
+                      { value: 'ar', label: 'Arabic' },
+                    ]}
+                  />
+                </Form.Item>
               )
-            }
-
+              }
               <Form.Item name="allowNeurodiversityOption" valuePropName="checked">
                 <Space>
                   <Switch
@@ -142,6 +158,7 @@ export const BaseInfoForm = ({ form, next }) => {
       </Panel>
       <div className={styles.footer}>
         <Space>
+          {prev && <Button onClick={prev}>{I18n.t('workshop_invite.prev')}</Button>}
           <Button type="primary" onClick={next}>{I18n.t('workshop_invite.next')}</Button>
         </Space>
       </div>

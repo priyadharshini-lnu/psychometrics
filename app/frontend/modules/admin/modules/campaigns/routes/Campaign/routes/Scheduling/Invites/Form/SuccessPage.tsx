@@ -12,7 +12,7 @@ export const SuccessPage = () => {
   const location = useLocation()
 
   const next = () => {
-    history.push(location.pathname.replace('/add_invite', ''))
+    history.push(location.pathname.replace(/(\/add_invite|\/new)$/, ''))
   }
 
   return (

@@ -17,7 +17,7 @@ module Api
     def create_bulk_workshops
       workshops_data = workshop_params[:workshops]
 
-      response = ::Workshops::CreateAll.call(
+      response = ::Workshops::CreateAll.call!(
         workshops_data,
         params[:campaign_id]
       )
@@ -25,7 +25,7 @@ module Api
       if response && response[:error]
         render json: { error: response[:error] }, status: 400
       else
-        render json: { workshop_ids: response[:workshops_ids] }
+        jsonapi_render json: response[:workshops]
       end
     end
 

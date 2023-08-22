@@ -3332,6 +3332,18 @@ en:
       other: There are %{count} errors, please check your responses
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
+  workshop:
+    steps:
+      basic_information: Basic Information
+      facilitators: Facilitators
+      invite_options: Invite Options
+      invite_subjects: Invite Subjects
+      send_invitations: Send Invitations
+    success:
+      call_send_invitation: Would you like to send invites?
+      skip: Skip for now
+      title: Assessment centers created
+      'yes': 'Yes'
   workshop_invite:
     actions: Actions
     add_invite: Add Invite

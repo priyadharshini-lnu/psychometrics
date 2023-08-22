@@ -76,6 +76,11 @@ RSpec.describe Workshops::CreateAll do
           workshops.sum { |workshop| workshop[:center_manager_ids].size }
         )
       end
+
+      it 'create workshops and return it as array' do
+        response = described_class.call!(workshops, campaign.id)
+        expect(response[:workshops]).to include(Workshop.last)
+      end
     end
 
     context 'with invalid data' do

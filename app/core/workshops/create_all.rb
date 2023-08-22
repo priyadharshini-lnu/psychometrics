@@ -2,12 +2,12 @@
 
 module Workshops
   class CreateAll < BaseCommand
-    private_attr_accessor :workshops, :campaign_id, :new_workshop_ids
+    private_attr_accessor :workshops, :campaign_id, :new_workshops
 
     def initialize(workshops, campaign_id)
       @workshops = workshops
       @campaign_id = campaign_id
-      @new_workshop_ids = []
+      @new_workshops = []
     end
 
     def call
@@ -23,7 +23,7 @@ module Workshops
       end
 
       if failed_index.nil?
-        broadcast(:ok, { workshops_ids: new_workshop_ids })
+        broadcast(:ok, { workshops: new_workshops })
       else
         broadcast(:error, { title: failed_index, detail: I18n.t('administration.errors.error_msg') })
       end
@@ -42,7 +42,7 @@ module Workshops
         :video_call_type, :start_time, :campaign_id
       )
       workshop = Workshop.create!(data)
-      new_workshop_ids << workshop.id
+      new_workshops << workshop
       workshop
     end
 
