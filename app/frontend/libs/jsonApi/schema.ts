@@ -15,6 +15,7 @@ import {
   Schema as workshopInviteSubjectsSchema,
 } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'
 import { Schema as campaignAssessmentSchema } from '~/modules/admin/modules/campaigns/core/campaignAssessment'
+import { Schema as workshopInviteSchema } from '~/modules/admin/modules/campaigns/core/invites'
 
 export const Schema = {
   clients: clientSchema,
@@ -32,4 +33,5 @@ export const Schema = {
   workshop_invited_subjects: workshopInviteSubjectsSchema,
   campaign_assessments: campaignAssessmentSchema,
   user_assessments: activitiesSchema,
+  workshop_invites: workshopInviteSchema,
 }

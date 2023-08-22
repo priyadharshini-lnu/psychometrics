@@ -31,6 +31,7 @@ export const InvitesForm = () => {
 
   const submitForm = () => {
     createResource({
+      campaignId: params.campaignId,
       title: form.getFieldValue('title'),
       allowLanguagePreference: form.getFieldValue('allowLanguagePreference'),
       allowedLanguages: ['en', 'ar'],

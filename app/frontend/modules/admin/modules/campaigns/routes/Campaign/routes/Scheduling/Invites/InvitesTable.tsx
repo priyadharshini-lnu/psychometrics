@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Dropdown, Tag, Button,
 } from 'antd'
@@ -11,6 +12,7 @@ import {
 } from '@ant-design/icons'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { formatWorkshopDate } from '~/utils/workshop'
+import { ConfirmationModal } from '~/glint'
 
 const { I18n } = window
 
@@ -27,29 +29,43 @@ export const InvitesTable = () => {
 
   const Menu = ({ item }) => {
     const { resource } = useResourceContext<WorkshopInvite>()
+    const [confirmation, setConfirmation] = useState(false)
     const remove = () => {
       resource.removeResource(item.id)
     }
 
+
     return (
-      <Dropdown
-        trigger={['click']}
-        menu={{
-          onClick () {
-            remove()
-          },
-          items: [
-            {
-              label: I18n.t('workshop_invite.remove'),
-              key: 'remove',
+      <>
+        <Dropdown
+          trigger={['click']}
+          menu={{
+            onClick () {
+              setConfirmation(true)
             },
-          ],
-        }}
-      >
-        <Button type="link">
-          <MoreOutlined />
-        </Button>
-      </Dropdown>
+            items: [
+              {
+                label: I18n.t('workshop_invite.remove'),
+                key: 'remove',
+              },
+            ],
+          }}
+        >
+          <Button type="link">
+            <MoreOutlined />
+          </Button>
+        </Dropdown>
+        {confirmation && (
+        <ConfirmationModal
+          title={I18n.t('workshop_invite.confirmation.title')}
+          message={
+                I18n.t('workshop_invite.confirmation.message')
+              }
+          onConfirm={remove}
+          onCancel={() => setConfirmation(false)}
+        />
+        )}
+      </>
     )
   }
 
@@ -59,6 +75,8 @@ export const InvitesTable = () => {
         config={{
           apiConfig: {
             filter: { campaign_id_eq: params.campaignId },
+            include: ['workshops'],
+            fields: { workshops: 'start_time' },
           },
         }}
         name="workshop_invites"
@@ -75,16 +93,33 @@ export const InvitesTable = () => {
             title={I18n.t('workshop_invite.id')}
             id="id"
             sorter
+            width="10%"
             render={(_, { id }) => <Link to={`${location.pathname}/${id}/subjects`}>{id}</Link>}
           />
-          <Resource.Column<WorkshopInvite> title={I18n.t('workshop_invite.title')} id="title" sorter />
+          <Resource.Column<WorkshopInvite>
+            title={I18n.t('workshop_invite.title')}
+            id="title"
+            sorter
+            width="40%"
+          />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('workshop_invite.assessment_center')}
             id="assessmentCenter"
-            render={data => <Tag>{formatWorkshopDate(data.createdAt)}</Tag>}
+            width="25%"
+            render={data => (
+              data.workshops[0] ? (
+                <>
+                  <Tag>
+                    {formatWorkshopDate(data.workshops[0].startTime)}
+                  </Tag>
+                  {data.workshops.length > 1 && `+${data.workshops.length - 1}`}
+                </>
+              ) : I18n.t('workshop_invite.not_selected')
+            )}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('workshop_invite.subjects')}
+            title={I18n.t('workshop_invite.subjects.title')}
+            width="15%"
             id="subjectsCount"
           />
           <Resource.Column<WorkshopInvite>

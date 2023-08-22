@@ -73,6 +73,9 @@ export const BaseInfoForm = ({ form, next }) => {
               >
                 <Row gutter={[16, 16]}>
                   <Col span={24}>
+                    <div className={styles.hint}>
+                      {I18n.t('workshop_invite.basic_info.assessment_centers_hint')}
+                    </div>
                     <Select
                       showSearch
                       placeholder={I18n.t('workshop_invite.basic_info.assessment_centers_placeholder')}
