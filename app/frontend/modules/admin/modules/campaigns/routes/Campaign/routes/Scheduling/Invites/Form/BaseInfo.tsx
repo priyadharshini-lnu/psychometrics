@@ -16,7 +16,7 @@ const { I18n } = window
 
 export const BaseInfoForm = ({ form, next }) => {
   const params = useParams<{campaignId: string}>()
-  const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferedLanguage'))
+  const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferredLanguage'))
   const [, setSelectedWorkshops] = useState([])
   const [searchValue, setSearchValue] = useState('')
   const {
@@ -26,7 +26,7 @@ export const BaseInfoForm = ({ form, next }) => {
   })
 
   const changePreferredLang = (checked) => {
-    form.setFieldValue('allowPreferedLanguage', checked)
+    form.setFieldValue('allowPreferredLanguage', checked)
     setPreferredLang(checked)
   }
 
@@ -101,24 +101,24 @@ export const BaseInfoForm = ({ form, next }) => {
                   </Col>
                 </Row>
               </Form.Item>
-              <Form.Item name="allowPreferedLanguage" valuePropName="checked">
+              <Form.Item name="allowPreferredLanguage" valuePropName="checked">
                 <Space>
                   <Switch
                     onChange={checked => changePreferredLang(checked)}
                   />
-                  {I18n.t('workshop_invite.basic_info.prefered_language')}
+                  {I18n.t('workshop_invite.basic_info.preferred_language')}
                 </Space>
               </Form.Item>
               {preferredLang
               && (
               <Form.Item
-                name="prefered_language"
-                label={I18n.t('workshop_invite.basic_info.prefered_language')}
+                name="preferred_language"
+                label={I18n.t('workshop_invite.basic_info.preferred_language')}
               >
                 <Select
                   showSearch
                   defaultValue="en"
-                  placeholder={I18n.t('workshop_invite.basic_info.prefered_language_placeholder')}
+                  placeholder={I18n.t('workshop_invite.basic_info.preferred_language_placeholder')}
                   options={[
                     { value: 'en', label: 'English' },
                     { value: 'ar', label: 'Arabic' },

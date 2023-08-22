@@ -27,7 +27,6 @@
 //= require administration/plugins/smartwizard/jquery.smartWizard-2.0.min
 //= require administration/plugins/jquery.kv-json-input
 
-//= require administration/plugins/scrolltotop/scrolltopcontrol
 //= require administration/plugins/bootstrap/bootstrap-datepicker
 //= require administration/plugins/bootstrap/bootstrap-timepicker.min
 //= require administration/plugins/moment.min.js

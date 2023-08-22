@@ -114,11 +114,21 @@ export const AddSubjectsComponent: FC<Props> = ({
       <Modal
         closable={false}
         open={uploadModal}
+        title={I18n.t('workshop_invite.subjects.import_title')}
         footer={[
           <Button type="primary" onClick={() => upload()}>{I18n.t('workshop_invite.subjects.upload')}</Button>,
           <Button onClick={() => showUploadModal(false)}>{I18n.t('workshop_invite.subjects.cancel')}</Button>,
         ]}
       >
+        <div>
+          {I18n.t('workshop_invite.subjects.file_example')}
+          <a
+            href="/example_csv/workshop_subject_import.csv"
+            target="_blank"
+          >
+            {I18n.t('workshop_invite.subjects.download')}
+          </a>
+        </div>
         <Input ref={ref} type="file" />
       </Modal>
       <Panel

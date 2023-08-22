@@ -3338,14 +3338,14 @@ en:
     assessment_center: Assessment Center
     back: Back
     basic_info:
-      allow_prefered_language: Allow Prefered Language
+      allow_preferred_language: Allow Preferred Language
       assessment_centers: Assessment Centers
       assessment_centers_hint: Search query example '10th August 2023, 8:06 pm'
       assessment_centers_placeholder: Select Assessments Centers
       description: Issue invitations to candidates by selecting multiple assessment centers. Candidates will then choose a single center from those available.
       neurodiversity: Include neurodiversity question
-      prefered_language: Prefered Language
-      prefered_language_placeholder: Select Prefered Language
+      preferred_language: Preferred Language
+      preferred_language_placeholder: Select Preferred Language
       title: Basic Information
     confirmation:
       message: Are you sure you want to delete invitation?
@@ -3363,7 +3363,7 @@ en:
       add_language: Add Language
       description: Candidates will see the following information in their email message and on the booking page.
       input_label: Add Additional Language
-      input_placehodler: Select Prefered Language
+      input_placehodler: Select Preferred Language
       title: Invitation (%{lang})
     steps:
       add_subjects: Add Subjects
@@ -3374,15 +3374,18 @@ en:
       count: "%{count} Subjects"
       csv_error: 'Row%{index}: user with email %{email} is not in this campaign'
       description: You can add subjects individually by searching or bulk upload a csv file.
+      download: Download
+      file_example: Refere to example file to upload subjecs information.
       import_from_campaign: Add all from campaign
       import_users: Import Users
-      search_user: Search to add subjects
+      search_user: Search subjects
       title: Subjects
       upload: Upload
       upload_csv: Upload CSV
+      upload_title: Import Subjects from CSV
     success:
       continue: Continue
-      message: The invites have been scheduled to be sent
+      message: The invitations are scheduled to be sent
     title: Title
   workshop_invited_subjects:
     statuses:
