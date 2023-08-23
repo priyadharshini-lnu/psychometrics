@@ -5,7 +5,6 @@ class Administration::UsersController < Administration::BaseController
   before_action :set_resource, only: %i[show edit update destroy toggle_status
                                         toggle_enable_2fa sidebar spoof reset_password]
   before_action :skip_authorization, only: [:sidebar]
-  append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
   append_after_action :verify_policy_scoped, except: %i[index search_admins]
 
@@ -19,6 +18,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def index; end
+
   # GET /administration/resources/1
   def show; end
 
@@ -60,7 +60,7 @@ class Administration::UsersController < Administration::BaseController
     resource.update!(modified_by_id: current_user.id)
     resource.memberships.update_all(disabled: resource.disabled)
     audit! (resource.disabled? ? :disabled : :enabled), resource, project: resource.project,
-      payload: { email: resource.email }
+           payload: { email: resource.email }
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -73,7 +73,7 @@ class Administration::UsersController < Administration::BaseController
     resource.toggle!(:enable_2fa)
     resource.update!(modified_by_id: current_user.id)
     audit! (resource.enable_2fa? ? :enable_2fa : :disable_2fa), resource, project: resource.project,
-      payload: { email: resource.email }
+           payload: { email: resource.email }
 
     respond_to do |format|
       format.html do
@@ -104,11 +104,6 @@ class Administration::UsersController < Administration::BaseController
   end
 
   protected
-
-  def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
-  end
 
   # Set model
   def set_resource_class

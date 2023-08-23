@@ -6,7 +6,6 @@ class Administration::AssessmentsController < Administration::BaseController
   before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy
                                         preview export toggle_archive questions factors soft_delete restore]
   before_action :skip_authorization, only: [:sidebar]
-  before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
   # we need this line to override a behviour from BaseController
   append_after_action :verify_policy_scoped, only: []
@@ -56,11 +55,6 @@ class Administration::AssessmentsController < Administration::BaseController
       nil,
       project_id: resource&.owner_id
     )
-  end
-
-  def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
   end
 
   # Set model

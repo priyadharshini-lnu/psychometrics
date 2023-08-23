@@ -16,16 +16,14 @@ const client = new ApiClient({
 })
 
 const App: React.FC<void> = () => (
-  <div className="ms" style={{ background: 'white' }}>
+  <div style={{ background: 'white' }}>
     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
     <Provider store={store as any}>
       <ApiProvider client={client}>
         <Router>
           <ConnectedRouter history={history}>
             <PortalMenu />
-            <div className="ms">
-              <UserLayout />
-            </div>
+            <UserLayout />
           </ConnectedRouter>
         </Router>
         <IncorrectResponseErrorModal />

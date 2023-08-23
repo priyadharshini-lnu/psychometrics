@@ -12,7 +12,7 @@ import settings from './settings'
 import { PortalMenu } from '~/components/MainMenu'
 
 const App: React.FC<void> = () => (
-  <div className="ms" style={{ background: 'white' }}>
+  <div style={{ background: 'white' }}>
     {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
     <Provider store={store as any}>
       <DndProvider backend={HTML5Backend}>
