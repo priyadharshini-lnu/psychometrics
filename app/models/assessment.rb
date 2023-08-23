@@ -10,27 +10,38 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # TODO: remove after migration to ActiveStorage
   include ActiveStorageSync
 
-  # CATEGORIES constant
+  PSYCHOMETRIC = 'psychometric'
+  ORGANISATIONAL = 'organisational'
+  CASE_STUDY = 'case_study'
+  THREESIXTY = 'threesixty'
+  MINDMILL = 'mindmill'
+  ASSESSOR_FORM = 'assessor_form'
+  HOGAN = 'hogan'
+  AGILE = 'agile'
+  SAVILLE = 'saville'
+  PEARSON = 'pearson'
+  IIHT = 'iiht'
+
   CATEGORIES_TYPES = [
-    PSYCHOMETRIC = 'psychometric',
-    ORGANISATIONAL = 'organisational',
-    CASE_STUDY = 'case_study',
-    THREESIXTY = 'threesixty',
-    MINDMILL = 'mindmill',
-    ASSESSOR_FORM = 'assessor_form',
-    HOGAN = 'hogan',
-    AGILE = 'agile',
-    SAVILLE = 'saville',
-    PEARSON = 'pearson',
-    IIHT = 'iiht'
+    PSYCHOMETRIC,
+    ORGANISATIONAL,
+    CASE_STUDY,
+    THREESIXTY,
+    MINDMILL,
+    ASSESSOR_FORM,
+    HOGAN,
+    AGILE,
+    SAVILLE,
+    PEARSON,
+    IIHT
   ].freeze
 
   COMMON_CATEGORIES_TYPES = [
-    PSYCHOMETRIC = 'psychometric',
-    ORGANISATIONAL = 'organisational',
-    CASE_STUDY = 'case_study',
-    THREESIXTY = 'threesixty',
-    ASSESSOR_FORM = 'assessor_form'
+    PSYCHOMETRIC,
+    ORGANISATIONAL,
+    CASE_STUDY,
+    THREESIXTY,
+    ASSESSOR_FORM
   ].freeze
 
   CATEGORIES = {

@@ -5,7 +5,7 @@ import {
 import { Moment } from 'moment'
 import { Store } from 'antd/lib/form/interface'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
-import InputDuration from '~/components/InputDuration'
+import InputDuration, { convertToInt } from '~/components/InputDuration'
 import { Panel } from '~/glint/components/Panel/Panel'
 import styles from './Form.less'
 import { ResourcesItems } from './ResourcesItems'
@@ -20,6 +20,8 @@ const { I18n } = window
 interface Props {
   initialValues: {
     dates: Moment[]
+    timezone: string
+    video_call_type: number
   }
   onNext: (values: Store) => void
 }
@@ -27,16 +29,22 @@ interface Props {
 export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
   const [form] = Form.useForm()
 
-  const [selectedDates, setSelectedDates] = useState<Moment[]>([])
-  const [videoCallType, setVideoCallType] = useState<number>(0)
+  const [selectedDates, setSelectedDates] = useState<Moment[]>(initialValues.dates || [])
+  const [videoCallType, setVideoCallType] = useState<number>(initialValues.video_call_type)
 
-  const preSelectedDates = initialValues.dates
-
-  const tagDates = preSelectedDates || selectedDates.slice(0, 6)
+  const sortDates = (dates: Moment[]) => dates.sort((a, b) => a.valueOf() - b.valueOf())
 
   const handleDateChange = (date: Moment | null) => {
-    if (date && !(selectedDates.length > 5)) {
-      setSelectedDates([...selectedDates, date])
+    if (!date) {
+      return
+    }
+    const existingIndex = selectedDates.map(d => d.format('YYYY MM DD')).indexOf(date.format('YYYY MM DD'))
+    if (existingIndex >= 0) {
+      const newDates = selectedDates.filter(d => d.format('YYYY MM DD') !== date.format('YYYY MM DD'))
+      setSelectedDates(sortDates(newDates))
+    }
+    if (existingIndex < 0 && date && selectedDates.length < 5) {
+      setSelectedDates(sortDates([...selectedDates, date]))
     }
   }
 
@@ -64,14 +72,26 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
             label={I18n.t('administration.scheduling.assessment_center_form.dates_label')}
             {...fieldLayout}
             rules={[{ required: true }]}
-            validateStatus={selectedDates.length > 5 ? 'error' : ''}
-            help={
-              selectedDates.length > 5 ? I18n.t('administration.scheduling.assessment_center_form.dates_error') : ''
-            }
           >
-            <DatePicker onSelect={date => handleDateChange(date)} />
+            <DatePicker
+              value={null}
+              onSelect={date => handleDateChange(date)}
+              dateRender={(current) => {
+                const style: React.CSSProperties = {}
+                const found = selectedDates.find(d => d.format('YYYY MM DD') === current.format('YYYY MM DD'))
+                if (found) {
+                  style.backgroundColor = 'var(--ant-primary-color)'
+                  style.color = '#fff'
+                }
+                return (
+                  <div className="ant-picker-cell-inner" style={style}>
+                    {current.date()}
+                  </div>
+                )
+              }}
+            />
             <div className={styles.dateTags}>
-              {tagDates.map(date => (
+              {selectedDates.map(date => (
                 <Tag
                   key={date.toISOString()}
                   closable
@@ -100,7 +120,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
                 {...fieldLayout}
                 rules={[{ required: true }]}
               >
-                <TimePicker format="HH:mm" />
+                <TimePicker format="h:mm A" use12Hours minuteStep={15} showNow={false} />
               </Form.Item>
             </Col>
             <Col span={4}>
@@ -108,12 +128,36 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
                 name="duration"
                 label={I18n.t('administration.scheduling.assessment_center_form.duration_label')}
                 {...fieldLayout}
-                rules={[{ required: true }]}
+                rules={[
+                  { required: true },
+                  {
+                    validator (_, value) {
+                      if (!value) {
+                        return Promise.reject(new Error(
+                          I18n.t('administration.scheduling.assessment_center_form.duration_required_error'),
+                        ))
+                      }
+                      const minutes = convertToInt(value) / 60
+                      const hours = minutes / 60
+                      if (hours > 16) {
+                        return Promise.reject(new Error(
+                          I18n.t('administration.scheduling.assessment_center_form.duration_max_error'),
+                        ))
+                      }
+                      if (minutes < 15) {
+                        return Promise.reject(
+                          I18n.t('administration.scheduling.assessment_center_form.duration_min_error'),
+                        )
+                      }
+                      return Promise.resolve()
+                    },
+                  },
+                ]}
               >
                 <InputDuration
                   value=""
                   onChange={() => {}}
-                  placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                  placeholder={I18n.t('administration.scheduling.assessment_center_form.duration_placeholder')}
                 />
               </Form.Item>
             </Col>
@@ -166,16 +210,17 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
               </Radio>
             </Radio.Group>
           </Form.Item>
+          {videoCallType === 2 && (
+            <Form.Item
+              label="Meeting Link"
+              name="meeting_link"
+              {...fieldLayout}
+              rules={[{ required: true }, { type: 'url' }]}
+            >
+              <Input />
+            </Form.Item>
+          )}
         </Form>
-        {videoCallType === 2 && (
-          <Form.Item
-            label="Meeting Link"
-            name="meeting_link"
-            {...fieldLayout}
-          >
-            <Input />
-          </Form.Item>
-        )}
       </Panel>
       <Panel
         title={I18n.t('administration.scheduling.assessment_center_form.resources_panel.title')}

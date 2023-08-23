@@ -38,7 +38,7 @@ export const AssessmentCenterForm = () => {
     dates: [],
     time: moment(),
     duration: 0,
-    timezone: '',
+    timezone: moment.tz.guess(),
     video_call_type: 0,
     meeting_link: '',
     workshop_resources: [{ key: 1, name: '', url: '' }],
@@ -102,19 +102,19 @@ export const AssessmentCenterForm = () => {
             current={step}
             items={[
               {
-                title: I18n.t('workshop.basic_information'),
+                title: I18n.t('administration.assessment_center.steps.basic_information'),
               },
               {
-                title: I18n.t('workshop.facilitators'),
+                title: I18n.t('administration.assessment_center.steps.facilitators'),
               },
               {
-                title: I18n.t('workshop.invite_subjects'),
+                title: I18n.t('administration.assessment_center.steps.invite_subjects'),
               },
               {
-                title: I18n.t('workshop.invite_options'),
+                title: I18n.t('administration.assessment_center.steps.invite_options'),
               },
               {
-                title: I18n.t('workshop.send_invitations'),
+                title: I18n.t('administration.assessment_center.steps.send_invitations'),
               },
             ]}
           />

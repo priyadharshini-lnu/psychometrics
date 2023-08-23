@@ -57,7 +57,7 @@ describe Api::V2::Administration::WorkshopFacilitatorsController, swagger_doc: '
           type: 'clients',
           data: {
             attributes: {
-              name: 'John Doe',
+              full_name: 'John Doe',
               email: 'john@cc.com',
               photo_url: 'https://www.example.com/photo.jpg'
             }
@@ -70,7 +70,7 @@ describe Api::V2::Administration::WorkshopFacilitatorsController, swagger_doc: '
           expect(data.length).to eq(1)
           expect(facilitators).to have_key('id')
           expect(facilitators).to have_attribute('photo_url')
-          expect(facilitators).to have_attribute(:name).with_value(admins[0].decorate.display_name)
+          expect(facilitators).to have_attribute(:full_name).with_value(admins[0].decorate.display_name)
           expect(facilitators).to have_attribute(:email).with_value(admins[0].email)
         end
       end
@@ -121,7 +121,7 @@ describe Api::V2::Administration::WorkshopFacilitatorsController, swagger_doc: '
           type: 'clients',
           data: {
             attributes: {
-              name: 'John Doe',
+              full_name: 'John Doe',
               email: 'john@cc.com',
               photo_url: 'https://www.example.com/photo.jpg'
             }
@@ -134,7 +134,7 @@ describe Api::V2::Administration::WorkshopFacilitatorsController, swagger_doc: '
           expect(data.length).to eq(1)
           expect(assessors).to have_key('id')
           expect(assessors).to have_attribute('photo_url')
-          expect(assessors).to have_attribute(:name).with_value(global_assessor.decorate.display_name)
+          expect(assessors).to have_attribute(:full_name).with_value(global_assessor.decorate.display_name)
           expect(assessors).to have_attribute(:email).with_value(global_assessor.email)
         end
       end

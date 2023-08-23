@@ -47,7 +47,7 @@ export const SubjectAddFormModal:React.FC<Props> = ({ close }) => {
               placeholder={(
                 <Space>
                   <SearchOutlined />
-                  {I18n.t('workshop_invite.subjects.search_user')}
+                  {I18n.t('administration.assessment_center.invite.subjects.search_user')}
                 </Space>
               )}
               onSearch={(value) => {

@@ -4,7 +4,7 @@ export const userDetailsTR = t.type({
   id: t.string,
   fullName: t.string,
   photoUrl: t.union([t.string, t.null]),
-  // email: t.string,
+  email: t.string,
 })
 
 export const WorkshopTR = t.type({

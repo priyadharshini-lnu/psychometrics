@@ -45,8 +45,9 @@ export const SendInvitation = ({ form, prev, submit }) => {
         {_.map(languages, (lang, code) => (
           <Panel
             collapsible
-            title={I18n.t('workshop_invite.send_invites.title', { lang: I18n.t(`languages.${lang.locale}`) })}
-            description={I18n.t('workshop_invite.send_invites.description')}
+            // eslint-disable-next-line max-len
+            title={I18n.t('administration.assessment_center.invite.send_invites.title', { lang: I18n.t(`languages.${lang.locale}`) })}
+            description={I18n.t('administration.assessment_center.invite.send_invites.description')}
           >
             <Row>
               <Col sm={24} md={12} lg={8}>
@@ -73,25 +74,25 @@ export const SendInvitation = ({ form, prev, submit }) => {
         ))}
 
         <Panel
-          title={I18n.t('workshop_invite.send_invites.add_language')}
-          description={I18n.t('workshop_invite.send_invites.add_description')}
+          title={I18n.t('administration.assessment_center.invite.send_invites.add_language')}
+          description={I18n.t('administration.assessment_center.invite.send_invites.add_description')}
         >
           <Row>
             <Col sm={24} md={12} lg={8}>
               <Form.Item
                 name="add_lang"
-                label={I18n.t('workshop_invite.send_invites.input_label')}
+                label={I18n.t('administration.assessment_center.invite.send_invites.input_label')}
               >
                 <Row gutter={12}>
                   <Col flex="1">
                     <Select
                       defaultValue="ar"
-                      placeholder={I18n.t('workshop_invite.send_invites.input_placeholder')}
+                      placeholder={I18n.t('administration.assessment_center.invite.send_invites.input_placeholder')}
                       options={LANGS.map(lang => ({ value: lang.value, label: I18n.t(`languages.${lang.value}`) }))}
                     />
                   </Col>
                   <Button type="primary" onClick={addLang}>
-                    {I18n.t('workshop_invite.send_invites.add')}
+                    {I18n.t('administration.assessment_center.invite.send_invites.add')}
                   </Button>
                 </Row>
               </Form.Item>
@@ -102,8 +103,8 @@ export const SendInvitation = ({ form, prev, submit }) => {
 
       <div className={styles.footer}>
         <Space>
-          <Button onClick={prev}>{I18n.t('workshop_invite.back')}</Button>
-          <Button type="primary" onClick={submit}>{I18n.t('workshop_invite.save')}</Button>
+          <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
+          <Button type="primary" onClick={submit}>{I18n.t('administration.assessment_center.invite.save')}</Button>
         </Space>
       </div>
     </div>

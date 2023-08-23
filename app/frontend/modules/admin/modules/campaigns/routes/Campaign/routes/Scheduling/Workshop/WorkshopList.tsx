@@ -32,8 +32,8 @@ export const WorkshopList: React.FC = () => {
       include: ['workshop_managers', 'workshop_assessors'],
       include_meta: ['permissions'],
       fields: {
-        workshop_managers: ['id', 'full_name', 'photo_url'],
-        workshop_assessors: ['id', 'full_name', 'photo_url'],
+        workshop_managers: ['id', 'full_name', 'photo_url', 'email'],
+        workshop_assessors: ['id', 'full_name', 'photo_url', 'email'],
       },
     },
   }

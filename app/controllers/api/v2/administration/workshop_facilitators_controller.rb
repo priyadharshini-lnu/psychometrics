@@ -2,6 +2,8 @@
 
 module Api
   class V2::Administration::WorkshopFacilitatorsController < Api::V2::Administration::BaseController
+    before_action :check_search_term, only: %i[search_managers search_assessors]
+
     def search_managers
       users = Workshops::AvailableManagers.new(
         Time.zone.parse(search_params[:start_date_time]),
@@ -31,6 +33,10 @@ module Api
         project_id: project_id || search_params[:client_id],
         campaign_id: campaign_id
       )
+    end
+
+    def check_search_term
+      jsonapi_render json: User.none if search_params[:search_term].blank?
     end
 
     def search_params

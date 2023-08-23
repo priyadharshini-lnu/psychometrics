@@ -55,13 +55,13 @@ export const InvitesForm = () => {
             current={step}
             items={[
               {
-                title: I18n.t('workshop_invite.steps.basic_info'),
+                title: I18n.t('administration.assessment_center.invite.steps.basic_info'),
               },
               {
-                title: I18n.t('workshop_invite.steps.add_subjects'),
+                title: I18n.t('administration.assessment_center.invite.steps.add_subjects'),
               },
               {
-                title: I18n.t('workshop_invite.steps.send_invitation'),
+                title: I18n.t('administration.assessment_center.invite.steps.send_invitation'),
               },
             ]}
           />

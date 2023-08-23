@@ -108,7 +108,7 @@ describe('Add button should be ', () => {
       await user.click(timePickerOkButton)
     })
 
-    expect(screen.getByDisplayValue('01:00 AM')).toBeInTheDocument()
+    expect(screen.getByDisplayValue('1:00 AM')).toBeInTheDocument()
     expect(addTimePicker).toBeDisabled()
   })
 
@@ -144,7 +144,7 @@ describe('Add button should be ', () => {
       await user.click(timePickerOkButton)
     })
 
-    expect(screen.getByDisplayValue('01:00 AM')).toBeInTheDocument()
+    expect(screen.getByDisplayValue('1:00 AM')).toBeInTheDocument()
     expect(addTimePicker).toBeDisabled()
   })
 
@@ -199,8 +199,8 @@ describe('Add button should be ', () => {
       await user.click(timePickerOkButton)
     })
 
-    expect(screen.getByDisplayValue('01:00 AM')).toBeInTheDocument()
-    expect(screen.getByDisplayValue('02:00 AM')).toBeInTheDocument()
+    expect(screen.getByDisplayValue('1:00 AM')).toBeInTheDocument()
+    expect(screen.getByDisplayValue('2:00 AM')).toBeInTheDocument()
     expect(addTimePicker).not.toBeDisabled()
   })
 })
@@ -240,7 +240,7 @@ test('Time lesser than start time should be disabled while selecting end time', 
     await user.click(_15mins)
     await user.click(startTimePickerOkButton)
   })
-  expect(screen.getByDisplayValue('01:15 AM')).toBeInTheDocument()
+  expect(screen.getByDisplayValue('1:15 AM')).toBeInTheDocument()
 
 
   await act(async () => {

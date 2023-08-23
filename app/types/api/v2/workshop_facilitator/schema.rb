@@ -11,7 +11,7 @@ module Api
         def self.attributes(attribute, _type)
           proc do
             attribute[:email].filled(:string)
-            attribute[:name].filled(:string)
+            attribute[:full_name].filled(:string)
             attribute[:photo_url].maybe(:string)
           end
         end

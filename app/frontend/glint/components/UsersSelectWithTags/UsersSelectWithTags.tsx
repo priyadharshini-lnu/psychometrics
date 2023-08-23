@@ -3,6 +3,7 @@ import { FC, useState } from 'react'
 import {
   AutoComplete, Space, AutoCompleteProps, Empty,
 } from 'antd'
+import { useDebouncedCallback } from 'use-debounce'
 
 import { UserDetails } from '~/modules/admin/modules/campaigns/core/workshop'
 import { UserInfoCard } from '~/glint'
@@ -37,9 +38,13 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
     onChange && onChange(_.map(newSelectedUsers, 'id'))
   }
 
+  const debouncedOnUserSearch = useDebouncedCallback((searchKey: string) => {
+    onUserSearch(searchKey)
+  }, 500)
+
   const handleUserSearch = (searchKey: string) => {
     setSearchKey(searchKey)
-    onUserSearch(searchKey)
+    debouncedOnUserSearch(searchKey)
   }
 
   return (
@@ -50,7 +55,7 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
         onSelect={(_, option) => {
           handleUserSelect(option.value ? option.value.toString() : '')
         }}
-        options={users.length ? users.map(user => ({
+        options={users.length && searchKey.length ? users.map(user => ({
           value: user.id,
           label: <UserInfoCard
             key={user.id}
@@ -59,7 +64,7 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
             nameText={user.fullName}
             nameLabel={user.fullName}
             avatarUrl={user.photoUrl || ''}
-            // email={user.email}
+            email={user.email}
           />,
         })) : undefined}
         value={searchKey}
@@ -77,7 +82,7 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
                 nameText={user.fullName}
                 nameLabel={user.fullName}
                 avatarUrl={user.photoUrl || ''}
-                // email={user.email}
+                email={user.email}
                 onRemove={handleUserRemove}
               />
             ))

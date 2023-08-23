@@ -100,11 +100,11 @@ export const AddSubjectsComponent: FC<Props> = ({
       }
     },
     items: [{
-      label: I18n.t('workshop_invite.subjects.upload_csv'),
+      label: I18n.t('administration.assessment_center.invite.subjects.upload_csv'),
       key: 'upload_csv',
     },
     {
-      label: I18n.t('workshop_invite.subjects.import_from_campaign'),
+      label: I18n.t('administration.assessment_center.invite.subjects.import_from_campaign'),
       key: 'import_all',
     }],
   }
@@ -114,31 +114,35 @@ export const AddSubjectsComponent: FC<Props> = ({
       <Modal
         closable={false}
         open={uploadModal}
-        title={I18n.t('workshop_invite.subjects.import_title')}
+        title={I18n.t('administration.assessment_center.invite.subjects.import_title')}
         footer={[
-          <Button type="primary" onClick={() => upload()}>{I18n.t('workshop_invite.subjects.upload')}</Button>,
-          <Button onClick={() => showUploadModal(false)}>{I18n.t('workshop_invite.subjects.cancel')}</Button>,
+          <Button type="primary" onClick={() => upload()}>
+            {I18n.t('administration.assessment_center.invite.subjects.upload')}
+          </Button>,
+          <Button onClick={() => showUploadModal(false)}>
+            {I18n.t('administration.assessment_center.invite.subjects.cancel')}
+          </Button>,
         ]}
       >
         <div>
-          {I18n.t('workshop_invite.subjects.file_example')}
+          {I18n.t('administration.assessment_center.invite.subjects.file_example')}
           <a
             href="/example_csv/workshop_subject_import.csv"
             target="_blank"
           >
-            {I18n.t('workshop_invite.subjects.download')}
+            {I18n.t('administration.assessment_center.invite.subjects.download')}
           </a>
         </div>
         <Input ref={ref} type="file" />
       </Modal>
       <Panel
-        title={I18n.t('workshop_invite.subjects.title')}
-        description={I18n.t('workshop_invite.subjects.description')}
+        title={I18n.t('administration.assessment_center.invite.subjects.title')}
+        description={I18n.t('administration.assessment_center.invite.subjects.description')}
       >
         <Row className={styles.controls} justify="space-between">
           <Col>
             <Space>
-              {I18n.t('workshop_invite.subjects.count', { count: subjects.length })}
+              {I18n.t('administration.assessment_center.invite.subjects.count', { count: subjects.length })}
             </Space>
           </Col>
           <Col>
@@ -149,7 +153,7 @@ export const AddSubjectsComponent: FC<Props> = ({
                 placeholder={(
                   <Space>
                     <SearchOutlined />
-                    {I18n.t('workshop_invite.subjects.search_user')}
+                    {I18n.t('administration.assessment_center.invite.subjects.search_user')}
                   </Space>
                 )}
                 onSearch={(value) => {
@@ -179,7 +183,7 @@ export const AddSubjectsComponent: FC<Props> = ({
               <Dropdown menu={importMenu}>
                 <Button type="primary">
                   <CloudDownloadOutlined />
-                  {I18n.t('workshop_invite.subjects.import_users')}
+                  {I18n.t('administration.assessment_center.invite.subjects.import_users')}
                   <DownOutlined />
                 </Button>
               </Dropdown>
@@ -191,7 +195,9 @@ export const AddSubjectsComponent: FC<Props> = ({
             <Col flex="1">
               <Alert
                 message="Errors"
-                description={csvErrors.map(error => I18n.t('workshop_invite.subjects.csv_error', error))}
+                description={csvErrors.map(
+                  error => I18n.t('administration.assessment_center.invite.subjects.csv_error', error),
+                )}
                 type="error"
               />
             </Col>
@@ -217,8 +223,8 @@ export const AddSubjectsComponent: FC<Props> = ({
       </Panel>
       <div className={styles.footer}>
         <Space>
-          <Button onClick={prev}>{I18n.t('workshop_invite.back')}</Button>
-          <Button type="primary" onClick={next}>{I18n.t('workshop_invite.next')}</Button>
+          <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
+          <Button type="primary" onClick={next}>{I18n.t('administration.assessment_center.invite.next')}</Button>
         </Space>
       </div>
     </div>

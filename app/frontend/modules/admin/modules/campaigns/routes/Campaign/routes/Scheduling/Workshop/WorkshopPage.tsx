@@ -28,7 +28,7 @@ interface Resource {
   id: string
   fullName: string
   photoUrl: string | null
-  // email: string
+  email: string
 }
 
 interface ResourcesProps {
@@ -72,8 +72,8 @@ export const WorkshopPage: FC<{}> = () => {
       apiConfig: {
         include: ['workshop_managers', 'workshop_assessors'],
         fields: {
-          workshop_managers: ['id', 'full_name', 'photo_url'],
-          workshop_assessors: ['id', 'full_name', 'photo_url'],
+          workshop_managers: ['id', 'full_name', 'photo_url', 'email'],
+          workshop_assessors: ['id', 'full_name', 'photo_url', 'email'],
         },
       },
     },

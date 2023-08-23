@@ -35,6 +35,7 @@ module Api
         :campaign_id,
         workshops: [
           :total_seats,
+          :meeting_link,
           :duration,
           :cancellation_lead_time,
           :reschedule_lead_time,

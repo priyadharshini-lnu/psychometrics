@@ -45,7 +45,7 @@ export const InvitesTable = () => {
             },
             items: [
               {
-                label: I18n.t('workshop_invite.remove'),
+                label: I18n.t('administration.assessment_center.invite.remove'),
                 key: 'remove',
               },
             ],
@@ -57,9 +57,9 @@ export const InvitesTable = () => {
         </Dropdown>
         {confirmation && (
         <ConfirmationModal
-          title={I18n.t('workshop_invite.confirmation.title')}
+          title={I18n.t('administration.assessment_center.invite.confirmation.title')}
           message={
-                I18n.t('workshop_invite.confirmation.message')
+                I18n.t('administration.assessment_center.invite.confirmation.message')
               }
           onConfirm={remove}
           onCancel={() => setConfirmation(false)}
@@ -85,25 +85,25 @@ export const InvitesTable = () => {
           <Button type="primary" onClick={openForm}>
             <PlusOutlined />
             {' '}
-            {I18n.t('workshop_invite.add_invite')}
+            {I18n.t('administration.assessment_center.invite.add_invite')}
           </Button>
         </Resource.Filter>
         <Resource.Table pagination>
           <Resource.Column
-            title={I18n.t('workshop_invite.id')}
+            title={I18n.t('administration.assessment_center.invite.id')}
             id="id"
             sorter
             width="10%"
             render={(_, { id }) => <Link to={`${location.pathname}/${id}/subjects`}>{id}</Link>}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('workshop_invite.title')}
+            title={I18n.t('administration.assessment_center.invite.title')}
             id="title"
             sorter
             width="40%"
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('workshop_invite.assessment_center')}
+            title={I18n.t('administration.assessment_center.invite.assessment_center')}
             id="assessmentCenter"
             width="25%"
             render={data => (
@@ -114,16 +114,16 @@ export const InvitesTable = () => {
                   </Tag>
                   {data.workshops.length > 1 && `+${data.workshops.length - 1}`}
                 </>
-              ) : I18n.t('workshop_invite.not_selected')
+              ) : I18n.t('administration.assessment_center.invite.not_selected')
             )}
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('workshop_invite.subjects.title')}
+            title={I18n.t('administration.assessment_center.invite.subjects.title')}
             width="15%"
             id="subjectsCount"
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('workshop_invite.actions')}
+            title={I18n.t('administration.assessment_center.invite.actions')}
             id="actions"
             render={item => (
               <Menu item={item} />

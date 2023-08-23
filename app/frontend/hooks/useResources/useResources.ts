@@ -51,8 +51,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     [state, setState] = useState<ResourceState<R[], M>>(defaultState<R[], M>())
   }
 
-  const queryFromUrl = (trackUrl ? queryString?.q || { filter: initialFilter }
-    : { filter: initialFilter || {} }) as UrlQuery
+  const initialFilterQuery = initialFilter ? { filter: initialFilter } : {}
+  const queryFromUrl = (trackUrl ? queryString?.q || initialFilterQuery
+    : initialFilterQuery) as UrlQuery
   const [queryState, setQueryState] = useState<UrlQuery>(queryFromUrl)
   const isMounted = useMountedState()
   const debounceQueryState = useDebounce(queryState, 300)

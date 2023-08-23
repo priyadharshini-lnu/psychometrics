@@ -54,17 +54,34 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
         </>
       )}
       <Title level={5}>Resources</Title>
-      <Form.List name="workshop_resources">
-        {(fields, { add, remove }) => (
+      <Form.List
+        name="workshop_resources"
+        rules={[{
+          validator (_, resources) {
+            const valid = resources.every((resource) => {
+              if (!resource) return Promise.resolve()
+              const { name, url } = resource
+              if ((!url?.length && !name?.length) || (url?.length && name?.length)) {
+                return true
+              }
+              return false
+            })
+            return valid ? Promise.resolve()
+              : Promise.reject(new Error(
+                I18n.t('administration.scheduling.assessment_center_form.resources_panel.validation_error'),
+              ))
+          },
+        }]}
+      >
+        {(fields, { add, remove }, { errors }) => (
           <>
             {fields.map((field, index) => (
-              <Row key={field.key}>
+              <Row key={index}>
                 <Col span={8}>
                   <Form.Item
                     {...field}
                     name={[field.name, 'name']}
                     label="Name"
-                    rules={[{ required: true }]}
                     {...fieldLayout}
                   >
                     <Input />
@@ -76,6 +93,11 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
                     name={[field.name, 'url']}
                     label="URL"
                     {...fieldLayout}
+                    rules={[
+                      {
+                        type: 'url',
+                      },
+                    ]}
                   >
                     <Input placeholder="Resource Link" />
                   </Form.Item>
@@ -88,6 +110,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
                 </Col>
               </Row>
             ))}
+            <Form.ErrorList errors={errors} />
             <Button
               type="link"
               icon={<PlusOutlined />}

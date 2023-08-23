@@ -162,7 +162,7 @@
     "sms-segments-calculator": "^1.1.1",
     "type-fest": "^2.12.2",
     "ua-parser-js": "0.7.33",
-    "use-debounce": "^3.0.0",
+    "use-debounce": "^9.0.4",
     "use-eye-dropper": "^1.4.4",
     "uuid": "^9.0.0",
     "videojs-record": "^3.6.0",

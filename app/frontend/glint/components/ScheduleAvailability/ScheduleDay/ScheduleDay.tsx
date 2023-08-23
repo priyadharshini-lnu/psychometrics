@@ -25,7 +25,7 @@ const { Text } = Typography
 const { I18n } = window
 
 const defaultTimePickerProps: TimePickerProps = {
-  showNow: false, minuteStep: 5, use12Hours: true, format: 'hh:mm A',
+  showNow: false, minuteStep: 15, use12Hours: true, format: 'h:mm A',
 }
 
 type DisbledHoursData = {

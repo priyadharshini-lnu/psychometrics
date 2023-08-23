@@ -238,6 +238,9 @@ en:
             view: View
           users:
             reset_password: Reset Password
+          workshops:
+            manage: Manage
+            view: View
     all: " - All - "
     any: " - Any - "
     api_keys:
@@ -247,7 +250,73 @@ en:
         title: api key
     assessment_center:
       current: Current
+      invite:
+        actions: Actions
+        add_invite: Add Invite
+        assessment_center: Assessment Center
+        back: Back
+        basic_info:
+          allow_preferred_language: Allow Preferred Language
+          assessment_centers: Assessment Centers
+          assessment_centers_hint: Search query example '10th August 2023, 8:06 pm'
+          assessment_centers_placeholder: Select Assessments Centers
+          description: Issue invitations to candidates by selecting multiple assessment centers. Candidates will then choose a single center from those available.
+          neurodiversity: Include neurodiversity question
+          preferred_language: Preferred Language
+          preferred_language_placeholder: Select Preferred Language
+          title: Basic Information
+        confirmation:
+          message: Are you sure you want to delete invitation?
+          title: Invite Deleting
+        id: ID
+        invites: Invites
+        next: Next
+        not_selected: Not selected
+        remove: Remove
+        requests: Requests
+        save: Save & Send
+        send_invites:
+          add: Add
+          add_description: You can translate the invite title and description in multiple languages
+          add_language: Add Language
+          description: Candidates will see the following information in their email message and on the booking page.
+          input_label: Add Additional Language
+          input_placehodler: Select Preferred Language
+          title: Invitation (%{lang})
+        steps:
+          add_subjects: Add Subjects
+          basic_info: Basic Info
+          send_invitation: Send Invitation
+        subjects:
+          cancel: Cancel
+          count: "%{count} Subjects"
+          csv_error: 'Row%{index}: user with email %{email} is not in this campaign'
+          description: You can add subjects individually by searching or bulk upload a csv file.
+          download: Download
+          file_example: Refere to example file to upload subjecs information.
+          import_from_campaign: Add all from campaign
+          import_users: Import Users
+          search_user: Search subjects
+          title: Subjects
+          upload: Upload
+          upload_csv: Upload CSV
+          upload_title: Import Subjects from CSV
+        success:
+          continue: Continue
+          message: The invitations are scheduled to be sent
+        title: Title
       past: Past
+      steps:
+        basic_information: Basic Information
+        facilitators: Facilitators
+        invite_options: Invite Options
+        invite_subjects: Invite Subjects
+        send_invitations: Send Invitations
+      success:
+        call_send_invitation: Would you like to send invites?
+        ok: 'Yes'
+        skip: Skip for now
+        title: Assessment centers created
       upcoming: Upcoming
     assessments:
       assessment: Assessment
@@ -3720,7 +3789,7 @@ en:
       add_activity: Add Activity
       add_assessment_center: Add Assessment Center
       assessment_center_form:
-        assessor_ids_label: Assessor Ids
+        assessor_ids_label: Assessors
         back: Back
         basic_info_panel:
           description: Please enter the schedule information below. You can also select multiple dates to create multiple assessment centers.
@@ -3730,7 +3799,11 @@ en:
         dates_error: You can only add up to 5 dates.
         dates_label: Dates
         duration_label: Duration
-        manager_ids_label: Center Manager Ids
+        duration_max_error: Cannot be greater than 16 hours
+        duration_min_error: Cannot be less than 15 minutes
+        duration_placeholder: E.g. 4h 30m
+        duration_required_error: Duration is required
+        manager_ids_label: Center Managers
         meetings_and_resources: Meetings & Resources
         name: Add Assessment Center
         next: Next
@@ -3738,6 +3811,7 @@ en:
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
           title: Resources
+          validation_error: Enter both Name and URL or remove the resource
         seats_label: Seats
         time_label: Time
         timezone_label: Timeozone

@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
-import { useDebouncedCallback } from 'use-debounce/lib/index'
+import { useDebouncedCallback } from 'use-debounce'
 import { formatWorkshopDate } from '~/utils/workshop'
 import { Panel } from '~/glint/components/Panel/Panel'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
@@ -62,7 +62,7 @@ export const BaseInfoForm: React.FC<Props> = ({
     setSelectedWorkshops(form.getFieldValue('workshopIds'))
   }
 
-  const [searchWorkshops] = useDebouncedCallback(() => {
+  const searchWorkshops = useDebouncedCallback(() => {
     if (!searchValue) { return }
 
     fetchWorkshops({
@@ -77,25 +77,26 @@ export const BaseInfoForm: React.FC<Props> = ({
   return (
     <div>
       <Panel
-        title={I18n.t('workshop_invite.basic_info.title')}
-        description={I18n.t('workshop_invite.basic_info.description')}
+        title={I18n.t('administration.assessment_center.invite.basic_info.title')}
+        description={I18n.t('administration.assessment_center.invite.basic_info.description')}
       >
         <Row>
           <Col sm={24} md={12} lg={8}>
             <Form layout="vertical" form={form}>
               <Form.Item
                 name="workshops"
-                label={I18n.t('workshop_invite.basic_info.assessment_centers')}
+                label={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers')}
               >
                 <Row gutter={[16, 16]}>
                   <Col span={24}>
                     <div className={styles.hint}>
-                      {I18n.t('workshop_invite.basic_info.assessment_centers_hint')}
+                      {I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_hint')}
                     </div>
                     <Select
                       disabled={workshops && (workshops.length > 0)}
                       showSearch
-                      placeholder={I18n.t('workshop_invite.basic_info.assessment_centers_placeholder')}
+                      // eslint-disable-next-line max-len
+                      placeholder={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_placeholder')}
                       options={assessmetnCenters.map(workshop => ({
                         label: formatWorkshopDate(workshop.startTime), value: workshop.id,
                       }))}
@@ -123,19 +124,20 @@ export const BaseInfoForm: React.FC<Props> = ({
                   <Switch
                     onChange={checked => changePreferredLang(checked)}
                   />
-                  {I18n.t('workshop_invite.basic_info.preferred_language')}
+                  {I18n.t('administration.assessment_center.invite.basic_info.preferred_language')}
                 </Space>
               </Form.Item>
               {preferredLang
               && (
                 <Form.Item
                   name="preferred_language"
-                  label={I18n.t('workshop_invite.basic_info.preferred_language')}
+                  label={I18n.t('administration.assessment_center.invite.basic_info.preferred_language')}
                 >
                   <Select
                     showSearch
                     defaultValue="en"
-                    placeholder={I18n.t('workshop_invite.basic_info.preferred_language_placeholder')}
+                    // eslint-disable-next-line max-len
+                    placeholder={I18n.t('administration.assessment_center.invite.basic_info.preferred_language_placeholder')}
                     options={[
                       { value: 'en', label: 'English' },
                       { value: 'ar', label: 'Arabic' },
@@ -149,7 +151,7 @@ export const BaseInfoForm: React.FC<Props> = ({
                   <Switch
                     onChange={checked => form.setFieldValue('allowNeurodiversityOption', checked)}
                   />
-                  {I18n.t('workshop_invite.basic_info.neurodiversity')}
+                  {I18n.t('administration.assessment_center.invite.basic_info.neurodiversity')}
                 </Space>
               </Form.Item>
             </Form>
@@ -158,8 +160,8 @@ export const BaseInfoForm: React.FC<Props> = ({
       </Panel>
       <div className={styles.footer}>
         <Space>
-          {prev && <Button onClick={prev}>{I18n.t('workshop_invite.prev')}</Button>}
-          <Button type="primary" onClick={next}>{I18n.t('workshop_invite.next')}</Button>
+          {prev && <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>}
+          <Button type="primary" onClick={next}>{I18n.t('administration.assessment_center.invite.next')}</Button>
         </Space>
       </div>
     </div>
