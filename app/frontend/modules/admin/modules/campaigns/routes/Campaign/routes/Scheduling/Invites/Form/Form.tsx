@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import {
-  Form, Row, Col, Steps,
+  Form, Row, Col, Steps, Button,
 } from 'antd'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { WorkshopInvite } from 'modules/admin/modules/campaigns/core/invites'
 import { useResources } from '~/hooks/useResources'
 import styles from './Form.less'
@@ -10,10 +10,12 @@ import { BaseInfoForm } from './BaseInfo'
 import { AddSubjects } from './AddSubjects'
 import { SendInvitation } from './SendInvitations'
 import { SuccessPage } from './SuccessPage'
+import { DirectionalNavigateBackIcon } from '~/glint'
 
 const { I18n } = window
 
 export const InvitesForm = () => {
+  const history = useHistory()
   const [form] = Form.useForm()
   const [submitPage, showSubmitPage] = useState(false)
   const [step, setStep] = useState(0)
@@ -47,6 +49,7 @@ export const InvitesForm = () => {
   return (
     <div style={{ padding: 20 }}>
       <Row className={styles.steps}>
+        <Button type="link" onClick={() => history.goBack()}><DirectionalNavigateBackIcon /></Button>
         <Col span={12}>
           <Steps
             current={step}

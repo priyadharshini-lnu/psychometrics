@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import {
-  Row, Col, Steps, Form,
+  Row, Col, Steps, Form, Button,
 } from 'antd'
 import moment from 'moment'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
+import { DirectionalNavigateBackIcon } from '~/glint'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { useResources } from '~/hooks/useResources'
@@ -42,6 +43,7 @@ export const AssessmentCenterForm = () => {
     meeting_link: '',
     workshop_resources: [{ key: 1, name: '', url: '' }],
   })
+  const history = useHistory()
   const params = useParams<{campaignId: string}>()
   const [step, setStep] = useState(0)
   const [showSuccessPage, setShowSuccessPage] = useState(false)
@@ -94,6 +96,7 @@ export const AssessmentCenterForm = () => {
   return (
     <div className={styles.mainForm}>
       <Row className={styles.steps}>
+        <Button type="link" onClick={() => history.goBack()}><DirectionalNavigateBackIcon /></Button>
         <Col span={24}>
           <Steps
             current={step}
