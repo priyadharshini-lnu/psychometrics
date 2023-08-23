@@ -12,6 +12,7 @@ module Api
           proc do
             attribute[:start_time].filled(:string)
             attribute[:duration].filled(:integer)
+            attribute[:total_seats].filled(:integer)
           end
         end
 

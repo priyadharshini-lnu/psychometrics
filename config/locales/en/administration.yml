@@ -3787,6 +3787,7 @@ en:
         remaining: Seats Remaining
         search_placehoder: Search by id, email or name
         timezone: Timezone
+        total_seats: Total Seats
       modal:
         content: Are you sure you want to delete %{description}?
         title: Delete subject

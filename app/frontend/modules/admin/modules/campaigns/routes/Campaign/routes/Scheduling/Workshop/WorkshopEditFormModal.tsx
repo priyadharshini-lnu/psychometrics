@@ -1,11 +1,14 @@
 import _ from 'lodash'
 import { FC, useState, useEffect } from 'react'
-import { Form, Input, Typography } from 'antd'
+import {
+  Form, Typography, InputNumber,
+} from 'antd'
 import moment from 'moment-timezone'
 import { useParams } from 'react-router-dom'
-
 import ResourceFormModal from '~/components/ResourceFormModal'
-import { UserDetails, userDetailsListTR, Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
+import {
+  UserDetails, userDetailsListTR, Workshop,
+} from '~/modules/admin/modules/campaigns/core/workshop'
 import { UsersSelectWithTags } from '~/glint'
 import { useResources } from '~/hooks/useResources'
 
@@ -15,12 +18,19 @@ const { Text } = Typography
 type Props = {
   close: () => void
   workshop: Workshop
+  updateWorkshop: (data) => Promise<Workshop>
+}
+
+interface WorkshopRequest {
+  totalSeats: number
+  workshopManagers: string[]
+  workshopAssessors: string[]
 }
 
 export const WorkshopEditFormModal: FC<Props> = ({
   close,
   workshop,
-  // updateWorkshop,
+  updateWorkshop,
 }) => {
   const [form] = Form.useForm()
   const [workshopManagers, setWorkshopManagers] = useState<UserDetails[]>([])
@@ -34,7 +44,6 @@ export const WorkshopEditFormModal: FC<Props> = ({
     'workshop_facilitators',
     { responseType: userDetailsListTR },
   )
-
 
   useEffect(() => {
     form.setFieldValue('workshopManagers', _.map(workshop.workshopManagers, 'id'))
@@ -70,8 +79,11 @@ export const WorkshopEditFormModal: FC<Props> = ({
       scrollToFirstError
       modalProps={{ width: 700 }}
       request={{
-        // Un-comment when API is available
-        // updateResource: updateWorkshop,
+        updateResource: (data:WorkshopRequest) => updateWorkshop({
+          ...data,
+          workshopManagers: data.workshopManagers.map(id => ({ id })),
+          workshopAssessors: data.workshopAssessors.map(id => ({ id })),
+        }),
       }}
     >
       {() => (
@@ -99,10 +111,10 @@ export const WorkshopEditFormModal: FC<Props> = ({
             />
           </Form.Item>
           <Form.Item
-            name="remainingSeats"
-            label={<Text className="font-normal">{I18n.t('administration.scheduling.info.remaining')}</Text>}
+            name="totalSeats"
+            label={<Text className="font-normal">{I18n.t('administration.scheduling.info.total_seats')}</Text>}
           >
-            <Input />
+            <InputNumber />
           </Form.Item>
         </>
       )}

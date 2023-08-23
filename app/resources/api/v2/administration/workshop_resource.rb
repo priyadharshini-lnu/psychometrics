@@ -30,6 +30,10 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
 
   ransack_filters %i[search_query]
 
+  def self.updatable_fields(_context)
+    %i[workshop_assessors workshop_managers total_seats]
+  end
+
   def remaining_seats
     @model.total_seats - @model.booked_seats
   end

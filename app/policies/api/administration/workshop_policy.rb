@@ -19,6 +19,14 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def show_relationship?
+        has_permission?(:workshops, :manage)
+      end
+
+      def update_relationship?
+        has_permission?(:workshops, :manage)
+      end
+
       def get_related_resources?
         true
       end

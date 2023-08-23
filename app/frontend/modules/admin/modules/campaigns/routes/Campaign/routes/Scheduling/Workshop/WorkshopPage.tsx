@@ -10,11 +10,7 @@ import {
 } from '@ant-design/icons'
 import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { connect, ConnectedProps } from 'react-redux'
-
 import { formatWorkshopDate } from '~/utils/workshop'
-import { openModal } from '~/modules/admin/core/ui/modals'
-import Modals from '~/modules/admin/components/Modals'
 import { WorkshopEditFormModal } from './WorkshopEditFormModal'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
@@ -28,10 +24,6 @@ import { ResourceList } from './ResourceList'
 
 const { I18n } = window
 
-const connector = connect(null,
-  { openModal })
-
-type PropsFromRedux = ConnectedProps<typeof connector>
 interface Resource {
   id: string
   fullName: string
@@ -58,11 +50,12 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
   )
 ) || null
 
-export const WorkshopPageComponent: FC<PropsFromRedux> = ({ openModal }) => {
+export const WorkshopPage: FC<{}> = () => {
   const {
     id, campaignId, tab,
   } = useParams<{ id: string, campaignId: string, tab: string | undefined }>()
   const [currentTab, setCurrentTab] = useState(tab || 'subjects')
+  const [showForm, setShowForm] = useState(false)
   const history = useHistory()
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
 
@@ -71,7 +64,7 @@ export const WorkshopPageComponent: FC<PropsFromRedux> = ({ openModal }) => {
     setCurrentTab(currentTab)
   }
 
-  const { fetchSingle, getResource } = useResources<Workshop>(
+  const { fetchSingle, getResource, updateResource } = useResources<Workshop>(
     'workshops',
     {
       basePath: `campaigns/${campaignId}/`,
@@ -111,7 +104,7 @@ export const WorkshopPageComponent: FC<PropsFromRedux> = ({ openModal }) => {
           extra={(
             <Button
               icon={<EditOutlined />}
-              onClick={() => openModal('WorkshopEditFormModal')}
+              onClick={() => setShowForm(true)}
               size="large"
               type="link"
             />
@@ -170,17 +163,13 @@ export const WorkshopPageComponent: FC<PropsFromRedux> = ({ openModal }) => {
           {currentTab === 'activities' && <Activities />}
         </div>
       </div>
-      <Modals modals={{
-        WorkshopEditFormModal: props => (
-          <WorkshopEditFormModal
-            workshop={workshop}
-            {...props}
-          />
-        ),
-      }}
-      />
+      {showForm && (
+        <WorkshopEditFormModal
+          close={() => setShowForm(false)}
+          workshop={workshop}
+          updateWorkshop={updateResource}
+        />
+      )}
     </>
   )
 }
-
-export const WorkshopPage = connector(WorkshopPageComponent)
