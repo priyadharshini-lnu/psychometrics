@@ -10,9 +10,13 @@ module Administration
     # rubocop:disable Metrics/PerceivedComplexity
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/BlockLength:
     def links
       {}.tap do |links|
         links['dashboards'] = administration_dashboard_path if show_dashboard?
+        links['profile_details'] = "#{admin_path}/profile/details"
+        links['profile'] = "#{admin_path}/profile"
+        links['change_password'] = "#{admin_path}/profile/change_password"
         links['assessor_dashboard'] = assessors_dashboard_path if policy(%i[assessors campaign]).index?
         links['assessor_workshops'] = assessors_assessment_centers_path if policy(%i[assessors workshop]).index?
         links['clients'] = administration_root_path if policy(%i[administration client]).index?
@@ -41,6 +45,7 @@ module Administration
     # rubocop:enable Metrics/PerceivedComplexity
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/BlockLength
 
     def policy(name)
       klass = "#{Array.wrap(name).map(&:to_s).map(&:camelize).join('::')}Policy".constantize

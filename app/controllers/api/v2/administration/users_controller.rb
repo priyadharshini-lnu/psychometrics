@@ -42,6 +42,18 @@ module Api
       jsonapi_render json: user
     end
 
+    def change_password
+      form = Users::ChangePasswordForm.from_params(change_password_params)
+      return render json: { errors: form.errors.messages }, status: 422 unless form.valid?
+
+      if current_user.update_with_password(form.attributes)
+        sign_out(current_user)
+        render json: { data: { attributes: { message: 'Password changed successfully' } } }
+      else
+        render json: convert_model_errors_to_json_api_standard(current_user.errors.messages)
+      end
+    end
+
     def create_global_assessor
       user = ::Users::CreateOrModifyGlobalAssessor.call!(current_user, create_resource_params)
       jsonapi_render json: user
@@ -63,6 +75,10 @@ module Api
 
     def create_resource_params
       params.require(:data).require(:attributes).permit(:first_name, :last_name, :email)
+    end
+
+    def change_password_params
+      params.require(:data).require(:attributes).permit(:current_password, :password, :password_confirmation)
     end
   end
 end

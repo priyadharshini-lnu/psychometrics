@@ -3257,7 +3257,7 @@ en:
         header: Edit Product
       form:
         add_image: Add Image
-        images: Images
+        images: images
         prices: Prices
         reports: Reports
       image_fields:
@@ -3297,6 +3297,10 @@ en:
         title: Product's options
       update:
         successfully: Product %{name} was successfully updated.
+    profile:
+      change_password: Change password
+      details: Details
+      profile: Profile
     profiles:
       edit:
         success: Profile was successfully updated.

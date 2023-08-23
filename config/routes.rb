@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
+  get '/admin', to: 'admin_app#dashboard', as: :admin
+  get '/admin/*all', to: 'admin_app#dashboard'
+
   concern :media_uploades do
     member do
       get :upload_media_url
@@ -1206,9 +1209,13 @@ Rails.application.routes.draw do
           jsonapi_resources :users do
             post :reset_password
             get :roles
+            scope module: :users do
+              resource :uploads, only: %i[update]
+            end
             collection do
               post :create_superadmin
               post :create_global_assessor
+              post :change_password
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end

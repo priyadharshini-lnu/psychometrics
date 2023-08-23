@@ -1,4 +1,4 @@
-import { useState, FC, useEffect } from 'react'
+import React, { useState, FC, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import type { MenuProps } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
@@ -7,10 +7,11 @@ import {
 } from 'antd'
 import {
   MonitorOutlined, ArrowRightOutlined, MenuUnfoldOutlined,
-  MenuFoldOutlined, CalendarOutlined,
+  MenuFoldOutlined, UserOutlined, CalendarOutlined,
 } from '@ant-design/icons'
 import { useMedia } from 'react-use-media'
 import cs from 'classnames'
+import { useHistory } from 'react-router-dom'
 import logo from '~/modules/endUser/assets/images/lighthouseLogoTall.png'
 import logoSmall from '~/modules/auth/media/TTE_Logo_Color_Monogram.png'
 import styles from './MainMenu.less'
@@ -142,9 +143,24 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean): MenuItem[] =>
     label: I18n.t('administration.navigation.audit_logs'),
     icon: <i className="fa fa-clipboard" />,
   } : null,
+  {
+    key: 'profile',
+    label: I18n.t('campaign.dashboard_menu.profile'),
+    icon: <UserOutlined className={styles.siderIcon} />,
+    children: [
+      { label: I18n.t('campaign.dashboard_menu.profile_details'), key: 'profileDetails' },
+      { label: I18n.t('campaign.dashboard_menu.change_password'), key: 'changePassword' },
+    ],
+  },
 ].filter(Boolean)
 
 const getSelected = (): string => {
+  if (location.href.match(/\/admin(\/)(profile)(\/)(details)/)) {
+    return 'profileDetails'
+  }
+  if (location.href.match(/\/admin(\/)(profile)(\/)(change_password)/)) {
+    return 'changePassword'
+  }
   if (location.href.match(/\/administration(\/)(norms)/)) {
     return 'norms'
   }
@@ -201,6 +217,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
   currentUser, hasSubmenu, openSubmenu, collapsed, triggerCollapse, links,
   showSubmenu,
 }) => {
+  const history = useHistory()
   const isMobile = useMedia({
     maxWidth: 1024,
   })
@@ -209,7 +226,12 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     if (key === 'showSubmenu') {
       return openSubmenu()
     }
-    location.href = links[key]
+    const link = links[key]
+    if (location.href.match(/\/admin(\/)/) && link.match(/\/admin(\/)/)) {
+      history.push(link)
+    } else {
+      location.href = link
+    }
   }
 
   const menu = (
@@ -269,7 +291,7 @@ export const UserMenu = ({ currentUser, collapsed }) => (
     <div className={cs(styles.logo, { [styles.small]: collapsed })}>
       <img src={collapsed ? logoSmall : logo} />
     </div>
-    <a href="/administration/profiles/edit">
+    <a href="/admin/profile/details">
       <div className={styles.userName}>
         {collapsed ? (
           <Avatar alt={currentUser.name}>

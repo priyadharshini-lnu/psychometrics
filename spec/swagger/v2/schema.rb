@@ -87,6 +87,12 @@ module Swagger
               more_info: { type: 'string', 'x-nullable': true }
             }
           },
+          ChangePasswordRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.change_password_request
+          ),
+          ChangePasswordResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.change_password_response
+          ),
           ClientsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Client::Schema.multiple_resource_response
           ),
@@ -173,6 +179,9 @@ module Swagger
           ),
           UserResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.single_resource_response
+          ),
+          UserUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.update_request
           ),
           UserCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.create_request

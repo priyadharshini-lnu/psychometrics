@@ -1,30 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress, Button,
+  Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
 import _ from 'lodash'
-import { RootState } from '~/modules/endUser/core/rootReducers'
-import { CropImageModal } from '~/glint/components/CropImageModal'
-import Utils from '~/modules/reports/utils/Utils'
-import LangDropdown from '~/components/LangDropdown'
+import { useResources } from '~/hooks/useResources'
+import { camelizeKeys } from '~/utils/object'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import {
-  sync,
-  get as getUser,
-  uploadPhoto,
+  get as getCurrentUser, uploadAdminUserPhoto,
 } from '~/core/currentUser'
-import { DirectionalArrowIcon, PageHeader } from '~/glint'
-import array from '~/utils/array'
-import { CustomField } from './fields/CustomField'
+import { CropImageModal } from '~/glint/components/CropImageModal'
+
 
 import styles from './styles.less'
+import { UserTR, User, UserProfile } from '~/modules/admin/modules/client/core/users'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
-const { Text, Title } = Typography
+const { Title } = Typography
 const { I18n } = window
-const locales = I18n.availableLocales
 const { Content } = Layout
 
 const timeZones = moment.tz.names()
@@ -34,37 +31,47 @@ interface Image {
   src: string
 }
 interface Errors {
-  password?: []
-  passwordConfirmation?: []
-  age?: []
   first_name?: []
   last_name?: []
   locale?: []
   timezone?: []
 }
 
-const AVAILABLE_QUESTIONS = {
-  MultipleChoice: ['SingleAnswer', 'MultipleAnswer', 'Dropdown'],
-  TextEntry: ['SingleLine', 'Multiline'],
+interface AdminUser extends User{
+  userProfileData: UserProfile,
+  userProfile: UserProfile,
 }
 
-const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]
-  && AVAILABLE_QUESTIONS[question.type].includes(question.props.type)
-
 function ProfileComponent ({
-  user, uploadPhoto, sync, fields, lockedFields, requiredFields,
+  currentUser, uploadPhoto, locales,
 }) {
+  useEffect(() => {
+    fetchSingle({ id: currentUser.id })
+  }, [currentUser.id])
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
 
+  const {
+    fetchSingle, getResource, updateResource,
+  } = useResources<AdminUser>('users', {
+    responseType: UserTR,
+    apiConfig: {
+      camelizeExcept: ['$[*].enable_2fa', '$.enable_2fa'],
+      include_resource_meta: ['permissions'],
+      include: ['user_profile'],
+    },
+  })
+
+  const user = getResource(currentUser.id.toString())
+  if (!user) return null
   const uploadFile = (canvas) => {
     if (canvas) {
       const form = new FormData()
       canvas.toBlob((blob) => {
         if (blob) {
           form.append('photo', blob, 'file.jpg')
-          uploadPhoto(form).then(() => {
+          uploadPhoto(currentUser.id, form).then(() => {
             setShowCropper(false)
           })
         }
@@ -72,24 +79,18 @@ function ProfileComponent ({
     }
   }
 
-  const customFields = _.reduce(user.customFields, (res, field, id) => ({ ...res, [`field_${id}`]: field }), {})
-
   const submitForm = (values) => {
-    const data = _.reduce({ ...values }, (res, val, key) => {
-      const data = key.match(/field_(\d+)/)
-      if (data) {
-        return { ...res, customFields: { ...res.customFields, [data[1]]: val ?? customFields[key] } }
-      }
-      return { ...res, [key]: val }
-    }, { customFields: {} })
-
-    sync(data)
-      .then(() => {
-        message.success(I18n.t('profile.success_update'), 5)
-        setErrors({})
-      }).catch((errors) => {
-        setErrors(errors)
-      })
+    updateResource({
+      id: currentUser.id,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      userProfileData: {
+        locale: values.locale,
+        timezone: values.timezone,
+      },
+    }).catch((e) => {
+      setErrors(camelizeKeys(e.errors))
+    })
   }
 
   const onChangeFile = ({ file }) => {
@@ -112,34 +113,26 @@ function ProfileComponent ({
       label: `(GMT${moment.tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
     })
   }
-  const headerElement = (
-    <Col flex="auto" span={24} className="ta-e">
-      <LangDropdown />
-    </Col>
-  )
 
   return (
     <>
-      <PageHeader>{headerElement}</PageHeader>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/admin/profile',
+            label: () => I18n.t('administration.profile.profile'),
+          },
+          {
+            label: () => I18n.t('administration.profile.details'),
+          },
+        ]}
+      />
       <Content className={styles.pageContent}>
         <div className={styles.container}>
-          {user.updateProfileRequired && (
-            <Row>
-              <Col span={18}>
-                <Title level={5}>{I18n.t('profile.update_required')}</Title>
-                <Space size="middle" direction="vertical">
-                  <Text>{user.updateProfileMessage}</Text>
-                </Space>
-              </Col>
-              <Col span={6} className={styles.progressCol}>
-                <Progress percent={user.profileCompletionPercentage} type="circle" />
-              </Col>
-            </Row>
-          )}
           <Row gutter={[32, 32]}>
             <Col span={24}>
               <Title level={3}>{I18n.t('profile.title')}</Title>
-              <Row gutter={64}>
+              <Row gutter={32}>
                 <Col xs={24} sm={24} md={12} lg={8}>
                   <Form.Item>
                     <Upload
@@ -151,12 +144,20 @@ function ProfileComponent ({
                       onChange={onChangeFile}
                       beforeUpload={() => false}
                     >
-                      <div className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}>
-                        {user.photo && <img src={user.photo} className={styles.photo} />}
+                      <div className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photoUrl })}>
+                        {user.photoUrl && (
+                        <img
+                          src={user.photoUrl}
+                          alt={user.photoUrl
+                            ? I18n.t('profile.change_photo')
+                            : I18n.t('profile.add_photo')}
+                          className={styles.photo}
+                        />
+                        )}
                         <div className={styles.controls}>
-                          {user.photo ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
+                          {user.photoUrl ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
                           <div className={styles.photoLabel}>
-                            {user.photo
+                            {user.photoUrl
                               ? I18n.t('profile.change_photo')
                               : I18n.t('profile.add_photo')}
                           </div>
@@ -168,7 +169,13 @@ function ProfileComponent ({
                 <Col xs={24} sm={24} md={12} lg={16}>
                   <Form
                     layout="vertical"
-                    initialValues={user}
+                    initialValues={{
+                      firstName: user.firstName,
+                      lastName: user.lastName,
+                      locale: user.userProfile?.locale,
+                      timezone: user.userProfile?.timezone,
+                      email: user.email,
+                    }}
                     onFinish={submitForm}
                     className={styles.form}
                   >
@@ -182,7 +189,7 @@ function ProfileComponent ({
                           validateStatus={errors?.first_name ? 'error' : ''}
                           required
                         >
-                          <Input size="large" disabled={lockedFields.first_name} />
+                          <Input size="large" />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>
@@ -194,55 +201,21 @@ function ProfileComponent ({
                           validateStatus={errors?.last_name ? 'error' : ''}
                           required
                         >
-                          <Input size="large" disabled={lockedFields.last_name} />
+                          <Input size="large" />
                         </Form.Item>
                       </Col>
                     </Row>
                     <Form.Item name="email" label={I18n.t('profile.email')}>
                       <Input size="large" disabled />
                     </Form.Item>
-                    <Row gutter={24}>
-                      <Col xs={24} sm={24} md={12}>
-                        <Form.Item
-                          name="age"
-                          label={I18n.t('profile.age')}
-                          help={errors?.age}
-                          required={requiredFields.age}
-                          validateStatus={errors?.age ? 'error' : ''}
-                          rules={[{ pattern: /^\d*$/, message: I18n.t('common.validations.should_be_whole_number') }]}
-                        >
-                          <InputNumber
-                            className={styles.numberInput}
-                            size="large"
-                            disabled={lockedFields.age}
-                          />
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} sm={24} md={12}>
-                        <Form.Item
-                          name="gender"
-                          label={I18n.t('profile.gender')}
-                          hasFeedback
-                          required={requiredFields.gender}
-                        >
-                          <Select size="large" disabled={lockedFields.gender}>
-                            <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
-                            <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
-                            <Select.Option value="not_disclosed">{I18n.t('profile.not_disclosed')}</Select.Option>
-                          </Select>
-                        </Form.Item>
-                      </Col>
-                    </Row>
-
                     <Form.Item
                       name="locale"
                       label={I18n.t('profile.locale')}
                       hasFeedback
                       help={errors?.locale}
                       validateStatus={errors?.locale ? 'error' : ''}
-                      required={requiredFields.locale}
                     >
-                      <Select size="large" disabled={lockedFields.locale}>
+                      <Select size="large">
                         {_.map(locales, locale => (
                           <Select.Option key={locale} value={locale}>
                             {I18n.t(`languages_localized.${locale}`)}
@@ -251,7 +224,7 @@ function ProfileComponent ({
                       </Select>
                     </Form.Item>
 
-                    {/* <Form.Item
+                    <Form.Item
                       name="timezone"
                       label={I18n.t('profile.timezone')}
                       hasFeedback
@@ -259,7 +232,6 @@ function ProfileComponent ({
                       validateStatus={errors?.timezone ? 'error' : ''}
                     >
                       <Select
-                        disabled={lockedFields.timezone}
                         size="large"
                         showSearch
                         filterOption={(search, option) => `${option?.value}`
@@ -271,26 +243,7 @@ function ProfileComponent ({
                           </Select.Option>
                         ))}
                       </Select>
-                    </Form.Item> */}
-                    <Row gutter={24} className={styles.customFields}>
-                      {fields.map(field => isAvailable(field) && (
-                        <Col key={field.question_id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
-                          <Form.Item
-                            hasFeedback
-                            help={Array.isArray(errors?.[field.name])
-                              ? array.joinJSXElements(errors?.[field.name], <br />)
-                              : errors?.[field.name]}
-                            validateStatus={errors?.[field.name] ? 'error' : ''}
-                            name={`field_${field.question_id}`}
-                            label={Utils.stripHTML(field.translations.questionText
-                              || field.question.props.questionText)}
-                            required={field.required}
-                          >
-                            <CustomField field={field} defaultValue={customFields[`field_${field.question_id}`]} />
-                          </Form.Item>
-                        </Col>
-                      ))}
-                    </Row>
+                    </Form.Item>
                     <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
                       <Button
                         type="primary"
@@ -298,7 +251,6 @@ function ProfileComponent ({
                         className={styles.actionButton}
                       >
                         {I18n.t('profile.update')}
-                        <DirectionalArrowIcon className={styles.buttonIcon} />
                       </Button>
                     </Space>
                   </Form>
@@ -320,13 +272,10 @@ function ProfileComponent ({
 }
 
 const connector = connect((state: RootState) => ({
-  user: getUser(state),
-  fields: state.config.profile.fields,
-  lockedFields: state.config.profile.lockedFields,
-  requiredFields: state.config.profile.requiredFields,
+  currentUser: camelizeKeys(getCurrentUser(state)),
+  locales: state.config.availableLocales,
 }), {
-  sync,
-  uploadPhoto,
+  uploadPhoto: uploadAdminUserPhoto,
 })
 
 export const Profile = connector(ProfileComponent)

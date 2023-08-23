@@ -14,7 +14,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   def change_password?
     (@user.is?(:superadmin) || @user.has_permission?(
       :projects, :manage_users, project_id: project_id
-    )) && !@record.is_anonym?
+    ))
   end
 
   def new?

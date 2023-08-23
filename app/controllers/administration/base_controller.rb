@@ -59,6 +59,9 @@ module Administration
             current_user,
             project_id: params[:client_id]
           ).to_h
+        },
+        config: {
+          availableLocales: I18n.available_locales
         }
       }
     end

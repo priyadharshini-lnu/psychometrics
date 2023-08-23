@@ -219,5 +219,22 @@ module Api
     def meta_details
       {}
     end
+
+    def convert_model_errors_to_json_api_standard(input_errors)
+      converted_errors = []
+      input_errors.each do |field, messages|
+        messages.each do |message|
+          converted_errors << {
+            'title' => message,
+            'source' => {
+              'pointer' => "/data/attributes/#{field}"
+            },
+            'status' => '422'
+          }
+        end
+      end
+
+      { 'errors' => converted_errors }
+    end
   end
 end

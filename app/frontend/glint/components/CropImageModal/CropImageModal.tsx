@@ -6,7 +6,7 @@ import { FixedCropperRef, FixedCropper, ImageRestriction } from 'react-advanced-
 import { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons'
 import 'react-advanced-cropper/dist/style.css'
 
-export function CropperModal ({
+export function CropImageModal ({
   show, onCrop, onCancel, image,
 }) {
   const cropperRef = useRef<FixedCropperRef>(null)
