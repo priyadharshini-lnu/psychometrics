@@ -62,7 +62,7 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
   const tabItems = [
     {
       label: <TabLabel
-        title={I18n.t('bookings.tab_label.invites')}
+        title={I18n.t('frontend.bookings.tab_label.invites')}
         count={invites ? invites.length : 0}
         loading={invitesLoading}
       />,
@@ -71,7 +71,7 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
     },
     {
       label: <TabLabel
-        title={I18n.t('bookings.tab_label.bookings')}
+        title={I18n.t('frontend.bookings.tab_label.bookings')}
         count={bookings ? bookings.length : 0}
         loading={bookingsLoading}
       />,
@@ -118,7 +118,7 @@ const InvitesList: FC<InvitesListProps> = ({ invites, loading, onClickInvite }) 
               key={invite.id}
               description={invite.description}
               onButtonClick={() => onClickInvite(invite.workshopInviteId)}
-              buttonText={I18n.t('bookings.buttons.book')}
+              buttonText={I18n.t('frontend.bookings.buttons.book')}
               subtitle={(
                 <Subtitle
                   isActionByCurrentUser={null}
@@ -158,9 +158,9 @@ const BookingsList: FC<BookingsListProps> = ({ bookings, loading, onClickBooking
           let buttonText = null
 
           if (_.includes(MODIFY_FOR_STATUSES, booking.status)) {
-            buttonText = I18n.t('bookings.buttons.modify')
+            buttonText = I18n.t('frontend.bookings.buttons.modify')
           } else if (allowBookAgain) {
-            buttonText = I18n.t('bookings.buttons.book_again')
+            buttonText = I18n.t('frontend.bookings.buttons.book_again')
           }
 
           return (
@@ -226,7 +226,8 @@ const Subtitle: FC<SubtitleProps> = ({
       </Space>
       {!_.isNull(isActionByCurrentUser) && (
         <Text disabled>
-          { isActionByCurrentUser ? I18n.t('bookings.operation_by_admin') : I18n.t('bookings.operation_by_user')}
+          { isActionByCurrentUser
+            ? I18n.t('frontend.bookings.operation_by_admin') : I18n.t('frontend.bookings.operation_by_user')}
         </Text>
       )}
     </Space>

@@ -1055,40 +1055,6 @@ en:
     sign_out: Login as different user
     sign_up: Sign Up
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
-  bookings:
-    add_to_calendar: Add To Calendar
-    booking_failed_msg: Failed to book slot
-    buttons:
-      book: Book
-      cancel: Cancel
-      cancel_booking: Cancel Booking
-      confirm_booking: Confirm Booking
-      modify: Modify
-      nevermind: Nevermind
-      request_cancel: Request cancellation
-      request_reschedule: Request reschedule
-      reschedule: Reschedule
-    confirm_booking_description: We emailed you and the other attendees a calendar invitation with all the details.
-    confirm_booking_title: Confirm this booking?
-    language: Language
-    need_changes: Need to make the changes?
-    operation_by_admin: Operation performed by admin.
-    operation_by_user: Opertion performed by logged in user.
-    or: or
-    reason_for_cancel: Reason for Cancellation
-    reason_for_reschedule: Reason for Rescheduling
-    request_cancellation_failed: Failed to request for cancellation
-    request_cancellation_success: Successfully requested for cancellation
-    request_reschedule_failed: Failed to request for rescheduling
-    request_reschedule_success: Successfully requested for rescheduling
-    reschedule_failed_msg: Failed to reschedule
-    schedule_success: This booking is scheduled
-    schedule_success_msg: We emailed you and the other attendees a calendar invitation with all the details.
-    tab_label:
-      bookings: Bookings
-      invites: Invites
-    what: What
-    when: When
   browsers:
     chrome: Google Chrome
     download:
@@ -1906,6 +1872,40 @@ en:
         title: Remove availability
       update_success: Availability updated successfully.
     background_reading: Background Reading
+    bookings:
+      add_to_calendar: Add To Calendar
+      booking_failed_msg: Failed to book slot
+      buttons:
+        book: Book
+        cancel: Cancel
+        cancel_booking: Cancel Booking
+        confirm_booking: Confirm Booking
+        modify: Modify
+        nevermind: Nevermind
+        request_cancel: Request cancellation
+        request_reschedule: Request reschedule
+        reschedule: Reschedule
+      confirm_booking_description: We emailed you and the other attendees a calendar invitation with all the details.
+      confirm_booking_title: Confirm this booking?
+      language: Language
+      need_changes: Need to make the changes?
+      operation_by_admin: Operation performed by admin.
+      operation_by_user: Opertion performed by logged in user.
+      or: or
+      reason_for_cancel: Reason for Cancellation
+      reason_for_reschedule: Reason for Rescheduling
+      request_cancellation_failed: Failed to request for cancellation
+      request_cancellation_success: Successfully requested for cancellation
+      request_reschedule_failed: Failed to request for rescheduling
+      request_reschedule_success: Successfully requested for rescheduling
+      reschedule_failed_msg: Failed to reschedule
+      schedule_success: This booking is scheduled
+      schedule_success_msg: We emailed you and the other attendees a calendar invitation with all the details.
+      tab_label:
+        bookings: Bookings
+        invites: Invites
+      what: What
+      when: When
     campaign:
       actions:
         remove:

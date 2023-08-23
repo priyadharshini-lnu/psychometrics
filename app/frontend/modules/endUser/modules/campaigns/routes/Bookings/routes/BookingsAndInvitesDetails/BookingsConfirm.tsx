@@ -26,19 +26,19 @@ export const BookingConfirm: FC<Props> = ({
 
   const headerContent = (
     <>
-      <Title level={4}>{I18n.t('bookings.confirm_booking_title')}</Title>
-      <Text>{I18n.t('bookings.confirm_booking_description')}</Text>
+      <Title level={4}>{I18n.t('frontend.bookings.confirm_booking_title')}</Title>
+      <Text>{I18n.t('frontend.bookings.confirm_booking_description')}</Text>
     </>
   )
 
   const detailsContent = (
     <Space size="middle" className="w-100" direction="vertical">
       <Row wrap={false}>
-        <Col span={6}><Text type="secondary">{I18n.t('bookings.what')}</Text></Col>
+        <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.what')}</Text></Col>
         <Col><Text>{title}</Text></Col>
       </Row>
       <Row>
-        <Col span={6}><Text type="secondary">{I18n.t('bookings.when')}</Text></Col>
+        <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.when')}</Text></Col>
         <Col>
           <Space size={6} direction="vertical">
             <Text>{bookingDateTime.clone().format('dddd, MMMM DD, YYYY')}</Text>
@@ -51,7 +51,7 @@ export const BookingConfirm: FC<Props> = ({
       </Row>
       {language ? (
         <Row>
-          <Col span={6}><Text type="secondary">{I18n.t('bookings.language')}</Text></Col>
+          <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.language')}</Text></Col>
           <Col><Text>{language}</Text></Col>
         </Row>
       ) : null}
@@ -61,12 +61,12 @@ export const BookingConfirm: FC<Props> = ({
   const footerContent = (
     <div className="ta-e">
       <Space>
-        <Button onClick={onCancelOfConfirmBooking}>{I18n.t('bookings.buttons.cancel')}</Button>
+        <Button onClick={onCancelOfConfirmBooking}>{I18n.t('frontend.bookings.buttons.cancel')}</Button>
         <Button
           type="primary"
           onClick={onConfirmBooking}
         >
-          {I18n.t('bookings.buttons.confirm_booking')}
+          {I18n.t('frontend.bookings.buttons.confirm_booking')}
           {' '}
           <DirectionalArrowIcon />
         </Button>

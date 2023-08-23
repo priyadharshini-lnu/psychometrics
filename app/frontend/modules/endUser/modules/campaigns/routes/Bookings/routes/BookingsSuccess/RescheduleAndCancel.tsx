@@ -22,10 +22,11 @@ export const RescheduleAndCancel: FC<Props> = ({
   onRequestCancellation, rescheduleBooking, onRequestRescheduleBooking,
 }) => {
   const [requestCancelOrRescheduleForm] = Form.useForm()
-  const requestButtonText = cancelBooking ? I18n.t('bookings.buttons.request_cancel')
-    : I18n.t('bookings.buttons.request_reschedule')
+  const requestButtonText = cancelBooking ? I18n.t('frontend.bookings.buttons.request_cancel')
+    : I18n.t('frontend.bookings.buttons.request_reschedule')
   const requestHandler = cancelBooking ? onRequestCancellation : onRequestRescheduleBooking
-  const reasonLabel = cancelBooking ? I18n.t('bookings.reason_for_cancel') : I18n.t('bookings.reason_for_reschedule')
+  const reasonLabel = cancelBooking
+    ? I18n.t('frontend.bookings.reason_for_cancel') : I18n.t('frontend.bookings.reason_for_reschedule')
 
   if (cancelBooking || rescheduleBooking) {
     return (
@@ -48,7 +49,7 @@ export const RescheduleAndCancel: FC<Props> = ({
                 onRescheduleBooking(false)
               }}
             >
-              {I18n.t('bookings.buttons.nevermind')}
+              {I18n.t('frontend.bookings.buttons.nevermind')}
             </Button>
 
             <Button
@@ -69,13 +70,13 @@ export const RescheduleAndCancel: FC<Props> = ({
   return (
     <>
       <Space size={2}>
-        <span>{I18n.t('bookings.need_changes')}</span>
+        <span>{I18n.t('frontend.bookings.need_changes')}</span>
         <Button className="ps-2 pe-2" type="link" onClick={() => onCancelBooking(true)}>
-          {I18n.t('bookings.buttons.cancel_booking')}
+          {I18n.t('frontend.bookings.buttons.cancel_booking')}
         </Button>
-        <span>{I18n.t('bookings.or')}</span>
+        <span>{I18n.t('frontend.bookings.or')}</span>
         <Button className="ps-2 pe-2" type="link" onClick={() => onRescheduleBooking(true)}>
-          {I18n.t('bookings.buttons.reschedule')}
+          {I18n.t('frontend.bookings.buttons.reschedule')}
         </Button>
       </Space>
     </>

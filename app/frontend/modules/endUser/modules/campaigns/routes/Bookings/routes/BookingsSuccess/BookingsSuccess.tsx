@@ -100,10 +100,10 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   const handleRequestCancelBooking = (reason: string) => {
     if (bookingId && workshopId) {
       requestCancelBooking(bookingId, workshopId, reason).then(() => {
-        message.success(I18n.t('bookings.request_cancellation_success'))
+        message.success(I18n.t('frontend.bookings.request_cancellation_success'))
         history.push('/invites')
       })
-        .catch(() => message.error(I18n.t('bookings.request_cancellation_failed')))
+        .catch(() => message.error(I18n.t('frontend.bookings.request_cancellation_failed')))
     }
   }
 
@@ -124,28 +124,28 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
         status: bookingDetails.status,
       }
       requestRescheduleBooking(bookingId, requestData).then(() => {
-        message.success(I18n.t('bookings.request_reschedule_success'))
+        message.success(I18n.t('frontend.bookings.request_reschedule_success'))
         history.push('/invites')
-      }).catch(() => message.error(I18n.t('bookings.request_reschedule_failed')))
+      }).catch(() => message.error(I18n.t('frontend.bookings.request_reschedule_failed')))
     }
   }
 
   const headerContent = (
     <>
       <CheckCircleFilled className={cs('mb-2', styles.successIcon)} />
-      <Title className="mb-0" level={4}>{I18n.t('bookings.schedule_success')}</Title>
-      <Text>{I18n.t('bookings.schedule_success_msg')}</Text>
+      <Title className="mb-0" level={4}>{I18n.t('frontend.bookings.schedule_success')}</Title>
+      <Text>{I18n.t('frontend.bookings.schedule_success_msg')}</Text>
     </>
   )
 
   const detailsContent = (
     <Space size="middle" className="w-100" direction="vertical">
       <Row wrap={false}>
-        <Col span={6}><Text type="secondary">{I18n.t('bookings.what')}</Text></Col>
+        <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.what')}</Text></Col>
         <Col><Text>{bookingDetails?.title}</Text></Col>
       </Row>
       <Row>
-        <Col span={6}><Text type="secondary">{I18n.t('bookings.when')}</Text></Col>
+        <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.when')}</Text></Col>
         <Col>
           <Space size={6} direction="vertical">
             <Text>{bookedDateTimeMomentObjectTz?.clone().format('dddd, MMMM DD, YYYY')}</Text>
@@ -157,12 +157,12 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
         </Col>
       </Row>
       <Row>
-        <Col span={6}><Text type="secondary">{I18n.t('bookings.language')}</Text></Col>
+        <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.language')}</Text></Col>
         <Col><Text>{bookingDetails?.preferredLanguage}</Text></Col>
       </Row>
       <Row>
         <Col span={6}>
-          <Text type="secondary">{I18n.t('bookings.add_to_calendar')}</Text>
+          <Text type="secondary">{I18n.t('frontend.bookings.add_to_calendar')}</Text>
         </Col>
         <Space>
           <a href={google(event)}>
