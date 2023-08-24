@@ -18,23 +18,6 @@ const STATUSES = {
   ongoing: { label: I18n.t('campaign.workshops.status.ongoing'), textType: 'success' },
 }
 
-type StatusTextProps = {
-  startTime: string
-  attendanceStatus: string
-}
-
-const StatusText: FC<StatusTextProps> = ({ startTime, attendanceStatus }) => {
-  const status = ():string | null => {
-    if (attendanceStatus === 'dropped_out' || attendanceStatus === 'no_show') { return null }
-    return moment().isBefore(moment(startTime)) ? 'upcoming' : 'ongoing'
-  }
-  const statusData = STATUSES[`${status()}`] || {}
-
-  return (
-    <Text type={statusData.textType}>{statusData.label}</Text>
-  )
-}
-
 export const WorkshopCard = ({ workshop }) => {
   const history = useHistory()
   const handleClick = () => {
@@ -63,8 +46,24 @@ export const WorkshopCard = ({ workshop }) => {
         )}
         buttonText={I18n.t('campaign.workshops.participate')}
         onButtonClick={handleClick}
-        actionDisabled={!workshop.attended || moment().isBefore(workshop.startTime)}
       />
     </Col>
+  )
+}
+
+type StatusTextProps = {
+  startTime: string
+  attendanceStatus: string
+}
+
+const StatusText: FC<StatusTextProps> = ({ startTime, attendanceStatus }) => {
+  const status = ():string | null => {
+    if (attendanceStatus === 'dropped_out' || attendanceStatus === 'no_show') { return null }
+    return moment().isBefore(moment(startTime)) ? 'upcoming' : 'ongoing'
+  }
+  const statusData = STATUSES[`${status()}`] || {}
+
+  return (
+    <Text type={statusData.textType}>{statusData.label}</Text>
   )
 }
