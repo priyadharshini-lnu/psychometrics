@@ -60,9 +60,9 @@ const WorkshopComponent: FC<PropsFromRedux> = ({ workshop, fetchEndUserWorkshop 
                         {I18n.t('campaign.workshops.preworks')}
                       </Title>
                       <Row gutter={[16, 16]}>
-                        {workshop.prework.map(activity => (
-                          <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={activity.id}>
-                            <AssessmentCard assessment={activity} view={view} />
+                        {workshop.preworks.map(prework => (
+                          <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={prework.id}>
+                            <AssessmentCard assessment={prework} view={view} />
                           </Col>
                         ))}
                       </Row>
