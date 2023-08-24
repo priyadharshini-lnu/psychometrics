@@ -114,9 +114,9 @@ const InvitesList: FC<InvitesListProps> = ({ invites, loading, onClickInvite }) 
         {
           invites.map(invite => (
             <DetailsCard
-              title={invite.title}
+              title={invite.title || ''}
               key={invite.id}
-              description={invite.description}
+              description={invite.description || ''}
               onButtonClick={() => onClickInvite(invite.workshopInviteId)}
               buttonText={I18n.t('frontend.bookings.buttons.book')}
               subtitle={(
@@ -166,9 +166,9 @@ const BookingsList: FC<BookingsListProps> = ({ bookings, loading, onClickBooking
           return (
             <DetailsCard
               status={statusElement}
-              title={booking.title}
+              title={booking.title || ''}
               key={booking.id}
-              description={booking.description}
+              description={booking.description || ''}
               onButtonClick={() => onClickBooking(booking.workshopInviteId)}
               buttonText={buttonText || undefined}
               subtitle={(

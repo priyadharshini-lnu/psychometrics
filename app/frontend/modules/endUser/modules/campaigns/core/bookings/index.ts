@@ -4,8 +4,8 @@ import ApiAction from 'interfaces/ApiAction'
 
 const InviteTR = t.type({
   id: t.number,
-  title: t.string,
-  description: t.string,
+  title: t.union([t.string, t.null]),
+  description: t.union([t.string, t.null]),
   duration: t.number,
   status: t.string,
   workshopInviteId: t.number,
@@ -25,18 +25,12 @@ export const fetchInvites = ():ApiAction<FetchInvitesResponse> => ({
   },
 })
 
-const BookingTR = t.type({
-  id: t.number,
+const BookingTR = t.intersection([InviteTR, t.type({
   date: t.string,
-  description: t.string,
-  duration: t.number,
-  title: t.string,
-  status: t.string,
   timezone: t.string,
   isActionByCurrentUser: t.union([t.boolean, t.null]),
-  workshopInviteId: t.number,
   cancellationLeadTime: t.number,
-})
+})])
 const fetchBookingsResponseTR = t.type({
   list: t.array(BookingTR),
 })
