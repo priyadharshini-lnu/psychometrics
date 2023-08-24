@@ -63,7 +63,7 @@ export const ScheduleAvailability:FC<Props> = ({
     }
   }
 
-  const [timezone, setTimezone] = useState(initialAvailability?.timezone || 'Asia/Muscat')
+  const [timezone, setTimezone] = useState(initialAvailability?.timezone || 'Asia/Dubai')
   const [dateFields, setDateFields] = useState({})
   const [saving, setSaving] = useState(false)
   const [availableWeekDays, setAvailableWeekDays] = useState(getAvailableDays(

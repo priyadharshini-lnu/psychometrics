@@ -28,15 +28,18 @@ const TimeZoneSelect: React.FC<Props> = ({
     onChange && onChange(tz)
   }
 
-  const timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${moment.tz(zone).format('Z')}) ${zone}` }))
+  let timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${moment.tz(zone).format('Z')}) ${zone}` }))
     .sort((a, b) => Number(moment.tz(a.zone).format('ZZ')) - Number(moment.tz(b.zone).format('ZZ')))
   const timezoneGuess = moment.tz.guess()
 
   if (timezoneGuess) {
-    timezoneNames.unshift({
-      zone: timezoneGuess,
-      label: `(GMT${moment.tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
-    })
+    timezoneNames = [
+      {
+        zone: timezoneGuess,
+        label: `(GMT${moment.tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
+      },
+      ...timezoneNames.filter(z => z.zone !== timezoneGuess),
+    ]
   }
 
   return (

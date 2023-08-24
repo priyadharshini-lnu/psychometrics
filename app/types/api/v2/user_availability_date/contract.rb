@@ -9,7 +9,7 @@ module Api
         schema Api::V2::UserAvailabilityDate::Schema.create_request
 
         rule(data: { attributes: :timezone }) do
-          unless ActiveSupport::TimeZone.all.map { |t| t.tzinfo.name }.include?(value)
+          unless ActiveSupport::TimeZone[value]
             key.failure(:not_in_the_list?)
           end
         end
