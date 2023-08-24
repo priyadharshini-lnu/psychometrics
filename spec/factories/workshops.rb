@@ -6,6 +6,7 @@ FactoryBot.define do
     start_time { Time.current }
     timezone { 'Asia/Dubai' }
     duration { 14_400 }
+    total_seats { 10 }
   end
 
   trait :with_managers do

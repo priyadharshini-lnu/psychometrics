@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module SubjectTable
-        class SubjectRelationshipTable < BaseField
+        class SubjectRelationshipTable < ::PipedText::BaseField
           def call
             broadcast :ok, subject_table
           end

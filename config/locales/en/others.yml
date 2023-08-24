@@ -1825,6 +1825,12 @@ en:
         invitation: Invitation
         other: Other
         reminder: Reminder
+        workshop_booked: Assessment center booking confirmation
+        workshop_cancelled: Assessment center cancelled
+        workshop_completed: Assessment center completed
+        workshop_invite: Assessment center invite
+        workshop_invite_reminder: Assessment center invite reminder
+        workshop_upcoming_reminder: Assessment center upcoming reminder
       recipients:
         all: All
         selected: Selected
@@ -3129,6 +3135,7 @@ en:
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
     close: Close
     deactivate_link: Deactivate Link

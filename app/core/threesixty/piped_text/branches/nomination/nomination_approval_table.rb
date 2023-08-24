@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module Nomination
-        class NominationApprovalTable < BaseField
+        class NominationApprovalTable < ::PipedText::BaseField
           def call
             broadcast :ok, nomination_approval_table
           end

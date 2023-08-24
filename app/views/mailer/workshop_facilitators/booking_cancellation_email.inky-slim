@@ -1,0 +1,11 @@
+container.email-container
+  row
+    columns.email-content
+      p
+        | You booked for Assessment center has been cancelled
+
+      p
+       | Start time: #{@workshop.formatted_start_time}
+
+      p
+        | End time: #{@workshop.formatted_end_time}

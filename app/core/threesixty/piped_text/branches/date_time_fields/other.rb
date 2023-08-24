@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module DateTimeFields
-        class Other < BaseField
+        class Other < ::PipedText::BaseField
           SIGNS = {
             '-' => :-,
             '+' => :+

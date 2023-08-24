@@ -52,6 +52,9 @@ gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.2'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
 
+gem 'dotiw', '~> 5.3.3'
+gem 'icalendar', '~> 2.9.0'
+
 # two_factor_authentication should be before devise-security, so that 2fa is required before changing expired password
 # rubocop:disable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
 gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',

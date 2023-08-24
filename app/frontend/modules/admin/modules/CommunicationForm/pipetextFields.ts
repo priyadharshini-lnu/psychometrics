@@ -1,0 +1,89 @@
+import _ from 'lodash'
+
+import moment from 'moment'
+
+export const DATE_FORMATS = [
+  {
+    name: moment().format('Do MMMM YYYY, hh:mm A Z'),
+    format: '%e %B %Y, %l:%M %p %:z',
+  },
+  {
+    name: moment().format('YYYY-MM-DD hh:mm A Z'),
+    format: '%Y-%m-%d %I:%M %p %:z',
+  },
+  {
+    name: moment().format('DD-MM-YYYY- hh:mm A Z'),
+    format: '%d-%m-%Y %I:%M %p %:z',
+  },
+  {
+    name: moment().format('YYYY/MM/DD hh:mm A Z'),
+    format: '%Y/%m/%d %I:%M %p %:z',
+  },
+  {
+    name: moment().format('DD/MM/YYYY HH:mm:ss A Z'),
+    format: '%d/%m/%Y %I:%M %p %:z',
+  },
+]
+const { I18n } = window
+
+const LOCALES = [
+  {
+    name: I18n.t('languages.en'),
+    value: 'en',
+  },
+  {
+    name: I18n.t('languages.ar'),
+    value: 'ar',
+  },
+]
+
+const FIELDS = [
+  {
+    branch: 'Assessment Center',
+    supportedCommunicationKind: [
+      'workshop_booked', 'workshop_upcoming_reminder', 'workshop_cancelled', 'workshop_completed',
+    ],
+    fields: [
+      {
+        name: 'Start time',
+        type: 'dropdown',
+        items: () => _.map(DATE_FORMATS, f => ({ key: f.format, value: f.name })),
+        getValue: ({ key }) => `\${w://Workshop/Field/StartTime?format=${key}}`,
+      },
+      {
+        name: 'End time',
+        type: 'dropdown',
+        items: () => _.map(DATE_FORMATS, f => ({ key: f.format, value: f.name })),
+        getValue: ({ key }) => `\${w://Workshop/Field/EndTime?format=${key}}`,
+      },
+      {
+        name: 'Duration',
+        type: 'link',
+        value: '${w://Workshop/Field/Duration}',
+      },
+    ],
+  },
+  {
+    branch: 'Invites',
+    supportedCommunicationKind: [
+      'workshop_invite', 'workshop_invite_reminder', 'workshop_booked', 'workshop_upcoming_reminder',
+      'workshop_cancelled', 'workshop_completed',
+    ],
+    fields: [
+      {
+        name: 'Title',
+        type: 'dropdown',
+        items: () => _.map(LOCALES, f => ({ key: f.value, value: f.name })),
+        getValue: ({ key }) => `\${wi://WorkshopInvite/Field/Title?locale=${key}}`,
+      },
+      {
+        name: 'Description',
+        type: 'dropdown',
+        items: () => _.map(LOCALES, f => ({ key: f.value, value: f.name })),
+        getValue: ({ key }) => `\${wi://WorkshopInvite/Field/Description?locale=${key}}`,
+      },
+    ],
+  },
+]
+
+export default FIELDS

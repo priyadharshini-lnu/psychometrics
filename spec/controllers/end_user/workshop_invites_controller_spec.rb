@@ -205,7 +205,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
 
       it 'returns error is passed cancellation deadline' do
         workshop_invited_subject.update!(status: 'accepted')
-        WorkshopSubject.create!(workshop: workshop, user: user)
+        create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         workshop.update!(cancellation_lead_time: 0)
 
         frozen_time = workshop.start_time - 1.hour
@@ -228,7 +228,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
     context 'request cancellation' do
       it 'returns success' do
         workshop_invited_subject.update!(status: 'accepted')
-        WorkshopSubject.create!(workshop: workshop, user: user)
+        create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
 
         post :cancel_or_request_cancellation, params: {
           workshop_id: workshop.id,
@@ -245,7 +245,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
 
       it 'allows request cancellation even if passed cancellation deadline' do
         workshop_invited_subject.update!(status: 'accepted')
-        workshop_subject = WorkshopSubject.create!(workshop: workshop, user: user)
+        workshop_subject
         workshop.update!(cancellation_lead_time: 0)
         workshop_booked_seats = workshop.booked_seats
 
@@ -276,7 +276,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       it 'returns success' do
         workshop_invited_subject.update!(status: 'accepted')
         workshop.update!(reschedule_lead_time: 3600)
-        WorkshopSubject.create!(workshop: workshop, user: user)
+        create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
 
         post :reschedule_or_request_reschedule, params: {
@@ -298,7 +298,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
 
       it 'returns error is passed reschedule deadline' do
         workshop_invited_subject.update!(status: 'accepted')
-        WorkshopSubject.create!(workshop: workshop, user: user)
+        create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
         workshop.update!(reschedule_lead_time: 0)
 
@@ -326,7 +326,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
 
       it 'allows rescheduling for same workshop again' do
         workshop_invited_subject.update!(status: 'accepted')
-        WorkshopSubject.create!(workshop: workshop, user: user)
+        create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         workshop.update!(reschedule_lead_time: 3600)
 
         post :reschedule_or_request_reschedule, params: {
@@ -347,7 +347,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
 
       it 'allows requested_rescheduling even if passed reschedule deadline' do
         workshop_invited_subject.update!(status: 'accepted')
-        workshop_subject = WorkshopSubject.create!(workshop: workshop, user: user)
+        workshop_subject = create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
         workshop.update!(reschedule_lead_time: 0)
         workshop_booked_seats = workshop.booked_seats

@@ -18,6 +18,9 @@ class Campaign < ApplicationRecord
   has_one :campaign_options, dependent: :destroy
   has_many :sheets, dependent: :destroy
   has_many :workshops, dependent: :destroy
+  has_many :workshop_invites
+  has_many :workshop_invited_subjects, through: :workshop_invites, source: :workshop_invited_subjects
+  has_many :workshop_subjects, dependent: :destroy
   has_many :campaign_assessor_assessments, dependent: :destroy
   has_one :accesssheet, dependent: :destroy
   has_one :project_datasheet, through: :project, source: :datasheet

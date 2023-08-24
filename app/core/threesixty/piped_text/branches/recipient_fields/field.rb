@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module RecipientFields
-        class Field < BaseField
+        class Field < ::PipedText::BaseField
           def call
             method_name = possible_fields[path.second]
             return broadcast :ok, '' unless method_name

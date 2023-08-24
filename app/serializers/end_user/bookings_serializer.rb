@@ -10,7 +10,7 @@ module EndUser
     delegate :title, :description, to: :workshop_invite
 
     def date
-      workshop.start_time.iso8601
+      workshop&.start_time&.iso8601
     end
 
     def is_action_by_current_user

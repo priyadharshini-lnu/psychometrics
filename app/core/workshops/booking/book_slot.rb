@@ -30,6 +30,7 @@ module Workshops
           user_id: current_user.id,
           workshop_id: workshop_id,
           campaign_id: workshop.campaign_id,
+          workshop_invited_subject_id: workshop_invited_subject.id,
           preferred_language: workshop_subject_details[:preferred_language],
           neurodivergent: workshop_subject_details[:neurodivergent],
           neurodivergent_comments: workshop_subject_details[:neurodivergent_comment]

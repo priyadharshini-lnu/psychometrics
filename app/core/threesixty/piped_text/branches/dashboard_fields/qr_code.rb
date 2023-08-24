@@ -6,7 +6,7 @@ module Threesixty
   module PipedText
     module Branches
       module DashboardFields
-        class QrCode < BaseField
+        class QrCode < ::PipedText::BaseField
           def call
             url = Threesixty::PipedText::Branches::DashboardFields::Url.call!([], params, context)
 

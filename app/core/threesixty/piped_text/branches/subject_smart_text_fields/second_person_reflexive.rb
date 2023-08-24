@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module SubjectSmartTextFields
-        class SecondPersonReflexive < BaseField
+        class SecondPersonReflexive < ::PipedText::BaseField
           def call
             result =
               if context[:subject].id == context[:evaluator].id

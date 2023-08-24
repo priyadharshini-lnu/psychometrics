@@ -2520,6 +2520,12 @@ en:
         selected_recipients: Selected Recipients
         stop_reminder: Stop sending reminders
         stop_reminder_datetime: End date for reminders (GST)
+        workshop_booked: Assessment center booking confirmation
+        workshop_cancelled: Assessment center cancelled
+        workshop_completed: Assessment center completed
+        workshop_invite: Assessment center invite
+        workshop_invite_reminder: Assessment center invite reminder
+        workshop_upcoming_reminder: Assessment center upcoming reminder
       index:
         clients: Clients
         completion: Completion
@@ -3310,6 +3316,8 @@ en:
         assessors: Assessors
         sms_invites: SMS Invites
         subjects: Subjects
+    piped_text_modal:
+      title: Add Piped Text
     proctoring_sessions:
       columns:
         comment: Comment

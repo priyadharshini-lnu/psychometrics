@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module DateTimeFields
-        class Current < BaseField
+        class Current < ::PipedText::BaseField
           def call
             broadcast :ok, Time.zone.now.strftime(params['f'])
           rescue StandardError

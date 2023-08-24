@@ -3,12 +3,16 @@
 class WorkshopInvitedSubject < ApplicationRecord
   belongs_to :workshop_invite
   belongs_to :user
-  has_many :workshops, through: :workshop_invites
+  has_one :workshop_subject, dependent: :nullify
+  has_many :workshops, through: :workshop_invite
+  has_one :campaign, through: :workshop_invite
 
   enum status: {
     pending: 0, accepted: 1, cancelled: 2,  requested_cancellation: 3,
     requested_rescheduling: 4, rescheduled: 5
   }
+
+  after_commit :send_workshop_invite_email, on: %i[create]
 
   scope :invites, -> { where(status: :pending) }
   scope :bookings, lambda {
@@ -18,5 +22,16 @@ class WorkshopInvitedSubject < ApplicationRecord
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields]
+  end
+
+  def campaign_user
+    CampaignUser.find_by(user_id: user_id, campaign_id: workshop_invite.campaign_id)
+  end
+
+  def send_workshop_invite_email
+    communication = campaign.communications.workshop_invite.last
+    return unless communication
+
+    communication.emails.create!(campaign_user: campaign_user, workshop_invite: workshop_invite)
   end
 end

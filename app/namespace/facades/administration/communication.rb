@@ -34,6 +34,8 @@ module Facades
       end
 
       def show_recipients?
+        return false if workshop_communication?
+
         form.end_level_id.present?
       end
 
@@ -46,6 +48,8 @@ module Facades
       end
 
       def show_delivery_rules?
+        return false if workshop_communication?
+
         form.kind.present? &&
           %w[new_users new_assignment].exclude?(form.recipients) &&
           form.kind != 'completion'
@@ -56,7 +60,11 @@ module Facades
       end
 
       def show_delivery_intervals?
-        form.kind == 'reminder'
+        %w[reminder workshop_invite_reminder].include?(form.kind)
+      end
+
+      def show_stop_reminder?
+        !workshop_communication?
       end
 
       def show_stop_reminder_datetime?
@@ -113,6 +121,10 @@ module Facades
       end
 
       private
+
+      def workshop_communication?
+        ::Communication::WORKSHOP_COMMUNICATION_KINDS.include?(form.kind)
+      end
 
       def fetch_owners(user)
         client_policy_scope(user).roots.order(:name)

@@ -7,7 +7,12 @@ module Api
 
     def create
       ActiveRecord::Base.transaction do
-        @workshop_invite = WorkshopInvite.create!(workshop_invite_params)
+        campaign = Api::Administration::CampaignPolicy::Scope.new(
+          current_user,
+          Campaign
+        ).resolve.find(params.dig(:filter, :workshops_campaign_id_eq))
+
+        @workshop_invite = campaign.workshop_invites.create!(workshop_invite_params)
         @workshops.each do |workshop|
           @workshop_invite.workshops << workshop
         end

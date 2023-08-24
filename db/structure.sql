@@ -442,8 +442,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -603,12 +603,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -835,8 +835,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
@@ -1305,7 +1305,9 @@ CREATE TABLE public.communication_emails (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     sent_at timestamp without time zone,
-    campaign_user_id bigint
+    campaign_user_id bigint,
+    workshop_id bigint,
+    workshop_invite_id bigint
 );
 
 
@@ -4169,7 +4171,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4836,10 +4839,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -5256,7 +5259,8 @@ CREATE TABLE public.workshop_subjects (
     preferred_language character varying,
     neurodivergent boolean,
     neurodivergent_comments text,
-    campaign_id integer
+    campaign_id integer,
+    workshop_invited_subject_id bigint
 );
 
 
@@ -8011,6 +8015,20 @@ CREATE INDEX index_communication_emails_on_membership_id ON public.communication
 
 
 --
+-- Name: index_communication_emails_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_emails_on_workshop_id ON public.communication_emails USING btree (workshop_id);
+
+
+--
+-- Name: index_communication_emails_on_workshop_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_emails_on_workshop_invite_id ON public.communication_emails USING btree (workshop_invite_id);
+
+
+--
 -- Name: index_communications_copy_memberships; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9586,6 +9604,13 @@ CREATE UNIQUE INDEX index_workshop_subjects_on_workshop_id_and_user_id ON public
 
 
 --
+-- Name: index_workshop_subjects_on_workshop_invited_subject_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_subjects_on_workshop_invited_subject_id ON public.workshop_subjects USING btree (workshop_invited_subject_id);
+
+
+--
 -- Name: index_workshops_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9894,6 +9919,14 @@ ALTER TABLE ONLY public.assessors
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_2397339a92 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_emails fk_rails_2429635fcd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_emails
+    ADD CONSTRAINT fk_rails_2429635fcd FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id);
 
 
 --
@@ -10254,6 +10287,14 @@ ALTER TABLE ONLY public.workshop_invited_subjects
 
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT fk_rails_5b54a08d0b FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_emails fk_rails_5c47ebbe76; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_emails
+    ADD CONSTRAINT fk_rails_5c47ebbe76 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id);
 
 
 --
@@ -10957,7 +10998,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -11182,6 +11223,14 @@ ALTER TABLE ONLY public.assessments_reports
 
 ALTER TABLE ONLY public.campaign_assessments
     ADD CONSTRAINT fk_rails_e37db7e3eb FOREIGN KEY (assessor_form_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: workshop_subjects fk_rails_e41aec218b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT fk_rails_e41aec218b FOREIGN KEY (workshop_invited_subject_id) REFERENCES public.workshop_invited_subjects(id) ON DELETE SET NULL;
 
 
 --
@@ -11936,6 +11985,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230627181938'),
 ('20230717125048'),
 ('20230719111228'),
+('20230721123804'),
+('20230721125540'),
 ('20230725084846'),
 ('20230727152255'),
 ('20230728040657'),
@@ -11949,6 +12000,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230809193508'),
 ('20230810103629'),
 ('20230811114945'),
-('20230821100124');
+('20230818140419'),
+('20230821100124'),
+('20230822081633');
 
 

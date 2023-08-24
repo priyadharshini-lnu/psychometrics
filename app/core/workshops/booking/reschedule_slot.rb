@@ -33,6 +33,7 @@ module Workshops
       def update_workshop_subject
         WorkshopSubject.find_by(workshop_id: workshop_id, user_id: current_user.id).update!(
           workshop_id: new_workshop_id,
+          workshop_invited_subject_id: workshop_invited_subject.id,
           neurodivergent: workshop_subject_details[:neurodivergent],
           preferred_language: workshop_subject_details[:preferred_language],
           neurodivergent_comments: workshop_subject_details[:neurodivergent_comments]
