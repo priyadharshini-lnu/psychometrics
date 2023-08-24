@@ -86,11 +86,13 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
             <Row gutter={[16, 16]}>
               <Col span={24}>
                 <div className={styles.hint}>
-                  {I18n.t('workshop_invite.basic_info.assessment_centers_hint')}
+                  {I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_hint')}
                 </div>
                 <Select
                   showSearch
-                  placeholder={I18n.t('workshop_invite.basic_info.assessment_centers_placeholder')}
+                  placeholder={
+                    I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_placeholder')
+                  }
                   options={assessmetnCenters.map(workshop => ({
                     label: formatWorkshopDate(workshop.startTime), value: workshop.id,
                   }))}

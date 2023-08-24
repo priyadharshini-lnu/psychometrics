@@ -1982,6 +1982,11 @@ en:
       success: Success
     update: Update
     upload: Upload
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Cancelled
+        requested_cancellation: Requested Cancellation
+        requested_rescheduling: Requested Rescheduling
     'yes': 'Yes'
   glint:
     color_picker:
@@ -3349,11 +3354,6 @@ en:
       other: There are %{count} errors, please check your responses
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
-  workshop_invited_subjects:
-    statuses:
-      cancelled: Cancelled
-      requested_cancellation: Requested Cancellation
-      requested_rescheduling: Requested Rescheduling
   workshops_invites:
     workshop:
       title: Workshops

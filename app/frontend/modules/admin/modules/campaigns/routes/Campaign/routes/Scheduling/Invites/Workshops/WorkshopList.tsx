@@ -42,12 +42,12 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
           <Button type="primary" onClick={() => openModal('WorkshopAddFormModal')}>
             <PlusOutlined />
             {' '}
-            {I18n.t('workshop_invite.workshop_list.add')}
+            {I18n.t('administration.assessment_center.invite.workshop_list.add')}
           </Button>
         </Resource.Filter>
         <Resource.Table pagination>
           <Resource.Column<WorkshopShort>
-            title={I18n.t('workshop_invite.workshop_list.name')}
+            title={I18n.t('administration.assessment_center.invite.workshop_list.name')}
             id="startTime"
             sorter
             width="90%"
@@ -74,11 +74,12 @@ const RemoveWorkshop: React.FC<{ workshop: WorkshopShort, inviteId:string }> = (
 
   const removeWorkshop = ({ id, startTime }: WorkshopShort) => {
     Modal.confirm({
-      title: I18n.t('workshop_invite.workshop_list.remove_confirm.title'),
-      content: I18n.t('workshop_invite.workshop_list.remove_confirm.content', { name: formatWorkshopDate(startTime) }),
+      title: I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.title'),
+      content: I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.content',
+        { name: formatWorkshopDate(startTime) }),
       onOk: () => {
         removeRelationships('workshops', [id]).then(() => {
-          message.success(I18n.t('workshop_invite.workshop_list.remove_confirm.success'))
+          message.success(I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.success'))
           resource.setData(resource.data.filter(r => r.id !== id))
         })
       },
