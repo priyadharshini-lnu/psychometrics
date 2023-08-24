@@ -1,9 +1,6 @@
 import { Space, PageHeader, Tabs } from 'antd'
 import { useHistory, useParams } from 'react-router-dom'
-import {
-  MailOutlined,
-  CloseCircleOutlined,
-} from '@ant-design/icons'
+import { MailOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
 import styles from './styles.less'
 
@@ -55,15 +52,6 @@ export const IndividualInvite = () => {
               </>
             ),
             children: <SubjectList />,
-          },
-          {
-            key: 'cancellation_rescheduling',
-            label: (
-              <>
-                <CloseCircleOutlined />
-                {I18n.t('administration.individual_invite.tabs.cancellation_reschedule')}
-              </>
-            ),
           },
           {
             key: 'assessment_center',
