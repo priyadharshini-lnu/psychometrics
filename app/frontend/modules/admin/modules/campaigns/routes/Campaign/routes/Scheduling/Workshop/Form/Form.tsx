@@ -97,7 +97,7 @@ export const AssessmentCenterForm = () => {
     <div className={styles.mainForm}>
       <Row className={styles.steps}>
         <Button type="link" onClick={() => history.goBack()}><DirectionalNavigateBackIcon /></Button>
-        <Col span={24}>
+        <Col span={22}>
           <Steps
             current={step}
             items={[
