@@ -121,7 +121,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
       const requestData = {
         workshopId,
         reason,
-        status: bookingDetails.status,
+        status: 'requested_rescheduling',
       }
       requestRescheduleBooking(bookingId, requestData).then(() => {
         message.success(I18n.t('frontend.bookings.request_reschedule_success'))
