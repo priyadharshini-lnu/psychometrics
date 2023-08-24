@@ -43,7 +43,7 @@ module Api
         def resolve
           return scope if user.superadmin?
 
-          if campaign_id && user.has_permssion?(:workshops, :view, campaign_id: campaign_id)
+          if campaign_id && user.has_permission?(:workshops, :view, campaign_id: campaign_id)
             return user.accessible_records(Workshop, 'workshops.view')
           end
 
