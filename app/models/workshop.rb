@@ -20,6 +20,12 @@ class Workshop < ApplicationRecord
   scope :search_query, lambda { |query|
     where('TO_CHAR(start_time, \'ddth FMMonth yyyy, HH:MI am\') ILIKE ?', "%#{query}%")
   }
+  scope :visible_to_end_user, lambda { |user_id|
+    Workshop.
+      includes(:workshop_subjects).
+      where(workshop_subjects: { user_id: user_id }).
+      merge(WorkshopSubject.participatable)
+  }
 
   def self.ransackable_scopes(_)
     %i[search_query]

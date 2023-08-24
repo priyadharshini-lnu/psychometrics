@@ -11,10 +11,17 @@ export const fetchWorkshop = (): ApiAction<Workshop> => ({
   },
 })
 
-export const defaultState = []
+const FETCH_END_USER = 'workshop/FETCH'
+export const fetchEndUserWorkshop = (id: string) => ({
+  type: FETCH_END_USER,
+  request: { url: `/assessment_centers/${id}` },
+})
+
+export const defaultState = null
 
 const HANDLERS = {
   [FETCH_WORKSHOP]: (_, { response }: ApiActionResponse<Workshop>) => response,
+  [FETCH_END_USER]: (state, action) => ({ ...state, ...action.response, loaded: true }),
 }
 
 export default function reducer (state = defaultState, action) {

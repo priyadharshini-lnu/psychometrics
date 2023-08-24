@@ -5,7 +5,9 @@ class EndUser::IihtUserAssessmentsController < ApplicationController
 
   def pass
     campaign = @user_assessment.campaign
-    return redirect_to(assessment_completed_path(campaign.id)) if @user_assessment.completed?
+    if @user_assessment.completed?
+      return redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
+    end
 
     @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
     @user_assessment.in_progress!
@@ -24,7 +26,7 @@ class EndUser::IihtUserAssessmentsController < ApplicationController
     user_assessment.complete! unless user_assessment.completed?
     ::Iiht::SaveScoresJob.perform_later(user_assessment)
 
-    redirect_to(assessment_completed_path(user_assessment.campaign_id))
+    redirect_to(assessment_completed_path(user_assessment.campaign_id, user_assessment_id: user_assessment.id))
   end
 
   private

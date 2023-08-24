@@ -1,0 +1,1 @@
+export { WorkshopPageHeader } from './PageHeader'

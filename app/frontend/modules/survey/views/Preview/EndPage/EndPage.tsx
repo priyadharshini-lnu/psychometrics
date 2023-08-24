@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useHistory, useParams } from 'react-router-dom'
 import { Space, Typography } from 'antd'
 import { RootState } from '~/modules/survey/core/rootReducers'
 
@@ -43,6 +43,7 @@ const EndPage: FC<Props> = ({
 }) => {
   const location = useLocation()
   const history = useHistory()
+  const { userAssessmentId } = useParams<{ userAssessmentId: string }>()
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
@@ -76,7 +77,7 @@ const EndPage: FC<Props> = ({
                 {I18n.t('assessments.actions.pending_tasks', { count: otherPendingAssessmentCount })}
               </Typography.Title>
               )}
-              <a href={dashboardUrl}>
+              <a href={`${dashboardUrl}?user_assessment_id=${userAssessmentId}`}>
                 {I18n.t('assessments.actions.goto_dashboard')}
               </a>
             </>

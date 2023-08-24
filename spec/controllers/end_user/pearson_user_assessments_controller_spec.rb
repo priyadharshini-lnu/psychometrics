@@ -19,7 +19,7 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
 
       get :pass, params: { id: user_assessment.id }
 
-      expect(response).to redirect_to(assessment_completed_path(campaign))
+      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
     end
 
     it "doesn't create Pearson Schedule if already created" do
@@ -53,7 +53,7 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
       get :redirect, params: { id: user_assessment.id }
 
       expect(user_assessment.reload.completed?).to eq(true)
-      expect(response).to redirect_to(assessment_completed_path(campaign))
+      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
     end
 
     it "doesn't mark user_assessment as completed if saville assessment is not completed" do

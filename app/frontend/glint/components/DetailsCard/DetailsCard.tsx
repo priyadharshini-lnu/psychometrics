@@ -17,7 +17,7 @@ type DetailsCardProps = {
   onSecondaryBtnClick?: () => void
   progressPercentage?: number
   status?: string | React.ReactElement
-  subtitle?: string | React.ReactElement
+  subtitle?: string | React.ReactElement | null
   showStatusAtTop?: boolean
   actionLoading?: boolean
   actionDisabled?: boolean

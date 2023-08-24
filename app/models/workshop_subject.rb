@@ -7,4 +7,9 @@ class WorkshopSubject < ApplicationRecord
 
   enum attendance_status: { no_status: 0, on_time: 1, late: 2, no_show: 3, dropped_out: 4 }
   enum completion_status: { not_started: 0, completed: 1 }
+
+  scope :participatable, lambda {
+    where.not(attendance_status: %i[no_show dropped_out]).
+      where.not(completion_status: :completed)
+  }
 end

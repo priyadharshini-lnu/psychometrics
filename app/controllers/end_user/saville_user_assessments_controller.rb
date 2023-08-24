@@ -5,7 +5,9 @@ class EndUser::SavilleUserAssessmentsController < ApplicationController
 
   def pass
     campaign = @user_assessment.campaign
-    return redirect_to(assessment_completed_path(campaign.id)) if @user_assessment.completed?
+    if @user_assessment.completed?
+      return redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
+    end
 
     @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
     @user_assessment.in_progress!
@@ -23,7 +25,7 @@ class EndUser::SavilleUserAssessmentsController < ApplicationController
       @user_assessment.update!(status: :completed, completed_at: Time.current)
     end
 
-    redirect_to(assessment_completed_path(campaign.id))
+    redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
   end
 
   private

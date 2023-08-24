@@ -1170,9 +1170,17 @@ en:
     ungrouped: Ungrouped tasks
     welcome: Welcome
     workshops:
+      activities: Center Activities
       assessment_center: Assessment Center
+      click_here: Click here to join meeting >
+      duration: Duration
+      duration_to_complete: "%{duration} mins to complete"
       inactive_message: Currently, you have not been assigned any assessment centers.
+      not_scheduled_button: Not scheduled
+      not_started_button: Not started
       participate: Participate
+      preworks: Preworks
+      starts_in: Starts in
       status:
         ongoing: On Going
         upcoming: Upcoming

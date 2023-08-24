@@ -4,7 +4,7 @@ import { ClockCircleOutlined } from '@ant-design/icons'
 import { BaseType } from 'antd/lib/typography/Base'
 
 type Props = {
-  text: string
+  text: React.ReactElement | string
   className?: string
   textType?: BaseType | 'none'
 }

@@ -5,7 +5,7 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :timing, :assessment_category,
                :assessment_extra, :assessment_id, :status, :completion_percent, :available_locales,
-               :selected_locale, :assessment_icon_url, :prework
+               :selected_locale, :assessment_icon_url, :prework, :schedule_time, :workshop_activity_duration
 
     def status
       object.real_status
@@ -69,6 +69,10 @@ module EndUser
 
     def assessment_category
       object.assessment.category
+    end
+
+    def schedule_time
+      object.schedule_time&.iso8601
     end
   end
 end

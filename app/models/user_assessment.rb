@@ -26,7 +26,8 @@ class UserAssessment < ApplicationRecord
   has_one :threesixty_campaign, through: :campaign
 
   delegate :saville?, :iiht?, :pearson?, to: :assessment
-  delegate :prework?, :prework, to: :campaign_assessment, allow_nil: true
+  delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
+           to: :campaign_assessment, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -55,6 +56,11 @@ class UserAssessment < ApplicationRecord
   scope :with_workshop_activities, lambda {
     where('campaign_assessments.workshop_activity = TRUE OR user_assessments.relationship_id = ?',
           Relationship.assessor_relationship)
+  }
+  scope :user_workshop_activities, lambda { |user_id|
+    with_campaign_assessments.
+      where(user_assessments: { evaluator_id: user_id }).
+      merge(CampaignAssessment.workshop_activities)
   }
 
   before_save :set_default_relationship

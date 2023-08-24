@@ -54,7 +54,15 @@ class HomeController < ApplicationController
 
   def redirect_to_campaign_or_return_url(assessment_status = nil)
     campaign_id = params.fetch(:campaign_id, nil)
-    redirect_path = campaign_id.nil? ? root_path : campaign_path(campaign_id)
+
+    redirect_path = if campaign_id.nil?
+                      root_path
+                    elsif params[:user_assessment_id] && workshop_activity?
+                      workshop_page_path(user_assessment.campaign.active_workshop)
+                    else
+                      campaign_path(campaign_id)
+                    end
+
     return redirect_to(redirect_path) if session[:sso].try(:[], 'return_url').nil?
 
     substitutions = {}
@@ -101,5 +109,13 @@ class HomeController < ApplicationController
     uri.to_s
   rescue URI::InvalidURIError
     default_url
+  end
+
+  def user_assessment
+    @user_assessment ||= UserAssessment.find(params[:user_assessment_id])
+  end
+
+  def workshop_activity?
+    user_assessment.workshop_activity?
   end
 end

@@ -12,6 +12,7 @@ import { Evaluation } from './Evaluation'
 import { Report } from './Report'
 import { Anonym } from './Anonym'
 import { Bookings } from './Bookings'
+import { Workshop } from './Workshop'
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
   {
     path: '/threesixty_campaigns/:campaignId',
     main: Campaign,
+    exact: true,
+  },
+  {
+    path: '/assessment_centers/:workshopId',
+    main: Workshop,
     exact: true,
   },
   {

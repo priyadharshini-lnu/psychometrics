@@ -947,6 +947,7 @@ Rails.application.routes.draw do
       resources :campaigns, only: %i[show] do
         get :insights
       end
+      get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'
       get :workshop, to: 'users#workshop'
       get 'policy/:version', to: 'users#policy'

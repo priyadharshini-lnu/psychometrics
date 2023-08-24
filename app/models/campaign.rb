@@ -147,6 +147,14 @@ class Campaign < ApplicationRecord
     slice(:name, :project_id)
   end
 
+  def active_workshop
+    workshops.
+      includes(:workshop_subjects).
+      where.not(workshop_subjects: { attendance_status: %i[no_show dropped_out] }).
+      where.not(workshop_subjects: { completion_status: :completed }).
+      first
+  end
+
   private
 
   def ensure_campaign_options

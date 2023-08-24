@@ -19,7 +19,7 @@ RSpec.describe EndUser::IihtUserAssessmentsController, type: :controller do
 
       get :pass, params: { id: user_assessment.id }
 
-      expect(response).to redirect_to(assessment_completed_path(campaign))
+      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
     end
 
     it "doesn't create IIHT assessment url if already created" do
@@ -61,7 +61,7 @@ RSpec.describe EndUser::IihtUserAssessmentsController, type: :controller do
       get :redirect, params: { campaign_id: campaign.id, assessment_id: user_assessment.assessment_id }
 
       expect(user_assessment.reload.completed?).to eq(true)
-      expect(response).to redirect_to(assessment_completed_path(campaign))
+      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
     end
   end
 end

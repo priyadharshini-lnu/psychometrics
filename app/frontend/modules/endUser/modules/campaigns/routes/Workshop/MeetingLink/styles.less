@@ -1,0 +1,31 @@
+@import "~/styles/ant.variable.less";
+@import "~/styles/spacing.less";
+
+.meetingLinkContainer {
+  position: relative;
+  margin: @space-12 auto;
+  padding-inline: @space-2;
+  max-width: 1200px;
+}
+
+.meetingLinkImg {
+  min-width: 50%;
+  max-width: 100%;
+  min-height: 85px;
+  border-radius: 5px;
+  object-fit: fill;
+}
+
+.meetingLinkAnchor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  background-color: @white;
+  border-radius: 2px;
+}
+
+.meetingLink {
+  padding: 15px;
+}
