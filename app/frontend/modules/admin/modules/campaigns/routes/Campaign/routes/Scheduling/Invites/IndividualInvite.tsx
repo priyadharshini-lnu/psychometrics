@@ -6,6 +6,7 @@ import styles from './styles.less'
 
 import settings from '~/modules/admin/modules/campaigns/settings'
 import { SubjectList } from './Subjects/SubjectList'
+import { WorkshopList } from './Workshops/WorkshopList'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { useResources } from '~/hooks/useResources'
 import routeUtils from '~/utils/route'
@@ -13,7 +14,9 @@ import routeUtils from '~/utils/route'
 const { I18n } = window
 
 export const IndividualInvite = () => {
-  const { inviteId, campaignId, tabName } = useParams<{ inviteId: string, campaignId: string, tabName: string }>()
+  const {
+    inviteId, campaignId, projectId, tabName,
+  } = useParams<{ projectId: string, inviteId: string, campaignId: string, tabName: string }>()
   const history = useHistory()
   const { fetchSingle, getResource } = useResources<WorkshopInvite>('workshop_invites')
   const workshopInvite = getResource(inviteId)
@@ -27,7 +30,9 @@ export const IndividualInvite = () => {
     <>
       <PageHeader
         className={styles.pageHeader}
-        onBack={() => history.goBack()}
+        onBack={() => history.push(
+          `/administration/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites`,
+        )}
         title={(
           <>
             <Space>
@@ -56,6 +61,7 @@ export const IndividualInvite = () => {
           {
             key: 'assessment_center',
             label: I18n.t('administration.individual_invite.tabs.assessment_center'),
+            children: <WorkshopList />,
           },
         ]}
       />

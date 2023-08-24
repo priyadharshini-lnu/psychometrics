@@ -3,6 +3,10 @@
 module Api
   module Administration
     class WorkshopInvitedSubjectPolicy < ::Administration::BasePolicy
+      def get_related_resources?
+        has_permission?(:workshops, :view)
+      end
+
       def index?
         has_permission?(:workshops, :view)
       end

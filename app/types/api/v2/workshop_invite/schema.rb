@@ -19,7 +19,7 @@ module Api
 
         def self.relationships(_type)
           [{
-            name: :workshop, resource: :workshops, relationship: :many
+            name: :workshops, resource: :workshops, relationship: :many
           }]
         end
       end

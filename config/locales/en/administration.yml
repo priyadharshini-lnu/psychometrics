@@ -295,6 +295,7 @@ en:
           download: Download
           file_example: Refere to example file to upload subjecs information.
           import_from_campaign: Add all from campaign
+          import_title: Import Subjects
           import_users: Import Users
           search_user: Search subjects
           title: Subjects
@@ -305,6 +306,14 @@ en:
           continue: Continue
           message: The invitations are scheduled to be sent
         title: Title
+        workshop:
+          title: Assessment Centers
+        workshop_list:
+          add: Add
+          name: Name
+          remove_confirm:
+            content: Are you sure you want to remove %{name}?
+            title: Workshop
       past: Past
       steps:
         basic_information: Basic Information

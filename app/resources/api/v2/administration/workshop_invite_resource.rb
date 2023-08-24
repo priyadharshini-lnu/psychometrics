@@ -4,7 +4,7 @@ class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration:
   attributes :title, :description, :created_at, :subjects_count, :allowed_languages, :allow_language_preference,
              :allow_neurodiversity_option, :subjects, :translations, :workshop_ids, :campaign_id
 
-  has_many :workshops
+  has_many :workshops, exclude_links: :default
   has_many :workshop_invited_subjects
 
   def fetchable_fields

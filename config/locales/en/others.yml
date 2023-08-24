@@ -3347,6 +3347,9 @@ en:
       cancelled: Cancelled
       requested_cancellation: Requested Cancellation
       requested_rescheduling: Requested Rescheduling
+  workshops_invites:
+    workshop:
+      title: Workshops
   'yes': 'Yes'
   your: Your
   yourself: Yourself

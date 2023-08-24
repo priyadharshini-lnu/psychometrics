@@ -20,6 +20,7 @@ import { useMountedState } from '../useMountedState'
 import {
   Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
   RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction, MemberAction,
+  RemoveRelationships, AddRelationship,
 } from './interfaces'
 import { formatErrors, defaultState } from './utils'
 
@@ -370,6 +371,59 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       setRequestStatus(requestKey, formattedErrors)
     })
   }
+  const addRelationships: AddRelationship = async (resourceType, ids: string[]) => {
+    const requestKey: RequestType = `addRelationships@${ids.join(',')}`
+    setRequests({ ...requests, [requestKey]: { status: 'loading' } })
+    const url = `${resourceUrl}/relationships`
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error, errors } = await client.mutate([resourceType, ''], null as any,
+      {
+        body: JSON.stringify({
+          data: ids.map(id => ({
+            type: resourceType,
+            id,
+          })),
+        }),
+        url,
+      } as {})
+
+    return new Promise(async (resolve, reject) => {
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === 'success') {
+        resolve()
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const removeRelationships: RemoveRelationships = async (resourceType, ids: string[]) => {
+    const requestKey: RequestType = `removeRelationships@${ids.join(',')}`
+    setRequests({ ...requests, [requestKey]: { status: 'loading' } })
+    const url = `${resourceUrl}/relationships`
+    const { error, errors } = await client.delete([resourceType, ''],
+      {
+        body: JSON.stringify({
+          data: ids.map(id => ({
+            type: resourceType,
+            id,
+          })),
+        }),
+        url,
+        method: 'DELETE',
+      } as {})
+
+    return new Promise(async (resolve, reject) => {
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === 'success') {
+        resolve()
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
 
   const changeUrlQuery = debounce((query: UrlQuery) => {
     const newQuery = { ...queryString, q: { ...query } }
@@ -487,6 +541,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     createResource,
     updateResource,
     removeResource,
+    removeRelationships,
     getSortOrder,
     pageSize: queryState?.page?.size || 25,
     currentPage: queryState?.page?.number ? parseInt(queryState?.page?.number as unknown as string, 10) : 1,
@@ -500,5 +555,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     isRequestSuccessful,
     memberAction,
     collectionAction,
+    addRelationships,
   }
 }

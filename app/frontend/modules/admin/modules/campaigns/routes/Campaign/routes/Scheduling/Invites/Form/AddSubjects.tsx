@@ -124,16 +124,20 @@ export const AddSubjectsComponent: FC<Props> = ({
           </Button>,
         ]}
       >
-        <div>
-          {I18n.t('administration.assessment_center.invite.subjects.file_example')}
-          <a
-            href="/example_csv/workshop_subject_import.csv"
-            target="_blank"
-          >
-            {I18n.t('administration.assessment_center.invite.subjects.download')}
-          </a>
-        </div>
-        <Input ref={ref} type="file" />
+        <Space direction="vertical">
+          <div>
+            <Space>
+              {I18n.t('administration.assessment_center.invite.subjects.file_example')}
+              <a
+                href="/example_csv/workshop_subject_import.csv"
+                target="_blank"
+              >
+                {I18n.t('administration.assessment_center.invite.subjects.download')}
+              </a>
+            </Space>
+          </div>
+          <Input ref={ref} type="file" />
+        </Space>
       </Modal>
       <Panel
         title={I18n.t('administration.assessment_center.invite.subjects.title')}

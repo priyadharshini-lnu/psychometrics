@@ -45,6 +45,10 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   def self.records(opts = {})
     return super if opts[:context][:user].assessor?
 
-    super(opts).where(campaign_id: opts[:context][:params]['campaign_id'])
+    if opts[:context][:params]['campaign_id']
+      super(opts).where(campaign_id: opts[:context][:params]['campaign_id'])
+    else
+      super(opts)
+    end
   end
 end

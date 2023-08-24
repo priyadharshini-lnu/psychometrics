@@ -11,6 +11,18 @@ module Api
         has_permission?(:workshops, :view)
       end
 
+      def show_relationship?
+        has_permission?(:workshops, :view)
+      end
+
+      def create_relationship?
+        has_permission?(:workshops, :manage)
+      end
+
+      def destroy_relationship?
+        has_permission?(:workshops, :manage)
+      end
+
       def create_subjects_and_translations?
         has_permission?(:workshops, :manage)
       end
@@ -33,7 +45,7 @@ module Api
 
       class Scope < Scope
         def resolve
-          user.accessible_records(WorkshopInvite, 'workshops.view')
+          WorkshopInvite
         end
       end
     end

@@ -23,7 +23,6 @@ export const WorkshopInviteTR = t.type({
   })),
 })
 
-
 export const Schema = {
   type: 'workshop_invites',
   relationships: {

@@ -20,6 +20,11 @@ export const WorkshopTR = t.type({
   workshopAssessors: t.array(userDetailsTR),
 })
 
+export const WorkshopShortTR = t.type({
+  id: t.string,
+  startTime: t.string,
+})
+
 export const WorkshopCreateResponseTR = t.array(t.type({
   id: t.string,
   startTime: t.string,
@@ -29,6 +34,7 @@ export const WorkshopCreateResponseTR = t.array(t.type({
   remainingSeats: t.number,
   timezone: t.string,
   meetingLink: t.union([t.string, t.null]),
+  workshopIds: t.array(t.number),
 }))
 
 export const userDetailsListTR = t.array(userDetailsTR)
@@ -46,4 +52,5 @@ export const Workshops = {
 }
 
 export type Workshop = t.TypeOf<typeof WorkshopTR>
+export type WorkshopShort = t.TypeOf<typeof WorkshopShortTR>
 export type UserDetails = t.TypeOf<typeof userDetailsTR>
