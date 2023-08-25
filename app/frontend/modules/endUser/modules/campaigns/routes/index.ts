@@ -12,6 +12,7 @@ import { Evaluation } from './Evaluation'
 import { Report } from './Report'
 import { Anonym } from './Anonym'
 import { Bookings } from './Bookings'
+import MeetingRoom from './MeetingRoom'
 import { Workshop } from './Workshop'
 
 const routes = [
@@ -96,6 +97,11 @@ const routes = [
   {
     path: '/anonym/:assessmentKey',
     main: Anonym,
+    exact: true,
+  },
+  {
+    path: '/meet/:roomId',
+    main: MeetingRoom,
     exact: true,
   },
 ]

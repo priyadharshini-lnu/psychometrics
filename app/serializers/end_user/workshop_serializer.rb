@@ -2,6 +2,7 @@
 
 module EndUser
   class WorkshopSerializer < ActiveModel::Serializer
+    include Rails.application.routes.url_helpers
     attributes :id, :start_time, :duration, :completion_status, :attendance_status, :attended,
                :preworks, :activities, :meeting_link
     delegate :attendance_status, :completion_status, :attended, to: :workshop_subject
@@ -19,6 +20,15 @@ module EndUser
 
       user_assessments.select { |r| r.prework == false }.map do |ua|
         ::EndUser::UserAssessmentSerializer.new(ua)
+      end
+    end
+
+    def meeting_link
+      if object.video_call_internal?
+        # TODO: change this to use the full url with subdomain
+        meeting_path(object.meeting_room.id)
+      elsif object.video_call_custom?
+        object.meeting_link
       end
     end
 

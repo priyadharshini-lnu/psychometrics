@@ -16,9 +16,10 @@ class Workshop < ApplicationRecord
   has_many :managers, through: :workshop_managers, source: :user
   has_many :user_bookings, dependent: :destroy, as: :booked_by_resource
   has_many :campaign_assessments, -> { workshop_activities }, through: :campaign
+  has_one :meeting_room, as: :meetable, dependent: :destroy
   has_many :communications, as: :campaign
 
-  enum video_call_type: { not_available: 0, internal: 1, custom: 2 }
+  enum video_call_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :video_call
 
   scope :search_query, lambda { |query|
     where('start_time >= ?', Time.current.beginning_of_day).
@@ -30,6 +31,8 @@ class Workshop < ApplicationRecord
       where(workshop_subjects: { user_id: user_id }).
       merge(WorkshopSubject.participatable)
   }
+
+  after_save :create_meeting_room, if: -> { video_call_internal? && meeting_room.blank? }
 
   def self.ransackable_scopes(_)
     %i[search_query]
@@ -49,6 +52,10 @@ class Workshop < ApplicationRecord
 
   def seats_available?
     booked_seats < total_seats
+  end
+
+  def create_meeting_room
+    create_meeting_room!
   end
 
   def formatted_start_time

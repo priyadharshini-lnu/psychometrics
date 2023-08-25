@@ -38,6 +38,15 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
     @model.total_seats - @model.booked_seats
   end
 
+  def meeting_link
+    if @model.video_call_internal?
+      # TODO: change this to use the full url
+      "/admin/meet/#{@model.meeting_room.id}"
+    elsif @model.video_call_custom?
+      @model.meeting_link
+    end
+  end
+
   def self.default_sort
     [{ field: 'start_time', direction: :asc }]
   end

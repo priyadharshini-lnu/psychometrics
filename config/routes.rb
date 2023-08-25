@@ -107,6 +107,10 @@ Rails.application.routes.draw do
 
     resource :profiles, only: %i[update edit]
 
+    resources :meeting_rooms, only: [] do
+      get :token, on: :member
+    end
+
     resources :audit_logs do
       collection do
         get :actions
@@ -954,6 +958,10 @@ Rails.application.routes.draw do
 
       get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect
 
+      resources :meeting_rooms, only: [] do
+        get :token, on: :member
+      end
+
       resources :workshop_invites, only: [] do
         member do
           post :book
@@ -1115,6 +1123,7 @@ Rails.application.routes.draw do
     get 'upgrade', to: 'home#upgrade'
     get 'profile_details', to: 'end_user/users#dashboard'
     get 'change_password', to: 'end_user/users#dashboard'
+    get 'meet/:room_id', to: 'end_user/users#dashboard', as: :meeting
     get 'invites', to: 'end_user/users#dashboard'
     get 'booking', to: 'end_user/users#dashboard'
     get 'invites/:id/booking', to: 'end_user/users#dashboard'
