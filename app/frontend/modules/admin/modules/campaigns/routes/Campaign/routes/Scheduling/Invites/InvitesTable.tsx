@@ -81,7 +81,7 @@ export const InvitesTable = () => {
         }}
         name="workshop_invites"
       >
-        <Resource.Filter placeholder="Search" name="title_cont">
+        <Resource.Filter placeholder="Search" name="translations_title_cont">
           <Button type="primary" onClick={openForm}>
             <PlusOutlined />
             {' '}

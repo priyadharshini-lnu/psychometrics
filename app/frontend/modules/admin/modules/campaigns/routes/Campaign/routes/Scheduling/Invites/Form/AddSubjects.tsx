@@ -1,6 +1,6 @@
 import { FC, useState, useRef } from 'react'
 import {
-  Button, Select, Row, Col, Space, List, Dropdown, Spin, Modal, Input, InputRef, FormInstance, Alert,
+  Button, Select, Row, Col, Space, List, Dropdown, Spin, Modal, Input, InputRef, FormInstance, Alert, message,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
@@ -88,6 +88,9 @@ export const AddSubjectsComponent: FC<Props> = ({
         })
         if (response.meta.errors) {
           setCSVErrors(response.meta.errors)
+        } else {
+          message.success(I18n.t('administration.assessment_center.invite.subjects.csv_imported',
+            { count: response.data.length }))
         }
         showUploadModal(false)
       })
@@ -141,7 +144,7 @@ export const AddSubjectsComponent: FC<Props> = ({
               </a>
             </Space>
           </div>
-          <Input ref={ref} type="file" />
+          <Input ref={ref} type="file" accept=".csv" />
         </Space>
       </Modal>
       <Panel
@@ -159,6 +162,7 @@ export const AddSubjectsComponent: FC<Props> = ({
               <Select
                 style={{ width: 200 }}
                 showSearch
+                value={null}
                 placeholder={(
                   <Space>
                     <SearchOutlined />
@@ -218,8 +222,8 @@ export const AddSubjectsComponent: FC<Props> = ({
               <Alert
                 message="Errors"
                 description={csvErrors.map(
-                  error => I18n.t('administration.assessment_center.invite.subjects.csv_error', error),
-                ).join('\n')}
+                  error => <div>{I18n.t('administration.assessment_center.invite.subjects.csv_error', error)}</div>,
+                )}
                 type="error"
               />
             </Col>

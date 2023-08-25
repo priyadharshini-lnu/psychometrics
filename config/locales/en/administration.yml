@@ -294,6 +294,7 @@ en:
           cancel: Cancel
           count: "%{count} Subjects"
           csv_error: 'Row%{index}: user with email %{email} is not in this campaign'
+          csv_imported: "%{count} subjects imported"
           description: You can add subjects individually by searching or bulk upload a csv file.
           download: Download
           file_example: Refere to example file to upload subjecs information.
