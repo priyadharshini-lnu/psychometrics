@@ -378,41 +378,6 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
--- Name: assessment_translations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.assessment_translations (
-    id bigint NOT NULL,
-    name text,
-    description text,
-    timing text,
-    locale character varying NOT NULL,
-    assessment_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: assessment_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.assessment_translations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: assessment_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.assessment_translations_id_seq OWNED BY public.assessment_translations.id;
-
-
---
 -- Name: assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -442,8 +407,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -603,12 +568,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -835,8 +800,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
@@ -4171,8 +4136,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -4466,7 +4430,9 @@ CREATE TABLE public.user_assessments (
     last_activity_at timestamp without time zone,
     progress_reseted boolean DEFAULT false,
     schedule_time timestamp(6) without time zone,
-    schedule_updated boolean DEFAULT false
+    schedule_updated boolean DEFAULT false,
+    meeting_type integer DEFAULT 0,
+    meeting_link character varying
 );
 
 
@@ -4839,10 +4805,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -5377,13 +5343,6 @@ ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agile
 --
 
 ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api_keys_id_seq'::regclass);
-
-
---
--- Name: assessment_translations id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessment_translations ALTER COLUMN id SET DEFAULT nextval('public.assessment_translations_id_seq'::regclass);
 
 
 --
@@ -6373,14 +6332,6 @@ ALTER TABLE ONLY public.api_keys
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
-
-
---
--- Name: assessment_translations assessment_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessment_translations
-    ADD CONSTRAINT assessment_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -7599,20 +7550,6 @@ CREATE INDEX index_api_keys_on_updated_by_id ON public.api_keys USING btree (upd
 --
 
 CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
-
-
---
--- Name: index_assessment_t18n_tables_on_assessment_id_and_locale; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_assessment_t18n_tables_on_assessment_id_and_locale ON public.assessment_translations USING btree (assessment_id, locale);
-
-
---
--- Name: index_assessment_translations_on_locale; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assessment_translations_on_locale ON public.assessment_translations USING btree (locale);
 
 
 --
@@ -10998,7 +10935,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -11247,14 +11184,6 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_e471e365a3 FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
--- Name: assessment_translations fk_rails_e8b68f05ba; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessment_translations
-    ADD CONSTRAINT fk_rails_e8b68f05ba FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
 
 
 --
@@ -11985,8 +11914,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230627181938'),
 ('20230717125048'),
 ('20230719111228'),
-('20230721123804'),
-('20230721125540'),
 ('20230725084846'),
 ('20230727152255'),
 ('20230728040657'),
@@ -12002,6 +11929,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230811114945'),
 ('20230818140419'),
 ('20230821100124'),
-('20230822081633');
+('20230822081633'),
+('20230823110647');
 
 

@@ -1506,6 +1506,7 @@ en:
       late: Late
       no_show: No Show
       not_started: Not Started
+      not_status: No Status
       on_time: On Time
     text:
       accepted: Accepted

@@ -1254,10 +1254,20 @@ Rails.application.routes.draw do
                 post :create_bulk_workshops
               end
               jsonapi_relationships
-              jsonapi_resources :workshop_subjects, only: %i[index update destroy]
+              jsonapi_resources :workshop_subjects, only: %i[show index update destroy]
               jsonapi_resources :workshop_activities
               jsonapi_resources :workshop_resources
               jsonapi_resources :campaign_assessments, only: %i[index]
+            end
+
+            jsonapi_resources :workshop_subjects, only: %i[] do
+              member do
+                post :update_subject_details_and_assessments
+              end
+              jsonapi_resources :user_assessments, only: %i[index]
+              jsonapi_resources :campaign_assessor_assessments, only: %i[] do
+                get :subject_assessor_assessments, on: :collection
+              end
             end
           end
           jsonapi_resources :workshops, only: %i[index] do

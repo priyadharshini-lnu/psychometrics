@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration::BaseResource
-  attributes :attendance_status, :completion_status, :attended, :preworks, :workshop_activities
-  delegate :full_name, :email, to: :user
+  attributes :attendance_status, :completion_status, :attended, :preworks, :workshop_activities,
+             :language, :late_duration
+  delegate :full_name, :email, :photo_url, to: :user
 
   has_one :user
 
@@ -10,6 +11,10 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
 
   before_update do
     @model.attendance_status = 'no_show' if @model.attended == true
+  end
+
+  def language
+    @model.preferred_language || @model.user.user_profile.locale
   end
 
   def self.records(opts = {})
@@ -30,7 +35,41 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
     "#{campaign_workshop_activity[user_id]['completed']}/#{campaign_workshop_activity[user_id]['total']}"
   end
 
+  def meta_details
+    {
+      assessor_assessments: lambda {
+        campaigns_assessor_assessments
+      },
+      assessors: lambda {
+        assessors
+      }
+    }
+  end
+
   private
+
+  def assessors
+    [].tap do |assessors|
+      @model.workshop.workshop_assessors.each do |assessor|
+        assessors << {
+          id: assessor.id,
+          name: assessor.user.name,
+          photo_url: assessor.user.photo_url
+        }
+      end
+    end
+  end
+
+  def campaigns_assessor_assessments
+    [].tap do |assessments|
+      @model.campaign.campaign_assessor_assessments.each do |campaign_assessor_assessment|
+        assessments << {
+          id: campaign_assessor_assessment.id,
+          name: campaign_assessor_assessment.assessment.name
+        }
+      end
+    end
+  end
 
   def campaign_preworks
     @campaign_preworks ||= Campaigns::GetPreworks.call(context[:campaign].id)[:ok]

@@ -14,6 +14,10 @@ module Api
       def destroy?
         has_permission?(:assessors, :manage)
       end
+
+      def subject_assessor_assessments?
+        has_permission?(:workshops, :manage)
+      end
     end
   end
 end

@@ -13,46 +13,17 @@ const { I18n } = window
 type OwnProps = {
   onFormFinish: (formValues: Store) => void
   initialFormData?: Store
+  assessors?: Store[],
+  assessments?: Store[],
   close: () => void
 }
 
 type Props = OwnProps
 
-// Sample data
-const assessments = [
-  {
-    id: 2732,
-    name: 'New Assessment one',
-  },
-  {
-    id: 2733,
-    name: 'New Assessment two',
-  },
-  {
-    id: 2734,
-    name: 'New Assessment three',
-  },
-]
-const assessors = [
-  {
-    id: 4938,
-    name: 'Yuben Smith',
-    photoUrl: '',
-  },
-  {
-    id: 4939,
-    name: 'Corey Nash',
-    photoUrl: '',
-  },
-  {
-    id: 4940,
-    name: 'James Cartoon',
-    photoUrl: '',
-  },
-]
-
 export const AssessorFormModal:FC<Props> = (props) => {
-  const { close, onFormFinish, initialFormData } = props
+  const {
+    close, onFormFinish, initialFormData, assessments, assessors,
+  } = props
   const [assessorFormInstance] = Form.useForm()
   const [, setFields] = useState({})
 
@@ -60,8 +31,8 @@ export const AssessorFormModal:FC<Props> = (props) => {
     assessorFormInstance.submit()
   }
   const handleFormFinish = (values) => {
-    const currentAssessment = assessments.find(assessment => assessment.id === values.name)
-    const currentAssessor = assessors.find(assessor => assessor.id === values.assessor)
+    const currentAssessment = assessments?.find(assessment => assessment.id === values.name)
+    const currentAssessor = assessors?.find(assessor => assessor.id === values.assessor)
     if (initialFormData) {
       onFormFinish({
         values:
@@ -119,15 +90,8 @@ export const AssessorFormModal:FC<Props> = (props) => {
         <Form.Item rules={[{ required: true }]} label="Assessment" name="name">
           <Select
             disabled={!!initialFormData}
-            showSearch
-            // onSearch={(value) => {
-            //   fetchAssessments({
-            //     apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-            //   })
-            // }}
-            // notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
           >
-            {assessments.map(assessment => (
+            {assessments?.map(assessment => (
               <Select.Option
                 key={assessment.id}
                 value={assessment.id}
@@ -138,17 +102,8 @@ export const AssessorFormModal:FC<Props> = (props) => {
           </Select>
         </Form.Item>
         <Form.Item rules={[{ required: true }]} label="Assessor" name="assessor">
-          <Select
-            showSearch
-            // onSearch={(value) => {
-            //   fetchAssessors({
-            //     apiConfig: { filter: { with_access_to_campaign: campaignId, search_query: value } },
-            //   })
-            // }}
-            // notFoundContent={isApproverUsersLoading('fetch') ? <Spin size="small" /> : null}
-            filterOption={false}
-          >
-            {assessors.map(assessor => (
+          <Select>
+            {assessors?.map(assessor => (
               <Select.Option
                 key={assessor.id}
                 value={assessor.id}

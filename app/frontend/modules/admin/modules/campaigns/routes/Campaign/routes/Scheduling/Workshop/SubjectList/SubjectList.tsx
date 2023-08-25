@@ -13,7 +13,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import { BulkSchedule } from '../BulkSchedule/BulkSchedule'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
-// import { EditSubjectDrawer } from './EditSubjectDrawer'
+import { EditSubjectDrawer } from './EditSubjectDrawer'
 
 const { I18n } = window
 const { Text } = Typography
@@ -34,15 +34,22 @@ interface Props {
   workshop: Workshop
 }
 
+interface SubjectTableProps {
+  workshop: Workshop
+  handleEditSubject: (id: string, userId: string) => void
+}
+
 export const SubjectList: React.FC<Props> = ({ workshop }) => {
   const { id, campaignId } = useParams<{ id: string, campaignId: string }>()
-  // const [openEditDrawer, setOpenEditDrawer] = useState(false)
-  // const [currentSubjectId, setCurrentSubjectId] = useState('')
+  const [openEditDrawer, setOpenEditDrawer] = useState(false)
+  const [currentSubjectId, setCurrentSubjectId] = useState('')
+  const [currentUserId, setCurrentUserId] = useState('')
 
-  // const handleEditSubject = (id) => {
-  //   setCurrentSubjectId(id)
-  //   setOpenEditDrawer(true)
-  // }
+  const handleEditSubject = (id, userId) => {
+    setCurrentSubjectId(id)
+    setCurrentUserId(userId)
+    setOpenEditDrawer(true)
+  }
 
   const config = {
     responseType: WorkshopSubjectTR,
@@ -59,13 +66,14 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
   return (
     <>
       <Resource config={config} name="workshop_subjects">
-        <SubjectsTable workshop={workshop} />
+        <SubjectsTable workshop={workshop} handleEditSubject={handleEditSubject} />
       </Resource>
-      {/* <EditSubjectDrawer
+      <EditSubjectDrawer
         subjectId={currentSubjectId}
+        userId={currentUserId}
         onClose={() => setOpenEditDrawer(false)}
         open={openEditDrawer}
-      /> */}
+      />
     </>
   )
 }
@@ -84,7 +92,7 @@ const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {
   )
 }
 
-const SubjectsTable: React.FC<Props> = ({ workshop }) => {
+const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubject }) => {
   const { resource } = useResourceContext<WorkshopSubject>()
   const [confirmation, setConfirmation] = useState(false)
   const [openForm, setOpenForm] = useState(false)
@@ -151,13 +159,14 @@ const SubjectsTable: React.FC<Props> = ({ workshop }) => {
           title={I18n.t('administration.scheduling.columns.participants')}
           id="full_name"
           width="40%"
-          render={({ user }) => {
-            const { id, fullName, photoUrl } = user || {}
+          render={({ user, id }) => {
+            const { fullName, photoUrl } = user || {}
+            const userId = user?.id
             return (
               <div
                 role="button"
                 tabIndex={-1}
-                // onClick={() => handleEditSubject(id)}
+                onClick={() => handleEditSubject(id, userId)}
               >
                 <Space>
                   <ResourceAvatar size="large" key={id} tooltip={fullName} url={photoUrl} name={fullName} />

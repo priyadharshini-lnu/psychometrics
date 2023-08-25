@@ -7,10 +7,13 @@ export const WorkshopSubjectTR = t.type({
   attended: t.boolean,
   preworks: t.string,
   workshopActivities: t.string,
+  lateDuration: t.union([t.number, t.null]),
+  language: t.union([t.string, t.null]),
   user: t.union([
     t.type({
       fullName: t.union([t.string, t.null]),
       email: t.union([t.string, t.null]),
+      // photoUrl: t.union([t.string, t.null]),
     }),
     t.undefined]),
 })
@@ -25,3 +28,48 @@ export const Schema = {
 }
 
 export type WorkshopSubject = t.TypeOf<typeof WorkshopSubjectTR>
+
+export const EditableWorkshopSubjectTR = t.type({
+  id: t.string,
+  attendanceStatus: t.string,
+  language: t.string,
+  preworks: t.string,
+  workshopActivities: t.string,
+  user: t.union([
+    t.type({
+      name: t.union([t.string, t.null]),
+      email: t.union([t.string, t.null]),
+    }),
+    t.undefined]),
+})
+
+export type EditableWorkshopSubject = t.TypeOf<typeof EditableWorkshopSubjectTR>
+
+export const SubjectAssessmentTR = t.type({
+  id: t.string,
+  name: t.string,
+  status: t.string,
+  scheduleTime: t.union([t.string, t.null, t.undefined]),
+})
+
+export type SubjectAssessment = t.TypeOf<typeof SubjectAssessmentTR>
+
+export const AssessorAssessmentTR = t.type({
+  id: t.string,
+  name: t.string,
+  userAssessmentId: t.union([t.number, t.null]),
+  status: t.union([t.string, t.null]),
+  scheduleTime: t.union([t.string, t.null, t.undefined]),
+  meetingLink: t.union([t.string, t.null]),
+  linkedActivity: t.union([t.string, t.null]),
+  assessor: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+      photoUrl: t.union([t.string, t.null]),
+    }),
+    t.null,
+  ]),
+})
+
+export type AssessorAssessment = t.TypeOf<typeof AssessorAssessmentTR>

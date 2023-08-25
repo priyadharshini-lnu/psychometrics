@@ -31,11 +31,13 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
       title={I18n.t('common.column.assessor')}
       dataIndex="assessor"
       render={assessor => (
+        assessor && (
         <ResourceAvatar
-          name={assessor.name}
-          tooltip={assessor.name}
+          name={assessor?.name}
+          tooltip={assessor?.name}
           url={assessor.photoUrl}
         />
+        )
       )}
     />
     <Column
@@ -69,7 +71,11 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
     <Column
       title={I18n.t('common.column.status')}
       dataIndex="status"
-      render={(status => (<Tag color={PROGRESS_STATUSES[status].color}>{PROGRESS_STATUSES[status].label}</Tag>))}
+      render={(status => (
+        status && (
+          <Tag color={PROGRESS_STATUSES[status].color}>{PROGRESS_STATUSES[status].label}</Tag>
+        )
+      ))}
     />
     <Column
       title={I18n.t('common.column.linked_activities')}

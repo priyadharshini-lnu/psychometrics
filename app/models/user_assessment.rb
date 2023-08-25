@@ -63,6 +63,14 @@ class UserAssessment < ApplicationRecord
       merge(CampaignAssessment.workshop_activities)
   }
 
+  scope :workshop_activity, lambda { |value|
+    with_campaign_assessments.where(campaign_assessments: { workshop_activity: value })
+  }
+
+  scope :prework, lambda { |value|
+    with_campaign_assessments.where(campaign_assessments: { prework: value })
+  }
+
   before_save :set_default_relationship
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
   after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
@@ -87,7 +95,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    %i[filter_by_subject_or_assessment]
+    %i[filter_by_subject_or_assessment workshop_activity prework campaign_id_eq subject_id_eq]
   end
 
   def saville_norm_id

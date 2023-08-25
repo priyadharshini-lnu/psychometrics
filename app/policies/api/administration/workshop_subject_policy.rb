@@ -15,6 +15,10 @@ module Api
         has_permission?(:workshops, :view)
       end
 
+      def update_subject_details_and_assessments?
+        has_permission?(:workshops, :manage)
+      end
+
       class Scope < Scope
         def resolve
           return scope if user.superadmin?

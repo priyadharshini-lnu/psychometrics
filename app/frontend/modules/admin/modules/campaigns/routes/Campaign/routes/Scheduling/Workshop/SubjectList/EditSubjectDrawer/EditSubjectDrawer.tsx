@@ -7,8 +7,11 @@ import {
 } from 'antd'
 import {
   PlusOutlined,
+
 } from '@ant-design/icons'
+import * as t from 'io-ts'
 import { connect, ConnectedProps } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { FullWidthSkeleton, ResourceAvatar } from '~/glint'
@@ -17,6 +20,10 @@ import { AssessorFormModal } from './AssessorFormModal'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import { AssessorFormList } from './AssessorFormList'
 import { UserAssessmentList } from './UserAssessmentList'
+import { useResources } from '~/hooks/useResources'
+import {
+  WorkshopSubject, SubjectAssessment, AssessorAssessment, AssessorAssessmentTR,
+} from '~/modules/admin/modules/campaigns/core/workshopSubject'
 
 import styles from './EditSubjectDrawer.less'
 
@@ -27,7 +34,8 @@ const connector = connect(null, {
 type PropsFromRedux = ConnectedProps<typeof connector>
 type OwnProps = {
   open: boolean,
-  // subjectId: string,
+  subjectId: string,
+  userId: string,
   onClose: ()=> void
 }
 type Props = PropsFromRedux & OwnProps
@@ -36,6 +44,7 @@ const { Column } = Table
 const { I18n } = window
 
 export const STATUSES = [
+  { label: I18n.t('common.status.not_status'), value: 'no_status' }, // remove use of common.
   { label: I18n.t('common.status.on_time'), value: 'on_time' },
   { label: I18n.t('common.status.no_show'), value: 'no_show' },
   { label: I18n.t('common.status.late'), value: 'late' },
@@ -50,118 +59,118 @@ const { timeFormat } = settings
 
 const { Text, Title } = Typography
 
-// Sample data
-const subjectDetails = {
-  name: 'John Doe',
-  email: 'john.doe@mail.com',
-  photoUrl: '',
-  language: 'Arabic',
-  preworks: '2/4',
-  workshopActivities: '2/5',
-  attendanceStatus: 'on_time',
-  lateDuration: null,
-  assessments: [
-    {
-      id: 1256,
-      name: 'Wave Focus Style',
-      status: 'not_started',
-      schedule: {
-        active: true,
-        time: '09:00 AM',
-      },
-    },
-    {
-      id: 1783,
-      name: 'Swift Analysis Aptitude',
-      status: 'in_progress',
-      schedule: {
-        active: false,
-        time: '10:00 AM',
-      },
-    },
-    {
-      id: 7638,
-      name: 'VLC - Strategy Scenario',
-      status: 'completed',
-      schedule: {
-        active: true,
-        time: '07:00 PM',
-      },
-    },
-  ],
-  assessorAssessments: [
-    {
-      id: 126,
-      name: 'Wave Focus Style',
-      status: 'not_started',
-      schedule: '09:00 AM',
-      assessor: {
-        id: 1,
-        name: 'John Doe',
-        photoUrl: '',
-      },
-      meetingLinkType: 'custom',
-      meetingLinkUrl: 'https://meet.google.com/fxj-focw-ffq',
-      activities: 'MS-Office essentials',
-    },
-    {
-      id: 17833,
-      name: 'Swift Analysis Aptitude',
-      status: 'in_progress',
-      schedule: '10:00 AM',
-      assessor: {
-        id: 3,
-        name: 'Kent Clarke',
-        photoUrl: '',
-      },
-      assessorPhototUrl: '',
-      meetingLinkType: 'custom',
-      meetingLinkUrl: 'https://meet.google.com/fxj-focw-ffq',
-      activities: 'MS-Office essentials',
-    },
-    {
-      id: 47638,
-      name: 'VLC - Strategy Scenario',
-      status: 'completed',
-      schedule: '07:00 PM',
-      assessor: {
-        id: 2,
-        name: 'Ruby Rene',
-        photoUrl: '',
-      },
-      meetingLinkType: 'none',
-      meetingLinkUrl: 'https://meet.google.com/fxj-focw-ffq',
-      activities: 'MS-Office essentials',
-    },
-  ],
-}
-
-/*= ================ Component ============================================================= */
-
 export const EditSubjectDrawerComponent: FC<Props> = ({
   open, onClose, openModal,
-  // subjectId,
+  subjectId,
+  userId,
 }) => {
   // use subjectId to fetch subjectDetails when API is available
-  const [subjectData, setSubjectData] = useState(subjectDetails)
   const [loading, setLoading] = useState(true)
   const [, setFields] = useState({})
   const [statusFormInstance] = Form.useForm()
 
-  const handleTimeAcive = (active: boolean, assessmentId: number) => {
-    const updatedAssessments = subjectData.assessments
-      .map(assessment => (
-        assessment.id === assessmentId ? { ...assessment, schedule: { ...assessment.schedule, active } } : assessment
-      ))
-    setSubjectData({ ...subjectData, assessments: updatedAssessments })
-  }
+  const { campaignId } = useParams<{ campaignId: string }>()
+  const { id } = useParams<{ id: string }>()
+  const { fetchSingle, getResource } = useResources<WorkshopSubject>(
+    'workshop_subjects',
+    {
+      basePath: `campaigns/${campaignId}/workshops/${id}/`,
+      apiConfig: {
+        include: ['user'],
+        include_resource_meta: [
+          'assessor_assessments',
+          'assessors',
+        ],
+      },
+    },
+  )
 
-  const handleTimeChange = (value: Moment | null, assessmentId: number) => {
-    const timeInTextFormat = value?.format(timeFormat) || ''
+  const {
+    memberAction,
+  } = useResources<WorkshopSubject>(
+    'workshop_subjects',
+    {
+      basePath: `campaigns/${campaignId}/`,
+    },
+  )
+
+  const workshopSubject = getResource(subjectId)
+
+  const {
+    data: assessments, fetch: fetchAssessments,
+  } = useResources<SubjectAssessment>(
+    'user_assessments',
+    {
+      basePath: `campaigns/${campaignId}/workshop_subjects/${subjectId}/`,
+      apiConfig: {
+        filter: {
+          subject_id_eq: userId,
+          campaign_id_eq: campaignId,
+          prework: 'false',
+          workshop_activity: 'true',
+        },
+      },
+    },
+  )
+
+  const {
+    collectionAction: fetchAssessorAssessments,
+  } = useResources<AssessorAssessment>(
+    'campaign_assessor_assessments',
+    {
+      basePath: `campaigns/${campaignId}/workshop_subjects/${subjectId}/`,
+      apiConfig: {
+        filter: {
+          subject_id_eq: subjectId,
+        },
+      },
+    },
+  )
+
+  const [assessorAssessments, setAssessorAssessments] = useState<AssessorAssessment[]>([])
+  const subjectDetails = {
+    ...workshopSubject,
+    assessments,
+    assessorAssessments,
+  }
+  const [subjectData, setSubjectData] = useState(subjectDetails)
+
+
+  useEffect(() => {
+    if (workshopSubject) {
+      setSubjectData({ ...subjectData, ...workshopSubject })
+    }
+  }, [workshopSubject])
+
+  useEffect(() => {
+    if (assessments) {
+      setSubjectData({ ...subjectData, assessments })
+    }
+  }, [assessments])
+
+  useEffect(() => {
+    if (assessorAssessments) {
+      setSubjectData({ ...subjectData, assessorAssessments })
+    }
+  }, [assessorAssessments])
+
+  useEffect(() => {
+    if (subjectId) {
+      fetchSingle({ id: subjectId })
+      fetchAssessments()
+      fetchAssessorAssessments(
+        { action: 'subject_assessor_assessments', method: 'get', responseType: t.array(AssessorAssessmentTR) },
+      ).then((data: AssessorAssessment[]) => {
+        setAssessorAssessments(data)
+      })
+    }
+  }, [subjectId])
+
+  const handleTimeChange = (value: Moment | null, userAssessmentId: string) => {
     const updatedAssessments = subjectData.assessments
-      .map(assessment => (
-        assessment.id === assessmentId
-          ? { ...assessment, schedule: { ...assessment.schedule, time: timeInTextFormat } } : assessment
+      .map(userAssessment => (
+        userAssessment.id.toString() === userAssessmentId.toString()
+          ? { ...userAssessment, scheduleTime: value?.format() } : userAssessment
       ))
     setSubjectData({ ...subjectData, assessments: updatedAssessments })
   }
@@ -206,37 +215,52 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     })
   }
 
+  const updateSubject = () => {
+    memberAction({
+      id: subjectId,
+      action: 'update_subject_details_and_assessments',
+      method: 'post',
+      body: subjectData,
+    }).then(() => {
+      onClose()
+    })
+  }
+
   const handleSaveData = () => {
-    // code to subjectDetails to backend
+    updateSubject()
   }
 
   const title = !loading ? (
     <Row className="font-normal fs-14" wrap={false} gutter={[8, 0]}>
       <Col span={12}>
         <Space>
-          <ResourceAvatar size="large" url={subjectData.photoUrl} name={subjectData.name} />
+          <ResourceAvatar
+            size="large"
+            // url={subjectData?.user?.photoUrl || ''}
+            name={subjectData?.user?.fullName || ''}
+          />
           <Space size={0} direction="vertical">
-            {subjectData.name}
-            <Text type="secondary">{subjectData.email}</Text>
+            {subjectData?.user?.fullName}
+            <Text type="secondary">{subjectData?.user?.email}</Text>
           </Space>
         </Space>
       </Col>
       <Col span={3}>
         <Space size="small" align="end" direction="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.language')}</Text>
-          <Text className="flex-end">{subjectData.language}</Text>
+          <Text className="flex-end">{subjectData?.language}</Text>
         </Space>
       </Col>
       <Col span={3}>
         <Space size="small" align="end" direction="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.preworks')}</Text>
-          <Text className="flex-end">{subjectData.preworks}</Text>
+          <Text className="flex-end">{subjectData?.preworks}</Text>
         </Space>
       </Col>
       <Col span={6}>
         <Space size="small" align="end" direction="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.activities')}</Text>
-          <Text className="flex-end">{subjectData.workshopActivities}</Text>
+          <Text className="flex-end">{subjectData?.workshopActivities}</Text>
         </Space>
       </Col>
     </Row>
@@ -279,8 +303,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const assessmentsTable = !loading ? (
     <UserAssessmentList
-      assessments={subjectData.assessments}
-      onTimeAcive={handleTimeAcive}
+      assessments={assessments}
       onTimeChange={handleTimeChange}
     />
 
@@ -316,7 +339,14 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
           <Title className="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessor_forms')}</Title>
           {assessorAssessmentsTable}
           {!loading ? (
-            <Button onClick={() => openModal('AssessorFormModal')}>
+            <Button onClick={() => openModal(
+              'AssessorFormModal',
+              {
+                assessors: [],
+                assessments: [],
+              },
+            )}
+            >
               <PlusOutlined />
               {I18n.t('administration.scheduling.subjects.add_assessor_form')}
             </Button>

@@ -3,13 +3,13 @@ import {
 } from 'antd'
 import moment from 'moment-timezone'
 
+import { useEffect, useState } from 'react'
 import { PROGRESS_STATUSES } from './EditSubjectDrawer'
-import settings from '~/modules/admin/modules/campaigns/settings'
 
 const { I18n } = window
 const { Column } = Table
 
-export const UserAssessmentList = ({ assessments, onTimeAcive, onTimeChange }) => (
+export const UserAssessmentList = ({ assessments, onTimeChange }) => (
   <Table
     pagination={false}
     dataSource={assessments}
@@ -27,36 +27,43 @@ export const UserAssessmentList = ({ assessments, onTimeAcive, onTimeChange }) =
       title={I18n.t('common.column.status')}
       dataIndex="status"
       render={
-          (status => <Tag color={PROGRESS_STATUSES[status].color}>{PROGRESS_STATUSES[status].label}</Tag>)
-        }
+            (status => <Tag color={PROGRESS_STATUSES[status].color}>{PROGRESS_STATUSES[status].label}</Tag>)
+          }
     />
     <Column
       title={I18n.t('common.column.schedule_time')}
-      render={(assesment) => {
-        const { schedule, id, status } = assesment
-        return (
-          <Row gutter={[8, 0]}>
-            <Col span={4} className="flex items-center">
-              <Switch
-                onChange={active => onTimeAcive(active, id)}
-                defaultChecked={schedule.active}
-                disabled={status === 'completed'}
-              />
-            </Col>
-            <Col span={8}>
-              {schedule.active ? (
-                <TimePicker
-                  className="w-100"
-                  disabled={status === 'completed'}
-                  format="hh:mm A"
-                  value={moment(schedule.time, settings.timeFormat)}
-                  onChange={value => onTimeChange(value, id)}
-                />
-              ) : <Input disabled value="Not Scheduled" />}
-            </Col>
-          </Row>
-        )
-      }}
+      render={assessment => <ScheduleTime assessment={assessment} onTimeChange={onTimeChange} />}
     />
   </Table>
 )
+
+const ScheduleTime = ({ assessment, onTimeChange }) => {
+  const { scheduleTime, status, id } = assessment
+  const [active, setActive] = useState(!!scheduleTime)
+
+  useEffect(() => {
+    if (!active) { onTimeChange(null, id) }
+  }, [active])
+  return (
+    <Row gutter={[8, 0]}>
+      <Col span={4} className="flex items-center">
+        <Switch
+          onChange={current => setActive(current)}
+          defaultChecked={active}
+          disabled={status === 'completed'}
+        />
+      </Col>
+      <Col span={8}>
+        {active ? (
+          <TimePicker
+            className="w-100"
+            disabled={status !== 'not_started' || !active}
+            format="hh:mm A"
+            defaultValue={scheduleTime ? moment(scheduleTime) : undefined}
+            onChange={value => onTimeChange(value, id)}
+          />
+        ) : <Input disabled value="Not Scheduled" />}
+      </Col>
+    </Row>
+  )
+}
