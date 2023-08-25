@@ -30,7 +30,7 @@ interface Props {
 export const AssessmentCard: FC<Props> = ({ assessment, view }) => {
   const [loading, setLoading] = useState(false)
   const [cardActionDisabled, setCardActionDisabled] = useState(
-    !assessment.scheduleTime || moment().isBefore(moment(assessment.scheduleTime)),
+    !assessment.prework && (!assessment.scheduleTime || moment().isBefore(moment(assessment.scheduleTime))),
   )
 
   const history = useHistory()
