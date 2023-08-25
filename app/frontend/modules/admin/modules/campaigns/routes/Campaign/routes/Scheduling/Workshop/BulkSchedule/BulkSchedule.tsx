@@ -9,6 +9,7 @@ import {
   WorkshopSubject,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { useResources } from '~/hooks/useResources'
+import settings from '~/modules/admin/modules/campaigns/settings'
 
 const { I18n } = window
 interface Props {
@@ -82,7 +83,6 @@ export const BulkSchedule: React.FC<Props> = ({
       >
         {subjects.map(subject => <ResourceAvatar name={subject?.user?.fullName || ''} />)}
       </Avatar.Group>
-
       <div>
         {data.length}
         {' '}
@@ -108,19 +108,16 @@ export const BulkSchedule: React.FC<Props> = ({
                 <Radio value="schedule">{I18n.t('administration.scheduling.subjects.schedule')}</Radio>
                 <Radio value="unschedule">{I18n.t('administration.scheduling.subjects.unschedule')}</Radio>
               </Radio.Group>
-              <TimePicker onChange={value => changeTime(assessment, value)} />
+              <TimePicker format={settings.timeFormat} onChange={value => changeTime(assessment, value)} />
             </Space>
           )}
         />
       </Table>
-
       <Space>
         <Checkbox checked={overrideExists} onChange={() => setOverrideExists(!overrideExists)}>
           {I18n.t('administration.scheduling.subjects.override_existing')}
         </Checkbox>
       </Space>
-
-
       <Row justify="end">
         <Col><Button type="primary" onClick={save}>{I18n.t('common.actions.save')}</Button></Col>
       </Row>

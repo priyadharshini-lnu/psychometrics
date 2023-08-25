@@ -42,8 +42,8 @@ export const IndividualInvite = () => {
         )}
       />
       <Tabs
-        size="large"
-        tabBarStyle={{ paddingLeft: '10px' }}
+        tabBarStyle={{ paddingInline: '10px' }}
+        style={{ paddingInline: '20px' }}
         onTabClick={tab => routeUtils.moveTo(history, prefixPath, `/${tab}`, true)}
         activeKey={tabName}
         destroyInactiveTabPane

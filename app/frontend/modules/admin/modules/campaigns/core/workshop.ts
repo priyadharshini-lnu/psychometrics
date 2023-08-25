@@ -34,7 +34,6 @@ export const WorkshopCreateResponseTR = t.array(t.type({
   remainingSeats: t.number,
   timezone: t.string,
   meetingLink: t.union([t.string, t.null]),
-  workshopIds: t.array(t.number),
 }))
 
 export const userDetailsListTR = t.array(userDetailsTR)

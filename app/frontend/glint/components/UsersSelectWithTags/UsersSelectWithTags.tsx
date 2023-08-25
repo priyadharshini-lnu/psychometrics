@@ -56,7 +56,7 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
           handleUserSelect(option.value ? option.value.toString() : '')
         }}
         options={users.length && searchKey.length ? users.map(user => ({
-          value: user.id,
+          value: user.id ? user.id : '',
           label: <UserInfoCard
             key={user.id}
             bordered={false}
@@ -72,7 +72,7 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
         {...autoCompleteProps}
       />
       {selectedUsers.length ? (
-        <Space>
+        <Space wrap>
           {
             selectedUsers.map(user => (
               <UserInfoCard
