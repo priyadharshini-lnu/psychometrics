@@ -1,4 +1,6 @@
-import { FC, useState } from 'react'
+import {
+  FC, useState, useRef,
+} from 'react'
 import {
   Form, Radio, Input, Select, FormInstance,
 } from 'antd'
@@ -20,14 +22,21 @@ export const Questionnaire: FC<Props> = ({
   allowedLanguages, allowLanguagePreference, allowNeurodiversity, formInstance, initialValues,
 }) => {
   const [, setFields] = useState({})
+  const showLangDropdownInitially = useRef(initialValues?.language || false)
+  const showNeuroCommentBoxInitially = useRef(initialValues?.neurodivergent || false)
+
+  const handleFieldsChange = (_, allFields) => {
+    showLangDropdownInitially.current = false
+    showNeuroCommentBoxInitially.current = false
+    setFields(allFields)
+  }
+
   return (
     <Form
       layout="vertical"
       className={styles.form}
       form={formInstance}
-      onFieldsChange={(_, allFields) => {
-        setFields(allFields)
-      }}
+      onFieldsChange={handleFieldsChange}
       initialValues={initialValues}
     >
       {allowLanguagePreference ? (
@@ -39,7 +48,7 @@ export const Questionnaire: FC<Props> = ({
             </Radio.Group>
           </Form.Item>
           <>
-            {formInstance.getFieldValue('language') || initialValues?.language ? (
+            {formInstance.getFieldValue('language') || showLangDropdownInitially.current ? (
               <Form.Item rules={[{ required: true }]} name="preferredLanguage">
                 <Select>
                   {allowedLanguages.map(lang => (
@@ -66,7 +75,7 @@ export const Questionnaire: FC<Props> = ({
             </Radio.Group>
           </Form.Item>
           <>
-            {formInstance.getFieldValue('neurodivergent') || initialValues?.neurodivergent ? (
+            {formInstance.getFieldValue('neurodivergent') || showNeuroCommentBoxInitially.current ? (
               <Form.Item rules={[{ required: true }]} name="neurodivergentComments">
                 <Input.TextArea rows={4} placeholder="Your comments" />
               </Form.Item>

@@ -19,7 +19,6 @@ import { Questionnaire } from './Questionnaire'
 import { BookingCard, ButtonWithArrow, FullWidthSkeleton } from '~/glint'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { BookingConfirm } from './BookingsConfirm'
-import { getLanguageNameFromCode } from '~/utils/locales'
 
 import styles from './BookingsAndInvitesDetails.less'
 
@@ -93,6 +92,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const handleBook = () => {
     setBook(true)
     questionResponseValueRef.current = questionForm.getFieldsValue()
+    questionForm.resetFields()
   }
 
   const handleAssessmentCenterBooking = () => {
@@ -131,7 +131,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
           <BookingConfirm
             onCancelOfConfirmBooking={() => setBook(false)}
             bookingDateTime={selectedDateTime.date}
-            language={preferredLanguageFromData ? getLanguageNameFromCode(preferredLanguageFromData) : ''}
+            language={questionForm.getFieldValue('language') ? questionForm.getFieldValue('preferredLanguage') : ''}
             bookingTimeZone={inviteOrBookingDetails.timezone || moment.tz.guess()}
             duration={inviteOrBookingDetails.duration || 0}
             title={inviteOrBookingDetails.title || ''}

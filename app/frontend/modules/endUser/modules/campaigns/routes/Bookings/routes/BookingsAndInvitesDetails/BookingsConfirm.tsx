@@ -5,6 +5,7 @@ import {
 } from 'antd'
 
 import { BookingConfirmationContainer, DirectionalArrowIcon } from '~/glint'
+import { getLanguageNameFromCode } from '~/utils/locales'
 
 const { I18n } = window
 const { Title, Text } = Typography
@@ -52,7 +53,7 @@ export const BookingConfirm: FC<Props> = ({
       {language ? (
         <Row>
           <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.language')}</Text></Col>
-          <Col><Text>{language}</Text></Col>
+          <Col><Text>{getLanguageNameFromCode(language)}</Text></Col>
         </Row>
       ) : null}
     </Space>

@@ -99,13 +99,7 @@ export const fetchBooking = (id: string):ApiAction<SingleBooking> => ({
   },
 })
 
-const bookSlotResponseTR = t.type({
-  id: t.number,
-  title: t.string,
-  date: t.string,
-  language: t.string,
-  workshopId: t.number,
-})
+const bookSlotResponseTR = t.string
 export const BOOK_SLOT = 'bookings/BOOK_SLOT'
 export type BookSlotResponse = t.TypeOf<typeof bookSlotResponseTR>
 export const bookSlot = (id: string, body: {}):ApiAction<BookSlotResponse> => ({

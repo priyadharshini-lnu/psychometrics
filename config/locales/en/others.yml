@@ -1901,7 +1901,7 @@ en:
         request_cancel: Request cancellation
         request_reschedule: Request reschedule
         reschedule: Reschedule
-      confirm_booking_description: We emailed you and the other attendees a calendar invitation with all the details.
+      confirm_booking_description: Please confirm that these details are correct before finalizing the booking.
       confirm_booking_title: Confirm this booking?
       language: Language
       need_changes: Need to make the changes?

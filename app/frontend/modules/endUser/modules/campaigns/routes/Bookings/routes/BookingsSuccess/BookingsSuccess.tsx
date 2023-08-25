@@ -28,6 +28,7 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/bookings'
 import { BookingConfirmationContainer, FullWidthSkeleton } from '~/glint'
 import { RescheduleAndCancel } from './RescheduleAndCancel'
+import { getLanguageNameFromCode } from '~/utils/locales'
 
 import styles from './BookingSuccess.less'
 
@@ -156,10 +157,12 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
           </Space>
         </Col>
       </Row>
-      <Row>
-        <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.language')}</Text></Col>
-        <Col><Text>{bookingDetails?.preferredLanguage}</Text></Col>
-      </Row>
+      {bookingDetails?.preferredLanguage ? (
+        <Row>
+          <Col span={6}><Text type="secondary">{I18n.t('frontend.bookings.language')}</Text></Col>
+          <Col><Text>{getLanguageNameFromCode(bookingDetails.preferredLanguage)}</Text></Col>
+        </Row>
+      ) : null}
       <Row>
         <Col span={6}>
           <Text type="secondary">{I18n.t('frontend.bookings.add_to_calendar')}</Text>
