@@ -9,6 +9,7 @@ export const WorkshopInvitedSubjectTR = t.type({
     fullName: t.string,
     photoUrl: t.union([t.string, t.null]),
   }),
+  bookedWorkshopDateTime: t.union([t.string, t.null]),
 })
 
 export type WorkshopInvitedSubject = t.TypeOf<typeof WorkshopInvitedSubjectTR>
@@ -16,6 +17,9 @@ export type WorkshopInvitedSubject = t.TypeOf<typeof WorkshopInvitedSubjectTR>
 export const Schema = {
   type: 'workshop_invited_subjects',
   relationships: {
+    workshops: {
+      type: 'workshops',
+    },
     user: {
       type: 'users',
     },

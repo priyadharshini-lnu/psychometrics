@@ -25,7 +25,9 @@ const STATUSES_TO_COLOR = {
   accepted: 'success',
   cancelled: 'error',
   requested_cancellation: 'warning',
+  requested_cancellation_rejected: 'error',
   requested_rescheduling: 'warning',
+  requested_rescheduling_rejected: 'error',
   rescheduled: 'success',
 }
 

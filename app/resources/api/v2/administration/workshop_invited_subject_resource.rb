@@ -1,17 +1,36 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Administration::BaseResource
-  attributes :status
+  attributes :status, :reason, :booked_workshop_date_time
 
   has_one :user
   has_one :workshop_invite
+  has_many :workshops
 
-  ransack_filters %i[filterable_fields]
+  ransack_filters %i[filterable_fields workshop_invite_campaign_id_eq]
+
+  filter :status_in, apply: lambda { |records, statuses, _options|
+    records.where(status: statuses)
+  }
+
+  def booked_workshop_date_time
+    return unless @model.reschedule_workshop_id
+
+    Workshop.find(@model.reschedule_workshop_id).start_time
+  end
 
   def self.records(options = {})
-    WorkshopInvitedSubject.includes(user: :user_profile).where(
-      workshop_invite_id: options[:context][:params][:workshop_invite_id]
-    )
+    if options.dig(:context, :params, :workshop_invite_id)
+      WorkshopInvitedSubject.
+        includes(user: :user_profile).
+        where(workshop_invite_id: options[:context][:params][:workshop_invite_id])
+    else
+      WorkshopInvitedSubject.
+        includes(:workshop_invite).
+        where(workshop_invites: {
+          campaign_id: options.dig(:context, :params, :filter, :workshop_invite_campaign_id_eq)
+        })
+    end
   end
 
   def self.sortable_fields(context)

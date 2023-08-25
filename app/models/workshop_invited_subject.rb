@@ -3,13 +3,20 @@
 class WorkshopInvitedSubject < ApplicationRecord
   belongs_to :workshop_invite
   belongs_to :user
+
   has_one :workshop_subject, dependent: :nullify
   has_many :workshops, through: :workshop_invite
   has_one :campaign, through: :workshop_invite
 
   enum status: {
-    pending: 0, accepted: 1, cancelled: 2,  requested_cancellation: 3,
-    requested_rescheduling: 4, rescheduled: 5
+    pending: 0,
+    accepted: 1,
+    cancelled: 2,
+    requested_cancellation: 3,
+    requested_rescheduling: 4,
+    rescheduled: 5,
+    requested_cancellation_rejected: 6,
+    requested_rescheduling_rejected: 7
   }
 
   after_commit :send_workshop_invite_email, on: %i[create]
@@ -33,5 +40,17 @@ class WorkshopInvitedSubject < ApplicationRecord
     return unless communication
 
     communication.emails.create!(campaign_user: campaign_user, workshop_invite: workshop_invite)
+  end
+
+  def reschedulable?
+    requested_rescheduling? || requested_rescheduling_rejected?
+  end
+
+  def cancellable?
+    requested_cancellation? || requested_cancellation_rejected?
+  end
+
+  def rejectable?
+    requested_cancellation? || requested_rescheduling?
   end
 end

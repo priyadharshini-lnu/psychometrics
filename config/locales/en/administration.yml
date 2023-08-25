@@ -318,6 +318,17 @@ en:
           remove_confirm:
             content: Are you sure you want to remove %{name}?
             title: Workshop
+      invite_request:
+        accept: Accept
+        reason: Reason
+        reject: Reject
+        remove_confirm:
+          content: Are you sure you want to %{action} %{status} from %{subjectName}?
+          success: "%{status} from %{subjectName} was successfully %{action}."
+          title: "%{action} %{status}"
+        status: Status
+        subject_name: Subject Name
+        workshop_time: Workshop Time
       past: Past
       steps:
         basic_information: Basic Information
@@ -3027,7 +3038,9 @@ en:
         cancelled: Cancelled
         pending: Pending
         requested_cancellation: Requested Cancellation
+        requested_cancellation_rejected: Cancellation Rejected
         requested_rescheduling: Requested Rescheduling
+        requested_rescheduling_rejected: Rescheduling Rejected
         rescheduled: Rescheduled
       subject: Subject
     libraries:

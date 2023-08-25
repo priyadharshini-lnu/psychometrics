@@ -1285,6 +1285,12 @@ Rails.application.routes.draw do
             end
             jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy]
           end
+          jsonapi_resources :workshop_invited_subjects, only: %i[index] do
+            member do
+              post :reject_request
+              post :accept_request
+            end
+          end
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
 
           jsonapi_resources :reports, only: [:index]

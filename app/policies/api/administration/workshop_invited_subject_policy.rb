@@ -14,6 +14,14 @@ module Api
       def destroy?
         has_permission?(:workshops, :manage)
       end
+
+      def reject_request?
+        has_permission?(:workshops, :manage)
+      end
+
+      def accept_request?
+        has_permission?(:workshops, :manage)
+      end
     end
   end
 end

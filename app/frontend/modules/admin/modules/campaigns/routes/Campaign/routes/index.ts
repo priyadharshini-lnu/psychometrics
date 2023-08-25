@@ -32,7 +32,7 @@ const routes = [
     component: Scheduling,
     routes: [
       { path: '/scheduling/assessment_center', component: WorkshopList },
-      { path: '/scheduling/invites', component: Invites },
+      { path: '/scheduling/:tab', component: Invites },
       { path: '/scheduling/invites/add_invite', component: InvitesForm },
     ],
   },
