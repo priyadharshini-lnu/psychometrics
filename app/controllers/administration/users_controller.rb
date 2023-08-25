@@ -10,6 +10,10 @@ class Administration::UsersController < Administration::BaseController
 
   render_entrypoint :index, element: 'users', entry: 'admin/users'
 
+  def spoof
+    resource.admin? ? login_as_other_admin : login_as_end_user
+  end
+
   def search_admins
     users = ::Users::Admin.search_query(params[:q]).map do |user|
       ::Projects::SearchUserSerializer.new(user).to_h
@@ -104,6 +108,34 @@ class Administration::UsersController < Administration::BaseController
   end
 
   protected
+
+  def login_as_other_admin
+    redirect_url = if resource.is?(:client_admin, :project_admin, :campaign_admin)
+                     administration_root_path
+                   elsif resource.assessors.exists?
+                     assessors_dashboard_path
+                   else
+                     administration_user_availabilities_path
+                   end
+    audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+    sign_in(resource)
+    flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
+    redirect_to redirect_url
+  end
+
+  def login_as_end_user
+    audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+    spoof_token = SecureRandom.urlsafe_base64(64)
+    resource.update_column(:spoof_token, spoof_token)
+
+    redirect_url = root_url(domain: Settings.domain, subdomain: resource.project.subdomain, spoof_token: spoof_token)
+    redirect_to redirect_url, allow_other_host: true
+  end
+
+  def init_breadcrumbs
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
+  end
 
   # Set model
   def set_resource_class

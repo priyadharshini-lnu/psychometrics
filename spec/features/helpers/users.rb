@@ -4,7 +4,7 @@ module Features
   module Helpers
     module Users
       def create_superadmin(opts = {})
-        visit administration_users_path
+        visit administration_users_path('users')
         click_link(t('administration.users.index.new_superadmin'), href: '/administration/users/new')
         find('.modal-header').click
         sleep 1

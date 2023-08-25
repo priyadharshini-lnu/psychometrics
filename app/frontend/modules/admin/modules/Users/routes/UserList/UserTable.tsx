@@ -186,6 +186,20 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Button>
       ),
     },
+    (isSuperAdmin(currentUser) && userTab !== 'Users::SuperAdmin') && {
+      key: 'loginAs',
+      label: (
+        <Button
+          type="link"
+          href={`/administration/users/${user.id}/spoof`}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="ps-0 color-primary"
+        >
+          {I18n.t('administration.administrators.list.actions.login')}
+        </Button>
+      ),
+    },
   ]
 
   return (<Menu items={_.compact(menuItems)} />)

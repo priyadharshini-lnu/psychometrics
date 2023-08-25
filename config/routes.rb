@@ -717,21 +717,16 @@ Rails.application.routes.draw do
     end
     ### END DIMENSIONS
 
-    ### USERS
-    get '/users/*all' => 'users#index'
-    resources :users, except: [:create] do
+    ### USERS constraints
+    resources :users, only: [] do
       member do
-        patch :toggle_status
-        patch :toggle_enable_2fa
-        get :sidebar
-        get :reset_password
+        get :spoof
       end
       collection do
-        post :create_superadmin
         post :search_admins
-        get :export
       end
     end
+    get '/users/*all' => 'users#index', constraints: proc { |request| request.format == 'html' }, as: :users
     ### END USERS
 
     ### NORMS

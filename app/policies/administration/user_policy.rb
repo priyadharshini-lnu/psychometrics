@@ -81,7 +81,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def spoof?
-    @user.is?(:superadmin) && !@record.is_anonym?
+    @user.is?(:superadmin) && !@record.is?(:superadmin)
   end
 
   def assign_multiple?

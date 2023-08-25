@@ -113,7 +113,7 @@ en:
           change_password: Reset password
           delete: Delete
           edit: Edit
-          login: Login as admin
+          login: Login
           no_permission: Insufficient permissions
           send_email: Send email
           spoof:

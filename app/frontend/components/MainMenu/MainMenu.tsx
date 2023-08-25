@@ -206,6 +206,10 @@ const getSelected = (): string => {
     return 'questionCenter'
   }
 
+  if (location.href.match(/\/(assessors)/)) {
+    return 'assessorDashboard'
+  }
+
   if (location.href.match(/\/administration(\/)(user_availabilities)/)) {
     return 'userAvailability'
   }
