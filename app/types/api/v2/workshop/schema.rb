@@ -40,6 +40,14 @@ module Api
           end
         end
 
+        def self.update_request
+          json_api_attributes do
+            required(:total_seats).filled(:integer)
+            required(:workshop_assessors_ids).array(:string)
+            required(:workshop_managers_ids).array(:string)
+          end
+        end
+
         def self.create_all_request
           json_api_attributes do
             required(:workshops).array(:hash) do

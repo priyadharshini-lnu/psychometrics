@@ -8,7 +8,7 @@ module Api
     validates_request_schema :bulk_update_subjects,
                              Api::V2::Workshop::Schema.bulk_update_subjects
 
-    prepend_before_action :set_workshop, only: %i[bulk_update_subjects]
+    prepend_before_action :set_workshop, only: %i[bulk_update_subjects update]
 
     def bulk_update_subjects
       WorkshopSubjects::BulkUpdateSubjects.call!(@workshop, bulk_subject_params)
@@ -28,6 +28,19 @@ module Api
       else
         jsonapi_render json: response[:workshops]
       end
+    end
+
+    def update
+      @workshop.update!(workshop_update_params.slice(:total_seats))
+
+      workshop_update_params[:workshop_assessors_ids].each do |assessor_user_id|
+        @workshop.workshop_assessors.find_or_create_by!(user_id: assessor_user_id)
+      end
+      workshop_update_params[:workshop_managers_ids].each do |manager_user_id|
+        @workshop.workshop_managers.find_or_create_by!(user_id: manager_user_id)
+      end
+
+      jsonapi_render json: @workshop
     end
 
     def workshop_params
@@ -71,6 +84,11 @@ module Api
       @workshop = Api::Administration::WorkshopPolicy::Scope.new(
         current_user, Workshop, campaign_id: params[:campaign_id]
       ).resolve.find(params[:id])
+    end
+
+    def workshop_update_params
+      params.require(:data).require(:attributes).permit(:total_seats, workshop_managers_ids: [],
+                                                        workshop_assessors_ids: [])
     end
 
     def bulk_subject_params

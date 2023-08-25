@@ -8,7 +8,7 @@ module Api
         schema Api::V2::Workshop::Schema.update_request
 
         rule(data: { attributes: :total_seats }) do
-          workshop_id = values.dig(:data, :id)
+          workshop_id = _context[:params][:id]
 
           key.failure(:less_than_booked) if ::Workshop.find(workshop_id).booked_seats > value
         end

@@ -11,6 +11,7 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
   let!(:workshop_id) { workshop.id }
   let!(:workshop_subject) { create(:workshop_subject, workshop: workshop) }
   let!(:user1) { create(:user, email: 'user1@test.test') }
+  let!(:user2) { create(:user, email: 'user2@test.test') }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }
@@ -120,6 +121,56 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
 
         run_test! do |_|
           expect(@user_assessment.reload.schedule_time).to eq('Fri, 04 Aug 2023 06:00:00.063000000 +04 +04:00')
+        end
+      end
+    end
+  end
+
+  path '/campaigns/{campaign_id}/workshops/{workshop_id}' do
+    put 'Update workshop' do
+      operationId 'UpdateWorkshop'
+      description 'Update workshop'
+      tags 'Workshops'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :workshop_id, in: :path, type: :string
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :body, in: :body,
+                schema: { '$ref' => '#/components/schemas/WorkshopUpdateRequest' },
+                required: true
+
+      response '200', 'UpdateWorkshop' do
+        schema '$ref' => '#/components/schemas/WorkshopResponse'
+        examples 'application/json' => {
+          data: {
+            type: 'workshops',
+            id: '1',
+            attributes: {
+              total_seats: 20,
+              workshop_assessors_ids: [1],
+              workshop_managers_ids: [1]
+            }
+          }
+        }
+
+        let(:body) do
+          {
+            data: {
+              type: 'workshops',
+              id: workshop_id.to_s,
+              attributes: {
+                total_seats: 20,
+                workshop_assessors_ids: [user1.id.to_s],
+                workshop_managers_ids: [user2.id.to_s]
+              }
+            }
+          }
+        end
+
+        run_test! do |_|
+          expect(workshop.reload.total_seats).to eq(20)
+          expect(workshop.workshop_assessors.count).to eq(2)
+          expect(workshop.workshop_managers.count).to eq(2)
         end
       end
     end

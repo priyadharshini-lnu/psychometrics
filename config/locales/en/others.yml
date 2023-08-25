@@ -1754,7 +1754,7 @@ en:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
       update_workshop:
-        less_than_booked: The total seats musst be greater than booked
+        less_than_booked: The total seats must be greater than booked
       user_availability_date:
         overlaps_date: Overlaps another availability %{range}
         overlaps_time: Overlaps interval %{interval}
