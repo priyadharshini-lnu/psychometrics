@@ -69,7 +69,7 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
   return (
     <ResourceFormModal
       resourceName="workshop_invite_workshops"
-      readableResourceName={I18n.t('workshops_invites.workshop.title')}
+      readableResourceName={I18n.t('administration.assessment_center.invite.workshop.title')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -81,7 +81,7 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
           <Form.Item hidden name="workshopInviteId" initialValue={inviteId}><Input /></Form.Item>
           <Form.Item
             name="workshopIds"
-            label={I18n.t('workshops_invites.workshop.title')}
+            label={I18n.t('administration.assessment_center.invite.workshop.title')}
           >
             <Row gutter={[16, 16]}>
               <Col span={24}>

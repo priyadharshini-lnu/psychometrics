@@ -3,6 +3,7 @@
 module Api
   class V2::Administration::WorkshopInvitesController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::WorkshopInvite::Schema
+    validates_request_schema :create, Api::V2::WorkshopInvite::CreateContract.new
     prepend_before_action :set_workshops, only: %i[create]
 
     def create

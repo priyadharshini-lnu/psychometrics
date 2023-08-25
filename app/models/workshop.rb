@@ -21,7 +21,8 @@ class Workshop < ApplicationRecord
   enum video_call_type: { not_available: 0, internal: 1, custom: 2 }
 
   scope :search_query, lambda { |query|
-    where('TO_CHAR(start_time, \'ddth FMMonth yyyy, HH:MI am\') ILIKE ?', "%#{query}%")
+    where('start_time >= ?', Time.current.beginning_of_day).
+      where('TO_CHAR(start_time, \'ddth FMMonth yyyy, HH:MI am\') ILIKE ?', "%#{query}%")
   }
   scope :visible_to_end_user, lambda { |user_id|
     Workshop.

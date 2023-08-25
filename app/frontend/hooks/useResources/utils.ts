@@ -30,7 +30,7 @@ export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = n
     const pointer = error.source?.pointer
     let attribute: string
 
-    if (pointer === undefined) {
+    if (pointer === undefined || pointer === '/data') {
       acc.base ||= []
       acc.base = [...acc.base, { title: error.title, detail: error.detail }]
       return acc
@@ -50,6 +50,7 @@ export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = n
     } else {
       attribute = pointer
     }
+
     acc[attribute] = { title: error.title, detail: error.detail }
 
     return acc

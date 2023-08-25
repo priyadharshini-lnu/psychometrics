@@ -13,7 +13,27 @@ module Api
             attribute[:allowed_languages].array(:string)
             attribute[:allow_language_preference].filled(:bool)
             attribute[:allow_neurodiversity_option].filled(:bool)
+          end
+        end
+
+        def self.create_request
+          subject = Dry::Schema.define do
+            required(:user_id).filled(:string)
+          end
+
+          translation = Dry::Schema.define do
+            required(:locale).filled(:string)
+            required(:title).filled(:string)
+            required(:description).filled(:string)
+          end
+
+          json_api_attributes do
+            required(:allowed_languages).array(:string)
+            required(:allow_language_preference).filled(:bool)
+            required(:allow_neurodiversity_option).filled(:bool)
             optional(:workshop_ids).array(:string)
+            optional(:subjects).array(subject)
+            required(:translations).array(translation)
           end
         end
 

@@ -12,7 +12,7 @@ import styles from './Form.less'
 import { BasicInfoForm } from './BasicInfo'
 import { Facilitators } from './Facilitators'
 import { AddSubjects } from '../../Invites/Form/AddSubjects'
-import { BaseInfoForm } from '../../Invites/Form/BaseInfo'
+import { BaseInfoForm, Errors } from '../../Invites/Form/BaseInfo'
 import { SendInvitation } from '../../Invites/Form/SendInvitations'
 import { SuccessPage } from '../../Invites/Form/SuccessPage'
 import { SuccessCreatedPage } from './SuccessCreatedStep'
@@ -78,6 +78,7 @@ export const AssessmentCenterForm = () => {
   }
 
   const { createResource } = useResources<WorkshopInvite>('workshop_invites')
+  const [errors, setErrors] = useState<Errors | null>(null)
 
   const submitForm = () => {
     createResource({
@@ -90,6 +91,8 @@ export const AssessmentCenterForm = () => {
       translations: form.getFieldValue('translations') || [],
     }, { apiConfig: { filter: { workshops_campaign_id_eq: params.campaignId } } }).then(() => {
       showSubmitPage(true)
+    }).catch((errors) => {
+      setErrors(errors)
     })
   }
 
@@ -131,10 +134,18 @@ export const AssessmentCenterForm = () => {
         )
         : <Facilitators basicInfoData={basicInfoData} onSubmit={showSuccess} onPrevious={handlePrevious} />)}
       {step === 2 && <AddSubjects form={form} next={handleNext} prev={handlePrevious} />}
-      {step === 3 && <BaseInfoForm form={form} next={handleNext} prev={handlePrevious} workshops={workshops} />}
+      {step === 3 && (
+      <BaseInfoForm
+        form={form}
+        next={handleNext}
+        prev={handlePrevious}
+        workshops={workshops}
+        errors={errors}
+      />
+      )}
       {step === 4 && (submitPage
         ? <SuccessPage />
-        : <SendInvitation form={form} submit={submitForm} prev={handlePrevious} />)}
+        : <SendInvitation form={form} submit={submitForm} prev={handlePrevious} errors={errors} />)}
     </div>
   )
 }

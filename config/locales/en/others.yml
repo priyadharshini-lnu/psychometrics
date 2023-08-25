@@ -654,6 +654,7 @@ en:
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Raw Results Export
         assessment_scoring_export: Scoring Results Export
+        bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
         bulk_download_reports: Bulk Download Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
@@ -1745,6 +1746,8 @@ en:
         already_added: Assessor Assessment already added to campaign.
       create_superadmin:
         uniq_email: Email should be uniq.
+      exceeded_subjects_count: You can only add %{count} subjects per invite
+      exceeded_workshops_count: You can only add %{count} assessment centers per invite
       filled?: can't be blank
       json?: Should be valid JSON
       key?: can't be blank

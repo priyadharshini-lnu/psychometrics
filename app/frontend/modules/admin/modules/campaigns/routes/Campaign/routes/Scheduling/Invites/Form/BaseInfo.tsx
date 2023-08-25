@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
-  Button, Select, Switch,
+  Button, Select, Switch, Alert,
   Form, Row, Col, Space, Tag, FormInstance,
 } from 'antd'
 import _ from 'lodash'
@@ -14,15 +14,23 @@ import styles from './Form.less'
 
 const { I18n } = window
 
+export interface Errors {
+  [key:string] : {
+    title: string
+    details?: string
+  }
+}
+
 interface Props {
   form: FormInstance
   next: () => void
   prev?: () => void
   workshops?: Workshop[]
+  errors: Errors | null
 }
 
 export const BaseInfoForm: React.FC<Props> = ({
-  form, next, prev, workshops,
+  form, next, prev, workshops, errors,
 }) => {
   const params = useParams<{campaignId: string}>()
   const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferredLanguage'))
@@ -117,6 +125,15 @@ export const BaseInfoForm: React.FC<Props> = ({
                       </Tag>
                     ))}
                   </Col>
+                  {errors?.workshopIds && (
+                    <Col span={24}>
+                      <Alert
+                        message="Errors"
+                        description={errors.workshopIds.title}
+                        type="error"
+                      />
+                    </Col>
+                  )}
                 </Row>
               </Form.Item>
               <Form.Item name="allowPreferredLanguage" valuePropName="checked">

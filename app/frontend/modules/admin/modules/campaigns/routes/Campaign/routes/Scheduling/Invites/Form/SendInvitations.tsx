@@ -11,7 +11,9 @@ const { I18n } = window
 
 const LANGS = [{ value: 'en' }, { value: 'ar' }]
 
-export const SendInvitation = ({ form, prev, submit }) => {
+export const SendInvitation = ({
+  form, prev, submit, errors,
+}) => {
   const [languages, setLanguages] = useState<{
     [key:string]: {locale: string, name: string, title: string, description: string}
   }>({
@@ -39,39 +41,50 @@ export const SendInvitation = ({ form, prev, submit }) => {
     })
   }
 
+  let index = -1
   return (
     <div>
       <Form layout="vertical" form={form}>
-        {_.map(languages, (lang, code) => (
-          <Panel
-            collapsible
+        {_.map(languages, (lang, code) => {
+          index += 1
+          return (
+            <Panel
+              key={code}
+              collapsible
             // eslint-disable-next-line max-len
-            title={I18n.t('administration.assessment_center.invite.send_invites.title', { lang: I18n.t(`languages.${lang.locale}`) })}
-            description={I18n.t('administration.assessment_center.invite.send_invites.description')}
-          >
-            <Row>
-              <Col sm={24} md={12} lg={8}>
-                <Form.Item
-                  label="Invite Title"
-                >
-                  <Input onChange={e => setLanguages({
-                    ...languages, [code]: { ...languages[code], title: e.currentTarget.value },
-                  })}
-                  />
-                </Form.Item>
+              title={I18n.t('administration.assessment_center.invite.send_invites.title', { lang: I18n.t(`languages.${lang.locale}`) })}
+              description={I18n.t('administration.assessment_center.invite.send_invites.description')}
+            >
+              <Row>
+                <Col sm={24} md={12} lg={8}>
+                  <Form.Item
+                    label={I18n.t('administration.assessment_center.invite.send_invites.invitation_title')}
+                    validateStatus={errors?.[`translations/${index}/title`] ? 'error' : undefined}
+                    hasFeedback={errors?.[`translations/${index}/title`]}
+                    help={errors?.[`translations/${index}/title`]?.title}
+                  >
+                    <Input onChange={e => setLanguages({
+                      ...languages, [code]: { ...languages[code], title: e.currentTarget.value },
+                    })}
+                    />
+                  </Form.Item>
 
-                <Form.Item
-                  label="Description"
-                >
-                  <Input.TextArea onChange={e => setLanguages({
-                    ...languages, [code]: { ...languages[code], description: e.currentTarget.value },
-                  })}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Panel>
-        ))}
+                  <Form.Item
+                    label={I18n.t('administration.assessment_center.invite.send_invites.description')}
+                    validateStatus={errors?.[`translations/${index}/description`] ? 'error' : undefined}
+                    hasFeedback={errors?.[`translations/${index}/description`]}
+                    help={errors?.[`translations/${index}/description`]?.title}
+                  >
+                    <Input.TextArea onChange={e => setLanguages({
+                      ...languages, [code]: { ...languages[code], description: e.currentTarget.value },
+                    })}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Panel>
+          )
+        })}
 
         <Panel
           title={I18n.t('administration.assessment_center.invite.send_invites.add_language')}

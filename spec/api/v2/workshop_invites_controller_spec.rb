@@ -76,7 +76,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
               subjects_count: 1,
               allow_language_preference: true,
               allow_neurodiversity_option: true,
-              subjects: [{ user_id: 111 }],
+              subjects: [{ user_id: '111' }],
               translations: [
                 { locale: 'en', title: 'title', description: 'description' },
                 { locale: 'ar', title: 'arabic', description: 'ar_description' }
@@ -97,7 +97,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
                 allow_language_preference: true,
                 allow_neurodiversity_option: true,
                 allowed_languages: [],
-                subjects: [{ user_id: user1.id }],
+                subjects: [{ user_id: user1.id.to_s }],
                 translations: [
                   { locale: 'en', title: 'title', description: 'description' },
                   { locale: 'ar', title: 'arabic', description: 'ar_description' }

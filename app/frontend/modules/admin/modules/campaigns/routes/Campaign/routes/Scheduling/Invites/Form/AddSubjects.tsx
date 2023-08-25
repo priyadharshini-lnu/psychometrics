@@ -14,6 +14,7 @@ import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import styles from './Form.less'
 import { useResources } from '~/hooks/useResources'
 import { uploadCSV } from '~/modules/admin/modules/client/core/workshopInvite'
+import { Errors } from './BaseInfo'
 
 const { I18n } = window
 const connecter = connect(() => ({}), { uploadCSV })
@@ -28,6 +29,7 @@ export const AddSubjectsComponent: FC<Props> = ({
   form, next, prev, uploadCSV,
 }) => {
   const [uploadModal, showUploadModal] = useState(false)
+  const [importErrors, setImportErrors] = useState<Errors[]>([])
   const [csvErrors, setCSVErrors] = useState<{index: number, email:string}[]>([])
   const ref = useRef<InputRef>(null)
   const {
@@ -65,9 +67,12 @@ export const AddSubjectsComponent: FC<Props> = ({
         filter: { campaign_id: params.campaignId },
       },
     }).then((data:User[]) => {
+      setImportErrors([])
       data.forEach((user) => {
         addSubject(user)
       })
+    }).catch((errors) => {
+      setImportErrors(errors.base)
     })
   }
 
@@ -194,6 +199,19 @@ export const AddSubjectsComponent: FC<Props> = ({
             </Space>
           </Col>
         </Row>
+        {importErrors.length > 0 && (
+          <Row className={styles.errors}>
+            <Col flex="1">
+              <Alert
+                message="Errors"
+                description={importErrors.map(
+                  error => error.title,
+                )}
+                type="error"
+              />
+            </Col>
+          </Row>
+        )}
         {csvErrors.length > 0 && (
           <Row className={styles.errors}>
             <Col flex="1">
@@ -201,7 +219,7 @@ export const AddSubjectsComponent: FC<Props> = ({
                 message="Errors"
                 description={csvErrors.map(
                   error => I18n.t('administration.assessment_center.invite.subjects.csv_error', error),
-                )}
+                ).join('\n')}
                 type="error"
               />
             </Col>

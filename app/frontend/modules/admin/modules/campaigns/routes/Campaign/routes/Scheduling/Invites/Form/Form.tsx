@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react'
 import {
   Form, Row, Col, Steps, Button,
 } from 'antd'
+import _ from 'lodash'
 import { useHistory, useParams } from 'react-router-dom'
 import { WorkshopInvite } from 'modules/admin/modules/campaigns/core/invites'
 import { useResources } from '~/hooks/useResources'
 import styles from './Form.less'
-import { BaseInfoForm } from './BaseInfo'
+import { BaseInfoForm, type Errors } from './BaseInfo'
 import { AddSubjects } from './AddSubjects'
 import { SendInvitation } from './SendInvitations'
 import { SuccessPage } from './SuccessPage'
@@ -19,6 +20,7 @@ export const InvitesForm = () => {
   const [form] = Form.useForm()
   const [submitPage, showSubmitPage] = useState(false)
   const [step, setStep] = useState(0)
+  const [errors, setErrors] = useState<Errors | null>(null)
   const params = useParams<{campaignId: string}>()
 
   useEffect(() => {
@@ -32,6 +34,7 @@ export const InvitesForm = () => {
   const { createResource } = useResources<WorkshopInvite>('workshop_invites')
 
   const submitForm = () => {
+    setErrors(null)
     createResource({
       campaignId: params.campaignId,
       title: form.getFieldValue('title'),
@@ -43,6 +46,8 @@ export const InvitesForm = () => {
       translations: form.getFieldValue('translations') || [],
     }, { apiConfig: { filter: { workshops_campaign_id_eq: params.campaignId } } }).then(() => {
       showSubmitPage(true)
+    }).catch((errors) => {
+      setErrors(errors)
     })
   }
 
@@ -56,22 +61,43 @@ export const InvitesForm = () => {
             items={[
               {
                 title: I18n.t('administration.assessment_center.invite.steps.basic_info'),
+                ...(errors?.workshopIds ? {
+                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  status: 'error',
+                  onClick: () => { errors?.workshopIds && setStep(0) },
+                } : {}),
               },
               {
                 title: I18n.t('administration.assessment_center.invite.steps.add_subjects'),
+                ...(errors?.subjects ? {
+                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  status: 'error',
+                  onClick: () => { setStep(1) },
+                } : {}),
               },
               {
                 title: I18n.t('administration.assessment_center.invite.steps.send_invitation'),
+                ...(_.some(errors, (e, key) => key.includes('translations')) ? {
+                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  status: 'error',
+                  onClick: () => { setStep(2) },
+                } : {}),
               },
             ]}
           />
         </Col>
       </Row>
-      {step === 0 && <BaseInfoForm form={form} next={() => setStep(step + 1)} />}
-      {step === 1 && <AddSubjects form={form} next={() => setStep(step + 1)} prev={() => setStep(step - 1)} />}
+      {step === 0 && <BaseInfoForm form={form} next={() => setStep(step + 1)} errors={errors} />}
+      {step === 1 && (
+        <AddSubjects
+          form={form}
+          next={() => setStep(step + 1)}
+          prev={() => setStep(step - 1)}
+        />
+      )}
       {step === 2 && (submitPage
         ? <SuccessPage />
-        : <SendInvitation form={form} submit={submitForm} prev={() => setStep(step - 1)} />)}
+        : <SendInvitation form={form} submit={submitForm} prev={() => setStep(step - 1)} errors={errors} />)}
     </div>
   )
 }
