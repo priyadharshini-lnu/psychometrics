@@ -4,13 +4,14 @@ import Validations from './Validations'
 import FlowDatasheetResolver from './logic/resolvers/FlowDatasheetResolver'
 
 const ConditionResolver = function (conditions, {
-  questions, results, dataSheet, subjectDataSheet,
+  questions, results, dataSheet, subjectDataSheet, relationship,
 }) {
   this.conditions = conditions
   this.questions = questions
   this.results = results
   this.dataSheet = dataSheet
   this.subjectDataSheet = subjectDataSheet
+  this.relationship = relationship
 }
 
 ConditionResolver.prototype = new EventEmitter()
@@ -27,6 +28,10 @@ _.extend(ConditionResolver.prototype, {
       if (condition.conditionType === 'Question') {
         const question = _.find(this.questions, { id: condition.subject })
         return question && question.result && !question.result.isEmpty()
+      }
+
+      if (condition.conditionType === 'EvaluatorRelationship') {
+        return condition.predicate && condition.value
       }
 
       if (condition.conditionType === 'DeviceType') {
@@ -88,6 +93,15 @@ _.extend(ConditionResolver.prototype, {
 
     if (condition.conditionType === 'SubjectDataSheet') {
       return FlowDatasheetResolver.run(condition, this.subjectDataSheet)
+    }
+
+    if (condition.conditionType === 'EvaluatorRelationship') {
+      const role = this.relationship
+      if (condition.predicate === 'EqualTo') {
+        return { prefix: condition.prefix || 'Or', value: role === condition.value }
+      }
+
+      return { prefix: condition.prefix || 'Or', value: role !== condition.value }
     }
   },
 
