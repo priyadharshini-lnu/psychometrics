@@ -14,6 +14,14 @@ import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 const { Column } = Table
 const { I18n } = window
 
+const getDuration = (minutes: number) => {
+  const hr = Math.floor(minutes / 60)
+  const min = minutes % 60
+  if (hr === 0) return ` ${min}m`
+  if (min === 0) return ` ${hr}h`
+  return ` ${hr}h ${min}m`
+}
+
 interface OwnProps {
   match: {
     params: {
@@ -202,7 +210,7 @@ const AssessmentList: React.FC<Props> = ({
                 />
                 {(assessment.workshopActivity && assessment.workshopActivityDuration) ? (
                   <Typography.Text>
-                    {` ${assessment.workshopActivityDuration} hr`}
+                    {getDuration(assessment.workshopActivityDuration)}
                   </Typography.Text>
                 ) : null}
               </>
