@@ -259,7 +259,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             <ConfirmationModal
               title={I18n.t('administration.scheduling.subjects.confirm_title')}
               message={
-                I18n.t('administration.scheduling.subjects.confirm_message', { subject_name: subject?.user?.fullName })
+                I18n.t('administration.scheduling.subjects.confirm_message', { subject_email: subject?.user?.email })
               }
               onConfirm={handleOnConfirm}
               onCancel={() => setConfirmation(false)}
