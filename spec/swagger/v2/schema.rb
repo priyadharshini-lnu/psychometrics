@@ -317,6 +317,9 @@ module Swagger
           ),
           UserAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::UserAssessment::Schema.multiple_resource_response
+          ),
+          WorkshopUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Workshop::Schema.update_request
           )
         }
       }

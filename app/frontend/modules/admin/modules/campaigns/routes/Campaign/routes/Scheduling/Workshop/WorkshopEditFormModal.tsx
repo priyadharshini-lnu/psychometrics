@@ -20,13 +20,6 @@ type Props = {
   workshop: Workshop
   updateWorkshop: (data) => Promise<Workshop>
 }
-
-interface WorkshopRequest {
-  totalSeats: number
-  workshopManagers: string[]
-  workshopAssessors: string[]
-}
-
 export const WorkshopEditFormModal: FC<Props> = ({
   close,
   workshop,
@@ -46,8 +39,8 @@ export const WorkshopEditFormModal: FC<Props> = ({
   )
 
   useEffect(() => {
-    form.setFieldValue('workshopManagers', _.map(workshop.workshopManagers, 'id'))
-    form.setFieldValue('workshopAssessors', _.map(workshop.workshopAssessors, 'id'))
+    form.setFieldValue('workshopManagersIds', _.map(workshop.workshopManagers, 'userId').map(id => id.toString()))
+    form.setFieldValue('workshopAssessorsIds', _.map(workshop.workshopAssessors, 'userId').map(id => id.toString()))
   }, [])
 
   const handleSearch = (_.debounce((searchKey, action) => {
@@ -79,17 +72,13 @@ export const WorkshopEditFormModal: FC<Props> = ({
       scrollToFirstError
       modalProps={{ width: 700 }}
       request={{
-        updateResource: (data:WorkshopRequest) => updateWorkshop({
-          ...data,
-          workshopManagers: data.workshopManagers.map(id => ({ id })),
-          workshopAssessors: data.workshopAssessors.map(id => ({ id })),
-        }),
+        updateResource: updateWorkshop,
       }}
     >
       {() => (
         <>
           <Form.Item
-            name="workshopManagers"
+            name="workshopManagersIds"
             label={<Text className="font-normal">{I18n.t('administration.scheduling.info.managers')}</Text>}
           >
             <UsersSelectWithTags
@@ -100,7 +89,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
             />
           </Form.Item>
           <Form.Item
-            name="workshopAssessors"
+            name="workshopAssessorsIds"
             label={<Text className="font-normal">{I18n.t('administration.scheduling.info.assessors')}</Text>}
           >
             <UsersSelectWithTags

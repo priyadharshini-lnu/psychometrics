@@ -2,7 +2,8 @@
 
 class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseResource
   attributes :campaign_id, :start_time, :timezone, :duration, :video_call_type, :total_seats, :cancellation_lead_time,
-             :reschedule_lead_time, :booked_seats, :remaining_seats, :meeting_link
+             :reschedule_lead_time, :booked_seats, :remaining_seats, :meeting_link, :workshop_assessors_ids,
+             :workshop_managers_ids
 
   has_many :workshop_managers
   has_many :workshop_assessors
@@ -30,8 +31,12 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
 
   ransack_filters %i[search_query]
 
+  def fetchable_fields
+    super - %i[workshop_assessors_ids workshop_managers_ids]
+  end
+
   def self.updatable_fields(_context)
-    %i[workshop_assessors workshop_managers total_seats]
+    %i[workshop_assessors_ids workshop_managers_ids total_seats]
   end
 
   def remaining_seats

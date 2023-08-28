@@ -72,8 +72,8 @@ export const WorkshopPage: FC<{}> = () => {
       apiConfig: {
         include: ['workshop_managers', 'workshop_assessors'],
         fields: {
-          workshop_managers: ['id', 'full_name', 'photo_url', 'email'],
-          workshop_assessors: ['id', 'full_name', 'photo_url', 'email'],
+          workshop_managers: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
+          workshop_assessors: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
         },
       },
     },
