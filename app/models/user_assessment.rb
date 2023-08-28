@@ -47,7 +47,7 @@ class UserAssessment < ApplicationRecord
   scope :pending_assessments, -> { where.not(status: %i[completed timed_out ineligible]) }
   scope :with_campaign_assessments, lambda {
     joins(
-      'INNER JOIN
+      'LEFT JOIN
         campaign_assessments ON campaign_assessments.assessment_id = user_assessments.assessment_id
         AND
         campaign_assessments.campaign_id = user_assessments.campaign_id'

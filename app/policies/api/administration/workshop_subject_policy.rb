@@ -12,7 +12,7 @@ module Api
       end
 
       def get_related_resources?
-        has_permission?(:workshops, :view)
+        has_permission?(:workshops, :view) || user.assessor?
       end
 
       def update_subject_details_and_assessments?

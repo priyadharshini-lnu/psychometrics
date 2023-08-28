@@ -153,7 +153,6 @@ export const WorkshopPage: FC<{}> = () => {
           <div className={styles.controls}>
             <Radio.Group onChange={e => handleTabChange(e.target.value)} defaultValue={currentTab}>
               <Radio.Button value="subjects">{I18n.t('administration.scheduling.tabs.subjects')}</Radio.Button>
-              <Radio.Button value="assessors">{I18n.t('administration.scheduling.tabs.assessors')}</Radio.Button>
               <Radio.Button value="resources">{I18n.t('administration.scheduling.tabs.resources')}</Radio.Button>
               <Radio.Button value="activities">{I18n.t('administration.scheduling.tabs.activities')}</Radio.Button>
             </Radio.Group>
