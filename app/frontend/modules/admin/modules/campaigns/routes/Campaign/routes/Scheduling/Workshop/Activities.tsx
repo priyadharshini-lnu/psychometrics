@@ -112,12 +112,14 @@ export const Activities: React.FC = () => {
             title={I18n.t('administration.scheduling.columns.assessor')}
             id="assessor"
             width="10%"
-            render={({ evaluator }) => (
-              <Row gutter={[10, 0]}>
-                <Col className={styles.workshopSubjectAvatar}>
-                  {evaluator && <ResourcesTag resource={evaluator} />}
-                </Col>
-              </Row>
+            render={({ subject, evaluator }) => (
+              subject.id !== evaluator.id && (
+                <Row gutter={[10, 0]}>
+                  <Col className={styles.workshopSubjectAvatar}>
+                    {evaluator && <ResourcesTag resource={evaluator} />}
+                  </Col>
+                </Row>
+              )
             )}
           />
           <Resource.Column<WorkshopUserAcitivity>
@@ -146,12 +148,14 @@ export const Activities: React.FC = () => {
             title={I18n.t('common.column.action')}
             id="actions"
             key="actions"
-            render={({ status }) => (
-              <Button href={`/assessors/workshops/${id}`} type="link" className="ps-0">
-                {status === 'not_started' && I18n.t('common.actions.start')}
-                {status === 'stated' && I18n.t('common.actions.continue')}
-                {status === 'completed' && I18n.t('common.actions.view')}
-              </Button>
+            render={({ status, subject, evaluator }) => (
+              subject.id !== evaluator.id && (
+                <Button href={`/assessors/workshops/${id}`} type="link" className="ps-0">
+                  {status === 'not_started' && I18n.t('common.actions.start')}
+                  {status === 'stated' && I18n.t('common.actions.continue')}
+                  {status === 'completed' && I18n.t('common.actions.view')}
+                </Button>
+              )
             )}
           />
         </Resource.Table>
