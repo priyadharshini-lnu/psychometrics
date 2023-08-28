@@ -39,8 +39,8 @@ export const WorkshopEditFormModal: FC<Props> = ({
   )
 
   useEffect(() => {
-    form.setFieldValue('workshopManagersIds', _.map(workshop.workshopManagers, 'userId').map(id => id.toString()))
-    form.setFieldValue('workshopAssessorsIds', _.map(workshop.workshopAssessors, 'userId').map(id => id.toString()))
+    form.setFieldValue('workshopManagersIds', _.map(workshop.workshopManagers, 'userId').map(id => id?.toString()))
+    form.setFieldValue('workshopAssessorsIds', _.map(workshop.workshopAssessors, 'userId').map(id => id?.toString()))
   }, [])
 
   const handleSearch = (_.debounce((searchKey, action) => {
