@@ -338,7 +338,7 @@ en:
         invite_subjects: Invite Subjects
         send_invitations: Send Invitations
       success:
-        call_send_invitation: Would you like to the send invites?
+        call_send_invitation: Would you like to send the invites?
         ok: 'Yes'
         skip: Skip for now
         title: Assessment centers created
