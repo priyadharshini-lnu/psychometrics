@@ -39,6 +39,7 @@ interface Props {
     }[]
   }
   onPrevious: () => void
+  onCancel?: () => void
   onSubmit: (workshop) => void
 }
 
@@ -49,7 +50,9 @@ interface Errors {
 
 const { I18n } = window
 
-export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious, onSubmit }) => {
+export const Facilitators: React.FC<Props> = ({
+  basicInfoData, onCancel, onPrevious, onSubmit,
+}) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const { projectId } = useParams<{ projectId: string }>()
 
@@ -129,6 +132,10 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious, onSub
         onSubmit(response)
       })
     }).catch(() => {})
+  }
+
+  const handleCancel = () => {
+    onCancel?.()
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -289,6 +296,13 @@ export const Facilitators: React.FC<Props> = ({ basicInfoData, onPrevious, onSub
       })}
       <div className={styles.footer}>
         <Space>
+          {
+            onCancel && (
+              <Button onClick={handleCancel}>
+                {I18n.t('common.actions.cancel')}
+              </Button>
+            )
+          }
           <Button onClick={onPrevious} disabled={disableCreate}>
             {I18n.t('administration.scheduling.assessment_center_form.back')}
           </Button>

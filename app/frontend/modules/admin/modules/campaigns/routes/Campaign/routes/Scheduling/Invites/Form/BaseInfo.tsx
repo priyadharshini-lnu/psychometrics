@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Button, Select, Switch, Alert,
   Form, Row, Col, Space, Tag, FormInstance,
@@ -25,12 +25,13 @@ interface Props {
   form: FormInstance
   next: () => void
   prev?: () => void
+  onCancel?: () => void
   workshops?: Workshop[]
   errors: Errors | null
 }
 
 export const BaseInfoForm: React.FC<Props> = ({
-  form, next, prev, workshops, errors,
+  form, next, onCancel, prev, workshops, errors,
 }) => {
   const params = useParams<{campaignId: string}>()
   const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferredLanguage'))
@@ -81,6 +82,10 @@ export const BaseInfoForm: React.FC<Props> = ({
       },
     })
   }, 200)
+
+  const handleCancel = () => {
+    onCancel?.()
+  }
 
   return (
     <div>
@@ -177,6 +182,13 @@ export const BaseInfoForm: React.FC<Props> = ({
       </Panel>
       <div className={styles.footer}>
         <Space>
+          {
+            onCancel && (
+              <Button onClick={handleCancel}>
+                {I18n.t('common.actions.cancel')}
+              </Button>
+            )
+          }
           {prev && <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>}
           <Button type="primary" onClick={next}>{I18n.t('administration.assessment_center.invite.next')}</Button>
         </Space>

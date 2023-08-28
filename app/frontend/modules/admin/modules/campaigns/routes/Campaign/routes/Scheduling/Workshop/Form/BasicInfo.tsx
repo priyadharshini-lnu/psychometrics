@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   DatePicker, Form, Row, Space, Col, TimePicker, Radio, Button, Tag, Input,
 } from 'antd'
@@ -24,6 +24,7 @@ interface Props {
     video_call_type: number
   }
   onNext: (values: Store) => void
+  onCancel?: () => void
 }
 
 interface DurationValidator {
@@ -37,7 +38,7 @@ interface DurationValidator {
   }): (rule: any, value: any) => Promise<void>
 }
 
-export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
+export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel }) => {
   const [form] = Form.useForm()
 
   const [selectedDates, setSelectedDates] = useState<Moment[]>(initialValues.dates || [])
@@ -64,6 +65,10 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
     form.validateFields().then((values) => {
       onNext(values)
     })
+  }
+
+  const handleCancel = () => {
+    onCancel?.()
   }
 
   const handleTagClose = (closedDate: Moment) => {
@@ -269,6 +274,13 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
       </Panel>
       <div className={styles.footer}>
         <Space>
+          {
+            onCancel && (
+              <Button onClick={handleCancel}>
+                {I18n.t('common.actions.cancel')}
+              </Button>
+            )
+          }
           <Button type="primary" onClick={handleNext}>
             {I18n.t('administration.scheduling.assessment_center_form.next')}
           </Button>

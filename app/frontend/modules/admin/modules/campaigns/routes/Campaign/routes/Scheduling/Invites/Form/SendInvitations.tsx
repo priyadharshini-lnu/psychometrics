@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Button, Select,
   Form, Row, Col, Space, Input,
@@ -12,7 +12,7 @@ const { I18n } = window
 const LANGS = [{ value: 'en' }, { value: 'ar' }]
 
 export const SendInvitation = ({
-  form, prev, submit, errors,
+  form, prev, submit, errors, onCancel,
 }) => {
   const [languages, setLanguages] = useState<{
     [key:string]: {locale: string, name: string, title: string, description: string}
@@ -39,6 +39,10 @@ export const SendInvitation = ({
         description: '',
       },
     })
+  }
+
+  const handleCancel = () => {
+    onCancel()
   }
 
   let index = -1
@@ -116,6 +120,13 @@ export const SendInvitation = ({
 
       <div className={styles.footer}>
         <Space>
+          {
+            onCancel && (
+              <Button onClick={handleCancel}>
+                {I18n.t('common.actions.cancel')}
+              </Button>
+            )
+          }
           <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
           <Button type="primary" onClick={submit}>{I18n.t('administration.assessment_center.invite.save')}</Button>
         </Space>

@@ -4,19 +4,26 @@ import {
 } from 'antd'
 import _ from 'lodash'
 import { useHistory, useParams } from 'react-router-dom'
-import { WorkshopInvite } from 'modules/admin/modules/campaigns/core/invites'
+import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
+import routeUtils from '~/utils/route'
 import { useResources } from '~/hooks/useResources'
 import styles from './Form.less'
 import { BaseInfoForm, type Errors } from './BaseInfo'
 import { AddSubjects } from './AddSubjects'
 import { SendInvitation } from './SendInvitations'
 import { SuccessPage } from './SuccessPage'
-import { DirectionalNavigateBackIcon } from '~/glint'
+import { ConfirmationModal, DirectionalNavigateBackIcon } from '~/glint'
+import settings from '~/modules/admin/modules/campaigns/settings'
 
 const { I18n } = window
 
 export const InvitesForm = () => {
+  const {
+    campaignId,
+  } = useParams<{ campaignId: string }>()
+  const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
   const history = useHistory()
+  const [showCancelModal, setShowCancelModal] = useState(false)
   const [form] = Form.useForm()
   const [submitPage, showSubmitPage] = useState(false)
   const [step, setStep] = useState(0)
@@ -51,53 +58,85 @@ export const InvitesForm = () => {
     })
   }
 
+  const handleCancel = () => {
+    setShowCancelModal(true)
+  }
+
   return (
-    <div style={{ padding: 20 }}>
-      <Row className={styles.steps}>
-        <Button type="link" onClick={() => history.goBack()}><DirectionalNavigateBackIcon /></Button>
-        <Col span={12}>
-          <Steps
-            current={step}
-            items={[
-              {
-                title: I18n.t('administration.assessment_center.invite.steps.basic_info'),
-                ...(errors?.workshopIds ? {
-                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
-                  status: 'error',
-                  onClick: () => { errors?.workshopIds && setStep(0) },
-                } : {}),
-              },
-              {
-                title: I18n.t('administration.assessment_center.invite.steps.add_subjects'),
-                ...(errors?.subjects ? {
-                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
-                  status: 'error',
-                  onClick: () => { setStep(1) },
-                } : {}),
-              },
-              {
-                title: I18n.t('administration.assessment_center.invite.steps.send_invitation'),
-                ...(_.some(errors, (e, key) => key.includes('translations')) ? {
-                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
-                  status: 'error',
-                  onClick: () => { setStep(2) },
-                } : {}),
-              },
-            ]}
-          />
-        </Col>
-      </Row>
-      {step === 0 && <BaseInfoForm form={form} next={() => setStep(step + 1)} errors={errors} />}
-      {step === 1 && (
+    <>
+      <div style={{ padding: 20 }}>
+        <Row className={styles.steps}>
+          <Button type="link" onClick={() => history.goBack()}><DirectionalNavigateBackIcon /></Button>
+          <Col span={12}>
+            <Steps
+              current={step}
+              items={[
+                {
+                  title: I18n.t('administration.assessment_center.invite.steps.basic_info'),
+                  ...(errors?.workshopIds ? {
+                    description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                    status: 'error',
+                    onClick: () => { errors?.workshopIds && setStep(0) },
+                  } : {}),
+                },
+                {
+                  title: I18n.t('administration.assessment_center.invite.steps.add_subjects'),
+                  ...(errors?.subjects ? {
+                    description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                    status: 'error',
+                    onClick: () => { setStep(1) },
+                  } : {}),
+                },
+                {
+                  title: I18n.t('administration.assessment_center.invite.steps.send_invitation'),
+                  ...(_.some(errors, (e, key) => key.includes('translations')) ? {
+                    description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                    status: 'error',
+                    onClick: () => { setStep(2) },
+                  } : {}),
+                },
+              ]}
+            />
+          </Col>
+        </Row>
+        {step === 0 && (
+        <BaseInfoForm
+          onCancel={handleCancel}
+          form={form}
+          next={() => setStep(step + 1)}
+          errors={errors}
+        />
+        )}
+        {step === 1 && (
         <AddSubjects
           form={form}
+          onCancel={handleCancel}
           next={() => setStep(step + 1)}
           prev={() => setStep(step - 1)}
         />
+        )}
+        {step === 2 && (submitPage
+          ? <SuccessPage />
+          : (
+            <SendInvitation
+              form={form}
+              submit={submitForm}
+              prev={() => setStep(step - 1)}
+              errors={errors}
+              onCancel={handleCancel}
+            />
+          ))}
+      </div>
+      { showCancelModal && (
+      <ConfirmationModal
+        title={I18n.t('administration.assessment_center.cancel_confirmation.title')}
+        message={
+        I18n.t('administration.assessment_center.cancel_confirmation.message')
+      }
+        onConfirm={() => routeUtils.moveTo(history, prefixPath, '/invites')}
+        onCancel={() => setShowCancelModal(false)}
+      />
       )}
-      {step === 2 && (submitPage
-        ? <SuccessPage />
-        : <SendInvitation form={form} submit={submitForm} prev={() => setStep(step - 1)} errors={errors} />)}
-    </div>
+    </>
   )
 }
