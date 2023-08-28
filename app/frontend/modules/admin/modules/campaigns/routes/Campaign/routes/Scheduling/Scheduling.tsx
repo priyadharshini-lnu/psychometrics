@@ -44,7 +44,7 @@ const SchedulingComponent: React.FC<Props> = ({ history, routes }) => {
         <Menu
           items={menuItems}
           onSelect={onSelect}
-          selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+          selectedKeys={getActiveLocationPath()}
           mode="horizontal"
           className="w-100"
         />
@@ -52,6 +52,16 @@ const SchedulingComponent: React.FC<Props> = ({ history, routes }) => {
       <RouteList routes={routes} urlPrefix={prefix} />
     </div>
   )
+}
+
+const getActiveLocationPath = (): Array<string> => {
+  if (location.href.match(/scheduling\/assessment_center/)) {
+    return ['/scheduling/assessment_center']
+  }
+  if (location.href.match(/scheduling\/(requests|invites)/)) {
+    return ['/scheduling/invites']
+  }
+  return ['']
 }
 
 export const Scheduling = connector(SchedulingComponent)
