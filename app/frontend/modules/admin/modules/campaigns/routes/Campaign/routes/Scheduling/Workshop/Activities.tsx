@@ -7,6 +7,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
+import { BaseMeta } from 'hooks/useResources/interfaces'
 import {
   WorkshopUserAcitivity, WorkshopUserAcitivityTR,
 } from '~/modules/admin/modules/campaigns/core/workshopActivity'
@@ -44,20 +45,9 @@ const statusToColor = {
   no_show: 'red',
 }
 
-const Controls = ({ setShowForm }) => {
-  const { resource } = useResourceContext()
-
-  if (resource.meta?.permissions?.createAll) {
-    return (
-      <Button type="primary" onClick={() => setShowForm(true)}>
-        {I18n.t('administration.scheduling.add_activity')}
-      </Button>
-    )
-  }
-
-  return null
+interface Meta extends BaseMeta {
+  currentUser: { id: number }
 }
-
 
 export const Activities: React.FC = () => {
   const { id, campaignId, projectId } = useParams<{ id: string, campaignId: string, projectId: string }>()
@@ -69,7 +59,7 @@ export const Activities: React.FC = () => {
     basePath: `campaigns/${campaignId}/workshops/${id}/`,
     apiConfig: {
       include: ['evaluator', 'subject', 'assessment'],
-      include_meta: ['permissions'],
+      include_meta: ['permissions', 'current_user'],
       fields: {
         users: ['id', 'full_name', 'email'],
         assessments: ['name'],
@@ -148,14 +138,15 @@ export const Activities: React.FC = () => {
             title={I18n.t('common.column.action')}
             id="actions"
             key="actions"
-            render={({ status, subject, evaluator }) => (
-              subject.id !== evaluator.id && (
-                <Button href={`/assessors/workshops/${id}`} type="link" className="ps-0">
-                  {status === 'not_started' && I18n.t('common.actions.start')}
-                  {status === 'stated' && I18n.t('common.actions.continue')}
-                  {status === 'completed' && I18n.t('common.actions.view')}
-                </Button>
-              )
+            render={({
+              status, subject, evaluator,
+            }) => (
+              <StartButtons
+                campaignId={campaignId}
+                status={status}
+                subject={subject}
+                evaluator={evaluator}
+              />
             )}
           />
         </Resource.Table>
@@ -174,4 +165,33 @@ export const Activities: React.FC = () => {
 
     </>
   )
+}
+
+const Controls = ({ setShowForm }) => {
+  const { resource } = useResourceContext()
+
+  if (resource.meta?.permissions?.createAll) {
+    return (
+      <Button type="primary" onClick={() => setShowForm(true)}>
+        {I18n.t('administration.scheduling.add_activity')}
+      </Button>
+    )
+  }
+
+  return null
+}
+
+const StartButtons = ({
+  campaignId, status, subject, evaluator,
+}) => {
+  const { resource } = useResourceContext<WorkshopUserAcitivity, Meta>()
+  const currentUser = resource.meta?.currentUser
+
+  return (currentUser.id === evaluator.id && subject.id !== evaluator.id) ? (
+    <Button href={`/assessors/campaigns/${campaignId}/users/${subject.id}`} type="link" className="ps-0">
+      {status === 'not_started' && I18n.t('common.actions.start')}
+      {status === 'stated' && I18n.t('common.actions.continue')}
+      {status === 'completed' && I18n.t('common.actions.view')}
+    </Button>
+  ) : null
 }

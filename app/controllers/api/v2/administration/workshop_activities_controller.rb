@@ -44,7 +44,8 @@ module Api
             %w[create_all],
             { project_id: @workshop.campaign.project_id }
           )
-        }
+        },
+        current_user: lambda { { id: current_user.id } }
       }
     end
   end
