@@ -4,7 +4,7 @@ module Api
   module Administration
     class UserPolicy < ::Administration::UserPolicy
       def show?
-        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
+        @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users) || @user.id == @record.id
       end
 
       def destroy?
@@ -16,7 +16,7 @@ module Api
       end
 
       def update?
-        has_permission?(:projects, :manage_users, project_id: @record.project_id)
+        has_permission?(:projects, :manage_users, project_id: @record.project_id) || @user.id == @record.id
       end
 
       def create_global_assessor?
@@ -52,7 +52,7 @@ module Api
             project_id: permitted_client_admin_project_ids.concat(
               permitted_project_admin_project_ids, permitted_campaign_admin_project_ids
             )
-          )
+          ).or(User.where(id: @user.id))
         end
       end
     end

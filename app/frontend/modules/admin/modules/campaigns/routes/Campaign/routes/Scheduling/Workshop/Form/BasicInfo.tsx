@@ -26,6 +26,17 @@ interface Props {
   onNext: (values: Store) => void
 }
 
+interface DurationValidator {
+  (options: {
+    minMinutes: number
+    maxMinutes: number
+    minError: string
+    maxError: string
+    requiredError: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  }): (rule: any, value: any) => Promise<void>
+}
+
 export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
   const [form] = Form.useForm()
 
@@ -58,6 +69,22 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
   const handleTagClose = (closedDate: Moment) => {
     const updatedDates = selectedDates.filter(date => date !== closedDate)
     setSelectedDates(updatedDates)
+  }
+
+  const durationValidator: DurationValidator = ({
+    minMinutes, maxMinutes, minError, maxError, requiredError,
+  }) => (_, value) => {
+    if (!value) {
+      return Promise.reject(new Error(requiredError))
+    }
+    const minutes = convertToInt(value) / 60
+    if (minutes > maxMinutes) {
+      return Promise.reject(new Error(maxError))
+    }
+    if (minutes < minMinutes) {
+      return Promise.reject(new Error(minError))
+    }
+    return Promise.resolve()
   }
 
   return (
@@ -129,28 +156,14 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
                 label={I18n.t('administration.scheduling.assessment_center_form.duration_label')}
                 {...fieldLayout}
                 rules={[
-                  { required: true },
                   {
-                    validator (_, value) {
-                      if (!value) {
-                        return Promise.reject(new Error(
-                          I18n.t('administration.scheduling.assessment_center_form.duration_required_error'),
-                        ))
-                      }
-                      const minutes = convertToInt(value) / 60
-                      const hours = minutes / 60
-                      if (hours > 16) {
-                        return Promise.reject(new Error(
-                          I18n.t('administration.scheduling.assessment_center_form.duration_max_error'),
-                        ))
-                      }
-                      if (minutes < 15) {
-                        return Promise.reject(
-                          I18n.t('administration.scheduling.assessment_center_form.duration_min_error'),
-                        )
-                      }
-                      return Promise.resolve()
-                    },
+                    validator: durationValidator({
+                      minMinutes: 15,
+                      maxMinutes: 16 * 60,
+                      minError: I18n.t('administration.scheduling.assessment_center_form.duration_min_error'),
+                      maxError: I18n.t('administration.scheduling.assessment_center_form.duration_max_error'),
+                      requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                    }),
                   },
                 ]}
               >
@@ -168,7 +181,19 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
                 name="cancellation_lead_time"
                 label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
                 {...fieldLayout}
-                rules={[{ required: true }]}
+                rules={[
+                  {
+                    validator: durationValidator({
+                      minMinutes: 1,
+                      maxMinutes: 24 * 60 * 30,
+                      // eslint-disable-next-line max-len
+                      minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
+                      // eslint-disable-next-line max-len
+                      maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
+                      requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                    }),
+                  },
+                ]}
               >
                 <InputDuration
                   value=""
@@ -182,7 +207,19 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext }) => {
                 name="reschedule_lead_time"
                 label={I18n.t('administration.scheduling.assessment_center_form.reschedule_lead_time_label')}
                 {...fieldLayout}
-                rules={[{ required: true }]}
+                rules={[
+                  {
+                    validator: durationValidator({
+                      minMinutes: 1,
+                      maxMinutes: 24 * 60 * 30, // 30 days
+                      // eslint-disable-next-line max-len
+                      minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
+                      // eslint-disable-next-line max-len
+                      maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
+                      requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                    }),
+                  },
+                ]}
               >
                 <InputDuration
                   value=""
