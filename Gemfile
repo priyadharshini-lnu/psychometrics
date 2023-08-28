@@ -102,7 +102,9 @@ gem 'rubyXL',                     '~> 3.4.6'
 
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails', '~> 0.4.6'
-gem 'redis', '~> 4.7.1'
+
+gem 'hiredis', '~> 0.6.3'
+gem 'redis', '~> 4.8.1'
 gem 'redlock', '~> 1.2.2'
 
 # A workaround for `roo` since it requires an old version of rubyzip
@@ -150,7 +152,7 @@ gem 'remotipart', '~> 1.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 6.5.1'
+gem 'sidekiq', '~> 6.5.9'
 
 gem 'hashids', '~> 1.0.5'
 
