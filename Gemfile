@@ -102,12 +102,8 @@ gem 'rubyXL',                     '~> 3.4.6'
 
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails', '~> 0.4.6'
-
-gem 'redis', '~> 5.0.7'
-
-gem 'hiredis-client', '~> 0.16.0'
-
-gem 'redlock', '~> 2.0.4'
+gem 'redis', '~> 4.7.1'
+gem 'redlock', '~> 1.2.2'
 
 # A workaround for `roo` since it requires an old version of rubyzip
 gem 'rubyzip', '~> 2.3'
@@ -154,7 +150,7 @@ gem 'remotipart', '~> 1.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 7.1.2'
+gem 'sidekiq', '~> 6.5.1'
 
 gem 'hashids', '~> 1.0.5'
 
@@ -261,7 +257,7 @@ end
 gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.10.1'
+gem 'sidekiq-cron', '~> 1.7.0'
 
 gem 'xml-simple', '~> 1.1.5'
 
@@ -270,4 +266,4 @@ gem 'sidekiq_alive', '~> 2.1.4'
 
 gem 'psych', '3.3.2'
 
-gem 'sidekiq-unique-jobs', '~> 8.0.3'
+gem 'sidekiq-unique-jobs', '~> 7.1'
