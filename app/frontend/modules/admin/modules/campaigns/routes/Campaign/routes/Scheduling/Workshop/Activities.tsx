@@ -7,14 +7,16 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
-import { BaseMeta } from 'hooks/useResources/interfaces'
+import { ConnectedProps, connect } from 'react-redux'
 import {
   WorkshopUserAcitivity, WorkshopUserAcitivityTR,
 } from '~/modules/admin/modules/campaigns/core/workshopActivity'
 import Form from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorFormModal'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { get as getCurrentUser } from '~/core/currentUser'
 import { ResourceAvatar } from '~/glint'
 import styles from './styles.less'
+
 
 const { I18n } = window
 
@@ -45,11 +47,13 @@ const statusToColor = {
   no_show: 'red',
 }
 
-interface Meta extends BaseMeta {
-  currentUser: { id: number }
-}
+const connector = connect(state => ({
+  currentUser: getCurrentUser(state),
+}), {})
 
-export const Activities: React.FC = () => {
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) => {
   const { id, campaignId, projectId } = useParams<{ id: string, campaignId: string, projectId: string }>()
   const [showForm, setShowForm] = useState(false)
 
@@ -59,7 +63,7 @@ export const Activities: React.FC = () => {
     basePath: `campaigns/${campaignId}/workshops/${id}/`,
     apiConfig: {
       include: ['evaluator', 'subject', 'assessment'],
-      include_meta: ['permissions', 'current_user'],
+      include_meta: ['permissions'],
       fields: {
         users: ['id', 'full_name', 'email'],
         assessments: ['name'],
@@ -138,15 +142,14 @@ export const Activities: React.FC = () => {
             title={I18n.t('common.column.action')}
             id="actions"
             key="actions"
-            render={({
-              status, subject, evaluator,
-            }) => (
-              <StartButtons
-                campaignId={campaignId}
-                status={status}
-                subject={subject}
-                evaluator={evaluator}
-              />
+            render={({ status, subject, evaluator }) => (
+              (currentUser.id === evaluator.id && subject.id !== evaluator.id) && (
+                <Button href={`/assessors/campaigns/${campaignId}/users/${subject.id}`} type="link" className="ps-0">
+                  {status === 'not_started' && I18n.t('common.actions.start')}
+                  {status === 'stated' && I18n.t('common.actions.continue')}
+                  {status === 'completed' && I18n.t('common.actions.view')}
+                </Button>
+              )
             )}
           />
         </Resource.Table>
@@ -162,7 +165,6 @@ export const Activities: React.FC = () => {
           />
         )}
       </Resource>
-
     </>
   )
 }
@@ -181,17 +183,4 @@ const Controls = ({ setShowForm }) => {
   return null
 }
 
-const StartButtons = ({
-  campaignId, status, subject, evaluator,
-}) => {
-  const { resource } = useResourceContext<WorkshopUserAcitivity, Meta>()
-  const currentUser = resource.meta?.currentUser
-
-  return (currentUser.id === evaluator.id && subject.id !== evaluator.id) ? (
-    <Button href={`/assessors/campaigns/${campaignId}/users/${subject.id}`} type="link" className="ps-0">
-      {status === 'not_started' && I18n.t('common.actions.start')}
-      {status === 'stated' && I18n.t('common.actions.continue')}
-      {status === 'completed' && I18n.t('common.actions.view')}
-    </Button>
-  ) : null
-}
+export const Activities = connector(ActivitiesComponent)
