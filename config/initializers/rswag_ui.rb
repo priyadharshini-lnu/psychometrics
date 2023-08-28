@@ -10,3 +10,20 @@ Rswag::Ui.configure do |c|
   c.swagger_endpoint '/api-docs/v1/swagger.json', 'Lighthouse REST API v1'
   c.swagger_endpoint '/api-docs/v2/swagger.json', 'Lighthouse JSON API V2 Docs'
 end
+
+# Patch the CSP header to allow the RapiDoc to load
+module Rswag
+  module Ui
+    class Middleware < Rack::Static
+      def csp
+        <<~POLICY.tr "\n", ' '
+          default-src 'self';
+          img-src 'self' data: *;
+          font-src 'self' https://fonts.gstatic.com;
+          style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+          script-src 'self' 'unsafe-inline' https://unpkg.com;
+        POLICY
+      end
+    end
+  end
+end
