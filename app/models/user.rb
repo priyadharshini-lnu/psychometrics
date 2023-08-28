@@ -152,7 +152,7 @@ class User < ApplicationRecord
   end
 
   def privacy_consent_required?
-    return false if assessor?
+    return false if admin?
 
     project.privacy_consent && !privacy_consents.exists?(version: Settings.privacy_policy_version)
   end
