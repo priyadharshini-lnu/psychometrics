@@ -4,6 +4,7 @@ enduser_locales:
   - en
   - ar
   - de
+  - pl
 timezone: Abu Dhabi
 timezone_tip: ' (GST)'
 react_dev:

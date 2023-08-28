@@ -1,0 +1,271 @@
+---
+pl:
+  assessments:
+    card_actions:
+      begin: Zaczynać
+      continue: Dalej
+  auth:
+    current_password: Aktualne hasło
+    current_password_placeholder: Wprowadź bieżące hasło
+    email: E-mail
+    email_placeholder: Wprowadź adres e-mail
+    expired_password:
+      description: Aby utworzyć nowe hasło, wypełnij wszystkie pola
+      submit: Zatwierdź
+      title: Odnów swoje hasło
+    login:
+      description: Proszę zalogować się przy użyciu danych swojego konta osobistego
+      forgot_password: Zapomniałeś hasła?
+      login_btn: Zaloguj Się
+      not_member: Nie masz konta?
+      or: albo
+      sso_btn: Zaloguj się za pomocą pojedynczego logowania
+      title: Witamy!
+    logout: Wyloguj
+    new_password: Nowe hasło
+    otp:
+      code: Kod
+      code_placeholder: Jednorazowe hasło
+      description: Wprowadź hasło jednorazowe wysłane na Twój zarejestrowany adres e-mail.
+      resend: Wyślij ponownie hasło jednorazowe
+      submit: Zweryfikować
+      title: Jednorazowe hasło
+    password: Hasło
+    password_confirmation: Potwierdź hasło
+    password_confirmation_placeholder: Wprowadź potwierdzenie hasła
+    password_placeholder: Wprowadź hasło
+    registration:
+      description: Wypełnij poniższe dane, aby się zarejestrować i utworzyć nowe konto
+      email_hint: Szanujemy twoją prywatność i nie tolerujemy spamu. Nigdy nie udostępnimy Twoich danych osobom trzecim
+      first_name: Imię
+      first_name_placeholder: Wprowadź imię
+      have_account: Posiadasz już konto?
+      last_name: Nazwisko
+      last_name_placeholder: Wpisz nazwisko
+      login_now: Zaloguj się teraz!
+      registration_code: Kod rejestracyjny
+      registration_code_placeholder: Wprowadź kod rejestracyjny
+      terms_notice: Rejestrując się, wyrażasz zgodę na nasze <a href="%{terms_url}">Warunki korzystania z usług i Politykę prywatności</a>
+      title: Zapisz się
+    reset_password:
+      back_to_sign_in: Wróć, aby się zalogować
+      description: Wpisz adres e-mail powiązany z Twoim kontem
+      submit: Zresetuj hasło
+      title: Zapomniałeś hasła?
+    set_password:
+      description: Aby utworzyć nowe hasło, prosimy o wpisanie nowego hasła w polach poniżej
+      submit: Zatwierdź
+      title: Stwórz hasło
+    sign_in: Zaloguj
+    sign_out: Zaloguj się jako inny użytkownik
+    sign_up: Zapisz się
+    terms_link: <a href="%{terms_url}">Warunki i oświadczenie o ochronie prywatności</a>
+  campaign:
+    all_activities_are_completed: Wszystkie działania zostały już zakończone.
+    begin: Rozpocznij swoje zadania
+    begin_btn_msg_before_prework: Przed rozpoczęciem kampanii czasowej musisz wykonać poniższe zadania
+    begin_campaign_msg: Rozpocznij kampanię przed przystąpieniem do oceny
+    campaigns: Kampanie
+    closed_campaign_message: Ta kampania jest zamknięta. W ramach tej kampanii nie możesz dokonać żadnej oceny.
+    complete_all: Wykonaj wszystkie powiązane oceny
+    complete_prev: Ukończ wszystkie poprzednie oceny
+    complete_tasks: Przed podjęciem tej czynności wykonaj poniższe zadania.
+    completed: Zakończony
+    continue: Kontynuuj swoje zadania
+    dashboard_instructions: Przydzielono Ci wiele działań, które musisz wykonać. Upewnij się, że wszystkie przypisane działania zostały wykonane we wszystkich kampaniach.
+    dashboard_menu:
+      campaign: Kampania
+      change_password: Zmień hasło
+      home: Dom
+      insights: Insights
+      livechat: WSPARCIE NA ŻYWO
+      profile: Profil
+      profile_details: Detale
+      tasks: Zadania
+    details: Detale
+    edit_evaluation:
+      body: Uprzejmie informujemy, że po kliknięciu przycisku Oceń ponownie zostaniesz przekierowany na początek ankiety, gdzie będziesz mógł edytować udzielone odpowiedzi. Poprzednie odpowiedzi będą nadal dostępne, ale możesz je zmienić po zapoznaniu się z nimi. Po edycji konieczne będzie ponowne przesłanie oceny, aby zakończyć proces.
+      edit: Dokonaj ponownej oceny
+      title: Potwierdzać
+      view: Zobacz ocenę
+    errors:
+      invalid_status: Nieprawidłowy stan kampanii
+    goto_dashboard: Przejdź do pulpitu nawigacyjnego
+    in_progress: W trakcie
+    inactive_campaign_message: Obecnie nie przydzielono Ci żadnych działań.
+    ineligible: Nieposiadający kwalifikacji
+    insights_reports: Spostrzeżenia i raporty
+    instruction_modal:
+      campaign_start_final_instructions: |-
+        <p>  Należy pamiętać, że nie ma możliwości zatrzymania lub wstrzymania timera. Licznik czasu kampanii będzie odliczany nawet po zamknięciu przeglądarki, więc w żadnym momencie nie myśl o pozostawieniu zadań pomiędzy nimi i zajęciu się czymś innym. Pamiętaj, aby zminimalizować czynniki rozpraszające podczas wykonywania zadań. Znajdź ciche otoczenie, wyłącz powiadomienia na swoich urządzeniach i unikaj wielozadaniowości. Utrzymuj koncentrację i bądź skupiony. Gdy skończy się czas kampanii, nie będziesz mógł kontynuować. Jeśli zapoznałeś się z powyższą instrukcją, kliknij przycisk start, aby kontynuować przydzielone zadania.
+        </p>
+      campaign_start_instruction: |-
+        <h4>Przeczytaj dokładnie poniższe instrukcje.</h4>
+        <p>  Zadania, które zaraz rozpoczniesz, mają określony czas. Po kliknięciu „Start” licznik kampanii rozpocznie się automatycznie. Masz %{minutes} minut na wykonanie wszystkich czynności. Staraj się realizować zadania w wyznaczonym terminie i efektywnie zarządzać czasem, aby uniknąć pośpiechu w procesie oceny. Pamiętaj, aby wykonać zadania za jednym razem, więc jeśli chcesz zrobić sobie przerwę, teraz jest na to czas.
+        </p>
+      common_proctoring_instructions: |-
+        <h4>Opieka</h4>
+        <p>  Po kliknięciu przycisku Start zostaniesz przekierowany do naszego systemu nadzorującego. Będzie monitorować kamerę, mikrofon i ekran podczas sesji. Sesje te są automatycznie nadzorowane przez nasz wyrafinowany system sztucznej inteligencji, zapewniający nieprzerwaną i płynną obsługę użytkownika. Jednakże sesje mogą być również przeglądane przez osoby nadzorujące. Wszelkie oznaki niewłaściwego postępowania lub nieprawidłowości będą sygnalizowane. Ma to na celu zapewnienie, że nie będą podejmowane żadne próby oszustwa. Jeśli zostaną znalezione podejrzenia, Twoje zadania zostaną anulowane.
+        </p>
+      lockdown_browser_instruction: |-
+        <h4>Przeglądarka kontrolująca</h4>
+        <p>  Aby wykonać nadzorowane zadania, będziesz musiał pobrać i zainstalować specjalną przeglądarkę. Postępuj zgodnie z instrukcjami na następnym ekranie. Możesz to odinstalować po wykonaniu wszystkich wymaganych czynności.
+        </p>
+      title: Instrukcje
+    instructions:
+      collapse_link_text: Pokaż mniej
+      expand_link_text: Pokaż więcej
+      heading: Zanim zaczniesz, zapoznaj się z poniższymi wytycznymi. Życzymy Ci wszystkiego najlepszego!
+    interrupted: Przerwano
+    language:
+      cancel: Anuluj
+      content: To zadanie nie jest dostępne w aktualnie wybranym języku. Aby kontynuować, wybierz jeden z dostępnych języków.
+      proceed: Kontynuować
+      single_lang: To zadanie jest dostępne tylko w %{lang}. Kliknij „Kontynuuj”, aby kontynuować.
+      title: Wybierz język
+    new: Nowy
+    not_started: Nowy
+    panels:
+      assessments: Zadania
+      dashboard: Deska rozdzielcza
+      reports: Raporty
+    profile:
+      complete_heading: Twój profil jest kompletny
+      complete_profile_label: Ukończ teraz
+      edit_profile_label: Edytuj profil
+      incomplete_heading: Uzupełnij swój profil
+      last_login_text: 'Ostatnie logowanie:'
+      last_updated_text: 'Profil był ostatnio aktualizowany:'
+      sub_heading: Uzupełnij pełne informacje profilowe
+      welcome_text: Witamy,
+    thank_you_for_time: Dziękuję za Twój czas
+    time_left:
+      cancel: Anuluj
+      continue: Dalej
+      notification: Twój czas przydzielony na to zadanie „%{assessmentName}” wynosił %{totalAssessmentTime}. Ze względu na ogólny czas, który upłynął, masz teraz tylko %{remainingCampaignTime} jako dostosowany czas na wykonanie tego zadania.
+      title: Ostrzeżenie dotyczące pozostałego czasu
+    timed_out: Przekroczono limit czasu
+    timer:
+      expiry_message: ocena się kończy
+      message: Czas pozostały na wykonanie wszystkich zadań
+      notification: Masz %{minutes} minut i %{seconds} sekund na ukończenie
+    ungrouped: Niepogrupowane zadania
+    welcome: Witamy
+  campaign_assessment:
+    assessments_heading: Twoje zadania
+    statuses:
+      completed: Zakończony
+      in_progress: W trakcie
+      ineligible: Nieposiadający kwalifikacji
+      interrupted: Przerwano
+      not_started: Nie rozpoczął
+      timed_out: Przekroczono limit czasu
+      universal_link: Łącze uniwersalne
+  campaigns:
+    card:
+      duration: Trwanie
+      starts_in: 'Rozpoczyna się w:'
+      starts_on: Rozpoczyna się %{date}
+      will_start_shortly: Kampania rozpocznie się wkrótce. Proszę czekać
+  change_password_page:
+    old_password: Stare hasło
+    password: Hasło
+    password_confirmation: Potwierdzenie hasła
+    title: Zmień hasło
+  common:
+    actions:
+      add: Dodaj
+      archive: Archiwum
+      cancel: Anuluj
+      close: Blisko
+      delete: Kasować
+      edit: Edytować
+      import: Import
+      remove: Usunąć
+      reset: Nastawić
+      resolve: Rozwiązać
+      save: Zapisać
+      search: Szukaj
+      send: Wysłać
+      start: Początek
+      unresolve: Nierozwiązany
+      update: Aktualizacja
+      upload: Przekazać plik
+  navigation:
+    logout: Wyloguj
+    profile: Profil
+  profile:
+    add_field: Dodaj pole
+    add_photo: Dodaj zdjęcie
+    age: Wiek
+    change_password: Zmień hasło
+    change_photo: Zmień zdjęcie
+    email: E-mail
+    female: Płeć żeńska
+    first_name: Imię
+    gender: Płeć
+    incomplete: Dane w Twoim profilu są niekompletne. Proszę uzupełnić dane w swoim profilu
+    last_name: Nazwisko
+    locale: Preferowany język
+    male: Męski
+    not_disclosed: Wolę nie ujawniać
+    old_data: Twoje dane profilowe mają %{months} miesięcy. Potwierdź szczegóły, aby kontynuować
+    password: Hasło
+    password_confirmation: Potwierdzenie hasła
+    success_update: Profil został pomyślnie zapisany
+    timezone: Strefa czasowa
+    title: Mój profil
+    update: Aktualizacja
+    update_required: Wymagane aktualizacje profilu
+  subjects:
+    approval_statuses:
+      approved: Zatwierdzony
+      denied: Odmówiono
+      waiting: Wymaga zgody
+    report_approval_status:
+      approved: Zatwierdzony
+      denied: Odmówiono
+      waiting: Czekanie
+    report_release_status:
+      on_hold: W oczekiwaniu
+      released: Wydany
+      waiting: Czekanie
+    report_statuses:
+      approved: Zatwierdzony
+      available: Dostępny
+      denied: Odmówiono
+      incomplete: Niekompletny
+      not_available: Niedostępne
+      not_prepared: Nie gotowy
+      on_hold: W oczekiwaniu
+      prepared: Gotowe
+      released: Wydany
+    statuses:
+      completed: Zakończony
+      declined: Odrzucony
+      denied: Odmówiono
+      done: Gotowe
+      not_completed: Nie skończone
+      waiting: Czekanie
+  threesixty:
+    action: Akcja
+    as_my: jako mój
+    evaluation: Ocena
+    evaluations: Oceny
+    name_label: Imię
+    nominate: Mianować
+    nominate_evaluators: Nominuj oceniających do
+    nomination: Nominacja
+    nomination_predicates:
+      atleast: Przynajmniej %{count}
+      atmost: Co najwyżej %{count}
+      exactly: Dokładnie %{count}
+    nominations: Nominacje
+    progress_text: " %{completed} z %{total}"
+    remind_all: Przypomnij wszystkim
+    remind_mail_sent: Przypomnienia wysyłane do oceniających, którzy nie ukończyli oceny
+    select_relationnship: Wybierz opcję Relacja
+    select_relationship: Wybierz opcję Relacja
+    setup_nominations: Ustaw nominacje
+    user_name_input_placeholder: wpisz imię i nazwisko lub e-mail...
+    yourself: Sie

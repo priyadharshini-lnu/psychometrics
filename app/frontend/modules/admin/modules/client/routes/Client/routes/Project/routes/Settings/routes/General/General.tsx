@@ -100,6 +100,9 @@ export const General: React.FC = () => {
                   <Option value="de">
                     {I18n.t('languages.de')}
                   </Option>
+                  <Option value="pl">
+                    {I18n.t('languages.pl')}
+                  </Option>
                 </Select>
               </Form.Item>
 
