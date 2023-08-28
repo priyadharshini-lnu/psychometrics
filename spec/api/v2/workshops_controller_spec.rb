@@ -169,8 +169,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
 
         run_test! do |_|
           expect(workshop.reload.total_seats).to eq(20)
-          expect(workshop.workshop_assessors.count).to eq(2)
-          expect(workshop.workshop_managers.count).to eq(2)
+          expect(workshop.workshop_assessors.count).to eq(1)
+          expect(workshop.workshop_managers.count).to eq(1)
         end
       end
     end
