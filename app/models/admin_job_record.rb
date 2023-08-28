@@ -49,7 +49,8 @@ class AdminJobRecord < ApplicationRecord
     import_accesssheet: 23,
     import_question_translations: 24,
     bulk_regenerate_threesixty_reports: 25,
-    regenerate_threesixty_report: 26
+    regenerate_threesixty_report: 26,
+    bulk_create_workshop_invites: 27
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

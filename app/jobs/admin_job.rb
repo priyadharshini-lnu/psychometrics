@@ -35,7 +35,8 @@ class AdminJob < ApplicationJob
     import_accesssheet: AdminJobs::ImportAccesssheet,
     import_question_translations: AdminJobs::ImportQuestionTranslations,
     regenerate_threesixty_report: AdminJobs::RegenerateThreesixtyReport,
-    bulk_regenerate_threesixty_reports: AdminJobs::BulkRegenerateThreesixtyReports
+    bulk_regenerate_threesixty_reports: AdminJobs::BulkRegenerateThreesixtyReports,
+    bulk_create_workshop_invites: AdminJobs::BulkCreateWorkshopInvites
   }.freeze
 
   def perform(record)

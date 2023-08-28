@@ -4,6 +4,8 @@ module Api
   class V2::Administration::WorkshopInvitesController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::WorkshopInvite::Schema
     validates_request_schema :create, Api::V2::WorkshopInvite::CreateContract.new
+    validates_request_schema :create_relationship, Api::V2::WorkshopInvite::CreateRelationshipsContract.new
+
     prepend_before_action :set_workshops, only: %i[create]
 
     def create
@@ -17,8 +19,9 @@ module Api
         @workshops.each do |workshop|
           @workshop_invite.workshops << workshop
         end
-        WorkshopInvites::BulkCreateSubjects.call!(@workshop_invite, subjects_params[:subjects])
         WorkshopInvites::CreateTranslations.call!(@workshop_invite, translations_params[:translations])
+        AdminJob.call(:bulk_create_workshop_invites,
+                      { workshop_invite_id: @workshop_invite.id, subjects: subjects_params[:subjects] }, current_user)
       end
 
       jsonapi_render json: @workshop_invite
@@ -32,7 +35,14 @@ module Api
 
     def import_subjects_from_campaign
       users = User.with_campaign_user(params[:filter][:campaign_id])
-      jsonapi_render json: users.to_a, options: { resource: Api::V2::Administration::UserResource }
+      if users.count < ::WorkshopInvite::RESTRICTED_SUBJECTS
+        jsonapi_render json: users.to_a, options: { resource: Api::V2::Administration::UserResource }
+      else
+        jsonapi_render_errors [{
+          title: I18n.t('administration.assessment_center.invite.exceeded_subjects_count',
+                        users: users.count, count: ::WorkshopInvite::RESTRICTED_SUBJECTS)
+        }], status: :unprocessable_entity
+      end
     end
 
     def set_workshops

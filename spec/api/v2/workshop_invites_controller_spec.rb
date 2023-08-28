@@ -114,8 +114,8 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
 
           workshop_invite = WorkshopInvite.find(workshop_invite_response['id'])
 
-          expect(workshop_invite.workshop_invited_subjects.count).to eq(1)
-          expect(workshop_invite.workshop_invited_subjects.first.user).to eq(user1)
+          expect(AdminJobRecord.exists?(operation: 'bulk_create_workshop_invites')).to be_truthy
+
           expect(workshop_invite.reload.title).to eq('title')
           expect(workshop_invite.reload.description).to eq('description')
           expect(workshop_invite.translations.find_by(locale: :ar).title).to eq('arabic')
