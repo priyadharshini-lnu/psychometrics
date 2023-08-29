@@ -84,7 +84,7 @@ export const RequestsTable = () => {
               return (
                 <Descriptions title="" size="small" column={1} style={{ maxWidth: '350px' }}>
                   <Descriptions.Item label="From" labelStyle={{ color: 'gray' }}>
-                    {formatWorkshopDate(data.workshops[0].startTime)}
+                    {formatWorkshopDate(data.subjectWorkshopDateTime)}
                   </Descriptions.Item>
                   <Descriptions.Item label="To" labelStyle={{ color: 'gray' }}>
                     {formatWorkshopDate(data.bookedWorkshopDateTime)}
@@ -92,7 +92,7 @@ export const RequestsTable = () => {
                 </Descriptions>
               )
             }
-            return formatWorkshopDate(data.workshops[0].startTime)
+            return formatWorkshopDate(data.subjectWorkshopDateTime)
           }}
         />
         <Resource.Column<WorkshopInvitedSubject>
