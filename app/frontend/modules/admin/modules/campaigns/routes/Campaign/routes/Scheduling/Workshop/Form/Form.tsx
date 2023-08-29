@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Steps, Form,
+  Row, Col, Steps, Form, Modal,
 } from 'antd'
 import moment from 'moment'
 import { useHistory, useParams } from 'react-router-dom'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
-import { ConfirmationModal } from '~/glint'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { useResources } from '~/hooks/useResources'
@@ -40,7 +39,6 @@ export const AssessmentCenterForm = () => {
     campaignId,
   } = useParams<{ campaignId: string }>()
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
-  const [showCancelModal, setShowCancelModal] = useState(false)
   const [basicInfoData, setBasicInfoData] = useState<BasicInfoData>({
     dates: [],
     time: moment(),
@@ -104,55 +102,60 @@ export const AssessmentCenterForm = () => {
   }
 
   const handleCancel = () => {
-    setShowCancelModal(true)
+    Modal.confirm({
+      title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
+      content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
+      okText: I18n.t('common.text.confirm'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => routeUtils.moveTo(history, prefixPath, '/assessment_center'),
+    })
   }
 
   return (
-    <>
-      <div className={styles.mainForm}>
-        <Row className={styles.steps}>
-          <Col span={22}>
-            <Steps
-              current={step}
-              items={[
-                {
-                  title: I18n.t('administration.assessment_center.steps.basic_information'),
-                },
-                {
-                  title: I18n.t('administration.assessment_center.steps.facilitators'),
-                },
-                {
-                  title: I18n.t('administration.assessment_center.steps.invite_subjects'),
-                },
-                {
-                  title: I18n.t('administration.assessment_center.steps.invite_options'),
-                },
-                {
-                  title: I18n.t('administration.assessment_center.steps.send_invitations'),
-                },
-              ]}
-            />
-          </Col>
-        </Row>
-        {step === 0 && <BasicInfoForm initialValues={basicInfoData} onCancel={handleCancel} onNext={handleNextForm1} />}
-        {step === 1 && (showSuccessPage
-          ? (
-            <SuccessCreatedPage next={() => {
-              setShowSuccessPage(false)
-              handleNext()
-            }}
-            />
-          )
-          : (
-            <Facilitators
-              basicInfoData={basicInfoData}
-              onSubmit={showSuccess}
-              onCancel={handleCancel}
-              onPrevious={handlePrevious}
-            />
-          ))}
-        {step === 2 && <AddSubjects form={form} onCancel={handleCancel} next={handleNext} prev={handlePrevious} />}
-        {step === 3 && (
+    <div className={styles.mainForm}>
+      <Row className={styles.steps}>
+        <Col span={22}>
+          <Steps
+            current={step}
+            items={[
+              {
+                title: I18n.t('administration.assessment_center.steps.basic_information'),
+              },
+              {
+                title: I18n.t('administration.assessment_center.steps.facilitators'),
+              },
+              {
+                title: I18n.t('administration.assessment_center.steps.invite_subjects'),
+              },
+              {
+                title: I18n.t('administration.assessment_center.steps.invite_options'),
+              },
+              {
+                title: I18n.t('administration.assessment_center.steps.send_invitations'),
+              },
+            ]}
+          />
+        </Col>
+      </Row>
+      {step === 0 && <BasicInfoForm initialValues={basicInfoData} onCancel={handleCancel} onNext={handleNextForm1} />}
+      {step === 1 && (showSuccessPage
+        ? (
+          <SuccessCreatedPage next={() => {
+            setShowSuccessPage(false)
+            handleNext()
+          }}
+          />
+        )
+        : (
+          <Facilitators
+            basicInfoData={basicInfoData}
+            onSubmit={showSuccess}
+            onCancel={handleCancel}
+            onPrevious={handlePrevious}
+          />
+        ))}
+      {step === 2 && <AddSubjects form={form} onCancel={handleCancel} next={handleNext} prev={handlePrevious} />}
+      {step === 3 && (
         <BaseInfoForm
           form={form}
           onCancel={handleCancel}
@@ -161,29 +164,18 @@ export const AssessmentCenterForm = () => {
           workshops={workshops}
           errors={errors}
         />
-        )}
-        {step === 4 && (submitPage
-          ? <SuccessPage />
-          : (
-            <SendInvitation
-              form={form}
-              onCancel={handleCancel}
-              submit={submitForm}
-              prev={handlePrevious}
-              errors={errors}
-            />
-          ))}
-      </div>
-      { showCancelModal && (
-        <ConfirmationModal
-          title={I18n.t('administration.assessment_center.cancel_confirmation.title')}
-          message={
-            I18n.t('administration.assessment_center.cancel_confirmation.message')
-          }
-          onConfirm={() => routeUtils.moveTo(history, prefixPath, '/assessment_center')}
-          onCancel={() => setShowCancelModal(false)}
-        />
       )}
-    </>
+      {step === 4 && (submitPage
+        ? <SuccessPage />
+        : (
+          <SendInvitation
+            form={form}
+            onCancel={handleCancel}
+            submit={submitForm}
+            prev={handlePrevious}
+            errors={errors}
+          />
+        ))}
+    </div>
   )
 }
