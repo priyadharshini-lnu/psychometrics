@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, InputNumber } from 'antd'
+import { Form, Input } from 'antd'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 
@@ -40,7 +40,7 @@ export const WorkshopActivityDurationFormModal: React.FC<Props> = ({
             label={I18n.t('campaign_assessment.modals.workshop_activity_duration.form.duration')}
             rules={[{ required: true }]}
           >
-            <InputNumber type="number" min={0} style={{ width: '100%' }} />
+            <Input type="number" min={1} max={480} style={{ width: '100%' }} />
           </Form.Item>
         </>
       )}

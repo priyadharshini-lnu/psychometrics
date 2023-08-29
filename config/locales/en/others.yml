@@ -1273,7 +1273,7 @@ en:
         title: Extend Time
       workshop_activity_duration:
         form:
-          duration: Duration in hours
+          duration: Duration in minutes
         title: Duration for the workshop activity
     statuses:
       completed: Completed
