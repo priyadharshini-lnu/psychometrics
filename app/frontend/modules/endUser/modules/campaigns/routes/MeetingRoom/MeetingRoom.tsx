@@ -35,8 +35,15 @@ const MeetingRoom = ({ fetchMeeting }: Props) => {
     })
   }, [])
 
+  useEffect(() => {
+    window.$chatwoot.toggleBubbleVisibility('hide')
+    return () => {
+      window.$chatwoot.toggleBubbleVisibility('show')
+    }
+  }, [])
+
   return (
-    <div style={{ width: '100%', height: 'calc(100vh - 50px)' }}>
+    <div style={{ width: '100%', height: 'calc(100vh - 50px)', marginTop: '50px' }}>
       <Suspense fallback={<h3>Still Loading…</h3>}>
         {token && url && (<Meet token={token} url={url} />)}
       </Suspense>
