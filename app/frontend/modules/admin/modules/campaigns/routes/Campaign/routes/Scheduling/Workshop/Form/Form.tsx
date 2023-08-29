@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Steps, Form, Button,
+  Row, Col, Steps, Form, Modal,
 } from 'antd'
 import moment from 'moment'
 import { useHistory, useParams } from 'react-router-dom'
-import { DirectionalNavigateBackIcon } from '~/glint'
+import settings from '~/modules/admin/modules/campaigns/settings'
+import routeUtils from '~/utils/route'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { useResources } from '~/hooks/useResources'
@@ -34,6 +35,10 @@ interface BasicInfoData {
 }
 
 export const AssessmentCenterForm = () => {
+  const {
+    campaignId,
+  } = useParams<{ campaignId: string }>()
+  const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
   const [basicInfoData, setBasicInfoData] = useState<BasicInfoData>({
     dates: [],
     time: moment(),
@@ -96,10 +101,19 @@ export const AssessmentCenterForm = () => {
     })
   }
 
+  const handleCancel = () => {
+    Modal.confirm({
+      title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
+      content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
+      okText: I18n.t('common.text.confirm'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => routeUtils.moveTo(history, prefixPath, '/assessment_center'),
+    })
+  }
+
   return (
     <div className={styles.mainForm}>
       <Row className={styles.steps}>
-        <Button type="link" onClick={() => history.goBack()}><DirectionalNavigateBackIcon /></Button>
         <Col span={22}>
           <Steps
             current={step}
@@ -123,7 +137,7 @@ export const AssessmentCenterForm = () => {
           />
         </Col>
       </Row>
-      {step === 0 && <BasicInfoForm initialValues={basicInfoData} onNext={handleNextForm1} />}
+      {step === 0 && <BasicInfoForm initialValues={basicInfoData} onCancel={handleCancel} onNext={handleNextForm1} />}
       {step === 1 && (showSuccessPage
         ? (
           <SuccessCreatedPage next={() => {
@@ -132,20 +146,36 @@ export const AssessmentCenterForm = () => {
           }}
           />
         )
-        : <Facilitators basicInfoData={basicInfoData} onSubmit={showSuccess} onPrevious={handlePrevious} />)}
-      {step === 2 && <AddSubjects form={form} next={handleNext} prev={handlePrevious} />}
+        : (
+          <Facilitators
+            basicInfoData={basicInfoData}
+            onSubmit={showSuccess}
+            onCancel={handleCancel}
+            onPrevious={handlePrevious}
+          />
+        ))}
+      {step === 2 && <AddSubjects form={form} onCancel={handleCancel} next={handleNext} prev={handlePrevious} />}
       {step === 3 && (
-      <BaseInfoForm
-        form={form}
-        next={handleNext}
-        prev={handlePrevious}
-        workshops={workshops}
-        errors={errors}
-      />
+        <BaseInfoForm
+          form={form}
+          onCancel={handleCancel}
+          next={handleNext}
+          prev={handlePrevious}
+          workshops={workshops}
+          errors={errors}
+        />
       )}
       {step === 4 && (submitPage
         ? <SuccessPage />
-        : <SendInvitation form={form} submit={submitForm} prev={handlePrevious} errors={errors} />)}
+        : (
+          <SendInvitation
+            form={form}
+            onCancel={handleCancel}
+            submit={submitForm}
+            prev={handlePrevious}
+            errors={errors}
+          />
+        ))}
     </div>
   )
 }

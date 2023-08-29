@@ -249,6 +249,9 @@ en:
         description: Description
         title: api key
     assessment_center:
+      cancel_confirmation:
+        message: Are you sure you want to discard the form progress?
+        title: Discard Form Progress
       current: Current
       invite:
         actions: Actions

@@ -1,21 +1,26 @@
 import { useEffect, useState } from 'react'
 import {
-  Form, Row, Col, Steps, Button,
+  Form, Row, Col, Steps, Modal,
 } from 'antd'
 import _ from 'lodash'
 import { useHistory, useParams } from 'react-router-dom'
-import { WorkshopInvite } from 'modules/admin/modules/campaigns/core/invites'
+import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
+import routeUtils from '~/utils/route'
 import { useResources } from '~/hooks/useResources'
 import styles from './Form.less'
 import { BaseInfoForm, type Errors } from './BaseInfo'
 import { AddSubjects } from './AddSubjects'
 import { SendInvitation } from './SendInvitations'
 import { SuccessPage } from './SuccessPage'
-import { DirectionalNavigateBackIcon } from '~/glint'
+import settings from '~/modules/admin/modules/campaigns/settings'
 
 const { I18n } = window
 
 export const InvitesForm = () => {
+  const {
+    campaignId,
+  } = useParams<{ campaignId: string }>()
+  const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
   const history = useHistory()
   const [form] = Form.useForm()
   const [submitPage, showSubmitPage] = useState(false)
@@ -51,10 +56,19 @@ export const InvitesForm = () => {
     })
   }
 
+  const handleCancel = () => {
+    Modal.confirm({
+      title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
+      content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
+      okText: I18n.t('common.text.confirm'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => routeUtils.moveTo(history, prefixPath, '/invites'),
+    })
+  }
+
   return (
     <div style={{ padding: 20 }}>
       <Row className={styles.steps}>
-        <Button type="link" onClick={() => history.goBack()}><DirectionalNavigateBackIcon /></Button>
         <Col span={12}>
           <Steps
             current={step}
@@ -87,17 +101,33 @@ export const InvitesForm = () => {
           />
         </Col>
       </Row>
-      {step === 0 && <BaseInfoForm form={form} next={() => setStep(step + 1)} errors={errors} />}
+      {step === 0 && (
+        <BaseInfoForm
+          onCancel={handleCancel}
+          form={form}
+          next={() => setStep(step + 1)}
+          errors={errors}
+        />
+      )}
       {step === 1 && (
         <AddSubjects
           form={form}
+          onCancel={handleCancel}
           next={() => setStep(step + 1)}
           prev={() => setStep(step - 1)}
         />
       )}
       {step === 2 && (submitPage
         ? <SuccessPage />
-        : <SendInvitation form={form} submit={submitForm} prev={() => setStep(step - 1)} errors={errors} />)}
+        : (
+          <SendInvitation
+            form={form}
+            submit={submitForm}
+            prev={() => setStep(step - 1)}
+            errors={errors}
+            onCancel={handleCancel}
+          />
+        ))}
     </div>
   )
 }

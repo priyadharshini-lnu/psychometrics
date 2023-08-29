@@ -1,4 +1,4 @@
-import { FC, useState, useRef } from 'react'
+import React, { FC, useState, useRef } from 'react'
 import {
   Button, Select, Row, Col, Space, List, Dropdown, Spin, Modal, Input, InputRef, FormInstance, Alert, message,
 } from 'antd'
@@ -23,10 +23,11 @@ type Props = ConnectedProps<typeof connecter> & {
   form: FormInstance,
   next: () => void
   prev: () => void
+  onCancel?: () => void
 }
 
 export const AddSubjectsComponent: FC<Props> = ({
-  form, next, prev, uploadCSV,
+  form, next, prev, uploadCSV, onCancel,
 }) => {
   const [uploadModal, showUploadModal] = useState(false)
   const [importErrors, setImportErrors] = useState<Errors[]>([])
@@ -115,6 +116,10 @@ export const AddSubjectsComponent: FC<Props> = ({
       label: I18n.t('administration.assessment_center.invite.subjects.import_from_campaign'),
       key: 'import_all',
     }],
+  }
+
+  const handleCancel = () => {
+    onCancel?.()
   }
 
   return (
@@ -249,6 +254,13 @@ export const AddSubjectsComponent: FC<Props> = ({
       </Panel>
       <div className={styles.footer}>
         <Space>
+          {
+            onCancel && (
+              <Button onClick={handleCancel}>
+                {I18n.t('common.actions.cancel')}
+              </Button>
+            )
+          }
           <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
           <Button type="primary" onClick={next}>{I18n.t('administration.assessment_center.invite.next')}</Button>
         </Space>
