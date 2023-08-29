@@ -95,6 +95,7 @@ export const AddSubjectsComponent: FC<Props> = ({
         }
         showUploadModal(false)
       })
+      message.success(I18n.t('administration.scheduling.subjects.import_job_scheduled'))
       setCSVErrors([])
     }
   }

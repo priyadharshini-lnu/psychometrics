@@ -3936,6 +3936,7 @@ en:
         copy_link_msg: Link Copied
         edit_assessor_form: Edit Assessor Form
         form_title: Schedule Assessments
+        import_job_scheduled: The uploaded file has been queued for import. Please check the status in the notifications
         language: Language
         meeting_link_custom: Custom
         meeting_link_none: None

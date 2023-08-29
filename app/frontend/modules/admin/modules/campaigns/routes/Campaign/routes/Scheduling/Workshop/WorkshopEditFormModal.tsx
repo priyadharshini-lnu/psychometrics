@@ -82,6 +82,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
             label={<Text className="font-normal">{I18n.t('administration.scheduling.info.managers')}</Text>}
           >
             <UsersSelectWithTags
+              userIdField="userId"
               placeholder={I18n.t('administration.scheduling.info.search_placehoder')}
               users={workshopManagers}
               preSelectedUsers={workshop.workshopManagers}
@@ -93,6 +94,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
             label={<Text className="font-normal">{I18n.t('administration.scheduling.info.assessors')}</Text>}
           >
             <UsersSelectWithTags
+              userIdField="userId"
               placeholder={I18n.t('administration.scheduling.info.search_placehoder')}
               users={workshopAssessors}
               preSelectedUsers={workshop.workshopAssessors}
