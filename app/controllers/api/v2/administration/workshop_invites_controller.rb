@@ -35,7 +35,7 @@ module Api
 
     def import_subjects_from_campaign
       users = User.with_campaign_user(params[:filter][:campaign_id])
-      if users.count < ::WorkshopInvite::RESTRICTED_SUBJECTS
+      if users.count <= ::WorkshopInvite::RESTRICTED_SUBJECTS
         jsonapi_render json: users.to_a, options: { resource: Api::V2::Administration::UserResource }
       else
         jsonapi_render_errors [{

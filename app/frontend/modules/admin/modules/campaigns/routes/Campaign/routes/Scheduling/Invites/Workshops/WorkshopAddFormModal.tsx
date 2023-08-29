@@ -30,6 +30,7 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
   const params = useParams<{campaignId: string}>()
   const [selectedWorkshops, setSelectedWorkshops] = useState<Workshop[]>([])
   const [searchValue, setSearchValue] = useState('')
+  const [error, setError] = useState(false)
   const {
     data: assessmetnCenters, setData, getResource, fetch: fetchWorkshops,
   } = useResources<Workshop>('workshops', {
@@ -62,9 +63,16 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
     })
   }, 200)
 
-  const create = () => addRelationships('workshops', selectedWorkshops.map(w => w.id)).then(() => {
-    resource.setData([...resource.data, ...selectedWorkshops])
-  })
+  const create = () => {
+    if (selectedWorkshops.length > 0) {
+      setError(false)
+      return addRelationships('workshops', selectedWorkshops.map(w => w.id)).then(() => {
+        resource.setData([...resource.data, ...selectedWorkshops])
+      })
+    }
+    setError(true)
+    return Promise.reject(new Error(''))
+  }
 
   return (
     <ResourceFormModal
@@ -82,6 +90,9 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
           <Form.Item
             name="workshopIds"
             label={I18n.t('administration.assessment_center.invite.workshop.title')}
+            validateStatus={error ? 'error' : undefined}
+            help={error && I18n.t('dry_errors.errors.filled?')}
+            status={error ? 'error' : undefined}
           >
             <Row gutter={[16, 16]}>
               <Col span={24}>

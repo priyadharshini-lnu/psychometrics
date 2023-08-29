@@ -155,7 +155,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   }, [assessorAssessments])
 
   useEffect(() => {
-    if (subjectId) {
+    if (open && subjectId) {
       fetchSingle({ id: subjectId })
       fetchAssessments()
       fetchAssessorAssessments(
@@ -164,7 +164,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         setAssessorAssessments(data)
       })
     }
-  }, [subjectId])
+  }, [subjectId, open])
 
   const handleTimeChange = (value: Moment | null, userAssessmentId: string) => {
     const updatedAssessments = subjectData.assessments
