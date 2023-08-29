@@ -15,12 +15,12 @@ class EndUser::WorkshopInvitesController < ApplicationController
     form = Campaigns::Bookings::BookSlotForm.from_params(params.merge(current_user: current_user))
 
     if form.invalid?
-      render json: { error: form.errors.full_messages }, status: 400
+      render json: { errors: form.errors.full_messages }, status: 400
     else
       response = Workshops::Booking::BookSlot.call(params, current_user)
 
       if response && response[:error]
-        render json: { error: response[:error] }, status: 400
+        render json: { errors: response[:error] }, status: 400
       else
         render json: :ok
       end
@@ -31,12 +31,12 @@ class EndUser::WorkshopInvitesController < ApplicationController
     form = Campaigns::Bookings::CancelSlotForm.from_params(params.merge(current_user: current_user))
 
     if form.invalid?
-      render json: { error: form.errors.full_messages }, status: 400
+      render json: { errors: form.errors.full_messages }, status: 400
     else
       response = Workshops::Booking::CancelSlot.call(params, current_user)
 
       if response && response[:error]
-        render json: { error: response[:error] }, status: 400
+        render json: { errors: response[:error] }, status: 400
       else
         render json: :ok
       end
@@ -47,12 +47,12 @@ class EndUser::WorkshopInvitesController < ApplicationController
     form = Campaigns::Bookings::RescheduleSlotForm.from_params(params.merge(current_user: current_user))
 
     if form.invalid?
-      render json: { error: form.errors.full_messages }, status: 400
+      render json: { errors: form.errors.full_messages }, status: 400
     else
       response = Workshops::Booking::RescheduleSlot.call(params, current_user)
 
       if response && response[:error]
-        render json: { error: response[:error] }, status: 400
+        render json: { errors: response[:error] }, status: 400
       else
         render json: :ok
       end

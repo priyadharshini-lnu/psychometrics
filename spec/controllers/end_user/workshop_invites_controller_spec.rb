@@ -113,7 +113,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       }
 
       expect(response.status).to eq(400)
-      expect(JSON.parse(response.body)['error']).to eq(
+      expect(JSON.parse(response.body)['errors']).to eq(
         [I18n.t('administration.bookings.errors.seats_not_available')]
       )
     end
@@ -134,7 +134,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       }
 
       expect(response.status).to eq(400)
-      expect(JSON.parse(response.body)['error']).to eq(
+      expect(JSON.parse(response.body)['errors']).to eq(
         [I18n.t('administration.bookings.errors.already_booked')]
       )
     end
@@ -160,7 +160,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       }
 
       expect(response.status).to eq(400)
-      expect(JSON.parse(response.body)['error']).to eq(
+      expect(JSON.parse(response.body)['errors']).to eq(
         [I18n.t('administration.bookings.errors.cancelled_and_rebook_deadline_passed')]
       )
     end
@@ -219,7 +219,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(400)
-        expect(JSON.parse(response.body)['error']).to eq(
+        expect(JSON.parse(response.body)['errors']).to eq(
           [I18n.t('administration.bookings.errors.cancellation_deadline_passed')]
         )
       end
@@ -319,7 +319,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         }
 
         expect(response.status).to eq(400)
-        expect(JSON.parse(response.body)['error']).to eq(
+        expect(JSON.parse(response.body)['errors']).to eq(
           [I18n.t('administration.bookings.errors.reschedule_deadline_passed')]
         )
       end
