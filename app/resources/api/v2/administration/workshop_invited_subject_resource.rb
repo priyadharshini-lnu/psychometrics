@@ -14,7 +14,7 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
   }
 
   def subject_workshop_date_time
-    @model.workshop_subject.workshop.start_time
+    @model.workshop_subject&.workshop&.start_time
   end
 
   def booked_workshop_date_time
