@@ -17,7 +17,7 @@ class Workshop < ApplicationRecord
   has_many :user_bookings, dependent: :destroy, as: :booked_by_resource
   has_many :campaign_assessments, -> { workshop_activities }, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
-  has_many :communications, as: :campaign
+  has_many :communication_emails, dependent: :destroy
 
   enum video_call_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :video_call
 

@@ -3,10 +3,11 @@
 class WorkshopInvite < ApplicationRecord
   extend Mobility
 
+  belongs_to :campaign
   has_many :workshop_invited_subjects, dependent: :destroy
   has_and_belongs_to_many :workshops, dependent: :destroy
   has_many :workshop_invite_logs, dependent: :destroy
-  belongs_to :campaign
+  has_many :communication_emails, dependent: :destroy
 
   translates :title, :description
 
