@@ -8,7 +8,7 @@ module Workshops
       def initialize(params, current_user)
         super(params, current_user)
 
-        @workshop = Workshop.find(@workshop_invited_subject.workshops.first.id)
+        @workshop = Workshop.find(@workshop_invited_subject.workshop_subject.workshop_id)
         @subject_id = @workshop_invited_subject.user_id
       end
 

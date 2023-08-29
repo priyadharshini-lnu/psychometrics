@@ -108,7 +108,15 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
         }]
 
         let!(:workshop_invited_subject) do
-          create(:workshop_invited_subject, workshop_invite: workshop_invite, status: 'requested_rescheduling')
+          create(
+            :workshop_invited_subject,
+            workshop_invite: workshop_invite,
+            workshop_subject: workshop_subject,
+            status: 'requested_rescheduling'
+          )
+        end
+        let!(:workshop_subject) do
+          create(:workshop_subject, workshop: workshop_invite.workshops.first)
         end
         let(:id) { workshop_invited_subject.id }
 
@@ -154,11 +162,17 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
           }
         }]
 
-        let!(:workshop_invited_subject) do
-          create(:workshop_invited_subject, workshop_invite: workshop_invite, status: 'requested_cancellation')
-        end
         let!(:workshop_subject) do
-          create(:workshop_subject, workshop: workshop_invite.workshops.first, user: workshop_invited_subject.user)
+          create(:workshop_subject, workshop: workshop_invite.workshops.first)
+        end
+        let!(:workshop_invited_subject) do
+          create(
+            :workshop_invited_subject,
+            workshop_invite: workshop_invite,
+            user: workshop_subject.user,
+            workshop_subject: workshop_subject,
+            status: 'requested_cancellation'
+          )
         end
         let(:id) { workshop_invited_subject.id }
 

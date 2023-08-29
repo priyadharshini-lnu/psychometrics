@@ -11,6 +11,7 @@ describe Workshops::InviteRequest::CancelRequest do
       :workshop_invited_subject,
       user: user,
       workshop_invite: workshop_invite,
+      workshop_subject: workshop_subject,
       status: 'requested_cancellation',
       reason: 'test'
     )

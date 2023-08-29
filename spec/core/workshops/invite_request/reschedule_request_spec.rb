@@ -12,6 +12,7 @@ describe Workshops::InviteRequest::RescheduleRequest do
       :workshop_invited_subject,
       user: user,
       workshop_invite: workshop_invite,
+      workshop_subject: workshop_subject,
       status: 'requested_rescheduling',
       reason: 'test',
       reschedule_workshop_id: reschedule_workshop.id
