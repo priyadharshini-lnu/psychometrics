@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Administration::BaseResource
-  attributes :status, :reason, :booked_workshop_date_time
+  attributes :status, :reason, :booked_workshop_date_time, :subject_workshop_date_time
 
   has_one :user
   has_one :workshop_invite
@@ -12,6 +12,10 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
   filter :status_in, apply: lambda { |records, statuses, _options|
     records.where(status: statuses)
   }
+
+  def subject_workshop_date_time
+    @model.workshop_subject&.workshop&.start_time
+  end
 
   def booked_workshop_date_time
     return unless @model.reschedule_workshop_id
@@ -26,7 +30,7 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
         where(workshop_invite_id: options[:context][:params][:workshop_invite_id])
     else
       WorkshopInvitedSubject.
-        includes(:workshop_invite).
+        includes(:workshop_subject, :workshop_invite).
         where(workshop_invites: {
           campaign_id: options.dig(:context, :params, :filter, :workshop_invite_campaign_id_eq)
         })

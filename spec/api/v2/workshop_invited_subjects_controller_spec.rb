@@ -46,12 +46,22 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
         }]
 
         let!(:workshop_invited_subject) do
-          create(:workshop_invited_subject, workshop_invite: workshop_invite, status: 'requested_rescheduling')
+          create(
+            :workshop_invited_subject,
+            workshop_invite: workshop_invite,
+            workshop_subject: create(:workshop_subject, workshop: workshop_invite.workshops.first),
+            status: 'requested_rescheduling'
+          )
         end
         %w[pending requested_cancellation requested_cancellation_rejected
            requested_rescheduling_rejected].each do |status|
           let!("#{status}_subject") do
-            create(:workshop_invited_subject, workshop_invite: workshop_invite, status: status)
+            create(
+              :workshop_invited_subject,
+              workshop_invite: workshop_invite,
+              workshop_subject: create(:workshop_subject, workshop: workshop_invite.workshops.first),
+              status: status
+            )
           end
         end
 
