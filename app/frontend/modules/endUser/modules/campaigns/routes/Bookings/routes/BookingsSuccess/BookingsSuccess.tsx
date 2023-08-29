@@ -168,19 +168,19 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
           <Text type="secondary">{I18n.t('frontend.bookings.add_to_calendar')}</Text>
         </Col>
         <Space>
-          <a href={google(event)}>
+          <a href={google(event)} target="_blank" rel="noreferrer noopener">
             <GoogleCalendarIcon />
           </a>
-          <a href={yahoo(event)}>
+          <a href={yahoo(event)} target="_blank" rel="noreferrer noopener">
             <YahooIcon />
           </a>
-          <a href={outlook(event)}>
+          <a href={outlook(event)} target="_blank" rel="noreferrer noopener">
             <OutlookIcon />
           </a>
-          <a href={ics(event)}>
+          <a href={ics(event)} target="_blank" rel="noreferrer noopener">
             <IcalIcon />
           </a>
-          <a href={office365(event)}>
+          <a href={office365(event)} target="_blank" rel="noreferrer noopener">
             <Office365Icon />
           </a>
         </Space>

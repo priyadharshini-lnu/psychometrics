@@ -3034,8 +3034,8 @@ en:
       column:
         participant: Participant
       remove_confirm:
-        content: Are you sure you want to remove subject '%{subjectName}'?
-        success: Subject '%{subjectName}'' was successfully removed.
+        content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
+        success: Subject with email '%{subjectEmail}'' was successfully removed.
         title: Remove Subject
       statuses:
         accepted: Accepted
@@ -3931,7 +3931,7 @@ en:
         assessments: Assessments
         assessor_form: Assessor Form
         assessor_forms: Assessor Forms
-        confirm_message: Are you sure you want to delete subject '%{subject_email}'?
+        confirm_message: Are you sure you want to delete the subject with email '%{subject_email}'?
         confirm_title: Confirmation required
         copy_link_msg: Link Copied
         edit_assessor_form: Edit Assessor Form
