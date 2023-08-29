@@ -7,13 +7,16 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
+import { ConnectedProps, connect } from 'react-redux'
 import {
   WorkshopUserAcitivity, WorkshopUserAcitivityTR,
 } from '~/modules/admin/modules/campaigns/core/workshopActivity'
 import Form from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorFormModal'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { get as getCurrentUser } from '~/core/currentUser'
 import { ResourceAvatar } from '~/glint'
 import styles from './styles.less'
+
 
 const { I18n } = window
 
@@ -44,22 +47,13 @@ const statusToColor = {
   no_show: 'red',
 }
 
-const Controls = ({ setShowForm }) => {
-  const { resource } = useResourceContext()
+const connector = connect(state => ({
+  currentUser: getCurrentUser(state),
+}), {})
 
-  if (resource.meta?.permissions?.createAll) {
-    return (
-      <Button type="primary" onClick={() => setShowForm(true)}>
-        {I18n.t('administration.scheduling.add_activity')}
-      </Button>
-    )
-  }
+type PropsFromRedux = ConnectedProps<typeof connector>
 
-  return null
-}
-
-
-export const Activities: React.FC = () => {
+export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) => {
   const { id, campaignId, projectId } = useParams<{ id: string, campaignId: string, projectId: string }>()
   const [showForm, setShowForm] = useState(false)
 
@@ -112,12 +106,14 @@ export const Activities: React.FC = () => {
             title={I18n.t('administration.scheduling.columns.assessor')}
             id="assessor"
             width="10%"
-            render={({ evaluator }) => (
-              <Row gutter={[10, 0]}>
-                <Col className={styles.workshopSubjectAvatar}>
-                  {evaluator && <ResourcesTag resource={evaluator} />}
-                </Col>
-              </Row>
+            render={({ subject, evaluator }) => (
+              subject.id !== evaluator.id && (
+                <Row gutter={[10, 0]}>
+                  <Col className={styles.workshopSubjectAvatar}>
+                    {evaluator && <ResourcesTag resource={evaluator} />}
+                  </Col>
+                </Row>
+              )
             )}
           />
           <Resource.Column<WorkshopUserAcitivity>
@@ -146,12 +142,14 @@ export const Activities: React.FC = () => {
             title={I18n.t('common.column.action')}
             id="actions"
             key="actions"
-            render={({ status }) => (
-              <Button href={`/assessors/workshops/${id}`} type="link" className="ps-0">
-                {status === 'not_started' && I18n.t('common.actions.start')}
-                {status === 'stated' && I18n.t('common.actions.continue')}
-                {status === 'completed' && I18n.t('common.actions.view')}
-              </Button>
+            render={({ status, subject, evaluator }) => (
+              (currentUser.id === evaluator.id && subject.id !== evaluator.id) && (
+                <Button href={`/assessors/campaigns/${campaignId}/users/${subject.id}`} type="link" className="ps-0">
+                  {status === 'not_started' && I18n.t('common.actions.start')}
+                  {status === 'stated' && I18n.t('common.actions.continue')}
+                  {status === 'completed' && I18n.t('common.actions.view')}
+                </Button>
+              )
             )}
           />
         </Resource.Table>
@@ -167,7 +165,22 @@ export const Activities: React.FC = () => {
           />
         )}
       </Resource>
-
     </>
   )
 }
+
+const Controls = ({ setShowForm }) => {
+  const { resource } = useResourceContext()
+
+  if (resource.meta?.permissions?.createAll) {
+    return (
+      <Button type="primary" onClick={() => setShowForm(true)}>
+        {I18n.t('administration.scheduling.add_activity')}
+      </Button>
+    )
+  }
+
+  return null
+}
+
+export const Activities = connector(ActivitiesComponent)

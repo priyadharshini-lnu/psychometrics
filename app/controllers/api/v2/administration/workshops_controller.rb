@@ -31,14 +31,7 @@ module Api
     end
 
     def update
-      @workshop.update!(workshop_update_params.slice(:total_seats))
-
-      workshop_update_params[:workshop_assessors_ids].each do |assessor_user_id|
-        @workshop.workshop_assessors.find_or_create_by!(user_id: assessor_user_id)
-      end
-      workshop_update_params[:workshop_managers_ids].each do |manager_user_id|
-        @workshop.workshop_managers.find_or_create_by!(user_id: manager_user_id)
-      end
+      ::Workshops::Update.call!(@workshop, workshop_update_params)
 
       jsonapi_render json: @workshop
     end

@@ -13,6 +13,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
   let!(:user1) { create(:user, email: 'user1@test.test') }
   let!(:user2) { create(:user, email: 'user2@test.test') }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+  let!(:manager) { workshop.workshop_managers.first }
+  let!(:assessor) { workshop.workshop_assessors.first }
 
   before { sign_in(superadmin) }
 
@@ -160,7 +162,7 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
               id: workshop_id.to_s,
               attributes: {
                 total_seats: 20,
-                workshop_assessors_ids: [user1.id.to_s],
+                workshop_assessors_ids: [assessor.user_id.to_s, user1.id.to_s],
                 workshop_managers_ids: [user2.id.to_s]
               }
             }
@@ -170,7 +172,11 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
         run_test! do |_|
           expect(workshop.reload.total_seats).to eq(20)
           expect(workshop.workshop_assessors.count).to eq(2)
-          expect(workshop.workshop_managers.count).to eq(2)
+          expect(workshop.workshop_assessors).to include(WorkshopAssessor.find_by(user_id: user1.id))
+          expect(workshop.workshop_assessors).to include(assessor)
+          expect(workshop.workshop_managers).to include(WorkshopManager.find_by(user_id: user2.id))
+          expect(workshop.workshop_managers).not_to include(manager)
+          expect(workshop.workshop_managers.count).to eq(1)
         end
       end
     end
