@@ -44,8 +44,9 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   currentUser, bookSlot, fetchInvite, fetchBooking, rescheduleBooking,
 }) => {
   const [inviteOrBookingDetails, setInviteOrBookingDetails] = useState<null | SingleInvite | SingleBooking>(null)
-  const bookedDateMomentObject = (inviteOrBookingDetails && 'bookedDate' in inviteOrBookingDetails)
-    ? { id: inviteOrBookingDetails.bookedDate.id, date: moment(inviteOrBookingDetails.bookedDate.date) } : null
+  const bookedDateMomentObject = (
+    inviteOrBookingDetails && 'bookedDate' in inviteOrBookingDetails && inviteOrBookingDetails.bookedDate
+  ) ? { id: inviteOrBookingDetails.bookedDate.id, date: moment(inviteOrBookingDetails.bookedDate.date) } : null
   const [selectedDateTime, setSelectedDateTime] = useState<TimeSlot | null>(bookedDateMomentObject)
   const [book, setBook] = useState(false)
   const [questionForm] = Form.useForm()
@@ -159,7 +160,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
                   description={inviteOrBookingDetails.description}
                   availableDateTimes={availableDates}
                   onDateTimeSelection={setSelectedDateTime}
-                  bookingTimeZone={inviteOrBookingDetails.timezone}
+                  bookingTimeZone={inviteOrBookingDetails?.timezone}
                   questionnaireComponent={(
                     <Questionnaire
                       formInstance={questionForm}

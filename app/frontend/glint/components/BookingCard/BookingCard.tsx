@@ -19,7 +19,7 @@ type Props = {
   currentDateTime: Moment | null,
   questionnaireComponent?: ReactNode
   onDateTimeSelection: (timeSlot: TimeSlot |null) => void
-  bookingTimeZone?: string
+  bookingTimeZone?: string | null
 }
 
 export const BookingCard: FC<Props> = ({

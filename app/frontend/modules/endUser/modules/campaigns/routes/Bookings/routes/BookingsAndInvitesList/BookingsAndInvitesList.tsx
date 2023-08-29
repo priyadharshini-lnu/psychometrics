@@ -190,9 +190,9 @@ const BookingsList: FC<BookingsListProps> = ({ bookings, loading, onClickBooking
 )
 
 type SubtitleProps = {
-  duration: number,
-  dateTime?: string,
-  timezone: string,
+  duration: number | null,
+  dateTime?: string | null,
+  timezone: string | null,
   isActionByCurrentUser: boolean | null
 }
 const Subtitle: FC<SubtitleProps> = ({
@@ -210,7 +210,7 @@ const Subtitle: FC<SubtitleProps> = ({
     <Space direction="vertical">
       <Space>
         <TimerText
-          text={secondsToDayHoursAndMinutes(duration)}
+          text={duration ? secondsToDayHoursAndMinutes(duration) : ''}
           textType="none"
           className={styles.subtitleIcon}
         />

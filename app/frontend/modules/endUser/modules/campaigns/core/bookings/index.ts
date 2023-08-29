@@ -6,7 +6,7 @@ const InviteTR = t.type({
   id: t.number,
   title: t.union([t.string, t.null]),
   description: t.union([t.string, t.null]),
-  duration: t.number,
+  duration: t.union([t.number, t.null]),
   status: t.string,
   workshopInviteId: t.number,
 })
@@ -26,10 +26,10 @@ export const fetchInvites = ():ApiAction<FetchInvitesResponse> => ({
 })
 
 const BookingTR = t.intersection([InviteTR, t.type({
-  date: t.string,
-  timezone: t.string,
+  date: t.union([t.string, t.null]),
+  timezone: t.union([t.string, t.null]),
   isActionByCurrentUser: t.union([t.boolean, t.null]),
-  cancellationLeadTime: t.number,
+  cancellationLeadTime: t.union([t.number, t.null]),
 })])
 const fetchBookingsResponseTR = t.type({
   list: t.array(BookingTR),
@@ -58,11 +58,11 @@ const fetchSingleInviteResponseTR = t.type({
       date: t.string,
     }),
   ),
-  timezone: t.string,
-  duration: t.number,
+  timezone: t.union([t.string, t.null]),
+  duration: t.union([t.number, t.null]),
   allowNeurodiversityOption: t.boolean,
-  cancellationLeadTime: t.number,
-  rescheduleLeadTime: t.number,
+  cancellationLeadTime: t.union([t.number, t.null]),
+  rescheduleLeadTime: t.union([t.number, t.null]),
 })
 export const FETCH_SINGLE_INVITE = 'invites/FETCH_SINGLE'
 export type SingleInvite = t.TypeOf<typeof fetchSingleInviteResponseTR>
@@ -77,13 +77,14 @@ export const fetchInvite = (id: string):ApiAction<SingleInvite> => ({
 
 const fetchSingleBookingResponseTR = t.intersection([fetchSingleInviteResponseTR, t.type(
   {
-    workshopId: t.number,
+    workshopId: t.union([t.number, t.null]),
     neurodivergent: t.union([t.boolean, t.null]),
     neurodivergentComments: t.union([t.string, t.null]),
-    bookedDate: t.type({
-      id: t.number,
-      date: t.string,
-    }),
+    bookedDate: t.union([
+      t.type({
+        id: t.number,
+        date: t.string,
+      }), t.null]),
     status: t.string,
     preferredLanguage: t.union([t.string, t.null]),
   },

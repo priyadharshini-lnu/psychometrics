@@ -5,7 +5,9 @@ require 'rails_helper'
 RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
   let(:current_password) { 'Current@Password129' }
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
-  let!(:workshop) { create(:workshop, booked_seats: 0, total_seats: 10) }
+  let!(:workshop) do
+    create(:workshop, booked_seats: 0, total_seats: 10, start_time: Time.current.advance(days: 1))
+  end
   let(:workshop_invite) do
     create(
       :workshop_invite, workshops: [workshop], allowed_languages: ['en, ar'],
@@ -145,7 +147,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       )
       workshop_invited_subject.update!(status: 'cancelled')
 
-      frozen_time = workshop.start_time - 1.hour
+      frozen_time = workshop.start_time + 1.hour
 
       allow(Time).to receive(:current).and_return(frozen_time)
 
@@ -208,7 +210,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         workshop.update!(cancellation_lead_time: 0)
 
-        frozen_time = workshop.start_time - 1.hour
+        frozen_time = workshop.start_time + 1.hour
 
         allow(Time).to receive(:current).and_return(frozen_time)
 
@@ -302,7 +304,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
         workshop.update!(reschedule_lead_time: 0)
 
-        frozen_time = workshop.start_time - 1.hour
+        frozen_time = workshop.start_time + 1.hour
 
         allow(Time).to receive(:current).and_return(frozen_time)
 

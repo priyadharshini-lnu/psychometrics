@@ -7,16 +7,18 @@ module EndUser
                :available_dates, :booked_date, :allow_neurodiversity_option, :allowed_languages,
                :cancellation_lead_time, :neurodivergent
 
-    delegate :duration, :reschedule_lead_time, :cancellation_lead_time, :timezone, to: :workshop
-    delegate :id, to: :workshop, prefix: true
+    delegate :duration, :reschedule_lead_time, :cancellation_lead_time, :timezone, to: :workshop, allow_nil: true
+    delegate :id, to: :workshop, prefix: true, allow_nil: true
     delegate :status, to: :workshop_invited_subject
-    delegate :preferred_language, :neurodivergent, :neurodivergent_comments, to: :workshop_subject
+    delegate :preferred_language, :neurodivergent, :neurodivergent_comments, to: :workshop_subject, allow_nil: true
 
     def booked_date
-      {
-        id: workshop.id,
-        date: workshop.start_time.iso8601
-      }
+      if workshop
+        {
+          id: workshop.id,
+          date: workshop.start_time.iso8601
+        }
+      end
     end
 
     def available_dates
@@ -40,7 +42,7 @@ module EndUser
     end
 
     def workshop
-      @workshop ||= workshop_subject.workshop
+      @workshop ||= workshop_subject&.workshop
     end
 
     def current_user
