@@ -101,6 +101,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
   const [openForm, setOpenForm] = useState(false)
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
   const { memberAction } = useResources('workshops', { })
+  const [confirmation, setConfirmation] = useState(false)
 
   const toggleSelectedSubject = (checked, subject) => {
     if (checked) {
@@ -234,7 +235,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
             <ConditionalDropdown
               menu={
                 ActionsMenu({
-                  subject,
+                  subject, confirmation, setConfirmation,
                 }) as React.ReactElement
               }
             />
@@ -253,12 +254,13 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
 
 interface ActionMenuProps {
   subject: WorkshopSubject
+  confirmation: boolean
+  setConfirmation: (value: boolean) => void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  subject,
+  subject, confirmation, setConfirmation,
 }) => {
-  const [confirmation, setConfirmation] = useState(false)
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
   const handleOnConfirm = () => {
     resource.memberAction({
