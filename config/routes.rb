@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
   get '/admin', to: 'admin_app#dashboard', as: :admin
+  get '/admin/meet/:room_id', to: 'admin_app#dashboard', as: :admin_meeting
   get '/admin/*all', to: 'admin_app#dashboard'
 
   concern :media_uploades do

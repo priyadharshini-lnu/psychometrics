@@ -45,8 +45,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
 
   def meeting_link
     if @model.video_call_internal? && @model.meeting_room.present?
-      # TODO: change this to use the full url
-      "/admin/meet/#{@model.meeting_room.id}"
+      Utility::Url.generate(:admin_meeting_url, room_id: @model.meeting_room.id)
     elsif @model.video_call_custom?
       @model.meeting_link
     end
