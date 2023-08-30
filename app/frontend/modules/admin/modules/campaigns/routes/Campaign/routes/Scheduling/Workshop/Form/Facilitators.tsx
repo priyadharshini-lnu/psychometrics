@@ -107,7 +107,7 @@ export const Facilitators: React.FC<Props> = ({
   const datesCount = basicInfoData.dates.length
 
   const workshopResources = basicInfoData.workshop_resources || [{ key: 1, name: '', url: '' }]
-  const workshopNames = basicInfoData.dates.map(formatWorkshopDate)
+  const workshopNames = basicInfoData.dates.map((_, i) => formatWorkshopDate(startDateTime(i)))
 
   const [formData, setFormData] = useState<Store[]>(Array.from({ length: datesCount }, () => ({})))
   const [assessorIds, setAssessorIds] = useState<Store[]>(Array.from({ length: datesCount }, () => ({})))
