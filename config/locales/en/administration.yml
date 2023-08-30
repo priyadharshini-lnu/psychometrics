@@ -312,7 +312,7 @@ en:
         subjects_count_added: Subjects successfuly added
         success:
           continue: Continue
-          message: The invitations are scheduled to be sent
+          message: The task of sending the invitations has been queued; users will receive them shortly.
         title: Title
         workshop:
           title: Assessment Centers

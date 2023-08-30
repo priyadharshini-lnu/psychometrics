@@ -8,16 +8,20 @@ import {
 } from '@ant-design/icons'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { UserInfoCard } from '~/glint/components/UserInfoCard'
 import { Panel } from '~/glint/components/Panel/Panel'
 import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import styles from './Form.less'
 import { useResources } from '~/hooks/useResources'
-import { uploadCSV } from '~/modules/admin/modules/client/core/workshopInvite'
+import { uploadCSV, UPLOAD_CSV } from '~/modules/admin/modules/client/core/workshopInvite'
 import { Errors } from './BaseInfo'
+import { isRequestInProgress } from '~/core/request'
 
 const { I18n } = window
-const connecter = connect(() => ({}), { uploadCSV })
+const connecter = connect((state: RootState) => ({
+  uploadInProgress: isRequestInProgress(state, UPLOAD_CSV),
+}), { uploadCSV })
 
 type Props = ConnectedProps<typeof connecter> & {
   form: FormInstance,
@@ -27,7 +31,7 @@ type Props = ConnectedProps<typeof connecter> & {
 }
 
 export const AddSubjectsComponent: FC<Props> = ({
-  form, next, prev, uploadCSV, onCancel,
+  form, next, prev, uploadCSV, uploadInProgress, onCancel,
 }) => {
   const [uploadModal, showUploadModal] = useState(false)
   const [importErrors, setImportErrors] = useState<Errors[]>([])
@@ -65,6 +69,7 @@ export const AddSubjectsComponent: FC<Props> = ({
     collectionAction({
       action: 'import_subjects_from_campaign',
       method: 'get',
+      body: { page: { size: 300 } },
       apiConfig: {
         filter: { campaign_id: params.campaignId },
       },
@@ -83,6 +88,7 @@ export const AddSubjectsComponent: FC<Props> = ({
     if (files && files[0]) {
       const fd = new FormData()
       fd.append('campaign_id', params.campaignId)
+      fd.append('page[size]', '300')
       fd.append('file', files[0])
       uploadCSV(fd).then(({ response }) => {
         response.data.map((u) => {
@@ -96,7 +102,6 @@ export const AddSubjectsComponent: FC<Props> = ({
         }
         showUploadModal(false)
       })
-      message.success(I18n.t('administration.scheduling.subjects.import_job_scheduled'))
       setCSVErrors([])
     }
   }
@@ -131,7 +136,7 @@ export const AddSubjectsComponent: FC<Props> = ({
         open={uploadModal}
         title={I18n.t('administration.assessment_center.invite.subjects.import_title')}
         footer={[
-          <Button type="primary" onClick={() => upload()}>
+          <Button type="primary" disabled={uploadInProgress} onClick={() => upload()}>
             {I18n.t('administration.assessment_center.invite.subjects.upload')}
           </Button>,
           <Button onClick={() => showUploadModal(false)}>

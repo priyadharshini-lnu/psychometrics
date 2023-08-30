@@ -9,6 +9,9 @@ module Api
         schema Api::V2::WorkshopInvite::Schema.create_request
 
         rule(data: { attributes: :workshop_ids }) do
+          if value.count.zero?
+            key.failure(:filled?)
+          end
           if value.count > ::WorkshopInvite::RESTRICTED_ASSESSMENT_CENTERS
             key.failure(text:
               I18n.t('dry_errors.errors.exceeded_workshops_count',

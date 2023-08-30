@@ -100,6 +100,15 @@ export const BaseInfoForm: React.FC<Props> = ({
                 label={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers')}
               >
                 <Row gutter={[16, 16]}>
+                  {errors?.workshopIds && (
+                    <Col span={24}>
+                      <Alert
+                        message="Error"
+                        description={errors.workshopIds.title}
+                        type="error"
+                      />
+                    </Col>
+                  )}
                   <Col span={24}>
                     <div className={styles.hint}>
                       {I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_hint')}
@@ -129,15 +138,6 @@ export const BaseInfoForm: React.FC<Props> = ({
                       </Tag>
                     ))}
                   </Col>
-                  {errors?.workshopIds && (
-                    <Col span={24}>
-                      <Alert
-                        message="Errors"
-                        description={errors.workshopIds.title}
-                        type="error"
-                      />
-                    </Col>
-                  )}
                 </Row>
               </Form.Item>
               <Form.Item name="allowPreferredLanguage" valuePropName="checked">
