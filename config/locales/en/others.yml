@@ -1894,6 +1894,7 @@ en:
     background_reading: Background Reading
     bookings:
       add_to_calendar: Add To Calendar
+      add_to_calendar_tour_description: Add this booking to your calendar
       booking_failed_msg: 'Failed to book slot: %{error}'
       buttons:
         book: Book

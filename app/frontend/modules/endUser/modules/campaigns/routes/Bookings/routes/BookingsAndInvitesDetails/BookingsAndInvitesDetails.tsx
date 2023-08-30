@@ -106,7 +106,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
     }
     if (inviteOrBookingDetails?.id) {
       bookSlot(inviteOrBookingDetails.id.toString(), bookingData).then(() => {
-        history.push(`/invites/${inviteOrBookingId}/success`)
+        history.push(`/invites/${inviteOrBookingId}/success?tour=true`)
       }).catch((errors) => {
         const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
         message.error(I18n.t('frontend.bookings.booking_failed_msg', { error }))
@@ -124,7 +124,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
     }
     if (inviteOrBookingDetails?.id) {
       rescheduleBooking(inviteOrBookingDetails.id.toString(), rescheduleData).then(() => {
-        history.push(`/invites/${inviteOrBookingId}/success`)
+        history.push(`/invites/${inviteOrBookingId}/success?tour=true`)
       }).catch((errors) => {
         const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
         message.error(I18n.t('frontend.bookings.reschedule_failed_msg', { error }))

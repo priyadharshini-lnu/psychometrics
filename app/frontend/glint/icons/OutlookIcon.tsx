@@ -4,7 +4,7 @@ import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/
 
 const Svg: FC<CustomIconComponentProps> = () => (
   /* eslint-disable max-len */
-  <svg xmlns="http://www.w3.org/2000/svg" width="18.652" height="17.487" viewBox="0 0 18.652 17.487">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.652 17.487">
     <g id="outlook" transform="translate(0 -15.989)">
       <path id="Path_12200" data-name="Path 12200" d="M264.743,112.011h-8.16a.583.583,0,1,0,0,1.166h6.462l-3.581,2.785-2.568-1.633-.625.984,2.914,1.854a.583.583,0,0,0,.67-.031l4.305-3.349v7.552h-7.577a.583.583,0,1,0,0,1.166h8.16a.583.583,0,0,0,.583-.583v-9.326A.583.583,0,0,0,264.743,112.011Z" transform="translate(-246.674 -92.524)" fill="#1976d2" />
       <path id="Path_12201" data-name="Path 12201" d="M10.281,16.124A.573.573,0,0,0,9.8,16L.476,17.749A.581.581,0,0,0,0,18.322V31.145a.582.582,0,0,0,.476.572L9.8,33.466a.549.549,0,0,0,.107.01.583.583,0,0,0,.583-.583V16.573A.581.581,0,0,0,10.281,16.124Z" transform="translate(0 0)" fill="#2196f3" />
@@ -13,6 +13,17 @@ const Svg: FC<CustomIconComponentProps> = () => (
   </svg>
 )
 
-export const OutlookIcon = props => (
-  <Icon component={Svg} {...props} />
-)
+export const OutlookIcon = (props) => {
+  const { style, height, width } = props
+  return (
+    <Icon
+      component={Svg}
+      {...props}
+      style={{
+        height: height || '1.5em',
+        width: width || '1.5em',
+        ...style,
+      }}
+    />
+  )
+}

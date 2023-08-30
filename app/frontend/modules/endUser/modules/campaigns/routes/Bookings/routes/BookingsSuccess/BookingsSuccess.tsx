@@ -1,5 +1,7 @@
+import {
+  useState, FC, useEffect, useRef,
+} from 'react'
 import _ from 'lodash'
-import { useState, FC, useEffect } from 'react'
 import moment from 'moment'
 import {
   Row, Typography, Col, Space, message,
@@ -11,6 +13,8 @@ import { useParams, useHistory } from 'react-router-dom'
 import { CheckCircleFilled } from '@ant-design/icons'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
+import qs from 'qs'
+import Tour from '@rc-component/tour'
 import {
   GoogleCalendarIcon, YahooIcon, OutlookIcon, IcalIcon, Office365Icon,
 } from '~/glint/icons'
@@ -58,6 +62,8 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   bookingDetailsLoading, fetchSingleBooking, cancelBooking, requestForRescheduleInProgress,
   requestCancelBooking, requestRescheduleBooking, requestForCancelInProgress, cancelInProgress,
 }) => {
+  const tourRef = useRef<HTMLDivElement>(null)
+  const queryString = qs.parse(location.search.substring(1))
   const [requestCancellation, setRequestrequestCancellation] = useState<boolean>(false)
   const [requestReschedule, setRequestReschedule] = useState<boolean>(false)
   const [bookingDetails, setbookingDetails] = useState<null | SingleBooking >(null)
@@ -154,6 +160,12 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
     </>
   )
 
+  const handleAddToCalendarClick = () => {
+    if (queryString.tour === 'true') {
+      history.push(history.location.pathname)
+    }
+  }
+
   const detailsContent = (
     <Space size="middle" className="w-100" direction="vertical">
       <Row wrap={false}>
@@ -182,24 +194,47 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
         <Col span={6}>
           <Text type="secondary">{I18n.t('frontend.bookings.add_to_calendar')}</Text>
         </Col>
-        <Space>
-          <a href={google(event)}>
+        <div className={styles.inviteDiv} ref={tourRef}>
+          <a href={google(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
             <GoogleCalendarIcon />
           </a>
-          <a href={yahoo(event)}>
+          <a href={yahoo(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
             <YahooIcon />
           </a>
-          <a href={outlook(event)}>
+          <a href={outlook(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
             <OutlookIcon />
           </a>
-          <a href={ics(event)}>
+          <a href={ics(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
             <IcalIcon />
           </a>
-          <a href={office365(event)}>
+          <a href={office365(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
             <Office365Icon />
           </a>
-        </Space>
+        </div>
       </Row>
+      {
+        queryString.tour === 'true' && (
+          <Tour
+            defaultCurrent={0}
+            open
+            steps={[
+              {
+                arrow: true,
+                title: I18n.t('frontend.bookings.add_to_calendar'),
+                description: I18n.t('frontend.bookings.add_to_calendar_tour_description'),
+                target: tourRef.current,
+                mask: true,
+                closeIcon: true,
+                placement: 'topRight',
+              },
+            ]}
+            onClose={() => {
+              history.push(history.location.pathname)
+            }
+            }
+          />
+        )
+      }
     </Space>
   )
 
