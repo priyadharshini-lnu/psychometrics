@@ -10,6 +10,9 @@ RSpec.describe Workshops::Update do
   let(:valid_data) do
     {
       total_seats: 10,
+      name: 'name',
+      video_call_type: 'custom',
+      meeting_link: 'https://www.abc.com',
       workshop_managers_ids: [
         user1.id.to_s
       ],
@@ -23,6 +26,8 @@ RSpec.describe Workshops::Update do
     context 'with valid data' do
       it 'updates workshop with their resources' do
         expect { described_class.call!(workshop, valid_data) }.to change { workshop.workshop_managers.count }.by(1)
+        expect(workshop.name).to eq('name')
+        expect(workshop.meeting_link).to eq('https://www.abc.com')
       end
     end
 
@@ -35,6 +40,8 @@ RSpec.describe Workshops::Update do
 
         expect(workshop.workshop_assessors).to include(ua1)
         expect(workshop.workshop_assessors).not_to include(ua2)
+        expect(workshop.name).to eq('name')
+        expect(workshop.meeting_link).to eq('https://www.abc.com')
       end
     end
   end

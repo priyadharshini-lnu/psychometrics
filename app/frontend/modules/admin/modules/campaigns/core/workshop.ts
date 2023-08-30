@@ -17,6 +17,7 @@ export const WorkshopTR = t.type({
   totalSeats: t.number,
   remainingSeats: t.number,
   timezone: t.string,
+  videoCallType: t.string,
   meetingLink: t.union([t.string, t.null]),
   workshopManagers: t.array(userDetailsTR),
   workshopAssessors: t.array(userDetailsTR),

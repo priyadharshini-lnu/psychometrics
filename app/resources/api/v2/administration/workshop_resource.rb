@@ -36,7 +36,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   end
 
   def self.updatable_fields(_context)
-    %i[workshop_assessors_ids workshop_managers_ids total_seats]
+    %i[workshop_assessors_ids workshop_managers_ids total_seats name video_call_type meeting_link]
   end
 
   def remaining_seats

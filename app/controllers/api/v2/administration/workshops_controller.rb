@@ -83,8 +83,8 @@ module Api
     end
 
     def workshop_update_params
-      params.require(:data).require(:attributes).permit(:name, :total_seats, workshop_managers_ids: [],
-                                                        workshop_assessors_ids: [])
+      params.require(:data).require(:attributes).permit(:name, :meeting_link, :total_seats, :video_call_type,
+                                                        workshop_managers_ids: [], workshop_assessors_ids: [])
     end
 
     def bulk_subject_params

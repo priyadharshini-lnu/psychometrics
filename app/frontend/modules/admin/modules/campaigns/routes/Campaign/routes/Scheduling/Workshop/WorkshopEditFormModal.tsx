@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { FC, useState, useEffect } from 'react'
 import {
-  Form, Typography, InputNumber,
+  Form, Typography, InputNumber, Input, Radio,
 } from 'antd'
 import moment from 'moment-timezone'
 import { useParams } from 'react-router-dom'
@@ -20,6 +20,7 @@ type Props = {
   workshop: Workshop
   updateWorkshop: (data) => Promise<Workshop>
 }
+
 export const WorkshopEditFormModal: FC<Props> = ({
   close,
   workshop,
@@ -37,6 +38,8 @@ export const WorkshopEditFormModal: FC<Props> = ({
     'workshop_facilitators',
     { responseType: userDetailsListTR },
   )
+
+  const [videoCallType, setVideoCallType] = useState<string>(workshop.videoCallType)
 
   useEffect(() => {
     form.setFieldValue('workshopManagersIds', _.map(workshop.workshopManagers, 'userId').map(id => id?.toString()))
@@ -81,6 +84,39 @@ export const WorkshopEditFormModal: FC<Props> = ({
     >
       {() => (
         <>
+          <Form.Item
+            name="name"
+            label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
+            rules={[{ required: true }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
+            name="videoCallType"
+            rules={[{ required: true }]}
+          >
+            <Radio.Group onChange={(e) => { setVideoCallType(e.target.value) }}>
+              <Radio value="not_available">
+                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.none')}
+              </Radio>
+              <Radio value="internal">
+                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.internal')}
+              </Radio>
+              <Radio value="custom">
+                {I18n.t('administration.scheduling.assessment_center_form.video_call_type.custom')}
+              </Radio>
+            </Radio.Group>
+          </Form.Item>
+          {videoCallType === 'custom' && (
+            <Form.Item
+              label="Meeting Link"
+              name="meetingLink"
+              rules={[{ required: true }, { type: 'url' }]}
+            >
+              <Input />
+            </Form.Item>
+          )}
           <Form.Item
             name="workshopManagersIds"
             label={<Text className="font-normal">{I18n.t('administration.scheduling.info.managers')}</Text>}

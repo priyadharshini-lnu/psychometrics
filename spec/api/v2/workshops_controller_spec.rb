@@ -149,6 +149,9 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
             id: '1',
             attributes: {
               total_seats: 20,
+              name: 'name',
+              video_call_type: 'custom',
+              meeting_link: 'https://www.abc.com',
               workshop_assessors_ids: [1],
               workshop_managers_ids: [1]
             }
@@ -162,6 +165,9 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
               id: workshop_id.to_s,
               attributes: {
                 total_seats: 20,
+                name: 'name',
+                video_call_type: 'custom',
+                meeting_link: 'https://www.abc.com',
                 workshop_assessors_ids: [assessor.user_id.to_s, user1.id.to_s],
                 workshop_managers_ids: [user2.id.to_s]
               }
@@ -171,6 +177,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
 
         run_test! do |_|
           expect(workshop.reload.total_seats).to eq(20)
+          expect(workshop.name).to eq('name')
+          expect(workshop.meeting_link).to eq('https://www.abc.com')
           expect(workshop.workshop_assessors.count).to eq(2)
           expect(workshop.workshop_assessors).to include(WorkshopAssessor.find_by(user_id: user1.id))
           expect(workshop.workshop_assessors).to include(assessor)
