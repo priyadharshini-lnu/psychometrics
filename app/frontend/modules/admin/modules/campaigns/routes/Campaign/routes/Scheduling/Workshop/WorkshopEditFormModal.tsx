@@ -72,7 +72,11 @@ export const WorkshopEditFormModal: FC<Props> = ({
       scrollToFirstError
       modalProps={{ width: 700 }}
       request={{
-        updateResource: updateWorkshop,
+        updateResource: (data: {workshopManagers: string[], workshopAssessors: string[]}) => updateWorkshop({
+          ...data,
+          workshopManagers: data.workshopManagers.map(id => id.toString()),
+          workshopAssessors: data.workshopAssessors.map(id => id.toString()),
+        }),
       }}
     >
       {() => (
