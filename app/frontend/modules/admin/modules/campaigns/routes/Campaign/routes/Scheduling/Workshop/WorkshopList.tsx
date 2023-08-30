@@ -47,7 +47,13 @@ export const WorkshopList: React.FC = () => {
             title={I18n.t('common.column.id')}
             id="id"
             width="3%"
-            render={(_, { id }) => <Link to={`assessment_center/${id}`}>{id}</Link>}
+            sorter
+          />
+          <Resource.Column<Workshop>
+            title={I18n.t('administration.scheduling.columns.name')}
+            id="name"
+            width="20%"
+            render={(_, { id, name }) => <Link to={`assessment_center/${id}`}>{name}</Link>}
             sorter
           />
           <Resource.Column<Workshop>

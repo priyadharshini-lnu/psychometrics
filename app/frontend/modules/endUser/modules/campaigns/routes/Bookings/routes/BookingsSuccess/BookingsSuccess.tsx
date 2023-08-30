@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { useState, FC, useEffect } from 'react'
 import moment from 'moment'
 import {
@@ -25,6 +26,7 @@ import {
   requestRescheduleBooking,
   REQUEST_RESCHEDULE_BOOKING,
   REQUEST_CANCEL_BOOKING,
+  CANCEL_BOOKING,
 } from '~/modules/endUser/modules/campaigns/core/bookings'
 import { BookingConfirmationContainer, FullWidthSkeleton } from '~/glint'
 import { RescheduleAndCancel } from './RescheduleAndCancel'
@@ -38,6 +40,7 @@ const connector = connect(
     currentUser: getCurrentUser(state),
     requestForRescheduleInProgress: isRequestInProgress(state, REQUEST_RESCHEDULE_BOOKING),
     requestForCancelInProgress: isRequestInProgress(state, REQUEST_CANCEL_BOOKING),
+    cancelInProgress: isRequestInProgress(state, CANCEL_BOOKING),
   }),
   {
     fetchSingleBooking,
@@ -53,7 +56,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   bookingDetailsLoading, fetchSingleBooking, cancelBooking, requestForRescheduleInProgress,
-  requestCancelBooking, requestRescheduleBooking, requestForCancelInProgress,
+  requestCancelBooking, requestRescheduleBooking, requestForCancelInProgress, cancelInProgress,
 }) => {
   const [requestCancellation, setRequestrequestCancellation] = useState<boolean>(false)
   const [requestReschedule, setRequestReschedule] = useState<boolean>(false)
@@ -75,6 +78,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
     .subtract(bookingDetails?.rescheduleLeadTime, 's')
   const bookingEndTime = bookedDateTimeMomentObjectTz?.clone().add(duration, 's')
   const meetingTime = `${bookedDateTimeMomentObjectTz?.clone().format('hh:mmA')} - ${bookingEndTime?.format('hh:mmA')}`
+  const allowCancelByUser = currentTime.isSameOrBefore(deadlineToAllowCancelByUser)
 
   useEffect(() => {
     fetchSingleBooking(inviteOrBookingId).then(({ response }) => {
@@ -90,9 +94,14 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   }
 
   const handleCancelBooking = (cancel: boolean) => {
-    const allowCancelByUser = currentTime.isSameOrBefore(deadlineToAllowCancelByUser)
     if (allowCancelByUser && bookingId && workshopId) {
-      cancelBooking(bookingId, workshopId)
+      cancelBooking(bookingId, workshopId).then(() => {
+        message.success(I18n.t('frontend.bookings.cancellation_success'))
+        history.push('/invites')
+      }).catch((errors) => {
+        const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
+        message.error(I18n.t('frontend.bookings.cancellation_failed', { error }))
+      })
     } else {
       setRequestrequestCancellation(cancel)
     }
@@ -104,7 +113,10 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
         message.success(I18n.t('frontend.bookings.request_cancellation_success'))
         history.push('/invites')
       })
-        .catch(() => message.error(I18n.t('frontend.bookings.request_cancellation_failed')))
+        .catch((errors) => {
+          const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
+          message.error(I18n.t('frontend.bookings.request_cancellation_failed', { error }))
+        })
     }
   }
 
@@ -127,7 +139,10 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
       requestRescheduleBooking(bookingId, requestData).then(() => {
         message.success(I18n.t('frontend.bookings.request_reschedule_success'))
         history.push('/invites')
-      }).catch(() => message.error(I18n.t('frontend.bookings.request_reschedule_failed')))
+      }).catch((errors) => {
+        const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
+        message.error(I18n.t('frontend.bookings.request_reschedule_failed', { error }))
+      })
     }
   }
 
@@ -210,6 +225,8 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
               onRequestRescheduleBooking={handleRequestRescheduleBooking}
               requestForRescheduleInProgress={requestForRescheduleInProgress}
               requestForCancelInProgress={requestForCancelInProgress}
+              allowCancelByUser={allowCancelByUser}
+              cancelInProgress={cancelInProgress}
             />
           )}
         />

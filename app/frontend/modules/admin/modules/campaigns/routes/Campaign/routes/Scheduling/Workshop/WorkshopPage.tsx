@@ -97,11 +97,13 @@ export const WorkshopPage: FC<{}> = () => {
             <>
               <Space>
                 <ArrowLeftOutlined onClick={() => routeUtils.moveTo(history, prefixPath, '/assessment_center')} />
-                {formatWorkshopDate(workshop.startTime)}
+                {workshop.name}
               </Space>
             </>
           )}
-          column={4}
+          column={{
+            lg: 4, md: 3, sm: 2, xs: 1,
+          }}
           extra={
             workshop.meta?.permissions?.update && (
             <Button
@@ -112,7 +114,13 @@ export const WorkshopPage: FC<{}> = () => {
             />
             )
           }
+          contentStyle={{ paddingInlineEnd: '5px' }}
+          labelStyle={{ fontWeight: 'bold' }}
+          size="small"
         >
+          <Descriptions.Item label={I18n.t('administration.scheduling.info.date')}>
+            {formatWorkshopDate(workshop.startTime)}
+          </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.duration')}>
             {moment.duration(workshop.duration, 'seconds').humanize()}
           </Descriptions.Item>

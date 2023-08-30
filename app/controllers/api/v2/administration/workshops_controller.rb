@@ -40,6 +40,7 @@ module Api
       params.require(:data).require(:attributes).permit(
         :campaign_id,
         workshops: [
+          :name,
           :total_seats,
           :meeting_link,
           :duration,
@@ -82,7 +83,7 @@ module Api
     end
 
     def workshop_update_params
-      params.require(:data).require(:attributes).permit(:total_seats, workshop_managers_ids: [],
+      params.require(:data).require(:attributes).permit(:name, :total_seats, workshop_managers_ids: [],
                                                         workshop_assessors_ids: [])
     end
 

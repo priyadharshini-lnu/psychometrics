@@ -3,6 +3,7 @@ import {
   Drawer, Table, Avatar, Checkbox, Space, Radio, TimePicker, Button, Col, Row,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import moment from 'moment'
 import { ResourceAvatar } from '~/glint'
 import { CampaignAssessment, CampaignAssessmentTR } from '~/modules/admin/modules/campaigns/core/campaignAssessment'
 import {
@@ -69,7 +70,11 @@ export const BulkSchedule: React.FC<Props> = ({
   }
 
   const changeAction = (assessment, value) => {
-    setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, action: value } : d)))
+    let { time } = assessment
+    if (value === 'schedule' && !time) {
+      time = moment().toDate()
+    }
+    setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, action: value, time } : d)))
   }
   const changeTime = (assessment, time) => {
     setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, time: time.toDate() } : d)))
@@ -108,7 +113,13 @@ export const BulkSchedule: React.FC<Props> = ({
                 <Radio value="schedule">{I18n.t('administration.scheduling.subjects.schedule')}</Radio>
                 <Radio value="unschedule">{I18n.t('administration.scheduling.subjects.unschedule')}</Radio>
               </Radio.Group>
-              <TimePicker format={settings.timeFormat} onChange={value => changeTime(assessment, value)} />
+              { assessment.action === 'schedule' && (
+                <TimePicker
+                  format={settings.timeFormat}
+                  onChange={value => changeTime(assessment, value)}
+                  defaultValue={moment()}
+                />
+              )}
             </Space>
           )}
         />

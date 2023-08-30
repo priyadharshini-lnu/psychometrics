@@ -82,7 +82,8 @@ export const AssessmentCenterForm = () => {
     setShowSuccessPage(true)
   }
 
-  const { createResource } = useResources<WorkshopInvite>('workshop_invites')
+  const { createResource, isLoading } = useResources<WorkshopInvite>('workshop_invites')
+  const workshopInviteCreationInProgress = isLoading('add')
   const [errors, setErrors] = useState<Errors | null>(null)
 
   const submitForm = () => {
@@ -174,6 +175,7 @@ export const AssessmentCenterForm = () => {
             submit={submitForm}
             prev={handlePrevious}
             errors={errors}
+            isLoading={workshopInviteCreationInProgress}
           />
         ))}
     </div>

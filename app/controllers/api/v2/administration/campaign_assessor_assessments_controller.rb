@@ -5,12 +5,20 @@ module Api
     validates_request_schema :create, Api::V2::CampaignAssessorAssessment::CreateContract.new
 
     def subject_assessor_assessments
-      assessor_assessments = WorkshopSubjects::GetAssessorAssessments.call!(
-        campaign_id: params[:campaign_id],
-        workshop_subject_id: params[:workshop_subject_id]
-      )
+      workshop_subject = WorkshopSubject.find(params[:workshop_subject_id])
 
-      render json: assessor_assessments, status: :ok
+      campaign_assessor_assessments = CampaignAssessorAssessment.where(campaign_id: params[:campaign_id])
+
+      user_assessments = UserAssessment.where(
+        relationship_id: Relationship.assessor_relationship.id,
+        subject_id: workshop_subject.user_id,
+        campaign_id: params[:campaign_id],
+        assessment_id: campaign_assessor_assessments.pluck(:assessment_id)
+      ).index_by(&:assessment_id)
+
+      render json: campaign_assessor_assessments,
+             each_serializer: ::Administration::Campaigns::WorkshopSubjects::CampaignAssessorAssessmmentSerializer,
+             user_assessments: user_assessments
     end
   end
 end

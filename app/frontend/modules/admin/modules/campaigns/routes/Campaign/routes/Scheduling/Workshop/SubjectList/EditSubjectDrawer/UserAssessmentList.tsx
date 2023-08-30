@@ -48,7 +48,10 @@ const ScheduleTime = ({ assessment, onTimeChange }) => {
     <Row gutter={[8, 0]}>
       <Col span={4} className="flex items-center">
         <Switch
-          onChange={current => setActive(current)}
+          onChange={(current) => {
+            setActive(current)
+            onTimeChange(moment(), id)
+          }}
           defaultChecked={active}
           disabled={status === 'completed'}
         />
@@ -59,7 +62,7 @@ const ScheduleTime = ({ assessment, onTimeChange }) => {
             className="w-100"
             disabled={status !== 'not_started' || !active}
             format="hh:mm A"
-            defaultValue={scheduleTime ? moment(scheduleTime) : undefined}
+            defaultValue={scheduleTime ? moment(scheduleTime) : moment()}
             onChange={value => onTimeChange(value, id)}
           />
         ) : <Input disabled value="Not Scheduled" />}

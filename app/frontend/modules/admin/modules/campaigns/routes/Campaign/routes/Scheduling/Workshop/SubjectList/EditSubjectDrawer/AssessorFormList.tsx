@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { EditOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import moment from 'moment'
 
 import { ResourceAvatar } from '~/glint'
 import { PROGRESS_STATUSES } from './EditSubjectDrawer'
@@ -33,16 +34,21 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
       render={assessor => (
         assessor && (
         <ResourceAvatar
-          name={assessor?.name}
-          tooltip={assessor?.name}
-          url={assessor.photoUrl}
+          name={assessor.name || ''}
+          tooltip={assessor.name || ''}
+          url={assessor.photoUrl || ''}
         />
         )
       )}
     />
     <Column
       title={I18n.t('common.column.schedule_time')}
-      dataIndex="schedule"
+      dataIndex="scheduleTime"
+      render={scheduleTime => (
+        scheduleTime && (
+        <span>{moment(scheduleTime).format('HH:mm A')}</span>
+        )
+      )}
     />
     <Column
       title={I18n.t('common.column.meeting_link')}
