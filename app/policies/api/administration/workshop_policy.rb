@@ -15,6 +15,10 @@ module Api
         has_permission?(:workshops, :view) || user.assessor?
       end
 
+      def update?
+        has_permission?(:workshops, :manage)
+      end
+
       def bulk_update_subjects?
         has_permission?(:workshops, :manage)
       end
@@ -31,23 +35,25 @@ module Api
         true
       end
 
-      class Scope < Scope
-        attr_reader :campaign_id
+      private
 
-        def initialize(user, scope, opts = {})
-          @user = user
-          @scope = [scope].flatten.last
-          @campaign_id = opts[:campaign_id]
-        end
+      def can_manage?
+        has_permission?(:workshops, :manage)
+      end
 
+      class Scope < BasePolicy::Scope
         def resolve
-          return scope if user.superadmin?
+          new_scope = if user.superadmin?
+                        scope
+                      elsif campaign_id && user.has_permission?(:workshops, :view, campaign_id: campaign_id)
+                        user.accessible_records(Workshop, 'workshops.view')
+                      else
+                        Workshop.includes(:workshop_assessors).where(workshop_assessors: { user_id: user.id })
+                      end
 
-          if campaign_id && user.has_permission?(:workshops, :view, campaign_id: campaign_id)
-            return user.accessible_records(Workshop, 'workshops.view')
-          end
+          return new_scope.where(campaign_id: campaign_id) if campaign_id
 
-          Workshop.includes(:workshop_assessors).where(workshop_assessors: { user_id: user.id })
+          new_scope
         end
       end
     end

@@ -22,7 +22,7 @@ export const SubjectAddFormModal:React.FC<Props> = ({ close }) => {
 
   const {
     data: users, fetch: fetchUsers, isLoading: isUsersLoading,
-  } = useResources<User>('users', { responseType: UserTR })
+  } = useResources<User>('users', { basePath: `campaigns/${campaignId}`, responseType: UserTR })
 
   return (
     <ResourceFormModal
@@ -55,7 +55,6 @@ export const SubjectAddFormModal:React.FC<Props> = ({ close }) => {
                   apiConfig: {
                     filter: {
                       search_query: value,
-                      with_campaign_user: campaignId,
                     },
                   },
                 })

@@ -43,7 +43,7 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           WorkshopInvite
         end

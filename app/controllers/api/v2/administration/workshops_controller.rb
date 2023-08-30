@@ -63,20 +63,22 @@ module Api
       {
         permissions: lambda {
           GetPermissionsHash.call!(
-            Administration::WorkshopPolicy,
-            context[:user],
-            @model,
-            %w[index show],
-            { project_id: context[:client_id] }
+            ::Api::Administration::WorkshopPolicy,
+            current_user,
+            model || model_class,
+            %w[index show create],
+            { campaign_id: campaign_id }
           )
         }
       }
     end
 
     def set_workshop
+      return unless params[:id] || params[:workshop_id]
+
       @workshop = Api::Administration::WorkshopPolicy::Scope.new(
         current_user, Workshop, campaign_id: params[:campaign_id]
-      ).resolve.find(params[:id])
+      ).resolve.find(params[:id] || params[:workshop_id])
     end
 
     def workshop_update_params
@@ -87,6 +89,11 @@ module Api
     def bulk_subject_params
       params.require(:data).require(:attributes).permit(:override_existing, subject_ids: [],
                                                         assessments: %i[assessment_id action time])
+    end
+
+    def campaign_id
+      set_workshop
+      @workshop&.campaign_id || super
     end
   end
 end

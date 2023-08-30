@@ -33,9 +33,10 @@ export const AddSubjectsComponent: FC<Props> = ({
   const [importErrors, setImportErrors] = useState<Errors[]>([])
   const [csvErrors, setCSVErrors] = useState<{index: number, email:string}[]>([])
   const ref = useRef<InputRef>(null)
+  const { campaignId } = useParams<{campaignId: string}>()
   const {
     data: users, fetch: fetchUsers, isLoading: isUsersLoading,
-  } = useResources<User>('users', { responseType: UserTR })
+  } = useResources<User>('users', { basePath: `campaigns/${campaignId}`, responseType: UserTR })
 
   const {
     collectionAction,
@@ -180,7 +181,6 @@ export const AddSubjectsComponent: FC<Props> = ({
                     apiConfig: {
                       filter: {
                         search_query: value,
-                        with_campaign_user: params.campaignId,
                       },
                     },
                   })

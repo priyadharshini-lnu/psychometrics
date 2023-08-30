@@ -33,7 +33,7 @@ module Api
           exists?(report_id: @user_report.report_id)
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           user.accessible_records(UserReportComment, 'results.view_report').not_deleted
         end

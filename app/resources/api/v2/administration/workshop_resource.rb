@@ -56,12 +56,24 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   end
 
   def self.records(opts = {})
-    return super if opts[:context][:user].assessor?
+    Api::Administration::WorkshopPolicy::Scope.new(
+      opts[:context][:user],
+      Workshop,
+      campaign_id: opts[:context][:params]['campaign_id']
+    ).resolve
+  end
 
-    if opts[:context][:params]['campaign_id']
-      super(opts).where(campaign_id: opts[:context][:params]['campaign_id'])
-    else
-      super(opts)
-    end
+  def meta_details
+    {
+      permissions: lambda {
+        GetPermissionsHash.call!(
+          Api::Administration::WorkshopPolicy,
+          context[:user],
+          @model,
+          %w[update],
+          { campaign_id: @model.campaign_id }
+        )
+      }
+    }
   end
 end

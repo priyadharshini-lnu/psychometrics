@@ -3,7 +3,6 @@ import {
   Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
@@ -14,6 +13,7 @@ import { ResourceAvatar } from '~/glint'
 import { BulkSchedule } from '../BulkSchedule/BulkSchedule'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { EditSubjectDrawer } from './EditSubjectDrawer'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
 
 const { I18n } = window
 const { Text } = Typography
@@ -165,7 +165,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               <div
                 role="button"
                 tabIndex={-1}
-                onClick={() => handleEditSubject(id, userId)}
+                onClick={() => resource.meta.permissions?.manage && handleEditSubject(id, userId)}
               >
                 <Space>
                   <ResourceAvatar size="large" key={id} tooltip={fullName} url={photoUrl} name={fullName} />
@@ -241,7 +241,7 @@ interface ActionMenuProps {
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   subject,
 }) => {
-  const { resource } = useResourceContext<WorkshopSubject>()
+  const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
   const handleOnConfirm = () => resource.removeResource(subject.id).then(() => {
     message.success(
       I18n.t('administration.scheduling.subjects.success_message', { subject_email: subject?.user?.email }),
@@ -262,7 +262,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
 
   const menuItems = [
-    {
+    resource.meta.permissions?.remove ? {
       key: 'remove',
       label: (
         <>
@@ -271,8 +271,8 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </Button>
         </>
       ),
-    },
-  ]
+    } : null,
+  ].filter(Boolean)
 
   return (
     <Menu items={menuItems} />

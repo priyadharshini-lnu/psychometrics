@@ -6,6 +6,10 @@ class Api::V2::Administration::WorkshopResourceResource < Api::V2::Administratio
   has_one :workshop
 
   def self.records(opts = {})
-    super(opts).where(workshop_id: opts[:context][:params]['workshop_id'])
+    Api::Administration::WorkshopResourcePolicy::Scope.new(
+      opts[:context][:user],
+      WorkshopResource,
+      campaign_id: opts[:context][:params]['campaign_id']
+    ).resolve.where(workshop_id: opts[:context][:params]['workshop_id'])
   end
 end

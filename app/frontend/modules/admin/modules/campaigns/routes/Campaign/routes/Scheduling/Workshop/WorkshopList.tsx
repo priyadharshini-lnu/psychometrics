@@ -41,16 +41,7 @@ export const WorkshopList: React.FC = () => {
   return (
     <>
       <Resource config={config} name="workshops">
-        <Resource.Filter hideSearch placeholder="" name="">
-          <WorkshopDatePicker />
-          <Space>
-            <Button type="primary" onClick={openForm}>
-              <PlusOutlined />
-              {' '}
-              {I18n.t('administration.scheduling.add_assessment_center')}
-            </Button>
-          </Space>
-        </Resource.Filter>
+        <Filter openForm={openForm} />
         <Resource.Table pagination>
           <Resource.Column<Workshop>
             title={I18n.t('common.column.id')}
@@ -93,6 +84,28 @@ export const WorkshopList: React.FC = () => {
   )
 }
 
+interface FilterProps {
+  openForm: () => void
+}
+
+const Filter: React.FC<FilterProps> = ({ openForm }) => {
+  const { resource } = useResourceContext<Workshop, { permissions: { create: boolean } }>()
+
+  return (
+    <Resource.Filter hideSearch placeholder="" name="">
+      <WorkshopDatePicker />
+      <Space>
+        {resource.meta.permissions.create && (
+        <Button type="primary" onClick={openForm}>
+          <PlusOutlined />
+          {' '}
+          {I18n.t('administration.scheduling.add_assessment_center')}
+        </Button>
+        )}
+      </Space>
+    </Resource.Filter>
+  )
+}
 interface Resource {
   id: string
   fullName: string

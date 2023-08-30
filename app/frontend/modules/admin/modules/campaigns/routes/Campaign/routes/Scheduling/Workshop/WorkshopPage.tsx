@@ -71,6 +71,7 @@ export const WorkshopPage: FC<{}> = () => {
       responseType: WorkshopTR,
       apiConfig: {
         include: ['workshop_managers', 'workshop_assessors'],
+        include_resource_meta: ['permissions'],
         fields: {
           workshop_managers: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
           workshop_assessors: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
@@ -101,14 +102,16 @@ export const WorkshopPage: FC<{}> = () => {
             </>
           )}
           column={4}
-          extra={(
+          extra={
+            workshop.meta?.permissions?.update && (
             <Button
               icon={<EditOutlined />}
               onClick={() => setShowForm(true)}
               size="large"
               type="link"
             />
-          )}
+            )
+          }
         >
           <Descriptions.Item label={I18n.t('administration.scheduling.info.duration')}>
             {moment.duration(workshop.duration, 'seconds').humanize()}

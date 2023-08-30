@@ -26,11 +26,11 @@ const menuItems = (permissions: Campaign['permissions']): MenuItem[] => [
     label: 'Participants',
     icon: <UserOutlined />,
   },
-  {
+  permissions.viewWorkshops ? {
     key: 'scheduling',
     label: 'Scheduling',
     icon: <CalendarOutlined />,
-  },
+  } : null,
   permissions.manageCampaigns ? {
     key: 'assessments_reports',
     label: 'Assessments & Reports',

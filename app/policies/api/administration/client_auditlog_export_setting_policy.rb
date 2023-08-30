@@ -15,7 +15,7 @@ module Api
         update?
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           return scope if @user.is?(:superadmin)
 

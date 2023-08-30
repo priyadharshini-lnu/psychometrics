@@ -23,7 +23,7 @@ module Api
         manage_webhooks?
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           scope = super.not_deleted
 
