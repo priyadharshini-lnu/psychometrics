@@ -3,11 +3,12 @@ import {
 } from 'react'
 import _ from 'lodash'
 import {
-  Space, Form, DatePicker, Button, Typography, Alert,
+  Space, Form, DatePicker, Button, Typography, Alert, Row, Col,
 } from 'antd'
 import moment, { Moment } from 'moment-timezone'
 import cs from 'classnames'
 
+import { CopyOutlined } from '@ant-design/icons'
 import { ScheduleDay } from '~/glint/components/ScheduleAvailability/ScheduleDay'
 import { Panel } from '~/glint'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
@@ -122,6 +123,14 @@ export const ScheduleAvailability:FC<Props> = ({
     }
   }
 
+  const handleCopyToALl = () => {
+    const firstFiled = dateSelectionForm.getFieldValue(availableWeekDays[0])
+    availableWeekDays.forEach((day) => {
+      dateSelectionForm.setFieldValue(day, firstFiled)
+    })
+    setDateFields(dateSelectionForm.getFieldsValue())
+  }
+
   const dateRangeError = errorMessages?.startDate?.title || errorMessages?.endDate?.title
 
   return (
@@ -198,16 +207,30 @@ export const ScheduleAvailability:FC<Props> = ({
           <div className={cs(styles.daysContainer, 'mt-10')}>
             <Space size="small" direction="vertical">
               {availableWeekDays
-                .map(day => (
-                  <ScheduleDay
-                    formInstance={dateSelectionForm}
-                    key={day}
-                    day={day}
-                    label={allDays[day]}
-                    errorMessages={
-                      getErrorsForDay(day, errorMessages, dateSelectionForm.getFieldsValue())
+                .map((day, index) => (
+                  <Row wrap={false} gutter={[4, 0]}>
+                    <Col span={20}>
+                      <ScheduleDay
+                        formInstance={dateSelectionForm}
+                        key={day}
+                        day={day}
+                        label={allDays[day]}
+                        errorMessages={
+                        getErrorsForDay(day, errorMessages, dateSelectionForm.getFieldsValue())
+                      }
+                      />
+                    </Col>
+                    <Col>
+                      {
+                        index === 0 && (
+                        <Button type="link" onClick={handleCopyToALl}>
+                          <CopyOutlined />
+                          {I18n.t('glint.schedule_availability.copy_to_all')}
+                        </Button>
+                        )
                     }
-                  />
+                    </Col>
+                  </Row>
                 ))}
             </Space>
           </div>

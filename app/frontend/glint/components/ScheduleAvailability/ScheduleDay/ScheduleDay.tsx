@@ -6,6 +6,7 @@ import {
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
+import moment from 'moment'
 import { LightBackgroundButton } from '~/glint'
 import styles from './ScheduleDay.less'
 
@@ -127,7 +128,15 @@ export const ScheduleDay:FC<Props> = ({
                             aria-label="add"
                             disabled={!(fieldData[name]?.startTime && fieldData[name]?.endTime)}
                             icon={<PlusOutlined />}
-                            onClick={() => add()}
+                            onClick={() => {
+                              add(
+                                {
+                                  startTime: moment(fieldData[name]?.endTime, 'HH:mm:ss').add(1, 'hours'),
+                                  endTime: moment(fieldData[name]?.endTime, 'HH:mm:ss').add(2, 'hours'),
+                                },
+                              )
+                            }
+                            }
                           />
                         </div>
                         <div className="mb-3">
@@ -171,7 +180,10 @@ export const ScheduleDay:FC<Props> = ({
                         <LightBackgroundButton
                           aria-label="add"
                           icon={<PlusOutlined />}
-                          onClick={() => add()}
+                          onClick={() => add({
+                            startTime: moment('9:00:00', 'HH:mm:ss'),
+                            endTime: moment('17:00:00', 'HH:mm:ss'),
+                          })}
                         />
                       </Form.Item>
                     </Space>
