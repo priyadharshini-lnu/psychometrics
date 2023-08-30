@@ -111,13 +111,13 @@ const RemoveSubject: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
   const removeSubject = ({ id, user }: WorkshopInvitedSubject) => {
     Modal.confirm({
       title: I18n.t('administration.invited_subject.remove_confirm.title'),
-      content: I18n.t('administration.invited_subject.remove_confirm.content', { subjectEmail: user?.email }),
+      content: I18n.t('administration.invited_subject.remove_confirm.content', { subjectEmail: user.email }),
       okText: I18n.t('common.text.confirm'),
       cancelText: I18n.t('common.text.cancel'),
       onOk: () => {
         resource.removeResource(id).then(() => {
           message.success(I18n.t('administration.invited_subject.remove_confirm.success',
-            { subjectEmail: user?.email }))
+            { subjectEmail: user.email }))
         })
       },
     })
