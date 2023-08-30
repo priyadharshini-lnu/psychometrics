@@ -6,7 +6,6 @@ import {
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
 import { useDebouncedCallback } from 'use-debounce'
-import { formatWorkshopDate } from '~/utils/workshop'
 import { Panel } from '~/glint/components/Panel/Panel'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { useResources } from '~/hooks/useResources'
@@ -111,7 +110,7 @@ export const BaseInfoForm: React.FC<Props> = ({
                       // eslint-disable-next-line max-len
                       placeholder={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_placeholder')}
                       options={assessmetnCenters.map(workshop => ({
-                        label: formatWorkshopDate(workshop.startTime), value: workshop.id,
+                        label: workshop.name, value: workshop.id,
                       }))}
                       onSelect={changeWorkshops}
                       filterOption={false}
@@ -126,7 +125,7 @@ export const BaseInfoForm: React.FC<Props> = ({
                   <Col span={24}>
                     {(form.getFieldValue('workshopIds') || []).map(workshop => (
                       <Tag closable={!(workshops && workshops.length > 0)} onClose={() => removeWorkshop(workshop.id)}>
-                        {formatWorkshopDate(workshop.startTime)}
+                        {workshop.name}
                       </Tag>
                     ))}
                   </Col>

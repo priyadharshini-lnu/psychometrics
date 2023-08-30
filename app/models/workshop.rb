@@ -24,7 +24,7 @@ class Workshop < ApplicationRecord
 
   scope :search_query, lambda { |query|
     where('start_time >= ?', Time.current.beginning_of_day).
-      where('TO_CHAR(start_time, \'ddth FMMonth yyyy, HH:MI am\') ILIKE ?', "%#{query}%")
+      where('name ILIKE ?', "%#{query}%")
   }
   scope :visible_to_end_user, lambda { |user_id|
     Workshop.
