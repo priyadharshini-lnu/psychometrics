@@ -27,7 +27,7 @@ module Workshops
       private
 
       def remove_workshop_subject
-        WorkshopSubject.find_by(workshop_id: workshop.id, user_id: subject_id).destroy
+        workshop_invited_subject.workshop_subject.update!(scheduling_status: :late_cancelled)
         workshop.decrement!(:booked_seats)
       end
     end

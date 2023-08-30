@@ -17,7 +17,7 @@ module Workshops
           @workshop_subject = create_workshop_subject
           workshop_invited_subject.accepted!
           create_workshop_invite_log('accepted')
-          increment_booked_seats
+          increment_booked_seats(workshop_id)
         end
 
         broadcast(:ok)
@@ -31,21 +31,11 @@ module Workshops
           workshop_id: workshop_id,
           campaign_id: workshop.campaign_id,
           workshop_invited_subject_id: workshop_invited_subject.id,
+          scheduling_status: :scheduled,
           preferred_language: workshop_subject_details[:preferred_language],
           neurodivergent: workshop_subject_details[:neurodivergent],
           neurodivergent_comments: workshop_subject_details[:neurodivergent_comment]
         )
-      end
-
-      def increment_booked_seats
-        query = <<-SQL.squish
-          UPDATE workshops
-          SET booked_seats = booked_seats + 1
-          WHERE id = #{workshop_id} AND booked_seats < total_seats
-        SQL
-        result = ActiveRecord::Base.connection.execute(query)
-        updated_record_count = result.cmd_status.split.last.to_i
-        I18n.t('administration.errors.bookings.seats_not_available') if updated_record_count.zero?
       end
     end
   end

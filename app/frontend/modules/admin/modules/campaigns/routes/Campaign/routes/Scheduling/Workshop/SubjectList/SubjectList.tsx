@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
+  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import * as t from 'io-ts'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
   WorkshopSubject, WorkshopSubjectTR,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import { ResourceAvatar } from '~/glint'
+import { ResourceAvatar, ConfirmationModal } from '~/glint'
 import { BulkSchedule } from '../BulkSchedule/BulkSchedule'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { EditSubjectDrawer } from './EditSubjectDrawer'
@@ -29,6 +31,8 @@ const TAG_COLORS = {
   not_started: 'default',
   completed: 'success',
 }
+const UNACTIONABLE_SCHEDULING_STATUSES = ['rescheduled', 'cancelled', 'late_rescheduled', 'late_cancelled']
+const CANCELLED_SCHEDULING_STATUSES = ['cancelled', 'late_cancelled']
 
 interface Props {
   workshop: Workshop
@@ -135,7 +139,15 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           title={() => (
             <Space>
               {resource.meta.permissions?.manage && (
-                <Checkbox onChange={e => setSelectedSubjects(e.target.checked ? resource.data : [])} />
+                <Checkbox
+                  onChange={e => (
+                    setSelectedSubjects(
+                      e.target.checked
+                        ? resource.data.filter(r => !UNACTIONABLE_SCHEDULING_STATUSES.includes(r.schedulingStatus))
+                        : [],
+                    )
+                  )}
+                />
               )}
               {I18n.t('administration.scheduling.id')}
             </Space>
@@ -144,7 +156,8 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           width="3%"
           render={subject => (
             <Space>
-              {resource.meta.permissions?.manage && (
+              {!UNACTIONABLE_SCHEDULING_STATUSES.includes(subject.schedulingStatus)
+                && resource.meta.permissions?.manage && (
                 <Checkbox
                   checked={selectedSubjects.includes(subject)}
                   onChange={e => toggleSelectedSubject(e.target.checked, subject)}
@@ -158,14 +171,18 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           title={I18n.t('administration.scheduling.columns.participants')}
           id="full_name"
           width="40%"
-          render={({ user, id }) => {
+          render={({ user, id }, record) => {
             const { fullName, photoUrl } = user || {}
             const userId = user?.id
             return (
               <div
                 role="button"
                 tabIndex={-1}
-                onClick={() => resource.meta.permissions?.manage && handleEditSubject(id, userId)}
+                onClick={() => (
+                  resource.meta.permissions?.manage && !UNACTIONABLE_SCHEDULING_STATUSES.includes(
+                    record.schedulingStatus,
+                  ) && handleEditSubject(id, userId)
+                )}
               >
                 <Space>
                   <ResourceAvatar size="large" key={id} tooltip={fullName} url={photoUrl} name={fullName} />
@@ -241,38 +258,49 @@ interface ActionMenuProps {
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   subject,
 }) => {
+  const [confirmation, setConfirmation] = useState(false)
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
-  const handleOnConfirm = () => resource.removeResource(subject.id).then(() => {
-    message.success(
-      I18n.t('administration.scheduling.subjects.success_message', { subject_email: subject?.user?.email }),
-    )
-  }).catch(() => {
-    message.error(I18n.t('common.errors.something_wrong'))
-  })
-
-  const handleRemove = () => {
-    Modal.confirm({
-      title: I18n.t('administration.scheduling.subjects.confirm_title'),
-      content: I18n.t('administration.scheduling.subjects.confirm_message', { subject_email: subject?.user?.email }),
-      okText: I18n.t('common.text.confirm'),
-      cancelText: I18n.t('common.text.cancel'),
-      onOk: handleOnConfirm,
+  const handleOnConfirm = () => {
+    resource.memberAction({
+      id: subject.id,
+      action: 'mark_cancelled',
+      method: 'post',
+      body: { subjectId: subject.id },
+      responseType: t.literal('ok'),
+    }).then(() => {
+      setConfirmation(false)
+      message.success(
+        I18n.t('administration.scheduling.subjects.success_message', { subject_email: subject?.user?.email }),
+      )
+    }).catch(() => {
+      message.error(I18n.t('common.errors.something_wrong'))
     })
   }
 
+  const menuItems:ItemType[] = []
 
-  const menuItems = [
-    resource.meta.permissions?.remove ? {
-      key: 'remove',
-      label: (
-        <>
-          <Button type="link" onClick={handleRemove} className="ps-0">
-            {I18n.t('common.actions.remove')}
-          </Button>
-        </>
-      ),
-    } : null,
-  ].filter(Boolean)
+  resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
+    subject.schedulingStatus,
+  ) && menuItems.push({
+    key: 'remove',
+    label: (
+      <>
+        <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
+          Mark Cancel
+        </Button>
+        {confirmation && (
+          <ConfirmationModal
+            title={I18n.t('administration.scheduling.subjects.confirm_title')}
+            message={
+              I18n.t('administration.scheduling.subjects.confirm_message', { subject_email: subject?.user?.email })
+            }
+            onConfirm={handleOnConfirm}
+            onCancel={() => setConfirmation(false)}
+          />
+        )}
+      </>
+    ),
+  })
 
   return (
     <Menu items={menuItems} />

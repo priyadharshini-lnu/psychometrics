@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration::BaseResource
   attributes :attendance_status, :completion_status, :attended, :preworks, :workshop_activities,
-             :language, :late_duration
+             :language, :late_duration, :scheduling_status
   delegate :full_name, :email, :photo_url, to: :user
 
   has_one :user

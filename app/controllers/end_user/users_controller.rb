@@ -95,8 +95,8 @@ class EndUser::UsersController < ApplicationController
       format.json do
         workshop = Workshop.
                    includes(:workshop_subjects).
-                   where.not(workshop_subjects: { completion_status: :completed }).
-                   where.not(workshop_subjects: { attendance_status: %i[no_show dropped_out] }).
+                   joins(:workshop_subjects).
+                   merge(WorkshopSubject.participatable).
                    find_by(workshop_subjects: { user_id: current_user.id })
 
         if workshop

@@ -28,12 +28,17 @@ module Workshops
       private
 
       def update_workshop_subject
-        WorkshopSubject.find_by(workshop_id: workshop.id, user_id: subject_id).update!(
+        old_workshop_subject = WorkshopSubject.find_by(workshop_id: workshop.id, user_id: subject_id)
+        WorkshopSubject.create(
+          user_id: subject_id,
+          workshop_invited_subject_id: old_workshop_subject.workshop_invited_subject_id,
+          campaign_id: old_workshop_subject.campaign_id,
           workshop_id: reschedule_workshop_id,
           neurodivergent: workshop_invited_subject[:neurodivergent],
           preferred_language: workshop_invited_subject[:preferred_language],
           neurodivergent_comments: workshop_invited_subject[:neurodivergent_comments]
         )
+        old_workshop_subject.update!(scheduling_status: :late_rescheduled)
         workshop.decrement!(:booked_seats)
         Workshop.find(reschedule_workshop_id).increment!(:booked_seats)
       end

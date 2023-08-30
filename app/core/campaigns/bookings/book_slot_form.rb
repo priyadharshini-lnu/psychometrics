@@ -28,9 +28,9 @@ module Campaigns
       private
 
       def user_already_booked?
-        WorkshopSubject.where(
+        WorkshopSubject.participatable.exists?(
           campaign_id: workshop_invite.campaign_id, user_id: current_user.id
-        ).where.not(attendance_status: %i[no_show dropped_out]).exists?
+        )
       end
 
       def workshop_invited_subject

@@ -12,6 +12,18 @@ module Api
       render json: response, status: :ok
     end
 
+    def mark_cancelled
+      subject = WorkshopSubject.find(params[:id])
+      if subject.workshop.cancellable?
+        subject.update!(scheduling_status: :cancelled)
+      else
+        subject.update!(scheduling_status: :late_cancelled)
+      end
+      subject.workshop.decrement!(:booked_seats)
+
+      render json: :ok
+    end
+
     def meta_details
       {
         permissions: lambda {

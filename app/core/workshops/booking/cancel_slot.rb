@@ -26,7 +26,9 @@ module Workshops
 
       def cancel_booking
         workshop.decrement!(:booked_seats)
-        WorkshopSubject.find_by(workshop_id: workshop.id, user_id: current_user.id).destroy!
+        WorkshopSubject.find_by(
+          workshop_id: workshop.id, user_id: current_user.id
+        ).update!(scheduling_status: :cancelled)
       end
     end
   end

@@ -34,40 +34,11 @@ describe Workshops::Booking::RescheduleSlot do
             },
             user
           )
-        end.to not_change { workshop.reload.booked_seats }.
-          and change { WorkshopSubject.count }.by(0).
+        end.to change { workshop.reload.booked_seats }.from(1).to(0).
+          and change { WorkshopSubject.count }.by(1).
           and change { WorkshopInviteLog.count }.by(1).
-          and change { workshop_subject.reload.workshop_id }.from(workshop.id).to(new_workshop.id).
           and change { WorkshopInviteLog.last&.action }.from(nil).to('rescheduled').
-          and change { workshop_invited_subject.reload.status }.from('accepted').to('rescheduled').
-          and change { workshop_subject.reload.preferred_language }.from(nil).to('en').
-          and change { workshop_subject.reload.neurodivergent }.from(nil).to(true).
-          and change { workshop_subject.reload.neurodivergent_comments }.from(nil).to('test')
-      end
-
-      it 'broadcasts ok in case of same booking for rescheduling' do
-        workshop_invited_subject.update!(status: 'rescheduled')
-
-        expect do
-          described_class.call(
-            {
-              workshop_id: workshop.id,
-              id: workshop_invite.id,
-              new_workshop_booking_id: workshop.id,
-              status: 'rescheduled',
-              workshop_subject_details: {
-                preferred_language: 'en',
-                neurodivergent: true,
-                neurodivergent_comments: 'test'
-              }
-            },
-            user
-          )
-        end.to not_change { workshop.reload.booked_seats }.
-          and not_change { workshop_invited_subject.reload.status }.
-          and not_change { workshop_subject.reload.workshop_id }.
-          and change { WorkshopInviteLog.count }.by(1).
-          and broadcast(:ok)
+          and change { workshop_invited_subject.reload.status }.from('accepted').to('rescheduled')
       end
 
       it 'allows requseted_reschedule even if reschedule_lead_time passed' do

@@ -27,6 +27,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def mark_cancelled?
+        has_permission?(:workshops, :manage)
+      end
+
       class Scope < BasePolicy::Scope
         def resolve
           return scope if user.superadmin?

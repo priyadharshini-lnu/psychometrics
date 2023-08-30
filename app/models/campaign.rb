@@ -154,8 +154,8 @@ class Campaign < ApplicationRecord
   def active_workshop
     workshops.
       includes(:workshop_subjects).
-      where.not(workshop_subjects: { attendance_status: %i[no_show dropped_out] }).
-      where.not(workshop_subjects: { completion_status: :completed }).
+      joins(:workshop_subjects).
+      merge(WorkshopSubject.participatable).
       first
   end
 

@@ -30,7 +30,7 @@ describe Workshops::InviteRequest::CancelRequest do
           )
         end.to change { workshop.reload.booked_seats }.from(1).to(0).
           and change { WorkshopInviteLog.count }.by(1).
-          and change { WorkshopSubject.count }.by(-1).
+          and change { WorkshopSubject.count }.by(0).
           and change { WorkshopInviteLog.last&.action }.from(nil).to('cancelled').
           and change { workshop_invited_subject.reload.status }.from('requested_cancellation').to('cancelled')
       end

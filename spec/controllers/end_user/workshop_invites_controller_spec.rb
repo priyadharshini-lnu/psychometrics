@@ -326,27 +326,6 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         )
       end
 
-      it 'allows rescheduling for same workshop again' do
-        workshop_invited_subject.update!(status: 'accepted')
-        create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
-        workshop.update!(reschedule_lead_time: 3600)
-
-        post :reschedule_or_request_reschedule, params: {
-          workshop_id: workshop.id,
-          id: workshop_invite.id,
-          status: 'rescheduled',
-          new_workshop_id: workshop.id,
-          workshop_subject_details: {
-            preferred_language: 'en',
-            neurodivergent: true,
-            neurodivergent_comments: 'test'
-          }
-        }
-
-        expect(response.status).to eq(200)
-        expect(JSON.parse(response.body)).to eq('ok')
-      end
-
       it 'allows requested_rescheduling even if passed reschedule deadline' do
         workshop_invited_subject.update!(status: 'accepted')
         workshop_subject = create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)

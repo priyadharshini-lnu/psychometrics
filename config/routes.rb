@@ -1264,7 +1264,9 @@ Rails.application.routes.draw do
                 post :create_bulk_workshops
               end
               jsonapi_relationships
-              jsonapi_resources :workshop_subjects, only: %i[show index update destroy]
+              jsonapi_resources :workshop_subjects, only: %i[show index update destroy] do
+                post :mark_cancelled, on: :member
+              end
               jsonapi_resources :workshop_activities
               jsonapi_resources :workshop_resources
               jsonapi_resources :campaign_assessments, only: %i[index]

@@ -4,6 +4,7 @@ export const WorkshopSubjectTR = t.type({
   id: t.string,
   attendanceStatus: t.string,
   completionStatus: t.string,
+  schedulingStatus: t.string,
   language: t.union([t.string, t.null]),
   lateDuration: t.union([t.number, t.null]),
   preworks: t.string,
@@ -43,6 +44,7 @@ export const EditableWorkshopSubjectTR = t.type({
   workshopActivities: t.string,
   lateDuration: t.union([t.number, t.null]),
   language: t.union([t.string, t.null]),
+  schedulingStatus: t.string,
   user: t.union([
     t.type({
       fullName: t.union([t.string, t.null]),
