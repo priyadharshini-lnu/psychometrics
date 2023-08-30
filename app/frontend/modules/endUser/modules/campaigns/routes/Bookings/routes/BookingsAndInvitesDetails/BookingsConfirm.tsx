@@ -3,13 +3,17 @@ import { Moment } from 'moment'
 import {
   Row, Typography, Col, Space, Button,
 } from 'antd'
+import { connect, ConnectedProps } from 'react-redux'
 
+import { isRequestInProgress } from '~/core/request'
+import { BOOK_SLOT, RESCHEDULE_BOOKING } from '~/modules/endUser/modules/campaigns/core/bookings'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { BookingConfirmationContainer, DirectionalArrowIcon } from '~/glint'
 import { getLanguageNameFromCode } from '~/utils/locales'
 
 const { I18n } = window
 const { Title, Text } = Typography
-type Props = {
+type BookingConfirmProps = {
   bookingDateTime: Moment
   language: string
   duration: number
@@ -19,11 +23,21 @@ type Props = {
   title: string
 }
 
-export const BookingConfirm: FC<Props> = ({
+const connector = connect((state: RootState) => ({
+  isBookingInProgress: isRequestInProgress(state, BOOK_SLOT),
+  isRescheduleInProgress: isRequestInProgress(state, RESCHEDULE_BOOKING),
+}), {})
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+type Props = BookingConfirmProps & PropsFromRedux
+
+const BookingConfirmComponent: FC<Props> = ({
   bookingDateTime, language, duration, onCancelOfConfirmBooking, bookingTimeZone, onConfirmBooking, title,
+  isBookingInProgress, isRescheduleInProgress,
 }) => {
   const bookingEndTime = bookingDateTime.clone().add(duration, 's')
   const meetingTime = `${bookingDateTime.clone().format('hh:mmA')} - ${bookingEndTime.format('hh:mmA')}`
+  const loading = isBookingInProgress || isRescheduleInProgress
 
   const headerContent = (
     <>
@@ -62,10 +76,16 @@ export const BookingConfirm: FC<Props> = ({
   const footerContent = (
     <div className="ta-e">
       <Space>
-        <Button onClick={onCancelOfConfirmBooking}>{I18n.t('frontend.bookings.buttons.cancel')}</Button>
+        <Button
+          disabled={loading}
+          onClick={onCancelOfConfirmBooking}
+        >
+          {I18n.t('frontend.bookings.buttons.cancel')}
+        </Button>
         <Button
           type="primary"
           onClick={onConfirmBooking}
+          loading={loading}
         >
           {I18n.t('frontend.bookings.buttons.confirm_booking')}
           {' '}
@@ -83,3 +103,5 @@ export const BookingConfirm: FC<Props> = ({
     />
   )
 }
+
+export const BookingConfirm = connector(BookingConfirmComponent)

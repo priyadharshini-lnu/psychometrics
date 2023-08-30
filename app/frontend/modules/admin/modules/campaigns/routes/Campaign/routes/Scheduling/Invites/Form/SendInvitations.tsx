@@ -1,18 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FC } from 'react'
 import {
   Button, Select,
   Form, Row, Col, Space, Input,
 } from 'antd'
+import { FormInstance } from 'antd/lib/form'
 import _ from 'lodash'
 import { Panel } from '~/glint/components/Panel/Panel'
+import { type Errors } from './BaseInfo'
 import styles from './Form.less'
 
 const { I18n } = window
 
 const LANGS = [{ value: 'en' }, { value: 'ar' }]
 
-export const SendInvitation = ({
-  form, prev, submit, errors, onCancel,
+type Props = {
+  form: FormInstance
+  prev: () => void
+  submit: () => void
+  errors: Errors | null
+  onCancel?: () => void
+  isLoading?: boolean
+}
+
+export const SendInvitation: FC<Props> = ({
+  form, prev, submit, errors, onCancel, isLoading,
 }) => {
   const [languages, setLanguages] = useState<{
     [key:string]: {locale: string, name: string, title: string, description: string}
@@ -42,7 +53,7 @@ export const SendInvitation = ({
   }
 
   const handleCancel = () => {
-    onCancel()
+    onCancel && onCancel()
   }
 
   let index = -1
@@ -64,7 +75,7 @@ export const SendInvitation = ({
                   <Form.Item
                     label={I18n.t('administration.assessment_center.invite.send_invites.invitation_title')}
                     validateStatus={errors?.[`translations/${index}/title`] ? 'error' : undefined}
-                    hasFeedback={errors?.[`translations/${index}/title`]}
+                    hasFeedback={!!errors?.[`translations/${index}/title`]}
                     help={errors?.[`translations/${index}/title`]?.title}
                   >
                     <Input onChange={e => setLanguages({
@@ -76,7 +87,7 @@ export const SendInvitation = ({
                   <Form.Item
                     label={I18n.t('administration.assessment_center.invite.send_invites.description')}
                     validateStatus={errors?.[`translations/${index}/description`] ? 'error' : undefined}
-                    hasFeedback={errors?.[`translations/${index}/description`]}
+                    hasFeedback={!!errors?.[`translations/${index}/description`]}
                     help={errors?.[`translations/${index}/description`]?.title}
                   >
                     <Input.TextArea onChange={e => setLanguages({
@@ -122,13 +133,19 @@ export const SendInvitation = ({
         <Space>
           {
             onCancel && (
-              <Button onClick={handleCancel}>
+              <Button onClick={handleCancel} disabled={isLoading}>
                 {I18n.t('common.actions.cancel')}
               </Button>
             )
           }
-          <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
-          <Button type="primary" onClick={submit}>{I18n.t('administration.assessment_center.invite.save')}</Button>
+          <Button disabled={isLoading} onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
+          <Button
+            loading={isLoading}
+            type="primary"
+            onClick={submit}
+          >
+            {I18n.t('administration.assessment_center.invite.save')}
+          </Button>
         </Space>
       </div>
     </div>

@@ -36,7 +36,8 @@ export const InvitesForm = () => {
     })
   }, [])
 
-  const { createResource } = useResources<WorkshopInvite>('workshop_invites')
+  const { createResource, isLoading } = useResources<WorkshopInvite>('workshop_invites')
+  const workshopInviteCreationInProgress = isLoading('add')
 
   const submitForm = () => {
     setErrors(null)
@@ -126,6 +127,7 @@ export const InvitesForm = () => {
             prev={() => setStep(step - 1)}
             errors={errors}
             onCancel={handleCancel}
+            isLoading={workshopInviteCreationInProgress}
           />
         ))}
     </div>

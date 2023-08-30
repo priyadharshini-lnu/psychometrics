@@ -56,9 +56,7 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
   const handleClickInvite = (id: number) => {
     history.push(`${location.pathname}/${id}/details?type=invite`)
   }
-  const handleClickBooking = (id: number) => {
-    history.push(`${location.pathname}/${id}/success`)
-  }
+
   const tabItems = [
     {
       label: <TabLabel
@@ -76,7 +74,7 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
         loading={bookingsLoading}
       />,
       key: 'bookings',
-      children: <BookingsList onClickBooking={handleClickBooking} bookings={bookings} loading={bookingsLoading} />,
+      children: <BookingsList bookings={bookings} loading={bookingsLoading} />,
     },
   ]
 
@@ -139,55 +137,64 @@ const InvitesList: FC<InvitesListProps> = ({ invites, loading, onClickInvite }) 
 type BookingsListProps = {
   bookings: Booking[]
   loading: boolean
-  onClickBooking: (id: number) => void
 }
 
-const BookingsList: FC<BookingsListProps> = ({ bookings, loading, onClickBooking }) => (
-  <Row gutter={[0, 12]}>
-    {loading ? <FullWidthSkeleton active rows={SKELETON_ROWS} height={SKELETON_ROW_HEIGHT} /> : (
-      <>
-        {bookings.map((booking) => {
-          const statusElement = _.includes(
-            SHOW_STATUSES, booking.status,
-          ) ? (<StatusText taskStatus={booking.status} />) : (<></>)
+const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => {
+  const history = useHistory()
+  const location = useLocation()
+  return (
+    <Row gutter={[0, 12]}>
+      {loading ? <FullWidthSkeleton active rows={SKELETON_ROWS} height={SKELETON_ROW_HEIGHT} /> : (
+        <>
+          {bookings.map((booking) => {
+            const statusElement = _.includes(
+              SHOW_STATUSES, booking.status,
+            ) ? (<StatusText taskStatus={booking.status} />) : (<></>)
 
-          const deadlineToAllowCancelByUser = moment(booking?.date).clone()
-            .subtract(booking?.cancellationLeadTime, 's')
-          const allowBookAgain = booking?.status === 'cancelled' && moment().isSameOrBefore(deadlineToAllowCancelByUser)
+            const deadlineToAllowCancelByUser = moment(booking?.date).clone()
+              .subtract(booking?.cancellationLeadTime, 's')
+            // eslint-disable-next-line max-len
+            const allowBookAgain = booking?.status === 'cancelled' && moment().isSameOrBefore(deadlineToAllowCancelByUser)
 
-          let buttonText = null
+            let buttonText = null
 
-          if (_.includes(MODIFY_FOR_STATUSES, booking.status)) {
-            buttonText = I18n.t('frontend.bookings.buttons.modify')
-          } else if (allowBookAgain) {
-            buttonText = I18n.t('frontend.bookings.buttons.book_again')
-          }
+            if (_.includes(MODIFY_FOR_STATUSES, booking.status)) {
+              buttonText = I18n.t('frontend.bookings.buttons.modify')
+            } else if (allowBookAgain) {
+              buttonText = I18n.t('frontend.bookings.buttons.book_again')
+            }
 
-          return (
-            <DetailsCard
-              status={statusElement}
-              title={booking.title || ''}
-              key={booking.id}
-              description={booking.description || ''}
-              onButtonClick={() => onClickBooking(booking.workshopInviteId)}
-              buttonText={buttonText || undefined}
-              subtitle={(
-                <Subtitle
-                  duration={
+            return (
+              <DetailsCard
+                status={statusElement}
+                title={booking.title || ''}
+                key={booking.id}
+                description={booking.description || ''}
+                onButtonClick={() => {
+                  const workshopId = booking.workshopInviteId
+                  const path = allowBookAgain ? `${location.pathname}/${workshopId}/details?type=booking`
+                    : `${location.pathname}/${workshopId}/success`
+                  history.push(path)
+                }}
+                buttonText={buttonText || undefined}
+                subtitle={(
+                  <Subtitle
+                    duration={
                     booking.duration
                   }
-                  isActionByCurrentUser={booking.isActionByCurrentUser}
-                  dateTime={booking.date}
-                  timezone={booking.timezone}
-                />
+                    isActionByCurrentUser={booking.isActionByCurrentUser}
+                    dateTime={booking.date}
+                    timezone={booking.timezone}
+                  />
               )}
-            />
-          )
-        })}
-      </>
-    )}
-  </Row>
-)
+              />
+            )
+          })}
+        </>
+      )}
+    </Row>
+  )
+}
 
 type SubtitleProps = {
   duration: number | null,

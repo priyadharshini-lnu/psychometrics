@@ -58,6 +58,7 @@ export const Facilitators: React.FC<Props> = ({
 
   const {
     collectionAction,
+    isLoading: requestLoading,
   } = useResources<Workshop>(
     'workshops',
     {
@@ -65,6 +66,7 @@ export const Facilitators: React.FC<Props> = ({
       responseType: WorkshopCreateResponseTR,
     },
   )
+  const createWorkshopInProgress = requestLoading('post/create_bulk_workshops')
   const [managers, setManagers] = useState<UserDetails[]>([])
   const [assessors, setAssessors] = useState<UserDetails[]>([])
 
@@ -298,15 +300,15 @@ export const Facilitators: React.FC<Props> = ({
         <Space>
           {
             onCancel && (
-              <Button onClick={handleCancel}>
+              <Button onClick={handleCancel} disabled={createWorkshopInProgress}>
                 {I18n.t('common.actions.cancel')}
               </Button>
             )
           }
-          <Button onClick={onPrevious} disabled={disableCreate}>
+          <Button onClick={onPrevious} disabled={disableCreate || createWorkshopInProgress}>
             {I18n.t('administration.scheduling.assessment_center_form.back')}
           </Button>
-          <Button type="primary" onClick={handleSubmit} disabled={disableCreate}>
+          <Button loading={createWorkshopInProgress} type="primary" onClick={handleSubmit} disabled={disableCreate}>
             {I18n.t('administration.scheduling.assessment_center_form.create')}
           </Button>
         </Space>

@@ -1894,19 +1894,26 @@ en:
     background_reading: Background Reading
     bookings:
       add_to_calendar: Add To Calendar
-      booking_failed_msg: Failed to book slot
+      booking_failed_msg: 'Failed to book slot: %{error}'
       buttons:
         book: Book
+        book_again: Book Again
         cancel: Cancel
         cancel_booking: Cancel Booking
         confirm_booking: Confirm Booking
         modify: Modify
         nevermind: Nevermind
+        no_text: 'No'
         request_cancel: Request cancellation
         request_reschedule: Request reschedule
         reschedule: Reschedule
+        yes_text: 'Yes'
+      cancel_booking_confirmation: Are you sure you want to cancel this booking?
+      cancellation_failed: 'Failed to cancel the booking: %{error}'
+      cancellation_success: Successfully cancelled the booking
       confirm_booking_description: Please confirm that these details are correct before finalizing the booking.
       confirm_booking_title: Confirm this booking?
+      default_failure_msg: Unable to process your request. Please try again later.
       language: Language
       need_changes: Need to make the changes?
       operation_by_admin: Operation performed by admin.
@@ -1914,11 +1921,11 @@ en:
       or: or
       reason_for_cancel: Reason for Cancellation
       reason_for_reschedule: Reason for Rescheduling
-      request_cancellation_failed: Failed to request for cancellation
+      request_cancellation_failed: 'Failed to request for cancellation: %{error}'
       request_cancellation_success: Successfully requested for cancellation
-      request_reschedule_failed: Failed to request for rescheduling
+      request_reschedule_failed: 'Failed to request for rescheduling: %{error}'
       request_reschedule_success: Successfully requested for rescheduling
-      reschedule_failed_msg: Failed to reschedule
+      reschedule_failed_msg: 'Failed to reschedule: %{error}'
       schedule_success: This booking is scheduled
       schedule_success_msg: We emailed you and the other attendees a calendar invitation with all the details.
       tab_label:
