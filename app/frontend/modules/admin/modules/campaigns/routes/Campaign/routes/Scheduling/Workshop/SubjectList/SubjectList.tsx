@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox,
+  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ import {
   WorkshopSubject, WorkshopSubjectTR,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import { ConfirmationModal, ResourceAvatar } from '~/glint'
+import { ResourceAvatar } from '~/glint'
 import { BulkSchedule } from '../BulkSchedule/BulkSchedule'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { EditSubjectDrawer } from './EditSubjectDrawer'
@@ -94,7 +94,6 @@ const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {
 
 const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubject }) => {
   const { resource } = useResourceContext<WorkshopSubject>()
-  const [confirmation, setConfirmation] = useState(false)
   const [openForm, setOpenForm] = useState(false)
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
   const { memberAction } = useResources('workshops', { })
@@ -219,8 +218,6 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               menu={
                 ActionsMenu({
                   subject,
-                  setConfirmation,
-                  confirmation,
                 }) as React.ReactElement
               }
             />
@@ -239,16 +236,13 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
 
 interface ActionMenuProps {
   subject: WorkshopSubject
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  subject, setConfirmation, confirmation,
+  subject,
 }) => {
   const { resource } = useResourceContext<WorkshopSubject>()
   const handleOnConfirm = () => resource.removeResource(subject.id).then(() => {
-    setConfirmation(false)
     message.success(
       I18n.t('administration.scheduling.subjects.success_message', { subject_email: subject?.user?.email }),
     )
@@ -256,24 +250,25 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     message.error(I18n.t('common.errors.something_wrong'))
   })
 
+  const handleRemove = () => {
+    Modal.confirm({
+      title: I18n.t('administration.scheduling.subjects.confirm_title'),
+      content: I18n.t('administration.scheduling.subjects.confirm_message', { subject_email: subject?.user?.email }),
+      okText: I18n.t('common.text.confirm'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: handleOnConfirm,
+    })
+  }
+
+
   const menuItems = [
     {
       key: 'remove',
       label: (
         <>
-          <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
+          <Button type="link" onClick={handleRemove} className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('administration.scheduling.subjects.confirm_title')}
-              message={
-                I18n.t('administration.scheduling.subjects.confirm_message', { subject_email: subject?.user?.email })
-              }
-              onConfirm={handleOnConfirm}
-              onCancel={() => setConfirmation(false)}
-            />
-          )}
         </>
       ),
     },
