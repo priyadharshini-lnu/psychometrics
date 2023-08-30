@@ -4,6 +4,7 @@ require 'icalendar/tzinfo'
 
 class Workshop < ApplicationRecord
   belongs_to :campaign
+  has_one :project, through: :campaign
   has_and_belongs_to_many :workshop_invites, dependent: :destroy
   has_many :workshop_invite_logs
   has_many :workshop_invited_subjects, through: :workshop_invites

@@ -125,7 +125,9 @@ export const WorkshopPage: FC<{}> = () => {
           <Descriptions.Item label={I18n.t('administration.scheduling.info.link')}>
             { workshop.meetingLink && (
               <Space>
-                <a href={workshop.meetingLink} target="_blank" rel="noreferrer">{workshop.meetingLink}</a>
+                <a href={workshop.meetingLink} target="_blank" rel="noreferrer">
+                  {I18n.t('administration.scheduling.info.meeting_room')}
+                </a>
                 <CopyToClipboard
                   text={workshop.meetingLink}
                   onCopy={() => message.info(I18n.t('common.text.copied'))}

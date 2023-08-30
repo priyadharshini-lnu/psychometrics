@@ -3903,6 +3903,7 @@ en:
         duration: Duration
         link: Meeting link
         managers: Center Managers
+        meeting_room: Meeting Room
         remaining: Seats Remaining
         search_placehoder: Search by id, email or name
         timezone: Timezone
