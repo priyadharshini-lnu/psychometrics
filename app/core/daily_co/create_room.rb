@@ -32,9 +32,9 @@ module DailyCo
     end
 
     def room_name
-      domain_id = Rails.application.secrets.daily_co[:domain_id]
+      subdomain = Rails.application.secrets.daily_co[:subdomain]
       name = ENV.fetch('SERVER_NAME', 'dev').downcase.gsub(/[^a-z0-9-]/, '-')
-      "#{name}-#{SecureRandom.alphanumeric(40 - name.size - domain_id.size)}"
+      "#{name}-#{SecureRandom.alphanumeric(40 - name.size - subdomain.size)}"
     end
   end
 end
