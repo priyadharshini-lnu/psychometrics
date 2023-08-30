@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :workshop do
     campaign
+    name { Faker::Lorem.word }
     start_time { Time.current }
     timezone { 'Asia/Dubai' }
     duration { 14_400 }

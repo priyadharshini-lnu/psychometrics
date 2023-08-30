@@ -10,6 +10,7 @@ export const userDetailsTR = t.type({
 
 export const WorkshopTR = t.type({
   id: t.string,
+  name: t.string,
   startTime: t.string,
   duration: t.number,
   bookedSeats: t.number,
@@ -28,6 +29,7 @@ export const WorkshopShortTR = t.type({
 
 export const WorkshopCreateResponseTR = t.array(t.type({
   id: t.string,
+  name: t.string,
   startTime: t.string,
   duration: t.number,
   bookedSeats: t.number,

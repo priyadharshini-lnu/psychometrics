@@ -9,6 +9,7 @@ RSpec.describe Api::V2::Workshop::Schema do
       {
         workshops: [
           {
+            name: 'name',
             timezone: 'Pacific/Midway',
             duration: 3600,
             cancellation_lead_time: 3600,
@@ -38,6 +39,7 @@ RSpec.describe Api::V2::Workshop::Schema do
         valid_params,
         {
           workshops: [{
+            name: '',
             duration: '',
             timezone: '',
             cancellation_lead_time: '',
@@ -61,6 +63,7 @@ RSpec.describe Api::V2::Workshop::Schema do
       {
         workshops: {
           0 => {
+            name: ["can't be blank"],
             duration: ['must be an integer'],
             timezone: ["can't be blank"],
             cancellation_lead_time: ['must be an integer'],

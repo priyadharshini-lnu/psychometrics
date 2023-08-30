@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { useState } from 'react'
 import {
-  Form, Space, Button, Collapse, Alert, Typography, InputNumber,
+  Form, Space, Button, Collapse, Alert, Typography, InputNumber, Input, Row, Col,
 } from 'antd'
 import moment from 'moment'
 import { Store } from 'antd/lib/form/interface'
@@ -17,6 +17,7 @@ import {
   WorkshopCreateResponseTR, Workshop, UserDetails, userDetailsListTR,
 } from '~/modules/admin/modules/campaigns/core/workshop'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
+import { formatWorkshopDate } from '~/utils/workshop'
 
 const { Title } = Typography
 const fieldLayout = {
@@ -106,6 +107,7 @@ export const Facilitators: React.FC<Props> = ({
   const datesCount = basicInfoData.dates.length
 
   const workshopResources = basicInfoData.workshop_resources || [{ key: 1, name: '', url: '' }]
+  const workshopNames = basicInfoData.dates.map(formatWorkshopDate)
 
   const [formData, setFormData] = useState<Store[]>(Array.from({ length: datesCount }, () => ({})))
   const [assessorIds, setAssessorIds] = useState<Store[]>(Array.from({ length: datesCount }, () => ({})))
@@ -147,6 +149,7 @@ export const Facilitators: React.FC<Props> = ({
     const { workshop_resources: formWorkshopResources } = formValues
     const updatedFormsData = [...formData]
     updatedFormsData[index] = { ...updatedFormsData[index], ...basicInfoDataWithoutDates }
+    updatedFormsData[index].name = formValues.name ?? workshopNames[index]
     updatedFormsData[index].start_time = startDateTime(index).format()
     updatedFormsData[index] = _.omit(updatedFormsData[index], 'time')
     updatedFormsData[index].assessor_ids = assessorIds[index].length ? assessorIds[index] : []
@@ -169,7 +172,7 @@ export const Facilitators: React.FC<Props> = ({
           <React.Fragment key={index}>
             <Panel
               key={index}
-              title={basicInfoData.dates[index].format('Do, MMMM, YYYY')}
+              title={basicInfoData.dates[index].format('Do MMMM, YYYY')}
               collapsible
               additionalDetailsLabelStyle={{ color: '#808080' }}
               additionalDetails={[
@@ -241,18 +244,32 @@ export const Facilitators: React.FC<Props> = ({
                 layout="vertical"
                 key={`form${index}`}
                 form={form}
-                initialValues={{ workshop_resources: workshopResources }}
+                initialValues={{ name: workshopNames[index], workshop_resources: workshopResources }}
                 onValuesChange={(_, values) => handleFormChange(index, values)}
               >
-                <Form.Item
-                  label={I18n.t('administration.scheduling.assessment_center_form.seats_label')}
-                  name="total_seats"
-                  {...fieldLayout}
-                  wrapperCol={{ span: '4' }}
-                  rules={[{ required: true }]}
-                >
-                  <InputNumber placeholder="e.g 2,3,..." />
-                </Form.Item>
+                <Input.Group>
+                  <Row gutter={8}>
+                    <Col span={8}>
+                      <Form.Item
+                        label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
+                        name="name"
+                        rules={[{ required: true }]}
+                      >
+                        <Input />
+                      </Form.Item>
+                    </Col>
+                    <Col span={4}>
+                      <Form.Item
+                        label={I18n.t('administration.scheduling.assessment_center_form.seats_label')}
+                        name="total_seats"
+                        rules={[{ required: true }]}
+                      >
+                        <InputNumber placeholder="e.g 2,3,..." />
+                      </Form.Item>
+
+                    </Col>
+                  </Row>
+                </Input.Group>
                 <Form.Item
                   name="center_manager_ids"
                   label={I18n.t('administration.scheduling.assessment_center_form.manager_ids_label')}

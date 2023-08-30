@@ -10,6 +10,7 @@ module Api
 
         def self.attributes(attribute, _)
           proc do
+            attribute[:name].filled(:string)
             attribute[:start_time].filled(:string)
             attribute[:duration].filled(:integer)
             attribute[:total_seats].filled(:integer)
@@ -61,6 +62,7 @@ module Api
                 required(:name).filled(:string)
                 required(:url).filled(:string)
               end
+              required(:name).filled(:string)
               required(:start_time).filled(:string)
               optional(:center_manager_ids).array(:string)
               optional(:assessor_ids).array(:string)

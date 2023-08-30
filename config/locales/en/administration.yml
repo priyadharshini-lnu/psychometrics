@@ -3844,6 +3844,7 @@ en:
         manager_ids_label: Center Managers
         meetings_and_resources: Meetings & Resources
         name: Add Assessment Center
+        name_label: Name
         next: Next
         required_error: Required
         reschedule_duration_max_error: Cannot be greater than 30 days
@@ -3876,6 +3877,7 @@ en:
         campaign_name: Campaign Name
         duration: Duration
         managers: Mangers
+        name: Name
         participants: Participants
         prework: Prework
         resource_link: Link
@@ -3900,6 +3902,7 @@ en:
       info:
         assessors: Assessors
         booked: Seats Booked
+        date: Date & Time
         duration: Duration
         join_meeting: Join Room
         link: Meeting link
@@ -3927,7 +3930,7 @@ en:
         no_show: No Show
         not_started: Not Started
       subjects:
-        activities: Assessment Center Activities
+        activities: Activities
         add_assessor_form: Add Assessor Form
         assessments: Assessments
         assessor_form: Assessor Form
@@ -3943,7 +3946,7 @@ en:
         meeting_link_none: None
         no_change: No Change
         override_existing: Override existing schedules for subjects
-        preworks: Preworks
+        preworks: Prework
         schedule: Schedule
         success_message: Subject with email %{subject_email} removed successfully.
         unschedule: Unschedule
