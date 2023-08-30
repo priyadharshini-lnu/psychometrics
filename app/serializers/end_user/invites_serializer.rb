@@ -7,7 +7,7 @@ module EndUser
     delegate :title, :description, to: :workshop_invite
 
     def duration
-      workshop_invite.workshops.first.duration
+      workshop_invite.workshops.first&.duration || 0
     end
 
     def workshop_invite

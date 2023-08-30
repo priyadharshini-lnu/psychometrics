@@ -19,6 +19,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def create?
+        has_permission?(:workshops, :manage)
+      end
+
       def bulk_update_subjects?
         has_permission?(:workshops, :manage)
       end

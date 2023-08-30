@@ -23,8 +23,8 @@ class Workshop < ApplicationRecord
   enum video_call_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :video_call
 
   scope :search_query, lambda { |query|
-    where('start_time >= ?', Time.current.beginning_of_day).
-      where('name ILIKE ?', "%#{query}%")
+    where('workshops.start_time >= ?', Time.current.beginning_of_day).
+      where('workshops.name ILIKE ?', "%#{query}%")
   }
   scope :visible_to_end_user, lambda { |user_id|
     Workshop.
