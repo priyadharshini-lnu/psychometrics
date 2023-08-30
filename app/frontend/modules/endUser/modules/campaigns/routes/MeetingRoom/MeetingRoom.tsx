@@ -36,9 +36,9 @@ const MeetingRoom = ({ fetchMeeting }: Props) => {
   }, [])
 
   useEffect(() => {
-    window.$chatwoot.toggleBubbleVisibility('hide')
+    window.$chatwoot?.toggleBubbleVisibility('hide')
     return () => {
-      window.$chatwoot.toggleBubbleVisibility('show')
+      window.$chatwoot?.toggleBubbleVisibility('show')
     }
   }, [])
 
