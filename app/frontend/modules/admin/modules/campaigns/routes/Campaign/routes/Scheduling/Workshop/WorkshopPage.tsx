@@ -126,7 +126,7 @@ export const WorkshopPage: FC<{}> = () => {
             { workshop.meetingLink && (
               <Space>
                 <a href={workshop.meetingLink} target="_blank" rel="noreferrer">
-                  {I18n.t('administration.scheduling.info.meeting_room')}
+                  {I18n.t('administration.scheduling.info.join_meeting')}
                 </a>
                 <CopyToClipboard
                   text={workshop.meetingLink}
