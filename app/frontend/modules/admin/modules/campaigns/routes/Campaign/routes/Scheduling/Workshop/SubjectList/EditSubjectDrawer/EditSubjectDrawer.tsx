@@ -291,7 +291,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     >
       <Space size="large">
         <Form.Item className="font-normal" label="Status" name="attendanceStatus">
-          <Select dropdownStyle={{ minWidth: '120px' }} disabled={!workshopSubject?.attended}>
+          <Select dropdownStyle={{ minWidth: '120px' }}>
             {STATUSES.map(status => (
               <Select.Option
                 key={status.value}

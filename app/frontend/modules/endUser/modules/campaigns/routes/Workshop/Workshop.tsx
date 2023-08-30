@@ -62,14 +62,14 @@ const WorkshopComponent: FC<PropsFromRedux> = ({ workshop, fetchEndUserWorkshop 
                       <Row gutter={[16, 16]}>
                         {workshop.preworks.map(prework => (
                           <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={prework.id}>
-                            <AssessmentCard assessment={prework} view={view} />
+                            <AssessmentCard assessment={prework} view={view} workshop={workshop} />
                           </Col>
                         ))}
                       </Row>
                     </div>
                   )}
 
-                  {workshop.attended && workshop.activities?.length > 0 && (
+                  {workshop.activities?.length > 0 && (
                     <div className={styles.group}>
                       <Title level={5}>
                         {I18n.t('campaign.workshops.activities')}
@@ -77,7 +77,7 @@ const WorkshopComponent: FC<PropsFromRedux> = ({ workshop, fetchEndUserWorkshop 
                       <Row gutter={[16, 16]}>
                         {workshop.activities.map(activity => (
                           <Col xs={24} sm={24} md={24} lg={tabCol} xl={deskCol} key={activity.id}>
-                            <AssessmentCard assessment={activity} view={view} />
+                            <AssessmentCard assessment={activity} view={view} workshop={workshop} />
                           </Col>
                         ))}
                       </Row>

@@ -25,13 +25,24 @@ interface Props {
     prework: boolean,
   },
   view: string,
+  workshop: {
+    attended: boolean,
+  }
 }
 
-export const AssessmentCard: FC<Props> = ({ assessment, view }) => {
+export const AssessmentCard: FC<Props> = ({ assessment, view, workshop }) => {
   const [loading, setLoading] = useState(false)
-  const [cardActionDisabled, setCardActionDisabled] = useState(
-    !assessment.prework && (!assessment.scheduleTime || moment().isBefore(moment(assessment.scheduleTime))),
-  )
+  let defaultCardDisabled = false
+  if (assessment.prework) {
+    defaultCardDisabled = false
+  } else if (!workshop.attended) {
+    defaultCardDisabled = true
+  } else if (!assessment.scheduleTime) {
+    defaultCardDisabled = true
+  } else if (assessment.scheduleTime) {
+    defaultCardDisabled = moment().isBefore(moment(assessment.scheduleTime))
+  }
+  const [cardActionDisabled, setCardActionDisabled] = useState(defaultCardDisabled)
 
   const history = useHistory()
   const loadAssessment = ({ id }) => {
@@ -80,6 +91,7 @@ export const AssessmentCard: FC<Props> = ({ assessment, view }) => {
             <Subtitle
               setCardActionDisabled={setCardActionDisabled}
               assessment={assessment}
+              workshop={workshop}
             />
           )
         }

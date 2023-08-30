@@ -11,11 +11,14 @@ interface Props {
     workshopActivityDuration: number
     scheduleTime: string,
   },
+  workshop: {
+    attended: boolean
+  },
   setCardActionDisabled: (boolean) => void
 }
 
-export const Subtitle: FC<Props> = ({ assessment, setCardActionDisabled }) => (
-  <>
+export const Subtitle: FC<Props> = ({ assessment, setCardActionDisabled, workshop }) => (
+  <Space direction="vertical">
     {assessment.workshopActivityDuration && (
       <Space>
         {I18n.t('campaign.workshops.duration')}
@@ -26,10 +29,8 @@ export const Subtitle: FC<Props> = ({ assessment, setCardActionDisabled }) => (
       </Space>
     )}
 
-    {assessment.scheduleTime && moment().isBefore(moment(assessment.scheduleTime)) && (
-      <>
-        <br />
-
+    {assessment.scheduleTime && moment().isBefore(moment(assessment.scheduleTime)) && workshop.attended && (
+      <div>
         <Space>
           {I18n.t('campaign.workshops.starts_in')}
           <TimerText
@@ -41,7 +42,7 @@ export const Subtitle: FC<Props> = ({ assessment, setCardActionDisabled }) => (
             )}
           />
         </Space>
-      </>
+      </div>
     )}
-  </>
+  </Space>
 )
