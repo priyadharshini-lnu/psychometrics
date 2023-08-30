@@ -1,9 +1,9 @@
 import { useEffect, useState, FC } from 'react'
 import _ from 'lodash'
-import { Moment } from 'moment'
+import moment, { Moment } from 'moment'
 import {
   Drawer, Table, Space, Row, Col, Typography, Form, Select,
-  Button, Divider, Skeleton, TimePicker,
+  Button, Divider, Skeleton,
 } from 'antd'
 import {
   PlusOutlined,
@@ -12,17 +12,17 @@ import {
 import * as t from 'io-ts'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import InputDuration from '~/components/InputDuration'
 
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { FullWidthSkeleton, ResourceAvatar } from '~/glint'
 import Modals from '~/modules/admin/components/Modals/'
 import { AssessorFormModal } from './AssessorFormModal'
-import settings from '~/modules/admin/modules/campaigns/settings'
 import { AssessorFormList } from './AssessorFormList'
 import { UserAssessmentList } from './UserAssessmentList'
 import { useResources } from '~/hooks/useResources'
 import {
-  WorkshopSubject, SubjectAssessment, AssessorAssessment, AssessorAssessmentTR,
+  EditableWorkshopSubject, SubjectAssessment, AssessorAssessment, AssessorAssessmentTR,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 
 import styles from './EditSubjectDrawer.less'
@@ -55,7 +55,6 @@ export const PROGRESS_STATUSES = {
   in_progress: { label: I18n.t('common.status.in_progress'), color: 'warning' },
   completed: { label: I18n.t('common.status.completed'), color: 'success' },
 }
-const { timeFormat } = settings
 
 const { Text, Title } = Typography
 
@@ -71,23 +70,20 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const { campaignId } = useParams<{ campaignId: string }>()
   const { id } = useParams<{ id: string }>()
-  const { fetchSingle, getResource } = useResources<WorkshopSubject>(
+  const { fetchSingle, getResource } = useResources<EditableWorkshopSubject>(
     'workshop_subjects',
     {
       basePath: `campaigns/${campaignId}/workshops/${id}/`,
       apiConfig: {
         include: ['user'],
-        include_resource_meta: [
-          'assessor_assessments',
-          'assessors',
-        ],
+        include_resource_meta: ['assessor_assessments', 'assessors'],
       },
     },
   )
 
   const {
     memberAction,
-  } = useResources<WorkshopSubject>(
+  } = useResources<EditableWorkshopSubject>(
     'workshop_subjects',
     {
       basePath: `campaigns/${campaignId}/`,
@@ -106,8 +102,8 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         filter: {
           subject_id_eq: userId,
           campaign_id_eq: campaignId,
-          prework: 'false',
-          workshop_activity: 'true',
+          preworks: 'false',
+          workshop_activities: 'true',
         },
       },
     },
@@ -191,7 +187,11 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     if (dataExist) {
       const updatedAssessorFormData = assessorAssessments.map((assessment) => {
         if (assessment.id === id) {
-          return ({ ...assessment, ...values, schedule: values.schedule.format(timeFormat) })
+          return ({
+            ...assessment,
+            ...values,
+            scheduleTime: values.scheduleTime.format(),
+          })
         }
         return assessment
       })
@@ -200,27 +200,44 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       setSubjectData({
         ...subjectData,
         assessorAssessments: [...assessorAssessments,
-          { ...values, id, schedule: values.schedule.format(timeFormat) }],
+          { ...values, id, scheduleTime: values.scheduleTime.format() }],
       })
     }
   }
 
   const handleEditAssessorForm = (data) => {
-    openModal('AssessorFormModal', { initialFormData: data })
+    openModal('AssessorFormModal', {
+      initialFormData: { ...data, scheduleTime: moment(data.scheduleTime) },
+      assessors: workshopSubject?.meta.assessors,
+      assessments: workshopSubject?.meta.assessorAssessments,
+    })
   }
   const handleDeleteAssessorForm = (id) => {
-    setSubjectData({
-      ...subjectData,
-      assessorAssessments: subjectData.assessorAssessments.filter(assessorForm => assessorForm.id !== id),
-    })
+    const { assessorAssessments } = subjectData
+    const dataExist = assessorAssessments.some(assessment => assessment.id === id)
+    if (dataExist) {
+      const updatedAssessorFormData = assessorAssessments.map((assessment) => {
+        if (assessment.id === id) {
+          return ({
+            ...assessment,
+            scheduleTime: null,
+            assessor: null,
+            meetingLinkUrl: null,
+          })
+        }
+        return assessment
+      })
+      setSubjectData({ ...subjectData, assessorAssessments: updatedAssessorFormData })
+    }
   }
 
   const updateSubject = () => {
+    const statusValues = statusFormInstance.getFieldsValue()
     memberAction({
       id: subjectId,
       action: 'update_subject_details_and_assessments',
       method: 'post',
-      body: subjectData,
+      body: { ...subjectData, ...statusValues },
     }).then(() => {
       onClose()
     })
@@ -235,8 +252,8 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       <Col span={12}>
         <Space>
           <ResourceAvatar
-            size="large"
-            // url={subjectData?.user?.photoUrl || ''}
+            tooltip={subjectData?.user?.fullName || ''}
+            url={subjectData?.user?.photoUrl || ''}
             name={subjectData?.user?.fullName || ''}
           />
           <Space size={0} direction="vertical">
@@ -272,7 +289,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       className={styles.form}
       layout="inline"
       initialValues={{
-        status: subjectData.attendanceStatus || 'On Time',
+        attendanceStatus: subjectData.attendanceStatus || 'On Time',
         lateDuration: subjectData.lateDuration || null,
       }}
       onFieldsChange={(_, allFields) => {
@@ -280,8 +297,8 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       }}
     >
       <Space size="large">
-        <Form.Item className="font-normal" label="Status" name="status">
-          <Select dropdownStyle={{ minWidth: '120px' }}>
+        <Form.Item className="font-normal" label="Status" name="attendanceStatus">
+          <Select dropdownStyle={{ minWidth: '120px' }} disabled={!workshopSubject?.attended}>
             {STATUSES.map(status => (
               <Select.Option
                 key={status.value}
@@ -292,9 +309,13 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
             ))}
           </Select>
         </Form.Item>
-        {statusFormInstance.getFieldValue('status') === 'late' ? (
+        {statusFormInstance.getFieldValue('attendanceStatus') === 'late' ? (
           <Form.Item label="Late Duration" name="lateDuration">
-            <TimePicker format={timeFormat} />
+            <InputDuration
+              value=""
+              onChange={() => {}}
+              placeholder={I18n.t('administration.scheduling.assessment_center_form.duration_placeholder')}
+            />
           </Form.Item>
         ) : null}
       </Space>
@@ -342,8 +363,8 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
             <Button onClick={() => openModal(
               'AssessorFormModal',
               {
-                assessors: [],
-                assessments: [],
+                assessors: workshopSubject?.meta.assessors,
+                assessments: workshopSubject?.meta.assessorAssessments,
               },
             )}
             >

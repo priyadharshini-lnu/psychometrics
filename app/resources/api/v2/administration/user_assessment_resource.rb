@@ -9,12 +9,5 @@ class Api::V2::Administration::UserAssessmentResource < Api::V2::Administration:
 
   delegate :name, to: :assessment, allow_nil: true
 
-  ransack_filters %i[subject_id_eq campaign_id_eq workshop_activity prework]
-
-  # def self.records(opts = {})
-  #   UserAssessment.where(
-  #     subject_id: opts[:context][:params]['subject_id_eq'],
-  #     campaign_id: opts[:context][:params]['campaign_id']
-  #   )
-  # end
+  ransack_filters %i[subject_id_eq campaign_id_eq workshop_activities preworks]
 end

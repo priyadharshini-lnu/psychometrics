@@ -39,7 +39,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
         {
           ...values,
           name: initialFormData.name,
-          assessor: currentAssessor,
+          assessor: { ...initialFormData.assessor, id: initialFormData.assessor?.userId },
         },
         id: initialFormData.id,
       })
@@ -50,7 +50,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
           ...values,
           status: 'not_started',
           name: currentAssessment?.name,
-          assessor: currentAssessor,
+          assessor: { ...currentAssessor, id: currentAssessor?.userId },
         },
         id: values.name,
       })
@@ -60,8 +60,8 @@ export const AssessorFormModal:FC<Props> = (props) => {
 
   const compatibleInitialData = initialFormData && {
     ...initialFormData,
-    schedule: moment(initialFormData.schedule, settings.timeFormat),
-    assessor: initialFormData.assessor.name,
+    scheduleTime: moment(initialFormData.scheduleTime, settings.timeFormat),
+    assessor: initialFormData.assessor?.name,
   }
 
   return (
@@ -89,7 +89,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
       >
         <Form.Item rules={[{ required: true }]} label="Assessment" name="name">
           <Select
-            disabled={!!initialFormData}
+            disabled={initialFormData?.userAssessmentId}
           >
             {assessments?.map(assessment => (
               <Select.Option
@@ -102,7 +102,9 @@ export const AssessorFormModal:FC<Props> = (props) => {
           </Select>
         </Form.Item>
         <Form.Item rules={[{ required: true }]} label="Assessor" name="assessor">
-          <Select>
+          <Select
+            disabled={initialFormData?.userAssessmentId}
+          >
             {assessors?.map(assessor => (
               <Select.Option
                 key={assessor.id}
@@ -116,9 +118,15 @@ export const AssessorFormModal:FC<Props> = (props) => {
         <Form.Item
           rules={[{ required: true }]}
           label="Schedule Time"
-          name="schedule"
+          name="scheduleTime"
         >
-          <TimePicker format={settings.timeFormat} />
+          <TimePicker
+            className="w-100"
+            format="hh:mm A"
+            defaultValue={
+              initialFormData?.scheduleTime ? moment(initialFormData.scheduleTime) : undefined
+            }
+          />
         </Form.Item>
         <Form.Item className="mb-1" label="Meeting Link" name="meetingLinkType">
           <Radio.Group>

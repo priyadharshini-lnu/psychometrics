@@ -63,11 +63,11 @@ class UserAssessment < ApplicationRecord
       merge(CampaignAssessment.workshop_activities)
   }
 
-  scope :workshop_activity, lambda { |value|
+  scope :workshop_activities, lambda { |value|
     with_campaign_assessments.where(campaign_assessments: { workshop_activity: value })
   }
 
-  scope :prework, lambda { |value|
+  scope :preworks, lambda { |value|
     with_campaign_assessments.where(campaign_assessments: { prework: value })
   }
 

@@ -52,7 +52,8 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
     [].tap do |assessors|
       @model.workshop.workshop_assessors.each do |assessor|
         assessors << {
-          id: assessor.id,
+          id: assessor.id.to_s,
+          user_id: assessor.user.id.to_s,
           name: assessor.user.name,
           photo_url: assessor.user.photo_url
         }
