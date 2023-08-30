@@ -31,6 +31,10 @@ export const Questionnaire: FC<Props> = ({
     setFields(allFields)
   }
 
+  // TODO: i18n
+  // eslint-disable-next-line max-len
+  const neurodivergenceQuestion = 'Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?'
+
   return (
     <Form
       layout="vertical"
@@ -68,7 +72,7 @@ export const Questionnaire: FC<Props> = ({
 
       {allowNeurodiversity ? (
         <>
-          <Form.Item name="neurodivergent" label="Are you neurodivergent?">
+          <Form.Item name="neurodivergent" label={neurodivergenceQuestion}>
             <Radio.Group>
               <Radio value>Yes</Radio>
               <Radio value={false}>No</Radio>

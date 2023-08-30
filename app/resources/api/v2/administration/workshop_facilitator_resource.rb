@@ -12,6 +12,6 @@ class Api::V2::Administration::WorkshopFacilitatorResource < Api::V2::Administra
   end
 
   def photo_url
-    @model.user_profile&.photo&.url
+    @model.photo&.url
   end
 end
