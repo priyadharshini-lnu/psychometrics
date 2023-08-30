@@ -63,14 +63,12 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   subjectId,
   userId,
 }) => {
-  // use subjectId to fetch subjectDetails when API is available
-  const [loading, setLoading] = useState(true)
   const [, setFields] = useState({})
   const [statusFormInstance] = Form.useForm()
 
   const { campaignId } = useParams<{ campaignId: string }>()
   const { id } = useParams<{ id: string }>()
-  const { fetchSingle, getResource } = useResources<EditableWorkshopSubject>(
+  const { fetchSingle, getResource, isLoading } = useResources<EditableWorkshopSubject>(
     'workshop_subjects',
     {
       basePath: `campaigns/${campaignId}/workshops/${id}/`,
@@ -80,6 +78,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       },
     },
   )
+  const workshopSubjectDetailsLoading = isLoading(`fetch@${subjectId}`)
 
   const {
     memberAction,
@@ -171,12 +170,6 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     setSubjectData({ ...subjectData, assessments: updatedAssessments })
   }
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 5000)
-  }, [])
-
   const handleClose = () => {
     onClose()
   }
@@ -247,7 +240,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     updateSubject()
   }
 
-  const title = !loading ? (
+  const title = !workshopSubjectDetailsLoading ? (
     <Row className="font-normal fs-14" wrap={false} gutter={[8, 0]}>
       <Col span={12}>
         <Space>
@@ -283,7 +276,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     </Row>
   ) : <FullWidthSkeleton active rows={1} height="100" />
 
-  const statusForm = !loading ? (
+  const statusForm = !workshopSubjectDetailsLoading ? (
     <Form
       form={statusFormInstance}
       className={styles.form}
@@ -322,7 +315,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     </Form>
   ) : <FullWidthSkeleton active rows={1} height="100" />
 
-  const assessmentsTable = !loading ? (
+  const assessmentsTable = !workshopSubjectDetailsLoading ? (
     <UserAssessmentList
       assessments={assessments}
       onTimeChange={handleTimeChange}
@@ -330,7 +323,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   ) : <TableSkeleton rowsCount={3} columnsCount={4} cellHeight="40px" />
 
-  const assessorAssessmentsTable = !loading ? (
+  const assessorAssessmentsTable = !workshopSubjectDetailsLoading ? (
     <AssessorFormList
       assessorAssessments={subjectData.assessorAssessments}
       onEditAssessorForm={handleEditAssessorForm}
@@ -339,7 +332,8 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   ) : <TableSkeleton rowsCount={3} columnsCount={4} cellHeight="40px" />
 
-  const footer = !loading ? <Button type="primary" onClick={handleSaveData}>Save</Button> : <Skeleton.Button active />
+  const footer = !workshopSubjectDetailsLoading
+    ? <Button type="primary" onClick={handleSaveData}>Save</Button> : <Skeleton.Button active />
 
   return (
     <>
@@ -359,7 +353,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
           {assessmentsTable}
           <Title className="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessor_forms')}</Title>
           {assessorAssessmentsTable}
-          {!loading ? (
+          {!workshopSubjectDetailsLoading ? (
             <Button onClick={() => openModal(
               'AssessorFormModal',
               {

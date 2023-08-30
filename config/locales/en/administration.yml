@@ -321,7 +321,8 @@ en:
           name: Name
           remove_confirm:
             content: Are you sure you want to remove %{name}?
-            title: Workshop
+            success: Assessment Center was successfully removed.
+            title: Remove Assessment Center
       invite_request:
         accept: Accept
         reason: Reason
