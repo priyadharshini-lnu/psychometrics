@@ -3,7 +3,7 @@
 module Administration
   module Workshops
     class UserPolicy < Administration::BasePolicy
-      def search_subjets?
+      def search_subjects?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id
         )
