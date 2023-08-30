@@ -76,8 +76,8 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
         {(fields, { add, remove }, { errors }) => (
           <>
             {fields.map((field, index) => (
-              <Row key={index}>
-                <Col span={8}>
+              <Row key={index} gutter={16}>
+                <Col xs={23} sm={8}>
                   <Form.Item
                     {...field}
                     name={[field.name, 'name']}
@@ -87,7 +87,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
                     <Input />
                   </Form.Item>
                 </Col>
-                <Col span={8} offset={1}>
+                <Col xs={23} sm={15}>
                   <Form.Item
                     {...field}
                     name={[field.name, 'url']}

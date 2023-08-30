@@ -186,7 +186,7 @@ export const Facilitators: React.FC<Props> = ({
                 },
                 {
                   label: I18n.t('administration.scheduling.assessment_center_form.time_label'),
-                  value: startDateTime(index).format('YYYY-MM-DD hh:mm A Z'),
+                  value: formatWorkshopDate(startDateTime(index)),
                 },
               ]}
               footer={
@@ -248,8 +248,8 @@ export const Facilitators: React.FC<Props> = ({
                 onValuesChange={(_, values) => handleFormChange(index, values)}
               >
                 <Input.Group>
-                  <Row gutter={8}>
-                    <Col span={8}>
+                  <Row gutter={16}>
+                    <Col xs={24} sm={8}>
                       <Form.Item
                         label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
                         name="name"
@@ -258,15 +258,14 @@ export const Facilitators: React.FC<Props> = ({
                         <Input />
                       </Form.Item>
                     </Col>
-                    <Col span={4}>
+                    <Col xs={24} sm={4}>
                       <Form.Item
                         label={I18n.t('administration.scheduling.assessment_center_form.seats_label')}
                         name="total_seats"
                         rules={[{ required: true }]}
                       >
-                        <InputNumber placeholder="e.g 2,3,..." />
+                        <InputNumber placeholder="e.g 2,3,..." style={{ width: '100%' }} />
                       </Form.Item>
-
                     </Col>
                   </Row>
                 </Input.Group>

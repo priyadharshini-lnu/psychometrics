@@ -121,6 +121,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                   </div>
                 )
               }}
+              style={{ width: '200px' }}
             />
             <div className={styles.dateTags}>
               {selectedDates.map(date => (
@@ -134,8 +135,8 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
               ))}
             </div>
           </Form.Item>
-          <Row>
-            <Col span={7}>
+          <Row gutter={16}>
+            <Col xs={24} sm={12} lg={8}>
               <Form.Item
                 name="timezone"
                 label={I18n.t('administration.scheduling.assessment_center_form.timezone_label')}
@@ -145,17 +146,17 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                 <TimeZoneSelect value="" onChange={() => {}} />
               </Form.Item>
             </Col>
-            <Col span={4} offset={1}>
+            <Col xs={12} sm={6} lg={4}>
               <Form.Item
                 name="time"
                 label="Time"
                 {...fieldLayout}
                 rules={[{ required: true }]}
               >
-                <TimePicker format="h:mm A" use12Hours minuteStep={15} showNow={false} />
+                <TimePicker format="h:mm A" use12Hours minuteStep={15} showNow={false} style={{ width: '100%' }} />
               </Form.Item>
             </Col>
-            <Col span={4}>
+            <Col xs={12} sm={6} lg={4}>
               <Form.Item
                 name="duration"
                 label={I18n.t('administration.scheduling.assessment_center_form.duration_label')}
@@ -180,8 +181,8 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
               </Form.Item>
             </Col>
           </Row>
-          <Row>
-            <Col span={7}>
+          <Row gutter={16}>
+            <Col xs={12} lg={8}>
               <Form.Item
                 name="cancellation_lead_time"
                 label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
@@ -207,7 +208,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                 />
               </Form.Item>
             </Col>
-            <Col span={6} offset={1}>
+            <Col xs={12} lg={8}>
               <Form.Item
                 name="reschedule_lead_time"
                 label={I18n.t('administration.scheduling.assessment_center_form.reschedule_lead_time_label')}
