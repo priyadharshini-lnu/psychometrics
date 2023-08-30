@@ -28,7 +28,7 @@ export const InvitesTable = () => {
 
 
   const Menu = ({ item }) => {
-    const { resource } = useResourceContext<WorkshopInvite>()
+    const { resource } = useResourceContext<WorkshopInvite, { permissions: { destroy: boolean }}>()
     const [confirmation, setConfirmation] = useState(false)
     const remove = () => {
       resource.removeResource(item.id)
@@ -77,17 +77,12 @@ export const InvitesTable = () => {
             filter: { campaign_id_eq: params.campaignId },
             include: ['workshops'],
             fields: { workshops: 'start_time' },
+            include_meta: ['permissions'],
           },
         }}
         name="workshop_invites"
       >
-        <Resource.Filter placeholder="Search" name="translations_title_cont">
-          <Button type="primary" onClick={openForm}>
-            <PlusOutlined />
-            {' '}
-            {I18n.t('administration.assessment_center.invite.add_invite')}
-          </Button>
-        </Resource.Filter>
+        <Filter openForm={openForm} />
         <Resource.Table pagination>
           <Resource.Column
             title={I18n.t('administration.assessment_center.invite.id')}
@@ -125,12 +120,34 @@ export const InvitesTable = () => {
           <Resource.Column<WorkshopInvite>
             title={I18n.t('administration.assessment_center.invite.actions')}
             id="actions"
-            render={item => (
-              <Menu item={item} />
-            )}
+            render={(item) => {
+              const { resource } = useResourceContext<WorkshopInvite, { permissions: { remove : boolean } }>()
+
+              return resource.meta.permissions.remove ? <Menu item={item} /> : null
+            }}
           />
         </Resource.Table>
       </Resource>
     </div>
+  )
+}
+
+interface FilterProps {
+  openForm: () => void
+}
+
+const Filter: React.FC<FilterProps> = ({ openForm }) => {
+  const { resource } = useResourceContext<WorkshopInvite, { permissions: { create: boolean } }>()
+
+  return (
+    <Resource.Filter placeholder="Search" name="translations_title_cont">
+      {resource.meta.permissions.create && (
+      <Button type="primary" onClick={openForm}>
+        <PlusOutlined />
+        {' '}
+        {I18n.t('administration.assessment_center.invite.add_invite')}
+      </Button>
+      )}
+    </Resource.Filter>
   )
 }

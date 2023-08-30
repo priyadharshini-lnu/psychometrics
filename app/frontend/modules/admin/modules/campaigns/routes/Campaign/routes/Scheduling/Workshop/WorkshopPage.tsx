@@ -71,6 +71,7 @@ export const WorkshopPage: FC<{}> = () => {
       responseType: WorkshopTR,
       apiConfig: {
         include: ['workshop_managers', 'workshop_assessors'],
+        include_resource_meta: ['permissions'],
         fields: {
           workshop_managers: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
           workshop_assessors: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
@@ -103,14 +104,16 @@ export const WorkshopPage: FC<{}> = () => {
           column={{
             lg: 4, md: 3, sm: 2, xs: 1,
           }}
-          extra={(
+          extra={
+            workshop.meta?.permissions?.update && (
             <Button
               icon={<EditOutlined />}
               onClick={() => setShowForm(true)}
               size="large"
               type="link"
             />
-          )}
+            )
+          }
           contentStyle={{ paddingInlineEnd: '5px' }}
           labelStyle={{ fontWeight: 'bold' }}
           size="small"

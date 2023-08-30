@@ -15,7 +15,7 @@ module Api
         @user.admin?
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           scope.where(user_id: user.id)
         end

@@ -33,7 +33,7 @@ module Api
               %w[edit update],
               %w[remove destroy]
             ],
-            { project_id: context[:client_id] }
+            { campaign_id: campaign_id }
           )
         }
       }

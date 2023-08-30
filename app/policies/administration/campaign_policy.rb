@@ -181,6 +181,17 @@ module Administration
       )
     end
 
+    def view_workshops?
+      has_permission?(:workshops, :view) ||
+        Workshop.includes(:workshop_assessors).exists?(
+          workshop_assessors: { user_id: user.id }, campaign_id: campaign_id
+        )
+    end
+
+    def view_workshop_invites?
+      has_permission?(:workshops, :view)
+    end
+
     def manage_project_smtp_settings?
       @user.is?(:superadmin) || @user.has_permission?(
         :project_settings, :smtp, project_id: project_id

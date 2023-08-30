@@ -15,7 +15,7 @@ module Api
         has_permission?(:projects, :manage, project_id: project_id)
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           ::Administration::ClientPolicy::Scope.new(user, Client).resolve
         end

@@ -20,6 +20,12 @@ export const WorkshopTR = t.type({
   meetingLink: t.union([t.string, t.null]),
   workshopManagers: t.array(userDetailsTR),
   workshopAssessors: t.array(userDetailsTR),
+  meta: t.union([
+    t.type({
+      permissions: t.type({
+        update: t.boolean,
+      }),
+    }), t.undefined]),
 })
 
 export const WorkshopShortTR = t.type({

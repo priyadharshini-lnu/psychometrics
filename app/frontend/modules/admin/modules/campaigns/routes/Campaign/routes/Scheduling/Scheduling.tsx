@@ -2,7 +2,6 @@ import React from 'react'
 import { Menu } from 'antd'
 import { History } from 'history'
 import { connect, ConnectedProps } from 'react-redux'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
@@ -25,24 +24,26 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 type Props = PropsFromRedux & OwnProps
 
-const SchedulingComponent: React.FC<Props> = ({ history, routes }) => {
+const SchedulingComponent: React.FC<Props> = ({ history, routes, campaignPermissions }) => {
   const prefix = `${settings.urlPrefix}/:campaignId`
   const onSelect = ({ key }) => routeUtils.moveTo(history, prefix, key)
 
-  const menuItems: ItemType[] = [{
-    key: '/scheduling/assessment_center',
-    label: I18n.t('administration.scheduling.tabs.assessment_center'),
-  },
-  {
-    key: '/scheduling/invites',
-    label: I18n.t('administration.scheduling.tabs.invites'),
-  }]
+  const menuItems = () => ([
+    campaignPermissions.viewWorkshops ? {
+      key: '/scheduling/assessment_center',
+      label: I18n.t('administration.scheduling.tabs.assessment_center'),
+    } : null,
+    campaignPermissions.viewWorkshopInvites ? {
+      key: '/scheduling/invites',
+      label: I18n.t('administration.scheduling.tabs.invites'),
+    } : null,
+  ]).filter(Boolean)
 
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Menu
-          items={menuItems}
+          items={menuItems()}
           onSelect={onSelect}
           selectedKeys={getActiveLocationPath()}
           mode="horizontal"

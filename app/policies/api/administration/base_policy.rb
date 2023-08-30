@@ -21,12 +21,18 @@ module Api
         )
       end
 
-      class Scope
-        attr_reader :user, :scope
+      def can_view_workshop?
+        has_permission?(:workshops, :view) || @user.is?(:assessor)
+      end
 
-        def initialize(user, scope)
+      class Scope
+        attr_reader :user, :scope, :campaign_id, :project_id
+
+        def initialize(user, scope, options = {})
           @user = user
           @scope = scope.is_a?(Array) ? scope.last : scope
+          @project_id = options[:project_id]
+          @campaign_id = options[:campaign_id]
         end
 
         # scope - could be array

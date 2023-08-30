@@ -2,9 +2,17 @@
 
 module Api
   module Administration
-    class WorkshopSubjectPolicy < ::Administration::BasePolicy
+    class WorkshopSubjectPolicy < ::Api::Administration::BasePolicy
       def index?
-        has_permission?(:workshops, :view) || user.assessor?
+        can_view_workshop?
+      end
+
+      def show?
+        can_view_workshop?
+      end
+
+      def destroy?
+        has_permission?(:workshops, :manage)
       end
 
       def update?
@@ -12,18 +20,18 @@ module Api
       end
 
       def get_related_resources?
-        has_permission?(:workshops, :view) || user.assessor?
+        can_view_workshop?
       end
 
       def update_subject_details_and_assessments?
         has_permission?(:workshops, :manage)
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           return scope if user.superadmin?
 
-          workshops = WorkshopPolicy::Scope.new(user, Workshop).resolve
+          workshops = WorkshopPolicy::Scope.new(user, Workshop, campaign_id: campaign_id).resolve
           WorkshopSubject.where(workshop: workshops)
         end
       end

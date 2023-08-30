@@ -52,9 +52,11 @@ module Api
     end
 
     def set_resource
+      return unless params[:id] || params[:workshop_invite_id]
+
       @workshop_invite = Api::Administration::WorkshopInvitePolicy::Scope.new(
-        current_user, WorkshopInvite
-      ).resolve.find(params[:workshop_invite_id])
+        current_user, WorkshopInvite, campaign_id: params[:campaign_id]
+      ).resolve.find(params[:id] || params[:workshop_invite_id])
     end
 
     def workshop_params
@@ -74,10 +76,33 @@ module Api
       params.require(:data).require(:attributes).permit(translations: %i[locale title description])
     end
 
+    def meta_details
+      {
+        permissions: lambda {
+          GetPermissionsHash.call!(
+            Api::Administration::WorkshopInvitePolicy,
+            current_user,
+            model || model_class,
+            [
+              'create',
+              %w[remove destroy]
+            ],
+            { campaign_id: campaign_id }
+          )
+        }
+      }
+    end
+
     def base_response_meta
       return { errors: @errors } if @errors&.any?
 
-      {}
+      super
+    end
+
+    def campaign_id
+      set_resource
+      super || @workshop_invite&.campaign_id || params.dig(:filter, :workshops_campaign_id_eq) ||
+        params.dig(:filter, :campaign_id) || params.dig(:filter, :campaign_id_eq)
     end
   end
 end

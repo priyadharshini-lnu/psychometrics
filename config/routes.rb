@@ -1279,6 +1279,7 @@ Rails.application.routes.draw do
                 get :subject_assessor_assessments, on: :collection
               end
             end
+            jsonapi_resources :users, only: %i[index], controller: 'campaigns/users'
           end
           jsonapi_resources :workshops, only: %i[index] do
             jsonapi_relationships

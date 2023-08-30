@@ -30,7 +30,7 @@ module Api
         @user.has_permission?(:users, :reset_password, project_id: @record.project_id)
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           return scope if @user.is?(:superadmin)
 

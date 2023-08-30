@@ -22,12 +22,16 @@ module Api
             [
               'index',
               %w[manage update],
-              'destroy'
+              %w[remove destroy]
             ],
-            { project_id: context[:client_id] }
+            { campaign_id: campaign_id }
           )
         }
       }
+    end
+
+    def campaign_id
+      super || model?.campaign_id
     end
   end
 end

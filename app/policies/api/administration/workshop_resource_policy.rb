@@ -23,11 +23,11 @@ module Api
         has_permission?(:workshops, :view) || user.assessor?
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           return scope if user.superadmin?
 
-          workshops = WorkshopPolicy::Scope.new(user, Workshop).resolve
+          workshops = WorkshopPolicy::Scope.new(user, Workshop, campaign_id: campaign_id).resolve
           WorkshopResource.where(workshop: workshops)
         end
       end

@@ -176,6 +176,9 @@ module Api
     end
 
     def pundit_authorize
+      per_action_authorize_method = "authorize_#{params[:action]}"
+      return send(per_action_authorize_method) if respond_to?(per_action_authorize_method, true)
+
       authorize(
         model || model_class,
         nil,
@@ -200,7 +203,10 @@ module Api
     def model
       return if model_class.nil? || model_id.nil?
 
-      @model ||= policy_class::Scope.new(current_user, model_class).resolve.find(model_id)
+      @model ||= policy_class::Scope.new(
+        current_user, model_class, campaign_id: campaign_id || params[:campaign_id],
+        project_id: project_id || params[:project_id]
+      ).resolve.find(model_id)
     end
 
     def policy_class
