@@ -200,7 +200,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const handleEditAssessorForm = (data) => {
     openModal('AssessorFormModal', {
-      initialFormData: { ...data, scheduleTime: moment(data.scheduleTime) },
+      initialFormData: { ...data, scheduleTime: moment(data.scheduleTime || Date.now()) },
       assessors: workshopSubject?.meta.assessors,
       assessments: workshopSubject?.meta.assessorAssessments,
     })
@@ -282,7 +282,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       className={styles.form}
       layout="inline"
       initialValues={{
-        attendanceStatus: subjectData.attendanceStatus || 'On Time',
+        attendanceStatus: subjectData.attendanceStatus || 'on_time',
         lateDuration: subjectData.lateDuration || null,
       }}
       onFieldsChange={(_, allFields) => {

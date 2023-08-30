@@ -10,6 +10,10 @@ module Administration
         delegate :status, :schedule_time, :meeting_link, to: :user_assessment, allow_nil: true
         delegate :id, to: :user_assessment, prefix: true, allow_nil: true
 
+        def id
+          object.id.to_s
+        end
+
         def assessor
           return unless user_assessment&.evaluator
 

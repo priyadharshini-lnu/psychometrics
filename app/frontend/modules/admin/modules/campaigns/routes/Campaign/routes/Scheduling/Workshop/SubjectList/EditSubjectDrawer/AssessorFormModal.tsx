@@ -39,7 +39,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
         {
           ...values,
           name: initialFormData.name,
-          assessor: { ...initialFormData.assessor, id: initialFormData.assessor?.userId },
+          assessor: { ...initialFormData.assessor, id: initialFormData.assessor?.id },
         },
         id: initialFormData.id,
       })

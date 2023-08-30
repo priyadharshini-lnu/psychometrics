@@ -58,7 +58,7 @@ module WorkshopSubjects
         evaluator_id: assessment_data[:assessor][:id],
         relationship_id: Relationship.assessor_relationship.id
       )
-      user_assessment.schedule_time = assessment_data[:schedule]
+      user_assessment.schedule_time = assessment_data[:schedule_time]
       user_assessment.meeting_link = assessment_data[:meeting_link]
       user_assessment.users_result = UsersResult.create! if user_assessment.users_result.blank?
       user_assessment.save!
