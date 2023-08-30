@@ -9,11 +9,9 @@ const { I18n } = window
 
 type Props = {
   cancelBooking: boolean
-  rescheduleBooking: boolean
   onCancelBooking: (cancel: boolean) => void
-  onRescheduleBooking: (reschedule: boolean) => void
+  onRescheduleBooking: () => void
   onRequestCancellation: (reason: string) => void
-  onRequestRescheduleBooking: (reason: string) => void
   requestForCancelInProgress: boolean
   requestForRescheduleInProgress: boolean
   allowCancelByUser: boolean
@@ -21,13 +19,12 @@ type Props = {
 }
 export const RescheduleAndCancel: FC<Props> = ({
   cancelBooking, onCancelBooking, onRescheduleBooking, requestForRescheduleInProgress, requestForCancelInProgress,
-  onRequestCancellation, rescheduleBooking, onRequestRescheduleBooking, allowCancelByUser, cancelInProgress,
+  onRequestCancellation, allowCancelByUser, cancelInProgress,
 }) => {
   const [openConfirmPopup, setOpenConfirmPopup] = useState(false)
-  const [requestCancelOrRescheduleForm] = Form.useForm()
+  const [requestCancelForm] = Form.useForm()
   const requestButtonText = cancelBooking ? I18n.t('frontend.bookings.buttons.request_cancel')
     : I18n.t('frontend.bookings.buttons.request_reschedule')
-  const requestHandler = cancelBooking ? onRequestCancellation : onRequestRescheduleBooking
   const reasonLabel = cancelBooking
     ? I18n.t('frontend.bookings.reason_for_cancel') : I18n.t('frontend.bookings.reason_for_reschedule')
 
@@ -37,14 +34,14 @@ export const RescheduleAndCancel: FC<Props> = ({
     }
   }, [cancelInProgress])
 
-  if (cancelBooking || rescheduleBooking) {
+  if (cancelBooking) {
     return (
       <>
         <label className="block" htmlFor="reason">{reasonLabel}</label>
         <Form
-          form={requestCancelOrRescheduleForm}
+          form={requestCancelForm}
           onFinish={(values) => {
-            requestHandler(values.reason)
+            onRequestCancellation(values.reason)
           }}
         >
           <Form.Item name="reason" rules={[{ required: true }]}><Input.TextArea rows={3} /></Form.Item>
@@ -55,7 +52,6 @@ export const RescheduleAndCancel: FC<Props> = ({
               size="small"
               onClick={() => {
                 onCancelBooking(false)
-                onRescheduleBooking(false)
               }}
             >
               {I18n.t('frontend.bookings.buttons.nevermind')}
@@ -65,7 +61,7 @@ export const RescheduleAndCancel: FC<Props> = ({
               loading={requestForRescheduleInProgress || requestForCancelInProgress}
               size="small"
               type="primary"
-              onClick={() => requestCancelOrRescheduleForm.submit()}
+              onClick={() => requestCancelForm.submit()}
             >
               {requestButtonText}
               {' '}
@@ -98,7 +94,7 @@ export const RescheduleAndCancel: FC<Props> = ({
           </Button>
         </CancelButtonWrapper>
         <span>{I18n.t('frontend.bookings.or')}</span>
-        <Button className="ps-2 pe-2" type="link" onClick={() => onRescheduleBooking(true)}>
+        <Button className="ps-2 pe-2" type="link" onClick={() => onRescheduleBooking()}>
           {I18n.t('frontend.bookings.buttons.reschedule')}
         </Button>
       </Space>

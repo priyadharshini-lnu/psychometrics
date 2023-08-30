@@ -1902,11 +1902,12 @@ en:
         cancel: Cancel
         cancel_booking: Cancel Booking
         confirm_booking: Confirm Booking
+        confirm_reschedule: Confirm Reschedule
         modify: Modify
         nevermind: Nevermind
         no_text: 'No'
         request_cancel: Request cancellation
-        request_reschedule: Request reschedule
+        request_reschedule: Request for Reschedule
         reschedule: Reschedule
         yes_text: 'Yes'
       cancel_booking_confirmation: Are you sure you want to cancel this booking?
@@ -1927,6 +1928,7 @@ en:
       request_reschedule_failed: 'Failed to request for rescheduling: %{error}'
       request_reschedule_success: Successfully requested for rescheduling
       reschedule_failed_msg: 'Failed to reschedule: %{error}'
+      reschedule_reason_placeholder: To continue, please enter the reason for rescheduling.
       schedule_success: This booking is scheduled
       schedule_success_msg: We emailed you and the other attendees a calendar invitation with all the details.
       tab_label:

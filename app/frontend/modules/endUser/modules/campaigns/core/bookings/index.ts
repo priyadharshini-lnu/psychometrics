@@ -177,6 +177,7 @@ type RequestRescheduleRequestBody = {
   workshopId: number,
   status: string,
   reason: string,
+  newWorkshopBookingId: number,
 }
 export const REQUEST_RESCHEDULE_BOOKING = 'bookings/REQUEST_RESCHEDULE_BOOKING'
 export const requestRescheduleBooking = (

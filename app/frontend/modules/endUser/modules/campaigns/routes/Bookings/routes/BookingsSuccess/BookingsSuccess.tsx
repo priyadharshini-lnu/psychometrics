@@ -60,17 +60,16 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   bookingDetailsLoading, fetchSingleBooking, cancelBooking, requestForRescheduleInProgress,
-  requestCancelBooking, requestRescheduleBooking, requestForCancelInProgress, cancelInProgress,
+  requestCancelBooking, requestForCancelInProgress, cancelInProgress,
 }) => {
   const tourRef = useRef<HTMLDivElement>(null)
   const queryString = qs.parse(location.search.substring(1))
   const [requestCancellation, setRequestrequestCancellation] = useState<boolean>(false)
-  const [requestReschedule, setRequestReschedule] = useState<boolean>(false)
   const [bookingDetails, setbookingDetails] = useState<null | SingleBooking >(null)
   const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
   const bookedDateTime = bookingDetails?.bookedDate
   const bookedDateTimeMomentObject = bookedDateTime ? moment(bookedDateTime.date) : null
-  const currentTimezone = bookingDetails?.timezone || moment.tz.guess() || 'Asia/Baku'
+  const currentTimezone = bookingDetails?.timezone || moment.tz.guess() || 'Asia/Dubai'
   const currentTime = moment().tz(currentTimezone)
   const bookedDateTimeMomentObjectTz = bookedDateTimeMomentObject?.clone().tz(currentTimezone)
   const duration = bookingDetails?.duration || 0
@@ -80,8 +79,6 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
 
   const deadlineToAllowCancelByUser = bookedDateTimeMomentObjectTz?.clone()
     .subtract(bookingDetails?.cancellationLeadTime, 's')
-  const deadlineToAllowRescheduleByUser = bookedDateTimeMomentObjectTz?.clone()
-    .subtract(bookingDetails?.rescheduleLeadTime, 's')
   const bookingEndTime = bookedDateTimeMomentObjectTz?.clone().add(duration, 's')
   const meetingTime = `${bookedDateTimeMomentObjectTz?.clone().format('hh:mmA')} - ${bookingEndTime?.format('hh:mmA')}`
   const allowCancelByUser = currentTime.isSameOrBefore(deadlineToAllowCancelByUser)
@@ -126,30 +123,8 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
     }
   }
 
-  const handleRescheduleBooking = (cancel: boolean) => {
-    const allowRescheduleByUser = currentTime.isSameOrBefore(deadlineToAllowRescheduleByUser)
-    if (allowRescheduleByUser) {
-      history.push(`/invites/${inviteOrBookingId}/details?type=booking`)
-    } else {
-      setRequestReschedule(cancel)
-    }
-  }
-
-  const handleRequestRescheduleBooking = (reason: string) => {
-    if (bookingId && workshopId) {
-      const requestData = {
-        workshopId,
-        reason,
-        status: 'requested_rescheduling',
-      }
-      requestRescheduleBooking(bookingId, requestData).then(() => {
-        message.success(I18n.t('frontend.bookings.request_reschedule_success'))
-        history.push('/invites')
-      }).catch((errors) => {
-        const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
-        message.error(I18n.t('frontend.bookings.request_reschedule_failed', { error }))
-      })
-    }
+  const handleRescheduleBooking = () => {
+    history.push(`/invites/${inviteOrBookingId}/details?type=booking`)
   }
 
   const headerContent = (
@@ -253,11 +228,9 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
           footerContent={(
             <RescheduleAndCancel
               cancelBooking={requestCancellation}
-              rescheduleBooking={requestReschedule}
               onCancelBooking={handleCancelBooking}
               onRescheduleBooking={handleRescheduleBooking}
               onRequestCancellation={handleRequestCancelBooking}
-              onRequestRescheduleBooking={handleRequestRescheduleBooking}
               requestForRescheduleInProgress={requestForRescheduleInProgress}
               requestForCancelInProgress={requestForCancelInProgress}
               allowCancelByUser={allowCancelByUser}

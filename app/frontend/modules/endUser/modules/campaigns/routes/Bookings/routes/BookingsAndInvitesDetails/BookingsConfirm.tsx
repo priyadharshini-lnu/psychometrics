@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import _ from 'lodash'
+import { FC, useState } from 'react'
 import { Moment } from 'moment'
 import {
-  Row, Typography, Col, Space, Button,
+  Row, Typography, Col, Space, Button, Input,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
@@ -18,9 +19,11 @@ type BookingConfirmProps = {
   language: string
   duration: number
   onCancelOfConfirmBooking: ()=> void
-  onConfirmBooking: ()=> void
+  onConfirmBooking: (reason: string)=> void
   bookingTimeZone: string
   title: string
+  isRescheduleFlow: boolean
+  allowRescheduleByUser: boolean
 }
 
 const connector = connect((state: RootState) => ({
@@ -33,11 +36,20 @@ type Props = BookingConfirmProps & PropsFromRedux
 
 const BookingConfirmComponent: FC<Props> = ({
   bookingDateTime, language, duration, onCancelOfConfirmBooking, bookingTimeZone, onConfirmBooking, title,
-  isBookingInProgress, isRescheduleInProgress,
+  isBookingInProgress, isRescheduleInProgress, isRescheduleFlow, allowRescheduleByUser,
 }) => {
+  const [reasonForReschedule, setReasonForReschedule] = useState<string>('')
+
   const bookingEndTime = bookingDateTime.clone().add(duration, 's')
   const meetingTime = `${bookingDateTime.clone().format('hh:mmA')} - ${bookingEndTime.format('hh:mmA')}`
   const loading = isBookingInProgress || isRescheduleInProgress
+  const isReasonEmptyOrWhitespace = _.isEmpty(_.trim(reasonForReschedule))
+  let confirmButtonText = I18n.t('frontend.bookings.buttons.confirm_booking')
+
+  if (isRescheduleFlow) {
+    confirmButtonText = allowRescheduleByUser ? I18n.t('frontend.bookings.buttons.confirm_reschedule')
+      : I18n.t('frontend.bookings.buttons.request_reschedule')
+  }
 
   const headerContent = (
     <>
@@ -74,25 +86,36 @@ const BookingConfirmComponent: FC<Props> = ({
   )
 
   const footerContent = (
-    <div className="ta-e">
-      <Space>
-        <Button
-          disabled={loading}
-          onClick={onCancelOfConfirmBooking}
-        >
-          {I18n.t('frontend.bookings.buttons.cancel')}
-        </Button>
-        <Button
-          type="primary"
-          onClick={onConfirmBooking}
-          loading={loading}
-        >
-          {I18n.t('frontend.bookings.buttons.confirm_booking')}
-          {' '}
-          <DirectionalArrowIcon />
-        </Button>
-      </Space>
-    </div>
+    <Space className="w-100" direction="vertical">
+      {isRescheduleFlow && !allowRescheduleByUser ? (
+        <Input.TextArea
+          value={reasonForReschedule}
+          onChange={e => setReasonForReschedule(e.target.value)}
+          placeholder={I18n.t('frontend.bookings.reschedule_reason_placeholder')}
+        />
+      ) : null}
+      <div className="ta-e">
+
+        <Space>
+          <Button
+            disabled={loading}
+            onClick={onCancelOfConfirmBooking}
+          >
+            {I18n.t('frontend.bookings.buttons.cancel')}
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => onConfirmBooking(reasonForReschedule)}
+            loading={loading}
+            disabled={isRescheduleFlow && !allowRescheduleByUser && isReasonEmptyOrWhitespace}
+          >
+            {confirmButtonText}
+            {' '}
+            <DirectionalArrowIcon />
+          </Button>
+        </Space>
+      </div>
+    </Space>
   )
 
   return (

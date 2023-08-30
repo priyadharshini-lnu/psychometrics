@@ -61,7 +61,7 @@ export const RequestsTable = () => {
                 url={user.photoUrl}
                 name={user.fullName}
               />
-              <Space size="small" direction="vertical">
+              <Space size={0} direction="vertical">
                 <Text>{user?.fullName}</Text>
                 <Text type="secondary" className="fs-12">{user?.email}</Text>
               </Space>

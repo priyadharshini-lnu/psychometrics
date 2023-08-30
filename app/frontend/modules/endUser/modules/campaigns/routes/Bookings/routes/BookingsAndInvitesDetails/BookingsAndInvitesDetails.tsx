@@ -14,7 +14,7 @@ import qs from 'qs'
 import { Store } from 'antd/lib/form/interface'
 import { get as getCurrentUser } from '~/core/currentUser'
 import {
-  bookSlot, SingleInvite, SingleBooking, fetchBooking, fetchInvite, rescheduleBooking,
+  bookSlot, SingleInvite, SingleBooking, fetchBooking, fetchInvite, rescheduleBooking, requestRescheduleBooking,
 } from '~/modules/endUser/modules/campaigns/core/bookings'
 import { Questionnaire } from './Questionnaire'
 import { BookingCard, ButtonWithArrow, FullWidthSkeleton } from '~/glint'
@@ -32,6 +32,7 @@ const connector = connect((state: RootState) => ({
   fetchBooking,
   fetchInvite,
   rescheduleBooking,
+  requestRescheduleBooking,
 })
 
 type TimeSlot = {
@@ -42,7 +43,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const BookingsAndInvitesDetailsComponet:FC<Props> = ({
-  currentUser, bookSlot, fetchInvite, fetchBooking, rescheduleBooking,
+  currentUser, bookSlot, fetchInvite, fetchBooking, rescheduleBooking, requestRescheduleBooking,
 }) => {
   const [inviteOrBookingDetails, setInviteOrBookingDetails] = useState<null | SingleInvite | SingleBooking>(null)
   const bookedDateMomentObject = (
@@ -55,8 +56,19 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
   const location = useLocation()
   const questionResponseValueRef = useRef<Store>({})
+  const currentTimezone = inviteOrBookingDetails?.timezone || moment.tz.guess() || 'Asia/Dubai'
+  const currentTime = moment().tz(currentTimezone)
+  const bookedDateTimeMomentObjectTz = bookedDateMomentObject
+    ? bookedDateMomentObject.date.clone().tz(currentTimezone) : null
+  const deadlineToAllowRescheduleByUser = bookedDateTimeMomentObjectTz?.clone()
+    .subtract(inviteOrBookingDetails?.rescheduleLeadTime || 0, 's')
+  const allowRescheduleByUser = currentTime.isSameOrBefore(deadlineToAllowRescheduleByUser)
+  const workshopId = bookedDateMomentObject?.id
+  const bookingId = inviteOrBookingDetails?.id?.toString()
 
   const { type } = qs.parse(location.search.substr(1))
+  const isRescheduleFlow = type === 'booking'
+
 
   const preferredLanguageFromData = inviteOrBookingDetails
     && 'preferredLanguage' in inviteOrBookingDetails && inviteOrBookingDetails.preferredLanguage
@@ -132,6 +144,24 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
     }
   }
 
+  const handleRequestRescheduleBooking = (reason: string) => {
+    if (bookingId && workshopId) {
+      const requestData = {
+        workshopId,
+        reason,
+        status: 'requested_rescheduling',
+        newWorkshopBookingId: selectedDateId as number,
+      }
+      requestRescheduleBooking(bookingId, requestData).then(() => {
+        message.success(I18n.t('frontend.bookings.request_reschedule_success'))
+        history.push('/invites')
+      }).catch((errors) => {
+        const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
+        message.error(I18n.t('frontend.bookings.request_reschedule_failed', { error }))
+      })
+    }
+  }
+
   return (
     <Layout.Content className={styles.pageContent}>
       {book && selectedDateTime && inviteOrBookingDetails
@@ -143,11 +173,15 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
             bookingTimeZone={inviteOrBookingDetails.timezone || moment.tz.guess()}
             duration={inviteOrBookingDetails.duration || 0}
             title={inviteOrBookingDetails.title || ''}
-            onConfirmBooking={() => {
+            onConfirmBooking={(reason) => {
               type === 'invite' && handleAssessmentCenterBooking()
-              type === 'booking' && handleAssessmentCenterRescheduling()
+              if (isRescheduleFlow) {
+                allowRescheduleByUser ? handleAssessmentCenterRescheduling() : handleRequestRescheduleBooking(reason)
+              }
             }
             }
+            isRescheduleFlow={isRescheduleFlow}
+            allowRescheduleByUser={allowRescheduleByUser}
           />
         ) : (
           <Col
