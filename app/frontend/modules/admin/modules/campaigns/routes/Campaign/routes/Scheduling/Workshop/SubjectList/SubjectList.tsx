@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox,
+  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import * as t from 'io-ts'
@@ -279,7 +279,47 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  const menuItems:ItemType[] = []
+  const onChangeStatus = (status: string) => {
+    Modal.confirm({
+      title: I18n.t('administration.scheduling.subjects.confirm_title'),
+      content: I18n.t('administration.scheduling.subjects.status_confirm_message',
+        {
+          subject_email: subject?.user?.email,
+          status: I18n.t(`administration.scheduling.completion_status.${status}`),
+        }),
+      okText: I18n.t('common.text.confirm'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => handleChangeStatus(status),
+    })
+  }
+
+  const handleChangeStatus = (status: string) => {
+    resource.updateResource({ id: subject.id, completionStatus: status }).then(() => {
+      message.success(I18n.t('administration.scheduling.subjects.status_changed',
+        { status: I18n.t(`administration.scheduling.completion_status.${status}`) }))
+    })
+  }
+
+  const menuItems:ItemType[] = [
+    {
+      key: 'mark_complete',
+      label: (
+        <>
+          <Button
+            type="link"
+            onClick={() => {
+              onChangeStatus(subject.completionStatus === 'completed' ? 'not_started' : 'completed')
+            }}
+            className="ps-0"
+          >
+            {subject.completionStatus === 'completed'
+              ? I18n.t('common.actions.mark_not_started')
+              : I18n.t('common.actions.mark_complete')}
+          </Button>
+        </>
+      ),
+    },
+  ]
 
   resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
     subject.schedulingStatus,

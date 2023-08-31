@@ -3949,6 +3949,8 @@ en:
         override_existing: Override existing schedules for subjects
         preworks: Prework
         schedule: Schedule
+        status_changed: Status successfully changed to %{status}
+        status_confirm_message: Are you sure you want to change status to '%{status}' for '%{subject_email}'?
         success_message: Subject with email %{subject_email} removed successfully.
         unschedule: Unschedule
       tabs:

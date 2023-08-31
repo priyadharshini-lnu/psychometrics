@@ -1432,6 +1432,8 @@ en:
       delete: Delete
       edit: Edit
       import: Import
+      mark_complete: Mark Complete
+      mark_not_started: Mark Not Started
       remove: Remove
       reset: Reset
       resolve: Resolve
