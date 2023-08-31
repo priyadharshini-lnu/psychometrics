@@ -23,13 +23,13 @@ const connector = connect(null, { openModal })
 type Props = ConnectedProps<typeof connector>
 
 export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
-  const { inviteId } = useParams<{ inviteId: string, campaignId: string }>()
+  const { inviteId, campaignId } = useParams<{ inviteId: string, campaignId: string }>()
 
   return (
     <>
       <Resource
         config={{
-          basePath: `workshop_invites/${inviteId}`,
+          basePath: `campaigns/${campaignId}/workshop_invites/${inviteId}`,
           trackUrl: true,
           responseType: WorkshopShortTR,
           apiConfig: {
@@ -56,7 +56,7 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
           <Resource.Column<WorkshopShort>
             id="remove"
             title={I18n.t('common.actions.remove')}
-            render={(_, workshop) => <RemoveWorkshop inviteId={inviteId} workshop={workshop} />}
+            render={(_, workshop) => <RemoveWorkshop campaignId={campaignId} inviteId={inviteId} workshop={workshop} />}
           />
         </Resource.Table>
         <Modals modals={{ WorkshopAddFormModal }} />
@@ -65,9 +65,11 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
   )
 }
 
-const RemoveWorkshop: React.FC<{ workshop: WorkshopShort, inviteId:string }> = ({ inviteId, workshop }) => {
+const RemoveWorkshop: React.FC<{ workshop: WorkshopShort, campaignId:string, inviteId:string }> = ({
+  campaignId, inviteId, workshop,
+}) => {
   const { removeRelationships } = useResources<WorkshopInvite>('workshop_invites', {
-    basePath: `workshop_invites/${inviteId}`,
+    basePath: `campaigns/${campaignId}/workshop_invites/${inviteId}`,
   })
 
   const { resource } = useResourceContext<WorkshopShort>()

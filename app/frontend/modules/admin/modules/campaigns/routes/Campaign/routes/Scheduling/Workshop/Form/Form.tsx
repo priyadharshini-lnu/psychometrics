@@ -49,7 +49,6 @@ export const AssessmentCenterForm = () => {
     workshop_resources: [{ key: 1, name: '', url: '' }],
   })
   const history = useHistory()
-  const params = useParams<{campaignId: string}>()
   const [step, setStep] = useState(0)
   const [showSuccessPage, setShowSuccessPage] = useState(false)
   const [submitPage, showSubmitPage] = useState(false)
@@ -82,7 +81,8 @@ export const AssessmentCenterForm = () => {
     setShowSuccessPage(true)
   }
 
-  const { createResource, isLoading } = useResources<WorkshopInvite>('workshop_invites')
+  const { createResource, isLoading } = useResources<WorkshopInvite>('workshop_invites',
+    { basePath: `campaigns/${campaignId}` })
   const workshopInviteCreationInProgress = isLoading('add')
   const [errors, setErrors] = useState<Errors | null>(null)
 
@@ -95,7 +95,7 @@ export const AssessmentCenterForm = () => {
       workshopIds: (form.getFieldValue('workshopIds') || []).map(workshop => workshop.id),
       subjects: (form.getFieldValue('subjects') || []).map(user => ({ userId: user.id })),
       translations: form.getFieldValue('translations') || [],
-    }, { apiConfig: { filter: { workshops_campaign_id_eq: params.campaignId } } }).then(() => {
+    }).then(() => {
       showSubmitPage(true)
     }).catch((errors) => {
       setErrors(errors)

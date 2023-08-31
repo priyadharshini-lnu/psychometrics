@@ -39,12 +39,5 @@ module Api
         current_user, WorkshopInvitedSubject
       ).resolve.find(params[:id])
     end
-
-    def campaign_id
-      return WorkshopInvite.find(params[:workshop_invite_id]).campaign_id if params[:workshop_invite_id]
-
-      set_resource if params[:id]
-      super || @workshop_invited_subject&.campaign&.id || params.dig(:filter, :workshop_invite_campaign_id_eq)
-    end
   end
 end

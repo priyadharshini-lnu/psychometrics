@@ -44,8 +44,7 @@ export const AddSubjectsComponent: FC<Props> = ({
 
   const {
     collectionAction,
-  } = useResources<User>('workshop_invites')
-  const params = useParams<{campaignId: string}>()
+  } = useResources<User>('workshop_invites', { basePath: `campaigns/${campaignId}` })
 
   const [subjects, setSubjects] = useState<User[]>(form.getFieldValue('subjects') || [])
 
@@ -70,9 +69,6 @@ export const AddSubjectsComponent: FC<Props> = ({
       action: 'import_subjects_from_campaign',
       method: 'get',
       body: { page: { size: 300 } },
-      apiConfig: {
-        filter: { campaign_id: params.campaignId },
-      },
     }).then((data:User[]) => {
       setImportErrors([])
       data.forEach((user) => {
@@ -87,10 +83,9 @@ export const AddSubjectsComponent: FC<Props> = ({
     const files = ref.current?.input?.files
     if (files && files[0]) {
       const fd = new FormData()
-      fd.append('campaign_id', params.campaignId)
       fd.append('page[size]', '300')
       fd.append('file', files[0])
-      uploadCSV(fd).then(({ response }) => {
+      uploadCSV(campaignId, fd).then(({ response }) => {
         response.data.map((u) => {
           addSubject({ id: u.id, ...u.attributes })
         })

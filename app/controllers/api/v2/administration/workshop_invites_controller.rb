@@ -13,7 +13,7 @@ module Api
         campaign = Api::Administration::CampaignPolicy::Scope.new(
           current_user,
           Campaign
-        ).resolve.find(params.dig(:filter, :workshops_campaign_id_eq))
+        ).resolve.find(params[:campaign_id])
 
         @workshop_invite = campaign.workshop_invites.create!(workshop_invite_params)
         @workshops.each do |workshop|
@@ -34,7 +34,7 @@ module Api
     end
 
     def import_subjects_from_campaign
-      users = User.with_campaign_user(params[:filter][:campaign_id]).includes(:user_profile)
+      users = User.with_campaign_user(params[:campaign_id]).includes(:user_profile)
       if users.count <= ::WorkshopInvite::RESTRICTED_SUBJECTS
         jsonapi_render json: users.to_a, options: { resource: Api::V2::Administration::UserResource }
       else
@@ -97,12 +97,6 @@ module Api
       return { errors: @errors } if @errors&.any?
 
       super
-    end
-
-    def campaign_id
-      set_resource
-      super || @workshop_invite&.campaign_id || params.dig(:filter, :workshops_campaign_id_eq) ||
-        params.dig(:filter, :campaign_id) || params.dig(:filter, :campaign_id_eq)
     end
   end
 end

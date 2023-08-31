@@ -26,9 +26,9 @@ export const RequestsTable = () => {
 
   const config = {
     responseType: WorkshopInvitedSubjectTR,
+    basePath: `campaigns/${campaignId}`,
     apiConfig: {
       filter: {
-        workshop_invite_campaign_id_eq: campaignId,
         status_in: [
           'requested_cancellation',
           'requested_cancellation_rejected',

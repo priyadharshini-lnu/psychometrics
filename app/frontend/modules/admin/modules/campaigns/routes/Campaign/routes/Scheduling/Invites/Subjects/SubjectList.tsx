@@ -35,13 +35,13 @@ const connector = connect(null, { openModal })
 type Props = ConnectedProps<typeof connector>
 
 export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
-  const { inviteId } = useParams<{ inviteId: string, campaignId: string }>()
+  const { inviteId, campaignId } = useParams<{ inviteId: string, campaignId: string }>()
 
   return (
     <>
       <Resource
         config={{
-          basePath: `/workshop_invites/${inviteId}`,
+          basePath: `campaigns/${campaignId}/workshop_invites/${inviteId}`,
           trackUrl: true,
           responseType: WorkshopInvitedSubjectTR,
           apiConfig: {

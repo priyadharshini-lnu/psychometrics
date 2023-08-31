@@ -6,6 +6,7 @@ require 'swagger_helper'
 describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:project) { create(:project, subdomain: 'project-subdomain') }
   let!(:campaign) { create(:campaign, project: project) }
+  let!(:campaign_id) { campaign.id }
   let!(:superadmin) { create(:superadmin) }
   let!(:workshop) { create(:workshop, campaign: campaign) }
   let!(:workshop2) { create(:workshop, campaign: campaign) }
@@ -18,7 +19,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
     sign_in(superadmin)
   end
 
-  path '/workshop_invites' do
+  path '/campaigns/{campaign_id}/workshop_invites' do
     get 'Get Workshop List' do
       operationId 'WorkshopList'
       description 'Fetch Workshop list'
@@ -26,6 +27,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
       tags 'Workshop'
       consumes 'application/json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
 
       response '200', 'Workshop list' do
         schema '$ref' => '#/components/schemas/WorkshopInviteListResponse'
@@ -53,7 +55,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
     end
   end
 
-  path '/workshop_invites' do
+  path '/campaigns/{campaign_id}/workshop_invites' do
     before { create(:campaign_user, campaign: campaign, user: user1) }
     post 'Create a Workshop Invite' do
       operationId 'CreateWorkshop'
@@ -61,6 +63,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
       tags 'Workshops'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
       parameter name: :body, in: :body,
                 schema: { '$ref' => '#/components/schemas/WorkshopCreateRequest' },
                 required: true
@@ -88,9 +91,6 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
 
         let(:body) do
           {
-            filter: {
-              workshops_campaign_id_eq: campaign.id
-            },
             data: {
               type: 'workshop_invites',
               attributes: {
@@ -123,6 +123,24 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
           expect(workshop_invite.workshops.count).to eq(2)
           expect(workshop_invite.workshops).to include(workshop)
           expect(workshop_invite.workshops).to include(workshop2)
+        end
+      end
+    end
+  end
+
+  path '/campaigns/{campaign_id}/workshop_invites/{workshop_invite_id}' do
+    delete 'Delete Workshop Invite' do
+      operationId 'DeleteWorkshopInvite'
+      description 'Delete Workshop Invite'
+      tags 'Workshop'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :workshop_invite_id, in: :path, type: :string
+
+      response '204', 'Workshop Invite Deleted' do
+        run_test! do |_|
+          expect(WorkshopInvite.exists?(id: workshop_invite_id)).to be_falsey
         end
       end
     end

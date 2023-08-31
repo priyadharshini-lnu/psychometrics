@@ -277,6 +277,7 @@ en:
         next: Next
         not_selected: Not selected
         remove: Remove
+        remove_success: Invitation was successfully removed
         requests: Requests
         save: Save & Send
         send_invites:

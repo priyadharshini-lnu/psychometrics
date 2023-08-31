@@ -7,6 +7,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
   let!(:superadmin) { create(:superadmin) }
   let!(:workshop_invite) { create(:workshop_invite) }
   let!(:workshop_invite_id) { workshop_invite.id }
+  let!(:campaign_id) { workshop_invite.campaign_id }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
   let(:user) { create(:user) }
 
@@ -14,7 +15,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
     sign_in(superadmin)
   end
 
-  path '/workshop_invites/{workshop_invite_id}/workshop_invited_subjects' do
+  path '/campaigns/{campaign_id}/workshop_invites/{workshop_invite_id}/workshop_invited_subjects' do
     get 'Get Workshop Invited Subject List' do
       operationId 'WorkshopInvitedSubjectList'
       description 'Fetch Workshop Invited Subject List'
@@ -22,6 +23,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :workshop_invite_id, in: :path, type: :string, required: true
+      parameter name: :campaign_id, in: :path, type: :string, required: true
 
       response '200', 'WorkshopInvitedSubject list' do
         schema '$ref' => '#/components/schemas/WorkshopInvitedSubjectListResponse'
@@ -70,6 +72,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
       tags 'WorkshopInvitedSubject'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string, required: true
       parameter name: :workshop_invite_id, in: :path, type: :string, required: true
       parameter name: :body, in: :body,
                 schema: { '$ref' => '#/components/schemas/WorkshopInvitedSubjectCreateRequest' }, required: true
@@ -122,7 +125,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
     end
   end
 
-  path '/workshop_invites/{workshop_invite_id}/workshop_invited_subjects/{id}' do
+  path '/campaigns/{campaign_id}/workshop_invites/{workshop_invite_id}/workshop_invited_subjects/{id}' do
     delete 'Delete Workshop Invited Subject' do
       operationId 'DeleteWorkshopInvitedSubject'
       description 'Delete Workshop Invited Subject'
@@ -131,6 +134,7 @@ describe Api::V2::Administration::WorkshopInvitesController, swagger_doc: 'v2/sw
       security [basic: []]
       parameter name: :id, in: :path, type: :string, required: true
       parameter name: :workshop_invite_id, in: :path, type: :string, required: true
+      parameter name: :campaign_id, in: :path, type: :string, required: true
 
       response '204', 'WorkshopInvitedSubject deleted' do
         let!(:workshop_invited_subject) { create(:workshop_invited_subject, workshop_invite: workshop_invite) }

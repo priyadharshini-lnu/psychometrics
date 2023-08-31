@@ -9,7 +9,7 @@ module WorkshopInvites
 
     def call
       @subjects_data.map do |subject|
-        @workshop_invite.workshop_invited_subjects.create!(subject)
+        @workshop_invite.workshop_invited_subjects.find_or_create_by!(subject)
       end
     end
   end

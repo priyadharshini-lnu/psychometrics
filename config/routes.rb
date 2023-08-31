@@ -1281,6 +1281,20 @@ Rails.application.routes.draw do
                 get :subject_assessor_assessments, on: :collection
               end
             end
+            jsonapi_resources :workshop_invites, only: %i[index create destroy show] do
+              jsonapi_relationships
+              collection do
+                get :import_subjects_from_campaign
+                post :import_subjects_from_csv
+              end
+              jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy]
+            end
+            jsonapi_resources :workshop_invited_subjects, only: %i[index] do
+              member do
+                post :reject_request
+                post :accept_request
+              end
+            end
             jsonapi_resources :users, only: %i[index], controller: 'campaigns/users'
           end
           jsonapi_resources :workshops, only: %i[index] do
@@ -1290,20 +1304,6 @@ Rails.application.routes.draw do
             end
           end
 
-          jsonapi_resources :workshop_invites, only: %i[index create destroy show] do
-            jsonapi_relationships
-            collection do
-              get :import_subjects_from_campaign
-              post :import_subjects_from_csv
-            end
-            jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy]
-          end
-          jsonapi_resources :workshop_invited_subjects, only: %i[index] do
-            member do
-              post :reject_request
-              post :accept_request
-            end
-          end
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
 
           jsonapi_resources :reports, only: [:index]

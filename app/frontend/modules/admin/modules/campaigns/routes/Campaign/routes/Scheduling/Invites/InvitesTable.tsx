@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  Dropdown, Tag, Button,
+  Dropdown, Tag, Button, message,
 } from 'antd'
 import {
   useParams, useLocation, useHistory, Link,
@@ -31,9 +31,10 @@ export const InvitesTable = () => {
     const { resource } = useResourceContext<WorkshopInvite, { permissions: { destroy: boolean }}>()
     const [confirmation, setConfirmation] = useState(false)
     const remove = () => {
-      resource.removeResource(item.id)
+      resource.removeResource(item.id).then(() => {
+        message.success(I18n.t('administration.assessment_center.invite.remove_success'))
+      })
     }
-
 
     return (
       <>
@@ -73,8 +74,8 @@ export const InvitesTable = () => {
     <div>
       <Resource
         config={{
+          basePath: `campaigns/${params.campaignId}`,
           apiConfig: {
-            filter: { campaign_id_eq: params.campaignId },
             include: ['workshops'],
             fields: { workshops: 'start_time' },
             include_meta: ['permissions'],

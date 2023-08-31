@@ -21,20 +21,19 @@ interface Props {
 
 export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
   const { resource } = useResourceContext<Workshop>()
-  const { inviteId } = useParams<{ campaignId: string, inviteId: string }>()
+  const { inviteId, campaignId } = useParams<{ campaignId: string, inviteId: string }>()
 
   const { addRelationships } = useResources<WorkshopInvite>('workshop_invites', {
-    basePath: `workshop_invites/${inviteId}`,
+    basePath: `/campaigns/${campaignId}/workshop_invites/${inviteId}`,
   })
 
-  const params = useParams<{campaignId: string}>()
   const [selectedWorkshops, setSelectedWorkshops] = useState<Workshop[]>([])
   const [searchValue, setSearchValue] = useState('')
   const [error, setError] = useState(false)
   const {
     data: assessmetnCenters, setData, getResource, fetch: fetchWorkshops,
   } = useResources<Workshop>('workshops', {
-    basePath: `campaigns/${params.campaignId}`,
+    basePath: `campaigns/${campaignId}`,
   })
 
   const changeWorkshops = (value) => {

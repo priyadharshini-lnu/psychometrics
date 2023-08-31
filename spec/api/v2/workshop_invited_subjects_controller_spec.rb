@@ -7,6 +7,7 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
   let!(:superadmin) { create(:superadmin) }
   let!(:workshop_invite) { create(:workshop_invite) }
   let!(:workshop_invite_id) { workshop_invite.id }
+  let!(:campaign_id) { workshop_invite.campaign_id }
   let(:'filter[workshop_invite_campaign_id_eq]') { workshop_invite.campaign_id.to_s }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
   let(:user) { create(:user) }
@@ -15,13 +16,14 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
     sign_in(superadmin)
   end
 
-  path '/workshop_invited_subjects' do
+  path '/campaigns/{campaign_id}/workshop_invited_subjects' do
     get 'Get Workshop Invited Subject List' do
       operationId 'WorkshopInvitedSubjectList'
       description 'Fetch Workshop Invited Subject List'
       tags 'WorkshopInvitedSubject'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string, required: true
       parameter name: :'filter[workshop_invite_campaign_id_eq]', in: :query, required: true
 
       response '200', 'WorkshopInvitedSubject list' do
@@ -79,13 +81,14 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
     end
   end
 
-  path '/workshop_invited_subjects/{id}/reject_request' do
+  path '/campaigns/{campaign_id}/workshop_invited_subjects/{id}/reject_request' do
     post 'Reject Workshop Invited Subject Request' do
       operationId 'WorkshopInvitedSubjectRejectRequest'
       description 'Reject Workshop Invited Subject Request'
       tags 'WorkshopInvitedSubject'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string, required: true
       parameter name: :id, in: :path, type: :string, required: true
 
       response '200', 'WorkshopInvitedSubject list' do
@@ -134,13 +137,14 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
     end
   end
 
-  path '/workshop_invited_subjects/{id}/accept_request' do
+  path '/campaigns/{campaign_id}/workshop_invited_subjects/{id}/accept_request' do
     post 'Accept Workshop Invited Subject Request' do
       operationId 'WorkshopInvitedSubjectAcceptRequest'
       description 'Accept Workshop Invited Subject Request'
       tags 'WorkshopInvitedSubject'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string, required: true
       parameter name: :id, in: :path, type: :string, required: true
 
       response '200', 'WorkshopInvitedSubject list' do

@@ -101,9 +101,6 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
 
         let(:body) do
           {
-            filter: {
-              workshops_campaign_id_eq: workshop.campaign.id
-            },
             data: {
               type: 'workshops',
               attributes: {
