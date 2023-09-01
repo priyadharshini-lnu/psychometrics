@@ -12,7 +12,8 @@ module UserReports
       user_assessments = UserAssessment.where(
         assessment_id: user_report.report.assessment_ids,
         subject_id: user_report.user_id,
-        evaluator_id: user_report.user_id,
+        # Disabling this condition for the assessor form to work in the report
+        # evaluator_id: user_report.user_id,
         status: :completed
       ).order(completed_at: :desc).each_with_object({}) do |ua, hash|
         next if campaign_user_assessment_ids.include?(ua.assessment_id) && ua.campaign_id != user_report.campaign_id
