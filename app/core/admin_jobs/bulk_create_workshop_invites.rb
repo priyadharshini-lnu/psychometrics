@@ -26,7 +26,7 @@ module AdminJobs
     private
 
     def workshop_invite
-      @workshop_invite ||= WorkshopInvite.find(record.data['workshop_invite_id'])
+      @workshop_invite ||= WorkshopInvite.find_by(id: record.data['workshop_invite_id'])
     end
   end
 end
