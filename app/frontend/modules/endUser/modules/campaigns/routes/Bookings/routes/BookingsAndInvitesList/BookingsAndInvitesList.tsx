@@ -119,7 +119,6 @@ const InvitesList: FC<InvitesListProps> = ({ invites, loading, onClickInvite }) 
               buttonText={I18n.t('frontend.bookings.buttons.book')}
               subtitle={(
                 <Subtitle
-                  isActionByCurrentUser={null}
                   duration={
                     invite.duration
                   }
@@ -182,9 +181,9 @@ const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => {
                     duration={
                     booking.duration
                   }
-                    isActionByCurrentUser={booking.isActionByCurrentUser}
                     dateTime={booking.date}
                     timezone={booking.timezone}
+                    reason={booking.reason}
                   />
               )}
               />
@@ -200,10 +199,10 @@ type SubtitleProps = {
   duration: number | null,
   dateTime?: string | null,
   timezone: string | null,
-  isActionByCurrentUser: boolean | null
+  reason?: string | null
 }
 const Subtitle: FC<SubtitleProps> = ({
-  duration, dateTime, timezone, isActionByCurrentUser,
+  duration, dateTime, timezone, reason,
 }) => {
   let dateTimeWithTimezone
   let dateTimeWithTimezoneEnd
@@ -231,11 +230,16 @@ const Subtitle: FC<SubtitleProps> = ({
           </>
         )}
       </Space>
-      {!_.isNull(isActionByCurrentUser) && (
-        <Text disabled>
-          { isActionByCurrentUser
-            ? I18n.t('frontend.bookings.operation_by_admin') : I18n.t('frontend.bookings.operation_by_user')}
-        </Text>
+      {reason && (
+        <Space>
+          <Text>
+            {I18n.t('frontend.bookings.reason')}
+            :
+          </Text>
+          <Text disabled>
+            {reason}
+          </Text>
+        </Space>
       )}
     </Space>
   )

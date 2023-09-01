@@ -28,8 +28,8 @@ export const fetchInvites = ():ApiAction<FetchInvitesResponse> => ({
 const BookingTR = t.intersection([InviteTR, t.type({
   date: t.union([t.string, t.null]),
   timezone: t.union([t.string, t.null]),
-  isActionByCurrentUser: t.union([t.boolean, t.null]),
   cancellationLeadTime: t.union([t.number, t.null]),
+  reason: t.union([t.string, t.null]),
 })])
 const fetchBookingsResponseTR = t.type({
   list: t.array(BookingTR),

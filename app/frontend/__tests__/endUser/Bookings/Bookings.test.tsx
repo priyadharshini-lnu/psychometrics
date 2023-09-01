@@ -16,16 +16,14 @@ const bookingsMockResponse = {
       title: 'This is title',
       description: 'Desscription here',
       duration: 3,
-      status: 'accepted',
-      isActionByCurrentUser: false
+      status: 'accepted'
     },
     {
       id: 2,
       title: 'This is title',
       description: 'Desscription here',
       duration: 3,
-      status: 'accepted',
-      isActionByCurrentUser: false
+      status: 'accepted'
     }],
   },
 }

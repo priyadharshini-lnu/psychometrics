@@ -1920,9 +1920,8 @@ en:
       default_failure_msg: Unable to process your request. Please try again later.
       language: Language
       need_changes: Need to make the changes?
-      operation_by_admin: Operation performed by admin.
-      operation_by_user: Opertion performed by logged in user.
       or: or
+      reason: Reason
       reason_for_cancel: Reason for Cancellation
       reason_for_reschedule: Reason for Rescheduling
       request_cancellation_failed: 'Failed to request for cancellation: %{error}'
