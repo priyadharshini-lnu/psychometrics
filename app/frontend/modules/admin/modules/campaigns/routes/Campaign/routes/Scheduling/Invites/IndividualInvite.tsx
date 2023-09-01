@@ -18,7 +18,12 @@ export const IndividualInvite = () => {
     inviteId, campaignId, projectId, tabName,
   } = useParams<{ projectId: string, inviteId: string, campaignId: string, tabName: string }>()
   const history = useHistory()
-  const { fetchSingle, getResource } = useResources<WorkshopInvite>('workshop_invites')
+  const { fetchSingle, getResource } = useResources<WorkshopInvite>(
+    'workshop_invites',
+    {
+      basePath: `/campaigns/${campaignId}`,
+    },
+  )
   const workshopInvite = getResource(inviteId)
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling/invites/${inviteId}`
 
