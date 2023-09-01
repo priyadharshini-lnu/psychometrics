@@ -72,7 +72,9 @@ class ApplicationController < ::BaseController
     update_in = @current_project.profile_setting.update_in || 9999
 
     completion = Users::ProfileCompletion.call!(current_user)
+
     if completion < 100 || (Time.current - current_user.user_profile.updated_at) > update_in.month
+      session[:back_url] = request.original_url
       redirect_to '/profile_details'
     end
   end

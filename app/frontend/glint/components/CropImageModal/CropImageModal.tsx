@@ -29,7 +29,7 @@ export function CropImageModal ({
     <Modal
       centered
       closable={false}
-      visible={show}
+      open={show}
       onOk={() => cropImage()}
       confirmLoading={loading}
       maskClosable={!loading}

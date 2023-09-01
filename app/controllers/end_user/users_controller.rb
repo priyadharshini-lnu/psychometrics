@@ -63,7 +63,9 @@ class EndUser::UsersController < ApplicationController
     if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS))
       current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
       audit! :update_user_profile, current_user, project: @current_project, payload: form.attributes
-      render json: current_user, serializer: EndUser::CurrentUserSerializer, project_id: @current_project.id
+      render json: current_user, serializer: EndUser::CurrentUserSerializer,
+             project_id: @current_project.id, back_url: session[:back_url]
+      session.delete(:back_url)
     else
       render json: { errors: current_user.errors.messages }, status: 400
     end

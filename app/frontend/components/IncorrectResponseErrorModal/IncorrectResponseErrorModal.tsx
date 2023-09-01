@@ -13,7 +13,7 @@ const IncorrectResponseErrorModal: React.FC<Props> = ({
     zIndex={10000000}
     width={850}
     title="Response data mismatched"
-    visible={!_.isEmpty(errors)}
+    open={!_.isEmpty(errors)}
     onCancel={clearResponseDataMismatched}
     footer={[
       <Button key="cancel" onClick={clearResponseDataMismatched}>

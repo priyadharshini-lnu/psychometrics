@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import {
   Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress, Button,
@@ -84,8 +84,11 @@ function ProfileComponent ({
     }, { customFields: {} })
 
     sync(data)
-      .then(() => {
+      .then(({ response }) => {
         message.success(I18n.t('profile.success_update'), 5)
+        if (response.backUrl) {
+          location.href = response.backUrl
+        }
         setErrors({})
       }).catch((errors) => {
         setErrors(errors)
