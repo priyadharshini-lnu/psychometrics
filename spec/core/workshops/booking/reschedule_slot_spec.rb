@@ -41,6 +41,33 @@ describe Workshops::Booking::RescheduleSlot do
           and change { workshop_invited_subject.reload.status }.from('accepted').to('rescheduled')
       end
 
+      it 'reschedules for the same workshop again if user wishes to' do
+        expect do
+          described_class.call(
+            {
+              workshop_id: workshop.id,
+              id: workshop_invite.id,
+              new_workshop_booking_id: workshop.id,
+              status: 'rescheduled',
+              workshop_subject_details: {
+                preferred_language: 'en',
+                neurodivergent: true,
+                neurodivergent_comments: 'test'
+              }
+            },
+            user
+          )
+        end.to not_change { workshop.reload.booked_seats }.
+          and change { WorkshopSubject.count }.by(0).
+          and change { WorkshopInviteLog.count }.by(1).
+          and broadcast(:ok)
+        expect(workshop_invited_subject.reload.status).to eq('rescheduled')
+        expect(workshop_subject.reload.workshop_id).to eq(workshop.id)
+        expect(workshop_subject.reload.preferred_language).to eq('en')
+        expect(workshop_subject.reload.neurodivergent).to eq(true)
+        expect(workshop_subject.reload.neurodivergent_comments).to eq('test')
+      end
+
       it 'allows requseted_reschedule even if reschedule_lead_time passed' do
         frozen_time = workshop.start_time - workshop.reschedule_lead_time.hours + 1.hour
 

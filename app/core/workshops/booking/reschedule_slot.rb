@@ -18,7 +18,10 @@ module Workshops
         WorkshopInvite.transaction do
           workshop_invited_subject.update!(status: status, reason: reason)
           create_workshop_invite_log(status)
-          if reschedule_status?
+
+          if reschedule_status? && workshop_id == new_workshop_id
+            reschedule_existing_workshop_subject
+          elsif reschedule_status?
             create_new_workshop_subject
             update_old_workshop_subject
           end
@@ -42,15 +45,26 @@ module Workshops
           scheduling_status: :scheduled,
           preferred_language: workshop_subject_details[:preferred_language],
           neurodivergent: workshop_subject_details[:neurodivergent],
-          neurodivergent_comments: workshop_subject_details[:neurodivergent_comment]
+          neurodivergent_comments: workshop_subject_details[:neurodivergent_comments]
         )
         increment_booked_seats(new_workshop_id)
       end
 
+      def reschedule_existing_workshop_subject
+        existing_workshop_subject.update!(
+          preferred_language: workshop_subject_details[:preferred_language],
+          neurodivergent: workshop_subject_details[:neurodivergent],
+          neurodivergent_comments: workshop_subject_details[:neurodivergent_comments]
+        )
+      end
+
       def update_old_workshop_subject
-        old_workshop_subject = WorkshopSubject.find_by(workshop_id: workshop_id, user_id: current_user.id)
-        old_workshop_subject.update!(scheduling_status: :rescheduled)
-        old_workshop_subject.workshop.decrement!(:booked_seats)
+        existing_workshop_subject.update!(scheduling_status: :rescheduled)
+        existing_workshop_subject.workshop.decrement!(:booked_seats)
+      end
+
+      def existing_workshop_subject
+        @existing_workshop_subject ||= WorkshopSubject.find_by(workshop_id: workshop_id, user_id: current_user.id)
       end
     end
   end
