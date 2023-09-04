@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button,
+  Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button, message,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
@@ -53,7 +53,7 @@ function ProfileComponent ({
   const [errors, setErrors] = useState <Errors>({})
 
   const {
-    fetchSingle, getResource, updateResource,
+    fetchSingle, getResource, updateResource, isLoading,
   } = useResources<AdminUser>('users', {
     responseType: UserTR,
     apiConfig: {
@@ -62,6 +62,7 @@ function ProfileComponent ({
       include: ['user_profile'],
     },
   })
+  const profileUpdateInProgress = isLoading(`update@${currentUser.id}`)
 
   const user = getResource(currentUser.id.toString())
   if (!user) return null
@@ -88,6 +89,8 @@ function ProfileComponent ({
         locale: values.locale,
         timezone: values.timezone,
       },
+    }).then(() => {
+      message.success(I18n.t('profile.success_update'), 5)
     }).catch((e) => {
       setErrors(camelizeKeys(e.errors))
     })
@@ -249,6 +252,7 @@ function ProfileComponent ({
                         type="primary"
                         htmlType="submit"
                         className={styles.actionButton}
+                        loading={profileUpdateInProgress}
                       >
                         {I18n.t('profile.update')}
                       </Button>
