@@ -3,7 +3,6 @@ import {
   Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import * as t from 'io-ts'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -11,11 +10,12 @@ import {
   WorkshopSubject, WorkshopSubjectTR,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import { ResourceAvatar, ConfirmationModal } from '~/glint'
+import { ResourceAvatar } from '~/glint'
 import { BulkSchedule } from '../BulkSchedule/BulkSchedule'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { EditSubjectDrawer } from './EditSubjectDrawer'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
+import { SafeHTML } from '~/components/SafeHTML'
 
 const { I18n } = window
 const { Text } = Typography
@@ -30,6 +30,13 @@ const TAG_COLORS = {
   // completion statuses
   not_started: 'default',
   completed: 'success',
+}
+const SCHEDULING_STATUS_TO_TAG_COLOR = {
+  scheduled: 'success',
+  rescheduled: 'error',
+  cancelled: 'error',
+  late_scheduled: 'error',
+  late_rescheduled: 'error',
 }
 const UNACTIONABLE_SCHEDULING_STATUSES = ['rescheduled', 'cancelled', 'late_rescheduled', 'late_cancelled']
 const CANCELLED_SCHEDULING_STATUSES = ['cancelled', 'late_cancelled']
@@ -101,7 +108,6 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
   const [openForm, setOpenForm] = useState(false)
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
   const { memberAction } = useResources('workshops', { })
-  const [confirmation, setConfirmation] = useState(false)
 
   const toggleSelectedSubject = (checked, subject) => {
     if (checked) {
@@ -228,6 +234,15 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           )}
         />
         <Resource.Column<WorkshopSubject>
+          title={I18n.t('administration.scheduling.columns.scheduling_status')}
+          id="completion_status"
+          render={(_, { schedulingStatus }) => (
+            <Tag color={SCHEDULING_STATUS_TO_TAG_COLOR[schedulingStatus]}>
+              {I18n.t(`administration.scheduling.scheduling_statuses.${schedulingStatus}`)}
+            </Tag>
+          )}
+        />
+        <Resource.Column<WorkshopSubject>
           title={I18n.t('common.column.action')}
           id="actions"
           key="actions"
@@ -235,7 +250,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
             <ConditionalDropdown
               menu={
                 ActionsMenu({
-                  subject, confirmation, setConfirmation,
+                  subject,
                 }) as React.ReactElement
               }
             />
@@ -254,28 +269,40 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
 
 interface ActionMenuProps {
   subject: WorkshopSubject
-  confirmation: boolean
-  setConfirmation: (value: boolean) => void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  subject, confirmation, setConfirmation,
+  subject,
 }) => {
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
-  const handleOnConfirm = () => {
-    resource.memberAction({
-      id: subject.id,
-      action: 'mark_cancelled',
-      method: 'post',
-      body: { subjectId: subject.id },
-      responseType: t.literal('ok'),
-    }).then(() => {
-      setConfirmation(false)
-      message.success(
-        I18n.t('administration.scheduling.subjects.success_message', { subject_email: subject?.user?.email }),
-      )
-    }).catch(() => {
-      message.error(I18n.t('common.errors.something_wrong'))
+  const handleMarkCancel = () => {
+    Modal.confirm({
+      title: I18n.t('administration.scheduling.subjects.confirm_title'),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      width: 650,
+      content: (
+        <SafeHTML
+          html={
+            I18n.t('administration.scheduling.subjects.confirm_message', { subject_email: subject?.user?.email })
+          }
+        />
+      ),
+      onOk: () => {
+        resource.memberAction({
+          id: subject.id,
+          action: 'mark_cancelled',
+          method: 'post',
+          body: { subjectId: subject.id },
+          updateStore: true,
+        }).then(() => {
+          message.success(
+            I18n.t('administration.scheduling.subjects.mark_cancel_success', { subject_email: subject?.user?.email }),
+          )
+        }).catch(() => {
+          message.error(I18n.t('common.errors.something_wrong'))
+        })
+      },
     })
   }
 
@@ -327,19 +354,9 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     key: 'remove',
     label: (
       <>
-        <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
+        <Button type="link" onClick={handleMarkCancel} className="ps-0">
           Mark Cancel
         </Button>
-        {confirmation && (
-          <ConfirmationModal
-            title={I18n.t('administration.scheduling.subjects.confirm_title')}
-            message={
-              I18n.t('administration.scheduling.subjects.confirm_message', { subject_email: subject?.user?.email })
-            }
-            onConfirm={handleOnConfirm}
-            onCancel={() => setConfirmation(false)}
-          />
-        )}
       </>
     ),
   })

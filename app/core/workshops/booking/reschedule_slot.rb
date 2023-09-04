@@ -16,7 +16,7 @@ module Workshops
 
       def call
         WorkshopInvite.transaction do
-          workshop_invited_subject.update!(status: status, reason: reason)
+          workshop_invited_subject.update!(status: status, reason: reason, reschedule_workshop_id: new_workshop_id)
           create_workshop_invite_log(status)
 
           if reschedule_status? && workshop_id == new_workshop_id

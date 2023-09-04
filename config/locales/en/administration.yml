@@ -3885,6 +3885,7 @@ en:
         resource_link: Link
         resource_name: Name
         schedule_time: Schedule Time
+        scheduling_status: Scheduling status
         start_time: Date & Time
         status: Status
         subject: Subject
@@ -3925,6 +3926,12 @@ en:
         successful_remove: Assessment Center resource %{resource_name} successfully deleted.
         update: Update Resource
       schedule_assessments: Schedule Assessments
+      scheduling_statuses:
+        cancelled: Cancelled
+        late_cancelled: Late Cancelled
+        late_rescheduled: Late Rescheduled
+        rescheduled: Rescheduled
+        scheduled: Scheduled
       status:
         completed: Completed
         dropped_out: Dropped Out
@@ -3937,13 +3944,17 @@ en:
         assessments: Assessments
         assessor_form: Assessor Form
         assessor_forms: Assessor Forms
-        confirm_message: Are you sure you want to delete the subject with email '%{subject_email}'?
+        confirm_message: |
+          Are you sure you want to cancel the participation of the subject with the email '%{subject_email}'?
+          <br />
+          Once marked as cancelled, this subject will not be able to participate in the assessment center.
         confirm_title: Confirmation required
         copy_link_msg: Link Copied
         edit_assessor_form: Edit Assessor Form
         form_title: Schedule Assessments
         import_job_scheduled: The uploaded file has been queued for import. Please check the status in the notifications
         language: Language
+        mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
         meeting_link_none: None
         no_change: No Change

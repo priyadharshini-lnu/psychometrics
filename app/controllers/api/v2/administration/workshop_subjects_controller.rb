@@ -21,7 +21,7 @@ module Api
       end
       subject.workshop.decrement!(:booked_seats)
 
-      render json: :ok
+      jsonapi_render json: subject
     end
 
     def meta_details
