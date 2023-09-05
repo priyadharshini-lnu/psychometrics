@@ -14,6 +14,20 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def index; end
 
+  def update
+    resource.updated_by = current_user
+
+    resource.attributes = resource_params.slice(:resources)
+    respond_to do |format|
+      if resource.save
+        audit! :update, resource, payload: params
+        format.json { render json: :ok }
+      else
+        format.json { render json: :fail }
+      end
+    end
+  end
+
   def preview
     @translations = ::Translation.to_hash_for_assessment(resource.id, user_locale)
     @available_translations = ::Translation.available_translation_for_assessment(resource.id)
