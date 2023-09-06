@@ -254,7 +254,6 @@ en:
         title: Discard Form Progress
       current: Current
       invite:
-        actions: Actions
         add_invite: Add Invite
         assessment_center: Assessment Center
         back: Back
@@ -268,16 +267,14 @@ en:
           preferred_language: Preferred Language
           preferred_language_placeholder: Select Preferred Language
           title: Basic Information
-        confirmation:
-          message: Are you sure you want to delete invitation?
-          title: Invite Deleting
+        confirm_message: Are you sure you want to delete an invitation?
+        confirm_message_with_title: Are you sure you want to delete an invitation with title '%{invite_title}'?
+        confirm_title: Are you sure you want to delete invitation?
         exceeded_subjects_count: Campaign has %{users} subjects. You can only add %{count} subjects per invite
         id: ID
         invites: Invites
         next: Next
         not_selected: Not selected
-        remove: Remove
-        remove_success: Invitation was successfully removed
         requests: Requests
         save: Save & Send
         send_invites:
@@ -314,6 +311,8 @@ en:
         success:
           continue: Continue
           message: The task of sending the invitations has been queued; users will receive them shortly.
+        success_message: Invitation was removed successfully.
+        success_message_with_title: Invitation with title '%{invite_title}' was removed successfully.
         title: Title
         workshop:
           title: Assessment Centers

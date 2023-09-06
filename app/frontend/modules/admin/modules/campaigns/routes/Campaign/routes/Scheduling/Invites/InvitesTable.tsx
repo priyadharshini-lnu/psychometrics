@@ -1,18 +1,16 @@
 import { useState } from 'react'
 import {
-  Dropdown, Tag, Button, message,
+  Tag, Button, message, Modal, Menu,
 } from 'antd'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import {
   useParams, useLocation, useHistory, Link,
 } from 'react-router-dom'
 import { WorkshopInvite } from 'modules/admin/modules/campaigns/core/invites'
-import {
-  PlusOutlined,
-  MoreOutlined,
-} from '@ant-design/icons'
+import { PlusOutlined } from '@ant-design/icons'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { formatWorkshopDate } from '~/utils/workshop'
-import { ConfirmationModal } from '~/glint'
+import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
@@ -21,53 +19,10 @@ export const InvitesTable = () => {
 
   const history = useHistory()
   const location = useLocation()
+  const [confirmation, setConfirmation] = useState(false)
 
   const openForm = () => {
     history.push(`${location.pathname}/add_invite`)
-  }
-
-
-  const Menu = ({ item }) => {
-    const { resource } = useResourceContext<WorkshopInvite, { permissions: { destroy: boolean }}>()
-    const [confirmation, setConfirmation] = useState(false)
-    const remove = () => {
-      resource.removeResource(item.id).then(() => {
-        message.success(I18n.t('administration.assessment_center.invite.remove_success'))
-      })
-    }
-
-    return (
-      <>
-        <Dropdown
-          trigger={['click']}
-          menu={{
-            onClick () {
-              setConfirmation(true)
-            },
-            items: [
-              {
-                label: I18n.t('administration.assessment_center.invite.remove'),
-                key: 'remove',
-              },
-            ],
-          }}
-        >
-          <Button type="link">
-            <MoreOutlined />
-          </Button>
-        </Dropdown>
-        {confirmation && (
-        <ConfirmationModal
-          title={I18n.t('administration.assessment_center.invite.confirmation.title')}
-          message={
-                I18n.t('administration.assessment_center.invite.confirmation.message')
-              }
-          onConfirm={remove}
-          onCancel={() => setConfirmation(false)}
-        />
-        )}
-      </>
-    )
   }
 
   return (
@@ -119,13 +74,15 @@ export const InvitesTable = () => {
             id="subjectsCount"
           />
           <Resource.Column<WorkshopInvite>
-            title={I18n.t('administration.assessment_center.invite.actions')}
+            title={I18n.t('common.column.action')}
             id="actions"
-            render={(item) => {
-              const { resource } = useResourceContext<WorkshopInvite, { permissions: { remove : boolean } }>()
-
-              return resource.meta.permissions.remove ? <Menu item={item} /> : null
-            }}
+            render={data => (
+              <ConditionalDropdown
+                menu={
+                  ActionsMenu({ invite: data, confirmation, setConfirmation }) as React.ReactElement
+                }
+              />
+            )}
           />
         </Resource.Table>
       </Resource>
@@ -150,5 +107,54 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
       </Button>
       )}
     </Resource.Filter>
+  )
+}
+
+interface ActionMenuProps {
+  invite: WorkshopInvite
+  confirmation: boolean
+  setConfirmation: (value: boolean) => void
+}
+
+const ActionsMenu: React.FC<ActionMenuProps> = ({ invite }) => {
+  const { resource } = useResourceContext<WorkshopInvite>()
+
+  const handleOnConfirm = () => resource.removeResource(invite.id).then(() => {
+    message.success(
+      invite.title
+        ? I18n.t('administration.assessment_center.invite.success_message_with_title', { invite_title: invite.title })
+        : I18n.t('administration.assessment_center.invite.success_message'),
+    )
+  }).catch(() => {
+    message.error(I18n.t('common.errors.something_wrong'))
+  })
+
+  const handleRemove = () => {
+    Modal.confirm({
+      title: I18n.t('administration.assessment_center.invite.confirm_title'),
+      content: invite.title
+        ? I18n.t('administration.assessment_center.invite.confirm_message_with_title', { invite_title: invite.title })
+        : I18n.t('administration.assessment_center.invite.confirm_message'),
+      okText: I18n.t('common.text.confirm'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: handleOnConfirm,
+    })
+  }
+
+  const menuItems:ItemType[] = []
+
+  resource.meta.permissions?.remove && menuItems.push({
+    key: 'remove',
+    label: (
+      <>
+        <Button type="link" onClick={handleRemove} className="ps-0">
+          {I18n.t('common.actions.remove')}
+        </Button>
+      </>
+    ),
+  })
+
+  return (
+    <Menu items={menuItems} />
   )
 }
