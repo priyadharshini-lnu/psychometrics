@@ -15,7 +15,7 @@ module Administration
         respond_to do |format|
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
-              users.page(params[:page]),
+              users.page(params[:page]).per(params[:size] || 25),
               each_serializer: Administration::Campaigns::UserSerializer,
               current_user: current_user,
               campaign_id: campaign.id,

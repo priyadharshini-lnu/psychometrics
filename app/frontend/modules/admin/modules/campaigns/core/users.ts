@@ -8,6 +8,8 @@ import UserReport from '~/modules/admin/modules/campaigns/interfaces/UserReport'
 import { setIn, updateIn } from '~/utils/immutable'
 import { createReducer, CustomAction } from '~/utils/redux'
 
+export const DEFAULT_PAGE_SIZE = 25
+
 export interface User {
   id: number
   firstName: string
