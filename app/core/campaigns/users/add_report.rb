@@ -33,7 +33,7 @@ module Campaigns
         end
         return broadcast :ok, user_report: user_report if report.data_only?
 
-        user_assessments = options[:assessments].map do |assessment|
+        user_assessments = assessments.map do |assessment|
           find_or_create_assessment_to_user(assessment, user_report)
         end
         set_approval_status_for_user_report(user_report)
@@ -45,6 +45,10 @@ module Campaigns
       end
 
       private
+
+      def assessments
+        options[:assessments].reject(&:assessor_form?)
+      end
 
       def set_approval_status_for_user_report(user_report)
         return user_report.update_attribute(:approval_status, :approved) unless user_report.has_approval_workflow?

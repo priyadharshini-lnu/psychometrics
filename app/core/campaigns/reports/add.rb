@@ -90,9 +90,13 @@ module Campaigns
       end
 
       def get_assessments_for(report)
-        return report.assessments if form.assessments.blank?
+        assessments = if form.assessments.blank?
+                        report.assessments
+                      else
+                        report.assessments.select { |a| form.assessment_ids.include?(a.id) }
+                      end
 
-        report.assessments.select { |a| form.assessment_ids.include?(a.id) }
+        assessments.reject(&:assessor_form?)
       end
     end
   end
