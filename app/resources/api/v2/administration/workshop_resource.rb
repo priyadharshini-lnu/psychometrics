@@ -8,6 +8,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   has_many :workshop_managers
   has_many :workshop_assessors
   has_many :workshop_subjects
+  has_many :workshop_resources
   has_one :campaign
 
   filter :start_time_between, apply: lambda { |records, date_range, _options|

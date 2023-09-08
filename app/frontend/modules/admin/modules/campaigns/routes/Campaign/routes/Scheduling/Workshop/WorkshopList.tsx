@@ -1,16 +1,21 @@
 import React from 'react'
 import {
-  Row, DatePicker, Avatar, Button, Space,
+  Row, DatePicker, Avatar, Button, Space, Dropdown,
 } from 'antd'
 import {
   useLocation, useHistory, Link, useParams,
 } from 'react-router-dom'
-import { PlusOutlined } from '@ant-design/icons'
+import {
+  PlusOutlined,
+  MoreOutlined,
+} from '@ant-design/icons'
 import moment, { Moment } from 'moment'
+import { connect } from 'react-redux'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ResourceAvatar } from '~/glint'
 import { formatWorkshopDate } from '~/utils/workshop'
+import { setData } from '~/modules/admin/core/ui/temp'
 
 const { I18n } = window
 
@@ -29,11 +34,12 @@ export const WorkshopList: React.FC = () => {
     basePath: `campaigns/${campaignId}/`,
     initialFilter: { start_time_between: CURRENT_WEEK.toString() },
     apiConfig: {
-      include: ['workshop_managers', 'workshop_assessors'],
+      include: ['workshop_managers', 'workshop_assessors', 'workshop_resources'],
       include_meta: ['permissions'],
       fields: {
         workshop_managers: ['id', 'full_name', 'photo_url', 'email'],
         workshop_assessors: ['id', 'full_name', 'photo_url', 'email'],
+        workshop_resources: ['name', 'url'],
       },
     },
   }
@@ -83,12 +89,51 @@ export const WorkshopList: React.FC = () => {
               <ResourcesTag resources={workshopAssessors} />
             )}
           />
-          <Resource.Column<Workshop> title={I18n.t('common.column.action')} id="action" width="3%" />
+          <Resource.Column<Workshop>
+            title={I18n.t('common.column.action')}
+            id="action"
+            width="3%"
+            render={(_, workshop) => <Menu workshop={workshop} />}
+          />
         </Resource.Table>
       </Resource>
     </>
   )
 }
+
+const MenuComponent = ({ workshop, setData }) => {
+  const history = useHistory()
+  const copy = () => {
+    setData(workshop)
+    history.push(`${location.pathname}/new`)
+  }
+
+  return (
+    <>
+      <Dropdown
+        trigger={['click']}
+        menu={{
+          onClick () {
+            copy()
+          },
+          items: [
+            {
+              label: I18n.t('common.actions.copy'),
+              key: 'copy',
+            },
+          ],
+        }}
+      >
+        <Button type="link">
+          <MoreOutlined />
+        </Button>
+      </Dropdown>
+    </>
+  )
+}
+
+const Menu = connect(() => {}, { setData })(MenuComponent)
+
 
 interface FilterProps {
   openForm: () => void

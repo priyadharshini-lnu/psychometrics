@@ -8,6 +8,12 @@ export const userDetailsTR = t.type({
   userId: t.union([t.number, t.undefined]),
 })
 
+export const workshopResourceTR = t.type({
+  id: t.string,
+  name: t.string,
+  url: t.string,
+})
+
 export const WorkshopTR = t.type({
   id: t.string,
   name: t.string,
@@ -18,9 +24,12 @@ export const WorkshopTR = t.type({
   remainingSeats: t.number,
   timezone: t.string,
   videoCallType: t.string,
+  cancellationLeadTime: t.number,
+  rescheduleLeadTime: t.number,
   meetingLink: t.union([t.string, t.null]),
   workshopManagers: t.array(userDetailsTR),
   workshopAssessors: t.array(userDetailsTR),
+  workshopResources: t.array(workshopResourceTR),
   meta: t.union([
     t.type({
       permissions: t.type({
@@ -56,6 +65,9 @@ export const Workshops = {
     },
     workshop_assessors: {
       type: 'workshop_assessors',
+    },
+    workshop_resources: {
+      type: 'workshop_resources',
     },
   },
 }

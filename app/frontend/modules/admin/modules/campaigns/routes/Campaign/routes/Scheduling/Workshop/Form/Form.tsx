@@ -4,6 +4,8 @@ import {
 } from 'antd'
 import moment from 'moment'
 import { useHistory, useParams } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { RootState } from 'modules/admin/core/rootReducers'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
@@ -17,6 +19,7 @@ import { BaseInfoForm, Errors } from '../../Invites/Form/BaseInfo'
 import { SendInvitation } from '../../Invites/Form/SendInvitations'
 import { SuccessPage } from '../../Invites/Form/SuccessPage'
 import { SuccessCreatedPage } from './SuccessCreatedStep'
+import { getData } from '~/modules/admin/core/ui/temp'
 
 const { I18n } = window
 
@@ -27,6 +30,8 @@ interface BasicInfoData {
   timezone: string,
   video_call_type: number,
   meeting_link: string,
+  cancellation_lead_time: number,
+  reschedule_lead_time: number,
   workshop_resources: {
     key: number,
     name: string,
@@ -34,7 +39,11 @@ interface BasicInfoData {
   }[]
 }
 
-export const AssessmentCenterForm = () => {
+const VIDEO_CALL_TYPES = {
+  not_available: 0, internal: 1, custom: 2,
+}
+
+export const AssessmentCenterFormComponent = ({ workshop }) => {
   const {
     campaignId,
   } = useParams<{ campaignId: string }>()
@@ -42,11 +51,13 @@ export const AssessmentCenterForm = () => {
   const [basicInfoData, setBasicInfoData] = useState<BasicInfoData>({
     dates: [],
     time: moment(),
-    duration: 0,
-    timezone: moment.tz.guess(),
-    video_call_type: 0,
-    meeting_link: '',
-    workshop_resources: [{ key: 1, name: '', url: '' }],
+    duration: workshop?.duration || 0,
+    timezone: workshop?.timezone || moment.tz.guess(),
+    video_call_type: VIDEO_CALL_TYPES[workshop?.videoCallType] || 0,
+    meeting_link: workshop?.meetingLink || '',
+    workshop_resources: workshop?.workshopResources || [{ key: 1, name: '', url: '' }],
+    cancellation_lead_time: workshop?.cancellationLeadTime,
+    reschedule_lead_time: workshop?.rescheduleLeadTime,
   })
   const history = useHistory()
   const [step, setStep] = useState(0)
@@ -181,3 +192,7 @@ export const AssessmentCenterForm = () => {
     </div>
   )
 }
+
+export const AssessmentCenterForm = connect((state: RootState) => ({
+  workshop: getData(state),
+}), {})(AssessmentCenterFormComponent)

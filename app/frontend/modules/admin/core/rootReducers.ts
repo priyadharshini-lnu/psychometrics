@@ -27,6 +27,7 @@ import modals from './ui/modals'
 import menu from './ui/menu'
 import autocomplete from './ui/autocomplete'
 import breadcrumbs from './ui/breadcrumbs'
+import temp from './ui/temp'
 import datasheetFields from '../modules/threeSixtyCampaign/core/datasheetFields'
 import participants from '../modules/threeSixtyCampaign/core/participants'
 import relationships from '../modules/threeSixtyCampaign/core/relationships'
@@ -81,6 +82,7 @@ const createRootReducer = history => combineReducers({
     autocomplete,
     breadcrumbs,
     menu,
+    temp,
   }),
   currentUser,
   current,
