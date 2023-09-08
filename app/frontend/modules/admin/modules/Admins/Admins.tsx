@@ -114,6 +114,9 @@ const AdminsComponent: React.FC<Props> = ({
     DRAWER_SEARCH_PARAMS.ADMIN_ID,
   ) as string
 
+  const updateInProgress = isLoading(`update@${drawerAdminId}`)
+  const createAdminInProgress = isLoading('add')
+
   const history = useHistory()
 
   const getIndividualAdminUrl = (
@@ -215,21 +218,18 @@ const AdminsComponent: React.FC<Props> = ({
       <Row>
         <Col span={24}>
           <Table
-            rowKey={row => row?.id ?? -1}
             pagination={false}
             loading={tableLoading}
             dataSource={data}
             onChange={handleTableChange}
           >
             <Table.Column
-              key="user_id"
               dataIndex="userId"
               title={I18n.t('administration.administrators.list.columns.id')}
               sorter
               sortOrder={getSortOrder('user_id')}
             />
             <Table.Column
-              key="name"
               dataIndex="name"
               title={I18n.t('administration.administrators.list.columns.name')}
               render={(_, { id, firstName, lastName }) => (
@@ -241,14 +241,12 @@ const AdminsComponent: React.FC<Props> = ({
               )}
             />
             <Table.Column
-              key="user.email"
               dataIndex="email"
               title={I18n.t('administration.administrators.list.columns.email')}
               sorter
               sortOrder={getSortOrder('user.email')}
             />
             <Table.Column
-              key="created_at"
               dataIndex="createdAt"
               title={I18n.t(
                 'administration.administrators.list.columns.created_at',
@@ -257,7 +255,6 @@ const AdminsComponent: React.FC<Props> = ({
               sortOrder={getSortOrder('created_at')}
             />
             <Table.Column
-              key="actions"
               dataIndex="actions"
               title={I18n.t(
                 'administration.administrators.list.columns.actions',
@@ -318,6 +315,7 @@ const AdminsComponent: React.FC<Props> = ({
         adminId={drawerAdminId}
         adminType={adminType}
         campaignType={campaignType}
+        addOrUpdateInProgress={updateInProgress || createAdminInProgress}
       />
       <Modals modals={MODALS} />
     </>
