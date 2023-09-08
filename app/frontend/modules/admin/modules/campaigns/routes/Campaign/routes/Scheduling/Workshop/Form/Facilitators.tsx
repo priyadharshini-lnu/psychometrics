@@ -262,7 +262,10 @@ export const Facilitators: React.FC<Props> = ({
                       <Form.Item
                         label={I18n.t('administration.scheduling.assessment_center_form.seats_label')}
                         name="total_seats"
-                        rules={[{ required: true }]}
+                        rules={[
+                          { required: true },
+                          { type: 'number', min: 1 },
+                        ]}
                       >
                         <InputNumber placeholder="e.g 2,3,..." style={{ width: '100%' }} />
                       </Form.Item>
