@@ -133,11 +133,11 @@ en:
       modals:
         delete:
           cancelText: Cancel
-          content: Are you sure you want to delete admin '%{name}'?
-          okText: Yes, delete
-          onFailed: Unable to delete Admin '%{name}', please contact your administrator
-          onSuccess: Admin '%{name}' deleted successfully
-          title: Delete admin
+          content: Are you sure you want to remove admin user with email '%{email}'?
+          okText: Ok
+          onFailed: Unable to delete Admin with '%{email}', please contact your administrator
+          onSuccess: Admin with email '%{email}' was removed successfully
+          title: Confirm
         resetPassword:
           cancelText: Cancel
           content: Are you sure you want to send a reset password link to '%{email}'?
@@ -320,9 +320,9 @@ en:
           add: Add
           name: Name
           remove_confirm:
-            content: Are you sure you want to remove %{name}?
+            content: Are you sure you want to remove Assessment Center with name '%{name}'?
             success: Assessment Center was successfully removed.
-            title: Remove Assessment Center
+            title: Confirm
       invite_request:
         accept: Accept
         reason: Reason

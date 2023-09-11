@@ -140,13 +140,13 @@ const AdminsComponent: React.FC<Props> = ({
   }
 
   const handleDeleteAdminClick = (
-    id: Admin['id'], firstName: Admin['firstName'], lastName: Admin['lastName'],
+    id: Admin['id'], firstName: Admin['firstName'], lastName: Admin['lastName'], email: Admin['email'],
   ) => {
     Modal.confirm({
       title: I18n.t('administration.administrators.modals.delete.title'),
       content: I18n.t(
         'administration.administrators.modals.delete.content',
-        { name: `${firstName} ${lastName}` },
+        { email },
       ),
       okText: I18n.t('administration.administrators.modals.delete.okText'),
       cancelText: I18n.t(
@@ -156,8 +156,8 @@ const AdminsComponent: React.FC<Props> = ({
         removeResource(`${id}`).then(() => {
           message.info(
             I18n.t(
-              'frontend.admins.actions.remove.success',
-              { adminName: `${firstName} ${lastName}` },
+              'administration.administrators.modals.delete.onSuccess',
+              { email },
             ),
           )
           close()

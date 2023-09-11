@@ -24,6 +24,7 @@ interface Props {
     id: Admin['id'],
     firstName: Admin['firstName'],
     lastName: Admin['lastName'],
+    email: Admin['email'],
   ): void
   handleResetPassword(id: Admin['id']): void
   handleEdit(id: Admin['id']): void
@@ -162,7 +163,7 @@ const MenuDropdown: FC<MenuProps> = ({
       handleResetPassword(id)
     }
     if (key === 'remove') {
-      handleDelete(id, firstName, lastName)
+      handleDelete(id, firstName, lastName, email)
     }
   }
   return (

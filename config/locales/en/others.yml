@@ -1876,10 +1876,6 @@ en:
       max_evaluators: you already have enough evaluators
   frontend:
     activate: Activate
-    admins:
-      actions:
-        remove:
-          success: Admin with name '%{adminName}' removed successfully.
     are_you_sure: Are you sure?
     assessment: Assessment
     assessment_groups:
