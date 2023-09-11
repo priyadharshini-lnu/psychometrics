@@ -9,13 +9,20 @@ import { FieldData } from 'rc-field-form/lib/interface'
 import ResourceForm from '../ResourceForm'
 import { Status as ResourceStatus } from '../ResourceForm/constants'
 import { Resource } from '../ResourceForm/interfaces'
+import FieldsUtil from '../ResourceForm/FieldsUtil'
 
+type ChildrenProps = {
+  form: FormInstance,
+  status: string,
+  isEdit: boolean,
+  fieldsUtil: FieldsUtil,
+}
 interface Props {
   resourceName: string
   requestScope?: string
   children({
-    form: FormInstance, status: string, isEdit: boolean, fieldsUtil: FieldsUtil,
-  }): ReactElement | React.FC
+    form, status, isEdit, fieldsUtil,
+  }: ChildrenProps): ReactElement | React.FC
   close(): void
   title?: string
   readableResourceName?: string
