@@ -1,4 +1,5 @@
 @import '~/styles/spacing.less';
+@import '~/styles/ant.variable.less';
 
 .dateFormItem {
   &:global(.ant-form-item) {
@@ -6,8 +7,46 @@
   }
 }
 .timezone {
-  width: 250px;
+  max-width: 445px;
 }
 .daysContainer {
   flex-basis: 100%;
 }
+
+
+.tte-text-checkbox {
+  :global {
+
+    .ant-checkbox-inner{
+      padding: 10px;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+    }
+    .ant-checkbox-checked {
+      &::after{
+        border-radius: 12px;
+      }
+      .ant-checkbox-inner {
+        &::after {
+          display: none;
+        }
+      }
+    }
+    .ant-checkbox + span {
+      width: 28px;
+      height: 33px;
+      padding: 0;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ant-checkbox-wrapper-checked{
+      .ant-checkbox + span {
+        color: @white;
+      }
+    }
+  }
+}
+

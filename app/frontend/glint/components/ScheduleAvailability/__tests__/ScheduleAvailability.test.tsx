@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 
 import { ScheduleAvailability } from '~/glint'
 
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',]
 const initialAvailability = {
   timezone: 'Asia/Baku',
   startDate: '2023-07-26',

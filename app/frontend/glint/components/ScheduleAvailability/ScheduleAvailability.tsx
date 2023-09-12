@@ -3,7 +3,7 @@ import {
 } from 'react'
 import _ from 'lodash'
 import {
-  Space, Form, DatePicker, Button, Typography, Alert, Row, Col,
+  Space, Form, DatePicker, Button, Typography, Alert, Row, Col, Checkbox,
 } from 'antd'
 import moment, { Moment } from 'moment-timezone'
 import cs from 'classnames'
@@ -17,6 +17,9 @@ import { getAvailableDays } from '~/utils/time'
 import styles from './ScheduleAvailability.less'
 import { UserAvailabilityDate, UserAvailabilityDay, ErrorMessage } from './interfaces'
 import { getErrorsForDay } from './getErrorsForDay'
+import {
+  dayOptions, defaultCheckedList, getInitialCheckedDayList, parseInitialAvailability,
+} from './utils'
 
 const allDays = moment.weekdays()
 const dateDisplayFormat = 'Do MMMM YYYY'
@@ -35,35 +38,16 @@ type Props = {
 }
 
 export const ScheduleAvailability:FC<Props> = ({
-  id, initialAvailability, onFormSubmit, onRemove, className, collapsed = false, errorMessages, removable = true,
+  id,
+  initialAvailability,
+  onFormSubmit,
+  onRemove,
+  className,
+  collapsed = false,
+  errorMessages,
+  removable = true,
 }) => {
-  let parsedUserAvailabilities
-  let initialAvailabilityDays
-  if (initialAvailability) {
-    const sortedAvailabilityDays = _.sortBy(
-      initialAvailability.availabilityDays, o => moment(o.endTime, 'hh:mm'),
-    )
-    initialAvailabilityDays = sortedAvailabilityDays.reduce(
-      (val, userAvailabilityDay) => {
-        const { day } = userAvailabilityDay
-        val[day] ||= []
-        val[day].push({
-          startTime: moment(userAvailabilityDay.startTime, 'hh:mm'),
-          endTime: moment(userAvailabilityDay.endTime, 'hh:mm'),
-        })
-        return val
-      },
-      { } as UserAvailabilityDay<Moment>,
-    )
-
-    parsedUserAvailabilities = {
-      ...initialAvailability,
-      startDate: moment(initialAvailability.startDate),
-      endDate: moment(initialAvailability.endDate),
-      availabilityDays: initialAvailabilityDays,
-    }
-  }
-
+  const parsedUserAvailabilities = parseInitialAvailability(initialAvailability)
   const [timezone, setTimezone] = useState(initialAvailability?.timezone || 'Asia/Dubai')
   const [dateFields, setDateFields] = useState({})
   const [saving, setSaving] = useState(false)
@@ -72,6 +56,11 @@ export const ScheduleAvailability:FC<Props> = ({
   ))
   const isSavedSchedule = !!(initialAvailability?.startDate && initialAvailability?.endDate)
   const [dateSelectionForm] = Form.useForm()
+  const [checkedDayList, setCheckedDayList] = useState<number[]>(defaultCheckedList)
+
+  useEffect(() => {
+    setCheckedDayList(getInitialCheckedDayList(dateSelectionForm, parsedUserAvailabilities?.availabilityDays))
+  }, [])
   const initialAvailabilityFormData = {
     startDate: parsedUserAvailabilities?.startDate.startOf('day'),
     endDate: parsedUserAvailabilities?.endDate.endOf('day'),
@@ -124,14 +113,29 @@ export const ScheduleAvailability:FC<Props> = ({
   }
 
   const handleCopyToALl = () => {
-    const firstFiled = dateSelectionForm.getFieldValue(availableWeekDays[0])
-    availableWeekDays.forEach((day) => {
-      dateSelectionForm.setFieldValue(day, firstFiled)
+    const firstDay = checkedDayList[0]
+    const firstField = dateSelectionForm.getFieldValue(firstDay)
+    availableWeekDays.filter(day => checkedDayList.includes(day)).forEach((day) => {
+      dateSelectionForm.setFieldValue(day, firstField)
     })
     setDateFields(dateSelectionForm.getFieldsValue())
   }
 
   const dateRangeError = errorMessages?.startDate?.title || errorMessages?.endDate?.title
+
+  const handleSelectedDaysChange = (checkedList: number[]) => {
+    setCheckedDayList(checkedList)
+    availableWeekDays.forEach((day) => {
+      if (!checkedList.includes(day)) {
+        dateSelectionForm.setFieldValue(day, null)
+      } else if (!dateSelectionForm.getFieldValue(day)) {
+        dateSelectionForm.setFieldValue(day, [{
+          startTime: moment('09:00', 'HH:mm'),
+          endTime: moment('17:00', 'HH:mm'),
+        }])
+      }
+    })
+  }
 
   return (
     <Panel
@@ -168,77 +172,86 @@ export const ScheduleAvailability:FC<Props> = ({
           validateMessages={{ required: I18n.t('glint.schedule_availability.required_error') }}
           onFinish={handleFormFinish}
         >
-          <Form.Item
-            name="startDate"
-            labelAlign="left"
-            labelCol={{ span: 10 }}
-            colon={false}
-            label={<div className="font-normal">{I18n.t('glint.schedule_availability.start_date')}</div>}
-            rules={[{ required: true }]}
-            className={styles.dateFormItem}
-          >
-            <DatePicker format={dateFormat} />
-          </Form.Item>
-          <Form.Item
-            name="endDate"
-            labelAlign="left"
-            labelCol={{ span: 10 }}
-            colon={false}
-            label={<div className="font-normal">{I18n.t('glint.schedule_availability.end_date')}</div>}
-            rules={[{ required: true }]}
-            className={styles.dateFormItem}
-          >
-            <DatePicker
-              format={dateFormat}
-              disabledDate={(date) => {
-                const startDate = dateSelectionForm.getFieldValue('startDate')
-                if (!startDate) {
-                  return false
-                }
-                return date.isBefore(startDate)
-              }}
-            />
-          </Form.Item>
-          {dateRangeError && (
-          <div style={{ flexBasis: '100%', marginTop: '-8px' }}>
-            <Typography.Text type="danger">{dateRangeError}</Typography.Text>
-          </div>
-          )}
-          <div className={cs(styles.daysContainer, 'mt-10')}>
-            <Space size="small" direction="vertical">
-              {availableWeekDays
-                .map((day, index) => (
-                  <Row wrap={false} gutter={[4, 0]}>
-                    <Col span={20}>
-                      <ScheduleDay
-                        formInstance={dateSelectionForm}
-                        key={day}
-                        day={day}
-                        label={allDays[day]}
-                        errorMessages={
-                        getErrorsForDay(day, errorMessages, dateSelectionForm.getFieldsValue())
-                      }
-                      />
-                    </Col>
-                    <Col>
-                      {
-                        index === 0 && (
-                        <Button type="link" onClick={handleCopyToALl}>
-                          <CopyOutlined />
-                          {I18n.t('glint.schedule_availability.copy_to_all')}
-                        </Button>
-                        )
+          <Space direction="vertical" className="w-100">
+            <Space direction="horizontal" size="small" align="baseline">
+              <Form.Item
+                name="startDate"
+                labelAlign="left"
+                labelCol={{ span: 10 }}
+                colon={false}
+                label={<div className="font-normal">{I18n.t('glint.schedule_availability.start_date')}</div>}
+                rules={[{ required: true }]}
+              >
+                <DatePicker style={{ width: '100%' }} format={dateFormat} />
+              </Form.Item>
+              <Form.Item
+                name="endDate"
+                labelAlign="left"
+                labelCol={{ span: 10 }}
+                colon={false}
+                label={<div className="font-normal">{I18n.t('glint.schedule_availability.end_date')}</div>}
+                rules={[{ required: true }]}
+              >
+                <DatePicker
+                  style={{ width: '100%' }}
+                  format={dateFormat}
+                  disabledDate={(date) => {
+                    const startDate = dateSelectionForm.getFieldValue('startDate')
+                    if (!startDate) {
+                      return false
                     }
-                    </Col>
-                  </Row>
-                ))}
+                    return date.isBefore(startDate)
+                  }}
+                />
+              </Form.Item>
             </Space>
-          </div>
-          <Form.Item className="w-100 ta-e">
-            <Button htmlType="submit" type="primary" loading={saving}>
-              {I18n.t('glint.schedule_availability.save')}
-            </Button>
-          </Form.Item>
+            {dateRangeError && (
+              <div style={{ flexBasis: '100%', marginTop: '-8px' }}>
+                <Typography.Text type="danger">{dateRangeError}</Typography.Text>
+              </div>
+            )}
+            <div className={cs(styles.daysContainer, 'mt-4')}>
+              <Space size="small" direction="vertical">
+                <Checkbox.Group
+                  options={dayOptions.filter(day => availableWeekDays.includes(day.value))}
+                  value={checkedDayList}
+                  onChange={handleSelectedDaysChange}
+                  className={cs(styles['tte-text-checkbox'], 'mb-4')}
+                />
+                {availableWeekDays.filter(day => checkedDayList.includes(day))
+                  .map((day, index) => (
+                    <Row wrap={false} gutter={[4, 0]}>
+                      <Col span={20}>
+                        <ScheduleDay
+                          formInstance={dateSelectionForm}
+                          key={day}
+                          day={day}
+                          label={allDays[day]}
+                          errorMessages={
+                            getErrorsForDay(day, errorMessages, dateSelectionForm.getFieldsValue())
+                          }
+                        />
+                      </Col>
+                      <Col>
+                        {
+                          index === 0 && (
+                            <Button type="link" onClick={handleCopyToALl}>
+                              <CopyOutlined />
+                              {I18n.t('glint.schedule_availability.copy_to_all')}
+                            </Button>
+                          )
+                        }
+                      </Col>
+                    </Row>
+                  ))}
+              </Space>
+            </div>
+            <Form.Item className="w-100 ta-e">
+              <Button htmlType="submit" type="primary" loading={saving}>
+                {I18n.t('glint.schedule_availability.save')}
+              </Button>
+            </Form.Item>
+          </Space>
         </Form>
       </Space>
     </Panel>

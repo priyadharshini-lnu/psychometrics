@@ -1,17 +1,22 @@
 import _ from 'lodash'
 import { FC } from 'react'
 import {
-  TimePicker, Row, Col, Space, TimePickerProps, Form, FormInstance, Typography,
+  TimePicker, Row, Col, Space, TimePickerProps, Form, FormInstance, Typography, Button,
 } from 'antd'
-import { PlusOutlined, CloseOutlined } from '@ant-design/icons'
+import {
+  PlusCircleOutlined, MinusCircleOutlined,
+} from '@ant-design/icons'
+
 import cs from 'classnames'
 
 import moment from 'moment'
-import { LightBackgroundButton } from '~/glint'
+import {
+  allMinutes,
+  getDefaultTimesFromPreviousDays,
+  getDisabledHourDataForEndTime,
+} from './utils'
 import styles from './ScheduleDay.less'
 
-const allHours = _.range(0, 24)
-const allMinutes = _.range(0, 60, 5)
 
 type Props = {
   label: string,
@@ -29,34 +34,35 @@ const defaultTimePickerProps: TimePickerProps = {
   showNow: false, minuteStep: 15, use12Hours: true, format: 'h:mm A',
 }
 
-type DisbledHoursData = {
-  disabledHours: number[]
-  disabledMins: number[]
-  startTimeHour?: number
-}
-
 export const ScheduleDay:FC<Props> = ({
   label, formInstance, day, errorMessages,
 }) => {
   const formName = day.toString()
   const fieldData = formInstance.getFieldValue(formName) || []
+  const addTimeSlot = (name, add) => {
+    const currentFieldData = formInstance.getFieldValue(formName)
 
-  const getDisabledHourDataForEndTime = (fieldDataIndex: number):DisbledHoursData => {
-    const startTime = fieldData[fieldDataIndex]?.startTime
-    if (!startTime) {
-      return { disabledHours: [], disabledMins: [] }
+    const currentDayEndTimestamp = moment(currentFieldData[0]?.endTime).date()
+    const newEndTimeTimestamp = moment(currentFieldData[name]?.endTime, 'HH:mm:ss')
+      .add(120, 'minutes')
+      .subtract(1, 'second')
+      .date()
+    const newStartTime = moment(currentFieldData[name]?.endTime, 'HH:mm:ss').add(60, 'minutes')
+    const newEndTime = moment(currentFieldData[name]?.endTime, 'HH:mm:ss').add(120, 'minutes')
+    if (Number(newEndTimeTimestamp) === Number(currentDayEndTimestamp)) {
+      add({
+        startTime: newStartTime,
+        endTime: newEndTime,
+      })
+    } else if (
+      newEndTimeTimestamp > currentDayEndTimestamp
+      && moment(currentFieldData[name]?.endTime, 'HH:mm:ss').isBefore(moment('23:59:59', 'HH:mm:ss'))
+    ) {
+      add({
+        startTime: moment(currentFieldData[name]?.endTime, 'HH:mm:ss').add(1, 'minutes'),
+        endTime: moment('23:59:59', 'HH:mm:ss'),
+      })
     }
-
-    const startTimeHour = startTime?.hour()
-    const startTimeMinutes = startTime?.minutes()
-    const disabledHours = allHours.filter((hour) => {
-      if (startTimeMinutes === 55) {
-        hour <= startTimeHour
-      }
-      return hour < startTimeHour
-    })
-    const disabledMins = allMinutes.filter(minutes => minutes <= startTimeMinutes)
-    return ({ disabledHours, disabledMins, startTimeHour })
   }
 
   return (
@@ -74,7 +80,11 @@ export const ScheduleDay:FC<Props> = ({
             colon={false}
           >
             {fields.map(({ key, name, ...restField }, index) => {
-              const { disabledHours, disabledMins, startTimeHour } = getDisabledHourDataForEndTime(name)
+              const {
+                disabledHours,
+                disabledMins,
+                startTimeHour,
+              } = getDisabledHourDataForEndTime(name, fieldData)
               const startTime = fieldData[name]?.startTime
               const errors = errorMessages?.[index.toString()] || {}
 
@@ -121,34 +131,34 @@ export const ScheduleDay:FC<Props> = ({
                         </Form.Item>
                       </Space>
                     </Col>
+
                     <Col>
                       <Space direction="horizontal">
                         <div className="mb-3">
-                          <LightBackgroundButton
-                            aria-label="add"
-                            disabled={!(fieldData[name]?.startTime && fieldData[name]?.endTime)}
-                            icon={<PlusOutlined />}
-                            onClick={() => {
-                              add(
-                                {
-                                  startTime: moment(fieldData[name]?.endTime, 'HH:mm:ss').add(1, 'hours'),
-                                  endTime: moment(fieldData[name]?.endTime, 'HH:mm:ss').add(2, 'hours'),
-                                },
-                              )
-                            }
-                            }
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <LightBackgroundButton
+                          <Button
+                            disabled={fields.length === 1}
+                            shape="circle"
                             aria-label="remove"
-                            icon={<CloseOutlined />}
+                            type="text"
+                            icon={<MinusCircleOutlined />}
                             onClick={() => {
                               formInstance.setFieldValue(`label.${name}`, null)
                               remove(index)
                             }}
                           />
                         </div>
+                        {index === (fields.length - 1) && (
+                          <div className="mb-3">
+                            <Button
+                              shape="circle"
+                              aria-label="add"
+                              type="text"
+                              disabled={!(fieldData[name]?.startTime && fieldData[name]?.endTime)}
+                              icon={<PlusCircleOutlined />}
+                              onClick={() => addTimeSlot(name, add)}
+                            />
+                          </div>
+                        )}
                       </Space>
                     </Col>
                   </Row>
@@ -177,13 +187,12 @@ export const ScheduleDay:FC<Props> = ({
                   <Col>
                     <Space size="small" direction="horizontal">
                       <Form.Item className="mb-3">
-                        <LightBackgroundButton
+                        <Button
+                          shape="circle"
                           aria-label="add"
-                          icon={<PlusOutlined />}
-                          onClick={() => add({
-                            startTime: moment('9:00:00', 'HH:mm:ss'),
-                            endTime: moment('17:00:00', 'HH:mm:ss'),
-                          })}
+                          type="text"
+                          icon={<PlusCircleOutlined />}
+                          onClick={() => getDefaultTimesFromPreviousDays(day, formInstance, add)}
                         />
                       </Form.Item>
                     </Space>

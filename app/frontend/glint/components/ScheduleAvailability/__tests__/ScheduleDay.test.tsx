@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react-dom/test-utils'
 
@@ -25,7 +25,7 @@ test('Clicking on Add icon should show time timepickers', async () => {
   expect(endTimePicker).toBeInTheDocument()
 })
 
-test('Clicking on Remove icon should remove the time pickers', async () => {
+test('Remove button should be enabled initially and then disabled', async () => {
   const user = userEvent.setup()
   render(
     <div id="container">
@@ -35,22 +35,44 @@ test('Clicking on Remove icon should remove the time pickers', async () => {
       />
     </div>,
   )
+
   const addTimePicker = screen.getByRole('button', { name: 'add' })
 
   await act(async () => {
     await user.click(addTimePicker)
   })
-  const startTimePicker = screen.getByPlaceholderText('From')
-  expect(startTimePicker).toBeInTheDocument()
-  const endTimePicker = screen.getByPlaceholderText('To')
-  expect(endTimePicker).toBeInTheDocument()
+
+  const secondAddTimePicker = screen.getByRole('button', { name: 'add' })
+
+  await act(async () => {
+    await user.click(secondAddTimePicker)
+  })
+
+  const allStartTimePickers = screen.getAllByPlaceholderText('From')
+  expect(allStartTimePickers.length).toBe(2)
+
+  const allEndTimePicker = screen.getAllByPlaceholderText('To')
+  expect(allStartTimePickers.length).toBe(2)
+
+  const allRemoveTimePicker = screen.getAllByRole('button', { name: 'remove' })
+  expect(allRemoveTimePicker[0]).not.toBeDisabled()
+  expect(allRemoveTimePicker[1]).not.toBeDisabled()
+
+  await act(async () => {
+    const firstRemoveTimePicker = allRemoveTimePicker[0]
+    await user.click(firstRemoveTimePicker)
+  })
+
 
   const removeTimePicker = screen.getByRole('button', { name: 'remove' })
-  await act(async () => {
-    await user.click(removeTimePicker)
-  })
-  expect(endTimePicker).not.toBeInTheDocument()
-  expect(startTimePicker).not.toBeInTheDocument()
+  const startTimePickers = screen.getByPlaceholderText('From')
+  const endTimePicker = screen.getByPlaceholderText('To')
+
+    expect(removeTimePicker).toBeDisabled()
+    expect(startTimePickers).toBeInTheDocument()
+    expect(endTimePicker).toBeInTheDocument()
+
+
 })
 
 describe('Add button should be ', () => {
@@ -72,19 +94,18 @@ describe('Add button should be ', () => {
       await user.click(addTimePicker)
     })
 
-    let startTimePicker =  screen.getByPlaceholderText(/to/i)
-    let endTimePicker =  screen.getByPlaceholderText(/from/i)
+    const startTimePicker = screen.getByPlaceholderText(/to/i)
+    const endTimePicker = screen.getByPlaceholderText(/from/i)
 
     await act(async () => {
       await user.hover(startTimePicker).then(async () => {
-        let close = screen.getAllByRole('img',)[1]
+        const close = screen.getAllByRole('img')[1]
         await user.click(close)
       })
       await user.hover(endTimePicker).then(async () => {
-        let close = screen.getAllByRole('img',)[1]
+        const close = screen.getAllByRole('img')[1]
         await user.click(close)
       })
-
     })
 
     addTimePicker = screen.getByRole('button', { name: 'add' })
