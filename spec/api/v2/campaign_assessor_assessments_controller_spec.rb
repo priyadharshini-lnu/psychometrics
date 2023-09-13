@@ -90,4 +90,74 @@ describe Api::V2::Administration::CampaignAssessorAssessmentsController, swagger
       end
     end
   end
+
+  path "/campaigns/{campaign_id}/workshop_subjects/{workshop_subject_id}/campaign_assessor_assessments/\
+subject_assessor_assessments" do
+    get 'returns all assessor assessments for a subject' do
+      operationId 'GetSubjectsAssessorAssessments'
+      description 'Get all subject specific assessor assessments'
+      tags 'Subject Assessor Assessments'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :workshop_subject_id, in: :path, type: :string
+
+      response '200', 'Subject Assessor Assessments' do
+        examples 'application/json' => [{
+          data: {
+            type: 'subject_assessor_assessments',
+            attributes: {
+              id: '1',
+              name: 'Assessment 1',
+              user_assessment_id: 1,
+              status: 'pending',
+              schedule_time: '2020-10-10T10:10:10.000Z',
+              meeting_link: 'https://meet.google.com/abc-xyz',
+              linked_activity: 'Assessment 1',
+              assessor: {
+                id: '1',
+                name: 'John Doe',
+                photo_url: 'https://example.com/photo.jpg'
+              }
+            }
+          }
+        }]
+        let(:workshop_subject) { create(:workshop_subject) }
+        let(:campaign) { create(:campaign) }
+        let(:assessment) { create(:assessment) }
+        let(:campaign_assessor_assessment) do
+          create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment)
+        end
+        let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign, assessor_form_id: assessment.id) }
+        let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
+        let!(:user_assessment) do
+          create(:user_assessment, relationship: relationship,
+                                   subject: workshop_subject.user,
+                                   campaign: campaign,
+                                   assessment: assessment)
+        end
+        let(:workshop_subject_id) { workshop_subject.id.to_s }
+        let(:campaign_id) { campaign.id.to_s }
+
+        run_test! do |response|
+          assessment_response = JSON.parse(response.body)
+          expect(assessment_response[0]).to have_key('id')
+          expect(assessment_response).to match_array([{
+            'id' => campaign_assessor_assessment.id.to_s,
+            'name' => campaign_assessor_assessment.assessment.name,
+            'user_assessment_id' => user_assessment.id,
+            'status' => user_assessment.status,
+            'schedule_time' => user_assessment.schedule_time,
+            'meeting_link' => user_assessment.meeting_link,
+            'linked_activity' => campaign_assessment.assessment.name,
+            'assessor' => {
+              'id' => user_assessment.evaluator.id.to_s,
+              'name' => user_assessment.evaluator.name,
+              'photo_url' => user_assessment.evaluator.photo_url
+            }
+          }])
+        end
+      end
+    end
+  end
 end
