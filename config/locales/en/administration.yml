@@ -264,7 +264,7 @@ en:
           assessment_centers_placeholder: Select Assessments Centers
           description: Issue invitations to candidates by selecting multiple assessment centers. Candidates will then choose a single center from those available.
           neurodiversity: Include neurodiversity question
-          preferred_language: Preferred Language
+          preferred_language: Allowed Languages
           preferred_language_placeholder: Select Preferred Language
           title: Basic Information
         confirm_message: Are you sure you want to delete an invitation?

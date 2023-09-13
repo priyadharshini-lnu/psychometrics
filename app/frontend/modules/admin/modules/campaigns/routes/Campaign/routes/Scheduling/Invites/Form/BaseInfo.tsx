@@ -6,6 +6,9 @@ import {
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
 import { useDebouncedCallback } from 'use-debounce'
+import { connect, ConnectedProps } from 'react-redux'
+
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { Panel } from '~/glint/components/Panel/Panel'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { useResources } from '~/hooks/useResources'
@@ -20,7 +23,7 @@ export interface Errors {
   }
 }
 
-interface Props {
+interface OwnProps {
   form: FormInstance
   next: () => void
   prev?: () => void
@@ -29,8 +32,17 @@ interface Props {
   errors: Errors | null
 }
 
-export const BaseInfoForm: React.FC<Props> = ({
-  form, next, onCancel, prev, workshops, errors,
+const connector = connect(
+  (state: RootState) => ({
+    availableLocales: state.config.availableLocales,
+  }),
+  {},
+)
+type PropsFromRedux = ConnectedProps<typeof connector>
+type Props = OwnProps & PropsFromRedux
+
+export const BaseInfoFormComponent: React.FC<Props> = ({
+  form, next, onCancel, prev, workshops, errors, availableLocales,
 }) => {
   const params = useParams<{campaignId: string}>()
   const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferredLanguage'))
@@ -133,7 +145,11 @@ export const BaseInfoForm: React.FC<Props> = ({
                   </Col>
                   <Col span={24}>
                     {(form.getFieldValue('workshopIds') || []).map(workshop => (
-                      <Tag closable={!(workshops && workshops.length > 0)} onClose={() => removeWorkshop(workshop.id)}>
+                      <Tag
+                        key={workshop.id}
+                        closable={!(workshops && workshops.length > 0)}
+                        onClose={() => removeWorkshop(workshop.id)}
+                      >
                         {workshop.name}
                       </Tag>
                     ))}
@@ -145,25 +161,26 @@ export const BaseInfoForm: React.FC<Props> = ({
                   <Switch
                     onChange={checked => changePreferredLang(checked)}
                   />
-                  {I18n.t('administration.assessment_center.invite.basic_info.preferred_language')}
+                  {I18n.t('administration.assessment_center.invite.basic_info.allow_preferred_language')}
                 </Space>
               </Form.Item>
               {preferredLang
               && (
                 <Form.Item
-                  name="preferred_language"
+                  name="languagesAllowed"
                   label={I18n.t('administration.assessment_center.invite.basic_info.preferred_language')}
                 >
                   <Select
                     showSearch
-                    defaultValue="en"
-                    // eslint-disable-next-line max-len
-                    placeholder={I18n.t('administration.assessment_center.invite.basic_info.preferred_language_placeholder')}
-                    options={[
-                      { value: 'en', label: 'English' },
-                      { value: 'ar', label: 'Arabic' },
-                    ]}
-                  />
+                    defaultValue={['en']}
+                    mode="multiple"
+                  >
+                    {availableLocales.map(locale => (
+                      <Select.Option key={locale} value={locale}>
+                        {I18n.t(`languages.${locale}`)}
+                      </Select.Option>
+                    ))}
+                  </Select>
                 </Form.Item>
               )
               }
@@ -195,3 +212,5 @@ export const BaseInfoForm: React.FC<Props> = ({
     </div>
   )
 }
+
+export const BaseInfoForm = connector(BaseInfoFormComponent)
