@@ -8,12 +8,12 @@ import {
 import {
   ArrowLeftOutlined, CopyOutlined, EditOutlined,
 } from '@ant-design/icons'
-import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { formatWorkshopDate } from '~/utils/workshop'
 import { WorkshopEditFormModal } from './WorkshopEditFormModal'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 import { useResources } from '~/hooks/useResources'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { ResourceAvatar } from '~/glint'
@@ -70,11 +70,12 @@ export const WorkshopPage: FC<{}> = () => {
       basePath: `campaigns/${campaignId}/`,
       responseType: WorkshopTR,
       apiConfig: {
-        include: ['workshop_managers', 'workshop_assessors'],
+        include: ['workshop_managers', 'workshop_assessors', 'workshop_resources'],
         include_resource_meta: ['permissions'],
         fields: {
           workshop_managers: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
           workshop_assessors: ['id', 'user_id', 'full_name', 'photo_url', 'email'],
+          workshop_resources: ['id', 'name', 'url'],
         },
       },
     },
@@ -102,7 +103,7 @@ export const WorkshopPage: FC<{}> = () => {
             </>
           )}
           column={{
-            lg: 4, md: 3, sm: 2, xs: 1,
+            xxl: 5, xl: 4, lg: 3, md: 2, sm: 1,
           }}
           extra={
             workshop.meta?.permissions?.update && (
@@ -122,7 +123,7 @@ export const WorkshopPage: FC<{}> = () => {
             {formatWorkshopDate(workshop.startTime)}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.duration')}>
-            {moment.duration(workshop.duration, 'seconds').humanize()}
+            {secondsToDayHoursAndMinutes(workshop.duration)}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.booked')}>
             {workshop.bookedSeats}
@@ -133,8 +134,13 @@ export const WorkshopPage: FC<{}> = () => {
           >
             <ResourcesTag resources={workshop.workshopManagers} />
           </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('administration.scheduling.info.reschedule_lead_time')}
+          >
+            {secondsToDayHoursAndMinutes(workshop.rescheduleLeadTime)}
+          </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.link')}>
-            { workshop.meetingLink && (
+            { workshop.meetingLink ? (
               <Space>
                 <a href={workshop.meetingLink} target="_blank" rel="noreferrer">
                   {I18n.t('administration.scheduling.info.join_meeting')}
@@ -146,7 +152,7 @@ export const WorkshopPage: FC<{}> = () => {
                   <CopyOutlined />
                 </CopyToClipboard>
               </Space>
-            )}
+            ) : I18n.t('administration.scheduling.info.none')}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.timezone')}>
             {workshop.timezone}
@@ -159,6 +165,11 @@ export const WorkshopPage: FC<{}> = () => {
             className={styles.workshopAvatar}
           >
             <ResourcesTag resources={workshop.workshopAssessors} />
+          </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('administration.scheduling.info.cancellation_lead_time')}
+          >
+            {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
           </Descriptions.Item>
         </Descriptions>
         <Divider />

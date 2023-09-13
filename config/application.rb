@@ -67,6 +67,7 @@ module Psychometrics
     end
 
     config.middleware.use(Middlewares::SetLocaleMiddleware)
+    config.action_controller.raise_on_open_redirects = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

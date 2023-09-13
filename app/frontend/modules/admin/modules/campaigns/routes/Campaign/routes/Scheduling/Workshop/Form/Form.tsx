@@ -126,8 +126,9 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
   return (
     <div className={styles.mainForm}>
       <Row className={styles.steps}>
-        <Col span={22}>
+        <Col span={24}>
           <Steps
+            size="small"
             current={step}
             items={[
               {

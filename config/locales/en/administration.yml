@@ -3904,12 +3904,15 @@ en:
       info:
         assessors: Assessors
         booked: Seats Booked
+        cancellation_lead_time: Cancellation Lead Time
         date: Date & Time
         duration: Duration
         join_meeting: Join Room
         link: Meeting link
         managers: Center Managers
+        none: None
         remaining: Seats Remaining
+        reschedule_lead_time: Reschedule Lead Time
         search_placehoder: Search by id, email or name
         timezone: Timezone
         total_seats: Total Seats

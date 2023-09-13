@@ -70,8 +70,9 @@ export const InvitesForm = () => {
   return (
     <div style={{ padding: 20 }}>
       <Row className={styles.steps}>
-        <Col span={12}>
+        <Col span={18}>
           <Steps
+            size="small"
             current={step}
             items={[
               {

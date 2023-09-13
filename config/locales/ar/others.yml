@@ -14,6 +14,12 @@ ar:
         first_name: الاسم الاول
         last_name: إسم العائلة
         password: كلمه السر
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: كلمة المرور الحالية غير صحيحة
   anonym:
     continue: استمرار
     copy:

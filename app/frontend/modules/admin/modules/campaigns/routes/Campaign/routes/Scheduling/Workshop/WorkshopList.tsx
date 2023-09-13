@@ -16,6 +16,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { ResourceAvatar } from '~/glint'
 import { formatWorkshopDate } from '~/utils/workshop'
 import { setData } from '~/modules/admin/core/ui/temp'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const { I18n } = window
 
@@ -73,7 +74,7 @@ export const WorkshopList: React.FC = () => {
             title={I18n.t('administration.scheduling.columns.duration')}
             id="duration"
             width="10%"
-            render={(_, { duration }) => moment.duration(duration, 'seconds').humanize()}
+            render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.managers')}
