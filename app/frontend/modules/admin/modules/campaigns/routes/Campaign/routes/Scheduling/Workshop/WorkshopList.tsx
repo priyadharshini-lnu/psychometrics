@@ -33,7 +33,7 @@ export const WorkshopList: React.FC = () => {
     trackUrl: true,
     responseType: WorkshopTR,
     basePath: `campaigns/${campaignId}/`,
-    initialFilter: { start_time_between: CURRENT_WEEK.toString() },
+    initialFilter: { start_time_between: DEFAULT_RANGE.toString() },
     apiConfig: {
       include: ['workshop_managers', 'workshop_assessors', 'workshop_resources'],
       include_meta: ['permissions'],
@@ -168,9 +168,9 @@ interface ResourcesProps {
   resources: Resource[]
 }
 
-const CURRENT_WEEK: [Moment, Moment] = [
-  moment().startOf('w'),
-  moment().endOf('w'),
+const DEFAULT_RANGE: [Moment, Moment] = [
+  moment().subtract(10, 'd'),
+  moment().add(10, 'd'),
 ]
 
 const MAX_AVATARS = 3
@@ -191,7 +191,7 @@ const WorkshopDatePicker = () => {
   const { resource } = useResourceContext()
   const [initialStartDate, initialEndDate] = getMomentDateRange(
     resource.getFilteredValue('start_time_between'),
-  ) || CURRENT_WEEK
+  ) || DEFAULT_RANGE
   const onDateChange = (dates) => {
     resource.changeFilter('start_time_between', dates.toString())
   }
@@ -205,7 +205,7 @@ const WorkshopDatePicker = () => {
       <DatePicker.RangePicker
         clearIcon={false}
         onChange={onDateChange}
-        format="DD/MMMM/YYYY"
+        format="DD/MMM/YYYY"
         defaultValue={[initialStartDate, initialEndDate]}
         ranges={{
           Today: [
@@ -225,9 +225,6 @@ const WorkshopDatePicker = () => {
           ],
           'All Time': [
             moment().subtract(100, 'y'), moment().add(100, 'y'),
-          ],
-          Custom: [
-            moment().startOf('M'), moment().endOf('M'),
           ],
         }}
       />
