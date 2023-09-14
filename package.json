@@ -48,7 +48,7 @@
     "@dnd-kit/utilities": "^3.1.0",
     "@sentry/react": "^6.3.5",
     "@sentry/rrweb": "^0.3.1",
-    "@thetalententerprise/interactive-assessments": "1.8.0",
+    "@thetalententerprise/interactive-assessments": "1.9.0",
     "@thetalententerprise/jsonapi-react": "0.0.27",
     "@types/actioncable": "^5.2.7",
     "@types/lodash": "^4.14.184",
