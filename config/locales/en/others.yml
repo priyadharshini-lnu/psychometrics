@@ -1915,7 +1915,10 @@ en:
       confirm_booking_title: Confirm this booking?
       default_failure_msg: Unable to process your request. Please try again later.
       language: Language
+      language_preference_question: Do you have a language preference?
       need_changes: Need to make the changes?
+      neurodivergence_comment_placeholder: Your comments
+      neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
       or: or
       reason: Reason
       reason_for_cancel: Reason for Cancellation

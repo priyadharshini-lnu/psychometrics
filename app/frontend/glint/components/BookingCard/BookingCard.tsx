@@ -122,7 +122,7 @@ export const BookingCard: FC<Props> = ({
         <>
           <Col><Divider className="h-100 pos-uns" type="vertical" /></Col>
           <Col flex="auto">
-            <div className={styles.cardItem}>
+            <div className={cs(styles.cardItem, styles.timeContainer)}>
               {timeSlotSelectionComponent}
             </div>
           </Col>
