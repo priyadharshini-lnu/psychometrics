@@ -32,6 +32,20 @@ module Api
       end
     end
 
+    def meta_details
+      {
+        permissions: lambda {
+          GetPermissionsHash.call!(
+            ::Api::Administration::WorkshopInvitedSubjectPolicy,
+            context[:user],
+            @model,
+            %w[create],
+            { project_id: context[:campaign]&.project_id }
+          )
+        }
+      }
+    end
+
     private
 
     def set_resource

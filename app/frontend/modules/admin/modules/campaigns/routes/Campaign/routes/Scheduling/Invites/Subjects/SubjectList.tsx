@@ -46,18 +46,13 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
           responseType: WorkshopInvitedSubjectTR,
           apiConfig: {
             include: ['user'],
+            include_meta: ['permissions'],
             fields: { users: ['id', 'full_name', 'email', 'photo_url'] },
           },
         }}
         name="workshop_invited_subjects"
       >
-        <Resource.Filter placeholder="Search" name="filterable_fields">
-          <Button type="primary" onClick={() => openModal('SubjectAddFormModal')}>
-            <PlusOutlined />
-            {' '}
-            {I18n.t('administration.invited_subject.add_btn')}
-          </Button>
-        </Resource.Filter>
+        <Filter openModal={openModal} />
         <Resource.Table pagination>
           <Resource.Column
             title={I18n.t('common.column.id')}
@@ -102,6 +97,25 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
         <Modals modals={{ SubjectAddFormModal }} />
       </Resource>
     </>
+  )
+}
+
+const Filter: React.FC<Props> = ({ openModal }) => {
+  const { resource } = useResourceContext<WorkshopInvitedSubject, { permissions: { create: boolean } }>()
+
+  return (
+    <Resource.Filter
+      placeholder="Search"
+      name="filterable_fields"
+    >
+      {resource.meta.permissions.create && (
+        <Button type="primary" onClick={() => openModal('SubjectAddFormModal')}>
+          <PlusOutlined />
+          {' '}
+          {I18n.t('administration.invited_subject.add_btn')}
+        </Button>
+      )}
+    </Resource.Filter>
   )
 }
 
