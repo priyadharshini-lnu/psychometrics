@@ -3308,10 +3308,10 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@thetalententerprise/interactive-assessments@1.9.0":
-  version "1.9.0"
-  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.9.0/fe22aa7f1820daf7c107b627d95d20636b5f5161#fe22aa7f1820daf7c107b627d95d20636b5f5161"
-  integrity sha512-OuceKyoskfw3Z87sGR2xk4QldL9G4SBZxzDVyqg0KGiBKobTDw2l8jzSHoH5hj2Exp+MDd81d2Up2xDnq8yKHg==
+"@thetalententerprise/interactive-assessments@1.9.1":
+  version "1.9.1"
+  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.9.1/b7db57e87dad0f3f5b2e138618d5d6dcebc3bd28#b7db57e87dad0f3f5b2e138618d5d6dcebc3bd28"
+  integrity sha512-C3HgxVTU19chSQbQlauvjNxz2cOEHKPLhxjzTby9J7pRvqypArPKAMOTNnd2wcU+gEYemaV/dIsWGHgdFZYWig==
   dependencies:
     javascript-obfuscator "^4.0.2"
 
