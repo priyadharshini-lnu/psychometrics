@@ -28,7 +28,7 @@ module Api
           end
 
           json_api_attributes do
-            required(:allowed_languages).array(:string)
+            optional(:allowed_languages).array(:string)
             required(:allow_language_preference).filled(:bool)
             required(:allow_neurodiversity_option).filled(:bool)
             optional(:workshop_ids).array(:string)
