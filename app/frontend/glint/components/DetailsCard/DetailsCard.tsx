@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import {
   Card, Col, Button, Typography, Progress, Row, Tooltip, Space,
 } from 'antd'
+import cs from 'classnames'
 
 import { DirectionalArrowIcon } from '~/glint'
 
@@ -22,6 +23,7 @@ type DetailsCardProps = {
   actionLoading?: boolean
   actionDisabled?: boolean
   actionDisabledText?: string
+  footer?: React.ReactNode
 }
 
 export const DetailsCard: FC<DetailsCardProps> = ({
@@ -38,6 +40,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   actionLoading,
   actionDisabled,
   actionDisabledText,
+  footer,
 }) => {
   const handleClick = () => {
     onButtonClick && onButtonClick()
@@ -57,7 +60,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   }
 
   return (
-    <Card className={styles.detailsCard}>
+    <Card className={cs({ [styles.detailsCard]: true, [styles.withFooter]: footer })}>
       {showStatusAtTop && (
       <Row>
         <Col xs={18}>{titleElement}</Col>
@@ -85,7 +88,12 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           {progressPercentage !== undefined && <Progress percent={progressPercentage} />}
         </Col>
         {buttonText && (
-          <Col lg={24 - progressBarSpanLg} md={16} xs={24 - progressBarSpanXs} className={styles.buttonCol}>
+          <Col
+            lg={24 - progressBarSpanLg}
+            md={16}
+            xs={24 - progressBarSpanXs}
+            className={cs({ [styles.buttonCol]: true, [styles.withFooter]: footer })}
+          >
             <Space>
               {secondaryBtnText && (
               <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
@@ -118,6 +126,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
             </Space>
           </Col>
         )}
+        {footer ? <Col className={cs('w-100', 'ta-c', styles.footer)}>{footer}</Col> : null}
       </Row>
     </Card>
   )
@@ -129,5 +138,5 @@ type ButtonWrapperProps = {
 }
 
 const ButtonWrapper: FC<ButtonWrapperProps> = ({ wrapText, children }) => (wrapText
-  ? <Tooltip title={wrapText} placement="topLeft">{children}</Tooltip>
+  ? <Tooltip title={wrapText} className="pe-0" placement="topLeft">{children}</Tooltip>
   : children)

@@ -2,9 +2,9 @@ import { useState, FC } from 'react'
 import {
   Calendar, Space, Typography, CalendarProps,
 } from 'antd'
-import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import moment, { Moment } from 'moment'
 import cs from 'classnames'
+import { DirectionalArrowIcon, DirectionalBackArrowIcon } from '~/glint'
 
 import styles from './CustomCalendar.less'
 
@@ -32,7 +32,7 @@ export const CustomCalendar: FC<Props> = ({ availableDates, onDateSelect, defaul
 
         return (
           <Space className="mb-2" size="middle">
-            <LeftOutlined
+            <DirectionalBackArrowIcon
               date-testid="prev-month"
               onClick={() => {
                 onChange(value.clone().month(monthNumber - 1))
@@ -42,7 +42,7 @@ export const CustomCalendar: FC<Props> = ({ availableDates, onDateSelect, defaul
               <Title data-testid="month" className="mb-0" level={5}>{month}</Title>
               <Title data-testid="year" className="mb-0 font-normal" level={5}>{year}</Title>
             </Space>
-            <RightOutlined
+            <DirectionalArrowIcon
               date-testid="nextMonth"
               onClick={() => {
                 onChange(value.clone().month(monthNumber + 1))
