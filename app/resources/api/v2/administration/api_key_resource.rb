@@ -16,6 +16,14 @@ class Api::V2::Administration::ApiKeyResource < Api::V2::Administration::BaseRes
     ApiKey.where(user_id: options[:context][:params][:user_id])
   end
 
+  def created_at
+    @model.decorate.created_at
+  end
+
+  def updated_at
+    @model.decorate.updated_at
+  end
+
   def assign_key_and_token
     @model.user_id = context[:params][:user_id]
     @model.key = loop do
