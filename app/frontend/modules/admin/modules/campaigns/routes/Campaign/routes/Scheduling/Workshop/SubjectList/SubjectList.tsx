@@ -327,26 +327,26 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  const menuItems:ItemType[] = [
-    {
-      key: 'mark_complete',
-      label: (
-        <>
-          <Button
-            type="link"
-            onClick={() => {
-              onChangeStatus(subject.completionStatus === 'completed' ? 'not_started' : 'completed')
-            }}
-            className="ps-0"
-          >
-            {subject.completionStatus === 'completed'
-              ? I18n.t('common.actions.mark_not_started')
-              : I18n.t('common.actions.mark_complete')}
-          </Button>
-        </>
-      ),
-    },
-  ]
+  const menuItems:ItemType[] = []
+
+  resource.meta.permissions?.manage && menuItems.push({
+    key: 'mark_complete',
+    label: (
+      <>
+        <Button
+          type="link"
+          onClick={() => {
+            onChangeStatus(subject.completionStatus === 'completed' ? 'not_started' : 'completed')
+          }}
+          className="ps-0"
+        >
+          {subject.completionStatus === 'completed'
+            ? I18n.t('common.actions.mark_not_started')
+            : I18n.t('common.actions.mark_complete')}
+        </Button>
+      </>
+    ),
+  })
 
   resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
     subject.schedulingStatus,
