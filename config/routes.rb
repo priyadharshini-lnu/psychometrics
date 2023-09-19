@@ -1272,7 +1272,7 @@ Rails.application.routes.draw do
               jsonapi_resources :campaign_assessments, only: %i[index]
             end
 
-            jsonapi_resources :workshop_subjects, only: %i[] do
+            jsonapi_resources :workshop_subjects, only: %i[index] do
               member do
                 post :update_subject_details_and_assessments
               end

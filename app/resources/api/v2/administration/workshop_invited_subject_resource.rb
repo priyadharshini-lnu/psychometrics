@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Administration::BaseResource
-  attributes :status, :reason, :booked_workshop_date_time, :subject_workshop_date_time
+  attributes :status, :reason, :booked_workshop_date_time, :subject_workshop_date_time, :workshop_invite_id
 
   has_one :user
   has_one :workshop_invite

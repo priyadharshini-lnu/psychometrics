@@ -9,6 +9,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   has_many :workshop_assessors
   has_many :workshop_subjects
   has_many :workshop_resources
+  has_many :workshop_invited_subjects
   has_one :campaign
 
   filter :start_time_between, apply: lambda { |records, date_range, _options|
@@ -30,7 +31,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
     results
   }
 
-  ransack_filters %i[search_query]
+  ransack_filters %i[search_query workshop_invited_subjects_user_id_eq]
 
   def fetchable_fields
     super - %i[workshop_assessors_ids workshop_managers_ids]

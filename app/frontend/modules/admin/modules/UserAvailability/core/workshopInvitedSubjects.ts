@@ -11,6 +11,7 @@ export const WorkshopInvitedSubjectTR = t.type({
   }),
   bookedWorkshopDateTime: t.union([t.string, t.null]),
   subjectWorkshopDateTime: t.union([t.string, t.null]),
+  workshopInviteId: t.number,
 })
 
 export type WorkshopInvitedSubject = t.TypeOf<typeof WorkshopInvitedSubjectTR>

@@ -19,6 +19,8 @@ import { Strategies } from '../../../AssessmentsReports/routes/Manage/AddReportM
 import { ProctoringSessionList } from './ProctoringSessionList'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
+import WorkshopList from './WorkshopList'
+import WorkshopInviteList from './WorkshopInviteList/WorkshopList'
 
 const { I18n } = window
 
@@ -265,6 +267,12 @@ const AssessmentsReports: React.FC<Props> = ({
         <div className={styles.tableDivider} />
         <h3>{I18n.t('common.model.assessments')}</h3>
         <AssessmentList />
+        <div className={styles.tableDivider} />
+        <h3>{I18n.t('campaign_users.details.workshops')}</h3>
+        <WorkshopList />
+        <div className={styles.tableDivider} />
+        <h3>{I18n.t('campaign_users.details.workshops_invites')}</h3>
+        <WorkshopInviteList />
         {proctoringSessions.length !== 0 && (
           <>
             <div className={styles.tableDivider} />

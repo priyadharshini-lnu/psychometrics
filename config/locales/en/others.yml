@@ -1342,6 +1342,8 @@ en:
         interrupted: Interrupted
         not_started: Not Started
         timed_out: Timed Out
+      workshops: Workshops
+      workshops_invites: Workshops Invites
     modals:
       change_password:
         content: Are you sure you want to send instructions with link to change password?

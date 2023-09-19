@@ -6,8 +6,9 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   delegate :full_name, :email, :photo_url, to: :user
 
   has_one :user
+  has_one :workshop
 
-  ransack_filters %i[user_full_name_or_user_email_cont]
+  ransack_filters %i[user_full_name_or_user_email_cont user_id_eq campaign_id_eq]
 
   before_update do
     @model.attendance_status = 'no_show' if @model.attended == true
@@ -18,11 +19,17 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   end
 
   def self.records(opts = {})
-    Api::Administration::WorkshopSubjectPolicy::Scope.new(
-      opts[:context][:user], WorkshopSubject, campaign_id: opts[:context][:params][:campaign_id]
-    ).resolve.where(
-      workshop_id: opts[:context][:params][:workshop_id]
-    )
+    if opts[:context][:params][:workshop_id].present?
+      Api::Administration::WorkshopSubjectPolicy::Scope.new(
+        opts[:context][:user], WorkshopSubject, campaign_id: opts[:context][:params][:campaign_id]
+      ).resolve.where(
+        workshop_id: opts[:context][:params][:workshop_id]
+      )
+    else
+      Api::Administration::WorkshopSubjectPolicy::Scope.new(
+        opts[:context][:user], WorkshopSubject, campaign_id: opts[:context][:params][:campaign_id]
+      ).resolve
+    end
   end
 
   def preworks
