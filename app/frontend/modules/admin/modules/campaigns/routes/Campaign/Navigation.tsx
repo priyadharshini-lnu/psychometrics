@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import type { MenuProps } from 'antd'
-import { useLocation, useHistory } from 'react-router-dom'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 import {
   UserOutlined,
   SettingOutlined,
@@ -20,50 +20,63 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 const { I18n } = window
 
-const menuItems = (permissions: Campaign['permissions']): MenuItem[] => [
+const Link = ({ route, children }) => (
+  <RouterLink to={route}>{children}</RouterLink>
+)
+
+const menuItems = (permissions: Campaign['permissions'], basePath: string): MenuItem[] => [
   {
     key: 'participants',
-    label: 'Participants',
+    label: <Link route={`${basePath}/participants`}>{I18n.t('administration.navigation.participants')}</Link>,
     icon: <UserOutlined />,
   },
   permissions.viewWorkshops ? {
     key: 'scheduling',
-    label: 'Scheduling',
+    label:
+    <Link route={`${basePath}/scheduling`}>{I18n.t('administration.navigation.scheduling')}</Link>,
     icon: <CalendarOutlined />,
   } : null,
   permissions.manageCampaigns ? {
     key: 'assessments_reports',
-    label: 'Assessments & Reports',
+    label:
+    <Link route={`${basePath}/assessments_reports`}>{I18n.t('administration.navigation.assessments_reports')}</Link>,
     icon: <PieChartOutlined />,
   } : null,
   permissions.viewRegistrationCodes ? {
     key: 'registration_codes',
-    label: 'Registration codes',
+    label:
+    <Link route={`${basePath}/registration_codes`}>{I18n.t('administration.navigation.registration_codes')}</Link>,
     icon: <QrcodeOutlined />,
   } : null,
   permissions.stats ? {
     key: 'stats',
-    label: I18n.t('administration.stats.title'),
+    label: <Link route={`${basePath}/stats`}>{I18n.t('administration.stats.title')}</Link>,
     icon: <LineChartOutlined />,
   } : null,
   (permissions.viewDashboard || permissions.viewAccesssheet || permissions.viewAccesssheetSettings) ? {
     key: 'dashboard',
-    label: I18n.t('administration.dashboard.tabs.dashboard'),
+    label:
+    <Link route={`${basePath}/dashboard`}>{I18n.t('administration.dashboard.tabs.dashboard')}</Link>,
     icon: <DashboardOutlined />,
   } : null,
   permissions.viewDatasheets ? {
     key: 'datasheet',
-    label: I18n.t('common.model.datasheet'),
+    label:
+    <Link route={`${basePath}/datasheet`}>{I18n.t('common.model.datasheet')}</Link>,
     icon: <DatabaseOutlined />,
   } : null,
   permissions.manageCampaignAdmins ? {
     key: 'admins',
-    label: I18n.t('common.model.admins'),
+    label:
+    <Link route={`${basePath}/admins`}>{I18n.t('common.model.admins')}</Link>,
     icon: <SolutionOutlined />,
   } : null,
   permissions.manageOptions ? {
     key: 'options',
-    label: 'Options',
+    label:
+    <Link route={`${basePath}/options`}>
+      {I18n.t('administration.navigation.options')}
+    </Link>,
     icon: <SettingOutlined />,
   } : null,
 ].filter(Boolean)
@@ -104,22 +117,14 @@ interface Props {
   permissions: Campaign['permissions']
 }
 
-export const Navigation:FC<Props> = ({
+export const Navigation: FC<Props> = ({
   prefix, permissions,
 }) => {
   const { pathname } = useLocation()
-  const history = useHistory()
-
-  const onSelect = (key) => {
-    const basePath = routeUtils.getBasePath(prefix)
-    history.push(`${basePath}/${key}`)
-  }
-
   return (
     <Subnavigation
-      onSelect={onSelect}
       selectedKeys={[getSelected(pathname)]}
-      items={menuItems(permissions)}
+      items={menuItems(permissions, routeUtils.getBasePath(prefix))}
     />
   )
 }

@@ -33,7 +33,7 @@ const connecter = connect(
 export type PropsFromRedux = ConnectedProps<typeof connecter> & {
   items: MenuItem[]
   selectedKeys: string[]
-  onSelect: (key:string) => void
+  onSelect?: (key:string) => void
   showBack?: boolean
 }
 
@@ -66,7 +66,7 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
       // setShow(false)
       return closeSubmenu()
     }
-    onSelect(key)
+    onSelect?.(key)
   }
 
   const closeMenu = () => {

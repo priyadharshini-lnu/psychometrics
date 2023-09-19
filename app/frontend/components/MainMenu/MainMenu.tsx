@@ -1,6 +1,6 @@
 import React, { useState, FC, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import type { MenuProps } from 'antd'
+import { Link as RouterLink } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Layout, Menu, Avatar, Drawer,
@@ -11,7 +11,6 @@ import {
 } from '@ant-design/icons'
 import { useMedia } from 'react-use-media'
 import cs from 'classnames'
-import { useHistory } from 'react-router-dom'
 import logo from '~/modules/endUser/assets/images/lighthouseLogoTall.png'
 import logoSmall from '~/modules/auth/media/TTE_Logo_Color_Monogram.png'
 import styles from './MainMenu.less'
@@ -20,8 +19,6 @@ import { get as getCurrentUser } from '~/core/currentUser'
 import { camelizeKeys } from '~/utils/object'
 import { openSubmenu, triggerCollapse } from '~/modules/admin/core/ui/menu'
 import { shortify } from '~/utils/string'
-
-type MenuItem = Required<MenuProps>['items'][number];
 
 const { I18n } = window
 
@@ -38,6 +35,7 @@ const connecter = connect(
   },
 )
 export type PropsFromRedux = ConnectedProps<typeof connecter>
+
 
 interface Permissions {
   dashboards?: string
@@ -57,7 +55,14 @@ interface Permissions {
   auditLogs?: string
 }
 
-const menuItems = (permissions: Permissions, hasSubmenu: boolean): MenuItem[] => [
+// TODO: When all pages are implemented in single react, use this component instead of anchor tag
+const Link = ({ href, children }) => {
+  const selected = getSelected()
+  return (selected !== 'profileDetails' && selected !== 'changePassword')
+    ? <a href={href}>{children}</a> : <RouterLink to={href}>{children}</RouterLink>
+}
+
+const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   hasSubmenu ? {
     key: 'showSubmenu',
     label: I18n.t('administration.navigation.show_submenu'),
@@ -65,82 +70,112 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean): MenuItem[] =>
   } : null,
   permissions.dashboards ? {
     key: 'dashboards',
-    label: I18n.t('administration.navigation.dashboard'),
+    label: <a href={permissions.dashboards}>{I18n.t('administration.navigation.dashboard')}</a>,
     icon: <i className="fa fa-dashboard" />,
   } : null,
   permissions.assessorDashboard ? {
     key: 'assessorDashboard',
-    label: I18n.t('administration.navigation.assessor_dashboard'),
+    label:
+    <a href={permissions.assessorDashboard}>
+      {I18n.t('administration.navigation.assessor_dashboard')}
+    </a>,
     icon: <i className="fa fa-dashboard" />,
   } : null,
   permissions.assessorWorkshops ? {
     key: 'assessorWorkshops',
-    label: I18n.t('administration.navigation.assessor_workshops'),
+    label:
+    <a href={permissions.assessorWorkshops}>
+      {I18n.t('administration.navigation.assessor_workshops')}
+    </a>,
     icon: <CalendarOutlined />,
   } : null,
   permissions.clients ? {
     key: 'clients',
-    label: I18n.t('administration.navigation.clients'),
+    label:
+    <a href={permissions.clients}>
+      {I18n.t('administration.navigation.clients')}
+    </a>,
     icon: <i className="fa fa-briefcase" />,
   } : null,
   permissions.users ? {
     key: 'users',
-    label: I18n.t('administration.navigation.users'),
+    label:
+    <a href={permissions.users}>
+      {I18n.t('administration.navigation.users')}
+    </a>,
     icon: <i className="fa fa-users" />,
   } : null,
   permissions.norms ? {
     key: 'norms',
-    label: I18n.t('administration.navigation.norms'),
+    label:
+    <a href={permissions.norms}>
+      {I18n.t('administration.navigation.norms')}
+    </a>,
     icon: <MonitorOutlined />,
   } : null,
   permissions.dimensions ? {
     key: 'dimensions',
-    label: I18n.t('administration.navigation.dimensions'),
+    label:
+    <a href={permissions.dimensions}>
+      {I18n.t('administration.navigation.dimensions')}
+    </a>,
     icon: <i className="fa fa-file-text-o" />,
   } : null,
   permissions.assessments ? {
     key: 'assessments',
-    label: I18n.t('administration.navigation.assessments'),
+    label:
+    <a href={permissions.assessments}>
+      {I18n.t('administration.navigation.assessments')}
+    </a>,
     icon: <i className="fa fa-universal-access" />,
   } : null,
   permissions.questionCenter ? {
     key: 'questionCenter',
-    label: I18n.t('administration.navigation.question_center'),
+    label:
+    <a href={permissions.questionCenter}>
+      {I18n.t('administration.navigation.question_center')}
+    </a>,
     icon: <i className="fa fa-question-circle-o" />,
   } : null,
   permissions.libraries ? {
     key: 'libraries',
-    label: I18n.t('administration.navigation.libraries'),
+    label:
+    <a href={permissions.libraries}>
+      {I18n.t('administration.navigation.libraries')}
+    </a>,
     icon: <i className="fa fa-file-image-o" />,
   } : null,
   permissions.communicationCenter ? {
     key: 'communicationCenter',
-    label: I18n.t('administration.navigation.communication_center'),
+    label:
+    <a href={permissions.communicationCenter}>
+      {I18n.t('administration.navigation.communication_center')}
+    </a>,
     icon: <i className="fa fa-envelope-o" />,
   } : null,
   permissions.reports ? {
     key: 'reports',
-    label: I18n.t('administration.navigation.reports'),
+    label: <a href={permissions.reports}>{I18n.t('administration.navigation.reports')}</a>,
     icon: <i className="fa fa-pie-chart" />,
   } : null,
   permissions.reportApprovals ? {
     key: 'reportApprovals',
-    label: I18n.t('administration.navigation.report_approvals'),
+    label: <a href={permissions.reportApprovals}>{I18n.t('administration.navigation.report_approvals')}</a>,
     icon: <i className="fa fa-check" />,
   } : null,
   permissions.campaignTemplates ? {
     key: 'campaignTemplates',
-    label: I18n.t('administration.navigation.campaign_templates'),
+    label: <a href={permissions.campaignTemplates}>{I18n.t('administration.navigation.campaign_templates')}</a>,
     icon: <i className="fa fa-gear" />,
   } : null,
   {
     key: 'userAvailability',
-    label: I18n.t('administration.navigation.availability'),
+    label: <a href="/administration/user_availabilities">{I18n.t('administration.navigation.availability')}</a>,
     icon: <i className="fa fa-calendar" />,
   },
   permissions.auditLogs ? {
     key: 'auditLogs',
-    label: I18n.t('administration.navigation.audit_logs'),
+    label: <a href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</a>,
     icon: <i className="fa fa-clipboard" />,
   } : null,
   {
@@ -148,8 +183,20 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean): MenuItem[] =>
     label: I18n.t('campaign.dashboard_menu.profile'),
     icon: <UserOutlined className={styles.siderIcon} />,
     children: [
-      { label: I18n.t('campaign.dashboard_menu.profile_details'), key: 'profileDetails' },
-      { label: I18n.t('campaign.dashboard_menu.change_password'), key: 'changePassword' },
+      {
+        label: (
+          <Link href="/admin/profile/details">
+            {I18n.t('campaign.dashboard_menu.profile_details')}
+          </Link>),
+        key: 'profileDetails',
+      },
+      {
+        label: (
+          <Link href="/admin/profile/change_password">
+            {I18n.t('campaign.dashboard_menu.change_password')}
+          </Link>),
+        key: 'changePassword',
+      },
     ],
   },
 ].filter(Boolean)
@@ -221,11 +268,11 @@ const getSelected = (): string => {
   return 'clients'
 }
 
+
 export const MainMenuComponent:FC<PropsFromRedux> = ({
   currentUser, hasSubmenu, openSubmenu, collapsed, triggerCollapse, links,
   showSubmenu,
 }) => {
-  const history = useHistory()
   const isMobile = useMedia({
     maxWidth: 1024,
   })
@@ -233,12 +280,6 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
   const onSelect = ({ key }): ReturnType<typeof openSubmenu> | void => {
     if (key === 'showSubmenu') {
       return openSubmenu()
-    }
-    const link = links[key]
-    if (location.href.match(/\/admin(\/)/) && link.match(/\/admin(\/)/)) {
-      history.push(link)
-    } else {
-      location.href = link
     }
   }
 

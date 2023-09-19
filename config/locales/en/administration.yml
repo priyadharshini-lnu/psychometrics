@@ -3132,6 +3132,7 @@ en:
     navigation:
       admins: Admins
       assessments: Assessments
+      assessments_reports: Assessments & Reports
       assessor_dashboard: Assessor Dashboard
       assessor_workshops: Assessment Center
       audit_logs: Audit Logs
@@ -3160,15 +3161,18 @@ en:
       norms_editor: Norm Editor
       occupations: Occupations
       occupations_factors: Factors
+      options: Options
+      participants: Participants
       products: Products
       project_admins: Project Admins
       projects: Projects
       psychometrics: Psychometrics
       question_center: Question Center
-      registration_codes: Registration Codes
+      registration_codes: Registration codes
       report_approvals: Report Approvals
       report_families: Report Bundles
       reports: Reports
+      scheduling: Scheduling
       show_submenu: Show Sub Menu
       statistics: Statistics
       sub_campaigns: Sub Campaigns
