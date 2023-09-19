@@ -15,7 +15,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const { I18n } = window
 
 export const InvitesTable = () => {
-  const params = useParams<{campaignId: string}>()
+  const { campaignId } = useParams<{campaignId: string}>()
 
   const history = useHistory()
   const location = useLocation()
@@ -29,11 +29,14 @@ export const InvitesTable = () => {
     <div>
       <Resource
         config={{
-          basePath: `campaigns/${params.campaignId}`,
+          basePath: `campaigns/${campaignId}`,
           apiConfig: {
             include: ['workshops'],
             fields: { workshops: 'start_time' },
             include_meta: ['permissions'],
+            filter: {
+              campaign_id_eq: campaignId,
+            },
           },
         }}
         name="workshop_invites"
