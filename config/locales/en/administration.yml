@@ -3380,6 +3380,10 @@ en:
       general_settings:
         2fa: Enable Two factor authentication
         dp_consent: Enable Data Processing consent
+        dp_consent_custom: Customise Data Processing consent
+        dp_consent_version: Policy Version
+        errors:
+          policy_version_format: Only whole numbers are allowed
         live_chat: Enable Live Chat
         locales_label: Locales
         name_label: Name

@@ -4,6 +4,7 @@
 class Client < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+  extend Mobility
 
   attr_writer :license_msg
 
@@ -171,6 +172,8 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
+
+  translates :custom_privacy_consent_text
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields projects_of resource_disabled]

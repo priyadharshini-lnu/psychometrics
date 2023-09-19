@@ -8,7 +8,7 @@ executors:
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-      - image: cimg/postgres:11.14
+      - image: cimg/postgres:14.8
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
