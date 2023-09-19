@@ -112,7 +112,8 @@ export const WorkshopEditFormModal: FC<Props> = ({
             <Form.Item
               label="Meeting Link"
               name="meetingLink"
-              rules={[{ required: true }, { type: 'url' }]}
+              rules={[{ required: true },
+                { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }]}
             >
               <Input />
             </Form.Item>

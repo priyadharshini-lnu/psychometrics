@@ -5,6 +5,7 @@ import {
 import moment from 'moment'
 import { Store } from 'antd/lib/form/interface'
 
+import { Rule } from 'antd/lib/form'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import styles from './EditSubjectDrawer.less'
 
@@ -63,6 +64,10 @@ export const AssessorFormModal:FC<Props> = (props) => {
     scheduleTime: moment(initialFormData.scheduleTime, settings.timeFormat),
     assessor: initialFormData.assessor?.name,
   }
+
+  const meetingLinkType = assessorFormInstance.getFieldValue('meetingLinkType')
+  const meetingLinkFieldRules: Rule[] = meetingLinkType === 'custom'
+    ? [{ required: true }, { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }] : [{ required: true }]
 
   return (
     <Modal
@@ -136,7 +141,12 @@ export const AssessorFormModal:FC<Props> = (props) => {
         </Form.Item>
         {assessorFormInstance.getFieldValue('meetingLinkType')
         && assessorFormInstance.getFieldValue('meetingLinkType') !== 'none' ? (
-          <Form.Item className="mb-0" wrapperCol={{ offset: 6 }} name="meetingLinkUrl">
+          <Form.Item
+            className="mb-0"
+            wrapperCol={{ offset: 6 }}
+            name="meetingLinkUrl"
+            rules={[...meetingLinkFieldRules]}
+          >
             <Input />
           </Form.Item>
           ) : null}

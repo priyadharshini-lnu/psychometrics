@@ -258,7 +258,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
               label="Meeting Link"
               name="meeting_link"
               {...fieldLayout}
-              rules={[{ required: true }, { type: 'url' }]}
+              rules={[{ required: true }, { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }]}
             >
               <Input />
             </Form.Item>

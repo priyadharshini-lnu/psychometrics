@@ -47,6 +47,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
               label="Meeting Link"
               name="meeting_link"
               {...fieldLayout}
+              rules={[{ required: true }, { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }]}
             >
               <Input />
             </Form.Item>
