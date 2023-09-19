@@ -24,6 +24,8 @@ type DetailsCardProps = {
   actionDisabled?: boolean
   actionDisabledText?: string
   footer?: React.ReactNode
+  className?: string
+  hideTitleHighlighter?: boolean
 }
 
 export const DetailsCard: FC<DetailsCardProps> = ({
@@ -41,13 +43,15 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   actionDisabled,
   actionDisabledText,
   footer,
+  className,
+  hideTitleHighlighter,
 }) => {
   const handleClick = () => {
     onButtonClick && onButtonClick()
   }
 
   const titleElement = (
-    <Title className={styles.title} level={5}>
+    <Title className={cs({ [styles.title]: true, [styles.highlight]: !hideTitleHighlighter })} level={5}>
       {title}
     </Title>
   )
@@ -60,7 +64,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   }
 
   return (
-    <Card className={cs({ [styles.detailsCard]: true, [styles.withFooter]: footer })}>
+    <Card className={cs({ [styles.detailsCard]: true, [styles.withFooter]: footer, [`${className}`]: className })}>
       {showStatusAtTop && (
       <Row>
         <Col xs={18}>{titleElement}</Col>

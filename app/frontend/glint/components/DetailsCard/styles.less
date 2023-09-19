@@ -27,7 +27,9 @@
   position: relative;
   font-size: 16px;
   font-weight: 500;
-  .highlighter(20px, calc(-@card-body-padding - 1px), 1.75rem, @translateY: -24px);
+  &.highlight {
+    .highlighter(20px, calc(-@card-body-padding - 1px), 1.75rem, @translateY: -24px);
+  }
 }
 
 .buttonCol {
