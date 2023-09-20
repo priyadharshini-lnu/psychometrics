@@ -960,7 +960,8 @@ CREATE TABLE public.campaign_assessment_groups (
     previous_assessments_required boolean,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    group_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -12152,6 +12153,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230823110647'),
 ('20230824083112'),
 ('20230829124517'),
-('20230829143631');
+('20230829143631'),
+('20230919051922');
 
 

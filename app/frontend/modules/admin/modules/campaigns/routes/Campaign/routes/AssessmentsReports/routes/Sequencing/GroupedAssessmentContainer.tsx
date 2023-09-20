@@ -2,7 +2,9 @@ import React, { CSSProperties, LegacyRef, RefObject } from 'react'
 import {
   Switch, Card, Space, Typography, Button, Modal, Tooltip, message, Result,
 } from 'antd'
-import { DeleteOutlined, MenuOutlined, BlockOutlined } from '@ant-design/icons'
+import {
+  DeleteOutlined, MenuOutlined, BlockOutlined, FolderOutlined,
+} from '@ant-design/icons'
 import cs from 'classnames'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 
@@ -110,16 +112,16 @@ export const GroupedAssessmentContainer = React.forwardRef(
                 title={group.name}
                 className={cs(styles.maxWidth30Chars)}
                 ellipsis
-                editable={{
+                editable={group.groupType !== 'assessment_center' ? {
                   onChange: handleTitleChange,
                   tooltip: I18n.t('assessments_reports.sequencing.edit_group_name'),
-                }}
+                } : false}
               >
                 {group.name}
               </Typography.Text>
             </Space>
           )}
-          extra={(
+          extra={group.groupType !== 'assessment_center' && (
             <Space>
               <Tooltip title={I18n.t('assessments_reports.sequencing.delete_group')}>
                 <Button icon={<DeleteOutlined />} size="small" onClick={handleDelete} type="text" danger />
@@ -127,46 +129,58 @@ export const GroupedAssessmentContainer = React.forwardRef(
             </Space>
           )}
         >
-          <Card.Meta
-            description={(
-              <Space direction="vertical">
-                <Space>
-                  <Switch
-                    disabled={!assessmentCount}
-                    id={`switch_assessment_order-${group.id}`}
-                    size="small"
-                    checked={!assessmentCount ? false : group.previousAssessmentsRequired}
-                    onChange={handleAssessmentInOrderChange}
-                  />
-                  <label htmlFor={`switch_assessment_order-${group.id}`}>
-                    {I18n.t('assessments_reports.add_group_form.previous_assessments_required')}
-                  </label>
-                </Space>
-                <Space>
-                  <Switch
-                    disabled={!assessmentCount}
-                    id={`switch_previous_completion-${group.id}`}
-                    size="small"
-                    checked={!assessmentCount ? false : group.previousGroupRequired}
-                    onChange={handlePrevGroupRequiredChange}
-                  />
-                  <label htmlFor={`switch_previous_completion-${group.id}`}>
-                    {I18n.t('assessments_reports.add_group_form.previous_group_required')}
-                  </label>
-                </Space>
-              </Space>
+          {group.groupType !== 'assessment_center' && (
+            <>
+              <Card.Meta
+                description={(
+                  <Space direction="vertical">
+                    <Space>
+                      <Switch
+                        disabled={!assessmentCount}
+                        id={`switch_assessment_order-${group.id}`}
+                        size="small"
+                        checked={!assessmentCount ? false : group.previousAssessmentsRequired}
+                        onChange={handleAssessmentInOrderChange}
+                      />
+                      <label htmlFor={`switch_assessment_order-${group.id}`}>
+                        {I18n.t('assessments_reports.add_group_form.previous_assessments_required')}
+                      </label>
+                    </Space>
+                    <Space>
+                      <Switch
+                        disabled={!assessmentCount}
+                        id={`switch_previous_completion-${group.id}`}
+                        size="small"
+                        checked={!assessmentCount ? false : group.previousGroupRequired}
+                        onChange={handlePrevGroupRequiredChange}
+                      />
+                      <label htmlFor={`switch_previous_completion-${group.id}`}>
+                        {I18n.t('assessments_reports.add_group_form.previous_group_required')}
+                      </label>
+                    </Space>
+                  </Space>
             )}
+              />
+
+              <Typography.Text type="secondary" className="pb-2 pt-8 flex">
+                {I18n.t('assessments_reports.sequencing.assessments')}
+              </Typography.Text>
+
+              {assessmentCount ? (
+                children
+              ) : (
+                <Result
+                  icon={<BlockOutlined className={styles.iconSecondaryColor} />}
+                  subTitle={I18n.t('assessments_reports.sequencing.no_assessments')}
+                />
+              )}
+            </>
+          )}
+          {group.groupType === 'assessment_center' && (
+          <Result
+            icon={<FolderOutlined className={styles.iconSecondaryColor} />}
+            subTitle={I18n.t('assessments_reports.sequencing.assessment_center_message')}
           />
-          <Typography.Text type="secondary" className="pb-2 pt-8 flex">
-            {I18n.t('assessments_reports.sequencing.assessments')}
-          </Typography.Text>
-          {assessmentCount ? (
-            children
-          ) : (
-            <Result
-              icon={<BlockOutlined className={styles.iconSecondaryColor} />}
-              subTitle={I18n.t('assessments_reports.sequencing.no_assessments')}
-            />
           )}
         </Card>
       </div>

@@ -11,6 +11,7 @@ const CampaignAssessmentGroupTR = t.type({
   previousAssessmentsRequired: t.boolean,
   previousGroupRequired: t.boolean,
   campaignAssessmentIds: t.array(t.number),
+  groupType: t.string,
 })
 export type CampaignAssessmentGroup = t.TypeOf<typeof CampaignAssessmentGroupTR>
 
@@ -43,7 +44,7 @@ export const fetch = (campaignId: number): ApiAction<FetchResponse> => ({
 export const CREATE = 'resource/campaigns/campaign_assessment_groups/CREATE'
 const CreateResponseTR = CampaignAssessmentGroupTR
 type CreateResponse = CampaignAssessmentGroup
-export const create = (campaignId: number, position: number): ApiAction<CreateResponse> => ({
+export const create = (campaignId: number, position: number, groupType: string): ApiAction<CreateResponse> => ({
   type: CREATE,
   request: {
     url: `/administration/new_campaigns/${campaignId}/campaign_assessment_groups`,
@@ -52,11 +53,12 @@ export const create = (campaignId: number, position: number): ApiAction<CreateRe
     body: {
       resource: {
         campaignId,
-        name: 'Untitled group',
+        name: groupType === 'assessment_center' ? 'Assessment Center' : 'Untitled group',
         position,
         previousAssessmentsRequired: false,
         previousGroupRequired: false,
         campaignAssessmentGroupId: [],
+        groupType,
       },
     },
     typedResponse: CreateResponseTR,
