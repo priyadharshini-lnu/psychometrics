@@ -17,10 +17,12 @@ class CPIOccupations extends Component {
 
   prepareRows () {
     const { module } = this.props
-    const { props } = module
+    const {
+      pageNumber, itemsPerPage, sortBy = 'name', sortOrder = 'asc',
+    } = module.props
     let occupations
-    let offset = (props.pageNumber || 1) - 1
-    const limit = props.itemsPerPage || 10
+    let offset = (pageNumber || 1) - 1
+    const limit = itemsPerPage || 10
     if (ResultStore.realResults) {
       occupations = ResultStore.results[module.assessment_id].getOccupations()
     } else {
@@ -36,6 +38,7 @@ class CPIOccupations extends Component {
         value: Math.random(),
       }))
     }
+    occupations = _.orderBy(occupations, sortBy, sortOrder)
     this.occupations = _.slice(occupations, offset, offset + limit)
   }
 
