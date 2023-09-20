@@ -160,8 +160,10 @@ describe('Proper dates should be selected after ', () => {
   })
 
   test('cliking on All Time', async () => {
-    const expectedStartDate = ''
-    const expectedEndDate = ''
+    const expectedStartDate = moment().subtract(100, 'y').clone()
+      .format(dateFormat)
+    const expectedEndDate = moment().add(100, 'y').clone()
+      .format(dateFormat)
     render(
       <div id="container">
         <DatePickerWithRanges format={dateFormat} />

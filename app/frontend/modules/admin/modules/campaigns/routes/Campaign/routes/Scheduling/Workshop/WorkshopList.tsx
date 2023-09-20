@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Row, DatePicker, Avatar, Button, Space, Dropdown,
+  Row, Avatar, Button, Space, Dropdown,
 } from 'antd'
 import {
   useLocation, useHistory, Link, useParams,
@@ -13,7 +13,7 @@ import moment, { Moment } from 'moment'
 import { connect } from 'react-redux'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import { ResourceAvatar } from '~/glint'
+import { ResourceAvatar, DatePickerWithRanges } from '~/glint'
 import { formatWorkshopDate } from '~/utils/workshop'
 import { setData } from '~/modules/admin/core/ui/temp'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
@@ -193,7 +193,8 @@ const WorkshopDatePicker = () => {
     resource.getFilteredValue('start_time_between'),
   ) || DEFAULT_RANGE
   const onDateChange = (dates) => {
-    resource.changeFilter('start_time_between', dates.toString())
+    const newDates = [dates[0].clone().startOf('day'), dates[1].clone().endOf('day')]
+    resource.changeFilter('start_time_between', newDates.toString())
   }
 
   return (
@@ -202,31 +203,11 @@ const WorkshopDatePicker = () => {
       align="middle"
       className="pt-4 pb-4 ps-4 pe-4"
     >
-      <DatePicker.RangePicker
+      <DatePickerWithRanges
         clearIcon={false}
         onChange={onDateChange}
         format="DD/MMM/YYYY"
         defaultValue={[initialStartDate, initialEndDate]}
-        ranges={{
-          Today: [
-            moment(), moment(),
-          ],
-          'Current Week': [
-            moment().startOf('w'), moment().endOf('w'),
-          ],
-          'Last Week': [
-            moment().subtract(1, 'w').startOf('w'), moment().subtract(1, 'w').endOf('w'),
-          ],
-          'Current Month': [
-            moment().startOf('M'), moment().endOf('M'),
-          ],
-          'Last Month': [
-            moment().subtract(1, 'M').startOf('M'), moment().subtract(1, 'M').endOf('M'),
-          ],
-          'All Time': [
-            moment().subtract(100, 'y'), moment().add(100, 'y'),
-          ],
-        }}
       />
     </Row>
   )

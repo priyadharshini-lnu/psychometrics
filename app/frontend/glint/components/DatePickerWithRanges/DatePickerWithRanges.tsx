@@ -28,7 +28,7 @@ export const DatePickerWithRanges: FC<RangePickerProps> = ({ ranges, ...props })
         moment().subtract(1, 'M').startOf('M'), moment().subtract(1, 'M').endOf('M'),
       ],
       [I18n.t('glint.datepicker_with_ranges.all_time')]: [
-        null, null,
+        moment().subtract(100, 'y'), moment().add(100, 'y'),
       ],
       ...ranges,
     }}
