@@ -6,17 +6,39 @@
     width: 100%;
     height: 100%;
     display: flex;
+  }
+  .classic {
     flex-direction: row;
     flex-wrap: wrap;
+    .row {
+      display: flex;
+      flex: 1 1 50%;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: 0.5px solid #ccc;
+      border-inline-start: 0.5px solid #ccc;
+      padding-inline-start: 20px;
+      &:nth-last-child(-n+2) {
+        border-bottom: 0;
+      }
+      &:nth-child(odd) {
+        border-inline-start: 0;
+        padding-inline-start: 0;
+        padding-inline-end: 20px;
+      }
+    }
   }
-  .row {
-    display: flex;
-    flex: 1 1 50%;
-    flex-direction: row;
-    align-items: center;
-    border-bottom: 0.5px solid #ccc;
-    &:nth-last-child(-n+2) {
-      border-bottom: 0;
+  .flexible {
+    flex-direction: column;
+    .row {
+      display: flex;
+      flex: 1 1 100%;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: 0.5px solid #ccc;
+      &:nth-last-child(-n+2) {
+        border-bottom: 0;
+      }
     }
   }
   .icon {
@@ -47,40 +69,31 @@
       background-image: url('~/modules/reports/static/icons/star_filled_blue_green.png');
     }
   }
+  .bars {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2em;
+    margin: 0 10px;
+  }
+  .bar {
+    flex: 1 1 0;
+    height: 1em;
+    width: 1em;
+    display: inline-block;
+    border: 0.5px solid #ccc;
+  }
+  .fullbar {
+    background-color: #ccc;
+  }
+  .value {
+    flex: 0 0 50px;
+    text-align: center;
+  }
   .name {
     text-transform: uppercase;
-    margin: 0 10px;
     font-size: 90%;
     flex: 1 1 60%;
     font-weight: bold;
     color: black;
-  }
-}
-
-body:not([data-locale="ar"]) {
-  .table {
-    .row {
-      border-left: 0.5px solid #ccc;
-      padding-left: 20px;
-      &:nth-child(odd) {
-        border-left: 0;
-        padding-left: 0;
-        padding-right: 20px;
-      }
-    }
-  }
-}
-
-body[data-locale="ar"] {
-  .table {
-    .row {
-      border-right: 0.5px solid #ccc;
-      padding-right: 20px;
-      &:nth-child(odd) {
-        border-right: 0;
-        padding-right: 0;
-        padding-left: 20px;
-      }
-    }
   }
 }

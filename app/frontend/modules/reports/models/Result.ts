@@ -167,6 +167,7 @@ export default class Result<ExternalScoring = unknown> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     _.each(AppStore.occupations[this.dimensionId], (oc: any) => {
       oc.stars = occupationResult.find((or: OccupationResult) => or.id === oc.id)?.stars || 0
+      oc.value = occupationResult.find((or: OccupationResult) => or.id === oc.id)?.value || 0
     })
   }
 

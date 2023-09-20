@@ -58,7 +58,7 @@ export default defineConfig({
     react(),
     // visualizer({open: true}),
     svgr({
-      exportAsDefault: true,
+      exportAsDefault: false,
     }),
     ...devPlugins,
     loadCssModulePlugin.default({
