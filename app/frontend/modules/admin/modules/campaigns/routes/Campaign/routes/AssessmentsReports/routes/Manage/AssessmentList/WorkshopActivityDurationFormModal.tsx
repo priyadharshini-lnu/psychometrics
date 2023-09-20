@@ -32,6 +32,7 @@ export const WorkshopActivityDurationFormModal: React.FC<Props> = ({
         updateResource: values => updateWorkshopActivity(parsedCampaignId,
           assessment.id, { ...values, workshopActivity: checked }),
       }}
+      formProps={{ requiredMark: false }}
     >
       {() => (
         <>

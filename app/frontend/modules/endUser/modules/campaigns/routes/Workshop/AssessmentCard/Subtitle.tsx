@@ -3,6 +3,7 @@ import { Space } from 'antd'
 import moment from 'moment'
 import { CountdownTimer } from '~/glint'
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const { I18n } = window
 
@@ -20,13 +21,10 @@ interface Props {
 export const Subtitle: FC<Props> = ({ assessment, setCardActionDisabled, workshop }) => (
   <Space direction="vertical">
     {assessment.workshopActivityDuration && (
-      <Space>
-        {I18n.t('campaign.workshops.duration')}
-        <TimerText text={
-          // eslint-disable-next-line max-len
-          I18n.t('campaign.workshops.duration_to_complete', { duration: moment(assessment.workshopActivityDuration * 1000).utc().format('mm') })}
-        />
-      </Space>
+      <TimerText text={
+        I18n.t('campaign.workshops.duration_to_complete',
+          { duration: secondsToDayHoursAndMinutes(assessment.workshopActivityDuration * 60, undefined, 'hr', 'mins') })}
+      />
     )}
 
     {assessment.scheduleTime && moment().isBefore(moment(assessment.scheduleTime)) && workshop.attended && (

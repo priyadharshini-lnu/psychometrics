@@ -1175,7 +1175,7 @@ en:
       assessment_center: Assessment Center
       click_here: Click here to join meeting >
       duration: Duration
-      duration_to_complete: "%{duration} mins to complete"
+      duration_to_complete: "%{duration} to complete"
       inactive_message: Currently, you have not been assigned any assessment centers.
       not_scheduled_button: Not scheduled
       not_started_button: Not started

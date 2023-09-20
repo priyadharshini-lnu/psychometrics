@@ -69,7 +69,12 @@ export const getAvailableDays = (startDate?: Moment, endDate?: Moment):number[] 
   return [...allDays]
 }
 
-export const secondsToDayHoursAndMinutes = (seconds: number) => {
+export function secondsToDayHoursAndMinutes (
+  seconds: number,
+  dayAbbreviation: string|undefined = 'd',
+  hourAbbreviation: string|undefined = 'h',
+  minuteAbbreviation: string|undefined = 'm',
+) {
   const duration = moment.duration(seconds, 'seconds')
 
   const days = duration.days()
@@ -79,15 +84,15 @@ export const secondsToDayHoursAndMinutes = (seconds: number) => {
   let formattedDaysHoursAndMinutes = ''
 
   if (days > 0) {
-    formattedDaysHoursAndMinutes += `${days}d `
+    formattedDaysHoursAndMinutes += `${days}${dayAbbreviation} `
   }
 
   if (hours > 0) {
-    formattedDaysHoursAndMinutes += `${hours}h `
+    formattedDaysHoursAndMinutes += `${hours}${hourAbbreviation} `
   }
 
   if (minutes > 0) {
-    formattedDaysHoursAndMinutes += `${minutes}m`
+    formattedDaysHoursAndMinutes += `${minutes}${minuteAbbreviation}`
   }
 
   return formattedDaysHoursAndMinutes
