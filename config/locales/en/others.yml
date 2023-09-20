@@ -867,6 +867,8 @@ en:
     pickgrouprank:
       items: Items
     proceed: Proceed Anyway
+    question_info_bar:
+      select_linked_questions: Select Linked Questions
     reset: Reset
     resource:
       assigned: Assigned %{date}
@@ -884,6 +886,8 @@ en:
       competency: Competency
       id: ID
       score: Score
+    single_page:
+      display_linked_questions: Displaying responses linked to the currently selected question.
     trash: Trash
     unknown_error: Unknown error occurred.
     update: Update
@@ -1476,6 +1480,7 @@ en:
       key: Key
       last_name: Last Name
       linked_activities: Linked Activities
+      linked_assessment: Linked Assessment
       meeting_link: Meeting Link
       modified_by: Modified By
       modified_date: Modified Date
@@ -1749,6 +1754,7 @@ en:
         uniq_subdomain: Subdomain should be unique.
       admin:
         already_added: Admin with email already added.
+      already_assigned?: Already assigned
       assessor_assessment:
         already_added: Assessor Assessment already added to campaign.
       create_superadmin:

@@ -57,7 +57,11 @@ const AssessorAssessment: React.FC<Props> = ({
     }
   }, [currentAssessorFormId])
 
-  const bodyStyles = { padding: 0 }
+  const bodyStyles = {
+    padding: 0,
+    maxHeight: 'calc((var(--vh, 1vh) * 100) - 204px)',
+    overflowY: 'scroll' as const,
+  }
   const loaded = !!assessorForm
   if (assessorForm?.result?.selected_locale?.code === 'ar') {
     I18n.uiLocale = assessorForm.result.selected_locale.code

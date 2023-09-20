@@ -12,6 +12,7 @@ import MappingNorms from '../MappingNorms'
 import EndOfAssessmentModal from '../EndOfAssessmentModal'
 import DataSheetModal from '../DataSheetModal'
 import { SettingsModal } from '../SettingsModal/SettingsModal'
+import { LinkedAssessmentModal } from '../LinkedAssessmentModal/LinkedAssessmentModal'
 
 const MODALS = {
   dataSheetModal: DataSheetModal,
@@ -27,6 +28,7 @@ const MODALS = {
   mapNorms: MappingNorms,
   endOfAssessment: EndOfAssessmentModal,
   settings: SettingsModal,
+  linkedAssessment: LinkedAssessmentModal,
 }
 
 

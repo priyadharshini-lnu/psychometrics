@@ -417,6 +417,10 @@ en:
         title: Assessments
         tooltips:
           create: Create
+      linkedAssessment:
+        assessment_title: Select Questions from %{name}
+        select_label: Linked Questions
+        title: Select Linked Questions
       list:
         active: Active
         created_at: Created date

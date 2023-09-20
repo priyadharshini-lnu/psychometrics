@@ -10,6 +10,16 @@ module Api
           list = ::Assessment::COMMON_CATEGORIES_TYPES
           key.failure(:included_in?, list: list) unless list.include?(value)
         end
+
+        rule(data: { relationships: :linked_assessment }) do
+          next unless value
+
+          assessment = ::Assessment.find(value[:data][:id])
+
+          if assessment.linked_assessor_form && assessment.linked_assessor_form.id != _context[:params][:id].to_i
+            key.failure(:already_assigned?)
+          end
+        end
       end
     end
   end

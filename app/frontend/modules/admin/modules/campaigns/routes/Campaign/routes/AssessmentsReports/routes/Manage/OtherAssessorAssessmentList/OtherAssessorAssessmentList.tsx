@@ -66,6 +66,11 @@ const AssessmentList: React.FC<Props> = ({
             dataIndex="name"
           />
           <Column
+            title={I18n.t('common.column.linked_assessment')}
+            key="linkedAssessment"
+            render={({ linkedAssessmentName }) => linkedAssessmentName || I18n.t('common.text.na')}
+          />
+          <Column
             title={I18n.t('common.column.action')}
             key="action"
             render={assessment => (

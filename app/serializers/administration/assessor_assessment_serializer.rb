@@ -2,7 +2,10 @@
 
 module Administration
   class AssessorAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :name, :permissions
+    attributes :id, :name, :permissions, :linked_assessment_name
+
+    delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
+    delegate :linked_assessment, to: :object
 
     def permissions
       GetPermissionsHash.call!(

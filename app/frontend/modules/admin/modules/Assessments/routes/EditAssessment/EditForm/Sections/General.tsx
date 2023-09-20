@@ -34,7 +34,7 @@ export const General: React.FC<Props> = ({ assessment }) => {
   const handleUpdate = (values: Assessment) => {
     setIsLoading(true)
 
-    return updateResource(values).then(() => setIsLoading(false))
+    return updateResource(values).then(() => setIsLoading(false)).catch(() => setIsLoading(false))
   }
 
   return (

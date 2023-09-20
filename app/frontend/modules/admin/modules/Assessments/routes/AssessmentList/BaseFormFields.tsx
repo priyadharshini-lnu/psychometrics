@@ -31,8 +31,12 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
+  const {
+    data: assessments, fetch: fetchAssessments, isLoading: isAssessmentsLoading,
+  } = useResources<Assessment>('assessments')
 
   const type = Form.useWatch('type', form)
+  const category = Form.useWatch('category', form)
 
   const getDimensions = (): OptionsType[] => {
     if (!assessment || !assessment.dimension || dimensions.find(d => assessment?.dimension?.id === d.id)) {
@@ -48,6 +52,15 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
     }
 
     return [...clients, assessment.owner]
+  }
+
+  const getAssessments = (): OptionsType[] => {
+    if (!assessment || !assessment.linkedAssessment
+        || assessments.find(d => assessment?.linkedAssessment?.id === d.id)) {
+      return assessments
+    }
+
+    return [...assessments, assessment.linkedAssessment]
   }
 
   const ExternalAssessmentFieldsComponent = ExternalAssessmentFields[type]
@@ -108,6 +121,28 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
           )}
         </Select>
       </Form.Item>
+      {category === 'assessor_form' && (
+        <Form.Item
+          name="linkedAssessmentId"
+          label={I18n.t('common.column.linked_assessment')}
+        >
+          <Select
+            showSearch
+            onSearch={(value) => {
+              fetchAssessments({
+                apiConfig: {
+                  filter: { filterable_fields: value, category_eq: 'psychometric' },
+                  fields: { assessments: ['name'] },
+                },
+              })
+            }}
+            notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : null}
+            filterOption={false}
+          >
+            {getAssessments().map(({ id, name }) => <Select.Option key={id} value={id}>{name}</Select.Option>)}
+          </Select>
+        </Form.Item>
+      )}
       <Form.Item
         name="dimensionId"
         label={I18n.t('common.column.dimension')}

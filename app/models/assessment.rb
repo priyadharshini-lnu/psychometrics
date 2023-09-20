@@ -118,6 +118,9 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   has_one :agile
 
+  has_one :linked_assessor_form, foreign_key: :linked_assessment_id, class_name: 'Assessment'
+  belongs_to :linked_assessment, class_name: 'Assessment'
+
   before_create :init_defaults, if: :common?
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
 

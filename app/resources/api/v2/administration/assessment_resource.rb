@@ -13,6 +13,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   has_one :dimension
   has_one :owner
   has_one :project
+  has_one :linked_assessment, class_name: 'Assessment'
 
   before_create do
     @model.created_by_id = context[:user].id

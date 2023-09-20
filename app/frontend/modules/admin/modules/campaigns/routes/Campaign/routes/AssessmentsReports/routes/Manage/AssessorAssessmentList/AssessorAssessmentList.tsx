@@ -81,6 +81,12 @@ const AssessmentList: React.FC<Props> = () => {
               dataIndex="assessmentName"
             />
             <Column
+              title={I18n.t('common.column.linked_assessment')}
+              key="linkedAssessment"
+              render={({ linkedAssessmentName }) => linkedAssessmentName || I18n.t('common.text.na')}
+            />
+
+            <Column
               key="manage"
               title={I18n.t('administration.projects.webhook_settings.column_manage')}
               render={assessorAssessment => (

@@ -9,6 +9,8 @@ export default connect(
   ({ preview }, { model }) => ({
     hideHiddenQuestions: preview.hideHiddenQuestions,
     randomseed: preview.randomseed,
+    isAssessor: preview.isAssessor,
+    linkedQuestions: preview.linkedQuestions?.[model.id],
     moduleConfig: moduleConfig(preview, model.id),
     errors: getQuestionErrors(preview, model.id),
     result: getQuestionResults(preview, model.id),

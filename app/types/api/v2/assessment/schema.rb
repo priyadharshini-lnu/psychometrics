@@ -32,7 +32,9 @@ module Api
           [
             { name: :owner, resource: :clients, relationship: :one, required: false, allowed_blank: true },
             { name: :project, resource: :clients, relationship: :one, required: false, allowed_blank: true },
-            { name: :dimension, resource: :dimensions, relationship: :one }
+            { name: :dimension, resource: :dimensions, relationship: :one },
+            { name: :linked_assessment, resource: :assessments, relationship: :one,
+              required: false, allowed_blank: true }
           ]
         end
       end

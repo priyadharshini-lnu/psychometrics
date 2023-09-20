@@ -177,6 +177,7 @@ const HANDLERS = {
       isAssessor: data.isAssessor,
       nextAssessmentUrl: result.next_assessment_url,
       otherPendingAssessmentCount: result.other_pending_assessments_count,
+      linkedQuestions: data.linked_questions,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

@@ -236,6 +236,7 @@ export interface InitData {
   fixed_timed: boolean
   default_norm_id: number
   isAssessor: boolean
+  linked_questions: {[key:string]: number[]}
 }
 export interface Result {
   id: number

@@ -57,6 +57,12 @@ export const AssessmentTR = t.type({
       manage: t.boolean,
     }),
   }),
+  linkedAssessment: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined]),
 })
 
 
@@ -93,6 +99,9 @@ export const Schema = {
     },
     dimension: {
       type: 'dimensions',
+    },
+    linkedAssessment: {
+      type: 'assessments',
     },
   },
 }

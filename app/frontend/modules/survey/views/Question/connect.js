@@ -15,6 +15,7 @@ export default connect(
     selectedModel: propPanel.question,
     blocksOrder: assessment.blocks,
     moduleConfig: moduleConfig(builder, props.model.id),
+    linkedAssessment: assessment.linkedAssessment,
     timestamp, // NOTE: @fedor used to fake update
   }),
   {
@@ -23,6 +24,7 @@ export default connect(
     openDisplayLogic: data => openModal('displayLogic', data),
     openDefaultValue: data => openModal('defaultValue', data),
     openRandomization: data => openModal('randomization', data),
+    openLinkedAssessment: data => openModal('linkedAssessment', data),
     removeQuestion,
     insertAfterQuestion,
     insertBeforeQuestion,

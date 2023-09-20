@@ -31,6 +31,11 @@ class Question extends Component {
     openRandomization({ id: model.id, entityName: 'choice' })
   }
 
+  linkedAssessment = () => {
+    const { model, openLinkedAssessment } = this.props
+    openLinkedAssessment({ id: model.id })
+  }
+
   saveAsTemplate = () => {
     const { saveAsTemplate, model } = this.props
     saveAsTemplate(model)
@@ -125,6 +130,7 @@ class Question extends Component {
           <span className={`icon fa fa-pencil-square-o ${styles.menuicon}`} />
           Add Note...
         </MenuItem>
+        {this.renderLinkedQuestions()}
         {this.renderRandomMenuItem()}
         {this.renderAddToTemplate()}
       </DropdownButton>
@@ -150,6 +156,19 @@ class Question extends Component {
         <div title="This question has default choices" className={styles.randomized}>
           <span className="fa fa-dot-circle-o" />
         </div>
+      )
+    }
+    return null
+  }
+
+  renderLinkedQuestions () {
+    const { linkedAssessment } = this.props
+    if (linkedAssessment) {
+      return (
+        <MenuItem onSelect={this.linkedAssessment}>
+          <span className={`icon fa fa-random ${styles.menuicon}`} />
+          {I18n.t('assessments.question_info_bar.select_linked_questions')}
+        </MenuItem>
       )
     }
     return null

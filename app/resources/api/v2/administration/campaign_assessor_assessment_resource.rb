@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignAssessorAssessmentResource < Api::V2::Administration::BaseResource
-  attributes :assessment_name, :assessment_id, :campaign_id
+  attributes :assessment_name, :assessment_id, :campaign_id, :linked_assessment_name
 
   has_one :assessment
 
   delegate :name, :id, to: :assessment, prefix: true, allow_nil: true
+  delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
+  delegate :linked_assessment, to: :assessment
 
   ransack_filters %i[name_cont]
 
