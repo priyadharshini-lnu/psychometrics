@@ -3171,6 +3171,8 @@ en:
         title: Factor's options
       toggle_status:
         successfully: Factor was successfully updated.
+      update:
+        successfully: Factor %{name} was successfully updated.
     participants:
       tabs:
         assessors: Assessors

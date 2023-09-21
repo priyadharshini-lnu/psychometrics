@@ -18,9 +18,9 @@ class OccupationsFactor < ApplicationRecord
 
   default_scope { order('position asc NULLS LAST') }
 
-  validates :predicate, :value, presence: true
+  validates :factor, :predicate, :value, presence: true
   validates :predicate, inclusion: { in: CONDITION_MAP.keys.map(&:to_s) }
-  validates :value, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }, allow_nil: true
+  validates :value, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :position, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   def log_attribute_for_delete
