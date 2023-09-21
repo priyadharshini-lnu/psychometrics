@@ -631,6 +631,7 @@ en:
         already_cancelled: You have already cancelled the booking.
         cancellation_deadline_passed: Cancellation deadline passed.
         cancelled_and_rebook_deadline_passed: Cancelled and deadline passed for book again.
+        prework_not_completed: Please complete all prework activities before booking a slot for Assessment center.
         reschedule_deadline_passed: Reschedule deadline passed.
         seats_not_available: Seats not available.
     breadcrumbs:
@@ -870,6 +871,7 @@ en:
             saved: Instructions saved successfully
           enable: Enable instructions
           save: Save Instructions
+        prework_required: Don’t allow center booking if preworks are not completed
         proctoring:
           enable: Enable Proctoring
           identification: Identification

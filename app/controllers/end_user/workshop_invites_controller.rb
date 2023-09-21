@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EndUser::WorkshopInvitesController < ApplicationController
-  before_action :set_resource, only: %i[fetch_invite fetch_booking]
+  before_action :set_resource, only: %i[fetch_invite fetch_booking book]
 
   def fetch_invite
     render json: @_resource, serializer: ::EndUser::IndividualInviteSerializer

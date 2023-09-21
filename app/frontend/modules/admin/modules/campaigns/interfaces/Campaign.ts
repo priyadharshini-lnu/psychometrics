@@ -48,6 +48,7 @@ export type DescriptionWithLocale = t.TypeOf<typeof DescriptionWithLocaleTR>
 export interface CampaignOptions {
   timeZone?: string
   fixedTime: boolean
+  workshopBookingRequiresPreworkCompletion: boolean
   fixedTimeDuration?: number
   instructionsEnabled: boolean
   instructionsWithLocales: InstructionsWithLocale[]

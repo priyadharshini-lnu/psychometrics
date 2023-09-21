@@ -81,6 +81,16 @@ const CampaignOptions: React.FC<Props> = ({
     ),
   })
 
+  const parametersForWorkshopBookingRequiresPreworkCompletionField = () => ({
+    value: (options || {}).workshopBookingRequiresPreworkCompletion,
+    onChange: (value: boolean) => update(
+      parsedProjectId, parsedCampaignId, {
+        ...options,
+        workshopBookingRequiresPreworkCompletion: value,
+      },
+    ),
+  })
+
   const parametersForFixedTimeDuration = ({
     value: options.fixedTimeDuration ? options.fixedTimeDuration : 0,
     onChange: (value: number) => update(
@@ -130,6 +140,11 @@ const CampaignOptions: React.FC<Props> = ({
         <Option
           label={I18n.t('administration.campaigns.options.fixed_time')}
           {...parametersForFixedTimeField()}
+        />
+
+        <Option
+          label={I18n.t('administration.campaigns.options.prework_required')}
+          {...parametersForWorkshopBookingRequiresPreworkCompletionField()}
         />
 
         {options.fixedTime && (

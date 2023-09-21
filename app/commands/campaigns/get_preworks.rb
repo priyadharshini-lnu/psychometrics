@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Campaigns
-  class GetPreworks < Rectify::Command
-    private_attr_reader :campaign_id
+  class GetPreworks < BaseCommand
+    private_attr_reader :campaign_id, :user_id
 
-    def initialize(campaign_id)
+    def initialize(campaign_id, user_id = nil)
       @campaign_id = campaign_id
+      @user_id = user_id
     end
 
     def call
@@ -34,8 +35,10 @@ module Campaigns
 
       @preworks ||= users_campaign_assessments.
                     where('campaign_assessments.prework = true').
-                    group('user_assessments.subject_id', 'user_assessments.status').
-                    count
+                    group('user_assessments.subject_id', 'user_assessments.status')
+
+      @preworks = @preworks.where(user_assessments: { subject_id: user_id }) if user_id
+      @preworks.count
     end
   end
 end
