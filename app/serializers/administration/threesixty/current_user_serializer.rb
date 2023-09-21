@@ -4,7 +4,7 @@ module Administration
   module Threesixty
     class CurrentUserSerializer < ActiveModel::Serializer
       attributes :id, :is_manager, :email, :first_name, :last_name, :full_name, :role,
-                 :is_anonym, :permissions, :photo, :timezone, :last_sign_in_at
+                 :is_anonym, :permissions, :photo, :timezone, :last_sign_in_at, :role_title, :name
 
       def is_manager
         true
@@ -16,9 +16,15 @@ module Administration
         object.user_profile.photo&.url
       end
 
+      def role_title
+        object.decorate.role
+      end
+
       def full_name
         object.decorate.full_name
       end
+
+      alias name full_name
 
       def permissions
         return unless current_project_id

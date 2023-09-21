@@ -8,7 +8,6 @@ module Administration
         before_action :ensure_project
         prepend_before_action :set_resource_class
         before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive export_results]
-        before_action :init_breadcrumbs
         before_action :set_campaign_template_and_assessments, only: %i[new create]
         wrap_parameters :threesixty_campaign
 
@@ -127,17 +126,6 @@ module Administration
 
         def threesixty_campaign
           @threesixty_campaign ||= ::Threesixty::Campaign.find_by(id: params[:id])
-        end
-
-        def init_breadcrumbs
-          client_root_breadcrumb
-          add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
-          add_breadcrumb project.decorate.display_name, administration_project_new_campaigns_path(project)
-          add_breadcrumb(
-            t('administration.clients.projects.threesixty_campaigns.index.title'),
-            administration_client_project_threesixty_campaigns_path(client, project)
-          )
-          add_breadcrumb resource.campaign.name, action: :show if params[:action] == 'show'
         end
 
         def serialized_current_user

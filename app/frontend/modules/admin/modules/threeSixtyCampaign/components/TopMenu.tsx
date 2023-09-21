@@ -44,7 +44,7 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     if (pathname.includes('/admins')) {
       return ['admins']
     }
-    if (pathname.includes('/messages/options')) {
+    if (pathname.includes('/messages')) {
       return ['messages/options']
     }
     if (pathname.includes('/reports/options')) {

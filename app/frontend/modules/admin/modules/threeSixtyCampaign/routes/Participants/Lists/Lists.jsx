@@ -12,9 +12,9 @@ import ManagerList from './ManagerList'
 import ParticipantModal from './ParticipantModal'
 import ManageRelationshipsModal from './ManageRelationshipsModal'
 
-const Lists = ({ history, routes, setSelectedTab }) => {
-  const pathToTabName = path => _.last(path.split('/'))
+const pathToTabName = path => _.last(path.split('/'))
 
+const Lists = ({ history, routes, setSelectedTab }) => {
   const onChange = (e) => {
     const selectedTab = pathToTabName(e.target.value)
     setSelectedTab(selectedTab)

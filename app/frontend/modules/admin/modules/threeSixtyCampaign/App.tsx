@@ -3,11 +3,8 @@ import { Provider } from 'react-redux'
 import humps from 'humps'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
 import store from '~/modules/admin/store'
-import RouteList from '~/components/RouteList'
 import { Schema } from '~/libs/jsonApi/schema'
-import routes from './routes'
-import { TopMenu } from './components/TopMenu'
-import settings from './settings'
+import { Layout } from './Layout'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
@@ -21,8 +18,7 @@ export default function App () {
       <Provider store={store}>
         <ApiProvider client={client}>
           <Router>
-            <TopMenu />
-            <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+            <Layout />
           </Router>
         </ApiProvider>
       </Provider>

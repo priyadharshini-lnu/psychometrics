@@ -16,6 +16,10 @@ module Administration
       @campaign ||= Campaign.find_by(id: params[:data][:campaign_id])
     end
 
+    def threesixty
+      @threesixty ||= ::Threesixty::Campaign.find_by(id: params[:data][:threesixty_id])
+    end
+
     def project
       @project ||= params[:data][:project_id] ? Client.find_by(id: params[:data][:project_id]) : campaign.project
     end
