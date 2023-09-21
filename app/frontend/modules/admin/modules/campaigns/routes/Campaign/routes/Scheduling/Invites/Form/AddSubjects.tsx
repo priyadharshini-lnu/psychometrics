@@ -18,6 +18,7 @@ import { uploadCSV, UPLOAD_CSV } from '~/modules/admin/modules/client/core/works
 import { Errors } from './BaseInfo'
 import { isRequestInProgress } from '~/core/request'
 
+const BULK_IMPORT_ACTION = 'import_subjects_from_campaign'
 const { I18n } = window
 const connecter = connect((state: RootState) => ({
   uploadInProgress: isRequestInProgress(state, UPLOAD_CSV),
@@ -43,7 +44,7 @@ export const AddSubjectsComponent: FC<Props> = ({
   } = useResources<User>('users', { basePath: `campaigns/${campaignId}`, responseType: UserTR })
 
   const {
-    collectionAction,
+    collectionAction, isLoading: isCollectionActionLoading,
   } = useResources<User>('workshop_invites', { basePath: `campaigns/${campaignId}` })
 
   const [subjects, setSubjects] = useState<User[]>(form.getFieldValue('subjects') || [])
@@ -66,7 +67,7 @@ export const AddSubjectsComponent: FC<Props> = ({
 
   const fetchCampaignUsers = () => {
     collectionAction({
-      action: 'import_subjects_from_campaign',
+      action: BULK_IMPORT_ACTION,
       method: 'get',
       body: { page: { size: 300 } },
     }).then((data:User[]) => {
@@ -239,6 +240,7 @@ export const AddSubjectsComponent: FC<Props> = ({
           grid={{
             xs: 1, sm: 2, md: 4, lg: 4, xl: 4, xxl: 4, gutter: 16,
           }}
+          loading={isCollectionActionLoading(`get/${BULK_IMPORT_ACTION}`)}
           dataSource={subjects}
           renderItem={item => (
             <List.Item key={item.id}>
