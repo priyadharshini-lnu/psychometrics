@@ -2,7 +2,11 @@
 
 module EndUser
   class CampaignUserSerializer < ActiveModel::Serializer
-    attributes :id, :started_at, :status, :expiry_date, :examus_session_url
+    attributes :id, :started_at, :status, :expiry_date, :examus_session_url, :all_preworks_completed
+
+    def all_preworks_completed
+      object.all_preworks_completed?
+    end
 
     def expiry_date
       object.real_expiry_date
