@@ -24,11 +24,7 @@ module EndUser
     end
 
     def meeting_link
-      if object.video_call_internal? && object.meeting_room.present?
-        Utility::Url.generate(:meeting_url, subdomain: object.project.subdomain, room_id: object.meeting_room.id)
-      elsif object.video_call_custom?
-        object.meeting_link
-      end
+      object.real_meeting_link
     end
 
     private

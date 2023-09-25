@@ -66,4 +66,12 @@ class Workshop < ApplicationRecord
   def formatted_end_time
     I18n.l(end_time.in_time_zone(timezone), format: :workshop_date)
   end
+
+  def real_meeting_link
+    if video_call_internal? && meeting_room.present?
+      Utility::Url.generate(:admin_meeting_url, room_id: meeting_room.id)
+    elsif video_call_custom?
+      meeting_link
+    end
+  end
 end

@@ -46,11 +46,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   end
 
   def meeting_link
-    if @model.video_call_internal? && @model.meeting_room.present?
-      Utility::Url.generate(:admin_meeting_url, room_id: @model.meeting_room.id)
-    elsif @model.video_call_custom?
-      @model.meeting_link
-    end
+    @model.real_meeting_link
   end
 
   def self.default_sort

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class UserAssessment < ApplicationRecord
   belongs_to :assessment
   belongs_to :campaign
@@ -242,6 +243,18 @@ class UserAssessment < ApplicationRecord
     !campaign_user.in_schedule?
   end
 
+  def linked_assessor_user_assessment
+    return @linked_assessor_user_assessment if defined? @linked_assessor_user_assessment
+
+    assessor_form = assessment.linked_assessor_form
+    return unless assessor_form
+
+    @linked_assessor_user_assessment = UserAssessment.find_by(
+      campaign_id: campaign_id, assessment_id: assessor_form.id, subject_id: subject_id,
+      relationship: Relationship.assessor_relationship
+    )
+  end
+
   private
 
   def saville_norm_name
@@ -254,3 +267,4 @@ class UserAssessment < ApplicationRecord
       find { |norm| norm[:id] == pearson_user_assessment.norm_id }&.dig(:name)
   end
 end
+# rubocop:enable Metrics/ClassLength

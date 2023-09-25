@@ -24,7 +24,7 @@ class EndUser::WorkshopInvitedSubjectsController < ApplicationController
 
     serialized_resources = ActiveModelSerializers::SerializableResource.new(
       @resources,
-      each_serializer: ::EndUser::InvitesSerializer
+      each_serializer: ::EndUser::WorkshopInvitedSubjectSerializer
     )
 
     render json: {

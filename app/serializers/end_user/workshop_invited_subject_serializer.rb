@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class InvitesSerializer < ActiveModel::Serializer
+  class WorkshopInvitedSubjectSerializer < ActiveModel::Serializer
     attributes :id, :title, :description, :duration, :status, :workshop_invite_id
 
     delegate :title, :description, to: :workshop_invite
