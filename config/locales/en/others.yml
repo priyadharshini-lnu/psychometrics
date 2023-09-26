@@ -1922,11 +1922,15 @@ en:
       cancel_booking_confirmation: Are you sure you want to cancel this booking?
       cancellation_failed: 'Failed to cancel the booking: %{error}'
       cancellation_success: Successfully cancelled the booking
+      comments_required_msg: Please enter your comments
       confirm_booking_description: Please confirm that these details are correct before finalizing the booking.
       confirm_booking_title: Confirm this booking?
       default_failure_msg: Unable to process your request. Please try again later.
+      default_requires_msg: "%{name} is required"
       language: Language
+      language_placeholder: Select a Language
       language_preference_question: Do you have a language preference?
+      language_required_msg: Please select a Language
       need_changes: Need to make the changes?
       neurodivergence_comment_placeholder: Your comments
       neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?

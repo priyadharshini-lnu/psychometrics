@@ -266,6 +266,7 @@ en:
           neurodiversity: Include neurodiversity question
           preferred_language: Allowed Languages
           preferred_language_placeholder: Select Preferred Language
+          required_error: Can't be empty
           title: Basic Information
         confirm_message: Are you sure you want to delete an invitation?
         confirm_message_with_title: Are you sure you want to delete an invitation with title '%{invite_title}'?

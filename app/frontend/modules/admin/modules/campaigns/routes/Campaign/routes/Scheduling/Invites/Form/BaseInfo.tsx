@@ -46,6 +46,9 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
 }) => {
   const params = useParams<{campaignId: string}>()
   const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferredLanguage'))
+  const [allowNeurodiversityOption, setAllowNeurodiversityOption] = useState(
+    form.getFieldValue('setAllowNeurodiversityOption'),
+  )
   const [, setSelectedWorkshops] = useState([])
   const [searchValue, setSearchValue] = useState('')
   const {
@@ -64,6 +67,10 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   const changePreferredLang = (checked) => {
     form.setFieldValue('allowPreferredLanguage', checked)
     setPreferredLang(checked)
+  }
+  const changeNeuroDiversityOption = (checked) => {
+    form.setFieldValue('setAllowNeurodiversityOption', checked)
+    setAllowNeurodiversityOption(checked)
   }
 
   const changeWorkshops = (value) => {
@@ -98,6 +105,14 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
     onCancel?.()
   }
 
+  const handleFormFinish = () => {
+    next()
+  }
+
+  const handleNext = () => {
+    form.submit()
+  }
+
   return (
     <div>
       <Panel
@@ -106,7 +121,15 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
       >
         <Row>
           <Col sm={24} md={12} lg={8}>
-            <Form layout="vertical" form={form}>
+            <Form
+              layout="vertical"
+              form={form}
+              validateMessages={{
+                required: I18n.t('administration.assessment_center.invite.basic_info.required_error'),
+              }}
+              onFinish={handleFormFinish}
+              requiredMark={false}
+            >
               <Form.Item
                 name="workshops"
                 label={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers')}
@@ -160,6 +183,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                 <Space>
                   <Switch
                     onChange={checked => changePreferredLang(checked)}
+                    checked={preferredLang}
                   />
                   {I18n.t('administration.assessment_center.invite.basic_info.allow_preferred_language')}
                 </Space>
@@ -169,10 +193,10 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                 <Form.Item
                   name="languagesAllowed"
                   label={I18n.t('administration.assessment_center.invite.basic_info.preferred_language')}
+                  rules={[{ required: true }]}
                 >
                   <Select
                     showSearch
-                    defaultValue={['en']}
                     mode="multiple"
                   >
                     {availableLocales.map(locale => (
@@ -187,7 +211,8 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
               <Form.Item name="allowNeurodiversityOption" valuePropName="checked">
                 <Space>
                   <Switch
-                    onChange={checked => form.setFieldValue('allowNeurodiversityOption', checked)}
+                    onChange={checked => changeNeuroDiversityOption(checked)}
+                    checked={allowNeurodiversityOption}
                   />
                   {I18n.t('administration.assessment_center.invite.basic_info.neurodiversity')}
                 </Space>
@@ -206,7 +231,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
             )
           }
           {prev && <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>}
-          <Button type="primary" onClick={next}>{I18n.t('administration.assessment_center.invite.next')}</Button>
+          <Button type="primary" onClick={handleNext}>{I18n.t('administration.assessment_center.invite.next')}</Button>
         </Space>
       </div>
     </div>

@@ -101,7 +101,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
     createResource({
       title: form.getFieldValue('title'),
       allowLanguagePreference: form.getFieldValue('allowLanguagePreference'),
-      allowedLanguages: ['en', 'ar'],
+      allowedLanguages: form.getFieldValue('languagesAllowed'),
       allowNeurodiversityOption: form.getFieldValue('allowNeurodiversityOption'),
       workshopIds: (form.getFieldValue('workshopIds') || []).map(workshop => workshop.id),
       subjects: (form.getFieldValue('subjects') || []).map(user => ({ userId: user.id })),

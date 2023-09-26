@@ -104,8 +104,12 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   }, [])
 
   const handleBook = () => {
-    setBook(true)
     questionResponseValueRef.current = questionForm.getFieldsValue()
+    questionForm.submit()
+  }
+
+  const handleQuestionFormFinish = () => {
+    setBook(true)
     questionForm.resetFields()
   }
 
@@ -209,6 +213,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
                       allowLanguagePreference={inviteOrBookingDetails.allowLanguagePreference}
                       allowedLanguages={inviteOrBookingDetails.allowedLanguages}
                       initialValues={initialQuestionAnswers}
+                      onFormFinish={handleQuestionFormFinish}
                     />
                   )}
                 />
