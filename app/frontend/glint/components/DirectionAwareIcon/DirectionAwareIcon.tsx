@@ -43,3 +43,11 @@ export const DirectionalBackArrowIcon = (props: HTMLAttributes<HTMLAnchorElement
     RtlIcon={RightOutlined}
   />
 )
+
+export const DirectionalNavigateIcon = (props: HTMLAttributes<HTMLAnchorElement>) => (
+  <DirectionAwareIcon
+    {...props}
+    LtrIcon={ArrowRightOutlined}
+    RtlIcon={ArrowLeftOutlined}
+  />
+)

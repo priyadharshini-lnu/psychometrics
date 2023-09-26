@@ -11,8 +11,10 @@ type Props = {
 const { Text } = Typography
 
 export const TimerText:FC<Props> = ({ text, className, textType = 'secondary' }) => (
-  <Space>
-    <ClockCircleOutlined className={className} />
-    <Text type={textType === 'none' ? undefined : textType}>{text}</Text>
-  </Space>
+  text ? (
+    <Space>
+      <ClockCircleOutlined className={className} />
+      <Text type={textType === 'none' ? undefined : textType}>{text}</Text>
+    </Space>
+  ) : null
 )

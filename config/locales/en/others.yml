@@ -1902,8 +1902,11 @@ en:
       update_success: Availability updated successfully.
     background_reading: Background Reading
     bookings:
+      accept_invite_msg: You have recieved an invite. Please reserve your slot.
+      activity_start_text: 'Activity starts in:'
       add_to_calendar: Add To Calendar
       add_to_calendar_tour_description: Add this booking to your calendar
+      assessment_center_group_name: Assessment Center
       booking_failed_msg: 'Failed to book slot: %{error}'
       buttons:
         book: Book
@@ -1918,6 +1921,7 @@ en:
         request_cancel: Request cancellation
         request_reschedule: Request for Reschedule
         reschedule: Reschedule
+        reserve_spot: Reserve your spot
         yes_text: 'Yes'
       cancel_booking_confirmation: Are you sure you want to cancel this booking?
       cancellation_failed: 'Failed to cancel the booking: %{error}'
@@ -1927,14 +1931,19 @@ en:
       confirm_booking_title: Confirm this booking?
       default_failure_msg: Unable to process your request. Please try again later.
       default_requires_msg: "%{name} is required"
+      join_activity_meeting: Join the Meeting
+      join_workshop_meeting: Join the Meeting
       language: Language
       language_placeholder: Select a Language
       language_preference_question: Do you have a language preference?
       language_required_msg: Please select a Language
+      meeting_start_text: 'Meeting will start in:'
       need_changes: Need to make the changes?
       neurodivergence_comment_placeholder: Your comments
       neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
       or: or
+      other_invite: See %{count} more invite
+      other_invites: See %{count} more invites
       reason: Reason
       reason_for_cancel: Reason for Cancellation
       reason_for_reschedule: Reason for Rescheduling
@@ -1951,6 +1960,7 @@ en:
         invites: Invites
       what: What
       when: When
+      workshop_start_text: Your Assessment Center will start in
     campaign:
       actions:
         remove:

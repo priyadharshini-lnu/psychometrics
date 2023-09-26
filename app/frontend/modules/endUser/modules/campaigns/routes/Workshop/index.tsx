@@ -1,1 +1,0 @@
-export { Workshop } from './Workshop'

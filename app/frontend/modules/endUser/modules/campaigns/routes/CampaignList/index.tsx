@@ -25,7 +25,6 @@ import { PageHeader, MediaQueryContext } from '~/glint'
 import Campaigns from './Campaigns'
 
 import styles from './styles.less'
-import { WorkshopCard } from '~/modules/endUser/modules/campaigns/routes/WorkshopList/WorkshopCard'
 
 const { Title, Text } = Typography
 const { I18n } = window
@@ -53,7 +52,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 const CampaignListComponent: FC<PropsFromRedux> = ({
   campaigns,
-  workshop,
   fetchCampaigns,
   fetchWorkshop,
   loginHogan,
@@ -61,7 +59,6 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   profileCompletionPercentage,
   profileLastUpdatedAt,
   isLoading,
-  isWorkshopLoading,
 }) => {
   const [error, setError] = useState(false)
   const history = useHistory()
@@ -115,34 +112,6 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                 />
               </Card>
             </Col>
-            <Col span={24}>
-              <Title level={4} className={styles['workshop-title']}>
-                {error ? I18n.t('errors.error') : I18n.t('campaign.workshops.assessment_center')}
-              </Title>
-              {error
-                ? (
-                  <Text className={styles['workshop-instruction']}>
-                    {I18n.t('errors.error_500')}
-                  </Text>
-                )
-                : (
-                  <>
-                    {isWorkshopLoading
-                      ? <Skeleton active />
-                      : (
-                        <Text className={styles['workshop-instruction']}>
-                          {workshop
-                            ? I18n.t('campaign.workshops.workshop_instructions')
-                            : I18n.t('campaign.workshops.inactive_message')}
-                        </Text>
-                      )}
-                  </>
-                )
-              }
-            </Col>
-
-            {workshop ? <WorkshopCard key={workshop.id} workshop={workshop} /> : null}
-
             <Col span={24}>
               <Title level={4} className={styles['campaign-title']}>
                 {error ? I18n.t('errors.error') : I18n.t('campaign.campaigns')}

@@ -13,7 +13,8 @@ export { ConfirmationModal } from './components/ConfirmationModal'
 export { CollapseItem } from './components/CollapseItem'
 export { PageLoadSpinner } from './components/PageLoadSpinner'
 export {
-  DirectionAwareIcon, DirectionalArrowIcon, DirectionalNavigateBackIcon, DirectionalBackArrowIcon,
+  DirectionAwareIcon,
+  DirectionalArrowIcon, DirectionalNavigateBackIcon, DirectionalBackArrowIcon, DirectionalNavigateIcon,
 } from './components/DirectionAwareIcon'
 export { withLoadingSpinner } from './hocs/withLoadingSpinner'
 export { CommentItem } from './components/CommentItem'

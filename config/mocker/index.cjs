@@ -23,6 +23,11 @@ const proxy = {
     const data = retrieveJSONFrom('./responses/bookings/index.json')
     return res.json(data)
   },
+  'GET /campaigns/10146.json': (_, res) => {
+    const data = retrieveJSONFrom('./responses/campaign/campaign_with_booking.json')
+    // const data = retrieveJSONFrom('./responses/campaign/campaign_with_invite.json')
+    return res.json(data)
+  },
 
   // Below code can be used as inspiration to mock CRUD endpoints
   // Project Participants API mocks

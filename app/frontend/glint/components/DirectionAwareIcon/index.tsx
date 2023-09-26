@@ -1,3 +1,4 @@
 export {
-  DirectionAwareIcon, DirectionalArrowIcon, DirectionalNavigateBackIcon, DirectionalBackArrowIcon,
+  DirectionAwareIcon,
+  DirectionalArrowIcon, DirectionalNavigateBackIcon, DirectionalBackArrowIcon, DirectionalNavigateIcon,
 } from './DirectionAwareIcon'

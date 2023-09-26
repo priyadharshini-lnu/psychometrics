@@ -872,7 +872,7 @@ en:
             saved: Instructions saved successfully
           enable: Enable instructions
           save: Save Instructions
-        prework_required: Don’t allow center booking if preworks are not completed
+        prework_required: Do not allow center booking if preworks are not completed
         proctoring:
           enable: Enable Proctoring
           identification: Identification
