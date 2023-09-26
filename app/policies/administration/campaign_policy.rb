@@ -183,9 +183,9 @@ module Administration
 
     def view_workshops?
       has_permission?(:workshops, :view) ||
-        Workshop.includes(:workshop_assessors).exists?(
+        Workshop.includes(:workshop_assessors).where( # rubocop:disable Rails/WhereExists
           workshop_assessors: { user_id: user.id }, campaign_id: campaign_id
-        )
+        ).exists?
     end
 
     def view_workshop_invites?
