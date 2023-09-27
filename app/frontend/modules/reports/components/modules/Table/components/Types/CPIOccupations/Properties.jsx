@@ -4,14 +4,15 @@ import { useState } from 'react'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import PropertyPagination from '~/modules/reports/components/PropertyPagination'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 
 const Properties = ({ model }) => {
   const [tableStyle, setTableStyle] = useState(model.props.tableStyle || 'classic')
   const changeBackgroundColor = (color) => {
-    model.props.style.barColor = color.hex
+    model.props.style.barColor = color
     model.update()
   }
+
   const changeProps = (key, value) => {
     model.props[key] = value
     model.update()
@@ -81,6 +82,7 @@ const Properties = ({ model }) => {
           <div className={styles.block}>
             Bars colors
             <ColorPicker
+              getValueInHexFormat
               color={model.props.style.barColor || '#ccc'}
               onChange={changeBackgroundColor}
             />
