@@ -20,7 +20,7 @@ const PropertyPanel: React.FC<Props> = ({
     <label>Max Characters</label>
     <InputNumber
       min={10}
-      defaultValue={maxLength}
+      defaultValue={maxLength || undefined}
       onChange={value => model.changeProps({ maxLength: value })}
       style={{ width: '100%' }}
     />

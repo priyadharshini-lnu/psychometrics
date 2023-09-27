@@ -22,7 +22,7 @@ const RichText: FC<Props> = ({
     <Editor
       content={predefinedRichText}
       handleContentChange={value => changeProps(value, 'predefinedRichText')}
-      maxCharLimit={maxLength}
+      maxCharLimit={maxLength || undefined}
     />
   )
 }

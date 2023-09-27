@@ -25,7 +25,7 @@ interface Props {
   }>
   allowDictation: boolean
   dateFormat: DateFormat
-  maxLength: number
+  maxLength: number | null
   contactList: string[]
   subject: string
   contacts: { [key in EmailContactType]: string[] }
