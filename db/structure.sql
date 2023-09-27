@@ -378,6 +378,41 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: assessment_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessment_translations (
+    id bigint NOT NULL,
+    name text,
+    description text,
+    timing text,
+    locale character varying NOT NULL,
+    assessment_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: assessment_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessment_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessment_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessment_translations_id_seq OWNED BY public.assessment_translations.id;
+
+
+--
 -- Name: assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -407,8 +442,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -570,12 +605,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -803,8 +838,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
@@ -1133,6 +1168,39 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 
 
 --
+-- Name: client_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.client_translations (
+    id bigint NOT NULL,
+    custom_privacy_consent_text text,
+    locale character varying NOT NULL,
+    client_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: client_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.client_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: client_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.client_translations_id_seq OWNED BY public.client_translations.id;
+
+
+--
 -- Name: clients; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1162,7 +1230,10 @@ CREATE TABLE public.clients (
     enable_live_chat boolean DEFAULT false NOT NULL,
     migrated boolean DEFAULT false,
     locales json DEFAULT '[]'::json,
-    live_chat_token character varying
+    live_chat_token character varying,
+    custom_privacy_consent boolean DEFAULT false,
+    custom_privacy_consent_text text,
+    custom_privacy_policy_version integer
 );
 
 
@@ -2685,7 +2756,8 @@ CREATE TABLE public.privacy_consents (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
-    version smallint DEFAULT 1 NOT NULL
+    version smallint DEFAULT 1 NOT NULL,
+    policy_type integer DEFAULT 0
 );
 
 
@@ -4155,7 +4227,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4824,10 +4897,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -5287,7 +5360,8 @@ CREATE TABLE public.workshops (
     reschedule_lead_time integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    name character varying
+    name character varying,
+    status integer DEFAULT 0
 );
 
 
@@ -5364,6 +5438,13 @@ ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agile
 --
 
 ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api_keys_id_seq'::regclass);
+
+
+--
+-- Name: assessment_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations ALTER COLUMN id SET DEFAULT nextval('public.assessment_translations_id_seq'::regclass);
 
 
 --
@@ -5497,6 +5578,13 @@ ALTER TABLE ONLY public.campaigns ALTER COLUMN id SET DEFAULT nextval('public.ca
 --
 
 ALTER TABLE ONLY public.client_auditlog_export_settings ALTER COLUMN id SET DEFAULT nextval('public.client_auditlog_export_settings_id_seq'::regclass);
+
+
+--
+-- Name: client_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_translations ALTER COLUMN id SET DEFAULT nextval('public.client_translations_id_seq'::regclass);
 
 
 --
@@ -6356,6 +6444,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
+-- Name: assessment_translations assessment_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT assessment_translations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: assessments_clients assessments_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6505,6 +6601,14 @@ ALTER TABLE ONLY public.campaigns
 
 ALTER TABLE ONLY public.client_auditlog_export_settings
     ADD CONSTRAINT client_auditlog_export_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: client_translations client_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_translations
+    ADD CONSTRAINT client_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -7582,6 +7686,20 @@ CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
 
 
 --
+-- Name: index_assessment_t18n_tables_on_assessment_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_assessment_t18n_tables_on_assessment_id_and_locale ON public.assessment_translations USING btree (assessment_id, locale);
+
+
+--
+-- Name: index_assessment_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_translations_on_locale ON public.assessment_translations USING btree (locale);
+
+
+--
 -- Name: index_assessments_clients_on_client_id_and_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7887,6 +8005,20 @@ CREATE INDEX index_campaigns_on_project_id ON public.campaigns USING btree (proj
 --
 
 CREATE INDEX index_client_auditlog_export_settings_on_client_id ON public.client_auditlog_export_settings USING btree (client_id);
+
+
+--
+-- Name: index_client_t18n_tables_on_client_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_client_t18n_tables_on_client_id_and_locale ON public.client_translations USING btree (client_id, locale);
+
+
+--
+-- Name: index_client_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_translations_on_locale ON public.client_translations USING btree (locale);
 
 
 --
@@ -10971,7 +11103,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -11223,6 +11355,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: assessment_translations fk_rails_e8b68f05ba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT fk_rails_e8b68f05ba FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
 -- Name: threesixty_evaluators fk_rails_e96676a310; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11316,6 +11456,14 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 
 ALTER TABLE ONLY public.api_keys
     ADD CONSTRAINT fk_rails_f435faf77d FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: client_translations fk_rails_f4479d6612; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_translations
+    ADD CONSTRAINT fk_rails_f4479d6612 FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -11950,6 +12098,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230627181938'),
 ('20230717125048'),
 ('20230719111228'),
+('20230721123804'),
+('20230721125540'),
 ('20230725084846'),
 ('20230727152255'),
 ('20230728040657'),
@@ -11971,7 +12121,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230829124517'),
 ('20230829143631'),
 ('20230912064131'),
+('20230918133925'),
+('20230918143010'),
 ('20230919051922'),
-('20230921123131');
+('20230919070332'),
+('20230921123131'),
+('20230926124141');
 
 

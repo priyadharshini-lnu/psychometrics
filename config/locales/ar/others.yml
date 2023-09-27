@@ -39,6 +39,10 @@ ar:
     actions:
       extend_time: تمديد الوقت
       goto_dashboard: اضغط هنا للأستمرار
+      pending_tasks:
+        one: لديك مهمة واحدة معلقة
+        other: لديك %{count} مهام معلقة
+        two: لديك مهمتان معلقتان
       rescore: إعادة التصحيح
     audio_response:
       permission_denied_message: الرجاء تمكين إذن الميكروفون في المتصفح للتمكن من تسجيل إجابتك
@@ -481,6 +485,7 @@ ar:
         your_potential_suitability: الملائمة المحتملة الخاصة بك
       factors_table:
         description: الوصف
+        no_data: لا توجد بيانات متاحة لهذا القسم.
         rank: المرتبة
         score: الدرجة
       gap_assessment:

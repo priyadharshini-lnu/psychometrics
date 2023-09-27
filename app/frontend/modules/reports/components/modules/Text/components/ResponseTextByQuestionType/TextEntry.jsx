@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import PropTypes from 'prop-types'
+import { SafeHTML } from '~/components/SafeHTML'
 
 const TextEntry = (props) => {
   const {
@@ -9,10 +10,24 @@ const TextEntry = (props) => {
         answerIndex = 0,
       },
     },
+    question: {
+      props: {
+        type,
+      },
+    },
   } = props
   if (isReal && !result) { return null }
 
-  return <div>{_.get(result, [answerIndex, 'value'], '')}</div>
+  const text = _.get(result, [answerIndex, 'value'], '')
+  if (type === 'RichText') {
+    return (
+      <SafeHTML
+        html={text}
+        config="richTextQuestion"
+      />
+    )
+  }
+  return <div>{text}</div>
 }
 
 TextEntry.propTypes = {

@@ -117,7 +117,8 @@ module Administration
                           eager_load(:reports).
                           merge(Report.assignable).
                           references(:reports).
-                          distinct
+                          distinct.
+                          sort_by { |r| r[:name] }
         render json: report_families,
                each_serializer: Administration::ReportFamilySerializer
       end

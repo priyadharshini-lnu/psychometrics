@@ -11,15 +11,18 @@ module Administration
     end
 
     def show?
-      @user.is?(:superadmin) || @user.has_permission?(:communications, :view, project_id: project_id)
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :view, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
     def copy?
-      @user.is?(:superadmin) || @user.has_permission?(:communications, :manage, project_id: project_id)
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_permission?(:communications, :manage, project_id: project_id)
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
     def new_form?
@@ -27,7 +30,8 @@ module Administration
     end
 
     def download_history?
-      @user.is?(:superadmin) || @user.has_permission?(:communications, :view, project_id: project_id)
+      @user.is?(:superadmin) ||
+        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
     end
 
     class Scope < Scope
@@ -43,7 +47,13 @@ module Administration
           @user.has_permission?(:communications, :view, project_id: project_id)
         end
 
-        scope.where('client_id IN (?) or communications.project_id IN (?)', permitted_client_ids, permitted_project_ids)
+        scope = scope.where(
+          'client_id IN (?) or communications.project_id IN (?)', permitted_client_ids, permitted_project_ids
+        )
+        if @user.is?(:campaign_admin)
+          scope = scope.or(Communication.where(campaign_id: @user.campaign_admin_campaigns))
+        end
+        scope
       end
     end
   end

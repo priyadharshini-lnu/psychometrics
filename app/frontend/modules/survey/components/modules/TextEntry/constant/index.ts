@@ -18,6 +18,10 @@ export const ANSWER_TYPE_OPTIONS = [
     value: 'EssayTextBox',
   },
   {
+    label: 'Rich Text',
+    value: 'RichText',
+  },
+  {
     label: 'Form',
     value: 'Form',
   },

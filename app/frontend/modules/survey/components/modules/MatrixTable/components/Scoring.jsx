@@ -1,11 +1,13 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Space } from 'antd'
 import FillingScoring from '~/modules/survey/components/FillingScoring'
 import ScoringCell from '~/modules/survey/components/ScoringCell'
 import ScoringLabelAdvanced from '~/modules/survey/components/ScoringLabelAdvanced'
 import Utils from '~/modules/survey/utils'
 import styles from './MatrixTable.less'
+import { MultilineScoring } from '~/modules/survey/components/MultilineEdit'
 
 export class Scoring extends Component {
   static propTypes = {
@@ -60,11 +62,40 @@ export class Scoring extends Component {
     this.forceUpdate()
   }
 
+  handleMultilineChange = (values) => {
+    const { scoring, model: { props } } = this.props
+    const vals = values.map(r => r.split(/ |\t/).slice(0, props.scalePoints))
+
+    _.times(props.choices, (choice) => {
+      _.times(props.scalePoints, (scale) => {
+        scoring.changeValue(scale, choice, vals[choice]?.[scale])
+      })
+    })
+
+    this.forceUpdate()
+  }
+
   render () {
     const { scoring, model: { props, moduleConfig } } = this.props
+    const multilineValue = []
+
+    _.times(props.choices, ((choice) => {
+      const rows = scoring.props.filter(s => s.choice === choice)
+      multilineValue.push(_.times(props.scalePoints,
+        (scale => rows.find(s => s.scale === scale)?.value || '')).join(' '))
+    }))
+
     return (
       <div>
-        <FillingScoring scoring={scoring} onChange={this.fillScoring} />
+        <Space>
+          <FillingScoring scoring={scoring} onChange={this.fillScoring} />
+          <MultilineScoring
+            cols={props.scalePoints}
+            rows={props.choices}
+            lines={multilineValue}
+            onChange={this.handleMultilineChange}
+          />
+        </Space>
         <table className={styles.scoringTable}>
           <tbody>
             <tr className={`${styles.scoringRow} ${styles.scoringScaleRow}`}>
@@ -98,7 +129,7 @@ export class Scoring extends Component {
                       onClear={e => this.clear({ choice }, e)}
                       onSet={e => this.setTemplate({ choice }, e)}
                       filled={filled}
-                      label={props.choicesTexts[choice].split(':')[0] || moduleConfig.defaultChoiceText(choice + 1)}
+                      label={(props.choicesTexts[choice] || moduleConfig.defaultChoiceText(choice + 1)).split(':')[0]}
                     />
                   </td>
                   {_.times(props.scalePoints, (scale) => {

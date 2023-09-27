@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class UserAssessment < ApplicationRecord
+  DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
+
   belongs_to :assessment
   belongs_to :campaign
   belongs_to :norm
@@ -73,6 +75,11 @@ class UserAssessment < ApplicationRecord
   scope :preworks, lambda { |value|
     with_campaign_assessments.where(campaign_assessments: { prework: value })
   }
+  scope :pending_assessments, lambda {
+    where('subject_id = evaluator_id').where.not(status: %i[completed timed_out ineligible])
+  }
+  scope :deemed_completed, -> { where(status: DEEMED_COMPLETED_STATUS) }
+  scope :deemed_incomplete, -> { where.not(status: DEEMED_COMPLETED_STATUS) }
 
   before_save :set_default_relationship
   after_save -> { create_meeting_room! }, if: -> { meeting_internal? && meeting_room.blank? }
@@ -255,6 +262,10 @@ class UserAssessment < ApplicationRecord
       campaign_id: campaign_id, assessment_id: assessor_form.id, subject_id: subject_id,
       relationship: Relationship.assessor_relationship
     )
+  end
+
+  def deemed_completed?
+    DEEMED_COMPLETED_STATUS.include?(status)
   end
 
   private

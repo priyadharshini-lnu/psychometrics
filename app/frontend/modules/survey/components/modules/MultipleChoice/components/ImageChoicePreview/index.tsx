@@ -73,6 +73,9 @@ export const ImageChoices: FC<Props> = ({
           styles.grid,
           { [styles.largeSize]: imageChoiceSize === 'large' },
           { [styles.mediumSize]: imageChoiceSize === 'medium' },
+          { [styles.smallSize]: imageChoiceSize === 'small' },
+          { [styles.xsmallSize]: imageChoiceSize === 'x-small' },
+          { [styles.xxsmallSize]: imageChoiceSize === 'xx-small' },
         )}
         onSubmit={event => event.preventDefault()}
       >

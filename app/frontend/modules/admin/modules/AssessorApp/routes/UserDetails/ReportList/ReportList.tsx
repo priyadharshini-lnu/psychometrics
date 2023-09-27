@@ -97,7 +97,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             <Link to={previewUrl()}>
               {I18n.t('reports.actions.view')}
             </Link>),
-          disabled: !reportUrl,
+          disabled: !(internal || reportUrl),
         }]
       }
     />

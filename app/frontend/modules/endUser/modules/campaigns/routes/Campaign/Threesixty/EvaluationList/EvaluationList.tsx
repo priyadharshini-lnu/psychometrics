@@ -220,7 +220,7 @@ const EvaluationListComponent = ({
           onCancel={() => setShowHelp(false)}
           footer={null}
         >
-          <SafeHTML html={evaluationHelp.content} />
+          <SafeHTML html={evaluationHelp.content} config="adminRichText" />
         </Modal>
       )}
     </ThreesixtyCard>

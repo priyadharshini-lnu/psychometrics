@@ -22,7 +22,14 @@ module EndUser
       redirect_to(action: 'error', reason: 'archived') && return if assessment.archived?
       redirect_to(action: 'error', reason: 'not_active') && return unless @campaign_assessment.enable_universal_links?
 
-      @user_assessment.update(selected_locale: params[:lang]) if params[:lang]
+      if params[:lang]
+        @user_assessment.update(selected_locale: params[:lang])
+
+        if @current_project.available_locales.include?(params[:lang])
+          cookies[:locale] = params[:lang]
+          current_user.update_column(:locale, params[:lang])
+        end
+      end
 
       campaign_user = @campaign_assessment.campaign.campaign_users.find_by(user_id: current_user.id)
       campaign_user.update(started_at: Time.zone.now) unless campaign_user.started_at

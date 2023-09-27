@@ -3,7 +3,7 @@
 namespace :i18n do
   namespace :js do
     task before_export: :'assets:environment' do
-      I18n.available_locales = %w[en ar de]
+      I18n.available_locales = Settings.enduser_locales
       I18n::JS.export
     end
   end

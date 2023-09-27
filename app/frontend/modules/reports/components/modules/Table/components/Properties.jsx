@@ -71,7 +71,7 @@ class Properties extends Component {
     if (!View) {
       return
     }
-    return <View {...this.props} />
+    return <View {...this.props} key={model.id} />
   }
 
   render () {

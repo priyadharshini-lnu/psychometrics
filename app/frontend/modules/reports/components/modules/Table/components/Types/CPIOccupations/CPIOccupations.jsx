@@ -17,10 +17,12 @@ class CPIOccupations extends Component {
 
   prepareRows () {
     const { module } = this.props
-    const { props } = module
+    const {
+      pageNumber, itemsPerPage, sortBy = 'name', sortOrder = 'asc',
+    } = module.props
     let occupations
-    let offset = (props.pageNumber || 1) - 1
-    const limit = props.itemsPerPage || 10
+    let offset = (pageNumber || 1) - 1
+    const limit = itemsPerPage || 10
     if (ResultStore.realResults) {
       occupations = ResultStore.results[module.assessment_id].getOccupations()
     } else {
@@ -33,8 +35,10 @@ class CPIOccupations extends Component {
         name: I18nStore.tOccupation(oc, 'name'),
         icon: oc.icon,
         color: oc.color,
+        value: Math.random(),
       }))
     }
+    occupations = _.orderBy(occupations, sortBy, sortOrder)
     this.occupations = _.slice(occupations, offset, offset + limit)
   }
 
@@ -51,8 +55,42 @@ class CPIOccupations extends Component {
     )
   }
 
+  renderBars (occupation) {
+    const { module: model } = this.props
+    const { barColor = '#ccc' } = model.props.style
+
+    const value = Math.round(occupation.value * 10)
+    const style = { backgroundColor: barColor, opacity: 0.15 }
+    const filledStyle = { backgroundColor: barColor, opacity: 1 }
+    return (
+      <div className={styles.bars}>
+        {_.times(10, i => (
+          <div
+            key={i}
+            className={styles.bar}
+            style={{
+              ...style,
+              ...(i + 1 <= value ? filledStyle : {}),
+            }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  renderValues (occupation) {
+    const value = Math.round(occupation.value * 100)
+    return (
+      <div className={styles.value}>
+        {value}
+        %
+      </div>
+    )
+  }
+
   render () {
     const { module: model } = this.props
+    const { tableStyle = 'classic', showOptions = [] } = model.props
     const { fontSize, fontFamily, width } = model.props.style
     const style = {
       fontSize,
@@ -60,14 +98,27 @@ class CPIOccupations extends Component {
       width,
     }
     this.prepareRows()
+    const tableStyleClass = styles[tableStyle]
+    let showIcons = _.includes(showOptions, 'icons')
+    let showStars = _.includes(showOptions, 'stars')
+    let showBars = _.includes(showOptions, 'bars')
+    let showValues = _.includes(showOptions, 'values')
+    if (tableStyle === 'classic') {
+      showIcons = true
+      showStars = true
+      showBars = false
+      showValues = false
+    }
     return (
       <div className={styles.table}>
-        <div style={style}>
+        <div style={style} className={tableStyleClass}>
           {_.map(this.occupations, oc => (
             <div className={styles.row} key={oc.id}>
-              <div className={styles.icon}><img src={oc.icon} /></div>
+              {showIcons && <div className={styles.icon}><img src={oc.icon} /></div>}
               <div className={styles.name}>{I18nStore.tOccupation(oc, 'name')}</div>
-              {this.renderStars(oc)}
+              {showStars && this.renderStars(oc)}
+              {showBars && this.renderBars(oc)}
+              {showValues && this.renderValues(oc)}
             </div>
           ))}
         </div>

@@ -3,8 +3,10 @@
 class EndUser::UserAssessmentsController < ApplicationController
   include ::Threesixty::InitialState
   layout 'layouts/end_user'
+
   initial_state_for %i[show pass begin]
   before_action :set_user_assessment, only: %i[assessment details show pass begin]
+  before_action :can_start_based_on_sequencing, only: %i[pass show begin]
   before_action :ensure_user_confirm, only: %i[pass begin]
 
   def assessment
@@ -63,6 +65,12 @@ class EndUser::UserAssessmentsController < ApplicationController
     if UserAssessments::CanStart.call!(@user_assessment, current_user, cookies)
       redirect_to user_assessment_path(@user_assessment)
     end
+  end
+
+  def can_start_based_on_sequencing
+    return if UserAssessments::CanStartBasedOnSequencing.call!(@user_assessment)
+
+    redirect_to campaign_path(@user_assessment.campaign_id)
   end
 
   def build_piped_context

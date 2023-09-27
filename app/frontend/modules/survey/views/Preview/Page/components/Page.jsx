@@ -32,6 +32,14 @@ class Page extends Component {
     this.ref.removeEventListener('contextmenu', this.disableCopyHandler)
   }
 
+  componentDidUpdate (prevProps) {
+    const { page } = this.props
+    if (page !== prevProps.page) {
+      window.scrollTo(0, 0)
+    }
+  }
+
+
   getBlockClasses () {
     const { block: { props: { staticContent } } } = this.props
 

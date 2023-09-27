@@ -48,7 +48,7 @@ module UsersResults
       duration = (((Time.current - last_activity_at) * 1000) / question_ids.length).round
 
       question_ids.reduce(answers) do |extended_answers, question_id|
-        extended_answers.deep_merge(question_id.to_s => { 'duration' => duration })
+        extended_answers.deep_merge(question_id.to_s => { 'duration' => duration, 'dirty' => false })
       end
     end
 

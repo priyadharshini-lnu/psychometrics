@@ -56,8 +56,8 @@ module AdminJobs
         @assessment.id,
         @assessment.name,
         I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}", locale: :en),
-        user_result.started_at.try(:strftime, '%D %r'),
-        user_result.completed_at.try(:strftime, '%D %r'),
+        user_result.started_at.to_s,
+        user_result.completed_at.to_s,
         user_result.meta_data['completed_groups']&.join(','),
         user_result.norm ? user_result.norm.name : nil,
         *answer_values
@@ -87,7 +87,7 @@ module AdminJobs
 
     def readable_date(timestamp)
       if timestamp.present?
-        DateTime.strptime(timestamp.to_s, '%Q').to_fs(:rfc822)
+        DateTime.strptime(timestamp.to_s, '%Q').to_s
       else
         ''
       end

@@ -10,7 +10,7 @@ exports[`initializing base assessment init action should init assessment data: i
     "agileAssetsUrl": undefined,
     "agileAssignUrl": undefined,
     "allPages": {
-      "1": [
+      Symbol(1): [
         {
           "blockId": 1,
           "questions": [
@@ -24,7 +24,7 @@ exports[`initializing base assessment init action should init assessment data: i
           ],
         },
       ],
-      "2": [
+      Symbol(2): [
         {
           "blockId": 2,
           "questions": [

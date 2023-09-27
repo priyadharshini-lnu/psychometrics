@@ -24,8 +24,8 @@ module AdminJobs
         user_name(user_result.evaluator.first_name, user_result.evaluator.last_name),
         user_result.evaluator.email,
         user_result.user_assessment.relationship.name,
-        user_result.created_at.try(:strftime, '%D %r'),
-        user_result.completed_at.try(:strftime, '%D %r'),
+        user_result.created_at.to_s,
+        user_result.completed_at.to_s,
         user_result.norm ? user_result.norm.name : '',
         I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
         *norm_scores

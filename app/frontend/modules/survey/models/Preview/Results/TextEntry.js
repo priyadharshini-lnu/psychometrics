@@ -68,6 +68,10 @@ _.extend(TextEntry.prototype, {
     this.result.answers = [{ value: index }]
   },
 
+  RichText (value) {
+    this.result.answers = [{ value }]
+  },
+
   SelectBox (index) {
     this.result.answers = [{ value: index }]
   },

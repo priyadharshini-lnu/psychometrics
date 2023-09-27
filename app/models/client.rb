@@ -4,6 +4,7 @@
 class Client < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+  extend Mobility
 
   attr_writer :license_msg
 
@@ -177,6 +178,8 @@ class Client < ApplicationRecord
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
   }
+
+  translates :custom_privacy_consent_text
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields projects_of resource_disabled search_query has_integration]

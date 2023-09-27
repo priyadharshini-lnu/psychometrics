@@ -37,12 +37,15 @@ interface Props {
   managerName: string
   title: string
   titleDescription: string
+  predefinedRichText?: string
+  usePredefinedRichText?: boolean
   type:
     | 'Form'
     | 'Chat'
     | 'SingleLine'
     | 'MultiLine'
     | 'EssayTextBox'
+    | 'RichText'
     | 'Email'
     | 'Password'
     | 'DateEntry'
