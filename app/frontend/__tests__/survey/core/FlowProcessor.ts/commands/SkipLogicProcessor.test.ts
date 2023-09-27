@@ -49,7 +49,7 @@ test('first page should have skip logic', () => {
 
   const pages = InitPages.run({ blocks })
 
-  expect(pages[1][0].skipLogic).toStrictEqual([skipLogic])
+  expect(pages[Symbol.for('1')][0].skipLogic).toStrictEqual([skipLogic])
 })
 
 
@@ -62,7 +62,7 @@ test('skip logic should return false for empty results', () => {
 
   const pages = InitPages.run({ blocks })
 
-  expect(SkipLogicProcessor.run(pages[1][0].skipLogic, questions, {})).toStrictEqual(false)
+  expect(SkipLogicProcessor.run(pages[Symbol.for('1')][0].skipLogic, questions, {})).toStrictEqual(false)
 })
 
 test('valid skip logic should return type of skipping', () => {
@@ -73,7 +73,7 @@ test('valid skip logic should return type of skipping', () => {
   const questions = blocks[0].questions.reduce((acc, q) => { acc[q.id] = q; return acc }, {})
   const pages = InitPages.run({ blocks })
 
-  expect(SkipLogicProcessor.run(pages[1][0].skipLogic, questions, results)).toStrictEqual({ type: 'EndOfBlock' })
+  expect(SkipLogicProcessor.run(pages[Symbol.for('1')][0].skipLogic, questions, results)).toStrictEqual({ type: 'EndOfBlock' })
 })
 
 
@@ -95,7 +95,7 @@ test('skip to specific block should return type of skipping and block id', () =>
   const questions = blocks[0].questions.reduce((acc, q) => { acc[q.id] = q; return acc }, {})
   const pages = InitPages.run({ blocks })
 
-  expect(SkipLogicProcessor.run(pages[1][0].skipLogic, questions, results)).toStrictEqual({ type: 'SpecificBlock', blockId: 2 })
+  expect(SkipLogicProcessor.run(pages[Symbol.for('1')][0].skipLogic, questions, results)).toStrictEqual({ type: 'SpecificBlock', blockId: 2 })
 })
 
 
@@ -107,5 +107,5 @@ test('skip to specific block should return false if block is not specified', () 
   const questions = blocks[0].questions.reduce((acc, q) => { acc[q.id] = q; return acc }, {})
   const pages = InitPages.run({ blocks })
 
-  expect(SkipLogicProcessor.run(pages[1][0].skipLogic, questions, results)).toStrictEqual(false)
+  expect(SkipLogicProcessor.run(pages[Symbol.for('1')][0].skipLogic, questions, results)).toStrictEqual(false)
 })

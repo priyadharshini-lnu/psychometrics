@@ -25,14 +25,19 @@ if (I18n) {
 }
 
 export const getQuestions = (state, ids): Question[] => denormalize(ids, [question], state)
-export const getAllAnsweredQuestions = (state): Question[] => _.reduce(
-  state.allPages, (res, block) => {
-    const questions = _.flatten(_.map(
-      block, page => getQuestions(state, page.questions).filter(q => state.results[q.id]),
-    ))
-    return [...res, ...questions]
-  }, [],
-)
+export const getAllAnsweredQuestions = (state): Question[] => {
+  const pages = _.map(Object.getOwnPropertySymbols(state.allPages), key => state.allPages[key])
+
+  return _.reduce(
+    pages, (res, block) => {
+      const questions = _.flatten(_.map(
+        block, page => getQuestions(state, page.questions).filter(q => state.results[q.id]),
+      ))
+
+      return [...res, ...questions]
+    }, [],
+  )
+}
 
 export const getQuestion = (state, id): Question => state.questions[id]
 export const getCurrentBlock = (state): Block => {
@@ -70,13 +75,13 @@ export const isValidCurrentElementAndPage = (state): boolean => {
 
 export const getCurrentPage = (state): PageInterface => {
   const block = getCurrentElement(state).props.current
-  const pages = state.allPages[block]
+  const pages = state.allPages[Symbol.for(block)]
   return pages[state.currentPage]
 }
 
 export const getNextPage = (state): PageInterface => {
   const block = getCurrentElement(state).props.current
-  const pages = state.allPages[block]
+  const pages = state.allPages[Symbol.for(block)]
   return pages[state.currentPage + 1]
 }
 
@@ -162,7 +167,7 @@ export const getPrevBlockIds = (state): string[] => {
 const pagesQuestions = (pages: PageInterface[]): number => _.flatten(_.map(pages, 'questions')).length
 
 export const getQuestionsCount = (state, blockIds: string[]): number => _.sumBy(
-  blockIds, id => pagesQuestions(state.allPages[id]),
+  blockIds, id => pagesQuestions(state.allPages[Symbol.for(id)]),
 )
 
 export const lookForEndOfAssessment = (el: string, state): string | null => {
@@ -187,7 +192,7 @@ export const getPossibleBlocks = (state): string[] => {
     const el = state.normalizedTree[path]
     if (!el) { return ids }
     if (el.type === 'Block' && path === state.currentElement
-           && state.currentPage < state.allPages[el.props.current].length) {
+           && state.currentPage < state.allPages[Symbol.for(el.props.current)].length) {
       ids = [...ids, el.props.current]
       path = getChildOrNextElementId(state, path)
       // eslint-disable-next-line no-continue
@@ -213,7 +218,7 @@ export const getPrevQuestionsCount = (state): number => {
   if (state.currentPage > 0) {
     const [last, ...ids] = _.reverse(blockIds)
     const count = getQuestionsCount(state, ids)
-    return count + pagesQuestions(_.take(state.allPages[last], state.currentPage))
+    return count + pagesQuestions(_.take(state.allPages[Symbol.for(last)], state.currentPage))
   }
   return getQuestionsCount(state, blockIds)
 }
@@ -223,7 +228,7 @@ export const getPossibleQuestionsCount = (state): number => {
   const [current, ...ids] = blockIds
   if (!current) { return 0 }
   const count = getQuestionsCount(state, ids)
-  const currentPage = state.allPages[current]
+  const currentPage = state.allPages[Symbol.for(current)]
   return count + pagesQuestions(_.takeRight(currentPage, currentPage.length - state.currentPage))
 }
 

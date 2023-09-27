@@ -111,10 +111,10 @@ describe('assessment with invalid display logic should skip page without questio
 
   test('should contains 3 pages', () => {
     const { preview } = store.getState()
-    expect(preview.allPages[1].length).toBe(2)
-    expect(preview.allPages[1][0].questions.length).toBe(1)
-    expect(preview.allPages[1][1].questions.length).toBe(1)
-    expect(preview.allPages[2].length).toBe(1)
+    expect(preview.allPages[Symbol.for('1')].length).toBe(2)
+    expect(preview.allPages[Symbol.for('1')][0].questions.length).toBe(1)
+    expect(preview.allPages[Symbol.for('1')][1].questions.length).toBe(1)
+    expect(preview.allPages[Symbol.for('2')].length).toBe(1)
   })
 
   test('next page should trigger display logic processor and mark question as hidden for invalid condition', () => {
@@ -136,10 +136,10 @@ describe('assessment with invalid display logic condition', () => {
 
   test('should contains 3 pages', () => {
     const { preview } = store.getState()
-    expect(preview.allPages[1].length).toBe(2)
-    expect(preview.allPages[1][0].questions.length).toBe(1)
-    expect(preview.allPages[1][1].questions.length).toBe(2)
-    expect(preview.allPages[2].length).toBe(1)
+    expect(preview.allPages[Symbol.for('1')].length).toBe(2)
+    expect(preview.allPages[Symbol.for('1')][0].questions.length).toBe(1)
+    expect(preview.allPages[Symbol.for('1')][1].questions.length).toBe(2)
+    expect(preview.allPages[Symbol.for('2')].length).toBe(1)
   })
 
   test('next page should trigger display logic processor and mark question as hidden for invalid condition', () => {
