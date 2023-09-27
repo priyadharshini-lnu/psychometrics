@@ -49,6 +49,12 @@ module Api
           end
         end
 
+        def self.change_status_request
+          json_api_attributes do
+            required(:status).filled(:string)
+          end
+        end
+
         def self.create_all_request
           json_api_attributes do
             required(:workshops).array(:hash) do

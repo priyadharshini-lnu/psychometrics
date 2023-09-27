@@ -20,16 +20,12 @@ import { SafeHTML } from '~/components/SafeHTML'
 const { I18n } = window
 const { Text } = Typography
 
-const TAG_COLORS = {
-  // attendance statuses
+const ATTENDANCE_TAG_COLORS = {
   no_status: 'default',
   on_time: 'success',
   late: 'warning',
   no_show: 'error',
   dropped_out: 'warning',
-  // completion statuses
-  not_started: 'default',
-  completed: 'success',
 }
 const SCHEDULING_STATUS_TO_TAG_COLOR = {
   scheduled: 'success',
@@ -219,23 +215,14 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           title={I18n.t('administration.scheduling.attendance_status.column_name')}
           id="attendanceStatus"
           render={(_, { attendanceStatus }) => (
-            <Tag color={TAG_COLORS[attendanceStatus]}>
+            <Tag color={ATTENDANCE_TAG_COLORS[attendanceStatus]}>
               {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
             </Tag>
           )}
         />
         <Resource.Column<WorkshopSubject>
-          title={I18n.t('administration.scheduling.completion_status.column_name')}
-          id="completion_status"
-          render={(_, { completionStatus }) => (
-            <Tag color={TAG_COLORS[completionStatus]}>
-              {I18n.t(`administration.scheduling.completion_status.${completionStatus}`)}
-            </Tag>
-          )}
-        />
-        <Resource.Column<WorkshopSubject>
           title={I18n.t('administration.scheduling.columns.scheduling_status')}
-          id="completion_status"
+          id="scheduling_status"
           render={(_, { schedulingStatus }) => (
             <Tag color={SCHEDULING_STATUS_TO_TAG_COLOR[schedulingStatus]}>
               {I18n.t(`administration.scheduling.scheduling_statuses.${schedulingStatus}`)}
@@ -306,47 +293,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  const onChangeStatus = (status: string) => {
-    Modal.confirm({
-      title: I18n.t('administration.scheduling.subjects.confirm_title'),
-      content: I18n.t('administration.scheduling.subjects.status_confirm_message',
-        {
-          subject_email: subject?.user?.email,
-          status: I18n.t(`administration.scheduling.completion_status.${status}`),
-        }),
-      okText: I18n.t('common.text.confirm'),
-      cancelText: I18n.t('common.text.cancel'),
-      onOk: () => handleChangeStatus(status),
-    })
-  }
-
-  const handleChangeStatus = (status: string) => {
-    resource.updateResource({ id: subject.id, completionStatus: status }).then(() => {
-      message.success(I18n.t('administration.scheduling.subjects.status_changed',
-        { status: I18n.t(`administration.scheduling.completion_status.${status}`) }))
-    })
-  }
-
   const menuItems:ItemType[] = []
-
-  resource.meta.permissions?.manage && menuItems.push({
-    key: 'mark_complete',
-    label: (
-      <>
-        <Button
-          type="link"
-          onClick={() => {
-            onChangeStatus(subject.completionStatus === 'completed' ? 'not_started' : 'completed')
-          }}
-          className="ps-0"
-        >
-          {subject.completionStatus === 'completed'
-            ? I18n.t('common.actions.mark_not_started')
-            : I18n.t('common.actions.mark_complete')}
-        </Button>
-      </>
-    ),
-  })
 
   resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
     subject.schedulingStatus,

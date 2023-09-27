@@ -3905,10 +3905,6 @@ en:
         start_time: Date & Time
         status: Status
         subject: Subject
-      completion_status:
-        column_name: Completed
-        completed: Completed
-        not_started: Not Started
       date_presets:
         all_time: All time
         current_month: Current month
@@ -3957,6 +3953,9 @@ en:
         late: Late
         no_show: No Show
         not_started: Not Started
+      status_change_modal:
+        content: Once you close the assessment center, participants will not be able to participate in any center activities.
+        title: Change assessment center status
       subjects:
         activities: Activities
         add_assessor_form: Add Assessor Form
@@ -3982,7 +3981,6 @@ en:
         preworks: Prework
         schedule: Schedule
         status_changed: Status successfully changed to %{status}
-        status_confirm_message: Are you sure you want to change status to '%{status}' for '%{subject_email}'?
         success_message: Subject with email %{subject_email} removed successfully.
         unschedule: Unschedule
       tabs:
@@ -4613,3 +4611,7 @@ en:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
       request_failure: Request failed with status code %{http_status_code}.
       test_success: Webhook test successful.
+    workshop:
+      statuses:
+        closed: Closed
+        open: Open

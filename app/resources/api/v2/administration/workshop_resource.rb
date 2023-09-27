@@ -3,7 +3,7 @@
 class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseResource
   attributes :campaign_id, :start_time, :timezone, :duration, :video_call_type, :total_seats, :cancellation_lead_time,
              :reschedule_lead_time, :booked_seats, :remaining_seats, :meeting_link, :workshop_assessors_ids,
-             :workshop_managers_ids, :name
+             :workshop_managers_ids, :name, :status
 
   has_many :workshop_managers
   has_many :workshop_assessors
@@ -38,7 +38,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   end
 
   def self.updatable_fields(_context)
-    %i[workshop_assessors_ids workshop_managers_ids total_seats name video_call_type meeting_link]
+    %i[workshop_assessors_ids workshop_managers_ids total_seats name video_call_type meeting_link status]
   end
 
   def remaining_seats

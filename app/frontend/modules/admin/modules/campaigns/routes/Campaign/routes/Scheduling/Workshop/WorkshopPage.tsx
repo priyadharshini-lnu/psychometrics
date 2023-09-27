@@ -3,7 +3,7 @@ import {
   useHistory, useParams,
 } from 'react-router-dom'
 import {
-  Space, Descriptions, Avatar, Skeleton, Divider, Radio, message, Button,
+  Space, Descriptions, Avatar, Skeleton, Divider, Radio, message, Button, Tag,
 } from 'antd'
 import {
   ArrowLeftOutlined, CopyOutlined, EditOutlined,
@@ -21,34 +21,13 @@ import styles from './styles.less'
 import { SubjectList } from './SubjectList'
 import { Activities } from './Activities'
 import { ResourceList } from './ResourceList'
+import { ChangeStatusModal } from './ChangeStatusModal'
 
 const { I18n } = window
-
-interface Resource {
-  id: string
-  fullName: string
-  photoUrl: string | null
-  email: string
+const STATUS_TAG_COLOR = {
+  open: 'success',
+  closed: 'error',
 }
-
-interface ResourcesProps {
-  resources: Resource[]
-}
-const MAX_AVATARS = 3
-const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
-  resources && (
-    <Avatar.Group maxCount={MAX_AVATARS}>
-      {resources.map((resource: Resource) => (
-        <ResourceAvatar
-          key={resource.id}
-          tooltip={resource.fullName}
-          url={resource?.photoUrl}
-          name={resource.fullName}
-        />
-      ))}
-    </Avatar.Group>
-  )
-) || null
 
 export const WorkshopPage: FC<{}> = () => {
   const {
@@ -56,6 +35,7 @@ export const WorkshopPage: FC<{}> = () => {
   } = useParams<{ id: string, campaignId: string, tab: string | undefined }>()
   const [currentTab, setCurrentTab] = useState(tab || 'subjects')
   const [showForm, setShowForm] = useState(false)
+  const [openChangeStatusModal, setOpenChangeStatusModal] = useState(false)
   const history = useHistory()
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
 
@@ -64,7 +44,9 @@ export const WorkshopPage: FC<{}> = () => {
     setCurrentTab(currentTab)
   }
 
-  const { fetchSingle, getResource, updateResource } = useResources<Workshop>(
+  const {
+    fetchSingle, getResource, updateResource, memberAction,
+  } = useResources<Workshop>(
     'workshops',
     {
       basePath: `campaigns/${campaignId}/`,
@@ -127,6 +109,14 @@ export const WorkshopPage: FC<{}> = () => {
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.booked')}>
             {workshop.bookedSeats}
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('common.column.status')} labelStyle={{ alignItems: 'center' }}>
+            <Tag color={STATUS_TAG_COLOR[workshop.status]}>
+              {I18n.t(`administration.workshop.statuses.${workshop.status}`)}
+            </Tag>
+            <Button type="link" onClick={() => setOpenChangeStatusModal(true)} className="p-0">
+              {I18n.t('common.actions.change')}
+            </Button>
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('administration.scheduling.info.managers')}
@@ -193,6 +183,40 @@ export const WorkshopPage: FC<{}> = () => {
           updateWorkshop={updateResource}
         />
       )}
+      {openChangeStatusModal
+        && (
+        <ChangeStatusModal
+          close={() => setOpenChangeStatusModal(false)}
+          memberAction={memberAction}
+          workshop={workshop}
+        />
+        )}
     </>
   )
 }
+
+interface Resource {
+  id: string
+  fullName: string
+  photoUrl: string | null
+  email: string
+}
+
+interface ResourcesProps {
+  resources: Resource[]
+}
+const MAX_AVATARS = 3
+const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
+  resources && (
+    <Avatar.Group maxCount={MAX_AVATARS}>
+      {resources.map((resource: Resource) => (
+        <ResourceAvatar
+          key={resource.id}
+          tooltip={resource.fullName}
+          url={resource?.photoUrl}
+          name={resource.fullName}
+        />
+      ))}
+    </Avatar.Group>
+  )
+) || null

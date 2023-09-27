@@ -27,6 +27,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def change_status?
+        has_permission?(:workshops, :manage)
+      end
+
       def show_relationship?
         has_permission?(:workshops, :manage)
       end

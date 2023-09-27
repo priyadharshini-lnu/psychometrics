@@ -11,22 +11,17 @@ import { formatWorkshopDate } from '~/utils/workshop'
 
 const { I18n } = window
 
-const TAG_COLORS = {
-  // attendance statuses
+const ATTENDANCE_TAG_COLORS = {
   no_status: 'default',
   on_time: 'success',
   late: 'warning',
   no_show: 'error',
   dropped_out: 'warning',
-  // completion statuses
-  not_started: 'default',
-  completed: 'success',
 }
 
 const ResponseTR = t.type({
   id: WorkshopSubjectTR.props.id,
   attendanceStatus: WorkshopSubjectTR.props.attendanceStatus,
-  completionStatus: WorkshopSubjectTR.props.completionStatus,
   schedulingStatus: WorkshopSubjectTR.props.schedulingStatus,
   workshop: t.type({
     id: WorkshopTR.props.id,
@@ -85,17 +80,8 @@ const WorkshopList: React.FC = () => {
           title={I18n.t('administration.scheduling.attendance_status.column_name')}
           id="attendanceStatus"
           render={(_, { attendanceStatus }) => (
-            <Tag color={TAG_COLORS[attendanceStatus]}>
+            <Tag color={ATTENDANCE_TAG_COLORS[attendanceStatus]}>
               {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
-            </Tag>
-          )}
-        />
-        <Resource.Column<Response>
-          title={I18n.t('administration.scheduling.completion_status.column_name')}
-          id="completion_status"
-          render={(_, { completionStatus }) => (
-            <Tag color={TAG_COLORS[completionStatus]}>
-              {I18n.t(`administration.scheduling.completion_status.${completionStatus}`)}
             </Tag>
           )}
         />

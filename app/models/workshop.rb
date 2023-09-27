@@ -21,6 +21,7 @@ class Workshop < ApplicationRecord
   has_many :communication_emails, dependent: :destroy
 
   enum video_call_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :video_call
+  enum status: { open: 0, closed: 1 }
 
   scope :search_query, lambda { |query|
     where('workshops.start_time >= ?', Time.current.beginning_of_day).

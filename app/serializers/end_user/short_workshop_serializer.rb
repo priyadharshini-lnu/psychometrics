@@ -2,7 +2,7 @@
 
 module EndUser
   class ShortWorkshopSerializer < ActiveModel::Serializer
-    attributes :id, :start_time, :meeting_link, :attended, :completed
+    attributes :id, :start_time, :meeting_link, :attended, :closed
 
     def meeting_link
       object.real_meeting_link
@@ -12,8 +12,8 @@ module EndUser
       workshop_subject&.attended?
     end
 
-    def completed
-      workshop_subject&.completed?
+    def closed
+      object.closed?
     end
 
     private

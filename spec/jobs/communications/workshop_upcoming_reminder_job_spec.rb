@@ -62,9 +62,9 @@ describe Communications::WorkshopUpcomingReminderJob, type: :job do
     expect(communication_email).to eq(nil)
   end
 
-  it "doesn't create communication_email for subject if completion_status is completed" do
-    workshop, workshop_invite, workshop_subject = create_workshop__with_subject(2.days.from_now)
-    workshop_subject.update(completion_status: :completed)
+  it "doesn't create communication_email if workshop is closed" do
+    workshop, workshop_invite = create_workshop__with_subject(2.days.from_now)
+    workshop.closed!
     described_class.perform_now
 
     communication_email = CommunicationEmail.find_by(
@@ -74,13 +74,13 @@ describe Communications::WorkshopUpcomingReminderJob, type: :job do
   end
 
   def create_workshop__with_subject(start_time)
-    workshop = create(:workshop, start_time: start_time, campaign: campaign)
+    workshop = create(:workshop, start_time: start_time, campaign: campaign, status: :open)
     workshop_invite = create(:workshop_invite, workshops: [workshop], campaign: campaign)
     workshop_invited_subject = create(
       :workshop_invited_subject, workshop_invite: workshop_invite, user: user, status: :pending
     )
     workshop_subject = create(:workshop_subject, workshop: workshop, user: user,
-      campaign: campaign, workshop_invited_subject: workshop_invited_subject, completion_status: :not_started)
+      campaign: campaign, workshop_invited_subject: workshop_invited_subject)
     [workshop, workshop_invite, workshop_subject]
   end
 end

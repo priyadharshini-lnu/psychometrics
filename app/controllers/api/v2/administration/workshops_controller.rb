@@ -7,8 +7,9 @@ module Api
     validates_request_schema :create_bulk_workshops, Api::V2::Workshop::CreateAllContract.new
     validates_request_schema :bulk_update_subjects,
                              Api::V2::Workshop::Schema.bulk_update_subjects
+    validates_request_schema :change_status, Api::V2::Workshop::Schema.change_status_request
 
-    prepend_before_action :set_workshop, only: %i[bulk_update_subjects update]
+    prepend_before_action :set_workshop, only: %i[bulk_update_subjects update change_status]
 
     def bulk_update_subjects
       WorkshopSubjects::BulkUpdateSubjects.call!(@workshop, bulk_subject_params)
@@ -28,6 +29,12 @@ module Api
       else
         jsonapi_render json: response[:workshops]
       end
+    end
+
+    def change_status
+      @workshop.update!(status: params.dig(:data, :attributes, :status))
+
+      jsonapi_render json: @workshop
     end
 
     def update

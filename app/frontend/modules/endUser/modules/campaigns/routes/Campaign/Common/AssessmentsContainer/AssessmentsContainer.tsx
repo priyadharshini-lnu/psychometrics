@@ -60,9 +60,9 @@ export const AssessmentsContainer = ({
 }) => {
   let assessmentGroups = [...groups]
   const inviteDetails = campaign.workshopInvite
-  const bookingDetails = campaign.workshop
-  const workshopCompleted = bookingDetails ? bookingDetails.completed : false
-  const workshopAttended = bookingDetails ? bookingDetails.attended : false
+  const { workshop } = campaign
+  const workshopCompleted = workshop ? workshop.completed : false
+  const workshopAttended = workshop ? workshop.attended : false
   const workshopActivities = campaign.userAssessments
     .filter(assessment => assessment?.workshopActivity && !assessment?.prework)
   const hasAssessmentCenterGroup = _.find(assessmentGroups, { groupType: 'assessment_center' })
@@ -103,6 +103,7 @@ export const AssessmentsContainer = ({
               prevGroup = group
               let userAssessments: UserAssessment[] = []
               if (isAssessmentCenter) {
+                if (workshop.closed) return
                 userAssessments = workshopCompleted ? [] : workshopActivities
               } else {
                 userAssessments = _.compact(
@@ -124,7 +125,7 @@ export const AssessmentsContainer = ({
                     <Title level={5}>{group.name}</Title>
                     <Space direction="vertical" size="middle" className="w-100">
                       {isAssessmentCenter ? (
-                        <InviteDeatilsContainer inviteDetails={inviteDetails} bookingDetails={bookingDetails} />
+                        <InviteDeatilsContainer inviteDetails={inviteDetails} bookingDetails={workshop} />
                       ) : null}
                       <Row gutter={[16, 16]}>
                         {userAssessments.map((userAssessment) => {
@@ -143,7 +144,7 @@ export const AssessmentsContainer = ({
                               <AssessmentCard
                                 view={view}
                                 userAssessment={userAssessment}
-                                workshopBooked={!!bookingDetails}
+                                workshopBooked={!!workshop}
                                 workshopAttended={workshopAttended}
                                 disabled={isDisabled}
                                 prevCompleted={prevCompleted}

@@ -13,7 +13,7 @@ module EndUser
     end
 
     def meeting_time
-      object.linked_assessor_user_assessment&.schedule_time
+      object.linked_assessor_user_assessment&.schedule_time&.iso8601
     end
 
     def status
