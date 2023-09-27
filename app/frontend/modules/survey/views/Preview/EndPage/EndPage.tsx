@@ -38,7 +38,7 @@ const EndPage: FC<Props> = ({
   factors,
   showScoringOnEndPage,
   endOfAssessmentElementProps,
-  nextAssessmentUrl,
+  // nextAssessmentUrl,
   otherPendingAssessmentCount,
 }) => {
   const location = useLocation()
@@ -91,7 +91,7 @@ const EndPage: FC<Props> = ({
         I18n={I18n}
         userAssessmentId={user_assessment_id}
       />
-      {nextAssessmentUrl && (
+      {/* {nextAssessmentUrl && (
         <>
           <div className={styles.links}>
             <a href={nextAssessmentUrl}>
@@ -99,7 +99,7 @@ const EndPage: FC<Props> = ({
             </a>
           </div>
         </>
-      )}
+      )} */}
       {showScoringOnEndPage && (
         <>
           <div className={styles.links}>
