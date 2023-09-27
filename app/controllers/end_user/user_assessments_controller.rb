@@ -5,6 +5,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   layout 'layouts/end_user'
   initial_state_for %i[pass begin]
   before_action :set_user_assessment, only: %i[assessment show pass begin]
+  before_action :can_start_based_on_sequencing, only: %i[pass show begin]
 
   def assessment
     @selected_locale = @user_assessment.selected_locale || user_locale
@@ -58,6 +59,12 @@ class EndUser::UserAssessmentsController < ApplicationController
   end
 
   private
+
+  def can_start_based_on_sequencing
+    return if UserAssessments::CanStartBasedOnSequencing.call!(@user_assessment)
+
+    redirect_to campaign_path(@user_assessment.campaign_id)
+  end
 
   def build_piped_context
     {

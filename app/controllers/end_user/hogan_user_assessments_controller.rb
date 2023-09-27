@@ -2,6 +2,7 @@
 
 class EndUser::HoganUserAssessmentsController < ApplicationController
   before_action :set_user_assessment, only: %i[pass redirect]
+  before_action :can_start_based_on_sequencing, only: %i[pass]
 
   def redirect
     @user_assessment.update(status: :completed, completed_at: Time.current) if params[:status] == 'Completed'
@@ -32,6 +33,12 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
   end
 
   private
+
+  def can_start_based_on_sequencing
+    return if UserAssessments::CanStartBasedOnSequencing.call!(@user_assessment)
+
+    redirect_to campaign_path(@user_assessment.campaign_id)
+  end
 
   def set_user_assessment
     @user_assessment = UserAssessment.find_by!(id: params[:id], evaluator_id: current_user.id)

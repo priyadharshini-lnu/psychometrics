@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserAssessment < ApplicationRecord
+  DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
+
   belongs_to :assessment
   belongs_to :campaign
   belongs_to :norm
@@ -46,6 +48,8 @@ class UserAssessment < ApplicationRecord
   scope :pending_assessments, lambda {
     where('subject_id = evaluator_id').where.not(status: %i[completed timed_out ineligible])
   }
+  scope :deemed_completed, -> { where(status: DEEMED_COMPLETED_STATUS) }
+  scope :deemed_incomplete, -> { where.not(status: DEEMED_COMPLETED_STATUS) }
 
   before_save :set_default_relationship
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
@@ -216,6 +220,10 @@ class UserAssessment < ApplicationRecord
     return false unless campaign_user
 
     !campaign_user.in_schedule?
+  end
+
+  def deemed_completed?
+    DEEMED_COMPLETED_STATUS.include?(status)
   end
 
   private
