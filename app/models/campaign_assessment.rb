@@ -5,6 +5,7 @@ class CampaignAssessment < ApplicationRecord
   belongs_to :assessment
   belongs_to :norm
   belongs_to :assessor_form, class_name: 'Assessment'
+  belongs_to :campaign_assessment_group
 
   scope :ungrouped, -> { where(campaign_assessment_group_id: nil) }
 

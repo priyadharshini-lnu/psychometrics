@@ -138,7 +138,7 @@ const NominationListComponent = ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <SafeHTML html={nominationHelp.content} />
+        <SafeHTML html={nominationHelp.content} config="adminRichText" />
       </Modal>
       )}
     </ThreesixtyCard>

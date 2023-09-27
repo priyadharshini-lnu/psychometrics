@@ -3344,6 +3344,8 @@ en:
         title: Factor's options
       toggle_status:
         successfully: Factor was successfully updated.
+      update:
+        successfully: Factor %{name} was successfully updated.
     participants:
       tabs:
         assessors: Assessors
@@ -3559,6 +3561,10 @@ en:
       general_settings:
         2fa: Enable Two factor authentication
         dp_consent: Enable Data Processing consent
+        dp_consent_custom: Customise Data Processing consent
+        dp_consent_version: Policy Version
+        errors:
+          policy_version_format: Only whole numbers are allowed
         live_chat: Enable Live Chat
         locales_label: Locales
         name_label: Name
@@ -4258,10 +4264,12 @@ en:
           enable: With images
           preview: Preview on click
           size:
-            large: Large
-            medium: Medium
-            small: Small
+            large: L
+            medium: M
+            small: S
             title: Grid size
+            x-small: XS
+            xx-small: XXS
         max_duration: Max duration
         multiple_choice_types:
           dropdown: Dropdown

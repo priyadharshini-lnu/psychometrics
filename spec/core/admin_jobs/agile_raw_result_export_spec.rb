@@ -78,8 +78,8 @@ describe AdminJobs::AgileRawResultExport do
         assessment.id.to_s,
         assessment.name,
         I18n.t("activerecord.attributes.users_result.statuses.#{users_result.real_status}", locale: :en),
-        users_result.started_at.try(:strftime, '%D %r'),
-        users_result.completed_at.try(:strftime, '%D %r'),
+        users_result.started_at.to_s,
+        users_result.completed_at.to_s,
         nil,
         nil,
         'nf-1-group',
@@ -87,8 +87,8 @@ describe AdminJobs::AgileRawResultExport do
         'equal',
         '1.502',
         '39c19fb5-08e9-4030-adc8-c282f4b1eb1a',
-        'Mon, 09 May 2022 07:48:50 +0000',
-        'Mon, 09 May 2022 07:48:51 +0000'
+        '2022-05-09T07:48:50+00:00',
+        '2022-05-09T07:48:51+00:00'
       ]
 
       expect(actual_second_row).to eq(expected_second_row.flatten)

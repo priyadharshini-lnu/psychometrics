@@ -59,8 +59,9 @@ exports[`Survey - Components - UnsupportedBrowsers Should match snapshot with gi
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <div
+                <img
                   class="browserIcon"
+                  src="div"
                   title="Mozilla Firefox"
                 />
                 <div>
@@ -82,8 +83,9 @@ exports[`Survey - Components - UnsupportedBrowsers Should match snapshot with gi
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <div
+                <img
                   class="browserIcon"
+                  src="div"
                   title="Google Chrome"
                 />
                 <div>
@@ -105,8 +107,9 @@ exports[`Survey - Components - UnsupportedBrowsers Should match snapshot with gi
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <div
+                <img
                   class="browserIcon"
+                  src="div"
                   title="Microsoft Edge"
                 />
                 <div>

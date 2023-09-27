@@ -32,6 +32,10 @@ export const isMediaResponseQuestion = (question: Question) => (
   ['FileUpload', 'AudioResponse', 'VideoResponse'].includes(question.type as string)
 )
 
+export const isRichTextTextEntryQuestion = (question: Question): boolean => (
+  question.type === 'TextEntry' && question.props.type === 'RichText'
+)
+
 export const isMandatory = (question: Question) => (
   question.required_validation
     && question.required_validation.enabled

@@ -60,12 +60,13 @@ module AdministrationHelper
     sort_link(filter_form, name, t(".#{name}") + tail)
   end
 
-  def render_error_notification(resource)
+  def render_error_notification(resource, full_messages: true)
     return unless resource.errors.any?
 
+    messages = full_messages ? resource.errors.full_messages : resource.errors.messages.values.flatten
     content_tag :div, class: 'alert alert-danger' do
       concat content_tag 'strong', 'There are some problems:'
-      concat content_tag 'ul', resource.errors.full_messages.
+      concat content_tag 'ul', messages.
         map { |msg| content_tag('li', raw(msg)) }.join.html_safe, class: 'list-unstyled'
     end
   end

@@ -122,7 +122,7 @@ const ReportListComponent = ({
           onCancel={() => setShowHelp(false)}
           footer={null}
         >
-          <SafeHTML html={reportHelp.content} />
+          <SafeHTML html={reportHelp.content} config="adminRichText" />
         </Modal>
         )}
       </ThreesixtyCard>

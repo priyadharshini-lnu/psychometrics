@@ -6,8 +6,9 @@ require 'swagger_helper'
 describe 'Users' do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
-  let(:campaign) { create(:campaign, project: project) }
+  let(:campaign) { create(:campaign, project: project, status: :active) }
   let(:user) { create(:user, project: project) }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
@@ -55,7 +56,7 @@ describe 'Users' do
 
         let(:project_id) { project.id }
         let(:user_id) { user.id }
-        let!(:user_assessment) { create(:user_assessment, subject: user, campaign: campaign) }
+        let!(:user_assessment) { create(:user_assessment, subject: user, evaluator: user, campaign: campaign) }
         let(:assessment) { user_assessment.assessment }
         before do
           allow_any_instance_of(Assessment).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)

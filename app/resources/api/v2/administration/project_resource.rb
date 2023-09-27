@@ -5,7 +5,8 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   attributes :name, :number, :subdomain, :logo, :created_at, :updated_at,
              :locales, :disabled, :privacy_consent, :ancestry, :client_id,
-             :url, :text, :link, :enable_privacy_link, :enable_live_chat, :live_chat_token
+             :url, :text, :link, :enable_privacy_link, :enable_live_chat, :live_chat_token,
+             :custom_privacy_consent, :custom_privacy_consent_texts, :custom_privacy_policy_version
 
   has_one :privacy_link, foreign_key: :client_id
   has_one :creator, foreign_key: :created_by_id
@@ -64,6 +65,21 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   def updated_at
     @model.decorate.updated_at
+  end
+
+  def custom_privacy_consent_texts=(texts)
+    texts.each do |text|
+      @model.send(:custom_privacy_consent_text=, text[:text], locale: text[:locale])
+    end
+  end
+
+  def custom_privacy_consent_texts
+    (@model.locales.presence || ['en']).map do |locale|
+      {
+        locale: locale,
+        text: @model.custom_privacy_consent_text(locale: locale)
+      }
+    end
   end
 
   def self.records(opts = {})

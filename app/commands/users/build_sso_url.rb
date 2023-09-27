@@ -2,10 +2,9 @@
 
 module Users
   class BuildSsoUrl < BaseCommand
-    TTL = 30.minutes
     attr_reader :project, :user, :ttl
 
-    def initialize(project, user, ttl = 30.minutes)
+    def initialize(project, user, ttl = 4.hours)
       @project = project
       @user = user
       @ttl = ttl

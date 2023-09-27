@@ -46,8 +46,8 @@ module Exports
               sheet.add_row [assign.encode_id,
                              user_name(assign),
                              assign.user_email,
-                             assign.started_at.try(:strftime, '%D %r'),
-                             assign.completed_at.try(:strftime, '%D %r'),
+                             assign.started_at.to_s,
+                             assign.completed_at.to_s,
                              norm ? norm.name : '',
                              I18n.t("activerecord.attributes.assign.statuses.#{assign.status}"),
                              *normed_results.values]

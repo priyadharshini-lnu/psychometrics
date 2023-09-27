@@ -168,10 +168,14 @@ class FactorsTable extends Component {
   prepareRows () {
     const { module, module: { props } } = this.props
     const sourceFactors = _.get(props, ['source', 'factors'], [])
+    const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
+    const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
     const factorIds = sourceFactors.map(f => f.id)
     if (ResultStore.realResults) {
       if (props.mode === 'topFactors') {
-        this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(props.minPosition, props.maxPosition, factorIds, TopFactorType.Any)
+        this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(
+          props.minPosition, props.maxPosition, factorIds, TopFactorType.Any, scoreRangeMin, scoreRangeMax,
+        )
       } else {
         const factorData = ResultStore.results[module.assessment_id].getTopFactors(0, factorIds.length, factorIds, TopFactorType.Any)
         this.factorsData = _.sortBy(factorData, f => factorIds.indexOf(f.id))
@@ -333,6 +337,14 @@ class FactorsTable extends Component {
     )
   }
 
+  renderNoData () {
+    return (
+      <tr>
+        <td className={styles.description}>{I18nStore.t('reports.modules.factors_table.no_data')}</td>
+      </tr>
+    )
+  }
+
   renderHeader (headerShown) {
     if (!headerShown) {
       return null
@@ -360,11 +372,12 @@ class FactorsTable extends Component {
       backgroundColor: backgroundColor || false,
     }
     this.prepareRows()
+    const hasData = this.factorsData.length > 0
     return (
       <table className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })} style={style}>
-        {this.renderHeader(model.props.showHeader)}
+        {hasData && this.renderHeader(model.props.showHeader)}
         <tbody>
-          {this.renderFactors()}
+          {hasData ? this.renderFactors() : this.renderNoData()}
         </tbody>
       </table>
     )

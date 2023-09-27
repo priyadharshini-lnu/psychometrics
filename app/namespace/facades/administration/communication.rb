@@ -133,15 +133,13 @@ module Facades
       def fetch_projects(user)
         return Client.none if form.client_id.blank?
 
-        client_policy_scope(user).projects_of(form.client_id).enabled
+        client_policy_scope(user).where(ancestry: form.client_id).enabled
       end
 
       def fetch_campaigns(user)
         return Client.none if form.project_id.blank?
 
-        return form.project.project_campaigns.common if form.project.migrated?
-
-        client_policy_scope(user).campaigns_of(form.project_id).enabled
+        ::Administration::CampaignPolicy::Scope.new(user, Campaign).resolve.where(project_id: form.project_id)
       end
 
       def fetch_sub_campaigns(user)

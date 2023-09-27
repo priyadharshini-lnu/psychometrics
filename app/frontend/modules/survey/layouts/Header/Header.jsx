@@ -67,7 +67,7 @@ export class Header extends Component {
       block: {},
       question: {},
       flow: {},
-      instructions: { [null]: { content: instructions.content } },
+      instructions: { 0: { content: instructions.content } },
     }
 
     _.each(blocksWithQuestions, (block) => {

@@ -97,7 +97,7 @@ const AddAssessmentModal: React.FC<Props> = ({
             />
           </Form.Item>
           <Form.Item name="assessmentId" label={localI18n('assessment')} rules={[{ required: true }]}>
-            <Select>
+            <Select optionFilterProp="children" showSearch>
               {assessments.map(a => (
                 <Select.Option key={a.id} value={a.id}>
                   {a.name}

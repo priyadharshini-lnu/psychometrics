@@ -20,6 +20,7 @@ interface SanitizeConfig {
   label: Config
   error: Config
   report: Config
+  richTextQuestion: Config
 }
 
 const sanitizeConfig: SanitizeConfig = {
@@ -39,6 +40,16 @@ const sanitizeConfig: SanitizeConfig = {
   report: {
     ALLOWED_TAGS: ['img'],
     ALLOWED_ATTR: ['src', 'width', 'height', 'style'],
+  },
+  // Note: Do not allow style attributes for questions for security reasons.
+  // Only basic formatting will be supported.
+  // If custom styles are required, we can allow class attribute and create pre-defined classes
+  richTextQuestion: {
+    ALLOWED_TAGS: [
+      'span', 'div', 'p', 'ul', 'ol', 'li', 'b', 'strong', 'sub', 'sup', 'em',
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    ],
+    ALLOWED_ATTR: ['dir'],
   },
 }
 

@@ -25,7 +25,7 @@ interface Props {
   }>
   allowDictation: boolean
   dateFormat: DateFormat
-  maxLength: number
+  maxLength: number | null
   contactList: string[]
   subject: string
   contacts: { [key in EmailContactType]: string[] }
@@ -37,12 +37,15 @@ interface Props {
   managerName: string
   title: string
   titleDescription: string
+  predefinedRichText?: string
+  usePredefinedRichText?: boolean
   type:
     | 'Form'
     | 'Chat'
     | 'SingleLine'
     | 'MultiLine'
     | 'EssayTextBox'
+    | 'RichText'
     | 'Email'
     | 'Password'
     | 'DateEntry'

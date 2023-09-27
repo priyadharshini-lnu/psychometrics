@@ -2491,6 +2491,7 @@ en:
         your_potential_suitability: Your Potential Suitability
       factors_table:
         description: Description
+        no_data: There is no data available for this section.
         rank: Rank
         score: Score
       gap_assessment:

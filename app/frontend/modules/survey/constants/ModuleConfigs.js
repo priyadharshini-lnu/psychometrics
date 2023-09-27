@@ -29,6 +29,7 @@ const ModuleConfigs = {
       SingleLine: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange', 'Content'],
       MultiLine: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange'],
       EssayTextBox: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange'],
+      RichText: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange'],
       Password: ['MinLength', 'MaxLength', 'CharacterRange'],
       Email: ['MinLength', 'MaxLength', 'CharacterRange'],
       DateEntry: ['NotInPast', 'NotInFuture'],

@@ -15,6 +15,9 @@ class HomeController < ApplicationController
       redirect_to_campaign_or_return_url('assessment_completed') && return if user_assessment.completed?
       redirect_to_campaign_or_return_url('assessment_timed_out') && return if user_assessment.timed_out?
       redirect_to_campaign_or_return_url('assessment_ineligible') && return if user_assessment.ineligible?
+      unless UserAssessments::CanStartBasedOnSequencing.call!(user_assessment)
+        return redirect_to_campaign_or_return_url('previous_assessment_incomplete')
+      end
 
       campaign_user = user_assessment.campaign_user
       CampaignUsers::BeginCampaign.call(campaign_user) if campaign_user.not_started?
