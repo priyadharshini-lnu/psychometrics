@@ -57,8 +57,6 @@ class HomeController < ApplicationController
 
     redirect_path = if campaign_id.nil?
                       root_path
-                    elsif params[:user_assessment_id] && workshop_activity?
-                      workshop_page_path(user_assessment.campaign.active_workshop)
                     else
                       campaign_path(campaign_id)
                     end
@@ -113,9 +111,5 @@ class HomeController < ApplicationController
 
   def user_assessment
     @user_assessment ||= UserAssessment.find(params[:user_assessment_id])
-  end
-
-  def workshop_activity?
-    user_assessment.workshop_activity?
   end
 end
