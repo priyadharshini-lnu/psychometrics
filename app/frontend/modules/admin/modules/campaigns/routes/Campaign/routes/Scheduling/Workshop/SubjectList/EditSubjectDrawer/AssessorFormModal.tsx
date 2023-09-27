@@ -136,11 +136,12 @@ export const AssessorFormModal:FC<Props> = (props) => {
         <Form.Item className="mb-1" label="Meeting Link" name="meetingLinkType">
           <Radio.Group>
             <Radio value="none">{I18n.t('administration.scheduling.subjects.meeting_link_none')}</Radio>
+            <Radio value="internal">{I18n.t('administration.scheduling.subjects.internal')}</Radio>
             <Radio value="custom">{I18n.t('administration.scheduling.subjects.meeting_link_custom')}</Radio>
           </Radio.Group>
         </Form.Item>
         {assessorFormInstance.getFieldValue('meetingLinkType')
-        && assessorFormInstance.getFieldValue('meetingLinkType') !== 'none' ? (
+        && assessorFormInstance.getFieldValue('meetingLinkType') === 'custom' ? (
           <Form.Item
             className="mb-0"
             wrapperCol={{ offset: 6 }}

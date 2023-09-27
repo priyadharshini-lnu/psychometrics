@@ -3969,6 +3969,7 @@ en:
         language: Language
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
+        meeting_link_internal: Internal
         meeting_link_none: None
         no_change: No Change
         override_existing: Override existing schedules for subjects

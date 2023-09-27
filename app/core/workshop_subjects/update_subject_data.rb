@@ -60,6 +60,7 @@ module WorkshopSubjects
       )
       user_assessment.schedule_time = assessment_data[:schedule_time]
       user_assessment.meeting_link = assessment_data[:meeting_link]
+      user_assessment.meeting_type = assessment_data[:meeting_link_type]
       user_assessment.users_result = UsersResult.create! if user_assessment.users_result.blank?
       user_assessment.save!
     end

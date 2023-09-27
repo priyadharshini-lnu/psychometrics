@@ -17,12 +17,14 @@ class UserAssessment < ApplicationRecord
   has_one :iiht_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
+  has_one :meeting_room, as: :meetable, dependent: :destroy
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
   enum manager_nomination_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_nomination
   enum evaluator_nomination_status: { waiting: 0, completed: 1, declined: 2 }, _prefix: :evaluator_nomination
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
+  enum meeting_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :meeting
 
   has_one :threesixty_campaign, through: :campaign
 
@@ -73,6 +75,7 @@ class UserAssessment < ApplicationRecord
   }
 
   before_save :set_default_relationship
+  after_save -> { create_meeting_room! }, if: -> { meeting_internal? && meeting_room.blank? }
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
   after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
@@ -81,7 +84,6 @@ class UserAssessment < ApplicationRecord
   after_commit -> { set_campaign_user_started_at }, if: proc {
                                                           status_previously_changed? && in_progress?
                                                         }, on: %i[update]
-
   alias result users_result
 
   def set_campaign_user_started_at
