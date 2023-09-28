@@ -33,6 +33,7 @@ module Api
             @model,
             [
               'index',
+              'create',
               %w[manage update],
               %w[remove destroy]
             ],

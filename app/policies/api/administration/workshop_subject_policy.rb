@@ -11,6 +11,10 @@ module Api
         can_view_workshop?
       end
 
+      def create?
+        has_permission?(:workshops, :manage)
+      end
+
       def destroy?
         has_permission?(:workshops, :manage)
       end

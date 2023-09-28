@@ -10,6 +10,10 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
 
   ransack_filters %i[user_full_name_or_user_email_cont user_id_eq campaign_id_eq]
 
+  audit_log_for :create, payload: '*'
+
+  before_create { @model.campaign_id = context[:campaign].id }
+
   before_update do
     @model.attendance_status = 'no_show' if @model.attended == true
   end

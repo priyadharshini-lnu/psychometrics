@@ -71,6 +71,9 @@ export const Schema = {
     user: {
       type: 'users',
     },
+    workshop: {
+      type: 'workshops',
+    },
   },
 }
 

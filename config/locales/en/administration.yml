@@ -3844,6 +3844,7 @@ en:
           success_message: Assessment Center subject %{subject_name}.
       add_activity: Add Activity
       add_assessment_center: Add Assessment Center
+      add_subject: Add subject
       assessment_center_form:
         assessor_ids_label: Assessors
         back: Back
@@ -3887,6 +3888,7 @@ en:
         no_show: No Show
         no_status: No Status
         on_time: On Time
+      campaign_participants: Campaign participants
       columns:
         activity: Activity
         assessor: Assessor
@@ -3951,6 +3953,7 @@ en:
         late_rescheduled: Late Rescheduled
         rescheduled: Rescheduled
         scheduled: Scheduled
+      search_participant: Search campaign participants
       status:
         completed: Completed
         dropped_out: Dropped Out
