@@ -6,7 +6,6 @@ import {
 import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import Modals from '~/modules/admin/components/Modals/'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import array from '~/utils/array'
 import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
@@ -120,29 +119,6 @@ const AssessmentsReports: React.FC<Props> = ({
 
   return (
     <div>
-      <Breadcrumb
-        request={{
-          fields: ['project', 'campaign', 'client'],
-          data: {
-            campaignId: parsedCampaignId,
-          },
-        }}
-        crumbs={[{
-          link: () => '/administration',
-          label: () => I18n.t('administration.clients.tenancies'),
-        }, {
-          link: state => `/administration/clients/${state.client.id}/projects`,
-          label: state => state.client.name,
-        }, {
-          link: state => `/administration/projects/${state.project.id}/new_campaigns`,
-          label: state => state.project.name,
-        }, {
-          link: state => `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
-          label: state => state.campaign?.name,
-        }, {
-          label: () => user.email,
-        }]}
-      />
       <Row justify="space-between" className="pm">
         <PageHeader
           ghost={false}

@@ -118,7 +118,7 @@ const AddReportModal: React.FC<Props> = ({
             <Radio.Group>
               <Space direction="vertical">
                 {operationsOption.map(operation => (
-                  <Radio value={operation}>
+                  <Radio key={operation} value={operation}>
                     {I18n.t(
                       `campaign_report.form.operation_options.${operation}`,
                     )}

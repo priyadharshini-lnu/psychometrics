@@ -155,7 +155,7 @@ const UserList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}`}>
+                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
                   {id}
                 </Link>
               )}

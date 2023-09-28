@@ -13,6 +13,10 @@ import {
 } from './Scheduling'
 import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
+import UsersAssessmentsReports
+  from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
+import AssessorsDetails
+  from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
@@ -50,6 +54,8 @@ const routes = [
   { path: '/datasheet', component: Datasheet },
   { path: '/admins', component: Admins },
   { path: '/options', component: CampaignOptions },
+  { path: '/participants/users/:id', component: UsersAssessmentsReports },
+  { path: '/participants/assessors/:id', component: AssessorsDetails },
 ]
 
 export default routes
