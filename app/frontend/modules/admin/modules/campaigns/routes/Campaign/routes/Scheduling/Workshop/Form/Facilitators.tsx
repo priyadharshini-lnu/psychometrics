@@ -263,7 +263,10 @@ export const Facilitators: React.FC<Props> = ({
                         label={I18n.t('administration.scheduling.assessment_center_form.seats_label')}
                         name="total_seats"
                         rules={[
-                          { required: true },
+                          {
+                            required: true,
+                            message: I18n.t('validations.blank'),
+                          },
                           { type: 'number', min: 1 },
                         ]}
                       >

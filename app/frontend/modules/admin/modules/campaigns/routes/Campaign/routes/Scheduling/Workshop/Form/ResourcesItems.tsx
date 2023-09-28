@@ -47,7 +47,12 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
               label="Meeting Link"
               name="meeting_link"
               {...fieldLayout}
-              rules={[{ required: true }, { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }]}
+              rules={[{ required: true },
+                { type: 'url', message: I18n.t('administration.scheduling.errors.invalid_url') },
+                {
+                  pattern: /^https:\/\/(.*)/,
+                  message: I18n.t('administration.scheduling.errors.meeting_link_https'),
+                }]}
             >
               <Input />
             </Form.Item>
@@ -96,7 +101,7 @@ export const ResourcesItems: React.FC<Props> = ({ videoCallTypeValue, showMeetig
                     {...fieldLayout}
                     rules={[
                       {
-                        type: 'url',
+                        type: 'url', message: I18n.t('administration.scheduling.errors.invalid_url'),
                       },
                     ]}
                   >

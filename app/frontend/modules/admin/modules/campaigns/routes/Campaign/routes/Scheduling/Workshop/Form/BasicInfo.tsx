@@ -98,12 +98,21 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
         title={I18n.t('administration.scheduling.assessment_center_form.basic_info_panel.title')}
         description={I18n.t('administration.scheduling.assessment_center_form.basic_info_panel.description')}
       >
-        <Form requiredMark={false} className={styles.form} layout="vertical" form={form} initialValues={initialValues}>
+        <Form
+          requiredMark={false}
+          className={styles.form}
+          layout="vertical"
+          form={form}
+          initialValues={initialValues}
+        >
           <Form.Item
             name="dates"
             label={I18n.t('administration.scheduling.assessment_center_form.dates_label')}
             {...fieldLayout}
-            rules={[{ required: true }]}
+            rules={[{
+              required: true,
+              message: I18n.t('administration.scheduling.errors.date_required'),
+            }]}
           >
             <DatePicker
               value={null}
@@ -123,17 +132,19 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
               }}
               style={{ width: '200px' }}
             />
-            <div className={styles.dateTags}>
-              {selectedDates.map(date => (
-                <Tag
-                  key={date.toISOString()}
-                  closable
-                  onClose={() => handleTagClose(date)}
-                >
-                  {date.format('Do, MMMM, YYYY').toString()}
-                </Tag>
-              ))}
-            </div>
+            {selectedDates.length ? (
+              <div className={styles.dateTags}>
+                {selectedDates.map(date => (
+                  <Tag
+                    key={date.toISOString()}
+                    closable
+                    onClose={() => handleTagClose(date)}
+                  >
+                    {date.format('Do, MMMM, YYYY').toString()}
+                  </Tag>
+                ))}
+              </div>
+            ) : null}
           </Form.Item>
           <Row gutter={16}>
             <Col xs={24} sm={12} lg={8}>
@@ -151,7 +162,10 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
                 name="time"
                 label="Time"
                 {...fieldLayout}
-                rules={[{ required: true }]}
+                rules={[{
+                  required: true,
+                  message: I18n.t('validations.blank'),
+                }]}
               >
                 <TimePicker format="h:mm A" use12Hours minuteStep={15} showNow={false} style={{ width: '100%' }} />
               </Form.Item>
@@ -258,7 +272,15 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
               label="Meeting Link"
               name="meeting_link"
               {...fieldLayout}
-              rules={[{ required: true }, { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }]}
+              rules={[{
+                required: true,
+                message: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+              },
+              { type: 'url', message: I18n.t('administration.scheduling.errors.invalid_url') },
+              {
+                pattern: /^https:\/\/(.*)/,
+                message: I18n.t('administration.scheduling.errors.meeting_link_https'),
+              }]}
             >
               <Input />
             </Form.Item>

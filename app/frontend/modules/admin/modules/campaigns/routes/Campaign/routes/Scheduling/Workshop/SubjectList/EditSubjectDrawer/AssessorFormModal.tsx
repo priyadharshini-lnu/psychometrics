@@ -67,7 +67,13 @@ export const AssessorFormModal:FC<Props> = (props) => {
 
   const meetingLinkType = assessorFormInstance.getFieldValue('meetingLinkType')
   const meetingLinkFieldRules: Rule[] = meetingLinkType === 'custom'
-    ? [{ required: true }, { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }] : [{ required: true }]
+    ? [{ required: true }, {
+      type: 'url',
+      message: I18n.t('administration.scheduling.errors.invalid_url'),
+    }, {
+      pattern: /^https:\/\/(.*)/,
+      message: I18n.t('administration.scheduling.errors.meeting_link_https'),
+    }] : [{ required: true }]
 
   return (
     <Modal
