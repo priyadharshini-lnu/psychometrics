@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Space, Typography, Select } from 'antd'
 import _ from 'lodash'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
@@ -71,7 +71,7 @@ class Properties extends Component {
     if (!View) {
       return
     }
-    return <View {...this.props} />
+    return <View {...this.props} key={model.id} />
   }
 
   render () {

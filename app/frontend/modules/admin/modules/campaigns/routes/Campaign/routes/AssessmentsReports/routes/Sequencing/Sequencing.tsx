@@ -1,7 +1,7 @@
 import findIndex from 'lodash/findIndex'
 import pick from 'lodash/pick'
-import React, {
-  FC, useEffect, useState, useMemo, useRef,
+import {
+  Fragment, FC, useEffect, useState, useMemo, useRef,
 } from 'react'
 import { createPortal, unstable_batchedUpdates } from 'react-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -96,6 +96,9 @@ const SequencingComponent: FC<PropsFromRedux> = ({
   ), [assessments])
 
   const sortedGroups = useMemo(() => groups.sort((groupA, groupB) => groupA.position - groupB.position), [groups])
+  const isAssessmentCenterGroup = useMemo(() => sortedGroups.some(
+    group => group.groupType === 'assessment_center',
+  ), [sortedGroups])
 
   const prefixedUngroupedAssessmentIds = useMemo(() => (unGroupedAssessments
     .sort((groupA, groupB) => groupA.position - groupB.position)
@@ -146,8 +149,8 @@ const SequencingComponent: FC<PropsFromRedux> = ({
     )
   }
 
-  const handleAddGroup = () => {
-    createGroup(parsedCampaignId, groups.length + 1).then(({ response }) => {
+  const handleAddGroup = (groupType: string) => {
+    createGroup(parsedCampaignId, groups.length + 1, groupType).then(({ response }) => {
       unstable_batchedUpdates(() => {
         setGroups(prevGroups => [...prevGroups, response])
         setPastGroups(prevGroups => [...prevGroups, response])
@@ -385,6 +388,14 @@ const SequencingComponent: FC<PropsFromRedux> = ({
       return null
     }
 
+    if (isAssessmentCenterGroup) {
+      const droppedOntoGroupId = getItemIdFromSortingId(overId)
+      const groupDroppedOnto = groups.find(group => group.id === droppedOntoGroupId)
+      if (groupDroppedOnto?.groupType === 'assessment_center') {
+        return null
+      }
+    }
+
     if (active.id in prefixedGroupWithPrefixedAssessmentIds && overId) {
       handleGroupDragnDrop(activeId, overId)
       return null
@@ -475,7 +486,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                       id={`${GROUP_ID_PREFIX}${group.id}`}
                     >
                       {sortedGroupedAssessments.map(groupedAssessment => (
-                        <React.Fragment key={groupedAssessment.id}>
+                        <Fragment key={groupedAssessment.id}>
                           <Row gutter={[8, 8]} key={groupedAssessment.id}>
                             <AssessmentSortable
                               disabled={isSortingContainer}
@@ -486,7 +497,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                             />
                           </Row>
                           <br />
-                        </React.Fragment>
+                        </Fragment>
                       ))}
                     </SortableContext>
                   </GroupSortable>
@@ -497,6 +508,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
           <Col xs={24} sm={24} md={12} lg={8}>
             <AddGroup
               addNewGroup={handleAddGroup}
+              hideAddAssessmentCenterBtn={!isAssessmentCenterGroup}
             />
           </Col>
         </Row>
@@ -515,12 +527,12 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                     isLoading={false}
                   >
                     {getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).map(groupedAssessment => (
-                      <React.Fragment key={groupedAssessment.id}>
+                      <Fragment key={groupedAssessment.id}>
                         <Row gutter={[8, 8]}>
                           <Assessment span={24} assessment={groupedAssessment} />
                         </Row>
                         <br />
-                      </React.Fragment>
+                      </Fragment>
                     ))}
                   </GroupedAssessmentContainer>
                 ) : (

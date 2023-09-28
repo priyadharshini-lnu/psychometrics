@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { DatePicker } from 'antd'
 
 import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'

@@ -5,7 +5,7 @@ module Assessments
     attributes :id, :name, :category, :disabled, :created_at,
                :flow, :norm_rules, :factors, :enable_back, :enable_progress, :question_recoding,
                :data_sheet_columns, :relationships, :extra, :resources, :resources_data, :options,
-               :instructions, :default_norm_id
+               :instructions, :default_norm_id, :owner_id, :linked_questions
 
     has_many :blocks, serializer: Assessments::BlockSerializer do
       object.blocks.
@@ -18,6 +18,8 @@ module Assessments
         includes(questions_ams: :comments).
         where.has { (template.disabled == false) | (template.id == nil) }
     end
+
+    has_one :linked_assessment, serializer: Assessments::LinkedAssessmentSerializer
 
     def factors
       factors_scoring = object.factors_scoring.group_by(&:factor_id)

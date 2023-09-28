@@ -10,6 +10,7 @@ export const getAssessmentPermissions = (state: RootState) => get(state).campaig
 export const getCurrentAssessmentId = (state: RootState) => get(state).assessmentId
 export const getCurrentDimensionId = (state: RootState) => get(state).dimensionId
 export const getCurrentCampaignName = (state: RootState) => get(state).name
+export const getCampaignId = (state: RootState) => get(state).campaignId
 
 type CampaignReportPermissions = {
   editSubjectReport: boolean,

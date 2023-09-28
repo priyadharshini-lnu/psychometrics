@@ -3,8 +3,11 @@
 class EndUser::UserAssessmentsController < ApplicationController
   include ::Threesixty::InitialState
   layout 'layouts/end_user'
-  initial_state_for %i[pass begin]
-  before_action :set_user_assessment, only: %i[assessment show pass begin]
+
+  initial_state_for %i[show pass begin]
+  before_action :set_user_assessment, only: %i[assessment details show pass begin]
+  before_action :can_start_based_on_sequencing, only: %i[pass show begin]
+  before_action :ensure_user_confirm, only: %i[pass begin]
 
   def assessment
     @selected_locale = @user_assessment.selected_locale || user_locale
@@ -20,11 +23,10 @@ class EndUser::UserAssessmentsController < ApplicationController
     @user_assessment.update(last_activity_at: DateTime.current)
 
     @selected_locale = @user_assessment.selected_locale || user_locale
-    render json: @user_assessment.users_result, serializer: UsersResultSerializer,
-           campaign: @user_assessment.campaign, participant: @user_assessment,
-           current_user: current_user, locale: @selected_locale,
-           piped_text_context: build_piped_context,
-           include: '**'
+    respond_to do |format|
+      format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
+      format.json { render json: @user_assessment, serializer: EndUser::DetailedUserAssessmentSerializer }
+    end
   end
 
   def pass
@@ -59,6 +61,18 @@ class EndUser::UserAssessmentsController < ApplicationController
 
   private
 
+  def ensure_user_confirm
+    if UserAssessments::CanStart.call!(@user_assessment, current_user, cookies)
+      redirect_to user_assessment_path(@user_assessment)
+    end
+  end
+
+  def can_start_based_on_sequencing
+    return if UserAssessments::CanStartBasedOnSequencing.call!(@user_assessment)
+
+    redirect_to campaign_path(@user_assessment.campaign_id)
+  end
+
   def build_piped_context
     {
       evaluator: current_user,
@@ -76,7 +90,7 @@ class EndUser::UserAssessmentsController < ApplicationController
                          campaigns: { status: :active }
                        )
     if request.format.html? && @user_assessment.closed?
-      redirect_to assessment_completed_path(@user_assessment.campaign_id)
+      redirect_to assessment_completed_path(@user_assessment.campaign_id, user_assessment_id: @user_assessment.id)
     end
   end
 end

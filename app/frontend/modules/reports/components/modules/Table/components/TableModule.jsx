@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Foundation from '~/modules/reports/components/Foundation'
 import styles from './TableModule.less'

@@ -10,7 +10,7 @@ exports[`initializing base assessment init action should init assessment data: i
     "agileAssetsUrl": undefined,
     "agileAssignUrl": undefined,
     "allPages": {
-      "1": [
+      Symbol(1): [
         {
           "blockId": 1,
           "questions": [
@@ -24,7 +24,7 @@ exports[`initializing base assessment init action should init assessment data: i
           ],
         },
       ],
-      "2": [
+      Symbol(2): [
         {
           "blockId": 2,
           "questions": [
@@ -77,6 +77,7 @@ exports[`initializing base assessment init action should init assessment data: i
         "template_id": null,
       },
     },
+    "campaignUser": undefined,
     "currentElement": null,
     "currentPage": 0,
     "dashboardUrl": "/",
@@ -164,13 +165,18 @@ exports[`initializing base assessment init action should init assessment data: i
     "initialized": true,
     "instructions": undefined,
     "isAnonymousAssessment": undefined,
+    "isAssessor": undefined,
     "isSimulation": false,
     "isThreesixty": undefined,
+    "isTimedCampaign": undefined,
     "linear": false,
+    "linkedQuestions": undefined,
     "locales": undefined,
     "mediaResponses": undefined,
     "mediaUrl": "/assigns/1",
     "metaData": {},
+    "name": "test-assessment",
+    "nextAssessmentUrl": undefined,
     "nextButtonPressed": false,
     "normRules": [],
     "normalizedTree": {
@@ -380,10 +386,13 @@ exports[`initializing base assessment init action should init assessment data: i
         "flow": null,
         "id": null,
         "instructions": {},
+        "linkedAssessment": null,
+        "linkedQuestions": {},
         "loaded": false,
         "name": "",
         "norm_rules": [],
         "options": {},
+        "ownerId": null,
         "propPanel": {
           "offset": null,
           "question": null,
@@ -469,12 +478,14 @@ exports[`initializing base assessment middleware should call next if is not NEXT
       "content": "",
       "enabled": false,
     },
+    "isAssessor": false,
     "isSimulation": false,
     "isThreesixty": false,
     "linear": false,
     "locales": null,
     "mediaResponses": [],
     "mediaUrl": null,
+    "nextAssessmentUrl": null,
     "nextButtonPressed": false,
     "normalizedTree": {},
     "options": {},
@@ -507,10 +518,13 @@ exports[`initializing base assessment middleware should call next if is not NEXT
         "flow": null,
         "id": null,
         "instructions": {},
+        "linkedAssessment": null,
+        "linkedQuestions": {},
         "loaded": false,
         "name": "",
         "norm_rules": [],
         "options": {},
+        "ownerId": null,
         "propPanel": {
           "offset": null,
           "question": null,

@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react'
-
-const STROKE_WIDTH = 5 // Original stroke width in the svg
+const STROKE_WIDTH = 5
 const FACE_HEIGHT = 70 // Face Height from the person svg artwork.
 
 /**

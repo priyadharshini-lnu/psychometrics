@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
@@ -7,6 +7,7 @@ import {
   PieChartOutlined,
   DatabaseOutlined,
   MessageOutlined,
+  SolutionOutlined,
 } from '@ant-design/icons'
 
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -43,7 +44,7 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     if (pathname.includes('/admins')) {
       return ['admins']
     }
-    if (pathname.includes('/messages/options')) {
+    if (pathname.includes('/messages')) {
       return ['messages/options']
     }
     if (pathname.includes('/reports/options')) {
@@ -77,6 +78,12 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     key: 'datasheets',
     icon: <DatabaseOutlined />,
     label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
+  })
+
+  currentUser.permissions.manageAdmins && menuItems.push({
+    key: 'admins',
+    label: I18n.t('common.model.admins'),
+    icon: <SolutionOutlined />,
   })
 
   return (

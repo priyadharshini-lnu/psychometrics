@@ -9,29 +9,6 @@ module UserScopes
     scope :superadmins, -> { where(role: User::USER_ROLES[:superadmin]) }
     scope :enabled_super_admins, -> { superadmins.where(disabled: false) }
     scope :managers, -> { where(role: User::USER_ROLES[:manager]) }
-    # Sorting
-    scope :sorted_by, lambda { |sort_key|
-      # extract the sort direction from the param value.
-      direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
-      case sort_key.to_s
-        when /^id_/
-          order("users.id #{direction}")
-        when /^active_/
-          order("users.disabled #{direction}")
-        when /^first_name_/
-          order("users.first_name #{direction}")
-        when /^last_name_/
-          order("users.last_name #{direction}")
-        when /^email_/
-          order("users.email #{direction}")
-        when /^role_/
-          order("users.role #{direction}")
-        when /^created_at_/
-          order("users.created_at #{direction}")
-        when /^updated_at_/
-          order("users.updated_at #{direction}")
-      end
-    }
 
     # Search entity by word
     scope :search_query, lambda { |query|
@@ -53,6 +30,11 @@ module UserScopes
         },
         client_ids: client_ids, campaign_id: campaign.id, role: User::SUPER_ADMIN_ROLE
       ).distinct
+    }
+
+    scope :with_campaign_user, lambda { |campaign_id|
+      campaign = Campaign.find(campaign_id)
+      left_joins(:campaign_users).where({ campaign_users: { campaign_id: campaign.id } }).distinct
     }
 
     # Fileter by role
@@ -99,6 +81,7 @@ module UserScopes
     scope :sort_by_full_name_asc, -> { order(first_name: :asc, last_name: :asc) }
     scope :sort_by_full_name_desc, -> { order(first_name: :desc, last_name: :desc) }
     scope :admins, ->(_) { where(project_id: nil) }
+    scope :global_assessors, -> { where(global_assessor: true) }
   end
 
   # rubocop:enable Metrics/BlockLength

@@ -1,26 +1,35 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import Select from 'react-select'
 import AppStore from '~/modules/reports/store/AppStore'
 
 class DataSheet extends Component {
   onChange = (data) => {
     const { model, singleChoice, onSelect } = this.props
-    model.props.source.columns = singleChoice ? [data] : data
+    model.props.source.columns = singleChoice ? [data.value] : data.map(dataObject => dataObject.value)
     onSelect()
   }
 
   getOptions = () => {
     const { onlyNumbers } = this.props
     if (onlyNumbers) {
-      return AppStore.report.dataSheetColumns.filter(column => column.type === 'Number').map(d => d.name)
+      return AppStore.report.dataSheetColumns.filter(column => column.type === 'Number')
+        .map(d => ({ label: d.name, value: d.name }))
     }
-    return AppStore.report.dataSheetColumns.map(d => d.name)
+    return AppStore.report.dataSheetColumns.map(d => ({ label: d.name, value: d.name }))
   }
 
   getValue () {
-    const { model } = this.props
-    return _.result(model, 'props.source.columns', 'Choose Column')
+    const { model, singleChoice } = this.props
+    if (singleChoice) {
+      const resultingValue = _.result(model, 'props.source.columns', [])[0]
+      return {
+        value: resultingValue,
+        label: resultingValue,
+      }
+    }
+
+    return _.result(model, 'props.source.columns', []).map(value => ({ label: value, value }))
   }
 
   render () {
@@ -29,13 +38,12 @@ class DataSheet extends Component {
       <Select
         name="form-field-name"
         value={this.getValue()}
-        getOptionValue={opt => opt}
-        getOptionLabel={opt => opt}
         options={this.getOptions()}
         clearable={false}
         autoFocus={false}
         isMulti={!singleChoice}
         onChange={this.onChange}
+        placeholder={singleChoice ? 'Choose Column' : 'Choose Columns'}
       />
     )
   }

@@ -8,6 +8,7 @@ AllCops:
     - node_modules/**/*
     - db/schema.rb
     - db/migrate/**/*
+    - db/seeds/**/*
     - bin/*
   UseCache: true
   CacheRootDirectory: tmp
@@ -45,6 +46,11 @@ Lint/MissingSuper:
 ##
 Metrics/AbcSize:
   Max: 50
+
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 200
+  Enabled: true
 
 Metrics/BlockLength:
   Exclude:

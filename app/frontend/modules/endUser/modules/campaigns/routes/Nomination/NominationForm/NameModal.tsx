@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
   Form, Input, Button, Modal,
 } from 'antd'

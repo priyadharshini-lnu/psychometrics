@@ -3,7 +3,7 @@
   remote: true,
   data: { behavior: 'communications-form', form_url: @communication_facade.communication.decorate.form_url }) do |f|
   .modal-body
-    = render_error_notification(resource)
+    = render_error_notification(resource, full_messages: false)
     .form-inputs.clearfix
       h3 Settings
       - if current_user.is?(:superadmin)
@@ -88,16 +88,17 @@
                 collection: @communication_facade.delivery_interval_periods
             .col-md-4
               = f.input :delivery_interval_number, as: :integer
-        .row.mbl
-          .col-md-4.pln
-            = f.input :stop_reminder, as: :boolean, checked_value: true, unchecked_value: false,
-              label: t('.stop_reminder'),
-              input_html: { data: { behavior: 'communication-changeable' } }
-          .col-md-8
-            - if @communication_facade.show_stop_reminder_datetime?
-              = f.input :stop_reminder_datetime, as: :datetimepicker, initialize_time_now: true,
-                label: t('.stop_reminder_datetime'),
-                min_date: date_without_seconds_and_timezone
+        - if @communication_facade.show_stop_reminder?
+          .row.mbl
+            .col-md-4.pln
+              = f.input :stop_reminder, as: :boolean, checked_value: true, unchecked_value: false,
+                label: t('.stop_reminder'),
+                input_html: { data: { behavior: 'communication-changeable' } }
+            .col-md-8
+              - if @communication_facade.show_stop_reminder_datetime?
+                = f.input :stop_reminder_datetime, as: :datetimepicker, initialize_time_now: true,
+                  label: t('.stop_reminder_datetime'),
+                  min_date: date_without_seconds_and_timezone
       h3 Message
       = f.input :subject
       = f.input :body, as: :hidden, input_html: { id: 'body_value' }

@@ -8,7 +8,7 @@ class UsersResultSerializer < ActiveModel::Serializer
              :subject_datasheet, :highlights, :user_assessment_id, :started_at,
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
              :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled,
-             :other_pending_assessments_count, :prework
+             :privacy_consent_required, :other_pending_assessments_count, :prework
 
   attribute :relationship
 
@@ -24,6 +24,10 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   delegate :reset_count, :started_at, :prework, :other_pending_assessments_count, to: :user_assessment
   delegate :remaining_campaign_time, to: :campaign_user, allow_nil: true
+
+  def privacy_consent_required
+    current_user.privacy_consent_required?
+  end
 
   def hash_id
     object.encoded_id

@@ -1,0 +1,40 @@
+@import '~/styles/ant.variable.less';
+@import "~/styles/spacing.less";
+
+.containerColumn {
+  padding-block: @space-6;
+}
+.tabs {
+  :global(.ant-tabs-nav) {
+    &:before {
+      content: none;
+    }
+  }
+}
+.subtitleIcon {
+  color: @primary-color;
+}
+.count {
+  font-weight: 400;
+}
+.countSkeleton {
+  line-height: @space-6;
+  &:global(.ant-skeleton-button) {
+    width: @space-6;
+    min-width: @space-1;
+  }
+}
+.pageContent {
+  background-color: @white;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: @screen-xs) {
+  .pageContent {
+    padding-inline: @space-4;
+    align-items: flex-start;
+    padding-block-start: @space-3;
+  }
+}

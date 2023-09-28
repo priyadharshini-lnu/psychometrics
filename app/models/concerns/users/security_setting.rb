@@ -11,6 +11,16 @@ module Users
       validates :password, repeats_in_password: true, if: :restrict_sequences?
       validate :validate_password_length, if: :password_required?
 
+      def generate_strong_password
+        length = [12, applicable_security_setting.min_password_length].max
+        password = Devise.friendly_token.first(length - 3)
+        special_chars = ['@', '#', '$', '%', '^', '&', '*']
+        password += special_chars.sample
+        password += [*'0'..'9'].sample
+        password += [*'A'..'Z'].sample
+        password.chars.shuffle.join
+      end
+
       def validate_password_length
         return unless password
 
@@ -24,6 +34,10 @@ module Users
         return {} unless applicable_security_setting.enforce_strong_password?
 
         { digit: 1, lower: 1, symbol: 1, upper: 1 }
+      end
+
+      def need_change_password?
+        force_password_change? || super
       end
 
       def expire_password_after

@@ -1,0 +1,21 @@
+@import '~/styles/ant.variable.less';
+@import '~/styles/spacing.less';
+
+.container {
+  border: 2px solid var(--ant-primary-color);
+  border-radius: 16px;
+}
+.cardItem {
+  padding: @space-4;
+}
+.timeContainer {
+  max-width: 260px;
+}
+.limitTitleWidth {
+  max-width: 240px;
+}
+@media (max-width: @screen-lg) {
+  .limitTitleWidth {
+    max-width: 160px;
+  }
+}

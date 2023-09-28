@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
   Checkbox,
   Space,
@@ -54,21 +54,31 @@ export const ImageChoiceProperties: FC<Props> = ({
               )}
             </Typography.Text>
             <Radio.Group className="mt-2" value={size} onChange={onSizeChange}>
-              <Radio value="small">
+              <Radio.Button value="xx-small">
+                {I18n.t(
+                  'administration.survey_builder.property_panel.image_multi_choice_properties.size.xx-small',
+                )}
+              </Radio.Button>
+              <Radio.Button value="x-small">
+                {I18n.t(
+                  'administration.survey_builder.property_panel.image_multi_choice_properties.size.x-small',
+                )}
+              </Radio.Button>
+              <Radio.Button value="small">
                 {I18n.t(
                   'administration.survey_builder.property_panel.image_multi_choice_properties.size.small',
                 )}
-              </Radio>
-              <Radio value="medium">
+              </Radio.Button>
+              <Radio.Button value="medium">
                 {I18n.t(
                   'administration.survey_builder.property_panel.image_multi_choice_properties.size.medium',
                 )}
-              </Radio>
-              <Radio value="large">
+              </Radio.Button>
+              <Radio.Button value="large">
                 {I18n.t(
                   'administration.survey_builder.property_panel.image_multi_choice_properties.size.large',
                 )}
-              </Radio>
+              </Radio.Button>
             </Radio.Group>
           </div>
         </Space>

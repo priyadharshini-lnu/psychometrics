@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { message } from 'antd'
 import { MessageType } from 'antd/lib/message'
 

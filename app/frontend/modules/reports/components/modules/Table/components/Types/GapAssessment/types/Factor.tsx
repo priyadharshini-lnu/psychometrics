@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import reduce from 'lodash/reduce'
 import meanBy from 'lodash/meanBy'
 import isEmpty from 'lodash/isEmpty'
@@ -296,9 +296,9 @@ const TBody: FC<TBodyProps> = ({
           <td>{I18nStore.tFactorName(gap)}</td>
           {!hideValues && (
             <>
-              <td>{Utils.round(gap.left, 2)}</td>
-              <td>{Utils.round(gap.right, 2)}</td>
-              <td>{Utils.round(gap.diff, 2)}</td>
+              <td dir="ltr">{Utils.round(gap.left, 2)}</td>
+              <td dir="ltr">{Utils.round(gap.right, 2)}</td>
+              <td dir="ltr">{Utils.round(gap.diff, 2)}</td>
             </>
           )}
         </tr>

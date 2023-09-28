@@ -6,15 +6,15 @@ module Administration
       include UserReports::PdfGeneration
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access
-                                            start_qc abort_qc send_for_approval request_changes remove_approval]
+                                            start_qc abort_qc send_for_approval request_changes
+                                            remove_approval webhook_payload]
       before_action :pundit_authorize
 
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
         if form.valid?
-          ::Campaigns::UserReports::Add.call(form, campaign_user) do
+          ::Campaigns::UserReports::Add.call(form, campaign_user, current_user) do
             on(:ok) do
-              audit! :create, campaign_user, payload: params.permit!, campaign: campaign
               render json: campaign_user.user, serializer: Administration::UserDetailSerializer,
                      campaign: campaign_user.campaign
             end
@@ -25,8 +25,12 @@ module Administration
         end
       end
 
+      def possible_webhook_events
+        render json: { events: resource.possible_webhook_events }
+      end
+
       def destroy
-        audit! :delete, resource, payload: resource.log_attribute_for_delete, campaign: resource.campaign
+        audit! :delete, resource, payload: resource.log_attributes, campaign: resource.campaign
         resource.destroy!
 
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
@@ -106,7 +110,7 @@ module Administration
         respond_to do |format|
           format.html do
             audit! :view_report, user_dashboard, campaign: user_dashboard.campaign,
-              payload: params.permit!.merge(user_dashboard.details_to_log)
+              payload: params.merge(user_dashboard.details_to_log)
           end
           format.json do
             render json: user_dashboard, report: user_dashboard.report,
@@ -117,6 +121,25 @@ module Administration
                    include: '**'
           end
         end
+      end
+
+      def webhook_command
+        @webhook_command ||= UserReports::Webhook.new(resource)
+      end
+
+      def webhook_payload
+        data = case params['event_name']
+                 when 'report_available'
+                   webhook_command.report_available_data
+                 when 'results_available'
+                   webhook_command.result_available_data
+               end
+
+        event_payload = Webhook::EVENTS[params['event_name'].to_sym].call(
+          data.merge(project: resource.project, client: resource.project.parent)
+        )
+
+        render json: event_payload.as_json
       end
 
       private

@@ -1,4 +1,3 @@
-import React from 'react'
 import _ from 'lodash'
 import { Menu } from 'antd'
 import { withRouter } from 'react-router-dom'

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import Select from 'react-select'
 import { LibraryStore } from '~/libs/library'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'

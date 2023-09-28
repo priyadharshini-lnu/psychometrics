@@ -12,7 +12,7 @@ test('deleted question', () => {
     id: 1,
     questions: [question(1, { deleted: true })],
   }]
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [] })
 })
 
 
@@ -21,7 +21,7 @@ test('deleted question', () => {
     id: 1,
     questions: [question(1), question(2, { deleted: true }), question(3)],
   }]
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1, 3], blockId: 1 }] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [{ questions: [1, 3], blockId: 1 }] })
 })
 
 test('simple block with one page', () => {
@@ -30,7 +30,7 @@ test('simple block with one page', () => {
     questions: [question(1), question(2)],
   }]
 
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1, 2], blockId: 1 }] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [{ questions: [1, 2], blockId: 1 }] })
 })
 
 test('simple block with page_break', () => {
@@ -39,7 +39,7 @@ test('simple block with page_break', () => {
     questions: [question(1), question(2, { type: 'PageBreak' }), question(3)],
   }]
 
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1], blockId: 1 }, { questions: [3], blockId: 1 }] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [{ questions: [1], blockId: 1 }, { questions: [3], blockId: 1 }] })
 })
 
 test('simple block with question with display_logic', () => {
@@ -48,7 +48,7 @@ test('simple block with question with display_logic', () => {
     questions: [question(1), question(2, { display_logic: {} })],
   }]
 
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1], blockId: 1 }, { questions: [2], blockId: 1 }] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [{ questions: [1], blockId: 1 }, { questions: [2], blockId: 1 }] })
 })
 
 
@@ -59,7 +59,7 @@ test('simple block with question with display_logic and a question after', () =>
   }]
 
   expect(InitPages.run({ blocks })).toStrictEqual({
-    1: [{ questions: [1], blockId: 1 }, { questions: [2, 3], blockId: 1 }],
+    [Symbol.for('1')]: [{ questions: [1], blockId: 1 }, { questions: [2, 3], blockId: 1 }],
   })
 })
 
@@ -69,7 +69,7 @@ test('simple block with question with skip_logic one page', () => {
     questions: [question(1), question(2, { skip_logic: [] })],
   }]
 
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1, 2], blockId: 1 }] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [{ questions: [1, 2], blockId: 1 }] })
 })
 
 
@@ -79,7 +79,7 @@ test('simple block with question with skip_logic and display logic', () => {
     questions: [question(1), question(2, { skip_logic: [] }), question(3, { display_logic: { test: 1 } })],
   }]
 
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1, 2], blockId: 1 }, { questions: [3], blockId: 1 }] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [{ questions: [1, 2], blockId: 1 }, { questions: [3], blockId: 1 }] })
 })
 
 test('simple block with question with skip_logic two pages', () => {
@@ -88,7 +88,7 @@ test('simple block with question with skip_logic two pages', () => {
     questions: [question(1), question(2, { skip_logic: [1] }), question(3)],
   }]
 
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1, 2], blockId: 1, skipLogic: [1] }, { questions: [3], blockId: 1 }] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [{ questions: [1, 2], blockId: 1, skipLogic: [1] }, { questions: [3], blockId: 1 }] })
 })
 
 
@@ -102,7 +102,7 @@ test('simple two blocks', () => {
     questions: [question(4), question(5)],
   }]
 
-  expect(InitPages.run({ blocks })).toStrictEqual({ 1: [{ questions: [1, 2, 3], blockId: 1 }], 2: [{ questions: [4, 5], blockId: 2 }] })
+  expect(InitPages.run({ blocks })).toStrictEqual({ [Symbol.for('1')]: [{ questions: [1, 2, 3], blockId: 1 }], [Symbol.for('2')]: [{ questions: [4, 5], blockId: 2 }] })
 })
 
 
@@ -117,7 +117,7 @@ test('with single_question_page', () => {
   }]
 
   expect(InitPages.run({ blocks }, 0, { enable_single_question_page: true })).toStrictEqual({
-    1: [
+    [Symbol.for('1')]: [
       {
         questions: [1], blockId: 1
       },
@@ -128,7 +128,7 @@ test('with single_question_page', () => {
         questions: [3], blockId: 1
       }
     ],
-    2: [
+    [Symbol.for('2')]: [
       {
         questions: [4], blockId: 2
       },

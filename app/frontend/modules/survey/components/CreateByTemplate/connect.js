@@ -8,6 +8,7 @@ export default connect(
   ({ survey, survey: { builder } }) => ({
     ...getData(survey).createByTemplate,
     block: getData(survey).createByTemplate ? selectBlock(builder, getData(survey).createByTemplate.blockId) : null,
+    ownerId: builder.assessment.ownerId,
   }),
   {
     close: () => closeModal('createByTemplate'),

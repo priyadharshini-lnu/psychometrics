@@ -1,4 +1,3 @@
-import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Pagination as AntPagination } from 'antd'
 import routeUtils from '~/utils/route'

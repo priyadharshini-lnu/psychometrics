@@ -73,7 +73,7 @@ module Administration
 
         @data = ::Reports::PrepareDataForReport.call!(
           campaign_user_report: user_report,
-          locale: user_locale,
+          locale: user_report.report.default_language,
           current_user: current_user
         )
       end
@@ -117,7 +117,8 @@ module Administration
             'allow_results_delete'
           ],
           {
-            project_id: threesixty_campaign.campaign.project_id
+            project_id: threesixty_campaign.campaign.project_id,
+            campaign_id: threesixty_campaign.campaign_id
           }
         )
       end
@@ -127,8 +128,9 @@ module Administration
           Administration::Threesixty::CampaignPolicy,
           current_user,
           nil,
-          [
-            'rescore_assessment'
+          %w[
+            rescore_assessment
+            bulk_regenerate_reports
           ],
           {
             project_id: threesixty_campaign.campaign.project_id

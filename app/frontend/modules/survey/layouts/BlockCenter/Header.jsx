@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import { save } from '~/modules/survey/core/builder/blockCenter'

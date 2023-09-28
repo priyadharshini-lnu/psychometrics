@@ -4,6 +4,7 @@
 class Client < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+  extend Mobility
 
   attr_writer :license_msg
 
@@ -85,8 +86,7 @@ class Client < ApplicationRecord
   has_many :project_campaigns, class_name: 'Campaign', foreign_key: :project_id, dependent: :destroy
   has_many :sms_invites, through: :project_campaigns, dependent: :destroy
 
-  has_one :webhook_subscription, class_name: 'WebhookSystem::Subscription', foreign_key: :project_id,
-          dependent: :destroy
+  has_many :webhooks, foreign_key: :project_id, dependent: :destroy
   has_many :registration_codes, class_name: 'RegistrationCode', foreign_key: :end_level_id, inverse_of: :end_level,
            dependent: :destroy
   has_many :project_registration_codes, class_name: 'RegistrationCode', foreign_key: :project_id, inverse_of: :project,
@@ -102,6 +102,7 @@ class Client < ApplicationRecord
   has_many :sheets, foreign_key: :project_id, dependent: :destroy
   has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
   has_one :privacy_link, dependent: :destroy
+  has_one :client_auditlog_export_setting, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
   accepts_nested_attributes_for :privacy_link, allow_destroy: true
@@ -146,9 +147,10 @@ class Client < ApplicationRecord
   delegate :tfa_enabled?, to: :security_setting
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
+  scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
   scope :resource_disabled, ->(value) { where(disabled: value) }
   scope :not_archived, -> { where.not(archived: true) }
-  scope :tenancies, -> { roots }
+  scope :tenancies, ->(*_p) { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
   scope :by_report_family_assessment, lambda { |assessment|
                                         joins(:report_families).
@@ -173,12 +175,18 @@ class Client < ApplicationRecord
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
 
+  scope :search_query, lambda { |query|
+    where('name ILIKE ?', "%#{query}%")
+  }
+
+  translates :custom_privacy_consent_text
+
   def self.ransackable_scopes(_auth_object = nil)
-    %i[filterable_fields projects_of resource_disabled]
+    %i[filterable_fields projects_of resource_disabled search_query has_integration]
   end
 
   def iiht_config
-    integrations.iiht.first.iiht_config
+    integrations.iiht.first&.iiht_config
   end
 
   def saml_setting

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Spin, SpinProps } from 'antd'
 
 import styles from './PageLoadSpinner.less'

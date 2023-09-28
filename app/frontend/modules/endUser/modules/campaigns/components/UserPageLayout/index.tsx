@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Layout } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -22,12 +22,11 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 const UserPageLayoutComponent: FC<PropsFromRedux> = ({ campaign, updateProfileRequired, children }) => (
   <Layout className={styles.container}>
-    {!updateProfileRequired && (
-      <UserPageSider
-        showInsights={campaign.userReportsAvailable}
-        siderFooter={collapsed => <Profile collapsed={collapsed} />}
-      />
-    )}
+    <UserPageSider
+      updateProfileRequired={updateProfileRequired}
+      showInsights={campaign.userReportsAvailable}
+      siderFooter={collapsed => <Profile collapsed={collapsed} />}
+    />
     <Layout className={styles.pageLayout}>
       {children}
       <Footer />

@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-import React from 'react'
 import ProjectsApp from '~/modules/admin/modules/projects/App'
 import '~/modules/admin/styles/common.less'
 import '~/styles/utils.less'

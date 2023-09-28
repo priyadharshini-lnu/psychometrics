@@ -1,6 +1,4 @@
-import React, {
-  FC, useEffect,
-} from 'react'
+import { FC, useEffect } from 'react'
 import {
   Drawer,
 } from 'antd'

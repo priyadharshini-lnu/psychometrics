@@ -1,8 +1,9 @@
 import merge from 'lodash/merge'
+import { Options } from 'highcharts'
 
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/StackedBar'
 
-export default function ChartOptions (model: PropertiesModel, animation: boolean) {
+export default function ChartOptions (model: PropertiesModel, animation: boolean): Options {
   const { fontSize, fontColor: color, fontFamily } = model.props.style
   const [...colorsObjectList] = model.props.colors
   let xAxisOptions = {}
@@ -20,11 +21,16 @@ export default function ChartOptions (model: PropertiesModel, animation: boolean
     chart: {
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
+    accessibility: {
+      enabled: false,
+    },
     colors: colorsObjectList.map(colorObj => colorObj.color),
     credits: {
       enabled: false,
     },
-    title: false,
+    title: {
+      text: '',
+    },
     xAxis: merge(xAxisOptions, {
       labels: {
         style: {
@@ -46,7 +52,9 @@ export default function ChartOptions (model: PropertiesModel, animation: boolean
       },
       min: 0,
       max: 100,
-      title: false,
+      title: {
+        text: '',
+      },
     },
     legend: {
       reversed: true,

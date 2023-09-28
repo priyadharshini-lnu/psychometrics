@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class UserAssessment < ApplicationRecord
+  DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
+
   belongs_to :assessment
   belongs_to :campaign
   belongs_to :norm
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
-  belongs_to :assessor
+  belongs_to :assessor, primary_key: :user_id, foreign_key: :evaluator_id
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   belongs_to :created_by
@@ -16,17 +19,20 @@ class UserAssessment < ApplicationRecord
   has_one :iiht_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
+  has_one :meeting_room, as: :meetable, dependent: :destroy
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
   enum manager_nomination_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_nomination
   enum evaluator_nomination_status: { waiting: 0, completed: 1, declined: 2 }, _prefix: :evaluator_nomination
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
+  enum meeting_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :meeting
 
   has_one :threesixty_campaign, through: :campaign
 
   delegate :saville?, :iiht?, :pearson?, to: :assessment
-  delegate :prework?, :prework, to: :campaign_assessment, allow_nil: true
+  delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
+           to: :campaign_assessment, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -43,9 +49,40 @@ class UserAssessment < ApplicationRecord
       where('user_assessments.subject_id != user_assessments.evaluator_id')
     end
   }
-  scope :pending_assessments, -> { where.not(status: %i[completed timed_out]) }
+  scope :pending_assessments, -> { where.not(status: %i[completed timed_out ineligible]) }
+  scope :with_campaign_assessments, lambda {
+    joins(
+      'LEFT JOIN
+        campaign_assessments ON campaign_assessments.assessment_id = user_assessments.assessment_id
+        AND
+        campaign_assessments.campaign_id = user_assessments.campaign_id'
+    )
+  }
+  scope :with_workshop_activities, lambda {
+    where('campaign_assessments.workshop_activity = TRUE OR user_assessments.relationship_id = ?',
+          Relationship.assessor_relationship)
+  }
+  scope :user_workshop_activities, lambda { |user_id|
+    with_campaign_assessments.
+      where(user_assessments: { evaluator_id: user_id }).
+      merge(CampaignAssessment.workshop_activities)
+  }
+
+  scope :workshop_activities, lambda { |value|
+    with_campaign_assessments.where(campaign_assessments: { workshop_activity: value })
+  }
+
+  scope :preworks, lambda { |value|
+    with_campaign_assessments.where(campaign_assessments: { prework: value })
+  }
+  scope :pending_assessments, lambda {
+    where('subject_id = evaluator_id').where.not(status: %i[completed timed_out ineligible])
+  }
+  scope :deemed_completed, -> { where(status: DEEMED_COMPLETED_STATUS) }
+  scope :deemed_incomplete, -> { where.not(status: DEEMED_COMPLETED_STATUS) }
 
   before_save :set_default_relationship
+  after_save -> { create_meeting_room! }, if: -> { meeting_internal? && meeting_room.blank? }
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
   after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
@@ -54,7 +91,6 @@ class UserAssessment < ApplicationRecord
   after_commit -> { set_campaign_user_started_at }, if: proc {
                                                           status_previously_changed? && in_progress?
                                                         }, on: %i[update]
-
   alias result users_result
 
   def set_campaign_user_started_at
@@ -69,13 +105,24 @@ class UserAssessment < ApplicationRecord
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    %i[filter_by_subject_or_assessment]
+    %i[filter_by_subject_or_assessment workshop_activity prework campaign_id_eq subject_id_eq]
+  end
+
+  def saville_norm_id
+    saville_user_assessment.norm_id
+  end
+
+  def pearson_norm_id
+    pearson_user_assessment.norm_id
   end
 
   def pearson_assessment_language
-    PearsonAssessmentSetting.pearson_assessment_language(
-      assessment.external_settings[:assessment_id], assessment.external_settings[:norm_id]
-    )
+    pearson_assessment = PearsonAssessment.find_by(product_id: assessment.external_settings[:assessment_id])
+    return unless pearson_assessment
+
+    pearson_assessment.norms['items'].find do |norm|
+      norm['normId'] == pearson_norm_id
+    end['supportedLanguage']
   end
 
   def external_user_reports(type)
@@ -163,7 +210,7 @@ class UserAssessment < ApplicationRecord
     norm&.name
   end
 
-  def log_attribute_for_delete
+  def log_attributes
     slice(:campaign_id, :relationship_id, :subject_id, :evaluator_id, :status, :assessment_id)
   end
 
@@ -188,9 +235,9 @@ class UserAssessment < ApplicationRecord
   end
 
   def other_pending_assessments_count
-    return 0 unless campaign_user
+    return 0 if campaign_user.nil? || campaign.threesixty?
 
-    campaign_user.pending_assessments.where.not(id: id).count
+    campaign_user.campaign_user_assessments.pending_assessments.where.not(id: id).count
   end
 
   def self_assessment?
@@ -205,14 +252,32 @@ class UserAssessment < ApplicationRecord
     !campaign_user.in_schedule?
   end
 
+  def linked_assessor_user_assessment
+    return @linked_assessor_user_assessment if defined? @linked_assessor_user_assessment
+
+    assessor_form = assessment.linked_assessor_form
+    return unless assessor_form
+
+    @linked_assessor_user_assessment = UserAssessment.find_by(
+      campaign_id: campaign_id, assessment_id: assessor_form.id, subject_id: subject_id,
+      relationship: Relationship.assessor_relationship
+    )
+  end
+
+  def deemed_completed?
+    DEEMED_COMPLETED_STATUS.include?(status)
+  end
+
   private
 
   def saville_norm_name
-    Settings.providers.saville.norms.find { |norm| norm[:id] == saville_user_assessment.norm_id }&.dig(:name)
+    Settings.providers.saville.norms.
+      find { |norm| norm[:id] == saville_user_assessment.norm_id }&.dig(:name)
   end
 
   def pearson_norm_name
-    PearsonAssessmentSetting.pearson_norms(assessment.external_settings[:assessment_id]).
+    Assessments::PearsonSettings.norms(assessment.external_assessment_id, pearson_user_assessment.norm_id)&.
       find { |norm| norm[:id] == pearson_user_assessment.norm_id }&.dig(:name)
   end
 end
+# rubocop:enable Metrics/ClassLength

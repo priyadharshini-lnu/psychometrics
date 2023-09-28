@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react'
+import { useEffect, FC } from 'react'
 import { Layout, Col, Space } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -23,8 +23,6 @@ const TYPES = {
 }
 const { Content } = Layout
 const { I18n } = window
-const locales = I18n.availableLocales
-const current = I18n.locale
 
 const connector = connect(
   (state: RootState) => ({
@@ -95,7 +93,7 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
         </Space>
       </Col>
       <Col flex="auto" span={24} className="ta-e">
-        <LangDropdown locales={locales} current={current} />
+        <LangDropdown />
       </Col>
     </>
 

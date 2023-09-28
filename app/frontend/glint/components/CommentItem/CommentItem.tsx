@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import {
   Row, Col, Avatar, Dropdown, Menu, Typography, Space, Input, Button, Modal,
 } from 'antd'
@@ -88,6 +88,7 @@ export const CommentItem: FC<Props> = ({
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <div
+      data-testid="comment-item"
       onMouseOver={() => comment.isNew && onRead && onRead(comment.id)}
       className={cs(styles.topRow, { [styles.new]: comment.isNew })}
     >
@@ -111,7 +112,7 @@ export const CommentItem: FC<Props> = ({
               overlay={menu}
             >
               <a>
-                <MoreOutlined className={styles.triggerIcon} />
+                <MoreOutlined data-testid="more-options" className={styles.triggerIcon} />
               </a>
             </Dropdown>
           </div>

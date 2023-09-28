@@ -66,14 +66,6 @@ class Question < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
-    column = sort_key.gsub("_#{direction}", '')
-    order("questions.#{column} #{direction}") if column.in?(%w[id name created_at updated_at])
-  }
-
   # Using for deep clone in Assessment model
   def set_assessment_id
     self.assessment_id = block.try(:assessment_id)

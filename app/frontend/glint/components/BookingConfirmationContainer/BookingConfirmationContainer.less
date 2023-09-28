@@ -1,0 +1,17 @@
+@import "~/styles/ant.variable.less";
+@import "~/styles/spacing.less";
+
+.container {
+  border: 1px solid @border-color-base;
+  border-radius: 2px;
+  padding-inline: @space-8;
+  padding-block: @space-6;
+  min-width: 500px;
+}
+
+@media (max-width: @screen-sm) {
+  .container {
+    padding-inline: @space-4;
+    min-width: none;
+  }
+}

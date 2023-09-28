@@ -1,11 +1,13 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Space } from 'antd'
 import FillingScoring from '~/modules/survey/components/FillingScoring'
 import ScoringCell from '~/modules/survey/components/ScoringCell'
 import ScoringLabel from '~/modules/survey/components/ScoringLabel'
 import Utils from '~/modules/survey/utils'
 import styles from './styles.less'
+import { MultilineScoring } from '~/modules/survey/components/MultilineEdit'
 
 export class Scoring extends Component {
   static propTypes = {
@@ -37,11 +39,30 @@ export class Scoring extends Component {
     this.forceUpdate()
   }
 
+  handleMultilineChange = (values) => {
+    const { scoring } = this.props
+    values.map((value, index) => {
+      const [val] = value.split(/ |\t/)
+      scoring.changeValue(index, val)
+    })
+    this.forceUpdate()
+  }
+
   render () {
     const { scoring, model: { props, moduleConfig } } = this.props
+    const multilineValue = _.times(props.choices, (index => scoring.props.find(s => s.index === index)?.value || ''))
+
     return (
       <div>
-        <FillingScoring scoring={scoring} onChange={this.fillScoring} />
+        <Space>
+          <FillingScoring scoring={scoring} onChange={this.fillScoring} />
+          <MultilineScoring
+            rows={props.choices}
+            cols={1}
+            lines={multilineValue}
+            onChange={this.handleMultilineChange}
+          />
+        </Space>
         {_.times(props.choices, (i) => {
           const object = _.find(scoring.props, { index: i }) || {}
           return (

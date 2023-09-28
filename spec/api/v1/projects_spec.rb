@@ -77,6 +77,65 @@ describe 'Projects' do
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedProject' }, required: true
       parameter name: :project_id, in: :path, type: :string
 
+      response '400', 'Webhook update failure' do
+        schema '$ref' => '#/definitions/Project'
+        examples 'application/json' => {
+          id: 770,
+          name: 'Project 1',
+          client_id: 1,
+          subdomain: 'xyz',
+          client_reference: 'XYZ 001',
+          locales: %w[en ar],
+          data_processing_consent: true,
+          enable_strong_password: true,
+          enable_2factor_auth: true,
+          background_color: '#ffffff',
+          project_logo_url: 'url_to_logo',
+          partner_logo_url: 'url_to_logo',
+          background_image_url: 'url_to_image',
+          login_box_position: 'left',
+          webhook: 'https://my.site.com',
+          created_at: '2019-03-05T10:56:53.349+04:00',
+          updated_at: '2019-03-05T10:56:53.349+04:00'
+        }
+
+        let(:body) do
+          {
+            subdomain: 'new',
+            name: 'newname',
+            webhook: 'https://my.site.com',
+            background_color: '#000000',
+            login_box_position: 'center'
+          }
+        end
+
+        let(:project_id) { project.id }
+        let!(:webhook) { create(:webhook, project_id: project_id) }
+        let!(:webhook1) { create(:webhook, project_id: project_id) }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq(
+            'code' => 1002,
+            'message' => 'Validation error',
+            'more_info' => "Webhook url can't be updated as there are multiple webhook for this project.",
+            'meta' => nil
+          )
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}' do
+    put 'Update a project' do
+      operationId 'UpdateProject'
+      description 'Update a project'
+      tags 'Projects'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedProject' }, required: true
+      parameter name: :project_id, in: :path, type: :string
+
       response '200', 'Project updated' do
         schema '$ref' => '#/definitions/Project'
         examples 'application/json' => {

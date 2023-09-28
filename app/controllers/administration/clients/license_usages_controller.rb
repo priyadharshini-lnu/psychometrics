@@ -8,20 +8,7 @@ module Administration
       before_action :set_resource, only: %i[toggle_activation_status]
       before_action :ensure_client
       append_before_action :pundit_authorize
-      append_before_action :init_breadcrumbs
-
-      def index
-        @filter_term = params.dig(:q, :subject_cont)
-        @_filter_form = license.license_usages.includes(:campaign,
-                                                        :status_updated_by).order(created_at: :desc).ransack(params[:q])
-        filter_form.status_eq ||= 0
-        @_resources = @_filter_form.result.page(params[:page])
-
-        respond_to do |format|
-          format.html
-          format.js { render 'administration/base/index', formats: [:js] }
-        end
-      end
+      before_action :init_state, only: [:index]
 
       def toggle_activation_status
         license_counter_update = resource.active? ? 'decrement!' : 'increment!'
@@ -39,13 +26,6 @@ module Administration
 
       def set_resource_class
         @_resource_class ||= LicenseUsage # rubocop:disable Naming/MemoizedInstanceVariableName
-      end
-
-      def init_breadcrumbs
-        client_root_breadcrumb
-        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb t('administration.breadcrumbs.licenses'), [:administration, client.client, :licenses]
-        add_breadcrumb license.decorate.display_name
       end
 
       def pundit_authorize

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { CSSProperties } from 'react'
+import { CSSProperties } from 'react'
 import { Route } from 'react-router-dom'
 import {
   Layout, Row, Col, Space, ConfigProvider,
@@ -17,9 +17,6 @@ import { RootState } from './core/reducers'
 const { I18n } = window
 
 export const LayoutComponent = ({ config }) => {
-  const locales = I18n.availableLocales
-  const current = I18n.locale
-
   ConfigProvider.config({
     theme: {
       primaryColor: config.primary_color,
@@ -56,7 +53,7 @@ export const LayoutComponent = ({ config }) => {
             <div className={styles.logoWrapper}>
               <img src={config.client_logo || logo} className={styles.logo} />
             </div>
-            {config.id && <LangDropdown locales={locales} current={current} />}
+            {config.id && <LangDropdown />}
           </Layout.Header>
           <Layout.Content className={styles.content}>
             {routes.map((route, i) => (

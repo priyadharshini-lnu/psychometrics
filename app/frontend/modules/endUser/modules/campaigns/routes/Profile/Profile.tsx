@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress,
+  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress, Button,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import moment from 'moment-timezone'
 import cs from 'classnames'
 import _ from 'lodash'
-import { Link } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
+import { CropImageModal } from '~/glint/components/CropImageModal'
 import Utils from '~/modules/reports/utils/Utils'
 import LangDropdown from '~/components/LangDropdown'
 import {
@@ -16,18 +16,15 @@ import {
   get as getUser,
   uploadPhoto,
 } from '~/core/currentUser'
-import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
-import { PageHeader } from '~/glint'
+import { DirectionalArrowIcon, PageHeader } from '~/glint'
 import array from '~/utils/array'
 import { CustomField } from './fields/CustomField'
-import { CropperModal } from './CropperModal'
 
 import styles from './styles.less'
 
 const { Text, Title } = Typography
 const { I18n } = window
 const locales = I18n.availableLocales
-const current = I18n.locale
 const { Content } = Layout
 
 const timeZones = moment.tz.names()
@@ -87,8 +84,11 @@ function ProfileComponent ({
     }, { customFields: {} })
 
     sync(data)
-      .then(() => {
+      .then(({ response }) => {
         message.success(I18n.t('profile.success_update'), 5)
+        if (response.backUrl) {
+          location.href = response.backUrl
+        }
         setErrors({})
       }).catch((errors) => {
         setErrors(errors)
@@ -117,7 +117,7 @@ function ProfileComponent ({
   }
   const headerElement = (
     <Col flex="auto" span={24} className="ta-e">
-      <LangDropdown locales={locales} current={current} />
+      <LangDropdown />
     </Col>
   )
 
@@ -247,7 +247,9 @@ function ProfileComponent ({
                     >
                       <Select size="large" disabled={lockedFields.locale}>
                         {_.map(locales, locale => (
-                          <Select.Option value={locale}>{I18n.t(`languages_localized.${locale}`)}</Select.Option>
+                          <Select.Option key={locale} value={locale}>
+                            {I18n.t(`languages_localized.${locale}`)}
+                          </Select.Option>
                         ))}
                       </Select>
                     </Form.Item>
@@ -275,7 +277,7 @@ function ProfileComponent ({
                     </Form.Item> */}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
-                        <Col key={field.id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
+                        <Col key={field.question_id} xs={24} sm={24} md={field.half_size ? 12 : 24}>
                           <Form.Item
                             hasFeedback
                             help={Array.isArray(errors?.[field.name])
@@ -293,15 +295,17 @@ function ProfileComponent ({
                       ))}
                     </Row>
                     <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
-                      <Link to="/change_password">{I18n.t('change_password_page.title')}</Link>
-                      <ButtonWithArrow
-                        label={I18n.t('profile.update')}
+                      <Button
                         type="primary"
                         htmlType="submit"
-                      />
+                        className={styles.actionButton}
+                      >
+                        {I18n.t('profile.update')}
+                        <DirectionalArrowIcon className={styles.buttonIcon} />
+                      </Button>
                     </Space>
                   </Form>
-                  <CropperModal
+                  <CropImageModal
                     show={showCropper}
                     onCrop={uploadFile}
                     onCancel={() => setShowCropper(false)}

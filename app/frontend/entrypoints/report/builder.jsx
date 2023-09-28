@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
 import ReportBuilder from '~/modules/reports'
 import initSentry from '~/libs/initSentry'

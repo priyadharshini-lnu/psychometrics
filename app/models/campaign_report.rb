@@ -9,7 +9,7 @@ class CampaignReport < ApplicationRecord
     UserReport.where(campaign_id: campaign_id, report_id: report_id)
   end
 
-  def log_attribute_for_delete
+  def log_attributes
     slice(:campaign_id, :report_id, :report_family_id)
   end
 end

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Recaptcha from 'react-google-recaptcha'
 import { SafeHTML } from '~/components/SafeHTML'

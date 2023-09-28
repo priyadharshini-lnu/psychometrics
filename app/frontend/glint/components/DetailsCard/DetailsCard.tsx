@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import {
   Card, Col, Button, Typography, Progress, Row, Tooltip, Space,
 } from 'antd'
+import cs from 'classnames'
 
 import { DirectionalArrowIcon } from '~/glint'
 
@@ -17,11 +18,14 @@ type DetailsCardProps = {
   onSecondaryBtnClick?: () => void
   progressPercentage?: number
   status?: string | React.ReactElement
-  subtitle?: string | React.ReactElement
+  subtitle?: string | React.ReactElement | null
   showStatusAtTop?: boolean
   actionLoading?: boolean
   actionDisabled?: boolean
   actionDisabledText?: string
+  footer?: React.ReactNode
+  className?: string
+  hideTitleHighlighter?: boolean
 }
 
 export const DetailsCard: FC<DetailsCardProps> = ({
@@ -38,13 +42,16 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   actionLoading,
   actionDisabled,
   actionDisabledText,
+  footer,
+  className,
+  hideTitleHighlighter,
 }) => {
   const handleClick = () => {
     onButtonClick && onButtonClick()
   }
 
   const titleElement = (
-    <Title className={styles.title} level={5}>
+    <Title className={cs({ [styles.title]: true, [styles.highlight]: !hideTitleHighlighter })} level={5}>
       {title}
     </Title>
   )
@@ -57,7 +64,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   }
 
   return (
-    <Card className={styles.detailsCard}>
+    <Card className={cs({ [styles.detailsCard]: true, [styles.withFooter]: footer, [`${className}`]: className })}>
       {showStatusAtTop && (
       <Row>
         <Col xs={18}>{titleElement}</Col>
@@ -85,7 +92,12 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           {progressPercentage !== undefined && <Progress percent={progressPercentage} />}
         </Col>
         {buttonText && (
-          <Col lg={24 - progressBarSpanLg} md={16} xs={24 - progressBarSpanXs} className={styles.buttonCol}>
+          <Col
+            lg={24 - progressBarSpanLg}
+            md={16}
+            xs={24 - progressBarSpanXs}
+            className={cs({ [styles.buttonCol]: true, [styles.withFooter]: footer })}
+          >
             <Space>
               {secondaryBtnText && (
               <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
@@ -118,6 +130,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
             </Space>
           </Col>
         )}
+        {footer ? <Col className={cs('w-100', 'ta-c', styles.footer)}>{footer}</Col> : null}
       </Row>
     </Card>
   )
@@ -125,9 +138,9 @@ export const DetailsCard: FC<DetailsCardProps> = ({
 
 type ButtonWrapperProps = {
   wrapText: string | undefined,
-children: React.ReactElement,
+  children: React.ReactElement,
 }
 
 const ButtonWrapper: FC<ButtonWrapperProps> = ({ wrapText, children }) => (wrapText
-  ? <Tooltip title={wrapText} placement="topLeft">{children}</Tooltip>
+  ? <Tooltip title={wrapText} className="pe-0" placement="topLeft">{children}</Tooltip>
   : children)

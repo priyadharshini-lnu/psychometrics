@@ -17,6 +17,9 @@ class LicenseUsage < ApplicationRecord
 
   ransack_searchable_json_fields :subject_name, :campaign_name, :subject_email, column: :extras
   ransack_alias :subject, :subject_name_or_subject_email_or_campaign_name
+  ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
+    parent.table[:status]
+  end
 
   def increase_license_used_number
     license.increment!(:used_number)

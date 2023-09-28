@@ -8,15 +8,15 @@ Ruby [![Depfu](https://badges.depfu.com/badges/4a586aa5bfb8856ff8fe0641b1a7f82e/
 
 ## Requisites
 
-Ruby version: 3.1.3
+Ruby version: 3.1.2
 
-Rails version: 6.1.6
+Rails version: 7.0.5
 
 Bundler version: 2.3.17
 
 Node version: 14.18.3
 
-Database: PostgresSql@11
+Database: PostgresSql@14
 
 prevent bundle secure warnings with
 
@@ -30,23 +30,26 @@ prevent bundle secure warnings with
     rbenv: install [rbenv-gemset plugin](https://github.com/jf/rbenv-gemset) then in the project directory run `$> rbenv gemset create [version] [gemset]`
 
 1. `$> bundle install`
-2. `$> cp config/application.yml.sample config/application.yml`
-3. `$> cp config/database.yml.sample config/database.yml`
-4. `$> cp config/settings/development.yml.sample config/settings/development.yml`
+
+    if error: `An error occurred while installing mimemagic (0.4.3), and Bundler cannot continue.`
+    on mac: `$> brew install shared-mime-info` and try step 1 again.
+3. `$> cp config/application.yml.sample config/application.yml`
+4. `$> cp config/database.yml.sample config/database.yml`
+5. `$> cp config/settings/development.yml.sample config/settings/development.yml`
 
     Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
 
     Edit and setup `database.yml` as appropriate.
 
-5. Create databases `$> bundle exec rake db:create`
+6. Create databases `$> bundle exec rake db:create`
 
     Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
 
-6. `$> yarn install`
+7. `$> yarn install`
 
-7. Install redis.
+8. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
-8. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
+9. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
 Follow the instruction mentioned in the README.md to install and run the serverless framework.
 In the main psychometric repo set environment variable `URL_TO_PDF_LAMBDA_URL` to `http://localhost:3000/dev`
 
@@ -130,6 +133,26 @@ Following the above steps, your local development environment should be accessib
 
 ```sh
 bundle exec rspec
+```
+
+# Running mock server
+Currently mock server can only run on non ssl mode. For this we would have start rails server and vite server on non ssl mode.
+
+Run below code in terminal to run mock server
+```
+yarn run mockApi
+```
+
+To use mock api, pass `mocked: true` from redux api action
+```
+export const fetch = () => ({
+  type: FETCH,
+  request: {
+    method: 'get',
+    mocked: true,
+    url: `/invites`,
+  },
+})
 ```
 
 # Other Development Tasks

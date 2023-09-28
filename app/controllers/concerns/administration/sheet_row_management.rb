@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ModuleLength
 module Administration
   module SheetRowManagement
     extend ActiveSupport::Concern
@@ -62,7 +61,7 @@ module Administration
 
     def update
       resource.update!(data: params.permit(*sheet.column_names))
-      audit! :update, resource, **audit_resources, payload: params.permit!
+      audit! :update, resource, **audit_resources, payload: params
 
       render json: SheetRows::GetData.call!(resource)
     end
@@ -86,7 +85,7 @@ module Administration
             parent_resource_class: parent_resource.class.name
           }, current_user, params[:file])
         end
-        audit! :import, parent_resource.sheets.find_by(type: params[:type]), **audit_resources, payload: params.permit!
+        audit! :import, parent_resource.sheets.find_by(type: params[:type]), **audit_resources, payload: params
       else
         render json: { errors: form.errors.messages.values.flatten }, status: 422
       end
@@ -140,4 +139,3 @@ module Administration
     end
   end
 end
-# rubocop:enable Metrics/ModuleLength

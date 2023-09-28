@@ -11,7 +11,7 @@ module Administration
         form = ::Campaigns::TextModuleOverrides::CreateForm.from_params(params.merge(editor_id: current_user.id))
         if form.valid?
           result = TextModuleOverride.create!(form.attributes)
-          audit! :create, result, payload: params.permit!, campaign: campaign
+          audit! :create, result, payload: params, campaign: campaign
           create_event(@user_report, 'created_text', { module: result.module_id, content: result.content })
           render json: result
         else
@@ -24,7 +24,7 @@ module Administration
         if form.valid?
           override = TextModuleOverride.find(params[:id])
           override.update!(form.attributes.merge(approved: false))
-          audit! :update, override, payload: params.permit!, campaign: campaign
+          audit! :update, override, payload: params, campaign: campaign
           create_event(@user_report, 'updated_text', { module: override.module_id, content: override.content })
           render json: override
         else
@@ -34,7 +34,7 @@ module Administration
 
       def approve
         result = ::Campaigns::TextModuleOverrides::Approve.call!(params, current_user)
-        audit! :approve, result, payload: params.permit!, campaign: campaign
+        audit! :approve, result, payload: params, campaign: campaign
         create_event(result.user_report, 'approved_text', { module: result.module_id })
         render json: result
       end
@@ -42,7 +42,7 @@ module Administration
       def disapprove
         text_overrider = TextModuleOverride.find(params[:id])
         text_overrider.update(approved: false)
-        audit! :disapprove, text_overrider, payload: params.permit!, campaign: campaign
+        audit! :disapprove, text_overrider, payload: params, campaign: campaign
         create_event(text_overrider.user_report, 'disapproved_text', { module: text_overrider.module_id })
         render json: text_overrider
       end

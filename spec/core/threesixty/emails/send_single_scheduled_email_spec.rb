@@ -32,10 +32,10 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     )
 
     expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
-      with(email_schedule, recipient: recipients[0], threesixty_campaign: email_schedule.threesixty_campaign).
+      with(email_schedule, { recipient: recipients[0], threesixty_campaign: email_schedule.threesixty_campaign }).
       and_return(message_delivery)
     expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
-      with(email_schedule, recipient: recipients[1], threesixty_campaign: email_schedule.threesixty_campaign).
+      with(email_schedule, { recipient: recipients[1], threesixty_campaign: email_schedule.threesixty_campaign }).
       and_return(message_delivery)
 
     described_class.call!(email_schedule)
@@ -55,20 +55,24 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
       with(
         email_schedule,
-        recipient: recipients[0],
-        threesixty_campaign: email_schedule.threesixty_campaign,
-        evaluator: recipients[0],
-        subject: subjects[0]
+        {
+          recipient: recipients[0],
+          threesixty_campaign: email_schedule.threesixty_campaign,
+          evaluator: recipients[0],
+          subject: subjects[0]
+        }
       ).
       and_return(message_delivery)
 
     expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
       with(
         email_schedule,
-        recipient: recipients[0],
-        threesixty_campaign: email_schedule.threesixty_campaign,
-        evaluator: recipients[0],
-        subject: subjects[1]
+        {
+          recipient: recipients[0],
+          threesixty_campaign: email_schedule.threesixty_campaign,
+          evaluator: recipients[0],
+          subject: subjects[1]
+        }
       ).
       and_return(message_delivery)
 
@@ -89,20 +93,24 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
       with(
         email_schedule,
-        recipient: recipients[0],
-        threesixty_campaign: email_schedule.threesixty_campaign,
-        subject: recipients[0],
-        evaluator: evaluators[0]
+        {
+          recipient: recipients[0],
+          threesixty_campaign: email_schedule.threesixty_campaign,
+          subject: recipients[0],
+          evaluator: evaluators[0]
+        }
       ).
       and_return(message_delivery)
 
     expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
       with(
         email_schedule,
-        recipient: recipients[0],
-        threesixty_campaign: email_schedule.threesixty_campaign,
-        subject: recipients[0],
-        evaluator: evaluators[1]
+        {
+          recipient: recipients[0],
+          threesixty_campaign: email_schedule.threesixty_campaign,
+          subject: recipients[0],
+          evaluator: evaluators[1]
+        }
       ).
       and_return(message_delivery)
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Input, message } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import { GLOBAL } from '~/constants/relationship'

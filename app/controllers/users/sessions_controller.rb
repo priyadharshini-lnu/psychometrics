@@ -7,6 +7,7 @@ module Users
     before_action :compute_after_signout_path, only: [:destroy]
     before_action :perform_browser_check, only: [:new]
     after_action :redirect_to_return_url, only: [:new]
+    skip_before_action :ensure_user_profile_completed, only: [:destroy]
 
     private
 

@@ -3,7 +3,7 @@
 module Threesixty
   module PipedText
     module Branches
-      class Evaluator < BaseBranch
+      class Evaluator < ::PipedText::BaseBranch
         def call
           class_name = "Threesixty::PipedText::Branches::EvaluatorFields::#{path.first}".safe_constantize
           broadcast :ok, class_name&.call!(path, params, context)

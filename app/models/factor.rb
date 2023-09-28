@@ -67,32 +67,20 @@ class Factor < ApplicationRecord
   }
 
   scope :with_norm, lambda { |norm_id|
-    sql = 'LEFT JOIN factors_norms as factors_norms on factors_norms.factor_id = factors.id '
-    sql += "and factors_norms.norm_id = '#{norm_id}'"
-
-    joins(sql)
+    joins(
+      sanitize_sql_array(
+        [
+          'LEFT JOIN factors_norms ON factors_norms.factor_id = factors.id and factors_norms.norm_id = ?',
+          norm_id
+        ]
+      )
+    )
   }
   scope :roots, -> { where(parent_id: nil) }
   scope :no_roots, -> { where.not(parent_id: nil) }
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
-  }
-
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
-    case sort_key.to_s
-      when /^id_/
-        order("factors.id #{direction}")
-      when /^name_/
-        order("factors.name #{direction}")
-      when /^created_at_/
-        order("factors.created_at #{direction}")
-      when /^updated_at_/
-        order("factors.updated_at #{direction}")
-    end
   }
 
   # Search entity by word

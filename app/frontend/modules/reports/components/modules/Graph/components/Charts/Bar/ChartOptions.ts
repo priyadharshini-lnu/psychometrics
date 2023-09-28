@@ -1,7 +1,7 @@
-import { Options, AxisLabelsFormatterContextObject } from 'highcharts-v9'
+import { Options, AxisLabelsFormatterContextObject } from 'highcharts'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 
-type changeLabelFun = (labelObj: AxisLabelsFormatterContextObject<string>) => void
+type changeLabelFun = (labelObj: AxisLabelsFormatterContextObject) => void
 
 export default function ChartOptions (
   { ...model }: PropertiesModel,
@@ -36,6 +36,9 @@ export default function ChartOptions (
       type: 'column',
       height: model.props.position.height,
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
+    },
+    accessibility: {
+      enabled: false,
     },
     title: {
       text: '',
@@ -82,6 +85,12 @@ export default function ChartOptions (
           enabled: !!model.propsshowValues,
           format,
         },
+      },
+      bar: {
+        borderRadius: model.props.barBorderRadius || 0,
+      },
+      column: {
+        borderRadius: model.props.barBorderRadius || 0,
       },
     },
     tooltip: {

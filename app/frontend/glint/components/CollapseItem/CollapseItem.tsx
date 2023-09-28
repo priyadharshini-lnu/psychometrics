@@ -7,7 +7,7 @@ const { Panel } = Collapse
 type Props = {
   title: string,
   list: object[],
-  children: (item: object) => React.ReactElement | React.ReactNode
+  children: (item) => React.ReactElement | React.ReactNode
 }
 
 export const CollapseItem: FC<Props> = ({ title, list, children }) => (

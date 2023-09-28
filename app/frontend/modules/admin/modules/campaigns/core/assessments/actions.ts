@@ -28,6 +28,16 @@ export const updatePrework = (campaignId: number, id: number, prework: boolean) 
   },
 })
 
+export const UPDATE_WORKSHOP_ACTIVITY = 'campaigns/assessments/UPDATE_WORKSHOP_ACTIVITY'
+export const updateWorkshopActivity = (campaignId: number, id: number, body) => ({
+  type: UPDATE_WORKSHOP_ACTIVITY,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${id}/update_workshop_activity`,
+    body,
+  },
+})
+
 export const activateUniversalLink = (campaignId: string, id: number) => ({
   type: ACTIVATE_UNIVERSAL_LINK,
   request: {
@@ -65,6 +75,7 @@ export const importRawResults = (campaignId: number, assessmentId: number, body:
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/import_results`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 
@@ -95,6 +106,7 @@ export const importScoringResults = (campaignId: number, assessmentId: number, b
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/import_results?scoring=true`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

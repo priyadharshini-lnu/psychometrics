@@ -9,7 +9,8 @@ const data = {
     },
     birth_details: {
       city_born_in: 'London'
-    }
+    },
+    enable_2fa: true
   },
   data_capturer: {
     company_details: {
@@ -27,7 +28,8 @@ test('camelize all keys if no except or only option is passed', () => {
       },
       birthDetails: {
         cityBornIn: 'London'
-      }
+      },
+      enable2fa: true
     },
     dataCapturer: {
       companyDetails: {
@@ -38,7 +40,7 @@ test('camelize all keys if no except or only option is passed', () => {
 })
 
 test("doesn't camelize paths passed in except option", () => {
-  expect(camelizeKeys(data, { except: ['$.user_data.name'] })).toMatchObject({
+  expect(camelizeKeys(data, { except: ['$.user_data.name', '$.user_data.enable_2fa'] })).toMatchObject({
     userData: {
       name: {
         first_name: 'John',
@@ -46,7 +48,8 @@ test("doesn't camelize paths passed in except option", () => {
       },
       birthDetails: {
         cityBornIn: 'London'
-      }
+      },
+      enable_2fa: true
     },
     dataCapturer: {
       companyDetails: {
@@ -65,7 +68,8 @@ test('only camelize path passed in only option', () => {
       },
       birth_details: {
         city_born_in: 'London'
-      }
+      },
+      enable_2fa: true
     },
     data_capturer: {
       companyDetails: {
@@ -84,7 +88,8 @@ test('handles except path which are not present in data', () => {
       },
       birthDetails: {
         cityBornIn: 'London'
-      }
+      },
+      enable2fa: true
     },
     dataCapturer: {
       companyDetails: {
@@ -103,7 +108,8 @@ test('handles only path which is not present in data', () => {
       },
       birth_details: {
         city_born_in: 'London'
-      }
+      },
+      enable_2fa: true
     },
     data_capturer: {
       company_details: {

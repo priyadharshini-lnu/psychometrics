@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from '~/modules/survey/components/modules/TextEntry/components/styles.less'
 import FileUploadBlock from '~/modules/survey/components/FileUpload'

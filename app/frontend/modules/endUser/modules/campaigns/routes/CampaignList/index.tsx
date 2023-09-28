@@ -1,4 +1,4 @@
-import React, {
+import {
   useEffect, FC, useContext, useState,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
@@ -18,6 +18,7 @@ import {
   acceptPolicy,
   FETCH,
 } from '~/modules/endUser/modules/campaigns/core/campaigns'
+import { fetchWorkshop, FETCH_WORKSHOP } from '~/modules/endUser/modules/campaigns/core/workshops'
 import LangDropdown from '~/components/LangDropdown'
 import { PageHeader, MediaQueryContext } from '~/glint'
 
@@ -27,19 +28,20 @@ import styles from './styles.less'
 
 const { Title, Text } = Typography
 const { I18n } = window
-const locales = I18n.availableLocales
-const current = I18n.locale
 const { Content } = Layout
 
 const mapStateToProps = (state: RootState) => ({
   campaigns: state.campaigns.campaigns,
+  workshop: state.campaigns.workshop,
   profileCompletionPercentage: state.currentUser.profileCompletionPercentage,
   profileLastUpdatedAt: state.currentUser.updatedAt,
   isLoading: isRequestInProgress(state, FETCH),
+  isWorkshopLoading: isRequestInProgress(state, FETCH_WORKSHOP),
 })
 
 const mapDispatchToProps = {
   fetchCampaigns,
+  fetchWorkshop,
   loginHogan,
   acceptPolicy,
 }
@@ -51,6 +53,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 const CampaignListComponent: FC<PropsFromRedux> = ({
   campaigns,
   fetchCampaigns,
+  fetchWorkshop,
   loginHogan,
   acceptPolicy,
   profileCompletionPercentage,
@@ -67,8 +70,14 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     })
   }, [])
 
+  useEffect(() => {
+    fetchWorkshop().catch(() => {
+      setError(true)
+    })
+  }, [])
+
   const handleProfileCompletion = () => {
-    history.push('/profile')
+    history.push('/profile_details')
   }
 
   const isProfileComplete = profileCompletionPercentage === 100
@@ -81,7 +90,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     <>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown locales={locales} current={current} />
+          <LangDropdown />
         </Col>
       </PageHeader>
       <Content className={styles.pageContent}>
@@ -128,6 +137,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                 )
               }
             </Col>
+
             {campaigns.map((campaign) => {
               const scheduledForFuture = campaign.scheduledIn && campaign.scheduledIn > 0
               const campaignDisabled = campaign.status === 'inactive' || scheduledForFuture

@@ -4,6 +4,9 @@ export default function ChartOptions (model) {
       type: 'solidgauge',
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
+    accessibility: {
+      enabled: false,
+    },
     title: false,
     tooltip: {
       enabled: false,

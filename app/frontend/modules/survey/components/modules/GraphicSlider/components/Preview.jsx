@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import React from 'react'
 import { Slider as Antslider } from 'antd'
 import classNames from 'classnames'
 

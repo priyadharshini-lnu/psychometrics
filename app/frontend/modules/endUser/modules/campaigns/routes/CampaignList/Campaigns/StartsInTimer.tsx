@@ -28,7 +28,7 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledFo
   if (scheduledIn) {
     hoursRemaining = scheduledIn / 3600
     timeIsInPast = scheduledIn <= 0
-    date = moment(scheduledAt).format('Do MMMM YYYY hh:mm Z')
+    date = moment(scheduledAt).format('Do MMMM YYYY hh:mm A Z')
   }
 
 

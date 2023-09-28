@@ -9,7 +9,7 @@ export interface TableConfig {
     order?: string
   }
   page: number
-  pageSize: number
+  pageSize?: number
   initialized?: boolean
   maintainHistory?: boolean
 }

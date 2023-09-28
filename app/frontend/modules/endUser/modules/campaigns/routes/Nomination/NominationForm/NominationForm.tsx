@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { Fragment, useState } from 'react'
 import _ from 'lodash'
 import {
   Typography, Form, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
@@ -71,113 +71,113 @@ export const NominationForm = (props) => {
           {isSelf ? I18n.t('threesixty.yourself') : userPresenter.getFullNameWithEmail(subject)}
         </Title>
         {!show
-        && <Button className={styles.addBtn} type="primary" icon={<PlusOutlined />} size="middle" onClick={showForm} />}
+      && <Button className={styles.addBtn} type="primary" icon={<PlusOutlined />} size="middle" onClick={showForm} />}
       </Row>
       {show
-        && (
-          <Form layout="inline">
-            <Form.Item>
-              <Button
-                type="primary"
-                className={styles.addBtn}
-                shape="default"
-                icon={<CloseOutlined />}
-                size="middle"
-                onClick={hideForm}
+      && (
+        <Form layout="inline">
+          <Form.Item>
+            <Button
+              type="primary"
+              className={styles.addBtn}
+              shape="default"
+              icon={<CloseOutlined />}
+              size="middle"
+              onClick={hideForm}
+            />
+          </Form.Item>
+          <Form.Item>
+            <AutoComplete
+              dataSource={users.map(user => ({
+                value: user.email,
+                text: userPresenter.getFullNameWithEmail(user),
+              }))}
+              autoFocus
+              placeholder={I18n.t('threesixty.user_name_input_placeholder')}
+              onChange={email => updateForm({ ...form.attrs, email })}
+              onSelect={email => updateForm({ ...form.attrs, email })}
+            >
+              <Input.Search
+                style={{ width: 240 }}
+                onSearch={value => searchEvaluators(campaignId, nominationId, value)}
               />
-            </Form.Item>
-            <Form.Item>
-              <AutoComplete
-                dataSource={users.map(user => ({
-                  value: user.email,
-                  text: userPresenter.getFullNameWithEmail(user),
-                }))}
-                autoFocus
-                placeholder={I18n.t('threesixty.user_name_input_placeholder')}
-                onChange={email => updateForm({ ...form.attrs, email })}
-                onSelect={email => updateForm({ ...form.attrs, email })}
-              >
-                <Input.Search
-                  style={{ width: 240 }}
-                  onSearch={value => searchEvaluators(campaignId, nominationId, value)}
-                />
-              </AutoComplete>
-            </Form.Item>
-            <Form.Item>
-              {I18n.t('threesixty.as_my')}
-            </Form.Item>
-            <Form.Item>
-              <Select
-                value={form.attrs.relationshipId}
-                onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
-                placeholder={I18n.t('threesixty.select_relationnship')}
-                dropdownMatchSelectWidth={false}
-              >
-                <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
-                {relationshipWithoutSelf(relationships, options).map(relation => (
-                  canAddEvaluators(relation) && (
-                  <Option
-                    key={relation.id}
-                    value={relation.id}
-                  >
-                    {relation.name}
-                  </Option>
-                  )
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item>
-              <Button onClick={handleAdd} type="primary">
-                {I18n.t('threesixty.nominate')}
-              </Button>
-            </Form.Item>
-          </Form>
-        )}
+            </AutoComplete>
+          </Form.Item>
+          <Form.Item>
+            {I18n.t('threesixty.as_my')}
+          </Form.Item>
+          <Form.Item>
+            <Select
+              value={form.attrs.relationshipId}
+              onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
+              placeholder={I18n.t('threesixty.select_relationnship')}
+              dropdownMatchSelectWidth={false}
+            >
+              <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
+              {relationshipWithoutSelf(relationships, options).map(relation => (
+                canAddEvaluators(relation) && (
+                <Option
+                  key={relation.id}
+                  value={relation.id}
+                >
+                  {relation.name}
+                </Option>
+                )
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item>
+            <Button onClick={handleAdd} type="primary">
+              {I18n.t('threesixty.nominate')}
+            </Button>
+          </Form.Item>
+        </Form>
+      )}
       <div>
         {hasEvaluations && (
-          <Row className={styles.btnRow} justify="end" gutter={[8, 8]}>
-            {isSelf && canSendRequestApprovalEmail && (
+        <Row className={styles.btnRow} justify="end" gutter={[8, 8]}>
+          {isSelf && canSendRequestApprovalEmail && (
+          <Col>
+            <Button type="link" onClick={handleRequestApproval} disabled={requestApprovalButtonDisabled}>
+              <TeamOutlined />
+              {I18n.t('threesixty.email_approve_request')}
+            </Button>
+          </Col>
+          )}
+          {options.messages.subjectCanSendReminder && (
+          <Col>
+            <Button type="primary" onClick={handleSendEvaluatorReminder}>
+              <TeamOutlined />
+              {I18n.t('threesixty.remind_all')}
+            </Button>
+          </Col>
+          )}
+          {isSelf || !options.participants.manager.canApproveNominations || (
+          <Fragment>
+            <div className="divider" />
             <Col>
-              <Button type="link" onClick={handleRequestApproval} disabled={requestApprovalButtonDisabled}>
-                <TeamOutlined />
-                {I18n.t('threesixty.email_approve_request')}
+              <Button type="primary" onClick={handleApproveAll}>
+                {I18n.t('threesixty.approve_all')}
               </Button>
             </Col>
-            )}
-            {options.messages.subjectCanSendReminder && (
             <Col>
-              <Button type="primary" onClick={handleSendEvaluatorReminder}>
-                <TeamOutlined />
-                {I18n.t('threesixty.remind_all')}
+              <Button type="primary" danger onClick={handleDenyAll}>
+                {I18n.t('threesixty.deny_all')}
               </Button>
             </Col>
-            )}
-            {isSelf || !options.participants.manager.canApproveNominations || (
-            <React.Fragment>
-              <div className="divider" />
-              <Col>
-                <Button type="primary" onClick={handleApproveAll}>
-                  {I18n.t('threesixty.approve_all')}
-                </Button>
-              </Col>
-              <Col>
-                <Button type="primary" danger onClick={handleDenyAll}>
-                  {I18n.t('threesixty.deny_all')}
-                </Button>
-              </Col>
-            </React.Fragment>
-            )}
-          </Row>
+          </Fragment>
+          )}
+        </Row>
         )}
       </div>
       {_.some(errors) && (
-        <Alert
-          message={I18n.t('threesixty.validation_errors')}
-          description={_.map(errors, error => (
-            <div>{error.join(' ')}</div>
-          ))}
-          type="error"
-        />
+      <Alert
+        message={I18n.t('threesixty.validation_errors')}
+        description={_.map(errors, error => (
+          <div>{error.join(' ')}</div>
+        ))}
+        type="error"
+      />
       )}
 
     </>

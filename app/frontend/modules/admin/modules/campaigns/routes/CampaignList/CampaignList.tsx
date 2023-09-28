@@ -9,7 +9,6 @@ import {
   Input,
   Pagination,
   Avatar,
-  Tooltip,
   Space,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -17,6 +16,7 @@ import { MoreOutlined } from '@ant-design/icons'
 import moment from 'moment'
 import capitalize from 'lodash/capitalize'
 import map from 'lodash/map'
+import { ResourceAvatar } from '~/glint'
 
 import {
   fetch,
@@ -183,7 +183,7 @@ const CampaignListComponent: React.FC<Props> = ({
                 text: capitalize(status),
                 value: status,
               }))}
-              filteredValue={getFilteredValue('status')}
+              filteredValue={getFilteredValue('statusEq')}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.type')}
@@ -274,20 +274,13 @@ interface ResourcesProps {
 const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
   <Avatar.Group maxCount={MAX_AVATARS}>
     {resources.map((resource: Resource) => (
-      <Tooltip placement="top" title={resource.name} key={resource.id}>
-        {resource.iconUrl ? (
-          <Avatar src={resource.iconUrl} />
-        ) : (
-          <Avatar
-            style={{
-              backgroundColor: resource.iconColor,
-              cursor: 'default',
-            }}
-          >
-            {resource.name.substring(0, 2)}
-          </Avatar>
-        )}
-      </Tooltip>
+      <ResourceAvatar
+        key={resource.id}
+        tooltip={resource.name}
+        url={resource.iconUrl}
+        color={resource.iconColor}
+        name={resource.name}
+      />
     ))}
   </Avatar.Group>
 )

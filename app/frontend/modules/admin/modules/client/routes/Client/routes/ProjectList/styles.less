@@ -1,13 +1,16 @@
-.imageOutlined {
-  background-size: cover;
-  cursor: pointer;
+.imageDimension() {
   width: 60px;
   height: 60px;
+}
+
+.imageSkeleton :global(.ant-skeleton-avatar){
+  .imageDimension()
 }
 
 .logoImageStyles {
   background-size: cover;
   cursor: pointer;
+  .imageDimension();
 }
 
 .imageAvatarStyles {
@@ -20,4 +23,3 @@
 .campaignLink {
   font-weight: bold;
 }
-

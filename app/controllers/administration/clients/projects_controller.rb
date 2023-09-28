@@ -9,14 +9,9 @@ module Administration
       before_action :set_privacy_link_enabled, only: %i[new edit create update]
       append_before_action :pundit_authorize, except: %i[index sidebar]
 
-      def index
-        @init_state = {
-          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(
-            current_user,
-            project_id: params[:client_id]
-          ).to_h
-        }
-      end
+      render_entrypoint :index, element: 'client-container', entry: 'admin/client'
+
+      def index; end
 
       def new
         @_resource = resource_class.new
@@ -28,9 +23,6 @@ module Administration
       def edit
         @_resource.privacy_consent = false if @_resource.privacy_consent.nil?
         @_resource.privacy_link.present? || @_resource.build_privacy_link
-        @_resource.webhook = @_resource.webhook_subscription&.url
-        @_resource.webhook_auth_enabled = @_resource.webhook_subscription&.auth_enabled
-        @_resource.webhook_username = @_resource.webhook_subscription&.username
       end
 
       def export
@@ -51,13 +43,6 @@ module Administration
         respond_to do |format|
           if resource.save
             audit! :update, resource, payload: resource_params, project: resource
-            WebhookSubscriptions::Save.call!(
-              resource,
-              resource_params[:webhook],
-              resource_params[:webhook_auth_enabled],
-              resource_params[:webhook_username],
-              resource_params[:webhook_password]
-            )
             format.js
           else
             format.js { render :edit }
@@ -75,13 +60,6 @@ module Administration
         respond_to do |format|
           if resource.save
             audit! :create, resource, payload: resource_params, project: resource
-            WebhookSubscriptions::Save.call!(
-              resource,
-              resource_params[:webhook],
-              resource_params[:webhook_auth_enabled],
-              resource_params[:webhook_username],
-              resource_params[:webhook_password]
-            )
             format.js
           else
             format.js { render :new }

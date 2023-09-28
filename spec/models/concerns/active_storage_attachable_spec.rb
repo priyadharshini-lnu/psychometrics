@@ -27,8 +27,8 @@ describe ActiveStorageAttachable do
         @report = create(:report),
         @user_profile = create(:user_profile, user: create(:user), photo: nil),
         @media_resp = MediaResponse.create(
-          question: FactoryBot.build(:question),
-          users_result: FactoryBot.create(:users_result)
+          question: build(:question),
+          users_result: create(:users_result)
         )
       ]
       subject_records.each do |r|
@@ -64,6 +64,28 @@ describe ActiveStorageAttachable do
       expect(@media_resp.as_asset.key).to match(
         %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.users_result_id}/#{@media_resp.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
       )
+    end
+
+    context 'without :users_result attribute (for old records)' do
+      before do
+        allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)
+
+        @membership = create(:membership, :for_campaign)
+        @assign = create(:assign, membership: @membership)
+        @media_response = build_stubbed(
+          :media_response,
+          question: build(:question),
+          users_result: nil,
+          assign: @assign,
+          as_asset: image
+        )
+      end
+
+      it 'stores correct attachment key' do
+        expect(@media_response.as_asset.key).to match(
+          %r{private/projects/#{@media_response.assign.membership.project_membership.client_id}/media_response/#{@media_response.assign_id}/#{@media_response.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
+        )
+      end
     end
   end
 

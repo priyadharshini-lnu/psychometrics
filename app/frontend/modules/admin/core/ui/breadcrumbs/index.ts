@@ -10,6 +10,7 @@ export interface Request {
     campaignId?: number
     projectId?: number
     clientId?: number
+    threesixtyId?: number
   }
 }
 
@@ -26,12 +27,17 @@ export interface State {
     id?: number,
     name?: string,
   }
+  threesixty: {
+    id?: number,
+    name?: string,
+  }
 }
 
 export const defaultState: State = {
   client: { },
   project: { },
   campaign: { },
+  threesixty: { },
 }
 
 

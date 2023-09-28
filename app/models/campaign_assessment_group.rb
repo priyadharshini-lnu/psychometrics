@@ -6,6 +6,8 @@ class CampaignAssessmentGroup < ApplicationRecord
 
   before_create :set_position
 
+  enum group_type: { regular: 0, assessment_center: 1 }
+
   def log_attribute_for_delete
     slice(:name, :position, :campaign_id)
   end

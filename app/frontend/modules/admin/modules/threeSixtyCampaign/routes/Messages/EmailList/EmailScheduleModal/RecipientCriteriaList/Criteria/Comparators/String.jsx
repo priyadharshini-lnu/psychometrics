@@ -1,4 +1,3 @@
-import React from 'react'
 import { Select, Input } from 'antd'
 import { STRING_COMPARATOR } from '~/modules/admin/constants/emailCriteria'
 import styles from '../styles.less'

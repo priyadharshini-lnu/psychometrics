@@ -4,6 +4,7 @@ import { setIn } from '~/utils/immutable'
 const FETCH_REPORTS = 'threeSixty/report/FETCH_REPORTS'
 const UPDATE_STATUS = 'threeSixty/report/UPDATE_STATUS'
 const DOWNLOAD_REPORT = 'threeSixty/report/DOWNLOAD_REPORT'
+const CHECK_REPORT = 'threeSixty/report/CHECK_REPORT'
 
 export const fetchReport = (campaignId, id) => ({
   type: FETCH_REPORTS,
@@ -30,6 +31,13 @@ export const downloadReport = (campaignId, id, lang) => ({
   request: {
     url: `/threesixty_campaigns/${campaignId}/reports/${id}/download`,
     body: { lang },
+  },
+})
+
+export const checkReport = (campaignId, id) => ({
+  type: CHECK_REPORT,
+  request: {
+    url: `/threesixty_campaigns/${campaignId}/reports/${id}/check_report`,
   },
 })
 

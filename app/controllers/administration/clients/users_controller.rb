@@ -100,7 +100,7 @@ module Administration
         else
           resource.destroy
         end
-        audit! :delete, resource, payload: resource.log_attribute_for_delete, client: resource
+        audit! :delete, resource, payload: resource.log_attributes, client: resource
         respond_to do |format|
           format.html do
             redirect_back(
@@ -144,7 +144,7 @@ module Administration
         end
         redirect_url ||= administration_root_path
         flash.now[:success] = t('.successfully', name: resource.decorate.display_name)
-        redirect_to redirect_url
+        redirect_to redirect_url, allow_other_host: true
       end
 
       def toggle_status

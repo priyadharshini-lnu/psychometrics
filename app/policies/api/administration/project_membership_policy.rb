@@ -27,10 +27,6 @@ module Api
         manage_admins?
       end
 
-      def reset_password?
-        manage_admins?
-      end
-
       def send_mail?
         manage_admins?
       end

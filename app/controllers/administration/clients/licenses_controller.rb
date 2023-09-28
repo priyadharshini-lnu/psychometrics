@@ -8,17 +8,10 @@ module Administration
       before_action :ensure_client, except: :overview
       before_action :set_resource, only: %i[edit update toggle_status]
       append_before_action :pundit_authorize
-      append_before_action :init_breadcrumbs
+      before_action :init_state, only: [:index]
 
       def index
-        @_filter_form = client.licenses.includes(:report_family).ransack(params[:q])
-        @_resources = filter_form.result.order(created_at: :desc).page(params[:page])
-        @report_families = ReportFamily.joins(:licenses).where(licenses: { client_id: client.root.id }).distinct
-
-        respond_to do |format|
-          format.html
-          format.js { render :index, formats: [:js] }
-        end
+        @init_state[:licenses] = []
       end
 
       def create
@@ -69,12 +62,6 @@ module Administration
       def resource_params
         params.require(:resource).permit(:number, :overuse_number, :report_family_id,
                                          :start_date, :end_date, :disabled, :type)
-      end
-
-      def init_breadcrumbs
-        client_root_breadcrumb
-        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb t('administration.breadcrumbs.licenses'), action: :index
       end
 
       def pundit_authorize

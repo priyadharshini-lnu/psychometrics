@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Tabs } from 'antd'
 import styles from './ResourcesTabs.less'
 import { ResourceList } from '../ResourceList'
@@ -15,18 +15,16 @@ export const ResourcesTabs = ({
 
   const [tab, setTab] = useState('assessment')
 
+  if (!assessmentStarted) { return children }
+
   return (
     <Tabs defaultActiveKey={tab} className={styles.tabs} onChange={setTab}>
       <TabPane tab={I18n.t('frontend.assessment')} key="assessment">
         {tab === 'assessment' && children}
       </TabPane>
-      {assessmentStarted && (
-        <>
-          <TabPane tab={I18n.t('frontend.background_reading')} key="resources">
-            {tab === 'resources' && <ResourceList assessment={assessment} {...props} />}
-          </TabPane>
-        </>
-      )}
+      <TabPane tab={I18n.t('frontend.background_reading')} key="resources">
+        {tab === 'resources' && <ResourceList assessment={assessment} {...props} />}
+      </TabPane>
     </Tabs>
   )
 }

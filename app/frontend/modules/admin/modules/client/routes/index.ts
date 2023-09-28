@@ -8,6 +8,8 @@ import ReportPreview from '~/modules/admin/modules/campaigns/routes/ReportPrevie
 import { ExternalReportPreview } from '~/modules/admin/modules/campaigns/routes/ExternalReportPreview'
 import { Client } from './Client'
 import { ClientList } from './ClientList'
+import { LicenseList } from './LicenseList'
+import { LicenseUsageList } from './LicenseList/LicenseUsage'
 
 export const routes = [
   {
@@ -15,8 +17,20 @@ export const routes = [
     component: ClientList,
   },
   {
+    path: '/clients',
+    component: ClientList,
+  },
+  {
     path: '/clients/:clientId',
     component: Client,
+  },
+  {
+    path: '/clients/:clientId/licenses',
+    component: LicenseList,
+  },
+  {
+    path: '/clients/:clientId/licenses/:licenseId/license_usages',
+    component: LicenseUsageList,
   },
   {
     path: '/clients/:clientId/*',

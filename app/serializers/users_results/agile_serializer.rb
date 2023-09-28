@@ -15,7 +15,7 @@ module UsersResults
     end
 
     def groups
-      Agiles::ScrubConfig.call!(config.dup)
+      Agiles::ScrubConfig.call!(config.dup, object.seedrandom.to_i)
     end
 
     def assets

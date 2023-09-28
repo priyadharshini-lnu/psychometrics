@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react'
+import { FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Layout, Skeleton, Button, Tooltip,

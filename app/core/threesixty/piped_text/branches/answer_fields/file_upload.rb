@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module AnswerFields
-        class FileUpload < BaseField
+        class FileUpload < ::PipedText::BaseField
           DEFAULT_WIDTH = '100%'
           DEFAULT_HEIGHT = '400px'
           MS_EXTENSIONS = ['.pptx', '.docx', '.doc', '.ppt', '.xls', '.xlsx'].freeze

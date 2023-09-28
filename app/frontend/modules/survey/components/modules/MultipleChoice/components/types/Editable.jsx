@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import React from 'react'
 import LabelEditor from '~/modules/survey/components/LabelEditor'
 import styles from '../../styles.less'
 

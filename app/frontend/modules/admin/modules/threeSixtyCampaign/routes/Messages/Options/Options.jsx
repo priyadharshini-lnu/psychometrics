@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import OptionSection from '~/modules/admin/components/Options/Section'
 import Option from '~/modules/admin/components/Options/Expandable'
 

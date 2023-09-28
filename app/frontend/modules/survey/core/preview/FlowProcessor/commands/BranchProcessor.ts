@@ -10,17 +10,18 @@ const BranchProcessor = {
       results: ResultsInterface
       dataSheet: { [key: string]: object }
       subjectDataSheet: { [key: string]: object }
+      relationship: string
     },
     element: ElementInterface,
   ): boolean {
     const {
-      questions, results, dataSheet, subjectDataSheet,
+      questions, results, dataSheet, subjectDataSheet, relationship,
     } = store
     const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
     const resolver = new ConditionResolver(
       element.props.conditions,
       {
-        questions: qwraps, results, dataSheet, subjectDataSheet,
+        questions: qwraps, results, dataSheet, subjectDataSheet, relationship,
       },
     )
     return !!resolver.resolve()

@@ -1,6 +1,6 @@
 import React from 'react'
 import cs from 'classnames'
-import { RGBColor } from 'react-color'
+import { RgbaColor } from 'react-colorful'
 import { rgba2hex } from '~/utils/color'
 import styles from './styles.less'
 
@@ -9,7 +9,7 @@ interface Props {
   className: string
   text: string
   progressColor?: string
-  backgroundColor?: RGBColor
+  backgroundColor?: RgbaColor
 }
 
 const strokeWidth = 10

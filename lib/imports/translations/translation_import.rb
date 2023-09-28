@@ -3,8 +3,6 @@
 module Imports
   module Translations
     class TranslationImport < Imports::BaseImport
-      TRANSLATABLE_BRANCHES = %w[question].freeze
-
       attr_accessor :resource_id
 
       validates :resource_id, presence: true
@@ -44,7 +42,7 @@ module Imports
         end
 
         translations = []
-        TRANSLATABLE_BRANCHES.each do |branch|
+        translatable_branches.each do |branch|
           collect_translations[branch]&.each do |id, locales|
             # If can't find question/block for specified assessment, then add error
             if assessment && branch != 'instructions' && !assessment.public_send(branch.pluralize).exists?(id: id)
@@ -79,6 +77,12 @@ module Imports
           when '.xlsx' then ::Roo::Excelx.new(file.path)
           else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
         end
+      end
+
+      private
+
+      def translatable_branches
+        raise NotImplementedError
       end
     end
   end

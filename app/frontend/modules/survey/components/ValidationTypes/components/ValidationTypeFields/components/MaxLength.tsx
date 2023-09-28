@@ -1,5 +1,5 @@
 import { Input, Typography } from 'antd'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { ValidationFieldsProps } from '../interfaces'
 

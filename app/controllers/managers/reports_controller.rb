@@ -26,7 +26,7 @@ module Managers
           add_cookie_for_file_download
           pdf_file = ::Exports::Reports::Pdf::ReportExport.
                      export(@current_user, @resource, @user, @current_project, lang: user_locale)
-          send_file pdf_file, type: 'application/pdf'
+          send_tmp_file pdf_file, type: 'application/pdf'
         end
       end
     end

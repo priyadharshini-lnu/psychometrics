@@ -24,6 +24,14 @@ module Api
           ]
         end
 
+        def self.individual_record_meta_schema
+          Dry::Schema.define do
+            required(:permissions).hash do
+              required(:view_licenses).filled(:bool)
+            end
+          end
+        end
+
         def self.extra_index_meta_schema
           proc do
             optional(:countries).array(:str?)

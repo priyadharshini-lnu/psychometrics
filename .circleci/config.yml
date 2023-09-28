@@ -6,9 +6,9 @@ executors:
       - &docker_image
         image: talententerprise/tte:ruby-3.1.2-node-14.18.3
         auth:
-          username: talententerprise
+          username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-      - image: cimg/postgres:11.14
+      - image: cimg/postgres:14.8
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -67,6 +67,10 @@ executors:
 
 commands:
   bundle_restore:
+    parameters:
+      audit:
+        default: false
+        type: boolean
     steps:
       - restore_cache:
           keys:
@@ -82,6 +86,12 @@ commands:
             bundle config set --local path '~/.bundle'
             bundle config set --local without 'development'
             MAKE="make --jobs 2" bundle install -j 2 --retry 3
+      - when:
+          condition: << parameters.audit >>
+          steps:
+            - run:
+                name: Bundle audit
+                command: if [ "$RAILS_ENV" != "production" ]; then DISABLE_COVERAGE=1 bundle exec rake bundle:audit:update; else return 0; fi
   yarn_restore:
     parameters:
       node-env:
@@ -112,7 +122,7 @@ commands:
             cp config/application.yml.sample  config/application.yml
       - run:
           name: Setup DB
-          command: 'PARALLEL_TEST_PROCESSORS=<<parameters.processes>> DISABLE_COVERAGE=1 bundle exec rake parallel:create parallel:load_structure'
+          command: 'PARALLEL_TEST_PROCESSORS=<<parameters.processes>> DISABLE_COVERAGE=1 bundle exec rake parallel:create parallel:load_schema'
   assets_files:
     parameters:
       node-env:
@@ -180,11 +190,24 @@ jobs:
       - run:
           name: Which bundler?
           command: bundle -v
-      - bundle_restore
+      - bundle_restore:
+          audit: true
+
       - save_cache:
           key: gem-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
           paths:
             - ~/.bundle
+
+  brakeman:
+    executor: tte-executor
+    resource_class: medium
+    steps:
+      - checkout
+      - bundle_restore
+      - run:
+          name: Brakeman
+          command: bundle exec brakeman
+
   yarn:
     executor: tte-executor
     resource_class: medium
@@ -292,7 +315,6 @@ jobs:
             bundle exec rake i18n:js:export
             (find tmp/cache/jest -type f -mtime +30 -delete) || echo "No old cache files to prune"
             yarn test --coverage --detectOpenHandles -w 2 && yarn run coveralls < coverage/lcov.info
-            mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.jest.flag
       - run:
           name: Jest flag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.jest.flag
@@ -357,7 +379,11 @@ jobs:
       - restore_assets_compile_cache:
           node-env: production
       - run:
+          name: Export I18n
+          command: bundle exec rake i18n:js:export
+      - run:
           name: Assets precompile
+          no_output_timeout: 15m
           command: |
             if [ -n "<< parameters.asset-host >>" ]; then
               ASSET_HOST=<< parameters.asset-host >> bundle exec rails assets:precompile
@@ -376,7 +402,7 @@ jobs:
             git add -f public/vite
             git add -f public/assets
             git add -f config/database.yml
-            git commit -m "ci compiled assets"
+            git commit -m "ci compiled assets" --no-verify
       - heroku/install
       - heroku/deploy-via-git:
           force: true
@@ -427,13 +453,21 @@ workflows:
       - eslint:
           requires:
             - yarn
+      - typescript:
+          requires:
+            - yarn
+      - brakeman:
+          requires:
+            - bundle
       - rubocop:
           requires:
             - bundle
       - bundle_assets:
           requires:
             - rubocop
+            - brakeman
             - eslint
+            - typescript
       - jest:
           requires:
             - bundle_assets

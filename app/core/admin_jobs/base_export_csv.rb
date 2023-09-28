@@ -6,16 +6,54 @@ module AdminJobs
     include ActionView::Context
 
     def call
-      directory = Rails.root.join('tmp', export_name, record.id.to_s)
-      FileUtils.mkdir_p(directory)
-      file_path = directory.join(file_name)
-      File.write(file_path, render.html_safe)
-      record.update(file: File.open(file_path))
+      write_csv
+      record.update!(file: File.open(file_path))
+      FileUtils.rm_f(file_path)
+
       broadcast :ok
     end
 
-    def render
-      ApplicationController.render csv_template, locals: locals, layout: nil
+    def write_csv
+      job_record.update(total_tasks: record_count)
+      CSV.open(file_path, 'wb') do |csv|
+        write_csv_headers(csv)
+        records_for_export.each_with_index do |record, index|
+          csv << data_row(record)
+
+          record_count = index + 1
+          if (record_count % flush_threshold).zero?
+            csv.flush
+            job_record.update!(completed_tasks: record_count)
+          end
+        end
+        job_record.complete!
+      end
+    end
+
+    def write_csv_headers(csv)
+      if respond_to?(:headers, true)
+        if headers[0].is_a?(Array)
+          headers.each { |header| csv << header }
+        else
+          csv << headers
+        end
+      end
+    end
+
+    def records_for_export
+      raise NoMethodError, 'Define records_for_export in subclass'
+    end
+
+    def data_row(_row)
+      raise NoMethodError, 'Define data_row in subclass'
+    end
+
+    def flush_threshold
+      (record_count / 100).to_i.clamp(100, 1000)
+    end
+
+    def record_count
+      @record_count ||= records_for_export.count
     end
 
     def export_name
@@ -26,16 +64,16 @@ module AdminJobs
       content_tag(:a, record.file.real_filename, href: record.file.url) if record.file.present?
     end
 
-    def csv_template
-      raise NoMethodError, 'csv tempalte not defined in subclass'
-    end
-
-    def locals
-      raise NoMethodError, 'Define locals in subclass'
-    end
-
     def file_name
       raise NoMethodError, 'Define file_name in subclass'
+    end
+
+    def file_path
+      return @file_path if defined?(@file_path)
+
+      directory = Rails.root.join('tmp', export_name, record.id.to_s)
+      FileUtils.mkdir_p(directory)
+      @file_path ||= directory.join(file_name)
     end
   end
 end

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import {
   Slider, InputNumber, Row, Col, Collapse, Input,
 } from 'antd'
@@ -7,7 +7,6 @@ import { Properties } from '~/modules/reports/components/modules'
 import ModuleModel from '~/modules/reports/models/Module'
 import LayoutManager from '~/modules/reports/models/LayoutManager'
 import styles from './PropertyPanel.less'
-import ColorPickerModal from './ColorPickerModal'
 
 const { $ } = window
 const { Panel } = Collapse
@@ -253,7 +252,6 @@ class PropertyPanel extends Component {
             {selected.type === 'Module' && this.renderLayout()}
           </div>
         </div>
-        <ColorPickerModal />
       </>
     )
   }

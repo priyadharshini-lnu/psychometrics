@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { Provider } from 'react-redux'
+import { ErrorBoundary } from 'react-error-boundary'
 import '~/modules/survey/styles/globals.less'
 import { BrowserRouter as Router } from 'react-router-dom'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
@@ -8,6 +9,7 @@ import RouteList from '~/components/RouteList'
 import DnDProvider from '~/components/DnD/DnDProvider'
 import store from '../store'
 import routes from './routes'
+import styles from '~/modules/survey/layouts/Dashboard/Dashboard.less'
 
 class AppContainer extends Component {
   undoListener = null
@@ -31,16 +33,39 @@ class AppContainer extends Component {
     this.forceUpdate()
   }
 
+  overlay () {
+    return (
+      <div onKeyDown={this.disableKey} onClick={this.disableClick} className={styles.overlay}>
+        <div className="message-box message-box-danger animated fadeIn open" id="message-box-danger">
+          <div className="mb-container">
+            <div className="mb-middle">
+              <div className="mb-title">
+                <span className="fa fa-times" />
+                {I18n.t('administration.attention')}
+              </div>
+              <div className="mb-content">
+                <p>{I18n.t('administration.errror_msg')}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+
   render () {
     return (
       <div className="row">
-        <Provider store={store}>
-          <DnDProvider>
-            <Router>
-              <RouteList routes={routes} urlPrefix="/administration" />
-            </Router>
-          </DnDProvider>
-        </Provider>
+        <ErrorBoundary fallbackRender={() => this.overlay()}>
+          <Provider store={store}>
+            <DnDProvider>
+              <Router>
+                <RouteList routes={routes} urlPrefix="/administration" />
+              </Router>
+            </DnDProvider>
+          </Provider>
+        </ErrorBoundary>
       </div>
     )
   }

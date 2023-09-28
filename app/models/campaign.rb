@@ -17,6 +17,12 @@ class Campaign < ApplicationRecord
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :campaign_options, dependent: :destroy
   has_many :sheets, dependent: :destroy
+  has_many :workshops, dependent: :destroy
+  has_many :workshop_assessors, through: :workshops
+  has_many :workshop_invites
+  has_many :workshop_invited_subjects, through: :workshop_invites, source: :workshop_invited_subjects
+  has_many :workshop_subjects, dependent: :destroy
+  has_many :campaign_assessor_assessments, dependent: :destroy
   has_one :accesssheet, dependent: :destroy
   has_one :project_datasheet, through: :project, source: :datasheet
   has_one :campaign_datasheet, class_name: 'Datasheet', dependent: :destroy
@@ -120,8 +126,11 @@ class Campaign < ApplicationRecord
   end
 
   def assessor_assessments
+    assessor_assessment_ids = campaign_assessor_assessments.select(:assessment_id)
     Assessment.assessor_form.joins(:user_assessments).
-      where(user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }).uniq
+      where(
+        user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }
+      ).where.not(id: assessor_assessment_ids).uniq
   end
 
   def clone
@@ -140,6 +149,14 @@ class Campaign < ApplicationRecord
 
   def log_attribute_for_delete
     slice(:name, :project_id)
+  end
+
+  def active_workshop
+    workshops.
+      includes(:workshop_subjects).
+      joins(:workshop_subjects).
+      merge(WorkshopSubject.participatable).
+      first
   end
 
   private

@@ -9,6 +9,10 @@ module AdminJobs
       @owner = record.owner
     end
 
+    def job_record
+      @record
+    end
+
     def generate_title_link
       return {} unless campaign
 

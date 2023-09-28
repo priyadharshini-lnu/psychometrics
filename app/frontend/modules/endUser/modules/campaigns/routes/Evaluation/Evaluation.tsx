@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { createRef, useEffect } from 'react'
 import {
   Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
 } from 'antd'
@@ -69,7 +69,7 @@ const EvaluationComponent = ({
   markAssessmentTimedOut,
   progress,
 }) => {
-  const assessmentRef = React.createRef()
+  const assessmentRef = createRef()
   const {
     edit, step, approve_evaluation, lang, read,
   } = qs.parse(location.search.substr(1))
@@ -205,28 +205,26 @@ const EvaluationComponent = ({
         {!error && (
         <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
           <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-            <div className={selectedLanguage ? selectedLanguage.direction : ''}>
-              <Row justify="end" className={styles.dropdownRow}>
-                <Col className={styles.dropdownCol}>
-                  <StatusDropdown />
-                </Col>
-              </Row>
-              <PassAssessment
-                ref={assessmentRef}
-                id="pass_assessment"
-                initialized={initialized}
-                type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
-                isThreesixty="true"
-                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
-                data={assessment}
-                result={results}
-                dashboardUrl={`/threesixty_campaigns/${params.campaignId}`}
-                locales={translations}
-                selectedLocale={selectedLanguage && selectedLanguage.code}
-                notAnEndPage={approve_evaluation || edit === 'true'}
-                rstore={store}
-              />
-            </div>
+            <Row justify="end" className={styles.dropdownRow}>
+              <Col className={styles.dropdownCol}>
+                <StatusDropdown />
+              </Col>
+            </Row>
+            <PassAssessment
+              ref={assessmentRef}
+              id="pass_assessment"
+              initialized={initialized}
+              type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
+              isThreesixty="true"
+              resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
+              data={assessment}
+              result={results}
+              dashboardUrl={`/threesixty_campaigns/${params.campaignId}`}
+              locales={translations}
+              selectedLocale={selectedLanguage && selectedLanguage.code}
+              notAnEndPage={approve_evaluation || edit === 'true'}
+              rstore={store}
+            />
           </ResourcesTabs>
         </ConfigProvider>
         )}

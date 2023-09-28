@@ -17,14 +17,17 @@ import { reducer as smtpSettingReducer } from '../modules/client/core/smtpSettin
 import { reducer as samlSettingReducer } from '../modules/client/core/samlSetting'
 import { reducer as securitySettingReducer } from '../modules/client/core/securitySetting'
 import { reducer as designSettingsReducer } from '../modules/client/core/designSettings'
+import { reducer as assessmentsReducer } from '../modules/client/core/assessments'
 import subjects from '../modules/threeSixtyCampaign/core/subjects'
 import evaluators from '../modules/threeSixtyCampaign/core/evaluators'
 import managers from '../modules/threeSixtyCampaign/core/managers'
 import participantOptions from '../modules/threeSixtyCampaign/core/participantOptions/reducers'
 import reportOptions from '../modules/threeSixtyCampaign/core/reportOptions/reducers'
 import modals from './ui/modals'
+import menu from './ui/menu'
 import autocomplete from './ui/autocomplete'
 import breadcrumbs from './ui/breadcrumbs'
+import temp from './ui/temp'
 import datasheetFields from '../modules/threeSixtyCampaign/core/datasheetFields'
 import participants from '../modules/threeSixtyCampaign/core/participants'
 import relationships from '../modules/threeSixtyCampaign/core/relationships'
@@ -69,6 +72,7 @@ const createRootReducer = history => combineReducers({
     samlSetting: samlSettingReducer,
     securitySetting: securitySettingReducer,
     designSettings: designSettingsReducer,
+    assessments: assessmentsReducer,
     assessors: projectAssessorsReducers,
     participants: projectParticipantsReducer,
     integrations: integrationsReducer,
@@ -77,6 +81,8 @@ const createRootReducer = history => combineReducers({
     modals,
     autocomplete,
     breadcrumbs,
+    menu,
+    temp,
   }),
   currentUser,
   current,

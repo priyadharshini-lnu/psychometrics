@@ -8,10 +8,12 @@ export default function ChartOptions (model, animation) {
       type: 'line',
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
+    accessibility: {
+      enabled: false,
+    },
     legend: {
       enabled: true,
     },
-
     credits: {
       enabled: false,
     },

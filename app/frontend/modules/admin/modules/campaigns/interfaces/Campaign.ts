@@ -27,6 +27,8 @@ export default interface Campaign {
     viewAccesssheetSettings: boolean
     viewSmsInvites: boolean
     viewAssessors: boolean
+    viewWorkshops: boolean
+    viewWorkshopInvites: boolean
     stats: boolean
   }
 }
@@ -46,6 +48,7 @@ export type DescriptionWithLocale = t.TypeOf<typeof DescriptionWithLocaleTR>
 export interface CampaignOptions {
   timeZone?: string
   fixedTime: boolean
+  workshopBookingRequiresPreworkCompletion: boolean
   fixedTimeDuration?: number
   instructionsEnabled: boolean
   instructionsWithLocales: InstructionsWithLocale[]
@@ -56,4 +59,5 @@ export interface CampaignOptions {
   descriptionsWithLocales: DescriptionWithLocale[]
   availableDescriptionLocales: string[]
   integrationType: 'iframe' | 'ldb'
+  trial: boolean
 }

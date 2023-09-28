@@ -6,6 +6,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   testMatch: [
     '<rootDir>/app/frontend/__tests__/**/?(*.)+(spec|test).+(ts|tsx|js)',
+    '<rootDir>/app/frontend/glint/components/**/__tests__/**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
   cacheDirectory: '<rootDir>/tmp/cache/jest',
   moduleNameMapper: {

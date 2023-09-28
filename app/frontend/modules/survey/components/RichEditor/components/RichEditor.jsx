@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import FroalaEditor from 'react-froala-wysiwyg'
 import store from '~/modules/survey/store'

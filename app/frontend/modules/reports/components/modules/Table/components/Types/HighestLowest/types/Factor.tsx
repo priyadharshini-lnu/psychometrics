@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import cs from 'classnames'
 import _ from 'lodash'

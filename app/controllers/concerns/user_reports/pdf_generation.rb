@@ -16,7 +16,7 @@ module UserReports::PdfGeneration
     respond_to do |format|
       format.html do
         audit! :view_report, resource, campaign: resource.campaign,
-          payload: params.permit!.merge(resource.details_to_log)
+          payload: params.merge(resource.details_to_log)
       end
       format.json do
         if resource.external_report?
@@ -45,10 +45,10 @@ module UserReports::PdfGeneration
     }
     data = ::UserReports::GeneratePdf.call!(resource, current_user, options)
     audit! :download_report, resource, campaign: resource.campaign,
-      payload: params.permit!.merge(resource.details_to_log)
+      payload: params.merge(resource.details_to_log)
     respond_to do |format|
       format.pdf do
-        send_file data[:file_path], type: 'application/pdf'
+        send_tmp_file data[:file_path], type: 'application/pdf'
       end
 
       format.json { head :ok }

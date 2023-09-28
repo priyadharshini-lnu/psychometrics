@@ -19,6 +19,13 @@ module Api
     prepend_before_action :validate_requests_schema
     before_action :ensure_project
     before_action :ensure_campaign
+    # Setting up additional fields for custom actions in json_api response
+    # 'gems/jsonapi-resources-CURRENT_GEM_VERSION/lib/jsonapi/acts_as_resource_controller.rb'
+    before_action :setup_custom_request, except: %i[
+      index show create update destroy
+      show_relationship create_relationship update_relationship destroy_relationship
+      get_related_resource get_related_resources
+    ]
     append_before_action :pundit_authorize
     append_after_action :verify_authorized
 
@@ -40,6 +47,7 @@ module Api
       action = params[:action].to_sym
       if _request_schemas&.dig(action)
         schema_or_contract = _request_schemas&.dig(action)
+        schema_or_contract = send(schema_or_contract) if schema_or_contract.is_a?(Symbol)
         schema_validation = if schema_or_contract.is_a?(Dry::Schema::Processor)
                               schema_or_contract.call(params.permit!.to_h)
                             else
@@ -65,8 +73,18 @@ module Api
       end
     end
 
+    def json_api_attributes(record, attrs)
+      {
+        data: {
+          type: record.class.name.underscore.pluralize,
+          id: record.id.to_s,
+          attributes: attrs
+        }
+      }
+    end
+
     def context_for_schema_validation
-      { current_user: current_user, project: project, campaign: campaign }
+      { current_user: current_user, project: project, campaign: campaign, params: params }
     end
 
     def rescue_json_api_error(error)
@@ -83,7 +101,7 @@ module Api
         {
           title: error.text,
           source: {
-            pointer: error.path.join('/')
+            pointer: "/#{error.path.join('/')}"
           },
           status: '422'
         }
@@ -149,13 +167,24 @@ module Api
       campaign if params[:campaign_id]
     end
 
+    def setup_custom_request
+      @request.parse_fields(params[:fields])
+      @request.parse_include_directives(params[:include])
+      @request.parse_filters(params[:filter])
+      @request.parse_sort_criteria(params[:sort])
+      @request.parse_pagination(params[:page])
+    end
+
     def pundit_authorize
+      per_action_authorize_method = "authorize_#{params[:action]}"
+      return send(per_action_authorize_method) if respond_to?(per_action_authorize_method, true)
+
       authorize(
         model || model_class,
         nil,
         policy_class: policy_class,
         project_id: project_id || params[:client_id],
-        campaign_id: campaign_id
+        campaign_id: campaign_id || params[:campaign_id]
       )
     end
 
@@ -174,7 +203,10 @@ module Api
     def model
       return if model_class.nil? || model_id.nil?
 
-      @model ||= policy_class::Scope.new(current_user, model_class).resolve.find(model_id)
+      @model ||= policy_class::Scope.new(
+        current_user, model_class, campaign_id: campaign_id || params[:campaign_id],
+        project_id: project_id || params[:project_id]
+      ).resolve.find(model_id)
     end
 
     def policy_class
@@ -192,6 +224,23 @@ module Api
 
     def meta_details
       {}
+    end
+
+    def convert_model_errors_to_json_api_standard(input_errors)
+      converted_errors = []
+      input_errors.each do |field, messages|
+        messages.each do |message|
+          converted_errors << {
+            'title' => message,
+            'source' => {
+              'pointer' => "/data/attributes/#{field}"
+            },
+            'status' => '422'
+          }
+        end
+      end
+
+      { 'errors' => converted_errors }
     end
   end
 end

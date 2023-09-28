@@ -38,4 +38,26 @@ RSpec.describe User, type: :model do
       expect(results).not_to include(project_admin_without_access)
     end
   end
+
+  describe '#generate_strong_password' do
+    it 'generates a strong password for admins' do
+      user = create(:client_admin)
+      password = user.generate_strong_password
+      user.password = password
+
+      expect(password.length).to eql(12)
+      expect(user.valid?).to eq(true)
+    end
+
+    it 'generates a strong password for regular users' do
+      project = create(:project)
+      project.security_setting.update(min_password_length: 16)
+      user = create(:user, project: project)
+      password = user.generate_strong_password
+      user.password = password
+
+      expect(password.length).to eq(16)
+      expect(user.valid?).to eq(true)
+    end
+  end
 end

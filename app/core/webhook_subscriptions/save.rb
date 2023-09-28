@@ -2,7 +2,7 @@
 
 module WebhookSubscriptions
   class Save < BaseCommand
-    private_attr_accessor :project, :url, :webhook_subscription, :auth_enabled, :username, :password
+    private_attr_accessor :project, :url, :webhook_subscription, :username, :password
 
     DEFAULT_TOPICS = %i[
       assessment_started assessment_completed assessment_timeout results_available report_available
@@ -10,13 +10,12 @@ module WebhookSubscriptions
 
     DEFAULT_SECRET = 'default'
 
-    def initialize(project, url, auth_enabled = false, username = nil, password = nil)
+    def initialize(project, url, username = nil, password = nil)
       @project = project
       @url = url
-      @auth_enabled = auth_enabled
       @username = username
       @password = password
-      @webhook_subscription = project.webhook_subscription
+      @webhook_subscription = project.webhooks.first
     end
 
     def call
@@ -29,16 +28,21 @@ module WebhookSubscriptions
 
       attributes = {
         url: url,
-        auth_enabled: auth_enabled,
         username: username,
         secret: DEFAULT_SECRET,
-        active: true
+        active: true,
+        auth_type: 'no_auth',
+        description: 'default'
       }
-      attributes = attributes.merge(password: nil, auth_enabled: false) if username.blank?
+      attributes = if username.blank?
+                     attributes.merge(password: nil)
+                   else
+                     attributes.merge(auth_type: 'basic_auth')
+                   end
       attributes[:password] = password if password.present?
 
       if webhook_subscription.blank?
-        sub = project.create_webhook_subscription(attributes)
+        sub = project.webhooks.create(attributes)
         DEFAULT_TOPICS.each { |topic| sub.topics.create(name: topic) }
         return broadcast(:ok)
       end

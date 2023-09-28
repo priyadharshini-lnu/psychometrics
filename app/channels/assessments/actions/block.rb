@@ -6,7 +6,8 @@ module Assessments
       extend Actions::Action
 
       action :filter do |data|
-        blocks = ::Block.where('name ILIKE ?', "%#{data['q']}%").where(view: :templates).limit(10)
+        blocks = ::Block.where('name ILIKE ?', "%#{data['q']}%").where(view: :templates).
+                 where(owner_id: [data['owner_id'], nil]).limit(10)
         blocks.map { |block| { value: block.id, label: block.name } }
       end
 

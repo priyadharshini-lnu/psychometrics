@@ -53,9 +53,7 @@ module Administration
     end
 
     def regenerate?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :reports, :manage, project_id: project_id, campaign_id: campaign_id
-      )
+      @user.is?(:superadmin) || has_permission?(:results, :bulk_regenerate_reports)
     end
 
     def bulk_download?

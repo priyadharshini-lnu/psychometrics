@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require './app/core/json_api/audit_log_processor'
+
 JSONAPI.configure do |config|
   config.default_processor_klass = JsonApi::AuditLogProcessor
   config.exception_class_whitelist = [Pundit::NotAuthorizedError]
@@ -18,7 +20,7 @@ JSONAPI.configure do |config|
   config.top_level_links_include_pagination = false
 
   config.default_page_size = 25
-  config.maximum_page_size = 100
+  config.maximum_page_size = 300
 
   config.top_level_meta_include_record_count = true
   config.top_level_meta_record_count_key = :record_count
@@ -31,4 +33,5 @@ JSONAPI.configure do |config|
   config.exception_class_whitelist = []
 
   config.always_include_to_one_linkage_data = true
+  config.whitelist_all_exceptions = true
 end

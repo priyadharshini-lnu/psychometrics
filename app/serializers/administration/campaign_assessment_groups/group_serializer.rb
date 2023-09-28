@@ -4,7 +4,7 @@ module Administration
   module CampaignAssessmentGroups
     class GroupSerializer < ActiveModel::Serializer
       attributes :id, :name, :position, :previous_group_required, :previous_assessments_required,
-                 :campaign_id, :campaign_assessment_ids
+                 :campaign_id, :campaign_assessment_ids, :group_type
 
       def campaign_assessment_ids
         object.campaign_assessments.map(&:id)

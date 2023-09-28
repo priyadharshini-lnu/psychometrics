@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module SubjectTable
-        class SubjectRelationshipTable < BaseField
+        class SubjectRelationshipTable < ::PipedText::BaseField
           def call
             broadcast :ok, subject_table
           end
@@ -13,7 +13,7 @@ module Threesixty
 
           def subject_table
             ActionController::Base.render(
-              template: '_templates/subject_relationship_table.html.erb', assigns: { participants: participants }
+              template: '_templates/subject_relationship_table', assigns: { participants: participants }
             )
           end
 

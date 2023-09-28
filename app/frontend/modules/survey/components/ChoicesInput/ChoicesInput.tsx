@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import isNumber from 'lodash/isNumber'
 import isNaN from 'lodash/isNaN'
 import {

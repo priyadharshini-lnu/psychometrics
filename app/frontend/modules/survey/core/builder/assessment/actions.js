@@ -25,6 +25,7 @@ export const UPLOAD_DATA_SHEET = 'builder/assessment/UPLOAD_DATA_SHEET'
 export const UPDATE_EXTRA = 'builder/assessment/UPDATE_EXTRA'
 export const TOGGLE_INSTRUCTIONS = 'builder/assessment/TOGGLE_INSTRUCTIONS'
 export const UPDATE_INSTRUCTIONS_CONTENT = 'builder/assessment/UPDATE_INSTRUCTIONS_CONTENT'
+export const UPDATE_LINKED_QUESTIONS = 'builder/assessment/UPDATE_LINKED_QUESTIONS'
 
 export const selectQuestion = (question, offset) => ({ type: SELECT_QUESTION, question, offset })
 
@@ -44,6 +45,7 @@ export const updateFlow = flow => ({ type: UPDATE_FLOW, flow })
 export const toggleEnableBack = () => ({ type: TOGGLE_ENABLE_BACK })
 export const toggleEnableProgress = () => ({ type: TOGGLE_ENABLE_PROGRESS })
 export const toggleSingleQuestionPage = () => ({ type: TOGGLE_ENABLE_SINGLE_QUESTION })
+export const updateLinkedQuestions = (id, questions) => ({ type: UPDATE_LINKED_QUESTIONS, id, questions })
 
 export const saveAssessment = (data) => {
   const builder = {

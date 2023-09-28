@@ -3,17 +3,12 @@
 @import "~/styles/ant.variable.less";
 
 .tasksContainer {
-  & > :global(.ant-row) {
+  & > div:nth-child(2) {
     margin-top: @space-7;
   }
   & > div:last-child {
     margin-bottom: @space-7;
   }
-}
-.cardsContainer {
-  max-width: 1200px;
-  padding-inline: @space-2;
-  margin: auto;
 }
 .beginText {
   position: relative;

@@ -2,7 +2,7 @@
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable import/no-unresolved */
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { Alert, Space, Progress } from 'antd'
@@ -174,9 +174,13 @@ class VideoRecorder extends Component {
       type: supportedMimeType.mimeType,
     })
 
-    const { percent } = this.state
+    const { percent, recordingState } = this.state
     if (!percent[batchNumber]) {
       this.setState({ percent: { ...percent, [batchNumber]: 0 } })
+    }
+    if (blob.size === 0) {
+      recordingState === 'recording' ? this.stopRecording() : this.handleFinishRecording()
+      return
     }
 
     const uploadResp = axiosInstance.put(
@@ -245,7 +249,7 @@ class VideoRecorder extends Component {
 
   initRecorder () {
     const {
-      maxDuration, model, markQuestionInProgress, disableRecording,
+      maxDuration, markQuestionInProgress, disableRecording,
     } = this.props
 
     this.setState({
@@ -317,34 +321,7 @@ class VideoRecorder extends Component {
         }, 2000)
       })
 
-      this.player.on('finishRecord', async () => {
-        const { preview, fitInFrame } = this.props
-        if (!!fitInFrame && this.tracker) this.tracker.stopTracking()
-        if (preview) {
-          this.handleRecordingSaved()
-        } else if (this.urlDetails) {
-          this.uploadLastPart()
-          this.setState({ recordingState: 'saving' })
-          markQuestionInProgress(model.id, 'saving')
-        } else {
-          return
-        }
-
-        this.player.trigger('statechanged', { status: 'recorded' })
-
-        if (!preview) {
-          const resolvedArray = await Promise.all(this.promisesArray)
-          const uploadPartsArray = []
-          resolvedArray.forEach((resolvedPromise, index) => {
-            uploadPartsArray.push({
-              etag: resolvedPromise.headers.etag,
-              part_number: index + 1,
-            })
-          })
-
-          this.completeMediaUpload(uploadPartsArray)
-        }
-      })
+      this.player.on('finishRecord', this.handleFinishRecording)
 
       this.player.on('error', (element, error) => {
         // eslint-disable-next-line no-console
@@ -358,6 +335,37 @@ class VideoRecorder extends Component {
         console.error('Device Error:', this.player.deviceErrorCode)
       })
     })
+  }
+
+  handleFinishRecording = async () => {
+    const {
+      preview, fitInFrame, model, markQuestionInProgress,
+    } = this.props
+    if (!!fitInFrame && this.tracker) this.tracker.stopTracking()
+    if (preview) {
+      this.handleRecordingSaved()
+    } else if (this.urlDetails) {
+      this.uploadLastPart()
+      this.setState({ recordingState: 'saving' })
+      markQuestionInProgress(model.id, 'saving')
+    } else {
+      return
+    }
+
+    this.player.trigger('statechanged', { status: 'recorded' })
+
+    if (!preview) {
+      const resolvedArray = await Promise.all(this.promisesArray)
+      const uploadPartsArray = []
+      resolvedArray.forEach((resolvedPromise, index) => {
+        uploadPartsArray.push({
+          etag: resolvedPromise.headers.etag,
+          part_number: index + 1,
+        })
+      })
+
+      this.completeMediaUpload(uploadPartsArray)
+    }
   }
 
   multipartUpload = () => {

@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import panelStyles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
+import { rgba2hex } from '~/utils/color'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from '~/modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
@@ -10,13 +11,13 @@ import connect from '../connect'
 class Properties extends Component {
   changeBg = (color) => {
     const { model } = this.props
-    model.props.style.backgroundColor = color.rgb
+    model.props.style.backgroundColor = color
     this.forceUpdate()
   }
 
   changeBorder = (color) => {
     const { model } = this.props
-    model.props.style.borderColor = color.rgb
+    model.props.style.borderColor = color
     model.update()
   }
 
@@ -91,11 +92,11 @@ class Properties extends Component {
         <hr className={styles.divider} />
         <div className={styles.block} style={{ position: 'relative' }}>
           Background Color
-          <ColorPicker color={backgroundColor} onChange={this.changeBg} onComplete={this.complete} />
+          <ColorPicker value={rgba2hex(backgroundColor)} onChange={this.changeBg} />
         </div>
         <div className={styles.block} style={{ position: 'relative' }}>
           Border Color
-          <ColorPicker color={borderColor} onChange={this.changeBorder} onComplete={this.complete} />
+          <ColorPicker value={rgba2hex(borderColor)} onChange={this.changeBorder} />
         </div>
         <hr className={panelStyles.divider} />
         <div className={styles.block}>

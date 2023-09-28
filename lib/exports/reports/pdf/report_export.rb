@@ -31,7 +31,9 @@ module Exports
           args = report.pdf_dimension.merge(
             url: url,
             output: output
-          ).merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
+          ).merge(opts).to_a.map do |key, value|
+            "#{key}='#{key == :url ? value : Shellwords.escape(value)}'"
+          end.join(' ')
 
           Rails.logger.info "$(cd #{Rails.root} && npm run export_pdf -- #{args})"
           system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")

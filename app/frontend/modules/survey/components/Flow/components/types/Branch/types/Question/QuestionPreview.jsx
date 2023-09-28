@@ -1,4 +1,3 @@
-import React from 'react'
 import QuestionCondition from '~/libs/conditions'
 
 const Question = ({ questions, condition }) => (

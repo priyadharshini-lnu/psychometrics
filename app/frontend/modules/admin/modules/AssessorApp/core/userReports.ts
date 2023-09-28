@@ -99,7 +99,7 @@ export const fetchExternalReportDetails = (campaignId: number, id: number) => ({
   type: FETCH_EXTERNAL_REPORT_DETAILS,
   request: {
     url: `/assessors/campaigns/${campaignId}/user_reports/${id}`,
-    responseType: ExternalReportDetailsTR,
+    typedResponse: ExternalReportDetailsTR,
   },
 })
 

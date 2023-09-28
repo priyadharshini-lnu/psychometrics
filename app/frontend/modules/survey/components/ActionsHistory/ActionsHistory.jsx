@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
 import store from '~/modules/survey/store/UndoRedoStore'
 import styles from './ActionsHistory.less'

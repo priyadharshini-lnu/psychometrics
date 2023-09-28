@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 
 const PageProperties = () => (

@@ -1,5 +1,5 @@
 /* eslint-disable no-multi-str */
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import ResultStore from '~/modules/reports/store/ResultStore'

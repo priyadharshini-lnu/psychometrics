@@ -10,7 +10,8 @@ Bundler.require(*Rails.groups)
 
 module Psychometrics
   class Application < Rails::Application
-    config.load_defaults 6.1
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.0
     config.action_dispatch.cookies_same_site_protection = :none
     config.active_record.belongs_to_required_by_default = false
     # setting default storage service, this will fallback to this service throughout the application
@@ -19,7 +20,15 @@ module Psychometrics
     # NOTE: in rails 7 default image processor will be :vips
     config.active_storage.variant_processor = :mini_magick
 
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = Settings.timezone
+    config.eager_load_paths += Dir[Rails.root.join('lib')]
 
     # Load all translates inside folders
     #
@@ -33,7 +42,7 @@ module Psychometrics
     config.i18n.locale = :en
     config.i18n.fallbacks = [:en]
     config.active_record.schema_format = :sql
-    config.autoload_paths << Rails.root.join('lib')
+
     # Setup Active Job to use Sidekiq
     config.active_job.queue_adapter = :sidekiq
 
@@ -58,6 +67,7 @@ module Psychometrics
     end
 
     config.middleware.use(Middlewares::SetLocaleMiddleware)
+    config.action_controller.raise_on_open_redirects = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

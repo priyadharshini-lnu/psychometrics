@@ -1,5 +1,5 @@
 /* eslint-disable react/no-find-dom-node */
-import React, { Component } from 'react'
+import { Component } from 'react'
 import _ from 'lodash'
 import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
@@ -14,16 +14,19 @@ import { init } from '../core/builder/actions'
 import schema from '../store/schema'
 
 class PreviewContainer extends Component {
+  state = {
+    localeDirection: null,
+  }
+
   componentDidMount () {
     const parent = ReactDOM.findDOMNode(this).parentNode
     const {
-      data, results, locales, selectedLocale, pdfExport, skipLogic,
+      data, results, locales, pdfExport, skipLogic,
     } = parent.dataset
-
     if (locales) {
-      I18nStore.setLocale(selectedLocale || document.body.dataset.locale)
       I18nStore.locales = JSON.parse(locales)
     }
+
     const { user, campaign } = parent.dataset
     const parsedData = JSON.parse(data)
     const userReportData = humps.camelizeKeys(JSON.parse(parent.dataset.userReportData))
@@ -31,6 +34,13 @@ class PreviewContainer extends Component {
     if (_.isEmpty(I18nStore.locales) && parsedData.locales) {
       I18nStore.locales = parsedData.locales
     }
+    const { default_language } = parsedData
+
+    if (default_language) {
+      I18nStore.setLocale(default_language.code || document.body.dataset.locale)
+      this.setState({ localeDirection: default_language.direction })
+    }
+
     parsedData.moduleOverrides = humps.camelizeKeys(parsedData.module_overrides)
     if (skipLogic === 'true') {
       parsedData.skipLogic = true
@@ -42,10 +52,12 @@ class PreviewContainer extends Component {
   }
 
   render () {
+    const { localeDirection } = this.state
+
     return (
       <Provider store={rstore}>
         <div className="row">
-          <Preview />
+          <Preview localeDirection={localeDirection} />
         </div>
       </Provider>
     )

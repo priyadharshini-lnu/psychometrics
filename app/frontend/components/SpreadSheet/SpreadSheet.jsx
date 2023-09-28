@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import _ from 'lodash'
 import { setIn } from '~/utils/immutable'
 import Row from './Row'

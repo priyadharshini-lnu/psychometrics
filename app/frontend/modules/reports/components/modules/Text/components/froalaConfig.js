@@ -47,7 +47,7 @@ export default {
   // saveParams: { type },
   width: '100%',
   height: '100%',
-  key: '7MD3aC3A2C4B4D4A2xROKLJKYHROLDXDRE1b1YYGRi1Bd1C4F4B3H3G3A15A13A12C4C4==',
+  key: 'DUA2yE2C2F1A6A3A2A3qYFd1UQRFQIVb1MSMc2IWPNe1IFg1yD4C3D2C1C4C1H1H4B1D2==',
   attribution: false,
   autofocus: true,
   videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],

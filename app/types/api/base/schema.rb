@@ -108,13 +108,17 @@ module Api
           instance_eval(&this.resource_identifier)
           instance_eval(&relationship_schema) if relationship_schema
 
-          required(:links).hash do
-            required(:self).filled(:string)
+          if this.links?
+            required(:links).hash do
+              required(:self).filled(:string)
+            end
           end
 
           required(:attributes).hash do
             instance_eval(&this.attributes(method(:required), type))
           end
+
+          required(:meta).value(this.individual_record_meta_schema) if this.respond_to?(:individual_record_meta_schema)
         end
       end
 
@@ -131,7 +135,7 @@ module Api
           processed_relationship = {
             required: type == :create && relationship[:relationship] == :one,
             allowed_blank: relationship[:relationship] != :one,
-            links: %i[single_response multiple_response].include?(type)
+            links: links? && %i[single_response multiple_response].include?(type)
           }.merge(relationship)
 
           acc << processed_relationship
@@ -164,6 +168,28 @@ module Api
 
       def self.relationships(_)
         []
+      end
+
+      def self.response_schema?(type)
+        %i[single_response multiple_response].include?(type)
+      end
+
+      def self.json_api_attributes(&)
+        Dry::Schema.define do
+          required(:data).hash do
+            required(:attributes).hash do
+              instance_eval(&)
+            end
+          end
+        end
+      end
+
+      def self.attributes(_attribute, _type)
+        proc {}
+      end
+
+      def self.links?
+        true
       end
     end
   end

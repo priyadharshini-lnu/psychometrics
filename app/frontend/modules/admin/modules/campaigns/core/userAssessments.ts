@@ -20,6 +20,7 @@ export const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSMENTS'
 export const RESET_PROGRESS_OF_ASSESSMENT = 'campaigns/userAssessments/RESET_PROGRESS_OF_ASSESSMENT'
+export const GET_WEBHOOK_REQUEST_DATA = 'campaigns/userAssessments/GET_WEBHOOK_REQUEST_DATA'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -29,6 +30,16 @@ export const getSingle = (state, id): UserAssessment | null => state.campaigns.u
 const statusLabel = { not_started: 'new', in_progress: 'progress' }
 
 export const getStatusesCount = state => _.countBy(get(state).list, a => statusLabel[a.status] || a.status)
+
+export const getWebhookPayload = (campaignId, userAssessmentId, body) => ({
+  type: GET_WEBHOOK_REQUEST_DATA,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${userAssessmentId}/webhook_payload`,
+    body: { ...body },
+    loader: true,
+  },
+})
 
 export const updateNorm = (campaignId, campaignAssessmentId: number, body) => ({
   type: UPDATE_NORM,

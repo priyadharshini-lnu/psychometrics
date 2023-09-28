@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './Likert.less'
 import { NOT_APPLICABLE } from '../../Consts'

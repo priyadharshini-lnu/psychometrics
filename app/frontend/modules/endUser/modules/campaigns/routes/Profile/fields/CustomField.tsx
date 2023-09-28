@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { MultipleChoice } from './MultipleChoice'
 import { TextEntry } from './TextEntry'
 

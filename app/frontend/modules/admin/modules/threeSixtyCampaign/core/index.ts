@@ -8,6 +8,7 @@ import { fetchManagers } from './managers'
 const RESET = 'threeSixty/RESET'
 const RESET_NOMINATIONS = 'threeSixty/RESET_NOMINATIONS'
 const RESCORE_ASSESSMENT = 'threeSixty/RESCORE_ASSESSMENT'
+const REGENERATE_REPORTS = 'threeSixty/REGENERATE_REPORTS'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
 const EXPORT_COMPLETION_STATUSES = 'threeSixty/EXPORT_COMPLETION_STATUSES'
 
@@ -36,11 +37,28 @@ export const rescoreAssessment = (campaignId: number) => ({
   },
 })
 
+export const regenerateReports = (campaignId: number) => ({
+  type: REGENERATE_REPORTS,
+  request: {
+    method: 'post',
+    url: `/administration/threesixty_campaigns/${campaignId}/regenerate_reports`,
+  },
+})
+
+
 export const exportCompletionStatuses = (campaignId: number) => ({
   type: EXPORT_COMPLETION_STATUSES,
   request: {
     method: 'get',
     url: `/administration/threesixty_campaigns/${campaignId}/export_completion_status`,
+  },
+})
+
+export const exportRawResults = (campaignId: number) => ({
+  type: EXPORT_COMPLETION_STATUSES,
+  request: {
+    method: 'get',
+    url: `/administration/threesixty_campaigns/${campaignId}/export_results`,
   },
 })
 

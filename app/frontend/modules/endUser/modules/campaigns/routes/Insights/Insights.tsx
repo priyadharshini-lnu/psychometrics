@@ -24,8 +24,6 @@ import styles from './styles.less'
 import { PageContentSkeleton } from '../../components/PageContentSkeleton'
 
 const { I18n } = window
-const current = I18n.locale
-const locales = I18n.availableLocales
 const { Content } = Layout
 
 const connector = connect(
@@ -58,7 +56,7 @@ const InsightsComponent: FC<Props> = ({
     <>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown locales={locales} current={current} />
+          <LangDropdown />
         </Col>
       </PageHeader>
       <Content className={styles.pageContent}>

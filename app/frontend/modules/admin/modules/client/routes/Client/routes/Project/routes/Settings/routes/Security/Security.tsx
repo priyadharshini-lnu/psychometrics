@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Form, Input, Button, Switch, Select,
+  Row, Col, Form, Input, Button, Switch, Select, Skeleton,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -10,11 +10,13 @@ import {
   saveSettings,
   SAVE_SETTINGS,
 } from '~/modules/admin/modules/client/core/securitySetting'
+import { FETCH_SINGLE as FETCH_PROJECT } from '~/modules/admin/modules/client/core/projects'
 import ResourceForm from '~/components/ResourceForm'
 import { isRequestInProgress } from '~/core/request'
 
 const connector = connect(
   (state: RootState) => ({
+    isProjectLoading: isRequestInProgress(state, FETCH_PROJECT),
     securitySetting: getPasswordSetting(state),
     isSaving: isRequestInProgress(state, SAVE_SETTINGS),
   }),
@@ -30,7 +32,7 @@ type Props = PropsFromRedux
 const { I18n } = window
 
 const securityComponent: React.FC<Props> = ({
-  securitySetting, isSaving,
+  securitySetting, isSaving, isProjectLoading,
 }) => {
   const [form] = Form.useForm()
   const { projectId } = useParams<{ projectId: string }>()
@@ -38,6 +40,8 @@ const securityComponent: React.FC<Props> = ({
   useEffect(() => {
     form.setFieldsValue(securitySetting)
   }, [])
+
+  if (isProjectLoading) return <Skeleton />
 
   return (
     <Row justify="space-between" className="pl">
@@ -74,7 +78,7 @@ const securityComponent: React.FC<Props> = ({
                   label={I18n.t('administration.security_setting.min_length')}
                   required
                 >
-                  <Input type="number" defaultValue={8} min={8} max={128} />
+                  <Input type="number" defaultValue={8} min={8} max={20} />
                 </Form.Item>
                 <Form.Item
                   name="enforcePasswordPolicy"

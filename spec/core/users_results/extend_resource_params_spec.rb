@@ -31,12 +31,14 @@ describe ::UsersResults::ExtendResourceParams do
     allow(Time).to receive(:current).and_return(Time.zone.local(2019, 10, 8, 0, 1, 15))
     expect(::UsersResults::ExtendResourceParams.call!(resource_params, [1, 2], user_assessment)).to eq(
       'answers' => {
-        '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 37_500 },
+        '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 37_500,
+                 'dirty' => false },
         '2' => {
           'answers' => [{ 'index' => 1, 'value' => 0 }],
           'question_id' => 2,
           'not_applicable' => nil,
-          'duration' => 37_500
+          'duration' => 37_500,
+          'dirty' => false
         },
         '3' => { 'answers' => [], 'question_id' => 3, 'not_applicable' => true, 'duration' => 12_345 }
       },
@@ -51,12 +53,14 @@ describe ::UsersResults::ExtendResourceParams do
     users_result.user_assessment.update!(expiry_date: 1.minute.ago)
     expect(::UsersResults::ExtendResourceParams.call!(resource_params, [1, 2], user_assessment)).to eq(
       'answers' => {
-        '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 37_500 },
+        '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 37_500,
+                 'dirty' => false },
         '2' => {
           'answers' => [{ 'index' => 1, 'value' => 0 }],
           'question_id' => 2,
           'not_applicable' => nil,
-          'duration' => 37_500
+          'duration' => 37_500,
+          'dirty' => false
         },
         '3' => { 'answers' => [], 'question_id' => 3, 'not_applicable' => true, 'duration' => 12_345 }
       },

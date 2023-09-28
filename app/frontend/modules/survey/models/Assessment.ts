@@ -15,4 +15,5 @@ export default interface AssessmentInterface {
     enabled: boolean
     content: string
   }
+  linked_questions: {[key:number]: number[]}
 }

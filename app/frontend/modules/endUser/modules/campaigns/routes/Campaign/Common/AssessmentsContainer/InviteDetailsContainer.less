@@ -1,0 +1,18 @@
+@import '~/styles/spacing.less';
+
+.inviteCard:global(.ant-card) {
+  border: 2px solid var(--ant-primary-color);
+  border-inline-start-width: 4px;
+}
+.countdown :global(.ant-statistic-content) {
+  color: white;
+}
+.bookingCountdown {
+  background: var(--ant-primary-7);
+  padding: @space-6;
+  border-radius: 4px;
+  color: white;
+  & :global(.ant-typography) {
+    color: white;
+  }
+}

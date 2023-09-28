@@ -1,4 +1,3 @@
-import React from 'react'
 import { Table } from 'antd'
 import { CheckOutlined, MoreOutlined } from '@ant-design/icons'
 import ConditionalDropdown from '~/components/ConditionalDropdown'

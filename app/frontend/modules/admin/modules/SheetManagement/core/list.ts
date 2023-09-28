@@ -177,6 +177,7 @@ export const importSheet = (parentType: ParentResourceType, parentId: number, ty
     url: `/administration/${parentType}s/${parentId}/sheet_rows/import.json?type=${type}`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

@@ -27,6 +27,10 @@ module Administration
         @devise_mapping ||= Devise.mappings[:user]
       end
 
+      def resource_params
+        super.merge(force_password_change: false)
+      end
+
       def skip_password_change
         return if user_signed_in? && warden.session(:user)['enforce_password_change']
 

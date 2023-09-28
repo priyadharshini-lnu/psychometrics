@@ -1,4 +1,3 @@
-import React from 'react'
 import { Skeleton, Row, Col } from 'antd'
 
 import styles from './styles.less'

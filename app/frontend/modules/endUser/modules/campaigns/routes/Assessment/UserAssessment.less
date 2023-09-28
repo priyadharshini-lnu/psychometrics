@@ -1,0 +1,66 @@
+@import "~/styles/ant.variable.less";
+@import "~/styles/spacing.less";
+
+.campaignHeader:global(.ant-page-header) {
+  background-color: var(--ant-primary-color);
+  padding-block: @space-2;
+}
+.backIcon {
+  color: @white;
+}
+
+.campaignsCount {
+  font-size: @font-size-base;
+  font-weight: 400;
+}
+.progressStatus {
+  & :global(.ant-progress-text) {
+    color: @white;
+  }
+  & :global(.ant-progress-inner) {
+    color: var(--ant-primary-7);
+  }
+}
+
+.container {
+  background-color: @white;
+}
+
+.pageContent {
+  overflow-x: hidden;
+  max-width: 1200px;
+  margin: auto;
+  padding: @space-4;
+}
+
+.external {
+  text-align: center;
+  .icon {
+    padding: 20px 0;
+  }
+}
+
+.policyContent {
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.acceptBtn {
+  text-align: center;
+  margin-top: @space-4
+}
+
+.redirectFooter {
+  text-align: center;
+  margin-top: @space-4;
+  padding: @space-4 0;
+}
+
+.footerButtons {
+  margin-top: @space-4;
+  padding: @space-4 0;
+}
+
+.tac {
+  text-align: center;
+}

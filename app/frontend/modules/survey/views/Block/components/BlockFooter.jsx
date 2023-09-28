@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Block from '~/modules/survey/models/Block'
 import Menu from '~/modules/survey/components/ModulesMenu'

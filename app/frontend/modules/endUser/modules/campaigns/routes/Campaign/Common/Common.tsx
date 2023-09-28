@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
@@ -28,6 +28,7 @@ import { ProgressStatus, DirectionalArrowIcon } from '~/glint'
 import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
 import { InstructionsPanel } from './InstructionsPanel'
+import { AssessmentCardContainer } from './AssessmentCardContainer'
 import styles from './styles.less'
 
 const connector = connect(
@@ -57,18 +58,17 @@ const { I18n } = window
 
 const CommonComponent: FC<CommonComponentProps> = ({
   campaign,
-  campaign: { campaignUser, groups },
-  loginHogan,
-  acceptPolicy,
+  campaign: {
+    campaignUser, groups,
+    campaignUser: { expiryDate },
+  },
   beginCampaign,
   continueCampaign,
-  privacyConsentRequired,
 }) => {
   const {
     isTimedCampaign,
     fixedTimed,
     campaignsCount,
-    campaignUser: { expiryDate },
     campaignOptions: {
       instructionsEnabled, instructions, proctoringEnabled, integrationType,
     },
@@ -224,76 +224,74 @@ const CommonComponent: FC<CommonComponentProps> = ({
             )}
           </Col>
         </Row>
-        <Row className={styles.cardsContainer}>
+        <Row>
           <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
             {campaignClosedForUser && (
             <div className="mvm font-bold">
-              <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
+              <AssessmentCardContainer>
+                <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
+              </AssessmentCardContainer>
             </div>
             )}
             <div className={styles.tasksContainer}>
-              <Row>
-                <Col span={24} style={{ paddingInlineStart: '14px' }}>
-                  {canBeginCampaign && (
-                    <>
-                      <Title className={styles.beginText} level={4}>
-                        {I18n.t('campaign.begin')}
-                      </Title>
-                        {/* {<p>This is text will come from backend</p>} */}
-                      <Button
-                        size="small"
-                        type="primary"
-                        onClick={handleStartCampaignActivities}
-                        disabled={!allPreworkIsComplete}
-                      >
-                        {I18n.t('campaign.begin')}
-                        {' '}
-                        <DirectionalArrowIcon />
-                      </Button>
-                    </>
-                  )}
-                  {canContinueCampaign && (
-                    <>
-                      <Title className={styles.beginText} level={4}>
-                        {I18n.t('campaign.continue')}
-                      </Title>
-                        {/* {<p>This is text will come from backend</p>} */}
-                      <Button
-                        size="small"
-                        type="primary"
-                        onClick={handleStartCampaignActivities}
-                        disabled={!allPreworkIsComplete}
-                      >
-                        {I18n.t('campaign.continue')}
-                        {' '}
-                        <DirectionalArrowIcon />
-                      </Button>
-                    </>
-                  )}
-                  {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
-                    <div className="mt-1">
-                      <Space>
-                        <InfoCircleOutlined />
-                        <Typography.Text type="secondary">
-                          {I18n.t('campaign.begin_btn_msg_before_prework')}
-                        </Typography.Text>
-                      </Space>
-                    </div>
-                  )}
-                </Col>
-              </Row>
+              <AssessmentCardContainer>
+                <Row>
+                  <Col span={24} style={{ paddingInlineStart: '14px' }}>
+                    {canBeginCampaign && (
+                      <>
+                        <Title className={styles.beginText} level={4}>
+                          {I18n.t('campaign.begin')}
+                        </Title>
+                        <Button
+                          size="small"
+                          type="primary"
+                          onClick={handleStartCampaignActivities}
+                          disabled={!allPreworkIsComplete}
+                        >
+                          {I18n.t('campaign.begin')}
+                          {' '}
+                          <DirectionalArrowIcon />
+                        </Button>
+                      </>
+                    )}
+                    {canContinueCampaign && (
+                      <>
+                        <Title className={styles.beginText} level={4}>
+                          {I18n.t('campaign.continue')}
+                        </Title>
+                          {/* {<p>This is text will come from backend</p>} */}
+                        <Button
+                          size="small"
+                          type="primary"
+                          onClick={handleStartCampaignActivities}
+                          disabled={!allPreworkIsComplete}
+                        >
+                          {I18n.t('campaign.continue')}
+                          {' '}
+                          <DirectionalArrowIcon />
+                        </Button>
+                      </>
+                    )}
+                    {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
+                      <div className="mt-1">
+                        <Space>
+                          <InfoCircleOutlined />
+                          <Typography.Text type="secondary">
+                            {I18n.t('campaign.begin_btn_msg_before_prework')}
+                          </Typography.Text>
+                        </Space>
+                      </div>
+                    )}
+                  </Col>
+                </Row>
+              </AssessmentCardContainer>
               <AssessmentsContainer
                 groups={groups}
                 ungrouped={ungrouped}
                 campaign={campaign}
-                loginHogan={loginHogan}
                 canNotStartPrework={canNotStartPrework}
                 canNotStartAssessment={canNotStartAssessment}
                 campaignNotStarted={canBeginCampaign || canContinueCampaign}
-                acceptPolicy={acceptPolicy}
-                isTimedCampaign={isTimedCampaign}
-                expiryDate={expiryDate}
-                privacyConsentRequired={privacyConsentRequired}
               />
             </div>
           </Col>

@@ -8,10 +8,12 @@ module Api
           'memberships'
         end
 
-        def self.attributes(attribute, _)
+        def self.attributes(attribute, type)
           proc do
-            optional(:user_id).array(:str?)
-            attribute[:client_id].filled(:string)
+            if %i[create update].include?(type)
+              optional(:user_id).array(:string)
+              optional(:client_id).maybe(:string)
+            end
             attribute[:role].filled(:string)
             attribute[:grant_names].filled(:hash).schema do
               %i[

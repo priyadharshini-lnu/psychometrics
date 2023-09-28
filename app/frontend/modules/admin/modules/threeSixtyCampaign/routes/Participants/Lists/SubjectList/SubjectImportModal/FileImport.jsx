@@ -1,4 +1,3 @@
-import React from 'react'
 import { CloudDownloadOutlined } from '@ant-design/icons'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 

@@ -73,6 +73,7 @@ class Membership < ApplicationRecord
   scope :campaign_admin_role, -> { where(role: CAMPAIGN_ADMIN_ROLE) }
   scope :with_client, ->(client_id) { where(client_id: client_id) }
   scope :with_role, ->(role) { where(role: role) }
+  scope :project_id_eq, ->(project_id) { where(client_id: project_id) }
   scope :user_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
   scope :member_or_manager, -> { where(role: %i[member manager]) }
   scope :filterable_fields, lambda { |query|
@@ -242,7 +243,7 @@ class Membership < ApplicationRecord
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      %i[hris_data_cont role_scope_in user_type_eq assigns_hash_id_eq filterable_fields with_role]
+      %i[hris_data_cont role_scope_in user_type_eq assigns_hash_id_eq filterable_fields with_role project_id_eq]
     end
   end
 end

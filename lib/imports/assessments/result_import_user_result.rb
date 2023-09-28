@@ -98,7 +98,7 @@ module Imports
 
           # Parse answers
           data.each do |key, value|
-            next unless /qid/.match?(key)
+            next unless /qid/.match?(key) # rubocop:disable Performance/StringInclude
 
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).compact_blank.map(&:to_i)
@@ -142,7 +142,7 @@ module Imports
 
       def open_spreadsheet
         case File.extname(file.path)
-          when '.csv' then Roo::CSV.new(file.url)
+          when '.csv' then Roo::CSV.new(file.url, csv_options: { converters: [:numeric] })
           when '.xlsx' then ::Roo::Excelx.new(file.url)
           else raise t('administration.imports.errors.unknown_type', filename: file.url)
         end
@@ -203,7 +203,7 @@ module Imports
         return nil if date.blank?
         return date if date.is_a?(Date) || date.is_a?(Time)
 
-        DateTime.strptime(date.to_s, '%D %r')
+        DateTime.parse(date.to_s)
       rescue StandardError
         errors.add(:base, I18n.t('administration.imports.errors.result.error',
                                  row: index + SKIP_ROWS, error: "Invalid Date :#{date}"))

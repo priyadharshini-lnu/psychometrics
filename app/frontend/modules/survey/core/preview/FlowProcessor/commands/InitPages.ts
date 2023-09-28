@@ -7,14 +7,16 @@ const InitPages = {
     const { blocks } = data
     return _.reduce(blocks, (pages, b) => {
       if (b.deleted) { return pages }
-      pages = { ...pages, [b.id]: [] }
+      const symbolId = Symbol.for(b.id.toString())
+      pages = { ...pages, [symbolId]: [] }
+
 
       const questions = _.reduce(b.questions, (questions: number[], q) => {
         if (q.deleted) { return questions }
 
         if (q.type === 'PageBreak') {
           if (questions.length) {
-            pages[b.id] = [...pages[b.id], { questions, blockId: b.id }]
+            pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
           }
           return []
         }
@@ -23,7 +25,7 @@ const InitPages = {
           if (questions.length > 0) {
             const prev = _.find(b.questions, { id: questions[0] })
             const skipLogic = prev?.skip_logic?.length ? { skipLogic: prev.skip_logic } : {}
-            pages[b.id] = [...pages[b.id], { questions, blockId: b.id, ...skipLogic }]
+            pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id, ...skipLogic }]
           }
 
           return [q.id]
@@ -31,7 +33,7 @@ const InitPages = {
 
         if (q.display_logic) {
           if (questions.length > 0) {
-            pages[b.id] = [...pages[b.id], { questions, blockId: b.id }]
+            pages[symbolId] = [...pages[symbolId], { questions, blockId: b.id }]
           }
           questions = [q.id]
         }
@@ -44,7 +46,7 @@ const InitPages = {
             questions, blockId: b.id, skipLogic: q.skip_logic,
           }
 
-          pages[b.id] = [...pages[b.id], attrs]
+          pages[symbolId] = [...pages[symbolId], attrs]
           return []
         }
 
@@ -60,10 +62,10 @@ const InitPages = {
           questions, blockId: b.id,
         }
 
-        pages[b.id] = [...pages[b.id], attrs]
+        pages[symbolId] = [...pages[symbolId], attrs]
       }
       if (b.props && b.props.randomization) {
-        pages[b.id] = RandomizeBlockQuestions.run(b.props.randomization, pages[b.id], seed + b.id)
+        pages[symbolId] = RandomizeBlockQuestions.run(b.props.randomization, pages[symbolId], seed + b.id)
       }
       return { ...pages }
     }, {})

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
 import QuestionList from '~/modules/survey/views/Preview/QuestionList'
@@ -31,6 +31,14 @@ class Page extends Component {
     this.ref.removeEventListener('cut', this.disableCopyHandler)
     this.ref.removeEventListener('contextmenu', this.disableCopyHandler)
   }
+
+  componentDidUpdate (prevProps) {
+    const { page } = this.props
+    if (page !== prevProps.page) {
+      window.scrollTo(0, 0)
+    }
+  }
+
 
   getBlockClasses () {
     const { block: { props: { staticContent } } } = this.props

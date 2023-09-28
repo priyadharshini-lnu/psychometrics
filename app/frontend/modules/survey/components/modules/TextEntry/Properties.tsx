@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
   Select, Space, Typography, Checkbox, Divider,
 } from 'antd'
@@ -16,7 +16,8 @@ import RequiredValidations from '~/modules/survey/components/RequiredValidations
 import
 EmailPropertyPanel
   from '~/modules/survey/components/modules/TextEntry/components/types/Email/Builder/PropertyPanel'
-
+import RichTextPropertyPanel
+  from '~/modules/survey/components/modules/TextEntry/components/types/RichText/PropertyPanel'
 import { TextEntryProps } from '~/modules/survey/constants/DefaultProps'
 import {
   ANSWER_TYPE_OPTIONS,
@@ -103,6 +104,7 @@ export const Properties: FC<Props> = ({ model }) => {
       />
       )}
       {type === 'Email' && <EmailPropertyPanel model={model} />}
+      {type === 'RichText' && <RichTextPropertyPanel model={model} />}
 
       <RequiredValidations model={model} update={forceUpdate} />
       <ValidationTypes model={model} update={() => forceUpdate()} />

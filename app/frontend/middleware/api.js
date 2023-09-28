@@ -18,8 +18,7 @@ const buildUrl = ({
   }
   if (mocked) {
     const mockedURL = new URL(window.location.origin)
-    const WEBPACK_SERVER_PORT = '3035'
-    const mockedServerURL = `${mockedURL.protocol}//${mockedURL.hostname}:${WEBPACK_SERVER_PORT}${url}`
+    const mockedServerURL = `http://${mockedURL.hostname}:${__MOCK_SERVER_PORT__}${url}`
 
     return mockedServerURL
   }
@@ -59,11 +58,11 @@ const bodyFromTableConfig = (tableConfig) => {
   return setIn(data, ['filters', 's'], `${_.snakeCase(tableConfig.sort.columnName)} ${tableConfig.sort.order}`)
 }
 
-const buildOptions = ({ options = {} }) => ({
+const buildOptions = ({ options = {}, ...request }) => ({
   ...options,
   headers: {
     ...options.headers,
-    'Content-Type': 'application/json',
+    'Content-Type': request.contentType || 'application/json',
     Accept: 'application/json',
     'X-CSRF-Token': window.$('meta[name="csrf-token"]').attr('content'),
   },

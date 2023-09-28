@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { DATA_SHEET } from '~/modules/reports/models/Module'

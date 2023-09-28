@@ -21,7 +21,7 @@ export default {
   init () {
     if (!cable) {
       cable = new Cable({
-        LibraryChannel: actionCable.subscriptions.create({ channel: 'Libraries::Channel' }),
+        LibraryChannel: actionCable().subscriptions.create({ channel: 'Libraries::Channel' }),
       })
       cable.channel('LibraryChannel').on('connected', SocketDispatcher.connect)
       cable.channel('LibraryChannel').on('disconnected', SocketDispatcher.disconnect)

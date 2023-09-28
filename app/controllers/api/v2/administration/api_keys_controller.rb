@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+module Api
+  class V2::Administration::ApiKeysController < Api::V2::Administration::BaseController
+    validate_crud_requests Api::V2::ApiKey::Schema
+
+    def meta_details
+      {
+        user: -> { { email: User.find(params[:user_id]).email } }
+      }
+    end
+  end
+end

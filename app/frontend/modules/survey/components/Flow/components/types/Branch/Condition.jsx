@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Settings from '../../Settings'
 import styles from './Condition.less'
@@ -80,6 +80,7 @@ export class Condition extends Component {
         <option value="GeoIP">Geo IP Location</option>
         <option value="DataSheet">Datasheet</option>
         <option value="SubjectDataSheet">Subject Datasheet</option>
+        <option value="EvaluatorRelationship">Evaluator Relationship</option>
       </select>
     )
   }

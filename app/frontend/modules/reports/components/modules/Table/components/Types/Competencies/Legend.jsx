@@ -1,4 +1,3 @@
-import React from 'react'
 import FilterAvatar from './FilterAvatar'
 import styles from './styles.less'
 

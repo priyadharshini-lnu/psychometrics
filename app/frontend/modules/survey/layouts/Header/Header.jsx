@@ -1,17 +1,20 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import { TimePicker } from 'antd'
+import { Button, Space } from 'antd'
+import {
+  EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined,
+} from '@ant-design/icons'
 import _ from 'lodash'
 import moment from 'moment'
-
+import cs from 'classnames'
 import ActionsHistory from '~/modules/survey/components/ActionsHistory'
 import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { perform } from '~/modules/survey/core/temp/socket'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import SerializeAssessment from '~/modules/survey/core/builder/assessment/SerializeAssessment'
-import { TYPES as CAMPAIGN_TYPES } from '~/constants/campaign'
 import styles from './Header.less'
+import { Tabs } from './Tabs'
 
 const { I18n } = window
 
@@ -19,6 +22,11 @@ export class Header extends Component {
   openDataSheetModal = () => {
     const { openDataSheetModal, assessment } = this.props
     openDataSheetModal({ columns: assessment.data_sheet_columns, id: assessment.id })
+  }
+
+  openSettings = () => {
+    const { openSettings } = this.props
+    openSettings()
   }
 
   openFlow = () => {
@@ -59,7 +67,7 @@ export class Header extends Component {
       block: {},
       question: {},
       flow: {},
-      instructions: { [null]: { content: instructions.content } },
+      instructions: { 0: { content: instructions.content } },
     }
 
     _.each(blocksWithQuestions, (block) => {
@@ -108,70 +116,41 @@ export class Header extends Component {
 
   render () {
     const {
-      assessment, assessment: { extra, saving }, toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage,
-      instructions, toggleInstructions,
+      assessment, assessment: { extra, saving },
     } = this.props
-
-    const isThreeSixtyAsessment = assessment && assessment.category === CAMPAIGN_TYPES.THREESIXTY
     const isAssessmentTimerAdded = extra && Object.prototype.hasOwnProperty.call(extra, 'timer')
 
     return (
       <div className={`panel-heading ${styles.menu}`}>
-        <div>
+        <Space>
           <h3 className="panel-title">
             {assessment.name}
           </h3>
-        </div>
-        <ul className="panel-controls">
+          <Button type="primary" onClick={this.openPreview}>
+            <EyeOutlined />
+            {' '}
+            {I18n.t('administration.assessments.preview')}
+          </Button>
           {isAssessmentTimerAdded && (
-            <li>
-              Timer:
-              <TimePicker
-                value={(extra.timer || extra.timer === 0) ? moment.utc(extra.timer * 1000) : null}
-                onChange={this.updateTimer}
-                placeholder="Set timer"
-                defaultOpenValue={moment.utc(0)}
-                className="mhs"
-                dropdownClassName="assessment-timer"
-              />
-            </li>
+          <Space>
+            <ClockCircleOutlined size={24} />
+            {moment.utc(extra.timer * 1000).format('HH:mm:ss')}
+          </Space>
           )}
-          <li>
-            <button className={`btn btn-default ${styles.flow}`} onClick={this.openFlow}>Flow</button>
-          </li>
-          <li>
-            <button onClick={this.openPreview} className={`btn btn-default ${styles.preview}`}>
-              Preview
-            </button>
-          </li>
-          <li>
-            <button onClick={this.showScoring} className={`btn btn-default ${styles.preview}`}>
-              Scoring
-            </button>
-          </li>
-          <li>
-            <button onClick={this.showResourceManager} className={`btn btn-default ${styles.preview}`}>
-              Resource Manager
-            </button>
-          </li>
-          <li>
-            <button onClick={this.showMappingNorms} className={`btn btn-default ${styles.preview}`}>
-              Map norms
-            </button>
-          </li>
+        </Space>
 
+        <ul className={cs('panel-controls', styles.controls)}>
           {assessment && (
             <li>
-              <span>
-                <a
+              <div>
+                <Button
                   href={`/administration/reports?q[assessment_id_in][]=${assessment.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`btn btn-default ${styles.preview}`}
                 >
-                  Reports
-                </a>
-              </span>
+                  {I18n.t('administration.assessments.reports')}
+                </Button>
+              </div>
             </li>
           )}
           <li className={styles.spaceLeft}><ActionsHistory /></li>
@@ -189,14 +168,23 @@ export class Header extends Component {
               )}
               id="main_menu"
             >
-              <MenuItem onSelect={this.createBlock}>Add Block</MenuItem>
-              {!isThreeSixtyAsessment && (
-              <MenuItem onSelect={toggleInstructions}>
-                {instructions.enabled ? 'Hide' : 'Show'}
-                {' '}
-                Instructions
+              <MenuItem onSelect={this.openSettings}>
+                <Space>
+                  <SettingOutlined />
+                  Settings...
+                </Space>
               </MenuItem>
-              )}
+              <MenuItem onSelect={this.showMappingNorms}>
+                <Space>
+                  <PartitionOutlined />
+                  {I18n.t('administration.assessments.map_norms')}
+                </Space>
+              </MenuItem>
+              <MenuItem onSelect={this.openFlow}>
+                <i className="fa fa-random" />
+                {I18n.t('administration.assessments.flow')}
+              </MenuItem>
+              <MenuItem onSelect={this.createBlock}>Add Block</MenuItem>
               <MenuItem onSelect={this.openSearchPopup}>Copy Block From...</MenuItem>
               <MenuItem onSelect={this.export}>Export Translations</MenuItem>
               <li>
@@ -208,33 +196,6 @@ export class Header extends Component {
                   Import Translations
                 </a>
               </li>
-              <li>
-                <a
-                  className={styles.linkExport}
-                  href={`/administration/assessments/${_.result(assessment, 'id')}/export.xlsx`}
-                >
-                  Export Scoring
-                </a>
-              </li>
-              <MenuItem onSelect={toggleEnableBack}>
-                {_.result(assessment, 'enable_back') ? 'Disable Back Button' : 'Enable Back Button'}
-              </MenuItem>
-              <MenuItem onSelect={toggleEnableProgress}>
-                {_.result(assessment, 'enable_progress') ? 'Disable Progress Bar' : 'Enable Progress Bar'}
-              </MenuItem>
-              <MenuItem onSelect={toggleSingleQuestionPage}>
-                {_.result(assessment, 'options.enable_single_question_page')
-                  ? 'Disable Single Question Per Page'
-                  : 'Enable Single Question Per Page'}
-              </MenuItem>
-              {!isThreeSixtyAsessment
-              && (
-              <MenuItem onSelect={this.toggleTimer}>
-                {isAssessmentTimerAdded
-                  ? I18n.t('administration.assessments.menus.remove_timer')
-                  : I18n.t('administration.assessments.menus.add_timer')}
-              </MenuItem>
-              )}
               <MenuItem onSelect={this.openDataSheetModal}>Manage Datasheet</MenuItem>
             </DropdownButton>
             <form
@@ -266,10 +227,14 @@ export class Header extends Component {
             </form>
           </li>
           <li>
-            <button onClick={this.save} disabled={saving} className={`btn btn-success ${styles.saveButton}`}>
-              <i className="fa fa-save" />
-              Save
-            </button>
+            <Tabs active="questions" />
+          </li>
+          <li>
+            <Button type="primary" onClick={this.save} disabled={saving}>
+              <SaveOutlined />
+              {' '}
+              {I18n.t('administration.save')}
+            </Button>
           </li>
         </ul>
       </div>

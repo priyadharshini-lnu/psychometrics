@@ -15,6 +15,11 @@ export const ClientTR = t.intersection([
         email: t.string,
       }),
       t.undefined]),
+    meta: t.type({
+      permissions: t.type({
+        viewLicenses: t.boolean,
+      }),
+    }),
   }),
 ])
 

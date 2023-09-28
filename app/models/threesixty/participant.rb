@@ -11,6 +11,10 @@ module Threesixty
 
     delegate :threesixty_campaign, to: :campaign
 
+    def log_attribute_for_delete
+      slice(:subject_id, :evaluator_id, :campaign_id)
+    end
+
     def threesixty_evaluator
       Threesixty::Evaluator.find_by(campaign_id: campaign_id, user_id: evaluator_id)
     end

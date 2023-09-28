@@ -16,6 +16,9 @@ class UserReport < ApplicationRecord
 
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
+  has_one :subject, -> { where('campaign_id = threesixty_subjects.campaign_id') },
+          foreign_key: :user_id, primary_key: :user_id,
+          class_name: 'Threesixty::Subject'
   has_many :text_module_overrides, dependent: :destroy
   has_many :user_report_comments
   has_many :user_report_events
@@ -113,29 +116,37 @@ class UserReport < ApplicationRecord
     report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
   end
 
+  def has_report_data_config?
+    report.data_configuration.present?
+  end
+
+  def publish_results_available?
+    all_assessments_are_completed? && has_report_data_config?
+  end
+
+  def possible_webhook_events
+    events = []
+    events << Webhook::USER_REPORT_EVENTS[:results_available] if publish_results_available?
+    events << Webhook::USER_REPORT_EVENTS[:report_available] if has_user_results?
+    events
+  end
+
+  def has_user_results?
+    user_results.exists?
+  end
+
   def generatable?
     generate = all_assessments_are_completed? && (external_report? || !report_modules_empty?)
     generate &&= approved? if has_approval_workflow?
     generate
   end
 
-  def log_attribute_for_delete
-    slice(:campaign_id, :report_id, :user_id)
+  def log_attributes
+    slice(:campaign_id, :report_id, :user_id, :status)
   end
 
   def publish_to_webhook
-    user_result = user_results.first
-    return if user_result.nil?
-
-    campaign = user_result.user_assessment.campaign
-
-    data = {
-      campaign: campaign,
-      subject: user_result.subject,
-      report: report,
-      user_report: self
-    }
-    WebhookSubscriptions::Publish.call!(campaign.project, :report_available, data)
+    UserReports::Webhook.new(self).publish_report_available
   end
 
   def report_families_report

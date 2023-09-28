@@ -1,4 +1,6 @@
-import React, { useEffect, FC, useState } from 'react'
+import {
+  useEffect, FC, useState, lazy, Suspense,
+} from 'react'
 import {
   Layout, Button, Row, Col, PageHeader, Spin, Space,
 } from 'antd'
@@ -7,10 +9,11 @@ import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { PDFViewer } from '~/components/PDFViewer'
 import {
   fetchExternalReportDetails, getExternalReport,
 } from '~/modules/admin/modules/AssessorApp/core/userReports'
+
+const PDFViewer = lazy(() => import('~/components/PDFViewer'))
 
 const connecter = connect((state: RootState) => ({
   userReport: getExternalReport(state),
@@ -82,7 +85,12 @@ const ExternalReportPreviewComponent: FC<Props> = ({
                   <Col>
                     {userReport.pdfUrl
                       && (
-                      <PDFViewer fileUrl={userReport.pdfUrl} onLoadingComplete={() => setPdfLoadingComplete(true)} />
+                        <Suspense fallback={<Spin />}>
+                          <PDFViewer
+                            fileUrl={userReport.pdfUrl}
+                            onLoadingComplete={() => setPdfLoadingComplete(true)}
+                          />
+                        </Suspense>
                       )}
                   </Col>
                 </Row>

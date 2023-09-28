@@ -1,4 +1,3 @@
-import React from 'react'
 import LabelEditor from '~/modules/reports/components/LabelEditor'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import styles from './styles.less'

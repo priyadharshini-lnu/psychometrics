@@ -1,17 +1,23 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import cs from 'classnames'
-import { Button, Popconfirm, Alert } from 'antd'
+import { Popconfirm, Alert, message } from 'antd'
+import { FixedWidthButton } from '~/glint'
 import { isRtl } from '~/utils/locales'
 import { getQuestion } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import styles from './styles.less'
 
 const BACK = 'BACK'
 const NEXT = 'NEXT'
+const SUBMIT = 'SUBMIT'
 const { I18n } = window
 
 class PageFooter extends Component {
   state = {
     popConfirmVisibleFor: null,
+    backButtonPressed: false,
+    nextButtonPressed: false,
+    submitButtonPressed: false,
+    saveButtonPressed: false,
   }
 
   componentDidMount () {
@@ -28,7 +34,9 @@ class PageFooter extends Component {
 
   moveToPreviousPage = () => {
     const { prevPage, preview } = this.props
-    this.setState({ popConfirmVisibleFor: null })
+    this.setState({
+      popConfirmVisibleFor: null, nextButtonPressed: false, backButtonPressed: true, saveButtonPressed: false,
+    })
     document.body.scrollIntoView({ behavior: 'smooth' })
     prevPage(preview)
   }
@@ -41,19 +49,36 @@ class PageFooter extends Component {
     }
   }
 
-  moveToNextPage = () => {
+  moveToNextPage = (buttonType) => {
     const { nextPage } = this.props
-    this.setState({ popConfirmVisibleFor: null })
+    const nextButtonPressed = buttonType === NEXT
+    this.setState({
+      popConfirmVisibleFor: null,
+      nextButtonPressed,
+      backButtonPressed: false,
+      submitButtonPressed: buttonType === SUBMIT,
+      saveButtonPressed: false,
+    })
     document.body.scrollIntoView({ behavior: 'smooth' })
     nextPage()
   }
 
-  handleNextClick = () => {
+  handleNextClick = (buttonType) => {
     if (this.areQuestionsInProgress()) {
       this.setState({ popConfirmVisibleFor: NEXT })
     } else {
-      this.moveToNextPage()
+      this.moveToNextPage(buttonType)
     }
+  }
+
+  saveResults = () => {
+    const { saveCurrentPage } = this.props
+    this.setState(prevState => ({
+      ...prevState, nextButtonPressed: false, backButtonPressed: false, saveButtonPressed: true,
+    }))
+    saveCurrentPage().then(() => {
+      message.success(I18n.t('administration.assessor.saved_results'))
+    })
   }
 
   hidePopConfirm = () => {
@@ -64,11 +89,16 @@ class PageFooter extends Component {
     const {
       page, preview,
       preview: {
-        enableBack, submissionInProgress, submissionFailed, nextButtonPressed, backButtonPressed,
+        enableBack, submissionInProgress, submissionFailed,
+        isAssessor, type,
       },
       hasPrevPage, isDisconnected, showSubmit,
     } = this.props
-    const { popConfirmVisibleFor } = this.state
+
+    const showSave = type === 'pass_assessment' && isAssessor
+    const {
+      popConfirmVisibleFor, nextButtonPressed, backButtonPressed, submitButtonPressed, saveButtonPressed,
+    } = this.state
     const rtl = isRtl(I18n.uiLocale)
     const disableActionableButtons = isDisconnected || submissionInProgress || submissionFailed
 
@@ -94,7 +124,7 @@ class PageFooter extends Component {
             hidePopConfirm={this.hidePopConfirm}
             onConfirm={this.moveToPreviousPage}
           >
-            <Button
+            <FixedWidthButton
               size="large"
               type="default"
               disabled={disableActionableButtons}
@@ -104,7 +134,7 @@ class PageFooter extends Component {
             >
               <span className="mrs mls fa fa-chevron-left rtl-flip" />
               { page.prevBtn || I18n.t('assessments.page.back', { locale: I18n.uiLocale }) }
-            </Button>
+            </FixedWidthButton>
           </QuestionInProgressPopConfirm>
           )}
           <QuestionInProgressPopConfirm
@@ -113,29 +143,41 @@ class PageFooter extends Component {
             hidePopConfirm={this.hidePopConfirm}
             onConfirm={this.moveToNextPage}
           >
-            {showSubmit ? (
-              <Button
+            {!showSubmit && showSave && (
+              <FixedWidthButton
                 size="large"
                 type="primary"
                 disabled={disableActionableButtons}
-                loading={submissionInProgress}
+                loading={saveButtonPressed && submissionInProgress}
                 className={styles.next}
-                onClick={this.handleNextClick}
+                onClick={this.saveResults}
+              >
+                {I18n.t('assessments.page.save', { locale: I18n.uiLocale })}
+              </FixedWidthButton>
+            )}
+            {showSubmit ? (
+              <FixedWidthButton
+                size="large"
+                type="primary"
+                disabled={disableActionableButtons}
+                loading={submitButtonPressed && submissionInProgress}
+                className={styles.next}
+                onClick={() => this.handleNextClick(SUBMIT)}
               >
                 {I18n.t('assessments.page.submit', { locale: I18n.uiLocale })}
-              </Button>
+              </FixedWidthButton>
             ) : (
-              <Button
+              <FixedWidthButton
                 size="large"
                 type="primary"
                 disabled={disableActionableButtons}
                 loading={submissionInProgress && nextButtonPressed}
-                onClick={this.handleNextClick}
+                onClick={() => this.handleNextClick(NEXT)}
                 className={styles.next}
               >
                 {page.nextBtn || I18n.t('assessments.page.next', { locale: I18n.uiLocale })}
                 <span className="mls mrs fa fa-chevron-right rtl-flip" />
-              </Button>
+              </FixedWidthButton>
             )}
           </QuestionInProgressPopConfirm>
         </div>

@@ -1,7 +1,8 @@
 import _ from 'lodash'
 import Result from '~/modules/survey/models/Preview/Result'
+import Utils from '~/modules/survey/utils/Utils'
 import { setIn } from '~/utils/immutable'
-import { isMediaResponseQuestion } from '~/modules/survey/utils/question'
+import { isMediaResponseQuestion, isRichTextTextEntryQuestion } from '~/modules/survey/utils/question'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import {
   Question, QuestionsInterface, ResultsInterface, QuestionError,
@@ -24,7 +25,16 @@ const ValidationProcessor = {
       if (isMediaResponseQuestion(question)) {
         err = MediaResponseValidator.run(question, mediaResponses)
       } else {
-        const resultModel = new Result(qwrap, result.answers, result.not_applicable, results, answeredQuestions)
+        // eslint-disable-next-line arrow-body-style, @typescript-eslint/no-explicit-any
+        const stripHTML = (answers: any[]) => answers.map((answer) => {
+          return {
+            ...answer,
+            value: Utils.stripHTML(answer.value),
+          }
+        })
+        const answers = isRichTextTextEntryQuestion(question) && result.answers
+          ? stripHTML(result.answers) : result.answers
+        const resultModel = new Result(qwrap, answers, result.not_applicable, results, answeredQuestions)
         err = resultModel.validate()
       }
 

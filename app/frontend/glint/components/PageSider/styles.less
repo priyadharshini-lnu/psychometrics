@@ -12,12 +12,12 @@
   flex-direction: column;
 }
 .siderItemsContainer {
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   border: 1px solid @border-color-base;
   position: fixed;
 }
 .drawerItemsContainer {
-  min-height: calc(100vh - 34px - @drawer-body-padding);
+  min-height: calc((var(--vh, 1vh) * 100) - 34px - @drawer-body-padding);
   width: 100%;
 }
 

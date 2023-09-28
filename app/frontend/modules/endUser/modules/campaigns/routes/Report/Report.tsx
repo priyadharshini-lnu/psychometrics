@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import {
-  Layout, Button, PageHeader, message, Row, Col, Typography,
+  Layout, Button, PageHeader, message, Row, Col, Typography, notification,
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
-
+import { SafeHTML } from '~/components/SafeHTML'
 import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
 import ReportPreview from '~/modules/reports/report'
-import { fetchReport, updateStatus, downloadReport } from '~/modules/endUser/modules/campaigns/core/report'
+import {
+  fetchReport, updateStatus, downloadReport, checkReport,
+} from '~/modules/endUser/modules/campaigns/core/report'
 import { PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from '~/glint'
 import styles from './Report.less'
 
@@ -21,6 +23,7 @@ const connector = connect((state: any) => ({
   fetchReport,
   updateStatus,
   downloadReport,
+  checkReport,
 })
 const { Content } = Layout
 const { I18n } = window
@@ -33,7 +36,7 @@ const ReportComponent = ({
       default_language: defaultLanguage,
       locales,
     }, report, results, user, campaign, approvalStatus, isSelf,
-  }, match: { params }, fetchReport, updateStatus, downloadReport,
+  }, match: { params }, fetchReport, updateStatus, downloadReport, checkReport,
   options: { approval: { managerApprovesReports }, access: { disableDownloadReport } }, history,
 }) => {
   useEffect(() => {
@@ -51,6 +54,20 @@ const ReportComponent = ({
           message.success(I18n.t('threesixty.report_generation_in_progress'), 3)
         }
       })
+    const interval = setInterval(() => {
+      checkReport(campaignId, userReportId).then(({ response }) => {
+        if (response) {
+          clearInterval(interval)
+          const config = {
+            message: response.message,
+            description: <SafeHTML html={response.description} />,
+            duration: 0,
+          }
+          const type = response.type || 'success'
+          notification[type](config)
+        }
+      })
+    }, 10000)
   }
 
   if (!loaded) { return null }

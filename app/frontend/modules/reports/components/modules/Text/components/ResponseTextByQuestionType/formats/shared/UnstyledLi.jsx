@@ -1,5 +1,3 @@
-import React from 'react'
-
 const UnstyledLi = ({ text, description }) => (
   <li>
     <strong>{text}</strong>

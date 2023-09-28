@@ -8,6 +8,7 @@ import { CountDisplay } from '~/components/CountDisplay'
 type Props = {
   recordCount?: number
   loading: boolean
+  disableHeader?: boolean
   requestStatus: string | undefined
   filters?: React.ReactChild
   table: React.ReactChild
@@ -16,12 +17,13 @@ type Props = {
 const { I18n } = window
 
 export const TableLayout: FC<Props> = ({
-  recordCount, loading, filters, table, requestStatus,
+  recordCount, loading, filters, table, requestStatus, disableHeader,
 }) => {
   const requestFailed = requestStatus === 'failed'
 
   return (
     <>
+      {!disableHeader && (
       <Row
         justify="space-between"
         align="middle"
@@ -38,6 +40,7 @@ export const TableLayout: FC<Props> = ({
           {filters}
         </Col>
       </Row>
+      )}
       <Row>
         <Col span={24}>
           {requestFailed ? <RequestFailedMessage /> : table}

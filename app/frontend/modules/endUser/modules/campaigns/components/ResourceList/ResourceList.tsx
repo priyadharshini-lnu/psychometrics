@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './ResourceList.less'
 import { Resource } from './Resource'
 

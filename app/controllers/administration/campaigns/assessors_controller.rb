@@ -58,7 +58,7 @@ module Administration
       def create_all
         form = ::Assessors::CreateAllForm.from_params(params).with_context(campaign: campaign)
         if form.valid?
-          audit! :create_campaign_assessor, campaign, payload: params.permit!, campaign: campaign
+          audit! :create_campaign_assessor, campaign, payload: params, campaign: campaign
           ::Assessors::CreateAll.call!(form.assessors, campaign, current_user)
           render json: :ok
         else
@@ -68,7 +68,7 @@ module Administration
 
       def available_assessments
         query = ::Assessors::AvailableAssessmentsQuery.new(client).query
-        render json: query.select(:id, :name).map { |a| { id: a.id, name: a.name } }
+        render json: query.select(:id, :name).order(:name).map { |a| a.slice(:id, :name) }
       end
 
       def import

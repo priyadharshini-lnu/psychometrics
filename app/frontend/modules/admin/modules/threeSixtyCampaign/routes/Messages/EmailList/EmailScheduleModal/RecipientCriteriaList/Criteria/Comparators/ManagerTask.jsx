@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Select } from 'antd'
 import { MANAGER_TASK_VALUES } from '~/modules/admin/constants/emailCriteria'
 

@@ -1,5 +1,5 @@
 import times from 'lodash/times'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Slider as AntSlider, InputNumber, Row, Col, Button,
 } from 'antd'

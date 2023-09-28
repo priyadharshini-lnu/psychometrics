@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Assessment < ApplicationRecord
+class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include Copyable
   include RansackSearchableFields
   include SoftDelete
@@ -10,20 +10,40 @@ class Assessment < ApplicationRecord
   # TODO: remove after migration to ActiveStorage
   include ActiveStorageSync
 
-  # CATEGORIES constant
+  PSYCHOMETRIC = 'psychometric'
+  ORGANISATIONAL = 'organisational'
+  CASE_STUDY = 'case_study'
+  THREESIXTY = 'threesixty'
+  MINDMILL = 'mindmill'
+  ASSESSOR_FORM = 'assessor_form'
+  HOGAN = 'hogan'
+  AGILE = 'agile'
+  SAVILLE = 'saville'
+  PEARSON = 'pearson'
+  IIHT = 'iiht'
+
   CATEGORIES_TYPES = [
-    PSYCHOMETRIC = 'psychometric',
-    ORGANISATIONAL = 'organisational',
-    CASE_STUDY = 'case_study',
-    THREESIXTY = 'threesixty',
-    MINDMILL = 'mindmill',
-    ASSESSOR_FORM = 'assessor_form',
-    HOGAN = 'hogan',
-    AGILE = 'agile',
-    SAVILLE = 'saville',
-    PEARSON = 'pearson',
-    IIHT = 'iiht'
+    PSYCHOMETRIC,
+    ORGANISATIONAL,
+    CASE_STUDY,
+    THREESIXTY,
+    MINDMILL,
+    ASSESSOR_FORM,
+    HOGAN,
+    AGILE,
+    SAVILLE,
+    PEARSON,
+    IIHT
   ].freeze
+
+  COMMON_CATEGORIES_TYPES = [
+    PSYCHOMETRIC,
+    ORGANISATIONAL,
+    CASE_STUDY,
+    THREESIXTY,
+    ASSESSOR_FORM
+  ].freeze
+
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
     organisational: ORGANISATIONAL,
@@ -59,7 +79,6 @@ class Assessment < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
 
-  has_one :pearson_assessment_setting
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
   has_one :campaign, through: :threesixty_campaign
 
@@ -99,7 +118,12 @@ class Assessment < ApplicationRecord
 
   has_one :agile
 
+  has_one :linked_assessor_form, foreign_key: :linked_assessment_id, class_name: 'Assessment'
+  belongs_to :linked_assessment, class_name: 'Assessment'
+
+  before_create :init_defaults, if: :common?
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
+
   #
   ### END ASSOCIATIONS
 
@@ -153,25 +177,45 @@ class Assessment < ApplicationRecord
     saville? || pearson?
   end
 
+  def external_assessment_name # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+    return if external_assessment_id.nil? || common?
+
+    case category
+      when 'hogan'
+        Settings.providers.hogan.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
+      when 'saville'
+        Settings.providers.saville.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
+      when 'pearson'
+        PearsonAssessment.find_by(product_id: external_assessment_id)&.title
+      when 'iiht'
+        Iiht::GetAssessments.call!(project).find do |a|
+          a['assessmentIdNumber'].include?(external_assessment_id)
+        end&.fetch('name')
+    end
+  end
+
+  def external_norm_name
+    return if external_norm_id.nil? || common?
+
+    external_norms&.find { |norm| norm[:id] == external_norm_id }&.fetch(:name)
+  end
+
   def external_norms
     return unless pearson? || saville?
 
     if saville?
-      saville_norms = Settings.providers.saville.assessments.find do |a|
-        a.id == external_settings[:assessment_id].upcase
-      end
-      Settings.providers.saville.norms.select { |norm| saville_norms.norm_ids.include?(norm[:id]) }.map(&:to_h)
+      Assessments::SavilleSettings.norms(external_assessment_id)
     elsif pearson?
-      pearson_norms
+      Assessments::PearsonSettings.norms(external_assessment_id)
     end
-  end
-
-  def pearson_norms
-    PearsonAssessmentSetting.pearson_norms(external_settings[:assessment_id])
   end
 
   def external_assessment_id
     external_settings[:assessment_id]
+  end
+
+  def external_norm_id
+    external_settings[:norm_id]
   end
 
   # Copy assessment
@@ -246,5 +290,12 @@ class Assessment < ApplicationRecord
 
   def log_attribute_for_delete
     slice(:name)
+  end
+
+  def init_defaults
+    self.flow ||= { elements: [] }
+    self.status = self.class.statuses[:in_progress] unless status
+    self.category = self.class.categories[:psychometric] unless category
+    self.norm_rules ||= {}
   end
 end

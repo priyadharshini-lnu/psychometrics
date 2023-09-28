@@ -66,7 +66,7 @@ module Administration
 
       respond_to do |format|
         if (!resource.external_settings? || @external_settings.valid?) && resource.save
-          audit! :create, resource, payload: params.permit!
+          audit! :create, resource, payload: params
           format.js
         else
           format.js { render :new }
@@ -105,7 +105,7 @@ module Administration
       respond_to do |format|
         if (!resource.external_settings? || @external_settings.valid?) &&
            resource.update(resource_params.except(:external_settings))
-          audit! :update, resource, payload: params.permit!
+          audit! :update, resource, payload: params
           format.js
         else
           format.js { render :edit }

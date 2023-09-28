@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import _ from 'lodash'
 import { Modal } from 'react-bootstrap'
 import AppStore from '~/modules/reports/store/AppStore'

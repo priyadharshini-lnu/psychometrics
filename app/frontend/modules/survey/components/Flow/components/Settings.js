@@ -35,6 +35,10 @@ export default {
         value: '',
         predicate: 'EqualTo',
       },
+      EvaluatorRelationship: {
+        value: '',
+        predicate: 'EqualTo',
+      },
     },
   },
   Conjoint: {

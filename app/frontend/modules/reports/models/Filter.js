@@ -40,7 +40,7 @@ _.extend(Filter.prototype, {
   },
 
   sync () {
-    Socket.socket().perform('report_update', this)
+    Socket().socket().perform('report_update', this)
   },
 
   /**

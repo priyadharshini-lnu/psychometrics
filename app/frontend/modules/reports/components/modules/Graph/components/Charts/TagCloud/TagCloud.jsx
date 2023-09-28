@@ -1,4 +1,3 @@
-import React from 'react'
 import { TagCloud } from 'react-tagcloud'
 import styles from './TagCloud.less'
 import Series from './Series'

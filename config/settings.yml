@@ -4,6 +4,7 @@ enduser_locales:
   - en
   - ar
   - de
+  - pl
 timezone: Abu Dhabi
 timezone_tip: ' (GST)'
 react_dev:
@@ -505,6 +506,13 @@ providers:
           - HPI
           - HDS
           - MVPI
+      - id: EcEQHPIHDSEIR
+        name: Hogan EQ report
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HDS
+          - HPI
     assessments:
       - id: HPI
         name: HPI

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { DropTarget } from 'react-dnd'
 import _ from 'lodash'
 import throttle from 'lodash/throttle'

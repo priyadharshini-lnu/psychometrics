@@ -1,14 +1,11 @@
-import React, { Component } from 'react'
-import { Modal } from 'react-bootstrap'
+import { Component } from 'react'
+import { Modal } from 'antd'
+
 import Tree from '~/libs/ReactTree'
 import styles from './Flow.less'
 import ButtonNew from './ButtonNew'
 import FlowElement from './FlowElement'
 import '~/libs/ReactTree/ReactUiTree.less'
-
-const {
-  Header, Body, Footer, Title,
-} = Modal
 
 export class Flow extends Component {
   save = () => {
@@ -61,36 +58,35 @@ export class Flow extends Component {
   }
 
   render () {
-    const { tree, assessment } = this.props
+    const { tree } = this.props
     return (
-      <Modal show bsSize="lg" keyboard={false} dialogClassName={styles.modal}>
-        <Header>
-          <Title>
-            Assessment Flow
-            <span className={styles.title}>{assessment.name}</span>
-          </Title>
-        </Header>
-        <Body bsClass={styles.body}>
-          <div>
-            <div className={styles.tree}>
-              <Tree
-                paddingLeft={30}
-                tree={tree}
-                onChange={this.handleChange}
-                renderNode={this.renderElement}
-                handleClass="moveHandle"
-                ref={(ref) => { this.tree = ref }}
-              />
-            </div>
-            <div className={styles.row}>
-              <ButtonNew onClick={this.addNew} />
-            </div>
+      <Modal
+        title="Assessment Flow"
+        visible
+        width="80%"
+        style={{ top: 20 }}
+        onOk={this.save}
+        okText="Save"
+        onCancel={this.cancel}
+        closable={false}
+        maskClosable={false}
+        keyboard={false}
+      >
+        <div>
+          <div className={styles.tree}>
+            <Tree
+              paddingLeft={30}
+              tree={tree}
+              onChange={this.handleChange}
+              renderNode={this.renderElement}
+              handleClass="moveHandle"
+              ref={(ref) => { this.tree = ref }}
+            />
           </div>
-        </Body>
-        <Footer>
-          <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
-        </Footer>
+          <div className={styles.row}>
+            <ButtonNew onClick={this.addNew} />
+          </div>
+        </div>
       </Modal>
     )
   }

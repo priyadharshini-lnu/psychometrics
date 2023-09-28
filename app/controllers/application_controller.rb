@@ -7,8 +7,7 @@ class ApplicationController < ::BaseController
   # Authentication user/manager
   before_action :set_client_by_subdomain
   before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
-  after_action :allow_iframe_for_sso, if: proc { inside_sso_iframe? }
-  after_action :allow_iframe_for_examus, if: proc { inside_examus_iframe? }
+  after_action :set_content_security_policy
   around_action :set_mobility_locale
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -46,26 +45,13 @@ class ApplicationController < ::BaseController
     }
   end
 
-  def inside_examus_iframe?
-    return true if session[:examus_origin]
-    if params['examus-client-origin'].nil? || (!params['examus-client-origin'].end_with?('examus.net') &&
-       !params['examus-client-origin'].end_with?('alemira.com'))
-      return false
-    end
-
-    session[:examus_origin] = params['examus-client-origin']
-  end
-
-  def allow_iframe_for_examus
-    response.headers['Content-Security-Policy'] = "frame-ancestors #{session[:examus_origin]}"
+  def set_content_security_policy
+    allowed_domains = inside_sso_iframe? ? '*.maialearning.com' : '*.proctor.alemira.com'
+    response.headers['Content-Security-Policy'] = "frame-ancestors #{allowed_domains}"
   end
 
   def inside_sso_iframe?
     session[:sso].try(:[], 'display') == 'iframe'
-  end
-
-  def allow_iframe_for_sso
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
 
   def redirect_to_maintenance
@@ -80,14 +66,16 @@ class ApplicationController < ::BaseController
   private
 
   def ensure_user_profile_completed
-    return if request.method != 'GET' || request.path == '/profile'
+    return if request.method != 'GET' || request.path == '/profile_details'
     return unless @current_project && current_user
 
     update_in = @current_project.profile_setting.update_in || 9999
 
     completion = Users::ProfileCompletion.call!(current_user)
+
     if completion < 100 || (Time.current - current_user.user_profile.updated_at) > update_in.month
-      redirect_to '/profile'
+      session[:back_url] = request.original_url
+      redirect_to '/profile_details'
     end
   end
 
@@ -111,8 +99,9 @@ class ApplicationController < ::BaseController
 
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::UnlocksController'
-
-    return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}") unless @current_project
+    unless @current_project
+      return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
+    end
 
     @current_client = @current_project.client
   end

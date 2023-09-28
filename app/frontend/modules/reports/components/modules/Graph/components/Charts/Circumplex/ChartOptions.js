@@ -3,6 +3,9 @@ export default function ChartOptions () {
     chart: {
       polar: true,
     },
+    accessibility: {
+      enabled: false,
+    },
     title: false,
     pane: {
       startAngle: 0,

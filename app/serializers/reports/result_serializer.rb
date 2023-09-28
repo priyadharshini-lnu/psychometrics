@@ -44,9 +44,7 @@ module Reports
     end
 
     def relationship
-      return object.user_assessment&.relationship&.name if object.assessment.threesixty?
-
-      'Self'
+      object.user_assessment&.relationship&.name
     end
 
     def data_sheet

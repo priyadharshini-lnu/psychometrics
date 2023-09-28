@@ -11,6 +11,7 @@ import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
+import { camelizeKeys } from '~/utils/object'
 import { Schema } from '~/libs/jsonApi/schema'
 import { setResponseDataMismatched } from '~/core/request'
 import { useDeepCompareEffect } from '../useDeepCompareEffect'
@@ -18,7 +19,8 @@ import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
   Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
-  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction,
+  RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction, MemberAction,
+  RemoveRelationships, AddRelationship,
 } from './interfaces'
 import { formatErrors, defaultState } from './utils'
 
@@ -26,8 +28,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {
-    apiConfig, stateManager, responseType, trackUrl, basePath,
+    apiConfig, stateManager, responseType, trackUrl, basePath, initialFilter,
   } = options
+
+  const [camelizeExcept, camelizeOnly] = [apiConfig?.camelizeExcept, apiConfig?.camelizeOnly]
   const client = useClient()
   const dispatch = useDispatch()
   const location = useLocation()
@@ -48,7 +52,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     [state, setState] = useState<ResourceState<R[], M>>(defaultState<R[], M>())
   }
 
-  const queryFromUrl = (trackUrl ? queryString?.q || {} : {}) as UrlQuery
+  const initialFilterQuery = initialFilter ? { filter: initialFilter } : {}
+  const queryFromUrl = (trackUrl ? queryString?.q || initialFilterQuery
+    : initialFilterQuery) as UrlQuery
   const [queryState, setQueryState] = useState<UrlQuery>(queryFromUrl)
   const isMounted = useMountedState()
   const debounceQueryState = useDebounce(queryState, 300)
@@ -71,6 +77,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
   const setData = (data: R[]) => {
     setState((previousState: ResourceState<R[], M>) => ({ ...previousState, data }))
+  }
+
+  const setMeta = (meta: M) => {
+    setState((previousState: ResourceState<R[], M>) => ({ ...previousState, meta }))
   }
 
   const responseTypeValidation = (responseType: ResponseType, data) => {
@@ -96,7 +106,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const fetch = async (args: { responseType?: ResponseType, apiConfig?: ApiConfig } = { apiConfig }):
-    Promise<{ data: R, meta: M }> => {
+    Promise<{ data: R[], meta: M }> => {
     setRequests({ ...requests, fetch: { status: RequestStatus.Loading } })
     let newApiConfig = _.merge({}, apiConfig, args.apiConfig)
 
@@ -109,7 +119,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
-        const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         const camelizedMeta = humps.camelizeKeys(meta)
         setState((previousState: ResourceState<R[], M>) => (
           { ...previousState, data: camelizedResponse, meta: camelizedMeta }))
@@ -126,7 +136,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
   const handleCustomMemberDeleteAction = (
     args: { id: string, action: string, updateStore?: boolean, apiConfig?: ApiConfig},
-  ) => {
+  ): Promise<void | null> => {
     const {
       id, action, apiConfig, updateStore,
     } = args
@@ -145,7 +155,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     })
   }
 
-  const memberAction = (
+  const memberAction: MemberAction = (
     args: {
       id: string, action: string, method: HttpAction,
       body?: Record<string, unknown>,
@@ -155,7 +165,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const {
       id, action, method, body, apiConfig, updateStore,
     } = { apiConfig: options.apiConfig, ...args }
-    const memberResponseType = options.responseType || responseType
+    const memberResponseType = args.responseType || options.responseType
     const requestKey: RequestType = `${method}/${action}@${id}`
     setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
 
@@ -177,11 +187,16 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       }
       const { data, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
-      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data) {
-        const camelizedData = humps.camelizeKeys(data)
-        if (updateStore) updateIndividualRecord(camelizedData)
-        resolve(camelizedData)
-        responseTypeValidation(memberResponseType, camelizedData)
+      if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success) {
+        if (typeof data !== 'object') {
+          responseTypeValidation(memberResponseType, response)
+          resolve(response)
+        } else {
+          const camelizedData = camelizeKeys(data || {}, { except: camelizeExcept, only: camelizeOnly })
+          if (updateStore) updateIndividualRecord(camelizedData)
+          resolve(camelizedData)
+          responseTypeValidation(memberResponseType, camelizedData)
+        }
       } else {
         reject(formattedErrors)
       }
@@ -199,6 +214,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const {
       action, method, body, apiConfig,
     } = { apiConfig: options.apiConfig, ...args }
+
+    const newApiConfig = _.merge({}, apiConfig, humps.decamelizeKeys(body || {}))
+
     const memberResponseType = args.responseType || responseType
     const requestKey: RequestType = `${method}/${action}`
     setRequests({ ...requests, [requestKey]: { status: RequestStatus.Loading } })
@@ -206,7 +224,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<Record<string, string> | Record<string, string>[]> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([fetchResourceName, action, apiConfig || {}])
+        response = await client.fetch<R>([fetchResourceName, action, newApiConfig || {}])
       } else if (method === 'delete') {
         response = await client.delete([resourceName, action, apiConfig || {}], { url: resourceUrl })
       } else {
@@ -215,12 +233,20 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           { url: resourceUrl },
         )
       }
-      const { data, error, errors } = response
+      const { data: responseData, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
-        const camelizedData = humps.camelizeKeys(data || response)
-        resolve(camelizedData)
-        responseTypeValidation(memberResponseType, camelizedData)
+        if (typeof data !== 'object') {
+          responseTypeValidation(memberResponseType, response)
+          resolve(response)
+        } else {
+          const camelizedData = camelizeKeys(responseData || response, { except: camelizeExcept, only: camelizeOnly })
+          resolve(camelizedData)
+          if (args.updateStore && args.responseType === responseType) {
+            updateIndividualRecord(camelizedData)
+          }
+          responseTypeValidation(memberResponseType, camelizedData)
+        }
       } else {
         reject(formattedErrors)
       }
@@ -263,7 +289,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
-        const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         updateIndividualRecord(camelizedResponse)
         resolve(camelizedResponse)
         if (responseType || args.responseType) {
@@ -292,8 +318,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('add', formattedErrors) === RequestStatus.Success && response) {
-        const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         setData([camelizedResponse, ...data])
+        if (meta.recordCount) setMeta({ ...meta, recordCount: meta.recordCount + 1 })
         resolve(camelizedResponse)
         responseTypeValidation(args?.responseType || responseType, camelizedResponse)
       } else {
@@ -316,7 +343,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data && response) {
-        const camelizedResponse = humps.camelizeKeys(response)
+        const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
         resolve(camelizedResponse)
         responseTypeValidation(args?.responseType || responseType, camelizedResponse)
@@ -336,6 +363,60 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === 'success') {
         setData(data.filter(r => r.id !== id))
+        if (meta.recordCount) setMeta({ ...meta, recordCount: meta.recordCount - 1 })
+        resolve()
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+  const addRelationships: AddRelationship = async (resourceType, ids: string[]) => {
+    const requestKey: RequestType = `addRelationships@${ids.join(',')}`
+    setRequests({ ...requests, [requestKey]: { status: 'loading' } })
+    const url = `${resourceUrl}/relationships`
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error, errors } = await client.mutate([resourceType, ''], null as any,
+      {
+        body: JSON.stringify({
+          data: ids.map(id => ({
+            type: resourceType,
+            id,
+          })),
+        }),
+        url,
+      } as {})
+
+    return new Promise(async (resolve, reject) => {
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === 'success') {
+        resolve()
+      } else {
+        reject(formattedErrors)
+      }
+      setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const removeRelationships: RemoveRelationships = async (resourceType, ids: string[]) => {
+    const requestKey: RequestType = `removeRelationships@${ids.join(',')}`
+    setRequests({ ...requests, [requestKey]: { status: 'loading' } })
+    const url = `${resourceUrl}/relationships`
+    const { error, errors } = await client.delete([resourceType, ''],
+      {
+        body: JSON.stringify({
+          data: ids.map(id => ({
+            type: resourceType,
+            id,
+          })),
+        }),
+        url,
+        method: 'DELETE',
+      } as {})
+
+    return new Promise(async (resolve, reject) => {
+      const formattedErrors = formatErrors(errors || error, schema)
+      if (getRequestStatus(requestKey, formattedErrors) === 'success') {
         resolve()
       } else {
         reject(formattedErrors)
@@ -403,13 +484,29 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
     if (columnKey && order === undefined) removeSort()
 
-    if (columnKey && order) changeSort(columnKey, order)
+    if (columnKey && order) {
+      const decamelizeColumnKey = humps.decamelize(columnKey)
+      changeSort(decamelizeColumnKey, order)
+    }
+
+    if (!_.isEmpty(filters)) {
+      _.each(filters, (filterValues, columnKey) => {
+        const filterName = `${columnKey}_in`
+        if (filterValues === null) {
+          removeFilter(filterName)
+        } else {
+          const values = filterValues as string[]
+          changeFilter(filterName, values)
+        }
+      })
+    }
   }
 
   const getSortOrder = (column: string): undefined | 'ascend' | 'descend' => {
+    const decamelizeColumnKey = humps.decamelize(column)
     if (!queryState?.sort) { return }
-    if (queryState.sort === column) { return 'ascend' }
-    if (queryState.sort === `-${column}`) { return 'descend' }
+    if (queryState.sort === decamelizeColumnKey) { return 'ascend' }
+    if (queryState.sort === `-${decamelizeColumnKey}`) { return 'descend' }
 
     return undefined
   }
@@ -437,12 +534,14 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     meta,
     requests,
     setData,
+    setMeta,
     fetch,
     fetchSingle,
     getResource,
     createResource,
     updateResource,
     removeResource,
+    removeRelationships,
     getSortOrder,
     pageSize: queryState?.page?.size || 25,
     currentPage: queryState?.page?.number ? parseInt(queryState?.page?.number as unknown as string, 10) : 1,
@@ -456,5 +555,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     isRequestSuccessful,
     memberAction,
     collectionAction,
+    addRelationships,
   }
 }

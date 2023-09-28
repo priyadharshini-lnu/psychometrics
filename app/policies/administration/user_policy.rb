@@ -14,7 +14,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   def change_password?
     (@user.is?(:superadmin) || @user.has_permission?(
       :projects, :manage_users, project_id: project_id
-    )) && !@record.is_anonym?
+    ))
   end
 
   def new?
@@ -35,6 +35,10 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def create_superadmin?
     @user.is?(:superadmin)
+  end
+
+  def roles?
+    index?
   end
 
   def edit?
@@ -68,10 +72,6 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
   end
 
-  def reset_password?
-    update? && !@record.is_anonym?
-  end
-
   def export?
     @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
   end
@@ -81,7 +81,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def spoof?
-    @user.is?(:superadmin) && !@record.is_anonym?
+    @user.is?(:superadmin) && !@record.is?(:superadmin)
   end
 
   def assign_multiple?

@@ -34,6 +34,8 @@ module Facades
       end
 
       def show_recipients?
+        return false if workshop_communication?
+
         form.end_level_id.present?
       end
 
@@ -46,6 +48,8 @@ module Facades
       end
 
       def show_delivery_rules?
+        return false if workshop_communication?
+
         form.kind.present? &&
           %w[new_users new_assignment].exclude?(form.recipients) &&
           form.kind != 'completion'
@@ -56,7 +60,11 @@ module Facades
       end
 
       def show_delivery_intervals?
-        form.kind == 'reminder'
+        %w[reminder workshop_invite_reminder].include?(form.kind)
+      end
+
+      def show_stop_reminder?
+        !workshop_communication?
       end
 
       def show_stop_reminder_datetime?
@@ -114,6 +122,10 @@ module Facades
 
       private
 
+      def workshop_communication?
+        ::Communication::WORKSHOP_COMMUNICATION_KINDS.include?(form.kind)
+      end
+
       def fetch_owners(user)
         client_policy_scope(user).roots.order(:name)
       end
@@ -121,15 +133,13 @@ module Facades
       def fetch_projects(user)
         return Client.none if form.client_id.blank?
 
-        client_policy_scope(user).projects_of(form.client_id).enabled
+        client_policy_scope(user).where(ancestry: form.client_id).enabled
       end
 
       def fetch_campaigns(user)
         return Client.none if form.project_id.blank?
 
-        return form.project.project_campaigns.common if form.project.migrated?
-
-        client_policy_scope(user).campaigns_of(form.project_id).enabled
+        ::Administration::CampaignPolicy::Scope.new(user, Campaign).resolve.where(project_id: form.project_id)
       end
 
       def fetch_sub_campaigns(user)

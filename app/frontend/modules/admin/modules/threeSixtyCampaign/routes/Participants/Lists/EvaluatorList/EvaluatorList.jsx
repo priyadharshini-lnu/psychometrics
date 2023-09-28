@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import _ from 'lodash'
 import { Col, Row } from 'antd'
 import { UserOutlined } from '@ant-design/icons'

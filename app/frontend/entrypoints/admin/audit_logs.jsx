@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom'
-import React from 'react'
 
 import AuditLog from '~/modules/admin/modules/AuditLog/App'
 import initSentry from '~/libs/initSentry'

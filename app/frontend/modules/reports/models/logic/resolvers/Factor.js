@@ -34,7 +34,7 @@ export default class FactorResolver extends BaseResolver {
 
   Mean () {
     const scoring = this.getScoring()
-    const sum = _.sumBy(scoring.results, 'value')
+    const sum = _.sumBy(scoring.results, r => r.getValue())
     return sum / scoring.results.length
   }
 
@@ -45,18 +45,18 @@ export default class FactorResolver extends BaseResolver {
 
   Sum () {
     const scoring = this.getScoring()
-    return _.sumBy(scoring.results, 'value')
+    return _.sumBy(scoring.results, r => r.getValue())
   }
 
   Minimum () {
     const scoring = this.getScoring()
-    const min = _.minBy(scoring.results, 'value')
+    const min = _.minBy(scoring.results, r => r.getValue())
     return min && min.value
   }
 
   Maximum () {
     const scoring = this.getScoring()
-    const max = _.minBy(scoring.results, 'value')
+    const max = _.minBy(scoring.results, r => r.getValue())
     return max && max.value
   }
 }

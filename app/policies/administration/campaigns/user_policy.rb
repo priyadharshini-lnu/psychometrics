@@ -6,13 +6,13 @@ module Administration
       def index?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-        )
+        ) || @user.is?(:assessor)
       end
 
       def show?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-        )
+        ) || @user.is?(:assessor)
       end
 
       def create?
@@ -24,7 +24,7 @@ module Administration
       end
 
       def regenerate_report?
-        can_mange_campaign_users?
+        has_permission?(:results, :regenerate_report)
       end
 
       def toggle_status?
@@ -44,7 +44,7 @@ module Administration
       end
 
       def reset_password?
-        can_mange_campaign_users? && !@record.is_anonym?
+        has_permission?(:users, :reset_password, project_id: @record.project_id)
       end
 
       def spoof?

@@ -121,7 +121,9 @@ class User < ApplicationRecord
   has_many :report_approvals, dependent: :destroy
   has_many :highlights, dependent: :destroy
   has_many :privacy_consents, dependent: :destroy
-
+  has_many :user_availability_dates, dependent: :destroy
+  has_many :user_availability_days, through: :user_availability_dates
+  has_many :user_bookings
   has_one :security_setting, through: :project
   has_one :user_profile
 
@@ -147,6 +149,12 @@ class User < ApplicationRecord
 
   def self.send_reset_password_instructions(recoverable)
     recoverable.send_reset_password_instructions if recoverable.persisted?
+  end
+
+  def privacy_consent_required?
+    return false if admin?
+
+    project.privacy_consent && !privacy_consents.exists?(version: Settings.privacy_policy_version)
   end
 
   def accessible_records(resource_class, permissions)
@@ -200,7 +208,7 @@ class User < ApplicationRecord
 
   # Overridden Devise class method
 
-  def log_attribute_for_delete
+  def log_attributes
     slice(:id, :email)
   end
 
@@ -260,7 +268,7 @@ class User < ApplicationRecord
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       %i[hris_data_cont role_scope_in filterable_fields admins search_query with_access_to_campaign
-         campaign_users_completion_status_in campaign_users_status_in]
+         with_campaign_user campaign_users_completion_status_in campaign_users_status_in]
     end
 
     # Available role for the filter form
@@ -294,7 +302,7 @@ class User < ApplicationRecord
       if subdomain.present?
         project = Client.find_by(subdomain: subdomain)
         membership = Membership.join_user.find_by(
-          users: { email: warden_conditions[:email]&.downcase }, client_id: project.id
+          users: { email: warden_conditions[:email]&.downcase }, client_id: project.id, role: 'member'
         )
         if membership
           find_user_with_membership(project, subdomain, warden_conditions)

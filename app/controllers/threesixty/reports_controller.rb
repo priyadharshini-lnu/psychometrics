@@ -35,7 +35,7 @@ module Threesixty
         format.pdf do
           @data = ::Reports::PrepareDataForReport.call!(
             user_report: @user_report,
-            locale: user_locale,
+            locale: @user_report.report.default_language,
             current_user: current_user
           )
           @pdf_export = true
@@ -62,8 +62,23 @@ module Threesixty
         campaign_id: @campaign.campaign_id, user_id: @user_report.user_id
       )
       ::Threesixty::Reports::DownloadJob.perform_later(@campaign, current_user, subject, @user_report,
-                                                       lang: params[:lang])
+                                                       lang: @user_report.report.default_language)
       render json: { success: true }
+    end
+
+    def check_report
+      if @user_report.pdf_exists?
+        render json: {
+          type: 'success',
+          message: I18n.t('jobs.threesixty.reports.download.message'),
+          description: I18n.t(
+            'jobs.threesixty.reports.download.description',
+            url: @user_report.pdf.url
+          )
+        }
+      else
+        render json: nil
+      end
     end
 
     private

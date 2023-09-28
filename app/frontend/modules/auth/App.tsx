@@ -1,4 +1,3 @@
-import React from 'react'
 import { ConfigProvider } from 'antd'
 import { Locale } from 'antd/lib/locale-provider'
 import { ConnectedRouter } from 'connected-react-router'

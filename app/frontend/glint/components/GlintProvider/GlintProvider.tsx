@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { useMedia } from 'react-use-media'
 
 const defaultMediaQueryContext = {
@@ -17,7 +17,8 @@ export const GlintProvider = ({ children }) => {
     maxWidth: 768,
   })
   const isDesktop = useMedia({
-    minWidth: 1025,
+    minWidth: 769,
+    maxWidth: 1024,
   })
 
   return <MediaQueryContext.Provider value={{ isMobile, isTablet, isDesktop }}>{children}</MediaQueryContext.Provider>

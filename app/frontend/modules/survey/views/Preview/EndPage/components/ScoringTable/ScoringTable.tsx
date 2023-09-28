@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Col, Row, Table } from 'antd'
 import { CSVLink } from 'react-csv/lib/index'
 import { LabelKeyObject } from 'react-csv/components/CommonPropTypes'

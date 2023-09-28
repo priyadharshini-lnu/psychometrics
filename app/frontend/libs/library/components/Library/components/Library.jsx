@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import store from '../../../store/LibraryStore'
 import styles from './Library.less'
@@ -9,7 +9,7 @@ const { Body } = Modal
 const { Footer } = Modal
 const { Title } = Modal
 
-export class Library extends React.Component {
+export class Library extends Component {
   origin = location.origin
 
   // Filter items

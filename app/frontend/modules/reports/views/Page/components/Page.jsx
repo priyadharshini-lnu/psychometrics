@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Modules } from '~/modules/reports/components/modules'
 import panelStore from '~/modules/reports/store/PropertyPanelStore'

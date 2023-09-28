@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import Library from '~/libs/library'
 import AppStore from '~/modules/reports/store/AppStore'
 import Modals from '~/modules/reports/components/modals'

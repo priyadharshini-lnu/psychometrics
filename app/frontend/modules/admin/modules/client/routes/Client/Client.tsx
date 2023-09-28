@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
-  ShopOutlined,
+  ShopOutlined, UserOutlined, SettingOutlined,
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { connect, ConnectedProps } from 'react-redux'
@@ -31,19 +31,18 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
   const { pathname } = useLocation()
 
   const handleOnSelect = ({ key }) => {
-    if (key === 'client_admins') {
-      window.location.pathname = `/administration/clients/${clientId}/client_admins`
-    } else {
-      history.push(`${settings.urlPrefix}/clients/${clientId}/${key}`)
-    }
+    history.push(`${settings.urlPrefix}/clients/${clientId}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
     if (pathname.includes('/projects')) {
       return ['projects']
     }
-    if (pathname.includes('/client_admins')) {
-      return ['client_admins']
+    if (pathname.includes('/admins')) {
+      return ['admins']
+    }
+    if (pathname.includes('/settings')) {
+      return ['settings']
     }
     return undefined
   }
@@ -58,6 +57,10 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
     switch (primaryTab) {
       case 'projects':
         return I18n.t('common.model.projects')
+      case 'admins':
+        return I18n.t('administration.breadcrumbs.admins')
+      case 'settings':
+        return I18n.t('administration.breadcrumbs.settings')
       default:
         return ''
     }
@@ -67,9 +70,15 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
   ]
 
   isSuperAdmin(currentUser) && menuItems.push({
-    key: 'client_admins',
-    icon: <ShopOutlined />,
-    label: I18n.t('administration.breadcrumbs.clientAdmins'),
+    key: 'admins',
+    icon: <UserOutlined />,
+    label: I18n.t('administration.breadcrumbs.client_admins'),
+  })
+
+  isSuperAdmin(currentUser) && menuItems.push({
+    key: 'settings',
+    icon: <SettingOutlined />,
+    label: I18n.t('administration.breadcrumbs.settings'),
   })
 
   return (

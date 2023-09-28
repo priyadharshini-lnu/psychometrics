@@ -1,4 +1,3 @@
-import React from 'react'
 import { Popconfirm } from 'antd'
 import { WarningOutlined } from '@ant-design/icons'
 

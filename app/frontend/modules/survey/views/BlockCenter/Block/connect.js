@@ -1,8 +1,10 @@
 import { connect } from 'react-redux'
 import { selectBlock, questionsWithoutDeleted } from '~/modules/survey/core/builder/assessment/selectors'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { renameBlock } from '~/modules/survey/core/builder/assessment/block/actions'
 import BlockSerializer from '~/modules/survey/models/BlockSerializer'
+import {
+  addQuestion,
+} from '~/modules/survey/core/builder/assessment/block/actions'
 
 export default connect(
   ({ survey: { builder } }) => ({
@@ -12,6 +14,6 @@ export default connect(
   {
     openRandomization: data => openModal('randomization', data),
     openCreateByTemplate: data => openModal('createByTemplate', data),
-    renameBlock,
+    addQuestion,
   },
 )

@@ -140,7 +140,6 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         norms
         is_external
         assessor_form_name
-        assessor_form_id
         permissions
         has_external_norm
         available_locales
@@ -148,6 +147,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         external_config
         campaign_assessment_id
         prework
+        workshop_activity
+        workshop_activity_duration
       ]
     )
     expect(assessment_response).to include({
@@ -162,6 +163,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     expect(assessment_response).to eq({
       'id' => assessor_assessment.id,
       'name' => assessor_assessment.name,
+      'linked_assessment_name' => nil,
       'permissions' => {
         'export_external_results' => policy.export_external_results?,
         'export_normed_results' => policy.export_normed_results?,

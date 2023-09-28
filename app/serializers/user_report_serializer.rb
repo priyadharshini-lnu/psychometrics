@@ -64,7 +64,11 @@ class UserReportSerializer < ActiveModel::Serializer
       Administration::UserReportPolicy,
       current_user,
       object,
-      %w[download manage_qc manage_approval],
+      %w[
+        download
+        manage_qc
+        manage_approval
+      ],
       {
         project_id: object.campaign.project_id,
         campaign_id: object.campaign_id

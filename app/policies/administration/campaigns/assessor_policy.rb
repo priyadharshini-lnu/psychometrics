@@ -16,7 +16,9 @@ module Administration
       end
 
       def create_all?
-        @user.is?(:superadmin) || (
+        @user.is?(:superadmin) || @user.has_permission?(
+          :workshops, :manage, project_id: project_id, campaign_id: campaign_id
+        ) || (
           @user.has_permission?(:assessors, :manage, project_id: project_id, campaign_id: campaign_id) &&
           @user.has_permission?(:campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id)
         )

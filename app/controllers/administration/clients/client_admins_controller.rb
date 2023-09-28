@@ -79,7 +79,7 @@ module Administration
         resource.user.modified_by_id = current_user.id
         respond_to do |format|
           if resource.update(update_resource_params)
-            audit! :update_client_admin, resource, client: client, payload: params.permit!
+            audit! :update_client_admin, resource, client: client, payload: params
             format.html do
               redirect_to({ action: :edit, id: resource },
                           success: t('administration.memberships.update.successfully',

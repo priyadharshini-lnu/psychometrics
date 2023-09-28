@@ -11,6 +11,7 @@ class Block < ApplicationRecord
   has_many :questions, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions_ams, -> { ams }, class_name: 'Question'
   has_many :blocks, class_name: 'Block', foreign_key: :template_id, dependent: :destroy
+  belongs_to :owner, class_name: 'Client'
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
@@ -25,13 +26,6 @@ class Block < ApplicationRecord
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
-  }
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
-    column = sort_key.gsub("_#{direction}", '')
-    order("blocks.#{column} #{direction}") if column.in?(%w[id name created_at updated_at])
   }
 
   def clone_with_params(params = {})

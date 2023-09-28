@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { openModal } from '~/modules/admin/core/ui/modals'
 
 import {
-  fetchSubjects, update, remove, downloadReport,
+  fetchSubjects, update, remove, downloadReport, regenerateReport,
 } from '~/modules/admin/modules/threeSixtyCampaign/core/subjects'
 import {
   edit as editUser,
@@ -26,6 +26,7 @@ export default connect(
     remove: (campaignId, subjectId, removeLicenceUsage) => dispatch(remove(campaignId, subjectId, removeLicenceUsage)),
     removeUser: (campaignId, userId) => dispatch(removeUser(campaignId, userId)),
     downloadReport: (campaignId, subjectId) => dispatch(downloadReport(campaignId, subjectId)),
+    regenerateReport: (campaignId, subjectId) => dispatch(regenerateReport(campaignId, subjectId)),
     editUser: user => dispatch(editUser(user)),
   }),
 )

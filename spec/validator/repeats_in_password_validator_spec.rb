@@ -29,12 +29,13 @@ describe RepeatsInPasswordValidator do
     expect(User.new(password: 'monopq').valid?).to eq(false)
     expect(User.new(password: '123').valid?).to eq(false)
     expect(User.new(password: '2345').valid?).to eq(false)
-    expect(User.new(password: '987').valid?).to eq(false)
   end
 
   it 'valid cases' do
     expect(User.new(password: '112233').valid?).to eq(true)
     expect(User.new(password: 'abxymn12').valid?).to eq(true)
     expect(User.new(password: 'somepassword').valid?).to eq(false)
+    expect(User.new(password: '987').valid?).to eq(true)
+    expect(User.new(password: 'cba').valid?).to eq(true)
   end
 end

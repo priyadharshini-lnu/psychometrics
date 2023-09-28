@@ -1,7 +1,9 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
-import cs from 'classnames'
+import { Select } from 'antd'
+
+import styles from '../../styles.less'
 import { NOT_APPLICABLE } from '../../../MatrixTable/components/Consts'
 
 class DropdownPreview extends Component {
@@ -9,26 +11,27 @@ class DropdownPreview extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  changeAnswer = (e) => {
+  changeAnswer = (value) => {
     const { model } = this.props
-    if (e.currentTarget.value === NOT_APPLICABLE) {
+    if (value === NOT_APPLICABLE) {
       model.result.answers = []
       model.result.notApplicable = true
       model.result.reduxAnswer()
     } else {
       model.result.notApplicable = false
-      model.result.answer(parseInt(e.currentTarget.value, 10))
+      model.result.answer(parseInt(value, 10))
     }
     this.forceUpdate()
   }
 
-  renderNotApplicableOption () {
+  notApplicableOption () {
     const { model, I18n } = this.props
     const { notApplicable } = model.props
-    if (!notApplicable) { return null }
-    return (
-      <option value={NOT_APPLICABLE}>{I18n.tQuestion(model, 'notApplicableLabel')}</option>
-    )
+    if (!notApplicable) { return [] }
+    return {
+      value: NOT_APPLICABLE,
+      label: I18n.tQuestion(model, 'notApplicableLabel'),
+    }
   }
 
   render () {
@@ -38,21 +41,20 @@ class DropdownPreview extends Component {
     const value = _.get(result, ['answers', 0, 'index'], (result.notApplicable && NOT_APPLICABLE))
     return (
       <div>
-        <select
+        <Select
+          className={styles.dropdown}
+          listItemHeight={0}
+          showSearch
           disabled={readOnly}
-          className={cs('custom-select')}
+          optionFilterProp="label"
           onChange={this.changeAnswer}
-          value={`${value}` || ''}
-        >
-          <option value="" />
-          {_.map(model.choicesIds, i => (
-            <option key={i} value={i}>
-              {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
-                || moduleConfig.defaultChoiceText(i + 1)}
-            </option>
-          ))}
-          {this.renderNotApplicableOption()}
-        </select>
+          value={value}
+          options={model.choicesIds.map(i => ({
+            value: i,
+            label: I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+              || moduleConfig.defaultChoiceText(i + 1),
+          })).concat(this.notApplicableOption())}
+        />
       </div>
     )
   }

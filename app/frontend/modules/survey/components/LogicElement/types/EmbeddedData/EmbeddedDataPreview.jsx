@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '../../Condition.less'
 
 const EmbeddedDataPreview = ({ condition }) => (

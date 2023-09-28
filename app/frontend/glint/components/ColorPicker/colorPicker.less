@@ -1,0 +1,40 @@
+.colorPicker {
+  gap: 12px;
+  &:global(.react-colorful) {
+    width: 250px;
+    height: 220px;
+    border: none;
+  }
+  :global(.react-colorful__saturation), :global(.react-colorful__alpha){
+    border-radius: 0px;
+  }
+  :global(.react-colorful__saturation) {
+    border-bottom: 6px solid #000;
+  }
+  :global(.react-colorful__hue), :global(.react-colorful__alpha){
+    height: 12px;
+  }
+  :global(.react-colorful__pointer){
+    width: 24px;
+    height: 24px;
+  }
+}
+.colorInput {
+  text-align: center;
+  width: 100%;
+}
+.inputContainer {
+  position: relative;
+}
+.copyButton, .eyeDropperButton {
+  position: absolute;
+}
+.copyButton {
+  right: 0;
+}
+.eyeDropperButton {
+  z-index: 1;
+}
+.popover:global(.ant-popover) {
+  z-index: 9999;
+}

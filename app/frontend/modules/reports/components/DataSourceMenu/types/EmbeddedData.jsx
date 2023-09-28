@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import Select from 'react-select'
 import { connect } from 'react-redux'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'

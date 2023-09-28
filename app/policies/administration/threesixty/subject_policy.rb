@@ -4,15 +4,19 @@ module Administration
   module Threesixty
     class SubjectPolicy < BasePolicy
       def index?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
+        has_permission?(:campaigns, :view)
       end
 
       def spoof?
         user.is?(:superadmin)
       end
 
+      def destroy?
+        has_permission?(:campaigns, :manage_users)
+      end
+
       def import?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def allow_results_delete?
@@ -20,35 +24,39 @@ module Administration
       end
 
       def manage_datasheets?
-        user.is?(:superadmin) || user.has_permission?(:datasheets, :manage, project_id: project_id)
+        has_permission?(:datasheets, :manage)
       end
 
       def approve_report?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+        has_permission?(:campaigns, :manage)
+      end
+
+      def update?
+        has_permission?(:cmapiagns, :manage)
       end
 
       def remove_report_approval?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+        has_permission?(:campaigns, :manage)
       end
 
       def release_report?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+        has_permission?(:campaigns, :manage)
       end
 
       def hold_report?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+        has_permission?(:campaigns, :manage)
       end
 
       def remove_report_hold_release?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+        has_permission?(:campaigns, :manage)
       end
 
       def mark_as_done?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+        has_permission?(:campaigns, :manage)
       end
 
       def unmark_as_done?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage, project_id: project_id)
+        has_permission?(:campaigns, :manage)
       end
 
       def export_results?
@@ -56,15 +64,15 @@ module Administration
       end
 
       def export_completion_status?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
+        has_permission?(:campaigns, :view)
       end
 
       def edit_dimension?
-        user.is?(:superadmin) || user.has_permission?(:dimensions, :manage, project_id: project_id)
+        has_permission?(:dimensions, :manage)
       end
 
       def reset_all_participants?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def reset_all_nominations?
@@ -72,43 +80,47 @@ module Administration
       end
 
       def edit_user?
-        user.is?(:superadmin) || user.has_permission?(:projects, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def view_report?
-        user.is?(:superadmin) || user.has_permission?(:results, :view_report, project_id: project_id)
+        has_permission?(:results, :view_report)
       end
 
       def download_report?
         has_permission?(:results, :download_report)
       end
 
+      def regenerate_report?
+        has_permission?(:results, :regenerate_report)
+      end
+
       def view_responses?
-        user.is?(:superadmin) || user.has_permission?(:results, :raw_responses, project_id: project_id)
+        has_permission?(:results, :raw_responses)
       end
 
       def remove_subject?
-        user.is?(:superadmin) || user.has_permission?(:projects, :manage_users, project_id: project_id)
+        has_permission?(:projects, :manage_users)
       end
 
       def remove_from_campaign?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def create_all?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def search?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
+        has_permission?(:campaigns, :view)
       end
 
       def preview_report?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
+        has_permission?(:campaigns, :view)
       end
 
       def download_example_import_file?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
+        has_permission?(:campaigns, :view)
       end
     end
   end

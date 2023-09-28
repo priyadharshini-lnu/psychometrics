@@ -164,6 +164,8 @@ export interface DefaultState {
   instructions: { enabled: boolean, content: string }
   fixedTimed: boolean
   showErrorWarning: boolean
+  isAssessor: boolean
+  nextAssessmentUrl?: string | null
   submitRequired: boolean
   otherPendingAssessmentCount: number
 }
@@ -204,6 +206,7 @@ declare global {
 }
 
 export interface InitData {
+  name: string
   resultsUrl: string
   type: string
   blocks: Block[]
@@ -232,6 +235,8 @@ export interface InitData {
   instructions: {enabled: boolean, content: string}
   fixed_timed: boolean
   default_norm_id: number
+  isAssessor: boolean
+  linked_questions: {[key:string]: number[]}
 }
 export interface Result {
   id: number
@@ -253,8 +258,11 @@ export interface Result {
   media_responses: []
   hris: {}
   highlights: [{id: string, data: {}, resource_type: string, resource_id: number}]
+  next_assessment_url?: string
   other_pending_assessments_count: number
   seedrandom: string
+  campaign_options: { fixed_time: boolean }
+  campaign_user: { expiry_date: string }
 }
 
 interface SaveResponse {
@@ -263,6 +271,7 @@ interface SaveResponse {
   scoring?: {}
   factors?: [],
   translations: object
+  next_assessment_url?: string
 }
 
 interface FetchQuestionScoringResponse {

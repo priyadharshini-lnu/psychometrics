@@ -3,6 +3,7 @@
 module Users
   class PasswordExpiredController < Devise::PasswordExpiredController
     layout 'devise'
+    skip_before_action :ensure_user_profile_completed, only: %i[show update]
 
     def update
       resource.extend(Devise::Models::DatabaseAuthenticatablePatch)
@@ -22,6 +23,10 @@ module Users
       return if user_signed_in? && warden.session(:user)['enforce_password_change']
 
       super
+    end
+
+    def resource_params
+      super.merge(force_password_change: false)
     end
   end
 end

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import keyBy from 'lodash/keyBy'
 import compact from 'lodash/compact'
@@ -407,9 +407,9 @@ const TBody: FC<TBodyProps> = ({ gaps, emptyText, hideValues }) => {
           <td>{gap.questionName}</td>
           {!hideValues && (
             <>
-              <td>{Utils.round(gap.left, 2)}</td>
-              <td>{Utils.round(gap.right, 2)}</td>
-              <td>{Utils.round(gap.diff, 2)}</td>
+              <td dir="ltr">{Utils.round(gap.left, 2)}</td>
+              <td dir="ltr">{Utils.round(gap.right, 2)}</td>
+              <td dir="ltr">{Utils.round(gap.diff, 2)}</td>
             </>
           )}
         </tr>

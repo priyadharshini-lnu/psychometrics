@@ -15,7 +15,7 @@ module Threesixty
         to: to_email,
         reply_to: email_template.reply_to_email,
         subject: email_template.subject,
-        template_path: '/mailer/threesixty/email_template',
+        template_path: 'mailer/threesixty/email_template',
         content_type: 'text/html',
         delivery_method_options: smtp_setting.settings_for_email
       )

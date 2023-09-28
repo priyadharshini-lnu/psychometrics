@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { Component } from 'react'
+import { Component } from 'react'
 import videojs from 'videojs'
 
 export class VideoPlayer extends Component {

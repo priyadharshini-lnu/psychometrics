@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams, Link, useHistory } from 'react-router-dom'
 import {
@@ -16,6 +16,7 @@ import {
   Row,
   Col,
   message,
+  Skeleton,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 
@@ -62,8 +63,6 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
 
   const history = useHistory()
 
-  const [showDisabledProject, setShowDisabledProject] = useState('false')
-
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, createResource,
@@ -109,7 +108,6 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   }
 
   const handleProjectStatusChange = (e) => {
-    setShowDisabledProject(e.target.value)
     changeFilter('disabled_true', e.target.value)
   }
 
@@ -120,6 +118,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         loading={tableLoading}
         onChange={handleTableChange}
         pagination={false}
+        rowKey={row => row.id}
       >
         <Column
           title={I18n.t('common.column.id')}
@@ -140,14 +139,17 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                 <Col span="4">
                   {
                     logo ? (
-                      <Image
-                        src={logo}
-                        preview={false}
-                        width={60}
-                        height={60}
-                        className={styles.logoImageStyles}
-                        onClick={() => { history.push(`/administration/projects/${id}/new_campaigns`) }}
-                      />
+                      <>
+                        <Image
+                          src={logo}
+                          preview={false}
+                          className={styles.logoImageStyles}
+                          placeholder={<Skeleton.Avatar className={styles.imageSkeleton} shape="square" active />}
+                          onClick={() => {
+                            history.push(`/administration/projects/${id}/new_campaigns?filters[statusEq]=active`)
+                          }}
+                        />
+                      </>
                     ) : (
                       <Avatar
                         size="large"
@@ -164,7 +166,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                   >
                     <Link
                       className={styles.campaignLink}
-                      to={`/administration/projects/${id}/new_campaigns`}
+                      to={`/administration/projects/${id}/new_campaigns?filters[statusEq]=active`}
                     >
                       {name}
                     </Link>
@@ -253,7 +255,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     <Space>
       <Radio.Group
         onChange={handleProjectStatusChange}
-        value={showDisabledProject}
+        defaultValue={getFilteredValue('disabled_true') || 'false'}
       >
         <Radio.Button value="false">
           {I18n.t('administration.clients.projects.status.active')}

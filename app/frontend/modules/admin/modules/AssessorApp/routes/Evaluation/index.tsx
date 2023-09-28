@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
   Col, Row, Tabs, Table,
@@ -102,17 +102,20 @@ const Evaluation = ({
             activeKey={currentAssessorFormId || 'overview'}
             defaultActiveKey="overview"
             onChange={changeAssessorForm}
+            className={styles.assessorTabs}
           >
             <TabPane tab="Overview" key="overview">
-              <div>
-                {I18n.t('user.fields.first_name')}
-                {': '}
-                {userInfo.user && userInfo.user.first_name}
-              </div>
-              <div>
-                {I18n.t('user.fields.last_name')}
-                {': '}
-                {userInfo.user && userInfo.user.last_name}
+              <div className={styles.nameContainer}>
+                <div>
+                  {I18n.t('user.fields.first_name')}
+                  {': '}
+                  {userInfo.user && userInfo.user.first_name}
+                </div>
+                <div>
+                  {I18n.t('user.fields.last_name')}
+                  {': '}
+                  {userInfo.user && userInfo.user.last_name}
+                </div>
               </div>
               <div className={styles.table}>
                 <Table
@@ -151,7 +154,7 @@ const Evaluation = ({
         </Col>
         <Col span={12}>
           {subjectAssessments.length > 0 && (
-            <Tabs defaultActiveKey="1" onChange={changeSubjectForm}>
+            <Tabs defaultActiveKey="1" onChange={changeSubjectForm} tabBarStyle={{ margin: 0 }}>
               {subjectAssessments.map(assessment => (
                 <TabPane tab={assessment.name} key={assessment.id}>
                   {+currentAssessmentId === +assessment.id && <UserAssessment subjectAssessmentId={+assessment.id} />}

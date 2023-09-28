@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Menu, Dropdown, Progress, Modal, Tooltip, Typography, Row, Checkbox,
 } from 'antd'
@@ -160,7 +160,7 @@ const EvaluationListComponent = ({
       title={title}
       list={list}
     >
-      {item => <SubjectItem item={item} />}
+      {item => <SubjectItem key={item.id} item={item} />}
     </CollapseItem>
   )
 
@@ -191,7 +191,7 @@ const EvaluationListComponent = ({
           title={I18n.t('threesixty.evaluations')}
           list={evaluations}
         >
-          {item => <EvaluationItem item={item} />}
+          {item => <EvaluationItem key={item.id} item={item} />}
         </CollapseItem>
       )}
       {options.manager.canApprovesEvaluations && managedSubjects.length > 0
@@ -220,7 +220,7 @@ const EvaluationListComponent = ({
           onCancel={() => setShowHelp(false)}
           footer={null}
         >
-          <SafeHTML html={evaluationHelp.content} />
+          <SafeHTML html={evaluationHelp.content} config="adminRichText" />
         </Modal>
       )}
     </ThreesixtyCard>

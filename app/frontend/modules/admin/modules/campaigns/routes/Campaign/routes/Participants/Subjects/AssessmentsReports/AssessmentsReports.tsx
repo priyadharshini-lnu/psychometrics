@@ -13,11 +13,14 @@ import AssessmentList from './AssessmentList'
 import AddReportModal from '../../../AssessmentsReports/routes/Manage/AddReportModal'
 import UpdateNormModal from './UpdateNormModal'
 import UpdateTimeModal from './UpdateTimeModal'
+import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import UpdateCampaignTimeModal from './UpdateCampaignTimeModal'
 import { Strategies } from '../../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
 import { ProctoringSessionList } from './ProctoringSessionList'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
+import WorkshopList from './WorkshopList'
+import WorkshopInviteList from './WorkshopInviteList/WorkshopList'
 
 const { I18n } = window
 
@@ -25,6 +28,7 @@ const MODALS = {
   AddReportModal,
   UpdateNormModal,
   UpdateTimeModal,
+  PushWebhookModal,
   UpdateCampaignTimeModal,
 }
 
@@ -263,6 +267,12 @@ const AssessmentsReports: React.FC<Props> = ({
         <div className={styles.tableDivider} />
         <h3>{I18n.t('common.model.assessments')}</h3>
         <AssessmentList />
+        <div className={styles.tableDivider} />
+        <h3>{I18n.t('campaign_users.details.workshops')}</h3>
+        <WorkshopList />
+        <div className={styles.tableDivider} />
+        <h3>{I18n.t('campaign_users.details.workshops_invites')}</h3>
+        <WorkshopInviteList />
         {proctoringSessions.length !== 0 && (
           <>
             <div className={styles.tableDivider} />

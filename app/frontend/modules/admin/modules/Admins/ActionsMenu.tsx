@@ -1,8 +1,10 @@
-import React, { FC, ReactElement } from 'react'
+import { FC, ReactElement } from 'react'
 import { Button, Menu, Tooltip } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined } from '@ant-design/icons'
 
+import { isSuperAdmin } from '~/core/currentUser'
+import { User } from '~/modules/admin/modules/client/core/users'
 import {
   Admin, AdminPermissions,
 } from '~/modules/admin/modules/client/core/admin'
@@ -12,7 +14,9 @@ const { I18n } = window
 
 interface Props {
   id: Admin['id']
+  userId: Admin['userId']
   email: Admin['email']
+  currentUser: User
   firstName: Admin['firstName']
   lastName: Admin['lastName']
   permissions: AdminPermissions
@@ -20,6 +24,7 @@ interface Props {
     id: Admin['id'],
     firstName: Admin['firstName'],
     lastName: Admin['lastName'],
+    email: Admin['email'],
   ): void
   handleResetPassword(id: Admin['id']): void
   handleEdit(id: Admin['id']): void
@@ -27,6 +32,8 @@ interface Props {
 
 export const ActionsMenu: FC<Props> = ({
   id,
+  userId,
+  currentUser,
   email,
   firstName,
   lastName,
@@ -39,6 +46,8 @@ export const ActionsMenu: FC<Props> = ({
     menu={
       MenuDropdown({
         id,
+        userId,
+        currentUser,
         email,
         firstName,
         lastName,
@@ -68,6 +77,8 @@ export const ActionsMenu: FC<Props> = ({
 
 interface MenuProps {
   id: Admin['id']
+  userId: Admin['userId']
+  currentUser: Props['currentUser']
   email: Admin['email']
   firstName: Admin['firstName']
   lastName: Admin['lastName']
@@ -79,6 +90,8 @@ interface MenuProps {
 
 const MenuDropdown: FC<MenuProps> = ({
   id,
+  userId,
+  currentUser,
   email,
   firstName,
   lastName,
@@ -131,6 +144,17 @@ const MenuDropdown: FC<MenuProps> = ({
     },
   )
 
+  isSuperAdmin(currentUser) && menuItems.push(
+    {
+      key: 'apiKeys',
+      label: (
+        <a href={`/administration/users/admins/${userId}/api_keys`} rel="noreferrer noopener">
+          {I18n.t('administration.administrators.list.actions.api_keys')}
+        </a>
+      ),
+    },
+  )
+
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       handleEdit(id)
@@ -139,7 +163,7 @@ const MenuDropdown: FC<MenuProps> = ({
       handleResetPassword(id)
     }
     if (key === 'remove') {
-      handleDelete(id, firstName, lastName)
+      handleDelete(id, firstName, lastName, email)
     }
   }
   return (

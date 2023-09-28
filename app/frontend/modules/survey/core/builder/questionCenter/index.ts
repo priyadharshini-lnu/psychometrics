@@ -38,6 +38,7 @@ export const importTranslations = (id, data: FormData) => ({
     body: data,
     camelize: false,
     decamelize: false,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

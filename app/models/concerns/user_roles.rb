@@ -41,7 +41,7 @@ module UserRoles
           else
             [current_role] + memberships.map { |m| m.role.to_sym }
           end
-    arr << :assessor if assessors.exists?
+    arr << :assessor if global_assessor? || assessors.exists?
     (arr & roles).any?
   end
 
@@ -94,7 +94,7 @@ module UserRoles
   end
 
   def admin?
-    is?(:superadmin, :client_admin, :project_admin, :campaign_admin)
+    project_id.nil?
   end
 
   def assessor?

@@ -51,7 +51,8 @@ module Examus
         sessionId: proctoring_session.session_id,
         sessionUrl: session_url,
         sessionFinishUrl: campaign_url,
-        ldb: campaign.campaign_options.ldb?
+        ldb: campaign.campaign_options.ldb?,
+        trial: campaign.campaign_options.proctoring_trial?
       }
     end
 

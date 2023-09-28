@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Progress, Modal, Tooltip, Typography, Row, Checkbox,
 } from 'antd'
@@ -109,13 +109,13 @@ const NominationListComponent = ({
       {nominationsForSetup.length > 0
         && (
         <CollapseItem title={I18n.t('threesixty.setup_nominations')} list={nominationsForSetup}>
-          {item => <NominationItem item={item} />}
+          {item => <NominationItem key={item.id} item={item} />}
         </CollapseItem>
         )}
       {viewableNominations.length > 0
         && (
         <CollapseItem title={I18n.t('threesixty.view_nominations')} list={viewableNominations}>
-          {item => <NominationItem item={item} />}
+          {item => <NominationItem key={item.id} item={item} />}
         </CollapseItem>
         )}
       {approvableNominations.length > 0
@@ -124,7 +124,7 @@ const NominationListComponent = ({
           title={I18n.t('threesixty.approve_nominations')}
           list={approvableNominations}
         >
-          {item => <NominationItem item={item} />}
+          {item => <NominationItem key={item.id} item={item} />}
         </CollapseItem>
         )}
       {nominationHelp && (
@@ -138,7 +138,7 @@ const NominationListComponent = ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <SafeHTML html={nominationHelp.content} />
+        <SafeHTML html={nominationHelp.content} config="adminRichText" />
       </Modal>
       )}
     </ThreesixtyCard>

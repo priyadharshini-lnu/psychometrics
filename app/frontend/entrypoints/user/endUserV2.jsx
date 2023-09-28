@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
 import '~/modules/endUser/styles/global.less'
 import '~/styles/utils.less'

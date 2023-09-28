@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import Scoring from '~/modules/survey/views/Scoring'
 import styles from './ScoringList.less'

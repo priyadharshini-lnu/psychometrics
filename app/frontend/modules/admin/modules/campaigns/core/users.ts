@@ -8,6 +8,8 @@ import UserReport from '~/modules/admin/modules/campaigns/interfaces/UserReport'
 import { setIn, updateIn } from '~/utils/immutable'
 import { createReducer, CustomAction } from '~/utils/redux'
 
+export const DEFAULT_PAGE_SIZE = 25
+
 export interface User {
   id: number
   firstName: string
@@ -25,6 +27,7 @@ const defaultState = {
     exportUsers: false,
     exportCompletionStatus: false,
     import: false,
+    edit: false,
   },
 }
 
@@ -85,6 +88,7 @@ export const importUsers = (campaignId: number, body: any): ApiAction<ShortUser[
     url: `/administration/new_campaigns/${campaignId}/users/import`,
     body,
     loader: true,
+    contentType: 'multipart/form-data;',
   },
 })
 
@@ -128,14 +132,6 @@ export const toggleActive = (campaignId: string, id: number, options: { updateIn
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
-  },
-})
-
-export const resetPassword = (campaignId: string, id: number) => ({
-  type: RESET_PASSWORD,
-  request: {
-    method: 'get',
-    url: `/administration/new_campaigns/${campaignId}/users/${id}/reset_password`,
   },
 })
 
@@ -183,6 +179,7 @@ export interface State {
     exportUsers: boolean,
     exportCompletionStatus: boolean,
     import: boolean,
+    edit: boolean
   }
   current?: UserDetails
 }
@@ -195,9 +192,13 @@ type FetchType = ApiActionResponse<{
     exportUsers: boolean,
     exportCompletionStatus: boolean,
     import: boolean,
+    edit: boolean
   }
 }>
-type FetchSingleType = ApiActionResponse<UserDetails & { userAssessments: UserAssessment[], userReports: UserReport[]}>
+type FetchSingleType = ApiActionResponse<UserDetails & {
+  userAssessments: UserAssessment[],
+  userReports: UserReport[],
+}>
 type CreateType = ApiActionResponse<User>
 type UpdateType = ApiActionResponse<User>
 type RemoveType = ApiActionResponse<number>

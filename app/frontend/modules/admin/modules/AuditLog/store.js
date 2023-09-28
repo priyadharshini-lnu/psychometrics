@@ -10,6 +10,9 @@ import filterAndPaginationWatcher from '~/modules/admin/core/filterAndPagination
 
 import api from '~/middleware/api'
 import tables from '~/modules/admin/core/filterAndPagination/reducers'
+import menu from '~/modules/admin/core/ui/menu'
+
+import currentUser from '~/core/currentUser'
 import auditLogs from '../../modules/AuditLog/core'
 
 export const history = createBrowserHistory()
@@ -27,6 +30,8 @@ const createRootReducer = history => combineReducers({
   router: connectRouter(history),
   tables,
   auditLogs,
+  currentUser,
+  ui: combineReducers({ menu }),
 })
 
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}

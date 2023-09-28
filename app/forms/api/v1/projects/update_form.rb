@@ -30,10 +30,17 @@ module Api
         validate :validate_subdomain
         validate :uniq_subdomain
         validate :reserved_subdomain
+        validate :single_subscription
 
         def validate_locales
           (locales || []).each do |locale|
             errors.add(:locales, "Invalid locale \"#{locale}\"") if Settings.enduser_locales.exclude?(locale)
+          end
+        end
+
+        def single_subscription
+          if context&.project && context.project.webhooks.count > 1
+            errors.add(:webhook, I18n.t('errors.webhooks.multiple_webhook_error'))
           end
         end
 

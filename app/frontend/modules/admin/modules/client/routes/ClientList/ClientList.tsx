@@ -46,7 +46,11 @@ interface Meta extends BaseMeta{
 const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   const [countries, setCoutries] = useState<Meta['countries']>([])
   const [types, setTypes] = useState<Meta['types']>([])
-  const baseApiConfig = { include: ['project_manager'], fields: { users: ['name', 'email'] } }
+  const baseApiConfig = {
+    include: ['project_manager'],
+    fields: { users: ['name', 'email'] },
+    include_resource_meta: ['permissions'],
+  }
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
     currentPage, pageSize, changeFilter, getFilteredValue, updateResource, removeResource,
@@ -61,7 +65,9 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     },
   )
   useEffect(() => {
-    fetch({ apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }) }).then(({ meta }) => {
+    fetch({
+      apiConfig: _.merge(baseApiConfig, { include_meta: ['countries', 'types'] }),
+    }).then(({ meta }) => {
       setCoutries(meta.countries)
       setTypes(meta.types)
     })
@@ -116,28 +122,25 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           dataIndex={['projectManager', 'name']}
           key="project_manager"
         />
-
-        {isSuperAdmin(currentUser)
-          && (
-          <Column
-            title={I18n.t('common.column.action')}
-            key="action"
-            render={client => (
-              <ConditionalDropdown
-                menu={
-                  ActionsMenu({
-                    client,
-                    updateResource,
-                    removeResource,
-                    openModal,
-                    countries,
-                    types,
-                  }) as React.ReactElement
-                }
-              />
-            )}
-          />
+        <Column
+          title={I18n.t('common.column.action')}
+          key="action"
+          render={client => (
+            <ConditionalDropdown
+              menu={
+                ActionsMenu({
+                  client,
+                  updateResource,
+                  removeResource,
+                  openModal,
+                  countries,
+                  types,
+                  isSuperAdmin: isSuperAdmin(currentUser),
+                }) as React.ReactElement
+              }
+            />
           )}
+        />
       </Table>
       <Pagination
         current={currentPage}
@@ -200,24 +203,25 @@ interface ActionMenuProps {
   updateResource: UpdateResource<Client>
   removeResource: RemoveResource
   openModal: (modalName: string, modalProps: unknown) => void
+  isSuperAdmin: boolean
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  client, countries, types, updateResource, removeResource, openModal,
+  client, countries, types, updateResource, removeResource, openModal, isSuperAdmin,
 }) => {
-  const { id, name } = client
+  const { id, name, meta } = client
   const menuItems = [
-    { key: 'edit', label: I18n.t('common.actions.edit') },
-    // { key: 'remove', label: I18n.t('common.actions.remove') },
-    {
+    isSuperAdmin && { key: 'edit', label: I18n.t('common.actions.edit') },
+    meta.permissions.viewLicenses && {
       key: 'licenses',
       label: (
-        <a href={`/administration/clients/${id}/licenses`}>
+        <Link to={`/administration/clients/${id}/licenses`}>
           {I18n.t('frontend.clients.actions.menus.view_licenses')}
-        </a>
+        </Link>
       ),
     },
   ]
+
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return openModal('ClientFormModal', {
@@ -230,7 +234,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   }
 
   return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
+    <Menu items={_.compact(menuItems)} onClick={handleMenuClick} />
   )
 }
 

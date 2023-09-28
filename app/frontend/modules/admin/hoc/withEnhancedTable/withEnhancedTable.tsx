@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import pick from 'lodash/pick'
 import reduce from 'lodash/reduce'
 import curry from 'lodash/curry'

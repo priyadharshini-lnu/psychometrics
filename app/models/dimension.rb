@@ -25,26 +25,6 @@ class Dimension < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
-    case sort_key.to_s
-      when /^id_/
-        order("dimensions.id #{direction}")
-      when /^active_/
-        order("dimensions.disabled #{direction}")
-      when /^name_/
-        order("dimensions.name #{direction}")
-      when /^factors_count_/
-        order("dimensions.factors_count #{direction}")
-      when /^created_at_/
-        order("dimensions.created_at #{direction}")
-      when /^updated_at_/
-        order("dimensions.updated_at #{direction}")
-    end
-  }
-
   def log_attribute_for_delete
     slice(:owner_id, :name)
   end
@@ -56,7 +36,6 @@ class Dimension < ApplicationRecord
         { occupations: { occupations_factors: :factor } },
         { innovation_styles: { innovation_styles_factors: :factor } }
       ],
-      except: [:factors_count],
       use_dictionary: true
     ) do |original, copied|
       original.class.uploaders.each_key do |image_column|

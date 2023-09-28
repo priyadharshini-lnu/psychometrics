@@ -8,9 +8,8 @@ module Administration
       def create
         form = ::Campaigns::Reports::Form.from_params(resource_params)
         if form.valid?
-          ::Campaigns::Reports::Add.call(form, campaign) do
+          ::Campaigns::Reports::Add.call(form, campaign, current_user) do
             on(:ok) do
-              audit! :create_report, campaign, campaign: campaign, payload: resource_params
               return assessments_and_reports
             end
             on(:error) { |errors| return render json: { errors: errors }, status: 422 }
@@ -25,7 +24,9 @@ module Administration
         ::CampaignReports::Remove.call!(
           campaign_report: resource, remove_user_reports: remove_user_reports
         )
-        audit! :delete, resource, campaign: campaign
+        audit! :delete, resource, campaign: campaign, payload: resource.log_attributes.merge(
+          remove_user_reports: remove_user_reports
+        )
         render json: resource.id
       end
 
@@ -68,7 +69,7 @@ module Administration
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_assessments.includes(
-            :norm, :assessor_form, assessment: %i[norms]
+            :norm, assessment: %i[norms linked_assessment]
           ),
           each_serializer: Administration::CampaignAssessmentSerializer,
           current_user: current_user, project_id: campaign.project_id,
@@ -116,7 +117,8 @@ module Administration
                           eager_load(:reports).
                           merge(Report.assignable).
                           references(:reports).
-                          distinct
+                          distinct.
+                          sort_by { |r| r[:name] }
         render json: report_families,
                each_serializer: Administration::ReportFamilySerializer
       end

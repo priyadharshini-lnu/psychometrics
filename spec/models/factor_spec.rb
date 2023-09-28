@@ -14,4 +14,8 @@ RSpec.describe Factor, type: :model do
       expect(cloned_factor.sub_factors.count).to be 1
     end
   end
+
+  it 'deletes record if related :dimension is deleted' do
+    expect { factor.dimension.delete }.to change(described_class, :count).by(-2)
+  end
 end

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 import _ from 'lodash'
 import ReactMarkdown from 'react-markdown'
 import ResultStore from '~/modules/reports/store/ResultStore'

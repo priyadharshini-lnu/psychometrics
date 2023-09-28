@@ -1,4 +1,4 @@
-import React, { FC, lazy, Suspense } from 'react'
+import { FC, lazy, Suspense } from 'react'
 import { Spin } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import size from 'lodash/size'

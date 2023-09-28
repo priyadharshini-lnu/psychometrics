@@ -5,6 +5,7 @@ import RubyPlugin from 'vite-plugin-ruby'
 import loadCssModulePlugin from 'vite-plugin-load-css-module'
 import gzipPlugin from 'rollup-plugin-gzip'
 import react from '@vitejs/plugin-react'
+import checker from 'vite-plugin-checker'
 // import { visualizer } from "rollup-plugin-visualizer"
 import dts from "vite-plugin-dts"
 import svgr from 'vite-plugin-svgr'
@@ -28,7 +29,7 @@ const devPlugins = __DEV__ ? [
   dts({
     insertTypesEntry: true,
   }),
-  react(),
+  checker({typescript: true}),
 ] : []
 
 // Ignore all the files from vendor if it is big and is required just for specific entry point
@@ -54,9 +55,10 @@ export default defineConfig({
   clearScreen: false,
   plugins: [
     RubyPlugin(),
+    react(),
     // visualizer({open: true}),
     svgr({
-      exportAsDefault: true,
+      exportAsDefault: false,
     }),
     ...devPlugins,
     loadCssModulePlugin.default({
@@ -115,9 +117,9 @@ export default defineConfig({
             return 'vendors'
           }
 
-          if (id.includes('/glint/')) {
-            return 'glint'
-          }
+          // if (id.includes('/glint/')) {
+          //   return 'glint'
+          // }
 
           // if (id.includes('modules/reports/')) {
           //   return 'survey'
@@ -149,5 +151,7 @@ export default defineConfig({
     __DEV__: __DEV__,
     __PROD__: __PROD__,
     __TEST__: __TEST__,
+    __MOCK_SERVER_PORT__: env.MOCK_SERVER_PORT || '3037',
+    'process.env': process.env,
   },
 })

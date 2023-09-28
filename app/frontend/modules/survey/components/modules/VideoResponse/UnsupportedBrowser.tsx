@@ -1,13 +1,13 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
   Button, Card, Result, Space, Typography,
 } from 'antd'
 import { OS_NAME } from '~/utils/uaParser'
 
-import ChromeIcon from '~/modules/survey/assets/icons/chrome.r.svg'
-import FirefoxIcon from '~/modules/survey/assets/icons/firefox.r.svg'
-import EdgeIcon from '~/modules/survey/assets/icons/edge.r.svg'
-import SafariIcon from '~/modules/survey/assets/icons/safari.r.svg'
+import chromeIcon from '~/modules/survey/assets/icons/chrome.r.svg'
+import firefoxIcon from '~/modules/survey/assets/icons/firefox.r.svg'
+import edgeIcon from '~/modules/survey/assets/icons/edge.r.svg'
+import safariIcon from '~/modules/survey/assets/icons/safari.r.svg'
 
 import {
   BROWSERS_ON_OS_TYPES,
@@ -100,28 +100,28 @@ export const getSupportedBrowsersForCurrentOS = (
       case 'and_ff':
       case 'firefox': {
         browserIcon = (
-          <FirefoxIcon title="Mozilla Firefox" className={styles.browserIcon} />
+          <img src={firefoxIcon} title="Mozilla Firefox" className={styles.browserIcon} />
         )
         break
       }
       case 'and_chr':
       case 'chrome': {
         browserIcon = (
-          <ChromeIcon title="Google Chrome" className={styles.browserIcon} />
+          <img src={chromeIcon} title="Google Chrome" className={styles.browserIcon} />
         )
         break
       }
       case 'ios_saf':
       case 'safari': {
         browserIcon = (
-          <SafariIcon title="Apple Safari" className={styles.browserIcon} />
+          <img src={safariIcon} title="Apple Safari" className={styles.browserIcon} />
         )
         break
       }
 
       case 'edge': {
         browserIcon = (
-          <EdgeIcon title="Microsoft Edge" className={styles.browserIcon} />
+          <img src={edgeIcon} title="Microsoft Edge" className={styles.browserIcon} />
         )
         break
       }

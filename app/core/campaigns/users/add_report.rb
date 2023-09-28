@@ -15,13 +15,25 @@ module Campaigns
 
       def call
         Licenses::Use.call!(campaign, user, report, options[:report_family_id])
-        user_report = UserReport.create_with(
-          user_access: options[:user_access],
-          report_family_id: options[:report_family_id]
-        ).find_or_create_by!(campaign: campaign, report: report, user: user)
+        user_report = UserReport.find_by(campaign: campaign, report: report, user: user)
+        unless user_report
+          user_report = UserReport.create!(
+            campaign: campaign,
+            report: report,
+            user: user,
+            user_access: options[:user_access],
+            report_family_id: options[:report_family_id]
+          )
+          AuditLogModule.audit!(
+            :create, user_report,
+            payload: user_report.log_attributes.merge(options.slice(:user_access, :report_family_id, :operation)),
+            user: options[:current_user],
+            campaign: campaign
+          )
+        end
         return broadcast :ok, user_report: user_report if report.data_only?
 
-        user_assessments = options[:assessments].map do |assessment|
+        user_assessments = assessments.map do |assessment|
           find_or_create_assessment_to_user(assessment, user_report)
         end
         set_approval_status_for_user_report(user_report)
@@ -33,6 +45,10 @@ module Campaigns
       end
 
       private
+
+      def assessments
+        options[:assessments].reject(&:assessor_form?)
+      end
 
       def set_approval_status_for_user_report(user_report)
         return user_report.update_attribute(:approval_status, :approved) unless user_report.has_approval_workflow?
@@ -48,7 +64,15 @@ module Campaigns
           evaluator: user,
           relationship: Relationship.self_relationship
         )
-        user_assessment ||= create_assessment_to_user(assessment)
+        unless user_assessment
+          user_assessment = create_assessment_to_user(assessment)
+          AuditLogModule.audit!(
+            :create, user_assessment,
+            payload: user_assessment.log_attributes.merge(operation: options[:operation]),
+            user: options[:current_user],
+            campaign: campaign
+          )
+        end
         if assessment.hogan? && user.hogan_credential && !user_assessment.not_started?
           Hogan::AddReportsJob.set(wait: 2.seconds).perform_later(
             user_assessment, [user_report], user.hogan_credential, user.project

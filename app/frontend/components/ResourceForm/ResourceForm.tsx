@@ -22,12 +22,16 @@ interface Request {
   fetchResource(): void
   createResource(values: object): void
   updateResource(values: object): void
-  submit(values: object): void
+  submit(values: object): Promise<unknown>
 }
 
 interface JSONApiError {
   title: string
   detail?: string
+}
+
+type ChildrenProps = {
+  form: FormInstance, status: string | null, isEdit: boolean, fieldsUtil: FieldsUtil
 }
 
 export type OwnProps = {
@@ -38,6 +42,7 @@ export type OwnProps = {
   resource?: Resource
   resourceId?: number
   request?: Partial<Request>
+  submitRequest?: (values: object) => Promise<unknown>
   showSuccessMessages?: boolean
   onFailedSubmission?(values: object, errors: object): void
   formProps?: FormProps
@@ -49,9 +54,7 @@ export type OwnProps = {
     fields?: FieldData[],
     setFields?(fields: object): void
   }
-  children({
-    form: FormInstance, status: string, isEdit: boolean, fieldsUtil: FieldsUtil,
-  }): ReactElement
+  children(props: ChildrenProps): ReactElement | React.FC
   scrollToFirstError?: boolean
   mockRequest?: boolean
   nullifyEmptyString?: boolean
@@ -203,7 +206,7 @@ const ResourceForm: React.FC<Props> = ({
     _.each(errors, (error: string | string[] | JSONApiError, name: string) => {
       const field = _.find(store.fields, field => _.includes(field.name as string[], name))
       const errors = displayableError(error)
-      let newField: FieldData = { name, errors }
+      let newField: FieldData = { name: name.includes('/') ? name.split('/') : name, errors }
       if (field) {
         newField = { ...field, errors }
       }
@@ -223,6 +226,7 @@ const ResourceForm: React.FC<Props> = ({
       }}
       scrollToFirstError={scrollToFirstError}
       layout="vertical"
+      initialValues={resource || undefined}
       {...formProps || {}}
       className="resourceForm"
     >

@@ -29,7 +29,7 @@ module Threesixty
       end
 
       def check_existing_participant
-        if subject&.participants&.find_by(evaluator_id: user.id)
+        if subject&.participants&.find_by(evaluator_id: user.id, campaign_id: threesixty_campaign.campaign_id)
           errors.add(:evaluator, I18n.t('evaluators.errors.exists'))
         end
       end

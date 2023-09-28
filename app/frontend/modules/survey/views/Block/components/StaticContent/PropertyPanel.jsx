@@ -1,6 +1,5 @@
-import React from 'react'
 import { Input, Checkbox } from 'antd'
-import ColorPicker from '~/modules/survey/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 
 import styles from './StaticContent.less'
 import settings from './settings'
@@ -41,9 +40,9 @@ const PropertyPanel = ({
     })
   }
 
-  const changeColor = (e) => {
+  const changeColor = (color) => {
     updateBlockProps(model, {
-      staticContent: { ...staticContent, backgroundColor: e.hex },
+      staticContent: { ...staticContent, backgroundColor: color },
     })
   }
 
@@ -73,12 +72,14 @@ const PropertyPanel = ({
       <div className={styles.colorPicker}>
         <div className={styles.label}>Background Color: </div>
         <ColorPicker
-          onComplete={changeColor}
-          color={backgroundColor || '#fff'}
+          swatchClassName="ms-1"
+          getValueInHexFormat
+          onChange={changeColor}
+          value={backgroundColor || '#fff'}
         />
         <span
           className={`icon fa fa-trash ${styles.menuicon}`}
-          onClick={() => changeColor({ hex: null })}
+          onClick={() => changeColor(null)}
         />
       </div>
       <hr className={styles.divider} />

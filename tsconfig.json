@@ -14,7 +14,7 @@
     "module":"commonjs",
     "moduleResolution":"node",
     "sourceMap":true,
-    "jsx":"react",
+    "jsx":"react-jsx",
     "allowJs": true,
     "resolveJsonModule":true,
     "allowSyntheticDefaultImports":true,
@@ -41,12 +41,13 @@
   "exclude": [
     "**/*.spec.ts",
     "**/*.test.ts",
+    "**/*.test.tsx",
     "node_modules",
     "public"
   ],
   "include": [
-    "./app/stories",
-    "**/*.stories.tsx",
+    // "./app/stories",
+    // "**/*.stories.tsx",
     "./app/frontend",
     "./app/frontend/modules/survey",
   ],

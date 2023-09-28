@@ -7,7 +7,8 @@
   },
   "extends": [
     "airbnb",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/jsx-runtime"
   ],
   "parserOptions": {
     "ecmaVersion": 8,
@@ -54,6 +55,7 @@
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/member-delimiter-style": 0,
     "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/no-ex": 0,
     "@typescript-eslint/explicit-function-return-type": 1,
     "@typescript-eslint/explicit-module-boundary-types": [
       1,
@@ -156,6 +158,7 @@
     "__TEST__": true,
     "__DISABLE_LOGGER_": true,
     "__PROD__": true,
+    "__MOCK_SERVER_PORT__": true,
     "location": true,
     "I18n": true,
     "Utils": true

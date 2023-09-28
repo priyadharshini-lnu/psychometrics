@@ -26,7 +26,7 @@ module Administration
         form = ::Threesixty::Relationships::DestroyForm.from_params(params)
         if form.valid?
           relationship.destroy!
-          audit!(:destroy, relationship, campaign: threesixty_campaign.campaign, payload: params.permit!)
+          audit!(:destroy, relationship, campaign: threesixty_campaign.campaign, payload: params)
           render json: params[:id]
         else
           render json: { errors: form.errors.messages }, status: 400
@@ -35,7 +35,7 @@ module Administration
 
       def update
         relationship.update!(relationship_params)
-        audit!(:update, relationship, campaign: threesixty_campaign.campaign, payload: params.permit!)
+        audit!(:update, relationship, campaign: threesixty_campaign.campaign, payload: params)
 
         render json: relationship,
                serializer: RelationshipWithUsageSerializer,
@@ -73,6 +73,16 @@ module Administration
 
       def relationship_params
         params.require(:relationship).permit(:name)
+      end
+
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          policy_class: Administration::Threesixty::RelationshipPolicy,
+          threesixty_campaign: threesixty_campaign,
+          project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+        )
       end
     end
   end

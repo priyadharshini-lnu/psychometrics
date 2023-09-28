@@ -49,6 +49,7 @@ describe Agiles::ScrubConfig do
                       id: 'nf-1-ass-block-1',
                       type: 'Comparator',
                       randomise: true,
+                      maxItems: 3,
                       questions: [
                         {
                           id: 'cmp-1',
@@ -61,6 +62,22 @@ describe Agiles::ScrubConfig do
                         {
                           id: 'cmp-2',
                           randomSet: 1,
+                          text: 'questions:nf.which_is_greater',
+                          left: '5',
+                          right: '7',
+                          answers: ['hello-world']
+                        },
+                        {
+                          id: 'cmp-1-r',
+                          randomSet: 2,
+                          text: 'questions:nf.which_is_greater',
+                          left: '7',
+                          right: '12',
+                          answers: ['hello-world']
+                        },
+                        {
+                          id: 'cmp-2-r',
+                          randomSet: 2,
                           text: 'questions:nf.which_is_greater',
                           left: '5',
                           right: '7',
@@ -170,14 +187,14 @@ describe Agiles::ScrubConfig do
     end
 
     context 'Success' do
-      subject { described_class.call(config) }
+      subject { described_class.call(config, 1) }
 
       it 'broadcasts :ok' do
         expect { subject }.to broadcast(:ok)
         expect(subject[:ok]).to be_an_instance_of(Array)
       end
 
-      it 'removes scoring and answers keys' do
+      it 'removes scoring, answers, randomise and maxItems keys' do
         groups = subject[:ok]
 
         group = groups[1]
@@ -186,27 +203,25 @@ describe Agiles::ScrubConfig do
         questions = block['questions']
 
         expect(block).not_to have_key('scoring')
+        expect(block).not_to have_key('randomise')
+        expect(block).not_to have_key('maxItems')
         expect(questions.first).not_to have_key('answers')
       end
 
       it 'returns random question set' do
-        Kernel.srand 1
         groups = subject[:ok]
-        Kernel.srand
 
         group = groups[1]
         scene = group['scenes'].find { |scene_with_type| scene_with_type['type'] == 'AssessmentScene' }
         block = scene.dig('data', 'blocks').first
         questions = block['questions']
 
-        expect(questions.length).to be(2)
+        expect(questions.length).to be(3)
         expect(questions).to all(include(randomSet: 2))
       end
 
       it 'retains the random set for subsequent blocks if exists' do
-        Kernel.srand 1
         groups = subject[:ok]
-        Kernel.srand
 
         first_block_questions = groups.dig(1, 'scenes', 0, 'data', 'blocks', 0, 'questions')
         second_block_questions = groups.dig(1, 'scenes', 0, 'data', 'blocks', 1, 'questions')
@@ -215,6 +230,36 @@ describe Agiles::ScrubConfig do
         expect(first_block_questions).to all(include(randomSet: 2))
         expect(second_block_questions).to all(include(randomSet: 2))
         expect(third_block_questions).to all(include(randomSet: 3))
+      end
+
+      it 'randomises the questions' do
+        groups = subject[:ok]
+
+        first_block_questions = groups.dig(1, 'scenes', 0, 'data', 'blocks', 0, 'questions')
+
+        expect(first_block_questions).to eq([
+          {
+            'id' => 'cmp-2-r',
+            'randomSet' => 2,
+            'text' => 'questions:nf.which_is_greater',
+            'left' => '5',
+            'right' => '7'
+          },
+          {
+            'id' => 'cmp-3',
+            'randomSet' => 2,
+            'text' => 'questions:nf.which_is_greater',
+            'left' => '7',
+            'right' => '12'
+          },
+          {
+            'id' => 'cmp-1-r',
+            'randomSet' => 2,
+            'text' => 'questions:nf.which_is_greater',
+            'left' => '7',
+            'right' => '12'
+          }
+        ])
       end
     end
   end

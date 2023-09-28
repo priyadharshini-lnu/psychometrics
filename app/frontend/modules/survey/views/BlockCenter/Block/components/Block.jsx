@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import FlipMove from 'react-flip-move'
@@ -73,6 +73,7 @@ class Block extends Component {
     } = this.props
     if (!model) { return null }
     const { opened } = this.state
+
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
       <div className={styles.block}>
@@ -90,11 +91,15 @@ class Block extends Component {
           <FlipMove style={{ position: 'initial' }}>
             {questions.map((question) => {
               if (question.type !== 'PageBreak') {
-                return <Question key={question.id} block={model} model={question} />
+                return (
+                  <div key={question.id}>
+                    <Question block={model} model={question} />
+                  </div>
+                )
               }
             })}
           </FlipMove>
-          <Footer createBlock={createBlock} model={model} onMinimize={this.expand} last={last} />
+          <Footer createBlock={createBlock} model={model} onMinimize={this.expand} last={last} {...this.props} />
         </div>
       </div>
     )

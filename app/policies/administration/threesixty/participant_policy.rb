@@ -3,12 +3,16 @@
 module Administration
   module Threesixty
     class ParticipantPolicy < Threesixty::BasePolicy
+      def index?
+        has_permission?(:campaigns, :manage_users)
+      end
+
       def spoof?
         user.is?(:superadmin)
       end
 
       def destroy?
-        has_permission?(:projects, :manage_users)
+        has_permission?(:campaigns, :manage_users)
       end
     end
   end

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Controls ({
   styles, customBlocks, onRemove, onAddBelow, onDuplicate, onMove,
 }) {

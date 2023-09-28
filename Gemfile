@@ -11,11 +11,11 @@ gem 'faraday',                    '~> 1.10.0'
 gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
-gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
+# gem 'newrelic_rpm',               '~> 9.2', '>= 9.2.2', group: 'production'
 gem 'pg',                         '~> 1.4'
-gem 'puma',                       '~> 5.6.2'
-gem 'rails',                      '~> 6.1'
-gem 'rails-i18n',                 '~> 6.0'
+gem 'puma',                       '~> 5.6.7'
+gem 'rails',                      '~> 7.0'
+gem 'rails-i18n',                 '~> 7.0'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'sprockets-rails'
 gem 'terser', '~> 1.1.11' if ENV.fetch('DISABLE_TERSER', 'false') == 'false'
@@ -47,10 +47,13 @@ source 'https://rails-assets.org/' do
 end
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.7.3'
+gem 'devise',                     '~> 4.9.2'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.2'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
+
+gem 'dotiw', '~> 5.3.3'
+gem 'icalendar', '~> 2.9.0'
 
 # two_factor_authentication should be before devise-security, so that 2fa is required before changing expired password
 # rubocop:disable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
@@ -88,16 +91,10 @@ gem 'i18n-js',                    '~> 3.9.2'
 ### Decorator
 gem 'draper', '~> 4.0.2'
 ### For organisation ENV variable
-gem 'config',                     '~> 4.0.0'
+gem 'config',                     '~> 4.2.0'
 gem 'figaro',                     '~> 1.2.0'
 
-gem 'premailer-rails', '~> 1.11.1'
-
-### Required as dependency
-# TODO: remove when upgraded to Rails 7
-gem 'net-imap', require: false
-gem 'net-pop', require: false
-gem 'net-smtp', require: false
+gem 'premailer-rails',            '~> 1.11.1'
 
 ### XLS import
 gem 'file_validators',            '~> 3.0.0'
@@ -112,8 +109,10 @@ gem 'redlock', '~> 1.2.2'
 gem 'rubyzip', '~> 2.3'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
-gem 'caxlsx_rails', '~> 0.6.0'
+# gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
+
+gem 'caxlsx', '~> 3.2'
+gem 'caxlsx_rails', '~> 0.6'
 gem 'roo', '~> 2.9'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
@@ -131,7 +130,7 @@ gem 'sentry-sidekiq', '~> 4.1.2'
 gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
 
 # Cloning ActiveRecord object
-gem 'deep_cloneable', '~> 3.0.0'
+gem 'deep_cloneable', '~> 3.2'
 
 gem 'active_storage_validations', '~> 1.0.3'
 gem 'ancestry', '~> 3.0.0'
@@ -156,12 +155,12 @@ gem 'sidekiq', '~> 6.5.1'
 gem 'hashids', '~> 1.0.5'
 
 gem 'dry-swagger', '~> 0.7.2'
-gem 'dry-validation', '~> 1.8.0'
+gem 'dry-validation', '~> 1.10'
 gem 'jsonpath', '~> 1.1.2'
 gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.15.0'
 gem 'reform-rails', '~> 0.2.3'
-gem 'validates_timeliness', '~> 6.0.1'
+gem 'validates_timeliness', '7.0.0.beta2' # TODO: upgrade when released non-beta
 gem 'virtus', '~> 1.0.5'
 
 # SOAP client
@@ -176,13 +175,14 @@ gem 'interactor', '~> 3.1.2'
 # Help ActiveRecord::Enum feature to work fine with I18n and simple_form.
 gem 'enum_help', '~> 0.0.17'
 # A simple date validator for Rails
-gem 'attr_encrypted', '~> 3.1.0'
+gem 'attr_encrypted'
+gem 'brakeman'
 gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
-gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils', ref: '3634294'
+gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils'
 gem 'js-routes', '~> 1.4.4'
 gem 'rswag-api', '~> 2.5.1'
-gem 'rswag-ui', '~> 2.3.0'
+gem 'rswag-ui', '~> 2.9'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.4.0'
@@ -192,7 +192,7 @@ gem 'addressable', '~> 2.7'
 gem 'rails_autoscale_agent', '~> 0.10.2'
 gem 'shortener', '~> 0.8.2'
 gem 'twilio-ruby', '~>  5.58.1'
-gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'master'
+gem 'webhook_system', git: 'https://github.com/TheTalentEnterprise/webhook_system.git', branch: 'tte-master'
 gem 'workflow-activerecord', '~> 4.1.2'
 
 group :development, :test do
@@ -200,10 +200,11 @@ group :development, :test do
   gem 'awesome_print', '~> 1.9.2'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bundler-audit', require: false
   gem 'byebug', platform: :mri
-  gem 'factory_bot_rails', '~> 6.2.0'
+  gem 'factory_bot_rails'
   gem 'hirb'
-  gem 'parallel_tests', '~> 3.7'
+  gem 'parallel_tests', '~> 4.2'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 5.1.2'
@@ -211,7 +212,7 @@ group :development, :test do
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
   gem 'i18n-tasks', '~> 1.0'
-  gem 'rswag-specs', '~> 2.4.0'
+  gem 'rswag-specs', '~> 2.9'
   gem 'rubocop', '~>  1.31.2', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails', require: false
@@ -223,8 +224,8 @@ group :development do
   gem 'bullet', '~> 7.0.1'
   gem 'listen', '~> 3.7.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 2.1.1'
-  gem 'spring-watcher-listen', '~> 2.0.1'
+  gem 'spring', '~> 4.1.1'
+  gem 'spring-watcher-listen', '~> 2.1.0'
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.18.0'

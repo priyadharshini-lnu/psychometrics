@@ -14,6 +14,7 @@ export const CLEAR_FORM = 'threeSixty/subjects/CLEAR_FORM'
 export const UPDATE = 'threeSixty/subjects/UPDATE'
 export const REMOVE = 'threeSixty/subjects/REMOVE'
 export const DOWNLOAD_REPORT = 'threeSixty/subjects/DOWNLOAD_REPORT'
+export const REGENERATE_REPORT = 'threeSixty/subjects/REGENERATE_REPORT'
 
 export const get = state => _.get(state, ['threeSixtyCampaign', 'subjects'])
 export const getForm = state => _.get(get(state), ['form'])
@@ -110,6 +111,14 @@ export const downloadReport = (campaignId: number, subjectId: number) => ({
   type: DOWNLOAD_REPORT,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports/download`,
+  },
+})
+
+export const regenerateReport = (campaignId: number, subjectId: number) => ({
+  type: REGENERATE_REPORT,
+  request: {
+    method: 'post',
+    url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports/regenerate`,
   },
 })
 

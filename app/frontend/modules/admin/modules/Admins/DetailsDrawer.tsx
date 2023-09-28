@@ -1,17 +1,16 @@
-import React, { FC, useEffect } from 'react'
-import _ from 'lodash'
+import { FC, useEffect } from 'react'
 import {
   Drawer,
   Skeleton,
   Descriptions,
   Space,
-  List,
   Button,
-  Typography,
+  Row,
 } from 'antd'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import { AdminPermissions, ProjectAdminViewDetails } from '~/modules/admin/modules/client/core/admin'
+import { UserRolesDetails } from '~/modules/admin/components/UserRolesDetails'
 
 const { I18n } = window
 
@@ -50,8 +49,6 @@ const DetailsDrawerComponent: FC<Props> = ({
     },
   )
 
-  const admin = getResource(adminId)
-
   useEffect(() => {
     if (isVisible) {
       fetchSingle({
@@ -59,6 +56,8 @@ const DetailsDrawerComponent: FC<Props> = ({
       })
     }
   }, [adminId])
+
+  const admin = getResource(adminId)
 
   return (
     <Drawer
@@ -71,117 +70,55 @@ const DetailsDrawerComponent: FC<Props> = ({
       zIndex={1001}
     >
       <Skeleton loading={isAdminLoading(`fetch@${adminId}`)} active>
-        <Descriptions
-          layout="horizontal"
-          className="w-100"
-          bordered
-          column={1}
-          extra={(
-            <Space>
-              {permissions?.edit && (
-                <Button type="primary" onClick={() => handleEdit(admin?.id)}>
-                  {I18n.t('administration.administrators.list.actions.edit')}
-                </Button>
-              )}
-              <Button onClick={handleClose}>Close</Button>
-            </Space>
-          )}
-          title={I18n.t(
-            'administration.administrators.drawers.view.title_campaign',
-          )}
-        >
-          <Descriptions.Item
-            label={I18n.t('administration.administrators.drawers.view.first_name')}
-            key="name"
-          >
-            {admin?.firstName ?? ''}
-          </Descriptions.Item>
-          <Descriptions.Item
-            label={I18n.t('administration.administrators.drawers.view.last_name')}
-            key="name"
-          >
-            {admin?.lastName ?? ''}
-          </Descriptions.Item>
-          {admin?.email && (
-            <Descriptions.Item
-              label={I18n.t('administration.administrators.list.columns.email')}
-              key="email"
-            >
-              {admin.email}
-            </Descriptions.Item>
-          )}
-          {admin?.projects && (
-            <Descriptions.Item
-              label={I18n.t(
-                'administration.administrators.list.columns.projects_list',
-              )}
-              key="projects_list"
-              className="va-t"
-            >
-              <List
-                itemLayout="horizontal"
-                dataSource={admin.projects}
-                renderItem={(permissionRole, index) => (
-                  <List.Item
-                    extra={(
-                      <Typography.Text>
-                        {_.startCase(permissionRole.role)}
-                      </Typography.Text>
-                    )}
-                    className={index === 0 ? 'pt-0' : ''}
-                  >
-                    <List.Item.Meta
-                      title={(
-                        <Link
-                          to={`/administration/projects/${permissionRole.id}/new_campaigns`}
-                          className="ant-typography"
-                        >
-                          {permissionRole.name}
-                        </Link>
-                      )}
-                    />
-                  </List.Item>
+        <Row>
+          <Descriptions
+            layout="horizontal"
+            className="mb-6 w-100"
+            bordered
+            column={1}
+            extra={(
+              <Space>
+                {permissions?.edit && (
+                  <Button type="primary" onClick={() => handleEdit(admin?.id)}>
+                    {I18n.t('administration.administrators.list.actions.edit')}
+                  </Button>
                 )}
-              />
-            </Descriptions.Item>
-          )}
-          {admin?.campaigns.length && (
+                <Button onClick={handleClose}>Close</Button>
+              </Space>
+            )}
+            title={I18n.t(
+              `administration.administrators.drawers.view.title.${adminType}`,
+            )}
+          >
             <Descriptions.Item
-              label={I18n.t(
-                'administration.administrators.list.columns.campaigns_list',
-              )}
-              key="campaigns_list"
-              className="va-t"
+              label={I18n.t('administration.administrators.drawers.view.first_name')}
+              key="name"
+              className="va-t w-30"
+              labelStyle={{ width: '40%' }}
+              contentStyle={{ width: '60%' }}
             >
-              <List
-                itemLayout="horizontal"
-                dataSource={admin.campaigns}
-                renderItem={(permissionRole, index) => (
-                  <List.Item
-                    extra={(
-                      <Typography.Text>
-                        {_.startCase(permissionRole.role)}
-                      </Typography.Text>
-                    )}
-                    className={index === 0 ? 'pt-0' : ''}
-                  >
-                    <List.Item.Meta
-                      title={(
-                        <Link
-                          to={`new_campaigns/${permissionRole.id}`}
-                          className="ant-typography"
-                        >
-                          {permissionRole.name}
-                        </Link>
-                      )}
-                    />
-                  </List.Item>
-                )}
-              />
+              {admin?.firstName ?? ''}
             </Descriptions.Item>
-          )}
-        </Descriptions>
+            <Descriptions.Item
+              label={I18n.t('administration.administrators.drawers.view.last_name')}
+              key="name"
+            >
+              {admin?.lastName ?? ''}
+            </Descriptions.Item>
+            {admin?.email && (
+              <Descriptions.Item
+                label={I18n.t('administration.administrators.list.columns.email')}
+                key="email"
+              >
+                {admin.email}
+              </Descriptions.Item>
+            )}
+          </Descriptions>
+        </Row>
       </Skeleton>
+      <Row>
+        {admin?.userId && <UserRolesDetails userId={admin?.userId} />}
+      </Row>
     </Drawer>
   )
 }

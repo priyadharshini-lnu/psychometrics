@@ -4,14 +4,12 @@ module AdminJobs
   class AssessmentRawResultExport < BaseExportAssessment
     private
 
-    def xlsx
-      ::Assessments::Export::RawExport.call!(
-        assessment, campaign, export_with_labels: record.data['export_with_labels']
-      )
-    end
-
-    def file_name
-      "assessment-#{assessment.id}-raw-results.xlsx"
+    def call
+      if assessment.agile?
+        ::AdminJobs::AgileRawResultExport.call!(job_record)
+      else
+        ::AdminJobs::AssessmentRawExport.call!(job_record)
+      end
     end
   end
 end

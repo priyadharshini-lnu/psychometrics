@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 describe Campaigns::Users::AddReport do
+  let(:current_user) { create(:user) }
   let(:campaign_user) { create(:campaign_user) }
+  let(:campaign) { campaign_user.campaign }
+  let(:user) { campaign_user.user }
   let(:report) { create(:report, assessments: [create(:assessment)]) }
 
   before(:each) do
@@ -14,6 +17,35 @@ describe Campaigns::Users::AddReport do
     expect do
       described_class.call!(campaign_user, report, assessments: report.assessments)
     end.to change { UserReport.count }.by(1)
+  end
+
+  it 'add audit_log for user_report and user_assessment' do
+    described_class.call!(
+      campaign_user, report, assessments: report.assessments, current_user: current_user,
+      operation: 'add_and_allow_new_response'
+    )
+
+    user_report = user.user_reports.find_by(report: report)
+    user_report_log = AuditLog.find_by(campaign: campaign, user: current_user, action: 'create', record: user_report)
+    expect(user_report_log.payload).to eq(
+      {
+        'campaign_id' => campaign.id, 'report_id' => report.id, 'status' => user_report.status, 'user_id' => user.id,
+        'operation' => 'add_and_allow_new_response'
+      }
+    )
+
+    assessment = report.assessments.first
+    user_assessment = user.user_assessments.find_by(assessment: assessment)
+    user_assessment_log = AuditLog.find_by(campaign: campaign, user: current_user, action: 'create',
+                                           record: user_assessment)
+    expect(user_assessment_log.payload).to eq(
+      {
+        'assessment_id' => assessment.id, 'campaign_id' => campaign.id, 'evaluator_id' => user_assessment.evaluator_id,
+        'operation' => 'add_and_allow_new_response', 'relationship_id' => user_assessment.relationship_id,
+        'status' => user_assessment.status,
+        'subject_id' => user_assessment.subject_id
+      }
+    )
   end
 
   it 'create iiht_user_assessment if assessment is of type iiht' do

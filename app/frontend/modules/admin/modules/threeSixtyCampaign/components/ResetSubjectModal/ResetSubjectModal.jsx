@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Checkbox } from 'antd'
 import { ConfirmationModal } from '~/glint'
 import { isSuperAdmin } from '~/core/currentUser'

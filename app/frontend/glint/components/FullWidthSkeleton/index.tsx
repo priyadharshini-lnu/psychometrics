@@ -1,0 +1,1 @@
+export { FullWidthSkeleton } from './FullWidthSkeleton'

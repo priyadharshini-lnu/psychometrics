@@ -2,10 +2,9 @@
 
 module Features
   module Helpers
-    # rubocop:disable Metrics/ModuleLength
     module Users
       def create_superadmin(opts = {})
-        visit administration_users_path
+        visit administration_users_path('users')
         click_link(t('administration.users.index.new_superadmin'), href: '/administration/users/new')
         find('.modal-header').click
         sleep 1
@@ -160,5 +159,4 @@ module Features
       end
     end
   end
-  # rubocop:enable Metrics/ModuleLength
 end

@@ -1,7 +1,6 @@
 import merge from 'lodash/merge'
 import React, { useEffect, useRef } from 'react'
-import Highcharts from 'highcharts'
-import { Chart } from 'highcharts-v9'
+import Highcharts, { Chart } from 'highcharts'
 
 import AppStore from '~/modules/reports/store/AppStore'
 import LookupSourceName from '~/modules/reports/commands/LookupSourceName'
@@ -20,7 +19,7 @@ interface Props {
 }
 
 export const StackedBar: React.FC<Props> = ({ model, animation = false, factors }: Props) => {
-  const containerRef: React.MutableRefObject<null> = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
 
   useEffect(() => {
@@ -55,7 +54,7 @@ export const StackedBar: React.FC<Props> = ({ model, animation = false, factors 
     }
     const assessment = AppStore.getAssessmentById(model.assessment_id)
 
-    chartRef.current = Highcharts.chart(
+    chartRef.current = containerRef.current ? Highcharts.chart(
       containerRef.current,
       merge(ChartOptions(model, animation), {
         chart: {
@@ -80,8 +79,7 @@ export const StackedBar: React.FC<Props> = ({ model, animation = false, factors 
           pointWidth: model.props.pointWidth,
         })),
       }),
-    )
-
+    ) : undefined
     return null
   }
 

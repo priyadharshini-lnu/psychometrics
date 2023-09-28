@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import cs from 'classnames'
@@ -7,7 +7,7 @@ import { getAssessmentFactors } from '~/modules/reports/core/builder/selectors'
 import styles from './CPIFactorConditionModal.less'
 import ConditionList from './ConditionList'
 import localStyles from './types/Scoring/Scoring.less'
-import ColorPicker from '../../../ColorPicker'
+import { ColorPicker } from '~/glint'
 
 export class ConditionCollection extends Component {
   static propTypes = {
@@ -60,7 +60,7 @@ export class ConditionCollection extends Component {
 
   changeColor = (color) => {
     const { model } = this.props
-    model.color = color.hex
+    model.color = color
     this.forceUpdate()
   }
 
@@ -181,7 +181,14 @@ export class ConditionCollection extends Component {
         </div>
         <div style={{ position: 'relative' }}>
           <strong>Color</strong>
-          <ColorPicker color={model.color || 'rgba(0,0,0,0.0)'} onChange={this.changeColor} onComplete={this.update} />
+          <ColorPicker
+            getValueInHexFormat
+            colorPickerPosition="leftBottom"
+            value={model.color || '#00000000'}
+            onChange={
+              this.changeColor
+            }
+          />
         </div>
         <div className={styles.footer}>
           <a onClick={this.remove} className={styles.delete}>Delete</a>

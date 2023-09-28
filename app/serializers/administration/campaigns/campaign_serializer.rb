@@ -50,6 +50,8 @@ module Administration
             'view_accesssheet',
             'view_accesssheet_settings',
             'view_assessors',
+            'view_workshops',
+            'view_workshop_invites',
             'stats'
           ],
           {

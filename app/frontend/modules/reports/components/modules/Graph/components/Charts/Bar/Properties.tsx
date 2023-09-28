@@ -9,6 +9,7 @@ import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import useUpdate from '~/hooks/useUpdate'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 import { RootState } from '~/modules/reports/core/rootReducers'
+import PropertyPixelOrPercent from '~/modules/reports/components/PropertyPixelOrPercent'
 import Series from './Series'
 import { GraphPropertyDropdown } from '../CommonPropertyComponents/GraphPropertyDropdown'
 
@@ -74,6 +75,11 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
     update()
   }
 
+  const changeBarBorderRadius = (value: string) => {
+    model.props.barBorderRadius = value
+    update()
+  }
+
   const changeGraphicalPosition = (value: string) => {
     model.props.graphicalPosition = value
     update()
@@ -136,6 +142,15 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
         options={axisDisplayOptions}
         changeHandler={checkboxHandler}
       />
+      {model.props.graphicalRepresentation !== '3D' && (
+      <PropertyPixelOrPercent
+        label={I18n.t('reports.builder.graph.properties.barBorderRadius')}
+        defaultValue={model.props.barBorderRadius}
+        size="small"
+        step="1"
+        onChange={changeBarBorderRadius}
+      />
+      )}
       <GraphPropertyDropdown
         label={I18n.t('reports.builder.graph.properties.legendPosition')}
         options={positionOptions}

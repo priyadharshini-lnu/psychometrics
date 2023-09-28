@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { notification } from 'antd'
 import { SafeHTML } from '~/components/SafeHTML'
 

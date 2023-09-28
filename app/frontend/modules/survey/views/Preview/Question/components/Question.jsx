@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import mediumZoom from 'medium-zoom'
+import cs from 'classnames'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { initAudioPlayer } from '~/modules/survey/hooks/useAudioPlayer'
 import { isEmailTextEntryQuestion } from '~/modules/survey/utils/question'
 import Previews from '~/modules/survey/components/modules/Previews'
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './Question.less'
+import { addListener, removeListener, sendMessage } from '~/utils/messageBus'
 
 class Question extends Component {
   static propTypes = {
@@ -17,13 +19,23 @@ class Question extends Component {
     randomseed: PropTypes.string,
   }
 
+  state = {
+    selected: false,
+  }
+
   componentDidMount () {
     initAudioPlayer(this.question)
     this.initImageZoom()
+    addListener('show_questions', this.onShowQuestions)
   }
 
   componentWillUnmount () {
     this.zoom?.detach()
+    removeListener('show_questions', this.onShowQuestions)
+  }
+
+  onShowQuestions = () => {
+    this.setState({ selected: false })
   }
 
   update = () => {
@@ -62,8 +74,25 @@ class Question extends Component {
     )
   }
 
+  onClick = () => {
+    const { linkedQuestions, isAssessor } = this.props
+
+    if (isAssessor && !linkedQuestions) {
+      sendMessage('show_questions', [])
+    }
+
+    if (!linkedQuestions) { return }
+
+    sendMessage('show_questions', linkedQuestions)
+    this.setState({ selected: true })
+  }
+
   render () {
-    const { model, moduleConfig, hideHiddenQuestions } = this.props
+    const {
+      model, moduleConfig, hideHiddenQuestions, linkedQuestions,
+    } = this.props
+
+    const { selected } = this.state
     const hidden = hideHiddenQuestions && moduleConfig.hidden
     const { allowContentCopy } = model.props
 
@@ -77,8 +106,12 @@ class Question extends Component {
         style={stylesProps}
         ref={(ref) => { this.question = ref }}
         name={`question_${model.id}`}
-        className={`${styles.question} highlight-container`}
+        className={cs(
+          styles.question, 'highlight-container',
+          { [styles.selectable]: linkedQuestions, [styles.frame]: selected },
+        )}
         data-allow-content-copy={allowContentCopy ? 1 : 0}
+        onClick={this.onClick}
       >
         <div className={styles.content}>
           {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}

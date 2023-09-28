@@ -23,14 +23,14 @@ interface Schema {
 }
 
 export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = null): Error => {
-  const attributePrefix = 'data/attributes/'
-  const relationshipPrefix = 'data/relationships/'
+  const attributePrefix = '/data/attributes/'
+  const relationshipPrefix = '/data/relationships/'
 
   return errors.reduce((acc, error: JsonApiStandardError) => {
     const pointer = error.source?.pointer
     let attribute: string
 
-    if (pointer === undefined) {
+    if (pointer === undefined || pointer === '/data') {
       acc.base ||= []
       acc.base = [...acc.base, { title: error.title, detail: error.detail }]
       return acc
@@ -50,6 +50,7 @@ export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = n
     } else {
       attribute = pointer
     }
+
     acc[attribute] = { title: error.title, detail: error.detail }
 
     return acc

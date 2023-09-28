@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import Block from '~/modules/survey/views/Block'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
 import styles from './BlockListView.less'

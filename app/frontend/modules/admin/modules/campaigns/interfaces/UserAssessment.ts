@@ -20,5 +20,6 @@ export default interface UserAssessment {
     remove: boolean
     rescoreResponse: boolean
     resetProgress: boolean
+    pushWebhook: boolean
   }
 }

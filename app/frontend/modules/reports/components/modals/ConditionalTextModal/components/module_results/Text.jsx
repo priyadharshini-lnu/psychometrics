@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
+import { rgba2hex } from '~/utils/color'
 import {
   FONTS, FONT_MIN_SIZE, FONT_MAX_SIZE,
 } from '~/modules/reports/components/PropertyFonts/components/PropertyFonts'
@@ -30,21 +31,21 @@ export class ConditionCollection extends Component {
     this.forceUpdate()
   }
 
-  changeFontColor = (value) => {
+  changeFontColor = (color) => {
     const { model } = this.props
-    model.styles.fontColor = value.hex
+    model.styles.fontColor = color
     this.forceUpdate()
   }
 
-  changeBg = (val) => {
+  changeBg = (color) => {
     const { model } = this.props
-    model.styles.backgroundColor = val.rgb
+    model.styles.backgroundColor = color
     this.forceUpdate()
   }
 
-  changeBorder = (val) => {
+  changeBorder = (color) => {
     const { model } = this.props
-    model.styles.borderColor = val.rgb
+    model.styles.borderColor = color
     this.forceUpdate()
   }
 
@@ -76,7 +77,7 @@ export class ConditionCollection extends Component {
     const { model } = this.props
     const { fontColor } = model.styles
     return (
-      <ColorPicker color={fontColor || '#ccc'} onChange={this.changeFontColor} onComplete={this.update} />
+      <ColorPicker getValueInHexFormat value={fontColor || '#ccc'} onChange={this.changeFontColor} />
     )
   }
 
@@ -128,11 +129,11 @@ export class ConditionCollection extends Component {
           <div className={styles.row}>
             <div className={styles.block} style={{ position: 'relative' }}>
               Background Color
-              <ColorPicker color={backgroundColor} onChange={this.changeBg} onComplete={this.update} />
+              <ColorPicker value={rgba2hex(backgroundColor)} onChange={this.changeBg} />
             </div>
             <div className={styles.block} style={{ position: 'relative' }}>
               Border Color
-              <ColorPicker color={borderColor} onChange={this.changeBorder} onComplete={this.update} />
+              <ColorPicker color={rgba2hex(borderColor)} onChange={this.changeBorder} />
             </div>
           </div>
         </div>

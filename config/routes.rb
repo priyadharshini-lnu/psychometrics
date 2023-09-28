@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
+  get '/admin', to: 'admin_app#dashboard', as: :admin
+  get '/admin/meet/:room_id', to: 'admin_app#dashboard', as: :admin_meeting
+  get '/admin/*all', to: 'admin_app#dashboard'
+
   concern :media_uploades do
     member do
       get :upload_media_url
@@ -49,6 +53,8 @@ Rails.application.routes.draw do
   end
 
   namespace :assessors do
+    get 'assessment_centers', to: 'workshops#index', as: :assessment_centers
+
     constraints(proc { |request| request.format.pdf? || request.format.html? }) do
       resources :campaigns, only: [] do
         resources :user_reports, only: [] do
@@ -95,11 +101,16 @@ Rails.application.routes.draw do
   # Administration panel
   #
   namespace :administration do
+    get 'user_availabilities', to: 'user_availabilities#index', as: :user_availabilities
     get 'dashboards', to: 'dashboards#index', as: :dashboard
     get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
     post 'breadcrumbs', to: 'breadcrumbs#index'
 
     resource :profiles, only: %i[update edit]
+
+    resources :meeting_rooms, only: [] do
+      get :token, on: :member
+    end
 
     resources :audit_logs do
       collection do
@@ -204,6 +215,8 @@ Rails.application.routes.draw do
             put :request_changes
             put :remove_approval
             patch :toggle_user_access
+            get :webhook_payload
+            get :possible_webhook_events
           end
           collection do
             post :regenerate
@@ -222,7 +235,6 @@ Rails.application.routes.draw do
           resources :user_reports
           member do
             patch :toggle_status
-            get :reset_password
             post :extend_time
           end
           collection do
@@ -277,6 +289,7 @@ Rails.application.routes.draw do
             put :update_available_locales
             post :rescore_responses
             put :update_prework
+            put :update_workshop_activity
           end
           collection do
             get :other
@@ -289,6 +302,7 @@ Rails.application.routes.draw do
             post :reset
             post :reset_progress
             post :update_additional_time
+            get :webhook_payload
           end
         end
         resources :campaign_assessment_groups, only: %i[index create update destroy] do
@@ -356,6 +370,15 @@ Rails.application.routes.draw do
       member do
         post :search_users
         get '*all', to: 'new_projects#show', constraints: { all: /.*/ }
+      end
+    end
+
+    resources :workshops, only: %i[] do
+      resources :users, controller: 'workshops/users' do
+        collection do
+          post :search_subjects
+          post :search_assessors
+        end
       end
     end
 
@@ -524,6 +547,7 @@ Rails.application.routes.draw do
 
           resource :reports, only: [:show] do
             get :download, on: :member
+            post :regenerate, on: :member
           end
           resources :evaluations, only: %i[show update destroy] do
             member do
@@ -591,10 +615,15 @@ Rails.application.routes.draw do
         delete :reset_nominations
         delete :remove_user
         post :rescore_assessment
+        post :regenerate_reports
       end
     end
 
     ### ASSESSMENTS
+    get '/assessments/active' => 'assessments#index'
+    get '/assessments/archived' => 'assessments#index'
+    get '/assessments/trash' => 'assessments#index'
+    get '/assessments/:id/edit' => 'assessments#index'
     resources :assessments do
       member do
         get :copy
@@ -603,7 +632,6 @@ Rails.application.routes.draw do
         get :preview
         post :preview
         get :reports
-        get :export
         put :save
         patch :toggle_archive
         get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
@@ -694,20 +722,16 @@ Rails.application.routes.draw do
     end
     ### END DIMENSIONS
 
-    ### USERS
-    resources :users, except: [:create] do
+    ### USERS constraints
+    resources :users, only: [] do
       member do
-        patch :toggle_status
-        patch :toggle_enable_2fa
-        get :sidebar
-        get :reset_password
+        get :spoof
       end
       collection do
-        post :create_superadmin
         post :search_admins
-        get :export
       end
     end
+    get '/users/*all' => 'users#index', constraints: proc { |request| request.format == 'html' }, as: :users
     ### END USERS
 
     ### NORMS
@@ -729,7 +753,6 @@ Rails.application.routes.draw do
           get :copy
           get :sidebar
           patch :toggle_status
-          get :new_assign
         end
       end
       resources :blocks do
@@ -737,7 +760,6 @@ Rails.application.routes.draw do
           get :copy
           get :sidebar
           patch :toggle_status
-          get :new_assign
           get :preview
         end
       end
@@ -925,12 +947,31 @@ Rails.application.routes.draw do
       resources :campaigns, only: %i[show] do
         get :insights
       end
+      get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'
+      get :workshop, to: 'users#workshop'
+      get 'policy/:version', to: 'users#policy'
       post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
+      get :workshop_invites, to: 'workshop_invited_subjects#invites', defaults: { format: :json }
+      get :workshop_bookings, to: 'workshop_invited_subjects#bookings', defaults: { format: :json }
 
       get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect
+
+      resources :meeting_rooms, only: [] do
+        get :token, on: :member
+      end
+
+      resources :workshop_invites, only: [] do
+        member do
+          post :book
+          get :fetch_booking
+          get :fetch_invite
+          post :reschedule_or_request_reschedule
+          post :cancel_or_request_cancellation
+        end
+      end
 
       resources :hogan_user_assessments, only: [] do
         member do
@@ -980,7 +1021,7 @@ Rails.application.routes.draw do
       end
 
       resources :user_assessments do
-        resources :users_results, only: %i[update], concerns: :media_uploades
+        resources :users_results, only: %i[index update], concerns: :media_uploades
         member do
           get :assessment
           get :pass
@@ -1023,6 +1064,7 @@ Rails.application.routes.draw do
         end
         resources :reports do
           put :update_status
+          get :check_report, on: :member
           get :download, on: :member
         end
         resources :assessments, only: %i[index]
@@ -1080,8 +1122,14 @@ Rails.application.routes.draw do
     get 'identify', to: 'home#identify', as: :identify
     get 'assessment_completed(/:campaign_id)', to: 'home#assessment_completed', as: :assessment_completed
     get 'upgrade', to: 'home#upgrade'
-    get 'profile', to: 'end_user/users#dashboard'
+    get 'profile_details', to: 'end_user/users#dashboard'
     get 'change_password', to: 'end_user/users#dashboard'
+    get 'meet/:room_id', to: 'end_user/users#dashboard', as: :meeting
+    get 'invites', to: 'end_user/users#dashboard'
+    get 'booking', to: 'end_user/users#dashboard'
+    get 'invites/:id/booking', to: 'end_user/users#dashboard'
+    get 'invites/:id/success', to: 'end_user/users#dashboard'
+    get 'invites/:id/details', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 
@@ -1141,17 +1189,63 @@ Rails.application.routes.draw do
         namespace :administration do
           jsonapi_resources :clients do
             jsonapi_relationships
+            jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
+              member do
+                post :test_connection
+              end
+              collection do
+                get :create_or_get
+              end
+            end
             jsonapi_resources :projects, only: %i[index create update]
+            jsonapi_resources :licenses, only: %i[index create update] do
+              jsonapi_resources :license_usages, only: %i[index] do
+                member do
+                  post :toggle_status
+                end
+              end
+            end
           end
+          jsonapi_resources :report_families, only: %i[index]
           jsonapi_resources :projects, only: :show
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
             get :reset_password
           end
-          jsonapi_resources :users, only: %i[index show]
+          jsonapi_resources :users do
+            post :reset_password
+            get :roles
+            scope module: :users do
+              resource :uploads, only: %i[update]
+            end
+            collection do
+              post :create_superadmin
+              post :create_global_assessor
+              post :change_password
+            end
+            jsonapi_resources :api_keys, only: %i[index create update]
+          end
+          jsonapi_resources :assessments do
+            post :toggle_archive
+            post :copy
+            post :restore
+            scope module: :assessments do
+              resource :uploads, only: %i[update]
+            end
+          end
+          jsonapi_resources :dimensions
+          jsonapi_resources :external_assessments
+          jsonapi_resources :external_norms
           jsonapi_resources :dashboards, only: %i[index create update]
           jsonapi_resources :design_settings, only: %i[index update] do
-            resource :uploads, only: %i[update]
+            scope module: :design_settings do
+              resource :uploads, only: %i[update]
+            end
+          end
+          jsonapi_resources :projects do
+            jsonapi_resources :webhooks do
+              post :send_test
+            end
           end
           jsonapi_resources :profile_settings, only: %i[index update]
           jsonapi_resources :dashboards, only: %i[index show create update] do
@@ -1164,7 +1258,57 @@ Rails.application.routes.draw do
 
           resources :campaigns, only: [] do
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
+            jsonapi_resources :campaign_assessor_assessments, only: %i[index create destroy]
+            jsonapi_resources :workshops, only: %i[index show update] do
+              member do
+                post :change_status
+              end
+              collection do
+                post :create_bulk_workshops
+              end
+              jsonapi_relationships
+              jsonapi_resources :workshop_subjects, only: %i[show index update destroy] do
+                post :mark_cancelled, on: :member
+              end
+              jsonapi_resources :workshop_activities
+              jsonapi_resources :workshop_resources
+              jsonapi_resources :campaign_assessments, only: %i[index]
+            end
+
+            jsonapi_resources :workshop_subjects, only: %i[index] do
+              member do
+                post :update_subject_details_and_assessments
+              end
+              jsonapi_resources :user_assessments, only: %i[index]
+              jsonapi_resources :campaign_assessor_assessments, only: %i[] do
+                get :subject_assessor_assessments, on: :collection
+              end
+            end
+            jsonapi_resources :workshop_invites, only: %i[index create destroy show] do
+              jsonapi_relationships
+              collection do
+                get :import_subjects_from_campaign
+                post :import_subjects_from_csv
+              end
+              jsonapi_resources :workshop_invited_subjects, only: %i[index create destroy]
+            end
+            jsonapi_resources :workshop_invited_subjects, only: %i[index] do
+              member do
+                post :reject_request
+                post :accept_request
+              end
+            end
+            jsonapi_resources :users, only: %i[index], controller: 'campaigns/users'
           end
+          jsonapi_resources :workshops, only: %i[index] do
+            jsonapi_relationships
+            member do
+              post :bulk_update_subjects
+            end
+          end
+
+          jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
+
           jsonapi_resources :reports, only: [:index]
           resources :user_reports, only: [] do
             jsonapi_resources :user_report_comments, only: %i[index create update destroy]
@@ -1174,6 +1318,12 @@ Rails.application.routes.draw do
               get :search_campaign
               get :search_report
               get :search_user
+            end
+          end
+          resources :workshop_facilitators, only: %i[] do
+            collection do
+              get :search_assessors
+              get :search_managers
             end
           end
         end

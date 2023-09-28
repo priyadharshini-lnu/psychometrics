@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Checkbox } from 'antd'
 import AnswerableConfirmationModal from '~/components/AnswerableConfirmationModal'
 import { isSuperAdmin } from '~/core/currentUser'

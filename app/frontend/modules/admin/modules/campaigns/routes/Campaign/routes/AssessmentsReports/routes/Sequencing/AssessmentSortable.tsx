@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties } from 'react'
+import { FC, CSSProperties } from 'react'
 import { CSS } from '@dnd-kit/utilities'
 import { useSortable } from '@dnd-kit/sortable'
 

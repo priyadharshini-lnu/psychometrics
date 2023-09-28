@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import cs from 'classnames'
 import Utils from '~/modules/reports/utils/Utils'
 import Milestone from './Milestone'

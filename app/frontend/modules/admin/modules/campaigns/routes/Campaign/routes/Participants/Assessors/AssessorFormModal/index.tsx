@@ -20,6 +20,8 @@ interface Props {
   projectId: string
   campaignId: string
   close(): void
+  userSearchUrl?: string
+  adminsSearchUrl?: string
 }
 
 const { I18n } = window
@@ -81,6 +83,8 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
   createAllAssessors,
   clearForm,
   errors,
+  userSearchUrl,
+  adminsSearchUrl,
 }) => {
   useEffect(() => () => {
     clearForm()
@@ -92,6 +96,7 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
       a => a.subjectEmail || a.assessorEmail || a.assessorLastName || a.assessorFirstName || a.assessmentIds?.length,
     ) as AssessorFormItem[]
     createAllAssessors(campaignId, newAssessors)
+    close && close()
   }
 
   const onSubmitForm = (user) => {
@@ -121,7 +126,13 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
         </Button>,
       ]}
     >
-      <Form campaignId={campaignId} projectId={projectId} onSubmit={onSubmitForm} />
+      <Form
+        userSearchUrl={userSearchUrl}
+        adminsSearchUrl={adminsSearchUrl}
+        campaignId={campaignId}
+        projectId={projectId}
+        onSubmit={onSubmitForm}
+      />
       <Divider />
       <SpreadSheet
         fields={tableFields}

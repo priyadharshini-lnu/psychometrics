@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import { Input, Row, Col } from 'antd'
 
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'

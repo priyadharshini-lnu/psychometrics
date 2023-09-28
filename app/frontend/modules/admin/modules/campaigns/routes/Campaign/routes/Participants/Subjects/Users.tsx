@@ -7,13 +7,13 @@ import {
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { FilterValue } from 'antd/lib/table/interface'
+import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import settings from '~/modules/admin/settings'
-import { State as UserState } from '~/modules/admin/modules/campaigns/core/users'
+import { State as UserState, DEFAULT_PAGE_SIZE } from '~/modules/admin/modules/campaigns/core/users'
 import Modals from '~/modules/admin/components/Modals/'
-
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import styles from './styles.less'
 import UserFormModal from './UserFormModal'
@@ -23,6 +23,7 @@ import ToolsDropdown from './ToolsDropdown'
 const MODALS = {
   UserFormModal,
   ImportUsersModal,
+  ResetPasswordModal,
 }
 export const FILTER_PREDICATES = {
   campaignUsersCompletionStatus: 'In',
@@ -38,7 +39,6 @@ interface Props {
   fetch(campaignId: string, tableConfig: TableConfig): void
   remove(campaignId: string, id: number): void
   toggleActive(campaignId: string, id: number, options: { updateInListing: boolean }): void
-  resetPassword(campaignId: string, id: number): void
   users: UserState
   match: {
     params: {
@@ -48,11 +48,12 @@ interface Props {
   }
   tableConfig: TableConfig
   changeFilter(filterName: string, filterValue: string): void
+  getFilteredValue(filterName: string): FilterValue
   removeFilter(filterName: string): void
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
   changePage(page: number): void
-  openModal(name: string, data?: { campaignId: string, user?: User }): void
+  openModal(name: string, data?: object): void
   exportCompletionStatuses(campaignId: number): Promise<void>
   exportCompactCompletionStatuses(campaignId: number): Promise<void>
   exportUsers(campaignId: number): Promise<void>
@@ -77,6 +78,7 @@ const UserList: React.FC<Props> = ({
   tableConfig: {
     filters,
     page,
+    pageSize,
   },
   tableConfig,
   getFilteredValue,
@@ -88,7 +90,6 @@ const UserList: React.FC<Props> = ({
   openModal,
   remove,
   toggleActive,
-  resetPassword,
   exportCompletionStatuses,
   exportCompactCompletionStatuses,
   exportUsers,
@@ -166,14 +167,19 @@ const UserList: React.FC<Props> = ({
                 ({
                   active, id,
                 }) => (
-                  <Switch
-                    checked={active}
-                    onChange={
+                  <Tooltip title={
+                    permissions.edit ? '' : I18n.t('administration.campaigns.users.no_permission_message')}
+                  >
+                    <Switch
+                      disabled={!permissions.edit}
+                      checked={active}
+                      onChange={
                       () => {
                         toggleActive(campaignId, id, { updateInListing: true })
                       }
                   }
-                  />
+                    />
+                  </Tooltip>
                 )
               }
             />
@@ -255,33 +261,29 @@ const UserList: React.FC<Props> = ({
             <Column
               title={I18n.t('administration.campaigns.actions')}
               key="action"
-              render={user => (
+              render={(user: User) => (
                 <ConditionalDropdown
                   menu={
                     ActionsMenu({
                       onEdit: () => openModal('UserFormModal', { campaignId, user }),
-                      resetPassword: () => resetPassword(campaignId, user.id),
                       projectId,
                       campaignId,
-                      userId: user.id,
-                      email: user.email,
+                      user,
+                      openModal,
                       remove: () => remove(campaignId, user.id),
-                      fullName: user.fullName,
                       permissions: user.permissions,
                     }) as React.ReactElement
                   }
                   innerElement={(
-                    <Tooltip title={I18n.t('administration.table.more_actions')}>
-                      <Button
-                        id={`menu-button_campaign-subjects-${user.email}`}
-                        type="link"
-                        aria-label={I18n.t('administration.table.more_actions')}
-                        aria-controls={`menu_campaign-subjects-${user.email}`}
-                        aria-haspopup
-                      >
-                        <MoreOutlined />
-                      </Button>
-                    </Tooltip>
+                    <Button
+                      id={`menu-button_campaign-subjects-${user.email}`}
+                      type="link"
+                      aria-label={I18n.t('administration.table.more_actions')}
+                      aria-controls={`menu_campaign-subjects-${user.email}`}
+                      aria-haspopup
+                    >
+                      <Tooltip title={I18n.t('administration.table.more_actions')}><MoreOutlined /></Tooltip>
+                    </Button>
                   )}
                 />
               )}
@@ -292,7 +294,7 @@ const UserList: React.FC<Props> = ({
       <div className="pl">
         <Pagination
           current={page}
-          pageSize={settings.pagination.defaultPageSize}
+          pageSize={pageSize || DEFAULT_PAGE_SIZE}
           total={total}
           onChange={changePage}
           hideOnSinglePage
@@ -305,24 +307,24 @@ const UserList: React.FC<Props> = ({
 
 interface ActionMenuProps {
   onEdit(): void
-  resetPassword(): void
   projectId: string
   campaignId: string
-  userId: number
-  email: string
+  user: User
   remove(): void
-  fullName: string
   permissions: {
     edit: boolean
     loginAs: boolean
     resetPassword: boolean
     remove: boolean
-  }
+  },
+  openModal(name: string, props: object): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, resetPassword, remove, campaignId, projectId, userId, email, fullName, permissions,
+  onEdit, remove, campaignId, projectId, permissions, openModal, user,
 }) => {
+  const { email, id } = user
+
   const handleDelete = () => {
     Modal.confirm({
       title: I18n.t('common.text.confirm'),
@@ -339,27 +341,6 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  const resetPasswordAndShowMessage = () => {
-    resetPassword()
-    message.success(I18n.t('campaign_users.modals.change_password.successfully', { name: fullName }))
-  }
-
-  const handleChangePassword = () => {
-    Modal.confirm({
-      title: I18n.t('campaign_users.modals.change_password.title',
-        {
-          name: fullName,
-        }),
-      icon: <ExclamationCircleOutlined />,
-      centered: true,
-      width: 650,
-      content: I18n.t('campaign_users.modals.change_password.content'),
-      okText: I18n.t('yes'),
-      cancelText: I18n.t('no'),
-      onOk: resetPasswordAndShowMessage,
-    })
-  }
-
   const menuItems:ItemType[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
@@ -369,7 +350,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     key: 'loginAs',
     label: (
       <a
-        href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${userId}/spoof`}
+        href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/spoof`}
       >
         {I18n.t('frontend.login')}
       </a>
@@ -377,7 +358,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   })
   permissions.resetPassword && menuItems.push({
     key: 'changePassword',
-    label: I18n.t('frontend.change_password'),
+    label: I18n.t('users.actions.reset_password.option'),
   })
   permissions.remove && menuItems.push({
     key: 'remove',
@@ -389,7 +370,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       return onEdit()
     }
     if (key === 'changePassword') {
-      return handleChangePassword()
+      return openModal('ResetPasswordModal', { user })
     }
     if (key === 'remove') {
       return handleDelete()

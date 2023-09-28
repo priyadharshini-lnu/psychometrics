@@ -42,7 +42,7 @@ module Api
       end
 
       def webhook
-        object.webhook_subscription&.url
+        object.webhooks.last&.url
       end
 
       private

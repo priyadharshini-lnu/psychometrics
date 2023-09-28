@@ -8,23 +8,16 @@ module AdminJobs
 
     private
 
-    def locals
-      {
-        completion_statuses: completion_statuses,
-        headers: headers
-      }
+    def headers
+      records_for_export[0]&.keys || Campaigns::CompactCompletionStatusQuery::DEFAULT_COLUMN_NAMES
     end
 
-    def completion_statuses
+    def records_for_export
       Campaigns::CompactCompletionStatusQuery.new(record.data['campaign_id']).query.to_a
     end
 
-    def headers
-      completion_statuses[0].keys
-    end
-
-    def csv_template
-      'administration/campaigns/users/export_compact_completion_status.csv.am'
+    def data_row(record)
+      record.values
     end
 
     def file_name

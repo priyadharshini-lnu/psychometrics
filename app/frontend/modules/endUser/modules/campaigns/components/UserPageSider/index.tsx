@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import {
   HomeOutlined,
   UserOutlined,
+  CalendarOutlined,
 } from '@ant-design/icons'
 
 
@@ -29,6 +30,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type UserPageSiderProps = {
   showInsights: boolean
   siderFooter: (collapsed: boolean) => React.ReactElement
+  updateProfileRequired: boolean
 } & PropsFromRedux
 
 const { I18n } = window
@@ -45,14 +47,24 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
   ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
-}] : [], {
+}] : [],
+{
+  key: 'invites',
+  label: I18n.t('campaign.dashboard_menu.bookings'),
+  icon: <CalendarOutlined className={styles.siderIcon} />,
+},
+{
   key: 'profile',
   label: I18n.t('campaign.dashboard_menu.profile'),
   icon: <UserOutlined className={styles.siderIcon} />,
+  children: [
+    { label: I18n.t('campaign.dashboard_menu.profile_details'), key: 'profile_details' },
+    { label: I18n.t('campaign.dashboard_menu.change_password'), key: 'change_password' },
+  ],
 }])
 
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
-  showInsights, siderFooter, logo, projectName,
+  showInsights, siderFooter, logo, projectName, updateProfileRequired,
 }) => {
   const location = useLocation()
   const { pathname } = location
@@ -66,7 +78,10 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
 
   useEffect(() => {
     if (pathname.includes('/campaigns/')) {
-      !openKey.length && setOpenKey(['campaign'])
+      setOpenKey([...openKey, 'campaign'])
+    }
+    if (pathname.includes('/profile_details' || '/change_password')) {
+      setOpenKey([...openKey, 'profile'])
     }
   }, [pathname])
   const handleMenuSelect = (menu) => {
@@ -91,11 +106,17 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else {
     activeItem = pathname.slice(1)
+    activeItem = pathname.includes('invites') ? 'invites' : activeItem
+    activeItem = pathname === '/profile' ? 'profile_details' : activeItem
     activeItem = activeItem || 'dashboard'
   }
 
   if (pathname.includes('user_assessments/') || pathname.includes('evaluations/')) {
     return null
+  }
+
+  if (updateProfileRequired) {
+    menuItems = menuItems.filter(menuItem => menuItem.key === 'profile')
   }
 
   return (

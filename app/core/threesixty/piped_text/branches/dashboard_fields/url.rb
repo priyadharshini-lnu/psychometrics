@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module DashboardFields
-        class Url < BaseField
+        class Url < ::PipedText::BaseField
           def call
             url =
               if context[:recipient].invitation_accepted?

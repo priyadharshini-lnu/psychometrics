@@ -1,4 +1,3 @@
-import React from 'react'
 import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import RouteList from '~/components/RouteList'
@@ -6,6 +5,7 @@ import { get as getCurrentUser } from '~/core/currentUser'
 import PipedTextModal from '~/components/Editor/PipedTextModal'
 import routeUtils from '~/utils/route'
 import settings from '../../settings'
+import { PageHeader } from '../../PageHeader'
 
 function Messages ({ history, routes, currentUser }) {
   const onSelect = ({ key }) => routeUtils.moveTo(history, settings.urlPrefix, key)
@@ -29,16 +29,19 @@ function Messages ({ history, routes, currentUser }) {
   ]
 
   return (
-    <div>
-      <Menu
-        items={menuItems}
-        onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
-        mode="horizontal"
-      />
-      <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-      <PipedTextModal />
-    </div>
+    <>
+      <PageHeader />
+      <div>
+        <Menu
+          items={menuItems}
+          onSelect={onSelect}
+          selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+          mode="horizontal"
+        />
+        <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+        <PipedTextModal />
+      </div>
+    </>
   )
 }
 

@@ -3,12 +3,12 @@
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_id, :enable_universal_links,
-               :universal_link, :norms, :is_external, :assessor_form_name, :assessor_form_id, :permissions,
+               :universal_link, :norms, :is_external, :assessor_form_name, :permissions,
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
-               :prework
+               :prework, :workshop_activity, :workshop_activity_duration
 
     delegate :id, :name, :category, to: :assessment
-    delegate :name, :id, to: :assessor_form, prefix: true, allow_nil: true
+    delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
 
     def campaign_assessment_id
       object.id
@@ -61,6 +61,10 @@ module Administration
       )
     end
 
+    def assessor_form_name
+      object.assessment.linked_assessor_form&.name
+    end
+
     private
 
     def current_user
@@ -69,10 +73,6 @@ module Administration
 
     def norm
       object.norm
-    end
-
-    def assessor_form
-      object.assessor_form
     end
 
     def assessment

@@ -4,11 +4,21 @@ import UserDetails from './UserDetails'
 import Evaluation from './Evaluation'
 import ReportPreview from './ReportPreview'
 import { ExternalReportPreview } from './ExternalReportPreview'
+import { WorkshopList } from './AssessmentCenter'
 
 const routes = [
   {
     path: '/',
     component: CampaignList,
+  },
+  {
+    redirect: true,
+    from: '/assessment_centers',
+    to: '/assessment_centers/current',
+  },
+  {
+    path: '/assessment_centers/:tab',
+    component: WorkshopList,
   },
   {
     path: '/campaigns/:campaignId/users/:userId',

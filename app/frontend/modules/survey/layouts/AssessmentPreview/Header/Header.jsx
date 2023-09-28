@@ -1,4 +1,3 @@
-import React from 'react'
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './Header.less'
 

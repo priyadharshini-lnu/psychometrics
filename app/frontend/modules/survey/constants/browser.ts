@@ -86,7 +86,7 @@ export const MIN_BROWSER_FEATURE_SUPPORT = {
   [BROWSER_FEATURES.mediaRecorderAPI]: {
     [UA_BROWSERS.Edge]: 79,
     [UA_BROWSERS.Firefox]: 29,
-    [UA_BROWSERS.FirefoxMobile]: null,
+    [UA_BROWSERS.FirefoxMobile]: 110,
     [UA_BROWSERS.Chrome]: 49,
     [UA_BROWSERS.ChromeMobile]: 94,
     [UA_BROWSERS.Safari]: 14.1,

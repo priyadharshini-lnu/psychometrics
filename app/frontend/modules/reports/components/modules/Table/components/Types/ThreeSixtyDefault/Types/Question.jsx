@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import React from 'react'
 import cs from 'classnames'
 import { connect } from 'react-redux'
 import AppStore from '~/modules/reports/store/AppStore'

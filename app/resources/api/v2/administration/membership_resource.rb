@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::MembershipResource < Api::V2::Administration::BaseResource
-  attributes :user_id, :client_id, :campaign_id, :name, :first_name, :last_name, :email, :created_at, :grant_names,
-             :role, :projects, :campaigns
+  attributes :user_id, :client_id, :project_id, :campaign_id, :name, :first_name, :last_name, :email, :created_at,
+             :role, :grant_names
 
   has_one :user
 
-  ransack_filters %i[client_id_eq campaign_id_eq with_role filterable_fields]
+  ransack_filters %i[client_id_eq campaign_id_eq project_id_eq with_role filterable_fields]
 
   delegate :first_name, :first_name=, :last_name, :last_name=, :name, :email, :email=, to: :user, allow_nil: true
 
   before_save :set_user_as_admin, on: :create
+
+  alias_attribute :project_id, :client_id
 
   after_create :send_invitation_email
 
@@ -51,17 +53,5 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
 
   def created_at
     I18n.l(@model.created_at, format: :short)
-  end
-
-  def projects
-    @model.user.project_admin_clients.map do |client|
-      { id: client.id, name: client.name, role: 'project_admin' }
-    end
-  end
-
-  def campaigns
-    @model.user.campaign_admin_campaigns.map do |campaign|
-      { id: campaign.id, name: campaign.name, role: 'campaign_admin' }
-    end
   end
 end

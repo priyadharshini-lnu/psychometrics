@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Space, Skeleton } from 'antd'
 import { AppstoreOutlined } from '@ant-design/icons'
 

@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import React from 'react'
 import styles from './Branch.less'
 import ConditionPreview from './ConditionPreview'
 

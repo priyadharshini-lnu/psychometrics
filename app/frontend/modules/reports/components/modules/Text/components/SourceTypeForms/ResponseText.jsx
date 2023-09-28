@@ -1,6 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
 import * as QuestionPresenter from '~/modules/reports/presenters/QuestionPresenter'

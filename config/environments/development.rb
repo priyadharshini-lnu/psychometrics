@@ -32,10 +32,14 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  # Enable server timing
   config.server_timing = true
+
   # Enable/disable caching. By default caching is disabled.
+  # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
+    config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
@@ -47,11 +51,13 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Store uploaded files on the local file system (see config/storage.yml for options).
+  # config.active_storage.service = :local
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-
+  config.action_mailer.default_url_options = { host: Settings.domain, port: Settings.port }
   config.action_mailer.perform_caching = false
-
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default charset: 'utf-8'
 
@@ -92,7 +98,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: Settings.domain, port: Settings.port }
   config.action_cable.allow_same_origin_as_host = true
-  Rails.application.config.action_controller.forgery_protection_origin_check = false
+  config.action_controller.forgery_protection_origin_check = false
   config.action_dispatch.default_headers['Access-Control-Allow-Origin'] = '*'
 
   # Setting nil to allow any hosts on develop

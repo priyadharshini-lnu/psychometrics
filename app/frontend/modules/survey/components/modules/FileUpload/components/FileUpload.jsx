@@ -1,10 +1,10 @@
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from '~/modules/survey/components/modules/TextEntry/components/styles.less'
 import TextEditor from '~/modules/survey/components/TextEditor'
 import FileUploadBlock from '~/modules/survey/components/FileUpload'
 
-export class FileUpload extends React.Component {
+export class FileUpload extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }

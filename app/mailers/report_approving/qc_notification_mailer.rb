@@ -11,7 +11,7 @@ module ReportApproving
         from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
         to: user.email,
         subject: @user_report.change_requested? ? 'Report changes requested' : 'Report ready for QC',
-        template_path: '/mailer/report_approving',
+        template_path: 'mailer/report_approving',
         template_name: 'qc_notification'
       )
     end

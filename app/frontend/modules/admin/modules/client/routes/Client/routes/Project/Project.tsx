@@ -142,7 +142,7 @@ export const ProjectComponent: FC<Props> = ({
             label: state => state.client.name,
           },
           {
-            link: state => `/administration/projects/${state.project?.id}/new_campaigns`,
+            link: state => `/administration/projects/${state.project?.id}/new_campaigns?filters[statusEq]=active`,
             label: state => state.project?.name,
           },
           {

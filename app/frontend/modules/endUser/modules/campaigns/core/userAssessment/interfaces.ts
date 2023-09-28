@@ -14,6 +14,12 @@ export interface UserAssessment {
   assessmentExtra: AssessmentExtra
   selectedLocale: string
   availableLocales: string[]
+  meetingLink: string | null
+  prework: boolean
+  workshopActivity: boolean | null
+  meetingTime: string | null
+  scheduleTime: string | null
+  workshopActivityDuration: number | null
 }
 
 export interface AssessmentExtra {

@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Space } from 'antd'
 import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
 import Action from '~/modules/survey/undo'
 import ChoicesInput from '~/modules/survey/components/ChoicesInput'
 import Utils from '~/modules/survey/utils'
 import ValidationTypes from '~/modules/survey/components/ValidationTypes'
 import RequiredValidations from '~/modules/survey/components/RequiredValidations'
+import { MultilineEdit } from '~/modules/survey/components/MultilineEdit'
 
 export class Properties extends Component {
   static propTypes = {
@@ -62,6 +64,22 @@ export class Properties extends Component {
   changeStatements = (val) => {
     const { model } = this.props
     model.setChoices(val)
+  }
+
+  handleMultiStatementsChange = (values) => {
+    const { model } = this.props
+    model.setChoices(values.length)
+    model.changeProps({ choicesTexts: values })
+  }
+
+  handleMultiScaleChange = (values) => {
+    const { model } = this.props
+    model.changeProps({ scalePoints: values.length, scalePointsTexts: values })
+  }
+
+  handleMultiLabelChange = (values) => {
+    const { model } = this.props
+    model.changeProps({ labels: values.length, labelsTexts: values })
   }
 
   changeNotApplicable = () => {
@@ -270,7 +288,10 @@ export class Properties extends Component {
     return (
       <div className={styles.fieldset}>
         <span className={styles.label}>Statements</span>
-        <ChoicesInput value={props.choices} model={model} onChange={this.changeStatements} />
+        <Space direction="vertical">
+          <ChoicesInput value={props.choices} model={model} onChange={this.changeStatements} />
+          <MultilineEdit title="Statements" lines={props.choicesTexts} onChange={this.handleMultiStatementsChange} />
+        </Space>
       </div>
     )
   }
@@ -282,7 +303,10 @@ export class Properties extends Component {
       <div>
         <div className={styles.fieldset}>
           <span className={styles.label}>Scale Points</span>
-          <ChoicesInput value={props.scalePoints} model={model} onChange={this.changeScalePoints} />
+          <Space direction="vertical">
+            <ChoicesInput value={props.scalePoints} model={model} onChange={this.changeScalePoints} />
+            <MultilineEdit title="Scale Points" lines={props.scalePointsTexts} onChange={this.handleMultiScaleChange} />
+          </Space>
         </div>
         <hr className={styles.divider} />
       </div>
@@ -296,7 +320,10 @@ export class Properties extends Component {
       <div>
         <div className={styles.fieldset}>
           <span className={styles.label}>Labels</span>
-          <ChoicesInput value={props.labels} model={model} onChange={this.changeLabels} />
+          <Space direction="vertical">
+            <ChoicesInput value={props.labels} model={model} onChange={this.changeLabels} />
+            <MultilineEdit title="Lables" lines={props.labelsTexts} onChange={this.handleMultiLabelChange} />
+          </Space>
         </div>
         <hr className={styles.divider} />
       </div>

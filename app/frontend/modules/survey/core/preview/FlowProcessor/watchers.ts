@@ -41,7 +41,7 @@ const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 
 function* genInitPageProcessing () {
   const state = yield select()
-  if (!state.preview.started) { return }
+  if (state.preview.instructions && !state.preview.started) { return }
   if (state.preview.end) { return }
 
   if (state.preview.assessmentTimedOut) {

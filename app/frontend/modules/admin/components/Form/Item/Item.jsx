@@ -1,4 +1,3 @@
-import React from 'react'
 import _ from 'lodash'
 import { Form } from 'antd'
 import Fields from './Fields'

@@ -1,4 +1,3 @@
-import React from 'react'
 import _ from 'lodash'
 import Randomization from '../Randomization'
 import CustomValidation from '../CustomValidation'
@@ -12,6 +11,8 @@ import CreateByTemplate from '../CreateByTemplate'
 import MappingNorms from '../MappingNorms'
 import EndOfAssessmentModal from '../EndOfAssessmentModal'
 import DataSheetModal from '../DataSheetModal'
+import { SettingsModal } from '../SettingsModal/SettingsModal'
+import { LinkedAssessmentModal } from '../LinkedAssessmentModal/LinkedAssessmentModal'
 
 const MODALS = {
   dataSheetModal: DataSheetModal,
@@ -26,6 +27,8 @@ const MODALS = {
   createByTemplate: CreateByTemplate,
   mapNorms: MappingNorms,
   endOfAssessment: EndOfAssessmentModal,
+  settings: SettingsModal,
+  linkedAssessment: LinkedAssessmentModal,
 }
 
 

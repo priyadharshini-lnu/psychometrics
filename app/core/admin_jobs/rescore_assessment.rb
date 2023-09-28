@@ -5,7 +5,7 @@ module AdminJobs
     def call
       if campaign_assessment
         norm_id = if campaign_assessment.has_external_norm?
-                    campaign_assessment.assessment.external_settings[:norm_id]
+                    campaign_assessment.external_norm_id
                   else
                     campaign_assessment.norm_id
                   end

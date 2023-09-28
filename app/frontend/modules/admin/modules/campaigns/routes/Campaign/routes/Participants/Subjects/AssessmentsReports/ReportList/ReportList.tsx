@@ -7,6 +7,7 @@ import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
+import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 
 const { Column } = Table
 const { I18n } = window
@@ -18,6 +19,13 @@ interface OwnProps {
       campaignId: string
     }
   }
+  openModal(name: string, data?: {
+    projectId: number
+    campaignId: number
+    parentId?: number
+    parentType?: ParentResourceType
+    testMode?: boolean
+ }): void
 }
 
 export type Props = RouteComponentProps & OwnProps & PropsFromRedux
@@ -29,6 +37,7 @@ const ReportList: React.FC<Props> = ({
   selectRecords,
   match: { params: { campaignId, projectId } },
   remove,
+  openModal,
   toggleUserAccess,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -92,6 +101,7 @@ const ReportList: React.FC<Props> = ({
                     internal: userReport.internal,
                     reportUrl: userReport.reportUrl,
                     permissions: userReport.permissions,
+                    openModal,
                   }) as React.ReactElement
                 }
                 innerElement={(
@@ -120,11 +130,19 @@ interface ActionMenuProps {
     downloadReport: boolean
     remove: boolean
     viewReport: boolean
+    pushWebhook: boolean
   }
+  openModal(string, data?: {
+    campaignId: number,
+    parentId?: number,
+    projectId?: number
+    parentType?: ParentResourceType
+    testMode?: boolean
+  }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl, permissions,
+  campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl, permissions, openModal,
 }) => {
   const previewUrl = () => {
     if (internal) {
@@ -165,10 +183,23 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     key: 'remove',
     label: I18n.t('common.actions.remove'),
   })
+  permissions.pushWebhook && menuItems.push({
+    label: 'Push Webhook',
+    key: 'pushWebhook',
+  })
 
   const handleMenuClick = ({ key }) => {
     if (key === 'remove') {
       handleDelete()
+    }
+    if (key === 'pushWebhook') {
+      return openModal('PushWebhookModal', {
+        campaignId,
+        projectId,
+        parentId: userReportId,
+        parentType: ParentResourceType.UserReport,
+        testMode: false,
+      })
     }
   }
 

@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Statistic, notification as antdNotification, StatisticProps } from 'antd'
+import cs from 'classnames'
 
 import styles from './styles.less'
 
@@ -47,6 +48,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
   notificationPoints = [],
   notificationTemplate,
   notificationDuration = 15,
+  className,
   ...rest
 }) => {
   const [countDownValue, setCountDownValue] = useState<number | undefined>(undefined)
@@ -101,7 +103,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
 
   return (
     <Statistic.Countdown
-      className={styles.timer}
+      className={cs(styles.timer, className)}
       value={countDownValue}
       onFinish={() => onFinish && onFinish()}
       format={timerFormat}

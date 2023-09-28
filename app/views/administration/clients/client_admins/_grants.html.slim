@@ -11,6 +11,7 @@
 - project_settings_smtp_id = dom_id(u, :project_settings_smtp)
 - project_settings_saml_id = dom_id(u, :project_settings_saml)
 - project_settings_integrations_id = dom_id(u, :project_settings_integrations_id)
+- project_settings_webhooks_id = dom_id(u, :project_settings_webhooks_id)
 
 - sms_invites_view_id = dom_id(u, :sms_invites_view)
 - sms_invites_manage_id = dom_id(u, :sms_invites_manage)
@@ -45,6 +46,8 @@
 - results_rescore_responses_id = dom_id(u, :rescore_responses)
 - results_approve_report_id = dom_id(u, :approve_report)
 - results_reset_progress_id = dom_id(u, :reset_progress)
+- results_regenerate_report_id = dom_id(u, :results_regenerate_report)
+- results_bulk_regenerate_reports_id = dom_id(u, :results_bulk_regenerate_reports)
 
 - campaigns_view_id = dom_id(u, :campaigns_view)
 - campaigns_manage_id = dom_id(u, :campaigns_manage)
@@ -132,6 +135,18 @@ table.table.grants-table
                         'reset_password', resource.has_grant?(:users, :reset_password)
                 | Reset Password
 
+    - if policy(:membership).manage_grants_for_actions?('users', ['reset_password'], client: client)
+      tr
+        td Users
+        td
+          div.grants-grid
+            - if policy(:membership).manage_grants_for_action?('users', 'reset_password', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][users][]',
+                        'reset_password', resource.has_grant?(:users, :reset_password)
+                | Reset Password
+
+
     - if policy(:membership).manage_grants_for_actions?('project_settings', ['design', 'smtp', 'sms', 'saml', 'integrations'], client: client)
       tr
         td Project Settings
@@ -157,6 +172,11 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][project_settings][]',
                         'integrations', resource.has_grant?(:project_settings, :integrations), id: project_settings_integrations_id, data: { turn_on: [project_settings_integrations_id] }
                 | Integrations
+            - if policy(:membership).manage_grants_for_action?('project_settings', 'webhooks', client: client)
+              label
+                = check_box_tag 'resource[grants_attributes][data][project_settings][]',
+                        'webhooks', resource.has_grant?(:project_settings, :webhooks), id: project_settings_webhooks_id, data: { turn_on: [project_settings_webhooks_id] }
+                | Webhooks
 
     = render 'shared/administration/grants/dashboards'
 
@@ -242,6 +262,7 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][campaigns][]',
                         'stats', resource.has_grant?(:campaigns, :stats)
                 | View Stats
+                campaigns_regenerate_report_id
 
     - if policy(:membership).manage_grants_for_actions?('messages', ['email', 'instructions', 'options'], client: client)
       tr
@@ -432,6 +453,21 @@ table.table.grants-table
                 = check_box_tag 'resource[grants_attributes][data][results][]',
                         'reset_progress', resource.has_grant?(:results, :reset_progress), id: results_reset_progress_id
                 | Reset Prgoress
+                        - if policy(:membership).manage_grants_for_action?('results', 'regenerate_report', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][results][]',
+                        'regenerate_report', resource.has_grant?(:results, :regenerate_report), id: results_regenerate_report_id
+                | Regenerate Reports
+                sup
+                  a href='#sup-note-1' 1
+            - if policy(:membership).manage_grants_for_action?('results', 'bulk_regenerate_reports', client: client)
+              label.text-nowrap
+                = check_box_tag 'resource[grants_attributes][data][results][]',
+                        'bulk_regenerate_reports', resource.has_grant?(:results, :bulk_regenerate_reports), id: results_bulk_regenerate_reports_id
+                | Bulk Regenerate Reports
+                sup
+                  a href='#sup-note-1' 1
+
     - if policy(:membership).manage_grants_for_actions?('assessors', ['view', 'manage', 'manage_users'], client: client)
       tr
         td Assessors

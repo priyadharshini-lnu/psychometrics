@@ -1,4 +1,3 @@
-import React from 'react'
 import { Select } from 'antd'
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import _ from 'lodash'

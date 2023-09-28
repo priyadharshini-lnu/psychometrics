@@ -15,11 +15,13 @@ class HomeController < ApplicationController
       redirect_to_campaign_or_return_url('assessment_completed') && return if user_assessment.completed?
       redirect_to_campaign_or_return_url('assessment_timed_out') && return if user_assessment.timed_out?
       redirect_to_campaign_or_return_url('assessment_ineligible') && return if user_assessment.ineligible?
+      unless UserAssessments::CanStartBasedOnSequencing.call!(user_assessment)
+        return redirect_to_campaign_or_return_url('previous_assessment_incomplete')
+      end
 
       campaign_user = user_assessment.campaign_user
       CampaignUsers::BeginCampaign.call(campaign_user) if campaign_user.not_started?
-      redirect_url = UserAssessments::GetUrl.call!(user_assessment)
-      redirect_to(redirect_url) && return
+      redirect_to(user_assessment_path(user_assessment)) && return
     end
 
     redirect_to_campaign_or_return_url
@@ -55,7 +57,13 @@ class HomeController < ApplicationController
 
   def redirect_to_campaign_or_return_url(assessment_status = nil)
     campaign_id = params.fetch(:campaign_id, nil)
-    redirect_path = campaign_id.nil? ? root_path : campaign_path(campaign_id)
+
+    redirect_path = if campaign_id.nil?
+                      root_path
+                    else
+                      campaign_path(campaign_id)
+                    end
+
     return redirect_to(redirect_path) if session[:sso].try(:[], 'return_url').nil?
 
     substitutions = {}
@@ -102,5 +110,9 @@ class HomeController < ApplicationController
     uri.to_s
   rescue URI::InvalidURIError
     default_url
+  end
+
+  def user_assessment
+    @user_assessment ||= UserAssessment.find(params[:user_assessment_id])
   end
 end

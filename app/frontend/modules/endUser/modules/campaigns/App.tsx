@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { ConfigProvider, notification } from 'antd'
 import { Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
@@ -11,8 +11,6 @@ import { UserPageLayout } from '~/modules/endUser/modules/campaigns/components/U
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { useWindowInnerSize } from '~/modules/endUser/rootHooks'
 import { MAX_PAGE_LOAD_WAIT_TIME } from '~/constants/time'
-import { connected, disconnected } from '~/core/connection'
-import ConnectionCheck from '~/components/ConnectionCheck'
 import { GlintProvider, withLoadingSpinner } from '~/glint'
 import routes from './routes'
 import './styles.less'
@@ -49,10 +47,6 @@ function App () {
         <GlintProvider>
           <ConnectedRouter history={history}>
             <UserPageLayout>
-              <ConnectionCheck
-                onConnected={() => store.dispatch(connected())}
-                onDisconnected={() => store.dispatch(disconnected())}
-              />
               {routes.map((route, i) => (
                 <Route key={i} path={route.path} exact={route.exact} component={route.main} />
               ))}

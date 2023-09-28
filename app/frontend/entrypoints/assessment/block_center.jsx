@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom'
 
 import BlockCenter from '~/modules/survey/containers/BlockCenterContainer'

@@ -35,7 +35,7 @@ class Administration::NormsController < Administration::BaseController
 
     respond_to do |format|
       if resource.save
-        audit! :create, resource, payload: params.permit!
+        audit! :create, resource, payload: params
         format.js
       else
         format.js { render :new }
@@ -47,7 +47,7 @@ class Administration::NormsController < Administration::BaseController
     resource.updated_by = current_user
     respond_to do |format|
       if resource.update(resource_params)
-        audit! :update, resource, payload: params.permit!
+        audit! :update, resource, payload: params
         format.js
       else
         format.js { render :edit }

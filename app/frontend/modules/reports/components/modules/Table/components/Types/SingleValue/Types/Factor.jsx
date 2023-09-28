@@ -1,4 +1,3 @@
-import React from 'react'
 import _ from 'lodash'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import ResultStore from '~/modules/reports/store/ResultStore'

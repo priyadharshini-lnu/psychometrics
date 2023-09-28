@@ -11,6 +11,7 @@ module Administration
         show update assessments_and_reports fetch_campaign_options fetch_campaign_instructions
         update_campaign_options destroy fetch_descriptions
       ]
+      render_entrypoint %i[index show], element: 'project-container', entry: 'admin/project'
       before_action :set_project_init_state, only: %i[index show], if: -> { request.format.html? }
       append_before_action :pundit_authorize, except: [:index]
 
@@ -62,6 +63,7 @@ module Administration
       end
 
       def show
+        @do_not_render_rails_menu = true
         respond_to do |format|
           format.html { render :index }
           format.json do
@@ -190,12 +192,15 @@ module Administration
       end
 
       def campaign_options_params
-        resource_params.permit(:fixed_time, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions,
-                               :proctoring_enabled, :identification, :description, :integration_type,
-                               rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
-                                          allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
-                                          allow_to_use_messengers allow_wrong_gaze_direction
-                                          allow_to_use_human_assistant ])
+        resource_params.permit(
+          :fixed_time, :fixed_time_duration, :workshop_booking_requires_prework_completion, :time_zone,
+          :instructions_enabled, :instructions, :proctoring_enabled, :proctoring_trial,
+          :identification, :description, :integration_type,
+          rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
+                     allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
+                     allow_to_use_messengers allow_wrong_gaze_direction
+                     allow_to_use_human_assistant ]
+        )
       end
     end
   end

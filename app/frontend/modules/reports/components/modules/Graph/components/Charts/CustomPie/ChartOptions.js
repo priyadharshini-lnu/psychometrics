@@ -4,6 +4,9 @@ export default function ChartOptions (model, animation) {
       type: 'solidgauge',
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
+    accessibility: {
+      enabled: false,
+    },
     title: false,
     yAxis: {
       min: 0,

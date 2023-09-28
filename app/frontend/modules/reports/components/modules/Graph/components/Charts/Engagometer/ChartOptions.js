@@ -44,6 +44,9 @@ export default function ChartOptions ({ ...model }) {
       plotShadow: false,
       backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
+    accessibility: {
+      enabled: false,
+    },
     credits: {
       enabled: false,
     },

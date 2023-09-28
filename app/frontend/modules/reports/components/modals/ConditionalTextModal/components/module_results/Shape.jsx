@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
+import { rgba2hex } from '~/utils/color'
 import styles from '../ConditionalTextModal.less'
 
 export class ConditionCollection extends Component {
@@ -8,15 +9,15 @@ export class ConditionCollection extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  changeBg = (val) => {
+  changeBg = (color) => {
     const { model } = this.props
-    model.styles.backgroundColor = val.rgb
+    model.styles.backgroundColor = color
     this.forceUpdate()
   }
 
-  changeBorder = (val) => {
+  changeBorder = (color) => {
     const { model } = this.props
-    model.styles.borderColor = val.rgb
+    model.styles.borderColor = color
     this.forceUpdate()
   }
 
@@ -53,11 +54,11 @@ export class ConditionCollection extends Component {
           <div className={styles.row}>
             <div className={styles.block} style={{ position: 'relative' }}>
               Background Color
-              <ColorPicker color={backgroundColor} onChange={this.changeBg} onComplete={this.update} />
+              <ColorPicker value={rgba2hex(backgroundColor)} colorPickerPosition="bottom" onChange={this.changeBg} />
             </div>
             <div className={styles.block} style={{ position: 'relative' }}>
               Border Color
-              <ColorPicker color={borderColor} onChange={this.changeBorder} onComplete={this.update} />
+              <ColorPicker value={rgba2hex(borderColor)} colorPickerPosition="bottom" onChange={this.changeBorder} />
             </div>
           </div>
         </div>

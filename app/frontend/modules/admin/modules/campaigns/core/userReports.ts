@@ -24,7 +24,7 @@ const ModuleOverrideTR = t.type({
 
 export interface Comment {
   id: string
-  text: string,
+  text: string
   createdAt: string
   parentId: string
   moduleId: string
@@ -111,6 +111,7 @@ interface UserReportDetails {
     manageQc: boolean
     manageApproval: boolean
   }
+  possibleWebhookEvents?: string[]
 }
 
 export interface State {
@@ -143,6 +144,7 @@ const defaultState: State = {
       manageQc: false,
       manageApproval: false,
     },
+    possibleWebhookEvents: [],
   },
   selectedModule: null,
 }
@@ -159,10 +161,14 @@ export const get = (state: RootState): State => state.campaigns.userReports
 export const getCurrent = (state: RootState): UserReportDetails => _.get(get(state), ['current'])
 export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedIds')
 
+
 export const getCommentThreads = (state: RootState) => (
   _.get(get(state), ['current', 'comments']).filter((c => !c.parentId)).reverse()
 )
 
+export const getCurrentWebhookEvents = (state: RootState) => (
+  _.get(get(state), ['current', 'possibleWebhookEvents']) || []
+)
 export const getModules = (state: RootState):Module[] => (
   _.flatten(_.get(get(state), ['current', 'report', 'pages']).map(p => p.modules))
 )
@@ -171,7 +177,6 @@ export const getSelectedModule = (state: RootState): Module | null => {
   const id = _.get(get(state), ['selectedModule'])
   return getModules(state).find(m => m.id === id) || null
 }
-
 
 export const FETCH_SINGLE = 'campaigns/userReports/FETCH_SINGLE'
 export const DOWNLOAD = 'campaigns/userReports/DOWNLOAD'
@@ -198,6 +203,7 @@ export const SELECT_MODULE = 'campaigns/userReports/SELECT_MODULE'
 export const NEW_COMMENT = 'campaigns/userReports/NEW_COMMENT'
 export const UPDATE_COMMENT = 'campaigns/userReports/UPDATE_COMMENT'
 export const READ_COMMENT = 'campaigns/userReports/READ_COMMENT'
+export const FETCH_POSSIBLE_WEBHOOK_EVENTS = 'campaigns/userReports/FETCH_POSSIBLE_WEBHOOK_EVENTS'
 
 export const selectModule = (id: number) => ({ type: SELECT_MODULE, id })
 
@@ -207,6 +213,15 @@ export const fetchSingle = (campaignId: number, id: number, params = {}) => ({
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}`,
     camelize: false,
     body: params,
+  },
+})
+
+export const fetchPossibleWebhookEvents = (campaignId: number, id: number) => ({
+  type: FETCH_POSSIBLE_WEBHOOK_EVENTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/possible_webhook_events`,
+    camelize: false,
   },
 })
 
@@ -391,11 +406,13 @@ type CreateModuleOverride = ApiActionResponse<ModuleOverride>
 type ApproveModuleOverride = ApiActionResponse<ModuleOverride>
 type RemoveModuleOverride = ApiActionResponse<{}>
 type StartQC = ApiActionResponse<{status: string}>
+type fetchPossibleWebhookEvents = ApiActionResponse<{events: string[]}>
 type AbortQC = ApiActionResponse<{status: string}>
 type ApproveReport = ApiActionResponse<{status: string}>
 type RequestChanges = ApiActionResponse<{status: string}>
 type SendToApprove = ApiActionResponse<{status: string}>
 type RemoveApproval = ApiActionResponse<{status: string}>
+
 
 const ExternalReportDetailsTR = t.type({
   id: t.number,
@@ -413,7 +430,7 @@ export const fetchExternalReportDetails = (campaignId: number, id: number) => ({
   type: FETCH_EXTERNAL_REPORT_DETAILS,
   request: {
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}`,
-    responseType: ExternalReportDetailsTR,
+    typedResponse: ExternalReportDetailsTR,
   },
 })
 
@@ -429,6 +446,11 @@ const HANDLERS = {
       loaded: true,
     },
   }),
+
+  [FETCH_POSSIBLE_WEBHOOK_EVENTS]: (state: State, { response }: fetchPossibleWebhookEvents) => setIn(
+    state, ['current', 'possibleWebhookEvents'], response.events,
+  ),
+
   [FETCH_EXTERNAL_REPORT_DETAILS]: (state: State, action: FetchExternalReportDetailsType) => ({
     ...state,
     externalReport: action.response,

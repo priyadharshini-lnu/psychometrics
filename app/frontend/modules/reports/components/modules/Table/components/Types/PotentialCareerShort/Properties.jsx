@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import _ from 'lodash'
 import Select from 'react-select'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 
 const SELECT_OPTIONS = _.times(30, i => ({
@@ -21,7 +21,7 @@ class Properties extends Component {
 
   changeBackgroundColor = (color) => {
     const { model } = this.props
-    model.props.style.backgroundColor = color.hex
+    model.props.style.backgroundColor = color
     model.update()
     this.forceUpdate()
   }
@@ -42,7 +42,8 @@ class Properties extends Component {
         <div className={styles.block}>
           Background color
           <ColorPicker
-            color={model.props.style.backgroundColor || '#ccc'}
+            getValueInHexFormat
+            value={model.props.style.backgroundColor || '#ccc'}
             onChange={this.changeBackgroundColor}
           />
         </div>

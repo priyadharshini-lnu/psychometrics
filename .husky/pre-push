@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+./node_modules/eslint/bin/eslint.js --ext .js,.jsx,.ts,.tsx app/frontend/ --max-warnings=0 --cache && bundle exec rubocop

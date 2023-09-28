@@ -1,5 +1,4 @@
 import FroalaEditor from 'froala-editor'
-import React from 'react'
 import ReactDOM from 'react-dom'
 import EmbedMediaComponent from './EmbedMediaComponent'
 

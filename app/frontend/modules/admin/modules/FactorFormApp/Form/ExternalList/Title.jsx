@@ -1,4 +1,3 @@
-import React from 'react'
 import { Col, Row, Button } from 'antd'
 
 export default function Title ({ onAdd }) {

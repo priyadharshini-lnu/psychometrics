@@ -31,7 +31,7 @@ module Api
             response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
               on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
             end
-            audit! :api_create, response[:ok], payload: params.permit!, campaign: campaign
+            audit! :api_create, response[:ok], payload: params, campaign: campaign
 
             response[:ok]
           end.sample
@@ -46,7 +46,7 @@ module Api
         ::Users::Update.call(form, project, user) do
           on(:invalid) { |f| render_validation_errors(f) }
           on(:ok) do |user|
-            audit! :api_update, user, payload: params.permit!, project: project
+            audit! :api_update, user, payload: params, project: project
             render json: Api::V1::UserSerializer.new(user, project: project).to_h
           end
         end
@@ -54,18 +54,23 @@ module Api
 
       def sso
         url, expires_at = ::Users::BuildSsoUrl.call(project, user)[:ok]
-        render json: { expires_at: expires_at, url: url, assessments: user.user_assessments.
-          map { |ua| Api::V1::SsoAssignSerializer.new(ua, url: url).to_h } }
+        user_assessments = UserAssessments::OrderedAssessments.call!(user)
+
+        render json: {
+          expires_at: expires_at,
+          url: url,
+          assessments: user_assessments.map { |ua| Api::V1::SsoAssignSerializer.new(ua, url: url).to_h }
+        }
       end
 
       def assessments_reports
         form = Api::V1::Users::AssessmentsAndReportsForm.from_params(params).
                with_context(campaign_user: campaign_user, campaign: campaign)
         if form.valid?
-          ::Campaigns::UserReports::Add.call(form, campaign_user) do
+          ::Campaigns::UserReports::Add.call(form, campaign_user, current_user) do
             on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
-          audit! :assessments_reports, campaign_user, payload: params.permit!, campaign: campaign_user.campaign
+          audit! :assessments_reports, campaign_user, payload: params, campaign: campaign_user.campaign
           render json: campaign_user, serializer: Api::V1::UserAssessmentsAndReportsSerializer
         else
           render_validation_errors(form)

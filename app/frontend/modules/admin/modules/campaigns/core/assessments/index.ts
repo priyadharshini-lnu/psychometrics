@@ -20,6 +20,7 @@ import {
   UPDATE_AVAILABLE_LOCALES,
   UPDATE_EXTERNAL_CONFIG,
   UPDATE_PREWORK,
+  UPDATE_WORKSHOP_ACTIVITY,
 } from './actions'
 
 const defaultState: State = {
@@ -89,7 +90,7 @@ type FetcOtherAssessmentsResponse = t.TypeOf<typeof FetchOtherAssessmentsRespons
 
 export type FetchOtherAssessmentsAction = ApiActionResponse<FetcOtherAssessmentsResponse>
 export const fetchOtherAssessments = (
-  campaignId: string, tableConfig: TableConfig,
+  campaignId: string, tableConfig?: TableConfig,
 ): ApiAction<FetcOtherAssessmentsResponse> => ({
   type: FETCH_OTHER_ASSESSMENTS,
   request: {
@@ -155,6 +156,11 @@ const HANDLERS = {
     ))
   ),
   [UPDATE_PREWORK]: (state: State, { response }: ApiActionResponse<Assessment>) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
+      assessment.id === response.id ? response : assessment
+    )))
+  ),
+  [UPDATE_WORKSHOP_ACTIVITY]: (state: State, { response }: ApiActionResponse<Assessment>) => (
     updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
       assessment.id === response.id ? response : assessment
     )))

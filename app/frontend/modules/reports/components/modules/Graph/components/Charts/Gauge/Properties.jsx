@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
 class Properties extends Component {
@@ -29,7 +29,7 @@ class Properties extends Component {
 
   changeColorProperty = (propertyName, color) => {
     const { model } = this.props
-    model.props[propertyName] = color.hex
+    model.props[propertyName] = color
     this.update()
   }
 
@@ -43,17 +43,17 @@ class Properties extends Component {
         <div className={styles.block}>
           Main Color
           <ColorPicker
-            color={speedometerMainColor}
-            onChange={e => this.changeColorProperty('speedometerMainColor', e)}
-            onComplete={this.update}
+            value={speedometerMainColor}
+            getValueInHexFormat
+            onChange={color => this.changeColorProperty('speedometerMainColor', color)}
           />
         </div>
         <div className={styles.block}>
           Background Color
           <ColorPicker
-            color={speedometerBackgroundColor}
-            onChange={e => this.changeColorProperty('speedometerBackgroundColor', e)}
-            onComplete={this.update}
+            getValueInHexFormat
+            value={speedometerBackgroundColor}
+            onChange={color => this.changeColorProperty('speedometerBackgroundColor', color)}
           />
         </div>
         <hr className={styles.divider} />

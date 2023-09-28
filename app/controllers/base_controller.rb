@@ -64,7 +64,27 @@ class BaseController < ActionController::Base
     super
   end
 
+  def send_tmp_file(file_path, options = {})
+    if file_path.start_with?(Rails.root.join('tmp').to_s)
+      send_file file_path, options
+    else
+      head :not_found
+    end
+  end
+
   private
+
+  def ignore_password_expire?
+    session[:spoofed]
+  end
+
+  def redirect_for_password_change(scope)
+    message = I18n.t(
+      current_user.force_password_change? ? 'forced_changed' : 'change_required',
+      scope: 'devise.password_expired'
+    )
+    redirect_to change_password_required_path_for(scope), alert: message
+  end
 
   def url_without_spoof
     Utility::Url.remove_query_params(request.url, [Users::AuthenticateUser::SPOOF_KEY.to_s])

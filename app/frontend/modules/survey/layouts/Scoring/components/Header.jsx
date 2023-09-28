@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import cs from 'classnames'
+import { Button, Radio } from 'antd'
+import { SaveOutlined } from '@ant-design/icons'
 import { RECODING, SCORING } from '~/modules/survey/constants/scoring'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import FactorsMenu from './FactorsMenu'
 import styles from './Scoring.less'
+import { Tabs } from '../../Header/Tabs'
 
 export default class Header extends Component {
-  closeScoring = () => {
-    const { history, match: { params: { id } } } = this.props
-    history.push(`/administration/assessments/${id}`)
-  }
-
   save = () => {
     const {
       saveScoring, assessmentId, factors, recoding,
@@ -27,34 +25,26 @@ export default class Header extends Component {
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div className={styles.factorsContainer}>
-          <div className="btn-group mrh">
-            <button
-              onClick={() => updateType(SCORING)}
-              className={cs('btn', { active: type === SCORING })}
-            >
-              Scoring
-            </button>
-            <button
-              onClick={() => updateType(RECODING)}
-              className={cs('btn', { active: type === RECODING })}
-            >
-              Recoding
-            </button>
-          </div>
+          <Radio.Group
+            className="mrm"
+            onChange={({ target: { value } }) => updateType(value)}
+            defaultValue={SCORING}
+            value={type}
+            buttonStyle="solid"
+          >
+            <Radio.Button value={SCORING}>Scoring</Radio.Button>
+            <Radio.Button value={RECODING}>Recoding</Radio.Button>
+          </Radio.Group>
           {selectedFactor && type === SCORING && <FactorsMenu {...this.props} />}
-          <button onClick={this.save} className={`btn btn-success ${styles.saveButton}`}>
-            <i className="fa fa-save" />
-            Save
-          </button>
         </div>
-        <ul className="panel-controls">
+        <ul className={cs('panel-controls', styles.controls)}>
+          <li><Tabs active="scoring" /></li>
           <li>
-            <div>
-              <a onClick={this.closeScoring} className={`btn btn-default ${styles.preview}`}>
-                <span className="fa fa-chevron-left" />
-                Back To Editor
-              </a>
-            </div>
+            <Button type="primary" onClick={this.save}>
+              <SaveOutlined />
+              {' '}
+              Save
+            </Button>
           </li>
         </ul>
       </div>

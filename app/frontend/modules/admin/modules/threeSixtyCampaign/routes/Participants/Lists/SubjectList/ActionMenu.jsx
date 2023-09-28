@@ -1,4 +1,3 @@
-import React from 'react'
 import { Menu, message } from 'antd'
 
 const ActionsMenu = ({
@@ -13,6 +12,7 @@ const ActionsMenu = ({
   editUser,
   onUserUpdate,
   permissions,
+  regenerateReport,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
@@ -100,6 +100,17 @@ const ActionsMenu = ({
       })
   }
 
+  const requestRegenerateReport = (campaignId, subjectId) => {
+    regenerateReport(campaignId, subjectId)
+      .then(({ response }) => {
+        if (response === 'ok') {
+          message.success(
+            I18n.t('threesixty.participant_list.report_generation_message'),
+            3,
+          )
+        }
+      })
+  }
   const openResultsModal = () => {
     openModal('ParticipantModal', {
       user,
@@ -142,6 +153,10 @@ const ActionsMenu = ({
     permissions.downloadReport && {
       key: 'download_report',
       label: I18n.t('threesixty.participant_list.actions.download_report'),
+    },
+    permissions.regenerateReport && {
+      key: 'regenerate_report',
+      label: I18n.t('threesixty.participant_list.actions.regenerate_report'),
     },
     { type: 'divider' },
     permissions.viewResponses && {
@@ -196,6 +211,9 @@ const ActionsMenu = ({
     }
     if (key === 'download_report') {
       return requestDownloadReport(campaignId, subjectId)
+    }
+    if (key === 'regenerate_report') {
+      return requestRegenerateReport(campaignId, subjectId)
     }
     if (key === 'view_responses') {
       return openResultsModal()

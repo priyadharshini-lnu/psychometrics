@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
   Modal, Progress, Tooltip, Typography, Row, Checkbox,
@@ -122,7 +122,7 @@ const ReportListComponent = ({
           onCancel={() => setShowHelp(false)}
           footer={null}
         >
-          <SafeHTML html={reportHelp.content} />
+          <SafeHTML html={reportHelp.content} config="adminRichText" />
         </Modal>
         )}
       </ThreesixtyCard>

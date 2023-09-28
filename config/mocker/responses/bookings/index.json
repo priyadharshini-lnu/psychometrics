@@ -1,0 +1,46 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "title": "Invitation for Specialist Assessment center",
+      "description": "You have been invited to the Specialist Assessment center. Please book you available slot.",
+      "duration": 30,
+      "dateTime": "27th Apr 2023, 16.00-17.00 Duba/UAE"
+    },
+    {
+      "id": 2,
+      "title": "Invitation for Specialist Assessment center",
+      "description": "You have been invited to the Specialist Assessment center. Please book you available slot.",
+      "duration": 30,
+      "dateTime": "27th Apr 2023, 16.00-17.00 Duba/UAE"
+    },
+    {
+      "id": 3,
+      "title": "Invitation for Specialist Assessment center",
+      "description": "You have been invited to the Specialist Assessment center. Please book you available slot.",
+      "duration": 30,
+      "dateTime": "27th Apr 2023, 16.00-17.00 Duba/UAE"
+    },
+    {
+      "id": 4,
+      "title": "Invitation for Specialist Assessment center",
+      "description": "You have been invited to the Specialist Assessment center. Please book you available slot.",
+      "duration": 30,
+      "dateTime": "27th Apr 2023, 16.00-17.00 Duba/UAE"
+    },
+    {
+      "id": 5,
+      "title": "Invitation for Specialist Assessment center",
+      "description": "You have been invited to the Specialist Assessment center. Please book you available slot.",
+      "duration": 30,
+      "dateTime": "27th Apr 2023, 16.00-17.00 Duba/UAE"
+    },
+    {
+      "id": 6,
+      "title": "Invitation for Specialist Assessment center",
+      "description": "You have been invited to the Specialist Assessment center. Please book you available slot.",
+      "duration": 30,
+      "dateTime": "27th Apr 2023, 16.00-17.00 Duba/UAE"
+    }
+  ]
+}

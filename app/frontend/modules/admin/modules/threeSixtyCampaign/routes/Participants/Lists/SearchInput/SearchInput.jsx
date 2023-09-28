@@ -1,7 +1,7 @@
 import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import React, { useState } from 'react'
-import { useDebouncedCallback } from 'use-debounce/lib/index'
+import { useState } from 'react'
+import { useDebouncedCallback } from 'use-debounce'
 import routeUtils from '~/utils/route'
 import styles from './styles.less'
 import settings from '../../../../settings'
@@ -12,7 +12,7 @@ export default function Search ({
   const page = 1
   const [value, setValue] = useState(searchTerm)
 
-  const [debouncedCallback] = useDebouncedCallback(name => onChangeCallback(page, name), 700)
+  const debouncedCallback = useDebouncedCallback(name => onChangeCallback(page, name), 700)
 
   const onChange = ({ currentTarget }) => {
     setValue(currentTarget.value)

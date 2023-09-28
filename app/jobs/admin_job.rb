@@ -22,7 +22,7 @@ class AdminJob < ApplicationJob
     copy_dimension: AdminJobs::CopyDimension,
     export_report_data: AdminJobs::ExportReportData,
     assessment_raw_result_export: AdminJobs::AssessmentRawResultExport,
-    assessment_scoring_export: AdminJobs::AssessmentScoringExport,
+    assessment_scoring_export: AdminJobs::AssessmentRawExport,
     assessment_norm_export: AdminJobs::AssessmentNormExport,
     assessment_raw_factor_export: AdminJobs::AssessmentRawFactorExport,
     external_assessment_export: AdminJobs::ExternalAssessmentExport,
@@ -33,7 +33,10 @@ class AdminJob < ApplicationJob
     threesixty_campaign_export_completion_status: AdminJobs::ThreesixtyCampaignExportCompletionStatus,
     export_users: AdminJobs::ExportUsers,
     import_accesssheet: AdminJobs::ImportAccesssheet,
-    import_question_translations: AdminJobs::ImportQuestionTranslations
+    import_question_translations: AdminJobs::ImportQuestionTranslations,
+    regenerate_threesixty_report: AdminJobs::RegenerateThreesixtyReport,
+    bulk_regenerate_threesixty_reports: AdminJobs::BulkRegenerateThreesixtyReports,
+    bulk_create_workshop_invites: AdminJobs::BulkCreateWorkshopInvites
   }.freeze
 
   def perform(record)

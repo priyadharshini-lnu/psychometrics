@@ -1,19 +1,16 @@
-import React from 'react'
 import cs from 'classnames'
+import { Button } from 'antd'
+import { SaveOutlined } from '@ant-design/icons'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import styles from './ResourceManager.less'
+import { Tabs } from '../../Header/Tabs'
 
 export default function Header ({
-  history, match, saveResources, assessmentId, resources, addResource,
+  saveResources, assessmentId, resources, addResource,
 }) {
-  const back = () => {
-    const { params: { id } } = match
-    history.push(`/administration/assessments/${id}`)
-  }
-
   const save = () => {
     saveResources(assessmentId, resources).then(() => {
-      NotificationDispatcher.notify({ message: 'Scoring successfully saved' })
+      NotificationDispatcher.notify({ message: 'Resources successfully saved' })
     }).catch(() => {
       NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
     })
@@ -30,19 +27,18 @@ export default function Header ({
             Add Resource
           </button>
         </div>
-        <button onClick={save} className={`btn btn-success ${styles.saveButton}`}>
-          <i className="fa fa-save" />
-          Save
-        </button>
+
       </div>
-      <ul className="panel-controls">
+      <ul className={cs('panel-controls', styles.controls)}>
         <li>
-          <div>
-            <a onClick={back} className={`btn btn-default ${styles.preview}`}>
-              <span className="fa fa-chevron-left" />
-              Back To Editor
-            </a>
-          </div>
+          <Tabs active="resources" />
+        </li>
+        <li>
+          <Button type="primary" onClick={save}>
+            <SaveOutlined />
+            {' '}
+            Save
+          </Button>
         </li>
       </ul>
     </div>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Menu, Dropdown as AntDropdown } from 'antd'
 import { CaretDownFilled } from '@ant-design/icons'
 import { getMenuItems } from '~/utils/array'
@@ -14,8 +13,8 @@ const menu = (field, context, insert) => {
 }
 
 const Dropdown = ({ field, context, insert }) => (
-  <AntDropdown overlay={menu(field, context, insert)}>
-    <a className="ant-dropdown-link" href="#">
+  <AntDropdown overlay={menu(field, context, insert)} overlayStyle={{ zIndex: 10001 }}>
+    <a className="ant-dropdown-link" href="#" style={{ display: 'block' }}>
       {field.name}
       {' '}
       <CaretDownFilled />

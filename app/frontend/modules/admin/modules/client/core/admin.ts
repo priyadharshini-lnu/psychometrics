@@ -46,6 +46,7 @@ const AdminPermissionsTR = t.type({
   remove: t.boolean,
   resetPassword: t.boolean,
   sendMail: t.boolean,
+  apiKeys: t.boolean,
 })
 
 const CampaignAdminTR = t.type({
@@ -97,20 +98,7 @@ export const ProjectAdminViewTR = t.type({
   firstName: t.string,
   lastName: t.string,
   email: t.string,
-  projects: t.array(
-    t.type({
-      id: t.number,
-      name: t.string,
-      role: t.string,
-    }),
-  ),
-  campaigns: t.array(
-    t.type({
-      id: t.number,
-      name: t.string,
-      role: t.string,
-    }),
-  ),
+  userId: t.string,
 })
 
 

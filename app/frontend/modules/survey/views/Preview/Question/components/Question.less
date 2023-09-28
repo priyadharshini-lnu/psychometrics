@@ -35,6 +35,17 @@
   }
 }
 
+.selectable {
+  border: 2px dashed transparent;
+  &:hover {
+    border-color: var(--ant-primary-color);
+  }
+
+  &.frame {
+    border-color: var(--ant-primary-color);
+  }
+}
+
 .selected {
   margin-right: -20px;
   .content{

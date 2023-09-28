@@ -7,7 +7,8 @@ module ProjectInitialState
     current_membership = current_user.memberships.find do |m|
       (m.project_admin? && m.client_id == project.id) || (m.client_admin? && m.client_id == project.parent_id)
     end
-    @init_state = {
+    @init_state ||= {}
+    @init_state.merge!({
       currentUser: ::Administration::Campaigns::CurrentUserSerializer.
                   new(
                     current_user,
@@ -38,6 +39,6 @@ module ProjectInitialState
         features: feature_flags,
         isProjectMigrated: project.migrated?
       }
-    }
+    })
   end
 end

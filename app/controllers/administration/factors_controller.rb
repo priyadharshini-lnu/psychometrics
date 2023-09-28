@@ -33,7 +33,7 @@ class Administration::FactorsController < Administration::BaseController
     @form = Factors::SaveForm.new(resource_params)
     if @form.valid?
       resource.save!
-      audit! :create, resource, payload: params.permit!
+      audit! :create, resource, payload: params
     else
       set_init_state
       render :new
@@ -51,7 +51,7 @@ class Administration::FactorsController < Administration::BaseController
     resource.assign_attributes(resource_params)
 
     if @form.valid?
-      audit! :update, resource, payload: params.permit!
+      audit! :update, resource, payload: params
       resource.save!
     else
       set_init_state

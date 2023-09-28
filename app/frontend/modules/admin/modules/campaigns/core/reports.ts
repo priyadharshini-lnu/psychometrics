@@ -155,7 +155,7 @@ type FetcOtherReportsResponse = t.TypeOf<typeof FetchOtherReporsResponseTR>
 export type FetchOtherReportsAction = ApiActionResponse<FetcOtherReportsResponse>
 
 export const fetchOtherReports = (
-  campaignId: string, tableConfig: TableConfig,
+  campaignId: string, tableConfig?: TableConfig,
 ): ApiAction<FetcOtherReportsResponse> => ({
   type: FETCH_OTHER_REPORTS,
   request: {

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { SliderQuestion } from '~/modules/survey/components/modules/Components/SliderQuestion/SliderQuestion'
 
 export const SliderPreview = ({ model, I18n, readOnly }) => {

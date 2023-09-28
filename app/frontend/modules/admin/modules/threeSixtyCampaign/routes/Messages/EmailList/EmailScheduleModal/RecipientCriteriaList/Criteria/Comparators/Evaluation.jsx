@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Select } from 'antd'
 import { EVALUATIONS_VALUES } from '~/modules/admin/constants/emailCriteria'
 

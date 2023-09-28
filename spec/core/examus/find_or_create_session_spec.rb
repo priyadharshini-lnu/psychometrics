@@ -30,6 +30,31 @@ describe Examus::FindOrCreateSession do
       expect(Examus::GetSession).to receive(:call!).and_return({ 'status' => 'started' })
       expect { described_class.call!(campaign_user) }.to_not change(ProctoringSession, :count)
     end
+
+    it "doesn't call examus api to check proctoring session status if session is completed" do
+      campaign_user.proctoring_sessions.create(completed_at: Time.zone.now)
+      expect(Examus::GetSession).to_not receive(:call!)
+      described_class.call!(campaign_user)
+    end
+
+    it "doesn't call examus api to check proctoring session status if session is invalid" do
+      campaign_user.proctoring_sessions.create(invalid_session: true)
+      expect(Examus::GetSession).to_not receive(:call!)
+      described_class.call!(campaign_user)
+    end
+
+    it "deducts license if it's not a proctoring_trial session" do
+      expect(campaign_user.campaign).to receive(:proctoring_license_with_enough_credits).and_return(proctoring_license)
+      expect(Campaigns::Proctoring::GetProctoringCredits).to receive(:call!).and_return(30)
+      expect { described_class.call!(campaign_user) }.to change(LicenseUsage, :count).by(1)
+    end
+
+    it "doesn't deduct license if it's a proctoring_trial session" do
+      expect(campaign_user.campaign).to receive(:proctoring_license_with_enough_credits).and_return(proctoring_license)
+      campaign_user.campaign.campaign_options.update(proctoring_trial: true)
+
+      expect { described_class.call!(campaign_user) }.to_not change(LicenseUsage, :count)
+    end
   end
 
   context 'without enough license credits' do

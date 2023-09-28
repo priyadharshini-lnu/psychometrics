@@ -5,6 +5,9 @@ export default function ChartOptions (model, animation) {
       height: model.props.position.height,
       polar: true,
     },
+    accessibility: {
+      enabled: false,
+    },
     title: false,
     pane: {
       startAngle: 0,

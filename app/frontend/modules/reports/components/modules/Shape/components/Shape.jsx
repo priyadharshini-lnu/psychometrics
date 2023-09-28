@@ -1,4 +1,3 @@
-import React from 'react'
 import Foundation from '~/modules/reports/components/Foundation'
 import styles from './Shape.less'
 

@@ -8,18 +8,23 @@ module Api
       before_action :pundit_authorize
 
       def index
-        user_assessments = UserAssessment.where(
+        indexed_user_assessments = UserAssessment.where(
           subject_id: user.id,
           evaluator_id: user.id,
           campaign_id: campaign_id
-        ).includes(:assessment, :users_result).all
+        ).includes(:assessment, :users_result).all.index_by(&:id)
 
-        render json: user_assessments.map { |a| Api::V1::UserAssessmentSerializer.new(a).to_h }
+        order_user_assessment_ids = UserAssessments::OrderedAssessments.call!(user, campaign_id).map(&:id)
+        ordered_user_assessments = order_user_assessment_ids.each_with_object([]) do |id, acc|
+          acc << indexed_user_assessments[id]
+        end
+
+        render json: ordered_user_assessments.map { |a| Api::V1::UserAssessmentSerializer.new(a).to_h }
       end
 
       def update
         @user_assessment.update!(user_assessment_params)
-        audit! :api_update, @user_assessment, payload: params.permit!, campaign: @user_assessment.campaign
+        audit! :api_update, @user_assessment, payload: params, campaign: @user_assessment.campaign
         render json: @user_assessment, serializer: Api::V1::UserAssessmentSerializer
       end
 

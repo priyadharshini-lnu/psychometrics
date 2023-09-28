@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import FillingScoring from '~/modules/survey/components/FillingScoring'
 import ScoringCell from '~/modules/survey/components/ScoringCell'
@@ -7,7 +7,7 @@ import ScoringLabel from '~/modules/survey/components/ScoringLabel'
 import Utils from '~/modules/survey/utils'
 import styles from './Slider.less'
 
-export class Scoring extends React.Component {
+export class Scoring extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
     scoring: PropTypes.object.isRequired,

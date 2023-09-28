@@ -1,4 +1,3 @@
-import React from 'react'
 import _ from 'lodash'
 import { Tabs } from 'antd'
 import styles from './styles.less'

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Select, Input } from 'antd'
 import styles from '../../styles.less'
 

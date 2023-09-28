@@ -16,6 +16,9 @@
   border: 1px solid @border-color-base;
   border-radius: calc(2 * @border-radius-sm);
   padding-bottom: @card-padding-base;
+  &.withFooter {
+    padding-bottom: calc(@card-padding-base + @space-10);
+  }
   & :global(.ant-card-body) {
     padding: @space-3 @space-4;
   }
@@ -24,11 +27,16 @@
   position: relative;
   font-size: 16px;
   font-weight: 500;
-  .highlighter(20px, calc(-@card-body-padding - 1px), 1.75rem, @translateY: -24px);
+  &.highlight {
+    .highlighter(20px, calc(-@card-body-padding - 1px), 1.75rem, @translateY: -24px);
+  }
 }
 
 .buttonCol {
   text-align: end;
+  &.withFooter {
+    margin-bottom: @space-2;
+  }
 }
 .actionButton {
   .btnStyles();
@@ -49,6 +57,11 @@
   position: absolute;
   width: calc(100% - 2 * @card-body-padding);
   bottom: @card-padding-base-sm;
+}
+.footer {
+  border-top: 1px solid @border-color-split;
+  padding-top: @space-2;
+  margin-top: @space-2;
 }
 
 :global(.rtl) {

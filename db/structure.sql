@@ -89,7 +89,7 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -136,7 +136,7 @@ CREATE TABLE public.active_storage_blobs (
     metadata text,
     service_name character varying NOT NULL,
     byte_size bigint NOT NULL,
-    checksum character varying NOT NULL,
+    checksum character varying,
     created_at timestamp without time zone NOT NULL
 );
 
@@ -339,7 +339,10 @@ CREATE TABLE public.api_keys (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     key character varying,
-    encrypted_token_iv character varying
+    encrypted_token_iv character varying,
+    created_by_id bigint,
+    updated_by_id bigint,
+    description text
 );
 
 
@@ -372,6 +375,41 @@ CREATE TABLE public.ar_internal_metadata (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
+
+
+--
+-- Name: assessment_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessment_translations (
+    id bigint NOT NULL,
+    name text,
+    description text,
+    timing text,
+    locale character varying NOT NULL,
+    assessment_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: assessment_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessment_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessment_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessment_translations_id_seq OWNED BY public.assessment_translations.id;
 
 
 --
@@ -411,7 +449,9 @@ CREATE TABLE public.assessments (
     project_id bigint,
     created_by_id bigint,
     updated_by_id bigint,
-    external_settings jsonb DEFAULT '{}'::jsonb
+    external_settings jsonb DEFAULT '{}'::jsonb,
+    linked_assessment_id integer,
+    linked_questions json DEFAULT '{}'::json
 );
 
 
@@ -561,16 +601,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -688,7 +728,8 @@ CREATE TABLE public.blocks (
     props json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer
+    template_id integer,
+    owner_id integer
 );
 
 
@@ -720,8 +761,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -756,7 +796,8 @@ CREATE TABLE public.campaign_assessment_groups (
     previous_assessments_required boolean,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    group_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -800,7 +841,9 @@ CREATE TABLE public.campaign_assessments (
     available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
     external_config jsonb,
-    prework boolean DEFAULT false
+    prework boolean DEFAULT false,
+    workshop_activity boolean DEFAULT false NOT NULL,
+    workshop_activity_duration integer
 );
 
 
@@ -821,6 +864,38 @@ CREATE SEQUENCE public.campaign_assessments_id_seq
 --
 
 ALTER SEQUENCE public.campaign_assessments_id_seq OWNED BY public.campaign_assessments.id;
+
+
+--
+-- Name: campaign_assessor_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_assessor_assessments (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    assessment_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_assessor_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_assessor_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_assessor_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_assessor_assessments_id_seq OWNED BY public.campaign_assessor_assessments.id;
 
 
 --
@@ -875,7 +950,9 @@ CREATE TABLE public.campaign_options (
     identification integer DEFAULT 0,
     rules jsonb DEFAULT '{"allow_voices": false, "allow_to_use_books": false, "allow_to_use_excel": false, "allow_to_use_paper": true, "allow_to_use_websites": false, "allow_absence_in_frame": false, "allow_to_use_calculator": true, "allow_to_use_messengers": false, "allow_wrong_gaze_direction": false, "allow_to_use_human_assistant": false}'::jsonb,
     description text,
-    integration_type integer DEFAULT 0 NOT NULL
+    integration_type integer DEFAULT 0 NOT NULL,
+    proctoring_trial boolean DEFAULT false,
+    workshop_booking_requires_prework_completion boolean DEFAULT false
 );
 
 
@@ -1049,6 +1126,81 @@ ALTER SEQUENCE public.campaigns_id_seq OWNED BY public.campaigns.id;
 
 
 --
+-- Name: client_auditlog_export_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.client_auditlog_export_settings (
+    id bigint NOT NULL,
+    destination_type smallint,
+    active boolean DEFAULT false,
+    description character varying,
+    s3_access_key_id character varying,
+    encrypted_s3_secret_access_key character varying,
+    encrypted_s3_secret_access_key_iv character varying,
+    s3_bucket_name character varying,
+    s3_bucket_folder character varying,
+    s3_region character varying,
+    s3_endpoint character varying,
+    last_exported_at timestamp(6) without time zone,
+    client_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: client_auditlog_export_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.client_auditlog_export_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: client_auditlog_export_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.client_auditlog_export_settings.id;
+
+
+--
+-- Name: client_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.client_translations (
+    id bigint NOT NULL,
+    custom_privacy_consent_text text,
+    locale character varying NOT NULL,
+    client_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: client_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.client_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: client_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.client_translations_id_seq OWNED BY public.client_translations.id;
+
+
+--
 -- Name: clients; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1078,7 +1230,10 @@ CREATE TABLE public.clients (
     enable_live_chat boolean DEFAULT false NOT NULL,
     migrated boolean DEFAULT false,
     locales json DEFAULT '[]'::json,
-    live_chat_token character varying
+    live_chat_token character varying,
+    custom_privacy_consent boolean DEFAULT false,
+    custom_privacy_consent_text text,
+    custom_privacy_policy_version integer
 );
 
 
@@ -1190,7 +1345,9 @@ CREATE TABLE public.communication_emails (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     sent_at timestamp without time zone,
-    campaign_user_id bigint
+    campaign_user_id bigint,
+    workshop_id bigint,
+    workshop_invite_id bigint
 );
 
 
@@ -1470,7 +1627,6 @@ CREATE TABLE public.dimensions (
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    factors_count integer DEFAULT 0,
     owner_id integer,
     occupations_enabled boolean DEFAULT false NOT NULL,
     innovation_styles_enabled boolean DEFAULT false NOT NULL,
@@ -1643,7 +1799,7 @@ CREATE TABLE public.factors (
     name character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id integer,
+    dimension_id integer NOT NULL,
     parent_id integer,
     disabled boolean DEFAULT false,
     icon character varying,
@@ -1823,39 +1979,6 @@ CREATE TABLE public.highlights (
 
 
 --
--- Name: hogan_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.hogan_assessment_settings (
-    id bigint NOT NULL,
-    hogan_assessment_id character varying,
-    hogan_form_id character varying NOT NULL,
-    assessment_id bigint NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: hogan_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.hogan_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hogan_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.hogan_assessment_settings_id_seq OWNED BY public.hogan_assessment_settings.id;
-
-
---
 -- Name: hogan_credentials; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1925,39 +2048,6 @@ CREATE SEQUENCE public.hogan_report_settings_id_seq
 --
 
 ALTER SEQUENCE public.hogan_report_settings_id_seq OWNED BY public.hogan_report_settings.id;
-
-
---
--- Name: iiht_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.iiht_assessment_settings (
-    id bigint NOT NULL,
-    assessment_id bigint NOT NULL,
-    iiht_assessment_id_number character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    iiht_schedule_config jsonb
-);
-
-
---
--- Name: iiht_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.iiht_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: iiht_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.iiht_assessment_settings_id_seq OWNED BY public.iiht_assessment_settings.id;
 
 
 --
@@ -2195,7 +2285,7 @@ CREATE TABLE public.licenses (
     updated_at timestamp without time zone NOT NULL,
     end_date date NOT NULL,
     start_date date NOT NULL,
-    report_family_id integer NOT NULL,
+    report_family_id integer,
     disabled boolean DEFAULT false,
     type integer DEFAULT 0
 );
@@ -2227,7 +2317,7 @@ ALTER SEQUENCE public.licenses_id_seq OWNED BY public.licenses.id;
 CREATE TABLE public.media_responses (
     id bigint NOT NULL,
     asset character varying,
-    question_id bigint,
+    question_id bigint NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     users_result_id integer,
@@ -2253,6 +2343,21 @@ CREATE SEQUENCE public.media_responses_id_seq
 --
 
 ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
+
+
+--
+-- Name: meeting_rooms; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.meeting_rooms (
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    name character varying,
+    external_id character varying,
+    meetable_type character varying,
+    meetable_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
 
 
 --
@@ -2547,39 +2652,6 @@ ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
 
 
 --
--- Name: pearson_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.pearson_assessment_settings (
-    id bigint NOT NULL,
-    assessment_id bigint NOT NULL,
-    pearson_assessment_id character varying NOT NULL,
-    pearson_norm_id character varying NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: pearson_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.pearson_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: pearson_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.pearson_assessment_settings_id_seq OWNED BY public.pearson_assessment_settings.id;
-
-
---
 -- Name: pearson_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2684,7 +2756,8 @@ CREATE TABLE public.privacy_consents (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
-    version smallint DEFAULT 1 NOT NULL
+    version smallint DEFAULT 1 NOT NULL,
+    policy_type integer DEFAULT 0
 );
 
 
@@ -3247,12 +3320,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -3464,39 +3537,6 @@ CREATE SEQUENCE public.saml_settings_id_seq
 --
 
 ALTER SEQUENCE public.saml_settings_id_seq OWNED BY public.saml_settings.id;
-
-
---
--- Name: saville_assessment_settings; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.saville_assessment_settings (
-    id bigint NOT NULL,
-    assessment_id bigint NOT NULL,
-    saville_assessment_id character varying NOT NULL,
-    saville_norm_id character varying NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: saville_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.saville_assessment_settings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: saville_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.saville_assessment_settings_id_seq OWNED BY public.saville_assessment_settings.id;
 
 
 --
@@ -4187,7 +4227,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4479,7 +4520,11 @@ CREATE TABLE public.user_assessments (
     selected_locale character varying,
     started_at timestamp without time zone,
     last_activity_at timestamp without time zone,
-    progress_reseted boolean DEFAULT false
+    progress_reseted boolean DEFAULT false,
+    schedule_time timestamp(6) without time zone,
+    schedule_updated boolean DEFAULT false,
+    meeting_type integer DEFAULT 0,
+    meeting_link character varying
 );
 
 
@@ -4500,6 +4545,109 @@ CREATE SEQUENCE public.user_assessments_id_seq
 --
 
 ALTER SEQUENCE public.user_assessments_id_seq OWNED BY public.user_assessments.id;
+
+
+--
+-- Name: user_availability_dates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_availability_dates (
+    id bigint NOT NULL,
+    user_id bigint,
+    timezone character varying NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_availability_dates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_availability_dates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_availability_dates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_availability_dates_id_seq OWNED BY public.user_availability_dates.id;
+
+
+--
+-- Name: user_availability_days; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_availability_days (
+    id bigint NOT NULL,
+    user_availability_date_id bigint,
+    day integer DEFAULT 1 NOT NULL,
+    start_time character varying NOT NULL,
+    end_time character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_availability_days_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_availability_days_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_availability_days_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_availability_days_id_seq OWNED BY public.user_availability_days.id;
+
+
+--
+-- Name: user_bookings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_bookings (
+    id bigint NOT NULL,
+    user_id bigint,
+    start_time timestamp without time zone NOT NULL,
+    end_time timestamp without time zone NOT NULL,
+    booked_by_resource_type character varying,
+    booked_by_resource_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_bookings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_bookings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_bookings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_bookings_id_seq OWNED BY public.user_bookings.id;
 
 
 --
@@ -4711,7 +4859,9 @@ CREATE TABLE public.users (
     locked_at timestamp without time zone,
     password_changed_at timestamp without time zone,
     photo character varying,
-    timezone character varying
+    timezone character varying,
+    force_password_change boolean DEFAULT false,
+    global_assessor boolean DEFAULT false
 );
 
 
@@ -4747,10 +4897,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -4853,10 +5003,15 @@ CREATE TABLE public.webhook_subscriptions (
     encrypted boolean DEFAULT false NOT NULL,
     secret text,
     project_id bigint,
-    auth_enabled boolean DEFAULT false,
     username character varying,
     encrypted_password character varying,
-    encrypted_password_iv character varying
+    encrypted_password_iv character varying,
+    description text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    deleted_at timestamp without time zone,
+    deleted_by_id bigint,
+    auth_type integer DEFAULT 0
 );
 
 
@@ -4877,6 +5032,356 @@ CREATE SEQUENCE public.webhook_subscriptions_id_seq
 --
 
 ALTER SEQUENCE public.webhook_subscriptions_id_seq OWNED BY public.webhook_subscriptions.id;
+
+
+--
+-- Name: workshop_assessors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_assessors (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_assessors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_assessors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_assessors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_assessors_id_seq OWNED BY public.workshop_assessors.id;
+
+
+--
+-- Name: workshop_invite_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invite_logs (
+    id bigint NOT NULL,
+    user_id bigint,
+    created_by_id bigint,
+    details json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    workshop_invite_id bigint,
+    action integer
+);
+
+
+--
+-- Name: workshop_invite_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invite_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invite_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invite_logs_id_seq OWNED BY public.workshop_invite_logs.id;
+
+
+--
+-- Name: workshop_invite_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invite_translations (
+    id bigint NOT NULL,
+    title character varying,
+    description character varying,
+    locale character varying NOT NULL,
+    workshop_invite_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_invite_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invite_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invite_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invite_translations_id_seq OWNED BY public.workshop_invite_translations.id;
+
+
+--
+-- Name: workshop_invited_subjects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invited_subjects (
+    id bigint NOT NULL,
+    workshop_invite_id bigint,
+    user_id bigint,
+    status integer DEFAULT 0 NOT NULL,
+    reason text,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    reschedule_workshop_id bigint
+);
+
+
+--
+-- Name: workshop_invited_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invited_subjects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invited_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invited_subjects_id_seq OWNED BY public.workshop_invited_subjects.id;
+
+
+--
+-- Name: workshop_invites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invites (
+    id bigint NOT NULL,
+    title character varying,
+    description character varying,
+    allow_language_preference boolean DEFAULT false NOT NULL,
+    allowed_languages jsonb DEFAULT '[]'::jsonb,
+    allow_neurodiversity_option boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    campaign_id bigint
+);
+
+
+--
+-- Name: workshop_invites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invites_id_seq OWNED BY public.workshop_invites.id;
+
+
+--
+-- Name: workshop_invites_workshops; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_invites_workshops (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    workshop_invite_id bigint
+);
+
+
+--
+-- Name: workshop_invites_workshops_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_invites_workshops_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_invites_workshops_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_invites_workshops_id_seq OWNED BY public.workshop_invites_workshops.id;
+
+
+--
+-- Name: workshop_managers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_managers (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: workshop_managers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_managers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_managers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_managers_id_seq OWNED BY public.workshop_managers.id;
+
+
+--
+-- Name: workshop_resources; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_resources (
+    id bigint NOT NULL,
+    name character varying,
+    url character varying,
+    workshop_id bigint
+);
+
+
+--
+-- Name: workshop_resources_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_resources_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_resources_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_resources_id_seq OWNED BY public.workshop_resources.id;
+
+
+--
+-- Name: workshop_subjects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshop_subjects (
+    id bigint NOT NULL,
+    workshop_id bigint,
+    user_id bigint,
+    attended boolean DEFAULT false NOT NULL,
+    attendance_status integer DEFAULT 0 NOT NULL,
+    status_remarks character varying,
+    late_duration integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    completion_status integer DEFAULT 0 NOT NULL,
+    preferred_language character varying,
+    neurodivergent boolean,
+    neurodivergent_comments text,
+    campaign_id integer,
+    workshop_invited_subject_id bigint,
+    scheduling_status integer DEFAULT 0
+);
+
+
+--
+-- Name: workshop_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshop_subjects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshop_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshop_subjects_id_seq OWNED BY public.workshop_subjects.id;
+
+
+--
+-- Name: workshops; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.workshops (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    start_time timestamp without time zone NOT NULL,
+    timezone character varying NOT NULL,
+    duration integer NOT NULL,
+    video_call_type integer DEFAULT 0 NOT NULL,
+    meeting_link text,
+    total_seats integer DEFAULT 0 NOT NULL,
+    booked_seats integer DEFAULT 0 NOT NULL,
+    cancellation_lead_time integer DEFAULT 0,
+    reschedule_lead_time integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    name character varying,
+    status integer DEFAULT 0
+);
+
+
+--
+-- Name: workshops_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.workshops_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: workshops_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.workshops_id_seq OWNED BY public.workshops.id;
 
 
 --
@@ -4933,6 +5438,13 @@ ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agile
 --
 
 ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api_keys_id_seq'::regclass);
+
+
+--
+-- Name: assessment_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations ALTER COLUMN id SET DEFAULT nextval('public.assessment_translations_id_seq'::regclass);
 
 
 --
@@ -5013,6 +5525,13 @@ ALTER TABLE ONLY public.campaign_assessments ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: campaign_assessor_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessor_assessments_id_seq'::regclass);
+
+
+--
 -- Name: campaign_option_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5052,6 +5571,20 @@ ALTER TABLE ONLY public.campaign_users ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.campaigns ALTER COLUMN id SET DEFAULT nextval('public.campaigns_id_seq'::regclass);
+
+
+--
+-- Name: client_auditlog_export_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_auditlog_export_settings ALTER COLUMN id SET DEFAULT nextval('public.client_auditlog_export_settings_id_seq'::regclass);
+
+
+--
+-- Name: client_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_translations ALTER COLUMN id SET DEFAULT nextval('public.client_translations_id_seq'::regclass);
 
 
 --
@@ -5195,13 +5728,6 @@ ALTER TABLE ONLY public.factors_sub_factors ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- Name: hogan_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.hogan_assessment_settings_id_seq'::regclass);
-
-
---
 -- Name: hogan_credentials id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5213,13 +5739,6 @@ ALTER TABLE ONLY public.hogan_credentials ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.hogan_report_settings ALTER COLUMN id SET DEFAULT nextval('public.hogan_report_settings_id_seq'::regclass);
-
-
---
--- Name: iiht_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.iiht_assessment_settings_id_seq'::regclass);
 
 
 --
@@ -5332,13 +5851,6 @@ ALTER TABLE ONLY public.occupations_factors ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.old_passwords ALTER COLUMN id SET DEFAULT nextval('public.old_passwords_id_seq'::regclass);
-
-
---
--- Name: pearson_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pearson_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.pearson_assessment_settings_id_seq'::regclass);
 
 
 --
@@ -5514,13 +6026,6 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.saml_settings ALTER COLUMN id SET DEFAULT nextval('public.saml_settings_id_seq'::regclass);
-
-
---
--- Name: saville_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.saville_assessment_settings ALTER COLUMN id SET DEFAULT nextval('public.saville_assessment_settings_id_seq'::regclass);
 
 
 --
@@ -5713,6 +6218,27 @@ ALTER TABLE ONLY public.user_assessments ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: user_availability_dates id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_dates ALTER COLUMN id SET DEFAULT nextval('public.user_availability_dates_id_seq'::regclass);
+
+
+--
+-- Name: user_availability_days id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_days ALTER COLUMN id SET DEFAULT nextval('public.user_availability_days_id_seq'::regclass);
+
+
+--
+-- Name: user_bookings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_bookings ALTER COLUMN id SET DEFAULT nextval('public.user_bookings_id_seq'::regclass);
+
+
+--
 -- Name: user_profiles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5773,6 +6299,76 @@ ALTER TABLE ONLY public.webhook_subscription_topics ALTER COLUMN id SET DEFAULT 
 --
 
 ALTER TABLE ONLY public.webhook_subscriptions ALTER COLUMN id SET DEFAULT nextval('public.webhook_subscriptions_id_seq'::regclass);
+
+
+--
+-- Name: workshop_assessors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors ALTER COLUMN id SET DEFAULT nextval('public.workshop_assessors_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invite_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs ALTER COLUMN id SET DEFAULT nextval('public.workshop_invite_logs_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invite_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_translations ALTER COLUMN id SET DEFAULT nextval('public.workshop_invite_translations_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invited_subjects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects ALTER COLUMN id SET DEFAULT nextval('public.workshop_invited_subjects_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invites id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites ALTER COLUMN id SET DEFAULT nextval('public.workshop_invites_id_seq'::regclass);
+
+
+--
+-- Name: workshop_invites_workshops id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites_workshops ALTER COLUMN id SET DEFAULT nextval('public.workshop_invites_workshops_id_seq'::regclass);
+
+
+--
+-- Name: workshop_managers id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_managers ALTER COLUMN id SET DEFAULT nextval('public.workshop_managers_id_seq'::regclass);
+
+
+--
+-- Name: workshop_resources id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_resources ALTER COLUMN id SET DEFAULT nextval('public.workshop_resources_id_seq'::regclass);
+
+
+--
+-- Name: workshop_subjects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects ALTER COLUMN id SET DEFAULT nextval('public.workshop_subjects_id_seq'::regclass);
+
+
+--
+-- Name: workshops id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops ALTER COLUMN id SET DEFAULT nextval('public.workshops_id_seq'::regclass);
 
 
 --
@@ -5845,6 +6441,14 @@ ALTER TABLE ONLY public.api_keys
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: assessment_translations assessment_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT assessment_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -5936,6 +6540,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 
 --
+-- Name: campaign_assessor_assessments campaign_assessor_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT campaign_assessor_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: campaign_option_translations campaign_option_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5981,6 +6593,22 @@ ALTER TABLE ONLY public.campaign_users
 
 ALTER TABLE ONLY public.campaigns
     ADD CONSTRAINT campaigns_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: client_auditlog_export_settings client_auditlog_export_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_auditlog_export_settings
+    ADD CONSTRAINT client_auditlog_export_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: client_translations client_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_translations
+    ADD CONSTRAINT client_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -6152,14 +6780,6 @@ ALTER TABLE ONLY public.highlights
 
 
 --
--- Name: hogan_assessment_settings hogan_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_assessment_settings
-    ADD CONSTRAINT hogan_assessment_settings_pkey PRIMARY KEY (id);
-
-
---
 -- Name: hogan_credentials hogan_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6173,14 +6793,6 @@ ALTER TABLE ONLY public.hogan_credentials
 
 ALTER TABLE ONLY public.hogan_report_settings
     ADD CONSTRAINT hogan_report_settings_pkey PRIMARY KEY (id);
-
-
---
--- Name: iiht_assessment_settings iiht_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings
-    ADD CONSTRAINT iiht_assessment_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6248,6 +6860,14 @@ ALTER TABLE ONLY public.media_responses
 
 
 --
+-- Name: meeting_rooms meeting_rooms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.meeting_rooms
+    ADD CONSTRAINT meeting_rooms_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: membership_grants membership_grants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6309,14 +6929,6 @@ ALTER TABLE ONLY public.occupations
 
 ALTER TABLE ONLY public.old_passwords
     ADD CONSTRAINT old_passwords_pkey PRIMARY KEY (id);
-
-
---
--- Name: pearson_assessment_settings pearson_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pearson_assessment_settings
-    ADD CONSTRAINT pearson_assessment_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6517,14 +7129,6 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.saml_settings
     ADD CONSTRAINT saml_settings_pkey PRIMARY KEY (id);
-
-
---
--- Name: saville_assessment_settings saville_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.saville_assessment_settings
-    ADD CONSTRAINT saville_assessment_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -6752,6 +7356,30 @@ ALTER TABLE ONLY public.user_assessments
 
 
 --
+-- Name: user_availability_dates user_availability_dates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_dates
+    ADD CONSTRAINT user_availability_dates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_availability_days user_availability_days_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_days
+    ADD CONSTRAINT user_availability_days_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_bookings user_bookings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_bookings
+    ADD CONSTRAINT user_bookings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: user_profiles user_profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6824,6 +7452,86 @@ ALTER TABLE ONLY public.webhook_subscriptions
 
 
 --
+-- Name: workshop_assessors workshop_assessors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors
+    ADD CONSTRAINT workshop_assessors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invite_logs workshop_invite_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT workshop_invite_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invite_translations workshop_invite_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_translations
+    ADD CONSTRAINT workshop_invite_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invited_subjects workshop_invited_subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects
+    ADD CONSTRAINT workshop_invited_subjects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invites workshop_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites
+    ADD CONSTRAINT workshop_invites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_invites_workshops workshop_invites_workshops_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites_workshops
+    ADD CONSTRAINT workshop_invites_workshops_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_managers workshop_managers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_managers
+    ADD CONSTRAINT workshop_managers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_resources workshop_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_resources
+    ADD CONSTRAINT workshop_resources_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshop_subjects workshop_subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT workshop_subjects_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: workshops workshops_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops
+    ADD CONSTRAINT workshops_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: datasheet_column_preference_resource; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6849,6 +7557,13 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 --
 
 CREATE UNIQUE INDEX index_53a664e244a4bc3ce19609177c48692ee2fa83fa ON public.threesixty_instruction_template_translations USING btree (threesixty_instruction_template_id, locale);
+
+
+--
+-- Name: index_57aa4720fb18a9d3160720802166a1fa6020dfdf; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_57aa4720fb18a9d3160720802166a1fa6020dfdf ON public.workshop_invite_translations USING btree (workshop_invite_id, locale);
 
 
 --
@@ -6929,6 +7644,13 @@ CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessm
 
 
 --
+-- Name: index_api_keys_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_keys_on_created_by_id ON public.api_keys USING btree (created_by_id);
+
+
+--
 -- Name: index_api_keys_on_encrypted_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6950,10 +7672,31 @@ CREATE UNIQUE INDEX index_api_keys_on_key ON public.api_keys USING btree (key);
 
 
 --
+-- Name: index_api_keys_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_keys_on_updated_by_id ON public.api_keys USING btree (updated_by_id);
+
+
+--
 -- Name: index_api_keys_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
+
+
+--
+-- Name: index_assessment_t18n_tables_on_assessment_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_assessment_t18n_tables_on_assessment_id_and_locale ON public.assessment_translations USING btree (assessment_id, locale);
+
+
+--
+-- Name: index_assessment_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_translations_on_locale ON public.assessment_translations USING btree (locale);
 
 
 --
@@ -7167,6 +7910,20 @@ CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessment
 
 
 --
+-- Name: index_campaign_assessor_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessor_assessments_on_assessment_id ON public.campaign_assessor_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_campaign_assessor_assessments_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessor_assessments_on_campaign_id ON public.campaign_assessor_assessments USING btree (campaign_id);
+
+
+--
 -- Name: index_campaign_option_translations_on_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7241,6 +7998,27 @@ CREATE INDEX index_campaign_users_on_user_id ON public.campaign_users USING btre
 --
 
 CREATE INDEX index_campaigns_on_project_id ON public.campaigns USING btree (project_id);
+
+
+--
+-- Name: index_client_auditlog_export_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_auditlog_export_settings_on_client_id ON public.client_auditlog_export_settings USING btree (client_id);
+
+
+--
+-- Name: index_client_t18n_tables_on_client_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_client_t18n_tables_on_client_id_and_locale ON public.client_translations USING btree (client_id, locale);
+
+
+--
+-- Name: index_client_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_translations_on_locale ON public.client_translations USING btree (locale);
 
 
 --
@@ -7332,6 +8110,20 @@ CREATE INDEX index_communication_emails_on_communication_id ON public.communicat
 --
 
 CREATE INDEX index_communication_emails_on_membership_id ON public.communication_emails USING btree (membership_id);
+
+
+--
+-- Name: index_communication_emails_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_emails_on_workshop_id ON public.communication_emails USING btree (workshop_id);
+
+
+--
+-- Name: index_communication_emails_on_workshop_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_emails_on_workshop_invite_id ON public.communication_emails USING btree (workshop_invite_id);
 
 
 --
@@ -7594,13 +8386,6 @@ CREATE INDEX index_highlights_on_user_id ON public.highlights USING btree (user_
 
 
 --
--- Name: index_hogan_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_hogan_assessment_settings_on_assessment_id ON public.hogan_assessment_settings USING btree (assessment_id);
-
-
---
 -- Name: index_hogan_credentials_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7619,13 +8404,6 @@ CREATE INDEX index_hogan_credentials_on_user_id ON public.hogan_credentials USIN
 --
 
 CREATE INDEX index_hogan_report_settings_on_report_id ON public.hogan_report_settings USING btree (report_id);
-
-
---
--- Name: index_iiht_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_iiht_assessment_settings_on_assessment_id ON public.iiht_assessment_settings USING btree (assessment_id);
 
 
 --
@@ -7748,6 +8526,20 @@ CREATE INDEX index_media_responses_on_question_id ON public.media_responses USIN
 
 
 --
+-- Name: index_media_responses_on_users_result_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_media_responses_on_users_result_id ON public.media_responses USING btree (users_result_id);
+
+
+--
+-- Name: index_meeting_rooms_on_meetable; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_meeting_rooms_on_meetable ON public.meeting_rooms USING btree (meetable_type, meetable_id);
+
+
+--
 -- Name: index_membership_grants_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7776,6 +8568,13 @@ CREATE INDEX index_memberships_on_assigns_count ON public.memberships USING btre
 
 
 --
+-- Name: index_memberships_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_campaign_id ON public.memberships USING btree (campaign_id);
+
+
+--
 -- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7787,6 +8586,20 @@ CREATE INDEX index_memberships_on_client_id ON public.memberships USING btree (c
 --
 
 CREATE INDEX index_memberships_on_hris ON public.memberships USING gin (hris);
+
+
+--
+-- Name: index_memberships_on_role; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_role ON public.memberships USING btree (role);
+
+
+--
+-- Name: index_memberships_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_user_id ON public.memberships USING btree (user_id);
 
 
 --
@@ -7843,13 +8656,6 @@ CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree
 --
 
 CREATE INDEX index_password_archivable ON public.old_passwords USING btree (password_archivable_type, password_archivable_id);
-
-
---
--- Name: index_pearson_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_pearson_assessment_settings_on_assessment_id ON public.pearson_assessment_settings USING btree (assessment_id);
 
 
 --
@@ -8140,13 +8946,6 @@ CREATE INDEX index_saml_settings_on_project_id ON public.saml_settings USING btr
 
 
 --
--- Name: index_saville_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_saville_assessment_settings_on_assessment_id ON public.saville_assessment_settings USING btree (assessment_id);
-
-
---
 -- Name: index_saville_report_settings_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8350,6 +9149,27 @@ CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty
 
 
 --
+-- Name: index_threesixty_email_schedules_on_delivered_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_schedules_on_delivered_at ON public.threesixty_email_schedules USING btree (delivered_at);
+
+
+--
+-- Name: index_threesixty_email_schedules_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_schedules_on_name ON public.threesixty_email_schedules USING btree (name);
+
+
+--
+-- Name: index_threesixty_email_schedules_on_scheduled_date; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_schedules_on_scheduled_date ON public.threesixty_email_schedules USING btree (scheduled_date);
+
+
+--
 -- Name: index_threesixty_email_schedules_on_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8487,6 +9307,34 @@ CREATE INDEX index_user_assessments_on_subject_id ON public.user_assessments USI
 --
 
 CREATE INDEX index_user_assessments_on_users_result_id ON public.user_assessments USING btree (users_result_id);
+
+
+--
+-- Name: index_user_availability_dates_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_availability_dates_on_user_id ON public.user_availability_dates USING btree (user_id);
+
+
+--
+-- Name: index_user_availability_days_on_user_availability_date_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_availability_days_on_user_availability_date_id ON public.user_availability_days USING btree (user_availability_date_id);
+
+
+--
+-- Name: index_user_bookings_on_booked_by_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_bookings_on_booked_by_resource ON public.user_bookings USING btree (booked_by_resource_type, booked_by_resource_id);
+
+
+--
+-- Name: index_user_bookings_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_bookings_on_user_id ON public.user_bookings USING btree (user_id);
 
 
 --
@@ -8707,10 +9555,171 @@ CREATE INDEX index_webhook_subscriptions_on_active ON public.webhook_subscriptio
 
 
 --
+-- Name: index_webhook_subscriptions_on_deleted_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_webhook_subscriptions_on_deleted_by_id ON public.webhook_subscriptions USING btree (deleted_by_id);
+
+
+--
 -- Name: index_webhook_subscriptions_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_webhook_subscriptions_on_project_id ON public.webhook_subscriptions USING btree (project_id);
+
+
+--
+-- Name: index_workshop_assessors_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_assessors_on_user_id ON public.workshop_assessors USING btree (user_id);
+
+
+--
+-- Name: index_workshop_assessors_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_assessors_on_workshop_id ON public.workshop_assessors USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_invite_logs_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_logs_on_created_by_id ON public.workshop_invite_logs USING btree (created_by_id);
+
+
+--
+-- Name: index_workshop_invite_logs_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_logs_on_user_id ON public.workshop_invite_logs USING btree (user_id);
+
+
+--
+-- Name: index_workshop_invite_logs_on_workshop_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_logs_on_workshop_invite_id ON public.workshop_invite_logs USING btree (workshop_invite_id);
+
+
+--
+-- Name: index_workshop_invite_translations_on_description_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_translations_on_description_and_locale ON public.workshop_invite_translations USING btree (description, locale);
+
+
+--
+-- Name: index_workshop_invite_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_translations_on_locale ON public.workshop_invite_translations USING btree (locale);
+
+
+--
+-- Name: index_workshop_invite_translations_on_title_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invite_translations_on_title_and_locale ON public.workshop_invite_translations USING btree (title, locale);
+
+
+--
+-- Name: index_workshop_invited_subjects_on_reschedule_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invited_subjects_on_reschedule_workshop_id ON public.workshop_invited_subjects USING btree (reschedule_workshop_id);
+
+
+--
+-- Name: index_workshop_invited_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invited_subjects_on_user_id ON public.workshop_invited_subjects USING btree (user_id);
+
+
+--
+-- Name: index_workshop_invited_subjects_on_workshop_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invited_subjects_on_workshop_invite_id ON public.workshop_invited_subjects USING btree (workshop_invite_id);
+
+
+--
+-- Name: index_workshop_invites_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invites_on_campaign_id ON public.workshop_invites USING btree (campaign_id);
+
+
+--
+-- Name: index_workshop_invites_workshops_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invites_workshops_on_workshop_id ON public.workshop_invites_workshops USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_invites_workshops_on_workshop_invite_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_invites_workshops_on_workshop_invite_id ON public.workshop_invites_workshops USING btree (workshop_invite_id);
+
+
+--
+-- Name: index_workshop_managers_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_managers_on_user_id ON public.workshop_managers USING btree (user_id);
+
+
+--
+-- Name: index_workshop_managers_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_managers_on_workshop_id ON public.workshop_managers USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_resources_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_resources_on_workshop_id ON public.workshop_resources USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_subjects_on_user_id ON public.workshop_subjects USING btree (user_id);
+
+
+--
+-- Name: index_workshop_subjects_on_workshop_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_subjects_on_workshop_id ON public.workshop_subjects USING btree (workshop_id);
+
+
+--
+-- Name: index_workshop_subjects_on_workshop_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_workshop_subjects_on_workshop_id_and_user_id ON public.workshop_subjects USING btree (workshop_id, user_id);
+
+
+--
+-- Name: index_workshop_subjects_on_workshop_invited_subject_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshop_subjects_on_workshop_invited_subject_id ON public.workshop_subjects USING btree (workshop_invited_subject_id);
+
+
+--
+-- Name: index_workshops_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_workshops_on_campaign_id ON public.workshops USING btree (campaign_id);
 
 
 --
@@ -8858,6 +9867,30 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: workshop_resources fk_rails_0b9b541d1c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_resources
+    ADD CONSTRAINT fk_rails_0b9b541d1c FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invite_logs fk_rails_0cb58ea600; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT fk_rails_0cb58ea600 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_bookings fk_rails_0f6d7c0f39; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_bookings
+    ADD CONSTRAINT fk_rails_0f6d7c0f39 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports fk_rails_0fcc82136b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8871,6 +9904,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.assessments_reports
     ADD CONSTRAINT fk_rails_105380adfd FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invites_workshops fk_rails_10a86b74cb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites_workshops
+    ADD CONSTRAINT fk_rails_10a86b74cb FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
 
 
 --
@@ -8946,14 +9987,6 @@ ALTER TABLE ONLY public.assigns
 
 
 --
--- Name: iiht_assessment_settings fk_rails_1d640cec6c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.iiht_assessment_settings
-    ADD CONSTRAINT fk_rails_1d640cec6c FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
-
-
---
 -- Name: memberships fk_rails_1e06b93eb5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8986,19 +10019,19 @@ ALTER TABLE ONLY public.assessors
 
 
 --
--- Name: pearson_assessment_settings fk_rails_2368fd589d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pearson_assessment_settings
-    ADD CONSTRAINT fk_rails_2368fd589d FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
-
-
---
 -- Name: license_usages fk_rails_2397339a92; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_2397339a92 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_emails fk_rails_2429635fcd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_emails
+    ADD CONSTRAINT fk_rails_2429635fcd FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id);
 
 
 --
@@ -9031,6 +10064,14 @@ ALTER TABLE ONLY public.user_reports
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_292907b1cc FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_subjects fk_rails_29528926c0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT fk_rails_29528926c0 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
 
 
 --
@@ -9111,6 +10152,14 @@ ALTER TABLE ONLY public.communications
 
 ALTER TABLE ONLY public.libraries
     ADD CONSTRAINT fk_rails_33d493c854 FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_invites fk_rails_3495a4f69c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites
+    ADD CONSTRAINT fk_rails_3495a4f69c FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -9218,6 +10267,22 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: workshop_assessors fk_rails_43709c1a28; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors
+    ADD CONSTRAINT fk_rails_43709c1a28 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_availability_dates fk_rails_4408ce5ec7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_dates
+    ADD CONSTRAINT fk_rails_4408ce5ec7 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: profile_fields fk_rails_44c222c31a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9231,6 +10296,14 @@ ALTER TABLE ONLY public.profile_fields
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT fk_rails_45307c95a3 FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: media_responses fk_rails_4769c5e3ce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.media_responses
+    ADD CONSTRAINT fk_rails_4769c5e3ce FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
 
 
 --
@@ -9290,6 +10363,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: workshop_assessors fk_rails_524f182ee9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_assessors
+    ADD CONSTRAINT fk_rails_524f182ee9 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
+
+
+--
 -- Name: sms_records fk_rails_58b8df5ee3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9298,11 +10379,35 @@ ALTER TABLE ONLY public.sms_records
 
 
 --
+-- Name: workshop_invited_subjects fk_rails_592e1c2e7f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects
+    ADD CONSTRAINT fk_rails_592e1c2e7f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: questions fk_rails_5b54a08d0b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT fk_rails_5b54a08d0b FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_emails fk_rails_5c47ebbe76; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_emails
+    ADD CONSTRAINT fk_rails_5c47ebbe76 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id);
+
+
+--
+-- Name: workshop_invite_logs fk_rails_5f05631202; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT fk_rails_5f05631202 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id);
 
 
 --
@@ -9354,11 +10459,19 @@ ALTER TABLE ONLY public.reports
 
 
 --
--- Name: saville_assessment_settings fk_rails_6847f23cff; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: workshop_managers fk_rails_64dc0c729a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.saville_assessment_settings
-    ADD CONSTRAINT fk_rails_6847f23cff FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+ALTER TABLE ONLY public.workshop_managers
+    ADD CONSTRAINT fk_rails_64dc0c729a FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: webhook_subscriptions fk_rails_68548bd5a8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.webhook_subscriptions
+    ADD CONSTRAINT fk_rails_68548bd5a8 FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
 
 
 --
@@ -9399,6 +10512,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.privacy_consents
     ADD CONSTRAINT fk_rails_6cd91d815a FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invite_logs fk_rails_6e03291780; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_logs
+    ADD CONSTRAINT fk_rails_6e03291780 FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -9463,6 +10584,14 @@ ALTER TABLE ONLY public.sms_histories
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT fk_rails_7a00292b33 FOREIGN KEY (communication_id) REFERENCES public.communications(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factors fk_rails_7b28110d6b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_7b28110d6b FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE CASCADE;
 
 
 --
@@ -9594,6 +10723,14 @@ ALTER TABLE ONLY public.design_settings
 
 
 --
+-- Name: workshop_invited_subjects fk_rails_8ec909c062; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects
+    ADD CONSTRAINT fk_rails_8ec909c062 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
+
+
+--
 -- Name: factors_sub_factors fk_rails_8feda8b335; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9647,6 +10784,14 @@ ALTER TABLE ONLY public.campaign_users
 
 ALTER TABLE ONLY public.threesixty_email_schedules
     ADD CONSTRAINT fk_rails_965ab844ab FOREIGN KEY (template_id) REFERENCES public.threesixty_email_templates(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_invite_translations fk_rails_96cf57bb2e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invite_translations
+    ADD CONSTRAINT fk_rails_96cf57bb2e FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id);
 
 
 --
@@ -9738,6 +10883,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: api_keys fk_rails_a12322a5ba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT fk_rails_a12322a5ba FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: profile_fields fk_rails_a132f26c57; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9751,6 +10904,14 @@ ALTER TABLE ONLY public.profile_fields
 
 ALTER TABLE ONLY public.threesixty_reminder_histories
     ADD CONSTRAINT fk_rails_a2f976ebf2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: workshops fk_rails_a420799614; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshops
+    ADD CONSTRAINT fk_rails_a420799614 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -9775,6 +10936,14 @@ ALTER TABLE ONLY public.assessments_clients
 
 ALTER TABLE ONLY public.agiles
     ADD CONSTRAINT fk_rails_aaee109dc4 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invited_subjects fk_rails_abd52ff719; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invited_subjects
+    ADD CONSTRAINT fk_rails_abd52ff719 FOREIGN KEY (reschedule_workshop_id) REFERENCES public.workshops(id);
 
 
 --
@@ -9914,6 +11083,14 @@ ALTER TABLE ONLY public.integrations
 
 
 --
+-- Name: workshop_subjects fk_rails_c7aa966031; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT fk_rails_c7aa966031 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_histories fk_rails_c9b5f538f9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9970,14 +11147,6 @@ ALTER TABLE ONLY public.threesixty_email_histories
 
 
 --
--- Name: hogan_assessment_settings fk_rails_d0f7b433a7; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_assessment_settings
-    ADD CONSTRAINT fk_rails_d0f7b433a7 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
-
-
---
 -- Name: question_recoding fk_rails_d1991e6723; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10026,11 +11195,35 @@ ALTER TABLE ONLY public.clients_reports
 
 
 --
+-- Name: campaign_assessor_assessments fk_rails_d47904be93; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT fk_rails_d47904be93 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: workshop_invites_workshops fk_rails_d4e62fe94f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_invites_workshops
+    ADD CONSTRAINT fk_rails_d4e62fe94f FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
+
+
+--
 -- Name: license_usages fk_rails_d511a75463; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_d511a75463 FOREIGN KEY (assigns_report_id) REFERENCES public.assigns_reports(id) ON DELETE SET NULL;
+
+
+--
+-- Name: workshop_managers fk_rails_d60918274d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_managers
+    ADD CONSTRAINT fk_rails_d60918274d FOREIGN KEY (workshop_id) REFERENCES public.workshops(id) ON DELETE CASCADE;
 
 
 --
@@ -10090,6 +11283,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 
 --
+-- Name: user_availability_days fk_rails_dc0c48bc79; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_availability_days
+    ADD CONSTRAINT fk_rails_dc0c48bc79 FOREIGN KEY (user_availability_date_id) REFERENCES public.user_availability_dates(id) ON DELETE CASCADE;
+
+
+--
 -- Name: user_report_comments fk_rails_dc18fe0d04; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10130,6 +11331,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 
 --
+-- Name: workshop_subjects fk_rails_e41aec218b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.workshop_subjects
+    ADD CONSTRAINT fk_rails_e41aec218b FOREIGN KEY (workshop_invited_subject_id) REFERENCES public.workshop_invited_subjects(id) ON DELETE SET NULL;
+
+
+--
 -- Name: threesixty_subjects fk_rails_e425b52825; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10143,6 +11352,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_e471e365a3 FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: assessment_translations fk_rails_e8b68f05ba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT fk_rails_e8b68f05ba FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
 
 
 --
@@ -10186,6 +11403,14 @@ ALTER TABLE ONLY public.norms
 
 
 --
+-- Name: campaign_assessor_assessments fk_rails_ee2e737b88; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessments
+    ADD CONSTRAINT fk_rails_ee2e737b88 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assessments fk_rails_ef32d4a334; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10215,6 +11440,30 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.clients
     ADD CONSTRAINT fk_rails_f28b175e74 FOREIGN KEY (modified_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: client_auditlog_export_settings fk_rails_f330a54325; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_auditlog_export_settings
+    ADD CONSTRAINT fk_rails_f330a54325 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: api_keys fk_rails_f435faf77d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT fk_rails_f435faf77d FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: client_translations fk_rails_f4479d6612; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_translations
+    ADD CONSTRAINT fk_rails_f4479d6612 FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -10812,20 +12061,71 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20221122172756'),
 ('20221128115835'),
 ('20221205213642'),
+('20221207114653'),
 ('20221207122631'),
+('20221208114251'),
 ('20221213173037'),
 ('20221214083458'),
 ('20221227102943'),
 ('20230110201437'),
 ('20230112110725'),
+('20230112121853'),
+('20230113060633'),
 ('20230116123826'),
 ('20230117130759'),
 ('20230207074200'),
 ('20230216143441'),
+('20230223085853'),
 ('20230315112437'),
+('20230317094144'),
+('20230320091546'),
 ('20230328102230'),
+('20230406132537'),
+('20230417090859'),
+('20230504155413'),
 ('20230511105741'),
 ('20230518075547'),
-('20230518123651');
+('20230518123651'),
+('20230531090612'),
+('20230531090613'),
+('20230606123535'),
+('20230608131329'),
+('20230608131330'),
+('20230608131331'),
+('20230608150754'),
+('20230615093244'),
+('20230627162930'),
+('20230627181938'),
+('20230717125048'),
+('20230719111228'),
+('20230721123804'),
+('20230721125540'),
+('20230725084846'),
+('20230727152255'),
+('20230728040657'),
+('20230728041212'),
+('20230731105207'),
+('20230801090740'),
+('20230803064449'),
+('20230807112038'),
+('20230808200613'),
+('20230809193337'),
+('20230809193508'),
+('20230810103629'),
+('20230811114945'),
+('20230818140419'),
+('20230821100124'),
+('20230822081633'),
+('20230823110647'),
+('20230824083112'),
+('20230829124517'),
+('20230829143631'),
+('20230912064131'),
+('20230918133925'),
+('20230918143010'),
+('20230919051922'),
+('20230919070332'),
+('20230921123131'),
+('20230926124141');
 
 

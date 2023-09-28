@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import { DATA_SHEET_COLUMN_TYPES } from '../constants'
 import styles from './styles.less'
 

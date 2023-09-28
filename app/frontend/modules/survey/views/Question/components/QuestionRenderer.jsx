@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from 'react'
+import { Component, lazy, Suspense } from 'react'
 import { Spin } from 'antd'
 import PropTypes from 'prop-types'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'

@@ -26,7 +26,7 @@ export default {
   init () {
     if (!cable) {
       cable = new Cable({
-        ReportChannel: actionCable.subscriptions.create({ channel: 'Reports::Channel', report_id: id }),
+        ReportChannel: actionCable().subscriptions.create({ channel: 'Reports::Channel', report_id: id }),
       })
       cable.channel('ReportChannel').on('connected', SocketDispatcher.connect)
       cable.channel('ReportChannel').on('disconnected', SocketDispatcher.disconnect)

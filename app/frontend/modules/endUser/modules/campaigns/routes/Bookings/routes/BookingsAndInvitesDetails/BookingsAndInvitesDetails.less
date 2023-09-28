@@ -1,0 +1,26 @@
+@import '~/styles/ant.variable.less';
+@import "~/styles/spacing.less";
+
+.pageContent {
+  background-color: @white;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: @screen-md) {
+  .pageContent {
+    padding-inline: @space-4;
+    align-items: flex-start;
+    padding-block-start: @space-3;
+  }
+}
+@media (min-width: @screen-xl) {
+  .column {
+    max-width: 1000px;
+  }
+  .column.narrowColumn {
+    max-width: 980px;
+  }
+}

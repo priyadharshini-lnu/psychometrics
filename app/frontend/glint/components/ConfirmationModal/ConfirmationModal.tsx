@@ -1,4 +1,4 @@
-import React, { ReactElement, FC } from 'react'
+import { FC, ReactElement } from 'react'
 import { Modal, Button } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 
@@ -6,7 +6,7 @@ const { I18n } = window
 
 type Props = {
   title: string,
-  message: string,
+  message: string | ReactElement,
   onConfirm: () => void
   onCancel: () => void
   children?: ReactElement

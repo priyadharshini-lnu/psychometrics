@@ -1,4 +1,3 @@
-import React from 'react'
 import Utils from '~/modules/survey/utils'
 import styles from './ScoringLabel.less'
 

@@ -40,14 +40,6 @@ class Library < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
-    column = sort_key.gsub("_#{direction}", '')
-    order("libraries.#{column} #{direction}") if column.in?(%w[id name type created_at updated_at])
-  }
-
   # Search folders and files which have parent
   scope :with_parent, lambda { |parent_id|
     if parent_id.to_i.zero?

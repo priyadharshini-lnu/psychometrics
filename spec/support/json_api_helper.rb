@@ -35,7 +35,7 @@ module JsonApiHelper
     data
   end
 
-  def jsonapi_resource_request(resource_name, attributes, relationships)
+  def jsonapi_resource_request(resource_name, attributes = {}, relationships = {})
     data = { type: resource_name }
     data[:id] = attributes[:id] if attributes[:id]
     data[:attributes] = attributes.except(:id)

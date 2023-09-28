@@ -4,6 +4,12 @@
   display: grid;
   grid-gap: 1em;
   --image-size: 22rem;
+  &.xxsmallSize {
+    --image-size: 12rem;
+  }
+  &.xsmallSize {
+    --image-size: 16rem;
+  }
   &.mediumSize {
     --image-size: 28rem;
   }
@@ -57,6 +63,10 @@
       margin: 1rem;
     }
   }
+}
+
+.checkmarkButton :global(.anticon) {
+  display: inline-block;
 }
 
 .modalWrap {

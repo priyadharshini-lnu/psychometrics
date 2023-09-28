@@ -1,6 +1,7 @@
 import _ from 'lodash'
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Radio, Checkbox } from 'antd'
 import styles from './Likert.less'
 
 export default class extends Component {
@@ -13,7 +14,7 @@ export default class extends Component {
     if (result.notApplicable && result.notApplicable[choice]) {
       result.notApplicable[choice] = false
     }
-    result.answer(scale, choice, e.currentTarget.checked)
+    result.answer(scale, choice, e.target.checked)
     this.forceUpdate()
   }
 
@@ -38,14 +39,13 @@ export default class extends Component {
   renderNotApplicableCheckbox (choice) {
     const { model, readOnly } = this.props
     const { props: { notApplicable, answersType }, result } = model
+    const InputComponent = answersType === 'SingleAnswer' ? Radio : Checkbox
     if (!notApplicable) { return null }
     const checked = result.notApplicable && result.notApplicable[choice]
     return (
       <div>
-        <input
+        <InputComponent
           disabled={readOnly}
-          className={styles.input}
-          type={answersType === 'SingleAnswer' ? 'radio' : 'checkbox'}
           onChange={e => this.changeNotApplicable(choice, e)}
           checked={checked || false}
         />
@@ -57,6 +57,7 @@ export default class extends Component {
     const {
       model, model: { props, result, moduleConfig }, readOnly, I18n,
     } = this.props
+    const InputComponent = props.answersType === 'SingleAnswer' ? Radio : Checkbox
     return (
       <div className={styles.table}>
         <div className={`${styles.row} ${styles.labels}`}>
@@ -96,13 +97,11 @@ export default class extends Component {
               {_.times(props.scalePoints, (scale) => {
                 const object = _.find(result.answers, { scale, choice }) || {}
                 return (
-                  <input
+                  <InputComponent
                     disabled={readOnly}
                     key={scale}
-                    type={props.answersType === 'SingleAnswer' ? 'radio' : 'checkbox'}
                     checked={object.value || false}
-                    onChange={this.changeValue.bind(this, scale, choice)}
-                    className={styles.input}
+                    onChange={e => this.changeValue(scale, choice, e)}
                   />
                 )
               })}

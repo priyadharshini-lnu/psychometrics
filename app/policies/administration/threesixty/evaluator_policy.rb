@@ -4,7 +4,7 @@ module Administration
   module Threesixty
     class EvaluatorPolicy < BasePolicy
       def manage_datasheets?
-        user.is?(:superadmin) || user.has_permission?(:datasheets, :manage, project_id: project_id)
+        has_permission?(:datasheets, :manage)
       end
 
       def export_results?
@@ -12,11 +12,11 @@ module Administration
       end
 
       def export_completion_status?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
+        has_permission?(:campaigns, :view)
       end
 
       def reset_all_participants?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def reset_all_nominations?
@@ -24,11 +24,11 @@ module Administration
       end
 
       def index?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
+        has_permission?(:campaigns, :view)
       end
 
       def import?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def spoof?
@@ -40,19 +40,19 @@ module Administration
       end
 
       def edit?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def remove_from_campaign?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def create_all?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :manage_users, project_id: project_id)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def download_example_import_file?
-        user.is?(:superadmin) || user.has_permission?(:campaigns, :view, project_id: project_id)
+        has_permission?(:campaigns, :view)
       end
     end
   end

@@ -16,6 +16,7 @@ export function isSuperAdmin (user) {
 }
 
 export function hasGrant (user, scope, action) {
+  if (isSuperAdmin(user)) return true
   return getIn(user.grants, scope, []).includes(action)
 }
 
@@ -48,9 +49,21 @@ export const uploadPhoto = formData => ({
     method: 'patch',
     url: '/users/upload_photo',
     body: formData,
+    contentType: 'multipart/form-data;',
   },
 })
 
+export const UPLOAD_FILES = 'resource/users/UPLOAD_FILES'
+
+export const uploadAdminUserPhoto = (id, data) => ({
+  type: UPLOAD_FILES,
+  request: {
+    method: 'put',
+    url: `/api/v2/administration/users/${id}/uploads`,
+    body: data,
+    contentType: 'multipart/form-data;',
+  },
+})
 
 export const setUser = user => ({
   type: SET_USER,

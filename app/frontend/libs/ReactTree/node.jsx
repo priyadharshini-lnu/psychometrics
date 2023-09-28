@@ -1,11 +1,11 @@
 /* eslint-disable */
 import cx from 'classnames'
-import React, { Component } from 'react'
+import { createRef, Component } from 'react';
 
 export default class UITreeNode extends Component {
   constructor (props) {
     super(props)
-    this.innerRef = React.createRef()
+    this.innerRef = createRef()
   }
 
   renderCollapse = () => {

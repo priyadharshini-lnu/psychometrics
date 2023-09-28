@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import ColorSet from '~/modules/reports/components/ColorSet'
 import styles from '../ConditionalTextModal.less'
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { HIGHLIGHT_COLORS } from '~/modules/survey/views/Block/components/StaticContent/settings'
 import styles from './StaticContent.less'
 

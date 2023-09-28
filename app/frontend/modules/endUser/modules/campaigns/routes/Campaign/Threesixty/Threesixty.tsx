@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import {
   Layout, Row, Col, Progress, Alert, Card,
 } from 'antd'
@@ -83,7 +83,7 @@ const ThreesixtyComponent = ({
           <>
             {welcomeMessage && (
             <Card>
-              <SafeHTML html={welcomeMessage.content} />
+              <SafeHTML html={welcomeMessage.content} config="adminRichText" />
             </Card>
             )}
             <Row gutter={16} wrap={isMobile}>

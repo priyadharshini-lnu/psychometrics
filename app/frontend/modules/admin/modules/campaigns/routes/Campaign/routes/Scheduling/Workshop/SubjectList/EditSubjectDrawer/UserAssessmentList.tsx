@@ -1,0 +1,72 @@
+import {
+  Table, Row, Col, Tag, Switch, Input, TimePicker,
+} from 'antd'
+import moment from 'moment-timezone'
+
+import { useEffect, useState } from 'react'
+import { PROGRESS_STATUSES } from './EditSubjectDrawer'
+
+const { I18n } = window
+const { Column } = Table
+
+export const UserAssessmentList = ({ assessments, onTimeChange }) => (
+  <Table
+    pagination={false}
+    dataSource={assessments}
+    rowKey={data => data.id}
+  >
+    <Column
+      title={I18n.t('common.column.id')}
+      dataIndex="id"
+    />
+    <Column
+      title={I18n.t('common.column.assessment_name')}
+      dataIndex="name"
+    />
+    <Column
+      title={I18n.t('common.column.status')}
+      dataIndex="status"
+      render={
+            (status => <Tag color={PROGRESS_STATUSES[status].color}>{PROGRESS_STATUSES[status].label}</Tag>)
+          }
+    />
+    <Column
+      title={I18n.t('common.column.schedule_time')}
+      render={assessment => <ScheduleTime assessment={assessment} onTimeChange={onTimeChange} />}
+    />
+  </Table>
+)
+
+const ScheduleTime = ({ assessment, onTimeChange }) => {
+  const { scheduleTime, status, id } = assessment
+  const [active, setActive] = useState(!!scheduleTime)
+
+  useEffect(() => {
+    if (!active) { onTimeChange(null, id) }
+  }, [active])
+  return (
+    <Row gutter={[8, 0]}>
+      <Col span={4} className="flex items-center">
+        <Switch
+          onChange={(current) => {
+            setActive(current)
+            onTimeChange(moment(), id)
+          }}
+          defaultChecked={active}
+          disabled={status === 'completed'}
+        />
+      </Col>
+      <Col span={8}>
+        {active ? (
+          <TimePicker
+            className="w-100"
+            disabled={status !== 'not_started' || !active}
+            format="hh:mm A"
+            defaultValue={scheduleTime ? moment(scheduleTime) : moment()}
+            onChange={value => onTimeChange(value, id)}
+          />
+        ) : <Input disabled value="Not Scheduled" />}
+      </Col>
+    </Row>
+  )
+}

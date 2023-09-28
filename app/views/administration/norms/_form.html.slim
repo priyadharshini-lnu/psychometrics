@@ -15,7 +15,7 @@
                         collection: root_clients.order(:name),
                         input_html: { data: { live_search: true } }
       = f.association :dimension,
-                      collection: policy_scope(Dimension).all.sorted_by('name_asc'),
+                      collection: policy_scope(Dimension).all.order(name: :asc),
                       include_blank: true,
                       disabled: resource.persisted?,
                       input_html: { data: { live_search: true } }

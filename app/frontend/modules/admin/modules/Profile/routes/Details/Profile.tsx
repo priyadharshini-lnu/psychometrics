@@ -1,0 +1,285 @@
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import {
+  Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button, message,
+} from 'antd'
+import { PlusOutlined, EditOutlined } from '@ant-design/icons'
+import moment from 'moment-timezone'
+import cs from 'classnames'
+import _ from 'lodash'
+import { useResources } from '~/hooks/useResources'
+import { camelizeKeys } from '~/utils/object'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import {
+  get as getCurrentUser, uploadAdminUserPhoto,
+} from '~/core/currentUser'
+import { CropImageModal } from '~/glint/components/CropImageModal'
+
+
+import styles from './styles.less'
+import { UserTR, User, UserProfile } from '~/modules/admin/modules/client/core/users'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+
+const { Title } = Typography
+const { I18n } = window
+const { Content } = Layout
+
+const timeZones = moment.tz.names()
+
+interface Image {
+  type?: string
+  src: string
+}
+interface Errors {
+  first_name?: []
+  last_name?: []
+  locale?: []
+  timezone?: []
+}
+
+interface AdminUser extends User{
+  userProfileData: UserProfile,
+  userProfile: UserProfile,
+}
+
+function ProfileComponent ({
+  currentUser, uploadPhoto, locales,
+}) {
+  useEffect(() => {
+    fetchSingle({ id: currentUser.id })
+  }, [currentUser.id])
+  const [showCropper, setShowCropper] = useState(false)
+  const [image, setImage] = useState<Image | null>(null)
+  const [errors, setErrors] = useState <Errors>({})
+
+  const {
+    fetchSingle, getResource, updateResource, isLoading,
+  } = useResources<AdminUser>('users', {
+    responseType: UserTR,
+    apiConfig: {
+      camelizeExcept: ['$[*].enable_2fa', '$.enable_2fa'],
+      include_resource_meta: ['permissions'],
+      include: ['user_profile'],
+    },
+  })
+  const profileUpdateInProgress = isLoading(`update@${currentUser.id}`)
+
+  const user = getResource(currentUser.id.toString())
+  if (!user) return null
+  const uploadFile = (canvas) => {
+    if (canvas) {
+      const form = new FormData()
+      canvas.toBlob((blob) => {
+        if (blob) {
+          form.append('photo', blob, 'file.jpg')
+          uploadPhoto(currentUser.id, form).then(() => {
+            setShowCropper(false)
+          })
+        }
+      }, 'image/jpg')
+    }
+  }
+
+  const submitForm = (values) => {
+    updateResource({
+      id: currentUser.id,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      userProfileData: {
+        locale: values.locale,
+        timezone: values.timezone,
+      },
+    }).then(() => {
+      message.success(I18n.t('profile.success_update'), 5)
+    }).catch((e) => {
+      setErrors(camelizeKeys(e.errors))
+    })
+  }
+
+  const onChangeFile = ({ file }) => {
+    const blob = URL.createObjectURL(file)
+
+    setImage({
+      src: blob,
+      type: file.type,
+    })
+    setShowCropper(true)
+  }
+
+  const timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${moment.tz(zone).format('Z')}) ${zone}` }))
+    .sort((a, b) => Number(moment.tz(a.zone).format('ZZ')) - Number(moment.tz(b.zone).format('ZZ')))
+  const timezoneGuess = moment.tz.guess()
+
+  if (timezoneGuess) {
+    timezoneNames.unshift({
+      zone: timezoneGuess,
+      label: `(GMT${moment.tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
+    })
+  }
+
+  return (
+    <>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/admin/profile',
+            label: () => I18n.t('administration.profile.profile'),
+          },
+          {
+            label: () => I18n.t('administration.profile.details'),
+          },
+        ]}
+      />
+      <Content className={styles.pageContent}>
+        <div className={styles.container}>
+          <Row gutter={[32, 32]}>
+            <Col span={24}>
+              <Title level={3}>{I18n.t('profile.title')}</Title>
+              <Row gutter={32}>
+                <Col xs={24} sm={24} md={12} lg={8}>
+                  <Form.Item>
+                    <Upload
+                      listType="picture-card"
+                      accept=".jpg, .jpeg, |image/*"
+                      showUploadList={false}
+                      maxCount={1}
+                      className={styles.upload}
+                      onChange={onChangeFile}
+                      beforeUpload={() => false}
+                    >
+                      <div className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photoUrl })}>
+                        {user.photoUrl && (
+                        <img
+                          src={user.photoUrl}
+                          alt={user.photoUrl
+                            ? I18n.t('profile.change_photo')
+                            : I18n.t('profile.add_photo')}
+                          className={styles.photo}
+                        />
+                        )}
+                        <div className={styles.controls}>
+                          {user.photoUrl ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
+                          <div className={styles.photoLabel}>
+                            {user.photoUrl
+                              ? I18n.t('profile.change_photo')
+                              : I18n.t('profile.add_photo')}
+                          </div>
+                        </div>
+                      </div>
+                    </Upload>
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={24} md={12} lg={16}>
+                  <Form
+                    layout="vertical"
+                    initialValues={{
+                      firstName: user.firstName,
+                      lastName: user.lastName,
+                      locale: user.userProfile?.locale,
+                      timezone: user.userProfile?.timezone,
+                      email: user.email,
+                    }}
+                    onFinish={submitForm}
+                    className={styles.form}
+                  >
+                    <Row gutter={24}>
+                      <Col xs={24} sm={24} md={12}>
+                        <Form.Item
+                          name="firstName"
+                          label={I18n.t('profile.first_name')}
+                          hasFeedback
+                          help={errors?.first_name}
+                          validateStatus={errors?.first_name ? 'error' : ''}
+                          required
+                        >
+                          <Input size="large" />
+                        </Form.Item>
+                      </Col>
+                      <Col xs={24} sm={24} md={12}>
+                        <Form.Item
+                          name="lastName"
+                          label={I18n.t('profile.last_name')}
+                          hasFeedback
+                          help={errors?.last_name}
+                          validateStatus={errors?.last_name ? 'error' : ''}
+                          required
+                        >
+                          <Input size="large" />
+                        </Form.Item>
+                      </Col>
+                    </Row>
+                    <Form.Item name="email" label={I18n.t('profile.email')}>
+                      <Input size="large" disabled />
+                    </Form.Item>
+                    <Form.Item
+                      name="locale"
+                      label={I18n.t('profile.locale')}
+                      hasFeedback
+                      help={errors?.locale}
+                      validateStatus={errors?.locale ? 'error' : ''}
+                    >
+                      <Select size="large">
+                        {_.map(locales, locale => (
+                          <Select.Option key={locale} value={locale}>
+                            {I18n.t(`languages_localized.${locale}`)}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+
+                    <Form.Item
+                      name="timezone"
+                      label={I18n.t('profile.timezone')}
+                      hasFeedback
+                      help={errors?.timezone}
+                      validateStatus={errors?.timezone ? 'error' : ''}
+                    >
+                      <Select
+                        size="large"
+                        showSearch
+                        filterOption={(search, option) => `${option?.value}`
+                          .toLowerCase().includes(search.toLowerCase())}
+                      >
+                        {timezoneNames.map((item, i) => (
+                          <Select.Option key={i} value={item.zone}>
+                            {item.label}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
+                      <Button
+                        type="primary"
+                        htmlType="submit"
+                        className={styles.actionButton}
+                        loading={profileUpdateInProgress}
+                      >
+                        {I18n.t('profile.update')}
+                      </Button>
+                    </Space>
+                  </Form>
+                  <CropImageModal
+                    show={showCropper}
+                    onCrop={uploadFile}
+                    onCancel={() => setShowCropper(false)}
+                    image={image}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+      </Content>
+    </>
+
+  )
+}
+
+const connector = connect((state: RootState) => ({
+  currentUser: camelizeKeys(getCurrentUser(state)),
+  locales: state.config.availableLocales,
+}), {
+  uploadPhoto: uploadAdminUserPhoto,
+})
+
+export const Profile = connector(ProfileComponent)

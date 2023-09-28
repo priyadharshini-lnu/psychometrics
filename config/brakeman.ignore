@@ -1,0 +1,914 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "09b1aedebb6b3b6fc6b69997370490c24b810c3b50fb1f57f2c4cd8ea54eff88",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `safe_constantize` called on model attribute",
+      "file": "app/core/users_results/calculate_scoring.rb",
+      "line": 47,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "\"::Scoring::#{Question.where(:id => FactorsScoring.where(:assessment_id => users_result.assessment_id).joins(:factor).all.map(&:question_id).uniq).all.group_by(&:id)[question_scoring.question_id].first.type}\".safe_constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UsersResults::CalculateScoring",
+        "method": "call"
+      },
+      "user_input": "Question.where(:id => FactorsScoring.where(:assessment_id => users_result.assessment_id).joins(:factor).all.map(&:question_id).uniq).all",
+      "confidence": "Medium",
+      "cwe_id": [
+        470
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "0e8f740abf1510ffd7e47a3724531ca3cac2ab606725fc3fad3a31204d780fe0",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/concerns/ransack_assoc_searchable_fields.rb",
+      "line": 14,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "joins(\"\\n              LEFT OUTER JOIN \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.table_name}\\\" \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name}\\\" ON\\n              \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name}\\\".\\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.active_record_primary_key}\\\" = \\\"#{table_name}\\\".\\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.foreign_key}\\\"\\n            \")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "RansackAssocSearchableFields",
+        "method": "add_searchable_assoc_scope"
+      },
+      "user_input": "reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "232b84c99824e2e769ebb980ddeebbed5def2c3778c8b6b674f790e97a25c1f0",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/serializers/assessment_serializer.rb",
+      "line": 35,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Arel.sql(\"position(id::text in '#{object.resources.map do\n r[\"questionId\"]\n end.join(\",\")}')\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AssessmentSerializer",
+        "method": "resources_content"
+      },
+      "user_input": "object.resources.map do\n r[\"questionId\"]\n end.join(\",\")",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "244e2a9e51a9a97a7865af937216c04512dd8930924cbc3d0b3b56f04b6d00cc",
+      "check_name": "Execute",
+      "message": "Possible command injection",
+      "file": "app/core/user_reports/generate_pdf.rb",
+      "line": 40,
+      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "Kernel.system(\"$(cd #{Rails.root} && npm run export_pdf -- #{default_report_export_options.merge(:output => make_path).to_a.map do\n \"#{key}='#{(key == :url) ? (value) : (Shellwords.escape(value))}'\"\n end.join(\" \")})\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "UserReports::GeneratePdf",
+        "method": "export_pdf_using_local_chrome"
+      },
+      "user_input": "default_report_export_options.merge(:output => make_path).to_a.map do\n \"#{key}='#{(key == :url) ? (value) : (Shellwords.escape(value))}'\"\n end.join(\" \")",
+      "confidence": "Medium",
+      "cwe_id": [
+        77
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "2d348e9249bf87b820425d6385a90d4b7113982bb3c367f9122792df14b37ee3",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/pearson_user_assessments_controller.rb",
+      "line": 13,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::PearsonUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "2d348e9249bf87b820425d6385a90d4b7113982bb3c367f9122792df14b37ee3",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/pearson_user_assessments_controller.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::PearsonUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Command Injection",
+      "warning_code": 14,
+      "fingerprint": "35646a22b545c77325f55a7345ce5803a748f745aa8f563217dae876f1fcc5ec",
+      "check_name": "Execute",
+      "message": "Possible command injection",
+      "file": "lib/exports/reports/pdf/report_export.rb",
+      "line": 39,
+      "link": "https://brakemanscanner.org/docs/warning_types/command_injection/",
+      "code": "system(\"$(cd #{Rails.root} && npm run export_pdf -- #{report.pdf_dimension.merge(:url => url, :output => output).merge(opts).to_a.map do\n \"#{key}='#{(key == :url) ? (value) : (Shellwords.escape(value))}'\"\n end.join(\" \")})\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Exports::Reports::Pdf::ReportExport",
+        "method": "generate_report"
+      },
+      "user_input": "report.pdf_dimension.merge(:url => url, :output => output).merge(opts).to_a.map do\n \"#{key}='#{(key == :url) ? (value) : (Shellwords.escape(value))}'\"\n end.join(\" \")",
+      "confidence": "Medium",
+      "cwe_id": [
+        77
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "46d1ea83f67bb48bea1a842a7441f969111271921e07d0384b8b2d983918a5ab",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/core/sheets/create_flat_sheet_view.rb",
+      "line": 20,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"DROP VIEW IF EXISTS #{flat_row_view_name}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sheets::CreateFlatSheetView",
+        "method": "call"
+      },
+      "user_input": "flat_row_view_name",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "6a35aaa1f2077d04af6acd3f1e4cbc127067451bf0db58b19a99bb4da2d2d173",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/iiht_user_assessments_controller.rb",
+      "line": 13,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::IihtUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "6a35aaa1f2077d04af6acd3f1e4cbc127067451bf0db58b19a99bb4da2d2d173",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/iiht_user_assessments_controller.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::IihtUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "6c9a94d05b980b513b721fd692a71bb3c5c97aa7a0a9871dd4b632bd5aa8298c",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/iiht_user_assessments_controller.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::IihtUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "6c9a94d05b980b513b721fd692a71bb3c5c97aa7a0a9871dd4b632bd5aa8298c",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/iiht_user_assessments_controller.rb",
+      "line": 19,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::IihtUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "71796fd5efbff53104a2f27525ec8d9550ce8bd44678100a51d25557f5a48e56",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/core/sheets/create_flat_sheet_view.rb",
+      "line": 21,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE VIEW #{flat_row_view_name} AS #{flat_rows_query}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sheets::CreateFlatSheetView",
+        "method": "call"
+      },
+      "user_input": "flat_row_view_name",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "81cc79ec70880d0afdee70d84b3394b768eed1a536d5e3b88a1ca64873937f98",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/saville_user_assessments_controller.rb",
+      "line": 13,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::SavilleUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "81cc79ec70880d0afdee70d84b3394b768eed1a536d5e3b88a1ca64873937f98",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/saville_user_assessments_controller.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::SavilleUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "8abd345d2d4a0f06e06b5f810ad8ba578779a1a38452a81df9f31fcd075d34ff",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/core/campaigns/compact_completion_status_query.rb",
+      "line": 27,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"            SELECT * FROM crosstab(\\n              'SELECT DISTINCT u.email \\\"Email\\\", u.first_name \\\"First Name\\\", u.last_name \\\"Last Name\\\", a.\\\"name\\\" \\\"Assessment\\\",\\n                CASE\\n                  #{status_case_statement_sql}\\n                END\\n                \\\"Status\\\" from user_assessments ua INNER JOIN assessments a ON a.id = ua.assessment_id INNER JOIN users u ON ua.subject_id = u.id\\n                WHERE campaign_id = #{campaign_id} AND ua.subject_id = ua.evaluator_id',\\n                '#{assessment_names_query.to_sql}'\\n            ) As (\\n              #{column_names}\\n            )\\n\".squish)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Campaigns::CompactCompletionStatusQuery",
+        "method": "query"
+      },
+      "user_input": "status_case_statement_sql",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "912dab81c3cfbe3384936b70a2699c249ee44b16609f94ec31fae5b7da6f80c8",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/saville_user_assessments_controller.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::SavilleUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "912dab81c3cfbe3384936b70a2699c249ee44b16609f94ec31fae5b7da6f80c8",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/saville_user_assessments_controller.rb",
+      "line": 19,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::SavilleUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "961834c98bcc3a5f06b06f70af3e843d148dd3488a5cfcc5c25b432483155027",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/administration/bulk_reports_controller.rb",
+      "line": 36,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(BulkReport.find(params[:id]).private_download_url((params[:index].to_i or 0)))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Administration::BulkReportsController",
+        "method": "download"
+      },
+      "user_input": "BulkReport.find(params[:id]).private_download_url((params[:index].to_i or 0))",
+      "confidence": "High",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "File Access",
+      "warning_code": 16,
+      "fingerprint": "97f8d4efc971b30868cc2a840eca01c9df15edf81fd01a7380dab2cf572ed547",
+      "check_name": "FileAccess",
+      "message": "Model attribute used in file name",
+      "file": "app/jobs/bulk_reports/export_all_job.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
+      "code": "FileUtils.mkdir_p(::BulkReport.create(:user => params[:current_user]).input_dir)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "BulkReports::ExportAllJob",
+        "method": "perform"
+      },
+      "user_input": "::BulkReport.create(:user => params[:current_user])",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "a33accd35de1b22582e13c0a77a1859f066d812ef0aabd3adadf92a1c6b6b47a",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/concerns/ransack_assoc_searchable_fields.rb",
+      "line": 21,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "joins(\"\\n              LEFT OUTER JOIN \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.table_name}\\\" \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name}\\\" ON\\n              \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name}\\\".\\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.active_record_primary_key}\\\" = \\\"#{table_name}\\\".\\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.foreign_key}\\\"\\n            \").where(\"\\\"#{table_name}\\\".\\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.foreign_key}\\\" = ? OR #{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name}.name ILIKE ?\", search_term, \"%#{search_term}%\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "RansackAssocSearchableFields",
+        "method": "add_searchable_assoc_scope"
+      },
+      "user_input": "reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Dangerous Send",
+      "warning_code": 23,
+      "fingerprint": "aa5e7ee8d9c14afd73c6f9ac80cadfdf9258d131a70159578e589418edf47fd8",
+      "check_name": "Send",
+      "message": "User controlled method execution",
+      "file": "app/controllers/api/v2/administration/base_controller.rb",
+      "line": 180,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
+      "code": "send(\"authorize_#{params[:action]}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V2::Administration::BaseController",
+        "method": "pundit_authorize"
+      },
+      "user_input": "params[:action]",
+      "confidence": "High",
+      "cwe_id": [
+        77
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "b018533a5b2c8ce984c6bf1c4b9966a21af6f85313bc18902cb26ac9e15a1953",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/api/v2/administration/base_controller.rb",
+      "line": 52,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V2::Administration::BaseController",
+        "method": "validate_requests_schema"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "b018533a5b2c8ce984c6bf1c4b9966a21af6f85313bc18902cb26ac9e15a1953",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/api/v2/administration/base_controller.rb",
+      "line": 54,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V2::Administration::BaseController",
+        "method": "validate_requests_schema"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "b018533a5b2c8ce984c6bf1c4b9966a21af6f85313bc18902cb26ac9e15a1953",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/api/v2/administration/base_controller.rb",
+      "line": 65,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V2::Administration::BaseController",
+        "method": "validate_requests_schema"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "b018533a5b2c8ce984c6bf1c4b9966a21af6f85313bc18902cb26ac9e15a1953",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/api/v2/administration/base_controller.rb",
+      "line": 67,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V2::Administration::BaseController",
+        "method": "validate_requests_schema"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "b2f973a76ac1527c4497c95dd2caef464b5845b60e289b2d001692f6424fe177",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/concerns/administration/sheet_row_management.rb",
+      "line": 51,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Administration::SheetRowManagement",
+        "method": "create"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "b5991424df50ca34594cfd325b3b330e4aaebfd488133cad026071c8a884e944",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/core/sheets/remove_columns.rb",
+      "line": 17,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "sheet.rows.update_all(\"data = data - ARRAY['#{columns.map do\n ActiveRecord::Base.connection.quote_string(c)\n end.join(\"','\")}']\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sheets::RemoveColumns",
+        "method": "call"
+      },
+      "user_input": "columns.map do\n ActiveRecord::Base.connection.quote_string(c)\n end.join(\"','\")",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "b841a96e196c661b3844f7531fa498c62f3f1e5c323ba69a79b9a4226661aef6",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/concerns/agile_user_result.rb",
+      "line": 21,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AgileUserResult",
+        "method": "update"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "bb786f55a28cc4124b09f4cc8377a036e7aac557def2346e5e966dcdb01a05db",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on model attribute",
+      "file": "lib/imports/assessments/result_import_user_result.rb",
+      "line": 117,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "\"Imports::Assessments::Questions::#{Question.joining do\n block\n end.not_deleted.selecting do\n [id, type, props]\n end.where.has do\n (q.block.assessment_id == assessment.id)\n end.ordering do\n [block.position.asc, position.asc]\n end.group_by(&:id)[qid].first.type}\".constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Imports::Assessments::ResultImportUserResult",
+        "method": "load_imported_items"
+      },
+      "user_input": "Question.joining",
+      "confidence": "Medium",
+      "cwe_id": [
+        470
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "c1645168170d21d46388e54324c6c3e22ad625f1a0af6344412ce1e47212364b",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/core/sheets/create_flat_sheet_view.rb",
+      "line": 19,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"CREATE SCHEMA IF NOT EXISTS #{schema_name}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Sheets::CreateFlatSheetView",
+        "method": "call"
+      },
+      "user_input": "schema_name",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "c77f687b9dc93098cca9e92cbcc15675c8452b226acdba9bf6896c22104c1644",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/administration/assessments/agiles_controller.rb",
+      "line": 26,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:agile).permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Administration::Assessments::AgilesController",
+        "method": "agile_params"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "ccf083c353c0be37c8b6f68b4d4ed57fdb5e6d59e7a09df875e2abea7a4628d1",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/pearson_user_assessments_controller.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::PearsonUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "ccf083c353c0be37c8b6f68b4d4ed57fdb5e6d59e7a09df875e2abea7a4628d1",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/pearson_user_assessments_controller.rb",
+      "line": 19,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::PearsonUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Remote Code Execution",
+      "warning_code": 24,
+      "fingerprint": "d8d3d24f5ab81f04de2a14da6c7e54bb0144ad82b4f87aa4d87245f9e7920638",
+      "check_name": "UnsafeReflection",
+      "message": "Unsafe reflection method `constantize` called on model attribute",
+      "file": "lib/imports/assessments/result_import.rb",
+      "line": 126,
+      "link": "https://brakemanscanner.org/docs/warning_types/remote_code_execution/",
+      "code": "\"Imports::Assessments::Questions::#{Question.joining do\n block\n end.not_deleted.selecting do\n [id, type, props]\n end.where.has do\n (q.block.assessment_id == assessment_id)\n end.ordering do\n [block.position.asc, position.asc]\n end.group_by(&:id)[qid].first.type}\".constantize",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Imports::Assessments::ResultImport",
+        "method": "load_imported_items"
+      },
+      "user_input": "Question.joining",
+      "confidence": "Medium",
+      "cwe_id": [
+        470
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "File Access",
+      "warning_code": 16,
+      "fingerprint": "ea86b598da3f488f6900198f0fdb22c48236345ad56ab36cf99fa00234d3cfbc",
+      "check_name": "FileAccess",
+      "message": "Model attribute used in file name",
+      "file": "app/jobs/bulk_reports/export_all_job.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
+      "code": "FileUtils.rm_rf(::BulkReport.create(:user => params[:current_user]).input_dir)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "BulkReports::ExportAllJob",
+        "method": "perform"
+      },
+      "user_input": "::BulkReport.create(:user => params[:current_user])",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "File Access",
+      "warning_code": 16,
+      "fingerprint": "ea86b598da3f488f6900198f0fdb22c48236345ad56ab36cf99fa00234d3cfbc",
+      "check_name": "FileAccess",
+      "message": "Model attribute used in file name",
+      "file": "app/jobs/bulk_reports/export_all_job.rb",
+      "line": 24,
+      "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
+      "code": "FileUtils.rm_rf(::BulkReport.create(:user => params[:current_user]).input_dir)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "BulkReports::ExportAllJob",
+        "method": "perform"
+      },
+      "user_input": "::BulkReport.create(:user => params[:current_user])",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "f2c3c5ccada7af2bfd939bdd519ff8b1fabd8a75cd49affcf1c239d9c995ddf8",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/concerns/ransack_assoc_searchable_fields.rb",
+      "line": 26,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "joins(\"\\n              LEFT OUTER JOIN \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.table_name}\\\" \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name}\\\" ON\\n              \\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name}\\\".\\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.active_record_primary_key}\\\" = \\\"#{table_name}\\\".\\\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.foreign_key}\\\"\\n            \").where(\"#{reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name}.name ILIKE ?\", \"%#{search_term}%\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "RansackAssocSearchableFields",
+        "method": "add_searchable_assoc_scope"
+      },
+      "user_input": "reflect_on_all_associations.find do\n (a.name == assoc_name)\n end.plural_name",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "f9ef89b1338f08971a9b5842795f50e2515ab2b0e884520eb62020dc150080cc",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped parameter value",
+      "file": "app/views/administration/communications/show.html.slim",
+      "line": 61,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Utility::SanitizeHtml.process(policy_scope(resource_class).find(params[:id]).body)",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "Administration::CommunicationsController",
+          "method": "show",
+          "line": 91,
+          "file": "app/controllers/administration/communications_controller.rb",
+          "rendered": {
+            "name": "administration/communications/show",
+            "file": "app/views/administration/communications/show.html.slim"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "administration/communications/show"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    }
+  ],
+  "updated": "2023-08-30 15:45:16 +0530",
+  "brakeman_version": "6.0.0"
+}

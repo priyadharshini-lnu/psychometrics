@@ -6,6 +6,7 @@ require 'swagger_helper'
 describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:membership) { create(:client_admin_membership) }
   let!(:client) { create(:tenancy) }
+  let!(:include_resource_meta) { 'permissions' }
   let!(:project) { create(:project, parent: membership.client) }
   let!(:superadmin) { create(:superadmin) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
@@ -15,10 +16,12 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
   path '/clients/' do
     get 'Clients List' do
       operationId 'ClientsList'
+
       description 'Fetch Clients list'
       tags 'Clients'
       consumes 'application/json'
       security [basic: []]
+      parameter name: :include_resource_meta, in: :query, required: true
 
       response '200', 'Client list' do
         schema '$ref' => '#/components/schemas/ClientsListResponse'
@@ -35,6 +38,11 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
               project_manager: {
                 id: '1',
                 name: 'John Doe'
+              }
+            },
+            meta: {
+              permissions: {
+                view_licenses: true
               }
             }
           }
@@ -60,6 +68,7 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ClientCreateRequest' }, required: true
+      parameter name: :include_resource_meta, in: :query, required: true
 
       response '201', 'Client Created' do
         schema '$ref' => '#/components/schemas/ClientResponse'
@@ -79,6 +88,11 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
                   type: 'users',
                   id: '100'
                 }
+              }
+            },
+            meta: {
+              permissions: {
+                view_licenses: true
               }
             }
           }
@@ -129,6 +143,7 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
       tags 'Clients'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :include_resource_meta, in: :query, required: true
       parameter name: :client_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ClientUpdateRequest' }, required: true
 
@@ -151,6 +166,11 @@ describe Api::V2::Administration::ClientsController, swagger_doc: 'v2/swagger.js
                   type: 'users',
                   id: '100'
                 }
+              }
+            },
+            meta: {
+              permissions: {
+                view_licenses: true
               }
             }
           }

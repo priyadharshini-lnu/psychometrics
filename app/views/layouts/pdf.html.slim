@@ -13,6 +13,9 @@ html.body-full-height
   body data-locale="#{@selected_locale  || params[:lang] || I18n.locale}"
     = yield
 css:
+  html {
+    font-size: 12px;
+  }
   body[data-locale="ar"] #psychometrics_preview,
   body[data-locale="ar"] #report_preview {
     direction: rtl;

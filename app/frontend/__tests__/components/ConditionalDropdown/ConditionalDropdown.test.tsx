@@ -1,9 +1,7 @@
-import React from 'react'
 import { render, within, fireEvent, waitFor } from '@testing-library/react'
 import { Menu } from 'antd'
 
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { act } from 'react-dom/test-utils'
 
 const singleMenuItem = [{ key: 'export', label: <div>Raw</div> }]
 

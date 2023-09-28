@@ -5,7 +5,7 @@ module Api
     validate_crud_requests Api::V2::DesignSetting::Schema
 
     def project_id
-      @model&.project_id || params[:filter][:project_id_eq]
+      @model&.project_id || params.dig(:filter, :project_id_eq)
     end
   end
 end

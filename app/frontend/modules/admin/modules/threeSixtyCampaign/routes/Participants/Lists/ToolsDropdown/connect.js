@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import {
-  reset as resetCampaign, resetAllNominations, exportCompletionStatuses, rescoreAssessment,
+  reset as resetCampaign, resetAllNominations, exportCompletionStatuses, rescoreAssessment, regenerateReports,
+  exportRawResults,
 } from '~/modules/admin/modules/threeSixtyCampaign/core'
 import { openModal } from '~/modules/admin/core/ui/modals'
 
@@ -11,6 +12,12 @@ export default connect(
     },
   }) => ({ dimensionId }),
   {
-    resetCampaign, resetAllNominations, openModal, exportCompletionStatuses, rescoreAssessment,
+    resetCampaign,
+    resetAllNominations,
+    openModal,
+    exportCompletionStatuses,
+    rescoreAssessment,
+    regenerateReports,
+    exportRawResults,
   },
 )

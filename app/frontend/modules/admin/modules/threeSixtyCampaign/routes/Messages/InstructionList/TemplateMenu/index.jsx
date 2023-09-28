@@ -1,4 +1,3 @@
-import React from 'react'
 import _ from 'lodash'
 import { Menu } from 'antd'
 import settings from '~/modules/admin/modules/threeSixtyCampaign/settings'

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { Admins as ProjectAdmins } from '~/modules/admin/modules/Admins'
 

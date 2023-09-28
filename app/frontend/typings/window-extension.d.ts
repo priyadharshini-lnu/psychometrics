@@ -26,9 +26,9 @@ declare global {
     x_navigation_minimize: (state: string) => null
     $chatwoot: unknnown
     Buffer: unknown
-    htmldiff: (s1?:string | null, s2:string) => string
   }
   interface WindowEventMap {
     'local-storage': CustomEvent
   }
+  const htmldiff: (s1?:string | null, s2:string) => string
 }

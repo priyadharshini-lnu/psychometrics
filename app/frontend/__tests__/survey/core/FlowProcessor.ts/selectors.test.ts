@@ -2,16 +2,17 @@ import {
   getNextElementId, getChildOrNextElementId,
   getElementIdByBlockId, getBlockIds, getQuestionsCount,
   getPrevBlockIds, getPrevQuestionsCount, getProgress,
-  lookForEndOfAssessment, getPossibleBlocks, getPossibleQuestionsCount
+  lookForEndOfAssessment, getPossibleBlocks, getPossibleQuestionsCount,
+  getAllAnsweredQuestions
 } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 const state = {
   initialized: true,
   currentPage: 0,
   allPages: {
-    1: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
-    2: [{ questions: [6, 7] }, { questions: [8] }],
-    3: [{ questions: [9, 10] }],
+    [Symbol.for('1')]: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
+    [Symbol.for('2')]: [{ questions: [6, 7] }, { questions: [8] }],
+    [Symbol.for('3')]: [{ questions: [9, 10] }],
   },
   normalizedTree: {
     0: { type: 'Block', props: { current: '1' } },
@@ -101,9 +102,9 @@ describe('getProgress with multiple block pages', () => {
     initialized: true,
     currentPage: 0,
     allPages: {
-      1: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
-      2: [{ questions: [6, 7] }, { questions: [8] }, { questions: [11] }],
-      3: [{ questions: [9, 10] }],
+      [Symbol.for('1')]: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
+      [Symbol.for('2')]: [{ questions: [6, 7] }, { questions: [8] }, { questions: [11] }],
+      [Symbol.for('3')]: [{ questions: [9, 10] }],
     },
     normalizedTree: {
       0: { type: 'Block', props: { current: '1' } },
@@ -169,10 +170,10 @@ describe('getPossibleBlocks', () => {
     initialized: true,
     currentPage: 0,
     allPages: {
-      1: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
-      2: [{ questions: [6, 7] }, { questions: [8] }, { questions: [11] }],
-      3: [{ questions: [9, 10] }],
-      4: [{ questions: [12, 13] }],
+      [Symbol.for('1')]: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
+      [Symbol.for('2')]: [{ questions: [6, 7] }, { questions: [8] }, { questions: [11] }],
+      [Symbol.for('3')]: [{ questions: [9, 10] }],
+      [Symbol.for('4')]: [{ questions: [12, 13] }],
     },
     normalizedTree: {
       0: { type: 'Block', props: { current: '1' } },
@@ -266,10 +267,10 @@ describe('getPossibleBlocks with truly datasheet condition', () => {
       x: 1,
     },
     allPages: {
-      1: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
-      2: [{ questions: [6, 7] }, { questions: [8] }, { questions: [11] }],
-      3: [{ questions: [9, 10] }],
-      4: [{ questions: [12, 13] }],
+      [Symbol.for('1')]: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
+      [Symbol.for('2')]: [{ questions: [6, 7] }, { questions: [8] }, { questions: [11] }],
+      [Symbol.for('3')]: [{ questions: [9, 10] }],
+      [Symbol.for('4')]: [{ questions: [12, 13] }],
     },
     normalizedTree: {
       0: { type: 'Block', props: { current: '1' } },
@@ -321,10 +322,10 @@ describe('getPossibleBlocks with falsy datasheet condition', () => {
       x: 2,
     },
     allPages: {
-      1: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
-      2: [{ questions: [6, 7] }, { questions: [8] }, { questions: [11] }],
-      3: [{ questions: [9, 10] }],
-      4: [{ questions: [12, 13] }],
+      [Symbol.for('1')]: [{ questions: [1, 2, 3] }, { questions: [4, 5] }],
+      [Symbol.for('2')]: [{ questions: [6, 7] }, { questions: [8] }, { questions: [11] }],
+      [Symbol.for('3')]: [{ questions: [9, 10] }],
+      [Symbol.for('4')]: [{ questions: [12, 13] }],
     },
     normalizedTree: {
       0: { type: 'Block', props: { current: '1' } },
@@ -362,4 +363,50 @@ describe('getPossibleBlocks with falsy datasheet condition', () => {
     expect(getPossibleBlocks({ ...state, currentElement: '2' })).toStrictEqual(['4'])
     expect(getPossibleBlocks({ ...state, currentElement: '2/0' })).toStrictEqual(['4'])
   })
+})
+
+
+test('getAllAnsweredQuestions', () => {
+  const state = {
+    allPages: {
+      [Symbol.for('1')]: [{questions: [1, 2]}, {questions: [3, 4]}],
+      [Symbol.for('3')]: [{questions: [11, 12]}, {questions: [9, 10]}],
+      [Symbol.for('2')]: [{questions: [5, 6]}, {questions: [7, 8]}],
+    },
+    questions: {
+      1: {id: 1},
+      2: {id: 2},
+      4: {id: 4},
+      3: {id: 3},
+      5: {id: 5},
+      6: {id: 6},
+      7: {id: 7},
+      8: {id: 8},
+      9: {id: 9},
+      10: {id: 10},
+      11: {id: 11},
+      12: {id: 12},
+    },
+    results: {
+      1: true,
+      2: true,
+      4: true,
+      3: true,
+      5: true,
+      6: true,
+      7: true,
+      8: true,
+      9: true,
+      10: true,
+      11: true,
+      12: true,
+    }
+  }
+  expect(true).toBe(true)
+
+  expect(getAllAnsweredQuestions(state)).toStrictEqual([
+    {id: 1}, {id: 2}, {id: 3}, {id: 4},
+    {id: 11}, {id: 12}, {id: 9}, {id: 10},
+    {id: 5}, {id: 6}, {id: 7}, {id: 8},
+  ])
 })
