@@ -145,6 +145,10 @@ class User < ApplicationRecord
 
   has_one_time_password(encrypted: true)
 
+  def send_reset_password_instructions
+    super unless disabled?
+  end
+
   def self.send_reset_password_instructions(recoverable)
     recoverable.send_reset_password_instructions if recoverable.persisted?
   end
@@ -202,6 +206,10 @@ class User < ApplicationRecord
 
   def log_attributes
     slice(:id, :email)
+  end
+
+  def active_for_authentication?
+    super && !disabled?
   end
 
   private
