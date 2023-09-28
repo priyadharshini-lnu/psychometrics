@@ -103,7 +103,7 @@ export const AssessmentsContainer = ({
               prevGroup = group
               let userAssessments: UserAssessment[] = []
               if (isAssessmentCenter) {
-                if (workshop.closed) return
+                if (workshop?.closed) return
                 userAssessments = workshopCompleted ? [] : workshopActivities
               } else {
                 userAssessments = _.compact(

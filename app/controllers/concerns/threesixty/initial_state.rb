@@ -45,7 +45,7 @@ module Threesixty::InitialState
           remainingTime: remaining_maintenance_time
         },
         lighthousePrivacyUrl: Settings.privacy_url,
-        privacyPolicyVersion: privacy_policy_version,
+        privacyPolicyVersion: @current_project.current_privacy_policy_version,
         customPrivacyConsentText: custom_privacy_consent_text
       },
       currentUser: serialized_current_user,
@@ -55,12 +55,6 @@ module Threesixty::InitialState
         enabled: @current_project.enable_live_chat
       }
     }
-  end
-
-  def privacy_policy_version
-    return Settings.privacy_policy_version unless @current_project.custom_privacy_consent
-
-    @current_project.custom_privacy_policy_version
   end
 
   def custom_privacy_consent_text

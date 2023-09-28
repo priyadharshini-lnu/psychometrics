@@ -9,10 +9,13 @@ import ReactMarkdown from 'react-markdown'
 import {
   PageHeader as GlintPageHeader,
 } from '~/glint'
-import { getlighthousePrivacyUrl, getprivacyPolicyVersion } from '~/modules/endUser/core/config'
+import {
+  getlighthousePrivacyUrl, getCustomPrivacyConsentText, getprivacyPolicyVersion,
+} from '~/modules/endUser/core/config'
 import styles from './UserAssessment.less'
 import { fetchPolicy, acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
+import { SafeHTML } from '~/components/SafeHTML'
 
 const { I18n } = window
 const { Paragraph } = Typography
@@ -22,6 +25,7 @@ const connector = connect(
   (state: RootState) => ({
     lighthousePrivacyUrl: getlighthousePrivacyUrl(state),
     privacyPolicyVersion: getprivacyPolicyVersion(state),
+    customPrivacyConsentText: getCustomPrivacyConsentText(state),
     policy: state.project.policy,
   }),
   {
@@ -35,7 +39,7 @@ type Props = ConnectedProps<typeof connector> & {
 }
 
 export const PrivacyConsentComponent: FC<Props> = ({
-  privacyPolicyVersion, acceptPolicy, fetchPolicy, policy, onAccept,
+  privacyPolicyVersion, acceptPolicy, fetchPolicy, policy, onAccept, customPrivacyConsentText,
 }) => {
   const [accepted, setAccepted] = useState(false)
 
@@ -65,9 +69,10 @@ export const PrivacyConsentComponent: FC<Props> = ({
             ? (
               <div className={styles.policyContent}>
                 <Paragraph>
-                  <ReactMarkdown>
-                    {policy.content}
-                  </ReactMarkdown>
+                  {customPrivacyConsentText
+                    ? <SafeHTML html={customPrivacyConsentText} config="adminRichText" />
+                    : <ReactMarkdown>{policy.content}</ReactMarkdown>
+                  }
                 </Paragraph>
               </div>
             )

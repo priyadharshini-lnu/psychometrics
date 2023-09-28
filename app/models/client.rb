@@ -185,6 +185,12 @@ class Client < ApplicationRecord
     %i[filterable_fields projects_of resource_disabled search_query has_integration]
   end
 
+  def current_privacy_policy_version
+    return Settings.privacy_policy_version unless custom_privacy_consent?
+
+    custom_privacy_policy_version
+  end
+
   def iiht_config
     integrations.iiht.first&.iiht_config
   end
