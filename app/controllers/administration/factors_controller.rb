@@ -112,7 +112,7 @@ class Administration::FactorsController < Administration::BaseController
     @intial_state = {
       scoringStrategies: Factor.scoring_strategies.map do |key, _|
         { key: key, value: I18n.t("administration.factors.form.scoring_strategies.#{key}") }
-      end,
+      end.sort_by { |strategy| strategy[:value] },
       factor: FactorSerializer.new(resource),
       errors: @form&.errors&.messages,
       factors: resource.dimension&.all_factors&.map { |factor| { key: factor.id, value: factor.name } }
@@ -133,6 +133,7 @@ class Administration::FactorsController < Administration::BaseController
   def resource_params
     params.require(:resource).permit(:id, :name, :description, :icon, :remove_icon, :dimension_id, :scoring_strategy,
                                      :code, :use_percentage, :use_sub_factor_norm_score,
+                                     :scale_min, :scale_max,
                                      external_scoring: %i[type jsonpath],
                                      factors_sub_factors_attributes:
                                       %i[id weight _destroy sub_factor_id position predicate value])

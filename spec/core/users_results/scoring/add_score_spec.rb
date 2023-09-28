@@ -519,4 +519,46 @@ describe UsersResults::Scoring::AddScore do
       factor2.id.to_s => { 'score' => '5', 'norm_score' => nil }
     )
   end
+
+  it 'scoring_strategy: :questions_percentage' do
+    factor1 = create(:factor, scoring_strategy: :questions_percentage, scale_min: 1, scale_max: 5)
+    factor2 = create(:factor, scoring_strategy: :questions_percentage, scale_min: 1, scale_max: 5)
+
+    factor_hash = {
+      factor1.id => { factor: factor1, sub_factor_hash: {} },
+      factor2.id => { factor: factor2, sub_factor_hash: {} }
+    }
+
+    factor_ids = factor_hash.keys
+
+    scoring = {
+      factor1.id.to_s => {
+        'results' => [
+          { 'value' => [2, 3, 4], 'question_id' => 1, 'max_value' => 15, 'value_sum' => 9 },
+          { 'value' => 5, 'question_id' => 2, 'max_value' => 5, 'value_sum' => 5 },
+          { 'value' => 2, 'question_id' => 3, 'max_value' => 5, 'value_sum' => 2 }
+        ]
+      },
+      factor2.id.to_s => { 'results' => [] }
+    }
+    result = described_class.call!(
+      factor_hash, factor_ids, scoring, five_scale_norm, {}, {}, {
+        factor1.id => 3,
+        factor2.id => 0
+      }
+    )
+
+    expect(result).to eq(
+      factor1.id.to_s => {
+        'results' => [
+          { 'value' => [2, 3, 4], 'question_id' => 1, 'max_value' => 15, 'value_sum' => 9 },
+          { 'value' => 5, 'question_id' => 2, 'max_value' => 5, 'value_sum' => 5 },
+          { 'value' => 2, 'question_id' => 3, 'max_value' => 5, 'value_sum' => 2 }
+        ],
+        'score' => Utility::Number.scale((9 + 5 + 2) / (15 + 5 + 5).to_f, 0, 1, 1, 5).round(2),
+        'norm_score' => nil
+      },
+      factor2.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil }
+    )
+  end
 end

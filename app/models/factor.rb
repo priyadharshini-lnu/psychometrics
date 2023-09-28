@@ -37,7 +37,8 @@ class Factor < ApplicationRecord
     sub_factors_conditional_average: 3,
     questions_sum: 4,
     sub_factor_questions_sum: 5,
-    external_score: 6
+    external_score: 6,
+    questions_percentage: 7
   }, _suffix: :strategy
 
   mount_uploader :icon, Public::ImageUploader

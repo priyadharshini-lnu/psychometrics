@@ -128,7 +128,7 @@ CREATE VIEW c_11492.accesssheet AS
     sheet_rows.email AS "Email",
     (sheet_rows.data ->> 'Organization'::text) AS "Organization"
    FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 549)
+  WHERE (sheet_rows.sheet_id = 544)
   ORDER BY sheet_rows.id;
 
 
@@ -1815,7 +1815,9 @@ CREATE TABLE public.factors (
     code character varying,
     use_percentage boolean DEFAULT false,
     use_sub_factor_norm_score boolean,
-    external_scoring jsonb DEFAULT '[]'::jsonb
+    external_scoring jsonb DEFAULT '[]'::jsonb,
+    scale_min double precision,
+    scale_max double precision
 );
 
 
@@ -10845,6 +10847,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230608150754'),
 ('20230918133925'),
 ('20230918143010'),
-('20230919070332');
+('20230919070332'),
+('20230927131437');
 
 

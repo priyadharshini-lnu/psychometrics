@@ -34,7 +34,8 @@ export class Scoring extends Component {
   change = (scale, choice, e) => {
     const { scoring } = this.props
     const value = Utils.parseFloat(e.currentTarget ? e.currentTarget.value : e)
-    scoring.changeValue(scale, choice, value)
+
+    scoring.changeValue(scale, choice, isNaN(value) ? undefined : value)
     this.forceUpdate()
   }
 
@@ -82,7 +83,7 @@ export class Scoring extends Component {
     _.times(props.choices, ((choice) => {
       const rows = scoring.props.filter(s => s.choice === choice)
       multilineValue.push(_.times(props.scalePoints,
-        (scale => rows.find(s => s.scale === scale)?.value || '')).join(' '))
+        (scale => rows.find(s => s.scale === scale)?.value)).join(' '))
     }))
 
     return (

@@ -2624,6 +2624,7 @@ en:
         scoring_strategies:
           external_score: External Score
           questions: Questions (Average)
+          questions_percentage: Questions (SUM / MAX Total)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
           sub_factor_questions_sum: Questions of other Factors (SUM)
@@ -2638,6 +2639,7 @@ en:
         scoring_strategies:
           external_score: External Score
           questions: Questions (Average)
+          questions_percentage: Questions (SUM / MAX Total)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
           sub_factor_questions_sum: Questions of other Factors (SUM)
@@ -2670,6 +2672,7 @@ en:
         scoring_strategies:
           external_score: External Score
           questions: Questions (Average)
+          questions_percentage: Questions (SUM / MAX Total)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
           sub_factor_questions_sum: Questions of other Factors (SUM)

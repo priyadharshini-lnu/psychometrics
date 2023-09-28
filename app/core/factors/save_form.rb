@@ -13,11 +13,14 @@ module Factors
     attribute :use_percentage, Boolean
     attribute :use_sub_factor_norm_score, Boolean
     attribute :external_scoring, Array
+    attribute :scale_min, Float
+    attribute :scale_max, Float
 
     validates :name, presence: true
     validates :name, length: { maximum: 100 }, allow_blank: true
     validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
     validate :avoid_cyclic_references
+    validate :scale_min_max
 
     def avoid_cyclic_references
       return true unless id
@@ -30,6 +33,13 @@ module Factors
           errors.add(:factors_sub_factors_attributes, [sf.id, 'there is cyclic reference'])
         end
       end
+    end
+
+    def scale_min_max
+      return true if scale_min.blank? && scale_max.blank?
+      return errors.add(:scale_min, 'both should be filled or empty') if scale_min.blank? ^ scale_max.blank?
+
+      errors.add(:scale_min, 'must be less than scale_max') if scale_min >= scale_max
     end
   end
 end

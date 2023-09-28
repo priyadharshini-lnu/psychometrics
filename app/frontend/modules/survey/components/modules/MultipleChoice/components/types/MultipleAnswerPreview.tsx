@@ -204,6 +204,7 @@ const NotApplicableTextChoice: FC<NotApplicableTextChoiceProps> = ({
     }`}
   >
     <label className={`${styles.label} ${styles.labelButton}`}>
+      <span className={cs('fa fa-check', styles.checkIcon)} />
       <input
         type="checkbox"
         className={styles.input}
