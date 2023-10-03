@@ -129,6 +129,7 @@ const HANDLERS = {
       relationships: data.relationships,
       relationship: result.relationship,
       isAnonymousAssessment: data.isAnonymousAssessment,
+      allowMultipleResponses: data.allow_multiple_responses,
       readOnly: data.readOnly,
       mediaUrl: resultsUrl,
       resultsUrl,

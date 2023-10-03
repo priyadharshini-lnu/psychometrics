@@ -215,6 +215,7 @@ export interface InitData {
   data_sheet_columns: []
   relationships: string[]
   isAnonymousAssessment: boolean
+  allow_multiple_responses: boolean
   readOnly: boolean
   enable_back: boolean
   enable_progress: boolean

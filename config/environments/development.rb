@@ -94,6 +94,7 @@ Rails.application.configure do
   config.action_cable.allow_same_origin_as_host = true
   Rails.application.config.action_controller.forgery_protection_origin_check = false
   config.action_dispatch.default_headers['Access-Control-Allow-Origin'] = '*'
+  config.action_dispatch.cookies_same_site_protection = :strict
 
   # Setting nil to allow any hosts on develop
   config.hosts = nil

@@ -727,6 +727,7 @@ en:
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       rescore: Rescore
+      submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
     audio_response:
       pause: Pause
@@ -2922,10 +2923,12 @@ en:
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
   universal_links:
+    allow_multiple_respones: Allow users to submit multiple responses
     close: Close
     deactivate_link: Deactivate Link
     png: PNG
     regenerate_link: Regenerate Link
+    successfully_updated: Successfully updated
     svg: SVG
   update_profile:
     cancel: Cancel

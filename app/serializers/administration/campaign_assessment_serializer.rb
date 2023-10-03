@@ -5,7 +5,7 @@ module Administration
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_id, :enable_universal_links,
                :universal_link, :norms, :is_external, :assessor_form_name, :assessor_form_id, :permissions,
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
-               :prework
+               :prework, :allow_multiple_responses
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, :id, to: :assessor_form, prefix: true, allow_nil: true

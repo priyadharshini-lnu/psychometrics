@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {
-  deactivateUniversalLink, regenerateUniversalLink,
+  deactivateUniversalLink, regenerateUniversalLink, toggleMultipleResponses,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 
 export default connect(
@@ -9,5 +9,6 @@ export default connect(
   {
     deactivateUniversalLink,
     regenerateUniversalLink,
+    toggleMultipleResponses,
   },
 )

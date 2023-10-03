@@ -14,6 +14,7 @@ import styles from './styles.less'
 
 const connector = connect(({ preview }: RootState) => ({
   isAnonymousAssessment: preview.isAnonymousAssessment,
+  allowMultipleResponses: preview.allowMultipleResponses,
   dashboardUrl: preview.dashboardUrl,
   dbResult: preview.dbResult,
   I18n: getI18n(preview),
@@ -38,6 +39,7 @@ const EndPage: FC<Props> = ({
   showScoringOnEndPage,
   endOfAssessmentElementProps,
   otherPendingAssessmentCount,
+  allowMultipleResponses,
 }) => {
   const location = useLocation()
   const history = useHistory()
@@ -78,6 +80,19 @@ const EndPage: FC<Props> = ({
                 {I18n.t('assessments.actions.goto_dashboard')}
               </a>
             </>
+          )}
+          {isAnonymousAssessment && allowMultipleResponses && (
+            <form method="post" action={location.pathname}>
+              <input type="hidden" name="_method" value="DELETE" />
+              <input
+                type="hidden"
+                name="authenticity_token"
+                value={document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') as string}
+              />
+              <a href="#" onClick={e => (e.currentTarget.parentNode as HTMLFormElement).submit()}>
+                {I18n.t('assessments.actions.submit_another_response')}
+              </a>
+            </form>
           )}
         </Space>
       </div>

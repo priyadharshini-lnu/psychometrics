@@ -33,6 +33,7 @@ exports[`initializing base assessment init action should init assessment data: i
         },
       ],
     },
+    "allowMultipleResponses": undefined,
     "assessmentCategory": undefined,
     "assessmentTimedOut": false,
     "backButtonPressed": false,

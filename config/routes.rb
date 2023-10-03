@@ -259,6 +259,7 @@ Rails.application.routes.draw do
 
         resources :universal_links, only: %i[show update destroy] do
           member do
+            put :toggle_multiple_responses
             post :activate
           end
         end
@@ -927,6 +928,7 @@ Rails.application.routes.draw do
       get :dashboard, to: 'users#dashboard'
       post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
+      delete 'anonym/:assessment_key', to: 'anonyms#restart', as: :anonym_restart
       get 'anonym/error', to: 'anonyms#error'
 
       get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect

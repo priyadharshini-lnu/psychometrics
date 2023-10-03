@@ -18,6 +18,12 @@ module Administration
         render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
       end
 
+      def toggle_multiple_responses
+        campaign_assessment = campaign.campaign_assessments.find_by(assessment_id: assessment.id)
+        campaign_assessment.toggle!(:allow_multiple_responses)
+        render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
+      end
+
       def update
         campaign_assessment = ::Assessments::UniversalLink::Generate.call!(campaign, assessment)
         render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer

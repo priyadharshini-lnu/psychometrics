@@ -148,6 +148,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         external_config
         campaign_assessment_id
         prework
+        allow_multiple_responses
       ]
     )
     expect(assessment_response).to include({
