@@ -12,7 +12,7 @@ module Scoring
           template['scale'] == answer['scale'] && template['choice'] == answer['choice']
         end
         if object
-          values << object['value'] if object['value']
+          values << object['value'].to_f if object['value']
           options << { choice: answer['choice'], value: object['value'] }
         end
       end
@@ -34,7 +34,7 @@ module Scoring
         choice_values = templates.filter_map do |template|
           next if question.props['scalePoints'] <= template['scale'].to_i
 
-          template['value']
+          template['value'].to_f
         end
         if question.props['answersType'] == 'MultipleAnswer'
           choice_values.sum

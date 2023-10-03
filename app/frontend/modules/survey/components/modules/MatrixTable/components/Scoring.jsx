@@ -69,7 +69,9 @@ export class Scoring extends Component {
 
     _.times(props.choices, (choice) => {
       _.times(props.scalePoints, (scale) => {
-        scoring.changeValue(scale, choice, vals[choice]?.[scale])
+        const val = vals[choice]?.[scale]
+        const floatVal = Utils.isNumeric(val) ? Utils.parseFloat(val) : ''
+        scoring.changeValue(scale, choice, floatVal)
       })
     })
 

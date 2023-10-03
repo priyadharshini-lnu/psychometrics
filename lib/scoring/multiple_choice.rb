@@ -8,7 +8,7 @@ module Scoring
       result['answers']&.each do |answer|
         if answer['value'] && result['not_applicable'] != true
           object = scoring_template.find { |template| template['index'] == answer['index'] }
-          values << object['value'] if object && object['value']
+          values << object['value'].to_f if object && object['value']
         end
       end
       value = values.empty? ? nil : values.sum.to_f / values.size
@@ -25,7 +25,7 @@ module Scoring
         next if question.props['choices'] <= template['index'].to_i
         next if result['not_applicable'] == true
 
-        template['value']
+        template['value'].to_f
       end
       if question.props['type'] == 'MultipleAnswer'
         max_values.sum
