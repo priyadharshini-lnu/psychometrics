@@ -15,8 +15,17 @@ module Api
           end
         end
 
+        def self.create_request
+          json_api_attributes do
+            nil
+          end
+        end
+
         def self.relationships(_)
-          [{ name: :user, resource: :users, relationship: :one }]
+          [
+            { name: :user, resource: :users, relationship: :one },
+            { name: :workshop, resource: :workshops, relationship: :one }
+          ]
         end
       end
     end

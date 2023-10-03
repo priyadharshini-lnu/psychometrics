@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { PlusOutlined } from '@ant-design/icons'
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
@@ -16,6 +17,7 @@ import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
 import { EditSubjectDrawer } from './EditSubjectDrawer'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { SafeHTML } from '~/components/SafeHTML'
+import { AddSubjectForm } from './AddSubjectForm'
 
 const { I18n } = window
 const { Text } = Typography
@@ -62,10 +64,11 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
     responseType: WorkshopSubjectTR,
     basePath: `campaigns/${campaignId}/workshops/${id}/`,
     apiConfig: {
-      include: ['user'],
+      include: ['user', 'workshop'],
       include_meta: ['permissions'],
       fields: {
         users: ['id', 'full_name', 'email'],
+        workshops: ['id'],
       },
     },
   }
@@ -104,6 +107,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
   const [openForm, setOpenForm] = useState(false)
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
   const { memberAction } = useResources('workshops', { })
+  const [openSubjectForm, setOpenSubjectForm] = useState(false)
 
   const toggleSelectedSubject = (checked, subject) => {
     if (checked) {
@@ -136,6 +140,15 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
             {I18n.t('administration.scheduling.schedule_assessments')}
           </Button>
         )}
+        <Button
+          disabled={!resource.meta.permissions?.create}
+          type="primary"
+          onClick={() => setOpenSubjectForm(true)}
+        >
+          <PlusOutlined />
+          {I18n.t('administration.scheduling.add_subject')}
+        </Button>
+
       </Resource.Filter>
       <Resource.Table pagination>
         <Resource.Column
@@ -250,6 +263,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
         onClose={() => setOpenForm(false)}
         onSave={updateSubjects}
       />
+      {openSubjectForm && (<AddSubjectForm close={() => setOpenSubjectForm(false)} />)}
     </>
   )
 }

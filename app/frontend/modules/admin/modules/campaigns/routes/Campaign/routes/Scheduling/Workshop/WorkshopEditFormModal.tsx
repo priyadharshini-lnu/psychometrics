@@ -113,7 +113,11 @@ export const WorkshopEditFormModal: FC<Props> = ({
               label="Meeting Link"
               name="meetingLink"
               rules={[{ required: true },
-                { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }]}
+                { type: 'url', message: I18n.t('administration.scheduling.errors.invalid_url') },
+                {
+                  pattern: /^https:\/\/(.*)/,
+                  message: I18n.t('administration.scheduling.errors.meeting_link_https'),
+                }]}
             >
               <Input />
             </Form.Item>

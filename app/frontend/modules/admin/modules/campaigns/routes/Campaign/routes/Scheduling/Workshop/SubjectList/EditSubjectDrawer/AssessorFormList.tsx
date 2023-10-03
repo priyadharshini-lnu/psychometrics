@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Table, Button, message, Tag, Space,
 } from 'antd'
@@ -8,8 +7,6 @@ import moment from 'moment'
 
 import { ResourceAvatar } from '~/glint'
 import { PROGRESS_STATUSES } from './EditSubjectDrawer'
-
-import styles from './EditSubjectDrawer.less'
 
 const { I18n } = window
 const { Column } = Table
@@ -52,24 +49,21 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
     />
     <Column
       title={I18n.t('common.column.meeting_link')}
-      dataIndex="meetingLinkUrl"
-      render={link => (
+      dataIndex="meetingLink"
+      render={meetingLink => (
         <>
-          {link ? (
-            <div className={styles.meetingLink}>
-              <span style={{ whiteSpace: 'nowrap' }}>{link}</span>
+          {meetingLink ? (
+            <Space>
+              <a href={meetingLink} target="_blank" rel="noreferrer">
+                {I18n.t('administration.scheduling.info.join_meeting')}
+              </a>
               <CopyToClipboard
-                text={link}
-                onCopy={() => message.info(
-                  I18n.t('administration.scheduling.subjects.copy_link_msg'),
-                )}
+                text={meetingLink}
+                onCopy={() => message.info(I18n.t('common.text.copied'))}
               >
-                <Button
-                  type="text"
-                  icon={<CopyOutlined />}
-                />
+                <CopyOutlined />
               </CopyToClipboard>
-            </div>
+            </Space>
           ) : null}
         </>
       )}
@@ -85,7 +79,7 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
     />
     <Column
       title={I18n.t('common.column.linked_activities')}
-      dataIndex="activities"
+      dataIndex="linkedActivity"
     />
     <Column
       title=""

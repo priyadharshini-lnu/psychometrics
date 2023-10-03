@@ -7,7 +7,7 @@ module Administration
         attributes :id, :name, :user_assessment_id, :status, :schedule_time, :meeting_link, :linked_activity, :assessor
 
         delegate :name, to: :assessment, allow_nil: true
-        delegate :status, :schedule_time, :meeting_link, to: :user_assessment, allow_nil: true
+        delegate :status, :schedule_time, to: :user_assessment, allow_nil: true
         delegate :id, to: :user_assessment, prefix: true, allow_nil: true
 
         def id
@@ -25,10 +25,15 @@ module Administration
         end
 
         def linked_activity
-          CampaignAssessment.find_by(
-            assessor_form_id: object.assessment_id,
-            campaign_id: object.campaign_id
-          )&.assessment&.name
+          object.assessment.linked_assessment&.name
+        end
+
+        def subject_linked_activity
+          user_assessment&.linked_subject_user_assessment&.name
+        end
+
+        def meeting_link
+          user_assessment&.linked_subject_user_assessment&.real_meeting_link
         end
 
         private

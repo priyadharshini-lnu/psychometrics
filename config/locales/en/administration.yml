@@ -3844,6 +3844,7 @@ en:
           success_message: Assessment Center subject %{subject_name}.
       add_activity: Add Activity
       add_assessment_center: Add Assessment Center
+      add_subject: Add subject
       assessment_center_form:
         assessor_ids_label: Assessors
         back: Back
@@ -3887,6 +3888,7 @@ en:
         no_show: No Show
         no_status: No Status
         on_time: On Time
+      campaign_participants: Campaign participants
       columns:
         activity: Activity
         assessor: Assessor
@@ -3895,6 +3897,7 @@ en:
         campaign_name: Campaign Name
         duration: Duration
         managers: Mangers
+        meeting_link: Meeting Link
         name: Name
         participants: Participants
         prework: Prework
@@ -3913,6 +3916,10 @@ en:
         last_month: Last month
         last_week: Last week
         today: Today
+      errors:
+        date_required: Please select a date
+        invalid_url: Invalid URL format
+        meeting_link_https: Meeting link must start with "https://"
       id: ID
       info:
         assessors: Assessors
@@ -3947,6 +3954,7 @@ en:
         late_rescheduled: Late Rescheduled
         rescheduled: Rescheduled
         scheduled: Scheduled
+      search_participant: Search campaign participants
       status:
         completed: Completed
         dropped_out: Dropped Out
@@ -3976,6 +3984,7 @@ en:
         meeting_link_custom: Custom
         meeting_link_internal: Internal
         meeting_link_none: None
+        meeting_link_title: Meeting Link
         no_change: No Change
         override_existing: Override existing schedules for subjects
         preworks: Prework
@@ -4615,3 +4624,6 @@ en:
       statuses:
         closed: Closed
         open: Open
+    workshop_subjects:
+      errors:
+        update_assessor_for_failure: Meeting details cannot be added as there is no linked subject activity.

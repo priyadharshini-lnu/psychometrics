@@ -58,11 +58,25 @@ module WorkshopSubjects
         evaluator_id: assessment_data[:assessor][:id],
         relationship_id: Relationship.assessor_relationship.id
       )
+
+      linked_subject_user_assessment = user_assessment.linked_subject_user_assessment
+
+      if (assessment_data[:meeting_link] || assessment_data[:meeting_link_type]) && linked_subject_user_assessment.nil?
+        return broadcast :error, [
+          {
+            assessor_forms: I18n.t('administration.workshop_subjects.errors.update_assessor_for_failure')
+          }
+        ]
+      end
+
       user_assessment.schedule_time = assessment_data[:schedule_time]
-      user_assessment.meeting_link = assessment_data[:meeting_link]
-      user_assessment.meeting_type = assessment_data[:meeting_link_type]
       user_assessment.users_result = UsersResult.create! if user_assessment.users_result.blank?
       user_assessment.save!
+
+      user_assessment.linked_subject_user_assessment&.update!(
+        meeting_link: assessment_data[:meeting_link],
+        meeting_type: assessment_data[:meeting_link_type]
+      )
     end
 
     def campaign_assessor_assessment(assessment_data)

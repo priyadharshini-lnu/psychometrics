@@ -51,6 +51,13 @@ export const EditableWorkshopSubjectTR = t.type({
       photoUrl: t.union([t.string, t.null]),
     }),
     t.undefined]),
+  workshop: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+      startTime: t.string,
+    }),
+    t.undefined]),
   meta: t.type({
     assessors: t.array(t.type({
       id: t.string,
@@ -70,6 +77,9 @@ export const Schema = {
   relationships: {
     user: {
       type: 'users',
+    },
+    workshop: {
+      type: 'workshops',
     },
   },
 }

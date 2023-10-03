@@ -149,7 +149,7 @@ subject_assessor_assessments" do
             'status' => user_assessment.status,
             'schedule_time' => user_assessment.schedule_time,
             'meeting_link' => user_assessment.meeting_link,
-            'linked_activity' => campaign_assessment.assessment.name,
+            'linked_activity' => campaign_assessment.assessment.linked_assessment&.name,
             'assessor' => {
               'id' => user_assessment.evaluator.id.to_s,
               'name' => user_assessment.evaluator.name,

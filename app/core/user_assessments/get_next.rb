@@ -10,6 +10,8 @@ module UserAssessments
     end
 
     def call
+      return broadcast(:ok, nil) unless user_assessment.campaign_user
+
       groups = campaign.campaign_assessment_groups.order(:position).includes(:campaign_assessments)
       ungroupd = campaign.campaign_assessments.ungrouped.order(:position).map(&:assessment_id)
       groupd_assessments = groups.reduce([]) do |ids, group|

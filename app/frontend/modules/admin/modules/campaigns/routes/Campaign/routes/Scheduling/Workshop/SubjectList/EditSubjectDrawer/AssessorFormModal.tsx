@@ -6,6 +6,7 @@ import moment from 'moment'
 import { Store } from 'antd/lib/form/interface'
 
 import { Rule } from 'antd/lib/form'
+import { mergeDateAndtime } from '~/utils/time'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import styles from './EditSubjectDrawer.less'
 
@@ -16,6 +17,7 @@ type OwnProps = {
   initialFormData?: Store
   assessors?: Store[],
   assessments?: Store[],
+  workshop?: Store,
   close: () => void
 }
 
@@ -23,10 +25,11 @@ type Props = OwnProps
 
 export const AssessorFormModal:FC<Props> = (props) => {
   const {
-    close, onFormFinish, initialFormData, assessments, assessors,
+    close, onFormFinish, initialFormData, assessments, assessors, workshop,
   } = props
   const [assessorFormInstance] = Form.useForm()
   const [, setFields] = useState({})
+  const [selectedAssessment, setSelectedAssessment] = useState(initialFormData)
 
   const submitForm = () => {
     assessorFormInstance.submit()
@@ -67,7 +70,13 @@ export const AssessorFormModal:FC<Props> = (props) => {
 
   const meetingLinkType = assessorFormInstance.getFieldValue('meetingLinkType')
   const meetingLinkFieldRules: Rule[] = meetingLinkType === 'custom'
-    ? [{ required: true }, { type: 'url' }, { pattern: /^https?:\/\/(.*)/ }] : [{ required: true }]
+    ? [{ required: true }, {
+      type: 'url',
+      message: I18n.t('administration.scheduling.errors.invalid_url'),
+    }, {
+      pattern: /^https:\/\/(.*)/,
+      message: I18n.t('administration.scheduling.errors.meeting_link_https'),
+    }] : [{ required: true }]
 
   return (
     <Modal
@@ -95,6 +104,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
         <Form.Item rules={[{ required: true }]} label="Assessment" name="name">
           <Select
             disabled={initialFormData?.userAssessmentId}
+            onChange={value => setSelectedAssessment(assessments?.filter(assessment => assessment.id === value)[0])}
           >
             {assessments?.map(assessment => (
               <Select.Option
@@ -131,15 +141,27 @@ export const AssessorFormModal:FC<Props> = (props) => {
             defaultValue={
               initialFormData?.scheduleTime ? moment(initialFormData.scheduleTime) : undefined
             }
+            onChange={(value) => {
+              const scheduleTimeWithWorkshopDate = mergeDateAndtime(
+                moment(workshop?.startTime), value, workshop?.timezone,
+              )
+              assessorFormInstance.setFieldsValue({ scheduleTime: scheduleTimeWithWorkshopDate })
+            }}
           />
         </Form.Item>
-        <Form.Item className="mb-1" label="Meeting Link" name="meetingLinkType">
-          <Radio.Group>
-            <Radio value="none">{I18n.t('administration.scheduling.subjects.meeting_link_none')}</Radio>
-            <Radio value="internal">{I18n.t('administration.scheduling.subjects.internal')}</Radio>
-            <Radio value="custom">{I18n.t('administration.scheduling.subjects.meeting_link_custom')}</Radio>
-          </Radio.Group>
-        </Form.Item>
+        {selectedAssessment?.linkedActivity === selectedAssessment?.subjectLinkedActivity && (
+          <Form.Item
+            className="mb-1"
+            label={I18n.t('administration.scheduling.subjects.meeting_link_title')}
+            name="meetingLinkType"
+          >
+            <Radio.Group>
+              <Radio value="none">{I18n.t('administration.scheduling.subjects.meeting_link_none')}</Radio>
+              <Radio value="internal">{I18n.t('administration.scheduling.subjects.internal')}</Radio>
+              <Radio value="custom">{I18n.t('administration.scheduling.subjects.meeting_link_custom')}</Radio>
+            </Radio.Group>
+          </Form.Item>
+        )}
         {assessorFormInstance.getFieldValue('meetingLinkType')
         && assessorFormInstance.getFieldValue('meetingLinkType') === 'custom' ? (
           <Form.Item

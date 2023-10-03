@@ -2,7 +2,7 @@ import { useEffect, useState, FC } from 'react'
 import _ from 'lodash'
 import moment, { Moment } from 'moment'
 import {
-  Drawer, Table, Space, Row, Col, Typography, Form, Select,
+  Drawer, Table, Space, Row, Col, Typography, Form, Select, Alert,
   Button, Divider, Skeleton,
 } from 'antd'
 import {
@@ -30,6 +30,14 @@ import styles from './EditSubjectDrawer.less'
 const connector = connect(null, {
   openModal,
 })
+
+interface Errors {
+  base: [{
+    title: {
+      assessorForms: string,
+    }
+  }]
+}
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type OwnProps = {
@@ -64,6 +72,8 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   userId,
 }) => {
   const [, setFields] = useState({})
+  const [errors, setErrors] = useState<Errors>()
+  const [opened, setOpened] = useState(false)
   const [statusFormInstance] = Form.useForm()
 
   const { campaignId } = useParams<{ campaignId: string }>()
@@ -73,7 +83,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     {
       basePath: `campaigns/${campaignId}/workshops/${id}/`,
       apiConfig: {
-        include: ['user'],
+        include: ['user', 'workshop'],
         include_resource_meta: ['assessor_assessments', 'assessors'],
       },
     },
@@ -151,6 +161,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   useEffect(() => {
     if (open && subjectId) {
+      setOpened(open)
       fetchSingle({ id: subjectId })
       fetchAssessments()
       fetchAssessorAssessments(
@@ -171,6 +182,8 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   }
 
   const handleClose = () => {
+    setErrors(undefined)
+    setOpened(false)
     onClose()
   }
 
@@ -202,6 +215,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     openModal('AssessorFormModal', {
       initialFormData: { ...data, scheduleTime: moment(data.scheduleTime || Date.now()) },
       assessors: workshopSubject?.meta.assessors,
+      workshop: workshopSubject?.workshop,
       assessments: workshopSubject?.meta.assessorAssessments,
     })
   }
@@ -231,8 +245,13 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       action: 'update_subject_details_and_assessments',
       method: 'post',
       body: { ...subjectData, ...statusValues },
-    }).then(() => {
-      onClose()
+    }).catch((e) => {
+      setErrors(e)
+      setOpened(true)
+    }).then((response) => {
+      if (response === 'ok') {
+        setOpened(false)
+      }
     })
   }
 
@@ -342,7 +361,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         footer={footer}
         width="80%"
         title={title}
-        open={open}
+        open={opened}
         onClose={handleClose}
         destroyOnClose
       >
@@ -352,6 +371,14 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
           <Title className="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessments')}</Title>
           {assessmentsTable}
           <Title className="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessor_forms')}</Title>
+          {errors && errors.base && errors.base.length > 0 && (
+            <Alert
+              message={errors.base.map(
+                error => error?.title[0].assessor_forms,
+              )}
+              type="error"
+            />
+          )}
           {assessorAssessmentsTable}
           {!workshopSubjectDetailsLoading ? (
             <Button onClick={() => openModal(
@@ -359,6 +386,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
               {
                 assessors: workshopSubject?.meta.assessors,
                 assessments: workshopSubject?.meta.assessorAssessments,
+                workshop: workshopSubject?.workshop,
               },
             )}
             >
