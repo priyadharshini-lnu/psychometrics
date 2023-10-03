@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
+  extend Mobility
+
   include Copyable
   include RansackSearchableFields
   include SoftDelete
@@ -87,7 +89,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :highlights, dependent: :destroy
   has_many :norms, through: :dimension
   has_many :communications, dependent: :destroy
-  has_many :translations, as: :resource, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :campaign_templates, dependent: :destroy
 
@@ -148,6 +149,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :icon, :poster
 
+  translates :name, :description, :timing
+
   def attachment_storage_path(attribute_name, filename)
     "public/assessment/#{attribute_name}/#{filename}"
   end
@@ -172,6 +175,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :with_category, lambda { |category|
     where(category: category)
   }
+
+  after_commit :sync_translated_columns, on: %i[update create]
 
   def has_external_norm?
     saville? || pearson?
@@ -290,6 +295,16 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def log_attribute_for_delete
     slice(:name)
+  end
+
+  def sync_translated_columns
+    Mobility.with_locale(I18n.default_locale) do
+      if name_before_type_cast != name ||
+         description_before_type_cast != description ||
+         timing_before_type_cast != timing
+        update_columns(name:, description:, timing:)
+      end
+    end
   end
 
   def init_defaults

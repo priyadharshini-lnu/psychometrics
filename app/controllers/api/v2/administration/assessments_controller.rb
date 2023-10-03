@@ -30,6 +30,25 @@ module Api
       jsonapi_render json: resource
     end
 
+    def fetch_translations
+      locale = params[:locale]
+      object = Mobility.with_locale(locale) do
+        { name: resource.name, description: resource.description, timing: resource.timing, locale: locale }
+      end
+
+      render json: object
+    end
+
+    def update_translations
+      attrs = params[:data][:attributes]
+      locale = attrs[:locale]
+      Mobility.with_locale(locale) do
+        resource.update!(name: attrs[:name], description: attrs[:description], timing: attrs[:timing])
+      end
+
+      jsonapi_render json: resource
+    end
+
     def copy
       result = ::Assessments::CopyAssessment.call!(resource.id, current_user)
       jsonapi_render json: result[:assessment]

@@ -178,7 +178,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<R> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([fetchResourceName, id, action, apiConfig || {}])
+        const newApiConfig = _.merge({}, apiConfig, humps.decamelizeKeys(body || {}))
+        response = await client.fetch<R>([fetchResourceName, id, action, newApiConfig || {}])
       } else {
         response = await client.mutate<R>(
           [resourceName, id, action, apiConfig || {}], humps.decamelizeKeys(body || {}),

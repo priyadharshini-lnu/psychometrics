@@ -1229,6 +1229,8 @@ Rails.application.routes.draw do
             post :toggle_archive
             post :copy
             post :restore
+            get :fetch_translations
+            post :update_translations
             scope module: :assessments do
               resource :uploads, only: %i[update]
             end

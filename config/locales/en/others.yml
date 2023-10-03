@@ -744,6 +744,8 @@ en:
         success_message: Asessment %{name} restored successfully
       show_usage: Show Usage
       submit_evaluation: Submit Evaluation
+      translations:
+        success_message: The asessment translations updated
       unarchived:
         success_message: Asessment %{name} unarchived successfully
     active: Active
