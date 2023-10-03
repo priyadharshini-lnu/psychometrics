@@ -13,7 +13,7 @@ describe Workshops::Booking::RescheduleSlot do
     create(:workshop_invited_subject, user: user, workshop_invite: workshop_invite, status: 'accepted')
   end
   let!(:workshop_subject) do
-    create(:workshop_subject, workshop: workshop, user: user)
+    create(:workshop_subject, workshop: workshop, user: user, scheduling_status: :cancelled)
   end
 
   describe '#call' do
@@ -66,6 +66,7 @@ describe Workshops::Booking::RescheduleSlot do
         expect(workshop_subject.reload.preferred_language).to eq('en')
         expect(workshop_subject.reload.neurodivergent).to eq(true)
         expect(workshop_subject.reload.neurodivergent_comments).to eq('test')
+        expect(workshop_subject.reload.scheduling_status).to eq('scheduled')
       end
 
       it 'allows requseted_reschedule even if reschedule_lead_time passed' do

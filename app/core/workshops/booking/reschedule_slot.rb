@@ -52,6 +52,7 @@ module Workshops
 
       def reschedule_existing_workshop_subject
         existing_workshop_subject.update!(
+          scheduling_status: :scheduled,
           preferred_language: workshop_subject_details[:preferred_language],
           neurodivergent: workshop_subject_details[:neurodivergent],
           neurodivergent_comments: workshop_subject_details[:neurodivergent_comments]
