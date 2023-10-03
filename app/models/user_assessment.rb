@@ -100,6 +100,14 @@ class UserAssessment < ApplicationRecord
     campaign_user.update!(started_at: Time.current)
   end
 
+  def real_meeting_link
+    if meeting_internal? && meeting_room.present?
+      Utility::Url.generate(:admin_meeting_url, room_id: meeting_room.id)
+    elsif meeting_custom?
+      meeting_link
+    end
+  end
+
   def complete!
     update!(status: :completed, completed_at: Time.current)
   end
@@ -261,6 +269,18 @@ class UserAssessment < ApplicationRecord
     @linked_assessor_user_assessment = UserAssessment.find_by(
       campaign_id: campaign_id, assessment_id: assessor_form.id, subject_id: subject_id,
       relationship: Relationship.assessor_relationship
+    )
+  end
+
+  def linked_subject_user_assessment
+    return @linked_subject_user_assessment if defined? @linked_subject_user_assessment
+
+    subject_assessment = assessment&.linked_assessment
+    return unless subject_assessment
+
+    @linked_subject_user_assessment = UserAssessment.find_by(
+      campaign_id: campaign_id, assessment_id: subject_assessment.id, subject_id: subject_id, evaluator_id: subject_id,
+      relationship: Relationship.self_relationship
     )
   end
 

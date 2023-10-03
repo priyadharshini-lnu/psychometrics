@@ -5,11 +5,15 @@ module Api
     validate_crud_requests Api::V2::WorkshopSubject::Schema
 
     def update_subject_details_and_assessments
-      response = WorkshopSubjects::UpdateSubjectData.call!(
+      response = WorkshopSubjects::UpdateSubjectData.call(
         params[:id], params[:campaign_id], params[:data][:attributes]
       )
 
-      render json: response, status: :ok
+      if response && response[:error].present?
+        render json: { error: response[:error] }, status: 422
+      else
+        render json: :ok
+      end
     end
 
     def mark_cancelled

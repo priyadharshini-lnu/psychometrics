@@ -33,8 +33,8 @@ export const minutesLeftFromNow = (date: Date) => {
   return Math.floor(deltaTime / 60000)
 }
 
-export function secondsLeftFromNow (date: string): number;
-export function secondsLeftFromNow (date: null): null;
+export function secondsLeftFromNow(date: string): number;
+export function secondsLeftFromNow(date: null): null;
 export function secondsLeftFromNow (date: string | null) {
   if (!date) { return null }
 
@@ -54,7 +54,14 @@ export const convertSecondsToMMSS = (totalSeconds: number): string => {
   return `${minutesFormatted}:${secondsFormatted}/10:00`
 }
 
-export const getAvailableDays = (startDate?: Moment, endDate?: Moment):number[] => {
+export const mergeDateAndtime = (date: Moment, time: Moment | null, timezone: string) => (
+  moment.tz(date.format('YYYY-MM-DD'), timezone).set({
+    hour: time?.hour(),
+    minute: time?.minute(),
+  })
+)
+
+export const getAvailableDays = (startDate?: Moment, endDate?: Moment): number[] => {
   const availableDays: number[] = []
   if (startDate && endDate) {
     const daysDifference = endDate.diff(startDate, 'days')
@@ -71,9 +78,9 @@ export const getAvailableDays = (startDate?: Moment, endDate?: Moment):number[] 
 
 export function secondsToDayHoursAndMinutes (
   seconds: number,
-  dayAbbreviation: string|undefined = 'd',
-  hourAbbreviation: string|undefined = 'h',
-  minuteAbbreviation: string|undefined = 'm',
+  dayAbbreviation: string | undefined = 'd',
+  hourAbbreviation: string | undefined = 'h',
+  minuteAbbreviation: string | undefined = 'm',
 ) {
   const duration = moment.duration(seconds, 'seconds')
 

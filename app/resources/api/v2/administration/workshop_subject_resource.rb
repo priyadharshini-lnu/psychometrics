@@ -79,7 +79,8 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
       @model.campaign.campaign_assessor_assessments.each do |campaign_assessor_assessment|
         assessments << {
           id: campaign_assessor_assessment.id,
-          name: campaign_assessor_assessment.assessment.name
+          name: campaign_assessor_assessment.assessment.name,
+          linked_activity: campaign_assessor_assessment.assessment.linked_assessment&.name
         }
       end
     end

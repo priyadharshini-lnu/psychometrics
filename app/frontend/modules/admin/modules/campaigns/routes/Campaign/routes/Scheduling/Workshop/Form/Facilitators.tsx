@@ -6,8 +6,6 @@ import {
 import moment from 'moment'
 import { Store } from 'antd/lib/form/interface'
 import { useParams } from 'react-router-dom'
-
-
 import { FormInstance } from 'antd/es/form/Form'
 import { Panel, UsersSelectWithTags } from '~/glint'
 import styles from './Form.less'
@@ -16,7 +14,7 @@ import { useResources } from '~/hooks/useResources'
 import {
   WorkshopCreateResponseTR, Workshop, UserDetails, userDetailsListTR,
 } from '~/modules/admin/modules/campaigns/core/workshop'
-import { secondsToDayHoursAndMinutes } from '~/utils/time'
+import { secondsToDayHoursAndMinutes, mergeDateAndtime } from '~/utils/time'
 import { formatWorkshopDate } from '~/utils/workshop'
 
 const { Title } = Typography
@@ -79,10 +77,7 @@ export const Facilitators: React.FC<Props> = ({
   )
 
   const startDateTime = index => (
-    moment.tz(basicInfoData.dates[index].format('YYYY-MM-DD'), basicInfoData.timezone).set({
-      hour: basicInfoData.time.hour(),
-      minute: basicInfoData.time.minute(),
-    })
+    mergeDateAndtime(basicInfoData.dates[index], basicInfoData.time, basicInfoData.timezone)
   )
 
   const endDateTime = index => (

@@ -4,9 +4,13 @@ import {
   Col,
   Row,
   Tag,
+  Space,
+  message,
 } from 'antd'
+import { CopyOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ConnectedProps, connect } from 'react-redux'
 import {
   WorkshopUserAcitivity, WorkshopUserAcitivityTR,
@@ -119,7 +123,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
           <Resource.Column<WorkshopUserAcitivity>
             width="20%"
             title={I18n.t('administration.scheduling.columns.activity')}
-            render={({ assessment }) => assessment.name}
+            render={({ assessment }) => assessment?.name}
             id="activity"
           />
           <Resource.Column<WorkshopUserAcitivity>
@@ -127,6 +131,24 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
             title={I18n.t('administration.scheduling.columns.schedule_time')}
             id="scheduleTime"
             render={({ scheduleTime }) => scheduleTime && moment(scheduleTime).format('HH:mm')}
+          />
+          <Resource.Column<WorkshopUserAcitivity>
+            width="30%"
+            title={I18n.t('administration.scheduling.columns.meeting_link')}
+            id="linkedSubjectMeetingLink"
+            render={({ linkedSubjectMeetingLink }) => linkedSubjectMeetingLink && (
+              <Space>
+                <a href={linkedSubjectMeetingLink} target="_blank" rel="noreferrer">
+                  {I18n.t('administration.scheduling.info.join_meeting')}
+                </a>
+                <CopyToClipboard
+                  text={linkedSubjectMeetingLink}
+                  onCopy={() => message.info(I18n.t('common.text.copied'))}
+                >
+                  <CopyOutlined />
+                </CopyToClipboard>
+              </Space>
+            )}
           />
           <Resource.Column<WorkshopUserAcitivity>
             title={I18n.t('common.column.status')}

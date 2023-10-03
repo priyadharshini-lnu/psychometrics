@@ -3897,6 +3897,7 @@ en:
         campaign_name: Campaign Name
         duration: Duration
         managers: Mangers
+        meeting_link: Meeting Link
         name: Name
         participants: Participants
         prework: Prework
@@ -3983,6 +3984,7 @@ en:
         meeting_link_custom: Custom
         meeting_link_internal: Internal
         meeting_link_none: None
+        meeting_link_title: Meeting Link
         no_change: No Change
         override_existing: Override existing schedules for subjects
         preworks: Prework
@@ -4622,3 +4624,6 @@ en:
       statuses:
         closed: Closed
         open: Open
+    workshop_subjects:
+      errors:
+        update_assessor_for_failure: Meeting details cannot be added as there is no linked subject activity.

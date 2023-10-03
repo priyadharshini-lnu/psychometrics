@@ -142,11 +142,6 @@ class Properties extends Component {
             Show Values
           </label>
         </div>
-        <hr className={styles.divider} />
-        <div className={`${styles.block} ${styles.reset}`} onClick={this.reset}>
-          Reset Graph...
-        </div>
-
       </div>
     )
   }

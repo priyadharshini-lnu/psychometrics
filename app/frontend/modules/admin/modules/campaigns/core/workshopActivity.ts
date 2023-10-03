@@ -4,6 +4,7 @@ export const WorkshopUserAcitivityTR = t.type({
   id: t.string,
   status: t.string,
   scheduleTime: t.union([t.string, t.null]),
+  linkedSubjectMeetingLink: t.union([t.string, t.null]),
   subject: t.union([
     t.type({
       fullName: t.union([t.string, t.null]),
