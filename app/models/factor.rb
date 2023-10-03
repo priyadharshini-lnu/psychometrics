@@ -101,6 +101,7 @@ class Factor < ApplicationRecord
       kopy.icon = original.icon if original.is_a?(Factor)
     end
     @cloned_factor.gen_uniq_name
+    @cloned_factor.icon = icon
     @cloned_factor.save ? @cloned_factor : nil
   end
 
