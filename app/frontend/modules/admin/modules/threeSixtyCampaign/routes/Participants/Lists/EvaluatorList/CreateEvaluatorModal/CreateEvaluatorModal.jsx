@@ -84,7 +84,7 @@ export default function CreateEvaluatorModal ({
     <Modal
       width={900}
       title="Add evaluators"
-      visible
+      open
       onCancel={closeModal}
       footer={[
         <Button key="back" onClick={closeModal}>

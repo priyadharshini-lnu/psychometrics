@@ -53,7 +53,7 @@ interface OwnProps {
   permissions: AdminPermissions
   currentUserGrants: CurrentUserPermissions
   isSuperAdmin: boolean
-  isVisible: boolean
+  isOpen: boolean
   isEditMode: boolean
   adminId: string
   adminType: string
@@ -65,7 +65,7 @@ interface OwnProps {
 type Props = PropsFromRedux & OwnProps
 
 const AddEditDrawerComponent: FC<Props> = ({
-  isVisible,
+  isOpen,
   isEditMode,
   handleClose,
   updateAdmin,
@@ -277,7 +277,7 @@ const AddEditDrawerComponent: FC<Props> = ({
       closable={false}
       width="80%"
       zIndex={1001}
-      visible={isVisible}
+      open={isOpen}
       destroyOnClose
       extra={buttons}
     >

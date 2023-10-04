@@ -55,7 +55,7 @@ const SettingsModalComponent = ({
     <Modal
       width="50%"
       title={I18n.t('administration.assessments.settings.title')}
-      visible
+      open
       maskClosable
       onCancel={close}
       footer={[

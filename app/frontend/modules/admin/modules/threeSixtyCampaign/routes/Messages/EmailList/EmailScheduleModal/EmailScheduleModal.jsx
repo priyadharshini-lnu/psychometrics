@@ -81,7 +81,7 @@ export default function EmailScheduleModal ({
     <Modal
       width={800}
       title="Schedule Email"
-      visible
+      open
       onCancel={closeModal}
       bodyStyle={{ padding: '0px' }}
       footer={[

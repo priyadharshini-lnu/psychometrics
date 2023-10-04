@@ -31,7 +31,7 @@ export const PipedTextModal: React.FC<Props> = ({ close, editorRef, communicatio
   return (
     <Modal
       width={700}
-      visible
+      open
       title={I18n.t('administration.piped_text_modal.title')}
       onCancel={handleClose}
       footer={[

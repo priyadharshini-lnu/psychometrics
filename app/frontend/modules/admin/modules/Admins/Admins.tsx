@@ -294,7 +294,7 @@ const AdminsComponent: React.FC<Props> = ({
         </Col>
       </Row>
       <DetailsDrawer
-        isVisible={drawerMode === DrawerMode.View}
+        isOpen={drawerMode === DrawerMode.View}
         adminId={drawerAdminId}
         permissions={meta.permissions}
         handleClose={handleDrawerClose}
@@ -302,7 +302,7 @@ const AdminsComponent: React.FC<Props> = ({
         adminType={adminType}
       />
       <AddEditDrawer
-        isVisible={
+        isOpen={
           drawerMode === DrawerMode.Add || drawerMode === DrawerMode.Edit
         }
         isEditMode={drawerMode === DrawerMode.Edit}

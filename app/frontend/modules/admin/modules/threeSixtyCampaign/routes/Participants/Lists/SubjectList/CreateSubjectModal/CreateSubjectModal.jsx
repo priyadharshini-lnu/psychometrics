@@ -64,7 +64,7 @@ export default function CreateSubjectModal ({
     <Modal
       width={700}
       title="Add subjects"
-      visible
+      open
       onCancel={closeModal}
       footer={[
         <Button key="back" onClick={closeModal}>

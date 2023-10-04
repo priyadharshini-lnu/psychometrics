@@ -29,7 +29,7 @@ export default function SendTestEmailModal ({
     <Modal
       width={500}
       title="Send Test Email"
-      visible
+      open
       onCancel={closeModal}
       footer={[
         <Button key="back" onClick={closeModal}>

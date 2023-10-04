@@ -128,7 +128,7 @@ export const AudioPlayer: React.FC<Props> = ({
             value={playPercentage()}
             onChange={changeCurrentTime}
             max={100}
-            tooltipVisible={false}
+            tooltip={{ open: false }}
           />
         </Col>
         <Col>

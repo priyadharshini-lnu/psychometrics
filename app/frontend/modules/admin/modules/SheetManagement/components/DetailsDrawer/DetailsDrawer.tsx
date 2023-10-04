@@ -104,7 +104,7 @@ const DetailsDrawerComponent: FC<Props> = ({
       placement="right"
       closable
       onClose={() => toggleDrawer(DrawerModes.None)}
-      visible={isOpen}
+      open={isOpen}
       width="40%"
     >
       {parentResourceType === ParentResourceType.Campaign && (

@@ -15,7 +15,7 @@ import { UserRolesDetails } from '~/modules/admin/components/UserRolesDetails'
 const { I18n } = window
 
 interface Props {
-  isVisible: boolean
+  isOpen: boolean
   adminId: string
   adminType: string
   permissions: AdminPermissions
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const DetailsDrawerComponent: FC<Props> = ({
-  isVisible,
+  isOpen,
   adminId,
   adminType,
   permissions,
@@ -50,7 +50,7 @@ const DetailsDrawerComponent: FC<Props> = ({
   )
 
   useEffect(() => {
-    if (isVisible) {
+    if (isOpen) {
       fetchSingle({
         id: adminId,
       })
@@ -65,7 +65,7 @@ const DetailsDrawerComponent: FC<Props> = ({
       onClose={handleClose}
       maskClosable
       closable={false}
-      visible={isVisible}
+      open={isOpen}
       width="50%"
       zIndex={1001}
     >

@@ -8,7 +8,7 @@ export default function RecipientListModal ({ recipientType, recipients, closeMo
     <Modal
       width={800}
       title={pluralize.plural(recipientType)}
-      visible
+      open
       onCancel={() => closeModal('RecipientListModal')}
       bodyStyle={{ padding: '0px' }}
       footer={[

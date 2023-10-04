@@ -40,7 +40,7 @@ const UniversalLinkModal: React.FC<Props> = ({
     <Modal
       width={650}
       title="Universal Link"
-      visible
+      open
       onCancel={close}
       footer={manageUniversalLink ? [
         <Button key="deactivate" onClick={deactivate}>

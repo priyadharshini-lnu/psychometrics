@@ -36,7 +36,7 @@ const RemoveAssessmentModal: React.FC<Props> = ({
     <Modal
       width={650}
       title={I18n.t('campaign_assessment.modals.remove.title')}
-      visible
+      open
       centered
       okText={I18n.t('common.text.continue')}
       onCancel={close}

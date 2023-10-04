@@ -54,7 +54,7 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
     <Modal
       width={700}
       title={I18n.t('user.modals.import.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button

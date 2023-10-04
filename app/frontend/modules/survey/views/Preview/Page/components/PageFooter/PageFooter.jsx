@@ -120,7 +120,7 @@ class PageFooter extends Component {
           {enableBack && hasPrevPage && (
           <QuestionInProgressPopConfirm
             preview={preview}
-            visible={popConfirmVisibleFor === BACK}
+            open={popConfirmVisibleFor === BACK}
             hidePopConfirm={this.hidePopConfirm}
             onConfirm={this.moveToPreviousPage}
           >
@@ -139,7 +139,7 @@ class PageFooter extends Component {
           )}
           <QuestionInProgressPopConfirm
             preview={preview}
-            visible={popConfirmVisibleFor === NEXT}
+            open={popConfirmVisibleFor === NEXT}
             hidePopConfirm={this.hidePopConfirm}
             onConfirm={this.moveToNextPage}
           >
@@ -187,7 +187,7 @@ class PageFooter extends Component {
 }
 
 function QuestionInProgressPopConfirm ({
-  preview, preview: { inProgressQuestions }, visible, hidePopConfirm, onConfirm, children,
+  preview, preview: { inProgressQuestions }, open, hidePopConfirm, onConfirm, children,
 }) {
   const popConfirmTitle = () => (
     <div>
@@ -212,7 +212,7 @@ function QuestionInProgressPopConfirm ({
       okText={I18n.t('assessments.proceed', { locale: I18n.uiLocale })}
       cancelText={I18n.t('assessments.wait', { locale: I18n.uiLocale })}
       onCancel={hidePopConfirm}
-      visible={visible && inProgressQuestions.length > 0}
+      open={open && inProgressQuestions.length > 0}
       disabled={!inProgressQuestions.length}
       placement="topRight"
     >

@@ -52,7 +52,7 @@ export default function UserEditModal ({
     <Modal
       width={650}
       title={I18n.t('threesixty.edit_user')}
-      visible
+      open
       onCancel={handleOnCancel}
       footer={[
         <Button key="back" onClick={handleOnCancel}>

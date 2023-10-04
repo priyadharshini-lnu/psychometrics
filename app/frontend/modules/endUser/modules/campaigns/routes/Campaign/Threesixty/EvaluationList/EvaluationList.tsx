@@ -216,7 +216,7 @@ const EvaluationListComponent = ({
               {I18n.t('threesixty.evaluation_help_modal.title')}
             </>
         )}
-          visible={showHelp}
+          open={showHelp}
           onCancel={() => setShowHelp(false)}
           footer={null}
         >

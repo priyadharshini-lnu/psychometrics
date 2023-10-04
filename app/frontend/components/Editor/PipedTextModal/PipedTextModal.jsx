@@ -32,7 +32,7 @@ export default function PipedTextModal ({
     <Modal
       width={700}
       title="Add Piped Text"
-      visible
+      open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>

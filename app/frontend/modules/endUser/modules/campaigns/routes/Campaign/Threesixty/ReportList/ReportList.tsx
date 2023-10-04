@@ -118,7 +118,7 @@ const ReportListComponent = ({
               {I18n.t('threesixty.reports_help_modal.title')}
             </>
           )}
-          visible={showHelp}
+          open={showHelp}
           onCancel={() => setShowHelp(false)}
           footer={null}
         >
