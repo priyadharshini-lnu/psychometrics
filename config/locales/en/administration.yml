@@ -3366,58 +3366,6 @@ en:
         report: Report
         review: Review
       resource_name: Proctoring Sessions
-    products:
-      copy:
-        error: Product
-        successfully: Product %{name} was successfully copied.
-      create:
-        successfully: Product %{name} was successfully created.
-      destroy:
-        successfully: Product %{name} was successfully deleted.
-      edit:
-        header: Edit Product
-      form:
-        add_image: Add Image
-        images: images
-        prices: Prices
-        reports: Reports
-      image_fields:
-        remove: Remove Image
-      index:
-        new: Add
-        title: Products list
-      list:
-        active: Active
-        created_at: Created Date
-        name: Name
-        updated_at: Modified Date
-      new:
-        header: New Product
-      resource:
-        confirmations:
-          delete:
-            body: "<p>Are you sure you want to delete this Product?</p>\n"
-            title: Delete <strong>Product</strong> ?
-          toggle_status:
-            body: "<p>Are you sure you want to %{status} this Product?</p>\n"
-            title: "<strong>%{status}</strong> %{name}?"
-        in_progress:
-          copying: Copying
-          deleting: Deleting
-        tooltips:
-          copy: Copy Product
-          delete: Delete Product
-          edit: Edit Product
-      sidebar:
-        copy: Copy Product
-        destroy: Destroy Product
-        disable: Disable
-        edit: Edit Product
-        enable: Enable
-        new: New Product
-        title: Product's options
-      update:
-        successfully: Product %{name} was successfully updated.
     profile:
       change_password: Change password
       details: Details

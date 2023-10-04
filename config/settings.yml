@@ -113,18 +113,6 @@ rtl_languages:
   - ur
   - he
   - fa
-currencies:
-  - USD
-  - EUR
-  - GBP
-  - AED
-  - INR
-  - SAR
-  - KWD
-  - BHD
-  - OMR
-  - QAR
-default_currency: 'USD'
 reserved_subdomains:
   - api
   - assessment

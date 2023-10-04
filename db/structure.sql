@@ -2852,138 +2852,6 @@ ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sess
 
 
 --
--- Name: product_images; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.product_images (
-    id integer NOT NULL,
-    image character varying,
-    "position" integer,
-    product_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: product_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.product_images_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: product_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.product_images_id_seq OWNED BY public.product_images.id;
-
-
---
--- Name: product_prices; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.product_prices (
-    id integer NOT NULL,
-    price_cents integer DEFAULT 0 NOT NULL,
-    price_currency character varying DEFAULT 'USD'::character varying NOT NULL,
-    product_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: product_prices_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.product_prices_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: product_prices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.product_prices_id_seq OWNED BY public.product_prices.id;
-
-
---
--- Name: product_reports; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.product_reports (
-    id integer NOT NULL,
-    product_id integer,
-    report_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: product_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.product_reports_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: product_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.product_reports_id_seq OWNED BY public.product_reports.id;
-
-
---
--- Name: products; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.products (
-    id integer NOT NULL,
-    name character varying,
-    description text,
-    image character varying,
-    disabled boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.products_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
-
-
---
 -- Name: profile_fields; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5896,34 +5764,6 @@ ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- Name: product_images id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_images ALTER COLUMN id SET DEFAULT nextval('public.product_images_id_seq'::regclass);
-
-
---
--- Name: product_prices id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_prices ALTER COLUMN id SET DEFAULT nextval('public.product_prices_id_seq'::regclass);
-
-
---
--- Name: product_reports id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_reports ALTER COLUMN id SET DEFAULT nextval('public.product_reports_id_seq'::regclass);
-
-
---
--- Name: products id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
-
-
---
 -- Name: profile_fields id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6977,38 +6817,6 @@ ALTER TABLE ONLY public.privacy_links
 
 ALTER TABLE ONLY public.proctoring_sessions
     ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
-
-
---
--- Name: product_images product_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_images
-    ADD CONSTRAINT product_images_pkey PRIMARY KEY (id);
-
-
---
--- Name: product_prices product_prices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_prices
-    ADD CONSTRAINT product_prices_pkey PRIMARY KEY (id);
-
-
---
--- Name: product_reports product_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_reports
-    ADD CONSTRAINT product_reports_pkey PRIMARY KEY (id);
-
-
---
--- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.products
-    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
 
 
 --
@@ -8698,34 +8506,6 @@ CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btre
 --
 
 CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_sessions USING btree (campaign_user_id);
-
-
---
--- Name: index_product_images_on_product_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_product_images_on_product_id ON public.product_images USING btree (product_id);
-
-
---
--- Name: index_product_prices_on_product_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_product_prices_on_product_id ON public.product_prices USING btree (product_id);
-
-
---
--- Name: index_product_reports_on_product_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_product_reports_on_product_id ON public.product_reports USING btree (product_id);
-
-
---
--- Name: index_product_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_product_reports_on_report_id ON public.product_reports USING btree (report_id);
 
 
 --
@@ -12126,6 +11906,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230919051922'),
 ('20230919070332'),
 ('20230921123131'),
-('20230926124141');
+('20230926124141'),
+('20231003130242');
 
 

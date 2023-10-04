@@ -843,14 +843,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :products do
-      member do
-        get :copy
-        get :sidebar
-        patch :toggle_status
-      end
-    end
-
     resources :campaign_templates
     root to: 'clients#index'
   end
@@ -860,27 +852,6 @@ Rails.application.routes.draw do
   namespace :system do
     resources :reports, only: [:index]
     resources :memberships, only: [:index]
-  end
-
-  namespace :ecommerce do
-    root to: 'products#index'
-    resources :products, only: [] do
-      member do
-        post :add_to_cart
-        delete :remove_from_cart
-      end
-    end
-    resource :carts, only: %i[show update]
-    resource :orders, only: %i[new create] do
-      get :success
-    end
-    scope module: :users do
-      resource :sessions, only: %i[new create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' },
-               as: :session do
-        delete 'sign_out', to: 'sessions#destroy', as: :destroy
-      end
-      resource :registrations, only: %i[new create], as: :registration
-    end
   end
 
   namespace :webhooks do
@@ -906,30 +877,10 @@ Rails.application.routes.draw do
                             invitations: 'users/invitations',
                             passwords: 'passwords',
                             password_expired: 'users/password_expired' }
-  # Manager's panel
-  #
+
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
-    namespace :managers do
-      resources :dashboard, only: [:index]
-      resources :assigns, only: [:index]
-      resources :notifications, only: [:index]
-      resources :statistics, only: [:index]
-      resources :assessments, only: [:index] do
-        resources :tasks do
-          member do
-            get :change_status
-          end
-          resources :comments, only: [:create]
-        end
-      end
-
-      resources :users, only: [:index] do
-        resources :reports, only: [:show]
-      end
-    end
-
     namespace :anonym do
       get 'error', to: 'assessments#error'
       get ':assessment_key/pass', to: 'assessments#pass', as: :assessment_pass

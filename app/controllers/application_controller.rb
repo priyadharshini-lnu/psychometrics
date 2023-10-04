@@ -19,7 +19,6 @@ class ApplicationController < ::BaseController
   #
   def layout_by_resource
     return 'devise'     if request.controller_class.to_s.start_with?('Administration')
-    return 'ecommerce'  if request.controller_class.to_s.start_with?('Ecommerce')
     return 'devise'     if request.controller_class.to_s.start_with?('Devise')
 
     'users_new' # NOTE: seems it does not use anywhere
@@ -90,7 +89,6 @@ class ApplicationController < ::BaseController
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Assessors')
-    return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s.start_with?('Api::V1')
     return if request.controller_class.to_s.start_with?('Webhooks')
 

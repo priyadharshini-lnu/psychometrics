@@ -636,11 +636,9 @@ en:
       norm: Norms
       occupation: Occupations
       occupations_factor: Occupations
-      product: Product
       question: Question
       report: Report
       report_family: ReportFamily
-      task: Tasks
       user: Users
       user_form: User
   admin_jobs:
@@ -1782,47 +1780,6 @@ en:
         start_time_should_be_less: Start time should be less than end time
       workshop_invited_subject_create:
         already_exists: Subject already exists in the invite.
-  ecommerce:
-    carts:
-      show:
-        back_to_catalogue: Back to Catalogue
-        next: Next
-        shopping_basket: Shopping Basket
-        total: 'Total:'
-        update_basket: Update Basket
-    orders:
-      new:
-        back_to_basket: Back to Basket
-        order: Order
-        pay: Pay
-        product_name: Product Name
-        product_price: Product Price
-        product_quantity: Quantity
-        product_subtotal: Positions Price
-        total: Total
-        users: Users
-      success:
-        back_to_basket: Back to Basket
-        body: |
-          <h3>Payment successful</h3>
-          <p>We will email you a receipt confirming your oder shortly.</p>
-        go_to_dashboard: Go to Dashboard
-        title: Payment Successful
-    products:
-      add_to_cart:
-        successfully: Assessment was successfuly added to the basket
-      index:
-        assessment_catalogue: Assessment Catalogue
-        shopping_basket: Shopping Basket
-    users:
-      registrations:
-        new:
-          register: Register
-          sign_in: Sign in
-      sessions:
-        new:
-          register: Register
-          sign_in: Sign in
   emails:
     nomination_approval_table:
       evaluator_name: Evaluator Name
@@ -2879,12 +2836,6 @@ en:
         updated_at: Modified Date
         updated_by: Edited by
         work_environment: Work Environment
-      product:
-        active: Active
-        created_at: Created Date
-        id: ID
-        name: Name
-        updated_at: Modified Date
       question:
         active: Active
         assign_to_assessment_ids: Assessments

@@ -38,9 +38,6 @@ class Report < ApplicationRecord
   has_many :clients_reports, dependent: :restrict_with_error
   has_many :clients, through: :clients_reports
   has_many :translations, as: :resource, dependent: :destroy
-  # TODO: Remove product_reports and products associations with models and table
-  has_many :product_reports, dependent: :destroy
-  has_many :products, through: :product_reports
   has_many :assigns_reports, dependent: :restrict_with_error
   has_many :user_reports, dependent: :restrict_with_error
   has_many :campaign_reports, dependent: :restrict_with_error
