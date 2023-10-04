@@ -12,7 +12,7 @@ module UserReports
     def call
       data = ::Reports::BuildResults.
              call!(report, report_user_results).
-             map { |item| { key: item[:key], value: item[:value] } }
+             map { |item| { key: item.dig(:config_data, 'id') || item[:key], value: item[:value] } }
       broadcast :ok, data
     end
 

@@ -46,7 +46,7 @@ const LookupResultTextValue = {
       case 'Saville#Raw':
         return GetSavilleScore.run(model)
       case 'ReportData': {
-        const key = _.get(model, ['props', 'source', 'reportDataColumns', 0, 'value'])
+        const key = _.get(model, ['props', 'source', 'reportDataColumns', 'value'])
         return _.get(ResultStore, ['results', model.assessment_id, 'reportData', key])
       }
       default:
