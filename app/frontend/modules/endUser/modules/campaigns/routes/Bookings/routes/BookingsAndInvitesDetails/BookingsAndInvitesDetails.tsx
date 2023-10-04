@@ -3,11 +3,13 @@ import {
   FC, useState, useEffect, useRef,
 } from 'react'
 import {
-  Col, Layout, Form, message,
+  Col, Layout, Form, message, Alert,
 } from 'antd'
 import moment, { Moment } from 'moment-timezone'
 import { connect, ConnectedProps } from 'react-redux'
-import { useParams, useLocation, useHistory } from 'react-router-dom'
+import {
+  useParams, useLocation, useHistory, Link,
+} from 'react-router-dom'
 import cs from 'classnames'
 import qs from 'qs'
 
@@ -197,8 +199,30 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
             xl={22}
             xxl={18}
           >
+            {inviteOrBookingDetails?.bookingPreworkConditionUnsatisfied ? (
+              <Alert
+                message={(
+                  <span>
+                    <span>{I18n.t('frontend.bookings.assessment_center_alert.message_part1')}</span>
+                    <Link
+                      to={`/campaigns/${inviteOrBookingDetails.campaignId}`}
+                      className="px"
+                    >
+                      {I18n.t('frontend.bookings.assessment_center_alert.btn_title')}
+                    </Link>
+                    <span>{I18n.t('frontend.bookings.assessment_center_alert.message_part2')}</span>
+                  </span>
+                     )}
+                type="warning"
+                showIcon
+                className="mb-6"
+              />
+            ) : null}
             {!inviteOrBookingDetails ? <FullWidthSkeleton height="400px" rows={1} active /> : (
-              <>
+              <div className={styles.pageContainer}>
+                {inviteOrBookingDetails.bookingPreworkConditionUnsatisfied ? (
+                  <div className={styles.pageMask} onClick={e => e.stopPropagation()} />
+                ) : null}
                 <BookingCard
                   currentDateTime={selectedDateTime?.date || null}
                   title={inviteOrBookingDetails.title}
@@ -223,7 +247,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
                     <ButtonWithArrow label="Book" type="primary" onClick={handleBook} />
                   </div>
                   )}
-              </>
+              </div>
             )}
           </Col>
         )

@@ -63,6 +63,8 @@ const fetchSingleInviteResponseTR = t.type({
   allowNeurodiversityOption: t.boolean,
   cancellationLeadTime: t.union([t.number, t.null]),
   rescheduleLeadTime: t.union([t.number, t.null]),
+  bookingPreworkConditionUnsatisfied: t.union([t.boolean, t.null]),
+  campaignId: t.number,
 })
 export const FETCH_SINGLE_INVITE = 'invites/FETCH_SINGLE'
 export type SingleInvite = t.TypeOf<typeof fetchSingleInviteResponseTR>

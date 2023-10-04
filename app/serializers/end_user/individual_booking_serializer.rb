@@ -5,7 +5,8 @@ module EndUser
     attributes :id, :title, :description, :duration, :status, :workshop_id, :preferred_language,
                :neurodivergent_comments, :allow_language_preference, :timezone, :reschedule_lead_time,
                :available_dates, :booked_date, :allow_neurodiversity_option, :allowed_languages,
-               :cancellation_lead_time, :neurodivergent
+               :cancellation_lead_time, :neurodivergent, :booking_prework_condition_unsatisfied,
+               :campaign_id
 
     delegate :duration, :reschedule_lead_time, :cancellation_lead_time, :timezone, to: :workshop, allow_nil: true
     delegate :id, to: :workshop, prefix: true, allow_nil: true
@@ -23,6 +24,10 @@ module EndUser
 
     def available_dates
       object.available_workshops_date_and_id
+    end
+
+    def booking_prework_condition_unsatisfied
+      !Bookings::PreworkConditionsSatisfied.call!(object.campaign_id, current_user.id)
     end
 
     private
