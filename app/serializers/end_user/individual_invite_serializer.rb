@@ -3,7 +3,8 @@
 module EndUser
   class IndividualInviteSerializer < ActiveModel::Serializer
     attributes :id, :title, :description, :allow_language_preference, :allowed_languages, :available_dates,
-               :timezone, :duration, :allow_neurodiversity_option, :cancellation_lead_time, :reschedule_lead_time
+               :timezone, :duration, :allow_neurodiversity_option, :cancellation_lead_time, :reschedule_lead_time,
+               :booking_prework_condition_unsatisfied, :campaign_id
 
     def available_dates
       object.available_workshops_date_and_id
@@ -23,6 +24,10 @@ module EndUser
 
     def reschedule_lead_time
       object.workshops.first.reschedule_lead_time
+    end
+
+    def booking_prework_condition_unsatisfied
+      !Bookings::PreworkConditionsSatisfied.call!(object.workshops.first.campaign_id, current_user.id)
     end
   end
 end

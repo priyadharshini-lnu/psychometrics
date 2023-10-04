@@ -1907,6 +1907,10 @@ en:
       activity_start_text: 'Activity starts in:'
       add_to_calendar: Add To Calendar
       add_to_calendar_tour_description: Add this booking to your calendar
+      assessment_center_alert:
+        btn_title: Campaign
+        message_part1: Complete all the preworks in this
+        message_part2: before booking a slot.
       assessment_center_group_name: Assessment Center
       booking_failed_msg: 'Failed to book slot: %{error}'
       buttons:
