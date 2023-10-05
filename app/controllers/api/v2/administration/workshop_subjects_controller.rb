@@ -12,6 +12,7 @@ module Api
       if response && response[:error].present?
         render json: { error: response[:error] }, status: 422
       else
+        audit! :update_subject_details_and_assessments, response[:ok], payload: params, campaign: campaign
         render json: :ok
       end
     end
@@ -24,6 +25,7 @@ module Api
         subject.update!(scheduling_status: :late_cancelled)
       end
       subject.workshop.decrement!(:booked_seats)
+      audit! :mark_cancelled, subject, payload: params, campaign: campaign
 
       jsonapi_render json: subject
     end

@@ -12,7 +12,7 @@ module WorkshopSubjects
 
     def call
       update_subject
-      broadcast :ok
+      broadcast :ok, workshop_subject
     end
 
     private

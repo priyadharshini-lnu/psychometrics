@@ -7,6 +7,17 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
   has_one :workshop_invite
   has_many :workshops
 
+  audit_log_for :create, payload: '*'
+  audit_log_for :destroy, payload: lambda { |_, workshop_invited_subject|
+    {
+      id: workshop_invited_subject.id,
+      user_id: workshop_invited_subject.user.id,
+      user_name: workshop_invited_subject.user.name,
+      user_email: workshop_invited_subject.user.email,
+      status: workshop_invited_subject.status
+    }
+  }
+
   ransack_filters %i[filterable_fields workshop_invite_campaign_id_eq]
 
   filter :status_in, apply: lambda { |records, statuses, _options|
