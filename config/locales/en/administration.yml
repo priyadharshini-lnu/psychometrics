@@ -3764,6 +3764,10 @@ en:
         yti: YTI
       update:
         successfully: Report %{name} was successfully updated.
+    resource:
+      remove_confirm:
+        message: Are you sure you want to remove this resource?
+        title: Remove Resource
     saml_settings:
       after_signout_url: After Signout Url
       cert: Certificate

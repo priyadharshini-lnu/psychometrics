@@ -1,31 +1,37 @@
 import _ from 'lodash'
 import {
-  Select, Row, Col, Button, Form,
+  Select, Button, Form, Modal,
 } from 'antd'
 import QuestionPresenter from '~/modules/survey/presenters/question'
 import styles from './ResourceManager.less'
 
+const { I18n } = window
 export default function Resource ({
   resource, index, assessments, changeResource, assessmentQuestions,
   removeResource,
 }) {
   const assessmentOptions = assessments.map(({ id, name }) => ({ id, label: name }))
   const questionOptions = assessmentQuestions[resource.assessmentId]
-    && assessmentQuestions[resource.assessmentId].map(({ id, props }) => ({
+    && assessmentQuestions[resource.assessmentId].map(({ id, name, props }) => ({
       id, label: QuestionPresenter.getName({ name, props }, 150),
     }))
 
   const remove = () => {
-    // eslint-disable-next-line no-alert
-    if (confirm('Are you sure?')) {
-      removeResource(index)
-    }
+    Modal.confirm({
+      title: I18n.t('administration.resource.remove_confirm.title'),
+      content: I18n.t('administration.resource.remove_confirm.message'),
+      okText: I18n.t('common.text.confirm'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        removeResource(index)
+      },
+    })
   }
 
   return (
-    <Row className={styles.row}>
-      <Col flex={1} className={styles.resource}>
-        <Form>
+    <div className={styles.container}>
+      <div className={styles.row}>
+        <Form style={{ width: '100%' }}>
           <Form.Item
             label="Assessment"
             labelCol={{ span: 3 }}
@@ -37,7 +43,8 @@ export default function Resource ({
               onChange={({ value }) => changeResource(index, { assessmentId: value, questionId: null })}
               placeholder="Select an assessment"
               defaultValue={_.find(assessmentOptions, { id: resource.assessmentId })}
-              filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              filterOption={(input, option: {children: string}) => option.children.toLowerCase()
+                .indexOf(input.toLowerCase()) >= 0}
             >
               {assessmentOptions.map(({ id, label }) => (
                 <Select.Option key={id} value={id}>{label}</Select.Option>
@@ -56,7 +63,8 @@ export default function Resource ({
                 value={_.find(questionOptions, { id: resource.questionId })}
                 onChange={({ value }) => changeResource(index, { ...resource, questionId: value })}
                 placeholder="Select a question"
-                filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                filterOption={(input, option: {children: string}) => option.children.toLowerCase()
+                  .indexOf(input.toLowerCase()) >= 0}
               >
                 {questionOptions.map(({ id, label }) => (
                   <Select.Option key={id} value={id}>
@@ -67,11 +75,8 @@ export default function Resource ({
             </Form.Item>
           )}
         </Form>
-      </Col>
-      <Col style={{ width: 80 }}>
-        <Button type="danger" onClick={remove}>Remove</Button>
-      </Col>
-      <hr />
-    </Row>
+      </div>
+      <Button type="primary" danger onClick={remove}>Remove</Button>
+    </div>
   )
 }
