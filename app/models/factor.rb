@@ -38,7 +38,8 @@ class Factor < ApplicationRecord
     questions_sum: 4,
     sub_factor_questions_sum: 5,
     external_score: 6,
-    questions_percentage: 7
+    questions_percentage: 7,
+    sub_factors_sum: 8
   }, _suffix: :strategy
 
   mount_uploader :icon, Public::ImageUploader

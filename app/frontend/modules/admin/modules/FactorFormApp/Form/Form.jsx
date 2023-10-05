@@ -110,8 +110,7 @@ export default function Form (props) {
         </div>
         )
       }
-      {(resource.scoring_strategy === 'sub_factors_average'
-        || resource.scoring_strategy === 'sub_factors_conditional_average')
+      {['sub_factors_average', 'sub_factors_conditional_average', 'sub_factors_sum'].includes(resource.scoring_strategy)
         && (
         <div className="mtm mbm">
           <Checkbox
