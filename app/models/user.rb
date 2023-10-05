@@ -212,6 +212,10 @@ class User < ApplicationRecord
     slice(:id, :email)
   end
 
+  def can_receives_communication?
+    !disabled?
+  end
+
   private
 
   def email_validation

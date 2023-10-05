@@ -7,9 +7,9 @@ module ReportApproving
     def notify(user_report, user)
       @user = user
       @user_report = user_report
-      mail(
+      send_email(
+        user,
         from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
-        to: user.email,
         subject: @user_report.change_requested? ? 'Report changes requested' : 'Report ready for QC',
         template_path: 'mailer/report_approving',
         template_name: 'qc_notification'

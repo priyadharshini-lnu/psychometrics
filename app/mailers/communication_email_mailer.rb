@@ -16,9 +16,9 @@ class CommunicationEmailMailer < ApplicationMailer
     @body = Mustache.render(replace_new_piped_texts, data)
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
     smtp_setting = recipient.project.smtp_setting
-    mail(
+    send_email(
+      recipient,
       from: smtp_setting.from_name_and_email,
-      to: recipient.email,
       subject: @communication_email.communication.subject,
       template_path: 'mailer/communication_email',
       delivery_method_options: smtp_setting.settings_for_email
