@@ -4,23 +4,24 @@ module Administration
   module Campaigns
     module WorkshopSubjects
       class CampaignAssessorAssessmmentSerializer < ActiveModel::Serializer
-        attributes :id, :name, :user_assessment_id, :status, :schedule_time, :meeting_link, :linked_activity, :assessor
+        attributes :id, :name, :assessor_user_assessment_id, :status, :schedule_time, :meeting_link,
+                   :linked_activity, :assessor, :subject_linked_activity_present
 
         delegate :name, to: :assessment, allow_nil: true
-        delegate :status, :schedule_time, to: :user_assessment, allow_nil: true
-        delegate :id, to: :user_assessment, prefix: true, allow_nil: true
+        delegate :status, :schedule_time, to: :assessor_user_assessment, allow_nil: true
+        delegate :id, to: :assessor_user_assessment, prefix: true, allow_nil: true
 
         def id
           object.id.to_s
         end
 
         def assessor
-          return unless user_assessment&.evaluator
+          return unless assessor_user_assessment
 
           {
-            id: user_assessment.evaluator.id.to_s,
-            name: user_assessment.evaluator.name,
-            photo_url: user_assessment.evaluator.photo_url
+            id: assessor_user_assessment.evaluator.id.to_s,
+            name: assessor_user_assessment.evaluator.name,
+            photo_url: assessor_user_assessment.evaluator.photo_url
           }
         end
 
@@ -28,12 +29,12 @@ module Administration
           object.assessment.linked_assessment&.name
         end
 
-        def subject_linked_activity
-          user_assessment&.linked_subject_user_assessment&.name
+        def subject_linked_activity_present
+          subject_user_assessment.present?
         end
 
         def meeting_link
-          user_assessment&.linked_subject_user_assessment&.real_meeting_link
+          subject_user_assessment&.real_meeting_link
         end
 
         private
@@ -42,12 +43,20 @@ module Administration
           object.assessment
         end
 
-        def user_assessment
-          user_assessments[object.assessment_id]
+        def subject_user_assessment
+          subject_user_assessments[object.assessment&.linked_assessment_id]
         end
 
-        def user_assessments
-          instance_options[:user_assessments]
+        def subject_user_assessments
+          instance_options[:subject_user_assessments]
+        end
+
+        def assessor_user_assessments
+          instance_options[:assessor_user_assessments]
+        end
+
+        def assessor_user_assessment
+          assessor_user_assessments[object.assessment_id]
         end
       end
     end

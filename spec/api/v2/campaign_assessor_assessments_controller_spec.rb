@@ -130,11 +130,18 @@ subject_assessor_assessments" do
         end
         let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign, assessor_form_id: assessment.id) }
         let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
+        let!(:self_relationship) { create(:relationship, name: 'Self', type: :global) }
         let!(:user_assessment) do
           create(:user_assessment, relationship: relationship,
                                    subject: workshop_subject.user,
                                    campaign: campaign,
                                    assessment: assessment)
+        end
+        let!(:subject_user_assessment) do
+          create(:user_assessment, relationship: Relationship.self_relationship,
+                                    subject: workshop_subject.user,
+                                    evaluator: workshop_subject.user,
+                                    campaign: campaign)
         end
         let(:workshop_subject_id) { workshop_subject.id.to_s }
         let(:campaign_id) { campaign.id.to_s }
@@ -145,11 +152,12 @@ subject_assessor_assessments" do
           expect(assessment_response).to match_array([{
             'id' => campaign_assessor_assessment.id.to_s,
             'name' => campaign_assessor_assessment.assessment.name,
-            'user_assessment_id' => user_assessment.id,
+            'assessor_user_assessment_id' => user_assessment.id,
             'status' => user_assessment.status,
             'schedule_time' => user_assessment.schedule_time,
             'meeting_link' => user_assessment.meeting_link,
             'linked_activity' => campaign_assessment.assessment.linked_assessment&.name,
+            'subject_linked_activity_present' => false,
             'assessor' => {
               'id' => user_assessment.evaluator.id.to_s,
               'name' => user_assessment.evaluator.name,

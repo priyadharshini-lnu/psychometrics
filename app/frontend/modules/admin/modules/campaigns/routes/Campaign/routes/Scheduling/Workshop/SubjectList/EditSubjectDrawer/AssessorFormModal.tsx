@@ -103,7 +103,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
       >
         <Form.Item rules={[{ required: true }]} label="Assessment" name="name">
           <Select
-            disabled={initialFormData?.userAssessmentId}
+            disabled={initialFormData?.assessorUserAssessmentId}
             onChange={value => setSelectedAssessment(assessments?.filter(assessment => assessment.id === value)[0])}
           >
             {assessments?.map(assessment => (
@@ -118,7 +118,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
         </Form.Item>
         <Form.Item rules={[{ required: true }]} label="Assessor" name="assessor">
           <Select
-            disabled={initialFormData?.userAssessmentId}
+            disabled={initialFormData?.assessorUserAssessmentId}
           >
             {assessors?.map(assessor => (
               <Select.Option
@@ -149,7 +149,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
             }}
           />
         </Form.Item>
-        {selectedAssessment?.linkedActivity === selectedAssessment?.subjectLinkedActivity && (
+        {selectedAssessment?.subjectLinkedActivityPresent && (
           <Form.Item
             className="mb-1"
             label={I18n.t('administration.scheduling.subjects.meeting_link_title')}
@@ -157,7 +157,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
           >
             <Radio.Group>
               <Radio value="none">{I18n.t('administration.scheduling.subjects.meeting_link_none')}</Radio>
-              <Radio value="internal">{I18n.t('administration.scheduling.subjects.internal')}</Radio>
+              <Radio value="internal">{I18n.t('administration.scheduling.subjects.meeting_link_internal')}</Radio>
               <Radio value="custom">{I18n.t('administration.scheduling.subjects.meeting_link_custom')}</Radio>
             </Radio.Group>
           </Form.Item>
