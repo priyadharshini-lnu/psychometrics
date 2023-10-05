@@ -137,8 +137,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   enum category: CATEGORIES
   enum status: STATUSES
 
-  store :extra, accessors: %i[timer icon_color enable_video_check enable_audio_check enable_network_check],
-    coder: JsonSerializer
+  store_accessor :extra, %i[timer icon_color enable_video_check enable_audio_check enable_network_check]
 
   mount_uploader :icon, Public::ImageUploader
   mount_uploader :poster, Public::ImageUploader
