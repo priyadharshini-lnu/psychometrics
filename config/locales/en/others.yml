@@ -2158,9 +2158,12 @@ en:
     zh_CN: Chinese (Simplified, People's Republic of China)
     zh_TW: Chinese - Traditional
   languages_localized:
+    af: Afrikaans
     ar: عربي
+    az: Azerbaijani
     bg: български
     bs: bosanski
+    by: Belarusian
     ca: català
     cn: 中国人
     cs: čeština
@@ -2193,11 +2196,14 @@ en:
     mn: Mongolian
     ms: Bahasa Malaysia
     my: Myanmar
+    nb: Norwegian Bokmål
     nl: Dutch
     'no': Norwegian
     pl: Polish
     pt: Portuguese
     pt-BR: Brazilian Portuguese
+    pt-PT: Portuguese (Portugal)
+    pt_BR: Portuguese (Brazil)
     ro: Romanian
     ru: Russian
     sk: Slovak
@@ -2210,11 +2216,16 @@ en:
     th: Thai
     tl: Tagalog
     tr: Turkish
+    ua: Ukrainian
     uk: Ukrainian
     ur: Urdu
     vi: Vietnamese
     zh: 汉语
+    zh-CN: Chinese (Simplified)
+    zh-HK: Chinese (Hong Kong)
     zh-TW: 漢語
+    zh_CN: Chinese (Simplified)
+    zh_TW: Chinese (Traditional)
   layouts:
     users:
       dashboard: Dashboard

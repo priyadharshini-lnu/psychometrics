@@ -3958,6 +3958,7 @@ en:
       status:
         completed: Completed
         dropped_out: Dropped Out
+        in_progress: In Progress
         late: Late
         no_show: No Show
         not_started: Not Started
