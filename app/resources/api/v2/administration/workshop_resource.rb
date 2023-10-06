@@ -13,7 +13,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   has_one :campaign
 
   filter :start_time_between, apply: lambda { |records, date_range, _options|
-    records.where(start_time: (date_range.first...date_range.last.end_of_day))
+    records.where(start_time: (date_range.first...date_range.last.to_time.end_of_day))
   }
 
   filter :date_filter, apply: lambda { |records, val, _options|
