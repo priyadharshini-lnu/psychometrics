@@ -239,7 +239,8 @@
     "ansi-regex": "^5.0.1",
     "path-parse": "^1.0.7",
     "semver": "7.5.2",
-    "optionator": "0.9.3"
+    "optionator": "0.9.3",
+    "debug": "4.3.4"
   },
   "cssnano": {
     "preset": [
