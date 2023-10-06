@@ -75,4 +75,14 @@ class Workshop < ApplicationRecord
       meeting_link
     end
   end
+
+  def increment_booked_seats
+    if booked_seats < total_seats
+      self.booked_seats += 1
+      save
+    else
+      errors.add(:base, :seats_not_available)
+      raise I18n.t('administration.errors.bookings.seats_not_available')
+    end
+  end
 end

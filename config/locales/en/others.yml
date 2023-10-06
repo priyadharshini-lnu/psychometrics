@@ -1780,6 +1780,8 @@ en:
         start_time_should_be_less: Start time should be less than end time
       workshop_invited_subject_create:
         already_exists: Subject already exists in the invite.
+      workshop_subject_create:
+        already_exists: Subject already exists in this Assessment Center.
   ecommerce:
     carts:
       show:

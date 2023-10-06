@@ -13,6 +13,7 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   audit_log_for :create, payload: '*'
 
   before_create { @model.campaign_id = context[:campaign].id }
+  after_create { @model.workshop.increment_booked_seats }
 
   before_update do
     @model.attendance_status = 'no_show' if @model.attended == true
