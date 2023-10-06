@@ -73,7 +73,6 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 }) => {
   const [, setFields] = useState({})
   const [errors, setErrors] = useState<Errors>()
-  const [opened, setOpened] = useState(false)
   const [statusFormInstance] = Form.useForm()
 
   const { campaignId } = useParams<{ campaignId: string }>()
@@ -161,7 +160,6 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   useEffect(() => {
     if (open && subjectId) {
-      setOpened(open)
       fetchSingle({ id: subjectId })
       fetchAssessments()
       fetchAssessorAssessments(
@@ -183,7 +181,6 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const handleClose = () => {
     setErrors(undefined)
-    setOpened(false)
     onClose()
   }
 
@@ -247,10 +244,9 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       body: { ...subjectData, ...statusValues },
     }).catch((e) => {
       setErrors(e)
-      setOpened(true)
     }).then((response) => {
       if (response === 'ok') {
-        setOpened(false)
+        onClose()
       }
     })
   }
@@ -336,7 +332,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const assessmentsTable = !workshopSubjectDetailsLoading ? (
     <UserAssessmentList
-      assessments={assessments}
+      assessments={subjectData.assessments}
       onTimeChange={handleTimeChange}
     />
 
@@ -361,7 +357,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         footer={footer}
         width="80%"
         title={title}
-        open={opened}
+        open={open}
         onClose={handleClose}
         destroyOnClose
       >
