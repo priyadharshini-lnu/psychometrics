@@ -142,11 +142,6 @@ const CampaignOptions: React.FC<Props> = ({
           {...parametersForFixedTimeField()}
         />
 
-        <Option
-          label={I18n.t('administration.campaigns.options.prework_required')}
-          {...parametersForWorkshopBookingRequiresPreworkCompletionField()}
-        />
-
         {options.fixedTime && (
           <>
             <div className="mbl">
@@ -256,6 +251,11 @@ const CampaignOptions: React.FC<Props> = ({
             {/* End Features Check */}
           </>
         )}
+
+        <Option
+          label={I18n.t('administration.campaigns.options.prework_required')}
+          {...parametersForWorkshopBookingRequiresPreworkCompletionField()}
+        />
 
         <Option
           label={I18n.t('administration.campaigns.options.instructions.enable')}
