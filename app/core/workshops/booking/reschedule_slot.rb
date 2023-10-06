@@ -14,20 +14,32 @@ module Workshops
         @params = params
       end
 
+      # rubocop:disable Rails/TransactionExitStatement, Lint/UnreachableCode
       def call
         WorkshopInvite.transaction do
           workshop_invited_subject.update!(status: status, reason: reason, reschedule_workshop_id: new_workshop_id)
           create_workshop_invite_log(status)
           if reschedule_status?
-            create_or_update_workshop_subject
-            update_old_workshop_subject
+            begin
+              create_or_update_workshop_subject
+              update_old_workshop_subject
+            rescue Workshops::SeatsNotAvailableError => e
+              broadcast(:error, [e.message])
+              raise ActiveRecord::Rollback
+              return
+            end
           end
         end
 
         broadcast(:ok)
       end
+      # rubocop:enable Rails/TransactionExitStatement, Lint/UnreachableCode
 
       private
+
+      def new_workshop
+        @new_workshop ||= Workshop.find(new_workshop_id)
+      end
 
       def reschedule_status?
         status == 'rescheduled'
@@ -35,7 +47,7 @@ module Workshops
 
       def create_or_update_workshop_subject
         workshop_subject = WorkshopSubject.find_by(workshop_id: new_workshop_id, user_id: current_user.id)
-        increment_booked_seats(new_workshop_id) if !workshop_subject || !workshop_subject.scheduled?
+        new_workshop.increment_booked_seats if !workshop_subject || !workshop_subject.scheduled?
 
         workshop_subject ||= WorkshopSubject.new
         attributes = {

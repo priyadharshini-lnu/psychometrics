@@ -77,12 +77,15 @@ class Workshop < ApplicationRecord
   end
 
   def increment_booked_seats
-    if booked_seats < total_seats
-      self.booked_seats += 1
-      save
-    else
-      errors.add(:base, :seats_not_available)
-      raise I18n.t('administration.errors.bookings.seats_not_available')
-    end
+    update_query = <<-SQL.squish
+      UPDATE workshops
+      SET booked_seats = booked_seats + 1
+      WHERE id = #{id} AND booked_seats <= total_seats
+    SQL
+
+    result = ActiveRecord::Base.connection.execute(update_query)
+    updated_record_count = result.cmd_status.split.last.to_i
+
+    raise ::Workshops::SeatsNotAvailableError if updated_record_count.zero?
   end
 end

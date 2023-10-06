@@ -13,7 +13,15 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   audit_log_for :create, payload: '*'
 
   before_create { @model.campaign_id = context[:campaign].id }
-  after_create { @model.workshop.increment_booked_seats }
+
+  before_save :increment_booked_seats, on: :create
+
+  def increment_booked_seats
+    @model.workshop.increment_booked_seats
+  rescue ::Workshops::SeatsNotAvailableError => e
+    @model.errors.add(:base, e.message)
+    raise JSONAPI::Exceptions::ValidationErrors, self
+  end
 
   before_update do
     @model.attendance_status = 'no_show' if @model.attended == true
