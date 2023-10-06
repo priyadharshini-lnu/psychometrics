@@ -36,7 +36,7 @@ module Workshops
         query = <<-SQL.squish
           UPDATE workshops
           SET booked_seats = booked_seats + 1
-          WHERE id = #{workshop_id.to_i} AND booked_seats < total_seats
+          WHERE id = #{workshop_id.to_i} AND booked_seats <= total_seats
         SQL
         result = ActiveRecord::Base.connection.execute(query)
         updated_record_count = result.cmd_status.split.last.to_i

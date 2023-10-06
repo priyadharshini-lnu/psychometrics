@@ -292,7 +292,6 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
             neurodivergent_comments: 'test'
           }
         }
-
         expect(response.status).to eq(200)
         expect(JSON.parse(response.body)).to eq('ok')
         expect(workshop_invited_subject.reload.status).to eq('rescheduled')
@@ -340,6 +339,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         post :reschedule_or_request_reschedule, params: {
           workshop_id: workshop.id,
           id: workshop_invite.id,
+          new_workshop_booking_id: new_workshop.id,
           status: 'requested_rescheduling',
           reason: 'test',
           new_workshop_id: new_workshop.id

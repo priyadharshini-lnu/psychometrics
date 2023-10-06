@@ -147,6 +147,19 @@ class User < ApplicationRecord
 
   has_one_time_password(encrypted: true)
 
+  def last_workshop_subject(campaign_id)
+    workshops ||= WorkshopSubject.where(
+      user_id: id,
+      campaign_id: campaign_id
+    ).order(:updated_at)
+
+    workshops.participatable.last || workshops.last
+  end
+
+  def last_workshop(campaign_id)
+    last_workshop_subject(campaign_id)&.workshop
+  end
+
   def self.send_reset_password_instructions(recoverable)
     recoverable.send_reset_password_instructions if recoverable.persisted?
   end
