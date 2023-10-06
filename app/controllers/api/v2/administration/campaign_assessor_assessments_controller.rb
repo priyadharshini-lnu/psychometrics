@@ -24,7 +24,8 @@ module Api
 
       render json: campaign_assessor_assessments,
              each_serializer: ::Administration::Campaigns::WorkshopSubjects::CampaignAssessorAssessmmentSerializer,
-             subject_user_assessments: subject_user_assessments, assessor_user_assessments: assessor_user_assessments
+             subject_user_assessments: subject_user_assessments, assessor_user_assessments: assessor_user_assessments,
+             current_user: current_user
     end
   end
 end

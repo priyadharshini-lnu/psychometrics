@@ -34,7 +34,7 @@ module Administration
         end
 
         def meeting_link
-          subject_user_assessment&.real_meeting_link
+          subject_user_assessment&.real_meeting_link(current_user)
         end
 
         private
@@ -57,6 +57,10 @@ module Administration
 
         def assessor_user_assessment
           assessor_user_assessments[object.assessment_id]
+        end
+
+        def current_user
+          instance_options[:current_user]
         end
       end
     end

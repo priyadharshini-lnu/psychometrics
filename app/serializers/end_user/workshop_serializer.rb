@@ -24,7 +24,7 @@ module EndUser
     end
 
     def meeting_link
-      object.real_meeting_link
+      object.real_meeting_link(current_user)
     end
 
     private

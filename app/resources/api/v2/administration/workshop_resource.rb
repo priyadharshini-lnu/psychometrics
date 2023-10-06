@@ -46,7 +46,7 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
   end
 
   def meeting_link
-    @model.real_meeting_link
+    @model.real_meeting_link(context[:user])
   end
 
   def self.default_sort

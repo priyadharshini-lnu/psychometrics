@@ -12,6 +12,6 @@ class Api::V2::Administration::UserAssessmentResource < Api::V2::Administration:
   ransack_filters %i[subject_id_eq campaign_id_eq workshop_activities preworks]
 
   def linked_subject_meeting_link
-    @model.linked_subject_user_assessment&.real_meeting_link
+    @model.linked_subject_user_assessment&.real_meeting_link(context[:user])
   end
 end

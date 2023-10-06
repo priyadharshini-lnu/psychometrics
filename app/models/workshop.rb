@@ -68,9 +68,10 @@ class Workshop < ApplicationRecord
     I18n.l(end_time.in_time_zone(timezone), format: :workshop_date)
   end
 
-  def real_meeting_link
+  def real_meeting_link(user)
     if video_call_internal? && meeting_room.present?
-      Utility::Url.generate(:admin_meeting_url, room_id: meeting_room.id)
+      route = user.admin? ? :admin_meeting_url : :meeting_url
+      Utility::Url.generate(route, room_id: meeting_room.id, subdomain: user.subdomain)
     elsif video_call_custom?
       meeting_link
     end

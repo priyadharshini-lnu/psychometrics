@@ -9,7 +9,7 @@ module EndUser
                :workshop_activity, :meeting_time, :meeting_link
 
     def meeting_link
-      object.real_meeting_link
+      object.real_meeting_link(current_user)
     end
 
     def meeting_time
@@ -82,6 +82,12 @@ module EndUser
 
     def schedule_time
       object.schedule_time&.iso8601
+    end
+
+    private
+
+    def current_user
+      @current_user ||= instance_options[:current_user]
     end
   end
 end
