@@ -11,7 +11,7 @@ module Api
         def self.attributes(attribute, _)
           proc do
             attribute[:name].filled(:string)
-            attribute[:description].filled(:string)
+            optional(:description).filled(:string)
             attribute[:type].filled(:string, included_in?: ::Assessment::TYPES.keys.map(&:to_s))
             attribute[:category].filled(:string)
             optional(:timing).maybe(:string)

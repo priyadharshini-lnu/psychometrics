@@ -102,7 +102,6 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
       <Form.Item
         name="description"
         label={I18n.t('common.column.description')}
-        rules={[{ required: true }]}
       >
         <TextArea />
       </Form.Item>
