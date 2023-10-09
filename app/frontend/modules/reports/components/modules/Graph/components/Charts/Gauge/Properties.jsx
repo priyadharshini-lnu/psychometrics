@@ -27,6 +27,12 @@ class Properties extends Component {
     this.update()
   }
 
+  changeMaxValue = (val) => {
+    const { model } = this.props
+    model.props.maxValue = val
+    this.update()
+  }
+
   changeColorProperty = (propertyName, color) => {
     const { model } = this.props
     model.props[propertyName] = color
@@ -36,7 +42,7 @@ class Properties extends Component {
   render () {
     const { model } = this.props
     const {
-      speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize,
+      speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize, maxValue,
     } = model.props
     return (
       <div>
@@ -70,6 +76,16 @@ class Properties extends Component {
         <div className={styles.block}>
           Speedometer Size
           <ChoicesInput value={parseInt(speedometerSize, 10)} onChange={this.changeSize} minValue={40} maxValue={200} />
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          Max Value
+          <ChoicesInput
+            value={parseInt(maxValue, 10) || 6}
+            onChange={this.changeMaxValue}
+            minValue={0}
+            maxValue={1000}
+          />
         </div>
       </div>
     )

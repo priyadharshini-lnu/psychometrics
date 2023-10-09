@@ -20,6 +20,10 @@ module Administration
       def destroy?
         @user.is?(:superadmin)
       end
+
+      def toggle_multiple_responses?
+        @user.is?(:superadmin)
+      end
     end
   end
 end

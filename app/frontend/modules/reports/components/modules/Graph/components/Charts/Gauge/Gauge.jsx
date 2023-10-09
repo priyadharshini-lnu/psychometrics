@@ -40,7 +40,7 @@ class Gauge extends Component {
   }
 
   renderChart (factor) {
-    const { model, animation } = this.props
+    const { model, animation, colorOverrides } = this.props
     const { fontSize, fontColor: color, fontFamily } = model.props.style
     const data = Series[model.getSourceType()]
     const series = data.series(getCorrectResults(model), factor, model)
@@ -50,7 +50,7 @@ class Gauge extends Component {
     Highcharts.chart(this[`container${factor.id || factor}`], Highcharts.merge(ChartOptions(model), {
       plotOptions: {
         series: {
-          colors: [props.speedometerMainColor],
+          colors: colorOverrides ? _.map(colorOverrides, 'color') : [props.speedometerMainColor],
           animation,
         },
       },

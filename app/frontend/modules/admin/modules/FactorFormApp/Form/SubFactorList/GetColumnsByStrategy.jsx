@@ -55,7 +55,7 @@ const getColumns = (onChange, onRemove, errors) => [
   {
     title: 'Weight',
     dataIndex: 'weight',
-    scoringStrategies: ['sub_factors_conditional_average', 'sub_factors_average'],
+    scoringStrategies: ['sub_factors_conditional_average', 'sub_factors_average', 'sub_factors_sum'],
     render: record => (
       <InputNumber
         value={record?.weight ?? 0}

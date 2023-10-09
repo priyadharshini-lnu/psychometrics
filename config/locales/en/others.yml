@@ -741,8 +741,9 @@ en:
         success_message: Asessment %{name} has been removed
       rescore: Rescore
       restore:
-        success_message: Asessment %{name} restored successfully
+        success_message: Assessment %{name} restored successfully
       show_usage: Show Usage
+      submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
       unarchived:
         success_message: Asessment %{name} unarchived successfully
@@ -3202,10 +3203,12 @@ en:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
+    allow_multiple_respones: Allow users to submit multiple responses
     close: Close
     deactivate_link: Deactivate Link
     png: PNG
     regenerate_link: Regenerate Link
+    successfully_updated: Successfully updated
     svg: SVG
   update_profile:
     cancel: Cancel

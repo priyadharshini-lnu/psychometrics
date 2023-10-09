@@ -219,22 +219,13 @@ class Properties extends Component {
           />
           {model.props.sourceType === 'ConditionalText'
             && (
-              <>
-                <div
-                  style={{ width: '100%' }}
-                  onClick={this.openConditionModal}
-                  className="btn btn-default"
-                >
-                  Manage condition
-                </div>
-                <input
-                  type="checkbox"
-                  onChange={this.changeSkipRoundValues}
-                  checked={model.props.skipRoundingValues || false}
-                />
-                {' '}
-                Skip rounding values
-              </>
+            <div
+              style={{ width: '100%' }}
+              onClick={this.openConditionModal}
+              className="btn btn-default"
+            >
+              Manage condition
+            </div>
             )}
           {model.props.sourceType === 'ConditionalFactorOccupationText'
             && (

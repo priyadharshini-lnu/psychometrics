@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: c_1124; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_1124;
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -378,6 +385,41 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: assessment_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessment_translations (
+    id bigint NOT NULL,
+    name text,
+    description text,
+    timing text,
+    locale character varying NOT NULL,
+    assessment_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: assessment_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessment_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessment_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessment_translations_id_seq OWNED BY public.assessment_translations.id;
+
+
+--
 -- Name: assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -566,16 +608,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -655,7 +697,13 @@ CREATE TABLE public.audit_logs (
     updated_at timestamp without time zone,
     campaign_id integer,
     project_id integer,
-    client_id integer
+    client_id integer,
+    request_uuid character varying,
+    user_agent character varying,
+    interface integer,
+    client_ip character varying,
+    outcome integer,
+    reason character varying
 );
 
 
@@ -676,6 +724,48 @@ CREATE SEQUENCE public.audit_logs_id_seq
 --
 
 ALTER SEQUENCE public.audit_logs_id_seq OWNED BY public.audit_logs.id;
+
+
+--
+-- Name: audits; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.audits (
+    id bigint NOT NULL,
+    auditable_id integer,
+    auditable_type character varying,
+    associated_id integer,
+    associated_type character varying,
+    user_id integer,
+    user_type character varying,
+    username character varying,
+    action character varying,
+    audited_changes jsonb,
+    version integer DEFAULT 0,
+    comment character varying,
+    remote_address character varying,
+    request_uuid character varying,
+    created_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: audits_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.audits_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: audits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 
 
 --
@@ -726,8 +816,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -809,7 +898,8 @@ CREATE TABLE public.campaign_assessments (
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
-    workshop_activity_duration integer
+    workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false
 );
 
 
@@ -1774,7 +1864,9 @@ CREATE TABLE public.factors (
     code character varying,
     use_percentage boolean DEFAULT false,
     use_sub_factor_norm_score boolean,
-    external_scoring jsonb DEFAULT '[]'::jsonb
+    external_scoring jsonb DEFAULT '[]'::jsonb,
+    scale_min double precision,
+    scale_max double precision
 );
 
 
@@ -2316,7 +2408,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -2818,138 +2910,6 @@ ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sess
 
 
 --
--- Name: product_images; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.product_images (
-    id integer NOT NULL,
-    image character varying,
-    "position" integer,
-    product_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: product_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.product_images_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: product_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.product_images_id_seq OWNED BY public.product_images.id;
-
-
---
--- Name: product_prices; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.product_prices (
-    id integer NOT NULL,
-    price_cents integer DEFAULT 0 NOT NULL,
-    price_currency character varying DEFAULT 'USD'::character varying NOT NULL,
-    product_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: product_prices_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.product_prices_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: product_prices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.product_prices_id_seq OWNED BY public.product_prices.id;
-
-
---
--- Name: product_reports; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.product_reports (
-    id integer NOT NULL,
-    product_id integer,
-    report_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: product_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.product_reports_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: product_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.product_reports_id_seq OWNED BY public.product_reports.id;
-
-
---
--- Name: products; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.products (
-    id integer NOT NULL,
-    name character varying,
-    description text,
-    image character varying,
-    disabled boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.products_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
-
-
---
 -- Name: profile_fields; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3286,12 +3246,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4193,7 +4153,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4862,10 +4823,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -5408,6 +5369,13 @@ ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api
 
 
 --
+-- Name: assessment_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations ALTER COLUMN id SET DEFAULT nextval('public.assessment_translations_id_seq'::regclass);
+
+
+--
 -- Name: assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5454,6 +5422,13 @@ ALTER TABLE ONLY public.assigns_reports ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.audit_logs ALTER COLUMN id SET DEFAULT nextval('public.audit_logs_id_seq'::regclass);
+
+
+--
+-- Name: audits id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audits_id_seq'::regclass);
 
 
 --
@@ -5853,34 +5828,6 @@ ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval('public.proctoring_sessions_id_seq'::regclass);
-
-
---
--- Name: product_images id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_images ALTER COLUMN id SET DEFAULT nextval('public.product_images_id_seq'::regclass);
-
-
---
--- Name: product_prices id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_prices ALTER COLUMN id SET DEFAULT nextval('public.product_prices_id_seq'::regclass);
-
-
---
--- Name: product_reports id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_reports ALTER COLUMN id SET DEFAULT nextval('public.product_reports_id_seq'::regclass);
-
-
---
--- Name: products id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
 
 
 --
@@ -6404,6 +6351,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
+-- Name: assessment_translations assessment_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT assessment_translations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: assessments_clients assessments_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6457,6 +6412,14 @@ ALTER TABLE ONLY public.assigns_reports
 
 ALTER TABLE ONLY public.audit_logs
     ADD CONSTRAINT audit_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: audits audits_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits
+    ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
 
 
 --
@@ -6929,38 +6892,6 @@ ALTER TABLE ONLY public.privacy_links
 
 ALTER TABLE ONLY public.proctoring_sessions
     ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
-
-
---
--- Name: product_images product_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_images
-    ADD CONSTRAINT product_images_pkey PRIMARY KEY (id);
-
-
---
--- Name: product_prices product_prices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_prices
-    ADD CONSTRAINT product_prices_pkey PRIMARY KEY (id);
-
-
---
--- Name: product_reports product_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.product_reports
-    ADD CONSTRAINT product_reports_pkey PRIMARY KEY (id);
-
-
---
--- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.products
-    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
 
 
 --
@@ -7484,6 +7415,20 @@ ALTER TABLE ONLY public.workshops
 
 
 --
+-- Name: associated_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX associated_index ON public.audits USING btree (associated_type, associated_id);
+
+
+--
+-- Name: auditable_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auditable_index ON public.audits USING btree (auditable_type, auditable_id, version);
+
+
+--
 -- Name: datasheet_column_preference_resource; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7638,6 +7583,20 @@ CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
 
 
 --
+-- Name: index_assessment_t18n_tables_on_assessment_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_assessment_t18n_tables_on_assessment_id_and_locale ON public.assessment_translations USING btree (assessment_id, locale);
+
+
+--
+-- Name: index_assessment_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessment_translations_on_locale ON public.assessment_translations USING btree (locale);
+
+
+--
 -- Name: index_assessments_clients_on_client_id_and_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7775,6 +7734,20 @@ CREATE INDEX index_audit_logs_on_record_type_and_record_id ON public.audit_logs 
 --
 
 CREATE INDEX index_audit_logs_on_user_id_and_action ON public.audit_logs USING btree (user_id, action);
+
+
+--
+-- Name: index_audits_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_created_at ON public.audits USING btree (created_at);
+
+
+--
+-- Name: index_audits_on_request_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_uuid);
 
 
 --
@@ -8636,34 +8609,6 @@ CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btre
 --
 
 CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_sessions USING btree (campaign_user_id);
-
-
---
--- Name: index_product_images_on_product_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_product_images_on_product_id ON public.product_images USING btree (product_id);
-
-
---
--- Name: index_product_prices_on_product_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_product_prices_on_product_id ON public.product_prices USING btree (product_id);
-
-
---
--- Name: index_product_reports_on_product_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_product_reports_on_product_id ON public.product_reports USING btree (product_id);
-
-
---
--- Name: index_product_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_product_reports_on_report_id ON public.product_reports USING btree (report_id);
 
 
 --
@@ -9707,6 +9652,13 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 --
 
 CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_histories USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: user_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
@@ -11293,6 +11245,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: assessment_translations fk_rails_e8b68f05ba; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessment_translations
+    ADD CONSTRAINT fk_rails_e8b68f05ba FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
 -- Name: threesixty_evaluators fk_rails_e96676a310; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12028,6 +11988,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230627181938'),
 ('20230717125048'),
 ('20230719111228'),
+('20230721123804'),
+('20230721125540'),
 ('20230725084846'),
 ('20230727152255'),
 ('20230728040657'),
@@ -12041,20 +12003,27 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230809193508'),
 ('20230810103629'),
 ('20230811114945'),
+('20230818091139'),
 ('20230818140419'),
+('20230821092143'),
 ('20230821100124'),
 ('20230822081633'),
 ('20230823110647'),
 ('20230824083112'),
 ('20230829124517'),
 ('20230829143631'),
+('20230905113355'),
 ('20230912064131'),
 ('20230918133925'),
 ('20230918143010'),
 ('20230919051922'),
 ('20230919070332'),
+('20230919093339'),
 ('20230921123131'),
 ('20230926124141'),
+('20230927131437'),
+('20231003100838'),
+('20231003130242'),
 ('20231006103234');
 
 

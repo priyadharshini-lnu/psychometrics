@@ -519,4 +519,106 @@ describe UsersResults::Scoring::AddScore do
       factor2.id.to_s => { 'score' => '5', 'norm_score' => nil }
     )
   end
+
+  it 'scoring_strategy: :questions_percentage' do
+    factor1 = create(:factor, scoring_strategy: :questions_percentage, scale_min: 1, scale_max: 5)
+    factor2 = create(:factor, scoring_strategy: :questions_percentage, scale_min: 1, scale_max: 5)
+
+    factor_hash = {
+      factor1.id => { factor: factor1, sub_factor_hash: {} },
+      factor2.id => { factor: factor2, sub_factor_hash: {} }
+    }
+
+    factor_ids = factor_hash.keys
+
+    scoring = {
+      factor1.id.to_s => {
+        'results' => [
+          { 'value' => [2, 3, 4], 'question_id' => 1, 'max_value' => 15, 'value_sum' => 9 },
+          { 'value' => 5, 'question_id' => 2, 'max_value' => 5, 'value_sum' => 5 },
+          { 'value' => 2, 'question_id' => 3, 'max_value' => 5, 'value_sum' => 2 }
+        ]
+      },
+      factor2.id.to_s => { 'results' => [] }
+    }
+    result = described_class.call!(
+      factor_hash, factor_ids, scoring, five_scale_norm, {}, {}, {
+        factor1.id => 3,
+        factor2.id => 0
+      }
+    )
+
+    expect(result).to eq(
+      factor1.id.to_s => {
+        'results' => [
+          { 'value' => [2, 3, 4], 'question_id' => 1, 'max_value' => 15, 'value_sum' => 9 },
+          { 'value' => 5, 'question_id' => 2, 'max_value' => 5, 'value_sum' => 5 },
+          { 'value' => 2, 'question_id' => 3, 'max_value' => 5, 'value_sum' => 2 }
+        ],
+        'score' => Utility::Number.scale((9 + 5 + 2) / (15 + 5 + 5).to_f, 0, 1, 1, 5).round(2),
+        'norm_score' => nil
+      },
+      factor2.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil }
+    )
+  end
+
+  it 'scoring_strategy: :sub_factors_sum' do
+    factor1 = create(:factor, scoring_strategy: :sub_factors_sum)
+    factor2 = create(:factor, scoring_strategy: :questions)
+    factor3 = create(:factor, scoring_strategy: :questions)
+    factor4 = create(:factor, scoring_strategy: :questions)
+    factor5 = create(:factor, scoring_strategy: :questions)
+
+    sub_factor_hash = [
+      create(:factors_sub_factor, factor: factor1, sub_factor: factor2, weight: 1),
+      create(:factors_sub_factor, factor: factor1, sub_factor: factor3, weight: 3),
+      create(:factors_sub_factor, factor: factor1, sub_factor: factor4, weight: 4),
+      create(:factors_sub_factor, factor: factor1, sub_factor: factor5, weight: 2)
+    ].index_by(&:sub_factor_id)
+
+    factor_hash = {
+      factor1.id => { factor: factor1, sub_factor_hash: sub_factor_hash },
+      factor2.id => { factor: factor2, sub_factor_hash: {} },
+      factor3.id => { factor: factor3, sub_factor_hash: {} },
+      factor4.id => { factor: factor4, sub_factor_hash: {} },
+      factor5.id => { factor: factor5, sub_factor_hash: {} }
+    }
+
+    factor_ids = factor_hash.keys
+
+    scoring = {
+      factor1.id.to_s => {
+        'results' => [{ 'value' => [2, 3, 4], 'question_id' => 1 }, { 'value' => 5, 'question_id' => 2 }]
+      },
+      factor2.id.to_s => { 'results' => [{ 'value' => [0, 2], 'question_id' => 3 }] },
+      factor3.id.to_s => { 'results' => [{ 'value' => [1, 5], 'question_id' => 5 }] },
+      factor4.id.to_s => { 'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }] },
+      factor5.id.to_s => { 'results' => [] }
+    }
+    result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+    expect(result).to eq(
+      factor1.id.to_s => {
+        'results' => [
+          { 'value' => [2, 3, 4], 'question_id' => 1 },
+          { 'value' => 5, 'question_id' => 2 }
+        ],
+        'score' => 19.32, # (1.0 * 1 + 3.0 * 3 + 2.33 * 4) = 19.32
+        'norm_score' => nil
+      },
+      factor2.id.to_s => {
+        'results' => [{ 'value' => [0, 2], 'question_id' => 3 }], 'score' => 1.0, # (0 + 2) / 2.0 = 1.0
+        'norm_score' => nil
+      },
+      factor3.id.to_s => {
+        'results' => [{ 'value' => [1, 5], 'question_id' => 5 }], 'score' => 3.0, # (1 + 5) / 2.0 = 3.0
+        'norm_score' => nil
+      },
+      factor4.id.to_s => {
+        'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }], 'score' => 2.33, # (2 + 2 + 3) / 3.0 = 2.33
+        'norm_score' => nil
+      },
+      factor5.id.to_s => { 'results' => [], 'score' => nil, 'norm_score' => nil }
+    )
+  end
 end

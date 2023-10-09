@@ -4,7 +4,7 @@ class AssessmentSerializer < ActiveModel::Serializer
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
              :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration,
              :resources_content, :resources_translations, :instructions, :fixed_timed, :options, :default_norm_id,
-             :extra, :linked_questions
+             :extra, :linked_questions, :allow_multiple_responses
 
   def blocks
     object.blocks.
@@ -69,7 +69,15 @@ class AssessmentSerializer < ActiveModel::Serializer
     object.extra['timer']
   end
 
+  def allow_multiple_responses
+    campaign_assessment&.allow_multiple_responses
+  end
+
   private
+
+  def campaign_assessment
+    instance_options[:campaign_assessment]
+  end
 
   def piped_text_context
     instance_options[:piped_text_context] || {}
