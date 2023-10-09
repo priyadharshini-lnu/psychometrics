@@ -35,8 +35,16 @@ module WorkshopSubjects
         if assessor_id
           Assessor.find_or_create_by!(user_id: assessor_id, campaign_id: campaign_id)
           find_or_update_assessor_assessment(assessor_assessment)
-        elsif assessor_assessment[:user_assessment_id]
-          UserAssessment.find_by(campaign_id: campaign_id, id: assessor_assessment[:user_assessment_id])&.destroy!
+        elsif assessor_assessment[:assessor_user_assessment_id]
+          assessor_ua = UserAssessment.find_by(
+            campaign_id: campaign_id,
+            id: assessor_assessment[:assessor_user_assessment_id],
+            relationship_id: Relationship.assessor_relationship.id
+          )
+          next if assessor_ua.nil?
+
+          assessor_ua.linked_subject_user_assessment&.update!(meeting_link: nil, meeting_type: nil)
+          assessor_ua.destroy!
         end
       end
     end
@@ -61,7 +69,7 @@ module WorkshopSubjects
 
       linked_subject_user_assessment = user_assessment.linked_subject_user_assessment
 
-      if (assessment_data[:meeting_link] || assessment_data[:meeting_link_type]) && linked_subject_user_assessment.nil?
+      if (assessment_data[:meeting_link] || assessment_data[:meeting_type]) && linked_subject_user_assessment.nil?
         return broadcast :error, [
           {
             assessor_forms: I18n.t('administration.workshop_subjects.errors.update_assessor_for_failure')
@@ -75,7 +83,7 @@ module WorkshopSubjects
 
       user_assessment.linked_subject_user_assessment&.update!(
         meeting_link: assessment_data[:meeting_link],
-        meeting_type: assessment_data[:meeting_link_type]
+        meeting_type: assessment_data[:meeting_type]
       )
     end
 

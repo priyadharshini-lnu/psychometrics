@@ -226,7 +226,9 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
             ...assessment,
             scheduleTime: null,
             assessor: null,
-            meetingLinkUrl: null,
+            meetingType: 'none',
+            meetingLink: null,
+            status: null,
           })
         }
         return assessment

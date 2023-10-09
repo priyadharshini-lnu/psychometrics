@@ -28,12 +28,14 @@ export const AssessorFormModal:FC<Props> = (props) => {
     close, onFormFinish, initialFormData, assessments, assessors, workshop,
   } = props
   const [assessorFormInstance] = Form.useForm()
+  const meetingType = Form.useWatch('meetingType', assessorFormInstance)
   const [, setFields] = useState({})
   const [selectedAssessment, setSelectedAssessment] = useState(initialFormData)
 
   const submitForm = () => {
     assessorFormInstance.submit()
   }
+
   const handleFormFinish = (values) => {
     const currentAssessment = assessments?.find(assessment => assessment.id === values.name)
     const currentAssessor = assessors?.find(assessor => assessor.id === values.assessor)
@@ -43,7 +45,11 @@ export const AssessorFormModal:FC<Props> = (props) => {
         {
           ...values,
           name: initialFormData.name,
-          assessor: { ...initialFormData.assessor, id: initialFormData.assessor?.id },
+          assessor: {
+            id: currentAssessor?.userId || initialFormData.assessor?.id,
+            name: currentAssessor?.name || initialFormData.assessor?.name,
+            photoUrl: currentAssessor?.photoUrl || initialFormData.assessor?.photoUrl,
+          },
         },
         id: initialFormData.id,
       })
@@ -68,8 +74,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
     assessor: initialFormData.assessor?.name,
   }
 
-  const meetingLinkType = assessorFormInstance.getFieldValue('meetingLinkType')
-  const meetingLinkFieldRules: Rule[] = meetingLinkType === 'custom'
+  const meetingLinkFieldRules: Rule[] = meetingType === 'custom'
     ? [{ required: true }, {
       type: 'url',
       message: I18n.t('administration.scheduling.errors.invalid_url'),
@@ -153,26 +158,25 @@ export const AssessorFormModal:FC<Props> = (props) => {
           <Form.Item
             className="mb-1"
             label={I18n.t('administration.scheduling.subjects.meeting_link_title')}
-            name="meetingLinkType"
+            name="meetingType"
           >
             <Radio.Group>
-              <Radio value="none">{I18n.t('administration.scheduling.subjects.meeting_link_none')}</Radio>
+              <Radio value="not_available">{I18n.t('administration.scheduling.subjects.meeting_link_none')}</Radio>
               <Radio value="internal">{I18n.t('administration.scheduling.subjects.meeting_link_internal')}</Radio>
               <Radio value="custom">{I18n.t('administration.scheduling.subjects.meeting_link_custom')}</Radio>
             </Radio.Group>
           </Form.Item>
         )}
-        {assessorFormInstance.getFieldValue('meetingLinkType')
-        && assessorFormInstance.getFieldValue('meetingLinkType') === 'custom' ? (
+        {meetingType && meetingType === 'custom' ? (
           <Form.Item
             className="mb-0"
             wrapperCol={{ offset: 6 }}
-            name="meetingLinkUrl"
+            name="meetingLink"
             rules={[...meetingLinkFieldRules]}
           >
             <Input />
           </Form.Item>
-          ) : null}
+        ) : null}
       </Form>
     </Modal>
   )

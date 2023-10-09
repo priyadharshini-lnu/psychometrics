@@ -3,13 +3,14 @@
 module Administration
   module Campaigns
     module WorkshopSubjects
-      class CampaignAssessorAssessmmentSerializer < ActiveModel::Serializer
+      class CampaignAssessorAssessmentSerializer < ActiveModel::Serializer
         attributes :id, :name, :assessor_user_assessment_id, :status, :schedule_time, :meeting_link,
-                   :linked_activity, :assessor, :subject_linked_activity_present
+                   :linked_activity, :assessor, :subject_linked_activity_present, :meeting_type
 
         delegate :name, to: :assessment, allow_nil: true
         delegate :status, :schedule_time, to: :assessor_user_assessment, allow_nil: true
         delegate :id, to: :assessor_user_assessment, prefix: true, allow_nil: true
+        delegate :meeting_type, to: :subject_user_assessment, allow_nil: true
 
         def id
           object.id.to_s
@@ -19,9 +20,9 @@ module Administration
           return unless assessor_user_assessment
 
           {
-            id: assessor_user_assessment.evaluator.id.to_s,
-            name: assessor_user_assessment.evaluator.name,
-            photo_url: assessor_user_assessment.evaluator.photo_url
+            id: assessor_user_assessment.evaluator&.id.to_s,
+            name: assessor_user_assessment.evaluator&.name,
+            photo_url: assessor_user_assessment.evaluator&.photo_url
           }
         end
 
