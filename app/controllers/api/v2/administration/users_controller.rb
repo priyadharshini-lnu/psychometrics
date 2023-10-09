@@ -18,11 +18,16 @@ module Api
         password: password, force_password_change: attrs[:change_password_on_login]
       )
       audit! :reset_password_email, @resource, payload: attrs.except(:password)
-      SendPasswordMailer.password_email(@resource, password).deliver_later if attrs[:send_password_email]
+      if !@resource.disabled? && attrs[:send_password_email]
+        SendPasswordMailer.password_email(@resource, password).deliver_later
+        message_key = 'send_password_email_success'
+      end
+      message_key ||= 'reset_password_success'
+      success_message = I18n.t("reset_password_modal.messages.#{message_key}", email: @resource.email)
       login_url = Utility::Url.generate(:user_session_url, subdomain: @resource.project&.subdomain)
       render json: json_api_attributes(
         @resource,
-        { password: auto_generated_password, login_url: login_url }
+        { password: auto_generated_password, login_url: login_url, success_message: success_message }
       )
     end
 

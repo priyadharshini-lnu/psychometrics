@@ -18,11 +18,15 @@ class Graph extends Component {
     const {
       factors, module: model, preview, animation,
     } = this.props
+    let colorOverrides = null
     if (model.textConditions.length > 0) {
       const {
         colors,
       } = model.getStylesByCondition()
-      if (colors) model.props.colors = colors
+      if (colors) {
+        model.props.colors = colors
+        colorOverrides = colors
+      }
     }
     if (model.props.type) {
       const View = Charts[model.props.type] || Charts.Bar
@@ -32,6 +36,7 @@ class Graph extends Component {
           model={model}
           preview={preview}
           animation={animation}
+          colorOverrides={colorOverrides}
         />
       )
     }

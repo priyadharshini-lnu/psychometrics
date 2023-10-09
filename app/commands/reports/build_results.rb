@@ -18,7 +18,8 @@ module Reports
       mapped_value: 'Reports::ResultTypes::MappedValue',
       zscore_to_percentile: 'Reports::ResultTypes::ZscoreToPercentile',
       ref: 'Reports::ResultTypes::Ref',
-      datasheet: 'Reports::ResultTypes::Datasheet'
+      datasheet: 'Reports::ResultTypes::Datasheet',
+      float: 'Reports::ResultTypes::Float'
     }.freeze
 
     def initialize(report, users_results, data = nil)

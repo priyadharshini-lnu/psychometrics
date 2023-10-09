@@ -3,6 +3,8 @@ import * as t from 'io-ts'
 export const ACTIVATE_UNIVERSAL_LINK = 'campaigns/ACTIVATE_UNIVERSAL_LINK'
 export const DEACTIVATE_UNIVERSAL_LINK = 'campaigns/DEACTIVATE_UNIVERSAL_LINK'
 export const REGENERATE_UNIVERSAL_LINK = 'campaigns/REGENERATE_UNIVERSAL_LINK'
+export const TOGGLE_MULTIPLE_RESPONSES = 'campaigns/TOGGLE_MULTIPLE_RESPONSES'
+
 export const IMPORT_RAW_RESULTS = 'campaigns/assessments/IMPORT_RAW_RESULTS'
 export const IMPORT_SCORING_RESULTS = 'campaigns/assessments/IMPORT_SCORING_RESULTS'
 export const FETCH_NORMS = 'campaigns/assessments/FETCH_NORMS'
@@ -52,6 +54,14 @@ export const deactivateUniversalLink = (campaignId: string, id: number) => ({
   request: {
     method: 'delete',
     url: `/administration/new_campaigns/${campaignId}/universal_links/${id}`,
+  },
+})
+
+export const toggleMultipleResponses = (campaignId: string, id: number) => ({
+  type: TOGGLE_MULTIPLE_RESPONSES,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/universal_links/${id}/toggle_multiple_responses`,
   },
 })
 

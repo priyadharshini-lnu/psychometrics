@@ -162,6 +162,10 @@ class User < ApplicationRecord
     last_workshop_subject(campaign_id)&.workshop
   end
 
+  def send_reset_password_instructions
+    super unless disabled?
+  end
+
   def self.send_reset_password_instructions(recoverable)
     recoverable.send_reset_password_instructions if recoverable.persisted?
   end
@@ -225,6 +229,10 @@ class User < ApplicationRecord
 
   def log_attributes
     slice(:id, :email)
+  end
+
+  def active_for_authentication?
+    super && !disabled?
   end
 
   private

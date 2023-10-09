@@ -135,7 +135,7 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.universal_link')}
             key="universalLink"
             render={({
-              enableUniversalLinks, universalLink, id, isExternal,
+              enableUniversalLinks, universalLink, id, isExternal, allowMultipleResponses,
             }) => {
               if (enableUniversalLinks && !isExternal) {
                 return (
@@ -147,6 +147,7 @@ const AssessmentList: React.FC<Props> = ({
                           campaignId: parsedCampaignId,
                           campaignAssessmentId: id,
                           universalLink,
+                          allowMultipleResponses,
                           manageUniversalLink: permissions.enableUniversalLink,
                         })
                     }
