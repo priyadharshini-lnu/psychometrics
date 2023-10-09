@@ -180,20 +180,20 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   } : null,
   {
     key: 'profile',
-    label: I18n.t('campaign.dashboard_menu.profile'),
+    label: I18n.t('administration.navigation.profile'),
     icon: <UserOutlined className={styles.siderIcon} />,
     children: [
       {
         label: (
           <Link href="/admin/profile/details">
-            {I18n.t('campaign.dashboard_menu.profile_details')}
+            {I18n.t('administration.navigation.profile_details')}
           </Link>),
         key: 'profileDetails',
       },
       {
         label: (
           <Link href="/admin/profile/change_password">
-            {I18n.t('campaign.dashboard_menu.change_password')}
+            {I18n.t('administration.navigation.change_password')}
           </Link>),
         key: 'changePassword',
       },

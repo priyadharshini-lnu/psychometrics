@@ -3143,7 +3143,6 @@ en:
     meta_title: Administration panel
     modified_by: Modified By
     navigation:
-      admins: Admins
       assessments: Assessments
       assessments_reports: Assessments & Reports
       assessor_dashboard: Assessor Dashboard
@@ -3153,6 +3152,7 @@ en:
       back_to_main: Main Menu
       campaign_templates: Campaign Templates
       campaigns: Campaigns
+      change_password: Change Password
       client: Client Tenancy
       client_admins: Client Admins
       clients: Client Tenancies
@@ -3177,6 +3177,8 @@ en:
       options: Options
       participants: Participants
       products: Products
+      profile: Profile
+      profile_details: Details
       project_admins: Project Admins
       projects: Projects
       psychometrics: Psychometrics

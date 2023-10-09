@@ -855,6 +855,7 @@ en:
 
         Click **Back** to review your responses one final time or click **Submit** if you are finished.
       next: Next
+      read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
         description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or surveys@thetalententerprise.com
