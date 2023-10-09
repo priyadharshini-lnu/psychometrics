@@ -69,7 +69,7 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
     end
   end
 
-  path '/workshops/{workshop_id}/bulk_update_subjects' do
+  path '/campaigns/{campaign_id}/workshops/{workshop_id}/bulk_update_subjects' do
     before do
       create(:campaign_user, campaign: workshop.campaign, user: workshop_subject.user)
       @user_assessment = create(:user_assessment, campaign: workshop.campaign, subject: workshop_subject.user)
@@ -80,6 +80,7 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
       tags 'Workshops'
       consumes 'application/vnd.api+json'
       security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
       parameter name: :workshop_id, in: :path, type: :string
       parameter name: :body, in: :body,
                 schema: { '$ref' => '#/components/schemas/WorkshopBulkUpdateSubjectsRequest' },

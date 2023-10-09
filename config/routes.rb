@@ -1264,6 +1264,7 @@ Rails.application.routes.draw do
             jsonapi_resources :workshops, only: %i[index show update] do
               member do
                 post :change_status
+                post :bulk_update_subjects
               end
               collection do
                 post :create_bulk_workshops
@@ -1304,9 +1305,6 @@ Rails.application.routes.draw do
           end
           jsonapi_resources :workshops, only: %i[index] do
             jsonapi_relationships
-            member do
-              post :bulk_update_subjects
-            end
           end
 
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
