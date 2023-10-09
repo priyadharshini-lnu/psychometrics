@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module RecipientFields
-        class Meta < BaseField
+        class Meta < ::PipedText::BaseField
           def call
             data = campaign.datasheet_data(user.email)
 

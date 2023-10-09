@@ -11,7 +11,7 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
     Hogan::FetchResultsJob.set(wait: 30.seconds).
       perform_later(user_result, current_user.hogan_credential, @user_assessment.campaign.project)
 
-    redirect_to(assessment_completed_path(@user_assessment.campaign))
+    redirect_to(assessment_completed_path(@user_assessment.campaign, user_assessment_id: @user_assessment.id))
   end
 
   def pass

@@ -1,9 +1,9 @@
-import { FC, useState, useEffect } from 'react'
+import {
+  FC, useState, useEffect, Fragment,
+} from 'react'
 import {
   Drawer,
   Form,
-  Row,
-  Col,
   Typography,
   Space,
   Button,
@@ -23,7 +23,7 @@ import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
 import { Admin, AdminPermissions, CurrentUserPermissions } from '~/modules/admin/modules/client/core/admin'
-import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import styles from './styles.less'
 import {
   AdminTypes,
@@ -40,7 +40,7 @@ const { Option } = Select
 
 const connecter = connect(
   (state: RootState) => ({
-    currentCampaignId: getCurrentCampaignId(state),
+    currentCampaignId: getCampaignId(state),
   }),
   {},
 )
@@ -59,6 +59,7 @@ interface OwnProps {
   adminType: string
   campaignType?: string
   handleClose: () => void
+  addOrUpdateInProgress: boolean
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -76,6 +77,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   adminType,
   campaignType,
   currentCampaignId,
+  addOrUpdateInProgress,
 }) => {
   const [form] = Form.useForm()
 
@@ -179,10 +181,12 @@ const AddEditDrawerComponent: FC<Props> = ({
         grantNames: admin?.grantNames ?? {},
       }))
     }
+    return () => form.resetFields()
   }, [admin])
 
   useEffect(() => {
     form.setFieldsValue(({ firstName: selectedUser?.firstName, lastName: selectedUser?.lastName }))
+    return () => form.resetFields()
   }, [selectedUser])
 
   const drawerTitle = isEditMode
@@ -194,7 +198,6 @@ const AddEditDrawerComponent: FC<Props> = ({
     : I18n.t('administration.administrators.drawers.edit.save')
 
   const onClose = () => {
-    form.resetFields()
     history.push(historyPath)
     handleClose()
   }
@@ -239,8 +242,36 @@ const AddEditDrawerComponent: FC<Props> = ({
     return null
   }
 
+  const buttons = (
+    <Space>
+      {true && (
+      <Button
+        htmlType="submit"
+        key="submit"
+        form="add_edit_admin_form"
+        type="primary"
+        onClick={() => {
+          form.submit()
+        }}
+        loading={addOrUpdateInProgress}
+      >
+        {actionButtonText}
+      </Button>
+      )}
+      <Button
+        htmlType="reset"
+        form="add_edit_admin_form"
+        onClick={onClose}
+        disabled={addOrUpdateInProgress}
+      >
+        {I18n.t('administration.administrators.list.actions.cancel_text')}
+      </Button>
+    </Space>
+  )
+
   return (
     <Drawer
+      title={<Typography.Title level={4}>{drawerTitle}</Typography.Title>}
       placement="right"
       maskClosable={false}
       closable={false}
@@ -248,36 +279,8 @@ const AddEditDrawerComponent: FC<Props> = ({
       zIndex={1001}
       visible={isVisible}
       destroyOnClose
+      extra={buttons}
     >
-      <Row justify="space-between" align="middle" className="mb-4">
-        <Col>
-          <Typography.Title level={4}>{drawerTitle}</Typography.Title>
-        </Col>
-        <Col>
-          <Space>
-            {true && (
-              <Button
-                htmlType="submit"
-                key="submit"
-                form="add_edit_admin_form"
-                type="primary"
-                onClick={() => {
-                  form.submit()
-                }}
-              >
-                {actionButtonText}
-              </Button>
-            )}
-            <Button
-              htmlType="reset"
-              form="add_edit_admin_form"
-              onClick={onClose}
-            >
-              {I18n.t('administration.administrators.list.actions.cancel_text')}
-            </Button>
-          </Space>
-        </Col>
-      </Row>
       <ResourceForm
         resourceName="memberships"
         resource={admin}
@@ -402,7 +405,7 @@ const AddEditDrawerComponent: FC<Props> = ({
               </>
             )}
             {_.map(grantsHash(), (grants, grantFor) => (
-              <>
+              <Fragment key={grantFor}>
                 <Form.Item
                   name={['grantNames', `${grantFor}`]}
                   label={_.startCase(grantFor)}
@@ -413,7 +416,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                   { isSuperAdmin ? (
                     <Checkbox.Group className={styles.grants_checkbox_group}>
                       {_.map(grants, grant => (
-                        <Checkbox value={grant}>
+                        <Checkbox key={grant as string} value={grant}>
                           {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
                           {adminType !== AdminTypes.CampaignAdmin && _.includes(
                             ThreeSixtySpecificGrants[grantFor], grant,
@@ -430,7 +433,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                       <Checkbox.Group className={styles.grants_checkbox_group}>
                         {_.map(grants, grant => (
                           _.get(currentUserGrants, grantFor, []).includes(grant) && (
-                          <Checkbox value={grant}>
+                          <Checkbox value={grant} key={grant as string}>
                             {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
                           </Checkbox>
                           )
@@ -440,11 +443,10 @@ const AddEditDrawerComponent: FC<Props> = ({
                   }
                 </Form.Item>
                 <Divider />
-              </>
+              </Fragment>
             ))}
           </>
         )}
-
       </ResourceForm>
       {adminType !== AdminTypes.CampaignAdmin && (
         <div className="notes">

@@ -88,6 +88,7 @@ const defaultState: State = {
   fixedTimed: false,
   showErrorWarning: false,
   isAssessor: false,
+  nextAssessmentUrl: null,
   submitRequired: false,
   otherPendingAssessmentCount: 0,
 }
@@ -121,6 +122,7 @@ const HANDLERS = {
     return {
       ...defaultState,
       initialized: true,
+      name: data.name,
       assessmentCategory: data.category,
       type: data.type || 'preview_assessment',
       isThreesixty: data.isThreesixty,
@@ -152,6 +154,8 @@ const HANDLERS = {
       dbResult: _.omit(result, 'media_responses'),
       mediaResponses: humps.camelizeKeys(mediaResponses),
       results: result.results || result.answers || {},
+      campaignUser: result.campaign_user,
+      isTimedCampaign: result.campaign_options?.fixed_time,
       expiryDate: result.expiry_date,
       timerDuration: data.timer_duration,
       metaData: result.meta_data || {},
@@ -172,7 +176,9 @@ const HANDLERS = {
       fixedTimed: data.fixed_timed,
       defaultNorm: data.default_norm_id,
       isAssessor: data.isAssessor,
+      nextAssessmentUrl: result.next_assessment_url,
       otherPendingAssessmentCount: result.other_pending_assessments_count,
+      linkedQuestions: data.linked_questions,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {
@@ -238,7 +244,7 @@ const HANDLERS = {
   [SAVE_RESULTS_REQUEST]: state => ({ ...state, submissionInProgress: true }),
   [SAVE_RESULTS]: ({ ...state }: State, {
     response: {
-      expired, current_block: currentBlock, factors, scoring, translations,
+      expired, current_block: currentBlock, factors, scoring, translations, next_assessment_url: nextAssessmentUrl,
     },
   }: SaveResults) => {
     const blocks = currentBlock
@@ -260,6 +266,7 @@ const HANDLERS = {
       factors,
       scoring,
       submissionInProgress: false,
+      nextAssessmentUrl,
     } : {
       ...state,
       end,
@@ -267,6 +274,7 @@ const HANDLERS = {
       locales: translations,
       questions: newQuestions,
       submissionInProgress: false,
+      nextAssessmentUrl,
     }
   },
   [SAVE_RESULTS_FAILURE]: state => ({ ...state, submissionFailed: true, submissionInProgress: false }),

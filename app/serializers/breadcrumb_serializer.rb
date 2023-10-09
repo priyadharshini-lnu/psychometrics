@@ -4,6 +4,7 @@ class BreadcrumbSerializer < ActiveModel::Serializer
   attribute :client, if: -> { instance_options[:fields].include?('client') }
   attribute :project, if: -> { instance_options[:fields].include?('project') }
   attribute :campaign, if: -> { instance_options[:fields].include?('campaign') }
+  attribute :threesixty, if: -> { instance_options[:fields].include?('threesixty') }
 
   def client
     {
@@ -23,6 +24,13 @@ class BreadcrumbSerializer < ActiveModel::Serializer
     {
       id: object['campaign'].id,
       name: object['campaign'].name
+    }
+  end
+
+  def threesixty
+    {
+      id: object['threesixty'].id,
+      name: object['threesixty'].name
     }
   end
 end

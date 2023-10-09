@@ -5,6 +5,8 @@ class CommunicationEmail < ApplicationRecord
   belongs_to :communication, inverse_of: :emails
   belongs_to :campaign_user
   has_one :user, through: :campaign_user
+  belongs_to :workshop
+  belongs_to :workshop_invite
 
   after_commit :delivery_email, on: :create
 

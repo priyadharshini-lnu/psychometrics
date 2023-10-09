@@ -1,4 +1,3 @@
-import React from 'react'
 import { render } from '@testing-library/react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -8,7 +7,6 @@ import {
   Props,
 } from '~/modules/survey/components/modules/MultipleChoice/Properties'
 
-global.React = React
 const testStore = (state=[], _) => {
   return state
 }

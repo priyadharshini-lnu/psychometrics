@@ -6,6 +6,12 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
   model_hint model: 'users/regular', resource: :user
   model_hint model: 'users/admin', resource: :user
   model_hint model: 'users/super_admin', resource: :user
+  model_hint model: 'assessments/common', resource: :assessment
+  model_hint model: 'assessments/mindmill', resource: :assessment
+  model_hint model: 'assessments/hogan', resource: :assessment
+  model_hint model: 'assessments/pearson', resource: :assessment
+  model_hint model: 'assessments/saville', resource: :assessment
+  model_hint model: 'assessments/iiht', resource: :assessment
 
   class_attribute :_audit_log_config
 
@@ -13,7 +19,6 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
     matchers.each do |matcher|
       filter matcher, apply: lambda { |records, value, _|
         filter_value = matcher.ends_with?('_in') || matcher.ends_with?('not_in') ? value : value[0]
-
         records.ransack(matcher => filter_value).result
       }
     end

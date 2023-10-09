@@ -1,10 +1,8 @@
-import React from 'react'
 import { render, cleanup, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import invert from 'lodash/invert'
 
 import InputDuration, { maskUp, convertToInt } from '~/components/InputDuration'
-global.React = React
 
 test('should match snapshot', () => {
   const { asFragment } = render(
@@ -13,7 +11,7 @@ test('should match snapshot', () => {
       placeholder="Enter as 4d 3h 2m 1s"
       value=""
       onChange={jest.fn()}
-    />
+    />,
   )
 
   expect(asFragment()).toMatchSnapshot()
@@ -56,7 +54,7 @@ test("component should'nt allow invalid format initial values", async () => {
         placeholder={placeholder}
         value={inValidInputValue}
         onChange={jest.fn()}
-      />
+      />,
     )
     const inputWithIncorrectValue = await findByPlaceholderText(placeholder)
 
@@ -99,7 +97,7 @@ test('component should allow valid in-sequence format initial values', async () 
         placeholder={placeholder}
         value={validInputValue}
         onChange={jest.fn()}
-      />
+      />,
     )
     const inputWithCorrectValue = await findByPlaceholderText(placeholder)
 
@@ -135,7 +133,7 @@ test('masking and convertToInt func should output correct value with valid input
   const validMaskedTimes = Object.keys(invertedValidTimesDict)
   for (const validMaskedTime of validMaskedTimes) {
     expect(convertToInt(validMaskedTime)).toEqual(
-      parseInt(invertedValidTimesDict[validMaskedTime])
+      parseInt(invertedValidTimesDict[validMaskedTime]),
     )
   }
 })
@@ -143,8 +141,8 @@ test('masking and convertToInt func should output correct value with valid input
 test('component should format input time in seconds to valid format', async () => {
   const placeholder = 'inputWithValidTimeValue'
   const validTimesValue = {
-    '30': '30s',
-    '90061': '1d 1h 1m 1s',
+    30: '30s',
+    90061: '1d 1h 1m 1s',
   }
 
   const validTimes = Object.keys(validTimesValue)
@@ -155,7 +153,7 @@ test('component should format input time in seconds to valid format', async () =
         placeholder={placeholder}
         value={validTime}
         onChange={jest.fn()}
-      />
+      />,
     )
     const inputWithCorrectValue = await findByPlaceholderText(placeholder)
 
@@ -205,7 +203,7 @@ test('masking func should filter out invalid format given part valid and part in
 
   for (const mixedInputValue of mixedInputValues) {
     expect(maskUp(mixedInputValue)).toEqual(
-      mixedInputValuesDict[mixedInputValue]
+      mixedInputValuesDict[mixedInputValue],
     )
   }
 })
@@ -226,12 +224,12 @@ test('component should filter out invalid format given part valid and part inval
         placeholder={placeholder}
         value={mixedInputValue}
         onChange={jest.fn()}
-      />
+      />,
     )
     const inputWithCorrectValue = await findByPlaceholderText(placeholder)
 
     expect(inputWithCorrectValue).toHaveDisplayValue(
-      mixedInputValuesDict[mixedInputValue]
+      mixedInputValuesDict[mixedInputValue],
     )
     cleanup()
   }
@@ -241,7 +239,7 @@ test('component should only allow correct values on blur or on enter', async () 
   const placeholder = 'inputWithBlurFiltering'
 
   render(
-    <InputDuration placeholder={placeholder} value="" onChange={jest.fn()} />
+    <InputDuration placeholder={placeholder} value="" onChange={jest.fn()} />,
   )
 
   const inputElem = screen.getByPlaceholderText(placeholder)
@@ -275,37 +273,38 @@ test('component should only allow correct values on blur or on enter', async () 
 
   for (const value of inputOutputDict) {
     // Check on blur
-    checkOutputAgainstTypedInputOn('blur', inputElem, value.input, value.output)
+    await checkOutputAgainstTypedInputOn('blur', inputElem, value.input, value.output)
 
     // Check on enter
-    checkOutputAgainstTypedInputOn(
+    await checkOutputAgainstTypedInputOn(
       'enter',
       inputElem,
       value.input,
-      value.output
+      value.output,
     )
   }
 })
 
-const checkOutputAgainstTypedInputOn = (
+const checkOutputAgainstTypedInputOn = async (
   type: 'blur' | 'enter',
   inputElem: HTMLElement,
   inputValue: string,
-  outputValue: string
+  outputValue: string,
 ) => {
+  const user = userEvent.setup()
+
   // clear any previous values
-  userEvent.clear(inputElem)
+  await user.clear(inputElem)
 
   // type in the input duration
-  userEvent.type(inputElem, inputValue)
+  await user.type(inputElem, inputValue)
 
   // press tab to change focus and activate on blur clean up of value
   if (type === 'blur') {
-    userEvent.tab()
+    await user.tab()
   } else if (type === 'enter') {
-    userEvent.type(inputElem, '{enter}')
+    await user.type(inputElem, '{enter}')
   }
-
   // verify that entered input was formatted correctly
   expect(inputElem).toHaveDisplayValue(outputValue)
 }

@@ -1,6 +1,9 @@
-import moment from 'moment'
+import _ from 'lodash'
+import moment, { Moment } from 'moment'
 
 const FORMAT = 'DD MMM YYYY / HH:mm'
+
+const allDays = _.range(0, 7)
 
 export const getMinutesAndSeconds = (time: number): string => (
   moment(time * 1000).utc().format('mm:ss')
@@ -30,8 +33,8 @@ export const minutesLeftFromNow = (date: Date) => {
   return Math.floor(deltaTime / 60000)
 }
 
-export function secondsLeftFromNow (date: string): number;
-export function secondsLeftFromNow (date: null): null;
+export function secondsLeftFromNow(date: string): number;
+export function secondsLeftFromNow(date: null): null;
 export function secondsLeftFromNow (date: string | null) {
   if (!date) { return null }
 
@@ -49,4 +52,55 @@ export const convertSecondsToMMSS = (totalSeconds: number): string => {
   const secondsFormatted = `${seconds}`.length === 1 ? `0${seconds}` : `${seconds}`
 
   return `${minutesFormatted}:${secondsFormatted}/10:00`
+}
+
+export const mergeDateAndtime = (date: Moment, time: Moment | null, timezone: string) => (
+  moment.tz(date.format('YYYY-MM-DD'), timezone).set({
+    hour: time?.hour(),
+    minute: time?.minute(),
+  })
+)
+
+export const getAvailableDays = (startDate?: Moment, endDate?: Moment): number[] => {
+  const availableDays: number[] = []
+  if (startDate && endDate) {
+    const daysDifference = endDate.diff(startDate, 'days')
+    if (daysDifference > 6) {
+      return [...allDays]
+    }
+    for (let diff = 0; diff <= daysDifference; diff += 1) {
+      availableDays.push((startDate.weekday() + diff) % 7)
+    }
+    return [...availableDays].sort()
+  }
+  return [...allDays]
+}
+
+export function secondsToDayHoursAndMinutes (
+  seconds: number,
+  dayAbbreviation: string | undefined = 'd',
+  hourAbbreviation: string | undefined = 'h',
+  minuteAbbreviation: string | undefined = 'm',
+) {
+  const duration = moment.duration(seconds, 'seconds')
+
+  const days = duration.days()
+  const hours = duration.hours()
+  const minutes = duration.minutes()
+
+  let formattedDaysHoursAndMinutes = ''
+
+  if (days > 0) {
+    formattedDaysHoursAndMinutes += `${days}${dayAbbreviation} `
+  }
+
+  if (hours > 0) {
+    formattedDaysHoursAndMinutes += `${hours}${hourAbbreviation} `
+  }
+
+  if (minutes > 0) {
+    formattedDaysHoursAndMinutes += `${minutes}${minuteAbbreviation}`
+  }
+
+  return formattedDaysHoursAndMinutes
 }

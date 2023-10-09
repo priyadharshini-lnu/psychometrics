@@ -8,13 +8,7 @@ module Administration
       before_action :set_resource, only: %i[toggle_activation_status]
       before_action :ensure_client
       append_before_action :pundit_authorize
-      append_before_action :init_breadcrumbs
-
-      def index
-        @init_state = {
-          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
-        }
-      end
+      before_action :init_state, only: [:index]
 
       def toggle_activation_status
         license_counter_update = resource.active? ? 'decrement!' : 'increment!'
@@ -32,13 +26,6 @@ module Administration
 
       def set_resource_class
         @_resource_class ||= LicenseUsage # rubocop:disable Naming/MemoizedInstanceVariableName
-      end
-
-      def init_breadcrumbs
-        client_root_breadcrumb
-        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb t('administration.breadcrumbs.licenses'), [:administration, client.client, :licenses]
-        add_breadcrumb license.decorate.display_name
       end
 
       def pundit_authorize

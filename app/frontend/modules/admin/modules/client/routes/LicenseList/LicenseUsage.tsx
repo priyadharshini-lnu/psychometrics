@@ -8,6 +8,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { LicenseUsage, LicenseUsageTR } from '~/modules/admin/modules/client/core/license_usages'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const { I18n } = window
 
@@ -30,7 +31,7 @@ const LicenseUsageComponent: React.FC<Props> = () => {
     basePath: `clients/${clientId}/licenses/${licenseId}`,
     apiConfig: {
       include: ['user', 'status_updated_by'],
-      include_meta: ['permissions'],
+      include_meta: ['permissions', 'report_family_name'],
       fields: { users: ['id', 'name'] },
     },
   }
@@ -38,10 +39,11 @@ const LicenseUsageComponent: React.FC<Props> = () => {
   return (
     <>
       <Resource config={config} name="license_usages">
+        <BreadcrumbsComponent />
         <Filter />
         <Resource.Table pagination>
           <Resource.Column<LicenseUsage>
-            title={I18n.t('license_usage.usage_id')}
+            title={I18n.t('common.column.id')}
             id="id"
             dataIndex="id"
             sorter
@@ -56,19 +58,16 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             title={I18n.t('license_usage.campaign_name')}
             id="campaign_name"
             dataIndex={['extras', 'campaignName']}
-            sorter
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.subject_name')}
             id="subject_name"
             dataIndex={['extras', 'subjectName']}
-            sorter
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.subject_email')}
             id="subject_email"
             dataIndex={['extras', 'subjectEmail']}
-            sorter
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('common.column.created_at')}
@@ -99,6 +98,39 @@ const LicenseUsageComponent: React.FC<Props> = () => {
   )
 }
 
+const BreadcrumbsComponent = () => {
+  const { resource } = useResourceContext<LicenseUsage>()
+  const { clientId } = useParams<{ clientId: string }>()
+
+  return (
+    <Breadcrumb
+      request={{
+        fields: ['client'],
+        data: {
+          clientId: parseInt(clientId, 10),
+        },
+      }}
+      crumbs={[
+        {
+          link: () => '/administration',
+          label: () => I18n.t('administration.clients.tenancies'),
+        },
+        {
+          link: () => `/administration/clients/${clientId}/projects`,
+          label: state => state.client.name,
+        },
+        {
+          link: () => `/administration/clients/${clientId}/licenses`,
+          label: () => I18n.t('administration.breadcrumbs.licenses'),
+        },
+        {
+          label: () => resource.meta?.reportFamilyName || I18n.t('license_usage.usages'),
+        },
+      ]}
+    />
+  )
+}
+
 const ActiveSwitch: React.FC<{ licenseUsage: LicenseUsage }> = ({ licenseUsage }) => {
   const { resource } = useResourceContext<LicenseUsage>()
 
@@ -121,9 +153,8 @@ const ActiveSwitch: React.FC<{ licenseUsage: LicenseUsage }> = ({ licenseUsage }
 const Filter = () => {
   const { resource } = useResourceContext<LicenseUsage>()
 
-  const toggleStatusFilter = () => {
-    const newStatus = resource.getFilteredValue('status_eq') === 'active' ? 'inactive' : 'active'
-    resource.changeFilter('status_eq', newStatus)
+  const toggleStatusFilter = (e) => {
+    resource.changeFilter('status_eq', e.target.value)
   }
 
   return (
@@ -131,7 +162,6 @@ const Filter = () => {
       <Space>
         <Radio.Group
           onChange={toggleStatusFilter}
-          value={resource.getFilteredValue('statusEq')}
         >
           <Radio.Button value="active">
             {I18n.t('license_usage.active')}

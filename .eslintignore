@@ -1,3 +1,4 @@
 app/frontend/__tests__
+app/frontend/glint/**/__tests__
 jest-setup.js
 vite.config.ts

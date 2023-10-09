@@ -12,6 +12,19 @@ module EndUser
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
     has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
+    has_one :workshop_invite, serializer: ::EndUser::WorkshopInviteSerializer
+    has_one :workshop, serializer: ::EndUser::ShortWorkshopSerializer
+
+    def workshop_invite
+      WorkshopInvite.joins(:workshop_invited_subjects).where(
+        workshop_invited_subjects: { user_id: current_user.id, status: :pending },
+        campaign_id: object.id
+      ).order(:created_at).last
+    end
+
+    def workshop
+      Workshop.visible_to_end_user(current_user.id).last
+    end
 
     def privacy_consent_required
       object.project.privacy_consent &&

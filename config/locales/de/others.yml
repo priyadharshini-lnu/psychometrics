@@ -111,6 +111,16 @@ de:
     wait: wart
   campaign:
     completed: abgeschlossen
+    dashboard_menu:
+      bookings: Buchungen
+      campaign: Kampagne
+      change_password: Kennwort ändern
+      home: Heim
+      insights: Einblicke
+      livechat: Live Unterstützung
+      profile: Profil
+      profile_details: Einzelheiten
+      tasks: Aufgaben
     details: Einzelheiten
     edit_evaluation:
       body: Bitte beachten Sie, dass Sie nach dem Klicken auf "Neu bewerten" zum Beginn der Umfrage weitergeleitet werden, wo Sie die Antworten bearbeiten können. Die vorherigen Antworten sind weiterhin verfügbar, können jedoch nach Bedarf geändert werden. Nach der Bearbeitung müssen Sie die Bewertung erneut einreichen, um den Vorgang abzuschließen.
@@ -118,6 +128,27 @@ de:
       title: Bestätigen
       view: Aussicht
     in_progress: im Gange
+    instruction_modal:
+      campaign_start_final_instructions: |
+        <p>
+          Bitte beachten Sie, dass es keine Möglichkeit gibt, den Timer zu stoppen oder anzuhalten. Der Kampagnen-Timer läuft auch dann weiter, wenn Sie den Browser schließen. Sie sollten also zu keinem Zeitpunkt daran denken, die Aufgaben zwischendurch zu verlassen, um etwas anderes zu erledigen. Achten Sie darauf, Ablenkungen während der Aufgaben so gering wie möglich zu halten. Suchen Sie sich eine ruhige Umgebung, schalten Sie Benachrichtigungen auf Ihren Geräten aus und vermeiden Sie Multitasking. Behalten Sie Ihre Konzentration bei und bleiben Sie konzentriert. Sobald der Kampagnen-Timer abgelaufen ist, können Sie nicht mehr fortfahren. Wenn Sie die obigen Anweisungen gelesen haben, klicken Sie bitte auf Start, um mit den zugewiesenen Aufgaben fortzufahren.
+        </p>
+      campaign_start_instruction: |
+        <h4>Bitte lesen Sie die folgenden Anweisungen sorgfältig durch.</h4>
+        <p>
+          Die Aufgaben, mit denen Sie gerade beginnen, sind zeitlich festgelegt. Sobald Sie auf „Start“ klicken, startet der Kampagnen-Timer automatisch. Sie haben %{minutes} Minuten Zeit, um alle Aktivitäten abzuschließen. Versuchen Sie bitte, die Aufgaben innerhalb des vorgegebenen Zeitrahmens zu erledigen und die Zeit effektiv einzuteilen, um eine Eile durch den Bewertungsprozess zu vermeiden. Stellen Sie sicher, dass Sie die Aufgaben auf einmal erledigen. Wenn Sie also eine Pause brauchen, ist jetzt der richtige Zeitpunkt dafür.
+        </p>
+      common_proctoring_instructions: |
+        <h4>Überwachung</h4>
+        <p>
+          Wenn Sie auf die Schaltfläche „Start“ klicken, werden Sie zu unserem Überwachungssystem weitergeleitet. Es überwacht Ihre Kamera, Ihr Mikrofon und Ihren Bildschirm während Ihrer Sitzung. Diese Sitzungen werden automatisch von unserem hochentwickelten KI-System überwacht und sorgen so für ein unterbrechungsfreies und reibungsloses Benutzererlebnis. Allerdings können Sitzungen auch von menschlichen Aufsichtspersonen überprüft werden. Alle Anzeichen von Fehlverhalten oder Unregelmäßigkeiten werden gemeldet. Dies geschieht, um sicherzustellen, dass keine Betrugsversuche unternommen werden. Wenn ein Verdacht vorliegt, werden Ihre Aufgaben abgebrochen.
+        </p>
+      lockdown_browser_instruction: |
+        <h4>Überwachungsbrowser</h4>
+        <p>
+          Sie müssen einen speziellen Browser herunterladen und installieren, um die überwachten Aufgaben auszuführen. Bitte folgen Sie den Anweisungen im nächsten Bildschirm. Sie können dies deinstallieren, nachdem Sie alle erforderlichen Aktivitäten abgeschlossen haben.
+        </p>
+      title: Anweisungen
     instructions:
       heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
     language:
@@ -134,6 +165,11 @@ de:
     time_left:
       continue: fortfahren
     welcome: Willkommen
+  change_password_page:
+    old_password: Altes Passwort
+    password: Passwort
+    password_confirmation: Password Confirmation
+    title: Kennwort ändern
   checking_wizard:
     audio_check:
       access: Zugriff
@@ -157,8 +193,26 @@ de:
       processing: verarbeitung
   common:
     actions:
-      close: schließe
+      add: Hinzufügen
+      archive: Archiv
+      cancel: Stornieren
+      close: Schließe
+      copy: Kopieren
+      delete: lösch
+      edit: Bearbeiten
+      import: Importieren
       remove: Entfernen
+      reset: Rücksetzen
+      resolve: Beschließen
+      restore: Wiederherstellen
+      save: sparen
+      search: Suchen
+      send: Schicken
+      start: Starten
+      unarchive: Dearchivieren
+      unresolve: Unresolve
+      update: Aktualisieren
+      upload: Hochladen
     column:
       action: Aktion
       category: Kategorie

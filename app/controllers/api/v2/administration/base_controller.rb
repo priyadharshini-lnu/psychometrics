@@ -84,7 +84,7 @@ module Api
     end
 
     def context_for_schema_validation
-      { current_user: current_user, project: project, campaign: campaign }
+      { current_user: current_user, project: project, campaign: campaign, params: params }
     end
 
     def rescue_json_api_error(error)
@@ -176,12 +176,15 @@ module Api
     end
 
     def pundit_authorize
+      per_action_authorize_method = "authorize_#{params[:action]}"
+      return send(per_action_authorize_method) if respond_to?(per_action_authorize_method, true)
+
       authorize(
         model || model_class,
         nil,
         policy_class: policy_class,
         project_id: project_id || params[:client_id],
-        campaign_id: campaign_id
+        campaign_id: campaign_id || params[:campaign_id]
       )
     end
 
@@ -200,7 +203,10 @@ module Api
     def model
       return if model_class.nil? || model_id.nil?
 
-      @model ||= policy_class::Scope.new(current_user, model_class).resolve.find(model_id)
+      @model ||= policy_class::Scope.new(
+        current_user, model_class, campaign_id: campaign_id || params[:campaign_id],
+        project_id: project_id || params[:project_id]
+      ).resolve.find(model_id)
     end
 
     def policy_class
@@ -218,6 +224,23 @@ module Api
 
     def meta_details
       {}
+    end
+
+    def convert_model_errors_to_json_api_standard(input_errors)
+      converted_errors = []
+      input_errors.each do |field, messages|
+        messages.each do |message|
+          converted_errors << {
+            'title' => message,
+            'source' => {
+              'pointer' => "/data/attributes/#{field}"
+            },
+            'status' => '422'
+          }
+        end
+      end
+
+      { 'errors' => converted_errors }
     end
   end
 end

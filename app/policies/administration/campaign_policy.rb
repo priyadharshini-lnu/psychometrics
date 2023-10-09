@@ -15,7 +15,7 @@ module Administration
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :view, campaign_id: record.id
-      )
+      ) || (@user.assessor? && @user.assessors_campaings.include?(record))
     end
 
     def edit?
@@ -181,6 +181,17 @@ module Administration
       )
     end
 
+    def view_workshops?
+      has_permission?(:workshops, :view) ||
+        Workshop.includes(:workshop_assessors).where( # rubocop:disable Rails/WhereExists
+          workshop_assessors: { user_id: user.id }, campaign_id: campaign_id
+        ).exists?
+    end
+
+    def view_workshop_invites?
+      has_permission?(:workshops, :view)
+    end
+
     def manage_project_smtp_settings?
       @user.is?(:superadmin) || @user.has_permission?(
         :project_settings, :smtp, project_id: project_id
@@ -234,6 +245,8 @@ module Administration
         permitted_campaign_ids = @user.campaign_admin_campaigns.select do |campaign|
           @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
         end.pluck(:id)
+
+        permitted_campaign_ids += @user.assessors_campaings.pluck(:id)
 
         scope.where(
           'id IN (?) OR project_id IN (?)',

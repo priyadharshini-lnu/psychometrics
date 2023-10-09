@@ -8,10 +8,20 @@ import { Datasheet } from './Datasheet'
 import { Admins } from './Admins'
 import CampaignOptions from './CampaignOptions'
 import { Dashboard } from './Dashboard'
+import {
+  Scheduling, WorkshopList, Invites, InvitesForm, AssessmentCenterForm,
+} from './Scheduling'
+import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
+import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
+import UsersAssessmentsReports
+  from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
+import AssessorsDetails
+  from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
   { redirect: true, from: '/participants', to: '/participants/subjects' },
+  { redirect: true, from: '/scheduling', to: '/scheduling/assessment_center' },
   {
     path: '/participants',
     component: Participants,
@@ -21,6 +31,20 @@ const routes = [
       { path: '/participants/sms_invites', component: SmsInvites },
     ],
   },
+  {
+    path: '/scheduling',
+    component: Scheduling,
+    routes: [
+      { path: '/scheduling/assessment_center', component: WorkshopList },
+      { path: '/scheduling/:tab', component: Invites },
+      { path: '/scheduling/invites/add_invite', component: InvitesForm },
+    ],
+  },
+  { path: '/scheduling/assessment_center/new', component: AssessmentCenterForm },
+  { path: '/scheduling/assessment_center/:id', component: WorkshopPage },
+  { path: '/scheduling/assessment_center/:id/:tab', component: WorkshopPage },
+  { path: '/scheduling/invites/add_invite', component: InvitesForm },
+  { path: '/scheduling/invites/:inviteId/:tabName', component: IndividualInvite },
   { path: '/assessments_reports/*', component: AssessmentsReports },
   { path: '/assessments_reports', component: AssessmentsReports },
   { path: '/stats', component: Stats },
@@ -30,6 +54,8 @@ const routes = [
   { path: '/datasheet', component: Datasheet },
   { path: '/admins', component: Admins },
   { path: '/options', component: CampaignOptions },
+  { path: '/participants/users/:id', component: UsersAssessmentsReports },
+  { path: '/participants/assessors/:id', component: AssessorsDetails },
 ]
 
 export default routes

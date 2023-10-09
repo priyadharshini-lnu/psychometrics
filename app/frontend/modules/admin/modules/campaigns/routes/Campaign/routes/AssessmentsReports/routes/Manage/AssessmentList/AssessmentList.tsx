@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Row, Col, Switch,
+  Table, Row, Col, Switch, Typography,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
@@ -9,6 +9,8 @@ import _ from 'lodash'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { ActionsMenu } from './ActionsMenu'
 import { PropsFromRedux } from './connect'
+import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const { Column } = Table
 const { I18n } = window
@@ -40,9 +42,20 @@ const AssessmentList: React.FC<Props> = ({
   exportExternalResults,
   updateExternalConfig,
   updatePrework,
+  updateWorkshopActivity,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
+
+  function handleWorkshopActivitySwitchToggle (assessment: Assessment, parsedCampaignId: number, checked: boolean) {
+    if (checked) {
+      openModal('WorkshopActivityDurationFormModal', {
+        assessment, updateWorkshopActivity, parsedCampaignId, checked,
+      })
+    } else {
+      updateWorkshopActivity(parsedCampaignId, assessment.id, { workshopActivity: checked })
+    }
+  }
 
   return (
     <Row>
@@ -57,11 +70,6 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessment_name')}
             key="name"
             dataIndex="name"
-          />
-          <Column
-            title={I18n.t('common.column.category')}
-            key="category"
-            render={({ category }) => _.capitalize(category)}
           />
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
@@ -88,26 +96,8 @@ const AssessmentList: React.FC<Props> = ({
           />
           <Column
             title={I18n.t('campaign_assessment.column.assessor_form')}
-            key="assessorFormName"
-            render={({
-              assessorFormName, id, isExternal,
-            }) => {
-              if (isExternal) {
-                return I18n.t('common.text.na')
-              }
-              return (
-                permissions.updateAssessorForm ? (
-                  <a
-                    onClick={
-                      () => openModal('UpdateAssessorFormModal',
-                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                    }
-                  >
-                    {assessorFormName || I18n.t('common.text.na')}
-                  </a>
-                ) : assessorFormName || I18n.t('common.text.na')
-              )
-            }}
+            key="linkedAssessment"
+            render={({ assessorFormName }) => assessorFormName || I18n.t('common.text.na')}
           />
 
           <Column
@@ -182,6 +172,24 @@ const AssessmentList: React.FC<Props> = ({
                 checked={prework}
                 onChange={checked => updatePrework(parsedCampaignId, id, checked)}
               />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_assessment.column.assessment_center_activity')}
+            key="workshopActivity"
+            width={150}
+            render={assessment => (
+              <>
+                <Switch
+                  checked={assessment.workshopActivity}
+                  onChange={checked => handleWorkshopActivitySwitchToggle(assessment, parsedCampaignId, checked)}
+                />
+                {(assessment.workshopActivity && assessment.workshopActivityDuration) ? (
+                  <Typography.Text>
+                    {` ${secondsToDayHoursAndMinutes(assessment.workshopActivityDuration * 60)}`}
+                  </Typography.Text>
+                ) : null}
+              </>
             )}
           />
           <Column

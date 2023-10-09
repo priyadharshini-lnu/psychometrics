@@ -14,6 +14,26 @@ module Administration
         render json: { norm_name: resource.norm_name }
       end
 
+      def webhook_command
+        @webhook_command ||= UserAssessments::Webhook.new(resource, params[:webhook_id])
+      end
+
+      def webhook_payload
+        data = case params['event_name']
+                 when 'assessment_started'
+                   webhook_command.assessment_started_data
+                 when 'assessment_completed'
+                   webhook_command.assessment_completed_data
+                 when 'assessment_timeout'
+                   webhook_command.publish_assessment_timeout
+               end
+
+        event_payload = Webhook::EVENTS[params['event_name'].to_sym].call(
+          data.merge(project: resource.project, client: resource.project.parent)
+        )
+        render json: event_payload.as_json
+      end
+
       def update_additional_time
         ::UsersResults::AddAdditionalTime.call!(resource.users_result, params[:additional_time] * 60)
 
@@ -68,8 +88,8 @@ module Administration
         )
       end
 
-      def assessment
-        resource
+      def webhook
+        Webhook.find(params[:webhook_id])
       end
 
       def resource_class

@@ -64,6 +64,7 @@ const AssessmentSerializer = (data: any): AssessmentInterface => ({
   data_sheet_columns: data.data_sheet_columns,
   options: data.options,
   instructions: data.instructions,
+  linked_questions: data.linkedQuestions,
 })
 
 

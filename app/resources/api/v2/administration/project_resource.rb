@@ -14,7 +14,7 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   delegate :text, :link, :text=, :link=, to: :privacy_link, allow_nil: true
 
-  ransack_filters %i[disabled_true filterable_fields]
+  ransack_filters %i[disabled_true filterable_fields has_integration]
 
   before_create do
     @model.ancestry = context[:client].id

@@ -234,7 +234,6 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
             <input
               class="ant-checkbox-input"
               type="checkbox"
-              value=""
             />
             <span
               class="ant-checkbox-inner"
@@ -320,7 +319,6 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
           <input
             class="ant-checkbox-input"
             type="checkbox"
-            value=""
           />
           <span
             class="ant-checkbox-inner"
@@ -347,7 +345,6 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
           <input
             class="ant-checkbox-input"
             type="checkbox"
-            value=""
           />
           <span
             class="ant-checkbox-inner"

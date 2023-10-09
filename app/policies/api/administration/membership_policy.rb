@@ -3,7 +3,7 @@
 module Api
   module Administration
     class MembershipPolicy < BasePolicy
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           ::Administration::MembershipPolicy::Scope.new(user, Membership).resolve
         end

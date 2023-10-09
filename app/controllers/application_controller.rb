@@ -72,7 +72,9 @@ class ApplicationController < ::BaseController
     update_in = @current_project.profile_setting.update_in || 9999
 
     completion = Users::ProfileCompletion.call!(current_user)
+
     if completion < 100 || (Time.current - current_user.user_profile.updated_at) > update_in.month
+      session[:back_url] = request.original_url
       redirect_to '/profile_details'
     end
   end
@@ -97,8 +99,9 @@ class ApplicationController < ::BaseController
 
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::UnlocksController'
-
-    return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}") unless @current_project
+    unless @current_project
+      return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
+    end
 
     @current_client = @current_project.client
   end

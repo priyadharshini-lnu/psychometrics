@@ -1,5 +1,5 @@
 import cs from 'classnames'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import styles from './styles.less'
 
 export default function Milestone ({ milestone, onRemove, onUpdate }) {
@@ -23,8 +23,9 @@ export default function Milestone ({ milestone, onRemove, onUpdate }) {
       </div>
       <div className={styles.icons}>
         <ColorPicker
-          color={milestone.color || '#cccccc'}
-          onChange={color => onUpdate(milestone.id, { color: color.hex })}
+          value={milestone.color || '#cccccc'}
+          getValueInHexFormat
+          onChange={color => onUpdate(milestone.id, { color })}
         />
         <span className={styles.remove} onClick={removeMilestone}>
           Remove

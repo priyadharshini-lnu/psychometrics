@@ -10,7 +10,7 @@ class DeploymentMailer < ApplicationMailer
       from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
       to: emails,
       subject: 'Deployment tasks to complete',
-      template_path: '/mailer/deployment',
+      template_path: 'mailer/deployment',
       template_name: 'send_deployment_tasks'
     )
   end

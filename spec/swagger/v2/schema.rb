@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Style/MutableConstant
+# rubocop:disable Style/MutableConstant, Metrics/ModuleLength
 
 Dir["#{__dir__}/definitions/**/*.rb"].each { |file| require file }
 
@@ -87,6 +87,12 @@ module Swagger
               more_info: { type: 'string', 'x-nullable': true }
             }
           },
+          ChangePasswordRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.change_password_request
+          ),
+          ChangePasswordResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.change_password_response
+          ),
           ClientsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Client::Schema.multiple_resource_response
           ),
@@ -98,6 +104,24 @@ module Swagger
           ),
           ClientUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Client::Schema.update_request
+          ),
+          AssessmentsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Assessment::Schema.multiple_resource_response
+          ),
+          ApiKeyListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ApiKey::Schema.multiple_resource_response
+          ),
+          ApiKeyResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ApiKey::Schema.single_resource_response
+          ),
+          ApiKeyCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ApiKey::Schema.create_request
+          ),
+          ApiKeyUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ApiKey::Schema.update_request
+          ),
+          AssessmentResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Assessment::Schema.single_resource_response
           ),
           DashboardsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Dashboard::Schema.multiple_resource_response
@@ -152,6 +176,15 @@ module Swagger
           ),
           UserListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.multiple_resource_response
+          ),
+          UserResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.single_resource_response
+          ),
+          UserUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.update_request
+          ),
+          UserCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.create_request
           ),
           MembershipListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Membership::Schema.multiple_resource_response
@@ -209,6 +242,84 @@ module Swagger
           ),
           WebhookListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Webhook::Schema.multiple_resource_response
+          ),
+          CampaignAssessorAssessmentListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessment::Schema.multiple_resource_response
+          ),
+          CampaignAssessorAssessmentCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessment::Schema.create_request
+          ),
+          CampaignAssessmentAssessorResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessment::Schema.single_resource_response
+          ),
+          WorkshopResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Workshop::Schema.single_resource_response
+          ),
+          WorkshopInviteResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvite::Schema.single_resource_response
+          ),
+          WorkshopInviteListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvite::Schema.multiple_resource_response
+          ),
+          WorkshopInviteCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvite::Schema.create_request
+          ),
+          WorkshopsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Workshop::Schema.multiple_resource_response
+          ),
+          WorkshopFacilitatorsResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopFacilitator::Schema.multiple_resource_response
+          ),
+          WorkshopSubjectsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopSubject::Schema.multiple_resource_response
+          ),
+          AssessorWorkshopsResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Assessors::Workshop::Schema.multiple_resource_response
+          ),
+          WorkshopBulkUpdateSubjectsRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Workshop::Schema.bulk_update_subjects
+          ),
+          WorkshopSubjectsUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopSubject::Schema.update_request
+          ),
+          WorkshopResourcesListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopResource::Schema.multiple_resource_response
+          ),
+          WorkshopResourcesCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopResource::Schema.create_request
+          ),
+          WorkshopResourcesUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopResource::Schema.update_request
+          ),
+          UserAvailabilityDateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAvailabilityDate::Schema.single_resource_response
+          ),
+          UserAvailabilityDatesListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAvailabilityDate::Schema.multiple_resource_response
+          ),
+          UserAvailabilityDateCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAvailabilityDate::Schema.create_request
+          ),
+          UserAvailabilityDateUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAvailabilityDate::Schema.update_request
+          ),
+          WorkshopInvitedSubjectResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvitedSubject::Schema.single_resource_response
+          ),
+          WorkshopInvitedSubjectListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvitedSubject::Schema.multiple_resource_response
+          ),
+          WorkshopInvitedSubjectCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::WorkshopInvitedSubject::Schema.create_request
+          ),
+          CampaignAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessment::Schema.multiple_resource_response
+          ),
+          UserAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::UserAssessment::Schema.multiple_resource_response
+          ),
+          WorkshopUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Workshop::Schema.update_request
           )
         }
       }
@@ -216,4 +327,4 @@ module Swagger
   end
 end
 
-# rubocop:enable Style/MutableConstant
+# rubocop:enable all

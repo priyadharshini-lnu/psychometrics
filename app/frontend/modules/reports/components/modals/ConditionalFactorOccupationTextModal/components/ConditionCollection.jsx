@@ -5,10 +5,12 @@ import AppStore from '~/modules/reports/store/AppStore'
 import {
   FONTS, FONT_MIN_SIZE, FONT_MAX_SIZE,
 } from '~/modules/reports/components/PropertyFonts/components/PropertyFonts'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import localStyles from './types/Scoring/Scoring.less'
 import ConditionList from './ConditionList'
 import styles from './CPIFactorConditionModal.less'
+import { rgba2hex } from '~/utils/color'
+
 
 export class ConditionCollection extends Component {
   static propTypes = {
@@ -44,21 +46,21 @@ export class ConditionCollection extends Component {
     this.forceUpdate()
   }
 
-  changeFontColor = (value) => {
+  changeFontColor = (color) => {
     const { model } = this.props
-    model.styles.fontColor = value.hex
+    model.styles.fontColor = color
     this.forceUpdate()
   }
 
-  changeBg = (val) => {
+  changeBg = (color) => {
     const { model } = this.props
-    model.styles.backgroundColor = val.rgb
+    model.styles.backgroundColor = color
     this.forceUpdate()
   }
 
-  changeBorder = (val) => {
+  changeBorder = (color) => {
     const { model } = this.props
-    model.styles.borderColor = val.rgb
+    model.styles.borderColor = color
     this.forceUpdate()
   }
 
@@ -120,7 +122,14 @@ export class ConditionCollection extends Component {
     const { model } = this.props
     const { fontColor } = model.styles
     return (
-      <ColorPicker color={fontColor || '#ccc'} onChange={this.changeFontColor} onComplete={this.update} />
+      <ColorPicker
+        getValueInHexFormat
+        value={fontColor || '#ccc'}
+        onChange={(color) => {
+          this.changeFontColor(color)
+          this.update
+        }}
+      />
     )
   }
 
@@ -175,11 +184,21 @@ export class ConditionCollection extends Component {
           <div className={styles.row}>
             <div className={styles.block} style={{ position: 'relative' }}>
               Background Color
-              <ColorPicker color={backgroundColor} onChange={this.changeBg} onComplete={this.update} />
+              <ColorPicker
+                value={rgba2hex(backgroundColor)}
+                onChange={(color) => {
+                  this.changeBg(color)
+                }}
+              />
             </div>
             <div className={styles.block} style={{ position: 'relative' }}>
               Border Color
-              <ColorPicker color={borderColor} onChange={this.changeBorder} onComplete={this.update} />
+              <ColorPicker
+                value={rgba2hex(borderColor)}
+                onChange={(color) => {
+                  this.changeBorder(color)
+                }}
+              />
             </div>
           </div>
         </div>

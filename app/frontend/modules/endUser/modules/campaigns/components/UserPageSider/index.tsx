@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import {
   HomeOutlined,
   UserOutlined,
+  CalendarOutlined,
 } from '@ant-design/icons'
 
 
@@ -46,7 +47,13 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
   ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
-}] : [], {
+}] : [],
+{
+  key: 'invites',
+  label: I18n.t('campaign.dashboard_menu.bookings'),
+  icon: <CalendarOutlined className={styles.siderIcon} />,
+},
+{
   key: 'profile',
   label: I18n.t('campaign.dashboard_menu.profile'),
   icon: <UserOutlined className={styles.siderIcon} />,
@@ -99,6 +106,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else {
     activeItem = pathname.slice(1)
+    activeItem = pathname.includes('invites') ? 'invites' : activeItem
     activeItem = pathname === '/profile' ? 'profile_details' : activeItem
     activeItem = activeItem || 'dashboard'
   }

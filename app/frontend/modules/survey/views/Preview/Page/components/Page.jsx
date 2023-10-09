@@ -9,6 +9,7 @@ import { LEFT, RIGHT } from '~/modules/survey/views/Block/components/StaticConte
 import Footer from './PageFooter'
 import styles from './Page.less'
 
+const { I18n } = window
 class Page extends Component {
   static propTypes = {
     page: PropTypes.object.isRequired,
@@ -107,7 +108,12 @@ class Page extends Component {
         ref={(ref) => { this.ref = ref }}
         className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${type}`)}
       >
-        {readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
+        {readOnly && (
+        <div className={styles.readOnly}>
+          {I18n.t('assessments.page.read_only',
+            { locale: I18n.uiLocale })}
+        </div>
+        )}
         <div className={this.getQuestionContainerClasses()}>
           {staticContent && <StaticContent key={blockId} />}
           <div className={cs(styles.questionsBlock, { staticBlockQuestionList: staticContent })}>

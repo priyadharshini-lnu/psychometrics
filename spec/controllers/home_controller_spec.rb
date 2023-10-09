@@ -16,7 +16,7 @@ RSpec.describe HomeController, type: :controller do
       user_assessment = create(:user_assessment, evaluator: user, assessment: assessment, campaign: campaign)
       get :sso, params: { user_assessment_id: user_assessment.id, user_id: user.id, sso_token: 'abc' }
 
-      expect(response).to redirect_to(agile_user_assessment_path(user_assessment))
+      expect(response).to redirect_to(user_assessment_path(user_assessment))
     end
   end
 end

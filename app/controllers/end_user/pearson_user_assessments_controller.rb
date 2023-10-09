@@ -6,16 +6,18 @@ class EndUser::PearsonUserAssessmentsController < ApplicationController
 
   def pass
     campaign = @user_assessment.campaign
-    return redirect_to(assessment_completed_path(campaign.id)) if @user_assessment.completed?
+    if @user_assessment.completed?
+      return redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
+    end
 
     @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
     @user_assessment.in_progress!
     pearson_user_assessment = @user_assessment.pearson_user_assessment
-    return redirect_to(pearson_user_assessment.url) if pearson_user_assessment&.url
+    return redirect_to(pearson_user_assessment.url, allow_other_host: true) if pearson_user_assessment&.url
 
     ::Pearson::CreateSchedule.call!(@user_assessment)
 
-    redirect_to pearson_user_assessment.url
+    redirect_to(pearson_user_assessment.url, allow_other_host: true)
   end
 
   def redirect
@@ -26,7 +28,7 @@ class EndUser::PearsonUserAssessmentsController < ApplicationController
     end
     Pearson::SaveScoresAndReportsJob.perform_later(@user_assessment)
 
-    redirect_to(assessment_completed_path(campaign.id))
+    redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
   end
 
   private

@@ -34,7 +34,7 @@ export default function Header ({
           <Tabs active="resources" />
         </li>
         <li>
-          <Button size="large" type="primary" onClick={save}>
+          <Button type="primary" onClick={save}>
             <SaveOutlined />
             {' '}
             Save

@@ -1,7 +1,8 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import {
   Popover, Space, Button, message,
 } from 'antd'
+import { TooltipPlacement } from 'antd/lib/tooltip'
 import { CopyOutlined } from '@ant-design/icons'
 import { HexAlphaColorPicker, HexColorInput, RgbaColor } from 'react-colorful'
 import useEyeDropper from 'use-eye-dropper'
@@ -16,10 +17,13 @@ import { EyeDropperIcon } from '~/glint/icons'
 import styles from './colorPicker.less'
 
 type props = {
-  color: string
-  onChange: (color: RgbaColor) => void
+  defaultColor: string
+  onChange?: (color: RgbaColor|string) => void
+  value?: string
   recommendedColors?: string[]
-  className?: string
+  swatchClassName?: string
+  getValueInHexFormat?: boolean
+  colorPickerPosition?: TooltipPlacement
 }
 
 const RECENT = 'recentColors'
@@ -27,24 +31,26 @@ const MAX_COLORS = 9
 const { I18n } = window
 
 export const ColorPicker: FC<props> = ({
-  color, onChange, recommendedColors, className,
+  defaultColor, onChange, recommendedColors, swatchClassName, getValueInHexFormat, value, colorPickerPosition,
 }) => {
-  const [pickedColorHex, setPickedColorHex] = useState<string>(color)
+  const [pickedColorHex, setPickedColor] = useState<string>('')
   const [isOpen, setPopoverOpen] = useState(false)
   const [recentColors, updateRecentColors] = useLocalStorage<string[]>(RECENT, [])
   const [, copyValue] = useCopyToClipboard()
   const { open: openEyeDropper, isSupported: eyeDroppeSupported } = useEyeDropper()
-
   let updatedRecentColors = [...recentColors]
 
-  const handleChange = (color: string) => {
-    setPickedColorHex(color)
-    onChange(hexToRgba(color))
+  useEffect(() => {
+    setPickedColor(value || defaultColor)
+  }, [value])
+
+  const handleColorChange = (color: string) => {
+    setPickedColor(color)
   }
   const handlePopover = (open: boolean) => {
     setPopoverOpen(open)
     if (!open) {
-      onChange(hexToRgba(pickedColorHex))
+      onChange && onChange(getValueInHexFormat ? pickedColorHex : hexToRgba(pickedColorHex))
       const pickedColorAlreadyExistInStorage = recentColors.includes(pickedColorHex)
       if (pickedColorAlreadyExistInStorage) {
         updatedRecentColors = recentColors.filter(color => color !== pickedColorHex)
@@ -54,11 +60,11 @@ export const ColorPicker: FC<props> = ({
   }
 
   const handleColorInputChange = (color: string) => {
-    setPickedColorHex(color)
+    handleColorChange(color)
   }
 
   const handleInputBlur = () => {
-    setPickedColorHex(pickedColorHex)
+    handleColorChange(pickedColorHex)
   }
   const handleCopyButtonClick = () => {
     copyValue(pickedColorHex).then(() => {
@@ -74,18 +80,18 @@ export const ColorPicker: FC<props> = ({
 
   const pickColor = () => {
     openEyeDropper()
-      .then(color => setPickedColorHex(color.sRGBHex))
+      .then(color => handleColorChange(color.sRGBHex))
       .catch((e) => {
         console.warn(e)
       })
   }
 
   return (
-    <div className={cs([styles.pickerContainer, className])}>
+    <div className={swatchClassName}>
       <Popover
         content={(
           <Space direction="vertical" size="middle">
-            <HexAlphaColorPicker className={styles.colorPicker} color={pickedColorHex} onChange={handleChange} />
+            <HexAlphaColorPicker className={styles.colorPicker} color={pickedColorHex} onChange={handleColorChange} />
             <div className={styles.inputContainer}>
               {eyeDroppeSupported()
                 ? <Button className={styles.eyeDropperButton} icon={<EyeDropperIcon />} onClick={pickColor} /> : null}
@@ -95,6 +101,7 @@ export const ColorPicker: FC<props> = ({
                 onChange={handleColorInputChange}
                 onBlur={handleInputBlur}
                 className={cs([styles.colorInput, 'ant-input'])}
+                data-testid="color-input"
               />
               <Button icon={<CopyOutlined />} onClick={handleCopyButtonClick} className={styles.copyButton} />
             </div>
@@ -104,8 +111,9 @@ export const ColorPicker: FC<props> = ({
                   <ColorSwatch
                     title={I18n.t('glint.color_picker.recommended_colors')}
                     colors={recommendedColors}
-                    onClick={handleChange}
+                    onClick={handleColorChange}
                     maxColors={MAX_COLORS}
+                    dataTestid="recommendedColors"
                   />
                 ) : null}
               {updatedRecentColors.length
@@ -113,23 +121,25 @@ export const ColorPicker: FC<props> = ({
                   <ColorSwatch
                     title={I18n.t('glint.color_picker.recent_colors')}
                     colors={updatedRecentColors}
-                    onClick={handleChange}
+                    onClick={handleColorChange}
                     maxColors={MAX_COLORS}
+                    dataTestid="recentlyUsedColors"
                   />
                 ) : null}
             </Space>
           </Space>
 )}
-        className={styles.modal}
+        overlayClassName={styles.popover}
         trigger="click"
-        visible={isOpen}
-        onVisibleChange={handlePopover}
-        placement="bottomLeft"
+        open={isOpen}
+        onOpenChange={handlePopover}
+        placement={colorPickerPosition && colorPickerPosition}
         arrowPointAtCenter
       >
         <ColorSwatchItem
           color={pickedColorHex}
           onClick={() => setPopoverOpen(true)}
+          className={swatchClassName}
         />
       </Popover>
     </div>

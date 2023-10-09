@@ -10,6 +10,15 @@ const STATUSES = {
   in_progress: { label: I18n.t('campaign_assessment.statuses.in_progress'), textType: 'warning' },
   interrupted: { label: I18n.t('campaign_assessment.statuses.in_progress'), textType: 'warning' },
   completed: { label: I18n.t('campaign_assessment.statuses.completed'), textType: 'success' },
+  cancelled: { label: I18n.t('frontend.workshop_invited_subjects.statuses.cancelled'), textType: 'secondary' },
+  requested_cancellation: {
+    label: I18n.t('frontend.workshop_invited_subjects.statuses.requested_cancellation'),
+    textType: 'secondary',
+  },
+  requested_rescheduling: {
+    label: I18n.t('frontend.workshop_invited_subjects.statuses.requested_rescheduling'),
+    textType: 'secondary',
+  },
 }
 
 type StatusTextProps = {

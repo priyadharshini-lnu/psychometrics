@@ -16,6 +16,10 @@ new_assignment_communications:
   class: Communications::NewAssignmentJob
   queue: communication
 
+workshop_upcoming_reminder_job:
+  cron: "0 10 */1 * *" # At 10:00 on every day-of-month
+  class: Communications::WorkshopUpcomingReminderJob
+  queue_as: cron_tasks
 
 threesixty_send_scheduled_email_job:
   cron: "*/1 * * * *" # At every minute
@@ -80,5 +84,10 @@ dashboard_auto_refresh:
 recalculate_proctoring_credits:
   cron: "*/10 * * * *" # Every 10 minutes
   class: Licenses::RecalculateProctoringCredits
+  queue_as: cron_tasks
+
+export_auditlogs:
+  cron: "*/15 * * * *" # Every 15 minutes
+  class: ClientAuditlogExportSettings::ExportAllAuditLogsJob
   queue_as: cron_tasks
 

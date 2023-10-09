@@ -8,8 +8,7 @@ import AppStore from '~/modules/reports/store/AppStore'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
-import { rgba2hex } from '~/utils/color'
+import { ColorPicker } from '~/glint'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
@@ -341,8 +340,9 @@ class Properties extends Component {
           Background Color
           <div className={styles.flexRow}>
             <ColorPicker
-              color={model.props.backgroundColor}
-              onChange={color => this.onChangeColor('backgroundColor', rgba2hex(color.rgb))}
+              value={model.props.backgroundColor}
+              getValueInHexFormat
+              onChange={color => this.onChangeColor('backgroundColor', color)}
             />
           </div>
         </div>
@@ -364,8 +364,9 @@ class Properties extends Component {
                 Score Color
                 <div className={styles.flexRow}>
                   <ColorPicker
-                    color={model.props.scoreProgressColor}
-                    onChange={color => this.onChangeColor('scoreProgressColor', rgba2hex(color.rgb))}
+                    getValueInHexFormat
+                    value={model.props.scoreProgressColor}
+                    onChange={color => this.onChangeColor('scoreProgressColor', color)}
                   />
                 </div>
               </div>
@@ -373,8 +374,9 @@ class Properties extends Component {
                 Score Background Color
                 <div className={styles.flexRow}>
                   <ColorPicker
-                    color={model.props.scoreBackgroundColor}
-                    onChange={color => this.onChangeColor('scoreBackgroundColor', rgba2hex(color.rgb))}
+                    getValueInHexFormat
+                    value={model.props.scoreBackgroundColor}
+                    onChange={color => this.onChangeColor('scoreBackgroundColor', color)}
                   />
                 </div>
               </div>

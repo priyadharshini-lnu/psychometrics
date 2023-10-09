@@ -3,9 +3,9 @@ import { AssessmentExtra } from '~/modules/endUser/modules/campaigns/core/userAs
 
 export default {
   run: ({ enableNetworkCheck, enableAudioCheck, enableVideoCheck }: AssessmentExtra): boolean => {
-    if (enableNetworkCheck === '1' && !Cookies.get('checking_wizard.network')) return true
-    if (enableAudioCheck === '1' && !Cookies.get('checking_wizard.audio')) return true
-    if (enableVideoCheck === '1' && !Cookies.get('checking_wizard.video')) return true
+    if (enableNetworkCheck && !Cookies.get('checking_wizard.network')) return true
+    if (enableAudioCheck && !Cookies.get('checking_wizard.audio')) return true
+    if (enableVideoCheck && !Cookies.get('checking_wizard.video')) return true
 
     return false
   },

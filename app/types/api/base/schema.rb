@@ -108,8 +108,10 @@ module Api
           instance_eval(&this.resource_identifier)
           instance_eval(&relationship_schema) if relationship_schema
 
-          required(:links).hash do
-            required(:self).filled(:string)
+          if this.links?
+            required(:links).hash do
+              required(:self).filled(:string)
+            end
           end
 
           required(:attributes).hash do
@@ -133,7 +135,7 @@ module Api
           processed_relationship = {
             required: type == :create && relationship[:relationship] == :one,
             allowed_blank: relationship[:relationship] != :one,
-            links: %i[single_response multiple_response].include?(type)
+            links: links? && %i[single_response multiple_response].include?(type)
           }.merge(relationship)
 
           acc << processed_relationship
@@ -180,6 +182,14 @@ module Api
             end
           end
         end
+      end
+
+      def self.attributes(_attribute, _type)
+        proc {}
+      end
+
+      def self.links?
+        true
       end
     end
   end

@@ -3,7 +3,7 @@ import { Component } from 'react'
 import Select from 'react-select'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import Action from '~/modules/reports/undo'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
@@ -13,6 +13,8 @@ import localStyles from './Properties.less'
 import ResponseText from './SourceTypeForms/ResponseText'
 import ResultText from './SourceTypeForms/ResultText'
 import connect from '../connect'
+import { rgba2hex } from '~/utils/color'
+
 
 const SELECT_OPTIONS = [
   { label: 'Text', value: 'Text' },
@@ -31,12 +33,14 @@ class Properties extends Component {
 
   changeBg = (color) => {
     const { model } = this.props
-    model.props.style.backgroundColor = color.rgb
+    model.props.style.backgroundColor = color
+    model.update()
   }
 
   changeBorder = (color) => {
     const { model } = this.props
-    model.props.style.borderColor = color.rgb
+    model.props.style.borderColor = color
+    model.update()
   }
 
   changeType = (type, props = {}) => {
@@ -313,11 +317,17 @@ class Properties extends Component {
         <hr className={styles.divider} />
         <div className={styles.block} style={{ position: 'relative' }}>
           Background Color
-          <ColorPicker color={backgroundColor} onChange={this.changeBg} onComplete={this.update} />
+          <ColorPicker
+            value={rgba2hex(backgroundColor)}
+            onChange={this.changeBg}
+          />
         </div>
         <div className={styles.block} style={{ position: 'relative' }}>
           Border Color
-          <ColorPicker color={borderColor} onChange={this.changeBorder} onComplete={this.update} />
+          <ColorPicker
+            value={rgba2hex(borderColor)}
+            onChange={this.changeBorder}
+          />
         </div>
         <hr className={styles.divider} />
         <div className={styles.block}>

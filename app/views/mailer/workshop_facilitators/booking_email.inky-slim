@@ -1,0 +1,11 @@
+container.email-container
+  row
+    columns.email-content
+      p
+        | You have been booked for Assessment center
+
+      p
+       | Start time: #{@workshop.formatted_start_time}
+
+      p
+        | End time:#{@workshop.formatted_end_time}

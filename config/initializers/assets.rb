@@ -12,7 +12,8 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # Precompile additional assets.
-# application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
+# application.js, application.css, and all non-JS/CSS in the app/assets
+# folder are already added.
 Rails.application.config.assets.precompile += %w[administration.scss administration.js jquery2.js]
 Rails.application.config.assets.precompile += %w[threesixty_dependencies.scss devise.scss iframe.scss]
 Rails.application.config.assets.precompile += %w[devise.js threesixty.js]

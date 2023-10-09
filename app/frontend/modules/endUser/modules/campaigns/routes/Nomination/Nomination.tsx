@@ -33,8 +33,6 @@ import { NameModal } from './NominationForm/NameModal'
 import styles from './Nomination.less'
 
 const { I18n } = window
-const locales = I18n.availableLocales
-const current = I18n.locale
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connector = connect((state: any) => ({
@@ -106,7 +104,7 @@ const NominationComponent = (props) => {
     <>
       <GlintHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown locales={locales} current={current} />
+          <LangDropdown />
         </Col>
       </GlintHeader>
       <Content className={styles.pageContent}>

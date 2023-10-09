@@ -1,0 +1,154 @@
+import {
+  Button, Col, Row, Space, Modal, message,
+} from 'antd'
+import { BaseMeta } from 'hooks/useResources/interfaces'
+import { PlusOutlined } from '@ant-design/icons'
+import { useEffect, useState } from 'react'
+import moment from 'moment'
+import { useResources } from '~/hooks/useResources'
+import {
+  UserAvailabilityDate, UserAvailabilityDateTR,
+} from '~/modules/admin/modules/UserAvailability/core/userAvailabilityDates'
+import { ScheduleAvailability } from '~/glint'
+import { ErrorMessage } from '~/glint/components/ScheduleAvailability/interfaces'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { CountDisplay } from '~/components/CountDisplay'
+
+const { I18n } = window
+
+type ErrorMessageList = Record<string, ErrorMessage | undefined>
+
+export const AvailabilityListing = () => {
+  const {
+    data: userAvailabilityDates, fetch, meta, isLoading, isRequestSuccessful, removeResource,
+    createResource, updateResource,
+  } = useResources<UserAvailabilityDate, BaseMeta>(
+    'user_availability_dates',
+    {
+      trackUrl: true,
+      responseType: UserAvailabilityDateTR,
+      apiConfig: {
+        include: ['user_availability_days'],
+        filter: { end_date_gteq: moment().format('YYYY-MM-DD') },
+      },
+    },
+  )
+  const [showNewScheduleForm, setShowNewScheduleForm] = useState(false)
+  const [errors, setErrors] = useState({} as ErrorMessageList)
+  const fetchSuccessful = isRequestSuccessful('fetch')
+
+  useEffect(() => {
+    fetch()
+  }, [])
+
+  useEffect(() => {
+    if (userAvailabilityDates.length === 0 && fetchSuccessful) {
+      setShowNewScheduleForm(true)
+    }
+  }, [userAvailabilityDates.length, fetchSuccessful])
+
+  const handleOnRemove = (id: string) => {
+    Modal.confirm({
+      title: I18n.t('frontend.availability.remove_confirm.title'),
+      content: I18n.t('frontend.availability.remove_confirm.content'),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        removeResource(id).then(() => {
+          message.info(I18n.t('frontend.availability.remove_confirm.success'))
+        })
+      },
+    })
+  }
+
+  const handleCreate = (data) => {
+    setErrors({ ...errors, new_form: undefined })
+    return createResource(data)
+      .then(() => {
+        setShowNewScheduleForm(false)
+        setErrors({ ...errors, new_form: undefined })
+        message.success(I18n.t('frontend.availability.create_success'))
+      })
+      .catch((e) => {
+        setErrors({ ...errors, newForm: e })
+      })
+  }
+
+  const handleUpdate = (data) => {
+    setErrors({ ...errors, [data.id]: null })
+    return updateResource(data)
+      .then(() => {
+        setErrors({ ...errors, [data.id]: null })
+        message.success(I18n.t('frontend.availability.update_success'))
+      })
+      .catch((e) => {
+        setErrors({ ...errors, [data.id]: e })
+      })
+  }
+
+  return (
+    <>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/administration/user_availability',
+            label: () => I18n.t('administration.navigation.availability'),
+          },
+        ]}
+      />
+      <Row
+        justify="space-between"
+        align="middle"
+        className="pt-4 pb-4 ps-4 pe-4"
+      >
+        <Col>
+          <CountDisplay
+            totalCount={meta.recordCount}
+            isLoading={isLoading('fetch')}
+          />
+        </Col>
+        <Col>
+          <Space>
+            <Button
+              type="primary"
+              disabled={showNewScheduleForm}
+              onClick={() => setShowNewScheduleForm(true)}
+            >
+              <PlusOutlined />
+              {I18n.t('frontend.availability.add_new_availability')}
+            </Button>
+          </Space>
+        </Col>
+      </Row>
+      <Row className="p-10">
+        <Col lg={24} xxl={18}>
+          {showNewScheduleForm && (
+          <ScheduleAvailability
+            id="new"
+            onFormSubmit={data => handleCreate(data)}
+            className="mb-10"
+            collapsed={false}
+            removable={userAvailabilityDates.length > 0}
+            onRemove={() => setShowNewScheduleForm(false)}
+            errorMessages={errors?.newForm}
+          />
+          )}
+          {userAvailabilityDates.map((userAvailabilityDate, index) => (
+            <ScheduleAvailability
+              id={userAvailabilityDate.id}
+              key={userAvailabilityDate.id}
+              onFormSubmit={data => handleUpdate({ ...data, id: userAvailabilityDate.id })}
+              initialAvailability={
+                { ...userAvailabilityDate, availabilityDays: userAvailabilityDate.userAvailabilityDays }
+              }
+              onRemove={id => handleOnRemove(id)}
+              collapsed={false}
+              className={`${index !== 0 ? 'mt-10' : ''}`}
+              errorMessages={errors[userAvailabilityDate.id]}
+            />
+          ))}
+        </Col>
+      </Row>
+    </>
+  )
+}

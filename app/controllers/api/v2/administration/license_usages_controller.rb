@@ -20,6 +20,10 @@ module Api
 
     def meta_details
       {
+        report_family_name: lambda {
+          Api::Administration::LicensePolicy::Scope.new(current_user, License).
+            resolve.find(params[:license_id]).report_family&.name
+        },
         permissions: lambda {
           GetPermissionsHash.call!(
             Administration::LicensePolicy,

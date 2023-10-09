@@ -15,7 +15,7 @@ module Administration
         respond_to do |format|
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
-              users.page(params[:page]),
+              users.page(params[:page]).per(params[:size] || 25),
               each_serializer: Administration::Campaigns::UserSerializer,
               current_user: current_user,
               campaign_id: campaign.id,
@@ -159,7 +159,8 @@ module Administration
         spoof_token = SecureRandom.urlsafe_base64(64)
         resource.update_column(:spoof_token, spoof_token)
 
-        redirect_to root_url(domain: Settings.domain, subdomain: project.subdomain, spoof_token: spoof_token)
+        redirect_to root_url(domain: Settings.domain, subdomain: project.subdomain, spoof_token: spoof_token),
+                    allow_other_host: true
       end
 
       def extend_time

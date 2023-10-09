@@ -200,7 +200,7 @@ _.extend(Question.prototype, {
     Object.assign(newProps, props, {
       questionText: this.props.questionText,
       choicesTexts: this.props.choicesTexts || [],
-      randomization: this.props.randomization,
+      randomization: this.props.randomization || { type: 'No' },
     })
 
     this.props = newProps

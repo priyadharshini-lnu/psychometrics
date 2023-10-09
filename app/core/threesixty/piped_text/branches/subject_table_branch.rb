@@ -3,7 +3,7 @@
 module Threesixty
   module PipedText
     module Branches
-      class SubjectTableBranch < BaseBranch
+      class SubjectTableBranch < ::PipedText::BaseBranch
         def call
           class_name = "Threesixty::PipedText::Branches::SubjectTable::#{path.first}".safe_constantize
 

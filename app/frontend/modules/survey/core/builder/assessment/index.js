@@ -10,6 +10,7 @@ import {
   SAVE_REQUEST, SAVE_FAILURE, UPDATE_EXTRA, SAVE_DATA_SHEET,
   TOGGLE_ENABLE_SINGLE_QUESTION, CHANGE_DEFAULT_NORM,
   TOGGLE_INSTRUCTIONS, UPDATE_INSTRUCTIONS_CONTENT,
+  UPDATE_LINKED_QUESTIONS,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -37,6 +38,8 @@ export const defaultState = {
   options: {},
   instructions: {},
   ownerId: null,
+  linkedAssessment: null,
+  linkedQuestions: {},
 }
 
 const HANDLERS = {
@@ -56,6 +59,8 @@ const HANDLERS = {
         question: null,
         offset: null,
       },
+      linkedAssessment: assessment.linked_assessment,
+      linkedQuestions: assessment.linked_questions || {},
       loaded: true,
     })
   },
@@ -132,6 +137,9 @@ const HANDLERS = {
   ),
   [UPDATE_INSTRUCTIONS_CONTENT]: (state, { content }) => setIn(
     state, ['instructions', 'content'], content,
+  ),
+  [UPDATE_LINKED_QUESTIONS]: (state, { id, questions }) => setIn(
+    state, ['linkedQuestions', id], questions,
   ),
 }
 

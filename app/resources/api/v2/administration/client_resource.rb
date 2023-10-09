@@ -5,7 +5,7 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
 
   has_one :project_manager
 
-  ransack_filters %i[name_cont filterable_fields]
+  ransack_filters %i[name_cont filterable_fields applicable_level_eq search_query]
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'

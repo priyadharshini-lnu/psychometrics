@@ -3,7 +3,7 @@
 module Threesixty
   module PipedText
     module Branches
-      class NominationBranch < BaseBranch
+      class NominationBranch < ::PipedText::BaseBranch
         def call
           class_name = "Threesixty::PipedText::Branches::Nomination::#{path.first}".safe_constantize
           broadcast :ok, class_name&.call!(path, params, context)

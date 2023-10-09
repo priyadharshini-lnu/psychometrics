@@ -117,9 +117,9 @@ export default defineConfig({
             return 'vendors'
           }
 
-          if (id.includes('/glint/')) {
-            return 'glint'
-          }
+          // if (id.includes('/glint/')) {
+          //   return 'glint'
+          // }
 
           // if (id.includes('modules/reports/')) {
           //   return 'survey'
@@ -151,5 +151,7 @@ export default defineConfig({
     __DEV__: __DEV__,
     __PROD__: __PROD__,
     __TEST__: __TEST__,
+    __MOCK_SERVER_PORT__: env.MOCK_SERVER_PORT || '3037',
+    'process.env': process.env,
   },
 })

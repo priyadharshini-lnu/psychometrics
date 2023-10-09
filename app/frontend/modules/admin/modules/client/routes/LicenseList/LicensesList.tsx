@@ -14,6 +14,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { LicenseFormModal } from './LicenseFormModal'
 import { ClientLicensesTable } from './LicenseTable'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const { I18n } = window
 
@@ -50,6 +51,27 @@ const LicenseListComponent: React.FC<Props> = ({
 
   return (
     <>
+      <Breadcrumb
+        request={{
+          fields: ['client'],
+          data: {
+            clientId: parseInt(clientId, 10),
+          },
+        }}
+        crumbs={[
+          {
+            link: () => '/administration',
+            label: () => I18n.t('administration.clients.tenancies'),
+          },
+          {
+            link: () => `/administration/clients/${clientId}/projects`,
+            label: state => state.client.name,
+          },
+          {
+            label: () => I18n.t('administration.breadcrumbs.licenses'),
+          },
+        ]}
+      />
       <Resource config={config} name="licenses">
         <Resource.Filter placeholder="Search" name="report_family_name_cont">
           {isSuperAdmin(currentUser)

@@ -24,7 +24,7 @@ import { CountDisplay } from '~/components/CountDisplay'
 import {
   ProjectAdmin, Admin, AdminPermissions, CurrentUserPermissions, AdminListingTR,
 } from '~/modules/admin/modules/client/core/admin'
-import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import Modals from '~/modules/admin/components/Modals/'
 import { DetailsDrawer } from './DetailsDrawer'
@@ -41,7 +41,7 @@ const MODALS = {
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
-    currentCampaignId: getCurrentCampaignId(state),
+    currentCampaignId: getCampaignId(state),
   }),
   {
     openModal,
@@ -77,11 +77,12 @@ const AdminsComponent: React.FC<Props> = ({
   const filterHash = {
     with_role: adminType,
     project_id_eq: projectId,
-    client_id_eq: clientId,
   }
 
   if (adminType === AdminTypes.CampaignAdmin) {
     _.merge(filterHash, { campaign_id_eq: campaignId })
+  } else if (adminType === AdminTypes.ClientAdmin) {
+    _.merge(filterHash, { client_id_eq: clientId })
   }
 
   const {
@@ -113,6 +114,9 @@ const AdminsComponent: React.FC<Props> = ({
     DRAWER_SEARCH_PARAMS.ADMIN_ID,
   ) as string
 
+  const updateInProgress = isLoading(`update@${drawerAdminId}`)
+  const createAdminInProgress = isLoading('add')
+
   const history = useHistory()
 
   const getIndividualAdminUrl = (
@@ -136,13 +140,13 @@ const AdminsComponent: React.FC<Props> = ({
   }
 
   const handleDeleteAdminClick = (
-    id: Admin['id'], firstName: Admin['firstName'], lastName: Admin['lastName'],
+    id: Admin['id'], firstName: Admin['firstName'], lastName: Admin['lastName'], email: Admin['email'],
   ) => {
     Modal.confirm({
       title: I18n.t('administration.administrators.modals.delete.title'),
       content: I18n.t(
         'administration.administrators.modals.delete.content',
-        { name: `${firstName} ${lastName}` },
+        { email },
       ),
       okText: I18n.t('administration.administrators.modals.delete.okText'),
       cancelText: I18n.t(
@@ -152,8 +156,8 @@ const AdminsComponent: React.FC<Props> = ({
         removeResource(`${id}`).then(() => {
           message.info(
             I18n.t(
-              'frontend.admins.actions.remove.success',
-              { adminName: `${firstName} ${lastName}` },
+              'administration.administrators.modals.delete.onSuccess',
+              { email },
             ),
           )
           close()
@@ -214,21 +218,18 @@ const AdminsComponent: React.FC<Props> = ({
       <Row>
         <Col span={24}>
           <Table
-            rowKey={row => row?.id ?? -1}
             pagination={false}
             loading={tableLoading}
             dataSource={data}
             onChange={handleTableChange}
           >
             <Table.Column
-              key="user_id"
               dataIndex="userId"
               title={I18n.t('administration.administrators.list.columns.id')}
               sorter
               sortOrder={getSortOrder('user_id')}
             />
             <Table.Column
-              key="name"
               dataIndex="name"
               title={I18n.t('administration.administrators.list.columns.name')}
               render={(_, { id, firstName, lastName }) => (
@@ -240,14 +241,12 @@ const AdminsComponent: React.FC<Props> = ({
               )}
             />
             <Table.Column
-              key="user.email"
               dataIndex="email"
               title={I18n.t('administration.administrators.list.columns.email')}
               sorter
               sortOrder={getSortOrder('user.email')}
             />
             <Table.Column
-              key="created_at"
               dataIndex="createdAt"
               title={I18n.t(
                 'administration.administrators.list.columns.created_at',
@@ -256,7 +255,6 @@ const AdminsComponent: React.FC<Props> = ({
               sortOrder={getSortOrder('created_at')}
             />
             <Table.Column
-              key="actions"
               dataIndex="actions"
               title={I18n.t(
                 'administration.administrators.list.columns.actions',
@@ -266,12 +264,14 @@ const AdminsComponent: React.FC<Props> = ({
                 user: Admin,
               ) => {
                 const {
-                  id, email, firstName, lastName,
+                  id, userId, email, firstName, lastName,
                 } = user
 
                 return (
                   <ActionsMenu
                     id={id}
+                    userId={userId}
+                    currentUser={currentUser}
                     email={email}
                     firstName={firstName}
                     lastName={lastName}
@@ -315,6 +315,7 @@ const AdminsComponent: React.FC<Props> = ({
         adminId={drawerAdminId}
         adminType={adminType}
         campaignType={campaignType}
+        addOrUpdateInProgress={updateInProgress || createAdminInProgress}
       />
       <Modals modals={MODALS} />
     </>

@@ -1,0 +1,48 @@
+.divider {
+  margin-bottom: 12px;
+  margin-top: 0px;
+}
+
+.collapseContainer {
+  :global {
+    .ant-collapse {
+      background-color: #fff;
+      border: 1px solid #eee;
+    }
+  }
+}
+
+.nonCollapsiblePanel {
+  :global {
+    .ant-collapse-header {
+      pointer-events: none;
+    }
+  }
+}
+
+.title {
+  margin-bottom: 0;
+  min-width: 350px;
+}
+
+.additionalDetailsContainer {
+  display: inline-block;
+  :global {
+    .ant-descriptions-view table {
+      table-layout: auto;
+      th, td {
+        padding: 0px 12px;
+      }
+    }
+  }
+}
+
+.removeIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 48px;
+  font-size: 12px;
+  cursor: pointer;
+  pointer-events: auto;
+}

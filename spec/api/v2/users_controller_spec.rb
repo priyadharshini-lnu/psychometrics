@@ -180,4 +180,172 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
       end
     end
   end
+
+  path '/users/create_global_assessor' do
+    post 'Create Global Assessor' do
+      operationId 'CreateGlobalAssessor'
+      description 'Create Global Assessor'
+      tags 'User'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/UserResponse' },
+                required: true
+
+      response '200', 'Global Assessor Created' do
+        schema '$ref' => '#/components/schemas/UserCreateRequest'
+
+        examples 'application/json' => {
+          type: 'users',
+          data: {
+            id: '770',
+            attributes: {
+              email: 'random@gmail.com',
+              first_name: 'John',
+              last_name: 'Doe'
+            }
+          }
+        }
+
+        let(:body) do
+          jsonapi_resource_request(
+            'users',
+            {
+              email: Faker::Internet.email,
+              first_name: Faker::Name.first_name,
+              last_name: Faker::Name.last_name
+            }
+          )
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)['data']
+          expect(data).to have_key('id')
+          expect(data).to have_attribute(:email)
+          expect(data).to have_attribute(:first_name)
+          expect(data).to have_attribute(:last_name)
+          user = User.find_by(email: data['attributes']['email'])
+          expect(user).to eq(User.last)
+          expect(user.global_assessor).to eq(true)
+        end
+      end
+    end
+  end
+
+  path '/users/change_password/' do
+    let(:current_password) { superadmin.password }
+    let(:new_password) { 'NewPassword@129' }
+
+    before(:each) { login_user(superadmin) }
+    after(:each) { sign_out(superadmin) }
+
+    post 'Change Password' do
+      operationId 'ChangePassword'
+      description 'Change Password'
+      tags 'User'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ChangePasswordRequest' },
+                required: true
+
+      response '200', 'Change Password' do
+        schema '$ref' => '#/components/schemas/ChangePasswordResponse'
+
+        examples 'application/json' => {
+          type: 'users',
+          data: {
+            id: '770',
+            attributes: {
+              current_password: 'Password@916',
+              password: 'Password@916',
+              password_confirmation: 'Password@916'
+            }
+          }
+        }
+
+        let(:body) do
+          jsonapi_resource_request(
+            'users',
+            {
+              current_password: current_password,
+              password: new_password,
+              password_confirmation: new_password
+            }
+          )
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)['data']
+          expect(data).to have_attribute(:message)
+          superadmin.reload.valid_password?(new_password)
+        end
+      end
+    end
+  end
+
+  path '/users/{user_id}' do
+    patch 'Update a user' do
+      operationId 'UpdateUser'
+      description 'Update a User'
+      tags 'User'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :user_id, in: :path, type: :string
+      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/UserResponse' }, required: true
+      parameter name: :include, in: :query, type: :string
+
+      response '200', 'User Updated' do
+        schema '$ref' => '#/components/schemas/UserUpdateRequest'
+        examples 'application/json' => {
+          type: 'users',
+          data: {
+            type: 'users',
+            id: '34861',
+            attributes: {
+              first_name: 'John',
+              last_name: 'Doe',
+              user_profile_data: {
+                locale: 'en',
+                timezone: 'Asia/Calcutta'
+              }
+            }
+          }
+        }
+
+        let(:user) { create(:client_admin) }
+        let(:user_id) { user.id }
+        let(:updated_attributes) do
+          {
+            first_name: 'John',
+            last_name: 'Doe',
+            user_profile_data: {
+              locale: 'en',
+              timezone: 'Asia/Calcutta'
+            }
+          }
+        end
+
+        let(:body) do
+          {
+            data: {
+              type: 'users',
+              id: user.id.to_s,
+              attributes: updated_attributes
+            }
+          }
+        end
+        let(:include) { 'user_profile' }
+
+        run_test! do |response|
+          user_response = JSON.parse(response.body)['data']
+          user_profile = JSON.parse(response.body)['included'].first
+          expect(user_response).to have_key('id')
+          expect(user_response).to have_attribute(:first_name).with_value(updated_attributes[:first_name])
+          expect(user_response).to have_attribute(:last_name).with_value(updated_attributes[:last_name])
+          expect(user_profile).to have_attribute(:locale).with_value(updated_attributes[:user_profile_data][:locale])
+          expect(user_profile).to have_attribute(:timezone).
+            with_value(updated_attributes[:user_profile_data][:timezone])
+        end
+      end
+    end
+  end
 end

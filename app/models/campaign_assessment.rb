@@ -25,6 +25,7 @@ class CampaignAssessment < ApplicationRecord
            to: :assessment
 
   scope :preworks, -> { where(prework: true) }
+  scope :workshop_activities, -> { where(workshop_activity: true) }
 
   def validate_external_config
     return unless external_config.presence.is_a?(String)

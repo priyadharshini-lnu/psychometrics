@@ -18,8 +18,13 @@ module Campaigns
 
       validates :campaign_id, presence: true
       validates :fixed_time_duration, numericality: { only_integer: true }, allow_nil: true
-      validates :time_zone, inclusion: { in: ActiveSupport::TimeZone::MAPPING.values }, allow_nil: true
       validates :description, length: { maximum: 500 }
+
+      validate :time_zone do
+        unless time_zone.nil? || ActiveSupport::TimeZone[time_zone]
+          errors.add(:time_zone, :invalid)
+        end
+      end
     end
   end
 end

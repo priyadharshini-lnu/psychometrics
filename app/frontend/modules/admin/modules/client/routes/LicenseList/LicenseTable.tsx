@@ -34,6 +34,12 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
   return (
     <Resource.Table pagination>
       <Resource.Column<License>
+        title={I18n.t('common.column.id')}
+        id="id"
+        dataIndex="id"
+        width={30}
+      />
+      <Resource.Column<License>
         title={I18n.t('licenses.enabled')}
         id="disabledStatus"
         dataIndex="disabled"

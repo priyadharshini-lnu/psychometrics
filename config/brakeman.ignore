@@ -53,7 +53,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/serializers/assessment_serializer.rb",
-      "line": 34,
+      "line": 35,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "Arel.sql(\"position(id::text in '#{object.resources.map do\n r[\"questionId\"]\n end.join(\",\")}')\")",
       "render_path": null,
@@ -231,6 +231,52 @@
       "note": ""
     },
     {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "6c9a94d05b980b513b721fd692a71bb3c5c97aa7a0a9871dd4b632bd5aa8298c",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/iiht_user_assessments_controller.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::IihtUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "6c9a94d05b980b513b721fd692a71bb3c5c97aa7a0a9871dd4b632bd5aa8298c",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/iiht_user_assessments_controller.rb",
+      "line": 19,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::IihtUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "71796fd5efbff53104a2f27525ec8d9550ce8bd44678100a51d25557f5a48e56",
@@ -325,6 +371,52 @@
     {
       "warning_type": "Redirect",
       "warning_code": 18,
+      "fingerprint": "912dab81c3cfbe3384936b70a2699c249ee44b16609f94ec31fae5b7da6f80c8",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/saville_user_assessments_controller.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::SavilleUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "912dab81c3cfbe3384936b70a2699c249ee44b16609f94ec31fae5b7da6f80c8",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/saville_user_assessments_controller.rb",
+      "line": 19,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::SavilleUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
       "fingerprint": "961834c98bcc3a5f06b06f70af3e843d148dd3488a5cfcc5c25b432483155027",
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
@@ -388,6 +480,29 @@
       "confidence": "Weak",
       "cwe_id": [
         89
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Dangerous Send",
+      "warning_code": 23,
+      "fingerprint": "aa5e7ee8d9c14afd73c6f9ac80cadfdf9258d131a70159578e589418edf47fd8",
+      "check_name": "Send",
+      "message": "User controlled method execution",
+      "file": "app/controllers/api/v2/administration/base_controller.rb",
+      "line": 180,
+      "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
+      "code": "send(\"authorize_#{params[:action]}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V2::Administration::BaseController",
+        "method": "pundit_authorize"
+      },
+      "user_input": "params[:action]",
+      "confidence": "High",
+      "cwe_id": [
+        77
       ],
       "note": ""
     },
@@ -622,6 +737,52 @@
       "note": ""
     },
     {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "ccf083c353c0be37c8b6f68b4d4ed57fdb5e6d59e7a09df875e2abea7a4628d1",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/pearson_user_assessments_controller.rb",
+      "line": 15,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::PearsonUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "ccf083c353c0be37c8b6f68b4d4ed57fdb5e6d59e7a09df875e2abea7a4628d1",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/end_user/pearson_user_assessments_controller.rb",
+      "line": 19,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url, :allow_other_host => true)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "EndUser::PearsonUserAssessmentsController",
+        "method": "pass"
+      },
+      "user_input": "UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        601
+      ],
+      "note": ""
+    },
+    {
       "warning_type": "Remote Code Execution",
       "warning_code": 24,
       "fingerprint": "d8d3d24f5ab81f04de2a14da6c7e54bb0144ad82b4f87aa4d87245f9e7920638",
@@ -748,6 +909,6 @@
       "note": ""
     }
   ],
-  "updated": "2023-06-10 23:06:45 +0400",
-  "brakeman_version": "5.4.0"
+  "updated": "2023-08-30 15:45:16 +0530",
+  "brakeman_version": "6.0.0"
 }

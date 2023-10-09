@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Component } from 'react'
-import ColorPicker from '~/modules/reports/components/ColorPicker'
+import { ColorPicker } from '~/glint'
 
 export const FONTS = {
   Arial: 'arial, helvetica, sans-serif',
@@ -40,7 +40,7 @@ class PropertyFilter extends Component {
 
   changeFontColor = (color) => {
     const { model } = this.props
-    model.props.style.fontColor = color.hex
+    model.props.style.fontColor = color
     this.update()
   }
 
@@ -77,7 +77,7 @@ class PropertyFilter extends Component {
     const { model } = this.props
     const { fontColor } = model.props.style
     return (
-      <ColorPicker color={fontColor} onChange={this.changeFontColor} onComplete={this.update} />
+      <ColorPicker getValueInHexFormat color={fontColor} onChange={this.changeFontColor} onComplete={this.update} />
     )
   }
 

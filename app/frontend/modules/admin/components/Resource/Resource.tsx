@@ -1,4 +1,5 @@
-import { useEffect, ReactNode } from 'react'
+import { useEffect, ReactNode, useState } from 'react'
+import { Skeleton } from 'antd'
 import { useResources } from '~/hooks/useResources'
 import { ResourceContext } from './ResourceContext'
 
@@ -19,8 +20,11 @@ const ResourceComponent = <R extends {id: string}, M extends BaseMeta>({
   name,
 }: Props<R, M>) => {
   const resource = useResources<R, M>(name, config)
+  const [firstFetchCompleted, setFirstFetchCompleted] = useState(false)
 
-  useEffect(() => { resource.fetch() }, [])
+  useEffect(() => { resource.fetch().finally(() => setFirstFetchCompleted(true)) }, [])
+
+  if (!firstFetchCompleted) return <Skeleton active className="mt-4 mb-4" />
 
   return <ResourceContext.Provider value={{ resource }}>{children}</ResourceContext.Provider>
 }

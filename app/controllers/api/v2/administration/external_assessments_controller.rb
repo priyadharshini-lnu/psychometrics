@@ -1,0 +1,61 @@
+# frozen_string_literal: true
+
+module Api
+  class V2::Administration::ExternalAssessmentsController < Api::V2::Administration::BaseController
+    append_before_action :pundit_authorize, except: [:index]
+    append_after_action :verify_authorized, except: :index
+
+    def index
+      search = params[:filter][:filterable_fields]
+      case params[:filter][:type_eq]
+        when 'hogan'
+          render_json_api_response(hogan_assessments(search))
+        when 'pearson'
+          render_json_api_response(pearson_assessments(search))
+        when 'iiht'
+          render_json_api_response(iiht_assessments(search))
+        when 'saville'
+          render_json_api_response(saville_assessments(search))
+      end
+    end
+
+    private
+
+    def render_json_api_response(data)
+      response = {
+        data: data.map do |attrs|
+          {
+            type: 'external_assessments',
+            id: attrs[:id],
+            attributes: attrs.except(:id)
+          }
+        end
+      }
+      render json: response
+    end
+
+    def hogan_assessments(_search)
+      Settings.providers.hogan.assessments.map do |a|
+        { id: a.id, name: a.name }
+      end
+    end
+
+    def pearson_assessments(search)
+      PearsonAssessment.filterable_fields(search).order(:title).map { |a| { id: a.product_id, name: a.title } }
+    end
+
+    def iiht_assessments(search)
+      Iiht::GetAssessments.call!(Client.find(params[:filter][:project_id_eq])).
+        filter { |a| a['assessmentIdNumber'].include?(search) || a['name'].include?(search) }.
+        map do |a|
+        { id: a['assessmentIdNumber'], name: a['name'] }
+      end
+    end
+
+    def saville_assessments(_search)
+      Settings.providers.saville.assessments.sort_by { |a| a[:name] }.map do |a|
+        { id: a[:id].downcase, name: a[:name] }
+      end
+    end
+  end
+end

@@ -119,21 +119,19 @@ const CommonComponent: React.FC<Props> = ({
         <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
           <div className={styles.assessmentContainer}>
             <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-              <div className={selectedLanguage ? selectedLanguage.direction : ''}>
-                <PassAssessment
-                  id="pass_assessment"
-                  type="pass_assessment"
-                  initialized={initialized}
-                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
-                  data={assessment}
-                  result={results}
-                  dashboardUrl={`/campaigns/${campaignId}`}
-                  locales={translations}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  rstore={store}
-                  isAnonymousAssessment="true"
-                />
-              </div>
+              <PassAssessment
+                id="pass_assessment"
+                type="pass_assessment"
+                initialized={initialized}
+                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
+                data={assessment}
+                result={results}
+                dashboardUrl={`/campaigns/${campaignId}`}
+                locales={translations}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                rstore={store}
+                isAnonymousAssessment="true"
+              />
             </ResourcesTabs>
           </div>
         </ConfigProvider>

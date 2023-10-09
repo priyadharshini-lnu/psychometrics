@@ -36,7 +36,6 @@ class Dimension < ApplicationRecord
         { occupations: { occupations_factors: :factor } },
         { innovation_styles: { innovation_styles_factors: :factor } }
       ],
-      except: [:factors_count],
       use_dictionary: true
     ) do |original, copied|
       original.class.uploaders.each_key do |image_column|

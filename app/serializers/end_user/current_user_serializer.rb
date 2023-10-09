@@ -5,10 +5,14 @@ module EndUser
     attributes :id, :email, :first_name, :last_name, :full_name, :role,
                :is_anonym, :photo, :timezone, :custom_fields,
                :age, :gender, :locale, :profile_completion_percentage, :last_sign_in_at, :updated_at,
-               :update_profile_required, :update_profile_message
+               :update_profile_required, :update_profile_message, :back_url
 
     def updated_at
       object.user_profile.updated_at
+    end
+
+    def back_url
+      instance_options[:back_url]
     end
 
     def update_profile_required

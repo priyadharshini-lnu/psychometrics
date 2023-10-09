@@ -69,7 +69,7 @@ module Administration
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_assessments.includes(
-            :norm, :assessor_form, assessment: %i[norms]
+            :norm, assessment: %i[norms linked_assessment]
           ),
           each_serializer: Administration::CampaignAssessmentSerializer,
           current_user: current_user, project_id: campaign.project_id,

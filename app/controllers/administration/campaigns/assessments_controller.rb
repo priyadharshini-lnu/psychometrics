@@ -138,6 +138,21 @@ module Administration
                current_user: current_user
       end
 
+      def update_workshop_activity
+        form = ::Campaigns::WorkshopActivityDurationForm.from_params(params)
+        if form.valid?
+          attributes = form.attributes
+          campaign_assessment.update!(attributes)
+          render json: campaign_assessment,
+                 serializer: Administration::CampaignAssessmentSerializer,
+                 campaign_id: campaign.id,
+                 project_id: campaign.project_id,
+                 current_user: current_user
+        else
+          render json: { errors: form.errors.messages }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def assessment

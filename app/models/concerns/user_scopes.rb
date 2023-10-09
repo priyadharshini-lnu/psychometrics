@@ -32,6 +32,11 @@ module UserScopes
       ).distinct
     }
 
+    scope :with_campaign_user, lambda { |campaign_id|
+      campaign = Campaign.find(campaign_id)
+      left_joins(:campaign_users).where({ campaign_users: { campaign_id: campaign.id } }).distinct
+    }
+
     # Fileter by role
     scope :with_role, lambda { |role|
       case role
@@ -76,6 +81,7 @@ module UserScopes
     scope :sort_by_full_name_asc, -> { order(first_name: :asc, last_name: :asc) }
     scope :sort_by_full_name_desc, -> { order(first_name: :desc, last_name: :desc) }
     scope :admins, ->(_) { where(project_id: nil) }
+    scope :global_assessors, -> { where(global_assessor: true) }
   end
 
   # rubocop:enable Metrics/BlockLength

@@ -16,6 +16,14 @@ module Administration
       )
     end
 
+    def push_webhook?
+      !record.assessment.external? && @user.has_permission?(:project_settings, :webhooks, project_id: project_id)
+    end
+
+    def webhook_payload?
+      has_permission?(:project_settings, :webhooks, project_id: project_id)
+    end
+
     def destroy?
       @user.is?(:superadmin)
     end

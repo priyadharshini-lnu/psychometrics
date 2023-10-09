@@ -3,6 +3,19 @@
 class Webhook < WebhookSystem::Subscription
   include SoftDelete
 
+  EVENTS = {
+    assessment_started: WebhookEvents::AssessmentStarted,
+    assessment_completed: WebhookEvents::AssessmentCompleted,
+    assessment_timeout: WebhookEvents::AssessmentTimeout,
+    results_available: WebhookEvents::ResultsAvailable,
+    report_available: WebhookEvents::ReportAvailable
+  }.freeze
+
+  USER_REPORT_EVENTS = {
+    results_available: 'results_available',
+    report_available: 'report_available'
+  }.freeze
+
   belongs_to :project
 
   validates :url, http_url: { presence: true }

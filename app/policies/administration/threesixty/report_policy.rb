@@ -3,11 +3,18 @@
 module Administration
   module Threesixty
     class ReportPolicy < BasePolicy
-      alias download? show?
       alias export? show?
 
+      def show?
+        has_permission?(:results, :view_report)
+      end
+
+      def download?
+        has_permission?(:results, :view_report)
+      end
+
       def regenerate?
-        user.is?(:superadmin) || user.has_permission?(:results, :regenerate_report, project_id: project_id)
+        has_permission?(:results, :regenerate_report)
       end
     end
   end

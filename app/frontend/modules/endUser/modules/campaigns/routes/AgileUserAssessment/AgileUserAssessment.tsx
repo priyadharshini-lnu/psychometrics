@@ -12,7 +12,7 @@ import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHea
 import { get as getConfig } from '~/modules/endUser/core/config'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
-import { get as getCampaign } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
+import { get as getCampaign, getUserAssessmentData } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
 import { fetchAssessment, getCampaignRemainingTime } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import styles from './styles.less'
 import { CountdownTimer, PageHeader as GlintPageHeader } from '~/glint'
@@ -24,6 +24,7 @@ const connector = connect(
     ...getConfig(state),
     isAnonym: getCurrentUser(state).isAnonym,
     campaignId: getCampaign(state).id,
+    userAssessment: getUserAssessmentData(state),
     assessment: state.campaigns.userAssessment.assessment,
     remainingCampaignTime: getCampaignRemainingTime(state),
   }),
@@ -50,12 +51,14 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
   agileAssetsUrl,
   agileUserAssessmentUrl,
   isAnonym,
-  campaignId,
+  campaignId: agileCampaign,
   assessment,
+  userAssessment,
   fetchAssessment,
   remainingCampaignTime,
   match: { params },
 }) => {
+  const campaignId = agileCampaign || userAssessment.campaignId
   const history = useHistory()
   const initializeAgile = () => {
     const { lang } = qs.parse(location.search.substr(1))

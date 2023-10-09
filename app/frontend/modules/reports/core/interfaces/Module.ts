@@ -1,4 +1,4 @@
-import { RGBColor } from 'react-color'
+import { RgbaColor } from 'react-colorful'
 import { Factor } from '~/modules/reports/core/interfaces/Factor'
 
 export default interface Module {
@@ -22,9 +22,9 @@ export default interface Module {
     }
     sourceType: 'Factor' | 'Question' | 'ConditionalText' | 'ConditionalFactorOccupationText' |
       'PipedText' | 'ResultText'
-    mainHeaderColor: RGBColor | string
-    secondHeaderColor: RGBColor | string
-    scoreBackgroundColor: RGBColor | string
+    mainHeaderColor: RgbaColor | string
+    secondHeaderColor: RgbaColor | string
+    scoreBackgroundColor: RgbaColor | string
     showLabels: boolean
     showValues: boolean
     showLines: boolean

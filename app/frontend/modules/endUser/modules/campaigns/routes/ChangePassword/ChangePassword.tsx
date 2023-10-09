@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  Form, Layout, Typography, Input, Row, Col, Space,
+  Form, Layout, Typography, Input, Row, Col, Space, Button,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { ButtonWithArrow, PageHeader as GlintPageHeader } from '~/glint'
+import { DirectionalArrowIcon, PageHeader as GlintPageHeader } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { changePassword, CHANGE_PASSWORD } from '~/core/currentUser'
@@ -22,6 +22,7 @@ const connecter = connect((state: RootState) => ({
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveInProgress }) => {
   const handleChangePassword = values => changePassword(values).then(() => {
     window.location.href = '/users/sign_in'
@@ -63,14 +64,14 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                     <Input.Password />
                   </Form.Item>
                   <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
-                    <ButtonWithArrow
-                      label={I18n.t('common.actions.update')}
+                    <Button
                       type="primary"
                       htmlType="submit"
-                      className={styles.updateBtn}
-                      loading={saveInProgress}
-                      disabled={saveInProgress}
-                    />
+                      className={styles.actionButton}
+                    >
+                      {I18n.t('profile.update')}
+                      <DirectionalArrowIcon className={styles.buttonIcon} />
+                    </Button>
                   </Space>
                 </>
               )}

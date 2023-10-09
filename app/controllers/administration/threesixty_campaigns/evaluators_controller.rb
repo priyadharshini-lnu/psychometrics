@@ -83,7 +83,8 @@ module Administration
             'reset_all_nominations'
           ],
           {
-            project_id: threesixty_campaign.campaign.project_id
+            project_id: threesixty_campaign.campaign.project_id,
+            campaign_id: threesixty_campaign.campaign_id
           }
         )
       end

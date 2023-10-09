@@ -10,15 +10,17 @@ const { I18n } = window
 const { Search } = Input
 
 type Props = {
-  children: ReactNode
+  children?: ReactNode
   placeholder?: string
   name: string
+  hideSearch?: boolean
 }
 
 export const Filter: FC<Props> = ({
   children,
   placeholder,
   name,
+  hideSearch,
 }) => {
   const { resource } = useResourceContext()
   const loading = resource.isLoading('fetch')
@@ -40,18 +42,23 @@ export const Filter: FC<Props> = ({
           isLoading={loading}
         />
       </Col>
-      <Col>
 
-        <Space>
-          <Search
-            placeholder={placeholder || defaultPlaceholder}
-            value={resource.getFilteredValue(name)}
-            onChange={({ target: { value } }) => { resource.changeFilter(name, value) }}
-          />
-          {children}
-        </Space>
+      <Col>
+        { hideSearch ? (
+          <Space>
+            { children }
+          </Space>
+        ) : (
+          <Space>
+            <Search
+              placeholder={placeholder || defaultPlaceholder}
+              value={resource.getFilteredValue(name)}
+              onChange={({ target: { value } }) => { resource.changeFilter(name, value) }}
+            />
+            {children}
+          </Space>
+        )}
       </Col>
     </Row>
-
   )
 }

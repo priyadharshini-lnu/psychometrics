@@ -154,7 +154,7 @@ const Evaluation = ({
         </Col>
         <Col span={12}>
           {subjectAssessments.length > 0 && (
-            <Tabs defaultActiveKey="1" onChange={changeSubjectForm}>
+            <Tabs defaultActiveKey="1" onChange={changeSubjectForm} tabBarStyle={{ margin: 0 }}>
               {subjectAssessments.map(assessment => (
                 <TabPane tab={assessment.name} key={assessment.id}>
                   {+currentAssessmentId === +assessment.id && <UserAssessment subjectAssessmentId={+assessment.id} />}

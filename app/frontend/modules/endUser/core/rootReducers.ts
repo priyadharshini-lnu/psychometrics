@@ -16,6 +16,7 @@ import checkingWizard from '../modules/campaigns/core/checkingWizard'
 import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
 import anonym from '../modules/campaigns/core/anonym'
+import workshop from '~/modules/endUser/modules/campaigns/core/workshops'
 import config from './config'
 
 const rootReducer = history => combineReducers({
@@ -28,6 +29,7 @@ const rootReducer = history => combineReducers({
     assign,
     project,
     userAssessment,
+    workshop,
   }),
   ui: combineReducers({
     autocomplete,

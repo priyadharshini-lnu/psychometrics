@@ -1,0 +1,153 @@
+import React, { useEffect, useState, FC } from 'react'
+import {
+  Button, Select,
+  Form, Row, Col, Space, Input,
+} from 'antd'
+import { FormInstance } from 'antd/lib/form'
+import _ from 'lodash'
+import { Panel } from '~/glint/components/Panel/Panel'
+import { type Errors } from './BaseInfo'
+import styles from './Form.less'
+
+const { I18n } = window
+
+const LANGS = [{ value: 'en' }, { value: 'ar' }]
+
+type Props = {
+  form: FormInstance
+  prev: () => void
+  submit: () => void
+  errors: Errors | null
+  onCancel?: () => void
+  isLoading?: boolean
+}
+
+export const SendInvitation: FC<Props> = ({
+  form, prev, submit, errors, onCancel, isLoading,
+}) => {
+  const [languages, setLanguages] = useState<{
+    [key:string]: {locale: string, name: string, title: string, description: string}
+  }>({
+    en: {
+      locale: 'en',
+      name: 'English',
+      title: '',
+      description: '',
+    },
+  })
+
+  useEffect(() => {
+    form.setFieldValue('translations', _.map(languages, v => v))
+  }, [languages])
+
+  const addLang = () => {
+    setLanguages({
+      ...languages,
+      ar: {
+        locale: 'ar',
+        name: 'Arabic',
+        title: '',
+        description: '',
+      },
+    })
+  }
+
+  const handleCancel = () => {
+    onCancel && onCancel()
+  }
+
+  let index = -1
+  return (
+    <div>
+      <Form layout="vertical" form={form}>
+        {_.map(languages, (lang, code) => {
+          index += 1
+          return (
+            <Panel
+              key={code}
+              collapsible
+            // eslint-disable-next-line max-len
+              title={I18n.t('administration.assessment_center.invite.send_invites.title', { lang: I18n.t(`languages.${lang.locale}`) })}
+              description={I18n.t('administration.assessment_center.invite.send_invites.description')}
+            >
+              <Row>
+                <Col sm={24} md={12} lg={8}>
+                  <Form.Item
+                    label={I18n.t('administration.assessment_center.invite.send_invites.invitation_title')}
+                    validateStatus={errors?.[`translations/${index}/title`] ? 'error' : undefined}
+                    hasFeedback={!!errors?.[`translations/${index}/title`]}
+                    help={errors?.[`translations/${index}/title`]?.title}
+                  >
+                    <Input onChange={e => setLanguages({
+                      ...languages, [code]: { ...languages[code], title: e.currentTarget.value },
+                    })}
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    label={I18n.t('administration.assessment_center.invite.send_invites.description')}
+                    validateStatus={errors?.[`translations/${index}/description`] ? 'error' : undefined}
+                    hasFeedback={!!errors?.[`translations/${index}/description`]}
+                    help={errors?.[`translations/${index}/description`]?.title}
+                  >
+                    <Input.TextArea onChange={e => setLanguages({
+                      ...languages, [code]: { ...languages[code], description: e.currentTarget.value },
+                    })}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Panel>
+          )
+        })}
+
+        <Panel
+          title={I18n.t('administration.assessment_center.invite.send_invites.add_language')}
+          description={I18n.t('administration.assessment_center.invite.send_invites.add_description')}
+        >
+          <Row>
+            <Col sm={24} md={12} lg={8}>
+              <Form.Item
+                name="add_lang"
+                label={I18n.t('administration.assessment_center.invite.send_invites.input_label')}
+              >
+                <Row gutter={12}>
+                  <Col flex="1">
+                    <Select
+                      defaultValue="ar"
+                      placeholder={I18n.t('administration.assessment_center.invite.send_invites.input_placeholder')}
+                      options={LANGS.map(lang => ({ value: lang.value, label: I18n.t(`languages.${lang.value}`) }))}
+                    />
+                  </Col>
+                  <Button type="primary" onClick={addLang}>
+                    {I18n.t('administration.assessment_center.invite.send_invites.add')}
+                  </Button>
+                </Row>
+              </Form.Item>
+            </Col>
+          </Row>
+        </Panel>
+      </Form>
+
+      <div className={styles.footer}>
+        <Space>
+          {
+            onCancel && (
+              <Button onClick={handleCancel} disabled={isLoading}>
+                {I18n.t('common.actions.cancel')}
+              </Button>
+            )
+          }
+          <Button disabled={isLoading} onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
+          <Button
+            loading={isLoading}
+            type="primary"
+            onClick={submit}
+          >
+            {I18n.t('administration.assessment_center.invite.save')}
+          </Button>
+        </Space>
+      </div>
+    </div>
+  )
+}

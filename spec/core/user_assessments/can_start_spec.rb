@@ -1,0 +1,41 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+describe UserAssessments::CanStart do
+  let(:user) { create(:user, :with_project_membership) }
+  let(:campaign_user) { create(:campaign_user, user: user) }
+  let!(:campaign) { campaign_user.campaign }
+  let!(:assessment) { create(:assessment, category: Assessment::PSYCHOMETRIC) }
+
+  it 'returns false' do
+    user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
+      assessment, campaign: campaign)
+
+    expect(described_class.call!(user_assessment, user, {})).to eq(false)
+  end
+
+  it 'returns true if privacy contest required' do
+    user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
+      assessment, campaign: campaign)
+    user.project.privacy_consent = true
+
+    expect(described_class.call!(user_assessment, user, {})).to eq(true)
+  end
+
+  it 'returns true if system checks required' do
+    assessment.extra = { enable_audio_check: '1' }
+    user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
+      assessment, campaign: campaign)
+
+    expect(described_class.call!(user_assessment, user, {})).to eq(true)
+  end
+
+  it 'returns false if system checks passed' do
+    assessment.extra = { enable_audio_check: '1' }
+    user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
+      assessment, campaign: campaign)
+
+    expect(described_class.call!(user_assessment, user, { 'checking_wizard.audio' => true })).to eq(false)
+  end
+end

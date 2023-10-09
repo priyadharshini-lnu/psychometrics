@@ -31,9 +31,11 @@ export const formDataToResource = (formData: { [key: string]: unknown }, resourc
 
   return _.reduce(relationships, (acc, relationship, relationshipName: string) => {
     const association = relationship.association || 'hasOne'
-    const field = relationship.field || (association === 'hasOne' ? `${relationshipName}Id` : `${relationshipName}Ids`)
+    const camelizedRelationshipName = _.camelCase(relationshipName)
+    const field = relationship.field
+      || (association === 'hasOne' ? `${camelizedRelationshipName}Id` : `${camelizedRelationshipName}Ids`)
 
-    if (formData[relationshipName] === undefined && formData[field] !== undefined) {
+    if (formData[camelizedRelationshipName] === undefined && formData[field] !== undefined) {
       const val = formData[field]
       delete formData[field]
 
@@ -41,9 +43,15 @@ export const formDataToResource = (formData: { [key: string]: unknown }, resourc
       if (relationship.readOnly) { return acc }
 
       if (Array.isArray(val)) {
-        acc[relationshipName] = val.map(v => ({ type: relType, id: String(v) }))
+        if (val.length === 0) {
+          acc[camelizedRelationshipName] = []
+        } else {
+          acc[camelizedRelationshipName] = val.map(v => ({ type: relType, id: String(v) }))
+        }
+      } else if (val === null || val === undefined) {
+        acc[camelizedRelationshipName] = null
       } else {
-        acc[relationshipName] = { type: relType, id: String(val) }
+        acc[camelizedRelationshipName] = { type: relType, id: String(val) }
       }
     }
 

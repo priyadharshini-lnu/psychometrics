@@ -1,12 +1,20 @@
 # frozen_string_literal: true
 
 class UsersResultUpdateSerializer < ActiveModel::Serializer
+  include Rails.application.routes.url_helpers
   attributes :expired, :current_block, :translations, :progress_was_reseted
   attribute :scoring, if: -> { @instance_options[:current_user]&.assessor? && object.completed? }
+
+  attribute :next_assessment_url, if: -> { object.completed? }
 
   has_many :factors, serializer: UsersResults::FactorSerializer, if: lambda {
     @instance_options[:current_user]&.assessor? && object.completed?
   }
+
+  def next_assessment_url
+    next_assessment = UserAssessments::GetNext.call!(object.user_assessment)
+    user_assessment_path(next_assessment) if next_assessment
+  end
 
   def factors
     Factor.where(id: object.scoring&.keys)

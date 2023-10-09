@@ -2,6 +2,10 @@
   --success-color: #52c41a;
   --grey-color: #e8e8e8;
 }
+input::-webkit-contacts-auto-fill-button {
+  position: absolute;
+  visibility: hidden;
+}
 
 .text-success {
   color: var(--success-color) !important;
@@ -15,6 +19,14 @@
 :global {
   .ant-form-item-label {
     line-height: 25px;
+  }
+
+  #global-navigation {
+    position: relative;
+
+    #main_menu {
+      height: 100%;
+    }
   }
 }
 

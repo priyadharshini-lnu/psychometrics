@@ -116,6 +116,25 @@ class UserReport < ApplicationRecord
     report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
   end
 
+  def has_report_data_config?
+    report.data_configuration.present?
+  end
+
+  def publish_results_available?
+    all_assessments_are_completed? && has_report_data_config?
+  end
+
+  def possible_webhook_events
+    events = []
+    events << Webhook::USER_REPORT_EVENTS[:results_available] if publish_results_available?
+    events << Webhook::USER_REPORT_EVENTS[:report_available] if has_user_results?
+    events
+  end
+
+  def has_user_results?
+    user_results.exists?
+  end
+
   def generatable?
     generate = all_assessments_are_completed? && (external_report? || !report_modules_empty?)
     generate &&= approved? if has_approval_workflow?
@@ -127,18 +146,7 @@ class UserReport < ApplicationRecord
   end
 
   def publish_to_webhook
-    user_result = user_results.first
-    return if user_result.nil?
-
-    campaign = user_result.user_assessment.campaign
-
-    data = {
-      campaign: campaign,
-      subject: user_result.subject,
-      report: report,
-      user_report: self
-    }
-    WebhookSubscriptions::Publish.call!(campaign.project, :report_available, data)
+    UserReports::Webhook.new(self).publish_report_available
   end
 
   def report_families_report

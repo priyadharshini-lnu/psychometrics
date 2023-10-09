@@ -37,7 +37,7 @@ module Api
         user.is?(:superadmin)
       end
 
-      class Scope < Scope
+      class Scope < BasePolicy::Scope
         def resolve
           return Dashboard.all if user.is?(:superadmin)
 

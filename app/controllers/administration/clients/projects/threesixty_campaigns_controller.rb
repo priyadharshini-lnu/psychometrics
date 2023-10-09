@@ -8,12 +8,12 @@ module Administration
         before_action :ensure_project
         prepend_before_action :set_resource_class
         before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive export_results]
-        before_action :init_breadcrumbs
         before_action :set_campaign_template_and_assessments, only: %i[new create]
         wrap_parameters :threesixty_campaign
 
         def show
-          @init_state = {
+          @init_state ||= {}
+          @init_state.merge!({
             project: {
               datasheetFields: resource.datasheet_column_names,
               relationships: ::Relationships::ByCampaign.new(resource.campaign).to_a
@@ -41,7 +41,7 @@ module Administration
             datasheet: {
               parentResource: { type: 'new_campaign', id: resource.campaign_id }
             }
-          }
+          })
         end
 
         def index
@@ -128,20 +128,9 @@ module Administration
           @threesixty_campaign ||= ::Threesixty::Campaign.find_by(id: params[:id])
         end
 
-        def init_breadcrumbs
-          client_root_breadcrumb
-          add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
-          add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
-          add_breadcrumb(
-            t('administration.clients.projects.threesixty_campaigns.index.title'),
-            administration_client_project_threesixty_campaigns_path(client, project)
-          )
-          add_breadcrumb resource.campaign.name, action: :show if params[:action] == 'show'
-        end
-
         def serialized_current_user
           ::Administration::Threesixty::CurrentUserSerializer.new(
-            current_user, project_id: project.id
+            current_user, project_id: project.id, campaign_id: threesixty_campaign.campaign_id
           ).as_json.deep_transform_keys! { |key| key.to_s.camelize(:lower) }
         end
 
@@ -169,7 +158,10 @@ module Administration
             %w[
               manage_reports_options
             ],
-            project_id: project.id
+            {
+              project_id: project.id,
+              campaign_id: threesixty_campaign.campaign_id
+            }
           )
           permissions.transform_keys! { |k| k.camelcase(:lower) }
         end

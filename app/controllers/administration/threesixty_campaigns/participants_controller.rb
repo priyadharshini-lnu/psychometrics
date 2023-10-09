@@ -53,7 +53,7 @@ module Administration
         end
         redirect_url ||= administration_root_path
         # flash.now[:success] = t('.successfully', name: user.decorate.display_name)
-        redirect_to redirect_url
+        redirect_to redirect_url, allow_other_host: true
       end
 
       def destroy

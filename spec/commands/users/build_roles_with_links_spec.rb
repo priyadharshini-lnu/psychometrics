@@ -30,7 +30,7 @@ describe Users::BuildRolesWithLinks do
             { :name => client.name, :value => "/administration/clients/#{client.id}/projects" },
             { :name => project.name, :value => "/administration/projects/#{project.id}/new_campaigns" },
             {
-              :name => campaign.name, :value => "/administration/projects/#{project.id}/new_campaigns/#{campaign.id}"
+              :name => campaign.name, :value => "/administration/projects/#{project.id}/new_campaigns/#{campaign.id}/admins" # rubocop:disable Layout/LineLength
             }
           ] }
       ]

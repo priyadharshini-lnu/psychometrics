@@ -7,6 +7,7 @@ import {
   PieChartOutlined,
   DatabaseOutlined,
   MessageOutlined,
+  SolutionOutlined,
 } from '@ant-design/icons'
 
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -43,7 +44,7 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     if (pathname.includes('/admins')) {
       return ['admins']
     }
-    if (pathname.includes('/messages/options')) {
+    if (pathname.includes('/messages')) {
       return ['messages/options']
     }
     if (pathname.includes('/reports/options')) {
@@ -79,11 +80,11 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
     label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
   })
 
-  // menuItems.push({
-  //   key: 'admins',
-  //   label: I18n.t('common.model.admins'),
-  //   icon: <SolutionOutlined />,
-  // })
+  currentUser.permissions.manageAdmins && menuItems.push({
+    key: 'admins',
+    label: I18n.t('common.model.admins'),
+    icon: <SolutionOutlined />,
+  })
 
   return (
     <Menu

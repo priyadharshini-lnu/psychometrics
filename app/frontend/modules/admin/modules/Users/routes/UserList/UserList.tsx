@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Resource } from '~/modules/admin/components/Resource'
@@ -11,6 +10,10 @@ import Modals from '~/modules/admin/components/Modals'
 import { UserFormModal } from './UserFormModal'
 import { UserTable } from './UserTable'
 import { UserFilter } from './UserFilter'
+import { Tabs } from './Tabs'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+
+const { I18n } = window
 
 const MODALS = {
   ResetPasswordModal,
@@ -36,11 +39,15 @@ const UserListComponent: React.FC<Props> = ({
 }) => {
   const [drawerUser, setDrawerUser] = useState<User | undefined>()
   const [closed, closeModal] = useState(true)
+  let filter: Record<string, string> = { role_eq: userTab }
+  if (userTab === 'Users::GlobalAssessors') {
+    filter = { role_eq: 'Users::Admin', global_assessor_eq: 'true' }
+  }
   const config = {
     trackUrl: true,
     apiConfig: {
       camelizeExcept: ['$[*].enable_2fa', '$.enable_2fa'],
-      filter: { role_eq: userTab },
+      filter,
       include_resource_meta: ['permissions'],
     },
     responseType: UserTR,
@@ -48,11 +55,23 @@ const UserListComponent: React.FC<Props> = ({
 
   return (
     <>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/administration',
+            label: () => I18n.t('users.dashboard'),
+          },
+          {
+            label: () => I18n.t('users.users'),
+          },
+        ]}
+      />
+      <Tabs />
       <Resource config={config} name="users">
         <UserFilter currentUser={currentUser} userTab={userTab} openModal={() => closeModal(false)} />
-        <UserTable openDrawer={setDrawerUser} />
+        <UserTable currentUser={currentUser} userTab={userTab} openDrawer={setDrawerUser} />
         {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
-        {!closed && <UserFormModal close={() => closeModal(true)} />}
+        {!closed && <UserFormModal close={() => closeModal(true)} userTab={userTab} />}
         <Modals modals={MODALS} />
       </Resource>
     </>

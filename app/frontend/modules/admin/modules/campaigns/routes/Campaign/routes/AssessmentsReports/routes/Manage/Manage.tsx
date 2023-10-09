@@ -5,11 +5,12 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
-import Modals from '~/modules/admin/components/Modals/'
+import Modals from '~/modules/admin/components/Modals'
 import ReportList from './ReportList'
 import { OtherReportList } from './OtherReportList'
 import AssessmentList from './AssessmentList'
 import { OtherAssessmentList } from './OtherAssessmentList'
+import { OtherAssessorAssessmentList } from './OtherAssessorAssessmentList'
 import AssessorAssessmentList from './AssessorAssessmentList'
 import AddReportModal from './AddReportModal'
 import { Strategies } from './AddReportModal/interfaces'
@@ -19,12 +20,18 @@ import UpdateNormModal from './UpdateNormModal'
 import UpdateAssessorFormModal from './UpdateAssessorFormModal'
 import ImportScoringModal from './ImportScoringModal'
 import RemoveReportModal from './RemoveReportModal'
+import { AddAssessorAssessmentModal } from './AddAssessorAssessmentModal'
 import RemoveAssessmentModal from './RemoveAssessmentModal'
 import { UpdateExternalConfigModal } from './AssessmentList/UpdateExternalConfigModal'
 import ToggleUserAccessModal from './ToggleUserAccessModal'
 import UpdateLocalesModal from './UpdateLocalesModal'
 import { PropsFromRedux } from './connect'
 import styles from './styles.less'
+import { useResources } from '~/hooks/useResources'
+import {
+  CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
+} from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
+import { WorkshopActivityDurationFormModal } from './AssessmentList/WorkshopActivityDurationFormModal'
 
 const MODALS = {
   AddReportModal,
@@ -32,12 +39,14 @@ const MODALS = {
   ImportRawModal,
   ImportScoringModal,
   UpdateNormModal,
-  UpdateAssessorFormModal,
   RemoveReportModal,
   ToggleUserAccessModal,
   RemoveAssessmentModal,
   UpdateLocalesModal,
   UpdateExternalConfigModal,
+  UpdateAssessorFormModal,
+  AddAssessorAssessmentModal,
+  WorkshopActivityDurationFormModal,
 }
 
 const { I18n } = window
@@ -50,6 +59,8 @@ type Props = PropsFromRedux & RouteComponentProps<Params>
 
 const Manage: React.FC<Props> = ({
   fetchAssessmentAndReports,
+  fetchOtherReports,
+  fetchOtherAssessments,
   match: { params: { campaignId } },
   reports: {
     reportPermissions,
@@ -61,11 +72,18 @@ const Manage: React.FC<Props> = ({
   bulkDownload,
   bulkDownloadInProgress,
   campaignPermissions,
+  otherAsessorAssessments,
+  otherReports,
+  otherAssessments,
 }) => {
   useEffect(() => {
+    fetchOtherReports(campaignId)
+    fetchOtherAssessments(campaignId)
     fetchAssessmentAndReports(campaignId)
   }, [])
   const parsedCampaignId = parseInt(campaignId, 10)
+
+  const stateManager = useCampaignAssessorAssessmentsStore()
 
   const handleRegenerateReports = () => {
     regenerateReports(parsedCampaignId, selectedIds).then(() => {
@@ -78,6 +96,16 @@ const Manage: React.FC<Props> = ({
       message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
     })
   }
+
+  const {
+    createResource,
+  } = useResources<CampaignAssessorAssessments>(
+    'campaign_assessor_assessments',
+    {
+      stateManager,
+      basePath: `campaigns/${campaignId}`,
+    },
+  )
 
   return (
     <div>
@@ -131,21 +159,54 @@ const Manage: React.FC<Props> = ({
         <h3>Assessments</h3>
         <AssessmentList />
 
-        {campaignPermissions.viewAssessors && (
+        <div className={styles.tableDivider} />
+
+        <Row justify="space-between" className="pm">
+          <Col span={8} className="pls">
+            <h3>
+              {I18n.t('campaigns.assessments_and_reports.assessor_assessments')}
+            </h3>
+          </Col>
+          <Button
+            type="primary"
+            onClick={
+              () => openModal('AddAssessorAssessmentModal', {
+                addAssessorAssessment: createResource,
+              })
+            }
+          >
+            <PlusOutlined />
+            <span>
+              {I18n.t('administration.assessor_assessment.add')}
+            </span>
+          </Button>
+        </Row>
+
+        <AssessorAssessmentList />
+
+        {campaignPermissions.viewAssessors && otherAsessorAssessments.length > 0 && (
           <>
             <div className={styles.tableDivider} />
-            <h3>{I18n.t('campaigns.assessments_and_reports.assessor_assessments')}</h3>
-            <AssessorAssessmentList />
+            <h3>{I18n.t('campaigns.assessments_and_reports.other_assessor_assessments')}</h3>
+            <OtherAssessorAssessmentList />
           </>
         )}
 
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('campaigns.assessments_and_reports.other_reports')}</h3>
-        <OtherReportList />
+        {otherReports.total > 0 && (
+          <>
+            <h3>{I18n.t('campaigns.assessments_and_reports.other_reports')}</h3>
+            <OtherReportList />
+          </>
+        )}
 
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('campaigns.assessments_and_reports.other_assessments')}</h3>
-        <OtherAssessmentList />
+        {otherAssessments.total > 0 && (
+          <>
+            <h3>{I18n.t('campaigns.assessments_and_reports.other_assessments')}</h3>
+            <OtherAssessmentList />
+          </>
+        )}
       </div>
       <Modals modals={MODALS} />
     </div>

@@ -286,6 +286,7 @@ en:
           pearson: Pearson
           psychometric: Assessment
           saville: Saville
+          threesixty: 360 Campaign
         category: Category
         created_at: Created Date
         description: Description
@@ -653,6 +654,7 @@ en:
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Raw Results Export
         assessment_scoring_export: Scoring Results Export
+        bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
         bulk_download_reports: Bulk Download Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
@@ -716,19 +718,39 @@ en:
     restart: Restart
   assessments:
     actions:
+      archived:
+        success_message: Asessment %{name} archived successfully
       back_to_campaign: Back to Campaign
+      copy:
+        success_message: Asessment %{name} coppied successfully
+      details: Details
       download_csv: Download CSV
+      edit: Edit
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Click here to continue
+      next_assessment: Pass To Next Assessment
       pending_tasks:
         one: You have one 1 pending task
         other: You have %{count} pending tasks
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
+      remove:
+        confirm_message: Are you sure you want to delete the assessment '%{name}'?
+        confirm_title: Confirmation Required
+        success_message: Asessment %{name} has been removed
       rescore: Rescore
+      restore:
+        success_message: Assessment %{name} restored successfully
+      show_usage: Show Usage
       submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
+      unarchived:
+        success_message: Asessment %{name} unarchived successfully
+    active: Active
+    archived: Archived
+    assessment: Assessment
+    assessments: Assessments
     audio_response:
       pause: Pause
       permission_denied_message: Please enable microphone permission in your browser to record the answer
@@ -748,7 +770,21 @@ en:
       mindmill: Mindmill
       organisational: Survey
       psychometric: Assessment
+      redirecting: Redirecting
       saville: Saville
+    column:
+      enable_audio_check: Enable Audio Check
+      enable_network_check: Enable Network Check
+      enable_video_check: Enable Video Check
+      external_settings:
+        hogan_assessment_id: Hogan Assessment ID
+        iiht_assessment_id: IIHT assessment ID
+        iiht_schedule_config: Schedule config
+        pearson_assessment_id: Pearson assessment ID
+        pearson_norm_id: Pearson norm ID
+        saville_assessment_id: Saville assessment ID
+    create: Create
+    dashboard: Dashboard
     decorator:
       no_description: Description is empty
     dictation:
@@ -767,6 +803,32 @@ en:
       start_dictation: Start dictation
       stop_dictation: Stop dictation
       use_speech_instructions: Use speech input to write this answer
+    drawer:
+      title: Assessment Details
+    edit: Edit
+    fields:
+      category:
+        agile: AGILE
+        assessor_form: Assessor Form
+        case_study: Case Studies
+        hogan: Hogan
+        iiht: IIHT
+        mindmill: Mindmill
+        organisational: Surveys
+        pearson: Pearson
+        psychometric: Assessment
+        saville: Saville
+        threesixty: 360 Campaign
+      status:
+        finished: Finished
+        in_progress: In Progress
+      type:
+        common: TTE Assessment
+        hogan: Hogan
+        iiht: IIHT Assessment
+        mindmill: Mindmill
+        pearson: Pearson Assessment
+        saville: Saville Assessment
     file_upload:
       select_file: Select file
     flow:
@@ -793,14 +855,23 @@ en:
 
         Click **Back** to review your responses one final time or click **Submit** if you are finished.
       next: Next
+      read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
         description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or surveys@thetalententerprise.com
         title: Last Request Failed
       submit: Submit
+    pages:
+      edit:
+        assets: Assets
+        general_settings: General Settings
+        translations: Translations
     pickgrouprank:
       items: Items
     proceed: Proceed Anyway
+    question_info_bar:
+      select_linked_questions: Select Linked Questions
+    reset: Reset
     resource:
       assigned: Assigned %{date}
       invite_users: Invite Users
@@ -817,7 +888,12 @@ en:
       competency: Competency
       id: ID
       score: Score
+    single_page:
+      display_linked_questions: Displaying responses linked to the currently selected question.
+    trash: Trash
     unknown_error: Unknown error occurred.
+    update: Update
+    upload: Upload
     video_response:
       delete: Delete
       device: Allow
@@ -858,7 +934,9 @@ en:
     report_approval:
       add_settings: Add Setting
     sequencing:
+      add_assessment_center: Add assessment center
       add_group: Add group
+      assessment_center_message: Assessments in this group are managed by assessment center
       assessments: Assessments
       delete_group: Delete group
       edit_group_name: Edit group name
@@ -1018,6 +1096,7 @@ en:
     continue: Continue your tasks
     dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
+      bookings: Bookings
       campaign: Campaign
       change_password: Change Password
       home: Home
@@ -1099,6 +1178,22 @@ en:
       notification: You have %{minutes} minutes and %{seconds} seconds to complete
     ungrouped: Ungrouped tasks
     welcome: Welcome
+    workshops:
+      activities: Center Activities
+      assessment_center: Assessment Center
+      click_here: Click here to join meeting >
+      duration: Duration
+      duration_to_complete: "%{duration} to complete"
+      inactive_message: Currently, you have not been assigned any assessment centers.
+      not_scheduled_button: Not scheduled
+      not_started_button: Not started
+      participate: Participate
+      preworks: Preworks
+      starts_in: Starts in
+      status:
+        ongoing: On Going
+        upcoming: Upcoming
+      workshop_instructions: Make sure to join assessment center on time.
   campaign_assessment:
     actions:
       export_completion_status: Export Completion Status
@@ -1117,6 +1212,7 @@ en:
       reset_participant: Reset All Participants
     assessments_heading: Your Tasks
     column:
+      assessment_center_activity: Assessment Center Activity
       assessment_name: Assessment name
       assessor_form: Assessor Form
       locales: Locales
@@ -1183,6 +1279,10 @@ en:
       update_time:
         additional_time: Time (min)
         title: Extend Time
+      workshop_activity_duration:
+        form:
+          duration: Duration in minutes
+        title: Duration for the workshop activity
     statuses:
       completed: Completed
       in_progress: In Progress
@@ -1250,6 +1350,8 @@ en:
         interrupted: Interrupted
         not_started: Not Started
         timed_out: Timed Out
+      workshops: Workshops
+      workshops_invites: Workshops Invites
     modals:
       change_password:
         content: Are you sure you want to send instructions with link to change password?
@@ -1260,6 +1362,7 @@ en:
     assessments_and_reports:
       assessor_assessments: Assessor Assessments
       other_assessments: Other Assessments
+      other_assessor_assessments: Other Assessor Assessments
       other_reports: Other Reports
     card:
       duration: Duration
@@ -1332,43 +1435,72 @@ en:
       add: Add
       archive: Archive
       cancel: Cancel
+      change: Change
       close: Close
+      continue: Continue
+      copy: Copy
+      create: Create
       delete: Delete
       edit: Edit
       import: Import
+      mark_complete: Mark Complete
+      mark_not_started: Mark Not Started
       remove: Remove
       reset: Reset
       resolve: Resolve
+      restore: Restore
       save: Save
       search: Search
       send: Send
       start: Start
+      unarchive: Unarchive
       unresolve: Unresolve
       update: Update
       upload: Upload
+      view: View
     column:
       action: Action
       active: Active
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List
+      assessment: Assessment
+      assessment_name: Assessment Name
+      assessor: Assessor
       category: Category
       completion_count: Completion Count
       completion_status: Completion Status
       created_at: Created at
       created_by: Created By
       created_date: Created Date
+      description: Description
       details: Details
+      dimension: Dimension
       email: Email
       first_name: First Name
+      icon: Icon
+      icon_color: Icon color
       id: Id
+      key: Key
       last_name: Last Name
+      linked_activities: Linked Activities
+      linked_assessment: Linked Assessment
+      meeting_link: Meeting Link
       modified_by: Modified By
       modified_date: Modified Date
       name: Name
+      owner: Owner
+      poster: Poster
+      project: Project
       qc_user_list: QC Users List
       report_id: Report Id
+      schedule_time: Schedule Time
       status: Status
+      timing: Timing
+      token: Token
+      type: Type
       updated_at: Last Updated
+    errors:
+      something_wrong: Something went wrong. Contact your administrator.
     model:
       admins: Admins
       assessment: Assessment
@@ -1381,6 +1513,15 @@ en:
       report: Report
       reports: Reports
       sms_invite: SMS Invite
+    status:
+      completed: Completed
+      dropped_out: Dropped Out
+      in_progress: In Progress
+      late: Late
+      no_show: No Show
+      not_started: Not Started
+      not_status: No Status
+      on_time: On Time
     text:
       accepted: Accepted
       all_pages: All Pages
@@ -1400,6 +1541,9 @@ en:
       response: Response
       subject: Subject
       view_as: View as
+    tooltips:
+      hide: Hide
+      view: View
     validations:
       should_be_whole_number: should be a whole number
   confirmation:
@@ -1613,14 +1757,33 @@ en:
         uniq_subdomain: Subdomain should be unique.
       admin:
         already_added: Admin with email already added.
+      already_assigned?: Already assigned
+      already_invited: This user already exists in the assessment centre you are attempting to add.
+      assessor_assessment:
+        already_added: Assessor Assessment already added to campaign.
       create_superadmin:
         uniq_email: Email should be uniq.
+      exceeded_subjects_count: You can only add %{count} subjects per invite
+      exceeded_workshops_count: You can only add %{count} assessment centers per invite
       filled?: can't be blank
+      json?: Should be valid JSON
       key?: can't be blank
       missed?: can't be blank
+      not_in_the_list?: invalid value passed
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
+      update_workshop:
+        less_than_booked: The total seats must be greater than booked
+      user_availability_date:
+        overlaps_date: Overlaps another availability %{range}
+        overlaps_time: Overlaps interval %{interval}
+        start_date_should_be_less: Start date should be less than end date
+        start_time_should_be_less: Start time should be less than end time
+      workshop_invited_subject_create:
+        already_exists: Subject already exists in the invite.
+      workshop_subject_create:
+        already_exists: Subject already exists in this Assessment Center.
   ecommerce:
     carts:
       show:
@@ -1684,6 +1847,12 @@ en:
         invitation: Invitation
         other: Other
         reminder: Reminder
+        workshop_booked: Assessment center booking confirmation
+        workshop_cancelled: Assessment center cancelled
+        workshop_completed: Assessment center completed
+        workshop_invite: Assessment center invite
+        workshop_invite_reminder: Assessment center invite reminder
+        workshop_upcoming_reminder: Assessment center upcoming reminder
       recipients:
         all: All
         selected: Selected
@@ -1693,6 +1862,9 @@ en:
         eti: ETI
         yti: YTI
   errors:
+    bookings:
+      already_booked: You have already booked a seat for this assessment center.
+      seats_not_available: Seats are not available.
     error: Error
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
@@ -1720,16 +1892,84 @@ en:
       max_evaluators: you already have enough evaluators
   frontend:
     activate: Activate
-    admins:
-      actions:
-        remove:
-          success: Admin with name '%{adminName}' removed successfully.
     are_you_sure: Are you sure?
     assessment: Assessment
     assessment_groups:
       create_success: The group is successfully created
       update_success: The group is successfully updated
+    availability:
+      add_new_availability: Add new availability
+      create_success: Availability created successfully.
+      remove_confirm:
+        content: Are you sure you want to remove the availability?
+        success: Availability removed successfully.
+        title: Remove availability
+      update_success: Availability updated successfully.
     background_reading: Background Reading
+    bookings:
+      accept_invite_msg: You have recieved an invite. Please reserve your slot.
+      activity_start_text: 'Activity starts in:'
+      add_to_calendar: Add To Calendar
+      add_to_calendar_tour_description: Add this booking to your calendar
+      assessment_center_alert:
+        btn_title: Campaign
+        message_part1: Complete all the preworks in this
+        message_part2: before booking a slot.
+      assessment_center_group_name: Assessment Center
+      booking_failed_msg: 'Failed to book slot: %{error}'
+      buttons:
+        book: Book
+        book_again: Book Again
+        cancel: Cancel
+        cancel_booking: Cancel Booking
+        confirm_booking: Confirm Booking
+        confirm_reschedule: Confirm Reschedule
+        modify: Modify
+        nevermind: Nevermind
+        no_text: 'No'
+        request_cancel: Request cancellation
+        request_reschedule: Request for Reschedule
+        reschedule: Reschedule
+        reserve_spot: Reserve your spot
+        yes_text: 'Yes'
+      cancel_booking_confirmation: Are you sure you want to cancel this booking?
+      cancellation_failed: 'Failed to cancel the booking: %{error}'
+      cancellation_success: Successfully cancelled the booking
+      comments_required_msg: Please enter your comments
+      confirm_booking_description: Please confirm that these details are correct before finalizing the booking.
+      confirm_booking_title: Confirm this booking?
+      default_failure_msg: Unable to process your request. Please try again later.
+      default_requires_msg: "%{name} is required"
+      join_activity_meeting: Join the Meeting
+      join_workshop_meeting: Join the Meeting
+      language: Language
+      language_placeholder: Select a Language
+      language_preference_question: Do you have a language preference?
+      language_required_msg: Please select a Language
+      meeting_start_text: 'Meeting will start in:'
+      need_changes: Need to make the changes?
+      neurodivergence_comment_placeholder: Your comments
+      neurodivergence_question: Do you require any reasonable accommodations or adjustments due to special needs or disabilities to fully participate in the assessment?
+      or: or
+      other_invite: See %{count} more invite
+      other_invites: See %{count} more invites
+      reason: Reason
+      reason_for_cancel: Reason for Cancellation
+      reason_for_reschedule: Reason for Rescheduling
+      request_cancellation_failed: 'Failed to request for cancellation: %{error}'
+      request_cancellation_success: Successfully requested for cancellation
+      request_reschedule_failed: 'Failed to request for rescheduling: %{error}'
+      request_reschedule_success: Successfully requested for rescheduling
+      reschedule_failed_msg: 'Failed to reschedule: %{error}'
+      reschedule_reason_placeholder: To continue, please enter the reason for rescheduling.
+      schedule_success: This booking is scheduled
+      schedule_success_msg: We emailed you and the other attendees a calendar invitation with all the details.
+      tab_label:
+        bookings: Bookings
+        invites: Invites
+      what: What
+      when: When
+      workshop_start_text: Your Assessment Center will start in
     campaign:
       actions:
         remove:
@@ -1790,12 +2030,38 @@ en:
       success: Success
     update: Update
     upload: Upload
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Cancelled
+        requested_cancellation: Requested Cancellation
+        requested_rescheduling: Requested Rescheduling
     'yes': 'Yes'
   glint:
     color_picker:
       copy_success_msg: Copied hexcode to clipboard.
       recent_colors: 'Recently used:'
       recommended_colors: 'Recommended:'
+    datepicker_with_ranges:
+      all_time: All Time
+      current_month: Current Month
+      current_week: Current Week
+      last_month: Last Month
+      last_week: Last Week
+      today: Today
+      yesterday: Yesterday
+    schedule_availability:
+      copy_to_all: Copy to all
+      end_date: End Date
+      from: From
+      new_schedule: Add new schedule
+      new_schedule_description: Start time must be earlier than the end time
+      no_slots: No slots added
+      required_error: can't be empty
+      save: Save
+      saved_schedule_description: Saved availability schedule of user
+      start_date: Start Date
+      timezone_label: TimeZone
+      to: To
   hogan:
     assigns:
       results:
@@ -1863,6 +2129,7 @@ en:
     mn: Mongolian
     ms: Bahasa Malaysia
     my: Myanmar
+    nb: Norwegian Bokmål
     nl: Dutch
     'no': Norwegian
     pl: Polish
@@ -1893,9 +2160,12 @@ en:
     zh_CN: Chinese (Simplified, People's Republic of China)
     zh_TW: Chinese - Traditional
   languages_localized:
+    af: Afrikaans
     ar: عربي
+    az: Azerbaijani
     bg: български
     bs: bosanski
+    by: Belarusian
     ca: català
     cn: 中国人
     cs: čeština
@@ -1928,11 +2198,14 @@ en:
     mn: Mongolian
     ms: Bahasa Malaysia
     my: Myanmar
+    nb: Norwegian Bokmål
     nl: Dutch
     'no': Norwegian
     pl: Polish
     pt: Portuguese
     pt-BR: Brazilian Portuguese
+    pt-PT: Portuguese (Portugal)
+    pt_BR: Portuguese (Brazil)
     ro: Romanian
     ru: Russian
     sk: Slovak
@@ -1945,11 +2218,16 @@ en:
     th: Thai
     tl: Tagalog
     tr: Turkish
+    ua: Ukrainian
     uk: Ukrainian
     ur: Urdu
     vi: Vietnamese
     zh: 汉语
+    zh-CN: Chinese (Simplified)
+    zh-HK: Chinese (Hong Kong)
     zh-TW: 漢語
+    zh_CN: Chinese (Simplified)
+    zh_TW: Chinese (Traditional)
   layouts:
     users:
       dashboard: Dashboard
@@ -1966,11 +2244,12 @@ en:
     status_updated_by: Last updated by
     subject_email: Subject email
     subject_name: Subject name
-    usage_id: Usage ID
     usage_overview: View license usage
+    usages: Usages
   licenses:
     enabled: Enabled
     end_date: End date
+    id: License ID
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
@@ -2732,6 +3011,7 @@ en:
   threesixty:
     accept_privacy_modal:
       accept: Accept
+      checkbox: I have read and understood Privacy Policy mentioned above
       policy_link: Click here to read the privacy policy.
       reject: Reject
       text: |
@@ -2922,6 +3202,7 @@ en:
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
       with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
     allow_multiple_respones: Allow users to submit multiple responses
     close: Close
@@ -2970,14 +3251,30 @@ en:
   user_assessments:
     modals:
       actions:
+        push_webhook:
+          name: Push Webhook
         reset_progress:
           name: Reset Progress
           success_message: Assessment %{name} is ready for edit
+      push_test_webhook:
+        copy_request_data_success: Rquest Payload copied to clipboard successfully.
+        copy_response_body_success: Response body copied to clipboard successfully.
+        copy_response_headers_success: Response headers copied to clipboard successfully.
+        event_name_placeholder: Event Name
+        response_body_title: Response Body
+        response_header_title: Response Headers
+      push_webhook:
+        submit_button_name: Push Webhook
+        title: Push Webhook
       remove:
         content: Are you sure you want to remove assessment '%{name}'?
         successfully: "%{name} assessment removed successfully."
       reset:
         content: Are you sure you want to reset progress '%{name}'?
+      test_webhook:
+        submit_button_name: Send Test
+        title: Send Webhook Event Test
+    redirect: You would be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
     status:
       completed: Completed
       in_progress: In Progress
@@ -3040,17 +3337,19 @@ en:
       details: Details
       remove:
         confirm_message: Are you sure you want to delete the user with an email '%{email}'?
-        confirm_title: Confirmation Requred
+        confirm_title: Confirmation Required
         success_message: "%{email} has been removed"
       reset_password:
         option: Reset Password
     admins: Admins
+    create_global_assessor: Create Global Assessor
     create_superadmin: Create Super Admin
     dashboard: Dashboard
     drawer:
       link: Link
       role: Role
       title: User details
+    global_assessors: Global Assessors
     password_change_success: Password changed successfully. Please login with your new password.
     remove_message: Are you sure?
     roles:
@@ -3119,6 +3418,9 @@ en:
       other: There are %{count} errors, please check your responses
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
+  workshops_invites:
+    workshop:
+      title: Workshops
   'yes': 'Yes'
   your: Your
   yourself: Yourself

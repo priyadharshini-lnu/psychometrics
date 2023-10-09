@@ -1,1 +1,4 @@
-export { DirectionAwareIcon, DirectionalArrowIcon, DirectionalNavigateBackIcon } from './DirectionAwareIcon'
+export {
+  DirectionAwareIcon,
+  DirectionalArrowIcon, DirectionalNavigateBackIcon, DirectionalBackArrowIcon, DirectionalNavigateIcon,
+} from './DirectionAwareIcon'

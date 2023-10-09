@@ -3,6 +3,7 @@ import { createSelector } from 'reselect'
 import { get as getCurrentUser } from '~/core/currentUser'
 
 export const get = state => _.get(state, ['campaigns', 'campaign'])
+export const getUserAssessmentData = state => _.get(state, ['campaigns', 'userAssessment', 'userAssessmentData'])
 
 export const getNominations = state => state.campaign.nominations
 export const getEvaluations = state => state.campaign.evaluations

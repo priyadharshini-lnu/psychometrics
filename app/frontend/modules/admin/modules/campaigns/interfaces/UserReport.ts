@@ -10,5 +10,6 @@ export default interface UserReport {
     remove: boolean
     viewReport: boolean
     toggleAccess: boolean
+    pushWebhook: boolean
   }
 }

@@ -6,16 +6,18 @@ class EndUser::IihtUserAssessmentsController < ApplicationController
 
   def pass
     campaign = @user_assessment.campaign
-    return redirect_to(assessment_completed_path(campaign.id)) if @user_assessment.completed?
+    if @user_assessment.completed?
+      return redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
+    end
 
     @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
     @user_assessment.in_progress!
     iiht_user_assessment = @user_assessment.iiht_user_assessment
-    return redirect_to(iiht_user_assessment.url) if iiht_user_assessment&.url
+    return redirect_to(iiht_user_assessment.url, allow_other_host: true) if iiht_user_assessment&.url
 
     ::Iiht::AddAssessment.call!(@user_assessment)
 
-    redirect_to iiht_user_assessment.url
+    redirect_to(iiht_user_assessment.url, allow_other_host: true)
   end
 
   def redirect
@@ -25,7 +27,7 @@ class EndUser::IihtUserAssessmentsController < ApplicationController
     user_assessment.complete! unless user_assessment.completed?
     ::Iiht::SaveScoresJob.perform_later(user_assessment)
 
-    redirect_to(assessment_completed_path(user_assessment.campaign_id))
+    redirect_to(assessment_completed_path(user_assessment.campaign_id, user_assessment_id: user_assessment.id))
   end
 
   private

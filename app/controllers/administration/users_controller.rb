@@ -5,14 +5,13 @@ class Administration::UsersController < Administration::BaseController
   before_action :set_resource, only: %i[show edit update destroy toggle_status
                                         toggle_enable_2fa sidebar spoof reset_password]
   before_action :skip_authorization, only: [:sidebar]
-  append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
   append_after_action :verify_policy_scoped, except: %i[index search_admins]
-  # GET /administration/resources
-  def index
-    @init_state = {
-      currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
-    }
+
+  render_entrypoint :index, element: 'users', entry: 'admin/users'
+
+  def spoof
+    resource.admin? ? login_as_other_admin : login_as_end_user
   end
 
   def search_admins
@@ -21,6 +20,8 @@ class Administration::UsersController < Administration::BaseController
     end
     render json: users
   end
+
+  def index; end
 
   # GET /administration/resources/1
   def show; end
@@ -63,7 +64,7 @@ class Administration::UsersController < Administration::BaseController
     resource.update!(modified_by_id: current_user.id)
     resource.memberships.update_all(disabled: resource.disabled)
     audit! (resource.disabled? ? :disabled : :enabled), resource, project: resource.project,
-      payload: { email: resource.email }
+           payload: { email: resource.email }
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
@@ -76,7 +77,7 @@ class Administration::UsersController < Administration::BaseController
     resource.toggle!(:enable_2fa)
     resource.update!(modified_by_id: current_user.id)
     audit! (resource.enable_2fa? ? :enable_2fa : :disable_2fa), resource, project: resource.project,
-      payload: { email: resource.email }
+           payload: { email: resource.email }
 
     respond_to do |format|
       format.html do
@@ -107,6 +108,29 @@ class Administration::UsersController < Administration::BaseController
   end
 
   protected
+
+  def login_as_other_admin
+    redirect_url = if resource.is?(:client_admin, :project_admin, :campaign_admin)
+                     administration_root_path
+                   elsif resource.assessors.exists?
+                     assessors_dashboard_path
+                   else
+                     administration_user_availabilities_path
+                   end
+    audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+    sign_in(resource)
+    flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
+    redirect_to redirect_url
+  end
+
+  def login_as_end_user
+    audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
+    spoof_token = SecureRandom.urlsafe_base64(64)
+    resource.update_column(:spoof_token, spoof_token)
+
+    redirect_url = root_url(domain: Settings.domain, subdomain: resource.project.subdomain, spoof_token: spoof_token)
+    redirect_to redirect_url, allow_other_host: true
+  end
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]

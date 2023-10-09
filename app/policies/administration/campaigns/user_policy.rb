@@ -6,13 +6,13 @@ module Administration
       def index?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-        )
+        ) || @user.is?(:assessor)
       end
 
       def show?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-        )
+        ) || @user.is?(:assessor)
       end
 
       def create?

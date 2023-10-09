@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       module DateTimeFields
-        class Report < BaseField
+        class Report < ::PipedText::BaseField
           SELF_EVALUATION = 'SelfEvaluation'
 
           def call

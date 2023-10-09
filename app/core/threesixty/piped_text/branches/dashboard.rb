@@ -3,7 +3,7 @@
 module Threesixty
   module PipedText
     module Branches
-      class Dashboard < BaseBranch
+      class Dashboard < ::PipedText::BaseBranch
         def call
           return broadcast :ok, '' unless path.first
 

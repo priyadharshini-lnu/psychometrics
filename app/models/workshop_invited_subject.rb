@@ -1,0 +1,56 @@
+# frozen_string_literal: true
+
+class WorkshopInvitedSubject < ApplicationRecord
+  belongs_to :workshop_invite
+  belongs_to :user
+
+  has_one :workshop_subject, dependent: :nullify
+  has_many :workshops, through: :workshop_invite
+  has_one :campaign, through: :workshop_invite
+
+  enum status: {
+    pending: 0,
+    accepted: 1,
+    cancelled: 2,
+    requested_cancellation: 3,
+    requested_rescheduling: 4,
+    rescheduled: 5,
+    requested_cancellation_rejected: 6,
+    requested_rescheduling_rejected: 7
+  }
+
+  after_commit :send_workshop_invite_email, on: %i[create]
+
+  scope :invites, -> { where(status: :pending) }
+  scope :bookings, lambda {
+    where(status: %i[accepted rescheduled cancelled requested_rescheduling requested_cancellation])
+  }
+  scope :filterable_fields, ->(query) { joins(:user).merge(User.filterable_fields(query)) }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filterable_fields]
+  end
+
+  def campaign_user
+    CampaignUser.find_by(user_id: user_id, campaign_id: workshop_invite.campaign_id)
+  end
+
+  def send_workshop_invite_email
+    communication = campaign.communications.workshop_invite.last
+    return unless communication
+
+    communication.emails.create!(campaign_user: campaign_user, workshop_invite: workshop_invite)
+  end
+
+  def reschedulable?
+    requested_rescheduling? || requested_rescheduling_rejected?
+  end
+
+  def cancellable?
+    requested_cancellation? || requested_cancellation_rejected?
+  end
+
+  def rejectable?
+    requested_cancellation? || requested_rescheduling?
+  end
+end

@@ -12,10 +12,8 @@ import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserLis
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import settings from '~/modules/admin/settings'
-import { State as UserState } from '~/modules/admin/modules/campaigns/core/users'
+import { State as UserState, DEFAULT_PAGE_SIZE } from '~/modules/admin/modules/campaigns/core/users'
 import Modals from '~/modules/admin/components/Modals/'
-
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import styles from './styles.less'
 import UserFormModal from './UserFormModal'
@@ -80,6 +78,7 @@ const UserList: React.FC<Props> = ({
   tableConfig: {
     filters,
     page,
+    pageSize,
   },
   tableConfig,
   getFilteredValue,
@@ -156,7 +155,7 @@ const UserList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}`}>
+                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
                   {id}
                 </Link>
               )}
@@ -295,7 +294,7 @@ const UserList: React.FC<Props> = ({
       <div className="pl">
         <Pagination
           current={page}
-          pageSize={settings.pagination.defaultPageSize}
+          pageSize={pageSize || DEFAULT_PAGE_SIZE}
           total={total}
           onChange={changePage}
           hideOnSinglePage

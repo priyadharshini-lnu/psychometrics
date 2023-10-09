@@ -1,3 +1,4 @@
+@import '~/styles/ant.variable.less';
 @import './variables.less';
 
 :global {
@@ -34,6 +35,12 @@
     }
     &-auto {
       width: auto;
+    }
+  }
+
+  .fs {
+    &-12 {
+      font-size: 12px;
     }
   }
 
@@ -88,7 +95,7 @@
 
     // Margin end
     .me@{key} {
-      margin-inline-end: @value;
+      margin-inline-end: @value !important;
     }
 
     // Margin top
@@ -98,7 +105,7 @@
 
     // Margin bottom
     .mb@{key} {
-      margin-block-end: @value;
+      margin-bottom: @value !important;
     }
 
     // Padding start
@@ -108,7 +115,7 @@
 
     // Padding end
     .pe@{key} {
-      padding-inline-end: @value;
+      padding-inline-end: @value !important;
     }
 
     // Padding top
@@ -206,5 +213,30 @@
 
   .clear-float {
     clear: both;
+  }
+
+  // positions
+  .pos {
+    &-rel {
+      position: relative;
+    }
+    &-abs {
+      position: absolute;
+    }
+    &-uns {
+      position: unset;
+    }
+  }
+
+  .text-nowrap {
+    white-space: nowrap;
+  }
+
+  .fs-14 {
+    font-size: 14px;
+  }
+
+  .color-primary {
+    color: @primary-color !important;
   }
 }

@@ -13,10 +13,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
       campaign_id: campaign.id, subject_id: user.id
     ).order(:id)
 
-    assessment_ids = CampaignAssessment.where(
-      assessor_form_id: @assessor_assessments.map(&:assessment_id),
-      campaign_id: campaign.id
-    ).map(&:assessment_id)
+    assessment_ids = @assessor_assessments.map(&:assessment).map(&:linked_assessment_id)
 
     @subject_user_assessment ||= UserAssessment.where(campaign_id: campaign.id,
                                                       subject_id: user.id,

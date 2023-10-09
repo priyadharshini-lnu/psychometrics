@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useHistory, useParams } from 'react-router-dom'
 import { Space, Typography } from 'antd'
 import { RootState } from '~/modules/survey/core/rootReducers'
 
@@ -22,6 +22,7 @@ const connector = connect(({ preview }: RootState) => ({
   factors: preview.factors,
   showScoringOnEndPage: preview.showScoringOnEndPage,
   endOfAssessmentElementProps: preview.endOfAssessmentElementProps as EndOfAssessmentElementProps | undefined,
+  nextAssessmentUrl: preview.nextAssessmentUrl,
   otherPendingAssessmentCount: preview.otherPendingAssessmentCount,
 }))
 
@@ -38,11 +39,13 @@ const EndPage: FC<Props> = ({
   factors,
   showScoringOnEndPage,
   endOfAssessmentElementProps,
+  // nextAssessmentUrl,
   otherPendingAssessmentCount,
   allowMultipleResponses,
 }) => {
   const location = useLocation()
   const history = useHistory()
+  const { userAssessmentId } = useParams<{ userAssessmentId: string }>()
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
@@ -76,7 +79,7 @@ const EndPage: FC<Props> = ({
                 {I18n.t('assessments.actions.pending_tasks', { count: otherPendingAssessmentCount })}
               </Typography.Title>
               )}
-              <a href={dashboardUrl}>
+              <a href={`${dashboardUrl}?user_assessment_id=${userAssessmentId}`}>
                 {I18n.t('assessments.actions.goto_dashboard')}
               </a>
             </>
@@ -103,6 +106,15 @@ const EndPage: FC<Props> = ({
         I18n={I18n}
         userAssessmentId={user_assessment_id}
       />
+      {/* {nextAssessmentUrl && (
+        <>
+          <div className={styles.links}>
+            <a href={nextAssessmentUrl}>
+              {I18n.t('assessments.actions.next_assessment')}
+            </a>
+          </div>
+        </>
+      )} */}
       {showScoringOnEndPage && (
         <>
           <div className={styles.links}>

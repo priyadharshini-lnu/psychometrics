@@ -3,23 +3,19 @@
 module Administration::Threesixty
   class CampaignPolicy < Administration::Threesixty::BasePolicy
     def show?
-      super_admins_or_admins?
+      has_permission?(:campaigns, :view)
     end
 
     def index?
       has_permission?(:campaigns, :view)
     end
 
-    def assessments?
-      super_admins_or_admins?
-    end
-
-    def campaign_templates?
-      super_admins_or_admins?
-    end
-
     def factors?
-      super_admins_or_admins?
+      has_permissions?(:campaigns, :view)
+    end
+
+    def manage_admins?
+      has_permission?(:campaigns, :manage_admins)
     end
 
     def edit_participant_options?
@@ -101,11 +97,7 @@ module Administration::Threesixty
     end
 
     def manage_reports_options?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_options, project_id: project_id)
-    end
-
-    def manage_campaign_options?
-      @user.is?(:superadmin) || @user.has_grant?(:campaigns, :manage_options, project_id: project_id)
+      has_permission?(:campaigns, :report_options)
     end
   end
 end

@@ -18,8 +18,7 @@ const buildUrl = ({
   }
   if (mocked) {
     const mockedURL = new URL(window.location.origin)
-    const WEBPACK_SERVER_PORT = '3035'
-    const mockedServerURL = `${mockedURL.protocol}//${mockedURL.hostname}:${WEBPACK_SERVER_PORT}${url}`
+    const mockedServerURL = `http://${mockedURL.hostname}:${__MOCK_SERVER_PORT__}${url}`
 
     return mockedServerURL
   }

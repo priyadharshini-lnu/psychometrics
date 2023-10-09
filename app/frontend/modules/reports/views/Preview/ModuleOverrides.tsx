@@ -86,7 +86,7 @@ const OverrideComponent: FC<Props> = ({
       width: rect?.width,
       height: rect?.height,
     })
-    rstore.subscribe(() => {
+    rstore && rstore.subscribe(() => {
       setSelectedModule(rstore.getState().campaigns.userReports.selectedModule)
     })
   }, [])

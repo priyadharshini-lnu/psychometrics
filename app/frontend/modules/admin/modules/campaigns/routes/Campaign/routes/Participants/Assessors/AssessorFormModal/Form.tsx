@@ -43,6 +43,8 @@ interface Props {
   autocompletedSubjects: AutocompletedUser[]
   autocompletedAssessors: AutocompletedUser[]
   onSubmit: (user) => void
+  userSearchUrl?: string
+  adminsSearchUrl?: string
 }
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
@@ -54,6 +56,8 @@ const Form: React.FC<Props & PropsFromRedux> = ({
   autocompletedAssessors,
   onSubmit,
   fetchAvailableAssessments,
+  userSearchUrl,
+  adminsSearchUrl,
 }) => {
   const [assessor, setAssessor] = useState({} as AssessorFormItem)
   const [autocompletedSubject, setAutocompletedSubject] = useState('')
@@ -92,7 +96,7 @@ const Form: React.FC<Props & PropsFromRedux> = ({
           onChange={setAutocompletedSubject}
           onSelect={user => onSelect('subject', user)}
           users={autocompletedSubjects}
-          url={`/administration/new_campaigns/${campaignId}/users/search`}
+          url={userSearchUrl || `/administration/new_campaigns/${campaignId}/users/search`}
           source="subjects"
           placeholder={localI18n('subject_placeholder')}
         />
@@ -103,7 +107,7 @@ const Form: React.FC<Props & PropsFromRedux> = ({
           onChange={setAutocompletedAssessor}
           users={autocompletedAssessors}
           onSelect={user => onSelect('assessor', user)}
-          url="/administration/users/search_admins"
+          url={adminsSearchUrl || '/administration/users/search_admins'}
           source="assessors"
           placeholder={localI18n('assessor_placeholder')}
         />

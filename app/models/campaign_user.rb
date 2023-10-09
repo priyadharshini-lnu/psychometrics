@@ -122,4 +122,11 @@ class CampaignUser < ApplicationRecord
   def in_schedule?
     schedule_started? && !schedule_ended?
   end
+
+  def all_preworks_completed?
+    user_preworks_count = Campaigns::GetPreworks.call!(campaign_id, user_id)[user_id]
+    return true unless user_preworks_count
+
+    user_preworks_count['completed'] == user_preworks_count['total']
+  end
 end

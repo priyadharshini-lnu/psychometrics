@@ -4,7 +4,7 @@ module Api
   module Administration
     module Users
       class RegularPolicy < Api::Administration::UserPolicy
-        class Scope < Scope
+        class Scope < BasePolicy::Scope
           def resolve
             return scope if @user.is?(:superadmin)
 

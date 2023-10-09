@@ -8,13 +8,10 @@ module Administration
       before_action :ensure_client, except: :overview
       before_action :set_resource, only: %i[edit update toggle_status]
       append_before_action :pundit_authorize
-      append_before_action :init_breadcrumbs
+      before_action :init_state, only: [:index]
 
       def index
-        @init_state = {
-          licenses: [],
-          currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(current_user).to_h
-        }
+        @init_state[:licenses] = []
       end
 
       def create
@@ -65,12 +62,6 @@ module Administration
       def resource_params
         params.require(:resource).permit(:number, :overuse_number, :report_family_id,
                                          :start_date, :end_date, :disabled, :type)
-      end
-
-      def init_breadcrumbs
-        client_root_breadcrumb
-        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb t('administration.breadcrumbs.licenses'), action: :index
       end
 
       def pundit_authorize

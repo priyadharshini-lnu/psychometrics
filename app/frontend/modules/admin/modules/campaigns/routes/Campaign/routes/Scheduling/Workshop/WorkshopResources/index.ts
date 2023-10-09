@@ -1,0 +1,1 @@
+export { WorkshopResourceForm } from './WorkshopResourceForm'

@@ -1,0 +1,33 @@
+@import "~/styles/ant.variable.less";
+@import "~/styles/spacing.less";
+
+.userInfoCard {
+  min-width: 180px;
+  padding-inline-end: @space-5;
+  box-shadow: @card-shadow;
+
+  .meta {
+    align-items: center;
+  }
+
+  .remove {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+  }
+
+  :global(.ant-list-item-meta-content) {
+    width: auto;
+  }
+  :global(.ant-list-item-meta-avatar) {
+    margin-inline-end: @space-2;
+  }
+  :global(.ant-list-item-meta-title) {
+    margin-bottom: 0px;
+  }
+}
+
+.transparent {
+  background: transparent;
+}

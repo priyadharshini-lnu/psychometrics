@@ -5,6 +5,9 @@ import {
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
 import _ from 'lodash'
+import { Admin } from 'modules/admin/modules/client/core/admin'
+import { useHistory } from 'react-router-dom'
+import { isSuperAdmin } from '~/core/currentUser'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
 import { ConfirmationModal } from '~/glint'
@@ -15,6 +18,8 @@ const { I18n } = window
 
 const connecter = connect(null, { openModal })
 interface OwnProps {
+  userTab: string,
+  currentUser: User,
   openDrawer: (user: User) => void
 }
 export type PropsFromRedux = ConnectedProps<typeof connecter>
@@ -23,6 +28,8 @@ type Props = PropsFromRedux & OwnProps
 export const UserTableComponent: React.FC<Props> = ({
   openDrawer,
   openModal,
+  userTab,
+  currentUser,
 }) => (
   <Resource.Table pagination>
     <Resource.Column<User>
@@ -65,6 +72,8 @@ export const UserTableComponent: React.FC<Props> = ({
       id="action"
       render={(_, user) => (
         <Dropdown
+          userTab={userTab}
+          currentUser={currentUser}
           user={user}
           openResetPasswordModal={user => openModal('ResetPasswordModal', { user })}
         />
@@ -89,14 +98,18 @@ const ActiveSwitch: React.FC<{ user: User }> = ({ user }) => {
 
 interface DropdownProps {
   user: User
+  userTab: string,
+  currentUser: User,
   openResetPasswordModal: (user: User) => void
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ user, openResetPasswordModal }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  user, openResetPasswordModal, userTab, currentUser,
+}) => {
   const [confirmation, setConfirmation] = useState(false)
   return (
     <ConditionalDropdown menu={ActionsMenu({
-      user, openResetPasswordModal, setConfirmation, confirmation,
+      user, openResetPasswordModal, setConfirmation, confirmation, userTab, currentUser,
     })}
     />
   )
@@ -110,8 +123,9 @@ interface ActionMenuProps extends DropdownProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  setConfirmation, confirmation, user, openResetPasswordModal,
+  setConfirmation, confirmation, user, openResetPasswordModal, userTab, currentUser,
 }) => {
+  const history = useHistory()
   const { resource } = useResourceContext<User>()
 
   const toggle2FA = (user) => {
@@ -121,6 +135,10 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }).then((user: User) => {
       message.info(I18n.t(`users.actions.2fa.confirm_message.${user.enable_2fa ? 'enabled' : 'disabled'}`))
     })
+  }
+
+  const handleAPIKeysClick = (userId: Admin['userId']) => {
+    history.push(`/administration/users/admins/${userId}/api_keys`)
   }
 
   const handleOnConfirm = () => resource.removeResource(user.id).then(() => {
@@ -158,6 +176,28 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             />
           )}
         </>
+      ),
+    },
+    (isSuperAdmin(currentUser) && userTab === 'Users::Admin') && {
+      key: 'apiKeys',
+      label: (
+        <Button type="link" onClick={() => handleAPIKeysClick(user.id)} className="ps-0">
+          {I18n.t('administration.administrators.list.actions.api_keys')}
+        </Button>
+      ),
+    },
+    (isSuperAdmin(currentUser) && userTab !== 'Users::SuperAdmin') && {
+      key: 'loginAs',
+      label: (
+        <Button
+          type="link"
+          href={`/administration/users/${user.id}/spoof`}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="ps-0 color-primary"
+        >
+          {I18n.t('administration.administrators.list.actions.login')}
+        </Button>
       ),
     },
   ]

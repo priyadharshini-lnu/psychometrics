@@ -84,7 +84,7 @@ const AddAssessmentModal: React.FC<Props> = ({
           <Form.Item
             label={localI18n('subject')}
             required
-            {...fieldItemPropsForSubject(fieldsUtil.getErrorsFor('subjectId'))}
+            {...fieldItemPropsForSubject(fieldsUtil.getErrorsFor('subjectId') || [''])}
           >
             <UserAutocomplete
               value={autocompletedSubject}

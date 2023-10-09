@@ -1,75 +1,9 @@
-/! START PAGE SIDEBAR
-.page-sidebar
-  /! START X-NAVIGATION
-  ul.x-navigation
-    li.xn-logo
-      = link_to admin_dashboard_path do
-        = image_tag 'lighthouseLogoWide.png', class: 'center-block img-responsive courseTypeIcon logo-index'
-      a.x-navigation-control href="#"
-    li.xn-profile
-      = link_to admin_dashboard_path, class: 'profile-mini'
-        span.mb-title-icon.fa.fa-user
-      .profile
-        .profile-data
-          = link_to current_user.decorate.display_name, edit_administration_profiles_path, class: 'profile-data-name'
-          .profile-data-title= t("activerecord.attributes.user.roles.admins.superadmin") if current_user.superadmin?
+#global-navigation
+  #main_menu
+  #sub_navigation style="position: absolute; left:0;top:0;bottom:0"
 
-    - if show_dashboard?
-      = active_link_to(administration_dashboard_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.dashboard'), placement: 'right' })
-        .fa.fa-dashboard
-        span.xn-text = t('administration.navigation.dashboard')
-    - if policy([:assessors, :campaign]).index?
-      = active_link_to(assessors_dashboard_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.assessor_dashboard'), placement: 'right' })
-        .fa.fa-dashboard
-        span.xn-text = t('administration.navigation.assessor_dashboard')
-    - if policy(:client).index?
-      = active_link_to(administration_root_path, wrap_tag: :li, active: /\/administration(\/|)(\/clients|\z)/, data: { toggle: 'tooltip', title: t('administration.navigation.clients'), placement: 'right' })
-        .fa.fa-briefcase
-        span.xn-text = t('administration.navigation.clients')
-    - if policy(:user).index?
-      = active_link_to(administration_users_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.users'), placement: 'right' })
-        i.fa.fa-users
-        span.xn-text = t('administration.navigation.users')
-    - if policy(:norm).index?
-      = active_link_to(administration_norms_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.norms'), placement: 'right' })
-        i.svg-icon
-          == render file: Rails.root.join('public','images', 'analysis01.svg')
-        span.xn-text = t('administration.navigation.norms')
-    - if policy(:dimension).index?
-      = active_link_to(administration_dimensions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.dimensions'), placement: 'right' })
-        i.fa.fa-file-text-o
-        span.xn-text = t('administration.navigation.dimensions')
-    - if policy(:assessment).index?
-      = active_link_to(administration_assessments_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.assessments'), placement: 'right' })
-        i.fa.fa-universal-access
-        span.xn-text = t('administration.navigation.assessments')
-    - if policy(:question).index?
-      = active_link_to(administration_templates_questions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.question_center'), placement: 'right' })
-        i.fa.fa-question-circle-o
-        span.xn-text = t('administration.navigation.question_center')
-    - if policy(:library).index?
-      = active_link_to(administration_libraries_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.libraries'), placement: 'right' })
-        i.fa.fa-file-image-o
-        span.xn-text = t('administration.navigation.libraries')
-    - if policy(:communication).index?
-      = active_link_to(administration_communications_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.communication_center'), placement: 'right' })
-        i.fa.fa-envelope-o
-        span.xn-text = t('administration.navigation.communication_center')
-    - if policy(:report).left_menu?
-      = active_link_to(administration_reports_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.reports'), placement: 'right' })
-        i.fa.fa-pie-chart
-        span.xn-text = t('administration.navigation.reports')
-    - if policy(:report_approval).app?
-      = active_link_to("#{administration_report_approvals_path}/my_tasks", wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.reports'), placement: 'right' })
-        i.fa.fa-check
-        span.xn-text = t('administration.navigation.report_approvals')
-    - if policy(:campaign_template).index?
-      = active_link_to(administration_campaign_templates_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.campaign_templates'), placement: 'right' })
-        i.fa.fa-gear
-        span.xn-text = t('administration.navigation.campaign_templates')
-    - if policy(:audit_log).index?
-      = active_link_to(administration_audit_logs_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.audit_logs'), placement: 'right' })
-        i.fa.fa-clipboard
-        span.xn-text = t('administration.navigation.audit_logs')
-  /! END X-NAVIGATION
-/! END PAGE SIDEBAR
+- unless @do_not_render_rails_menu
+  javascript:
+    window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
+
+  = vite_javascript_tag "entrypoints/admin/menu.jsx"

@@ -1,5 +1,14 @@
 import * as t from 'io-ts'
 
+export const UserProfileTR = t.type({
+  id: t.string,
+  userId: t.number,
+  timezone: t.union([t.string, t.null]),
+  locale: t.union([t.string, t.null]),
+})
+
+export type UserProfile = t.TypeOf<typeof UserProfileTR>
+
 export const UserTR = t.type({
   id: t.string,
   name: t.string,
@@ -10,6 +19,7 @@ export const UserTR = t.type({
   role: t.string,
   disabled: t.boolean,
   enable_2fa: t.boolean,
+  photoUrl: t.union([t.string, t.null]),
   updatedAt: t.union([t.string, t.null]),
   createdBy: t.union([t.string, t.null]),
   modifiedBy: t.union([t.string, t.null]),

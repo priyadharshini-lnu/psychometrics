@@ -1,10 +1,12 @@
 import _ from 'lodash'
 
-const ACCEPT_POLICY = 'project/ACCEPT_POLICY'
+export const FETCH = 'project/FETCH_POLICY'
+export const ACCEPT_POLICY = 'project/ACCEPT_POLICY'
 
 export const defaultState = {
   logo: null,
   secondaryLogo: null,
+  policy: null,
 }
 
 export const get = state => _.get(state, ['campaigns', 'project'])
@@ -14,6 +16,14 @@ export const getLogo = state => _.get(get(state), ['logo'])
 export const getProjectLogo = state => _.get(state, ['config', 'design', 'logo'])
 export const getSecondaryLogo = state => _.get(state, ['config', 'design', 'secondary_logo'])
 export const getName = state => _.get(get(state), ['name'])
+
+
+export const fetchPolicy = (version = '2') => ({
+  type: FETCH,
+  request: {
+    url: `/policy/v${version}.json`,
+  },
+})
 
 export const acceptPolicy = version => ({
   type: ACCEPT_POLICY,
@@ -26,6 +36,8 @@ export const acceptPolicy = version => ({
 
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
+    case FETCH:
+      return { ...state, policy: action.response }
     default:
       return state
   }

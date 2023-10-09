@@ -2,6 +2,7 @@ import { ColumnProps } from 'antd/lib/table'
 
 interface Props<T> extends ColumnProps<T> {
   id: string
+  sortingKey?: string
 }
 
 

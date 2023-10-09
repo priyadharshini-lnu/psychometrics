@@ -72,30 +72,34 @@
             },
             "content": {
               "application/json": {
-                "example": [
-                  {
-                    "id": "11234",
-                    "name": "Assessment 1",
-                    "description": "Assessment 1 Description",
-                    "icon_url": "https://some.aws.s3.com/icon1.jpg",
-                    "poster_url": "https://some.aws.s3.com/poster1.jpg",
-                    "campaign_id": 1,
-                    "status": "completed",
-                    "started_at": "2019-03-04T15:47:33.570+04:00",
-                    "completed_at": "2019-03-04T15:47:33.570+04:00"
-                  },
-                  {
-                    "id": "11235",
-                    "name": "Assessment 2",
-                    "description": "Assessment 2 Description",
-                    "icon_url": "https://some.aws.s3.com/icon2.jpg",
-                    "poster_url": "https://some.aws.s3.com/poster1.jpg",
-                    "campaign_id": 1,
-                    "status": "completed",
-                    "started_at": "2019-03-04T15:47:33.570+04:00",
-                    "completed_at": "2019-03-04T15:47:33.570+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "id": "11234",
+                        "name": "Assessment 1",
+                        "description": "Assessment 1 Description",
+                        "icon_url": "https://some.aws.s3.com/icon1.jpg",
+                        "poster_url": "https://some.aws.s3.com/poster1.jpg",
+                        "campaign_id": 1,
+                        "status": "completed",
+                        "started_at": "2019-03-04T15:47:33.570+04:00",
+                        "completed_at": "2019-03-04T15:47:33.570+04:00"
+                      },
+                      {
+                        "id": "11235",
+                        "name": "Assessment 2",
+                        "description": "Assessment 2 Description",
+                        "icon_url": "https://some.aws.s3.com/icon2.jpg",
+                        "poster_url": "https://some.aws.s3.com/poster1.jpg",
+                        "campaign_id": 1,
+                        "status": "completed",
+                        "started_at": "2019-03-04T15:47:33.570+04:00",
+                        "completed_at": "2019-03-04T15:47:33.570+04:00"
+                      }
+                    ]
                   }
-                ]
+                }
               }
             }
           },
@@ -106,11 +110,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": "API User is disabled",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -122,11 +130,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1005,
-                  "message": "Resource not found",
-                  "more_info": "User with id=111 was not found",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1005,
+                      "message": "Resource not found",
+                      "more_info": "User with id=111 was not found",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -195,8 +207,12 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "norm_id": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "norm_id": null
+                    }
+                  }
                 }
               }
             }
@@ -208,11 +224,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": "API User is disabled",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -260,11 +280,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 770,
-                  "name": "Sales Executive Recruitment May 2020",
-                  "created_at": "2019-03-05T10:56:53.349+04:00",
-                  "updated_at": "2019-03-05T10:56:53.349+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 770,
+                      "name": "Sales Executive Recruitment May 2020",
+                      "created_at": "2019-03-05T10:56:53.349+04:00",
+                      "updated_at": "2019-03-05T10:56:53.349+04:00"
+                    }
+                  }
                 }
               }
             }
@@ -276,11 +300,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1005,
-                  "message": "Resource not found",
-                  "more_info": "Campaign with id=111 is not found",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1005,
+                      "message": "Resource not found",
+                      "more_info": "Campaign with id=111 is not found",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -334,17 +362,21 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "name": "Campaign 1",
-                  "status": "active",
-                  "instructions": "Instr",
-                  "enable_instructions": true,
-                  "duration": 111,
-                  "fixed_time": true,
-                  "start_date": "2019-03-05T10:56:53.349+04:00",
-                  "end_date": "2020-03-05T10:56:53.349+04:00",
-                  "created_at": "2019-03-05T10:56:53.349+04:00",
-                  "updated_at": "2019-03-05T10:56:53.349+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "name": "Campaign 1",
+                      "status": "active",
+                      "instructions": "Instr",
+                      "enable_instructions": true,
+                      "duration": 111,
+                      "fixed_time": true,
+                      "start_date": "2019-03-05T10:56:53.349+04:00",
+                      "end_date": "2020-03-05T10:56:53.349+04:00",
+                      "created_at": "2019-03-05T10:56:53.349+04:00",
+                      "updated_at": "2019-03-05T10:56:53.349+04:00"
+                    }
+                  }
                 }
               }
             }
@@ -400,11 +432,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 770,
-                  "name": "Sales Executive Recruitment May 2020",
-                  "created_at": "2019-03-05T10:56:53.349+04:00",
-                  "updated_at": "2019-03-05T10:56:53.349+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 770,
+                      "name": "Sales Executive Recruitment May 2020",
+                      "created_at": "2019-03-05T10:56:53.349+04:00",
+                      "updated_at": "2019-03-05T10:56:53.349+04:00"
+                    }
+                  }
                 }
               }
             }
@@ -416,11 +452,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1002,
-                  "message": "Validation error",
-                  "more_info": "Name can't be blank",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1002,
+                      "message": "Validation error",
+                      "more_info": "Name can't be blank",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -432,11 +472,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1005,
-                  "message": "Resource not found",
-                  "more_info": "Campaign with id=111 is not found",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1005,
+                      "message": "Resource not found",
+                      "more_info": "Campaign with id=111 is not found",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -492,16 +536,20 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 14602,
-                  "first_name": "John",
-                  "last_name": "Doe",
-                  "email": "john.doe@example.com",
-                  "created_at": "2019-03-04T15:47:33.570+04:00",
-                  "updated_at": "2019-03-04T15:47:33.950+04:00",
-                  "campaign_ids": [
-                    510
-                  ]
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 14602,
+                      "first_name": "John",
+                      "last_name": "Doe",
+                      "email": "john.doe@example.com",
+                      "created_at": "2019-03-04T15:47:33.570+04:00",
+                      "updated_at": "2019-03-04T15:47:33.950+04:00",
+                      "campaign_ids": [
+                        510
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -550,14 +598,18 @@
             },
             "content": {
               "application/json": {
-                "example": [
-                  {
-                    "id": 367,
-                    "name": "Employee Engagement",
-                    "created_at": "2018-02-11T10:55:25.569+04:00",
-                    "updated_at": "2018-02-11T10:55:25.569+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "id": 367,
+                        "name": "Employee Engagement",
+                        "created_at": "2018-02-11T10:55:25.569+04:00",
+                        "updated_at": "2018-02-11T10:55:25.569+04:00"
+                      }
+                    ]
                   }
-                ]
+                }
               }
             }
           }
@@ -606,19 +658,23 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 770,
-                  "name": "Campaign 1",
-                  "description": "Campaign Description",
-                  "status": "active",
-                  "instructions": "Instr",
-                  "enable_instructions": true,
-                  "duration": 111,
-                  "fixed_time": true,
-                  "start_date": "2019-03-05T10:56:53.349+04:00",
-                  "end_date": "2020-03-05T10:56:53.349+04:00",
-                  "created_at": "2019-03-05T10:56:53.349+04:00",
-                  "updated_at": "2019-03-05T10:56:53.349+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 770,
+                      "name": "Campaign 1",
+                      "description": "Campaign Description",
+                      "status": "active",
+                      "instructions": "Instr",
+                      "enable_instructions": true,
+                      "duration": 111,
+                      "fixed_time": true,
+                      "start_date": "2019-03-05T10:56:53.349+04:00",
+                      "end_date": "2020-03-05T10:56:53.349+04:00",
+                      "created_at": "2019-03-05T10:56:53.349+04:00",
+                      "updated_at": "2019-03-05T10:56:53.349+04:00"
+                    }
+                  }
                 }
               }
             }
@@ -666,20 +722,24 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "reports": [
-                    {
-                      "id": 1,
-                      "user_access": true,
-                      "report_bundle_id": 1
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "reports": [
+                        {
+                          "id": 1,
+                          "user_access": true,
+                          "report_bundle_id": 1
+                        }
+                      ],
+                      "assessments": [
+                        {
+                          "id": 1,
+                          "norm_id": 2
+                        }
+                      ]
                     }
-                  ],
-                  "assessments": [
-                    {
-                      "id": 1,
-                      "norm_id": 2
-                    }
-                  ]
+                  }
                 }
               }
             }
@@ -733,20 +793,24 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "reports": [
-                    {
-                      "id": 1,
-                      "user_access": true,
-                      "report_bundle_id": 1
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "reports": [
+                        {
+                          "id": 1,
+                          "user_access": true,
+                          "report_bundle_id": 1
+                        }
+                      ],
+                      "assessments": [
+                        {
+                          "id": 1,
+                          "norm_id": 2
+                        }
+                      ]
                     }
-                  ],
-                  "assessments": [
-                    {
-                      "id": 1,
-                      "norm_id": 2
-                    }
-                  ]
+                  }
                 }
               }
             }
@@ -808,8 +872,12 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "norm_id": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "norm_id": null
+                    }
+                  }
                 }
               }
             }
@@ -821,11 +889,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": "API User is disabled",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -883,11 +955,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": "API User is disabled",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -949,9 +1025,13 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "user_access": true,
-                  "assessor_access": true
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "user_access": true,
+                      "assessor_access": true
+                    }
+                  }
                 }
               }
             }
@@ -963,11 +1043,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": "API User is disabled",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -1025,11 +1109,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": "API User is disabled",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -1073,27 +1161,31 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 770,
-                  "client_id": 1,
-                  "name": "Project 1",
-                  "subdomain": "xyz",
-                  "client_reference": "XYZ 001",
-                  "locales": [
-                    "en",
-                    "ar"
-                  ],
-                  "data_processing_consent": true,
-                  "enable_strong_password": true,
-                  "enable_2factor_auth": true,
-                  "project_logo_url": "base64image",
-                  "partner_logo_url": "base64image",
-                  "background_image_url": "base64image",
-                  "background_color": "#ffffff",
-                  "login_box_position": "left",
-                  "webhook": "https://my.site.com",
-                  "created_at": "2019-03-05T10:56:53.349+04:00",
-                  "updated_at": "2019-03-05T10:56:53.349+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 770,
+                      "client_id": 1,
+                      "name": "Project 1",
+                      "subdomain": "xyz",
+                      "client_reference": "XYZ 001",
+                      "locales": [
+                        "en",
+                        "ar"
+                      ],
+                      "data_processing_consent": true,
+                      "enable_strong_password": true,
+                      "enable_2factor_auth": true,
+                      "project_logo_url": "base64image",
+                      "partner_logo_url": "base64image",
+                      "background_image_url": "base64image",
+                      "background_color": "#ffffff",
+                      "login_box_position": "left",
+                      "webhook": "https://my.site.com",
+                      "created_at": "2019-03-05T10:56:53.349+04:00",
+                      "updated_at": "2019-03-05T10:56:53.349+04:00"
+                    }
+                  }
                 }
               }
             }
@@ -1143,27 +1235,31 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 770,
-                  "name": "Project 1",
-                  "client_id": 1,
-                  "subdomain": "xyz",
-                  "client_reference": "XYZ 001",
-                  "locales": [
-                    "en",
-                    "ar"
-                  ],
-                  "data_processing_consent": true,
-                  "enable_strong_password": true,
-                  "enable_2factor_auth": true,
-                  "background_color": "#ffffff",
-                  "project_logo_url": "url_to_logo",
-                  "partner_logo_url": "url_to_logo",
-                  "background_image_url": "url_to_image",
-                  "login_box_position": "left",
-                  "webhook": "https://my.site.com",
-                  "created_at": "2019-03-05T10:56:53.349+04:00",
-                  "updated_at": "2019-03-05T10:56:53.349+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 770,
+                      "name": "Project 1",
+                      "client_id": 1,
+                      "subdomain": "xyz",
+                      "client_reference": "XYZ 001",
+                      "locales": [
+                        "en",
+                        "ar"
+                      ],
+                      "data_processing_consent": true,
+                      "enable_strong_password": true,
+                      "enable_2factor_auth": true,
+                      "background_color": "#ffffff",
+                      "project_logo_url": "url_to_logo",
+                      "partner_logo_url": "url_to_logo",
+                      "background_image_url": "url_to_image",
+                      "login_box_position": "left",
+                      "webhook": "https://my.site.com",
+                      "created_at": "2019-03-05T10:56:53.349+04:00",
+                      "updated_at": "2019-03-05T10:56:53.349+04:00"
+                    }
+                  }
                 }
               }
             }
@@ -1175,27 +1271,31 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 770,
-                  "name": "Project 1",
-                  "client_id": 1,
-                  "subdomain": "xyz",
-                  "client_reference": "XYZ 001",
-                  "locales": [
-                    "en",
-                    "ar"
-                  ],
-                  "data_processing_consent": true,
-                  "enable_strong_password": true,
-                  "enable_2factor_auth": true,
-                  "background_color": "#ffffff",
-                  "project_logo_url": "url_to_logo",
-                  "partner_logo_url": "url_to_logo",
-                  "background_image_url": "url_to_image",
-                  "login_box_position": "left",
-                  "webhook": "https://my.site.com",
-                  "created_at": "2019-03-05T10:56:53.349+04:00",
-                  "updated_at": "2019-03-05T10:56:53.349+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 770,
+                      "name": "Project 1",
+                      "client_id": 1,
+                      "subdomain": "xyz",
+                      "client_reference": "XYZ 001",
+                      "locales": [
+                        "en",
+                        "ar"
+                      ],
+                      "data_processing_consent": true,
+                      "enable_strong_password": true,
+                      "enable_2factor_auth": true,
+                      "background_color": "#ffffff",
+                      "project_logo_url": "url_to_logo",
+                      "partner_logo_url": "url_to_logo",
+                      "background_image_url": "url_to_image",
+                      "login_box_position": "left",
+                      "webhook": "https://my.site.com",
+                      "created_at": "2019-03-05T10:56:53.349+04:00",
+                      "updated_at": "2019-03-05T10:56:53.349+04:00"
+                    }
+                  }
                 }
               }
             }
@@ -1235,27 +1335,31 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 770,
-                  "name": "Project 1",
-                  "client_id": 1,
-                  "subdomain": "xyz",
-                  "client_reference": "XYZ 001",
-                  "locales": [
-                    "en",
-                    "ar"
-                  ],
-                  "data_processing_consent": true,
-                  "enable_strong_password": true,
-                  "enable_2factor_auth": true,
-                  "background_color": "#ffffff",
-                  "project_logo_url": "url_to_logo",
-                  "partner_logo_url": "url_to_logo",
-                  "background_image_url": "url_to_image",
-                  "login_box_position": "left",
-                  "webhook": "https://my.site.com",
-                  "created_at": "2019-03-05T10:56:53.349+04:00",
-                  "updated_at": "2019-03-05T10:56:53.349+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 770,
+                      "name": "Project 1",
+                      "client_id": 1,
+                      "subdomain": "xyz",
+                      "client_reference": "XYZ 001",
+                      "locales": [
+                        "en",
+                        "ar"
+                      ],
+                      "data_processing_consent": true,
+                      "enable_strong_password": true,
+                      "enable_2factor_auth": true,
+                      "background_color": "#ffffff",
+                      "project_logo_url": "url_to_logo",
+                      "partner_logo_url": "url_to_logo",
+                      "background_image_url": "url_to_image",
+                      "login_box_position": "left",
+                      "webhook": "https://my.site.com",
+                      "created_at": "2019-03-05T10:56:53.349+04:00",
+                      "updated_at": "2019-03-05T10:56:53.349+04:00"
+                    }
+                  }
                 }
               }
             }
@@ -1303,16 +1407,20 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 14602,
-                  "first_name": "John",
-                  "last_name": "Doe",
-                  "email": "john.doe@example.com",
-                  "created_at": "2019-03-04T15:47:33.570+04:00",
-                  "updated_at": "2019-03-04T15:47:33.950+04:00",
-                  "campaign_ids": [
-                    510
-                  ]
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 14602,
+                      "first_name": "John",
+                      "last_name": "Doe",
+                      "email": "john.doe@example.com",
+                      "created_at": "2019-03-04T15:47:33.570+04:00",
+                      "updated_at": "2019-03-04T15:47:33.950+04:00",
+                      "campaign_ids": [
+                        510
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1324,11 +1432,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1005,
-                  "message": "Resource not found",
-                  "more_info": "User with email=ttt@example.com was not found",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1005,
+                      "message": "Resource not found",
+                      "more_info": "User with email=ttt@example.com was not found",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -1376,16 +1488,20 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 14602,
-                  "first_name": "John",
-                  "last_name": "Doe",
-                  "email": "john.doe@example.com",
-                  "created_at": "2019-03-04T15:47:33.570+04:00",
-                  "updated_at": "2019-03-04T15:47:33.950+04:00",
-                  "campaign_ids": [
-                    510
-                  ]
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 14602,
+                      "first_name": "John",
+                      "last_name": "Doe",
+                      "email": "john.doe@example.com",
+                      "created_at": "2019-03-04T15:47:33.570+04:00",
+                      "updated_at": "2019-03-04T15:47:33.950+04:00",
+                      "campaign_ids": [
+                        510
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1397,17 +1513,21 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1006,
-                  "message": "User with this email exists",
-                  "more_info": "Email address john.doe@example.com is already taken",
-                  "meta": {
-                    "existing_user": {
-                      "id": 12,
-                      "first_name": "John",
-                      "last_name": "Doe",
-                      "email": "john.doe@example.com",
-                      "created_at": "2019-10-28T17:00:00.000+04:00"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1006,
+                      "message": "User with this email exists",
+                      "more_info": "Email address john.doe@example.com is already taken",
+                      "meta": {
+                        "existing_user": {
+                          "id": 12,
+                          "first_name": "John",
+                          "last_name": "Doe",
+                          "email": "john.doe@example.com",
+                          "created_at": "2019-10-28T17:00:00.000+04:00"
+                        }
+                      }
                     }
                   }
                 }
@@ -1421,10 +1541,14 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1005,
-                  "message": "Resource not found",
-                  "more_info": "Project with id=111 was not found"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1005,
+                      "message": "Resource not found",
+                      "more_info": "Project with id=111 was not found"
+                    }
+                  }
                 }
               }
             }
@@ -1436,10 +1560,14 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1003,
-                  "message": "Not enough licenses",
-                  "more_info": "'Client Tenancy 1' does not have enough licenses for 'report 2'"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1003,
+                      "message": "Not enough licenses",
+                      "more_info": "'Client Tenancy 1' does not have enough licenses for 'report 2'"
+                    }
+                  }
                 }
               }
             }
@@ -1497,60 +1625,64 @@
             },
             "content": {
               "application/json": {
-                "example": [
-                  {
-                    "id": 127,
-                    "name": "Thriving Index - Resource Pro",
-                    "description": "Description for Thriving Index - Resource Pro",
-                    "icon_url": "https://some.aws.s3.com/report_icon1.jpg",
-                    "poster_url": "https://some.aws.s3.com/report_poster1.jpg",
-                    "user_access": false,
-                    "output_type": {
-                      "pdf": true,
-                      "results": false
-                    },
-                    "status": "not_ready",
-                    "campaign_id": 1,
-                    "assessments": [
+                "examples": {
+                  "example_0": {
+                    "value": [
                       {
-                        "id": 91731,
-                        "name": "Thriving Index Assessment",
-                        "description": "Self-assessment to understand your signature strengths and potential blindspots",
-                        "icon_url": "https://some.aws.s3.com/assessment_icon1.jpg",
-                        "poster_url": "https://some.aws.s3.com/assessment_poster1.jpg",
-                        "status": "not_started",
-                        "started_at": "2019-01-06T20:54:05.714+04:00",
-                        "completed_at": "2019-01-06T20:54:05.714+04:00"
-                      }
-                    ]
-                  },
-                  {
-                    "id": 110,
-                    "name": "Custom Report",
-                    "description": "Description for Custom Report",
-                    "icon_url": "https://some.aws.s3.com/report_icon2.jpg",
-                    "poster_url": "https://some.aws.s3.com/report_poster2.jpg",
-                    "user_access": true,
-                    "output_type": {
-                      "pdf": true,
-                      "results": true
-                    },
-                    "status": "not_ready",
-                    "campaign_id": 1,
-                    "assessments": [
+                        "id": 127,
+                        "name": "Thriving Index - Resource Pro",
+                        "description": "Description for Thriving Index - Resource Pro",
+                        "icon_url": "https://some.aws.s3.com/report_icon1.jpg",
+                        "poster_url": "https://some.aws.s3.com/report_poster1.jpg",
+                        "user_access": false,
+                        "output_type": {
+                          "pdf": true,
+                          "results": false
+                        },
+                        "status": "not_ready",
+                        "campaign_id": 1,
+                        "assessments": [
+                          {
+                            "id": 91731,
+                            "name": "Thriving Index Assessment",
+                            "description": "Self-assessment to understand your signature strengths and potential blindspots",
+                            "icon_url": "https://some.aws.s3.com/assessment_icon1.jpg",
+                            "poster_url": "https://some.aws.s3.com/assessment_poster1.jpg",
+                            "status": "not_started",
+                            "started_at": "2019-01-06T20:54:05.714+04:00",
+                            "completed_at": "2019-01-06T20:54:05.714+04:00"
+                          }
+                        ]
+                      },
                       {
-                        "id": 91731,
-                        "name": "Thriving Index Assessment",
-                        "description": "Self-assessment to understand your signature strengths and potential blindspots",
-                        "icon_url": "https://some.aws.s3.com/assessment_icon2.jpg",
-                        "poster_url": "https://some.aws.s3.com/assessment_poster2.jpg",
-                        "status": "not_started",
-                        "started_at": "2019-01-06T20:54:05.714+04:00",
-                        "completed_at": "2019-01-06T20:54:05.714+04:00"
+                        "id": 110,
+                        "name": "Custom Report",
+                        "description": "Description for Custom Report",
+                        "icon_url": "https://some.aws.s3.com/report_icon2.jpg",
+                        "poster_url": "https://some.aws.s3.com/report_poster2.jpg",
+                        "user_access": true,
+                        "output_type": {
+                          "pdf": true,
+                          "results": true
+                        },
+                        "status": "not_ready",
+                        "campaign_id": 1,
+                        "assessments": [
+                          {
+                            "id": 91731,
+                            "name": "Thriving Index Assessment",
+                            "description": "Self-assessment to understand your signature strengths and potential blindspots",
+                            "icon_url": "https://some.aws.s3.com/assessment_icon2.jpg",
+                            "poster_url": "https://some.aws.s3.com/assessment_poster2.jpg",
+                            "status": "not_started",
+                            "started_at": "2019-01-06T20:54:05.714+04:00",
+                            "completed_at": "2019-01-06T20:54:05.714+04:00"
+                          }
+                        ]
                       }
                     ]
                   }
-                ]
+                }
               }
             }
           }
@@ -1610,50 +1742,54 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "user_data": {
-                    "first_name": "Jane",
-                    "last_name": "Doe"
-                  },
-                  "campaign_id": 1,
-                  "assessments": [
-                    {
-                      "id": 17,
-                      "name": "Thriving Index Assessment",
-                      "results": {
-                        "normed_factors": [
-                          {
-                            "key": 549,
-                            "name": "Accountability",
-                            "value": null
-                          },
-                          {
-                            "key": 554,
-                            "name": "Efficacy",
-                            "value": null
-                          }
-                        ],
-                        "ranked_occupations": [
-                          {
-                            "key": 2,
-                            "rank": 1,
-                            "name": "Occupation 2",
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "user_data": {
+                        "first_name": "Jane",
+                        "last_name": "Doe"
+                      },
+                      "campaign_id": 1,
+                      "assessments": [
+                        {
+                          "id": 17,
+                          "name": "Thriving Index Assessment",
+                          "results": {
                             "normed_factors": [
+                              {
+                                "key": 549,
+                                "name": "Accountability",
+                                "value": null
+                              },
+                              {
+                                "key": 554,
+                                "name": "Efficacy",
+                                "value": null
+                              }
+                            ],
+                            "ranked_occupations": [
+                              {
+                                "key": 2,
+                                "rank": 1,
+                                "name": "Occupation 2",
+                                "normed_factors": [
 
-                            ]
-                          },
-                          {
-                            "key": 1,
-                            "rank": 2,
-                            "name": "Occupation 1",
-                            "normed_factors": [
+                                ]
+                              },
+                              {
+                                "key": 1,
+                                "rank": 2,
+                                "name": "Occupation 1",
+                                "normed_factors": [
 
+                                ]
+                              }
                             ]
                           }
-                        ]
-                      }
+                        }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -1665,11 +1801,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1004,
-                  "message": "Assessment not completed",
-                  "more_info": "Assessments for report 111 are not completed",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1004,
+                      "message": "Assessment not completed",
+                      "more_info": "Assessments for report 111 are not completed",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -1730,10 +1870,14 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "url": "https://some.aws.s3.com/report.pdf",
-                  "campaign_id": 1,
-                  "status": "ready"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "url": "https://some.aws.s3.com/report.pdf",
+                      "campaign_id": 1,
+                      "status": "ready"
+                    }
+                  }
                 }
               }
             }
@@ -1796,22 +1940,26 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "dimensions": [
-                    {
-                      "id": 12,
-                      "name": "Dimension name",
-                      "factors": [
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "dimensions": [
                         {
-                          "id": 123,
-                          "name": "Factor Name",
-                          "description": "Lorem ipsum dolor sit amet.",
-                          "updated_at": "2019-10-06T18:25:43.511Z"
+                          "id": 12,
+                          "name": "Dimension name",
+                          "factors": [
+                            {
+                              "id": 123,
+                              "name": "Factor Name",
+                              "description": "Lorem ipsum dolor sit amet.",
+                              "updated_at": "2019-10-06T18:25:43.511Z"
+                            }
+                          ]
                         }
-                      ]
+                      ],
+                      "server_time": "2019-10-06T18:25:43.511Z"
                     }
-                  ],
-                  "server_time": "2019-10-06T18:25:43.511Z"
+                  }
                 }
               }
             }
@@ -1823,11 +1971,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1005,
-                  "message": "Resource not found",
-                  "more_info": "Report with id 123 not found.",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1005,
+                      "message": "Resource not found",
+                      "more_info": "Report with id 123 not found.",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -1839,11 +1991,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1007,
-                  "message": "Resource not configured.",
-                  "more_info": "Report with id 12 doesn't have data configuration.",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1007,
+                      "message": "Resource not configured.",
+                      "more_info": "Report with id 12 doesn't have data configuration.",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -1912,8 +2068,12 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "user_access": false
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "user_access": false
+                    }
+                  }
                 }
               }
             }
@@ -1925,11 +2085,15 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "code": 1000,
-                  "message": "Invalid authentication",
-                  "more_info": "API User is disabled",
-                  "meta": null
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "code": 1000,
+                      "message": "Invalid authentication",
+                      "more_info": "API User is disabled",
+                      "meta": null
+                    }
+                  }
                 }
               }
             }
@@ -1977,20 +2141,24 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987",
-                  "expires_at": "2014-01-01T23:28:56.782Z",
-                  "assessments": [
-                    {
-                      "id": "3456",
-                      "name": "Thriving Index Assessment",
-                      "description": "Self-assessment to understand your signature strengths and potential blindspots",
-                      "icon_url": "https://some.aws.s3.com/icon1.jpg",
-                      "poster_url": "https://some.aws.s3.com/poster1.jpg",
-                      "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875",
-                      "status": "not_started"
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987",
+                      "expires_at": "2014-01-01T23:28:56.782Z",
+                      "assessments": [
+                        {
+                          "id": "3456",
+                          "name": "Thriving Index Assessment",
+                          "description": "Self-assessment to understand your signature strengths and potential blindspots",
+                          "icon_url": "https://some.aws.s3.com/icon1.jpg",
+                          "poster_url": "https://some.aws.s3.com/poster1.jpg",
+                          "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875",
+                          "status": "not_started"
+                        }
+                      ]
                     }
-                  ]
+                  }
                 }
               }
             }
@@ -2045,16 +2213,20 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "id": 14602,
-                  "first_name": "Kamaru",
-                  "last_name": "Usman",
-                  "email": "marti@gmail.com",
-                  "created_at": "2019-03-04T15:47:33.570+04:00",
-                  "updated_at": "2019-03-04T15:47:33.950+04:00",
-                  "campaign_ids": [
-                    510
-                  ]
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 14602,
+                      "first_name": "Kamaru",
+                      "last_name": "Usman",
+                      "email": "marti@gmail.com",
+                      "created_at": "2019-03-04T15:47:33.570+04:00",
+                      "updated_at": "2019-03-04T15:47:33.950+04:00",
+                      "campaign_ids": [
+                        510
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -2116,20 +2288,24 @@
             },
             "content": {
               "application/json": {
-                "example": {
-                  "reports": [
-                    {
-                      "id": 1,
-                      "user_access": true,
-                      "report_bundle_id": 1
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "reports": [
+                        {
+                          "id": 1,
+                          "user_access": true,
+                          "report_bundle_id": 1
+                        }
+                      ],
+                      "assessments": [
+                        {
+                          "id": 1,
+                          "norm_id": 2
+                        }
+                      ]
                     }
-                  ],
-                  "assessments": [
-                    {
-                      "id": 1,
-                      "norm_id": 2
-                    }
-                  ]
+                  }
                 }
               }
             }

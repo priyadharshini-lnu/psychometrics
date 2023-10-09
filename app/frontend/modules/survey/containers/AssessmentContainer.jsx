@@ -3,15 +3,16 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { ConfigProvider } from 'antd'
 import { DndProvider } from 'react-dnd'
+import { ErrorBoundary } from 'react-error-boundary'
 import HTML5Backend from 'react-dnd-html5-backend'
 import AssessmentPreview from '~/modules/survey/layouts/AssessmentPreview'
 import Header from '~/modules/survey/layouts/AssessmentPreview/Header'
 import { setStore, getStore } from '~/modules/survey/store/StoreWatchman'
-import styles from '~/modules/survey/layouts/Dashboard/Dashboard.less'
 import { INIT } from '~/modules/survey/core/preview/FlowProcessor/consts'
 // import ConnectionCheck from '~/components/ConnectionCheck'
 // import { connected, disconnected } from '~/core/connection'
 import containerStyles from './AssessmentContainer.less'
+import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
 import '~/modules/survey/styles/globals.less'
 import '~/modules/survey/utils/i18n'
 
@@ -60,44 +61,26 @@ class AssessmentContainer extends Component {
     // store.reset()
   }
 
-  overlay () {
-    return (
-      <div onKeyDown={this.disableKey} onClick={this.disableClick} className={styles.overlay}>
-        <div className="message-box message-box-danger animated fadeIn open" id="message-box-danger">
-          <div className="mb-container">
-            <div className="mb-middle">
-              <div className="mb-title">
-                <span className="fa fa-times" />
-                Attention!
-              </div>
-              <div className="mb-content">
-                <p>Something went wrong</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   render () {
     const {
       disabled, selectedLocale, type, showAsSinglePage,
     } = this.props
     return (
-      <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
-        {/* <ConnectionCheck
-          onConnected={() => rstore.dispatch(connected())}
-          onDisconnected={() => rstore.dispatch(disconnected())}
-        /> */}
-        {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-        <DndProvider backend={HTML5Backend}>
-          <div className={containerStyles.previewConainer}>
-            {disabled && this.overlay()}
-            <AssessmentPreview showAsSinglePage={showAsSinglePage} type={type} />
-          </div>
-        </DndProvider>
-      </ConfigProvider>
+      <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
+        <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
+          {/* <ConnectionCheck
+            onConnected={() => rstore.dispatch(connected())}
+            onDisconnected={() => rstore.dispatch(disconnected())}
+          /> */}
+          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
+          <DndProvider backend={HTML5Backend}>
+            <div className={containerStyles.previewConainer}>
+              {disabled && this.overlay()}
+              <AssessmentPreview showAsSinglePage={showAsSinglePage} type={type} />
+            </div>
+          </DndProvider>
+        </ConfigProvider>
+      </ErrorBoundary>
     )
   }
 }

@@ -24,6 +24,13 @@ export const UserFilter: React.FC<{ userTab: string, currentUser: User, openModa
             {I18n.t('users.create_superadmin')}
           </Button>
         )}
+      {isSuperAdmin(currentUser) && userTab === 'Users::GlobalAssessors'
+        && (
+          <Button type="primary" disabled={tableLoading} onClick={openModal}>
+            <PlusOutlined />
+            {I18n.t('users.create_global_assessor')}
+          </Button>
+        )}
     </Resource.Filter>
   )
 }

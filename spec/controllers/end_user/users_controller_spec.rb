@@ -33,7 +33,7 @@ describe EndUser::UsersController, type: :controller do
       expected_array = %w[id email first_name last_name full_name
                           is_anonym photo timezone role
                           custom_fields age gender locale last_sign_in_at profile_completion_percentage updated_at
-                          update_profile_required update_profile_message]
+                          update_profile_required update_profile_message back_url]
       expect(parsed_result.keys).to match_array(expected_array)
       expect(parsed_result['id']).to eq(user.id)
       expect(parsed_result['first_name']).to eq('Elliot')

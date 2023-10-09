@@ -27,8 +27,8 @@ describe ActiveStorageAttachable do
         @report = create(:report),
         @user_profile = create(:user_profile, user: create(:user), photo: nil),
         @media_resp = MediaResponse.create(
-          question: FactoryBot.build(:question),
-          users_result: FactoryBot.create(:users_result)
+          question: build(:question),
+          users_result: create(:users_result)
         )
       ]
       subject_records.each do |r|
@@ -72,9 +72,13 @@ describe ActiveStorageAttachable do
 
         @membership = create(:membership, :for_campaign)
         @assign = create(:assign, membership: @membership)
-        MediaResponse.new(question: FactoryBot.build(:question), assign: @assign).save(validate: false)
-        @media_response = MediaResponse.last
-        @media_response.as_asset.attach(image)
+        @media_response = build_stubbed(
+          :media_response,
+          question: build(:question),
+          users_result: nil,
+          assign: @assign,
+          as_asset: image
+        )
       end
 
       it 'stores correct attachment key' do

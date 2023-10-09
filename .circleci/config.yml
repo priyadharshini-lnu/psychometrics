@@ -122,7 +122,7 @@ commands:
             cp config/application.yml.sample  config/application.yml
       - run:
           name: Setup DB
-          command: 'PARALLEL_TEST_PROCESSORS=<<parameters.processes>> DISABLE_COVERAGE=1 bundle exec rake parallel:create parallel:load_structure'
+          command: 'PARALLEL_TEST_PROCESSORS=<<parameters.processes>> DISABLE_COVERAGE=1 bundle exec rake parallel:create parallel:load_schema'
   assets_files:
     parameters:
       node-env:
@@ -379,7 +379,11 @@ jobs:
       - restore_assets_compile_cache:
           node-env: production
       - run:
+          name: Export I18n
+          command: bundle exec rake i18n:js:export
+      - run:
           name: Assets precompile
+          no_output_timeout: 15m
           command: |
             if [ -n "<< parameters.asset-host >>" ]; then
               ASSET_HOST=<< parameters.asset-host >> bundle exec rails assets:precompile

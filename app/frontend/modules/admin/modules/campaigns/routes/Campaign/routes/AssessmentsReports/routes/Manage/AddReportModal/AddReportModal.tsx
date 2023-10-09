@@ -118,7 +118,7 @@ const AddReportModal: React.FC<Props> = ({
             <Radio.Group>
               <Space direction="vertical">
                 {operationsOption.map(operation => (
-                  <Radio value={operation}>
+                  <Radio key={operation} value={operation}>
                     {I18n.t(
                       `campaign_report.form.operation_options.${operation}`,
                     )}
@@ -142,11 +142,9 @@ const AddReportModal: React.FC<Props> = ({
                   <Form.Item
                     name={['reportIds', `${id}`]}
                     valuePropName="checked"
-                    label={name}
-                    labelCol={{ span: 22 }}
-                    wrapperCol={{ span: 2 }}
+                    wrapperCol={{ span: 24 }}
                   >
-                    <Checkbox />
+                    <Checkbox>{name}</Checkbox>
                   </Form.Item>
                 )}
               />

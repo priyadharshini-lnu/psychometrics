@@ -1,0 +1,131 @@
+import * as t from 'io-ts'
+import ApiAction from 'interfaces/ApiAction'
+import { UploadFile } from 'antd/lib/upload/interface'
+import { createReducer } from '~/utils/redux'
+
+export const ExternalSettingsTR = t.type({
+  assessmentId: t.union([t.string, t.null, t.undefined]),
+  normId: t.union([t.string, t.null, t.undefined]),
+  scheduleConfig: t.union([t.string, t.null, t.undefined]),
+  assessmentName: t.union([t.string, t.null, t.undefined]),
+  normName: t.union([t.string, t.null, t.undefined]),
+})
+export type ExternalSettings = t.TypeOf<typeof ExternalSettingsTR>
+
+export const AssessmentTR = t.type({
+  id: t.string,
+  name: t.string,
+  disabled: t.boolean,
+  archived: t.boolean,
+  deleted: t.boolean,
+  iconUrl: t.union([t.string, t.null, t.undefined]),
+  iconColor: t.union([t.string, t.null, t.undefined]),
+  type: t.string,
+  category: t.string,
+  timing: t.union([t.string, t.null]),
+  status: t.union([t.string, t.null]),
+  createdAt: t.union([t.string, t.null]),
+  updatedAt: t.union([t.string, t.null]),
+  createdBy: t.union([t.string, t.null]),
+  modifiedBy: t.union([t.string, t.null]),
+  enableVideoCheck: t.union([t.boolean, t.null]),
+  enableAudioCheck: t.union([t.boolean, t.null]),
+  enableNetworkCheck: t.union([t.boolean, t.null]),
+  externalSettings: ExternalSettingsTR,
+  icon: t.union([t.string, t.null]),
+  poster: t.union([t.string, t.null]),
+  dimension: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined]),
+  owner: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined]),
+  project: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined]),
+  meta: t.type({
+    permissions: t.type({
+      manage: t.boolean,
+    }),
+  }),
+  linkedAssessment: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined]),
+})
+
+
+export type Assessment = t.TypeOf<typeof AssessmentTR>
+
+export const CATEGORIES = [
+  'psychometric',
+  'organisational',
+  'case_study',
+  'threesixty',
+  'assessor_form',
+  'hogan',
+  'saville',
+  'pearson',
+  'iiht',
+]
+
+export const TYPES = [
+  'common',
+  'hogan',
+  'iiht',
+  'pearson',
+  'saville',
+]
+
+export const Schema = {
+  type: 'assessments',
+  relationships: {
+    owner: {
+      type: 'clients',
+    },
+    project: {
+      type: 'clients',
+    },
+    dimension: {
+      type: 'dimensions',
+    },
+    linkedAssessment: {
+      type: 'assessments',
+    },
+  },
+}
+
+export type Files = {
+  icon: {
+    file?: File | UploadFile
+  }
+  poster: {
+    file?: File | UploadFile
+  }
+}
+
+export const UPLOAD_FILES = 'resource/assessments/UPLOAD_FILES'
+
+export const uploadFiles = (id: string, data: FormData): ApiAction<void> => ({
+  type: UPLOAD_FILES,
+  request: {
+    method: 'put',
+    contentType: 'multipart/form-data;',
+    url: `/api/v2/administration/assessments/${id}/uploads`,
+    body: data,
+  },
+})
+
+
+export const reducer = createReducer({}, null)

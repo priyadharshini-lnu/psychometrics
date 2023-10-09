@@ -1,0 +1,1 @@
+export { BookingsAndInvitesDetails } from './BookingsAndInvitesDetails'

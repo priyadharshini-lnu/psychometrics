@@ -4,6 +4,7 @@ import RouteList from '~/components/RouteList'
 import { get as getCurrentUser } from '~/core/currentUser'
 import routeUtils from '~/utils/route'
 import settings from '../../settings'
+import { PageHeader } from '../../PageHeader'
 
 function Participants ({ history, routes, currentUser }) {
   const onSelect = ({ key }) => routeUtils.moveTo(history, settings.urlPrefix, key)
@@ -13,15 +14,18 @@ function Participants ({ history, routes, currentUser }) {
     label: 'Options',
   })
   return (
-    <div>
-      <Menu
-        items={menuItems}
-        onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
-        mode="horizontal"
-      />
-      <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-    </div>
+    <>
+      <PageHeader />
+      <div>
+        <Menu
+          items={menuItems}
+          onSelect={onSelect}
+          selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+          mode="horizontal"
+        />
+        <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+      </div>
+    </>
   )
 }
 

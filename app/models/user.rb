@@ -121,7 +121,9 @@ class User < ApplicationRecord
   has_many :report_approvals, dependent: :destroy
   has_many :highlights, dependent: :destroy
   has_many :privacy_consents, dependent: :destroy
-
+  has_many :user_availability_dates, dependent: :destroy
+  has_many :user_availability_days, through: :user_availability_dates
+  has_many :user_bookings
   has_one :security_setting, through: :project
   has_one :user_profile
 
@@ -145,12 +147,33 @@ class User < ApplicationRecord
 
   has_one_time_password(encrypted: true)
 
+  delegate :subdomain, to: :project, allow_nil: true
+
+  def last_workshop_subject(campaign_id)
+    workshops ||= WorkshopSubject.where(
+      user_id: id,
+      campaign_id: campaign_id
+    ).order(:updated_at)
+
+    workshops.participatable.last || workshops.last
+  end
+
+  def last_workshop(campaign_id)
+    last_workshop_subject(campaign_id)&.workshop
+  end
+
   def send_reset_password_instructions
     super unless disabled?
   end
 
   def self.send_reset_password_instructions(recoverable)
     recoverable.send_reset_password_instructions if recoverable.persisted?
+  end
+
+  def privacy_consent_required?
+    return false if admin?
+
+    project.privacy_consent && !privacy_consents.exists?(version: project.current_privacy_policy_version)
   end
 
   def accessible_records(resource_class, permissions)
@@ -268,7 +291,7 @@ class User < ApplicationRecord
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       %i[hris_data_cont role_scope_in filterable_fields admins search_query with_access_to_campaign
-         campaign_users_completion_status_in campaign_users_status_in]
+         with_campaign_user campaign_users_completion_status_in campaign_users_status_in]
     end
 
     # Available role for the filter form

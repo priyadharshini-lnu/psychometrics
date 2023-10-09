@@ -1,0 +1,42 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 500;
+  box-shadow: 0 0 3px #aaa;
+}
+
+.hide {
+  animation: 0.5s hide;
+  z-index: 100;
+  transform: translateX(0);
+}
+
+.show {
+  animation: 0.5s show;
+  z-index: 500;
+}
+
+@keyframes hide {
+  0% {
+    transform: translateX(0%);
+    z-index: 500;
+  }
+  100% {
+    transform: translateX(-100%);
+    z-index: 300;
+  }
+}
+
+
+@keyframes show {
+  0% {
+    transform: translateX(-100%);
+    z-index: 300;
+  }
+  100% {
+    transform: translateX(0);
+    z-index: 500;
+  }
+}

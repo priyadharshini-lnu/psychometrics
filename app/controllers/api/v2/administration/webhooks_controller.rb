@@ -24,9 +24,9 @@ module Api
 
     def send_test
       @webhook = Webhook.find(params[:webhook_id])
-      event = JSON.parse(params[:data][:attributes][:payload_data])
+      event = params[:data][:attributes][:payload_data]
 
-      response = ::Administration::Webhooks::TestWebhook.call(
+      response = ::Administration::Webhooks::PushWebhook.call(
         @webhook, event
       )
 
@@ -40,7 +40,7 @@ module Api
       if response && response[:error]
         render json: { error: response[:error] }, status: 400
       else
-        render json: :ok
+        render json: @webhook.event_logs.last.response
       end
     end
 

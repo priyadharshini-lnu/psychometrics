@@ -24,6 +24,18 @@ module Api
           end
         end
 
+        def self.update_attributes(attribute)
+          proc do
+            attribute[:email].filled(:string)
+            attribute[:first_name].filled(:string)
+            attribute[:last_name].filled(:string)
+            optional(:user_profile_data).hash do
+              optional(:locale).maybe(:string)
+              optional(:timezone).maybe(:string)
+            end
+          end
+        end
+
         def self.base_attributes(attribute)
           proc do
             attribute[:email].filled(:string)
@@ -37,6 +49,7 @@ module Api
             optional(:created_by).maybe(:string)
             optional(:modified_by).maybe(:string)
             attribute[:role].filled(:string)
+            optional(:photo_url).maybe(:string)
           end
         end
 
@@ -62,6 +75,20 @@ module Api
         def self.reset_password_response
           json_api_attributes do
             optional(:password).maybe(:string)
+          end
+        end
+
+        def self.change_password_request
+          json_api_attributes do
+            required(:current_password).filled(:string)
+            required(:password).filled(:string)
+            required(:password_confirmation).filled(:string)
+          end
+        end
+
+        def self.change_password_response
+          json_api_attributes do
+            required(:message).maybe(:string)
           end
         end
       end

@@ -4,12 +4,15 @@ import { Profile } from './Profile'
 import { ChangePassword } from './ChangePassword'
 import { Insights } from './Insights'
 import { UserAssessment } from './UserAssessment'
+import { Assessment } from './Assessment'
 import { AgileUserAssessment } from './AgileUserAssessment'
 import { CheckingWizard } from './CheckingWizard'
 import { Nomination } from './Nomination'
 import { Evaluation } from './Evaluation'
 import { Report } from './Report'
 import { Anonym } from './Anonym'
+import { Bookings } from './Bookings'
+import MeetingRoom from './MeetingRoom'
 
 const routes = [
   {
@@ -33,6 +36,10 @@ const routes = [
     exact: true,
   },
   {
+    path: '/invites',
+    main: Bookings,
+  },
+  {
     path: '/profile_details',
     main: Profile,
     exact: true,
@@ -45,6 +52,11 @@ const routes = [
   {
     path: '/campaigns/:campaignId/insights',
     main: Insights,
+    exact: true,
+  },
+  {
+    path: '/user_assessments/:userAssessmentId',
+    main: Assessment,
     exact: true,
   },
   {
@@ -79,6 +91,11 @@ const routes = [
   {
     path: '/anonym/:assessmentKey',
     main: Anonym,
+    exact: true,
+  },
+  {
+    path: '/meet/:roomId',
+    main: MeetingRoom,
     exact: true,
   },
 ]

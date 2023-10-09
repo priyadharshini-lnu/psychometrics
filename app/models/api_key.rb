@@ -2,6 +2,8 @@
 
 class ApiKey < ApplicationRecord
   belongs_to :user, class_name: 'User', inverse_of: :api_keys
+  belongs_to :creator, foreign_key: :created_by_id, class_name: 'User', optional: true
+  belongs_to :modifier, foreign_key: :updated_by_id, class_name: 'User', optional: true
 
   scope :active, -> { where.not(disabled: true) }
 

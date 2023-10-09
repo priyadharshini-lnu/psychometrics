@@ -39,6 +39,10 @@ class EndUser::UsersController < ApplicationController
     end
   end
 
+  def policy
+    render json: { content: I18n.t("privacy_policy.#{params[:version]}") }
+  end
+
   def accept_privacy
     raise "Invalid Privacy consent version '#{params[:version]}' passed" if params[:version].blank?
 
@@ -59,7 +63,9 @@ class EndUser::UsersController < ApplicationController
     if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS))
       current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
       audit! :update_user_profile, current_user, project: @current_project, payload: form.attributes
-      render json: current_user, serializer: EndUser::CurrentUserSerializer, project_id: @current_project.id
+      render json: current_user, serializer: EndUser::CurrentUserSerializer,
+             project_id: @current_project.id, back_url: session[:back_url]
+      session.delete(:back_url)
     else
       render json: { errors: current_user.errors.messages }, status: 400
     end
@@ -83,6 +89,24 @@ class EndUser::UsersController < ApplicationController
       head :ok
     else
       render json: { errors: current_user.errors.messages }, status: 422
+    end
+  end
+
+  def workshop
+    respond_to do |format|
+      format.json do
+        workshop = Workshop.
+                   includes(:workshop_subjects).
+                   joins(:workshop_subjects).
+                   merge(WorkshopSubject.participatable).
+                   find_by(workshop_subjects: { user_id: current_user.id })
+
+        if workshop
+          render json: workshop, serializer: EndUser::WorkshopSerializer
+        else
+          head :no_content
+        end
+      end
     end
   end
 

@@ -57,7 +57,8 @@ module Threesixty
           'regenerate_report'
         ],
         {
-          project_id: current_project_id
+          project_id: current_project_id,
+          campaign_id: campaign_id
         }
       )
     end
@@ -70,6 +71,10 @@ module Threesixty
 
     def current_project_id
       @instance_options[:project_id]
+    end
+
+    def campaign_id
+      @instance_options[:campaign_id]
     end
   end
 end

@@ -13,20 +13,27 @@ class CommunicationEmailMailer < ApplicationMailer
     campaign_user = @communication_email.campaign_user
     data[:schedule_start_date] = format_date(campaign_user&.schedule_start_date)
     data[:schedule_end_date] = format_date(campaign_user&.schedule_end_date)
-    @body = Mustache.render(@communication_email.communication.body, data)
+    @body = Mustache.render(replace_new_piped_texts, data)
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
     smtp_setting = recipient.project.smtp_setting
     mail(
       from: smtp_setting.from_name_and_email,
       to: recipient.email,
       subject: @communication_email.communication.subject,
-      template_path: '/mailer/communication_email',
+      template_path: 'mailer/communication_email',
       delivery_method_options: smtp_setting.settings_for_email
     )
     @communication_email.update(sent_at: Time.current)
   end
 
   private
+
+  def replace_new_piped_texts
+    Communications::PipedText::Perform.call!(
+      @communication_email.communication.body,
+      { workshop: @communication_email.workshop, workshop_invite: @communication_email.workshop_invite }.compact
+    )
+  end
 
   def format_date(date)
     return unless date

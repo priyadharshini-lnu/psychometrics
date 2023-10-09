@@ -1,0 +1,137 @@
+import React, { useEffect, useState } from 'react'
+import {
+  Drawer, Table, Avatar, Checkbox, Space, Radio, TimePicker, Button, Col, Row,
+} from 'antd'
+import { useParams } from 'react-router-dom'
+import moment from 'moment'
+import { ResourceAvatar } from '~/glint'
+import { CampaignAssessment, CampaignAssessmentTR } from '~/modules/admin/modules/campaigns/core/campaignAssessment'
+import {
+  WorkshopSubject,
+} from '~/modules/admin/modules/campaigns/core/workshopSubject'
+import { useResources } from '~/hooks/useResources'
+import settings from '~/modules/admin/modules/campaigns/settings'
+
+const { I18n } = window
+interface Props {
+  open: boolean
+  subjects: WorkshopSubject[]
+  onClose: () => void
+  onSave: (data) => void
+}
+
+interface PayloadData {
+  assessmentId: string,
+  assessmentName: string,
+  action: 'no_change' | 'schedule' | 'unschedule',
+  time: string | null,
+}
+
+export const BulkSchedule: React.FC<Props> = ({
+  open, subjects, onClose, onSave,
+}) => {
+  const {
+    id, campaignId,
+  } = useParams<{ id: string, campaignId: string }>()
+
+  const { fetch } = useResources<CampaignAssessment>('campaign_assessments', {
+    basePath: `campaigns/${campaignId}/workshops/${id}`,
+    responseType: CampaignAssessmentTR,
+    apiConfig: {
+      filter: { workshop_activity_eq: 'true', campaign_id_eq: campaignId },
+      include: ['assessment'],
+      fields: {
+        assessments: ['name'],
+      },
+    },
+  })
+
+  useEffect(() => {
+    fetch().then((response) => {
+      setData(response.data.map(({ assessment }) => ({
+        assessmentId: assessment.id,
+        assessmentName: assessment.name,
+        action: 'no_change',
+        time: null,
+      })))
+    })
+  }, [])
+
+  const [overrideExists, setOverrideExists] = useState(false)
+  const [data, setData] = useState<PayloadData[]>([])
+
+  const save = () => {
+    const payload = {
+      subjectIds: subjects.map(s => s.id),
+      assessments: data,
+      overrideExisting: overrideExists,
+    }
+    onSave(payload)
+  }
+
+  const changeAction = (assessment, value) => {
+    let { time } = assessment
+    if (value === 'schedule' && !time) {
+      time = moment().toDate()
+    }
+    setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, action: value, time } : d)))
+  }
+  const changeTime = (assessment, time) => {
+    setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, time: time.toDate() } : d)))
+  }
+
+  return (
+    <Drawer width="60%" title={I18n.t('administration.scheduling.subjects.form_title')} open={open} onClose={onClose}>
+      <Avatar.Group
+        size="large"
+        maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
+      >
+        {subjects.map(subject => <ResourceAvatar name={subject?.user?.fullName || ''} />)}
+      </Avatar.Group>
+      <div>
+        {data.length}
+        {' '}
+        {I18n.t('administration.scheduling.subjects.assessments')}
+      </div>
+      <Table dataSource={data}>
+        <Table.Column title="ID" dataIndex="assessmentId" />
+        <Table.Column
+          title="Assessment Name"
+          width="40%"
+          render={assessment => <div>{assessment.assessmentName}</div>}
+        />
+        <Table.Column
+          title="Schedule Time"
+          render={assessment => (
+            <Space>
+              <Radio.Group
+                value={assessment.action}
+                defaultValue="no_change"
+                onChange={e => changeAction(assessment, e.target.value)}
+              >
+                <Radio value="no_change">{I18n.t('administration.scheduling.subjects.no_change')}</Radio>
+                <Radio value="schedule">{I18n.t('administration.scheduling.subjects.schedule')}</Radio>
+                <Radio value="unschedule">{I18n.t('administration.scheduling.subjects.unschedule')}</Radio>
+              </Radio.Group>
+              { assessment.action === 'schedule' && (
+                <TimePicker
+                  format={settings.timeFormat}
+                  onChange={value => changeTime(assessment, value)}
+                  defaultValue={moment()}
+                />
+              )}
+            </Space>
+          )}
+        />
+      </Table>
+      <Space>
+        <Checkbox checked={overrideExists} onChange={() => setOverrideExists(!overrideExists)}>
+          {I18n.t('administration.scheduling.subjects.override_existing')}
+        </Checkbox>
+      </Space>
+      <Row justify="end">
+        <Col><Button type="primary" onClick={save}>{I18n.t('common.actions.save')}</Button></Col>
+      </Row>
+    </Drawer>
+  )
+}

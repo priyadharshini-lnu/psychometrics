@@ -1,0 +1,136 @@
+import { useEffect, useState } from 'react'
+import {
+  Form, Row, Col, Steps, Modal,
+} from 'antd'
+import _ from 'lodash'
+import { useHistory, useParams } from 'react-router-dom'
+import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
+import routeUtils from '~/utils/route'
+import { useResources } from '~/hooks/useResources'
+import styles from './Form.less'
+import { BaseInfoForm, type Errors } from './BaseInfo'
+import { AddSubjects } from './AddSubjects'
+import { SendInvitation } from './SendInvitations'
+import { SuccessPage } from './SuccessPage'
+import settings from '~/modules/admin/modules/campaigns/settings'
+
+const { I18n } = window
+
+export const InvitesForm = () => {
+  const {
+    campaignId,
+  } = useParams<{ campaignId: string }>()
+  const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
+  const history = useHistory()
+  const [form] = Form.useForm()
+  const [submitPage, showSubmitPage] = useState(false)
+  const [step, setStep] = useState(0)
+  const [errors, setErrors] = useState<Errors | null>(null)
+
+  useEffect(() => {
+    form.setFieldsValue({
+      allowLanguagePreference: true,
+      allowedLanguages: [],
+      allowNeurodiversityOption: false,
+    })
+  }, [])
+
+  const { createResource, isLoading } = useResources<WorkshopInvite>('workshop_invites', {
+    basePath: `/campaigns/${campaignId}`,
+  })
+  const workshopInviteCreationInProgress = isLoading('add')
+
+  const submitForm = () => {
+    setErrors(null)
+    createResource({
+      title: form.getFieldValue('title'),
+      allowLanguagePreference: form.getFieldValue('allowLanguagePreference'),
+      allowedLanguages: form.getFieldValue('languagesAllowed'),
+      allowNeurodiversityOption: form.getFieldValue('allowNeurodiversityOption'),
+      workshopIds: (form.getFieldValue('workshopIds') || []).map(workshop => workshop.id),
+      subjects: (form.getFieldValue('subjects') || []).map(user => ({ userId: user.id })),
+      translations: form.getFieldValue('translations') || [],
+    }).then(() => {
+      showSubmitPage(true)
+    }).catch((errors) => {
+      setErrors(errors)
+    })
+  }
+
+  const handleCancel = () => {
+    Modal.confirm({
+      title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
+      content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
+      okText: I18n.t('common.text.confirm'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => routeUtils.moveTo(history, prefixPath, '/invites'),
+    })
+  }
+
+  return (
+    <div style={{ padding: 20 }}>
+      <Row className={styles.steps}>
+        <Col span={18}>
+          <Steps
+            size="small"
+            current={step}
+            items={[
+              {
+                title: I18n.t('administration.assessment_center.invite.steps.basic_info'),
+                ...(errors?.workshopIds ? {
+                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  status: 'error',
+                  onClick: () => { errors?.workshopIds && setStep(0) },
+                } : {}),
+              },
+              {
+                title: I18n.t('administration.assessment_center.invite.steps.add_subjects'),
+                ...(errors?.subjects ? {
+                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  status: 'error',
+                  onClick: () => { setStep(1) },
+                } : {}),
+              },
+              {
+                title: I18n.t('administration.assessment_center.invite.steps.send_invitation'),
+                ...(_.some(errors, (e, key) => key.includes('translations')) ? {
+                  description: I18n.t('administration.assessment_center.invite.steps.has_errors'),
+                  status: 'error',
+                  onClick: () => { setStep(2) },
+                } : {}),
+              },
+            ]}
+          />
+        </Col>
+      </Row>
+      {step === 0 && (
+        <BaseInfoForm
+          onCancel={handleCancel}
+          form={form}
+          next={() => setStep(step + 1)}
+          errors={errors}
+        />
+      )}
+      {step === 1 && (
+        <AddSubjects
+          form={form}
+          onCancel={handleCancel}
+          next={() => setStep(step + 1)}
+          prev={() => setStep(step - 1)}
+        />
+      )}
+      {step === 2 && (submitPage
+        ? <SuccessPage />
+        : (
+          <SendInvitation
+            form={form}
+            submit={submitForm}
+            prev={() => setStep(step - 1)}
+            errors={errors}
+            onCancel={handleCancel}
+            isLoading={workshopInviteCreationInProgress}
+          />
+        ))}
+    </div>
+  )
+}
