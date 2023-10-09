@@ -268,10 +268,8 @@ class Text extends Component {
     }
 
     const style = {
-      backgroundColor: `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`,
       border: '1px solid',
       borderRadius,
-      borderColor: `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`,
       color: fontColor,
       fontSize,
       fontFamily,
@@ -280,6 +278,13 @@ class Text extends Component {
       textAlign: horizontalAlign,
       alignItems: verticalAlign,
       WebkitAlignItems: verticalAlign,
+    }
+    if (backgroundColor) {
+      style.backgroundColor = `rgba(
+        ${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
+    }
+    if (borderColor) {
+      style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
     }
     if (model.props.sourceType === 'ConditionalText'
       || (model.props.sourceType === 'ConditionalFactorOccupationText' && model.props.basedOn === 'factor')) {
@@ -303,6 +308,7 @@ class Text extends Component {
       if (fontSize) style.fontSize = fontSize
       if (fontFamily) style.fontFamily = fontFamily
     }
+
     return (
       <Foundation {...this.props} preview={preview || this.edit}>
         <div style={style} onClick={this.click} className={styles.text} onDoubleClick={this.openEditor}>
