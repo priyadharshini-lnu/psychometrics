@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Row, Col, Input, Select, Pagination, Button, Space, Menu, message, Modal,
+  Table, Row, Col, Input, Select, Pagination, Button, Space, MenuProps, message, Modal,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
@@ -205,11 +205,11 @@ const SmsInvitesComponent: React.FC<Props> = ({
               render={smsInvite => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       onEdit: () => openModal('SmsInviteFormModal', { campaignId, smsInvite }),
                       permissions,
                       onRemove: () => handleDelete(smsInvite),
-                    }) as React.ReactElement
+                    })
                   }
                   innerElement={(
                     <a>
@@ -236,13 +236,8 @@ const SmsInvitesComponent: React.FC<Props> = ({
   )
 }
 
-interface ActionsMenu {
-  onEdit(): void
-  onRemove(): void
-  permissions: Props['smsInvites']['permissions']
-}
 
-const ActionsMenu = ({ onEdit, onRemove, permissions }) => {
+const getActionsMenuProps = ({ onEdit, onRemove, permissions }): MenuProps => {
   const menuItems:ItemType[] = []
   permissions.update && menuItems.push({
     key: 'edit',
@@ -262,9 +257,7 @@ const ActionsMenu = ({ onEdit, onRemove, permissions }) => {
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 export const SmsInvites = connecter(
   withEnhancedTable<{}>(SmsInvitesComponent, 'smsInvites', { maintainHistory: true }),

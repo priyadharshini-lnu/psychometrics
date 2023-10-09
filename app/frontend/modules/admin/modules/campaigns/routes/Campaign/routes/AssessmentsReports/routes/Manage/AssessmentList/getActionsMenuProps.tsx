@@ -1,5 +1,4 @@
-import React from 'react'
-import { Menu, message } from 'antd'
+import { MenuProps, message } from 'antd'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
@@ -17,7 +16,7 @@ const DEFAULT_OPTIONS = {
   updateExternalConfig: true,
 }
 
-export interface ActionMenuProps {
+export interface ActionMenuData {
   campaignId: number
   assessment: Assessment
   optionsOverrides?: Partial<Options>
@@ -35,11 +34,11 @@ export interface ActionMenuProps {
   updateExternalConfig?: AssessmentListProps['updateExternalConfig']
 }
 
-export const ActionsMenu: React.FC<ActionMenuProps> = ({
+export const getActionsMenuProps = ({
   campaignId, assessment, openModal, rescoreResponses, exportRawResults,
   exportScoringResults, exportNormedResults, exportRawFactorScores,
   exportExternalResults, updateExternalConfig, optionsOverrides,
-}) => {
+}:ActionMenuData): MenuProps => {
   const { id, name, permissions } = assessment
   const actions = { ...DEFAULT_OPTIONS, ...optionsOverrides || {} }
 
@@ -175,6 +174,6 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
   }
 
   return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
+    { items: menuItems, onClick: handleMenuClick }
   )
 }

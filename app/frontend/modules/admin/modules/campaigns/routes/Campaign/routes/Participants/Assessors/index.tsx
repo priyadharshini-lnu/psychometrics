@@ -21,7 +21,7 @@ import settings from '~/modules/admin/settings'
 import Modals from '~/modules/admin/components/Modals/'
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import { get as getCurrentUser } from '~/core/currentUser'
-import { ActionsMenu } from './ActionsMenu'
+import { getActionsMenuProps } from './getActionsMenuProps'
 import styles from './styles.less'
 import AssessorFormModal from './AssessorFormModal'
 import ImportAssessorsModal from './ImportAssessorsModal'
@@ -154,13 +154,13 @@ const AssessorList: React.FC<Props> = ({
               render={assessor => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       campaignId,
                       id: assessor.id,
                       email: assessor.email,
                       permissions: assessor.permissions,
                       remove: () => remove(campaignId, assessor.id),
-                    }) as React.ReactElement
+                    })
                   }
                   innerElement={(
                     <a>

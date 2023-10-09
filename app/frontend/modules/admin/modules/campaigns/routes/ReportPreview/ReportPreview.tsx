@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import cs from 'classnames'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Menu, Tag,
+  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Tag,
 } from 'antd'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
@@ -107,10 +107,7 @@ export default function ReportPreview ({
       { key: 'all', label: I18n.t('common.text.all_pages') },
     ]
     const actionList = [
-      <Dropdown overlay={(
-        <Menu items={menuItems} onClick={onChangeView} />
-        )}
-      >
+      <Dropdown menu={{ items: menuItems, onClick: onChangeView }}>
         <Button>
           <Space>
             {I18n.t('common.text.view_as')}

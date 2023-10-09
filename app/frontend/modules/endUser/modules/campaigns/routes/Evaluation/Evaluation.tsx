@@ -1,6 +1,6 @@
 import { createRef, useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
+  Layout, Row, Col, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space, Typography,
 } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -89,21 +89,12 @@ const EvaluationComponent = ({
     updateStatus(params.campaignId, params.id, status)
   }
 
-  const StatusMenu = () => (
-    <Menu
-      onClick={(e) => {
-        handleStatusClick(e.key)
-      }}
-      items={statusMenuItems}
-    />
-  )
-
   const StatusDropdown = () => {
     if (approve_evaluation) {
       return (
         <Dropdown
           trigger={['click']}
-          overlay={StatusMenu}
+          menu={{ items: statusMenuItems, onClick: e => handleStatusClick(e.key) }}
         >
           <Button>
             {statusPresenter.getApprovalStatus(managerEvaluationStatus)}

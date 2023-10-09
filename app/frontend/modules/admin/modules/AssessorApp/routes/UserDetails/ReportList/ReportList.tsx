@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Dropdown, Menu,
+  Table, Row, Col, Dropdown, MenuProps,
 } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 import { MoreOutlined } from '@ant-design/icons'
@@ -51,11 +51,10 @@ const UserReports: React.FC<Props> = ({ userReports }) => {
             key="action"
             render={({ id, internal, reportUrl }) => (
               <Dropdown
-                overlay={() => (
-                  ActionsMenu({
+                menu={
+                  getActionsMenuProps({
                     campaignId: parsedCampaignId, id, internal, reportUrl,
-                  }) as React.ReactElement
-                )}
+                  })}
                 trigger={['click']}
               >
                 <a>
@@ -70,16 +69,16 @@ const UserReports: React.FC<Props> = ({ userReports }) => {
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   campaignId: number
   id: number
   internal: boolean
   reportUrl: string
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   campaignId, id, internal, reportUrl,
-}) => {
+}:ActionMenuData):MenuProps => {
   const previewUrl = () => {
     if (internal) {
       return `/assessors/campaigns/${campaignId}/user_reports/${id}/`
@@ -88,20 +87,16 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     return `/assessors/campaigns/${campaignId}/external_user_report/${id}/`
   }
 
-  return (
-    <Menu
-      items={
-        [{
-          key: 'viewReport',
-          label: (
-            <Link to={previewUrl()}>
-              {I18n.t('reports.actions.view')}
-            </Link>),
-          disabled: !(internal || reportUrl),
-        }]
-      }
-    />
-  )
+  return ({
+    items: [{
+      key: 'viewReport',
+      label: (
+        <Link to={previewUrl()}>
+          {I18n.t('reports.actions.view')}
+        </Link>),
+      disabled: !(internal || reportUrl),
+    }],
+  })
 }
 
 export default connecter(UserReports)

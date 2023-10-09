@@ -7,7 +7,7 @@ import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { ActionsMenu } from './ActionsMenu'
+import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
@@ -197,7 +197,7 @@ const AssessmentList: React.FC<Props> = ({
             render={assessment => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     assessment,
                     campaignId: parsedCampaignId,
                     openModal,
@@ -208,7 +208,7 @@ const AssessmentList: React.FC<Props> = ({
                     exportRawFactorScores,
                     exportExternalResults,
                     updateExternalConfig,
-                  }) as React.ReactElement
+                  })
                 }
                 innerElement={(
                   <a>

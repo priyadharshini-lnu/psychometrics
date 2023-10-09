@@ -9,7 +9,7 @@ import {
   Space,
   Image,
   Typography,
-  Menu,
+  MenuProps,
   Modal,
   Radio,
   Avatar,
@@ -231,10 +231,10 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
             render={project => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     project,
                     toggleDisableProject,
-                  }) as React.ReactElement
+                  })
                 }
               />
             )}
@@ -299,14 +299,14 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   project: Project,
   toggleDisableProject(project): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   project, toggleDisableProject,
-}) => {
+}: ActionMenuData): MenuProps => {
   const { disabled } = project
 
   const menuItems: ItemType[] = []
@@ -329,9 +329,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export const ProjectList = withEnhancedTable(

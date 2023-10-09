@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Menu,
+  Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -17,7 +17,7 @@ interface Props {
 
 export const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissions }) => (
   <ConditionalDropdown
-    menu={menu({
+    menu={getMenuProps({
       campaignId,
       openModal,
       permissions,
@@ -34,11 +34,11 @@ export const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissi
   />
 )
 
-const menu: React.FC<Props> = ({
+const getMenuProps = ({
   campaignId,
   openModal,
   permissions,
-}) => {
+}): MenuProps => {
   const menuItems:ItemType[] = []
   permissions.export && menuItems.push({
     key: 'export',
@@ -66,7 +66,5 @@ const menu: React.FC<Props> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }

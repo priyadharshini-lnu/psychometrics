@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useContext, useState } from 'react'
 import {
-  Table, Dropdown, Menu, Button, Row, Popconfirm, Card, Typography, Space,
+  Table, Dropdown, Button, Row, Popconfirm, Card, Typography, Space, MenuProps,
 } from 'antd'
 import {
   DownOutlined, CheckOutlined, ReloadOutlined, DeleteOutlined, PlusOutlined,
@@ -33,16 +33,14 @@ export const RequirementTable = (props) => {
   const { isMobile } = useContext(MediaQueryContext)
   const [showForm, setShowForm] = useState(false)
 
-  const StatusMenu = ({ id }) => (
-    <Menu
-      onClick={(e) => {
-        updateStatus({
-          campaignId, nominationId, evaluatorId: id, status: e.key,
-        })
-      }}
-      items={statusMenuItems}
-    />
-  )
+  const getStatusMenuProps = ({ id }): MenuProps => ({
+    items: statusMenuItems,
+    onClick: (e) => {
+      updateStatus({
+        campaignId, nominationId, evaluatorId: id, status: e.key,
+      })
+    },
+  })
 
   const renderRequirementCell = (value) => {
     if (value.evaluator) {
@@ -88,7 +86,7 @@ export const RequirementTable = (props) => {
       return (
         <Dropdown
           trigger={['click']}
-          overlay={() => StatusMenu(evaluator)}
+          menu={getStatusMenuProps(evaluator)}
         >
           <div>
             <Space>

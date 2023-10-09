@@ -4,7 +4,7 @@ import {
 import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
-const CustomMenu = ({
+const getCustomMenuProps = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
 }) => {
@@ -135,7 +135,7 @@ export default function ToolsDropdown ({
   return (
     <ConditionalDropdown
       menu={
-        CustomMenu({
+        getCustomMenuProps({
           projectId,
           campaignId,
           resetCampaignWithConfirmation,

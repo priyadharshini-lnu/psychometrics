@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Input, Space, Pagination, Button, Menu,
+  Table, Input, Space, Pagination, Button, MenuProps,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -128,7 +128,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           render={client => (
             <ConditionalDropdown
               menu={
-                ActionsMenu({
+                getActionMenuProps({
                   client,
                   updateResource,
                   removeResource,
@@ -136,7 +136,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                   countries,
                   types,
                   isSuperAdmin: isSuperAdmin(currentUser),
-                }) as React.ReactElement
+                })
               }
             />
           )}
@@ -196,7 +196,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     </>
   )
 }
-interface ActionMenuProps {
+interface ActionMenuData {
   client: Client
   countries: Meta['countries'],
   types: Meta['types'],
@@ -206,9 +206,9 @@ interface ActionMenuProps {
   isSuperAdmin: boolean
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionMenuProps = ({
   client, countries, types, updateResource, removeResource, openModal, isSuperAdmin,
-}) => {
+}: ActionMenuData): MenuProps => {
   const { id, name, meta } = client
   const menuItems = [
     isSuperAdmin && { key: 'edit', label: I18n.t('common.actions.edit') },
@@ -233,9 +233,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={_.compact(menuItems)} onClick={handleMenuClick} />
-  )
+  return ({ items: _.compact(menuItems), onClick: handleMenuClick })
 }
 
 export const ClientList = connecter(ClientListComponent)

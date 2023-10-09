@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
+  Button, MenuProps, Space, Switch, Tag, message, Typography, Checkbox, Modal,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -249,9 +249,9 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           render={subject => (
             <ConditionalDropdown
               menu={
-                ActionsMenu({
+                getActionsMenuProps({
                   subject,
-                }) as React.ReactElement
+                })
               }
             />
           )}
@@ -268,13 +268,13 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   subject: WorkshopSubject
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   subject,
-}) => {
+}:ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
   const handleMarkCancel = () => {
     Modal.confirm({
@@ -322,7 +322,5 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     ),
   })
 
-  return (
-    <Menu items={menuItems} />
-  )
+  return ({ items: menuItems })
 }

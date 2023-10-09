@@ -1,11 +1,13 @@
 import React from 'react'
-import { Menu, Modal, message } from 'antd'
+import {
+  MenuProps, Modal, message,
+} from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 
 const { I18n } = window
 
-interface ActionMenuProps {
+interface ActionMenuData {
   campaignId: string
   id: number
   email: string
@@ -16,9 +18,9 @@ interface ActionMenuProps {
   remove(): void
 }
 
-export const ActionsMenu: React.FC<ActionMenuProps> = ({
+export const getActionsMenuProps = ({
   campaignId, id, remove, email, permissions,
-}) => {
+}: ActionMenuData):MenuProps => {
   const handleDelete = () => {
     Modal.confirm({
       title: I18n.t('common.text.confirm'),
@@ -57,7 +59,5 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, DatePicker, Dropdown, Menu, Space,
+  Button, DatePicker, Dropdown, Space,
 } from 'antd'
 import { MenuProps } from 'antd/lib/menu'
 import { DownOutlined } from '@ant-design/icons'
@@ -30,21 +30,6 @@ export const DateEntry: React.FC<Props> = ({
   // Can contain list of all active options in future too
   const allSelectedOptions: string[] = [dateFormat]
 
-  const DateEntryMenu = (
-    <Menu
-      onClick={handleMenuItemClick}
-      triggerSubMenuAction="click"
-      selectedKeys={allSelectedOptions}
-      items={[{
-        key: 'date-format',
-        label: I18n.t(
-          'administration.survey_builder.property_panel.date_format',
-        ),
-        children: getMenuItems(DATE_FORMAT_OPTIONS, 'label', 'value', 'label'),
-      }]}
-    />
-  )
-
   const pickerMode = DATE_FORMAT_OPTIONS.find(
     dateFormatOption => dateFormatOption.value === dateFormat,
   )?.picker ?? 'date'
@@ -56,7 +41,21 @@ export const DateEntry: React.FC<Props> = ({
         format={dateFormat}
         picker={pickerMode}
       />
-      <Dropdown overlay={DateEntryMenu} trigger={['click']}>
+      <Dropdown
+        menu={{
+          items: [{
+            key: 'date-format',
+            label: I18n.t(
+              'administration.survey_builder.property_panel.date_format',
+            ),
+            children: getMenuItems(DATE_FORMAT_OPTIONS, 'label', 'value', 'label'),
+          }],
+          onClick: handleMenuItemClick,
+          triggerSubMenuAction: 'click',
+          selectedKeys: allSelectedOptions,
+        }}
+        trigger={['click']}
+      >
         <Button type="link">
           {I18n.t('administration.survey_builder.builder_area.options')}
           <DownOutlined />

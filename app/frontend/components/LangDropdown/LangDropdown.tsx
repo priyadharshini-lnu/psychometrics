@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dropdown, Menu, Space } from 'antd'
+import { Dropdown, Space } from 'antd'
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { LanguageIcon } from '~/glint/icons/LanguageIcon'
@@ -32,16 +32,13 @@ const LangDropdown: React.FC<Props> = ({ locales, current, changeLocale }) => {
     ) : null
   ))
 
-  const menu = (
-    <Menu items={menuItems} onClick={onSelect} />
-  )
   if (availableLocales?.length <= 1) return null
 
   return (
     <div>
       <Space>
         <LanguageIcon className={styles.icon} />
-        <Dropdown overlay={menu} trigger={['click']}>
+        <Dropdown menu={{ items: menuItems, onClick: onSelect }} trigger={['click']}>
           <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
             {loading
               ? <LoadingOutlined />

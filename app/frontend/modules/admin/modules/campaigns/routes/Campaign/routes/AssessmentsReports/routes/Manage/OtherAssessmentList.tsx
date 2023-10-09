@@ -16,7 +16,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
-import { ActionsMenu } from './AssessmentList/ActionsMenu'
+import { getActionsMenuProps } from './AssessmentList/getActionsMenuProps'
 
 const { Column } = Table
 const { I18n } = window
@@ -100,7 +100,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
               render={assessment => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       assessment,
                       campaignId: parsedCampaignId,
                       openModal,
@@ -111,7 +111,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
                       exportRawFactorScores,
                       exportExternalResults,
                       optionsOverrides: { remove: false, updateExternalConfig: false },
-                    }) as React.ReactElement
+                    })
                   }
                   innerElement={(
                     <a>

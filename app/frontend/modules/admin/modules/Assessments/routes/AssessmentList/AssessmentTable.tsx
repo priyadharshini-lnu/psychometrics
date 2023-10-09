@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Switch, message,
+  Button, Switch, message, MenuProps,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -147,23 +147,23 @@ const Dropdown: React.FC<DropDownProps> = (
   const [confirmation, setConfirmation] = useState(false)
   return (
     <ConditionalDropdown
-      menu={ActionsMenu({
+      menu={getActionsMenuProps({
         assessment, setConfirmation, confirmation, openDrawer,
-      }) as React.ReactElement}
+      })}
     />
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   assessment: Assessment
   setConfirmation: (confirmation: boolean) => void
   confirmation: boolean
   openDrawer: (assessment: Assessment) => void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   setConfirmation, confirmation, assessment, openDrawer,
-}) => {
+}: ActionMenuData): MenuProps => {
   const { resource } = useResourceContext<Assessment>()
 
   const handleOnConfirm = () => resource.removeResource(assessment.id).then(() => {
@@ -284,5 +284,5 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     },
   ].filter(m => m) as ItemType[]
 
-  return (<Menu items={menuItems} />)
+  return ({ items: menuItems })
 }

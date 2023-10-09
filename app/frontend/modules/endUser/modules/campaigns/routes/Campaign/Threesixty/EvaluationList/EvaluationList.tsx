@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { useState } from 'react'
 import {
-  Menu, Dropdown, Progress, Modal, Tooltip, Typography, Row, Checkbox,
+  Dropdown, Progress, Modal, Tooltip, Typography, Row, Checkbox,
 } from 'antd'
 import {
   InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
@@ -51,26 +51,24 @@ const EvaluationListComponent = ({
     return options.global.canNotEditEvaluation && isEvaluationCompleted(item)
   }
 
-  const menu = item => (
-    <Menu
-      onClick={() => declineEvaluation(item.campaignId, item.id)}
-      items={!isEvaluationCompleted(item)
-        ? [{ key: 'decline_invite', label: I18n.t('threesixty.decline_invite') }] : []}
-    />
+  const getMenuProps = item => (
+    {
+      items: !isEvaluationCompleted(item)
+        ? [{ key: 'decline_invite', label: I18n.t('threesixty.decline_invite') }] : [],
+      onClick: () => declineEvaluation(item.campaignId, item.id),
+    }
   )
 
-  const evaluatorsList = subject => (
-    <Menu
-      onClick={({ key }) => {
-        // eslint-disable-next-line max-len
-        history.push(`/threesixty_campaigns/${subject.campaignId}/evaluations/${key}?approve_evaluation=true&read=true`)
-      }}
-      items={subject.evaluators.map(evaluator => ({
-        key: evaluator.id,
-        label: userPresenter.getFullNameWithEmail(evaluator.user),
-      }))}
-    />
-  )
+  const evaluatorsList = subject => ({
+    items: subject.evaluators.map(evaluator => ({
+      key: evaluator.id,
+      label: userPresenter.getFullNameWithEmail(evaluator.user),
+    })),
+    onClick: ({ key }) => {
+      // eslint-disable-next-line max-len
+      history.push(`/threesixty_campaigns/${subject.campaignId}/evaluations/${key}?approve_evaluation=true&read=true`)
+    },
+  })
 
   const showDeclineEvaluationDropdown = item => (
     options.evaluator.canDeclineNomination && !item.subjectEvaluationClosed && !item.isSelf
@@ -124,7 +122,7 @@ const EvaluationListComponent = ({
 
         {showDeclineEvaluationDropdown(item)
           && (
-            <Dropdown overlay={() => menu(item)} trigger={['click']} placement="bottomRight">
+            <Dropdown menu={getMenuProps(item)} trigger={['click']} placement="bottomRight">
               <a href="#" style={{ flex: 'none' }}>
                 <EllipsisOutlined />
               </a>
@@ -140,7 +138,7 @@ const EvaluationListComponent = ({
     const { user } = item || { user: undefined }
     return (
       <>
-        <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
+        <Dropdown menu={evaluatorsList(item)} trigger={['click']} placement="bottomRight">
           <a href="#">
             <Tooltip placement="topLeft" title={user?.email ?? ''}>
               <div className={styles.flex}>

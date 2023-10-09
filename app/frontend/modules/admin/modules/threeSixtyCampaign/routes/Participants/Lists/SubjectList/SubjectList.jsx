@@ -9,7 +9,7 @@ import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components
 import ResetSubjectModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import styles from './SubjectList.less'
-import ActionsMenu from './ActionMenu'
+import { getActionsMenuProps } from './getActionsMenuProps'
 import ToolsDropdown from '../ToolsDropdown'
 import { Manage } from '../Manage'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
@@ -132,7 +132,7 @@ export default function SubjectList ({
               }) => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       subjectId: id,
                       email,
                       user,

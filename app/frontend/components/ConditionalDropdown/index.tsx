@@ -1,13 +1,11 @@
 import React, { ReactElement } from 'react'
-import {
-  Menu, Dropdown,
-} from 'antd'
+import { Dropdown, MenuProps } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import compact from 'lodash/compact'
 import castArray from 'lodash/castArray'
 
 interface Props {
-  menu: ReactElement | null | React.FC
+  menu: MenuProps | null
   innerElement?: ReactElement
   className?: string
   hideForEmptyMenu?: boolean
@@ -35,7 +33,7 @@ const ConditionalDropdown: React.FC<Props> = ({
   }
 
   const removeInvalidElements = (menu) => {
-    const menuItems = compact(castArray(menu.props.items))
+    const menuItems = compact(castArray(menu.items))
     let newChildren = menuItems.map((menuItem) => {
       const itemType = menuItem?.type
       if (itemType === 'divider') {
@@ -54,19 +52,17 @@ const ConditionalDropdown: React.FC<Props> = ({
     newChildren = compact(newChildren)
     newChildren = removeInvalidDividers(newChildren)
 
-    return (
-      <Menu {...menu.props} items={newChildren} />
-    )
+    return newChildren
   }
 
-  const filteredMenu = removeInvalidElements(menu)
-  const hasChildrens = (filteredMenu.props.items?.length > 0)
+  const filteredMenuItems = removeInvalidElements(menu)
+  const hasChildrens = (filteredMenuItems?.length > 0)
 
   if (!hasChildrens && hideForEmptyMenu) { return null }
 
   return (
     <Dropdown
-      overlay={() => (filteredMenu)}
+      menu={{ ...menu, items: filteredMenuItems }}
       trigger={['click']}
       disabled={!hasChildrens}
       className={className || ''}

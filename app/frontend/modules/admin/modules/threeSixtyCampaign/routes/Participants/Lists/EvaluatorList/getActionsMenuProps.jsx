@@ -1,6 +1,4 @@
-import { Menu } from 'antd'
-
-const ActionsMenu = ({
+export const getActionsMenuProps = ({
   user, campaignId, removeUser, openModal, onUserUpdate, editUser, permissions,
 }) => {
   const removeUserWithConfirmation = () => {
@@ -49,9 +47,5 @@ const ActionsMenu = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
-
-export default ActionsMenu

@@ -1,9 +1,9 @@
-import { Menu, Dropdown as AntDropdown } from 'antd'
+import { Dropdown as AntDropdown } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { getMenuItems } from '~/utils/array'
 
-const menu = ({ values, onChange }) => (
-  <Menu items={getMenuItems(values, 'value', 'value')} onClick={({ key }) => onChange({ value: key })} />
+const getMenuProps = ({ values, onChange }) => (
+  { items: getMenuItems(values, 'value', 'value'), onClick: ({ key }) => onChange({ value: key }) }
 )
 
 export default function Dropdown ({
@@ -13,7 +13,7 @@ export default function Dropdown ({
     updateEntity([index, field.key], value)
   }
   return (
-    <AntDropdown overlay={menu({ values: field.values(context), onChange })} trigger={['click']}>
+    <AntDropdown menu={getMenuProps({ values: field.values(context), onChange })} trigger={['click']}>
       <span className="mls">
         {entity[field.key] || 'Choose'}
         {' '}

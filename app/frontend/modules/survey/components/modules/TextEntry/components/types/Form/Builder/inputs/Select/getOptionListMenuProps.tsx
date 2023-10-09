@@ -2,7 +2,7 @@ import React, {
   useState, useEffect, useRef,
 } from 'react'
 import {
-  Menu, Input, InputRef, Row,
+  MenuProps, Input, InputRef, Row,
 } from 'antd'
 
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -14,7 +14,7 @@ import { DnDElement } from '~/components/DnD'
 import styles from '../../../FormStyle.less'
 import Option from './Option'
 
-interface Props {
+interface OptionListMenuData {
   type: BuilderModel['props']['formTypes'][0]
   model: BuilderModel
   index: number
@@ -25,9 +25,9 @@ interface OptionListState {
   text: string
 }
 
-const OptionList: React.FC<Props> = ({
+export const getOptionListMenuProps = ({
   type, type: { optionList = [] }, index, model,
-}) => {
+}: OptionListMenuData):MenuProps => {
   const [text, setText] = useState<string>('')
   const inputRef = useRef<InputRef>(null)
   const setFocus = useInputFocus(inputRef)
@@ -131,8 +131,5 @@ const OptionList: React.FC<Props> = ({
     },
   ]
 
-  return (
-    <Menu items={menuItems} className={styles.optionList} />
-  )
+  return ({ items: menuItems, className: styles.optionList })
 }
-export default OptionList

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, message, Modal,
+  Table, MenuProps, Row, Col, message, Modal,
 } from 'antd'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
@@ -115,7 +115,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
             render={assessment => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
                     openModal,
                     reset,
@@ -125,7 +125,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     assessment,
                     remove: () => remove(parsedCampaignId, assessment.id),
                     resetProgress,
-                  }) as React.ReactElement
+                  })
                 }
                 innerElement={(
                   <a>
@@ -141,7 +141,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   assessment: UserAssessment
   userId: number
   campaignId: number
@@ -161,10 +161,10 @@ interface ActionMenuProps {
   }): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   rescoreResponse, openModal, campaignId, userId, projectId, assessment,
   reset, remove, resetProgress,
-}) => {
+}: ActionMenuData): MenuProps => {
   const { name, permissions } = assessment
 
   const handleReset = () => {
@@ -282,9 +282,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export default withRouter(AssessmentList)

@@ -1,6 +1,6 @@
-import { Menu, message } from 'antd'
+import { message } from 'antd'
 
-const ActionsMenu = ({
+export const getActionsMenuProps = ({
   subjectId,
   campaignId,
   update,
@@ -247,9 +247,5 @@ const ActionsMenu = ({
     }
   }
 
-  return (
-    <Menu onClick={handleMenuClick} items={menuItems} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
-
-export default ActionsMenu
