@@ -5,7 +5,7 @@ import {
 import cs from 'classnames'
 import { FormInstance } from 'antd/lib/form'
 import { useResources } from '~/hooks/useResources'
-import { Assessment, CATEGORIES } from '~/modules/admin/modules/client/core/assessments'
+import { Assessment, LinkedAssessment, CATEGORIES } from '~/modules/admin/modules/client/core/assessments'
 import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { ExternalAssessmentFields } from './ExternalAssessmentFields'
@@ -33,7 +33,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
   } = useResources<Client>('clients')
   const {
     data: assessments, fetch: fetchAssessments, isLoading: isAssessmentsLoading,
-  } = useResources<Assessment>('assessments')
+  } = useResources<LinkedAssessment>('assessments')
 
   const type = Form.useWatch('type', form)
   const category = Form.useWatch('category', form)

@@ -67,6 +67,10 @@ export const AssessmentTR = t.type({
 
 
 export type Assessment = t.TypeOf<typeof AssessmentTR>
+export type LinkedAssessment = {
+  id: string
+  name: string
+}
 
 export const CATEGORIES = [
   'psychometric',
