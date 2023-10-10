@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
+  audited
+
   # Roles constant
   MEMBERSHIP_ROLES = [
     MEMBER_ROLE = 'member',

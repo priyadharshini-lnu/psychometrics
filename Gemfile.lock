@@ -192,6 +192,9 @@ GEM
     ast (2.4.2)
     attr_encrypted (4.0.0)
       encryptor (~> 3.0.0)
+    audited (5.3.3)
+      activerecord (>= 5.0, < 7.1)
+      request_store (~> 1.2)
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
     awesome_print (1.9.2)
@@ -1038,6 +1041,7 @@ DEPENDENCIES
   addressable (~> 2.7)
   ancestry (~> 3.0.0)
   attr_encrypted
+  audited (~> 5.3, >= 5.3.3)
   awesome_print (~> 1.9.2)
   aws-sdk-s3 (~> 1)
   aws-sdk-sqs (~> 1.38.0)

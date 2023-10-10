@@ -2,11 +2,12 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { Descriptions } from 'antd'
+import { Descriptions, Collapse } from 'antd'
 import { UnControlled as CodeMirror } from 'react-codemirror2'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getCurrent, fetchCurrent } from '~/modules/admin/modules/AuditLog/core'
 import styles from './styles.less'
+import JsonDiff from './JsonDiff'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/addon/fold/foldcode'
@@ -50,6 +51,21 @@ const AuditLogList: React.FC<Props> = ({
         <Descriptions.Item label={I18n.t('administration.audit_log.user')}>
           {record.user ? `${record.user.fullName} (${record.user.email})` : record.userId}
         </Descriptions.Item>
+        {record.requestUuid && (
+          <Descriptions.Item label={I18n.t('administration.audit_log.request_id')}>
+            {record.requestUuid}
+          </Descriptions.Item>
+        )}
+        {record.outcome && (
+          <Descriptions.Item label={I18n.t('administration.audit_log.outcome')}>
+            {record.outcome}
+          </Descriptions.Item>
+        )}
+        {record.failureReason && (
+          <Descriptions.Item label={I18n.t('administration.audit_log.failure_reason')}>
+            {record.failureReason}
+          </Descriptions.Item>
+        )}
         {record.client && (
           <Descriptions.Item label="Client">
             <a href={`/administration/clients/${record.client.id}/projects`}>
@@ -60,6 +76,15 @@ const AuditLogList: React.FC<Props> = ({
             </a>
           </Descriptions.Item>
         )}
+        <Descriptions.Item label={I18n.t('administration.audit_log.interface')}>
+          {record.interface}
+        </Descriptions.Item>
+        <Descriptions.Item label={I18n.t('administration.audit_log.user_agent')}>
+          {record.userAgent}
+        </Descriptions.Item>
+        <Descriptions.Item label={I18n.t('administration.audit_log.client_ip')}>
+          {record.clientIp}
+        </Descriptions.Item>
         {record.project && (
           <Descriptions.Item label={I18n.t('administration.audit_log.project')}>
             <a href={`/administration/projects/${record.project.id}/new_campaigns`}>
@@ -68,6 +93,15 @@ const AuditLogList: React.FC<Props> = ({
               {' '}
               {record.project.name}
 
+            </a>
+          </Descriptions.Item>
+        )}
+        {record.campaign && (
+          <Descriptions.Item label={I18n.t('administration.audit_log.campaign')}>
+            <a
+              href={`/administration/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
+            >
+              {record.campaign.name}
             </a>
           </Descriptions.Item>
         )}
@@ -95,6 +129,61 @@ const AuditLogList: React.FC<Props> = ({
           />
         </Descriptions.Item>
       </Descriptions>
+      {record.activeRecordAudits.length > 0 && (
+        <>
+          <Descriptions title={I18n.t('administration.active_record_audits.title')} className="mt-7" />
+          <Collapse defaultActiveKey={['1']}>
+            {record.activeRecordAudits.map(audit => (
+              <Collapse.Panel key={audit.id} header={`${audit.auditableType} - ${audit.auditableId}`}>
+                <Descriptions bordered className="mt-4" column={1}>
+                  <Descriptions.Item label={I18n.t('administration.active_record_audits.audit_id')}>
+                    {audit.id}
+                  </Descriptions.Item>
+                  <Descriptions.Item label={I18n.t('administration.active_record_audits.auditable_type')}>
+                    {audit.auditableType}
+                  </Descriptions.Item>
+                  <Descriptions.Item label={I18n.t('administration.active_record_audits.auditable_id')}>
+                    {audit.auditableId}
+                  </Descriptions.Item>
+                  <Descriptions.Item label={I18n.t('administration.active_record_audits.action')}>
+                    {audit.action}
+                  </Descriptions.Item>
+                  <Descriptions.Item label={I18n.t('administration.active_record_audits.audited_changes')}>
+                    {(() => {
+                      if (audit.action === 'update') {
+                        return Object.keys(audit.auditedChanges).map(key => (
+                          <div key={key} className="mt-5 mb-5">
+                            {key}
+                            :
+                            <JsonDiff
+                              oldChanges={audit.auditedChanges[key][0]}
+                              newChanges={audit.auditedChanges[key][1]}
+                            />
+                          </div>
+                        ))
+                      } if (audit.action === 'create') {
+                        return (
+                          <JsonDiff
+                            oldChanges={{}}
+                            newChanges={audit.auditedChanges}
+                          />
+                        )
+                      }
+                      return (
+                        <JsonDiff
+                          oldChanges={audit.auditedChanges}
+                          newChanges={{}}
+                        />
+                      )
+                    })()}
+                  </Descriptions.Item>
+
+                </Descriptions>
+              </Collapse.Panel>
+            ))}
+          </Collapse>
+        </>
+      )}
     </div>
   )
 }

@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class Report < ApplicationRecord
+  audited
+
   include Copyable
   include RansackSearchableFields
   include SoftDelete

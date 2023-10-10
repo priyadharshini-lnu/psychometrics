@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class Client < ApplicationRecord
+  audited
+
   include Copyable
   include RansackSearchableFields
   extend Mobility

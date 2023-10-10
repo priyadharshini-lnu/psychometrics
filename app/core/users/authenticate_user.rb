@@ -21,9 +21,16 @@ module Users
 
       # Tries auth by SSO token
       if params[SSO_KEY]
+        request.env[:sso] = 'true'
         authenticate_by_sso
-        return broadcast(:invalid_sso_token, invalid_sso_redirect_url) unless user
 
+        unless user
+          audit!(:single_sign_on, nil, record_type: 'User', payload: params.except('sso_token'), outcome: 'failed',
+          failure_reason: :invalid_sso_token)
+          return broadcast(:invalid_sso_token, invalid_sso_redirect_url)
+        end
+
+        audit! :single_sign_on, user, user: user, payload: params.except('sso_token'), outcome: 'successful'
         found_by = :sso
       end
 

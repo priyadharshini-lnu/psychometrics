@@ -27,6 +27,7 @@ module Administration
 
       respond_to do |format|
         if resource.save
+          audit! :create, resource, payload: params
           format.js
         else
           format.js { render :new }

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignOptions < ApplicationRecord
+  audited
+
   extend Mobility
   belongs_to :campaign
 

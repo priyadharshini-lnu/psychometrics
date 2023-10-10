@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SamlSetting < ApplicationRecord
+  audited except: %i[cert test_settings]
+
   include Rails.application.routes.url_helpers
 
   belongs_to :project, class_name: 'Client'

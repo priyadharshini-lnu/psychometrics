@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
+  audited
   extend Mobility
 
   include Copyable

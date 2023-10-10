@@ -3,6 +3,17 @@ en:
   administration:
     actions: Actions
     active: Active
+    active_record_audits:
+      action: Action
+      audit_id: Audit Id
+      auditable_id: Record Id
+      auditable_type: Record Type
+      audited_changes: Audited Changes
+      new_diff:
+        parse_error: Failed to parse JSON with new changes
+      old_diff:
+        parse_error: Failed to parse JSON with old changes
+      title: Audited Changes
     admin_profile_edit:
       old_password_doesnt_match: Old password didn't match
     administrator:
@@ -584,11 +595,16 @@ en:
       action: Action
       campaign: Campaign
       client: Client
+      client_ip: Client Ip
+      failure_reason: Failure Reason
       id: Id
+      interface: Interface
       log_date: Log Date
+      outcome: Outcome
       payload: Payload
       project: Project
       record_id: Record Id
+      request_id: Request Id
       reset: Reset
       search: Search
       search_campaign: Search by Campaign
@@ -599,6 +615,7 @@ en:
       title: Audit Log Info
       type: Record Type
       user: User
+      user_agent: User Agent
     back: Back
     base:
       id: id
@@ -3664,6 +3681,7 @@ en:
     reports:
       copy:
         error: 'Report #%{id} was not copied.'
+        successfully: Report %{name} was successfully copied.
       create:
         successfully: Report %{name} was successfully created.
       destroy:

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PrivacyConsent < ApplicationRecord
+  audited
+
   belongs_to :membership
   belongs_to :user
 

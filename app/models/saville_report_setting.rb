@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SavilleReportSetting < ApplicationRecord
+  audited
+
   belongs_to :report
 
   validates :saville_report_id, presence: true

@@ -27,6 +27,7 @@ module Api
 
     def toggle_archive
       resource.toggle!(:archived)
+      audit! :toggle_archive, resource, payload: { archived: resource.archived }
       jsonapi_render json: resource
     end
 
@@ -50,11 +51,13 @@ module Api
     end
 
     def copy
+      audit! :copy, resource, payload: { source_id: resource.id }
       result = ::Assessments::CopyAssessment.call!(resource.id, current_user)
       jsonapi_render json: result[:assessment]
     end
 
     def restore
+      audit! :restore, resource, payload: { source_id: resource.id }
       resource.restore!
       jsonapi_render json: resource
     end

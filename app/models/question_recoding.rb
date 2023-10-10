@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class QuestionRecoding < ApplicationRecord
+  audited
+
   include Copyable
   self.table_name = :question_recoding
 

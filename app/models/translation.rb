@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Translation < ApplicationRecord
+  audited
+
   include Copyable
 
   belongs_to :translateable, polymorphic: true

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ClientsReport < ApplicationRecord
+  audited
+
   belongs_to :client, inverse_of: :clients_reports
   belongs_to :report, inverse_of: :clients_reports
   belongs_to :report_family

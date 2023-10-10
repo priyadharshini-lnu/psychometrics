@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ReportFamily < ApplicationRecord
+  audited
+
   has_many :report_families_reports
   has_many :reports, through: :report_families_reports, source: :report
   has_many :assessments, through: :reports, source: :assessment

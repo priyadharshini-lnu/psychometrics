@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class OccupationsFactor < ApplicationRecord
+  audited
+
   include RansackSearchableFields
 
   # Roles constant

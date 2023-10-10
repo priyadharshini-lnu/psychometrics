@@ -134,6 +134,7 @@ gem 'deep_cloneable', '~> 3.2'
 
 gem 'active_storage_validations', '~> 1.0.3'
 gem 'ancestry', '~> 3.0.0'
+gem 'audited', '~> 5.3', '>= 5.3.3'
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'

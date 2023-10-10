@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Communication < ApplicationRecord
+  audited
+
   include OwnerValidations
 
   WORKSHOP_COMMUNICATION_KINDS = %w[

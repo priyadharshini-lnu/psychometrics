@@ -3,6 +3,8 @@
 require 'carrierwave/storage/fog'
 
 class MediaResponse < ApplicationRecord
+  audited
+
   include EncodableId
   include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage

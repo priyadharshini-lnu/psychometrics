@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class LicenseUsage < ApplicationRecord
+  audited
+
   include RansackSearchableJsonField
 
   belongs_to :license,           inverse_of: :license_usages

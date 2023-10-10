@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FactorsScoring < ApplicationRecord
+  audited
+
   include Copyable
   self.table_name = :factors_scoring
 

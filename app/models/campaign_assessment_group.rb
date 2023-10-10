@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignAssessmentGroup < ApplicationRecord
+  audited
+
   has_many :campaign_assessments, dependent: :nullify
   belongs_to :campaign
 

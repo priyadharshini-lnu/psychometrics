@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Dimension < ApplicationRecord
+  audited
+
   include Copyable
   include RansackSearchableFields
   include OwnerValidations

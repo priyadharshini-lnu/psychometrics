@@ -690,7 +690,13 @@ CREATE TABLE public.audit_logs (
     updated_at timestamp without time zone,
     campaign_id integer,
     project_id integer,
-    client_id integer
+    client_id integer,
+    request_uuid character varying,
+    user_agent character varying,
+    interface integer,
+    client_ip character varying,
+    outcome integer DEFAULT 1,
+    failure_reason character varying
 );
 
 
@@ -711,6 +717,48 @@ CREATE SEQUENCE public.audit_logs_id_seq
 --
 
 ALTER SEQUENCE public.audit_logs_id_seq OWNED BY public.audit_logs.id;
+
+
+--
+-- Name: audits; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.audits (
+    id bigint NOT NULL,
+    auditable_id integer,
+    auditable_type character varying,
+    associated_id integer,
+    associated_type character varying,
+    user_id integer,
+    user_type character varying,
+    username character varying,
+    action character varying,
+    audited_changes jsonb,
+    version integer DEFAULT 0,
+    comment character varying,
+    remote_address character varying,
+    request_uuid character varying,
+    created_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: audits_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.audits_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: audits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 
 
 --
@@ -5224,6 +5272,13 @@ ALTER TABLE ONLY public.audit_logs ALTER COLUMN id SET DEFAULT nextval('public.a
 
 
 --
+-- Name: audits id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audits_id_seq'::regclass);
+
+
+--
 -- Name: blocks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6176,6 +6231,14 @@ ALTER TABLE ONLY public.assigns_reports
 
 ALTER TABLE ONLY public.audit_logs
     ADD CONSTRAINT audit_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: audits audits_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.audits
+    ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
 
 
 --
@@ -7139,6 +7202,20 @@ ALTER TABLE ONLY public.workshops
 
 
 --
+-- Name: associated_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX associated_index ON public.audits USING btree (associated_type, associated_id);
+
+
+--
+-- Name: auditable_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX auditable_index ON public.audits USING btree (auditable_type, auditable_id, version);
+
+
+--
 -- Name: datasheet_column_preference_resource; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7444,6 +7521,20 @@ CREATE INDEX index_audit_logs_on_record_type_and_record_id ON public.audit_logs 
 --
 
 CREATE INDEX index_audit_logs_on_user_id_and_action ON public.audit_logs USING btree (user_id, action);
+
+
+--
+-- Name: index_audits_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_created_at ON public.audits USING btree (created_at);
+
+
+--
+-- Name: index_audits_on_request_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_uuid);
 
 
 --
@@ -9292,6 +9383,13 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 --
 
 CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_histories USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: user_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
@@ -11604,20 +11702,29 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230809193508'),
 ('20230810103629'),
 ('20230811114945'),
+('20230818091139'),
 ('20230818140419'),
+('20230821092143'),
 ('20230821100124'),
 ('20230822081633'),
 ('20230823110647'),
 ('20230824083112'),
 ('20230829124517'),
 ('20230829143631'),
+('20230905113355'),
+('20230907065310'),
 ('20230912064131'),
+('20230914102830'),
 ('20230918133925'),
 ('20230918143010'),
 ('20230919051922'),
 ('20230919070332'),
+('20230919093339'),
 ('20230921123131'),
 ('20230926124141'),
-('20231003130242');
+('20231003130242'),
+('20231004150634'),
+('20231005095208'),
+('20231005095250');
 
 

@@ -133,6 +133,7 @@ module Administration
     end
 
     def restore
+      audit! :restore, resource, payload: { source_id: resource.id }
       resource.restore!
       render 'refresh_list'
     end

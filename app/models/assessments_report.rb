@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AssessmentsReport < ApplicationRecord
+  audited
+
   belongs_to :assessment
   belongs_to :report
 

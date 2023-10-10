@@ -28,6 +28,8 @@ module System
     private
 
     def user_not_authorized
+      audit! :user_not_authorized, current_user, payload: params, outcome: :failed,
+      failure_reason: :user_not_authorized
       render plain: I18n.t('errors.forbidden')
     end
   end

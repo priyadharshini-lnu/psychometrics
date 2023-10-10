@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HoganReportSetting < ApplicationRecord
+  audited
+
   belongs_to :report
 
   before_create :set_hogan_details
