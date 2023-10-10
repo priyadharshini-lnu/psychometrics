@@ -22,6 +22,8 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
 
   before_update do
     @model.updated_by_id = context[:user].id
+    category = context[:params].dig(:data, :attributes, :category)
+    @model.linked_assessment_id = nil if category && category != Assessment::ASSESSOR_FORM
   end
 
   def remove

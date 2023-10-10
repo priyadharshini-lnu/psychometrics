@@ -11,9 +11,9 @@ module Api
         def self.attributes(attribute, _)
           proc do
             attribute[:name].filled(:string)
-            optional(:description).filled(:string)
             attribute[:type].filled(:string, included_in?: ::Assessment::TYPES.keys.map(&:to_s))
             attribute[:category].filled(:string)
+            optional(:description).maybe(:string)
             optional(:timing).maybe(:string)
             optional(:status).maybe(:string, included_in?: ::Assessment::STATUSES.map(&:to_s) + [nil])
             optional(:enable_video_check).maybe(:bool)
