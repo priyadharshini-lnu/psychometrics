@@ -3852,6 +3852,10 @@ en:
           success_message: Assessment Center subject %{subject_name}.
       add_activity: Add Activity
       add_assessment_center: Add Assessment Center
+      add_assessor_form:
+        assessment: Assessment
+        assessor: Assessor
+        schedule_time: Schedule Time
       add_subject: Add subject
       assessment_center_form:
         assessor_ids_label: Assessors
