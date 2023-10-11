@@ -8,7 +8,7 @@ type Props = {
   title: string,
   message: string | ReactElement,
   onConfirm: () => void
-  onCancel: () => void
+  onCancel: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
   children?: ReactElement
 }
 

@@ -206,11 +206,32 @@ const getActionsMenuProps = ({
     message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
   })
 
+  const handleMenuClick = ({ key }) => {
+    if (key === 'details') {
+      return openDrawer(assessment)
+    }
+    if (key === 'edit') {
+      return history.push(`${settings.urlPrefix}/${assessment.id}/edit`)
+    }
+    if (key === 'copy') {
+      return copy()
+    }
+    if (key === 'archive') {
+      return toggleArchive()
+    }
+    if (key === 'restore') {
+      return restore()
+    }
+    if (key === 'remove') {
+      return setConfirmation(true)
+    }
+  }
+
   const menuItems = [
     {
       key: 'details',
       label: (
-        <Button type="link" onClick={() => openDrawer(assessment)} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('assessments.actions.details')}
         </Button>),
     },
@@ -219,7 +240,6 @@ const getActionsMenuProps = ({
       label: (
         <Button
           type="link"
-          onClick={() => history.push(`${settings.urlPrefix}/${assessment.id}/edit`)}
           className="ps-0"
         >
           {I18n.t('assessments.actions.edit')}
@@ -235,7 +255,7 @@ const getActionsMenuProps = ({
     assessment.meta.permissions.manage && !assessment.deleted && {
       key: 'copy',
       label: (
-        <Button type="link" onClick={copy} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('common.actions.copy')}
         </Button>
       ),
@@ -243,7 +263,7 @@ const getActionsMenuProps = ({
     assessment.meta.permissions.manage && !assessment.archived && {
       key: 'archive',
       label: (
-        <Button type="link" onClick={toggleArchive} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('common.actions.archive')}
         </Button>
       ),
@@ -251,7 +271,7 @@ const getActionsMenuProps = ({
     assessment.meta.permissions.manage && assessment.archived && {
       key: 'archive',
       label: (
-        <Button type="link" onClick={toggleArchive} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('common.actions.unarchive')}
         </Button>
       ),
@@ -259,7 +279,7 @@ const getActionsMenuProps = ({
     assessment.meta.permissions.manage && assessment.deleted && {
       key: 'restore',
       label: (
-        <Button type="link" onClick={restore} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('common.actions.restore')}
         </Button>
       ),
@@ -268,7 +288,7 @@ const getActionsMenuProps = ({
       key: 'remove',
       label: (
         <>
-          <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
+          <Button type="link" className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
           {confirmation && (
@@ -276,7 +296,10 @@ const getActionsMenuProps = ({
               title={I18n.t('assessments.actions.remove.confirm_title')}
               message={I18n.t('assessments.actions.remove.confirm_message', { name: assessment.name })}
               onConfirm={handleOnConfirm}
-              onCancel={() => setConfirmation(false)}
+              onCancel={(e) => {
+                e.stopPropagation()
+                setConfirmation(false)
+              }}
             />
           )}
         </>
@@ -284,5 +307,5 @@ const getActionsMenuProps = ({
     },
   ].filter(m => m) as ItemType[]
 
-  return ({ items: menuItems })
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
