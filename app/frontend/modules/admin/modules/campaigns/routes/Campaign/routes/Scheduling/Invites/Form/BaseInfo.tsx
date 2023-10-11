@@ -198,6 +198,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                   <Select
                     showSearch
                     mode="multiple"
+                    optionFilterProp="children"
                   >
                     {availableLocales.map(locale => (
                       <Select.Option key={locale} value={locale}>
