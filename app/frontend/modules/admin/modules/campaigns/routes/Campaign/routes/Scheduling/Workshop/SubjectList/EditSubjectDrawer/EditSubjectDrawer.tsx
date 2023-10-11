@@ -298,16 +298,17 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       form={statusFormInstance}
       className={styles.form}
       layout="inline"
-      initialValues={{
-        attendanceStatus: subjectData.attendanceStatus || 'on_time',
-        lateDuration: subjectData.lateDuration || null,
-      }}
       onFieldsChange={(_, allFields) => {
         setFields(allFields)
       }}
     >
       <Space size="large">
-        <Form.Item className="font-normal" label="Status" name="attendanceStatus">
+        <Form.Item
+          className="font-normal"
+          label="Status"
+          name="attendanceStatus"
+          initialValue={subjectData.attendanceStatus}
+        >
           <Select dropdownStyle={{ minWidth: '120px' }}>
             {STATUSES.map(status => (
               <Select.Option
@@ -320,7 +321,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
           </Select>
         </Form.Item>
         {statusFormInstance.getFieldValue('attendanceStatus') === 'late' ? (
-          <Form.Item label="Late Duration" name="lateDuration">
+          <Form.Item label="Late Duration" name="lateDuration" initialValue={subjectData.lateDuration || null}>
             <InputDuration
               value=""
               onChange={() => {}}

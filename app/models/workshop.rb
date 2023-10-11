@@ -81,7 +81,7 @@ class Workshop < ApplicationRecord
     update_query = <<-SQL.squish
       UPDATE workshops
       SET booked_seats = booked_seats + 1
-      WHERE id = #{id} AND booked_seats <= total_seats
+      WHERE id = #{id} AND booked_seats < total_seats
     SQL
 
     result = ActiveRecord::Base.connection.execute(update_query)
