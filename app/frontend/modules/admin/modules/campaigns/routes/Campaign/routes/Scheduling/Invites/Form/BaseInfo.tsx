@@ -47,7 +47,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   const params = useParams<{campaignId: string}>()
   const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowLanguagePreference'))
   const [allowNeurodiversityOption, setAllowNeurodiversityOption] = useState(
-    form.getFieldValue('setAllowNeurodiversityOption'),
+    form.getFieldValue('allowNeurodiversityOption'),
   )
   const [, setSelectedWorkshops] = useState([])
   const [searchValue, setSearchValue] = useState('')
@@ -69,7 +69,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
     setPreferredLang(checked)
   }
   const changeNeuroDiversityOption = (checked) => {
-    form.setFieldValue('setAllowNeurodiversityOption', checked)
+    form.setFieldValue('allowNeurodiversityOption', checked)
     setAllowNeurodiversityOption(checked)
   }
 
