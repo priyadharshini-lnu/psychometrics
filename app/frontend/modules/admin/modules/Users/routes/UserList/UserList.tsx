@@ -39,9 +39,9 @@ const UserListComponent: React.FC<Props> = ({
 }) => {
   const [drawerUser, setDrawerUser] = useState<User | undefined>()
   const [closed, closeModal] = useState(true)
-  let filter: Record<string, string> = { role_eq: userTab }
+  let filter: Record<string, string | string[]> = { role_eq: userTab }
   if (userTab === 'Users::GlobalAssessors') {
-    filter = { role_eq: 'Users::Admin', global_assessor_eq: 'true' }
+    filter = { role_in: ['Users::Admin', 'Users::SuperAdmin'], global_assessor_eq: 'true' }
   }
   const config = {
     trackUrl: true,
