@@ -29,7 +29,7 @@ export const InvitesForm = () => {
 
   useEffect(() => {
     form.setFieldsValue({
-      allowLanguagePreference: true,
+      allowLanguagePreference: false,
       allowedLanguages: [],
       allowNeurodiversityOption: false,
     })
