@@ -130,7 +130,11 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
             onSearch={(value) => {
               fetchAssessments({
                 apiConfig: {
-                  filter: { filterable_fields: value, category_eq: 'psychometric' },
+                  filter: {
+                    filterable_fields: value,
+                    category_in: ['psychometric', 'agile', 'case_study'],
+                    archived_eq: 'false',
+                  },
                   fields: { assessments: ['name'] },
                 },
               })
