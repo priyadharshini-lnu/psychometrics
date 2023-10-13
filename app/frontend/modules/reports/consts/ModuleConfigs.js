@@ -251,6 +251,7 @@ export default {
         filter: [],
         mainHeaderColor: '#064655',
         secondHeaderColor: '#22A6C0',
+        scoreBackgroundColor: '#ffffff',
         showLabels: true,
         showValues: true,
         showLines: true,
