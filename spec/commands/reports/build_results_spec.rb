@@ -220,6 +220,43 @@ describe Reports::BuildResults do
           is_expected.to eq(key: 'formula', name: nil, value: 2.33333, config_data: data)
         end
 
+        it 'AVERAGE with float' do
+          data = {
+            'type' => 'formula',
+            'formula' => {
+              'op' => 'AVERAGE',
+              'args' => [
+                {
+                  'type' => 'normed_factor',
+                  'factorId' => 1,
+                  'assessmentId' => user_result.assessment_id
+                },
+                {
+                  'type' => 'float',
+                  'value' => 2
+                }
+              ]
+            }
+          }
+          data_configuration = {
+            sections: [
+              {
+                data: [data]
+              }
+            ]
+          }
+
+          allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return(
+            { value: 3 }
+          )
+
+          report = create(:report, data_configuration: data_configuration)
+
+          res = described_class.call!(report, [user_result])
+
+          expect(res[0]).to eq(key: 'formula', name: nil, value: 2.5, config_data: data)
+        end
+
         it 'MIN' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('MIN')
           is_expected.to eq(key: 'formula', name: nil, value: 1, config_data: data)

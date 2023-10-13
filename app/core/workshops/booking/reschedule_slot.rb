@@ -14,51 +14,64 @@ module Workshops
         @params = params
       end
 
+      # rubocop:disable Rails/TransactionExitStatement, Lint/UnreachableCode
       def call
         WorkshopInvite.transaction do
           workshop_invited_subject.update!(status: status, reason: reason, reschedule_workshop_id: new_workshop_id)
           create_workshop_invite_log(status)
-
-          if reschedule_status? && workshop_id == new_workshop_id
-            reschedule_existing_workshop_subject
-          elsif reschedule_status?
-            create_new_workshop_subject
-            update_old_workshop_subject
+          if reschedule_status?
+            begin
+              create_or_update_workshop_subject
+              update_old_workshop_subject
+            rescue Workshops::SeatsNotAvailableError => e
+              broadcast(:error, [e.message])
+              raise ActiveRecord::Rollback
+              return
+            end
           end
         end
 
         broadcast(:ok)
       end
+      # rubocop:enable Rails/TransactionExitStatement, Lint/UnreachableCode
 
       private
+
+      def new_workshop
+        @new_workshop ||= Workshop.find(new_workshop_id)
+      end
 
       def reschedule_status?
         status == 'rescheduled'
       end
 
-      def create_new_workshop_subject
-        WorkshopSubject.create!(
+      def create_or_update_workshop_subject
+        workshop_subject = WorkshopSubject.find_by(workshop_id: new_workshop_id, user_id: current_user.id)
+        new_workshop.increment_booked_seats if !workshop_subject || !workshop_subject.scheduled?
+
+        workshop_subject ||= WorkshopSubject.new
+        attributes = {
           user_id: current_user.id,
           workshop_id: new_workshop_id,
           campaign_id: workshop.campaign_id,
           workshop_invited_subject_id: workshop_invited_subject.id,
-          scheduling_status: :scheduled,
-          preferred_language: workshop_subject_details[:preferred_language],
-          neurodivergent: workshop_subject_details[:neurodivergent],
-          neurodivergent_comments: workshop_subject_details[:neurodivergent_comments]
-        )
-        increment_booked_seats(new_workshop_id)
-      end
-
-      def reschedule_existing_workshop_subject
-        existing_workshop_subject.update!(
-          preferred_language: workshop_subject_details[:preferred_language],
-          neurodivergent: workshop_subject_details[:neurodivergent],
-          neurodivergent_comments: workshop_subject_details[:neurodivergent_comments]
-        )
+          scheduling_status: :scheduled
+        }
+        if workshop_subject_details
+          attributes = attributes.merge(
+            preferred_language: workshop_subject_details[:preferred_language],
+            neurodivergent: workshop_subject_details[:neurodivergent],
+            neurodivergent_comments: workshop_subject_details[:neurodivergent_comments]
+          )
+        end
+        workshop_subject.assign_attributes(attributes)
+        workshop_subject.save!
       end
 
       def update_old_workshop_subject
+        return if workshop_id == new_workshop_id
+        return if existing_workshop_subject.cancelled? || existing_workshop_subject.rescheduled?
+
         existing_workshop_subject.update!(scheduling_status: :rescheduled)
         existing_workshop_subject.workshop.decrement!(:booked_seats)
       end

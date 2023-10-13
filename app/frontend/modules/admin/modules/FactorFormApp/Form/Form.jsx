@@ -2,6 +2,7 @@ import { useState } from 'react'
 import _ from 'lodash'
 import {
   Form as AntForm, Checkbox,
+  InputNumber, Space, Alert,
 } from 'antd'
 import BaseForm from '~/modules/admin/components/Form'
 import HiddenInputList from './HiddenInputList'
@@ -15,15 +16,27 @@ export default function Form (props) {
   const [resource, setResource] = useState(factor)
 
   const onChange = ({ currentTarget }) => {
+    const { value, name } = currentTarget
     const values = {
-      [currentTarget.name]: currentTarget.value,
+      [name]: value,
     }
-    if (currentTarget.name === 'scoring_strategy'
-      && (resource.scoring_strategy !== 'sub_factor_questions_sum' && resource.scoring_strategy !== 'questions_sum')) {
-      values.use_percentage = false
+    if (name === 'scoring_strategy') {
+      if (value !== 'sub_factor_questions_sum' && value !== 'questions_sum') {
+        values.use_percentage = false
+      }
+      if (value !== 'questions_percentage') {
+        values.scale_min = null
+        values.scale_max = null
+      }
     }
+
     setResource({ ...resource, ...values })
   }
+
+  const onValuesChange = (_, values) => {
+    setResource({ ...resource, ...values })
+  }
+
 
   // The function is used as adapter for rails nested attributes functionality
   const findDestroyedSubFactors = () => factor.factors_sub_factors
@@ -54,6 +67,31 @@ export default function Form (props) {
         resourceName="resource"
       />
       <BaseForm fields={FIELDS} errors={errors} context={props} onChange={onChange} resource={resource} />
+      {resource.scoring_strategy === 'questions_percentage' && (
+        <AntForm
+          initialValues={{
+            scale_min: resource.scale_min,
+            scale_max: resource.scale_max,
+          }}
+          onValuesChange={onValuesChange}
+        >
+          <div className="mtm mbm">
+            <Space>
+              <AntForm.Item
+                label="Scale Min"
+                name="scale_min"
+                validateStatus={errors.scale_min?.length && 'error'}
+              >
+                <InputNumber />
+              </AntForm.Item>
+              <AntForm.Item label="Max" name="scale_max">
+                <InputNumber />
+              </AntForm.Item>
+            </Space>
+            {errors.scale_min?.length && <Alert message={errors.scale_min.join(', ')} type="error" />}
+          </div>
+        </AntForm>
+      )}
       <div className="ant-form-vertical">
         <InputFile onChange={onChange} value={resource.icon} />
       </div>
@@ -72,8 +110,7 @@ export default function Form (props) {
         </div>
         )
       }
-      {(resource.scoring_strategy === 'sub_factors_average'
-        || resource.scoring_strategy === 'sub_factors_conditional_average')
+      {['sub_factors_average', 'sub_factors_conditional_average', 'sub_factors_sum'].includes(resource.scoring_strategy)
         && (
         <div className="mtm mbm">
           <Checkbox
@@ -86,7 +123,7 @@ export default function Form (props) {
         </div>
         )
       }
-      {!['questions', 'questions_sum', 'external_score'].includes(resource.scoring_strategy)
+      {resource.scoring_strategy.startsWith('sub_factor')
         && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
       {resource.scoring_strategy === 'external_score'
         && <ExternalList factors={factors} factor={resource} onChange={onChange} errors={errors} />}

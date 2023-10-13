@@ -39,7 +39,9 @@ class Factor < ApplicationRecord
     sub_factors_conditional_average: 3,
     questions_sum: 4,
     sub_factor_questions_sum: 5,
-    external_score: 6
+    external_score: 6,
+    questions_percentage: 7,
+    sub_factors_sum: 8
   }, _suffix: :strategy
 
   mount_uploader :icon, Public::ImageUploader
@@ -102,6 +104,7 @@ class Factor < ApplicationRecord
       kopy.icon = original.icon if original.is_a?(Factor)
     end
     @cloned_factor.gen_uniq_name
+    @cloned_factor.icon = icon
     @cloned_factor.save ? @cloned_factor : nil
   end
 

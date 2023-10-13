@@ -13,6 +13,7 @@ module Api
       if response && response[:invalid].present?
         jsonapi_render json: { error: response[:invalid] }, status: 422
       else
+        audit! :reject_request, response[:ok], campaign: campaign
         jsonapi_render json: response[:ok]
       end
     end
@@ -28,6 +29,7 @@ module Api
       if response && response[:invalid].present?
         jsonapi_render json: { error: response[:invalid] }, status: 422
       else
+        audit! :accept_request, @workshop_invited_subject, campaign: campaign
         jsonapi_render json: response[:ok]
       end
     end

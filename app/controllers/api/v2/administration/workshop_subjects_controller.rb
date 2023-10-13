@@ -3,6 +3,7 @@
 module Api
   class V2::Administration::WorkshopSubjectsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::WorkshopSubject::Schema
+    validates_request_schema :create, Api::V2::WorkshopSubject::CreateContract.new
 
     def update_subject_details_and_assessments
       response = WorkshopSubjects::UpdateSubjectData.call(
@@ -12,6 +13,7 @@ module Api
       if response && response[:error].present?
         render json: { error: response[:error] }, status: 422
       else
+        audit! :update_subject_details_and_assessments, response[:ok], payload: params, campaign: campaign
         render json: :ok
       end
     end
@@ -24,6 +26,7 @@ module Api
         subject.update!(scheduling_status: :late_cancelled)
       end
       subject.workshop.decrement!(:booked_seats)
+      audit! :mark_cancelled, subject, payload: params, campaign: campaign
 
       jsonapi_render json: subject
     end

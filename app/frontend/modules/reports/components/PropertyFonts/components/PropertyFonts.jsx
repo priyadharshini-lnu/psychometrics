@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { Component } from 'react'
+import { rgba2hex } from '~/utils/color'
 import { ColorPicker } from '~/glint'
 
 export const FONTS = {
@@ -40,7 +41,7 @@ class PropertyFilter extends Component {
 
   changeFontColor = (color) => {
     const { model } = this.props
-    model.props.style.fontColor = color.hex
+    model.props.style.fontColor = color
     this.update()
   }
 
@@ -76,8 +77,16 @@ class PropertyFilter extends Component {
   renderFontColor () {
     const { model } = this.props
     const { fontColor } = model.props.style
+    const notNullfontColor = fontColor || '#000000'
+    const fontColorHex = typeof notNullfontColor === 'object'
+      ? (rgba2hex(fontColor)) : notNullfontColor
     return (
-      <ColorPicker color={fontColor} onChange={this.changeFontColor} onComplete={this.update} />
+      <ColorPicker
+        getValueInHexFormat
+        value={fontColorHex}
+        onChange={this.changeFontColor}
+        onComplete={this.update}
+      />
     )
   }
 

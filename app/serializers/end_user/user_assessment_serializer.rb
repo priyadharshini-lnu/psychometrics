@@ -8,6 +8,10 @@ module EndUser
                :selected_locale, :assessment_icon_url, :prework, :schedule_time, :workshop_activity_duration,
                :workshop_activity, :meeting_time, :meeting_link
 
+    def meeting_link
+      object.real_meeting_link(current_user)
+    end
+
     def meeting_time
       object.linked_assessor_user_assessment&.schedule_time&.iso8601
     end
@@ -78,6 +82,12 @@ module EndUser
 
     def schedule_time
       object.schedule_time&.iso8601
+    end
+
+    private
+
+    def current_user
+      @current_user ||= instance_options[:current_user]
     end
   end
 end

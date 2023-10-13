@@ -159,6 +159,8 @@ class Report < ApplicationRecord
     @cloned_item = deep_clone(
       include: %i[assessments]
     )
+    @cloned_item.icon = icon
+    @cloned_item.poster = poster
     @cloned_item.gen_uniq_name
     @cloned_item
   end

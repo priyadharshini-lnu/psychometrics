@@ -70,11 +70,25 @@ class Workshop < ApplicationRecord
     I18n.l(end_time.in_time_zone(timezone), format: :workshop_date)
   end
 
-  def real_meeting_link
+  def real_meeting_link(user)
     if video_call_internal? && meeting_room.present?
-      Utility::Url.generate(:admin_meeting_url, room_id: meeting_room.id)
+      route = user.admin? ? :admin_meeting_url : :meeting_url
+      Utility::Url.generate(route, room_id: meeting_room.id, subdomain: user.subdomain)
     elsif video_call_custom?
       meeting_link
     end
+  end
+
+  def increment_booked_seats
+    update_query = <<-SQL.squish
+      UPDATE workshops
+      SET booked_seats = booked_seats + 1
+      WHERE id = #{id} AND booked_seats < total_seats
+    SQL
+
+    result = ActiveRecord::Base.connection.execute(update_query)
+    updated_record_count = result.cmd_status.split.last.to_i
+
+    raise ::Workshops::SeatsNotAvailableError if updated_record_count.zero?
   end
 end

@@ -67,7 +67,7 @@ const Properties: FC<Props> = ({ model }) => {
           defaultColor="#00000000"
           getValueInHexFormat
           value={typeof model.props.scoreBackgroundColor === 'string'
-            ? model.props.scoreBackgroundColor : rgba2hex(model.props.scoreBackgroundColor)}
+            ? model.props.scoreBackgroundColor : rgba2hex(model.props.scoreBackgroundColor || {})}
           onChange={color => onChange('scoreBackgroundColor', color)}
         />
       </div>

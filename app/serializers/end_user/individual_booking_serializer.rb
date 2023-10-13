@@ -40,10 +40,7 @@ module EndUser
     end
 
     def workshop_subject
-      @workshop_subject ||= WorkshopSubject.find_by(
-        user_id: current_user.id,
-        campaign_id: object.campaign_id
-      )
+      @workshop_subject ||= current_user.last_workshop_subject(object.campaign_id)
     end
 
     def workshop

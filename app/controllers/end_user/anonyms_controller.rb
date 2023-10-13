@@ -49,6 +49,12 @@ module EndUser
       end
     end
 
+    def restart
+      cookies.delete(Users::AuthenticateAnonymousUser::ANONYM_COOKIE_KEY, domain: request.host)
+
+      redirect_to anonym_pass_path(params[:assessment_key])
+    end
+
     def error; end
 
     private
@@ -82,7 +88,8 @@ module EndUser
     def render_assessment_and_result
       @selected_locale = @user_assessment.selected_locale || user_locale
 
-      serialized_assessment = AssessmentSerializer.new(assessment, selected_locale: @selected_locale).
+      serialized_assessment = AssessmentSerializer.new(assessment, selected_locale: @selected_locale,
+                                                       campaign_assessment: @campaign_assessment).
                               to_hash(include: '**')
 
       serialized_results = UsersResultSerializer.new(

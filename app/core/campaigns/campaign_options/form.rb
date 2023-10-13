@@ -21,7 +21,7 @@ module Campaigns
       validates :description, length: { maximum: 500 }
 
       validate :time_zone do
-        unless ActiveSupport::TimeZone[time_zone]
+        unless time_zone.nil? || ActiveSupport::TimeZone[time_zone]
           errors.add(:time_zone, :invalid)
         end
       end

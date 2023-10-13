@@ -739,8 +739,9 @@ en:
         success_message: Asessment %{name} has been removed
       rescore: Rescore
       restore:
-        success_message: Asessment %{name} restored successfully
+        success_message: Assessment %{name} restored successfully
       show_usage: Show Usage
+      submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
       translations:
         success_message: The asessment translations updated
@@ -813,9 +814,9 @@ en:
         hogan: Hogan
         iiht: IIHT
         mindmill: Mindmill
-        organisational: Surveys
+        organisational: Org Surveys
         pearson: Pearson
-        psychometric: Assessment
+        psychometric: Psychometric
         saville: Saville
         threesixty: 360 Campaign
       status:
@@ -854,6 +855,7 @@ en:
 
         Click **Back** to review your responses one final time or click **Submit** if you are finished.
       next: Next
+      read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
         description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or surveys@thetalententerprise.com
@@ -1796,6 +1798,17 @@ en:
         start_time_should_be_less: Start time should be less than end time
       workshop_invited_subject_create:
         already_exists: Subject already exists in the invite.
+      workshop_subject_create:
+        already_exists: Subject already exists in this Assessment Center.
+    users:
+      registrations:
+        new:
+          register: Register
+          sign_in: Sign in
+      sessions:
+        new:
+          register: Register
+          sign_in: Sign in
   emails:
     nomination_approval_table:
       evaluator_name: Evaluator Name
@@ -2131,9 +2144,12 @@ en:
     zh_CN: Chinese (Simplified, People's Republic of China)
     zh_TW: Chinese - Traditional
   languages_localized:
+    af: Afrikaans
     ar: عربي
+    az: Azerbaijani
     bg: български
     bs: bosanski
+    by: Belarusian
     ca: català
     cn: 中国人
     cs: čeština
@@ -2166,11 +2182,14 @@ en:
     mn: Mongolian
     ms: Bahasa Malaysia
     my: Myanmar
+    nb: Norwegian Bokmål
     nl: Dutch
     'no': Norwegian
     pl: Polish
     pt: Portuguese
     pt-BR: Brazilian Portuguese
+    pt-PT: Portuguese (Portugal)
+    pt_BR: Portuguese (Brazil)
     ro: Romanian
     ru: Russian
     sk: Slovak
@@ -2183,11 +2202,16 @@ en:
     th: Thai
     tl: Tagalog
     tr: Turkish
+    ua: Ukrainian
     uk: Ukrainian
     ur: Urdu
     vi: Vietnamese
     zh: 汉语
+    zh-CN: Chinese (Simplified)
+    zh-HK: Chinese (Hong Kong)
     zh-TW: 漢語
+    zh_CN: Chinese (Simplified)
+    zh_TW: Chinese (Traditional)
   layouts:
     users:
       dashboard: Dashboard
@@ -3158,10 +3182,12 @@ en:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
+    allow_multiple_respones: Allow users to submit multiple responses
     close: Close
     deactivate_link: Deactivate Link
     png: PNG
     regenerate_link: Regenerate Link
+    successfully_updated: Successfully updated
     svg: SVG
   update_profile:
     cancel: Cancel

@@ -104,9 +104,10 @@ const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {
 
 const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubject }) => {
   const { resource } = useResourceContext<WorkshopSubject>()
+  const { campaignId } = useParams<{ campaignId: string }>()
   const [openForm, setOpenForm] = useState(false)
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
-  const { memberAction } = useResources('workshops', { })
+  const { memberAction } = useResources('workshops', { basePath: `campaigns/${campaignId}/` })
   const [openSubjectForm, setOpenSubjectForm] = useState(false)
 
   const toggleSelectedSubject = (checked, subject) => {

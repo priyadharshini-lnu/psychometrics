@@ -9,16 +9,23 @@ module Api
 
       campaign_assessor_assessments = CampaignAssessorAssessment.where(campaign_id: params[:campaign_id])
 
-      user_assessments = UserAssessment.where(
+      assessor_user_assessments = UserAssessment.where(
         relationship_id: Relationship.assessor_relationship.id,
+        assessment_id: campaign_assessor_assessments.pluck(:assessment_id),
+        campaign_id: params[:campaign_id]
+      ).index_by(&:assessment_id)
+
+      subject_user_assessments = UserAssessment.where(
+        relationship_id: Relationship.self_relationship.id,
+        evaluator_id: workshop_subject.user_id,
         subject_id: workshop_subject.user_id,
-        campaign_id: params[:campaign_id],
-        assessment_id: campaign_assessor_assessments.pluck(:assessment_id)
+        campaign_id: params[:campaign_id]
       ).index_by(&:assessment_id)
 
       render json: campaign_assessor_assessments,
-             each_serializer: ::Administration::Campaigns::WorkshopSubjects::CampaignAssessorAssessmmentSerializer,
-             user_assessments: user_assessments
+             each_serializer: ::Administration::Campaigns::WorkshopSubjects::CampaignAssessorAssessmentSerializer,
+             subject_user_assessments: subject_user_assessments, assessor_user_assessments: assessor_user_assessments,
+             current_user: current_user
     end
   end
 end

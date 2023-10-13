@@ -20,6 +20,7 @@ module Api
           @workshop_invite.workshops << workshop
         end
         WorkshopInvites::CreateTranslations.call!(@workshop_invite, translations_params[:translations])
+        audit! :create, @workshop_invite, payload: params, campaign: campaign
         AdminJob.call(:bulk_create_workshop_invites,
                       { workshop_invite_id: @workshop_invite.id, subjects: subjects_params[:subjects] }, current_user)
       end
@@ -29,13 +30,13 @@ module Api
 
     def import_subjects_from_csv
       users, @errors = WorkshopInvites::ImportSubjects.call!(params[:campaign_id], params[:file])
-
       jsonapi_render json: users.to_a, options: { resource: Api::V2::Administration::UserResource }
     end
 
     def import_subjects_from_campaign
       users = User.with_campaign_user(params[:campaign_id]).includes(:user_profile)
       if users.count <= ::WorkshopInvite::RESTRICTED_SUBJECTS
+
         jsonapi_render json: users.to_a, options: { resource: Api::V2::Administration::UserResource }
       else
         jsonapi_render_errors [{

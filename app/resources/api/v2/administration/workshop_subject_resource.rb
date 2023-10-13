@@ -13,6 +13,14 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   audit_log_for :create, payload: '*'
 
   before_create { @model.campaign_id = context[:campaign].id }
+  after_create :increment_booked_seats
+
+  def increment_booked_seats
+    @model.workshop.increment_booked_seats
+  rescue ::Workshops::SeatsNotAvailableError => e
+    @model.errors.add(:base, e.message)
+    raise JSONAPI::Exceptions::ValidationErrors, self
+  end
 
   before_update do
     @model.attendance_status = 'no_show' if @model.attended == true
@@ -80,10 +88,21 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
         assessments << {
           id: campaign_assessor_assessment.id,
           name: campaign_assessor_assessment.assessment.name,
-          linked_activity: campaign_assessor_assessment.assessment.linked_assessment&.name
+          subject_linked_activity_present: subject_assessor_assessments[
+            campaign_assessor_assessment.assessment&.linked_assessment_id
+          ].present?
         }
       end
     end
+  end
+
+  def subject_assessor_assessments
+    @subject_assessor_assessments ||= UserAssessment.where(
+      relationship_id: Relationship.self_relationship.id,
+      evaluator_id: @model.user_id,
+      subject_id: @model.user_id,
+      campaign_id: @model.campaign_id
+    ).index_by(&:assessment_id)
   end
 
   def campaign_preworks

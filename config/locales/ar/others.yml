@@ -37,6 +37,7 @@ ar:
     restart: إعادة البدء
   assessments:
     actions:
+      back_to_campaign: العودة إلى الحملة
       extend_time: تمديد الوقت
       goto_dashboard: اضغط هنا للأستمرار
       pending_tasks:
@@ -80,6 +81,8 @@ ar:
 
         إنقر على زر **العودة** لمراجعة ردودك للمرة الأخيرة أو إنقر على زر **إرسال** إذا كنت قد انتهيت.
       next: التالي
+      read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
+      save: حفظ
       submit: تسليم
     pickgrouprank:
       items: عناصر
@@ -157,7 +160,7 @@ ar:
       have_account: مسجل بالفعل؟
       last_name: إسم العائلة
       last_name_placeholder: أدخل اسم عائلتك
-      login_now: Login Now!
+      login_now: تسجيل الدخول الآن!
       registration_code: رمز التسجيل
       registration_code_placeholder: أدخل رمز التسجيل
       terms_notice: بالتسجيل ، فإنك توافق على <a href="%{terms_url}"> بنود الخدمة وسياسة الخصوصية </a>
@@ -180,6 +183,7 @@ ar:
     all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
     begin: ابدأ مهامك
     campaigns: الحملات
+    closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة.
     complete_all: أكمل جميع التقييمات ذات الصلة
     complete_prev: " أكمل جميع التقييمات السابقة"
     completed: تم إكماله

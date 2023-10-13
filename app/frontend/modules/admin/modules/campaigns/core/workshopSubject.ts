@@ -20,7 +20,7 @@ export const WorkshopSubjectTR = t.type({
 export const AssessorAssessmentTR = t.type({
   id: t.string,
   name: t.string,
-  userAssessmentId: t.union([t.number, t.null]),
+  assessorUserAssessmentId: t.union([t.number, t.null]),
   status: t.union([t.string, t.null]),
   scheduleTime: t.union([t.string, t.null, t.undefined]),
   meetingLink: t.union([t.string, t.null]),

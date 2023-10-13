@@ -17,7 +17,7 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
     trackUrl: true,
     responseType: AssessmentTR,
     apiConfig: {
-      include: ['dimension', 'owner', 'project'],
+      include: ['dimension', 'owner', 'project', 'linked_assessment'],
       fields: { dimensions: ['name'], users: ['name'] },
       include_resource_meta: ['permissions'],
       filter: { with_resource_state: assessmentTab },

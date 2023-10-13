@@ -2783,11 +2783,13 @@ en:
         scoring_strategies:
           external_score: External Score
           questions: Questions (Average)
+          questions_percentage: Questions (SUM / MAX Total)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
           sub_factor_questions_sum: Questions of other Factors (SUM)
           sub_factors_average: Weighted Average of Factors
           sub_factors_conditional_average: Conditional Weighted Average of Factors
+          sub_factors_sum: Weighted Sum of Factors
         scoring_strategies_tip: " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added."
         scoring_strategy: Scoring strategy
         use_sub_factor_norm_score: Use Factors norm score
@@ -2797,11 +2799,13 @@ en:
         scoring_strategies:
           external_score: External Score
           questions: Questions (Average)
+          questions_percentage: Questions (SUM / MAX Total)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
           sub_factor_questions_sum: Questions of other Factors (SUM)
           sub_factors_average: Weighted Average of Factors
           sub_factors_conditional_average: Conditional Weighted Average of Factors
+          sub_factors_sum: Weighted Sum of Factors
         scoring_strategy: Scoring strategy
         sub_factors: Sub factors
         title: Factors
@@ -2829,11 +2833,13 @@ en:
         scoring_strategies:
           external_score: External Score
           questions: Questions (Average)
+          questions_percentage: Questions (SUM / MAX Total)
           questions_sum: Questions (SUM)
           sub_factor_questions: Questions of other Factors (Average)
           sub_factor_questions_sum: Questions of other Factors (SUM)
           sub_factors_average: Weighted Average of Factors
           sub_factors_conditional_average: Conditional Weighted Average of Factors
+          sub_factors_sum: Weighted Sum of Factors
         tooltips:
           copy: Copy Factor
           delete: Delete Factor
@@ -3154,7 +3160,6 @@ en:
     meta_title: Administration panel
     modified_by: Modified By
     navigation:
-      admins: Admins
       assessments: Assessments
       assessments_reports: Assessments & Reports
       assessor_dashboard: Assessor Dashboard
@@ -3164,6 +3169,7 @@ en:
       back_to_main: Main Menu
       campaign_templates: Campaign Templates
       campaigns: Campaigns
+      change_password: Change Password
       client: Client Tenancy
       client_admins: Client Admins
       clients: Client Tenancies
@@ -3188,6 +3194,8 @@ en:
       options: Options
       participants: Participants
       products: Products
+      profile: Profile
+      profile_details: Details
       project_admins: Project Admins
       projects: Projects
       psychometrics: Psychometrics
@@ -3814,6 +3822,10 @@ en:
           success_message: Assessment Center subject %{subject_name}.
       add_activity: Add Activity
       add_assessment_center: Add Assessment Center
+      add_assessor_form:
+        assessment: Assessment
+        assessor: Assessor
+        schedule_time: Schedule Time
       add_subject: Add subject
       assessment_center_form:
         assessor_ids_label: Assessors
@@ -3928,6 +3940,7 @@ en:
       status:
         completed: Completed
         dropped_out: Dropped Out
+        in_progress: In Progress
         late: Late
         no_show: No Show
         not_started: Not Started

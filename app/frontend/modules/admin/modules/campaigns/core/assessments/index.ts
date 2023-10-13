@@ -15,6 +15,7 @@ import {
   ACTIVATE_UNIVERSAL_LINK,
   REGENERATE_UNIVERSAL_LINK,
   DEACTIVATE_UNIVERSAL_LINK,
+  TOGGLE_MULTIPLE_RESPONSES,
   FETCH_NORMS, UPDATE_NORM,
   REMOVE, UPDATE_ASSESSOR_FORM,
   UPDATE_AVAILABLE_LOCALES,
@@ -115,6 +116,7 @@ const HANDLERS = {
   [CREATE_REPORT]: (state, { response }: FetchType) => ({ ...state, list: response.assessments }),
   [ACTIVATE_UNIVERSAL_LINK]: updateAssessment,
   [DEACTIVATE_UNIVERSAL_LINK]: updateAssessment,
+  [TOGGLE_MULTIPLE_RESPONSES]: updateAssessment,
   [REGENERATE_UNIVERSAL_LINK]: updateAssessment,
   [UPDATE_EXTERNAL_CONFIG]: updateAssessment,
   [FETCH_NORMS]: (state, { response, requestAction: { request } }: FetchNormsType) => {

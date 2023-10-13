@@ -28,7 +28,10 @@ export const Assets: React.FC<Props> = ({ assessment }) => {
     setIsLoading(true)
     const formData = getFormDataForFiles<Files>(values, ['icon', 'poster'])
 
-    if (!formData) return
+    if (!formData) {
+      setIsLoading(false)
+      return new Promise(() => {})
+    }
 
     return dispatch(uploadFiles(assessment.id, formData)).then(() => {
       setIsLoading(false)

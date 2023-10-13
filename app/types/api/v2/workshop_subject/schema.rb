@@ -8,16 +8,12 @@ module Api
           'workshop_subjects'
         end
 
-        def self.attributes(attribute, _)
+        def self.attributes(attribute, type)
           proc do
-            attribute[:attendance_status].filled(:string)
-            attribute[:attended].filled(:bool)
-          end
-        end
-
-        def self.create_request
-          json_api_attributes do
-            nil
+            if type == :update
+              attribute[:attendance_status].filled(:string)
+              attribute[:attended].filled(:bool)
+            end
           end
         end
 

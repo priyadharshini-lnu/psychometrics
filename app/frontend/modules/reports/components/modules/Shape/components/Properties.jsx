@@ -12,7 +12,7 @@ class Properties extends Component {
   changeBg = (color) => {
     const { model } = this.props
     model.props.style.backgroundColor = color
-    this.forceUpdate()
+    model.update()
   }
 
   changeBorder = (color) => {

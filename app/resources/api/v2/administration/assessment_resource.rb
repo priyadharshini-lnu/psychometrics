@@ -5,7 +5,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
              :modified_by, :icon_color, :description, :timing, :status, :enable_video_check, :enable_audio_check,
              :enable_network_check, :poster, :icon, :external_settings, :archived, :deleted, :extra
 
-  ransack_filters %i[filterable_fields with_resource_state category_in id_eq category_eq]
+  ransack_filters %i[filterable_fields with_resource_state category_in id_eq category_eq archived_eq]
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
   audit_log_for :destroy, payload: ->(_, client) { client.attributes.slice('id', 'name', 'category', 'type') }
@@ -22,6 +22,8 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
 
   before_update do
     @model.updated_by_id = context[:user].id
+    category = context[:params].dig(:data, :attributes, :category)
+    @model.linked_assessment_id = nil if category && category != Assessment::ASSESSOR_FORM
   end
 
   def remove

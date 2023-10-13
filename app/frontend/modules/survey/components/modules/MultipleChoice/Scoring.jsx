@@ -43,7 +43,8 @@ export class Scoring extends Component {
     const { scoring } = this.props
     values.map((value, index) => {
       const [val] = value.split(/ |\t/)
-      scoring.changeValue(index, val)
+      const floatVal = Utils.isNumeric(val) ? Utils.parseFloat(val) : ''
+      scoring.changeValue(index, floatVal)
     })
     this.forceUpdate()
   }
