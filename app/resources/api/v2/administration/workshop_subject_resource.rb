@@ -13,8 +13,7 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   audit_log_for :create, payload: '*'
 
   before_create { @model.campaign_id = context[:campaign].id }
-
-  before_save :increment_booked_seats, on: :create
+  after_create :increment_booked_seats
 
   def increment_booked_seats
     @model.workshop.increment_booked_seats

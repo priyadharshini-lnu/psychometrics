@@ -106,7 +106,11 @@ export const AssessorFormModal:FC<Props> = (props) => {
           setFields(allFields)
         }}
       >
-        <Form.Item rules={[{ required: true }]} label="Assessment" name="name">
+        <Form.Item
+          rules={[{ required: true, message: I18n.t('validations.blank') }]}
+          label={I18n.t('administration.scheduling.add_assessor_form.assessment')}
+          name="name"
+        >
           <Select
             disabled={initialFormData?.assessorUserAssessmentId}
             onChange={value => setSelectedAssessment(assessments?.filter(assessment => assessment.id === value)[0])}
@@ -121,7 +125,11 @@ export const AssessorFormModal:FC<Props> = (props) => {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item rules={[{ required: true }]} label="Assessor" name="assessor">
+        <Form.Item
+          rules={[{ required: true, message: I18n.t('validations.blank') }]}
+          label={I18n.t('administration.scheduling.add_assessor_form.assessor')}
+          name="assessor"
+        >
           <Select
             disabled={initialFormData?.assessorUserAssessmentId}
           >
@@ -136,8 +144,8 @@ export const AssessorFormModal:FC<Props> = (props) => {
           </Select>
         </Form.Item>
         <Form.Item
-          rules={[{ required: true }]}
-          label="Schedule Time"
+          rules={[{ required: true, message: I18n.t('validations.blank') }]}
+          label={I18n.t('administration.scheduling.add_assessor_form.schedule_time')}
           name="scheduleTime"
         >
           <TimePicker

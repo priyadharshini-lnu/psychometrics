@@ -68,7 +68,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
 
   useEffect(() => {
     form.setFieldsValue({
-      allowLanguagePreference: true,
+      allowLanguagePreference: false,
       allowedLanguages: [],
       allowNeurodiversityOption: false,
     })

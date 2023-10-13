@@ -113,9 +113,10 @@ export const ScheduleAvailability:FC<Props> = ({
   }
 
   const handleCopyToALl = () => {
-    const firstDay = checkedDayList[0]
+    const days = checkedDayList.filter(day => availableWeekDays.includes(day))
+    const firstDay = days[0]
     const firstField = dateSelectionForm.getFieldValue(firstDay)
-    availableWeekDays.filter(day => checkedDayList.includes(day)).forEach((day) => {
+    days.forEach((day) => {
       dateSelectionForm.setFieldValue(day, firstField)
     })
     setDateFields(dateSelectionForm.getFieldsValue())

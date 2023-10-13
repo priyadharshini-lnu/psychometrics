@@ -173,7 +173,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
                 target="_blank"
               >
                 {status === 'not_started' && I18n.t('common.actions.start')}
-                {status === 'stated' && I18n.t('common.actions.continue')}
+                {status === 'in_progress' && I18n.t('common.actions.continue')}
                 {status === 'completed' && I18n.t('common.actions.view')}
               </Button>
               )

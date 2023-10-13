@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Select as BaseSelect, Dropdown, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
@@ -20,6 +20,7 @@ const Select: React.FC<Props> = ({
 }) => {
   const type = formTypes[index]
   const { optionList } = type
+  const [open, setOpen] = useState(false)
 
   return (
     <div className={styles.selectContainer}>
@@ -29,10 +30,10 @@ const Select: React.FC<Props> = ({
       <Dropdown
         className={styles.dropdown}
         overlay={(<OptionList type={type} model={model} index={index} />)}
-        trigger={['click']}
+        open={open}
       >
-        <Button type="link">
-          <span>Options</span>
+        <Button type="link" onClick={() => setOpen(!open)}>
+          <span>{open ? 'Click To Close' : 'Options'}</span>
           <DownOutlined />
         </Button>
       </Dropdown>

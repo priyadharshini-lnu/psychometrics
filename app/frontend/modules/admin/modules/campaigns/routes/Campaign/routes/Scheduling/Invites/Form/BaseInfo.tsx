@@ -45,9 +45,9 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   form, next, onCancel, prev, workshops, errors, availableLocales,
 }) => {
   const params = useParams<{campaignId: string}>()
-  const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowPreferredLanguage'))
+  const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowLanguagePreference'))
   const [allowNeurodiversityOption, setAllowNeurodiversityOption] = useState(
-    form.getFieldValue('setAllowNeurodiversityOption'),
+    form.getFieldValue('allowNeurodiversityOption'),
   )
   const [, setSelectedWorkshops] = useState([])
   const [searchValue, setSearchValue] = useState('')
@@ -65,11 +65,11 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   }, [workshops])
 
   const changePreferredLang = (checked) => {
-    form.setFieldValue('allowPreferredLanguage', checked)
+    form.setFieldValue('allowLanguagePreference', checked)
     setPreferredLang(checked)
   }
   const changeNeuroDiversityOption = (checked) => {
-    form.setFieldValue('setAllowNeurodiversityOption', checked)
+    form.setFieldValue('allowNeurodiversityOption', checked)
     setAllowNeurodiversityOption(checked)
   }
 
@@ -179,7 +179,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                   </Col>
                 </Row>
               </Form.Item>
-              <Form.Item name="allowPreferredLanguage" valuePropName="checked">
+              <Form.Item name="allowLanguagePreference" valuePropName="checked">
                 <Space>
                   <Switch
                     onChange={checked => changePreferredLang(checked)}
@@ -198,6 +198,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                   <Select
                     showSearch
                     mode="multiple"
+                    optionFilterProp="children"
                   >
                     {availableLocales.map(locale => (
                       <Select.Option key={locale} value={locale}>
