@@ -73,7 +73,6 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 }) => {
   const [, setFields] = useState({})
   const [errors, setErrors] = useState<Errors>()
-  const [opened, setOpened] = useState(false)
   const [statusFormInstance] = Form.useForm()
 
   const { campaignId } = useParams<{ campaignId: string }>()
@@ -161,7 +160,6 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   useEffect(() => {
     if (open && subjectId) {
-      setOpened(open)
       fetchSingle({ id: subjectId })
       fetchAssessments()
       fetchAssessorAssessments(
@@ -183,7 +181,6 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const handleClose = () => {
     setErrors(undefined)
-    setOpened(false)
     onClose()
   }
 
@@ -229,7 +226,9 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
             ...assessment,
             scheduleTime: null,
             assessor: null,
-            meetingLinkUrl: null,
+            meetingType: 'none',
+            meetingLink: null,
+            status: null,
           })
         }
         return assessment
@@ -247,10 +246,9 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       body: { ...subjectData, ...statusValues },
     }).catch((e) => {
       setErrors(e)
-      setOpened(true)
     }).then((response) => {
       if (response === 'ok') {
-        setOpened(false)
+        onClose()
       }
     })
   }
@@ -300,16 +298,17 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       form={statusFormInstance}
       className={styles.form}
       layout="inline"
-      initialValues={{
-        attendanceStatus: subjectData.attendanceStatus || 'on_time',
-        lateDuration: subjectData.lateDuration || null,
-      }}
       onFieldsChange={(_, allFields) => {
         setFields(allFields)
       }}
     >
       <Space size="large">
-        <Form.Item className="font-normal" label="Status" name="attendanceStatus">
+        <Form.Item
+          className="font-normal"
+          label="Status"
+          name="attendanceStatus"
+          initialValue={subjectData.attendanceStatus}
+        >
           <Select dropdownStyle={{ minWidth: '120px' }}>
             {STATUSES.map(status => (
               <Select.Option
@@ -322,7 +321,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
           </Select>
         </Form.Item>
         {statusFormInstance.getFieldValue('attendanceStatus') === 'late' ? (
-          <Form.Item label="Late Duration" name="lateDuration">
+          <Form.Item label="Late Duration" name="lateDuration" initialValue={subjectData.lateDuration || null}>
             <InputDuration
               value=""
               onChange={() => {}}
@@ -336,7 +335,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const assessmentsTable = !workshopSubjectDetailsLoading ? (
     <UserAssessmentList
-      assessments={assessments}
+      assessments={subjectData.assessments}
       onTimeChange={handleTimeChange}
     />
 
@@ -361,7 +360,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         footer={footer}
         width="80%"
         title={title}
-        open={opened}
+        open={open}
         onClose={handleClose}
         destroyOnClose
       >

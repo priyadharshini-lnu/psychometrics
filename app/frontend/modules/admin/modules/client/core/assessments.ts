@@ -67,6 +67,10 @@ export const AssessmentTR = t.type({
 
 
 export type Assessment = t.TypeOf<typeof AssessmentTR>
+export type LinkedAssessment = {
+  id: string
+  name: string
+}
 
 export const CATEGORIES = [
   'psychometric',
@@ -74,11 +78,26 @@ export const CATEGORIES = [
   'case_study',
   'threesixty',
   'assessor_form',
+  'agile',
   'hogan',
   'saville',
   'pearson',
   'iiht',
 ]
+
+export const UPDATABLE_CATEGORIES = [
+  'psychometric',
+  'organisational',
+  'case_study',
+]
+
+export const CREATABLE_CATEGORIES = [
+  ...UPDATABLE_CATEGORIES,
+  'agile',
+  'threesixty',
+  'assessor_form',
+]
+
 
 export const TYPES = [
   'common',

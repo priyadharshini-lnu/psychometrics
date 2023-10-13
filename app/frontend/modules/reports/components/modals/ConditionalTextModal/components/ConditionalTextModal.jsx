@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
+import { Space, Switch } from 'antd'
 import TextConditionCollection from '~/modules/reports/models/TextConditionCollection'
 import AppStore from '~/modules/reports/store/AppStore'
 import styles from './ConditionalTextModal.less'
@@ -17,6 +18,7 @@ export class ConditionalTextModal extends Component {
     super(props)
     this.state = {
       module: _.cloneDeep(props.module),
+      skipRoundingValues: props.module.props.skipRoundingValues || false,
     }
   }
 
@@ -42,9 +44,10 @@ export class ConditionalTextModal extends Component {
   }
 
   save = () => {
-    const { module: newModule } = this.state
+    const { module: newModule, skipRoundingValues } = this.state
     const { module, close } = this.props
     module.textConditions = newModule.textConditions
+    module.props.skipRoundingValues = skipRoundingValues
     module.update()
     close()
   }
@@ -73,7 +76,7 @@ export class ConditionalTextModal extends Component {
 
   render () {
     const { close } = this.props
-    const { module } = this.state
+    const { module, skipRoundingValues } = this.state
     return (
       <Modal onEntered={this.removeIndex} show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -84,6 +87,13 @@ export class ConditionalTextModal extends Component {
         </Header>
         <Body>
           {this.renderCollections()}
+          <Space>
+            <Switch
+              checked={skipRoundingValues}
+              onChange={() => this.setState({ skipRoundingValues: !skipRoundingValues })}
+            />
+            Skip Rounding Values
+          </Space>
         </Body>
         <Footer>
           <button className="btn btn-default" style={{ float: 'left' }} onClick={this.addCollection}>

@@ -13,7 +13,7 @@ export default function ChartOptions (model) {
     },
     yAxis: {
       min: 0,
-      max: 6,
+      max: model.props.maxValue || 6,
       lineWidth: 0,
       tickInterval: 6,
       labels: {

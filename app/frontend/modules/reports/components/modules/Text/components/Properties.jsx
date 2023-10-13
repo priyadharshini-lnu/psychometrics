@@ -34,11 +34,13 @@ class Properties extends Component {
   changeBg = (color) => {
     const { model } = this.props
     model.props.style.backgroundColor = color
+    model.update()
   }
 
   changeBorder = (color) => {
     const { model } = this.props
-    model.props.style.borderColor = color.rgb
+    model.props.style.borderColor = color
+    model.update()
   }
 
   changeType = (type, props = {}) => {
@@ -219,22 +221,13 @@ class Properties extends Component {
           />
           {model.props.sourceType === 'ConditionalText'
             && (
-              <>
-                <div
-                  style={{ width: '100%' }}
-                  onClick={this.openConditionModal}
-                  className="btn btn-default"
-                >
-                  Manage condition
-                </div>
-                <input
-                  type="checkbox"
-                  onChange={this.changeSkipRoundValues}
-                  checked={model.props.skipRoundingValues || false}
-                />
-                {' '}
-                Skip rounding values
-              </>
+            <div
+              style={{ width: '100%' }}
+              onClick={this.openConditionModal}
+              className="btn btn-default"
+            >
+              Manage condition
+            </div>
             )}
           {model.props.sourceType === 'ConditionalFactorOccupationText'
             && (
@@ -326,20 +319,14 @@ class Properties extends Component {
           Background Color
           <ColorPicker
             value={rgba2hex(backgroundColor)}
-            onChange={(color) => {
-              this.changeBg(color)
-              this.update
-            }}
+            onChange={this.changeBg}
           />
         </div>
         <div className={styles.block} style={{ position: 'relative' }}>
           Border Color
           <ColorPicker
             value={rgba2hex(borderColor)}
-            onChange={() => {
-              this.changeBorder
-              this.update
-            }}
+            onChange={this.changeBorder}
           />
         </div>
         <hr className={styles.divider} />

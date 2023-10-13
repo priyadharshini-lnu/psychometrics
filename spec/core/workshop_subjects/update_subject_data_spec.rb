@@ -41,9 +41,10 @@ describe WorkshopSubjects::UpdateSubjectData do
 
       expect(workshop_subject.reload.attendance_status).to eq('dropped_out')
       expect(workshop_subject.reload.late_duration).to eq(10)
-      expect(campaign.user_assessments.first.schedule_time).to eq('2023-08-04T02:00:00.063Z')
-      expect(campaign.user_assessments.first.evaluator_id).to eq(campaign.assessors.first.user_id)
-      expect(campaign.user_assessments.first.id).to eq(params[:assessor_assessments].first[:id])
+      user_assessment.reload
+      expect(user_assessment.schedule_time).to eq('2023-08-04T02:00:00.063Z')
+      expect(user_assessment.evaluator_id).to eq(campaign.assessors.first.user_id)
+      expect(user_assessment.id).to eq(params[:assessor_assessments].first[:id])
     end
 
     it "creates new assessor record if assessor doesn't exist with user_id or campaign_id" do

@@ -44,7 +44,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     ORGANISATIONAL,
     CASE_STUDY,
     THREESIXTY,
-    ASSESSOR_FORM
+    ASSESSOR_FORM,
+    AGILE
   ].freeze
 
   CATEGORIES = {
@@ -124,6 +125,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   belongs_to :linked_assessment, class_name: 'Assessment'
 
   before_create :init_defaults, if: :common?
+  after_create :create_agile, if: :agile?
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
 
   #
@@ -227,6 +229,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   def clone
     @cloned_item = dup
     @cloned_item.gen_uniq_name
+    @cloned_item.icon = icon
+    @cloned_item.poster = poster
     @cloned_item
   end
 

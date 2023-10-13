@@ -66,9 +66,10 @@ describe Workshops::Booking::RescheduleSlot do
         expect(workshop_subject.reload.preferred_language).to eq('en')
         expect(workshop_subject.reload.neurodivergent).to eq(true)
         expect(workshop_subject.reload.neurodivergent_comments).to eq('test')
+        expect(workshop_subject.reload.scheduling_status).to eq('scheduled')
       end
 
-      it 'allows requseted_reschedule even if reschedule_lead_time passed' do
+      it 'allows requested_reschedule even if reschedule_lead_time passed' do
         frozen_time = workshop.start_time - workshop.reschedule_lead_time.hours + 1.hour
 
         allow(Time).to receive(:now).and_return(frozen_time)
@@ -90,6 +91,30 @@ describe Workshops::Booking::RescheduleSlot do
           and not_change { workshop_subject.reload.workshop_id }.
           and change { WorkshopInviteLog.count }.by(1).
           and change { WorkshopInviteLog.last&.action }.from(nil).to('requested_rescheduling')
+      end
+
+      it 'modifies existing workshop_subject record if user is booking the slot which has cancelled previously' do
+        workshop_subject = create(
+          :workshop_subject, workshop: new_workshop, campaign: new_workshop.campaign, user: user,
+          scheduling_status: 'cancelled', preferred_language: 'ar'
+        )
+        expect do
+          described_class.call(
+            {
+              workshop_id: workshop.id,
+              id: workshop_invite.id,
+              new_workshop_booking_id: new_workshop.id,
+              status: 'rescheduled',
+              workshop_subject_details: {
+                preferred_language: 'en'
+              }
+            },
+            user
+          )
+        end.not_to(change { WorkshopSubject.count })
+
+        expect(workshop_subject.reload.scheduling_status).to eq('scheduled')
+        expect(workshop_subject.preferred_language).to eq('en')
       end
     end
   end

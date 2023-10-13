@@ -167,6 +167,7 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
         }]
 
         let!(:workshop_subject) do
+          workshop_invite.workshops.first.update(booked_seats: 1)
           create(:workshop_subject, workshop: workshop_invite.workshops.first)
         end
         let!(:workshop_invited_subject) do

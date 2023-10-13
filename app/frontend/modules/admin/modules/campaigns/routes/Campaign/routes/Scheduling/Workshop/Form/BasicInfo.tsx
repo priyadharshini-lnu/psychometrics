@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   DatePicker, Form, Row, Space, Col, TimePicker, Radio, Button, Tag, Input,
 } from 'antd'
-import { Moment } from 'moment'
+import moment, { Moment } from 'moment'
 import { Store } from 'antd/lib/form/interface'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
 import InputDuration, { convertToInt } from '~/components/InputDuration'
@@ -117,6 +117,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             <DatePicker
               value={null}
               onSelect={date => handleDateChange(date)}
+              disabledDate={current => current && current < moment().startOf('day')}
               dateRender={(current) => {
                 const style: React.CSSProperties = {}
                 const found = selectedDates.find(d => d.format('YYYY MM DD') === current.format('YYYY MM DD'))

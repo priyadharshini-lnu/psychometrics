@@ -272,6 +272,7 @@ Rails.application.routes.draw do
 
         resources :universal_links, only: %i[show update destroy] do
           member do
+            put :toggle_multiple_responses
             post :activate
           end
         end
@@ -904,6 +905,7 @@ Rails.application.routes.draw do
       get 'policy/:version', to: 'users#policy'
       post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
+      delete 'anonym/:assessment_key', to: 'anonyms#restart', as: :anonym_restart
       get 'anonym/error', to: 'anonyms#error'
       get :workshop_invites, to: 'workshop_invited_subjects#invites', defaults: { format: :json }
       get :workshop_bookings, to: 'workshop_invited_subjects#bookings', defaults: { format: :json }
@@ -1215,6 +1217,7 @@ Rails.application.routes.draw do
             jsonapi_resources :workshops, only: %i[index show update] do
               member do
                 post :change_status
+                post :bulk_update_subjects
               end
               collection do
                 post :create_bulk_workshops
@@ -1255,9 +1258,6 @@ Rails.application.routes.draw do
           end
           jsonapi_resources :workshops, only: %i[index] do
             jsonapi_relationships
-            member do
-              post :bulk_update_subjects
-            end
           end
 
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]

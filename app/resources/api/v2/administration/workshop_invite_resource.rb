@@ -7,6 +7,10 @@ class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration:
   has_many :workshops, exclude_links: :default
   has_many :workshop_invited_subjects
 
+  audit_log_for :remove_to_many_relationships, payload: '*'
+  audit_log_for :create_to_many_relationships, payload: '*'
+  audit_log_for :destroy, payload: ->(_, workshop_invite) { workshop_invite.slice('id', 'title', 'description') }
+
   def fetchable_fields
     super - %i[subjects translations workshop_ids]
   end

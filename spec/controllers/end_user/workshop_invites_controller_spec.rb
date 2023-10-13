@@ -192,7 +192,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       it 'returns success' do
         workshop_subject
         workshop_invited_subject.update!(status: 'accepted')
-        workshop.update!(cancellation_lead_time: 3600)
+        workshop.update!(cancellation_lead_time: 3600, booked_seats: 1)
 
         post :cancel_or_request_cancellation, params: {
           workshop_id: workshop.id,
@@ -277,7 +277,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
     context 'reschedule a seat' do
       it 'returns success' do
         workshop_invited_subject.update!(status: 'accepted')
-        workshop.update!(reschedule_lead_time: 3600)
+        workshop.update!(reschedule_lead_time: 3600, booked_seats: 1)
         create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
 
@@ -292,7 +292,6 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
             neurodivergent_comments: 'test'
           }
         }
-
         expect(response.status).to eq(200)
         expect(JSON.parse(response.body)).to eq('ok')
         expect(workshop_invited_subject.reload.status).to eq('rescheduled')
@@ -340,6 +339,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         post :reschedule_or_request_reschedule, params: {
           workshop_id: workshop.id,
           id: workshop_invite.id,
+          new_workshop_booking_id: new_workshop.id,
           status: 'requested_rescheduling',
           reason: 'test',
           new_workshop_id: new_workshop.id

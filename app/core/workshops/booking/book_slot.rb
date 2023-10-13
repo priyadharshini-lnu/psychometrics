@@ -12,16 +12,24 @@ module Workshops
         @params = params
       end
 
+      # rubocop:disable Rails/TransactionExitStatement, Lint/UnreachableCode
       def call
         WorkshopInvite.transaction do
           @workshop_subject = create_workshop_subject
           workshop_invited_subject.accepted!
           create_workshop_invite_log('accepted')
-          increment_booked_seats(workshop_id)
+          begin
+            workshop.increment_booked_seats
+          rescue Workshops::SeatsNotAvailableError => e
+            broadcast(:error, [e.message])
+            raise ActiveRecord::Rollback
+            return
+          end
         end
 
         broadcast(:ok)
       end
+      # rubocop:enable Rails/TransactionExitStatement, Lint/UnreachableCode
 
       private
 

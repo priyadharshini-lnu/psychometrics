@@ -1,5 +1,5 @@
 import {
-  Table, Row, Col, Tag, Switch, Input, TimePicker,
+  Table, Tag, Switch, Input, TimePicker, Space,
 } from 'antd'
 import moment from 'moment-timezone'
 
@@ -18,10 +18,12 @@ export const UserAssessmentList = ({ assessments, onTimeChange }) => (
     <Column
       title={I18n.t('common.column.id')}
       dataIndex="id"
+      width={50}
     />
     <Column
       title={I18n.t('common.column.assessment_name')}
       dataIndex="name"
+      width="30%"
     />
     <Column
       title={I18n.t('common.column.status')}
@@ -29,6 +31,7 @@ export const UserAssessmentList = ({ assessments, onTimeChange }) => (
       render={
             (status => <Tag color={PROGRESS_STATUSES[status].color}>{PROGRESS_STATUSES[status].label}</Tag>)
           }
+      width="20%"
     />
     <Column
       title={I18n.t('common.column.schedule_time')}
@@ -45,28 +48,24 @@ const ScheduleTime = ({ assessment, onTimeChange }) => {
     if (!active) { onTimeChange(null, id) }
   }, [active])
   return (
-    <Row gutter={[8, 0]}>
-      <Col span={4} className="flex items-center">
-        <Switch
-          onChange={(current) => {
-            setActive(current)
-            onTimeChange(moment(), id)
-          }}
-          defaultChecked={active}
-          disabled={status === 'completed'}
+    <Space>
+      <Switch
+        onChange={(current) => {
+          setActive(current)
+          onTimeChange(moment(), id)
+        }}
+        defaultChecked={active}
+        disabled={status === 'completed'}
+      />
+      {active ? (
+        <TimePicker
+          className="w-100"
+          disabled={status !== 'not_started' || !active}
+          format="hh:mm A"
+          defaultValue={scheduleTime ? moment(scheduleTime) : moment()}
+          onChange={value => onTimeChange(value, id)}
         />
-      </Col>
-      <Col span={8}>
-        {active ? (
-          <TimePicker
-            className="w-100"
-            disabled={status !== 'not_started' || !active}
-            format="hh:mm A"
-            defaultValue={scheduleTime ? moment(scheduleTime) : moment()}
-            onChange={value => onTimeChange(value, id)}
-          />
-        ) : <Input disabled value="Not Scheduled" />}
-      </Col>
-    </Row>
+      ) : <Input disabled value="Not Scheduled" />}
+    </Space>
   )
 }

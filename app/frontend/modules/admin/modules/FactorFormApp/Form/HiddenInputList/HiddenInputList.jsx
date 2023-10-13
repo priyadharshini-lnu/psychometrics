@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { getNonEmptyValue } from '~/utils/general'
 
 export default function HiddenInputList ({ resource, resourceName }) {
   return _.map(resource, (value, name) => {
@@ -15,13 +16,15 @@ export default function HiddenInputList ({ resource, resourceName }) {
     if (_.isArray(value) && value.length === 0) {
       return (
         <input
+          key={name}
           type="hidden"
           name={`${resourceName}[${name}][]`}
           value={[]}
         />
       )
     }
-    return <Input key={name} resourceName={resourceName} name={name} value={value || ''} />
+
+    return <Input key={name} resourceName={resourceName} name={name} value={getNonEmptyValue(value)} />
   })
 }
 

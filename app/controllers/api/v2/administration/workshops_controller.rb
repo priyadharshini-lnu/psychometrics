@@ -13,6 +13,7 @@ module Api
 
     def bulk_update_subjects
       WorkshopSubjects::BulkUpdateSubjects.call!(@workshop, bulk_subject_params)
+      audit! :bulk_update_subjects, @workshop, payload: bulk_subject_params, campaign: campaign
       jsonapi_render json: @workshop
     end
 
@@ -27,18 +28,21 @@ module Api
       if response && response[:error]
         render json: { error: response[:error] }, status: 400
       else
+        audit! :create_bulk_workshops, nil, payload: workshop_params, campaign: campaign
         jsonapi_render json: response[:workshops]
       end
     end
 
     def change_status
       @workshop.update!(status: params.dig(:data, :attributes, :status))
+      audit! :change_status, @workshop, payload: params, campaign: campaign
 
       jsonapi_render json: @workshop
     end
 
     def update
       ::Workshops::Update.call!(@workshop, workshop_update_params)
+      audit! :update, @workshop, payload: workshop_update_params, campaign: campaign
 
       jsonapi_render json: @workshop
     end

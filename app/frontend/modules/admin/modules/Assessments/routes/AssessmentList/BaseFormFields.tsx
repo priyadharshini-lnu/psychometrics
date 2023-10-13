@@ -5,7 +5,9 @@ import {
 import cs from 'classnames'
 import { FormInstance } from 'antd/lib/form'
 import { useResources } from '~/hooks/useResources'
-import { Assessment, CATEGORIES } from '~/modules/admin/modules/client/core/assessments'
+import {
+  Assessment, LinkedAssessment, UPDATABLE_CATEGORIES, CREATABLE_CATEGORIES,
+} from '~/modules/admin/modules/client/core/assessments'
 import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
 import { Client } from '~/modules/admin/modules/client/core/clients'
 import { ExternalAssessmentFields } from './ExternalAssessmentFields'
@@ -34,7 +36,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
   } = useResources<Client>('clients')
   const {
     data: assessments, fetch: fetchAssessments, isLoading: isAssessmentsLoading,
-  } = useResources<Assessment>('assessments')
+  } = useResources<LinkedAssessment>('assessments')
 
   const type = Form.useWatch('type', form)
   const category = Form.useWatch('category', form)
@@ -65,9 +67,14 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
   }
 
   const ExternalAssessmentFieldsComponent = ExternalAssessmentFields[type]
-
-  const getCategories = () => CATEGORIES.filter(c => !ExternalAssessmentFields[c])
-
+  const categories = assessment ? UPDATABLE_CATEGORIES : CREATABLE_CATEGORIES
+  const isCategoryHidden = () => {
+    assessment && assessment.category && !categories.includes(assessment.category)
+    if (assessment) {
+      return !categories.includes(assessment.category)
+    }
+    return !!ExternalAssessmentFieldsComponent
+  }
 
   return (
     <>
@@ -106,7 +113,6 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
             <Form.Item
               name="description"
               label={I18n.t('common.column.description')}
-              rules={[{ required: true }]}
             >
               <TextArea />
             </Form.Item>
@@ -118,12 +124,12 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
       }
       <Form.Item
         name="category"
-        className={cs({ hidden: !!ExternalAssessmentFieldsComponent })}
+        className={cs({ hidden: isCategoryHidden() })}
         label={I18n.t('common.column.category')}
         rules={[{ required: true }]}
       >
         <Select>
-          {getCategories().map(
+          {categories.map(
             c => <Select.Option key={c} value={c}>{I18n.t(`assessments.fields.category.${c}`)}</Select.Option>,
           )}
         </Select>
@@ -138,7 +144,11 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
             onSearch={(value) => {
               fetchAssessments({
                 apiConfig: {
-                  filter: { filterable_fields: value, category_eq: 'psychometric' },
+                  filter: {
+                    filterable_fields: value,
+                    category_in: ['psychometric', 'agile', 'case_study'],
+                    archived_eq: 'false',
+                  },
                   fields: { assessments: ['name'] },
                 },
               })

@@ -8,10 +8,15 @@ const Text = (props) => {
   } = module.props.style
 
   const style = {
-    backgroundColor: `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`,
     border: '1px solid',
     borderRadius,
-    borderColor: `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`,
+  }
+  if (backgroundColor) {
+    style.backgroundColor = `rgba(
+      ${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
+  }
+  if (borderColor) {
+    style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
   }
 
   const outerStyle = {

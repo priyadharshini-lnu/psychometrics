@@ -5,7 +5,7 @@ module EndUser
     attributes :id, :start_time, :meeting_link, :attended, :closed
 
     def meeting_link
-      object.real_meeting_link
+      object.real_meeting_link(current_user)
     end
 
     def attended
