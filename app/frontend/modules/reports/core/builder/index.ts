@@ -14,7 +14,7 @@ import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 
 const VERTICAL_SPACE_BETWEEN_PAGES = 95
 const DATA_CONFIFURATION_REF = 'ref'
-const SUPPORTED_DATA_CONFIFURATION = ['formula', 'mapped_value', 'normed_factor', 'raw_factor']
+const SUPPORTED_DATA_CONFIFURATION = ['formula', 'mapped_value', 'normed_factor', 'raw_factor', 'zscore_to_percentile']
 
 interface DataConfigurationItem {
   key: string,
