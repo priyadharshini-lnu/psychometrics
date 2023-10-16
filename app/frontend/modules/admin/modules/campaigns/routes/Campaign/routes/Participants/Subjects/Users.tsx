@@ -155,7 +155,7 @@ const UserList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
+                <Link to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
                   {id}
                 </Link>
               )}
@@ -350,7 +350,7 @@ const getActionsMenuProps = ({
     key: 'loginAs',
     label: (
       <a
-        href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/spoof`}
+        href={`/admin/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/spoof`}
       >
         {I18n.t('frontend.login')}
       </a>

@@ -112,15 +112,15 @@ const BreadcrumbsComponent = () => {
       }}
       crumbs={[
         {
-          link: () => '/administration',
+          link: () => '/admin',
           label: () => I18n.t('administration.clients.tenancies'),
         },
         {
-          link: () => `/administration/clients/${clientId}/projects`,
+          link: () => `/admin/clients/${clientId}/projects`,
           label: state => state.client.name,
         },
         {
-          link: () => `/administration/clients/${clientId}/licenses`,
+          link: () => `/admin/clients/${clientId}/licenses`,
           label: () => I18n.t('administration.breadcrumbs.licenses'),
         },
         {

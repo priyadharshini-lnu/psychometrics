@@ -138,7 +138,7 @@ const getActionsMenuProps = ({
   }
 
   const handleAPIKeysClick = (userId: Admin['userId']) => {
-    history.push(`/administration/users/admins/${userId}/api_keys`)
+    history.push(`/admin/users/admins/${userId}/api_keys`)
   }
 
   const handleOnConfirm = () => resource.removeResource(user.id).then(() => {

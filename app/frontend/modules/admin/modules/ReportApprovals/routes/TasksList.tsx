@@ -211,7 +211,7 @@ const TasksListComponent: React.FC<Props> = ({
             id, campaign, projectId, pdfUrl, approvalStatus,
           }) => (
             <Space>
-              <a href={`/administration/projects/${projectId}/new_campaigns/${campaign.id}/user_reports/${id}`}>
+              <a href={`/admin/projects/${projectId}/new_campaigns/${campaign.id}/user_reports/${id}`}>
                 {I18n.t('administration.report_approval.review')}
               </a>
               {approvalStatus === 'approved' && pdfUrl && (

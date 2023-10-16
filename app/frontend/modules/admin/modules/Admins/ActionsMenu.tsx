@@ -148,7 +148,7 @@ const getActionMenuProps = ({
     {
       key: 'apiKeys',
       label: (
-        <a href={`/administration/users/admins/${userId}/api_keys`} rel="noreferrer noopener">
+        <a href={`/admin/users/admins/${userId}/api_keys`} rel="noreferrer noopener">
           {I18n.t('administration.administrators.list.actions.api_keys')}
         </a>
       ),

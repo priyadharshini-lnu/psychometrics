@@ -68,7 +68,7 @@ const AuditLogList: React.FC<Props> = ({
         )}
         {record.client && (
           <Descriptions.Item label="Client">
-            <a href={`/administration/clients/${record.client.id}/projects`}>
+            <a href={`/admin/clients/${record.client.id}/projects`}>
               {record.client.id}
               ,
               {' '}
@@ -87,7 +87,7 @@ const AuditLogList: React.FC<Props> = ({
         </Descriptions.Item>
         {record.project && (
           <Descriptions.Item label={I18n.t('administration.audit_log.project')}>
-            <a href={`/administration/projects/${record.project.id}/new_campaigns`}>
+            <a href={`/admin/projects/${record.project.id}/new_campaigns`}>
               {record.project.id}
               ,
               {' '}
@@ -99,7 +99,7 @@ const AuditLogList: React.FC<Props> = ({
         {record.campaign && (
           <Descriptions.Item label={I18n.t('administration.audit_log.campaign')}>
             <a
-              href={`/administration/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
+              href={`/admin/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
             >
               {record.campaign.name}
             </a>

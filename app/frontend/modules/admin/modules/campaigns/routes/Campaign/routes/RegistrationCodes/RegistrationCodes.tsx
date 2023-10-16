@@ -214,7 +214,7 @@ const getQRCodeMenuProps = ({
         <a
           download
         // eslint-disable-next-line max-len
-          href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
+          href={`/admin/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
         >
           PNG
         </a>

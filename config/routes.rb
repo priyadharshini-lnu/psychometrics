@@ -21,6 +21,13 @@ Rails.application.routes.draw do
 
   get '/admin', to: 'admin_app#dashboard', as: :admin
   get '/admin/meet/:room_id', to: 'admin_app#dashboard', as: :admin_meeting
+
+  # TODO: remove this once we move Threesixty use common campaign type route
+  get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id/*all',
+      to: redirect('/administration/clients/%<clientId>s/projects/%<projectId>s/threesixty_campaigns/%<id>s/%<all>s')
+  get '/admin/clients/:clientId/projects/:projectId/threesixty_campaigns/:id',
+      to: redirect('/administration/clients/%<clientId>s/projects/%<projectId>s/threesixty_campaigns/%<id>s')
+
   get '/admin/*all', to: 'admin_app#dashboard'
 
   concern :media_uploades do

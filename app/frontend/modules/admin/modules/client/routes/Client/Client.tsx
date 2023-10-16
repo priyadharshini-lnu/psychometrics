@@ -92,11 +92,11 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
         }}
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('administration.clients.tenancies'),
           },
           {
-            link: state => `/administration/clients/${state.client.id}/projects`,
+            link: state => `/admin/clients/${state.client.id}/projects`,
             label: state => state.client.name,
           },
           {

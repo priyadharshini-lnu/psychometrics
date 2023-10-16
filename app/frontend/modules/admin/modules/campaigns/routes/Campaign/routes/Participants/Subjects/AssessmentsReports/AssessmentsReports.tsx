@@ -80,7 +80,7 @@ const AssessmentsReports: React.FC<Props> = ({
     const campaigns = _.map(user.campaigns, (campaign) => {
       if (campaign.id === parsedCampaignId) { return campaign.name }
       return (
-        <a key={campaign.id} href={`/administration/projects/${projectId}/new_campaigns/${campaignId}`}>
+        <a key={campaign.id} href={`/admin/projects/${projectId}/new_campaigns/${campaignId}`}>
           {campaign.name}
         </a>
       )
@@ -103,7 +103,7 @@ const AssessmentsReports: React.FC<Props> = ({
       cancelText: I18n.t('common.text.cancel'),
       onOk: () => {
         remove(campaignId, parsedUserId)
-        history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/users`)
+        history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/users`)
         message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email: user.email }))
       },
     })

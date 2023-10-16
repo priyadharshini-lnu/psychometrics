@@ -200,21 +200,21 @@ export default function ReportPreview ({
             },
           }}
           crumbs={[{
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('administration.clients.tenancies'),
           }, {
-            link: state => `/administration/clients/${state.client.id}/projects`,
+            link: state => `/admin/clients/${state.client.id}/projects`,
             label: state => state.client.name,
           }, {
-            link: state => `/administration/projects/${state.project.id}/new_campaigns`,
+            link: state => `/admin/projects/${state.project.id}/new_campaigns`,
             label: state => state.project.name,
           }, {
-            link: state => `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
+            link: state => `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
             label: state => state.campaign?.name,
           }, {
             link: state => (reportIsLoaded()
               // eslint-disable-next-line max-len
-              ? `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}/users/${userReport.user.id}`
+              ? `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/users/${userReport.user.id}`
               : ''),
             label: () => (reportIsLoaded() ? userReport.user.email : ''),
           }, {

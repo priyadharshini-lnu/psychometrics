@@ -146,10 +146,10 @@ const getActionsMenuProps = ({
 }:ActionMenuData):MenuProps => {
   const previewUrl = () => {
     if (internal) {
-      return `/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`
+      return `/admin/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`
     }
 
-    return `/administration/projects/${projectId}/new_campaigns/${campaignId}/external_user_report/${userReportId}`
+    return `/admin/projects/${projectId}/new_campaigns/${campaignId}/external_user_report/${userReportId}`
   }
   const handleDelete = () => {
     Modal.confirm({

@@ -50,15 +50,15 @@ const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions }) => {
         }}
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('administration.clients.tenancies'),
           },
           {
-            link: state => `/administration/clients/${state.client.id}/projects`,
+            link: state => `/admin/clients/${state.client.id}/projects`,
             label: state => state.client.name,
           },
           {
-            link: state => `/administration/projects/${state.project.id}/new_campaigns`,
+            link: state => `/admin/projects/${state.project.id}/new_campaigns`,
             label: state => state.project.name,
           },
           {

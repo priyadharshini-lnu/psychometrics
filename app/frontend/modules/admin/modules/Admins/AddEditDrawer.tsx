@@ -113,8 +113,8 @@ const AddEditDrawerComponent: FC<Props> = ({
   const campaignId = campaignType === CampaignTypes.common ? campaignIdParams : currentCampaignId
 
   const historyPath = (adminType === AdminTypes.CampaignAdmin)
-    ? `/administration/projects/${projectId}/new_campaigns/${campaignIdParams}/admins`
-    : `/administration/projects/${projectId}/admins`
+    ? `/admin/projects/${projectId}/new_campaigns/${campaignIdParams}/admins`
+    : `/admin/projects/${projectId}/admins`
 
   const showRequestSuccessMessage = (response) => {
     if (isEditMode) {

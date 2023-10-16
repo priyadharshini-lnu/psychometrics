@@ -19,7 +19,7 @@ module Administration
         return administration_dashboard_path if helpers.show_dashboard?
         return assessors_dashboard_path if resource.is?(:assessor)
 
-        stored_location_for(resource) || administration_root_path
+        stored_location_for(resource) || admin_path
       end
 
       def after_sign_out_path_for(_resource)

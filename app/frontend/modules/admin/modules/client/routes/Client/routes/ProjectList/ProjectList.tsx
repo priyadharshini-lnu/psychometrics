@@ -146,7 +146,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                           className={styles.logoImageStyles}
                           placeholder={<Skeleton.Avatar className={styles.imageSkeleton} shape="square" active />}
                           onClick={() => {
-                            history.push(`/administration/projects/${id}/new_campaigns?filters[statusEq]=active`)
+                            history.push(`/admin/projects/${id}/new_campaigns?filters[statusEq]=active`)
                           }}
                         />
                       </>
@@ -166,7 +166,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                   >
                     <Link
                       className={styles.campaignLink}
-                      to={`/administration/projects/${id}/new_campaigns?filters[statusEq]=active`}
+                      to={`/admin/projects/${id}/new_campaigns?filters[statusEq]=active`}
                     >
                       {name}
                     </Link>

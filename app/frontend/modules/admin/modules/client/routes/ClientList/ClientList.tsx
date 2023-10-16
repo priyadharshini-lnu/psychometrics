@@ -97,7 +97,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
           sorter
           sortOrder={getSortOrder('name')}
           render={({ name, id }) => (
-            <Link to={`/administration/clients/${id}/projects`}>{name}</Link>
+            <Link to={`/admin/clients/${id}/projects`}>{name}</Link>
           )}
         />
         <Column
@@ -215,7 +215,7 @@ const getActionMenuProps = ({
     meta.permissions.viewLicenses && {
       key: 'licenses',
       label: (
-        <Link to={`/administration/clients/${id}/licenses`}>
+        <Link to={`/admin/clients/${id}/licenses`}>
           {I18n.t('frontend.clients.actions.menus.view_licenses')}
         </Link>
       ),

@@ -202,7 +202,7 @@ const AuditLogList: React.FC<Props> = (
               {...filterProps('client', tableConfig.filters.client_search)}
               render={({ client, clientId }) => (
                 client
-                  ? <a href={`/administration/clients/${client.id}/projects`}>{client.name}</a>
+                  ? <a href={`/admin/clients/${client.id}/projects`}>{client.name}</a>
                   : clientId && `${clientId} - deleted`
               )}
             />
@@ -212,7 +212,7 @@ const AuditLogList: React.FC<Props> = (
               {...filterProps('project', tableConfig.filters.project_search)}
               render={({ project, projectId }) => (
                 project
-                  ? <a href={`/administration/projects/${project.id}/new_campaigns`}>{project.name}</a>
+                  ? <a href={`/admin/projects/${project.id}/new_campaigns`}>{project.name}</a>
                   : projectId && `${projectId} - deleted`
               )}
             />
@@ -222,7 +222,7 @@ const AuditLogList: React.FC<Props> = (
               {...filterProps('campaign', tableConfig.filters.campaign_search)}
               render={({ projectId, campaignId, campaign }) => (
                 campaign ? (
-                  <a href={`/administration/projects/${projectId}/new_campaigns/${campaignId}`}>
+                  <a href={`/admin/projects/${projectId}/new_campaigns/${campaignId}`}>
                     {campaign.name}
                   </a>
                 ) : campaignId && `${campaignId} - deleted`

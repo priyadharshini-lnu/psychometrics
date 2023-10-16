@@ -60,11 +60,11 @@ const LicenseListComponent: React.FC<Props> = ({
         }}
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('administration.clients.tenancies'),
           },
           {
-            link: () => `/administration/clients/${clientId}/projects`,
+            link: () => `/admin/clients/${clientId}/projects`,
             label: state => state.client.name,
           },
           {
