@@ -198,7 +198,7 @@ export const RequirementTable = (props) => {
               {I18n.t('threesixty.action')}
             </Text>
           )}
-          width="5%"
+          width="76px"
           render={(value) => {
             if (!value.canRemove || !value.evaluator || !canNominate) { return null }
             return (

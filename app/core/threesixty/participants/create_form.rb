@@ -47,8 +47,8 @@ module Threesixty
       end
 
       def error_messages
-        errors.keys.each.with_object({}) do |attribute, list|
-          list[attribute] = errors.full_messages_for(attribute)
+        errors.each.with_object({}) do |error, list|
+          list[error.attribute] = errors.full_messages_for(error.attribute)
           list
         end
       end
