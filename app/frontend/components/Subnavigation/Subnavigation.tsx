@@ -12,7 +12,7 @@ import styles from './Subnavigation.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
 import {
-  addSubmenu, closeSubmenu, removeSubmenu,
+  addSubmenu, closeSubmenu, removeSubmenu, triggerCollapse,
 } from '~/modules/admin/core/ui/menu'
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -26,7 +26,7 @@ const connecter = connect(
     collapsed: state.ui.menu.collapsed,
   }),
   {
-    addSubmenu, closeSubmenu, removeSubmenu,
+    addSubmenu, closeSubmenu, removeSubmenu, triggerCollapse,
   },
 )
 
@@ -39,7 +39,7 @@ export type PropsFromRedux = ConnectedProps<typeof connecter> & {
 
 export const SubnavigationComponent:FC<PropsFromRedux> = ({
   currentUser, items, selectedKeys, onSelect, showBack = true,
-  showSubmenu, addSubmenu, closeSubmenu, removeSubmenu, collapsed,
+  showSubmenu, addSubmenu, closeSubmenu, removeSubmenu, collapsed, triggerCollapse,
 }) => {
   const [show, setShow] = useState(false)
 
@@ -69,11 +69,6 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
     onSelect?.(key)
   }
 
-  const closeMenu = () => {
-    setShow(false)
-    closeSubmenu()
-  }
-
   const itemsWithBack = [showBack ? {
     key: 'back_to_main_menu',
     label: I18n.t('administration.navigation.back_to_main'),
@@ -92,13 +87,17 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
     </>
   )
 
+  const closeMenu = () => {
+    triggerCollapse()
+  }
+
   return isMobile ? (
     <Drawer
       closable={false}
       bodyStyle={{ padding: 0 }}
       placement="left"
       width="220"
-      open={show && !collapsed}
+      open={showSubmenu && !collapsed}
       onClose={() => closeMenu()}
     >
       {menu}
