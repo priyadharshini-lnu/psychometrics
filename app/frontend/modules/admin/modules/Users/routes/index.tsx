@@ -16,11 +16,11 @@ const routes = [
     component: () => <UserList userTab="Users::SuperAdmin" />,
   },
   {
-    path: '/global-assessors',
+    path: '/users/global-assessors',
     component: () => <UserList userTab="Users::GlobalAssessors" />,
   },
   {
-    path: '/admins/:adminId/api_keys',
+    path: '/users/admins/:adminId/api_keys',
     component: () => <APIKeysList />,
   },
 ]
