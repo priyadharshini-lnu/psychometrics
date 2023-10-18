@@ -164,4 +164,12 @@ class UserReport < ApplicationRecord
       report_name: report.name
     }
   end
+
+  def piped_text_context
+    {
+      subject: user,
+      evaluator: user,
+      campaign: campaign
+    }
+  end
 end

@@ -296,6 +296,11 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     </>
   )
 
+  const closeMenu = () => {
+    triggerCollapse()
+    if (hasSubmenu) openSubmenu()
+  }
+
   return isMobile
     ? (
       <>
@@ -311,7 +316,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
           placement="left"
           width="220"
           open={!showSubmenu && !collapsed}
-          onClose={() => triggerCollapse()}
+          onClose={() => closeMenu()}
         >
           {menu}
         </Drawer>
