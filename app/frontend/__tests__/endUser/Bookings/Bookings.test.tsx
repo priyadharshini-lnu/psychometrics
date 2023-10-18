@@ -147,6 +147,6 @@ test('should display skeleton for both count & list of Invites and Bookings when
   })
   const bookingsSkeletonRows = await waitFor(() => container.querySelectorAll('.ant-tabs-tabpane-active .ant-skeleton.skeleton'))
   expect(bookingsSkeletonRows.length).toBe(SKELETON_ROWS)
-  const countSkeleton = await waitFor(() => container.querySelectorAll('.ant-skeleton.countSkeleton'))
+  const countSkeleton = await waitFor(() => container.querySelectorAll('.ant-spin.ant-spin-spinning'))
   expect(countSkeleton.length).toBe(2)
 })

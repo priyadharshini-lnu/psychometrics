@@ -350,7 +350,7 @@ const getActionsMenuProps = ({
     key: 'loginAs',
     label: (
       <a
-        href={`/admin/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/spoof`}
+        href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/spoof`}
       >
         {I18n.t('frontend.login')}
       </a>
