@@ -19,12 +19,23 @@ module Services
               provider: context.provider
             )
             context.response = response[:body]
-
+            add_hogan_logs(response)
             response[:status] == 200 ? broadcast(:ok, report) : broadcast(:error, response)
           end
 
           def report
             context.response['reportFile']
+          end
+
+          def add_hogan_logs(response)
+            HoganLog.create!(
+              log_type: 'GetParticipantReport',
+              participant_id: context.participant_id,
+              group:  context.group,
+              call_stack: caller,
+              meta: context.to_h,
+              response: response
+            )
           end
         end
       end

@@ -26,7 +26,19 @@ module Services
               },
               provider: context.provider
             )
+            add_hogan_logs(response)
             response[:status] == 200 ? broadcast(:ok, response[:body]) : broadcast(:error, response)
+          end
+
+          def add_hogan_logs(response)
+            HoganLog.create!(
+              log_type: 'AddParticipantReport',
+              participant_id: context.participant_id,
+              group:  context.group,
+              call_stack: caller,
+              meta: context.to_h,
+              response: response
+            )
           end
         end
       end

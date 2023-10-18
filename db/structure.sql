@@ -702,8 +702,8 @@ CREATE TABLE public.audit_logs (
     user_agent character varying,
     interface integer,
     client_ip character varying,
-    outcome integer,
-    reason character varying
+    outcome integer DEFAULT 1,
+    failure_reason character varying
 );
 
 
@@ -899,7 +899,8 @@ CREATE TABLE public.campaign_assessments (
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    allow_multiple_responses boolean DEFAULT false
+    allow_multiple_responses boolean DEFAULT false,
+    schedule_time timestamp(6) without time zone
 );
 
 
@@ -2070,6 +2071,41 @@ CREATE SEQUENCE public.hogan_credentials_id_seq
 --
 
 ALTER SEQUENCE public.hogan_credentials_id_seq OWNED BY public.hogan_credentials.id;
+
+
+--
+-- Name: hogan_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.hogan_logs (
+    id bigint NOT NULL,
+    log_type character varying,
+    participant_id character varying,
+    "group" character varying,
+    response jsonb,
+    meta jsonb,
+    call_stack jsonb,
+    created_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: hogan_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.hogan_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: hogan_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.hogan_logs_id_seq OWNED BY public.hogan_logs.id;
 
 
 --
@@ -4450,7 +4486,8 @@ CREATE TABLE public.user_assessments (
     schedule_time timestamp(6) without time zone,
     schedule_updated boolean DEFAULT false,
     meeting_type integer DEFAULT 0,
-    meeting_link character varying
+    meeting_link character varying,
+    require_scheduling boolean DEFAULT false
 );
 
 
@@ -5670,6 +5707,13 @@ ALTER TABLE ONLY public.hogan_credentials ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: hogan_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_logs ALTER COLUMN id SET DEFAULT nextval('public.hogan_logs_id_seq'::regclass);
+
+
+--
 -- Name: hogan_report_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6700,6 +6744,14 @@ ALTER TABLE ONLY public.highlights
 
 ALTER TABLE ONLY public.hogan_credentials
     ADD CONSTRAINT hogan_credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hogan_logs hogan_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_logs
+    ADD CONSTRAINT hogan_logs_pkey PRIMARY KEY (id);
 
 
 --
@@ -12010,6 +12062,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230822081633'),
 ('20230823110647'),
 ('20230824083112'),
+('20230828122637'),
 ('20230829124517'),
 ('20230829143631'),
 ('20230905113355'),
@@ -12019,11 +12072,15 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230919051922'),
 ('20230919070332'),
 ('20230919093339'),
+('20230920072704'),
 ('20230921123131'),
 ('20230926124141'),
 ('20230927131437'),
 ('20231003100838'),
 ('20231003130242'),
-('20231006103234');
+('20231005095208'),
+('20231005095250'),
+('20231006103234'),
+('20231017110648');
 
 
