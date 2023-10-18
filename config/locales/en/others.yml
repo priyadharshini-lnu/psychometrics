@@ -281,6 +281,7 @@ en:
           case_study: Case Studies
           hogan: Hogan
           iiht: IIHT
+          meeting: Meeting
           mindmill: Mindmill
           organisational: Surveys
           pearson: Pearson
@@ -534,6 +535,7 @@ en:
           hogan: Hogan
           iiht: IIHT
           manager: Manager
+          meeting: Meeting
           member: User
           mindmill: Mindmill
           organisational: Organisational
@@ -767,6 +769,7 @@ en:
       assessor_form: Assessor Form
       case_study: Case Study
       hogan: Hogan
+      meeting: Meeting
       mindmill: Mindmill
       organisational: Survey
       psychometric: Assessment
@@ -813,6 +816,7 @@ en:
         case_study: Case Studies
         hogan: Hogan
         iiht: IIHT
+        meeting: Meeting
         mindmill: Mindmill
         organisational: Org Surveys
         pearson: Pearson
@@ -1335,6 +1339,8 @@ en:
       progress: Progress
     details:
       additional_time: Additional Time
+      assessment_center: Assessment Center
+      assessment_center_invites: Assessment Center Invites
       completed_at: Completed At
       completion_status: Completion status
       hogan_id: Hogan Id
@@ -1354,8 +1360,6 @@ en:
         interrupted: Interrupted
         not_started: Not Started
         timed_out: Timed Out
-      workshops: Workshops
-      workshops_invites: Workshops Invites
     modals:
       change_password:
         content: Are you sure you want to send instructions with link to change password?
@@ -2757,6 +2761,7 @@ en:
           assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
+          meeting: Meeting
           mindmill: Mindmill
           organisational: Surveys
           psychometric: Assessment

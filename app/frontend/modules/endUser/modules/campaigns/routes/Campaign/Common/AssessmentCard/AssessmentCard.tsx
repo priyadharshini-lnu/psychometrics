@@ -39,7 +39,7 @@ export const AssessmentCard: React.FC<Props> = ({
   const {
     status, assessmentIconUrl, assessmentName, completionPercent,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
-    requireScheduling,
+    requireScheduling, assessmentCategory,
   } = userAssessment
   let taskStatus = status
   const [loading, setLoading] = useState(false)
@@ -138,8 +138,8 @@ export const AssessmentCard: React.FC<Props> = ({
         status={statusElement}
         showStatusAtTop={view === 'list'}
         title={titleElement}
-        progressPercentage={completionPercent || 0}
-        buttonText={buttonTextData[status]}
+        progressPercentage={assessmentCategory === 'meeting' ? undefined : completionPercent || 0}
+        buttonText={assessmentCategory === 'meeting' ? null : buttonTextData[status]}
         actionDisabled={disableActionButton}
         actionLoading={loading}
         actionDisabledText={actionDisabledText}

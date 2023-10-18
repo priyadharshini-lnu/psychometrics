@@ -83,12 +83,14 @@ export const CATEGORIES = [
   'saville',
   'pearson',
   'iiht',
+  'meeting',
 ]
 
 export const UPDATABLE_CATEGORIES = [
   'psychometric',
   'organisational',
   'case_study',
+  'meeting',
 ]
 
 export const CREATABLE_CATEGORIES = [

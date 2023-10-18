@@ -15,11 +15,13 @@ class Assessors::EvaluationsController < Assessors::BaseController
 
     assessment_ids = @assessor_assessments.map(&:assessment).map(&:linked_assessment_id)
 
-    @subject_user_assessment ||= UserAssessment.where(campaign_id: campaign.id,
-                                                      subject_id: user.id,
-                                                      evaluator_id: user.id,
+    @subject_user_assessment ||= UserAssessment.joins(:assessment).where(
+      campaign_id: campaign.id,
+      subject_id: user.id,
+      evaluator_id: user.id,
+      assessment_id: assessment_ids
+    ).where.not(assessments: { category: Assessment::CATEGORIES[:meeting] })
 
-                                                      assessment_id: assessment_ids)
     if campaign.datasheet
       datasheet_columns = Sheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
       datasheet = campaign.datasheet_data(user.email)

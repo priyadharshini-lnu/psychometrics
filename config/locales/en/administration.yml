@@ -386,6 +386,7 @@ en:
           case_study: Case Studies
           hogan: Hogan
           iiht: IIHT
+          meeting: Meeting
           mindmill: Mindmill
           organisational: Org Surveys
           pearson: Pearson
@@ -407,6 +408,7 @@ en:
             case_study: Case Studies
             hogan: Hogan
             iiht: IIHT
+            meeting: Meeting
             mindmill: Mindmill
             organisational: Org Surveys
             pearson: Pearson
@@ -961,6 +963,7 @@ en:
             case_study: Case Studies
             hogan: Hogan
             iiht: IIHT
+            meeting: Meeting
             mindmill: Mindmill
             organisational: Org Surveys
             pearson: Pearson
@@ -982,6 +985,7 @@ en:
               case_study: Case Studies
               hogan: Hogan
               iiht: IIHT
+              meeting: Meeting
               mindmill: Mindmill
               organisational: Org Surveys
               pearson: Pearson
