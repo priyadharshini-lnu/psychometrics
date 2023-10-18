@@ -32,6 +32,7 @@ import {
   CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
 } from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
 import { WorkshopActivityDurationFormModal } from './AssessmentList/WorkshopActivityDurationFormModal'
+import { SchedulingCampaignAssessmentModal } from './AssessmentList/SchedulingCampaignAssessmentModal'
 
 const MODALS = {
   AddReportModal,
@@ -47,6 +48,7 @@ const MODALS = {
   UpdateAssessorFormModal,
   AddAssessorAssessmentModal,
   WorkshopActivityDurationFormModal,
+  SchedulingCampaignAssessmentModal,
 }
 
 const { I18n } = window

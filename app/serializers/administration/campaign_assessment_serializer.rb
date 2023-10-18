@@ -52,7 +52,8 @@ module Administration
           'export_external_results',
           'rescore_responses',
           'update_external_config',
-          %w[remove destroy]
+          %w[remove destroy],
+          'schedule_assessment'
         ],
         {
           project_id: instance_options[:project_id],

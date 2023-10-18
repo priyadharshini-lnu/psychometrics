@@ -153,6 +153,18 @@ module Administration
         end
       end
 
+      def schedule_assessment
+        CampaignAssessment.transaction do
+          scope = UserAssessment.where(assessment_id: assessment.id, campaign_id: campaign.id, status: :not_started)
+          scope = scope.where(schedule_time: nil) unless params[:override_existing]
+          scope.update_all(schedule_time: params[:schedule_time], require_scheduling: params[:require_scheduling])
+        end
+
+        return head :ok unless campaign_assessment
+
+        render json: campaign_assessment, serializer: Administration::CampaignAssessmentSerializer
+      end
+
       private
 
       def assessment

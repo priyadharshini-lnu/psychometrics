@@ -2,7 +2,7 @@
 
 module Administration
   class CampaignAssessmentPolicy < Administration::BasePolicy
-    include ::Administration::Common::AssessmentExportPolicy
+    include ::Administration::Assessments::CommonPolicy
 
     def update?
       @user.is?(:superadmin) || @user.has_permission?(

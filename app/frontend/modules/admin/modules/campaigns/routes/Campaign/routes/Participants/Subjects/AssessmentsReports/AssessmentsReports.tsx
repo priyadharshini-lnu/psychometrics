@@ -20,6 +20,7 @@ import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 import WorkshopList from './WorkshopList'
 import WorkshopInviteList from './WorkshopInviteList/WorkshopList'
+import { SchedulingAssessmentModal } from './AssessmentList/SchedulingAssessmentModal'
 
 const { I18n } = window
 
@@ -29,6 +30,7 @@ const MODALS = {
   UpdateTimeModal,
   PushWebhookModal,
   UpdateCampaignTimeModal,
+  SchedulingAssessmentModal,
 }
 
 interface OwnProps {

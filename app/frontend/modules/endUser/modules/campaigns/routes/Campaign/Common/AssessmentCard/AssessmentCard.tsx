@@ -39,6 +39,7 @@ export const AssessmentCard: React.FC<Props> = ({
   const {
     status, assessmentIconUrl, assessmentName, completionPercent,
     timing, meetingLink, meetingTime, scheduleTime, workshopActivityDuration,
+    requireScheduling,
   } = userAssessment
   let taskStatus = status
   const [loading, setLoading] = useState(false)
@@ -49,8 +50,13 @@ export const AssessmentCard: React.FC<Props> = ({
   )
   const history = useHistory()
   const isWorkshopActivity = userAssessment.workshopActivity
-  const disableActionButton = isWorkshopActivity
-    ? disabled || !withinActivityScheduleTime || !workshopBooked || !workshopAttended : disabled
+
+  let disableActionButton = disabled
+  if (isWorkshopActivity) {
+    disableActionButton ||= disabled || !withinActivityScheduleTime || !workshopBooked || !workshopAttended
+  } else if (requireScheduling) {
+    disableActionButton ||= !withinActivityScheduleTime
+  }
 
   let actionDisabledText = ''
   if (!prevCompleted) {
@@ -107,18 +113,18 @@ export const AssessmentCard: React.FC<Props> = ({
   const workshopActivityDurationText = workshopActivityDuration
     ? secondsToDayHoursAndMinutes(workshopActivityDuration * 60, undefined, 'hr', 'mins') : ''
   const showDuration = timing || isWorkshopActivity
-  const secondsLeftToStartWorkshopActivity = scheduleTimeMomentObj.diff(currentTime, 'seconds')
+  const secondsLeftForScheduleTime = scheduleTimeMomentObj.diff(currentTime, 'seconds')
 
   const subtitleElement = (
     <Space direction="vertical">
       {
         showDuration ? <TimerText text={isWorkshopActivity ? workshopActivityDurationText : timing} /> : null
       }
-      {!withinActivityScheduleTime && workshopBooked && secondsLeftToStartWorkshopActivity ? (
+      {((requireScheduling || isWorkshopActivity) && (!withinActivityScheduleTime && secondsLeftForScheduleTime)) ? (
         <Space size={4}>
           {I18n.t('frontend.bookings.activity_start_text')}
           <CountdownTimer
-            seconds={secondsLeftToStartWorkshopActivity}
+            seconds={secondsLeftForScheduleTime}
             onFinish={() => setWithinActivityScheduleTime(true)}
           />
         </Space>

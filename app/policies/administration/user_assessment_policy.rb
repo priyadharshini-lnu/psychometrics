@@ -2,7 +2,7 @@
 
 module Administration
   class UserAssessmentPolicy < Administration::BasePolicy
-    include ::Administration::Common::AssessmentExportPolicy
+    include ::Administration::Assessments::CommonPolicy
 
     def index?
       @user.is?(:superadmin) || @user.has_permission?(
@@ -44,6 +44,12 @@ module Administration
 
     def rescore_response?
       !record&.assessment&.external? && has_permission?(:results, :rescore_responses)
+    end
+
+    def toggle_require_scheduling?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def reset?

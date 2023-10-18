@@ -163,7 +163,6 @@ const AssessmentList: React.FC<Props> = ({
               )
             }}
           />
-
           <Column
             title={I18n.t('campaign_assessment.column.prework')}
             key="category"
@@ -201,6 +200,7 @@ const AssessmentList: React.FC<Props> = ({
                   ActionsMenu({
                     assessment,
                     campaignId: parsedCampaignId,
+                    projectId: parsedProjectId,
                     openModal,
                     rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
                     exportRawResults,

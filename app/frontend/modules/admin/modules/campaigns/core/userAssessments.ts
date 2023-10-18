@@ -21,6 +21,8 @@ const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSMENTS'
 export const RESET_PROGRESS_OF_ASSESSMENT = 'campaigns/userAssessments/RESET_PROGRESS_OF_ASSESSMENT'
 export const GET_WEBHOOK_REQUEST_DATA = 'campaigns/userAssessments/GET_WEBHOOK_REQUEST_DATA'
+export const SCHEDULE_ASSESSMENT = 'campaigns/userAssessments/SCHEDULE_ASSESSMENT'
+export const TOGGLE_REQUERE_SCHEDULE = 'campaigns/userAssessments/TOGGLE_REQUERE_SCHEDULE'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -69,6 +71,30 @@ export const rescoreResponse = (campaignId: number, campaignAssessmentId: number
   },
 })
 
+export const scheduleAssessment = (campaignId: number, campaignAssessmentId: number, {
+  scheduleTime,
+}: { scheduleTime: string }) => ({
+  type: SCHEDULE_ASSESSMENT,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/schedule_assessment`,
+    body: {
+      scheduleTime,
+    },
+  },
+})
+
+export const toggleRequireScheduling = (campaignId: number, assessmentId: number, requireScheduling: boolean) => ({
+  type: TOGGLE_REQUERE_SCHEDULE,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${assessmentId}/toggle_require_scheduling`,
+    body: {
+      requireScheduling,
+    },
+  },
+})
+
 export const reset = (campaignId: number, campaignAssessmentId: number) => ({
   type: RESET_ASSESSMENT,
   request: {
@@ -108,6 +134,10 @@ type UpdateNormType = ApiActionResponse<{normName: string, normType: string}>
 const HANDLERS = {
   [SET_USER_ASSESSMENTS]: (state, { userAssessments }: CustomAction<{ userAssessments: UserAssessment[] }>) => (
     { ...state, list: userAssessments }),
+  [SCHEDULE_ASSESSMENT]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
+    { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
+  [TOGGLE_REQUERE_SCHEDULE]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
+    { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
     const { campaignAssessmentId, normId } = request.body
     const list = state.list.map((assessment: UserAssessment) => {

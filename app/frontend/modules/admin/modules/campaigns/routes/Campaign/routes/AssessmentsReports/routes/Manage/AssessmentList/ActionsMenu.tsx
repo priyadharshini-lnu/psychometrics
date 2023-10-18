@@ -18,6 +18,7 @@ const DEFAULT_OPTIONS = {
 }
 
 export interface ActionMenuProps {
+  projectId?: number
   campaignId: number
   assessment: Assessment
   optionsOverrides?: Partial<Options>
@@ -36,7 +37,7 @@ export interface ActionMenuProps {
 }
 
 export const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, assessment, openModal, rescoreResponses, exportRawResults,
+  projectId, campaignId, assessment, openModal, rescoreResponses, exportRawResults,
   exportScoringResults, exportNormedResults, exportRawFactorScores,
   exportExternalResults, updateExternalConfig, optionsOverrides,
 }) => {
@@ -115,7 +116,6 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
   ]
 
   const removeMenuItems:ItemType[] = [
-    { type: 'divider' },
     { key: 'remove', label: I18n.t('common.actions.remove') },
   ]
 
@@ -135,8 +135,9 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
     children: importGroupItems,
   })
   permissions.rescoreResponses && menuItems.push(...rescoreMenuItems)
-  permissions.remove && actions.remove && menuItems.push(...removeMenuItems)
   permissions.updateExternalConfig && actions.updateExternalConfig && menuItems.push(...configMenuItems)
+  permissions.scheduleAssessment && menuItems.push({ key: 'schedule', label: 'Schedule' })
+  permissions.remove && actions.remove && menuItems.push(...removeMenuItems)
 
   const handleMenuClick = ({ key }) => {
     if (key === 'export_raw_labels') {
@@ -171,6 +172,9 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
     if (key === 'updateExternalConfig') {
       return openModal('UpdateExternalConfigModal', { campaignId, assessment, updateExternalConfig })
+    }
+    if (key === 'schedule') {
+      return openModal('SchedulingCampaignAssessmentModal', { projectId, campaignId, assessment })
     }
   }
 

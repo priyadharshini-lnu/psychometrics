@@ -30,6 +30,17 @@ export const updatePrework = (campaignId: number, id: number, prework: boolean) 
   },
 })
 
+export const SCHEDULE_ASSESSMENT = 'campaigns/assessments/SCHEDULE_ASSESSMENT'
+export const scheduleAssessment = (campaignId: number, id: number,
+  { scheduleTime, overrideExisting = false, requireScheduling }) => ({
+  type: SCHEDULE_ASSESSMENT,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${id}/schedule_assessment`,
+    body: { scheduleTime, overrideExisting, requireScheduling },
+  },
+})
+
 export const UPDATE_WORKSHOP_ACTIVITY = 'campaigns/assessments/UPDATE_WORKSHOP_ACTIVITY'
 export const updateWorkshopActivity = (campaignId: number, id: number, body) => ({
   type: UPDATE_WORKSHOP_ACTIVITY,

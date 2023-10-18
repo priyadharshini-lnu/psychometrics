@@ -291,6 +291,7 @@ Rails.application.routes.draw do
             post :rescore_responses
             put :update_prework
             put :update_workshop_activity
+            put :schedule_assessment
           end
           collection do
             get :other
@@ -304,6 +305,8 @@ Rails.application.routes.draw do
             post :reset_progress
             post :update_additional_time
             get :webhook_payload
+            put :schedule_assessment
+            put :toggle_require_scheduling
           end
         end
         resources :campaign_assessment_groups, only: %i[index create update destroy] do

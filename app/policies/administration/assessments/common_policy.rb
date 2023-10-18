@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Administration
-  module Common
-    module AssessmentExportPolicy
+  module Assessments
+    module CommonPolicy
       def export_results?
         @user.is?(:superadmin) || (@user.has_permission?(
           :results, :raw_responses, project_id: project_id
@@ -54,6 +54,12 @@ module Administration
       def rescore_responses?
         @user.is?(:superadmin) || @user.has_permission?(
           :results, :rescore_responses, project_id: project_id, campaign_id: campaign_id
+        )
+      end
+
+      def schedule_assessment?
+        has_permission?(
+          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
         )
       end
     end

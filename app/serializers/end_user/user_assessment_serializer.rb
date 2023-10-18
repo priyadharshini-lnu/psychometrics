@@ -6,7 +6,7 @@ module EndUser
     attributes :id, :type, :url, :assessment_name, :timing, :assessment_category,
                :assessment_extra, :assessment_id, :status, :completion_percent, :available_locales,
                :selected_locale, :assessment_icon_url, :prework, :schedule_time, :workshop_activity_duration,
-               :workshop_activity, :meeting_time, :meeting_link
+               :workshop_activity, :meeting_time, :meeting_link, :require_scheduling
 
     def meeting_link
       object.real_meeting_link(current_user)

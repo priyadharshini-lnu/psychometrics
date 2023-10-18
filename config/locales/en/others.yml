@@ -1283,6 +1283,9 @@ en:
         form:
           duration: Duration in minutes
         title: Duration for the workshop activity
+    scheduling:
+      update_exists: Override existing schedule
+    scheduling_time: Schedule assessment time
     statuses:
       completed: Completed
       in_progress: In Progress
@@ -1292,6 +1295,7 @@ en:
       timed_out: Timed Out
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
+    update_exists: Update all exists assessments
   campaign_report:
     actions:
       bulk_download: Bulk Download
@@ -1450,11 +1454,13 @@ en:
       resolve: Resolve
       restore: Restore
       save: Save
+      schedule: Schedule
       search: Search
       send: Send
       start: Start
       unarchive: Unarchive
       unresolve: Unresolve
+      unschedule: Unschedule
       update: Update
       upload: Upload
       view: View
@@ -1493,11 +1499,14 @@ en:
       project: Project
       qc_user_list: QC Users List
       report_id: Report Id
+      require_scheduling: Require Scheduling
       schedule_time: Schedule Time
+      scheduling: Scheduling
       status: Status
       timing: Timing
       token: Token
       type: Type
+      unschedule: Unschedule
       updated_at: Last Updated
     errors:
       something_wrong: Something went wrong. Contact your administrator.

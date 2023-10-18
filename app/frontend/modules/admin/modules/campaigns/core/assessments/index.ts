@@ -22,6 +22,7 @@ import {
   UPDATE_EXTERNAL_CONFIG,
   UPDATE_PREWORK,
   UPDATE_WORKSHOP_ACTIVITY,
+  SCHEDULE_ASSESSMENT,
 } from './actions'
 
 const defaultState: State = {
@@ -136,6 +137,11 @@ const HANDLERS = {
     })
     return setIn(state, ['list'], assessments)
   },
+  [SCHEDULE_ASSESSMENT]: (state, { response }: ApiActionResponse<Assessment>) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
+      assessment.id === response.id ? response : assessment
+    )))
+  ),
   [UPDATE_ASSESSOR_FORM]: (state, { response, requestAction: { request } }: UpdateAssessorForm) => {
     const assessments = state.list.map((assessment: Assessment) => {
       if (assessment.id !== request.body.id) return assessment
