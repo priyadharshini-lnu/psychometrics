@@ -1,25 +1,33 @@
 import React, { useEffect } from 'react'
 import {
-  Modal, Form, Button, DatePicker, Row, Col, Checkbox,
+  Modal, Form, Button, DatePicker, Row, Col, Checkbox, message,
 } from 'antd'
-import { connect } from 'react-redux'
+import { ConnectedProps, connect } from 'react-redux'
 import moment from 'moment'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
-import { scheduleAssessment } from '~/modules/admin/modules/campaigns/core/userAssessments'
+import { isRequestInProgress } from '~/core/request'
+import { scheduleAssessment, SCHEDULE_ASSESSMENT } from '~/modules/admin/modules/campaigns/core/userAssessments'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
-interface Props {
+interface OwnProps {
   close(): void
   campaignId: number
   assessment: Assessment
-  scheduleAssessment: (campaignId: number, assessmentId: number, data: object) => Promise<{response}>
 }
+
+const connector = connect(
+  (state: RootState) => ({
+    scheduleAssessmentInProgress: isRequestInProgress(state, SCHEDULE_ASSESSMENT),
+  }),
+  { scheduleAssessment },
+)
+type PropsFromRedux = ConnectedProps<typeof connector>
+type Props = PropsFromRedux & OwnProps
 
 const { I18n } = window
 
-const connector = connect(null, { scheduleAssessment })
-
 export const SchedulingAssessment: React.FC<Props> = ({
-  close, campaignId, assessment, scheduleAssessment,
+  close, campaignId, assessment, scheduleAssessment, scheduleAssessmentInProgress,
 }) => {
   const [form] = Form.useForm()
   const unscheduled = Form.useWatch('unschedule', form)
@@ -35,6 +43,7 @@ export const SchedulingAssessment: React.FC<Props> = ({
       {
         scheduleTime: unscheduled ? null : form.getFieldValue('scheduleTime')?.toDate(),
       }).then(() => {
+      message.success(I18n.t('campaign_assessment.scheduled_successfully'))
       close()
     })
   }
@@ -49,7 +58,12 @@ export const SchedulingAssessment: React.FC<Props> = ({
           <Button onClick={() => close()}>
             {I18n.t('common.actions.cancel')}
           </Button>,
-          <Button type="primary" onClick={schedule}>
+          <Button
+            type="primary"
+            onClick={schedule}
+            loading={scheduleAssessmentInProgress}
+            disabled={scheduleAssessmentInProgress}
+          >
             {I18n.t('common.actions.schedule')}
           </Button>,
         ]

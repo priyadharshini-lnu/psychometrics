@@ -58,9 +58,8 @@ module Administration
       end
 
       def schedule_assessment?
-        has_permission?(
-          :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
-        )
+        !@record.assessor_form? &&
+          has_permission?(:campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id)
       end
     end
   end

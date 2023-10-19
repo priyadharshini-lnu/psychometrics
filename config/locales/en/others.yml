@@ -1287,6 +1287,7 @@ en:
         form:
           duration: Duration in minutes
         title: Duration for the workshop activity
+    scheduled_successfully: Assessment scheduled successfully
     scheduling:
       update_exists: Override existing schedule
     scheduling_time: Schedule assessment time

@@ -1,25 +1,34 @@
 import React from 'react'
 import {
-  Modal, Form, Button, DatePicker, Checkbox, Row, Col,
+  Modal, Form, Button, DatePicker, Checkbox, Row, Col, message,
 } from 'antd'
-import { connect } from 'react-redux'
+import { ConnectedProps, connect } from 'react-redux'
 import moment from 'moment'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
-import { scheduleAssessment } from '~/modules/admin/modules/campaigns/core/assessments/actions'
-
-interface Props {
-  close(): void
-  campaignId: number
-  assessment: Assessment
-  scheduleAssessment: (campaignId: number, assessmentId: number, data: object) => Promise<{response}>
-}
+import { scheduleAssessment, SCHEDULE_ASSESSMENT } from '~/modules/admin/modules/campaigns/core/assessments/actions'
+import { isRequestInProgress } from '~/core/request'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const { I18n } = window
 
-const connector = connect(null, { scheduleAssessment })
+interface OwnProps {
+  close(): void
+  campaignId: number
+  assessment: Assessment
+}
+
+const connector = connect(
+  (state: RootState) => ({
+    scheduleAssessmentInProgress: isRequestInProgress(state, SCHEDULE_ASSESSMENT),
+  }),
+  { scheduleAssessment },
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+type Props = PropsFromRedux & OwnProps
 
 export const SchedulingCampaignAssessment: React.FC<Props> = ({
-  close, campaignId, assessment, scheduleAssessment,
+  close, campaignId, assessment, scheduleAssessment, scheduleAssessmentInProgress,
 }) => {
   const [form] = Form.useForm()
   const unscheduled = Form.useWatch('unschedule', form)
@@ -32,6 +41,7 @@ export const SchedulingCampaignAssessment: React.FC<Props> = ({
       scheduleTime: hasScheduleTime ? form.getFieldValue('scheduleTime')?.toDate() : null,
     }
     scheduleAssessment(campaignId, assessment.id, data).then(() => {
+      message.success(I18n.t('campaign_assessment.scheduled_successfully'))
       close()
     })
   }
@@ -46,7 +56,12 @@ export const SchedulingCampaignAssessment: React.FC<Props> = ({
           <Button onClick={() => close()}>
             {I18n.t('common.actions.cancel')}
           </Button>,
-          <Button type="primary" onClick={schedule}>
+          <Button
+            type="primary"
+            onClick={schedule}
+            loading={scheduleAssessmentInProgress}
+            disabled={scheduleAssessmentInProgress}
+          >
             {I18n.t('common.actions.schedule')}
           </Button>,
         ]

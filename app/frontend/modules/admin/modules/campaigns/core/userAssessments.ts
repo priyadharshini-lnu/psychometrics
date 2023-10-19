@@ -78,6 +78,7 @@ export const scheduleAssessment = (campaignId: number, campaignAssessmentId: num
   request: {
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/schedule_assessment`,
+    loader: true,
     body: {
       scheduleTime,
     },

@@ -30,7 +30,7 @@ class UserAssessment < ApplicationRecord
 
   has_one :threesixty_campaign, through: :campaign
 
-  delegate :saville?, :iiht?, :pearson?, to: :assessment
+  delegate :saville?, :iiht?, :pearson?, :assessor_form?, to: :assessment
   delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
 

@@ -37,6 +37,7 @@ export const scheduleAssessment = (campaignId: number, id: number,
   request: {
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/assessments/${id}/schedule_assessment`,
+    loader: true,
     body: { scheduleTime, overrideExisting, requireScheduling },
   },
 })
