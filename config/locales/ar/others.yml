@@ -512,6 +512,11 @@ ar:
       update_success: "%{resourceName} تم تحديثه بنجاح"
     update: تحديث
     upload: تحميل
+    workshop_invited_subjects:
+      statuses:
+        cancelled: ألغيت
+        requested_cancellation: لقد تم طلب الإلغاء
+        requested_rescheduling: لقد تم طلب إعادة الجدولة
     'yes': نعم
   navigation:
     logout: تسجيل خروج

@@ -244,7 +244,11 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
                 {selectedDateTime
                   && (
                   <div className="flex mt-6 justify-end">
-                    <ButtonWithArrow label="Book" type="primary" onClick={handleBook} />
+                    <ButtonWithArrow
+                      label={I18n.t('frontend.bookings.buttons.book')}
+                      type="primary"
+                      onClick={handleBook}
+                    />
                   </div>
                   )}
               </div>
