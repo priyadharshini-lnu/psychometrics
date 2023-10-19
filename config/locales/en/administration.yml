@@ -4601,6 +4601,7 @@ en:
       user: User
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
+      delete_success: Webhook settings deleted successfully
       request_failure: Request failed with status code %{http_status_code}.
       test_success: Webhook test successful.
     workshop:

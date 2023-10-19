@@ -83,7 +83,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
       ),
       onOk: async () => {
         removeResource(`${webhook.id}`).then(() => {
-          message.info('Success')
+          message.success(I18n.t('administration.webhook.delete_success'))
           close()
         }).catch((error) => {
           message.error(error)
