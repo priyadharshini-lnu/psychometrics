@@ -427,6 +427,69 @@ ar:
       create_success: تم إنشاء المجموعة بنجاح
       update_success: تم تحديث المجموعة بنجاح
     background_reading: قراءة الخلفية
+    bookings:
+      accept_invite_msg: لقد تلقيت دعوة. يرجى حجز الفتحة الخاصة بك.
+      activity_start_text: 'يبدأ النشاط في:'
+      add_to_calendar: إضافة إلى التقويم
+      add_to_calendar_tour_description: أضف هذا الحجز إلى التقويم الخاص بك
+      assessment_center_alert:
+        btn_title: حملة
+        message_part1: أكمل جميع الأعمال السابقة في هذا الشأن
+        message_part2: قبل حجز فتحة.
+      assessment_center_group_name: مركز التقييم
+      booking_failed_msg: 'فشل حجز الفتحة: %{error}'
+      buttons:
+        book: حجز
+        book_again: احجز مرة أخرى
+        cancel: إلغاء
+        cancel_booking: إلغاء الحجز
+        confirm_booking: تأكيد الحجز
+        confirm_reschedule: تأكيد إعادة الجدولة
+        modify: يُعدِّل
+        nevermind: لا يهم
+        no_text: لا
+        request_cancel: طلب إلغاء
+        request_reschedule: طلب إعادة جدولة
+        reschedule: إعادة جدولة
+        reserve_spot: احجز مكانك
+        yes_text: نعم
+      cancel_booking_confirmation: هل أنت متأكد أنك تريد إلغاء هذا الحجز؟
+      cancellation_failed: 'فشل في إلغاء الحجز: %{error}'
+      cancellation_success: لقد تم إلغاء حجزك بنجاح
+      comments_required_msg: الرجاء إدخال تعليقاتك
+      confirm_booking_description: يرجى التأكد من صحة هذه التفاصيل قبل إتمام الحجز.
+      confirm_booking_title: تأكيد هذا الحجز؟
+      default_failure_msg: غير قادر على معالجة طلبك. الرجاء معاودة المحاولة في وقت لاحق.
+      default_requires_msg: "%{name} مطلوب"
+      join_activity_meeting: انضم للاجتماع
+      join_workshop_meeting: انضم للاجتماع
+      language: لغة
+      language_placeholder: اختر لغة
+      language_preference_question: هل لديك تفضيل للغة؟
+      language_required_msg: يرجى تحديد لغة
+      meeting_start_text: 'سيبدأ اللقاء في:'
+      need_changes: هل تحتاج إلى إجراء التغييرات؟
+      neurodivergence_comment_placeholder: تعليقاتك
+      neurodivergence_question: هل تحتاج إلى أي تسهيلات أو تعديلات معقولة بسبب الاحتياجات الخاصة أو الإعاقات للمشاركة بشكل كامل في التقييم؟
+      other_invite: شاهد %{count} دعوة إضافية
+      other_invites: عرض %{count} من الدعوات الإضافية
+      reason: سبب
+      reason_for_cancel: سبب الالغاء
+      reason_for_reschedule: سبب إعادة الجدولة
+      request_cancellation_failed: فشل طلب الإلغاء:%{error}
+      request_cancellation_success: تم طلب الإلغاء بنجاح
+      request_reschedule_failed: 'فشل طلب إعادة الجدولة: %{error}'
+      request_reschedule_success: تم طلب إعادة الجدولة بنجاح
+      reschedule_failed_msg: فشل في إعادة الجدولة:%{error}
+      reschedule_reason_placeholder: للمتابعة، يرجى إدخال سبب إعادة الجدولة.
+      schedule_success: تمت إعادة جدولة هذا الحجز
+      schedule_success_msg: أرسلنا لك وللحضور الآخرين عبر البريد الإلكتروني دعوة تقويم تتضمن كافة التفاصيل.
+      tab_label:
+        bookings: التحفظات
+        invites: الدعوات
+      what: ماذا
+      when: متى
+      workshop_start_text: سيبدأ مركز التقييم الخاص بك في
     campaign:
       actions:
         remove:
@@ -449,6 +512,11 @@ ar:
       update_success: "%{resourceName} تم تحديثه بنجاح"
     update: تحديث
     upload: تحميل
+    workshop_invited_subjects:
+      statuses:
+        cancelled: ألغيت
+        requested_cancellation: لقد تم طلب الإلغاء
+        requested_rescheduling: لقد تم طلب إعادة الجدولة
     'yes': نعم
   navigation:
     logout: تسجيل خروج

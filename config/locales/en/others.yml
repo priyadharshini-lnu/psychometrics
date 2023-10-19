@@ -1907,7 +1907,7 @@ en:
       update_success: Availability updated successfully.
     background_reading: Background Reading
     bookings:
-      accept_invite_msg: You have recieved an invite. Please reserve your slot.
+      accept_invite_msg: You have received an invite. Please reserve your slot.
       activity_start_text: 'Activity starts in:'
       add_to_calendar: Add To Calendar
       add_to_calendar_tour_description: Add this booking to your calendar
