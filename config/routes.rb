@@ -377,7 +377,6 @@ Rails.application.routes.draw do
     resources :projects do
       member do
         post :search_users
-        get '*all', to: 'new_projects#show', constraints: { all: /.*/ }
       end
     end
 
@@ -440,32 +439,6 @@ Rails.application.routes.draw do
             member do
               patch :toggle_status
             end
-          end
-        end
-        resources :project_admins do
-          member do
-            patch :toggle_status
-            get :sidebar
-            get :reset_password
-            get :spoof
-          end
-          collection do
-            get :new_step_one
-            post :new_step_two
-            post :assign_multiple
-          end
-        end
-        resources :client_admins do
-          member do
-            patch :toggle_status
-            get :sidebar
-            get :reset_password
-            get :spoof
-          end
-          collection do
-            get :new_step_one
-            post :new_step_two
-            post :assign_multiple
           end
         end
         resources :reports, only: %i[index]
@@ -535,7 +508,6 @@ Rails.application.routes.draw do
           post :generate_universal_link
         end
         resources :sheet_rows, except: %i[show edit update]
-        get '*all', to: 'projects#index', constraints: { all: /.*/ }
       end
     end
 
