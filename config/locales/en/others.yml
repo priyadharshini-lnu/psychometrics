@@ -1922,7 +1922,6 @@ en:
     background_reading: Background Reading
     bookings:
       accept_invite_msg: You have received an invite. Please reserve your slot.
-      activity_start_text: 'Activity starts in:'
       add_to_calendar: Add To Calendar
       add_to_calendar_tour_description: Add this booking to your calendar
       assessment_center_alert:
@@ -1978,12 +1977,15 @@ en:
       reschedule_reason_placeholder: To continue, please enter the reason for rescheduling.
       schedule_success: This booking is scheduled
       schedule_success_msg: We emailed you and the other attendees a calendar invitation with all the details.
+      starts_at: 'Starts at: %{date}'
+      starts_in: 'Starts in:'
       tab_label:
         bookings: Bookings
         invites: Invites
       what: What
       when: When
       workshop_start_text: Your Assessment Center will start in
+    break_time: Break Time
     campaign:
       actions:
         remove:

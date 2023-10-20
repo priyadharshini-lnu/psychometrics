@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import moment, { Moment } from 'moment'
 
+export const SECONDS_IN_HOUR = 86400
 const FORMAT = 'DD MMM YYYY / HH:mm'
 
 const allDays = _.range(0, 7)

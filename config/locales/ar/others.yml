@@ -429,7 +429,6 @@ ar:
     background_reading: قراءة الخلفية
     bookings:
       accept_invite_msg: لقد تلقيت دعوة. يرجى حجز الفتحة الخاصة بك.
-      activity_start_text: 'يبدأ النشاط في:'
       add_to_calendar: إضافة إلى التقويم
       add_to_calendar_tour_description: أضف هذا الحجز إلى التقويم الخاص بك
       assessment_center_alert:
@@ -484,12 +483,15 @@ ar:
       reschedule_reason_placeholder: للمتابعة، يرجى إدخال سبب إعادة الجدولة.
       schedule_success: تمت إعادة جدولة هذا الحجز
       schedule_success_msg: أرسلنا لك وللحضور الآخرين عبر البريد الإلكتروني دعوة تقويم تتضمن كافة التفاصيل.
+      starts_at: 'يبدأ عند: %{date}'
+      starts_in: 'يبدأ في:'
       tab_label:
         bookings: التحفظات
         invites: الدعوات
       what: ماذا
       when: متى
       workshop_start_text: سيبدأ مركز التقييم الخاص بك في
+    break_time: فترة إستراحة
     campaign:
       actions:
         remove:

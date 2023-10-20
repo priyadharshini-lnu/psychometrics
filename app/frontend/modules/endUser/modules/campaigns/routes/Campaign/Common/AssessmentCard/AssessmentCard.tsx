@@ -4,9 +4,8 @@ import {
 } from 'antd'
 import { useHistory } from 'react-router-dom'
 import moment from 'moment-timezone'
-import { secondsToDayHoursAndMinutes } from '~/utils/time'
+import { secondsToDayHoursAndMinutes, SECONDS_IN_HOUR } from '~/utils/time'
 import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
-
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
@@ -54,7 +53,7 @@ export const AssessmentCard: React.FC<Props> = ({
   let disableActionButton = disabled
   if (isWorkshopActivity) {
     disableActionButton ||= disabled || !withinActivityScheduleTime || !workshopBooked || !workshopAttended
-  } else if (requireScheduling) {
+  } else if (requireScheduling || scheduleTime) {
     disableActionButton ||= !withinActivityScheduleTime
   }
 
@@ -113,22 +112,12 @@ export const AssessmentCard: React.FC<Props> = ({
   const workshopActivityDurationText = workshopActivityDuration
     ? secondsToDayHoursAndMinutes(workshopActivityDuration * 60, undefined, 'hr', 'mins') : ''
   const showDuration = timing || isWorkshopActivity
-  const secondsLeftForScheduleTime = scheduleTimeMomentObj.diff(currentTime, 'seconds')
-
   const subtitleElement = (
     <Space direction="vertical">
       {
         showDuration ? <TimerText text={isWorkshopActivity ? workshopActivityDurationText : timing} /> : null
       }
-      {((requireScheduling || isWorkshopActivity) && (!withinActivityScheduleTime && secondsLeftForScheduleTime)) ? (
-        <Space size={4}>
-          {I18n.t('frontend.bookings.activity_start_text')}
-          <CountdownTimer
-            seconds={secondsLeftForScheduleTime}
-            onFinish={() => setWithinActivityScheduleTime(true)}
-          />
-        </Space>
-      ) : null}
+      <StartTimeDisplay userAssessment={userAssessment} onCountdownFinish={() => setWithinActivityScheduleTime(true)} />
     </Space>
   )
 
@@ -154,6 +143,40 @@ export const AssessmentCard: React.FC<Props> = ({
 type MeetingInfoProps = {
   meetingLink: string | null
   meetingTime: string | null
+}
+
+interface StartTimeDisplayProps {
+  userAssessment: UserAssessment
+  onCountdownFinish: () => void
+}
+
+const StartTimeDisplay = ({ userAssessment, onCountdownFinish }: StartTimeDisplayProps) => {
+  const { scheduleTime } = userAssessment
+  if (!scheduleTime) return null
+  const scheduleTimeMomentObj = moment(scheduleTime)
+  const secondsLeftForScheduleTime = scheduleTimeMomentObj.diff(moment(), 'seconds')
+
+  if (secondsLeftForScheduleTime <= 0) return null
+  if (secondsLeftForScheduleTime >= SECONDS_IN_HOUR) {
+    return (
+      <div className="mb-1">
+        {I18n.t('frontend.bookings.starts_at', { date: scheduleTimeMomentObj.format('Do MMMM YYYY hh:mm A') })}
+      </div>
+    )
+  }
+  if (secondsLeftForScheduleTime < SECONDS_IN_HOUR) {
+    return (
+      <Space size={4}>
+        {I18n.t('frontend.bookings.starts_in')}
+        <CountdownTimer
+          seconds={secondsLeftForScheduleTime}
+          onFinish={onCountdownFinish}
+        />
+      </Space>
+    )
+  }
+
+  return null
 }
 
 const MeetingInfo: FC<MeetingInfoProps> = ({ meetingLink, meetingTime }) => {
