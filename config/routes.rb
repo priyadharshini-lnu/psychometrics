@@ -291,6 +291,7 @@ Rails.application.routes.draw do
             post :rescore_responses
             put :update_prework
             put :update_workshop_activity
+            put :toggle_require_scheduling
             put :schedule_assessment
           end
           collection do

@@ -32,13 +32,11 @@ export const SchedulingCampaignAssessment: React.FC<Props> = ({
 }) => {
   const [form] = Form.useForm()
   const unscheduled = Form.useWatch('unschedule', form)
-  const requireScheduling = Form.useWatch('requireScheduling', form)
-  const hasScheduleTime = requireScheduling && !unscheduled
 
   const schedule = () => {
     const data = {
       ...form.getFieldsValue(),
-      scheduleTime: hasScheduleTime ? form.getFieldValue('scheduleTime')?.toDate() : null,
+      scheduleTime: unscheduled ? null : form.getFieldValue('scheduleTime')?.toDate(),
     }
     scheduleAssessment(campaignId, assessment.id, data).then(() => {
       message.success(I18n.t('campaign_assessment.scheduled_successfully'))
@@ -74,15 +72,9 @@ export const SchedulingCampaignAssessment: React.FC<Props> = ({
             initialValues={{
               scheduleTime: moment(),
               overrideExisting: false,
-              requireScheduling: true,
             }}
           >
-            <Form.Item name="requireScheduling" valuePropName="checked">
-              <Checkbox>
-                {I18n.t('common.column.require_scheduling')}
-              </Checkbox>
-            </Form.Item>
-            {hasScheduleTime && (
+            {!unscheduled && (
               <Form.Item name="scheduleTime" required>
                 <DatePicker
                   allowClear

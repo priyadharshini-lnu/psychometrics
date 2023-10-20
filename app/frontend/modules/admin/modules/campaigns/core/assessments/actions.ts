@@ -19,6 +19,7 @@ const EXPORT_SCORING_RESULTS = 'campaigns/userAssessments/EXPORT_SCORING_RESULTS
 const EXPORT_NORMED_RESULTS = 'campaigns/userAssessments/EXPORT_NORMED_RESULTS'
 const EXPORT_RAW_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_RAW_FACTOR_RESULTS'
 const EXPORT_EXTERNAL_RESULTS = 'campaigns/userAssessments/EXPORT_EXTERNAL_RESULTS'
+export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/assessments/TOGGLE_REQUIRE_SCHEDULE'
 
 export const UPDATE_PREWORK = 'campaigns/assessments/UPDATE_PREWORK'
 export const updatePrework = (campaignId: number, id: number, prework: boolean) => ({
@@ -27,6 +28,17 @@ export const updatePrework = (campaignId: number, id: number, prework: boolean) 
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/assessments/${id}/update_prework`,
     body: { prework },
+  },
+})
+
+export const toggleRequireScheduling = (campaignId: number, id: number, requireScheduling: boolean) => ({
+  type: TOGGLE_REQUIRE_SCHEDULE,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${id}/toggle_require_scheduling`,
+    body: {
+      requireScheduling,
+    },
   },
 })
 

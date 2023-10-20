@@ -13,6 +13,23 @@ describe Campaigns::Users::AddReport do
     allow(Licenses::Use).to receive(:call!)
   end
 
+  it 'picks require_scheduling from campaign_assessment' do
+    assessment1 = create(:assessment)
+    assessment2 = create(:assessment)
+    report = create(:report, assessments: [assessment1, assessment2])
+    create(:campaign_assessment, campaign: campaign, assessment: assessment1, require_scheduling: true)
+    create(:campaign_assessment, campaign: campaign, assessment: assessment2, require_scheduling: false)
+    described_class.call!(
+      campaign_user, report, assessments: [assessment1, assessment2], current_user: current_user,
+      operation: 'add_and_allow_new_response'
+    )
+    user_assessment1 = user.user_assessments.find_by(assessment: assessment1)
+    user_assessment2 = user.user_assessments.find_by(assessment: assessment2)
+
+    expect(user_assessment1.require_scheduling).to eq(true)
+    expect(user_assessment2.require_scheduling).to eq(false)
+  end
+
   it 'adds UserReport if not already added' do
     expect do
       described_class.call!(campaign_user, report, assessments: report.assessments)

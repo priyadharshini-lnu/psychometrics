@@ -22,7 +22,7 @@ export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSME
 export const RESET_PROGRESS_OF_ASSESSMENT = 'campaigns/userAssessments/RESET_PROGRESS_OF_ASSESSMENT'
 export const GET_WEBHOOK_REQUEST_DATA = 'campaigns/userAssessments/GET_WEBHOOK_REQUEST_DATA'
 export const SCHEDULE_ASSESSMENT = 'campaigns/userAssessments/SCHEDULE_ASSESSMENT'
-export const TOGGLE_REQUERE_SCHEDULE = 'campaigns/userAssessments/TOGGLE_REQUERE_SCHEDULE'
+export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/userAssessments/TOGGLE_REQUIRE_SCHEDULE'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -86,7 +86,7 @@ export const scheduleAssessment = (campaignId: number, campaignAssessmentId: num
 })
 
 export const toggleRequireScheduling = (campaignId: number, assessmentId: number, requireScheduling: boolean) => ({
-  type: TOGGLE_REQUERE_SCHEDULE,
+  type: TOGGLE_REQUIRE_SCHEDULE,
   request: {
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${assessmentId}/toggle_require_scheduling`,
@@ -137,7 +137,7 @@ const HANDLERS = {
     { ...state, list: userAssessments }),
   [SCHEDULE_ASSESSMENT]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
     { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
-  [TOGGLE_REQUERE_SCHEDULE]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
+  [TOGGLE_REQUIRE_SCHEDULE]: (state, { response }: CustomAction<{ response: UserAssessment }>) => (
     { ...state, list: state.list.map(u => (u.id === response.id ? response : u)) }),
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
     const { campaignAssessmentId, normId } = request.body

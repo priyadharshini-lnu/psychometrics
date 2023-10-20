@@ -69,5 +69,9 @@ module Administration
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
     end
+
+    def toggle_require_scheduling?
+      has_permission?(:campaigns, :manage_users)
+    end
   end
 end
