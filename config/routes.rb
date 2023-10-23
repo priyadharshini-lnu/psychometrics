@@ -746,19 +746,15 @@ Rails.application.routes.draw do
     end
     ### END TEMPLATES
 
+    ### Reports
+    get '/reports/active' => 'reports#index'
+    get '/reports/archived' => 'reports#index'
+    get '/reports/trash' => 'reports#index'
+    get '/reports/:id/edit' => 'reports#index'
     resources :reports do
       member do
-        get :copy
-        get :sidebar
-        patch :toggle_status
         get :preview
         post :upload_data_sheet
-        patch :toggle_archive
-        delete :soft_delete
-        put :restore
-      end
-      collection do
-        get :external_reports
       end
       scope module: 'reports' do
         resource :builders, only: [:update]
@@ -768,12 +764,9 @@ Rails.application.routes.draw do
     get 'report_approvals', to: 'report_approvals#app', as: :report_approvals
     get 'report_approvals/*all', to: 'report_approvals#app', constraints: { all: /.*/, format: :html }
 
-    resources :report_families, except: [:show] do
-      member do
-        get :sidebar
-      end
+    resources :report_families, only: [:index] do
       scope module: :report_families do
-        resources :reports, only: %i[index destroy new create]
+        resources :reports, only: %i[index]
       end
     end
 
@@ -1138,7 +1131,9 @@ Rails.application.routes.draw do
               end
             end
           end
-          jsonapi_resources :report_families, only: %i[index]
+          jsonapi_resources :report_families do
+            jsonapi_resources :report_families_reports
+          end
           jsonapi_resources :projects, only: :show
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
@@ -1169,6 +1164,7 @@ Rails.application.routes.draw do
           end
           jsonapi_resources :dimensions
           jsonapi_resources :external_assessments
+          jsonapi_resources :external_reports
           jsonapi_resources :external_norms
           jsonapi_resources :dashboards, only: %i[index create update]
           jsonapi_resources :design_settings, only: %i[index update] do
@@ -1241,7 +1237,13 @@ Rails.application.routes.draw do
 
           jsonapi_resources :user_availability_dates, only: %i[index create update destroy]
 
-          jsonapi_resources :reports, only: [:index]
+          jsonapi_resources :reports do
+            post :copy
+            post :restore
+            scope module: :reports do
+              resource :uploads, only: %i[update]
+            end
+          end
           resources :user_reports, only: [] do
             jsonapi_resources :user_report_comments, only: %i[index create update destroy]
           end

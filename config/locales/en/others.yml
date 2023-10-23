@@ -1481,11 +1481,12 @@ en:
       approvers_list: Approvers List
       assessment: Assessment
       assessment_name: Assessment Name
+      assessments: Assessments
       assessor: Assessor
       category: Category
       completion_count: Completion Count
       completion_status: Completion Status
-      created_at: Created at
+      created_at: Created At
       created_by: Created By
       created_date: Created Date
       description: Description
@@ -1507,7 +1508,9 @@ en:
       owner: Owner
       poster: Poster
       project: Project
+      provider: Provider
       qc_user_list: QC Users List
+      report: Report
       report_id: Report Id
       schedule_time: Schedule Time
       status: Status
@@ -2451,11 +2454,52 @@ en:
       all: All
       approved: Approved
       my_tasks: My Tasks
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: Are you sure you want to delete the report bundle '%{name}'?
+        confirm_title: Confirmation Required
+        success_message: Report Bundle %{name} has been deleted
+    create: Create
+    report_bundle: Report Bundle
+    report_bundles: Report Bundles
+    reports:
+      actions:
+        add: Add New Report
+        remove:
+          confirm_message: Are you sure you want to delete the report '%{name}' from '%{report_bundle_name}'?
+          confirm_title: Confirmation Required
+          success_message: Report %{name} has been deleted
+      select: Select Report
   reports:
     actions:
-      add: Add Report
-      download: Download report
-      view: View Report
+      archived:
+        success_message: Report %{name} archived successfully
+      back_to_campaign: Back to Campaign
+      copy:
+        success_message: Report %{name} coppied successfully
+      details: Details
+      download_csv: Download CSV
+      edit: Edit
+      evaluate: Evaluate
+      extend_time: Extend time
+      goto_dashboard: Click here to continue
+      pending_tasks:
+        one: You have one 1 pending task
+        other: You have %{count} pending tasks
+      re_evaluate: Click Here to Re-Evaluate
+      reevaluate: Re-Evaluate
+      remove:
+        confirm_message: Are you sure you want to delete the report '%{name}'?
+        confirm_title: Confirmation Required
+        success_message: Report %{name} has been removed
+      rescore: Rescore
+      restore:
+        success_message: Report %{name} restored successfully
+      unarchived:
+        success_message: Report %{name} unarchived successfully
+    active: Active
+    archived: Archived
     builder:
       graph:
         properties:
@@ -2482,6 +2526,20 @@ en:
           positionTopMiddle: Top Middle
           positionTopRight: Top Right
           showLegend: Show Legend
+    columns:
+      data_only: Data Only
+      default_language: Default Language
+      external_settings:
+        hogan_report_id: Hogan Report ID
+        pearson_provider: Pearson Provider
+        saville_report_id: Saville Report ID
+    create: Create
+    dashboard: Dashboard
+    drawer:
+      title: Report Details
+    form:
+      load_from_pearson: Load from Pearson
+      none_external: None - Use report builder
     modules:
       common:
         all_factors: All factors
@@ -2585,6 +2643,14 @@ en:
         total_evaluations: Total evaluations for this assessment
       video_response:
         no_results: No videos recorded
+    pages:
+      edit:
+        assets: Assets
+        general_settings: General Settings
+        translations: Translations
+    report: Report
+    reports: Reports
+    reset: Reset
     show:
       export_pdf: Export to PDF
       header: Report
@@ -2596,6 +2662,9 @@ en:
       not_available: Not available
       on_hold: On hold
       released: Released
+    trash: Trash
+    update: Update
+    upload: Upload
   reset_password_modal:
     fields:
       automatically_generate_password: Automatically generate password

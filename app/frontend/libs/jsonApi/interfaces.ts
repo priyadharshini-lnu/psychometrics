@@ -51,6 +51,7 @@ export interface RelationshipSchemaValue {
   type: string
   field?: string
   association?: string
+  singularName?: string
   readOnly?: boolean
   getType?: (data: unknown) => string
 }

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ReportFamily < ApplicationRecord
+  include RansackSearchableFields
   audited
 
   has_many :report_families_reports
