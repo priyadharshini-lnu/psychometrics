@@ -232,10 +232,12 @@ class Report < ApplicationRecord
   end
 
   def pdf_dimension
-    pdf_height_margin = 6
+    height = props&.dig('sizes', 'height') || 1100
+    page_height_increment = 0
+    page_height_increment = 1 if [1100, 827].include?(height)
     {
-      width: "#{(props&.dig('sizes', 'width') || 850) * 0.265}mm",
-      height: "#{((props&.dig('sizes', 'height') || 1100) + pdf_height_margin) * 0.265}mm"
+      width: "#{props&.dig('sizes', 'width')}px",
+      height: "#{height + page_height_increment}px"
     }
   end
 
