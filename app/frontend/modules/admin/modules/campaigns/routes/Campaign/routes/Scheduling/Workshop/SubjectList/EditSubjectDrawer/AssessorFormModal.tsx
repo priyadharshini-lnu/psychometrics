@@ -6,7 +6,7 @@ import moment from 'moment'
 import { Store } from 'antd/lib/form/interface'
 
 import { Rule } from 'antd/lib/form'
-import { mergeDateAndtime } from '~/utils/time'
+import { mergeDateAndTime } from '~/utils/time'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import styles from './EditSubjectDrawer.less'
 
@@ -155,9 +155,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
               initialFormData?.scheduleTime ? moment(initialFormData.scheduleTime) : undefined
             }
             onChange={(value) => {
-              const scheduleTimeWithWorkshopDate = mergeDateAndtime(
-                moment(workshop?.startTime), value, workshop?.timezone,
-              )
+              const scheduleTimeWithWorkshopDate = mergeDateAndTime(moment(workshop?.startTime), value)
               assessorFormInstance.setFieldsValue({ scheduleTime: scheduleTimeWithWorkshopDate })
             }}
           />
