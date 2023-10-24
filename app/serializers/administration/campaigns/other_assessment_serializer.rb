@@ -19,6 +19,7 @@ module Administration
             export_external_results
             rescore_responses
             update_external_config
+            schedule_assessment
           ],
           {
             project_id: instance_options[:project_id],

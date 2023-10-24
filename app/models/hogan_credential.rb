@@ -3,6 +3,7 @@
 class HoganCredential < ApplicationRecord
   belongs_to :membership
   belongs_to :user
+  has_many :hogan_logs, foreign_key: :participant_id, primary_key: :participant_id
 
   validates :encrypted_password, presence: true
   validates :participant_id, presence: true

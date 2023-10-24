@@ -27,7 +27,7 @@ module CampaignReports
       file_details = user_reports_with_pdf.each_with_object([]) do |ur, acc|
         acc << {
           s3FilePath: ur.pdf.path,
-          zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize}-#{ur.campaign_id}.pdf"
+          zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize(preserve_case: true)}-#{ur.campaign_id}.pdf" # rubocop:disable Layout/LineLength
         }
       end
       file_name = "bulk-report-#{Time.zone.today.strftime('%F')}"

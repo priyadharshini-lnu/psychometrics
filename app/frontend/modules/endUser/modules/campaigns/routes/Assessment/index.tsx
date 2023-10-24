@@ -71,7 +71,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   }
 
   if (userAssessmentData.type === 'Assessments::Hogan') {
-    return <HoganStep userAssessmentUrl={userAssessmentData.url} />
+    return <HoganStep onCancel={backToCampaign} userAssessmentUrl={userAssessmentData.url} />
   }
 
   if (userAssessmentData.type !== 'Assessments::Common') {

@@ -82,6 +82,8 @@ describe UserReports::GeneratePdf do
   context 'using local puppeter' do
     before(:each) do
       allow(Settings).to receive_message_chain(:features, :url_to_pdf_lambda) { false }
+      frozen_time = Time.zone.local(2020, 1, 1, 12, 0, 0)
+      allow(Time.zone).to receive(:now).and_return(frozen_time)
     end
 
     it 'create report pdf in tmp location where current_user is a super admin' do
@@ -89,7 +91,7 @@ describe UserReports::GeneratePdf do
 
       # rubocop:disable Layout/LineLength
       expect(output_path).to include(
-        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
+        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize(preserve_case: true)}_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf"
       )
       # rubocop:enable Layout/LineLength
     end
@@ -99,7 +101,7 @@ describe UserReports::GeneratePdf do
 
       # rubocop:disable Layout/LineLength
       expect(output_path).to include(
-        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
+        "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize(preserve_case: true)}_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf"
       )
       # rubocop:enable Layout/LineLength
     end

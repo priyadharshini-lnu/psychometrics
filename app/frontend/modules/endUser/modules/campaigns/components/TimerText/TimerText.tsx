@@ -7,12 +7,15 @@ type Props = {
   text: React.ReactElement | string
   className?: string
   textType?: BaseType | 'none'
+  containerClassName?: string
 }
 const { Text } = Typography
 
-export const TimerText:FC<Props> = ({ text, className, textType = 'secondary' }) => (
+export const TimerText:FC<Props> = ({
+  text, className, textType = 'secondary', containerClassName,
+}) => (
   text ? (
-    <Space>
+    <Space className={containerClassName}>
       <ClockCircleOutlined className={className} />
       <Text type={textType === 'none' ? undefined : textType}>{text}</Text>
     </Space>

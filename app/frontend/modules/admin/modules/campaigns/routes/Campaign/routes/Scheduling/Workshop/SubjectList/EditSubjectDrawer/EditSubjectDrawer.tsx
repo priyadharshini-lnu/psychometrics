@@ -12,6 +12,7 @@ import {
 import * as t from 'io-ts'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { mergeDateAndTime } from '~/utils/time'
 import InputDuration from '~/components/InputDuration'
 
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -44,6 +45,7 @@ type OwnProps = {
   open: boolean,
   subjectId: string,
   userId: string,
+  workshopStartTime: string
   onClose: ()=> void
 }
 type Props = PropsFromRedux & OwnProps
@@ -69,6 +71,7 @@ const { Text, Title } = Typography
 export const EditSubjectDrawerComponent: FC<Props> = ({
   open, onClose, openModal,
   subjectId,
+  workshopStartTime,
   userId,
 }) => {
   const [, setFields] = useState({})
@@ -171,10 +174,11 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   }, [subjectId, open])
 
   const handleTimeChange = (value: Moment | null, userAssessmentId: string) => {
+    const scheduleTime = value ? mergeDateAndTime(moment(workshopStartTime), value) : null
     const updatedAssessments = subjectData.assessments
       .map(userAssessment => (
         userAssessment.id.toString() === userAssessmentId.toString()
-          ? { ...userAssessment, scheduleTime: value?.format() } : userAssessment
+          ? { ...userAssessment, scheduleTime: scheduleTime?.format() } : userAssessment
       ))
     setSubjectData({ ...subjectData, assessments: updatedAssessments })
   }

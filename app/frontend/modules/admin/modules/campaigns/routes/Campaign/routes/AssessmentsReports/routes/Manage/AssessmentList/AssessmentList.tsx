@@ -43,6 +43,7 @@ const AssessmentList: React.FC<Props> = ({
   updateExternalConfig,
   updatePrework,
   updateWorkshopActivity,
+  toggleRequireScheduling,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -70,6 +71,18 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessment_name')}
             key="name"
             dataIndex="name"
+          />
+          <Column
+            title={I18n.t('common.column.require_scheduling')}
+            key="requireScheduling"
+            render={({ requireScheduling, id }) => (
+              <Switch
+                checked={requireScheduling}
+                onChange={() => {
+                  toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
+                }}
+              />
+            )}
           />
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
@@ -163,7 +176,6 @@ const AssessmentList: React.FC<Props> = ({
               )
             }}
           />
-
           <Column
             title={I18n.t('campaign_assessment.column.prework')}
             key="category"
@@ -201,6 +213,7 @@ const AssessmentList: React.FC<Props> = ({
                   ActionsMenu({
                     assessment,
                     campaignId: parsedCampaignId,
+                    projectId: parsedProjectId,
                     openModal,
                     rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
                     exportRawResults,

@@ -3,10 +3,10 @@ import {
   Col, Row, Typography, Space,
 } from 'antd'
 import cs from 'classnames'
-
 import { AssessmentCard } from '../AssessmentCard'
 import { AssessmentCardContainer } from '../AssessmentCardContainer'
 import { InviteDeatilsContainer } from './InviteDetailsContainer'
+import { BreakCard } from './BreakCard'
 
 import { Statuses, UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 import { ViewsContainer } from '~/glint'
@@ -63,8 +63,10 @@ export const AssessmentsContainer = ({
   const { workshop } = campaign
   const workshopCompleted = workshop ? workshop.completed : false
   const workshopAttended = workshop ? workshop.attended : false
-  const workshopActivities = campaign.userAssessments
+  let workshopActivities = campaign.userAssessments
     .filter(assessment => assessment?.workshopActivity && !assessment?.prework)
+  workshopActivities = _.sortBy(workshopActivities, wa => wa.scheduleTime)
+
   const hasAssessmentCenterGroup = _.find(assessmentGroups, { groupType: 'assessment_center' })
   if (!hasAssessmentCenterGroup && workshopActivities.length) {
     const dummyAssessmentGroup = createAssessmentCenterGroup()
@@ -128,7 +130,7 @@ export const AssessmentsContainer = ({
                         <InviteDeatilsContainer inviteDetails={inviteDetails} bookingDetails={workshop} />
                       ) : null}
                       <Row gutter={[16, 16]}>
-                        {userAssessments.map((userAssessment) => {
+                        {userAssessments.map((userAssessment, index) => {
                           let isDisabled = userAssessment.prework ? canNotStartPrework : canNotStartAssessment
                           isDisabled = isDisabled || !prevCompleted
                           if (!isDisabled && group.previousAssessmentsRequired) {
@@ -139,18 +141,29 @@ export const AssessmentsContainer = ({
                             }
                           }
                           previousAssessmentIsIneligible = userAssessment.status === Statuses.INELIGIBLE
+
                           return (
-                            <Col xs={24} sm={tabCol} md={tabCol} lg={tabCol} xl={deskCol} key={userAssessment.id}>
-                              <AssessmentCard
-                                view={view}
-                                userAssessment={userAssessment}
-                                workshopBooked={!!workshop}
-                                workshopAttended={workshopAttended}
-                                disabled={isDisabled}
-                                prevCompleted={prevCompleted}
-                                campaignNotStarted={campaignNotStarted}
-                              />
-                            </Col>
+                            <>
+                              <Col xs={24} sm={tabCol} md={tabCol} lg={tabCol} xl={deskCol} key={userAssessment.id}>
+                                <AssessmentCard
+                                  view={view}
+                                  userAssessment={userAssessment}
+                                  workshopBooked={!!workshop}
+                                  workshopAttended={workshopAttended}
+                                  disabled={isDisabled}
+                                  prevCompleted={prevCompleted}
+                                  campaignNotStarted={campaignNotStarted}
+                                />
+                              </Col>
+                              {isAssessmentCenter && index < userAssessments.length - 1 ? (
+                                <BreakCard
+                                  currentWorkshopActivity={userAssessment}
+                                  nextWorkshopActivity={userAssessments[index + 1]}
+                                  tabCol={tabCol}
+                                  deskCol={deskCol}
+                                />
+                              ) : null}
+                            </>
                           )
                         })}
                       </Row>

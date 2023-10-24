@@ -172,4 +172,9 @@ class UserReport < ApplicationRecord
       campaign: campaign
     }
   end
+
+  def pdf_download_url
+    file_name = "#{user.email}-#{report.name}.pdf"
+    pdf.url(query: { 'response-content-disposition' => "attachment;filename=#{file_name}" })
+  end
 end
