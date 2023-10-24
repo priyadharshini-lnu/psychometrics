@@ -151,7 +151,7 @@ gem 'remotipart', '~> 1.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 6.5.1'
+gem 'sidekiq', '~> 7.1.6'
 
 gem 'hashids', '~> 1.0.5'
 
@@ -257,7 +257,7 @@ end
 gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.7.0'
+gem 'sidekiq-cron', '~> 1.10.1'
 
 gem 'xml-simple', '~> 1.1.5'
 
