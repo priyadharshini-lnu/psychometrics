@@ -20,6 +20,7 @@ export interface UserAssessment {
   meetingTime: string | null
   scheduleTime: string | null
   workshopActivityDuration: number | null
+  requireScheduling: boolean
 }
 
 export interface AssessmentExtra {

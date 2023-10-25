@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import moment, { Moment } from 'moment'
 
+export const SECONDS_IN_HOUR = 86400
 const FORMAT = 'DD MMM YYYY / HH:mm'
 
 const allDays = _.range(0, 7)
@@ -54,12 +55,13 @@ export const convertSecondsToMMSS = (totalSeconds: number): string => {
   return `${minutesFormatted}:${secondsFormatted}/10:00`
 }
 
-export const mergeDateAndtime = (date: Moment, time: Moment | null, timezone: string) => (
-  moment.tz(date.format('YYYY-MM-DD'), timezone).set({
+export const mergeDateAndTime = (date: Moment, time: Moment | null, timezone: string | undefined = undefined) => {
+  const finalTimezone = timezone || moment.tz.guess() || 'Asia/Dubai'
+  return moment.tz(date.format('YYYY-MM-DD'), finalTimezone).set({
     hour: time?.hour(),
     minute: time?.minute(),
   })
-)
+}
 
 export const getAvailableDays = (startDate?: Moment, endDate?: Moment): number[] => {
   const availableDays: number[] = []

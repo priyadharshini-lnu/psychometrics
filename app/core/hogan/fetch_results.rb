@@ -28,6 +28,16 @@ module Hogan
         end
       end
 
+      HoganLog.create!(
+        log_type: 'BeforeGetParticipantScore',
+        participant_id: hogan_participant_id,
+        group: hogan_group_name,
+        call_stack: caller,
+        meta: {
+          hogan_report_ids: hogan_reports.pluck(:id),
+          not_external_added_report_ids: not_external_added_reports.pluck(:id)
+        }
+      )
       participant_score = get_participant_score
 
       return broadcast(:not_completed) if participant_score.blank?

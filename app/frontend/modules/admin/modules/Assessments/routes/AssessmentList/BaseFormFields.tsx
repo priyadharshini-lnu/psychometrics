@@ -146,7 +146,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
                 apiConfig: {
                   filter: {
                     filterable_fields: value,
-                    category_in: ['psychometric', 'agile', 'case_study'],
+                    category_in: ['psychometric', 'agile', 'case_study', 'organisational', 'meeting'],
                     archived_eq: 'false',
                   },
                   fields: { assessments: ['name'] },

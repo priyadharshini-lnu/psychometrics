@@ -79,6 +79,7 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
         <SubjectsTable workshop={workshop} handleEditSubject={handleEditSubject} />
       </Resource>
       <EditSubjectDrawer
+        workshopStartTime={workshop.startTime}
         subjectId={currentSubjectId}
         userId={currentUserId}
         onClose={() => setOpenEditDrawer(false)}
@@ -263,6 +264,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
         subjects={selectedSubjects}
         onClose={() => setOpenForm(false)}
         onSave={updateSubjects}
+        workshopStartTime={workshop.startTime}
       />
       {openSubjectForm && (<AddSubjectForm close={() => setOpenSubjectForm(false)} />)}
     </>

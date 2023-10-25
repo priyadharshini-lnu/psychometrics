@@ -150,6 +150,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         workshop_activity
         workshop_activity_duration
         allow_multiple_responses
+        require_scheduling
       ]
     )
     expect(assessment_response).to include({

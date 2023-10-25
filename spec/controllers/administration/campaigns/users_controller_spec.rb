@@ -164,7 +164,9 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'is_expired' => false,
       'is_external' => false,
       'status' => 'not_started',
-      'has_external_norm' => false
+      'has_external_norm' => false,
+      'schedule_time' => nil,
+      'require_scheduling' => false
     })
   end
 end

@@ -59,6 +59,21 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
     end
   end
 
+  it '[PUT] toggle_require_scheduling' do
+    expect(campaign_assessment.require_scheduling).to eq(false)
+
+    put :toggle_require_scheduling, params: {
+      id: assessment.id,
+      new_campaign_id: campaign.id,
+      require_scheduling: true
+    }, as: :json
+
+    parsed_response = JSON.parse(response.body)
+
+    expect(campaign_assessment.reload.require_scheduling).to eq(true)
+    expect(parsed_response).to match(hash_including('require_scheduling' => true))
+  end
+
   it '[PUT] update_assessor_form' do
     expect(AdminJob).to_not receive(:call)
 

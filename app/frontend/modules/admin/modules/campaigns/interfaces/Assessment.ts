@@ -24,7 +24,9 @@ export default interface Assessment {
     remove: boolean
     rescoreResponses: boolean
     updateExternalConfig: boolean
+    scheduleAssessment: boolean
   },
   externalConfig: object,
   campaignAssessmentId: number
+  scheduleTime: string
 }

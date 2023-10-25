@@ -11,6 +11,7 @@ import {
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { useResources } from '~/hooks/useResources'
 import settings from '~/modules/admin/modules/campaigns/settings'
+import { mergeDateAndTime } from '~/utils/time'
 
 const { I18n } = window
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
   subjects: WorkshopSubject[]
   onClose: () => void
   onSave: (data) => void
+  workshopStartTime: string,
 }
 
 interface PayloadData {
@@ -28,7 +30,7 @@ interface PayloadData {
 }
 
 export const BulkSchedule: React.FC<Props> = ({
-  open, subjects, onClose, onSave,
+  open, subjects, onClose, onSave, workshopStartTime,
 }) => {
   const {
     id, campaignId,
@@ -72,11 +74,12 @@ export const BulkSchedule: React.FC<Props> = ({
   const changeAction = (assessment, value) => {
     let { time } = assessment
     if (value === 'schedule' && !time) {
-      time = moment().toDate()
+      time = mergeDateAndTime(moment(workshopStartTime), moment())
     }
     setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, action: value, time } : d)))
   }
   const changeTime = (assessment, time) => {
+    time = mergeDateAndTime(moment(workshopStartTime), time)
     setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, time: time.toDate() } : d)))
   }
 

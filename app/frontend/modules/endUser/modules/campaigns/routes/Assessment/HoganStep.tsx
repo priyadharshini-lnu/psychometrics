@@ -26,11 +26,12 @@ const connector = connect(
 )
 
 type Props = ConnectedProps<typeof connector> & {
-  userAssessmentUrl: string
+  userAssessmentUrl: string,
+  onCancel: () => void,
 }
 
 export const HoganStepComponent: FC<Props> = ({
-  userAssessmentUrl, loginHogan,
+  userAssessmentUrl, loginHogan, onCancel,
 }) => {
   const [hoganData, setHoganData] = useState<HoganData| null>(null)
   const [timedOut, setTimedOut] = useState(false)
@@ -87,7 +88,7 @@ export const HoganStepComponent: FC<Props> = ({
             </div>
             <div className={styles.redirectFooter}>
               <Space>
-                <Button danger>
+                <Button onClick={onCancel} danger>
                   {I18n.t('campaign.time_left.cancel')}
                 </Button>
                 <Button disabled={!timedOut} type="primary" onClick={() => process()}>

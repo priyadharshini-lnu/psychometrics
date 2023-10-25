@@ -20,7 +20,8 @@ module UserReports
                 data: ReportSerializer.new(
                   report,
                   user_results: user_report.user_results,
-                  module_overrides: user_report.text_module_overrides
+                  module_overrides: user_report.text_module_overrides,
+                  piped_text_context: user_report.piped_text_context
                 ).to_json(include: '**'),
                 locales: translations.to_json
     end

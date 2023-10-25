@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, MenuProps, Row, Col, message, Modal,
+  Table, MenuProps, Row, Col, message, Modal, Button, Switch,
 } from 'antd'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
@@ -12,6 +12,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { PropsFromRedux } from './connect'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
+import { formatedDate } from '~/utils/time'
 
 const { Column } = Table
 const { I18n } = window
@@ -49,6 +50,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   reset,
   remove,
   resetProgress,
+  toggleRequireScheduling,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -69,11 +71,41 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
             dataIndex="name"
           />
           <Column
+            title={I18n.t('common.column.require_scheduling')}
+            key="requireScheduling"
+            render={({ requireScheduling, id }) => (
+              <Switch
+                checked={requireScheduling}
+                onChange={() => {
+                  toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
+                }}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('common.column.scheduling')}
+            key="scheduling"
+            render={assessment => (
+              <Button
+                type="link"
+                onClick={() => openModal('SchedulingAssessmentModal',
+                  {
+                    projectId: parsedProjectId,
+                    campaignId: parsedCampaignId,
+                    assessment,
+                  })}
+              >
+                {assessment.scheduleTime ? (
+                  formatedDate(assessment.scheduleTime)
+                ) : I18n.t('common.text.na')}
+              </Button>
+            )}
+          />
+          <Column
             title={I18n.t('common.column.category')}
             key="category"
             render={({ category }) => _.capitalize(category)}
           />
-
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"

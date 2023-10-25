@@ -12,6 +12,7 @@ module Api
       assessor_user_assessments = UserAssessment.where(
         relationship_id: Relationship.assessor_relationship.id,
         assessment_id: campaign_assessor_assessments.pluck(:assessment_id),
+        subject_id: workshop_subject.user_id,
         campaign_id: params[:campaign_id]
       ).index_by(&:assessment_id)
 

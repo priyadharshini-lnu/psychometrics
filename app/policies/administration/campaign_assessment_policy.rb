@@ -2,7 +2,7 @@
 
 module Administration
   class CampaignAssessmentPolicy < Administration::BasePolicy
-    include ::Administration::Common::AssessmentExportPolicy
+    include ::Administration::Assessments::CommonPolicy
 
     def update?
       @user.is?(:superadmin) || @user.has_permission?(
@@ -68,6 +68,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
       )
+    end
+
+    def toggle_require_scheduling?
+      has_permission?(:campaigns, :manage_users)
     end
   end
 end

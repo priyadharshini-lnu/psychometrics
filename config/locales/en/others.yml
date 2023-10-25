@@ -281,6 +281,7 @@ en:
           case_study: Case Studies
           hogan: Hogan
           iiht: IIHT
+          meeting: Meeting
           mindmill: Mindmill
           organisational: Surveys
           pearson: Pearson
@@ -534,6 +535,7 @@ en:
           hogan: Hogan
           iiht: IIHT
           manager: Manager
+          meeting: Meeting
           member: User
           mindmill: Mindmill
           organisational: Organisational
@@ -767,6 +769,7 @@ en:
       assessor_form: Assessor Form
       case_study: Case Study
       hogan: Hogan
+      meeting: Meeting
       mindmill: Mindmill
       organisational: Survey
       psychometric: Assessment
@@ -813,6 +816,7 @@ en:
         case_study: Case Studies
         hogan: Hogan
         iiht: IIHT
+        meeting: Meeting
         mindmill: Mindmill
         organisational: Org Surveys
         pearson: Pearson
@@ -1299,6 +1303,10 @@ en:
         form:
           duration: Duration in minutes
         title: Duration for the workshop activity
+    scheduled_successfully: Assessment scheduled successfully
+    scheduling:
+      update_exists: Override existing schedule
+    scheduling_time: Schedule assessment time
     statuses:
       completed: Completed
       in_progress: In Progress
@@ -1308,6 +1316,7 @@ en:
       timed_out: Timed Out
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
+    update_exists: Update all exists assessments
   campaign_report:
     actions:
       bulk_download: Bulk Download
@@ -1347,6 +1356,8 @@ en:
       progress: Progress
     details:
       additional_time: Additional Time
+      assessment_center: Assessment Center
+      assessment_center_invites: Assessment Center Invites
       completed_at: Completed At
       completion_status: Completion status
       hogan_id: Hogan Id
@@ -1366,8 +1377,6 @@ en:
         interrupted: Interrupted
         not_started: Not Started
         timed_out: Timed Out
-      workshops: Workshops
-      workshops_invites: Workshops Invites
     modals:
       change_password:
         content: Are you sure you want to send instructions with link to change password?
@@ -1466,11 +1475,13 @@ en:
       resolve: Resolve
       restore: Restore
       save: Save
+      schedule: Schedule
       search: Search
       send: Send
       start: Start
       unarchive: Unarchive
       unresolve: Unresolve
+      unschedule: Unschedule
       update: Update
       upload: Upload
       view: View
@@ -1512,11 +1523,14 @@ en:
       qc_user_list: QC Users List
       report: Report
       report_id: Report Id
+      require_scheduling: Require Scheduling
       schedule_time: Schedule Time
+      scheduling: Scheduling
       status: Status
       timing: Timing
       token: Token
       type: Type
+      unschedule: Unschedule
       updated_at: Last Updated
     errors:
       something_wrong: Something went wrong. Contact your administrator.
@@ -1894,8 +1908,7 @@ en:
       update_success: Availability updated successfully.
     background_reading: Background Reading
     bookings:
-      accept_invite_msg: You have recieved an invite. Please reserve your slot.
-      activity_start_text: 'Activity starts in:'
+      accept_invite_msg: You have received an invite. Please reserve your slot.
       add_to_calendar: Add To Calendar
       add_to_calendar_tour_description: Add this booking to your calendar
       assessment_center_alert:
@@ -1951,12 +1964,15 @@ en:
       reschedule_reason_placeholder: To continue, please enter the reason for rescheduling.
       schedule_success: This booking is scheduled
       schedule_success_msg: We emailed you and the other attendees a calendar invitation with all the details.
+      starts_at: 'Starts at: %{date}'
+      starts_in: 'Starts in:'
       tab_label:
         bookings: Bookings
         invites: Invites
       what: What
       when: When
       workshop_start_text: Your Assessment Center will start in
+    break_time: Break Time
     campaign:
       actions:
         remove:
@@ -2801,6 +2817,7 @@ en:
           assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
+          meeting: Meeting
           mindmill: Mindmill
           organisational: Surveys
           psychometric: Assessment

@@ -1,6 +1,7 @@
 import { connect, ConnectedProps } from 'react-redux'
 import {
   get as getAssessments, rescoreResponse, reset, remove, resetProgress,
+  toggleRequireScheduling,
 } from '~/modules/admin/modules/campaigns/core/userAssessments'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -16,6 +17,7 @@ const connecter = connect(
     reset,
     remove,
     resetProgress,
+    toggleRequireScheduling,
   },
 )
 

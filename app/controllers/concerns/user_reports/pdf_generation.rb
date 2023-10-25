@@ -25,7 +25,7 @@ module UserReports::PdfGeneration
 
         render json: resource, report: resource.report,
                results: UserReports::GroupedResultsByAssessment.call!(resource),
-               piped_text_context: {},
+               piped_text_context: resource.piped_text_context,
                user_results: resource.user_results,
                serializer: ::UserReportSerializer,
                include: '**'

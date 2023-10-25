@@ -20,6 +20,7 @@ import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 import WorkshopList from './WorkshopList'
 import WorkshopInviteList from './WorkshopInviteList/WorkshopList'
+import { SchedulingAssessmentModal } from './AssessmentList/SchedulingAssessmentModal'
 
 const { I18n } = window
 
@@ -29,6 +30,7 @@ const MODALS = {
   UpdateTimeModal,
   PushWebhookModal,
   UpdateCampaignTimeModal,
+  SchedulingAssessmentModal,
 }
 
 interface OwnProps {
@@ -244,10 +246,10 @@ const AssessmentsReports: React.FC<Props> = ({
         <h3>{I18n.t('common.model.assessments')}</h3>
         <AssessmentList />
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('campaign_users.details.workshops')}</h3>
+        <h3>{I18n.t('campaign_users.details.assessment_center')}</h3>
         <WorkshopList />
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('campaign_users.details.workshops_invites')}</h3>
+        <h3>{I18n.t('campaign_users.details.assessment_center_invites')}</h3>
         <WorkshopInviteList />
         {proctoringSessions.length !== 0 && (
           <>

@@ -137,7 +137,7 @@ module UserReports
 
     def report_file_name
       @report_file_name ||=
-        "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.zone.today.strftime('%F')}.pdf"
+        "#{user.email}_#{report.decorate.display_name.parameterize(preserve_case: true)}_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf" # rubocop:disable Layout/LineLength
     end
 
     def report_directory
