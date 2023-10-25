@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default function ChartOptions (model) {
   return {
     chart: {
@@ -15,7 +17,10 @@ export default function ChartOptions (model) {
       min: 0,
       max: model.props.maxValue || 6,
       lineWidth: 0,
-      tickInterval: 6,
+      tickInterval: Math.round(model.props.maxValue / 6),
+      tickPositions: model.props.maxValue > 12
+        ? [..._.times(Math.round(model.props.maxValue / 6), i => i * 6), model.props.maxValue || 6]
+        : [..._.times(Math.round(model.props.maxValue), i => i), model.props.maxValue || 6],
       labels: {
         y: 16,
       },
