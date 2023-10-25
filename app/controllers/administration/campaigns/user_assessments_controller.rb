@@ -77,6 +77,20 @@ module Administration
         render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
       end
 
+      def toggle_require_scheduling
+        attrs = { require_scheduling: params[:require_scheduling] }
+        attrs[:schedule_time] = nil unless params[:require_scheduling]
+        resource.update!(attrs)
+
+        render json: resource, serializer: Administration::UserAssessmentSerializer, campaign: resource.campaign
+      end
+
+      def schedule_assessment
+        resource.update!(schedule_time: params[:schedule_time])
+
+        render json: resource, serializer: Administration::UserAssessmentSerializer, campaign: resource.campaign
+      end
+
       private
 
       def pundit_authorize

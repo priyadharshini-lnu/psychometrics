@@ -85,6 +85,7 @@ module Campaigns
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
         user_result = existing_result ? UsersResults::Copy.call!(existing_result) : create_new_user_result(assessment)
+        campaign_assessment = CampaignAssessment.find_by(campaign: campaign, assessment: assessment)
         user_assessment = UserAssessment.create(
           users_result_id:  user_result.id,
           campaign: campaign,
@@ -95,7 +96,8 @@ module Campaigns
           relationship: Relationship.self_relationship,
           status: existing_result&.status || :not_started,
           completed_at: existing_result&.completed_at,
-          completion_reason: existing_result&.completion_reason
+          completion_reason: existing_result&.completion_reason,
+          require_scheduling: campaign_assessment&.require_scheduling&.present?
         )
         create_external_user_assessment_record(user_assessment, assessment, existing_result)
 

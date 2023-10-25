@@ -3,6 +3,7 @@ import {
   Space, Typography, Button,
 } from 'antd'
 import { Moment } from 'moment'
+import cs from 'classnames'
 
 import { DirectionalBackArrowIcon, MediaQueryContext } from '~/glint'
 
@@ -61,7 +62,7 @@ export const TimeSlotSelection:FC<Props> = ({
           <Title className="mb-0 font-normal text-nowrap" level={5}>{dateText}</Title>
           {selectedDateTime ? (
             <Title
-              className="mb-0 font-normal text-nowrap"
+              className="mb-0 font-normal text-nowrap ltr"
               level={5}
               data-testid="selected-time"
             >
@@ -78,7 +79,7 @@ export const TimeSlotSelection:FC<Props> = ({
               <Button
                 onClick={() => onTimeSelection(slot)}
                 size="large"
-                className={styles.button}
+                className={cs(styles.button, 'ltr')}
                 key={formattedTimeText}
                 block
               >

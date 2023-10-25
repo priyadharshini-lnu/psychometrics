@@ -2,7 +2,7 @@
 
 module Administration
   class AssessmentPolicy < Administration::BasePolicy
-    include ::Administration::Common::AssessmentExportPolicy
+    include ::Administration::Assessments::CommonPolicy
 
     def index?
       super || @user.has_grant?(:assessments, :view)

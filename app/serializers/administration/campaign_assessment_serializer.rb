@@ -5,7 +5,8 @@ module Administration
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_id, :enable_universal_links,
                :universal_link, :norms, :is_external, :assessor_form_name, :permissions,
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
-               :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses
+               :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses,
+               :require_scheduling
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
@@ -52,7 +53,8 @@ module Administration
           'export_external_results',
           'rescore_responses',
           'update_external_config',
-          %w[remove destroy]
+          %w[remove destroy],
+          'schedule_assessment'
         ],
         {
           project_id: instance_options[:project_id],

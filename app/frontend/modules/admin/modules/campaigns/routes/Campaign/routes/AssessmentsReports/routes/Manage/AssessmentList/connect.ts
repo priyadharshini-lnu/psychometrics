@@ -3,7 +3,7 @@ import { get as getAssessments } from '~/modules/admin/modules/campaigns/core/as
 import {
   activateUniversalLink, rescoreResponses, remove, exportRawResults, exportScoringResults,
   exportNormedResults, exportRawFactorScores, exportExternalResults, updateExternalConfig,
-  updatePrework, updateWorkshopActivity,
+  updatePrework, updateWorkshopActivity, toggleRequireScheduling,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -27,6 +27,7 @@ const connecter = connect(
     updateExternalConfig,
     updatePrework,
     updateWorkshopActivity,
+    toggleRequireScheduling,
   },
 )
 

@@ -18,6 +18,7 @@ class EndUser::WorkshopInvitesController < ApplicationController
       render json: { errors: form.errors.full_messages }, status: 400
     else
       response = Workshops::Booking::BookSlot.call(params, current_user)
+      audit! :book, @_resource, project: @current_project, user: current_user, payload: params
 
       if response && response[:error]
         render json: { errors: response[:error] }, status: 400
@@ -34,6 +35,8 @@ class EndUser::WorkshopInvitesController < ApplicationController
       render json: { errors: form.errors.full_messages }, status: 400
     else
       response = Workshops::Booking::CancelSlot.call(params, current_user)
+      workshop = Workshop.find(params[:workshop_id])
+      audit! :cancel_or_request_cancellation, workshop, project: @current_project, user: current_user, payload: params
 
       if response && response[:error]
         render json: { errors: response[:error] }, status: 400
@@ -50,6 +53,9 @@ class EndUser::WorkshopInvitesController < ApplicationController
       render json: { errors: form.errors.full_messages }, status: 400
     else
       response = Workshops::Booking::RescheduleSlot.call(params, current_user)
+      workshop = Workshop.find(params[:workshop_id])
+      audit! :reschedule_or_request_reschedule, workshop, project: @current_project, user: current_user,
+        payload: params
 
       if response && response[:error]
         render json: { errors: response[:error] }, status: 400

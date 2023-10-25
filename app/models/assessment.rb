@@ -24,6 +24,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   SAVILLE = 'saville'
   PEARSON = 'pearson'
   IIHT = 'iiht'
+  MEETING = 'meeting'
 
   CATEGORIES_TYPES = [
     PSYCHOMETRIC,
@@ -36,7 +37,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     AGILE,
     SAVILLE,
     PEARSON,
-    IIHT
+    IIHT,
+    MEETING
   ].freeze
 
   COMMON_CATEGORIES_TYPES = [
@@ -45,7 +47,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     CASE_STUDY,
     THREESIXTY,
     ASSESSOR_FORM,
-    AGILE
+    AGILE,
+    MEETING
   ].freeze
 
   CATEGORIES = {
@@ -59,7 +62,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     assessor_form: ASSESSOR_FORM,
     saville: SAVILLE,
     pearson: PEARSON,
-    iiht: IIHT
+    iiht: IIHT,
+    meeting: MEETING
   }.freeze
 
   # Assessments constant

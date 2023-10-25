@@ -900,7 +900,8 @@ CREATE TABLE public.campaign_assessments (
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
     allow_multiple_responses boolean DEFAULT false,
-    schedule_time timestamp(6) without time zone
+    schedule_time timestamp(6) without time zone,
+    require_scheduling boolean DEFAULT false
 );
 
 
@@ -2074,6 +2075,41 @@ ALTER SEQUENCE public.hogan_credentials_id_seq OWNED BY public.hogan_credentials
 
 
 --
+-- Name: hogan_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.hogan_logs (
+    id bigint NOT NULL,
+    log_type character varying,
+    participant_id character varying,
+    "group" character varying,
+    response jsonb,
+    meta jsonb,
+    call_stack jsonb,
+    created_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: hogan_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.hogan_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: hogan_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.hogan_logs_id_seq OWNED BY public.hogan_logs.id;
+
+
+--
 -- Name: hogan_report_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2409,7 +2445,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -5672,6 +5708,13 @@ ALTER TABLE ONLY public.hogan_credentials ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: hogan_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_logs ALTER COLUMN id SET DEFAULT nextval('public.hogan_logs_id_seq'::regclass);
+
+
+--
 -- Name: hogan_report_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6702,6 +6745,14 @@ ALTER TABLE ONLY public.highlights
 
 ALTER TABLE ONLY public.hogan_credentials
     ADD CONSTRAINT hogan_credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hogan_logs hogan_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_logs
+    ADD CONSTRAINT hogan_logs_pkey PRIMARY KEY (id);
 
 
 --
@@ -12030,6 +12081,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231003130242'),
 ('20231005095208'),
 ('20231005095250'),
-('20231006103234');
+('20231006103234'),
+('20231017110648'),
+('20231020065639');
 
 

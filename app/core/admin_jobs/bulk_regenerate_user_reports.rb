@@ -10,7 +10,7 @@ module AdminJobs
 
     def generate_title_link
       {
-        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/users/#{user.id}",
+        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/participants/users/#{user.id}", # rubocop:disable Layout/LineLength
         label: "#{campaign.name} - #{user.decorate.full_name}"
       }
     end

@@ -14,7 +14,7 @@ import { useResources } from '~/hooks/useResources'
 import {
   WorkshopCreateResponseTR, Workshop, UserDetails, userDetailsListTR,
 } from '~/modules/admin/modules/campaigns/core/workshop'
-import { secondsToDayHoursAndMinutes, mergeDateAndtime } from '~/utils/time'
+import { secondsToDayHoursAndMinutes, mergeDateAndTime } from '~/utils/time'
 import { formatWorkshopDate } from '~/utils/workshop'
 
 const { Title } = Typography
@@ -77,7 +77,7 @@ export const Facilitators: React.FC<Props> = ({
   )
 
   const startDateTime = index => (
-    mergeDateAndtime(basicInfoData.dates[index], basicInfoData.time, basicInfoData.timezone)
+    mergeDateAndTime(basicInfoData.dates[index], basicInfoData.time, basicInfoData.timezone)
   )
 
   const endDateTime = index => (

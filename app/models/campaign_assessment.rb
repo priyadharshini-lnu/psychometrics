@@ -24,6 +24,7 @@ class CampaignAssessment < ApplicationRecord
            :iiht?,
            :has_external_norm?,
            :external_assessment_id,
+           :assessor_form?,
            to: :assessment
 
   scope :preworks, -> { where(prework: true) }

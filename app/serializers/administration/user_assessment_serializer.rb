@@ -3,7 +3,7 @@
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
-               :additional_time, :is_expired, :is_external, :has_external_norm
+               :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling
 
     delegate :name, :category, to: :assessment
 

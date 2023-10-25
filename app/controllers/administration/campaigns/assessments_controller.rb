@@ -153,6 +153,24 @@ module Administration
         end
       end
 
+      def toggle_require_scheduling
+        campaign_assessment.update!(require_scheduling: params[:require_scheduling])
+
+        render json: campaign_assessment, serializer: Administration::CampaignAssessmentSerializer
+      end
+
+      def schedule_assessment
+        CampaignAssessment.transaction do
+          scope = UserAssessment.where(assessment_id: assessment.id, campaign_id: campaign.id, status: :not_started)
+          scope = scope.where(schedule_time: nil) unless params[:override_existing]
+          scope.update_all(schedule_time: params[:schedule_time])
+        end
+
+        return head :ok unless campaign_assessment
+
+        render json: campaign_assessment, serializer: Administration::CampaignAssessmentSerializer
+      end
+
       private
 
       def assessment
@@ -160,7 +178,7 @@ module Administration
       end
 
       def campaign_assessment
-        CampaignAssessment.find_by(assessment: assessment, campaign: campaign)
+        @campaign_assessment ||= CampaignAssessment.find_by(assessment: assessment, campaign: campaign)
       end
 
       def results_params
