@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import {
   Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
 } from 'antd'
+import _ from 'lodash'
+import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { PlusOutlined } from '@ant-design/icons'
+import { RootState } from 'modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
@@ -18,6 +20,7 @@ import { EditSubjectDrawer } from './EditSubjectDrawer'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { SafeHTML } from '~/components/SafeHTML'
 import { AddSubjectForm } from './AddSubjectForm'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 const { I18n } = window
 const { Text } = Typography
@@ -39,16 +42,26 @@ const SCHEDULING_STATUS_TO_TAG_COLOR = {
 const UNACTIONABLE_SCHEDULING_STATUSES = ['rescheduled', 'cancelled', 'late_rescheduled', 'late_cancelled']
 const CANCELLED_SCHEDULING_STATUSES = ['cancelled', 'late_cancelled']
 
-interface Props {
+interface OwnProps {
   workshop: Workshop
 }
 
 interface SubjectTableProps {
   workshop: Workshop
   handleEditSubject: (id: string, userId: string) => void
+  currentUser: { id: string, role: string }
 }
 
-export const SubjectList: React.FC<Props> = ({ workshop }) => {
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+  {},
+)
+type PropsFromRedux = ConnectedProps<typeof connecter>
+type Props = PropsFromRedux & OwnProps
+
+export const SubjectListComponent: React.FC<Props> = ({ workshop, currentUser }) => {
   const { id, campaignId } = useParams<{ id: string, campaignId: string }>()
   const [openEditDrawer, setOpenEditDrawer] = useState(false)
   const [currentSubjectId, setCurrentSubjectId] = useState('')
@@ -76,7 +89,7 @@ export const SubjectList: React.FC<Props> = ({ workshop }) => {
   return (
     <>
       <Resource config={config} name="workshop_subjects">
-        <SubjectsTable workshop={workshop} handleEditSubject={handleEditSubject} />
+        <SubjectsTable workshop={workshop} handleEditSubject={handleEditSubject} currentUser={currentUser} />
       </Resource>
       <EditSubjectDrawer
         workshopStartTime={workshop.startTime}
@@ -103,7 +116,7 @@ const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {
   )
 }
 
-const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubject }) => {
+const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubject, currentUser }) => {
   const { resource } = useResourceContext<WorkshopSubject>()
   const { campaignId } = useParams<{ campaignId: string }>()
   const [openForm, setOpenForm] = useState(false)
@@ -253,6 +266,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               menu={
                 ActionsMenu({
                   subject,
+                  currentUser,
                 }) as React.ReactElement
               }
             />
@@ -273,10 +287,11 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
 
 interface ActionMenuProps {
   subject: WorkshopSubject
+  currentUser: SubjectTableProps['currentUser']
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  subject,
+  subject, currentUser,
 }) => {
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
   const handleMarkCancel = () => {
@@ -310,22 +325,39 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  const menuItems:ItemType[] = []
-
-  resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
-    subject.schedulingStatus,
-  ) && menuItems.push({
-    key: 'remove',
-    label: (
-      <>
-        <Button type="link" onClick={handleMarkCancel} className="ps-0">
-          Mark Cancel
+  const menuItems = [
+    resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
+      subject.schedulingStatus,
+    ) && {
+      key: 'remove',
+      label: (
+        <>
+          <Button type="link" onClick={handleMarkCancel} className="ps-0">
+            Mark Cancel
+          </Button>
+        </>
+      ),
+    },
+    isSuperAdmin(currentUser) && {
+      key: 'loginAs',
+      label: (
+        <Button
+          type="link"
+          href={`/administration/users/${subject.user?.id}/spoof`}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="ps-0 color-primary"
+        >
+          {I18n.t('administration.administrators.list.actions.login')}
         </Button>
-      </>
-    ),
-  })
+      ),
+    },
+  ]
+
 
   return (
-    <Menu items={menuItems} />
+    <Menu items={_.compact(menuItems)} />
   )
 }
+
+export const SubjectList = connecter(SubjectListComponent)
