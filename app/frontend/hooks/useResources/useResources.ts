@@ -495,7 +495,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
         const filterName = `${columnKey}_in`
         if (filterValues === null) {
           removeFilter(filterName)
-        } else {
+        } else if (!_.isEqual(filterValues, queryState?.filter?.[filterName])) {
           const values = filterValues as string[]
           changeFilter(filterName, values)
         }
