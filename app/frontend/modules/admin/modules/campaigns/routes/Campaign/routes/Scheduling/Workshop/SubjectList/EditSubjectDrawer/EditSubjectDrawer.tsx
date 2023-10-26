@@ -190,10 +190,10 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const handleAssessorFormSubmit = ({ id, values }) => {
     const { assessorAssessments } = subjectData
-    const dataExist = assessorAssessments.some(assessment => assessment.id === id)
+    const dataExist = assessorAssessments.some(assessment => assessment.id === `${id}`)
     if (dataExist) {
       const updatedAssessorFormData = assessorAssessments.map((assessment) => {
-        if (assessment.id === id) {
+        if (assessment.id === `${id}`) {
           return ({
             ...assessment,
             ...values,
