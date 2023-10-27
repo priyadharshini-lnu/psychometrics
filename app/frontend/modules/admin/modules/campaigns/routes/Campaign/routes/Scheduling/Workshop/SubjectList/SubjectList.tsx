@@ -37,7 +37,6 @@ const SCHEDULING_STATUS_TO_TAG_COLOR = {
   late_rescheduled: 'error',
 }
 const UNACTIONABLE_SCHEDULING_STATUSES = ['rescheduled', 'cancelled', 'late_rescheduled', 'late_cancelled']
-const CANCELLED_SCHEDULING_STATUSES = ['cancelled', 'late_cancelled']
 
 interface Props {
   workshop: Workshop
@@ -312,7 +311,7 @@ const getActionsMenuProps = ({
 
   const menuItems:ItemType[] = []
 
-  resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
+  resource.meta.permissions?.remove && !UNACTIONABLE_SCHEDULING_STATUSES.includes(
     subject.schedulingStatus,
   ) && menuItems.push({
     key: 'remove',
