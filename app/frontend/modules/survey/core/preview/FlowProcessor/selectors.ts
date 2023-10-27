@@ -283,6 +283,7 @@ export const getI18n = ({ locales, instructions }): I18nInterface => ({
   tInstructions () {
     return instructions?.enabled ? _.get(locales, ['instructions', 0, 'content']) || instructions?.content : null
   },
+  uiLocale: I18n.uiLocale,
 })
 
 export const getMediaResponsesByQuestionId = createSelector(
