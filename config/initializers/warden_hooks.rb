@@ -8,7 +8,9 @@ Warden::Manager.after_authentication do |user, env, _opts|
                           user,
                           user: user,
                           payload: { email: user.email },
-                          outcome: 'successful'
+                          outcome: 'successful',
+                          request_details: { ip: request.ip },
+                          interface_details: { user_agent: request.user_agent }
   end
 end
 
@@ -37,8 +39,12 @@ Warden::Manager.before_failure do |env, opts|
   end
 end
 
-Warden::Manager.before_logout do |user, _auth, _opts|
+Warden::Manager.before_logout do |user, env, _opts|
+  request = Rack::Request.new(env.request.env)
+
   AuditLogModule.audit! :sign_out, user,
                         record_type: 'User',
-                        payload: { email: user.email }
+                        payload: { email: user.email },
+                        request_details: { ip: request.ip },
+                        interface_details: { user_agent: request.user_agent }
 end
