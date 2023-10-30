@@ -1470,6 +1470,7 @@ en:
       import: Import
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
+      ok: OK
       remove: Remove
       reset: Reset
       resolve: Resolve
@@ -2553,6 +2554,13 @@ en:
     dashboard: Dashboard
     drawer:
       title: Report Details
+    fields:
+      provider:
+        hogan: Hogan
+        internal: Internal
+        mindmill: Mindmill
+        pearson: Pearson
+        saville: Saville
     form:
       load_from_pearson: Load from Pearson
       none_external: None - Use report builder

@@ -133,6 +133,7 @@ class Report < ApplicationRecord
   scope :with_assessment_category, lambda { |assessment_category|
     assessment_category == 'all' ? all : joins(:assessments).where(assessments: { category: assessment_category })
   }
+
   # Search entity by assessment
   scope :with_assessment, lambda { |assessment_id|
     joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
@@ -246,6 +247,10 @@ class Report < ApplicationRecord
 
   def external_settings?
     provider_hogan? || provider_saville?
+  end
+
+  def self.ransackable_scopes(_)
+    %i[provider_in filterable_fields assessments_id_in]
   end
 
   private

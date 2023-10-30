@@ -11,6 +11,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 import settings from '../../../../settings'
 import { history } from '~/modules/admin/store'
 import styles from './ReportTable.less'
+import { AssessmentsFilterDropdown } from './AssessmentsFilterDropdown'
 
 const { I18n } = window
 
@@ -20,80 +21,100 @@ type Props = {
 
 export const ReportTable: React.FC<Props> = ({
   openDrawer,
-}) => (
-  <Resource.Table pagination>
-    <Resource.Column<Report>
-      title={I18n.t('common.column.id')}
-      id="id"
-      sorter
-      render={report => (
-        report.provider === 'internal' ? (
-          <Button type="link" href={`/administration/reports/${report.id}`}>
-            {report.id}
-          </Button>
-        )
-          : <span className={styles.id}>{report.id}</span>
-      )}
-    />
-    <Resource.Column<Report>
-      title={I18n.t('common.column.icon')}
-      id="icon"
-      width={100}
-      render={report => (
-        <ResourceAvatar
-          url={report.iconUrl}
-          color={report.iconColor}
-          name={report.name}
-        />
-      )}
-    />
-    <Resource.Column<Report>
-      title={I18n.t('common.column.name')}
-      id="name"
-      width={400}
-      sorter
-    />
-    <Resource.Column<Report>
-      title={I18n.t('common.column.assessments')}
-      id="assessments"
-      width={100}
-      render={report => (
-        <Avatar.Group maxCount={2}>
-          {report.assessments.map(assessment => (
-            <ResourceAvatar
-              key={assessment.id}
-              url={assessment.iconUrl}
-              color={assessment.iconColor}
-              name={assessment.name}
-            />
-          ))}
-        </Avatar.Group>
-      )}
-    />
-    <Resource.Column<Report>
-      title={I18n.t('common.column.owner')}
-      id="owner"
-      width={300}
-      render={(_, { owner }) => owner?.name}
-    />
-    <Resource.Column<Report>
-      title={I18n.t('common.column.updated_at')}
-      id="updated_at"
-      width={300}
-      sorter
-    />
-    <Resource.Column<Report>
-      title={I18n.t('common.column.action')}
-      id="action"
-      render={(_, report) => (
-        <Dropdown
-          report={report}
-          openDrawer={openDrawer}
-        />
-      )}
-    />
-  </Resource.Table>
-)
+}) => {
+  const { resource } = useResourceContext<Report>()
+  const providerFilteredValue = resource.getFilteredValue('provider_in') as string[] | undefined
+  const assessmentsFilteredValue = resource.getFilteredValue('assessments_id_in') as string[] | undefined
+
+  return (
+    <Resource.Table pagination>
+      <Resource.Column<Report>
+        title={I18n.t('common.column.id')}
+        id="id"
+        sorter
+        render={report => (
+          report.provider === 'internal' ? (
+            <Button type="link" href={`/administration/reports/${report.id}`}>
+              {report.id}
+            </Button>
+          )
+            : <span className={styles.id}>{report.id}</span>
+        )}
+      />
+      <Resource.Column<Report>
+        title={I18n.t('common.column.icon')}
+        id="icon"
+        width={100}
+        render={report => (
+          <ResourceAvatar
+            url={report.iconUrl}
+            color={report.iconColor}
+            name={report.name}
+          />
+        )}
+      />
+      <Resource.Column<Report>
+        title={I18n.t('common.column.name')}
+        id="name"
+        width={400}
+        sorter
+      />
+      <Resource.Column<Report>
+        title={I18n.t('common.column.assessments')}
+        id="assessments_id"
+        filteredValue={assessmentsFilteredValue}
+        filterDropdown={AssessmentsFilterDropdown}
+        width={100}
+        render={report => (
+          <Avatar.Group maxCount={2}>
+            {report.assessments.map(assessment => (
+              <ResourceAvatar
+                key={assessment.id}
+                url={assessment.iconUrl}
+                color={assessment.iconColor}
+                name={assessment.name}
+              />
+            ))}
+          </Avatar.Group>
+        )}
+      />
+      <Resource.Column<Report>
+        title={I18n.t('common.column.provider')}
+        id="provider"
+        width={300}
+        filters={
+          settings.providers.map(
+            (t: [number, string]) => ({ text: I18n.t(`reports.fields.provider.${t[1]}`), value: t[0] }),
+          )
+        }
+        filteredValue={providerFilteredValue}
+        render={report => I18n.t(`reports.fields.provider.${report.provider}`)}
+      />
+      <Resource.Column<Report>
+        title={I18n.t('common.column.owner')}
+        id="owner"
+        width={300}
+        render={(_, { owner }) => owner?.name}
+      />
+      <Resource.Column<Report>
+        title={I18n.t('common.column.updated_at')}
+        id="updated_at"
+        width={300}
+        sorter
+      />
+      <Resource.Column<Report>
+        title={I18n.t('common.column.action')}
+        id="action"
+        render={(_, report) => (
+          <Dropdown
+            report={report}
+            openDrawer={openDrawer}
+          />
+        )}
+      />
+    </Resource.Table>
+  )
+}
 
 type DropDownProps = {
   openDrawer: (report: Report) => void

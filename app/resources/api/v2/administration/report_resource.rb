@@ -3,9 +3,9 @@
 class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :created_at, :updated_at, :created_by, :modified_by, :archived, :deleted,
              :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon, :active,
-             :external_settings, :provider
+             :external_settings, :provider, :provider
 
-  ransack_filters %i[name_cont filterable_fields with_resource_state]
+  ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in]
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
   audit_log_for :remove, payload: '*'
