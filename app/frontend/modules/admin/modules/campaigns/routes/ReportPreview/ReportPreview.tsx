@@ -214,7 +214,7 @@ export default function ReportPreview ({
           }, {
             link: state => (reportIsLoaded()
               // eslint-disable-next-line max-len
-              ? `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/users/${userReport.user.id}`
+              ? `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/users/${userReport.user.id}`
               : ''),
             label: () => (reportIsLoaded() ? userReport.user.email : ''),
           }, {
