@@ -25,7 +25,10 @@ module ClientAuditlogExportSettings
     end
 
     def audit_logs_query
-      query = AuditLog.where(client: client).where('created_at <  ?', [current_time]).order(created_at: :asc)
+      query = AuditLog.
+              where(client: client).
+              where('created_at <  ?', [current_time]).order(created_at: :asc).
+              includes(:active_record_audits)
       if settings.last_exported_at
         query = query.where('created_at >= ?', [settings.last_exported_at])
       end

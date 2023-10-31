@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Block < ApplicationRecord
+  audited
+
   include Copyable
 
   # For assessment builder

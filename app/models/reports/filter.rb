@@ -2,6 +2,10 @@
 
 module Reports
   class Filter < ApplicationRecord
+    self.table_name_prefix = 'reports_'
+
+    audited
+
     include Copyable
 
     belongs_to :report
@@ -14,10 +18,6 @@ module Reports
 
     def init
       self.conditions ||= []
-    end
-
-    def self.table_name_prefix
-      'reports_'
     end
   end
 end

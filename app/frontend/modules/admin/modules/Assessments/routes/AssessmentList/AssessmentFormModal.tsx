@@ -48,7 +48,7 @@ export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
               )}
             </Select>
           </Form.Item>
-          <BaseFormFields form={form} />
+          <BaseFormFields form={form} showTranslatableFields />
         </>
       )}
     </ResourceFormModal>

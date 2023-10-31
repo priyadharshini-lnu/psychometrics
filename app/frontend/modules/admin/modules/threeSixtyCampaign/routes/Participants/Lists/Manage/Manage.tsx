@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Menu,
+  Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -41,7 +41,7 @@ export const ManageComponent: React.FC<Props> = ({
   openModal, dimensionId, reportId, assessmentId, currentUser,
 }) => (
   <ConditionalDropdown
-    menu={menu({
+    menu={getMenuProps({
       openModal,
       dimensionId,
       reportId,
@@ -62,9 +62,9 @@ export const ManageComponent: React.FC<Props> = ({
   />
 )
 
-const menu = ({
+const getMenuProps = ({
   dimensionId, reportId, assessmentId, openModal, currentUser,
-}) => {
+}):MenuProps => {
   const menuItems = [
     currentUser.permissions.editDimension && {
       key: 'dimension',
@@ -99,9 +99,7 @@ const menu = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export const Manage = connector(ManageComponent)

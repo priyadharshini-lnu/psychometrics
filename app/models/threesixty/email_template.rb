@@ -2,6 +2,8 @@
 
 module Threesixty
   class EmailTemplate < ApplicationRecord
+    audited
+
     extend Mobility
     belongs_to :threesixty_campaign, class_name: 'Threesixty::Campaign'
     has_one :project, through: :threesixty_campaign

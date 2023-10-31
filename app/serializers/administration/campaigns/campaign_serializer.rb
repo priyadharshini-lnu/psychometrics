@@ -13,14 +13,11 @@ module Administration
 
       def campaign_url
         if object.threesixty?
-          return administration_client_project_threesixty_campaign_path(
-            project.parent_id,
-            project,
-            object.threesixty_campaign.id
-          )
+          threesixty_url = "threesixty_campaigns/#{object.threesixty_campaign.id}"
+          return "#{admin_path}/clients/#{project.parent_id}/projects/#{project.id}/#{threesixty_url}"
         end
 
-        administration_project_new_campaign_path(project, object)
+        "#{admin_path}/projects/#{project.id}/new_campaigns/#{object.id}"
       end
 
       def is_threesixty

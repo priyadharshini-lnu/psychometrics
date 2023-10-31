@@ -134,7 +134,7 @@ export const ImageChoices: FC<Props> = ({
         width={800}
         footer={null}
         focusTriggerAfterClose={false}
-        visible={isPreviewModalOpen}
+        open={isPreviewModalOpen}
         onCancel={() => toggleImagePreviewer()}
       >
         <img src={imagePreviewSrc} width="100%" height="100%" loading="lazy" />

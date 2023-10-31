@@ -4,11 +4,11 @@ import {
 
 const { I18n } = window
 
-export default function Confirm ({ visible, onReset, onOk }) {
+export default function Confirm ({ open, onReset, onOk }) {
   return (
     <Modal
       title={I18n.t('anonym.notifications.restart.title')}
-      visible={visible}
+      open={open}
       okText={I18n.t('anonym.continue')}
       cancelText={I18n.t('anonym.restart')}
       onOk={onOk}

@@ -114,7 +114,7 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
     <Modal
       width={900}
       title={localI18n('title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>

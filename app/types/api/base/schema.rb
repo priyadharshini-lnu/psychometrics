@@ -83,7 +83,7 @@ module Api
           required(:data).array do
             this.single_resource(:multiple_response)
           end
-          required(:meta).value(this.index_meta_schema)
+          required(:meta).value(this.index_meta_schema) if this.meta?
         end
       end
 
@@ -118,7 +118,9 @@ module Api
             instance_eval(&this.attributes(method(:required), type))
           end
 
-          required(:meta).value(this.individual_record_meta_schema) if this.respond_to?(:individual_record_meta_schema)
+          if this.respond_to?(:individual_record_meta_schema) && this.meta?
+            required(:meta).value(this.individual_record_meta_schema)
+          end
         end
       end
 
@@ -189,6 +191,10 @@ module Api
       end
 
       def self.links?
+        true
+      end
+
+      def self.meta?
         true
       end
     end

@@ -123,6 +123,15 @@ module Swagger
           AssessmentResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Assessment::Schema.single_resource_response
           ),
+          ReportResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Report::Schema.single_resource_response
+          ),
+          ReportFamilyResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportFamily::Schema.single_resource_response
+          ),
+          ReportFamiliesReportResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportFamiliesReport::Schema.single_resource_response
+          ),
           DashboardsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Dashboard::Schema.multiple_resource_response
           ),
@@ -173,6 +182,15 @@ module Swagger
           ),
           ReportListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Report::Schema.multiple_resource_response
+          ),
+          ExternalReportListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ExternalReport::Schema.multiple_resource_response
+          ),
+          ReportFamilyListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportFamily::Schema.multiple_resource_response
+          ),
+          ReportFamiliesReportListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ReportFamiliesReport::Schema.multiple_resource_response
           ),
           UserListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.multiple_resource_response

@@ -47,7 +47,7 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
     <Modal
       width={580}
       title={<div>{confirmationTitle || I18n.t('threesixty.confirmation_required')}</div>}
-      visible
+      open
       onOk={handleConfirmation}
       onCancel={onCancel}
       footer={[

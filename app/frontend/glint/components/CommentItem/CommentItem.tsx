@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import {
-  Row, Col, Avatar, Dropdown, Menu, Typography, Space, Input, Button, Modal,
+  Row, Col, Avatar, Dropdown, Typography, Space, Input, Button, Modal,
 } from 'antd'
 import {
   MoreOutlined, UserOutlined, ExclamationCircleOutlined, CheckOutlined,
@@ -72,7 +72,6 @@ export const CommentItem: FC<Props> = ({
       onCommentResolve && onCommentResolve(comment.id, comment.resolved)
     }
   }
-  const menu = <Menu items={menuItems} onClick={handleMenuClick} />
   const avatarIcon = creator.avatarUrl ? null : <UserOutlined />
   const handleSave = () => {
     onCommentEditSave && onCommentEditSave({ commentText, commentId: comment.id }).then(() => {
@@ -109,7 +108,7 @@ export const CommentItem: FC<Props> = ({
           <div className={styles.actionMenu}>
             <Dropdown
               trigger={['click']}
-              overlay={menu}
+              menu={{ items: menuItems, onClick: handleMenuClick }}
             >
               <a>
                 <MoreOutlined data-testid="more-options" className={styles.triggerIcon} />

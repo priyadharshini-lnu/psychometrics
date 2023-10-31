@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Integration < ApplicationRecord
+  audited
+
   belongs_to :project, class_name: 'Client'
 
   enum name: { iiht: 0 }

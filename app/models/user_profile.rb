@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserProfile < ApplicationRecord
+  audited
+
   include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
   # TODO: remove after migration to ActiveStorage

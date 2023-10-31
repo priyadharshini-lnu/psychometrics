@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, message, Pagination,
+  Table, MenuProps, Row, Col, message, Pagination,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { MoreOutlined } from '@ant-design/icons'
@@ -94,12 +94,12 @@ const OtherReportListComponent: React.FC<Props> = ({
               render={report => (
                 <ConditionalDropdown
                   menu={
-                  ActionsMenu({
-                    campaignId: parsedCampaignId,
-                    id: report.id,
-                    permissions: report.permissions,
-                    exportData: handleExportData,
-                  }) as React.ReactElement
+                    getActionsMenuProps({
+                      campaignId: parsedCampaignId,
+                      id: report.id,
+                      permissions: report.permissions,
+                      exportData: handleExportData,
+                    })
                 }
                   innerElement={(
                     <a>
@@ -127,7 +127,7 @@ const OtherReportListComponent: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   campaignId: number
   id: number
   permissions: {
@@ -137,9 +137,9 @@ interface ActionMenuProps {
   exportData(campaignId: number, id: number): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   campaignId, id, permissions, exportData,
-}) => {
+}: ActionMenuData):MenuProps => {
   const menuItems: ItemType[] = []
   permissions.export && menuItems.push({
     key: 'export',
@@ -152,12 +152,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu
-      items={menuItems}
-      onClick={handleMenuClick}
-    />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 

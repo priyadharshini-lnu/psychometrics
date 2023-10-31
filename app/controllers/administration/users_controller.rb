@@ -8,8 +8,6 @@ class Administration::UsersController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
   append_after_action :verify_policy_scoped, except: %i[index search_admins]
 
-  render_entrypoint :index, element: 'users', entry: 'admin/users'
-
   def spoof
     resource.admin? ? login_as_other_admin : login_as_end_user
   end

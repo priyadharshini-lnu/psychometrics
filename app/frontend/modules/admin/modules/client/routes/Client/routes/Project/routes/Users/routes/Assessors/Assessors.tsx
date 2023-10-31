@@ -304,7 +304,7 @@ const AssessorsComponent: FC<Props> = ({
         </Col>
       </Row>
       <EditDrawer
-        isVisible={drawerMode === DrawerMode.Edit}
+        isOpen={drawerMode === DrawerMode.Edit}
         projectId={projectId}
         assessorId={drawerAssessorId}
         handleClose={handleDrawerClose}

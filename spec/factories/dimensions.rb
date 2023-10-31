@@ -30,5 +30,11 @@ FactoryBot.define do
         create :occupation, dimension: dimension
       end
     end
+
+    trait :with_audit_log do
+      after(:create) do |dimension, _|
+        create(:audit_log, payload: dimension.previous_changes, record_id: dimension.id)
+      end
+    end
   end
 end

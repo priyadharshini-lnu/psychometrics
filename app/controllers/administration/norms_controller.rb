@@ -59,8 +59,8 @@ class Administration::NormsController < Administration::BaseController
   def destroy
     resource.destroy
     respond_to do |format|
+      audit! :delete, resource, payload: resource.attributes
       format.html do
-        audit! :delete, resource, payload: resource.try(:log_attribute_for_delete)
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end
       format.js

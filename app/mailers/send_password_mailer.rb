@@ -4,8 +4,8 @@ class SendPasswordMailer < ApplicationMailer
   def password_email(user, password)
     @user = user
     @password = password
-    mail(
-      to: @user.email,
+    send_email(
+      @user,
       subject: "Your Lighthouse Account password for #{@user.email} has been reset by your administrator."
     ) do |format|
       format.html do

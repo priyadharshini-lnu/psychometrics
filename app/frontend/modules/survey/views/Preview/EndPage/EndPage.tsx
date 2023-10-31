@@ -56,7 +56,7 @@ const EndPage: FC<Props> = ({
 
   const { user_assessment_id } = dbResult
 
-  let message = I18n.t('assessments.messages.finish')
+  let message = I18n.t('assessments.messages.finish', { locale: I18n.uiLocale })
   if (endOfAssessmentElementProps?.messageType === 'Custom' && endOfAssessmentElementProps?.message) {
     message = endOfAssessmentElementProps?.message
   }
@@ -76,11 +76,13 @@ const EndPage: FC<Props> = ({
             <>
               {otherPendingAssessmentCount > 0 && (
               <Typography.Title level={3}>
-                {I18n.t('assessments.actions.pending_tasks', { count: otherPendingAssessmentCount })}
+                {I18n.t('assessments.actions.pending_tasks',
+                  { count: otherPendingAssessmentCount, locale: I18n.uiLocale })
+                 }
               </Typography.Title>
               )}
               <a href={`${dashboardUrl}?user_assessment_id=${userAssessmentId}`}>
-                {I18n.t('assessments.actions.goto_dashboard')}
+                {I18n.t('assessments.actions.goto_dashboard', { locale: I18n.uiLocale })}
               </a>
             </>
           )}
@@ -93,7 +95,7 @@ const EndPage: FC<Props> = ({
                 value={document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') as string}
               />
               <a href="#" onClick={e => (e.currentTarget.parentNode as HTMLFormElement).submit()}>
-                {I18n.t('assessments.actions.submit_another_response')}
+                {I18n.t('assessments.actions.submit_another_response', { locale: I18n.uiLocale })}
               </a>
             </form>
           )}
@@ -120,11 +122,11 @@ const EndPage: FC<Props> = ({
           <div className={styles.links}>
 
             <a href={getViewPath()}>
-              {I18n.t('campaign.edit_evaluation.view')}
+              {I18n.t('campaign.edit_evaluation.view', { locale: I18n.uiLocale })}
             </a>
             {' | '}
             <a href={dashboardUrl}>
-              {I18n.t('assessments.actions.back_to_campaign')}
+              {I18n.t('assessments.actions.back_to_campaign', { locale: I18n.uiLocale })}
             </a>
           </div>
         </>

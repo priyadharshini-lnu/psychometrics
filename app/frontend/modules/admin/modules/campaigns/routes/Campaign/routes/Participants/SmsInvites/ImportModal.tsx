@@ -55,7 +55,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
     <Modal
       width={700}
       title={I18n.t('administration.sms_invites.import.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button

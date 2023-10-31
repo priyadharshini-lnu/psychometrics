@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import {
-  Table, Dropdown, Menu, Tag, message,
+  Table, Dropdown, Tag, message,
 } from 'antd'
 import moment from 'moment'
 import { MoreOutlined } from '@ant-design/icons'
@@ -130,13 +130,9 @@ const ActionMenu = ({
     }
   }
 
-  const menu = (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
-
   return (
     <Dropdown
-      overlay={menu}
+      menu={{ items: menuItems, onClick: handleMenuClick }}
       trigger={['click']}
       placement="bottomCenter"
     >

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserReportComment < ApplicationRecord
+  audited
+
   include SoftDelete
 
   belongs_to :parent, class_name: 'UserReportComment'

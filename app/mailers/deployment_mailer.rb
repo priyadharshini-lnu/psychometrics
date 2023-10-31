@@ -6,6 +6,7 @@ class DeploymentMailer < ApplicationMailer
   # rubocop:disable Rails/I18nLocaleTexts
   def send_deployment_tasks(emails, tasks)
     @tasks = tasks
+    # rubocop:disable CustomRubocops/AvoidDirectUseOfMailMethod
     mail(
       from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
       to: emails,
@@ -13,6 +14,7 @@ class DeploymentMailer < ApplicationMailer
       template_path: 'mailer/deployment',
       template_name: 'send_deployment_tasks'
     )
+    # rubocop:enable CustomRubocops/AvoidDirectUseOfMailMethod
   end
   # rubocop:enable all
 end

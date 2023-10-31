@@ -19,6 +19,7 @@ module Ecommerce
       @order = @current_membership.orders.new(order_params)
       respond_to do |format|
         if @order.save
+          audit! :create, @order, payload: order_params, user: current_user
           format.html do
             @cart.clear!
             redirect_to success_ecommerce_orders_path

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
+  Button, MenuProps, Space, Switch, Tag, message, Typography, Checkbox, Modal,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -37,7 +37,6 @@ const SCHEDULING_STATUS_TO_TAG_COLOR = {
   late_rescheduled: 'error',
 }
 const UNACTIONABLE_SCHEDULING_STATUSES = ['rescheduled', 'cancelled', 'late_rescheduled', 'late_cancelled']
-const CANCELLED_SCHEDULING_STATUSES = ['cancelled', 'late_cancelled']
 
 interface Props {
   workshop: Workshop
@@ -251,9 +250,9 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           render={subject => (
             <ConditionalDropdown
               menu={
-                ActionsMenu({
+                getActionsMenuProps({
                   subject,
-                }) as React.ReactElement
+                })
               }
             />
           )}
@@ -271,13 +270,13 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   subject: WorkshopSubject
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   subject,
-}) => {
+}:ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
   const handleMarkCancel = () => {
     Modal.confirm({
@@ -312,7 +311,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   const menuItems:ItemType[] = []
 
-  resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
+  resource.meta.permissions?.remove && !UNACTIONABLE_SCHEDULING_STATUSES.includes(
     subject.schedulingStatus,
   ) && menuItems.push({
     key: 'remove',
@@ -325,7 +324,5 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     ),
   })
 
-  return (
-    <Menu items={menuItems} />
-  )
+  return ({ items: menuItems })
 }

@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class Report < ApplicationRecord
+  audited
+
   include Copyable
   include RansackSearchableFields
   include SoftDelete
@@ -38,9 +40,6 @@ class Report < ApplicationRecord
   has_many :clients_reports, dependent: :restrict_with_error
   has_many :clients, through: :clients_reports
   has_many :translations, as: :resource, dependent: :destroy
-  # TODO: Remove product_reports and products associations with models and table
-  has_many :product_reports, dependent: :destroy
-  has_many :products, through: :product_reports
   has_many :assigns_reports, dependent: :restrict_with_error
   has_many :user_reports, dependent: :restrict_with_error
   has_many :campaign_reports, dependent: :restrict_with_error
@@ -134,6 +133,7 @@ class Report < ApplicationRecord
   scope :with_assessment_category, lambda { |assessment_category|
     assessment_category == 'all' ? all : joins(:assessments).where(assessments: { category: assessment_category })
   }
+
   # Search entity by assessment
   scope :with_assessment, lambda { |assessment_id|
     joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
@@ -232,10 +232,12 @@ class Report < ApplicationRecord
   end
 
   def pdf_dimension
-    pdf_height_margin = 6
+    height = props&.dig('sizes', 'height') || 1100
+    page_height_increment = 0
+    page_height_increment = 1 if [1100, 827].include?(height)
     {
-      width: "#{(props&.dig('sizes', 'width') || 850) * 0.265}mm",
-      height: "#{((props&.dig('sizes', 'height') || 1100) + pdf_height_margin) * 0.265}mm"
+      width: "#{props&.dig('sizes', 'width')}px",
+      height: "#{height + page_height_increment}px"
     }
   end
 
@@ -245,6 +247,10 @@ class Report < ApplicationRecord
 
   def external_settings?
     provider_hogan? || provider_saville?
+  end
+
+  def self.ransackable_scopes(_)
+    %i[provider_in filterable_fields assessments_id_in]
   end
 
   private

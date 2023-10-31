@@ -22,7 +22,7 @@ export default function ManageRelationshipsModal ({
   return (
     <Modal
       title="Manage Relationships"
-      visible
+      open
       onCancel={closeModal}
       footer={[
         <Button key="back" onClick={closeModal}>

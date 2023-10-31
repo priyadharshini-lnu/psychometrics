@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Menu, Switch, Typography,
+  Button, MenuProps, Switch, Typography,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { APIKey } from '~/modules/admin/modules/client/core/apiKeys'
@@ -88,16 +88,16 @@ type DropDownProps = {
 }
 const Dropdown: React.FC<DropDownProps> = ({ apiKey, openModal }) => (
   <ConditionalDropdown
-    menu={ActionsMenu({ apiKey, openModal }) as React.ReactElement}
+    menu={getActionsMenuProps({ apiKey, openModal })}
   />
 )
 
-interface ActionMenuProps {
+interface ActionMenuData {
   apiKey: APIKey,
   openModal: Props['openModal']
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({ apiKey, openModal }) => {
+const getActionsMenuProps = ({ apiKey, openModal }: ActionMenuData):MenuProps => {
   const menuItems = [
     apiKey && {
       key: 'edit',
@@ -112,5 +112,5 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ apiKey, openModal }) => {
     },
   ].filter(m => m) as ItemType[]
 
-  return (<Menu items={menuItems} />)
+  return ({ items: menuItems })
 }

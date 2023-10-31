@@ -135,7 +135,7 @@ const CommonComponent: React.FC<Props> = ({
             </ResourcesTabs>
           </div>
         </ConfigProvider>
-        <Confirm visible={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
+        <Confirm open={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
       </Content>
     </>
   )

@@ -60,6 +60,7 @@ module Managers
       respond_to do |format|
         if @resource.save
           # TODO: This is huck, used to collapse tasks (I need to fast solution)
+          audit! :create, @resource, payload: resource_params
           flash[:task_id_collapse] = @resource.parent_id if @resource.parent_id
           format.js
         else

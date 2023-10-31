@@ -27,7 +27,7 @@ const ImportRawModal: React.FC<Props> = ({
     <Modal
       width={650}
       title={I18n.t('campaign_assessment.modals.import_raw.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,

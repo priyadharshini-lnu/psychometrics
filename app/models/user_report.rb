@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserReport < ApplicationRecord
+  audited
+
   include WorkflowActiverecord
   include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage

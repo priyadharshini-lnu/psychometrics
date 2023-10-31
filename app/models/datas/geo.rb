@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Datas::Geo < ApplicationRecord
+  self.table_name_prefix = 'data_'
+
   FIELDS = %w[city country_name country_code region_name].freeze
 
-  self.table_name_prefix = 'data_'
   def value(column)
     return unless FIELDS.include?(column)
 

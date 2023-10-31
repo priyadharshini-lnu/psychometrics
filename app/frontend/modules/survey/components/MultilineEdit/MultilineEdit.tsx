@@ -28,8 +28,8 @@ export const MultilineEdit: FC<Props> = ({ title, lines, onChange }) => {
       title={title}
       placement="left"
       trigger="click"
-      visible={multiedit}
-      onVisibleChange={v => setMultiedit(v)}
+      open={multiedit}
+      onOpenChange={v => setMultiedit(v)}
     >
       <Button type="primary">
         <UnorderedListOutlined />

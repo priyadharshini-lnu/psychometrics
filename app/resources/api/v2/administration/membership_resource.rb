@@ -16,6 +16,10 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
 
   after_create :send_invitation_email
 
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, record) { record.log_attribute_for_delete }
+
   def set_user_as_admin
     if @model.user.new_record?
       @model.user.create_by_invite = true

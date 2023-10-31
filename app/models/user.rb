@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
+  audited except: %i[encrypted_password encrypted_invitation_raw authentication_token spoof_token]
+
   include UserScopes
   include UserRoles
   include UserValidations
@@ -229,6 +231,10 @@ class User < ApplicationRecord
 
   def log_attributes
     slice(:id, :email)
+  end
+
+  def can_receives_communication?
+    !disabled?
   end
 
   def active_for_authentication?

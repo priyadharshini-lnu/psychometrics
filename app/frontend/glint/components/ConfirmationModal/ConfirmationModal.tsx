@@ -8,7 +8,7 @@ type Props = {
   title: string,
   message: string | ReactElement,
   onConfirm: () => void
-  onCancel: () => void
+  onCancel: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
   children?: ReactElement
 }
 
@@ -22,7 +22,7 @@ export const ConfirmationModal: FC<Props> = ({
   <Modal
     width={580}
     title={<div>{title || I18n.t('threesixty.confirmation_required')}</div>}
-    visible
+    open
     onOk={onConfirm}
     onCancel={onCancel}
     footer={[

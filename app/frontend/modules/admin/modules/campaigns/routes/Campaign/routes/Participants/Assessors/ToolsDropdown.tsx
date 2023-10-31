@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Menu,
+  Button, MenuProps,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -9,11 +9,11 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
-const menu = ({
+const getMenuProps = ({
   campaignId,
   openModal,
   permissions,
-}) => {
+}): MenuProps => {
   const menuItems: ItemType[] = []
   permissions.import && menuItems.push({
     key: 'import',
@@ -33,9 +33,8 @@ const menu = ({
       openModal('ImportAssessorsModal', { campaignId })
     }
   }
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 interface Props {
@@ -50,7 +49,7 @@ interface Props {
 
 const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissions }) => (
   <ConditionalDropdown
-    menu={menu({
+    menu={getMenuProps({
       campaignId,
       openModal,
       permissions,

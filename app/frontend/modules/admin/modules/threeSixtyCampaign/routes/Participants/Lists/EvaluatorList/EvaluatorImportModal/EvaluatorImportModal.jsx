@@ -64,7 +64,7 @@ export default function EvaluatorImportModal ({
     <Modal
       width={700}
       title={modalTitle()}
-      visible
+      open
       onCancel={handleOnCancel}
       footer={[
         <Button key="back" onClick={handleOnCancel}>

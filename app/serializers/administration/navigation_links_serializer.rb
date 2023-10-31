@@ -19,8 +19,8 @@ module Administration
         links['change_password'] = "#{admin_path}/profile/change_password"
         links['assessor_dashboard'] = assessors_dashboard_path if policy(%i[assessors campaign]).index?
         links['assessor_workshops'] = assessors_assessment_centers_path if policy(%i[assessors workshop]).index?
-        links['clients'] = administration_root_path if policy(%i[administration client]).index?
-        links['users'] = administration_users_path('users') if policy(%i[administration user]).index?
+        links['clients'] = "#{admin_path}/clients" if policy(%i[administration client]).index?
+        links['users'] = "#{admin_path}/users" if policy(%i[administration user]).index?
         links['norms'] = administration_norms_path if policy(%i[administration norm]).index?
         links['dimensions'] = administration_dimensions_path if policy(%i[administration dimension]).index?
         links['assessments'] = administration_assessments_path if policy(%i[administration assessment]).index?

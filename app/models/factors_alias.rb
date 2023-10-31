@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FactorsAlias < ApplicationRecord
+  audited
+
   belongs_to :factor
   belongs_to :report
   validates :name, presence: true

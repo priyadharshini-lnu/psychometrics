@@ -10,6 +10,8 @@ import { setIn } from '~/utils/immutable'
 const LogTR = t.type({
   id: t.number,
   action: t.string,
+  outcome: t.union([t.string, t.undefined, t.null]),
+  failureReason: t.union([t.string, t.undefined, t.null]),
   user: t.union([
     t.type({
       fullName: t.string,
@@ -22,8 +24,21 @@ const LogTR = t.type({
   client: t.any,
   project: t.any,
   campaign: t.any,
+  activeRecordAudits: t.array(
+    t.type({
+      id: t.number,
+      auditableType: t.string,
+      auditableId: t.number,
+      action: t.string,
+      auditedChanges: t.any,
+    }),
+  ),
   recordType: t.union([t.string, t.null]),
   recordId: t.union([t.number, t.null]),
+  requestUuid: t.union([t.string, t.undefined, t.null]),
+  clientIp: t.union([t.string, t.null]),
+  interface: t.union([t.string, t.null]),
+  userAgent: t.union([t.string, t.null]),
   userId: t.union([t.number, t.undefined, t.null]),
 })
 

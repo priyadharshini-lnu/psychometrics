@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Space, Input, Switch, Pagination, Button, Menu, Modal, message, Typography,
+  Table, Space, Input, Switch, Pagination, Button, MenuProps, Modal, message, Typography,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -83,7 +83,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
       ),
       onOk: async () => {
         removeResource(`${webhook.id}`).then(() => {
-          message.info('Success')
+          message.success(I18n.t('administration.webhook.delete_success'))
           close()
         }).catch((error) => {
           message.error(error)
@@ -156,12 +156,12 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
           render={webhook => (
             <ConditionalDropdown
               menu={
-                ActionsMenu({
+                getActionsMenuProps({
                   webhook,
                   removeWebhook,
                   updateWebhook: updateResource,
                   openModal,
-                }) as React.ReactElement
+                })
               }
             />
           )}
@@ -217,7 +217,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   webhook: Webhook,
   removeWebhook(webhook: Webhook): void
   updateWebhook: UpdateResource<Webhook>
@@ -230,9 +230,9 @@ interface ActionMenuProps {
   })
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   webhook, removeWebhook, openModal, updateWebhook,
-}) => {
+}:ActionMenuData):MenuProps => {
   const menuItems: ItemType[] = [
     {
       key: I18n.t('administration.project_tabs.webhooks.actions.edit.key'),
@@ -267,9 +267,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export const Webhooks = connecter(WebhooksListComponent)

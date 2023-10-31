@@ -17,7 +17,9 @@ const SubmitPage: React.FC<PropsFromRedux> = ({
   return (
     <div className={styles.page}>
       <div className={styles.question}>
-        <ReactMarkdown className={cs(styles.message)}>{I18n.t('assessments.page.confirm_message')}</ReactMarkdown>
+        <ReactMarkdown className={cs(styles.message)}>
+          {I18n.t('assessments.page.confirm_message', { locale: I18n.uiLocale })}
+        </ReactMarkdown>
         <ScoringTable
           showScoringOnEndPage={showScoringOnEndPage}
           scoring={scoring}

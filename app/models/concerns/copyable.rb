@@ -6,11 +6,11 @@ module Copyable
   def gen_uniq_name(attr = :name)
     return unless has_attribute?(attr)
 
-    number = self[attr].scan(/\((\d+)\)$/).flatten.join.to_i
+    number = send(attr).scan(/\((\d+)\)$/).flatten.join.to_i
     if number.zero?
-      self[attr] = "#{name} (1)"
+      send("#{attr}=", "#{name} (1)")
     else
-      self[attr].gsub!(/\((\d+)\)$/, "(#{number + 1})")
+      send(attr).gsub!(/\((\d+)\)$/, "(#{number + 1})")
     end
   end
 

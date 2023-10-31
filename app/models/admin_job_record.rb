@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AdminJobRecord < ApplicationRecord
+  audited
+
   self.table_name = 'admin_jobs'
 
   include ActiveStorageAttachable

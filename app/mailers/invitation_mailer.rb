@@ -10,9 +10,9 @@ class InvitationMailer < ApplicationMailer
     project = client.project
     @subdomain = project.subdomain
     smtp_setting = project.smtp_setting
-    mail(
+    send_email(
+      @resource,
       from: smtp_setting.from_name_and_email,
-      to: @resource.email,
       subject: I18n.t('devise.mailer.invitation_instructions.subject'),
       template_path: 'devise/mailer',
       template_name: 'invitation_instructions',
@@ -23,9 +23,9 @@ class InvitationMailer < ApplicationMailer
   def invite_admin(user_id, token)
     @resource = User.find(user_id)
     @token = token
-    mail(
+    send_email(
+      @resource,
       from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
-      to: @resource.email,
       subject: I18n.t('devise.mailer.admin_invitation_instructions.subject')
     ) do |format|
       format.html { render(template: '/devise/mailer/admin_invitation_instructions', layout: 'admin_email') }
@@ -45,9 +45,9 @@ class InvitationMailer < ApplicationMailer
       @section_name = membership.client.name
     end
 
-    mail(
+    send_email(
+      @resource,
       from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
-      to: @resource.email,
       subject: I18n.t('devise.mailer.invitation_instructions.subject')
     ) do |format|
       format.html { render(template: '/devise/mailer/link_to_client', layout: 'admin_email') }

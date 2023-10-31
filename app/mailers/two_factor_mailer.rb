@@ -10,8 +10,8 @@ class TwoFactorMailer < ApplicationMailer
     @code = code
     @resource = user
 
-    mail(
-      to: @user.email,
+    send_email(
+      @user,
       subject: I18n.t('devise.two_factor_authentication.email.otp.subject'),
       template_path: 'mailer/two_factor'
     )

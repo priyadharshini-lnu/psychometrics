@@ -1,5 +1,5 @@
-import { FC, ReactElement } from 'react'
-import { Button, Menu, Tooltip } from 'antd'
+import { FC } from 'react'
+import { Button, Tooltip, MenuProps } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined } from '@ant-design/icons'
 
@@ -44,7 +44,7 @@ export const ActionsMenu: FC<Props> = ({
 }) => (
   <ConditionalDropdown
     menu={
-      MenuDropdown({
+      getActionMenuProps({
         id,
         userId,
         currentUser,
@@ -55,7 +55,7 @@ export const ActionsMenu: FC<Props> = ({
         handleEdit,
         handleResetPassword,
         handleDelete,
-      }) as ReactElement<MenuProps>
+      })
     }
     innerElement={(
       <Tooltip title={I18n.t('administration.table.more_actions')}>
@@ -75,7 +75,7 @@ export const ActionsMenu: FC<Props> = ({
   />
 )
 
-interface MenuProps {
+interface ActionMenuData {
   id: Admin['id']
   userId: Admin['userId']
   currentUser: Props['currentUser']
@@ -88,7 +88,7 @@ interface MenuProps {
   handleEdit: Props['handleEdit']
 }
 
-const MenuDropdown: FC<MenuProps> = ({
+const getActionMenuProps = ({
   id,
   userId,
   currentUser,
@@ -99,7 +99,7 @@ const MenuDropdown: FC<MenuProps> = ({
   handleResetPassword,
   handleDelete,
   handleEdit,
-}) => {
+}: ActionMenuData): MenuProps => {
   const menuItems:ItemType[] = []
   permissions.loginAs && menuItems.push(
     {
@@ -148,7 +148,7 @@ const MenuDropdown: FC<MenuProps> = ({
     {
       key: 'apiKeys',
       label: (
-        <a href={`/administration/users/admins/${userId}/api_keys`} rel="noreferrer noopener">
+        <a href={`/admin/users/admins/${userId}/api_keys`} rel="noreferrer noopener">
           {I18n.t('administration.administrators.list.actions.api_keys')}
         </a>
       ),
@@ -166,12 +166,11 @@ const MenuDropdown: FC<MenuProps> = ({
       handleDelete(id, firstName, lastName, email)
     }
   }
-  return (
-    <Menu
-      id={`menu_campaign-admins-${id}`}
-      aria-labelledby={`menu-button_campaign-subjects-${id}`}
-      items={menuItems}
-      onClick={handleMenuClick}
-    />
-  )
+
+  return ({
+    id: `menu_campaign-admins-${id}`,
+    'aria-labelledby': `menu-button_campaign-subjects-${id}`,
+    items: menuItems,
+    onClick: handleMenuClick,
+  })
 }

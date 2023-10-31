@@ -1,5 +1,6 @@
 import React from 'react'
 import { Col, Row, Space } from 'antd'
+import { MemberAction } from 'hooks/useResources/interfaces'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { General } from './Sections/General'
 import { Assets } from './Sections/Assets'
@@ -9,9 +10,10 @@ import { Panel } from '~/glint'
 const { I18n } = window
 interface Props {
   assessment: Assessment
+  memberAction: MemberAction
 }
 
-export const EditForm: React.FC<Props> = ({ assessment }) => (
+export const EditForm: React.FC<Props> = ({ assessment, memberAction }) => (
   <Row>
     <Col lg={12} sm={24} className="pl">
       <Panel title={I18n.t('assessments.pages.edit.general_settings')} collapsible>
@@ -24,7 +26,7 @@ export const EditForm: React.FC<Props> = ({ assessment }) => (
           <Assets assessment={assessment} />
         </Panel>
         <Panel title={I18n.t('assessments.pages.edit.translations')} collapsible>
-          <Translations assessment={assessment} />
+          <Translations assessment={assessment} memberAction={memberAction} />
         </Panel>
       </Space>
     </Col>

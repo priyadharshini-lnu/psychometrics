@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Tabs, Row, Col, Space, Typography, Skeleton, Layout,
+  Tabs, Row, Col, Space, Typography, Layout, Spin,
 } from 'antd'
-import { CalendarOutlined } from '@ant-design/icons'
+import { CalendarOutlined, LoadingOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory, useLocation } from 'react-router-dom'
 import moment from 'moment-timezone'
@@ -245,6 +245,8 @@ const Subtitle: FC<SubtitleProps> = ({
   )
 }
 
+const antIcon = <LoadingOutlined style={{ fontSize: 16, width: 16, marginRight: 'unset' }} spin />
+
 type TabLabelProps = {
   title: string,
   count : number,
@@ -256,7 +258,7 @@ const TabLabel:FC<TabLabelProps> = ({ title, count, loading }) => (
       {title}
       <Text type="secondary" className={styles.count}>
         (
-        {loading ? <Skeleton.Button className={styles.countSkeleton} size="small" active /> : <>{count}</>}
+        {loading ? <Spin indicator={antIcon} /> : <>{count}</>}
         )
       </Text>
     </Space>

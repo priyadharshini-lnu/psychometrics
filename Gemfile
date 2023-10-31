@@ -134,6 +134,7 @@ gem 'deep_cloneable', '~> 3.2'
 
 gem 'active_storage_validations', '~> 1.0.3'
 gem 'ancestry', '~> 3.0.0'
+gem 'audited', '~> 5.3', '>= 5.3.3'
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
@@ -150,7 +151,7 @@ gem 'remotipart', '~> 1.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 6.5.1'
+gem 'sidekiq', '~> 7.1.6'
 
 gem 'hashids', '~> 1.0.5'
 
@@ -158,7 +159,6 @@ gem 'dry-swagger', '~> 0.7.2'
 gem 'dry-validation', '~> 1.10'
 gem 'jsonpath', '~> 1.1.2'
 gem 'mobility', '~> 1.0.0'
-gem 'money-rails', '~> 1.15.0'
 gem 'reform-rails', '~> 0.2.3'
 gem 'validates_timeliness', '7.0.0.beta2' # TODO: upgrade when released non-beta
 gem 'virtus', '~> 1.0.5'
@@ -257,7 +257,7 @@ end
 gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.7.0'
+gem 'sidekiq-cron', '~> 1.10.1'
 
 gem 'xml-simple', '~> 1.1.5'
 

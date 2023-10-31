@@ -62,7 +62,7 @@ export class Flow extends Component {
     return (
       <Modal
         title="Assessment Flow"
-        visible
+        open
         width="80%"
         style={{ top: 20 }}
         onOk={this.save}

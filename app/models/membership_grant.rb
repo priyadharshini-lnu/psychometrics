@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MembershipGrant < ApplicationRecord
+  audited
+
   belongs_to :membership
 
   def has_grant?(scope, grant)

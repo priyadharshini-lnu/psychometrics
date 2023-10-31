@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
+  audited except: %i[encrypted_pdf_password encrypted_pdf_password_iv]
+
   include RansackSearchableFields
 
   self.inheritance_column = :_type_disabled

@@ -5,6 +5,7 @@ module Api
     class BaseController < ActionController::Base
       include Pundit
 
+      before_action :set_request_interface
       before_action :auth
       before_action :ensure_project
       before_action :pundit_authorize
@@ -74,11 +75,14 @@ module Api
       end
 
       def render_error(e)
+        audit! :record_not_found, current_user, payload: params.merge(error: e.more_info), outcome: :failed,
+        failure_reason: :record_not_found
         render json: { code: e.code, message: e.message, more_info: e.more_info, meta: e.meta }, status: e.status
       end
 
       def render_not_authorized_error
         e = Api::Errors::Unauthorized.new
+        audit! :user_not_authorized, current_user, payload: params, outcome: :failed, failure_reason: e.message
         render json: { code: e.code, message: e.message, more_info: e.more_info, meta: e.meta }, status: e.status
       end
 
@@ -91,6 +95,10 @@ module Api
 
           possible_api_key
         end
+      end
+
+      def set_request_interface
+        request.env['interface'] = 'api'
       end
     end
   end

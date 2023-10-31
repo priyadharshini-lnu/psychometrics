@@ -33,6 +33,7 @@ module Administration
 
         respond_to do |format|
           if resource.save
+            audit! :create, resource, payload: params, user: current_user
             format.js
           else
             format.js { render :new }
@@ -49,6 +50,7 @@ module Administration
         resource.updated_by = current_user
         question = ::Builders::Templates::QuestionBuilder.new(resource, params.require(:question))
         if question.save
+          audit! :update, resource, payload: params, user: current_user
           render json: { data: QuestionSerializer.new(resource).to_hash(include: '**') }
         else
           render json: { error: true }, status: 400
@@ -58,6 +60,7 @@ module Administration
       # DELETE /administration/resources/1
       def destroy
         resource.destroy
+        audit! :delete, resource, payload: resource.attributes
         respond_to do |format|
           format.html do
             redirect_back(
@@ -72,6 +75,7 @@ module Administration
         @cloned_resource = resource.clone
         respond_to do |format|
           if @cloned_resource.save
+            audit! :copy, resource, payload: { source_id: resource.id }
             format.js
           else
             format.js { render :error, locals: { message: t('.error', name: resource.decorate.display_name) } }
@@ -83,6 +87,7 @@ module Administration
       #
       def toggle_status
         resource.toggle!(:disabled)
+        audit! :toggle_status, resource, payload: { disabled: resource.disabled }
         respond_to do |format|
           format.html do
             redirect_back(

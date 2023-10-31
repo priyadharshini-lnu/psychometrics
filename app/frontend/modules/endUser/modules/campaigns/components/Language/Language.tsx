@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import {
-  Dropdown, Menu, Button, Space,
+  Dropdown, Button, Space,
 } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { useLocation } from 'react-router-dom'
@@ -30,19 +30,18 @@ export const Language: FC<Props> = ({ selectedLanguage, availableTranslations })
     window.location.search = searchParams.toString()
   }
 
-  const LangMenu = () => (
-    <Menu
-      onClick={handleLanguageChange}
-      items={availableTranslations.map(lang => (
-        { key: lang, label: I18n.t(`languages.${lang}`) }
-      ))}
-    />
-  )
-
   return (
     <Space>
       <LanguageIcon className="display-block" />
-      <Dropdown trigger={['click']} overlay={() => LangMenu()}>
+      <Dropdown
+        trigger={['click']}
+        menu={{
+          items: availableTranslations.map(lang => (
+            { key: lang, label: I18n.t(`languages.${lang}`) }
+          )),
+          onClick: handleLanguageChange,
+        }}
+      >
         <Button className={styles.btnLink} type="link">
           {I18n.t(`languages.${(selectedLanguage && selectedLanguage.code) || 'en'}`)}
           <DownOutlined />

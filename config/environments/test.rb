@@ -18,6 +18,8 @@ Rails.application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = ENV.fetch('EAGER_LOAD', '0') == '1'
 
+  # config.logger = Logger.new($stdout)
+  # config.log_level = 'debug'
   config.active_job.queue_adapter = :async
 
   # Configure public file server for tests with Cache-Control for performance.

@@ -1,5 +1,7 @@
-import { FC, ReactElement } from 'react'
-import { Button, Menu, Tooltip } from 'antd'
+import { FC } from 'react'
+import {
+  Button, MenuProps, Tooltip,
+} from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -28,14 +30,14 @@ export const ActionsMenu: FC<Props> = ({
 }) => (
   <ConditionalDropdown
     menu={
-      MenuDropdown({
+      getMenuDropdownProps({
         id,
         email,
         permissions,
         handleEdit,
         handleResetPassword,
         handleDelete,
-      }) as ReactElement<MenuProps>
+      })
     }
     innerElement={(
       <Tooltip title={I18n.t('administration.table.more_actions')}>
@@ -54,7 +56,7 @@ export const ActionsMenu: FC<Props> = ({
   />
 )
 
-interface MenuProps {
+interface MenuData {
   id: Assessor['id']
   email: Assessor['email']
   permissions: Assessor['permissions']
@@ -63,14 +65,14 @@ interface MenuProps {
   handleDelete: Props['handleDelete']
 }
 
-const MenuDropdown: FC<MenuProps> = ({
+const getMenuDropdownProps = ({
   id,
   email,
   permissions,
   handleEdit,
   handleResetPassword,
   handleDelete,
-}) => {
+}: MenuData):MenuProps => {
   const menuItems: ItemType[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
@@ -104,12 +106,10 @@ const MenuDropdown: FC<MenuProps> = ({
     }
   }
 
-  return (
-    <Menu
-      items={menuItems}
-      onClick={handleMenuClick}
-      id={`menu_projects-assessors-${id}`}
-      aria-labelledby={`menu-button_projects-assessors-${id}`}
-    />
-  )
+  return ({
+    items: menuItems,
+    onClick: handleMenuClick,
+    id: `menu_projects-assessors-${id}`,
+    'aria-labelledby': `menu-button_projects-assessors-${id}`,
+  })
 }

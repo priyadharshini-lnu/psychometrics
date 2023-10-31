@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import {
   Table,
-  Menu,
+  MenuProps,
   Row,
   Col,
   Input,
@@ -214,7 +214,7 @@ const CampaignListComponent: React.FC<Props> = ({
               render={campaign => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       onEdit: () => {
                         openModal('CommonCampaignFormModal', {
                           projectId,
@@ -234,7 +234,7 @@ const CampaignListComponent: React.FC<Props> = ({
                         })
                       },
                       campaign,
-                    }) as React.ReactElement
+                    })
                   }
                   innerElement={(
                     <a>
@@ -285,17 +285,17 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
   </Avatar.Group>
 )
 
-interface ActionMenuProps {
+interface ActionMenuData {
   onEdit(): void
   onDelete(): void
   campaign: Campaign
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   onEdit,
   onDelete,
   campaign,
-}) => {
+}: ActionMenuData): MenuProps => {
   const { permissions } = campaign
 
   const menuItems: ItemType[] = []
@@ -321,9 +321,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export const CampaignList = withEnhancedTable(

@@ -2,6 +2,8 @@
 
 module Threesixty
   class Campaign < ApplicationRecord
+    audited
+
     belongs_to :campaign, class_name: '::Campaign'
     belongs_to :assessment
     belongs_to :report

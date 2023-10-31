@@ -122,7 +122,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
     <Modal
       width={650}
       title={renderTitle()}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>

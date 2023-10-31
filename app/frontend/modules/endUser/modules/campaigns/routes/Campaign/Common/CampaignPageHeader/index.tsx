@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
 import {
-  Row, Col, PageHeader, Dropdown, Menu, Tag,
+  Row, Col, PageHeader, Dropdown, Tag,
 } from 'antd'
 
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
@@ -76,18 +76,18 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
     )
   })
 
-  const menu = (
-    <Menu
-      theme="light"
-      selectedKeys={activeCampaign && [`${activeCampaign.id}`]}
-      onClick={handleCampaignSelect}
-      className={styles.dropdownMenu}
-      items={menuItems}
-    />
-  )
-
   const titleElement = campaigns.length > 1 ? (
-    <Dropdown overlay={menu} trigger={['click']} className={styles.campaignDropdown}>
+    <Dropdown
+      menu={{
+        items: menuItems,
+        selectedKeys: activeCampaign && [`${activeCampaign.id}`],
+        onClick: handleCampaignSelect,
+        className: styles.dropdownMenu,
+        theme: 'light',
+      }}
+      trigger={['click']}
+      className={styles.campaignDropdown}
+    >
       <a onClick={e => e.preventDefault()}>
         <Row wrap={false}>
           <Col>{activeCampaign && activeCampaignName}</Col>

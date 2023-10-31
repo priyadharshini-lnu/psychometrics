@@ -218,7 +218,12 @@ function ProfileComponent ({
                       help={errors?.locale}
                       validateStatus={errors?.locale ? 'error' : ''}
                     >
-                      <Select size="large">
+                      <Select
+                        size="large"
+                        showSearch
+                        filterOption={(search, option) => I18n.t(`languages_localized.${option?.value}`)
+                          .toLowerCase().includes(search.toLowerCase())}
+                      >
                         {_.map(locales, locale => (
                           <Select.Option key={locale} value={locale}>
                             {I18n.t(`languages_localized.${locale}`)}

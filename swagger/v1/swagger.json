@@ -2990,7 +2990,8 @@
             "enum": [
               "en",
               "ar",
-              "de"
+              "de",
+              "pl"
             ]
           },
           "x-nullable": true
@@ -3054,7 +3055,8 @@
             "enum": [
               "en",
               "ar",
-              "de"
+              "de",
+              "pl"
             ]
           },
           "x-nullable": true

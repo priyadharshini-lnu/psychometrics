@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import {
-  Button, Menu, Switch, message,
+  Button, MenuProps, Switch, message,
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
 import _ from 'lodash'
@@ -108,23 +108,23 @@ const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   const [confirmation, setConfirmation] = useState(false)
   return (
-    <ConditionalDropdown menu={ActionsMenu({
+    <ConditionalDropdown menu={getActionsMenuProps({
       user, openResetPasswordModal, setConfirmation, confirmation, userTab, currentUser,
     })}
     />
   )
 }
 
-interface ActionMenuProps extends DropdownProps {
+interface ActionMenuData extends DropdownProps {
   user: User
   setConfirmation: (confirmation: boolean) => void
   confirmation: boolean
   openResetPasswordModal: DropdownProps['openResetPasswordModal']
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   setConfirmation, confirmation, user, openResetPasswordModal, userTab, currentUser,
-}) => {
+}: ActionMenuData):MenuProps => {
   const history = useHistory()
   const { resource } = useResourceContext<User>()
 
@@ -138,7 +138,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   }
 
   const handleAPIKeysClick = (userId: Admin['userId']) => {
-    history.push(`/administration/users/admins/${userId}/api_keys`)
+    history.push(`/admin/users/admins/${userId}/api_keys`)
   }
 
   const handleOnConfirm = () => resource.removeResource(user.id).then(() => {
@@ -202,5 +202,5 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     },
   ]
 
-  return (<Menu items={_.compact(menuItems)} />)
+  return ({ items: _.compact(menuItems) })
 }

@@ -54,7 +54,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
     <Modal
       width={650}
       title={I18n.t('administration.smtp_settings.test_modal.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,

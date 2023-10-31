@@ -72,7 +72,7 @@ const ImportSheetModalComponent: React.FC<Props> = ({
     <Modal
       width={700}
       title={I18n.t('sheet.import_modal.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button

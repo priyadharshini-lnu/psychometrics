@@ -33,7 +33,7 @@ export const NameModal: FC<Props> = ({
           {participant && participant.email}
         </div>
       )}
-      visible={showPrompt}
+      open={showPrompt}
       onCancel={() => setShowPrompt(false)}
       footer={null}
     >

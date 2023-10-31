@@ -2,5 +2,6 @@ div id="#{element}"
 
 javascript:
   window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
+  I18n.availableLocales = #{Settings.enduser_locales.to_json.html_safe}
 
 = vite_javascript_tag "entrypoints/#{entry}.jsx"

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AssessmentsClient < ApplicationRecord
+  audited
+
   belongs_to :assessment
   belongs_to :client, inverse_of: :assessments_clients
 

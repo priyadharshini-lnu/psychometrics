@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Modal, Switch, Tag, message, Tooltip,
+  Table, MenuProps, Row, Col, Input, Select, Pagination, Button, Modal, Switch, Tag, message, Tooltip,
 } from 'antd'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
@@ -155,7 +155,7 @@ const UserList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
+                <Link to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
                   {id}
                 </Link>
               )}
@@ -264,7 +264,7 @@ const UserList: React.FC<Props> = ({
               render={(user: User) => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       onEdit: () => openModal('UserFormModal', { campaignId, user }),
                       projectId,
                       campaignId,
@@ -272,7 +272,7 @@ const UserList: React.FC<Props> = ({
                       openModal,
                       remove: () => remove(campaignId, user.id),
                       permissions: user.permissions,
-                    }) as React.ReactElement
+                    })
                   }
                   innerElement={(
                     <Button
@@ -305,7 +305,7 @@ const UserList: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   onEdit(): void
   projectId: string
   campaignId: string
@@ -320,9 +320,9 @@ interface ActionMenuProps {
   openModal(name: string, props: object): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   onEdit, remove, campaignId, projectId, permissions, openModal, user,
-}) => {
+}: ActionMenuData):MenuProps => {
   const { email, id } = user
 
   const handleDelete = () => {
@@ -377,14 +377,12 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu
-      items={menuItems}
-      onClick={handleMenuClick}
-      id={`menu_campaign-subjects-${email}`}
-      aria-labelledby={`menu-button_campaign-subjects-${email}`}
-    />
-  )
+  return ({
+    items: menuItems,
+    onClick: handleMenuClick,
+    id: `menu_campaign-subjects-${email}`,
+    'aria-labelledby': `menu-button_campaign-subjects-${email}`,
+  })
 }
 
 export default withEnhancedTable<{}>(UserList, 'usersList', {

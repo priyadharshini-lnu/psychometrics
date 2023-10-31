@@ -1,6 +1,4 @@
-import {
-  Button, Dropdown, Menu,
-} from 'antd'
+import { Button, Dropdown } from 'antd'
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
 const CreateSubjectsDropdown = ({ openModal }) => {
@@ -16,12 +14,13 @@ const CreateSubjectsDropdown = ({ openModal }) => {
       openModal('SubjectImportModal')
     }
   }
-  const menu = (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
 
   return (
-    <Dropdown overlay={menu} className="mrm" trigger={['click']}>
+    <Dropdown
+      menu={{ items: menuItems, onClick: handleMenuClick }}
+      className="mrm"
+      trigger={['click']}
+    >
       <Button type="primary">
         <PlusOutlined />
         <span>Add Subjects</span>

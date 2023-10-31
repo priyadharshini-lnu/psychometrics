@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Assessor < ApplicationRecord
+  audited
+
   belongs_to :user
   belongs_to :campaign
   has_many :user_assessments, primary_key: :user_id, foreign_key: :evaluator_id

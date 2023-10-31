@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import {
   Space,
   Popover,
@@ -51,6 +51,9 @@ const ChoicesMultiedit: FC<ChoicesMultieditProps> = ({
   lines, onChange, cols, rows,
 }) => {
   const [value, setValue] = useState(lines.join('\n'))
+  useEffect(() => {
+    setValue(lines.join('\n'))
+  }, [lines])
 
   const changeLines = (e) => {
     const lines = e.target.value.split('\n')

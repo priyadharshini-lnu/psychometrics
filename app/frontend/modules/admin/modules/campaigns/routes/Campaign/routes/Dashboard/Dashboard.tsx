@@ -34,7 +34,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
   const {
     fetch, isRequestSuccessful, data,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })
-  const basePath = `/administration/projects/${projectId}/new_campaigns/${campaignId}/dashboard`
+  const basePath = `/admin/projects/${projectId}/new_campaigns/${campaignId}/dashboard`
   const fetchSuccessful = isRequestSuccessful('fetch')
   const dashboardPreviewAvailable = !_.isEmpty(data[0]?.reportId) && !_.isEmpty(data[0]?.datasetId)
   const dashboardInitialized = fetchSuccessful && data.length === 1

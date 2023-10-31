@@ -36,7 +36,7 @@ export const IndividualInvite = () => {
       <PageHeader
         className={styles.pageHeader}
         onBack={() => history.push(
-          `/administration/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites`,
+          `/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites`,
         )}
         title={(
           <>

@@ -19,6 +19,7 @@ const { I18n } = window
 interface Props {
   assessment?: Assessment
   form: FormInstance
+  showTranslatableFields?: boolean
 }
 
 type OptionsType = {
@@ -26,7 +27,7 @@ type OptionsType = {
   name: string
 }
 
-export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
+export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslatableFields }) => {
   const {
     data: dimensions, fetch: fetchDimensions, isLoading: isDimensionsLoading,
   } = useResources<Dimension>('dimensions')
@@ -99,22 +100,28 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
         </Select>
       </Form.Item>
       {ExternalAssessmentFieldsComponent && <ExternalAssessmentFieldsComponent form={form} assessment={assessment} />}
-      <Form.Item
-        name="name"
-        label={I18n.t('common.column.name')}
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name="description"
-        label={I18n.t('common.column.description')}
-      >
-        <TextArea />
-      </Form.Item>
-      <Form.Item name="timing" label={I18n.t('common.column.timing')}>
-        <TextArea />
-      </Form.Item>
+      {showTranslatableFields
+        && (
+          <>
+            <Form.Item
+              name="name"
+              label={I18n.t('common.column.name')}
+              rules={[{ required: true }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="description"
+              label={I18n.t('common.column.description')}
+            >
+              <TextArea />
+            </Form.Item>
+            <Form.Item name="timing" label={I18n.t('common.column.timing')}>
+              <TextArea />
+            </Form.Item>
+          </>
+        )
+      }
       <Form.Item
         name="category"
         className={cs({ hidden: isCategoryHidden() })}

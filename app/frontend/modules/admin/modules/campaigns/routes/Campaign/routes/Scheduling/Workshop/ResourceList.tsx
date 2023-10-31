@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {
   Button,
-  Menu,
+  MenuProps,
   Space,
   message,
 } from 'antd'
@@ -74,12 +74,12 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
             render={workshopResource => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     workshopResource,
                     setConfirmation,
                     confirmation,
                     openModal,
-                  }) as React.ReactElement
+                  })
                 }
               />
             )}
@@ -113,16 +113,16 @@ const ResourceFilter = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   workshopResource: WorkshopResource
   setConfirmation: (confirmation: boolean) => void
   confirmation: boolean
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   workshopResource, setConfirmation, confirmation, openModal,
-}) => {
+}: ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<WorkshopResource>()
 
   const handleOnConfirm = () => resource.removeResource(workshopResource.id).then(() => {
@@ -169,9 +169,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     ),
   })
 
-  return (
-    <Menu items={menuItems} />
-  )
+  return ({ items: menuItems })
 }
 
 export const ResourceList = connector(ResourceListComponent)

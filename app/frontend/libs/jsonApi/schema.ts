@@ -1,6 +1,8 @@
 import { Schema as activitiesSchema } from '~/modules/admin/modules/campaigns/core/workshopActivity'
 import { Schema as clientSchema } from '~/modules/admin/modules/client/core/clients'
 import { Schema as assessmentSchema } from '~/modules/admin/modules/client/core/assessments'
+import { Schema as reportSchema } from '~/modules/admin/modules/client/core/reports'
+import { Schema as reportBundleReportSchema } from '~/modules/admin/modules/client/core/reportBundleReports'
 import { Schema as dashboardSchema } from '~/modules/admin/modules/campaigns/core/dashboard'
 import { Schema as reportApprovalSchema } from '~/modules/admin/modules/ReportApprovals/core'
 import { CommentSchema as commentSchema } from '~/modules/admin/modules/campaigns/core/userReports'
@@ -19,6 +21,8 @@ import { Schema as workshopInviteSchema } from '~/modules/admin/modules/campaign
 
 export const Schema = {
   clients: clientSchema,
+  reports: reportSchema,
+  report_families_reports: reportBundleReportSchema,
   assessments: assessmentSchema,
   dashboards: dashboardSchema,
   report_approvals: reportApprovalSchema,

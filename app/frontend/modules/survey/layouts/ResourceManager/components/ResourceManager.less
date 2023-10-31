@@ -58,6 +58,9 @@
 .resourceWrapper {
   max-width: 100%;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .resource {
@@ -65,7 +68,18 @@
   align-items: center;
 }
 
+.container {
+  width: 100%;
+  gap: 16px;
+  display: flex;
+  align-items: center;
+  & :global(.ant-select-selection-item){
+    width: 0px;
+  }
+}
+
 .row {
   width: 100%;
-  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
 }

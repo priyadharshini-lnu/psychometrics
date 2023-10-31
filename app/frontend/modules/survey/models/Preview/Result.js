@@ -74,7 +74,8 @@ _.extend(Result.prototype, {
     if (!message) { return }
     const { conditions } = validation
     const validations = conditions.map(
-      condition => new Validations.Custom(condition, this.answeredQuestions || [this.question], this.results, this),
+      condition => new Validations.Custom(condition,
+        this.answeredQuestions.length > 0 ? this.answeredQuestions : [this.question], this.results, this),
     )
 
     const results = validations.map(validation => validation.validate(this))

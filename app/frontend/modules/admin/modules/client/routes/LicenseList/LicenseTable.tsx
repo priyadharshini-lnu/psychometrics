@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { Menu } from 'antd'
+import { MenuProps } from 'antd'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -99,11 +99,11 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
               render={license => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       license,
                       openModal,
                       updateResource: resource.updateResource,
-                    }) as React.ReactElement
+                    })
                   }
                 />
               )}
@@ -113,15 +113,15 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   license: License
   updateResource: UpdateResource<License>
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   license, updateResource, openModal,
-}) => {
+}: ActionMenuData): MenuProps => {
   const menuItems = [
     { key: 'edit', label: I18n.t('common.actions.edit') },
     {
@@ -142,9 +142,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 function usedOveruseNumber (used: number, total: number): number {

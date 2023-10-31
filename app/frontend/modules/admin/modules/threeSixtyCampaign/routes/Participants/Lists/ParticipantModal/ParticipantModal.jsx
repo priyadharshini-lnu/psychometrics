@@ -38,7 +38,7 @@ export default function ParticipantModal ({
     <Modal
       width={1200}
       title={<Header user={user} />}
-      visible
+      open
       onCancel={onCloseModal}
       footer={[
         <Button key="back" onClick={onCloseModal}>

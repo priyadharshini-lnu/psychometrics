@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import {
-  Tag, Button, message, Modal, Menu,
+  Tag, Button, message, Modal, MenuProps,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import {
@@ -19,7 +18,6 @@ export const InvitesTable = () => {
 
   const history = useHistory()
   const location = useLocation()
-  const [confirmation, setConfirmation] = useState(false)
 
   const openForm = () => {
     history.push(`${location.pathname}/add_invite`)
@@ -82,7 +80,7 @@ export const InvitesTable = () => {
             render={data => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({ invite: data, confirmation, setConfirmation }) as React.ReactElement
+                  getActionsMenuProps({ invite: data })
                 }
               />
             )}
@@ -113,13 +111,11 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   invite: WorkshopInvite
-  confirmation: boolean
-  setConfirmation: (value: boolean) => void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({ invite }) => {
+const getActionsMenuProps = ({ invite }: ActionMenuData): MenuProps => {
   const { resource } = useResourceContext<WorkshopInvite>()
 
   const handleOnConfirm = () => resource.removeResource(invite.id).then(() => {
@@ -157,7 +153,5 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ invite }) => {
     ),
   })
 
-  return (
-    <Menu items={menuItems} />
-  )
+  return ({ items: menuItems })
 }

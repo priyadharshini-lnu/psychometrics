@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Relationship < ApplicationRecord
+  audited
+
   self.inheritance_column = :_type_disabled
 
   ASSESSOR = 'Assessor'

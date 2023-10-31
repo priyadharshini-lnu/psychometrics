@@ -11,6 +11,14 @@ module Api
         show?
       end
 
+      def fetch_translations?
+        show?
+      end
+
+      def update_translations?
+        fetch_translations?
+      end
+
       def restore?
         show?
       end

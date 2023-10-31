@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ReportApproval < ApplicationRecord
+  audited
+
   self.table_name = 'user_reports'
 
   belongs_to :user

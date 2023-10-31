@@ -3,6 +3,17 @@ en:
   administration:
     actions: Actions
     active: Active
+    active_record_audits:
+      action: Action
+      audit_id: Audit Id
+      auditable_id: Record Id
+      auditable_type: Record Type
+      audited_changes: Audited Changes
+      new_diff:
+        parse_error: Failed to parse JSON with new changes
+      old_diff:
+        parse_error: Failed to parse JSON with old changes
+      title: Audited Changes
     admin_profile_edit:
       old_password_doesnt_match: Old password didn't match
     administrator:
@@ -586,11 +597,16 @@ en:
       action: Action
       campaign: Campaign
       client: Client
+      client_ip: Client Ip
+      failure_reason: Failure Reason
       id: Id
+      interface: Interface
       log_date: Log Date
+      outcome: Outcome
       payload: Payload
       project: Project
       record_id: Record Id
+      request_id: Request Id
       reset: Reset
       search: Search
       search_campaign: Search by Campaign
@@ -601,6 +617,7 @@ en:
       title: Audit Log Info
       type: Record Type
       user: User
+      user_agent: User Agent
     back: Back
     base:
       id: id
@@ -3378,58 +3395,6 @@ en:
         report: Report
         review: Review
       resource_name: Proctoring Sessions
-    products:
-      copy:
-        error: Product
-        successfully: Product %{name} was successfully copied.
-      create:
-        successfully: Product %{name} was successfully created.
-      destroy:
-        successfully: Product %{name} was successfully deleted.
-      edit:
-        header: Edit Product
-      form:
-        add_image: Add Image
-        images: images
-        prices: Prices
-        reports: Reports
-      image_fields:
-        remove: Remove Image
-      index:
-        new: Add
-        title: Products list
-      list:
-        active: Active
-        created_at: Created Date
-        name: Name
-        updated_at: Modified Date
-      new:
-        header: New Product
-      resource:
-        confirmations:
-          delete:
-            body: "<p>Are you sure you want to delete this Product?</p>\n"
-            title: Delete <strong>Product</strong> ?
-          toggle_status:
-            body: "<p>Are you sure you want to %{status} this Product?</p>\n"
-            title: "<strong>%{status}</strong> %{name}?"
-        in_progress:
-          copying: Copying
-          deleting: Deleting
-        tooltips:
-          copy: Copy Product
-          delete: Delete Product
-          edit: Edit Product
-      sidebar:
-        copy: Copy Product
-        destroy: Destroy Product
-        disable: Disable
-        edit: Edit Product
-        enable: Enable
-        new: New Product
-        title: Product's options
-      update:
-        successfully: Product %{name} was successfully updated.
     profile:
       change_password: Change password
       details: Details
@@ -3728,6 +3693,7 @@ en:
     reports:
       copy:
         error: 'Report #%{id} was not copied.'
+        successfully: Report %{name} was successfully copied.
       create:
         successfully: Report %{name} was successfully created.
       destroy:
@@ -3828,6 +3794,10 @@ en:
         yti: YTI
       update:
         successfully: Report %{name} was successfully updated.
+    resource:
+      remove_confirm:
+        message: Are you sure you want to remove this resource?
+        title: Remove Resource
     saml_settings:
       after_signout_url: After Signout Url
       cert: Certificate
@@ -4635,6 +4605,7 @@ en:
       user: User
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
+      delete_success: Webhook settings deleted successfully
       request_failure: Request failed with status code %{http_status_code}.
       test_success: Webhook test successful.
     workshop:

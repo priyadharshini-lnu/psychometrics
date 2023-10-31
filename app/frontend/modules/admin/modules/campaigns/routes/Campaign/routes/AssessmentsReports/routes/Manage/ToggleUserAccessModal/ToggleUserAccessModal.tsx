@@ -32,7 +32,7 @@ const ToggleUserAccessModal: React.FC<Props> = ({
     <Modal
       width={650}
       title={modalTitle()}
-      visible
+      open
       centered
       okText={I18n.t('common.text.continue')}
       onCancel={close}

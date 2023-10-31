@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Dropdown, Table, Button, Menu, Row, Col, Pagination, message, Modal,
+  Dropdown, Table, Button, Row, Col, Pagination, message, Modal, MenuProps,
 } from 'antd'
 import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
@@ -140,19 +140,14 @@ const RegistrationCodes: React.FC<Props> = ({
                   )}
                   {code.permissions.downloadQrcode && (
                     <Dropdown
-                      overlay={() => (
-                        QRCodeMenu({
-                          campaignId,
-                          code,
-                        }) as React.ReactElement
-                      )}
+                      menu={getQRCodeMenuProps({ campaignId, code })}
                       trigger={['click']}
                     >
                       <Button type="text" icon={<QrcodeOutlined />} />
                     </Dropdown>
                   )}
                   <ConditionalDropdown
-                    menu={ActionsMenu({
+                    menu={getActionsMenuProps({
                       onEdit: () => openModal('CodeModal', {
                         campaignId,
                         code: {
@@ -165,7 +160,7 @@ const RegistrationCodes: React.FC<Props> = ({
                       onCancelConfirm: () => destroy(campaignId, code.id),
                       permissions: code.permissions,
                       code,
-                    }) as React.ReactElement}
+                    })}
                     innerElement={(
                       <Button type="link">
                         <MoreOutlined />
@@ -192,7 +187,7 @@ const RegistrationCodes: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   onEdit(): void
   onCancelConfirm(): void
   permissions: {
@@ -202,15 +197,15 @@ interface ActionMenuProps {
   code: RegistrationCode
 }
 
-interface QRCodeMenuProps {
+interface QRCodeMenuData {
   campaignId: string
   code: RegistrationCode
 }
 
-const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
+const getQRCodeMenuProps = ({
   code: { id },
   campaignId,
-}) => {
+}:QRCodeMenuData):MenuProps => {
   const menuItems = [
     {
       key: 'png',
@@ -219,7 +214,7 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
         <a
           download
         // eslint-disable-next-line max-len
-          href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
+          href={`/admin/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
         >
           PNG
         </a>
@@ -239,14 +234,12 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
       ),
     },
   ]
-  return (
-    <Menu items={menuItems} />
-  )
+  return ({ items: menuItems })
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   onEdit, onCancelConfirm, permissions, code: { code },
-}) => {
+}:ActionMenuData): MenuProps => {
   const handleRemove = () => {
     Modal.confirm({
       title: I18n.t('common.text.confirm'),
@@ -282,9 +275,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export default withEnhancedTable(RegistrationCodes, 'RegistrationCodes', { maintainHistory: true })

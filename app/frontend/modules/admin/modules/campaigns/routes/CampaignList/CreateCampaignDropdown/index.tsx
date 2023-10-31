@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Dropdown, Menu,
+  Button, Dropdown,
 } from 'antd'
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
@@ -22,12 +22,9 @@ const CreateCampaignDropdown: React.FC<Props> = ({ openModal, projectId }) => {
       openModal('ThreesixtyCampaignFormModal', { projectId })
     }
   }
-  const menu = (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
 
   return (
-    <Dropdown overlay={menu} className="mrm" trigger={['click']}>
+    <Dropdown menu={{ items: menuItems, onClick: handleMenuClick }} className="mrm" trigger={['click']}>
       <Button type="primary">
         <PlusOutlined />
         <span>Add Campaign</span>

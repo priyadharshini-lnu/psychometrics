@@ -10,8 +10,6 @@ module Administration
     append_before_action :init_collections, only: %i[new create edit update]
     before_action :skip_policy_scope, only: [:index]
 
-    render_entrypoint :index, element: 'client-container', entry: 'admin/client'
-
     def new
       @_resource = resource_class.new
     end

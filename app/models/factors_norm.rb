@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FactorsNorm < ApplicationRecord
+  audited
+
   belongs_to :factor
   belongs_to :norm, touch: true
 

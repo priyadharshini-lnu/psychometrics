@@ -638,11 +638,9 @@ en:
       norm: Norms
       occupation: Occupations
       occupations_factor: Occupations
-      product: Product
       question: Question
       report: Report
       report_family: ReportFamily
-      task: Tasks
       user: Users
       user_form: User
   admin_jobs:
@@ -747,6 +745,8 @@ en:
       show_usage: Show Usage
       submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
+      translations:
+        success_message: The asessment translations updated
       unarchived:
         success_message: Asessment %{name} unarchived successfully
     active: Active
@@ -1012,6 +1012,22 @@ en:
       load_results: 'Load Results: %{report}'
       processing: Processing...
       results: Results
+  audit_log_failures:
+    devise:
+      already_authenticated: You are already signed in.
+      inactive: Your account is not activated yet.
+      invalid: Invalid email or password.
+      invited: You have a pending invitation, accept it to finish creating your account.
+      last_attempt: You have one more attempt before your account is locked.
+      locked: Your account is locked.
+      not_found_in_database: Invalid email or password.
+      saml_user_not_present: User is not present in the system
+      timeout: Your session expired. Please login again to continue.
+      unauthenticated: You need to login or register before continuing.
+      unconfirmed: You have to confirm your email address before continuing.
+    invalid_sso_token: Invalid SSO Token
+    record_not_found: Record Not Found
+    user_not_authorized: User Not Authorized
   auth:
     current_password: Current Password
     current_password_placeholder: Enter Current Password
@@ -1454,6 +1470,7 @@ en:
       import: Import
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
+      ok: OK
       remove: Remove
       reset: Reset
       resolve: Resolve
@@ -1476,11 +1493,12 @@ en:
       approvers_list: Approvers List
       assessment: Assessment
       assessment_name: Assessment Name
+      assessments: Assessments
       assessor: Assessor
       category: Category
       completion_count: Completion Count
       completion_status: Completion Status
-      created_at: Created at
+      created_at: Created At
       created_by: Created By
       created_date: Created Date
       description: Description
@@ -1502,7 +1520,9 @@ en:
       owner: Owner
       poster: Poster
       project: Project
+      provider: Provider
       qc_user_list: QC Users List
+      report: Report
       report_id: Report Id
       require_scheduling: Require Scheduling
       schedule_time: Schedule Time
@@ -1605,11 +1625,11 @@ en:
     failure:
       already_authenticated: You are already signed in.
       inactive: Your account is not activated yet.
-      invalid: Invalid %{authentication_keys} or password.
+      invalid: Invalid email or password.
       invited: You have a pending invitation, accept it to finish creating your account.
       last_attempt: You have one more attempt before your account is locked.
       locked: Your account is locked.
-      not_found_in_database: Invalid %{authentication_keys} or password.
+      not_found_in_database: Invalid email or password.
       saml_user_not_present: User is not present in the system
       timeout: Your session expired. Please login again to continue.
       unauthenticated: You need to login or register before continuing.
@@ -1798,38 +1818,6 @@ en:
         already_exists: Subject already exists in the invite.
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
-  ecommerce:
-    carts:
-      show:
-        back_to_catalogue: Back to Catalogue
-        next: Next
-        shopping_basket: Shopping Basket
-        total: 'Total:'
-        update_basket: Update Basket
-    orders:
-      new:
-        back_to_basket: Back to Basket
-        order: Order
-        pay: Pay
-        product_name: Product Name
-        product_price: Product Price
-        product_quantity: Quantity
-        product_subtotal: Positions Price
-        total: Total
-        users: Users
-      success:
-        back_to_basket: Back to Basket
-        body: |
-          <h3>Payment successful</h3>
-          <p>We will email you a receipt confirming your oder shortly.</p>
-        go_to_dashboard: Go to Dashboard
-        title: Payment Successful
-    products:
-      add_to_cart:
-        successfully: Assessment was successfuly added to the basket
-      index:
-        assessment_catalogue: Assessment Catalogue
-        shopping_basket: Shopping Basket
     users:
       registrations:
         new:
@@ -2483,11 +2471,52 @@ en:
       all: All
       approved: Approved
       my_tasks: My Tasks
+  report_bundles:
+    actions:
+      remove:
+        confirm_message: Are you sure you want to delete the report bundle '%{name}'?
+        confirm_title: Confirmation Required
+        success_message: Report Bundle %{name} has been deleted
+    create: Create
+    report_bundle: Report Bundle
+    report_bundles: Report Bundles
+    reports:
+      actions:
+        add: Add New Report
+        remove:
+          confirm_message: Are you sure you want to delete the report '%{name}' from '%{report_bundle_name}'?
+          confirm_title: Confirmation Required
+          success_message: Report %{name} has been deleted
+      select: Select Report
   reports:
     actions:
-      add: Add Report
-      download: Download report
-      view: View Report
+      archived:
+        success_message: Report %{name} archived successfully
+      back_to_campaign: Back to Campaign
+      copy:
+        success_message: Report %{name} coppied successfully
+      details: Details
+      download_csv: Download CSV
+      edit: Edit
+      evaluate: Evaluate
+      extend_time: Extend time
+      goto_dashboard: Click here to continue
+      pending_tasks:
+        one: You have one 1 pending task
+        other: You have %{count} pending tasks
+      re_evaluate: Click Here to Re-Evaluate
+      reevaluate: Re-Evaluate
+      remove:
+        confirm_message: Are you sure you want to delete the report '%{name}'?
+        confirm_title: Confirmation Required
+        success_message: Report %{name} has been removed
+      rescore: Rescore
+      restore:
+        success_message: Report %{name} restored successfully
+      unarchived:
+        success_message: Report %{name} unarchived successfully
+    active: Active
+    archived: Archived
     builder:
       graph:
         properties:
@@ -2514,6 +2543,27 @@ en:
           positionTopMiddle: Top Middle
           positionTopRight: Top Right
           showLegend: Show Legend
+    columns:
+      data_only: Data Only
+      default_language: Default Language
+      external_settings:
+        hogan_report_id: Hogan Report ID
+        pearson_provider: Pearson Provider
+        saville_report_id: Saville Report ID
+    create: Create
+    dashboard: Dashboard
+    drawer:
+      title: Report Details
+    fields:
+      provider:
+        hogan: Hogan
+        internal: Internal
+        mindmill: Mindmill
+        pearson: Pearson
+        saville: Saville
+    form:
+      load_from_pearson: Load from Pearson
+      none_external: None - Use report builder
     modules:
       common:
         all_factors: All factors
@@ -2617,6 +2667,14 @@ en:
         total_evaluations: Total evaluations for this assessment
       video_response:
         no_results: No videos recorded
+    pages:
+      edit:
+        assets: Assets
+        general_settings: General Settings
+        translations: Translations
+    report: Report
+    reports: Reports
+    reset: Reset
     show:
       export_pdf: Export to PDF
       header: Report
@@ -2628,6 +2686,9 @@ en:
       not_available: Not available
       on_hold: On hold
       released: Released
+    trash: Trash
+    update: Update
+    upload: Upload
   reset_password_modal:
     fields:
       automatically_generate_password: Automatically generate password
@@ -2913,12 +2974,6 @@ en:
         updated_at: Modified Date
         updated_by: Edited by
         work_environment: Work Environment
-      product:
-        active: Active
-        created_at: Created Date
-        id: ID
-        name: Name
-        updated_at: Modified Date
       question:
         active: Active
         assign_to_assessment_ids: Assessments

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
+  audited
+
   include Copyable
   include OwnerValidations
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Switch, Modal, message,
+  Table, MenuProps, Row, Col, Switch, Modal, message,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
@@ -92,7 +92,7 @@ const ReportList: React.FC<Props> = ({
             render={userReport => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     projectId: parsedProjectId,
                     campaignId: parsedCampaignId,
                     userReportId: userReport.id,
@@ -102,7 +102,7 @@ const ReportList: React.FC<Props> = ({
                     reportUrl: userReport.reportUrl,
                     permissions: userReport.permissions,
                     openModal,
-                  }) as React.ReactElement
+                  })
                 }
                 innerElement={(
                   <a>
@@ -118,7 +118,7 @@ const ReportList: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   projectId: number
   campaignId: number
   userReportId: number
@@ -141,15 +141,15 @@ interface ActionMenuProps {
   }): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl, permissions, openModal,
-}) => {
+}:ActionMenuData):MenuProps => {
   const previewUrl = () => {
     if (internal) {
-      return `/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`
+      return `/admin/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`
     }
 
-    return `/administration/projects/${projectId}/new_campaigns/${campaignId}/external_user_report/${userReportId}`
+    return `/admin/projects/${projectId}/new_campaigns/${campaignId}/external_user_report/${userReportId}`
   }
   const handleDelete = () => {
     Modal.confirm({
@@ -203,9 +203,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export default withRouter(ReportList)

@@ -57,9 +57,16 @@ interface Permissions {
 
 // TODO: When all pages are implemented in single react, use this component instead of anchor tag
 const Link = ({ href, children }) => {
+  const isThreesixty = location.href.match(/\/(threesixty_campaigns)/)
   const selected = getSelected()
-  return (selected !== 'profileDetails' && selected !== 'changePassword')
-    ? <a href={href}>{children}</a> : <RouterLink to={href}>{children}</RouterLink>
+  const isAllowed = () => {
+    const allowedPages = ['profileDetails', 'changePassword', 'clients', 'users']
+    return !allowedPages.includes(selected)
+  }
+  if (isThreesixty || isAllowed()) {
+    return <a href={href}>{children}</a>
+  }
+  return <RouterLink to={href}>{children}</RouterLink>
 }
 
 const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
@@ -92,17 +99,17 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   permissions.clients ? {
     key: 'clients',
     label:
-    <a href={permissions.clients}>
+    <Link href={permissions.clients}>
       {I18n.t('administration.navigation.clients')}
-    </a>,
+    </Link>,
     icon: <i className="fa fa-briefcase" />,
   } : null,
   permissions.users ? {
     key: 'users',
     label:
-    <a href={permissions.users}>
+    <Link href={permissions.users}>
       {I18n.t('administration.navigation.users')}
-    </a>,
+    </Link>,
     icon: <i className="fa fa-users" />,
   } : null,
   permissions.norms ? {
@@ -220,7 +227,7 @@ const getSelected = (): string => {
     return 'dimensions'
   }
 
-  if (location.href.match(/\/administration(\/)(users)/)) {
+  if (location.href.match(/\/admin(\/)(users)/)) {
     return 'users'
   }
 
