@@ -407,6 +407,15 @@ jobs:
       - heroku/deploy-via-git:
           force: true
           app-name: << parameters.app-name >>
+      - run:
+          name: Check if deployment is successful
+          command: |
+            result=$(heroku releases -n 1 -a << parameters.app-name >>)
+            echo $result
+            if [[ $result == *"failed"* ]]; then
+                echo "Deployment failed"
+                exit 1
+            fi
 
   build_docker_image:
     executor: tte-docker-build
