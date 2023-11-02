@@ -20,6 +20,10 @@ module Administration
       render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
     end
 
+    def show
+      render layout: 'report'
+    end
+
     def preview
       add_breadcrumb resource.decorate.display_name, action: :show, id: resource
       respond_to do |format|

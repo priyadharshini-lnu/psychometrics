@@ -307,6 +307,8 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     triggerCollapse()
     if (hasSubmenu) openSubmenu()
   }
+  const isMeet = location.href.match(/\/(meet)/)
+  if (isMeet) return null
 
   return isMobile
     ? (

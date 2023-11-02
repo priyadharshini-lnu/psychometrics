@@ -4,12 +4,16 @@ import { selectQuestion } from '~/modules/survey/core/builder/assessment/questio
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 
 export default connect(
-  ({ survey, survey: { builder } }) => ({
-    ...getData(survey).defaultValue,
-    question: QuestionSerializer.wrap(getData(survey).defaultValue
-      ? selectQuestion(builder, getData(survey).defaultValue.model.id)
-      : null),
-  }),
+  ({ preview, survey, survey: { builder } }) => {
+    const data = getData(survey).defaultValue
+    const { model: question } = data
+
+    return ({
+      ...getData(survey).defaultValue,
+      question: QuestionSerializer.wrap(data ? selectQuestion(builder, question.id) : null,
+        preview.results[question.id]?.answers || question.props.defaultValues || []),
+    })
+  },
   {
     close: () => closeModal('defaultValue'),
   },

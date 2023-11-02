@@ -111,7 +111,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     activeItem = activeItem || 'dashboard'
   }
 
-  if (pathname.includes('user_assessments/') || pathname.includes('evaluations/')) {
+  if (pathname.includes('user_assessments/') || pathname.includes('evaluations/') || pathname.includes('/meet/')) {
     return null
   }
 

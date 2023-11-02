@@ -319,6 +319,29 @@ de:
   navigation:
     logout: Ausloggen
     profile: Profil
+  profile:
+    add_field: Feld hinzufügen
+    add_photo: Foto hinzufügen
+    age: Alter
+    change_password: Kennwort ändern
+    change_photo: Foto ändern
+    email: Email
+    female: Weiblich
+    first_name: Vorname
+    gender: Geschlecht
+    incomplete: Ihre Profildaten sind unvollständig. Bitte vervollständigen Sie Ihre Profildaten
+    last_name: Familienname, Nachname
+    locale: Bevorzugte Sprache
+    male: Männlich
+    not_disclosed: Lieber nichts preisgeben
+    old_data: Ihre Profildaten sind %{months} ​​Monate alt. Bitte bestätigen Sie die Details, um fortzufahren
+    password: Passwort
+    password_confirmation: Passwort Bestätigung
+    success_update: Profil wurde erfolgreich gespeichert
+    timezone: Zeitzone
+    title: Mein Profil
+    update: Aktualisieren
+    update_required: Profilaktualisierungen erforderlich
   reports:
     actions:
       add: hinzufügen Bericht

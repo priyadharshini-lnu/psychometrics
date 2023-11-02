@@ -212,10 +212,10 @@ const UserList: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('administration.campaigns.users.updated_by')}
-              key="updated_by"
+              key="updatedBy"
               sorter
               sortOrder={getSortOrder('email')}
-              dataIndex="updated_by"
+              dataIndex="updatedBy"
             />
             <Column
               title={I18n.t('administration.campaigns.users.completion_status')}

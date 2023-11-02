@@ -9,6 +9,7 @@ import {
   UpOutlined,
 } from '@ant-design/icons'
 
+import _ from 'lodash'
 import { SafeHTML } from '~/components/SafeHTML'
 
 import { AdminJob as AdminJobI } from '../../interfaces'
@@ -19,15 +20,18 @@ const { I18n } = window
 
 const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job, read }) => {
   const [expanded, setExpanded] = useState(false)
-  const hasMore = job.isValid && (job.errorMessages.length || job.content || !!job.details.length)
+  const errorMessages = _.clone(job.errorMessages) || []
+  if (job.exception) errorMessages.push(job.exception)
+
+  const hasMore = job.isValid && (errorMessages.length || job.content || !!job.details.length)
 
   const getStatus = (job: AdminJobI) => {
-    if (job.errorMessages.length || job.exception || job.status === 'failed') return 'exception'
+    if (errorMessages.length || job.exception || job.status === 'failed') return 'exception'
     if (job.status === 'completed') return 'success'
     return 'active'
   }
   const getDescription = (job: AdminJobI) => {
-    if (job.errorMessages.length && job.status === 'completed') {
+    if (errorMessages.length && job.status === 'completed') {
       return I18n.t('admin_jobs.attrs.statuses.completed_with_errors')
     }
     return I18n.t(`admin_jobs.attrs.statuses.${job.status}`)
@@ -87,11 +91,11 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
           description={<SafeHTML html={job.content} />}
         />
       )}
-      {expanded && !!job.errorMessages.length && (
+      {expanded && !!errorMessages.length && (
         <Alert
           message={I18n.t('admin_jobs.errors')}
           description={(
-            <ul>{job.errorMessages.map((err, i) => (<li key={i}>{err}</li>))}</ul>
+            <ul>{errorMessages.map((err, i) => (<li key={i}>{err}</li>))}</ul>
           )}
           type="error"
         />
