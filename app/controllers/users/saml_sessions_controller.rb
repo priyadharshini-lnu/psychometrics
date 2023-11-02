@@ -21,7 +21,8 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
   def after_saml_login
     return unless user_signed_in?
 
-    audit! :saml_login, current_user, user: current_user, payload: params.except('SAMLResponse', 'RelayState'),
+    audit! :saml_login, current_user, user: current_user, payload: params.except('SAMLResponse', 'RelayState').
+      merge(email: current_user.email),
     outcome: 'successful'
     session[:saml_login] = true
     @current_project.saml_setting.make_test_setting_permanent! if cookies[:saml_setting_type] == 'test'

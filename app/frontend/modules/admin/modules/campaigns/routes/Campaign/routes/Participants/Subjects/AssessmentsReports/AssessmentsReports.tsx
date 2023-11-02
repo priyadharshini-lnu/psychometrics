@@ -233,7 +233,7 @@ const AssessmentsReports: React.FC<Props> = ({
                   })}
                 >
                   <PlusOutlined />
-                  <span>{I18n.t('reports.actions.add')}</span>
+                  <span>{I18n.t('user_reports.actions.add')}</span>
                 </Button>
               )}
             </Space>

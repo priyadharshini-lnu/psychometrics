@@ -30,11 +30,13 @@ Warden::Manager.before_failure do |env, opts|
   if request.env[:sso].blank?
     session = request.env['action_dispatch.request.unsigned_session_cookie']
     action = session['saml_audit'].present? ? :saml_login : :sign_in
-    reason = opts[:message] ? "devise.#{opts[:message]}" : nil
+    reason = opts[:message] ? "devise.#{opts[:message]}" : "devise.#{opts[:action]}"
     AuditLogModule.audit! action, nil,
                           record_type: 'User',
                           payload: { email: request.params.dig('user', 'email') },
                           outcome: 'failed',
+                          request_details: { ip: request.ip },
+                          interface_details: { user_agent: request.user_agent },
                           failure_reason: reason
   end
 end
@@ -43,7 +45,7 @@ Warden::Manager.before_logout do |user, env, _opts|
   request = Rack::Request.new(env.request.env)
 
   AuditLogModule.audit! :sign_out, user,
-                        record_type: 'User',
+                        user: user,
                         payload: { email: user.email },
                         request_details: { ip: request.ip },
                         interface_details: { user_agent: request.user_agent }
