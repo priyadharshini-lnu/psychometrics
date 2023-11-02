@@ -348,5 +348,29 @@ Devise.setup do |config|
   config.otp_secret_encryption_key = ENV.fetch('OTP_SECRET_ENCRYPTION_KEY', nil)
   config.second_factor_resource_id = 'id' # Field or method name used to set value for 2FA remember cookie
   config.delete_cookie_on_logout = false # Delete cookie when user signs out, to force 2FA again on login
+
+  # ==> Configuration for :magic_link_authenticatable
+
+  # Need to use a custom Devise mailer in order to send magic links.
+  # If you're already using a custom mailer just have it inherit from
+  # Devise::Passwordless::Mailer instead of Devise::Mailer
+  config.mailer = 'Devise::Passwordless::Mailer'
+
+  # Which algorithm to use for tokenizing magic links. See README for descriptions
+  config.passwordless_tokenizer = 'MessageEncryptorTokenizer'
+
+  # Time period after a magic login link is sent out that it will be valid for.
+  config.passwordless_login_within = 1.week
+
+  # The secret key used to generate passwordless login tokens. The default value
+  # is nil, which means defer to Devise's `secret_key` config value. Changing this
+  # key will render invalid all existing passwordless login tokens. You can
+  # generate your own secret value with e.g. `rake secret`
+  # config.passwordless_secret_key = nil
+
+  # When using the :trackable module, set to true to consider magic link tokens
+  # generated before the user's current sign in time to be expired. In other words,
+  # each time you sign in, all existing magic links will be considered invalid.
+  config.passwordless_expire_old_tokens_on_sign_in = false
 end
 # rubocop:enable Metrics/BlockLength

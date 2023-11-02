@@ -1609,6 +1609,7 @@ en:
       invited: You have a pending invitation, accept it to finish creating your account.
       last_attempt: You have one more attempt before your account is locked.
       locked: Your account is locked.
+      magic_link_invalid: Invalid or expired login link.
       not_found_in_database: Invalid %{authentication_keys} or password.
       saml_user_not_present: User is not present in the system
       timeout: Your session expired. Please login again to continue.

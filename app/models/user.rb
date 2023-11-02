@@ -63,9 +63,10 @@ class User < ApplicationRecord
   end
 
   # Authentication
-  devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :secure_validatable, :password_archivable, :password_expirable,
-         :lockable, :timeoutable, request_keys: { subdomain: false }
+  devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable,
+         :magic_link_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
+         :secure_validatable, :password_archivable, :password_expirable, :lockable, :timeoutable,
+         request_keys: { subdomain: false }
 
   attr_accessor :create_by_invite, :terms, :current_membership
   # HRIS data

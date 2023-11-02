@@ -897,6 +897,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'users/sign_up/success', to: 'users/registrations#success'
+    get 'users/sign_in_link', to: 'users/magic_links#sign_in_link'
   end
 
   devise_for :users,
@@ -910,7 +911,14 @@ Rails.application.routes.draw do
                             sessions: 'users/sessions',
                             invitations: 'users/invitations',
                             passwords: 'passwords',
-                            password_expired: 'users/password_expired' }
+                            password_expired: 'users/password_expired',
+                            magic_links: 'users/magic_links' }
+
+  namespace 'passwordless' do
+    devise_for :users,
+               controllers: { sessions: 'devise/passwordless/sessions' }
+  end
+
   # Manager's panel
   #
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'

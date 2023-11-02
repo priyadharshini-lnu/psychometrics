@@ -26,7 +26,11 @@ export const PipedTextModal: React.FC<Props> = ({ close, editorRef, communicatio
     editorRef.html.insert(value)
   }
 
-  const applicationFields = () => FIELDS.filter(field => field.supportedCommunicationKind.includes(communicationKind))
+  const applicationFields = () => FIELDS.filter(
+    field => (
+      field.supportedCommunicationKind === undefined || field.supportedCommunicationKind.includes(communicationKind)
+    ),
+  )
 
   return (
     <Modal
