@@ -33,18 +33,22 @@ module Campaigns
         if existing_user_in_project
           @user = existing_user_in_project
         else
-          user_attributes = form.to_h.except(
-            :operation, :campaign_ids, :schedule_start_date, :schedule_start_date, :schedule_end_date, :active
-          ).merge(
-            project: project,
-            create_by_invite: true,
-            creator: current_user,
-            modifier: current_user
-          )
-          @user = User.create!(user_attributes)
-          AuditLogModule.audit!(
-            :create, user, user: current_user, campaign: campaign, payload: form.attributes
-          )
+          ActiveRecord::Base.transaction do
+            user_attributes = form.to_h.except(
+              :operation, :campaign_ids, :active, :locale,
+              :schedule_start_date, :schedule_start_date, :schedule_end_date
+            ).merge(
+              project: project,
+              create_by_invite: true,
+              creator: current_user,
+              modifier: current_user
+            )
+            @user = User.create!(user_attributes)
+            @user.user_profile.update(locale: form.locale)
+            AuditLogModule.audit!(
+              :create, user, user: current_user, campaign: campaign, payload: form.attributes
+            )
+          end
         end
         @campaign_user = campaign.campaign_users.create(
           user: user, active: form.active, schedule_start_date: form.schedule_start_date,

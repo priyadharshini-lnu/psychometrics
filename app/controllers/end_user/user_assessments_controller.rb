@@ -33,7 +33,7 @@ class EndUser::UserAssessmentsController < ApplicationController
     lang = params[:lang] || @user_assessment.selected_locale || user_locale
     if @current_project.available_locales.include?(lang.to_s)
       cookies[:locale] = lang
-      current_user&.update_column(:locale, lang)
+      current_user&.user_profile&.update(locale: lang)
     end
     set_locale
 
@@ -48,7 +48,7 @@ class EndUser::UserAssessmentsController < ApplicationController
     lang = params[:lang] || @user_assessment.selected_locale || user_locale
     if @current_project.available_locales.include?(lang.to_s)
       cookies[:locale] = lang
-      current_user&.update_column(:locale, lang)
+      current_user&.user_profile&.update(locale: lang)
     end
     set_locale
 

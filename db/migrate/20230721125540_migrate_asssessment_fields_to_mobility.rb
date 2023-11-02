@@ -1,3 +1,7 @@
+class Assessment < ApplicationRecord
+  extend Mobility
+end
+
 class MigrateAsssessmentFieldsToMobility < ActiveRecord::Migration[7.0]
   def change
     Assessment.find_each do |t|

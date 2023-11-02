@@ -140,16 +140,14 @@ class User < ApplicationRecord
   before_save :ensure_authentication_token
   before_save do
     self.email = email.downcase
-    self.locale = locale.presence
   end
 
   after_create :create_user_profile
 
-  mount_uploader :photo, Public::ImageUploader
-
   has_one_time_password(encrypted: true)
 
   delegate :subdomain, to: :project, allow_nil: true
+  delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
 
   def last_workshop_subject(campaign_id)
     workshops ||= WorkshopSubject.where(

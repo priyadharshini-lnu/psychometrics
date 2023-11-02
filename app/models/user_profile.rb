@@ -13,6 +13,9 @@ class UserProfile < ApplicationRecord
   enum gender: { male: 0, female: 1, not_disclosed: 2 }
 
   before_save :set_age_updated_at, if: :age_changed?
+  before_save do
+    self.locale = locale.presence
+  end
 
   belongs_to :user
 

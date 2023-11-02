@@ -8,7 +8,6 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
   let!(:workshop_invite) { create(:workshop_invite) }
   let!(:workshop_invite_id) { workshop_invite.id }
   let!(:campaign_id) { workshop_invite.campaign_id }
-  let(:'filter[workshop_invite_campaign_id_eq]') { workshop_invite.campaign_id.to_s }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
   let(:user) { create(:user) }
 
@@ -24,7 +23,6 @@ describe Api::V2::Administration::WorkshopInvitedSubjectsController, swagger_doc
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :campaign_id, in: :path, type: :string, required: true
-      parameter name: :'filter[workshop_invite_campaign_id_eq]', in: :query, required: true
 
       response '200', 'WorkshopInvitedSubject list' do
         schema '$ref' => '#/components/schemas/WorkshopInvitedSubjectListResponse'

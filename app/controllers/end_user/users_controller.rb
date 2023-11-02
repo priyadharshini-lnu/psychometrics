@@ -53,7 +53,7 @@ class EndUser::UsersController < ApplicationController
   def change_locale
     cookies[:locale] = params[:locale] if @current_project.available_locales.include?(params[:locale])
     set_locale
-    current_user&.update_column(:locale, I18n.locale)
+    current_user&.user_profile&.update(locale: I18n.locale)
   end
 
   def update_details

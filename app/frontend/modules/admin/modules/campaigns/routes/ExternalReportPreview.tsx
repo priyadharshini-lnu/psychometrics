@@ -69,7 +69,7 @@ const ExternalReportPreviewComponent: FC<Props> = ({
               link: state => (reportLoadingInProgress
                 ? ''
                 // eslint-disable-next-line max-len
-                : `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/users/${userReport.userId}`
+                : `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/users/${userReport.userId}`
               ),
               label: () => userReport.userEmail,
             }, {

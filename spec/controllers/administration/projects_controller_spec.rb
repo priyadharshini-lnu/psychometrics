@@ -9,7 +9,8 @@ RSpec.describe Administration::ProjectsController, type: :controller do
   after(:each) { sign_out(current_user) }
 
   it 'POST search_users' do
-    create(:user, email: 'atanych@gmail.com', project: project)
+    user = create(:user, email: 'atanych@gmail.com', project: project)
+    user.user_profile.update(locale: 'en')
     post :search_users, params: {
       id: project.id,
       q: 'atanych'
@@ -18,5 +19,6 @@ RSpec.describe Administration::ProjectsController, type: :controller do
     parsed_response = JSON.parse(response.body)
 
     expect(parsed_response.first['email']).to eq('atanych@gmail.com')
+    expect(parsed_response.first['locale']).to eq('en')
   end
 end
