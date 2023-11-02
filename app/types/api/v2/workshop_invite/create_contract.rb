@@ -12,11 +12,6 @@ module Api
           if value.count.zero?
             key.failure(:filled?)
           end
-          if value.count > ::WorkshopInvite::RESTRICTED_ASSESSMENT_CENTERS
-            key.failure(text:
-              I18n.t('dry_errors.errors.exceeded_workshops_count',
-                     count: ::WorkshopInvite::RESTRICTED_ASSESSMENT_CENTERS))
-          end
         end
 
         rule(data: { attributes: :subjects }) do

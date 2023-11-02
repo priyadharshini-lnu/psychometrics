@@ -1779,7 +1779,6 @@ en:
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
-      exceeded_workshops_count: You can only add %{count} assessment centers per invite
       filled?: can't be blank
       json?: Should be valid JSON
       key?: can't be blank
