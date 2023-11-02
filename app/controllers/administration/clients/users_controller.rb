@@ -142,7 +142,7 @@ module Administration
           resource.user.update_column(:spoof_token, spoof_token)
           redirect_url = root_url(domain: Settings.domain, subdomain: project.try(:subdomain), spoof_token: spoof_token)
         end
-        redirect_url ||= administration_root_path
+        redirect_url ||= admin_path
         flash.now[:success] = t('.successfully', name: resource.decorate.display_name)
         redirect_to redirect_url, allow_other_host: true
       end

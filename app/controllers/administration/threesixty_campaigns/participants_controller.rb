@@ -51,7 +51,7 @@ module Administration
             spoof_token: spoof_token
           )
         end
-        redirect_url ||= administration_root_path
+        redirect_url ||= admin_path
         # flash.now[:success] = t('.successfully', name: user.decorate.display_name)
         redirect_to redirect_url, allow_other_host: true
       end

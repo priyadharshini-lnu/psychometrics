@@ -109,7 +109,7 @@ class Administration::UsersController < Administration::BaseController
 
   def login_as_other_admin
     redirect_url = if resource.is?(:client_admin, :project_admin, :campaign_admin)
-                     administration_root_path
+                     admin_path
                    elsif resource.assessors.exists?
                      assessors_dashboard_path
                    else
