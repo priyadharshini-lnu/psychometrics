@@ -3559,6 +3559,38 @@ ALTER SEQUENCE public.reports_pages_id_seq OWNED BY public.reports_pages.id;
 
 
 --
+-- Name: roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.roles (
+    id bigint NOT NULL,
+    name character varying,
+    description text,
+    client_id bigint,
+    permissions jsonb
+);
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
+
+
+--
 -- Name: saml_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4931,6 +4963,16 @@ ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
 
 
 --
+-- Name: users_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users_roles (
+    user_id bigint NOT NULL,
+    role_id bigint NOT NULL
+);
+
+
+--
 -- Name: webhook_event_logs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5992,6 +6034,13 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: roles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
+
+
+--
 -- Name: saml_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7044,6 +7093,14 @@ ALTER TABLE ONLY public.reports_pages
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
 
 
 --
@@ -8826,6 +8883,20 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 
 
 --
+-- Name: index_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_roles_on_client_id ON public.roles USING btree (client_id);
+
+
+--
+-- Name: index_roles_on_name_and_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_roles_on_name_and_client_id ON public.roles USING btree (name, client_id);
+
+
+--
 -- Name: index_saml_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9358,6 +9429,20 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_users_roles_on_role_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_roles_on_role_id ON public.users_roles USING btree (role_id);
+
+
+--
+-- Name: index_users_roles_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_roles_on_user_id ON public.users_roles USING btree (user_id);
+
+
+--
 -- Name: index_webhook_event_logs_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9730,6 +9815,14 @@ ALTER TABLE ONLY public.mindmill_credentials
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT fk_rails_09d354f20c FOREIGN KEY (modified_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: roles fk_rails_0a0c2d3429; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT fk_rails_0a0c2d3429 FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -10194,6 +10287,14 @@ ALTER TABLE ONLY public.threesixty_instruction_template_translations
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_4a3b56dde9 FOREIGN KEY (user_report_id) REFERENCES public.user_reports(id) ON DELETE CASCADE;
+
+
+--
+-- Name: users_roles fk_rails_4a41696df6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_roles
+    ADD CONSTRAINT fk_rails_4a41696df6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -11221,6 +11322,14 @@ ALTER TABLE ONLY public.assigns_reports
 
 
 --
+-- Name: users_roles fk_rails_eb7b4658f8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_roles
+    ADD CONSTRAINT fk_rails_eb7b4658f8 FOREIGN KEY (role_id) REFERENCES public.roles(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: user_report_events fk_rails_eb9cac4a43; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11975,6 +12084,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231006103234'),
 ('20231017110648'),
 ('20231020065639'),
-('20231030120937');
+('20231030120937'),
+('20231101104312');
 
 
