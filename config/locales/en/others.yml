@@ -2490,12 +2490,14 @@ en:
       select: Select Report
   reports:
     actions:
+      add: Add Report
       archived:
         success_message: Report %{name} archived successfully
       back_to_campaign: Back to Campaign
       copy:
         success_message: Report %{name} coppied successfully
       details: Details
+      download: Download report
       download_csv: Download CSV
       edit: Edit
       evaluate: Evaluate
@@ -2515,6 +2517,7 @@ en:
         success_message: Report %{name} restored successfully
       unarchived:
         success_message: Report %{name} unarchived successfully
+      view: View Report
     active: Active
     archived: Archived
     builder:
