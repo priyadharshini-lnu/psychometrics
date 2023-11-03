@@ -20,12 +20,7 @@ module Communications
           end
 
           def magic_url
-            Utility::Url.generate(
-              :users_sign_in_link_url,
-              id: user.id,
-              subdomain: user.subdomain,
-              user: { email: user.email, token: user.encode_passwordless_token, remember_me: false }
-            )
+            user.authenticated_sign_in_url
           end
 
           def magic_link

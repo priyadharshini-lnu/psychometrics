@@ -150,6 +150,15 @@ class User < ApplicationRecord
 
   delegate :subdomain, to: :project, allow_nil: true
 
+  def authenticated_sign_in_url
+    Utility::Url.generate(
+      :users_sign_in_link_url,
+      id: id,
+      subdomain: subdomain,
+      user: { email: email, token: encode_passwordless_token, remember_me: false }
+    )
+  end
+
   def last_workshop_subject(campaign_id)
     workshops ||= WorkshopSubject.where(
       user_id: id,

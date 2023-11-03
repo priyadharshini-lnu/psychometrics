@@ -1451,6 +1451,7 @@ en:
       create: Create
       delete: Delete
       edit: Edit
+      export: Export
       import: Import
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
@@ -3254,6 +3255,9 @@ en:
         add_with_existing_response: Add user with existing response
         skip_existing: Skip existing user
     modals:
+      exports:
+        export_sign_in_url: Export with magic sign in URL
+        title: Export Users
       import:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
         imported_users: 'The number of imported users: %{number}'
