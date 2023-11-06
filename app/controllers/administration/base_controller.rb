@@ -61,7 +61,8 @@ module Administration
           ).to_h
         },
         config: {
-          availableLocales: I18n.available_locales
+          availableLocales: I18n.available_locales,
+          features: feature_flags
         }
       }
     end
