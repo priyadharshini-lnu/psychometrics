@@ -8,7 +8,7 @@ import { MoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { fetchOtherAssessments, getOther } from '~/modules/admin/modules/campaigns/core/assessments'
 import {
-  activateUniversalLink, rescoreResponses, remove, exportRawResults, exportScoringResults,
+  rescoreResponses, remove, exportRawResults, exportScoringResults,
   exportNormedResults, exportRawFactorScores, exportExternalResults,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -32,7 +32,6 @@ const connector = connect(
   {
     fetchOtherAssessments,
     openModal,
-    activateUniversalLink,
     rescoreResponses,
     remove,
     exportRawResults,

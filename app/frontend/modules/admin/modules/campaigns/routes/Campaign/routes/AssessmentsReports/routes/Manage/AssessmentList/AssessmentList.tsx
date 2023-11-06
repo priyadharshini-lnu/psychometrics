@@ -33,7 +33,6 @@ const AssessmentList: React.FC<Props> = ({
   },
   match: { params: { projectId, campaignId } },
   openModal,
-  activateUniversalLink,
   rescoreResponses,
   exportRawResults,
   exportScoringResults,
@@ -43,6 +42,7 @@ const AssessmentList: React.FC<Props> = ({
   updateExternalConfig,
   updatePrework,
   updateWorkshopActivity,
+  enableUniversalLink,
   toggleRequireScheduling,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
@@ -150,29 +150,30 @@ const AssessmentList: React.FC<Props> = ({
             render={({
               enableUniversalLinks, universalLink, id, isExternal, allowMultipleResponses,
             }) => {
-              if (enableUniversalLinks && !isExternal) {
+              if (isExternal) {
                 return (
-                  <a
-                    onClick={
-                      () => openModal('UniversalLinkModal',
-                        {
-                          projectId: parsedProjectId,
-                          campaignId: parsedCampaignId,
-                          campaignAssessmentId: id,
-                          universalLink,
-                          allowMultipleResponses,
-                          manageUniversalLink: permissions.enableUniversalLink,
-                        })
-                    }
-                  >
-                    {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
-                  </a>
+                  I18n.t('common.text.na')
                 )
               }
+
+              const open = () => {
+                openModal('UniversalLinkModal',
+                  {
+                    projectId: parsedProjectId,
+                    campaignId: parsedCampaignId,
+                    campaignAssessmentId: id,
+                    universalLink,
+                    enableUniversalLinks,
+                    allowMultipleResponses,
+                    manageUniversalLink: permissions.enableUniversalLink,
+                  })
+              }
               return (
-                permissions.enableUniversalLink && !isExternal ? (
-                  <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
-                ) : I18n.t('common.text.na')
+                enableUniversalLinks ? (
+                  <a onClick={open}>
+                    {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
+                  </a>
+                ) : <a onClick={() => enableUniversalLink(campaignId, id).then(open)}>{I18n.t('frontend.activate')}</a>
               )
             }}
           />

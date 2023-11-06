@@ -3276,11 +3276,15 @@ en:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
+    active: Active
     allow_multiple_respones: Allow users to submit multiple responses
+    are_you_sure: Are you sure? This will make the existing URL unusable.
     close: Close
     deactivate_link: Deactivate Link
     png: PNG
     regenerate_link: Regenerate Link
+    save: Save
+    successfully_generated: Successfully generated
     successfully_updated: Successfully updated
     svg: SVG
   update_profile:

@@ -277,10 +277,10 @@ Rails.application.routes.draw do
           end
         end
 
-        resources :universal_links, only: %i[show update destroy] do
+        resources :universal_links, only: %i[show update] do
           member do
-            put :toggle_multiple_responses
-            post :activate
+            put :enable
+            put :regenerate
           end
         end
         resources :assessments, only: %i[create destroy] do
