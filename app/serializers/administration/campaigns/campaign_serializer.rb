@@ -52,7 +52,8 @@ module Administration
             'view_assessors',
             'view_workshops',
             'view_workshop_invites',
-            'stats'
+            'stats',
+            'pdf_password'
           ],
           {
             project_id: project.id,

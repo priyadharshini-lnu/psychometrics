@@ -216,6 +216,10 @@ module Administration
       can_manage_campaign?
     end
 
+    def pdf_password?
+      @user.is?(:superadmin)
+    end
+
     private
 
     def can_manage_campaign?

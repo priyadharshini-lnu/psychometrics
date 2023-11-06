@@ -899,6 +899,7 @@ en:
             allow_wrong_gaze_direction: Allow wrong gaze direction
           rules: Rules
           trial: Proctoring Trial
+      pdf_password: PDF Password
       users:
         completion_status: Completion Status
         created_by: Created By

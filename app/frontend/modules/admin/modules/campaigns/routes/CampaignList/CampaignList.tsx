@@ -46,11 +46,13 @@ import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormM
 import RemoveCampaignModal from './RemoveCampaignModal'
 import CommonCampaignFormModal from './CommonCampaignFormModal'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
+import { PDFPasswordModal } from './PDFPasswordModal'
 
 const MODALS = {
   CommonCampaignFormModal,
   ThreesixtyCampaignFormModal,
   RemoveCampaignModal,
+  PDFPasswordModal,
 }
 
 const { I18n } = window
@@ -99,6 +101,10 @@ const CampaignListComponent: React.FC<Props> = ({
   useEffect(() => {
     fetch(projectId, tableConfig)
   }, [tableConfig])
+
+  const showPDFPasswordModal = (campaignId: number) => {
+    openModal('PDFPasswordModal', { projectId, campaignId })
+  }
 
   return (
     <div>
@@ -233,6 +239,7 @@ const CampaignListComponent: React.FC<Props> = ({
                           campaign,
                         })
                       },
+                      showPDFPasswordModal,
                       campaign,
                     }) as React.ReactElement
                   }
@@ -289,12 +296,14 @@ interface ActionMenuProps {
   onEdit(): void
   onDelete(): void
   campaign: Campaign
+  showPDFPasswordModal: (campaignId: number) => void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   onEdit,
   onDelete,
   campaign,
+  showPDFPasswordModal,
 }) => {
   const { permissions } = campaign
 
@@ -312,12 +321,20 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     label: 'Delete',
   })
 
+  permissions.pdfPassword && menuItems.push({
+    key: 'pdfPassword',
+    label: I18n.t('administration.campaigns.pdf_password'),
+  })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'edit') {
       return onEdit()
     }
     if (key === 'delete') {
       return onDelete()
+    }
+    if (key === 'pdfPassword') {
+      return showPDFPasswordModal(campaign.id)
     }
   }
 
