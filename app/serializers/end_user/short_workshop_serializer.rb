@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class ShortWorkshopSerializer < Panko::Serializer
+  class ShortWorkshopSerializer < ActiveModel::Serializer
     attributes :id, :start_time, :meeting_link, :attended, :closed
 
     def meeting_link
@@ -23,7 +23,7 @@ module EndUser
     end
 
     def current_user
-      context[:current_user]
+      instance_options[:current_user]
     end
   end
 end

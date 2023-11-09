@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class CampaignUserSerializer < Panko::Serializer
+  class CampaignUserSerializer < ActiveModel::Serializer
     attributes :id, :started_at, :status, :expiry_date, :examus_session_url, :all_preworks_completed
 
     def all_preworks_completed
@@ -17,7 +17,7 @@ module EndUser
     end
 
     def examus_session_url
-      context[:examus_session_url]
+      instance_options[:examus_session_url]
     end
   end
 end

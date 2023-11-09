@@ -19,12 +19,7 @@ module EndUser
       respond_to do |format|
         format.html { render 'campaigns/show' }
         format.json do
-          serializer = EndUser::CampaignSerializer.new(
-            context: { current_user: current_user,
-                       include: '**' }
-          )
-
-          render json: serializer.serialize(@campaign)
+          render json: ::EndUser::CampaignSerializer.new(@campaign, current_user: current_user, include: '**').to_h
         end
       end
     end

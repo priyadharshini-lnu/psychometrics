@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class CampaignOptionsSerializer < Panko::Serializer
+  class CampaignOptionsSerializer < ActiveModel::Serializer
     attributes :fixed_time, :time_zone, :fixed_time_duration, :instructions_enabled, :instructions,
                :proctoring_enabled, :identification, :rules, :integration_type,
                :workshop_booking_requires_prework_completion
