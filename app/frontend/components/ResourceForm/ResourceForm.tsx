@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ReactElement } from 'react'
+import React, { useState, useEffect, ReactNode } from 'react'
 import { Form, message, Alert } from 'antd'
 import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
@@ -30,7 +30,7 @@ interface JSONApiError {
   detail?: string
 }
 
-type ChildrenProps = {
+export type ChildrenProps = {
   form: FormInstance, status: string | null, isEdit: boolean, fieldsUtil: FieldsUtil
 }
 
@@ -54,7 +54,7 @@ export type OwnProps = {
     fields?: FieldData[],
     setFields?(fields: object): void
   }
-  children(props: ChildrenProps): ReactElement | React.FC
+  children(props: ChildrenProps): ReactNode
   scrollToFirstError?: boolean
   mockRequest?: boolean
   nullifyEmptyString?: boolean

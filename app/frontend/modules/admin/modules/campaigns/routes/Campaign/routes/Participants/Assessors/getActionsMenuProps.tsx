@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   MenuProps, Modal, message,
 } from 'antd'

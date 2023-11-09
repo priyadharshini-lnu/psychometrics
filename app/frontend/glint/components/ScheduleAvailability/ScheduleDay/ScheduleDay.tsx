@@ -8,7 +8,6 @@ import {
 } from '@ant-design/icons'
 
 import cs from 'classnames'
-
 import moment from 'moment'
 import {
   allMinutes,
@@ -205,7 +204,7 @@ export const ScheduleDay:FC<Props> = ({
       {errorMessages?.base && (
       <Row className="mb-3" style={{ marginTop: '-8px' }}>
         <Col span={18} offset={6}>
-          <Typography.Text type="danger">{errorMessages.base}</Typography.Text>
+          <Typography.Text type="danger">{errorMessages.base as unknown as string}</Typography.Text>
         </Col>
       </Row>
       )}

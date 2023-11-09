@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {
   Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button, message,

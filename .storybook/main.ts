@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   "stories": [
     "../stories/**/*.stories.mdx",
     "../stories/**/*.stories.@(js|jsx|ts|tsx)"
@@ -8,9 +8,11 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions"
   ],
-  "framework": "@storybook/react",
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
+  },
   core: {
-    disableTelemetry: true,
-    enableCrashReports: false
+    builder: '@storybook/builder-vite',
   }
 }

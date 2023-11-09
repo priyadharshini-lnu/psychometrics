@@ -16,13 +16,13 @@
     "coveralls": "coveralls < coverage/lcov.info",
     "types": "tsc",
     "heroku-cleanup": "if test \"$CLEAN_NODE_MODULES\" = \"enabled\" ; then cd node_modules && find . -type d -maxdepth 1 -not -name puppeteer -exec rm -rf {} \\; && cd puppeteer && yarn install ; fi",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "NODE_OPTIONS=--max-old-space-size=8192 storybook build",
     "prepare": "husky install",
     "mockApi": "mocker config/mocker/index.cjs --port ${MOCK_SERVER_API_PORT:-'3037'}"
   },
   "engines": {
-    "node": ">=14.15.1 <15.0.0"
+    "node": ">=18.16.1"
   },
   "repository": {
     "type": "git",
@@ -51,6 +51,7 @@
     "@rc-component/tour": "^1.10.0",
     "@sentry/react": "^6.3.5",
     "@sentry/rrweb": "^0.3.1",
+    "@storybook/builder-vite": "^7.0.12",
     "@thetalententerprise/interactive-assessments": "1.9.1",
     "@thetalententerprise/jsonapi-react": "0.0.29",
     "@types/actioncable": "^5.2.7",
@@ -183,6 +184,13 @@
   },
   "devDependencies": {
     "@babel/eslint-plugin": "^7.14.5",
+    "@storybook/addon-essentials": "^7.0.12",
+    "@storybook/addon-interactions": "^7.0.12",
+    "@storybook/addon-links": "^7.0.12",
+    "@storybook/blocks": "^7.0.12",
+    "@storybook/react": "^7.0.12",
+    "@storybook/react-vite": "^7.0.12",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@testing-library/dom": "^8.2.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^11.2.7",
@@ -205,6 +213,7 @@
     "eslint": "^8.49.0",
     "eslint-plugin-jest-dom": "^4.0.3",
     "eslint-plugin-react": "^7.32.1",
+    "eslint-plugin-storybook": "^0.6.12",
     "eslint-plugin-testing-library": "^5.10.0",
     "husky": "^8.0.3",
     "i18n-js": "^3.8.0",
@@ -212,6 +221,7 @@
     "jest": "^29.5.0",
     "mocker-api": "^2.9.5",
     "rollup-plugin-visualizer": "^5.9.0",
+    "storybook": "^7.0.12",
     "ts-jest": "^29.0.5",
     "typescript": "4.7.2",
     "vite-plugin-svgr": "^2.4.0"
@@ -234,7 +244,7 @@
     "lodash": "^4.17.21",
     "antd/moment": "^2.29.4",
     "antd/rc-picker/moment": "^2.29.4",
-    "node-fetch": ">=2.6.7",
+    "node-fetch": "2.6.7",
     "kind-of": "6.0.3",
     "babel-jest/**/browserslist": "4.16.5",
     "ansi-regex": "^5.0.1",
@@ -249,6 +259,11 @@
       {
         "calc": false
       }
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
     ]
   }
 }

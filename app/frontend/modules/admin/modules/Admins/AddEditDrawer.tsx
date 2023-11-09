@@ -432,7 +432,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                     : (
                       <Checkbox.Group className={styles.grants_checkbox_group}>
                         {_.map(grants, grant => (
-                          _.get(currentUserGrants, grantFor, []).includes(grant) && (
+                          _.get(currentUserGrants, grantFor, [] as unknown[]).includes(grant) && (
                           <Checkbox value={grant} key={grant as string}>
                             {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
                           </Checkbox>

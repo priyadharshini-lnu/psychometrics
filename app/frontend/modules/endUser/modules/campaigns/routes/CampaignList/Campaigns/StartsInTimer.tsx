@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import moment from 'moment'
 import { Descriptions, Space } from 'antd'
 import { ClockCircleOutlined, LoadingOutlined } from '@ant-design/icons'

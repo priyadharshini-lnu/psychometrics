@@ -15,7 +15,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { isRequestInProgress } from '~/core/request'
 
-const connecter = connect(
+export const connecter = connect(
   (state: RootState) => ({
     user: getCurrentUser(state),
     proctoringSessions: getProctoringSessions(state).list,
@@ -34,5 +34,3 @@ const connecter = connect(
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
-
-export default connecter

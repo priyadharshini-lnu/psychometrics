@@ -1,4 +1,4 @@
-import React, { useState, FC, useEffect } from 'react'
+import { useState, FC, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Link as RouterLink } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
