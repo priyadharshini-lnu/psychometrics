@@ -13,6 +13,7 @@ class EndUser::UsersController < ApplicationController
   end
 
   def dashboard
+    # rubocop:disable Metrics/BlockLength
     respond_to do |format|
       format.html do
         render 'end_user/users/dashboard'
@@ -27,7 +28,15 @@ class EndUser::UsersController < ApplicationController
                     includes(:threesixty_campaign, { campaign_options: :translations }).group_by(&:type)
 
         json = []
-        json.concat(serializer_campaign(campaigns['common'], ::EndUser::ShortCampaignSerializer)) if campaigns['common']
+        if campaigns['common']
+          json.concat(
+            Panko::ArraySerializer.new(
+              campaigns['common'],
+              each_serializer: EndUser::ShortCampaignSerializer,
+              context: { current_user: current_user }
+            ).to_a
+          )
+        end
 
         if campaigns['threesixty']
           json.concat(serializer_campaign(campaigns['threesixty'].map(&:threesixty_campaign),
@@ -37,6 +46,7 @@ class EndUser::UsersController < ApplicationController
         render json: json
       end
     end
+    # rubocop:enable Metrics/BlockLength
   end
 
   def policy

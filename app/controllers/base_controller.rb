@@ -15,6 +15,15 @@ class BaseController < ActionController::Base
 
   rescue_from Rack::Timeout::RequestTimeoutException, with: :timeout
   rescue_from ActionController::InvalidAuthenticityToken, with: :handle_invalid_authenticity_token
+  rescue_from PankoOverride::Exceptions::Base, with: :panko_exception_handler
+
+  def panko_exception_handler(e)
+    Sentry.capture_exception(e)
+    Rails.logger.error(e.message)
+
+    render json: { type: e.class.name, message: e.message, meta: e.meta, exception: true },
+           status: :internal_server_error
+  end
 
   def change_password_required_path_for(_)
     if current_user.is?(:regular)

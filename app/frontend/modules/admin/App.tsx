@@ -11,6 +11,7 @@ import store, { history } from '~/modules/admin/store'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { Schema } from '~/libs/jsonApi/schema'
 import { PortalMenu } from '~/components/MainMenu'
+import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
@@ -28,6 +29,7 @@ const App: React.FC<void> = () => (
               <PortalMenu />
               <AdminLayout />
               <IncorrectResponseErrorModal />
+              <DisplayExceptionModal />
             </ConnectedRouter>
           </Router>
         </DndProvider>

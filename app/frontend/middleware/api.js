@@ -8,6 +8,7 @@ import { PathReporter } from 'io-ts/PathReporter'
 import { LOADING, LOADING_COMPLETE, setResponseDataMismatched } from '~/core/request'
 import { setIn } from '~/utils/immutable'
 import { camelizeKeys } from '~/utils/object'
+import { isLiveEnvironment } from '~/utils/isLiveEnvironment'
 
 const debounceTimers = {}
 const buildUrl = ({
@@ -99,7 +100,7 @@ const apiMiddleware = () => next => (action) => {
     .then(({ data, headers }) => {
       if (responseType === 'blob') { downloadFile(data, headers) }
       const transformedData = camelize ? camelizeKeys(data, { except: camelizeExcept, only: camelizeOnly }) : data
-      if (!window.PsyGlobalState.realEnv.startsWith('production') && !validResponseData({
+      if (!isLiveEnvironment() && !validResponseData({
         typedResponse, transformedData, requestName: SUCCESS, next,
       })) {
         return next({ type: FAILURE, errors: {} })

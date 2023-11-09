@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class CampaignSerializer < ActiveModel::Serializer
+  class CampaignSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
@@ -10,20 +10,17 @@ module EndUser
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
-    has_many :groups, serializer: ::EndUser::GroupSerializer
-    has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
-    has_one :workshop_invite, serializer: ::EndUser::WorkshopInviteSerializer
-    has_one :workshop, serializer: ::EndUser::ShortWorkshopSerializer
 
     def workshop_invite
-      WorkshopInvite.joins(:workshop_invited_subjects).where(
+      workshop_invite_record = object.workshop_invites.joins(:workshop_invited_subjects).where(
         workshop_invited_subjects: { user_id: current_user.id, status: :pending },
         campaign_id: object.id
       ).order(:created_at).last
+      EndUser::WorkshopInviteSerializer.new(workshop_invite_record).serializable_hash
     end
 
     def workshop
-      Workshop.visible_to_end_user(current_user.id).last
+      EndUser::ShortWorkshopSerializer.new(Workshop.visible_to_end_user(current_user.id)).last.serializable_hash
     end
 
     def privacy_consent_required
@@ -46,7 +43,8 @@ module EndUser
     end
 
     def groups
-      object.campaign_assessment_groups.order(:position).includes(:campaign_assessments)
+      group_records = object.campaign_assessment_groups.order(:position).includes(:campaign_assessments)
+      Panko::ArraySerializer.new(group_records, each_serializer: ::EndUser::GroupSerializer).to_a
     end
 
     def user_assessments
@@ -81,7 +79,7 @@ module EndUser
     private
 
     def current_user
-      @current_user ||= instance_options[:current_user]
+      @current_user ||= context[:current_user]
     end
   end
 end

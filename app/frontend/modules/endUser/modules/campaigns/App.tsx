@@ -14,6 +14,7 @@ import { MAX_PAGE_LOAD_WAIT_TIME } from '~/constants/time'
 import { GlintProvider, withLoadingSpinner } from '~/glint'
 import routes from './routes'
 import './styles.less'
+import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 
 const { antdLocale, I18n } = window
 
@@ -51,6 +52,7 @@ function App () {
                 <Route key={i} path={route.path} exact={route.exact} component={route.main} />
               ))}
             </UserPageLayout>
+            <DisplayExceptionModal />
           </ConnectedRouter>
           <IncorrectResponseErrorModal />
         </GlintProvider>

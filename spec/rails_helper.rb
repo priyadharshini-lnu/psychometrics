@@ -18,6 +18,9 @@ require 'webmock/rspec'
 require 'savon/mock/spec_helper'
 require 'redlock/testing'
 
+require Rails.root.join('spec/fixtures/models/base_resource.rb')
+Dir[Rails.root.join('spec/fixtures/**/*.rb')].each { |file| require file }
+
 Redlock::Client.testing_mode = :bypass
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
