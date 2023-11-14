@@ -57,7 +57,7 @@ module ApplicationHelper
   def admin_dashboard_path
     return assessors_dashboard_path if current_user.is?(:assessor)
 
-    administration_root_path
+    admin_path
   end
 
   def show_maintenance_alert?

@@ -17,7 +17,7 @@ module Administration
       # Redirect administrator after log in
       #
       def after_sign_in_path_for(_resource)
-        administration_root_path
+        admin_path
       end
     end
   end
