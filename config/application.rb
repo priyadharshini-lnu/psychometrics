@@ -52,10 +52,7 @@ module Psychometrics
     ).to_s
 
     config.to_prepare do
-      ActiveStorage::Blob # rubocop:disable Lint/Void
       ActiveStorage::Attachment.prepend ActiveStorageCreateVariant
-      ActiveStorage::Attachment.include ActiveStorageVariants
-      ActiveStorage::Blob.include ActiveStorageVariants
 
       Devise::Mailer.layout 'mailer/layouts/end_user_email'
 
@@ -67,6 +64,7 @@ module Psychometrics
     end
 
     config.middleware.use(Middlewares::SetLocaleMiddleware)
+
     config.action_controller.raise_on_open_redirects = false
 
     # Settings in config/environments/* take precedence over those specified here.
