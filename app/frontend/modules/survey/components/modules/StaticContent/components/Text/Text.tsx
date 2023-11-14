@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react'
 
 import HighlightList from '~/modules/survey/views/Preview/StaticContent/HighlightList'
-import { Highlight } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
+import { Highlight, Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { SafeHTML } from '~/components/SafeHTML'
 
 interface Props {
-  model: object
+  model: Question
   className: string
   highlight: Highlight
   updateHighlight: (highlight: Highlight, data: object) => void
@@ -17,6 +17,7 @@ interface Props {
 const Text: React.FC<Props> = ({
   model, className, I18n, highlight, updateHighlight,
 }) => {
+  const { allowContentCopy = false } = model.props
   const contentRef = useRef(null)
 
   const [selection, setSelection] = useState<Range | null>(null)
@@ -30,12 +31,14 @@ const Text: React.FC<Props> = ({
 
   return (
     <>
+      {!allowContentCopy && (
       <HighlightList
         highlight={highlight}
         contentRef={contentRef}
         selection={selection}
         updateHighlight={updateHighlight}
       />
+      )}
       <SafeHTML
         className={className}
         html={I18n.tQuestion(model, 'questionText')}
