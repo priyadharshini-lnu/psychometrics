@@ -9,7 +9,7 @@ module Api
 
     def spoof
       sign_in(@_resource.user)
-      redirect_url ||= administration_root_path
+      redirect_url ||= admin_path
       flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
       redirect_to redirect_url
     end

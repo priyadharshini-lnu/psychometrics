@@ -3,28 +3,21 @@
 module ActiveStorageAttachable
   extend ActiveSupport::Concern
 
-  # rubocop:disable Style/ClassVars
+  DEFAULT_VARIANTS = {
+    thumb: { resize_to_fill: [50, 50] },
+    small: { resize_to_fill: [150, 150] },
+    medium: { resize_to_fill: [350, 350] },
+    icon: { resize_to_fit: [50, 50] }
+  }.freeze
+
   # rubocop:disable Metrics/BlockLength
   # rubocop:disable Naming/PredicateName
   class_methods do
-    @@attachment_variants ||= Hash.new([])
-
-    # TODO: refactor after rails 7 update
-    # NOTE: rails 7 has possibility to create pre-defined variants oob
-    def has_one_attachment(
-      attribute,
-      content_type: nil,
-      service: Settings.storage.public_storage_service,
-      variants: nil
-    )
-      # declaring :has_one_attached
+    def has_one_attachment(attribute, content_type: nil, service: Settings.storage.public_storage_service)
       has_one_attached attribute, service: service
 
       # validating allowed content_types
       validates attribute, content_type: content_type if content_type
-
-      # storing variants to pre-generate
-      @@attachment_variants[attribute] |= variants if variants
 
       # setting folder to store attachment on the storage
       generate_attachment_key_for attribute
@@ -36,22 +29,57 @@ module ActiveStorageAttachable
       service: Settings.storage.public_storage_service,
       variants: nil
     )
-      has_one_attachment(attribute, content_type: content_type, service: service, variants: variants)
+      has_one_attached attribute, service: service do |attachable|
+        attach_variants(attachable, variants)
+      end
+
+      validates attribute, content_type: content_type if content_type
+
+      # setting folder to store attachment on the storage
+      generate_attachment_key_for attribute
+
+      define_method "#{attribute}_url" do |variant|
+        send(attribute).variant(variant)&.processed&.url
+      end
     end
 
-    def has_many_attachments(
-      attribute,
-      content_type: nil,
-      service: Settings.storage.public_storage_service
-    )
-      # declaring :has_one_attached
+    def has_many_attachments(attribute, content_type: nil, service: Settings.storage.public_storage_service)
       has_many_attached attribute, service: service
 
-      # validating allowed content_types
-      validates attribute, content_type: content_type
+      validates attribute, content_type: content_type if content_type
 
       # setting folder to store attachment on the storage
       generate_attachments_keys_for attribute
+    end
+
+    def has_many_image_attachments(
+      attribute,
+      content_type: %w[jpg jpeg gif png bmp svg],
+      service: Settings.storage.public_storage_service,
+      variants: nil
+    )
+      has_many_attached attribute, service: service do |attachable|
+        attach_variants(attachable, variants)
+      end
+
+      validates attribute, content_type: content_type if content_type
+
+      # setting folder to store attachment on the storage
+      generate_attachments_keys_for attribute
+    end
+
+    private
+
+    def attach_variants(attachable, variants)
+      return if variants.blank?
+
+      variants.each do |variant|
+        attachable.variant(variant, DEFAULT_VARIANTS[variant])
+      end
+    end
+
+    def attachment_storage_path(attribute_name, filename)
+      raise NotImplementedError, 'Specify :attachment_storage_path directly on your model'
     end
 
     def generate_attachment_key_for(attribute)
@@ -93,14 +121,6 @@ module ActiveStorageAttachable
           )
         end
       end
-    end
-
-    def attachment_storage_path(attribute_name, filename)
-      raise NotImplementedError, 'Specify :attachment_storage_path directly on your model'
-    end
-
-    def attachment_variants
-      @@attachment_variants
     end
   end
 

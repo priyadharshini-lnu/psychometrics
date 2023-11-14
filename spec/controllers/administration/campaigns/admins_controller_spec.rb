@@ -40,7 +40,7 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
 
       get :spoof, params: { new_campaign_id: campaign_admin_membership.campaign_id, id: campaign_admin_membership.id }
 
-      expect(response).to redirect_to(administration_root_path)
+      expect(response).to redirect_to(admin_path)
     end
   end
 

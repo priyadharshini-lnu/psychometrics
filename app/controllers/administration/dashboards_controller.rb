@@ -6,6 +6,6 @@ class Administration::DashboardsController < Administration::BaseController
   def index
     authorize Dashboard, :index?, policy_class: Api::Administration::DashboardPolicy
 
-    redirect_to administration_root_path unless helpers.show_dashboard?
+    redirect_to admin_path unless helpers.show_dashboard?
   end
 end

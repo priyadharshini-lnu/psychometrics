@@ -149,8 +149,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   mount_uploader :icon, Public::ImageUploader
   mount_uploader :poster, Public::ImageUploader
 
-  has_one_image_attachment :as_icon, variants: [:icon]
-  has_one_image_attachment :as_poster, variants: [:icon]
+  has_one_image_attachment :as_icon, variants: [:thumb]
+  has_one_image_attachment :as_poster, variants: [:thumb]
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :icon, :poster

@@ -105,15 +105,6 @@ const AuditLogList: React.FC<Props> = ({
             </a>
           </Descriptions.Item>
         )}
-        {record.campaign && (
-          <Descriptions.Item label={I18n.t('administration.audit_log.campaign')}>
-            <a
-              href={`/administration/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
-            >
-              {record.campaign.name}
-            </a>
-          </Descriptions.Item>
-        )}
         <Descriptions.Item label={I18n.t('administration.audit_log.payload')}>
           <CodeMirror
             value={JSON.stringify(record.payload, null, 2)}
