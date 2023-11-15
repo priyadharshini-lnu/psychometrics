@@ -44,7 +44,16 @@ module Exports
         end
 
         def self.formatted_answers(user_result, question, answers)
-          answers = question.of_sub_type?('Chat') ? [answers.join("\r\n")] : answers.flatten
+          answers = if question.of_sub_type?('Chat')
+                      [answers.join("\r\n")]
+                    elsif question.of_sub_type?('Form')
+                      form_answers = answers[0] || []
+                      question.props['formTypes'].map.with_index do |form_type, i|
+                        form_type['name'] == 'MultiSelect' ? (form_answers[i] || []).join(', ') : form_answers[i]
+                      end
+                    else
+                      answers.flatten
+                    end
           answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
