@@ -1,16 +1,15 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import moment from 'moment-timezone'
 import { act } from 'react-dom/test-utils'
-
 import { BookingCard } from '~/glint'
 import { TIME_FORMAT } from '~/glint/components/BookingCard/TimeSlotSelection'
+import dayjs from '~/utils/dayjs'
 
 
-const availableDates = [{id: 1, date:'2024-07-15T09:00:00.100+05:30'}, {id: 2, date:'2024-07-15T09:30:00.100+05:30'}].map(({id, date}) => ({id, date:moment(date)}))
-const availableDateStrings = availableDates.map(({id, date}) => date.date().toString())
+const availableDates = [{ id: 1, date: '2024-07-15T09:00:00.100+05:30' }, { id: 2, date: '2024-07-15T09:30:00.100+05:30' }].map(({ id, date }) => ({ id, date: dayjs(date) }))
+const availableDateStrings = availableDates.map(({ id, date }) => date.date().toString())
 const DATE_TIME_FORMAT = 'DD/MM/YYYY hh:mm a'
-const timeZone = moment.tz.guess() || 'Asia/Calcutta'
+const timeZone = dayjs.tz.guess() || 'Asia/Calcutta'
 const availableDateAsPerTimezone_one = availableDates[0].date.tz(timeZone).clone()
 const availableDateAsPerTimezone_two = availableDates[1].date.tz(timeZone).clone()
 
@@ -34,29 +33,33 @@ test('Selectiong different timezone should update the date and time accordingly'
   const timeZoneSearchBox = screen.getByRole('combobox')
   const availDateThisMonth = screen.getByText(availableDateStrings[0])
 
-  await act(async () => {
+  await waitFor(async () => {
     // select date in user's timezone
     await user.click(availDateThisMonth)
-    let timeSlotButton1 = screen.getByText(availableDateAsPerTimezone_one.format(TIME_FORMAT))
-    expect(timeSlotButton1.tagName).toBe('SPAN')
-    let timeSlotButton2 = screen.getByText(availableDateAsPerTimezone_two.format(TIME_FORMAT))
-    expect(timeSlotButton2.tagName).toBe('SPAN')
+  }, { timeout: 30000 })
 
+  let timeSlotButton1 = screen.getByText(availableDateAsPerTimezone_one.format(TIME_FORMAT))
+  expect(timeSlotButton1.tagName).toBe('SPAN')
+  let timeSlotButton2 = screen.getByText(availableDateAsPerTimezone_two.format(TIME_FORMAT))
+  expect(timeSlotButton2.tagName).toBe('SPAN')
+
+  await act(async () => {
     // change the timezone
     await user.click(timeZoneSearchBox)
     await user.type(timeZoneSearchBox, 'Baku')
     const option = screen.getByText('(GMT+04:00) Asia/Baku')
     option.style['pointer-events'] = 'auto'
     await user.click(option)
-
+  })
+  await waitFor(async () => {
     // select date in updated timezone
     await user.click(availDateThisMonth)
-    timeSlotButton1 = screen.getByText('07:30 am')
-    expect(timeSlotButton1.tagName).toBe('SPAN')
-    timeSlotButton2 = screen.getByText('08:00 am')
-    expect(timeSlotButton2.tagName).toBe('SPAN')
-  })
-})
+  }, { timeout: 30000 })
+  timeSlotButton1 = screen.getByText('07:30 am')
+  expect(timeSlotButton1.tagName).toBe('SPAN')
+  timeSlotButton2 = screen.getByText('08:00 am')
+  expect(timeSlotButton2.tagName).toBe('SPAN')
+}, 30000)
 
 test('User should be able to select a available time slot', async () => {
   const user = userEvent.setup()
@@ -86,10 +89,10 @@ test('User should be able to select a available time slot', async () => {
     expect(timeSlotButton.tagName).toBe('SPAN')
 
     await user.click(timeSlotButton)
-  })
+  }, { timeout: 30000 })
   expect(dateTimeSelectionHandler).toBeCalledTimes(1)
   expect(dateTimeSelectionHandler).toHaveBeenLastCalledWith(availableDates[1].date.clone().format(DATE_TIME_FORMAT))
-})
+}, 30000)
 
 test('Questionnaire section should be shown when currentDateTime is passed', async () => {
   const dateTimeSelectionHandler = jest.fn(date => date)

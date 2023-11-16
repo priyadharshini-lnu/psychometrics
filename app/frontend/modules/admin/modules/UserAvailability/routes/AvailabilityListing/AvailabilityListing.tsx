@@ -4,7 +4,7 @@ import {
 import { BaseMeta } from 'hooks/useResources/interfaces'
 import { PlusOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { useResources } from '~/hooks/useResources'
 import {
   UserAvailabilityDate, UserAvailabilityDateTR,
@@ -29,7 +29,7 @@ export const AvailabilityListing = () => {
       responseType: UserAvailabilityDateTR,
       apiConfig: {
         include: ['user_availability_days'],
-        filter: { end_date_gteq: moment().format('YYYY-MM-DD') },
+        filter: { end_date_gteq: dayjs().format('YYYY-MM-DD') },
       },
     },
   )

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import cs from 'classnames'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Tag,
+  Layout, Button, Row, Col, Spin, Space, message, Affix, Dropdown, Tag,
 } from 'antd'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'

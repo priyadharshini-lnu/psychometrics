@@ -50,7 +50,8 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     })
   }, [])
 
-  const onFinish = (values) => {
+  const onFinish = () => {
+    const values = form.getFieldsValue()
     setIsLoading(true)
 
     const update = () => {
@@ -117,7 +118,6 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
             lg: 8,
             xl: 8,
           }}
-          onFinish={onFinish}
           initialValues={designSettings}
         >
           <Form.Item name="logo" label={I18n.t('administration.projects.design_settings.client_logo_label')}>
@@ -232,7 +232,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               <Radio value="right">{I18n.t('administration.projects.design_settings.position_right')}</Radio>
             </Radio.Group>
           </Form.Item>
-          <Button type="primary" htmlType="submit" className="mb-16" loading={isLoading}>
+          <Button type="primary" onClick={onFinish} className="mb-16" loading={isLoading}>
             {I18n.t('administration.save')}
           </Button>
         </Form>

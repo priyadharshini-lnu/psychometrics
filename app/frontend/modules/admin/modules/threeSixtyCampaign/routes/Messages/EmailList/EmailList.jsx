@@ -4,8 +4,8 @@ import {
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
-import moment from 'moment'
 import cs from 'classnames'
+import dayjs from '~/utils/dayjs'
 import { CONSOLIDATED_EMAIL_NAMES, DAILY_DIGEST_EMAILS } from '~/modules/admin/constants/emailTemplate'
 import EmailEditor from '~/components/EmailEditor'
 import { SafeHTML } from '~/components/SafeHTML'
@@ -214,7 +214,7 @@ function DailyDigest ({ selectedTemplate, update }) {
       {selectedTemplate.dailyDigest && (
         <div className="mbm">
           <TimePicker
-            value={moment(selectedTemplate.scheduleTime || Date.now())}
+            value={dayjs(selectedTemplate.scheduleTime || Date.now())}
             format="HH:mm"
             className={cs(['mbm', styles.smallWidthInput])}
             onChange={(e) => { update(selectedTemplate.id, 'scheduleTime', e.toString()) }}

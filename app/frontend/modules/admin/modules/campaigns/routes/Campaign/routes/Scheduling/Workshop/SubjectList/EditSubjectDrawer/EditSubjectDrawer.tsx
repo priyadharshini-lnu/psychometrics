@@ -1,6 +1,5 @@
 import { useEffect, useState, FC } from 'react'
 import _ from 'lodash'
-import moment, { Moment } from 'moment'
 import {
   Drawer, Table, Space, Row, Col, Typography, Form, Select, Alert,
   Button, Divider, Skeleton,
@@ -12,7 +11,9 @@ import {
 import * as t from 'io-ts'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { Dayjs } from 'dayjs'
 import { mergeDateAndTime } from '~/utils/time'
+import dayjs from '~/utils/dayjs'
 import InputDuration from '~/components/InputDuration'
 
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -173,8 +174,8 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     }
   }, [subjectId, open])
 
-  const handleTimeChange = (value: Moment | null, userAssessmentId: string) => {
-    const scheduleTime = value ? mergeDateAndTime(moment(workshopStartTime), value) : null
+  const handleTimeChange = (value: Dayjs | null, userAssessmentId: string) => {
+    const scheduleTime = value ? mergeDateAndTime(dayjs(workshopStartTime), value) : null
     const updatedAssessments = subjectData.assessments
       .map(userAssessment => (
         userAssessment.id.toString() === userAssessmentId.toString()
@@ -214,7 +215,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
 
   const handleEditAssessorForm = (data) => {
     openModal('AssessorFormModal', {
-      initialFormData: { ...data, scheduleTime: moment(data.scheduleTime || Date.now()) },
+      initialFormData: { ...data, scheduleTime: dayjs(data.scheduleTime || Date.now()) },
       assessors: workshopSubject?.meta.assessors,
       workshop: workshopSubject?.workshop,
       assessments: workshopSubject?.meta.assessorAssessments,
@@ -370,17 +371,17 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       >
         {statusForm}
         <Divider />
-        <Space size="large" direction="vertical" className="w-100">
-          <Title className="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessments')}</Title>
+        <Space size="large" direction="vertical" rootClassName="w-100">
+          <Title rootClassName="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessments')}</Title>
           {assessmentsTable}
-          <Title className="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessor_forms')}</Title>
+          <Title rootClassName="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessor_forms')}</Title>
           {errors && errors.base && errors.base.length > 0 && (
-            <Alert
-              message={errors.base.map(
-                error => error?.title[0].assessor_forms,
-              )}
-              type="error"
-            />
+          <Alert
+            message={errors.base.map(
+              error => error?.title[0].assessor_forms,
+            )}
+            type="error"
+          />
           )}
           {assessorAssessmentsTable}
           {!workshopSubjectDetailsLoading ? (

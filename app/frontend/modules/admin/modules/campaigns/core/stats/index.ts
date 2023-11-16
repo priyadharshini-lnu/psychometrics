@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
-import { Moment } from 'moment'
+import dayjs from '~/utils/dayjs'
 import { RootState } from '~/modules/reports/core/rootReducers'
 import { createReducer } from '~/utils/redux'
 
@@ -63,7 +63,7 @@ export const fetch = (campaignId: string) => ({
   },
 })
 
-export const fetchTimeseries = (campaignId: string, range: [Moment, Moment]) => ({
+export const fetchTimeseries = (campaignId: string, range: [dayjs.Dayjs, dayjs.Dayjs]) => ({
   type: FETCH_TIMESERIES,
   request: {
     method: 'post',

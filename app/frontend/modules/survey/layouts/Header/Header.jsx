@@ -5,8 +5,8 @@ import {
   EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
-import moment from 'moment'
 import cs from 'classnames'
+import dayjs from '~/utils/dayjs'
 import ActionsHistory from '~/modules/survey/components/ActionsHistory'
 import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
@@ -95,7 +95,7 @@ export class Header extends Component {
 
   updateTimer = (time) => {
     const { assessment: { extra }, updateExtra } = this.props
-    const timer = time && moment.duration(time.format('HH:mm:ss')).asSeconds()
+    const timer = time && dayjs.duration(time.format('HH:mm:ss')).asSeconds()
     updateExtra({ ...extra, timer })
   }
 
@@ -134,7 +134,7 @@ export class Header extends Component {
           {isAssessmentTimerAdded && (
           <Space>
             <ClockCircleOutlined size={24} />
-            {moment.utc(extra.timer * 1000).format('HH:mm:ss')}
+            {dayjs.utc(extra.timer * 1000).format('HH:mm:ss')}
           </Space>
           )}
         </Space>

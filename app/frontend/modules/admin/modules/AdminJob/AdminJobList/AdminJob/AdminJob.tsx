@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import cs from 'classnames'
-import moment from 'moment'
 import {
   List, Space, Alert, Progress,
 } from 'antd'
@@ -8,8 +7,8 @@ import {
   DownOutlined,
   UpOutlined,
 } from '@ant-design/icons'
-
 import _ from 'lodash'
+import dayjs from '~/utils/dayjs'
 import { SafeHTML } from '~/components/SafeHTML'
 
 import { AdminJob as AdminJobI } from '../../interfaces'
@@ -55,7 +54,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
               {' '}
               -
               {' '}
-              <small>{moment(job.createdAt).fromNow()}</small>
+              <small>{dayjs(job.createdAt).fromNow()}</small>
             </div>
             <div>
               {job.isValid

@@ -10,7 +10,6 @@ html.body-full-height
     = javascript_include_tag 'threesixty'
     = vite_client_tag
     = vite_react_refresh_tag
-    = vite_stylesheet_tag 'ant.less'
     = render 'layouts/favicons'
 
   body class=(rtl? ? 'rtl' : 'ltr' ) data-locale="#{I18n.locale}"
@@ -26,7 +25,7 @@ html.body-full-height
         projectConfig: #{{background: image_url(randomized_background_image)}.to_json.html_safe},
         flash: #{flash_json_messages.to_json.html_safe}
       }
-    
+
     - if resource && resource.errors.present?
         javascript:
           #{("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe}

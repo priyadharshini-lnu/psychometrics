@@ -7,8 +7,8 @@ import {
 } from '@ant-design/icons'
 import cs from 'classnames'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import moment from 'moment'
 import _ from 'lodash'
+import dayjs from '~/utils/dayjs'
 import styles from './CommentItem.less'
 
 type Props = {
@@ -96,7 +96,7 @@ export const CommentItem: FC<Props> = ({
           <Avatar size={40} icon={avatarIcon} src={creator.avatarUrl} />
         </Col>
         <Col flex={1}>
-          <Text className={styles.timestamp} type="secondary">{moment(comment.createdAt).fromNow()}</Text>
+          <Text className={styles.timestamp} type="secondary">{dayjs(comment.createdAt).fromNow(true)}</Text>
           <div className={styles.name}>{creator.fullName}</div>
         </Col>
         {comment.resolved && (

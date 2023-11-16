@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import {
   Col, Row, Typography, Layout, Card, Skeleton,
 } from 'antd'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { isRequestInProgress } from '~/core/request'
 
 import { ProfileCompletion } from '~/modules/endUser/modules/campaigns/components/ProfileCompletion'
@@ -83,7 +83,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   const isProfileComplete = profileCompletionPercentage === 100
   const profileCardSubHeading = isProfileComplete
     ? (profileLastUpdatedAt
-      && `${I18n.t('campaign.profile.last_updated_text')} ${moment(profileLastUpdatedAt).format('ll')}`)
+      && `${I18n.t('campaign.profile.last_updated_text')} ${dayjs(profileLastUpdatedAt).format('ll')}`)
     : I18n.t('campaign.profile.sub_heading')
 
   return (
@@ -101,6 +101,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                 title={(<ProfileCardTitle />)}
                 className={styles.profileCard}
                 bordered={false}
+                headStyle={{ paddingBlock: '1rem' }}
               >
                 <ProfileCompletion
                   title={isProfileComplete

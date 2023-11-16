@@ -19,6 +19,7 @@ import { get as getCurrentUser } from '~/core/currentUser'
 import { camelizeKeys } from '~/utils/object'
 import { openSubmenu, triggerCollapse } from '~/modules/admin/core/ui/menu'
 import { shortify } from '~/utils/string'
+import { DefaultAntThemeWrapper } from '~/glint'
 
 const { I18n } = window
 
@@ -299,6 +300,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
         mode="inline"
         items={menuItems(links, hasSubmenu)}
         onClick={onSelect}
+        className={styles.menu}
       />
     </>
   )
@@ -334,7 +336,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     : (
       <Layout.Sider
         id="top_sidebar"
-        className={styles.menu}
+        className={styles.sider}
         width={220}
         theme="light"
         collapsed={collapsed}
@@ -348,6 +350,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
       </Layout.Sider>
     )
 }
+
 
 export const UserMenu = ({ currentUser, collapsed }) => (
   <>
@@ -384,5 +387,9 @@ export const MainMenu = connecter(MainMenuComponent)
 
 export const PortalMenu = () => {
   const node = document.getElementById('main_menu')
-  return <Portal Component={MainMenu} container={node} />
+  return (
+    <DefaultAntThemeWrapper>
+      <Portal Component={MainMenu} container={node} />
+    </DefaultAntThemeWrapper>
+  )
 }

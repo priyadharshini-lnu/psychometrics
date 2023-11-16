@@ -1,26 +1,26 @@
 import _ from 'lodash'
 
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 
 export const DATE_FORMATS = [
   {
-    name: moment().format('Do MMMM YYYY, hh:mm A Z'),
+    name: dayjs().format('Do MMMM YYYY, hh:mm A Z'),
     format: '%e %B %Y, %l:%M %p %:z',
   },
   {
-    name: moment().format('YYYY-MM-DD hh:mm A Z'),
+    name: dayjs().format('YYYY-MM-DD hh:mm A Z'),
     format: '%Y-%m-%d %I:%M %p %:z',
   },
   {
-    name: moment().format('DD-MM-YYYY- hh:mm A Z'),
+    name: dayjs().format('DD-MM-YYYY- hh:mm A Z'),
     format: '%d-%m-%Y %I:%M %p %:z',
   },
   {
-    name: moment().format('YYYY/MM/DD hh:mm A Z'),
+    name: dayjs().format('YYYY/MM/DD hh:mm A Z'),
     format: '%Y/%m/%d %I:%M %p %:z',
   },
   {
-    name: moment().format('DD/MM/YYYY HH:mm:ss A Z'),
+    name: dayjs().format('DD/MM/YYYY HH:mm:ss A Z'),
     format: '%d/%m/%Y %I:%M %p %:z',
   },
 ]

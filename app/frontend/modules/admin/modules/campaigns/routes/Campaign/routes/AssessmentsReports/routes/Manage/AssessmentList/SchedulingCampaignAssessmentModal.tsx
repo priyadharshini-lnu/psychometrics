@@ -3,7 +3,7 @@ import {
   Modal, Form, Button, DatePicker, Checkbox, Row, Col, message,
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { scheduleAssessment, SCHEDULE_ASSESSMENT } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { isRequestInProgress } from '~/core/request'
@@ -70,7 +70,7 @@ export const SchedulingCampaignAssessment: React.FC<Props> = ({
           <Form
             form={form}
             initialValues={{
-              scheduleTime: moment(),
+              scheduleTime: dayjs(),
               overrideExisting: false,
             }}
           >
@@ -80,9 +80,8 @@ export const SchedulingCampaignAssessment: React.FC<Props> = ({
                   allowClear
                   format="YYYY/MM/DD hh:mm a"
                   showTime
-                  minuteStep={1}
                   showSecond={false}
-                  disabledDate={current => current && current < moment().startOf('day')}
+                  disabledDate={current => current && current < dayjs().startOf('day')}
                 />
               </Form.Item>
             )}

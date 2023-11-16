@@ -3,7 +3,7 @@ import {
   Form, Input, Select, DatePicker, Alert, Space,
 } from 'antd'
 import _ from 'lodash'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { STATUSES, TYPES } from '~/constants/campaign'
 import ResourceFormModal from '~/components/ResourceFormModal'
 
@@ -24,7 +24,7 @@ interface Props {
 
 const format = 'YYYY-MM-DD HH:mm'
 // Can not select days before today
-const disabledDate = current => current && current < moment().startOf('day')
+const disabledDate = current => current && current < dayjs().startOf('day')
 
 const notices = {
   active: 'Campaign status will automatically change to closed on the selected end date & time',

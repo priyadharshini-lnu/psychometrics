@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { PageHeader } from 'antd'
+import { PageHeader } from '@ant-design/pro-layout'
 
 import { DirectionalNavigateBackIcon } from '~/glint'
 import styles from './SubHeader.less'

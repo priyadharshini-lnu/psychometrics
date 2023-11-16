@@ -2,23 +2,23 @@ import { FC, ReactNode, useContext } from 'react'
 import {
   Space, Typography, Button,
 } from 'antd'
-import { Moment } from 'moment'
 import cs from 'classnames'
 
-import { DirectionalBackArrowIcon, MediaQueryContext } from '~/glint'
 
+import dayjs from '~/utils/dayjs'
 import styles from './TimeSlotSelection.less'
+import { DirectionalBackArrowIcon, MediaQueryContext } from '~/glint'
 
 const { Title } = Typography
 export const TIME_FORMAT = 'hh:mm a'
 export type TimeSlot = {
   id: number,
-  date: Moment
+  date: dayjs.Dayjs
 }
 type Props = {
   availableSlots: TimeSlot[]
-  selectedDate: Moment | null
-  selectedDateTime: Moment | null
+  selectedDate: dayjs.Dayjs | null
+  selectedDateTime: dayjs.Dayjs | null
   onTimeSelection: (slot: TimeSlot|null) => void
   onCancelDateSelection: () => void | null
   questionnaireComponent: ReactNode

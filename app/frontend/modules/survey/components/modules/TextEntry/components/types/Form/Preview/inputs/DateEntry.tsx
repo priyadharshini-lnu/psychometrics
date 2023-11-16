@@ -1,6 +1,6 @@
 import React from 'react'
 import { DatePicker } from 'antd'
-import moment, { Moment } from 'moment'
+import dayjs from '~/utils/dayjs'
 
 import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 
@@ -17,7 +17,7 @@ export const DateEntry: React.FC<Props> = ({
   dateFormat,
   readOnly,
 }) => {
-  const handleAnswerChange = (value: Moment | null): void => {
+  const handleAnswerChange = (value: dayjs.Dayjs | null): void => {
     if (value) {
       onChange(value.format(dateFormat))
     } else {
@@ -35,7 +35,7 @@ export const DateEntry: React.FC<Props> = ({
       disabled={readOnly}
       picker={pickerMode}
       format={dateFormat}
-      value={value ? moment(value, dateFormat) : null}
+      value={value ? dayjs(value, dateFormat) : null}
       onChange={handleAnswerChange}
     />
   )

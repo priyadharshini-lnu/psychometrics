@@ -3,8 +3,8 @@ import { FC, useState, useEffect } from 'react'
 import {
   Form, Typography, InputNumber, Input, Radio,
 } from 'antd'
-import moment from 'moment-timezone'
 import { useParams } from 'react-router-dom'
+import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import {
   UserDetails, userDetailsListTR, Workshop,
@@ -52,9 +52,9 @@ export const WorkshopEditFormModal: FC<Props> = ({
       method: 'get',
       body: {
         startDateTime: workshop.startTime,
-        endDateTime: moment.tz(
+        endDateTime: dayjs.tz(
           workshop.startTime, workshop.timezone,
-        ).add(workshop.duration, 's').format(moment.defaultFormat),
+        ).add(workshop.duration, 's').format(),
         campaignId,
         projectId,
         searchTerm: searchKey,

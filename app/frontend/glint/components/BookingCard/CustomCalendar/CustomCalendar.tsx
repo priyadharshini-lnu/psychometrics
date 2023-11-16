@@ -2,8 +2,8 @@ import { useState, FC } from 'react'
 import {
   Calendar, Space, Typography, CalendarProps,
 } from 'antd'
-import moment, { Moment } from 'moment'
 import cs from 'classnames'
+import dayjs from '~/utils/dayjs'
 import { DirectionalArrowIcon, DirectionalBackArrowIcon } from '~/glint'
 
 import styles from './CustomCalendar.less'
@@ -11,17 +11,17 @@ import styles from './CustomCalendar.less'
 const { Title } = Typography
 
 type Props = {
-  availableDates:Moment[],
-  onDateSelect: (date: Moment | null) => void
-} & CalendarProps<Moment>
+  availableDates:dayjs.Dayjs[],
+  onDateSelect: (date: dayjs.Dayjs | null) => void
+} & CalendarProps<dayjs.Dayjs>
 
 export const CustomCalendar: FC<Props> = ({ availableDates, onDateSelect, defaultValue }) => {
-  const [currentDate, setCurrentDate] = useState(defaultValue || moment())
+  const [currentDate, setCurrentDate] = useState(defaultValue || dayjs())
   const formattedAvailableDates = availableDates.map(date => date.format('DD/MM/YYYY'))
 
   return (
     <Calendar
-      defaultValue={defaultValue || moment()}
+      defaultValue={defaultValue || dayjs()}
       fullscreen={false}
       className={styles.calendar}
       headerRender={({ value, onChange }) => {
@@ -55,7 +55,7 @@ export const CustomCalendar: FC<Props> = ({ availableDates, onDateSelect, defaul
         const monthNumber = date.month()
         const dateString = date.format('DD/MM/YYYY')
         const dateExistInCurrentMonth = monthNumber === currentDate.month()
-        const isPastDate = !date.isAfter(moment())
+        const isPastDate = !date.isAfter(dayjs())
         const isDateAvailable = formattedAvailableDates.includes(dateString) && dateExistInCurrentMonth && !isPastDate
 
         return (

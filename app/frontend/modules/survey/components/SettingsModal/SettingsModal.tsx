@@ -1,9 +1,9 @@
 import {
   Button, Modal, Space, Switch, TimePicker, Row, Col,
 } from 'antd'
-import moment from 'moment'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import dayjs from '~/utils/dayjs'
 import { closeModal, getData } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/survey/core/rootReducers'
 import {
@@ -47,7 +47,7 @@ const SettingsModalComponent = ({
   }
 
   const updateTimer = (time) => {
-    const timer = time && moment.duration(time.format('HH:mm:ss')).asSeconds()
+    const timer = time && dayjs.duration(time.format('HH:mm:ss')).asSeconds()
     updateExtra({ ...extra, timer })
   }
 
@@ -105,12 +105,12 @@ const SettingsModalComponent = ({
           {I18n.t('administration.assessments.settings.timer')}
           :
           <TimePicker
-            defaultValue={moment.utc(0)}
-            value={(extra.timer || extra.timer === 0) ? moment.utc(extra.timer * 1000) : null}
+            defaultValue={dayjs.utc(0)}
+            value={(extra.timer || extra.timer === 0) ? dayjs.utc(extra.timer * 1000) : null}
             onChange={updateTimer}
             placeholder="Set timer"
             className="mhs"
-            dropdownClassName="assessment-timer"
+            popupClassName="assessment-timer"
           />
         </Col>
         )}

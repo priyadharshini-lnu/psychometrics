@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { TimePicker } from 'antd'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { getIn } from '~/utils/immutable'
 
 const FORMAT = 'h:mm a'
@@ -18,7 +18,7 @@ export default class TimeEntryPreview extends Component {
 
     return (
       <TimePicker
-        defaultValue={value ? moment(value, FORMAT) : null}
+        defaultValue={value ? dayjs(value, FORMAT) : null}
         format={FORMAT}
         placeholder="HH:mm"
         onChange={this.changeAnswer}

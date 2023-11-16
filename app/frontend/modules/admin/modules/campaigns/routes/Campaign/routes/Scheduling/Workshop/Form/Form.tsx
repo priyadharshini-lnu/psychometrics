@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import {
   Row, Col, Steps, Form, Modal,
 } from 'antd'
-import moment from 'moment'
 import { useHistory, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
+import dayjs from '~/utils/dayjs'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
@@ -24,8 +24,8 @@ import { getData } from '~/modules/admin/core/ui/temp'
 const { I18n } = window
 
 interface BasicInfoData {
-  dates: moment.Moment[],
-  time: moment.Moment,
+  dates: dayjs.Dayjs[],
+  time: dayjs.Dayjs,
   duration: number,
   timezone: string,
   video_call_type: number,
@@ -50,9 +50,9 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
   const [basicInfoData, setBasicInfoData] = useState<BasicInfoData>({
     dates: [],
-    time: moment(),
+    time: dayjs(),
     duration: workshop?.duration || 0,
-    timezone: workshop?.timezone || moment.tz.guess(),
+    timezone: workshop?.timezone || dayjs.tz.guess(),
     video_call_type: VIDEO_CALL_TYPES[workshop?.videoCallType] || 0,
     meeting_link: workshop?.meetingLink || '',
     workshop_resources: workshop?.workshopResources || [{ key: 1, name: '', url: '' }],

@@ -4,6 +4,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
 import humps from 'humps'
 import { Provider } from 'react-redux'
+import { DefaultAntThemeWrapper } from '~/glint'
 import store, { history } from '~/modules/admin/store'
 import RouteList from '~/components/RouteList'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
@@ -18,18 +19,20 @@ const client = new ApiClient({
 })
 
 export const App: React.FC = () => (
-  <div style={{ background: 'white' }}>
-    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-    <Provider store={store as any}>
-      <ApiProvider client={client}>
-        <Router>
-          <ConnectedRouter history={history}>
-            <PortalMenu />
-            <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-            <IncorrectResponseErrorModal />
-          </ConnectedRouter>
-        </Router>
-      </ApiProvider>
-    </Provider>
-  </div>
+  <DefaultAntThemeWrapper>
+    <div style={{ background: 'white' }}>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <Provider store={store as any}>
+        <ApiProvider client={client}>
+          <Router>
+            <ConnectedRouter history={history}>
+              <PortalMenu />
+              <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+              <IncorrectResponseErrorModal />
+            </ConnectedRouter>
+          </Router>
+        </ApiProvider>
+      </Provider>
+    </div>
+  </DefaultAntThemeWrapper>
 )

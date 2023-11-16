@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Select, DatePicker } from 'antd'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { INVITATION_VALUES } from '~/modules/admin/constants/emailCriteria'
 import styles from './styles.less'
 
@@ -11,7 +11,7 @@ export default function Invitation ({
     merge({ subField: INVITATION_VALUES.NOT_RECEIVED })
   }, [])
 
-  const date = value ? moment(value) : undefined
+  const date = value ? dayjs(value) : undefined
 
   return (
     <div>

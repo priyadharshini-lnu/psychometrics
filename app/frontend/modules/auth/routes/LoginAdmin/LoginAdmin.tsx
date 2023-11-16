@@ -24,7 +24,7 @@ const LoginComponent: React.FC<Props> = ({
     <>
       <Flash flash={flash} />
       <form
-        className="ant-form ant-form-vertical"
+        className={styles.form}
         action="/administration"
         method="post"
       >

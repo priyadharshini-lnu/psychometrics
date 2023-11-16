@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { Table } from 'antd'
-import moment from 'moment'
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons'
+import dayjs from '~/utils/dayjs'
 import userPresenter from '~/presenters/user'
 import { ASSIGN_TYPES } from '~/constants/relationship'
 import { StatusSelect, RelationSelect } from '../List'
@@ -89,14 +89,14 @@ export default function List ({
         title="Start Time"
         key="startTime"
         render={({ result: { createdAt } }) => (
-          moment(createdAt).format('YYYY-MM-DD HH:mm:ss')
+          dayjs(createdAt).format('YYYY-MM-DD HH:mm:ss')
         )}
       />
       <Table.Column
         title="End Time"
         key="endTime"
         render={({ result: { completedAt } }) => {
-          if (completedAt) { return moment(completedAt).format('YYYY-MM-DD HH:mm:ss') }
+          if (completedAt) { return dayjs(completedAt).format('YYYY-MM-DD HH:mm:ss') }
         }}
       />
       {permissions?.allowResultsDelete && (

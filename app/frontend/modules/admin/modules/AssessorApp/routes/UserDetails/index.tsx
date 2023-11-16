@@ -2,8 +2,9 @@
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Table, Row, Col, PageHeader, Button,
+  Table, Row, Col, Button,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { getCurrent, fetchSingle } from '~/modules/admin/modules/AssessorApp/core/users'

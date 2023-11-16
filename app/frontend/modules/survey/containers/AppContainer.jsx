@@ -10,6 +10,7 @@ import DnDProvider from '~/components/DnD/DnDProvider'
 import store from '../store'
 import routes from './routes'
 import styles from '~/modules/survey/layouts/Dashboard/Dashboard.less'
+import { DefaultAntThemeWrapper } from '~/glint'
 
 class AppContainer extends Component {
   undoListener = null
@@ -56,17 +57,19 @@ class AppContainer extends Component {
 
   render () {
     return (
-      <div className="row">
-        <ErrorBoundary fallbackRender={() => this.overlay()}>
-          <Provider store={store}>
-            <DnDProvider>
-              <Router>
-                <RouteList routes={routes} urlPrefix="/administration" />
-              </Router>
-            </DnDProvider>
-          </Provider>
-        </ErrorBoundary>
-      </div>
+      <DefaultAntThemeWrapper>
+        <div className="row">
+          <ErrorBoundary fallbackRender={() => this.overlay()}>
+            <Provider store={store}>
+              <DnDProvider>
+                <Router>
+                  <RouteList routes={routes} urlPrefix="/administration" />
+                </Router>
+              </DnDProvider>
+            </Provider>
+          </ErrorBoundary>
+        </div>
+      </DefaultAntThemeWrapper>
     )
   }
 }

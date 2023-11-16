@@ -1,28 +1,32 @@
 import { useEffect } from 'react'
-import { ConfigProvider, notification } from 'antd'
+import { notification, theme } from 'antd'
 import { Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
-import _ from 'lodash'
-import humps from 'humps'
 import store, { history } from '~/modules/endUser/store'
 
 import { UserPageLayout } from '~/modules/endUser/modules/campaigns/components/UserPageLayout'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { useWindowInnerSize } from '~/modules/endUser/rootHooks'
 import { MAX_PAGE_LOAD_WAIT_TIME } from '~/constants/time'
-import { GlintProvider, withLoadingSpinner } from '~/glint'
+import { GlintProvider, withLoadingSpinner, DefaultAntThemeWrapper } from '~/glint'
+import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 import routes from './routes'
 import './styles.less'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
+import '~/styles/common.less'
 
 const { antdLocale, I18n } = window
+const { useToken } = theme
+const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS } = constants
 
 function App () {
+  const { config: { maintenance: { remainingTime }, design } } = store.getState()
+  const { token } = useToken()
   useWindowInnerSize(document.documentElement)
+  const primaryColor = design.primary_color || DEFAULT_PRIMARY_COLOR
 
   useEffect(() => {
-    const { config: { maintenance: { remainingTime }, design } } = store.getState()
     if (remainingTime && remainingTime > 0) {
       setTimeout(() => {
         notification.warning({
@@ -34,17 +38,25 @@ function App () {
         }, 60000)
       }, (remainingTime - 40) * 1000)
     }
-
-    ConfigProvider.config({
-      theme: humps.camelizeKeys(
-        _.pick(design, ['primary_color', 'error_color', 'warning_color', 'success_color', 'info_color']),
-      ),
-    })
   }, [])
 
   return (
     <Provider store={store}>
-      <ConfigProvider locale={antdLocale} direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}>
+      <DefaultAntThemeWrapper
+        locale={antdLocale}
+        direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}
+        theme={{
+          token: {
+            colorPrimary: primaryColor,
+            colorError: design.error_color || token.colorError,
+            colorWarning: design.warning_color || token.colorWarning,
+            colorSuccess: design.success_color || token.colorSuccess,
+            colorInfo: design.info_color || token.colorInfo,
+            borderRadius: DEFAULT_BORDER_RADIUS,
+            colorLink: primaryColor,
+          },
+        }}
+      >
         <GlintProvider>
           <ConnectedRouter history={history}>
             <UserPageLayout>
@@ -56,8 +68,9 @@ function App () {
           </ConnectedRouter>
           <IncorrectResponseErrorModal />
         </GlintProvider>
-      </ConfigProvider>
+      </DefaultAntThemeWrapper>
     </Provider>
+
   )
 }
 

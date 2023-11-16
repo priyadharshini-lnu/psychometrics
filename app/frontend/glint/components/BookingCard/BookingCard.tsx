@@ -2,8 +2,8 @@ import {
   ReactNode, FC, useState, useEffect, useContext,
 } from 'react'
 import { Divider, Col, Row } from 'antd'
-import moment, { Moment } from 'moment-timezone'
 import cs from 'classnames'
+import dayjs from '~/utils/dayjs'
 
 import { MediaQueryContext } from '~/glint'
 import { InvitationTitle } from './InvitationTitle'
@@ -16,7 +16,7 @@ type Props = {
   title: string,
   description: string,
   availableDateTimes: TimeSlot[],
-  currentDateTime: Moment | null,
+  currentDateTime: dayjs.Dayjs | null,
   questionnaireComponent?: ReactNode
   onDateTimeSelection: (timeSlot: TimeSlot |null) => void
   bookingTimeZone?: string | null
@@ -32,13 +32,13 @@ export const BookingCard: FC<Props> = ({
   bookingTimeZone,
 }) => {
   const [timeZone, setTimeZone] = useState(bookingTimeZone || 'Asia/Muscat')
-  const [selectedDate, setSelectedDate] = useState<Moment | null>(currentDateTime?.tz(timeZone) || null)
+  const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs | null>(currentDateTime?.tz(timeZone) || null)
   const [availableDateTimesAsPerZone, setAvailableDatesTimeAsPerZone] = useState(availableDateTimes)
   const [availableSlotsAsPerZone, setAvailableSlotsAsPerZone] = useState<TimeSlot[]>([])
   const selectedDateTimeAsPerTimeZone = currentDateTime ? currentDateTime.tz(timeZone) : null
   const { isMobile, isTablet, isDesktop } = useContext(MediaQueryContext) || { isMobile: null, isTablet: null }
 
-  const currentTimeAsPerZone = moment.tz(timeZone)
+  const currentTimeAsPerZone = dayjs().tz(timeZone)
   const isSmallScreen = isMobile || isTablet
   const inviteTitleFlex = isDesktop ? '7' : '1 1 50%'
   const calendarFlex = isDesktop ? '8' : '1 1 auto'
@@ -66,7 +66,7 @@ export const BookingCard: FC<Props> = ({
     onDateTimeSelection(null)
   }
 
-  const handleDateSelect = (date: Moment | null) => {
+  const handleDateSelect = (date: dayjs.Dayjs | null) => {
     setSelectedDate(date)
     // clear selected time-slot(if exists) when date is changed
     selectedDateTimeAsPerTimeZone && onDateTimeSelection(null)
@@ -90,7 +90,7 @@ export const BookingCard: FC<Props> = ({
       availableDates={availableDateTimesAsPerZone.map(dateObj => dateObj.date)}
       onDateSelect={handleDateSelect}
       value={selectedDate || undefined}
-      defaultValue={firstAvailableDateTimeAsPerZone || moment()}
+      defaultValue={firstAvailableDateTimeAsPerZone || dayjs()}
     />
   )
 

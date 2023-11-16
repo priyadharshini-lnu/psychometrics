@@ -1,7 +1,17 @@
-.menu {
+.sider {
+  position: relative;
+  top: 0;
+  left: 0;
   z-index: 400;
   box-shadow: 0 0 3px #aaa;
   height: 100%;
+}
+
+.menu:global(.ant-menu-inline-collapsed) {
+  width: auto;
+  & :global(.ant-menu-item){
+    margin-block: 0;
+  }
 }
 
 .logo {

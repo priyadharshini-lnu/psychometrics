@@ -319,7 +319,7 @@ const FactorsSelect: FC<FactorsSelectProps> = ({
 }) => (
   <Select
     className="w-100"
-    dropdownClassName="ps-2"
+    popupClassName="ps-2"
     showSearch
     filterOption={(searchInput, option) => option?.title?.toLowerCase()?.indexOf(searchInput.toLowerCase()) >= 0}
     onChange={onChange}

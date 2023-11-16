@@ -2,7 +2,6 @@ import {
   useState, FC, useEffect, useRef,
 } from 'react'
 import _ from 'lodash'
-import moment from 'moment'
 import {
   Row, Typography, Col, Space, message,
 } from 'antd'
@@ -15,6 +14,7 @@ import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
 import Tour from '@rc-component/tour'
+import dayjs from '~/utils/dayjs'
 import {
   GoogleCalendarIcon, YahooIcon, OutlookIcon, IcalIcon, Office365Icon,
 } from '~/glint/icons'
@@ -68,9 +68,9 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   const [bookingDetails, setbookingDetails] = useState<null | SingleBooking >(null)
   const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
   const bookedDateTime = bookingDetails?.bookedDate
-  const bookedDateTimeMomentObject = bookedDateTime ? moment(bookedDateTime.date) : null
-  const currentTimezone = bookingDetails?.timezone || moment.tz.guess() || 'Asia/Dubai'
-  const currentTime = moment().tz(currentTimezone)
+  const bookedDateTimeMomentObject = bookedDateTime ? dayjs(bookedDateTime.date) : null
+  const currentTimezone = bookingDetails?.timezone || dayjs.tz.guess() || 'Asia/Dubai'
+  const currentTime = dayjs().tz(currentTimezone)
   const bookedDateTimeMomentObjectTz = bookedDateTimeMomentObject?.clone().tz(currentTimezone)
   const duration = bookingDetails?.duration || 0
   const history = useHistory()
@@ -78,7 +78,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   const workshopId = bookingDetails?.workshopId
 
   const deadlineToAllowCancelByUser = bookedDateTimeMomentObjectTz?.clone()
-    .subtract(bookingDetails?.cancellationLeadTime, 's')
+    .subtract(bookingDetails?.cancellationLeadTime || 0, 's')
   const bookingEndTime = bookedDateTimeMomentObjectTz?.clone().add(duration, 's')
   const meetingTime = `${bookedDateTimeMomentObjectTz?.clone().format('hh:mmA')} - ${bookingEndTime?.format('hh:mmA')}`
   const allowCancelByUser = currentTime.isSameOrBefore(deadlineToAllowCancelByUser)

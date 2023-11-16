@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Row, Col, Button, PageHeader, Descriptions, Switch, Tag, Modal, message, Space,
+  Row, Col, Button, Descriptions, Switch, Tag, Modal, message, Space,
 } from 'antd'
 import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import _ from 'lodash'

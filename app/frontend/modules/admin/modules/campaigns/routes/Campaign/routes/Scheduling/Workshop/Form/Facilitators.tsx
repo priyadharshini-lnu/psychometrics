@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import {
   Form, Space, Button, Collapse, Alert, Typography, InputNumber, Input, Row, Col,
 } from 'antd'
-import moment from 'moment'
 import { Store } from 'antd/lib/form/interface'
 import { useParams } from 'react-router-dom'
 import { FormInstance } from 'antd/es/form/Form'
+import dayjs from '~/utils/dayjs'
 import { Panel, UsersSelectWithTags } from '~/glint'
 import styles from './Form.less'
 import { ResourcesItems } from './ResourcesItems'
@@ -25,8 +25,8 @@ const fieldLayout = {
 
 interface Props {
   basicInfoData: {
-    dates: moment.Moment[]
-    time: moment.Moment
+    dates: dayjs.Dayjs[]
+    time: dayjs.Dayjs
     duration: number
     timezone: string
     video_call_type: number
@@ -81,7 +81,7 @@ export const Facilitators: React.FC<Props> = ({
   )
 
   const endDateTime = index => (
-    startDateTime(index).add(moment.duration(basicInfoData.duration, 'seconds'))
+    startDateTime(index).add(dayjs.duration(basicInfoData.duration, 'seconds'))
   )
 
   const searchFacilitators = (value, index, action) => collectionActionFacilitators({

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Button, PageHeader, message, Row, Col, Typography, notification,
+  Layout, Button, message, Row, Col, Typography, notification,
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'

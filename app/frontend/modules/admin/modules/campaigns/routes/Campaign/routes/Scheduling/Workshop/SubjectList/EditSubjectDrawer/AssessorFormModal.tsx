@@ -2,11 +2,11 @@ import { FC, useState } from 'react'
 import {
   Form, Modal, Select, TimePicker, Input, Radio,
 } from 'antd'
-import moment from 'moment'
 import { Store } from 'antd/lib/form/interface'
 
 import { Rule } from 'antd/lib/form'
 import { mergeDateAndTime } from '~/utils/time'
+import dayjs from '~/utils/dayjs'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import styles from './EditSubjectDrawer.less'
 
@@ -70,7 +70,7 @@ export const AssessorFormModal:FC<Props> = (props) => {
 
   const compatibleInitialData = initialFormData && {
     ...initialFormData,
-    scheduleTime: moment(initialFormData.scheduleTime, settings.timeFormat),
+    scheduleTime: dayjs(initialFormData.scheduleTime, settings.timeFormat),
     assessor: initialFormData.assessor?.name,
   }
 
@@ -152,10 +152,10 @@ export const AssessorFormModal:FC<Props> = (props) => {
             className="w-100"
             format="hh:mm A"
             defaultValue={
-              initialFormData?.scheduleTime ? moment(initialFormData.scheduleTime) : undefined
+              initialFormData?.scheduleTime ? dayjs(initialFormData.scheduleTime) : undefined
             }
             onChange={(value) => {
-              const scheduleTimeWithWorkshopDate = mergeDateAndTime(moment(workshop?.startTime), value)
+              const scheduleTimeWithWorkshopDate = mergeDateAndTime(dayjs(workshop?.startTime), value)
               assessorFormInstance.setFieldsValue({ scheduleTime: scheduleTimeWithWorkshopDate })
             }}
           />

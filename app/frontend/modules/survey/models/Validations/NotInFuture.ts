@@ -1,4 +1,4 @@
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { I18n } from '~/modules/survey/store/StoreWatchman'
 
@@ -13,8 +13,8 @@ class NotInFuture {
   }
 
   validate ([{ value }]) {
-    const date = moment(value, this.question.props.dateFormat).startOf('day')
-    const now = moment()
+    const date = dayjs(value, this.question.props.dateFormat).startOf('day')
+    const now = dayjs()
     if (now < date) {
       return {
         type: 'NotInFuture',

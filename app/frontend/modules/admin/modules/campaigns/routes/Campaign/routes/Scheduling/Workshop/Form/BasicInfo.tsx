@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import {
   DatePicker, Form, Row, Space, Col, TimePicker, Radio, Button, Tag, Input,
 } from 'antd'
-import moment, { Moment } from 'moment'
 import { Store } from 'antd/lib/form/interface'
+import dayjs from '~/utils/dayjs'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
 import InputDuration, { convertToInt } from '~/components/InputDuration'
 import { Panel } from '~/glint/components/Panel/Panel'
@@ -19,7 +19,7 @@ const { I18n } = window
 
 interface Props {
   initialValues: {
-    dates: Moment[]
+    dates: dayjs.Dayjs[] | null
     timezone: string
     video_call_type: number
   }
@@ -41,12 +41,12 @@ interface DurationValidator {
 export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel }) => {
   const [form] = Form.useForm()
 
-  const [selectedDates, setSelectedDates] = useState<Moment[]>(initialValues.dates || [])
+  const [selectedDates, setSelectedDates] = useState<dayjs.Dayjs[]>(initialValues.dates || [])
   const [videoCallType, setVideoCallType] = useState<number>(initialValues.video_call_type)
 
-  const sortDates = (dates: Moment[]) => dates.sort((a, b) => a.valueOf() - b.valueOf())
+  const sortDates = (dates: dayjs.Dayjs[]) => dates.sort((a, b) => a.valueOf() - b.valueOf())
 
-  const handleDateChange = (date: Moment | null) => {
+  const handleDateChange = (date: dayjs.Dayjs | null) => {
     if (!date) {
       return
     }
@@ -71,7 +71,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
     onCancel?.()
   }
 
-  const handleTagClose = (closedDate: Moment) => {
+  const handleTagClose = (closedDate: dayjs.Dayjs) => {
     const updatedDates = selectedDates.filter(date => date !== closedDate)
     setSelectedDates(updatedDates)
   }
@@ -103,7 +103,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           className={styles.form}
           layout="vertical"
           form={form}
-          initialValues={initialValues}
+          initialValues={{ ...initialValues, dates: initialValues.dates?.length ? initialValues.dates : null }}
         >
           <Form.Item
             name="dates"
@@ -115,9 +115,10 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             }]}
           >
             <DatePicker
+              format="DD/MM/YYYY"
               value={null}
               onSelect={date => handleDateChange(date)}
-              disabledDate={current => current && current < moment().startOf('day')}
+              disabledDate={current => current && current.isBefore(dayjs().startOf('day'))}
               dateRender={(current) => {
                 const style: React.CSSProperties = {}
                 const found = selectedDates.find(d => d.format('YYYY MM DD') === current.format('YYYY MM DD'))

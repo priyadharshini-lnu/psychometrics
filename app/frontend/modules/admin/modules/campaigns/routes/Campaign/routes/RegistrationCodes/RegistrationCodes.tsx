@@ -6,9 +6,10 @@ import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import moment from 'moment'
+
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import dayjs from '~/utils/dayjs'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
@@ -152,8 +153,8 @@ const RegistrationCodes: React.FC<Props> = ({
                         campaignId,
                         code: {
                           ...code,
-                          startDate: moment(code.startDate),
-                          endDate: moment(code.endDate),
+                          startDate: dayjs(code.startDate),
+                          endDate: dayjs(code.endDate),
                           disabled: !code.disabled,
                         },
                       }),

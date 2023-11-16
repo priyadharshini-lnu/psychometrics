@@ -13,9 +13,9 @@ import {
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined } from '@ant-design/icons'
-import moment from 'moment'
 import capitalize from 'lodash/capitalize'
 import map from 'lodash/map'
+import dayjs from '~/utils/dayjs'
 import { ResourceAvatar } from '~/glint'
 
 import {
@@ -163,7 +163,7 @@ const CampaignListComponent: React.FC<Props> = ({
               key="startDate"
               sorter
               sortOrder={getSortOrder('startDate')}
-              render={({ startDate }) => (startDate ? moment(startDate).format('L LT') : ' - ')
+              render={({ startDate }) => (startDate ? dayjs(startDate).format('L LT') : ' - ')
               }
             />
             <Column
@@ -171,7 +171,7 @@ const CampaignListComponent: React.FC<Props> = ({
               key="endDate"
               sorter
               sortOrder={getSortOrder('endDate')}
-              render={({ endDate }) => (endDate ? moment(endDate).format('L LT') : ' - ')
+              render={({ endDate }) => (endDate ? dayjs(endDate).format('L LT') : ' - ')
               }
             />
             <Column
@@ -221,9 +221,9 @@ const CampaignListComponent: React.FC<Props> = ({
                           campaign: {
                             ...campaign,
                             startDate:
-                              campaign.startDate && moment(campaign.startDate),
+                              campaign.startDate && dayjs(campaign.startDate),
                             endDate:
-                              campaign.endDate && moment(campaign.endDate),
+                              campaign.endDate && dayjs(campaign.endDate),
                           },
                         })
                       },

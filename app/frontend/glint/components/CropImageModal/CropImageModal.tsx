@@ -56,7 +56,7 @@ export function CropImageModal ({
       <Row>
         <Col style={{ padding: 4 }}>
           <Button
-            type="ghost"
+            ghost
             onClick={() => cropperRef.current?.zoomImage(0.9)}
           >
             <ZoomOutOutlined />
@@ -64,7 +64,7 @@ export function CropImageModal ({
         </Col>
         <Col style={{ padding: 4 }}>
           <Button
-            type="ghost"
+            ghost
             onClick={() => cropperRef.current?.zoomImage(1.1)}
           >
             <ZoomInOutlined />

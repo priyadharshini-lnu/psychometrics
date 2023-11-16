@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEntry/constant'
 import Selectors from './Selectors'
 import Values from './Values'
@@ -133,7 +133,7 @@ _.extend(Custom.prototype, {
     const format = this.question.props.type === 'Form'
       ? this.question.props.formTypes[this.answer].dateFormat
       : this.question.props.dateFormat
-    const date = moment(result, format)
+    const date = dayjs(result, format)
     const now = this.currentDateForFormat(format)
     return now <= date
   },
@@ -145,13 +145,13 @@ _.extend(Custom.prototype, {
       ? this.question.props.formTypes[this.answer].dateFormat
       : this.question.props.dateFormat
 
-    const date = moment(result, format)
+    const date = dayjs(result, format)
     const now = this.currentDateForFormat(format)
     return now >= date
   },
 
   currentDateForFormat (format) {
-    let now = moment()
+    let now = dayjs()
     const picker = DATE_FORMAT_OPTIONS.find(
       dateFormatOption => dateFormatOption.value === format,
     )?.picker ?? 'date'

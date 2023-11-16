@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
-import moment from 'moment'
 import { Descriptions, Space } from 'antd'
 import { ClockCircleOutlined, LoadingOutlined } from '@ant-design/icons'
+import dayjs from '~/utils/dayjs'
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
 import { CountdownTimer } from '~/glint'
 import { useTimeout } from '~/hooks/useTimeout'
@@ -28,7 +28,7 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledFo
   if (scheduledIn) {
     hoursRemaining = scheduledIn / 3600
     timeIsInPast = scheduledIn <= 0
-    date = moment(scheduledAt).format('Do MMMM YYYY hh:mm A Z')
+    date = dayjs(scheduledAt).format('Do MMMM YYYY hh:mm A Z')
   }
 
 
@@ -45,7 +45,7 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledFo
 
   const duration = () => {
     if (/^\d+$/.test(campaign.timing)) {
-      return moment.duration(campaign.timing, 'seconds').humanize()
+      return dayjs.duration(+campaign.timing, 'seconds').humanize()
     }
     return campaign.timing
   }

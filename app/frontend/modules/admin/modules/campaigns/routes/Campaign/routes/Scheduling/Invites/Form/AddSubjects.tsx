@@ -214,8 +214,12 @@ export const AddSubjectsComponent: FC<Props> = ({
             <Col flex="1">
               <Alert
                 message="Errors"
-                description={importErrors.map(
-                  error => <div>{error.title}</div>,
+                description={(
+                  <>
+                    {importErrors.map(
+                      error => error.title,
+                    )}
+                  </>
                 )}
                 type="error"
               />

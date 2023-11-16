@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import moment from 'moment-timezone'
+import dayjs from '~/utils/dayjs'
 import range from 'lodash/range'
 import { act } from 'react-dom/test-utils'
 
 import { CustomCalendar } from '~/glint/components/BookingCard/CustomCalendar'
 
-const availableDates = ['2024-07-15T09:00:00.100+05:30', '2024-07-15T09:30:00.100+05:30'].map(date => moment(date))
+const availableDates = ['2024-07-15T09:00:00.100+05:30', '2024-07-15T09:30:00.100+05:30'].map(date => dayjs(date))
 const availableDateStrings = availableDates.map(date => date.date().toString())
 const DATE_FORMAT = 'DD/MM/YYYY'
 

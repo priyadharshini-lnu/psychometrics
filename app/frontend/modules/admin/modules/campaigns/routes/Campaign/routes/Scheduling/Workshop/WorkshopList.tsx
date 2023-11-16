@@ -9,8 +9,8 @@ import {
   PlusOutlined,
   MoreOutlined,
 } from '@ant-design/icons'
-import moment, { Moment } from 'moment'
 import { connect } from 'react-redux'
+import dayjs from '~/utils/dayjs'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { ResourceAvatar, DatePickerWithRanges } from '~/glint'
@@ -33,7 +33,7 @@ export const WorkshopList: React.FC = () => {
     trackUrl: true,
     responseType: WorkshopTR,
     basePath: `campaigns/${campaignId}/`,
-    initialFilter: { start_time_between: DEFAULT_RANGE.toString() },
+    initialFilter: { start_time_between: DEFAULT_RANGE.map(date => getDateStringForSearch(date)).toString() },
     apiConfig: {
       include: ['workshop_managers', 'workshop_assessors', 'workshop_resources'],
       include_meta: ['permissions'],
@@ -168,9 +168,9 @@ interface ResourcesProps {
   resources: Resource[]
 }
 
-const DEFAULT_RANGE: [Moment, Moment] = [
-  moment().subtract(10, 'd'),
-  moment().add(10, 'd'),
+const DEFAULT_RANGE: [dayjs.Dayjs, dayjs.Dayjs] = [
+  dayjs().subtract(10, 'd'),
+  dayjs().add(10, 'd'),
 ]
 
 const MAX_AVATARS = 3
@@ -189,12 +189,13 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources }) => (
 
 const WorkshopDatePicker = () => {
   const { resource } = useResourceContext()
-  const [initialStartDate, initialEndDate] = getMomentDateRange(
+  const [initialStartDate, initialEndDate] = getDateRange(
     resource.getFilteredValue('start_time_between'),
   ) || DEFAULT_RANGE
   const onDateChange = (dates) => {
     const newDates = [dates[0].clone().startOf('day'), dates[1].clone().endOf('day')]
-    resource.changeFilter('start_time_between', newDates.toString())
+    resource.changeFilter('start_time_between',
+      newDates.map(date => getDateStringForSearch(date)).toString())
   }
 
   return (
@@ -204,7 +205,7 @@ const WorkshopDatePicker = () => {
       className="pt-4 pb-4 ps-4 pe-4"
     >
       <DatePickerWithRanges
-        clearIcon={false}
+        allowClear={false}
         onChange={onDateChange}
         format="DD/MMM/YYYY"
         defaultValue={[initialStartDate, initialEndDate]}
@@ -213,9 +214,16 @@ const WorkshopDatePicker = () => {
   )
 }
 
-const getMomentDateRange = (dateRangeString) => {
-  if (typeof (dateRangeString) !== 'string') {
-    return undefined
-  }
-  return dateRangeString.split(',').map(dateString => moment(dateString, 'ddd MMM DD YYYY hh:mm:ss Z'))
+const getDateRange = (dateRangeString) => {
+  const dateStrings = dateRangeString.split(',')
+  return dateStrings
+    .map(dateString => dayjs(dateString.trim()))
+    .filter(date => date.isValid())
+}
+
+const getDateStringForSearch = (date: dayjs.Dayjs) => {
+  const formattedDate = date.clone().format('ddd MMM D YYYY HH:mm:ss')
+  const timeOffset = date.clone().format('ZZ')
+
+  return `${formattedDate} GMT${timeOffset}`
 }

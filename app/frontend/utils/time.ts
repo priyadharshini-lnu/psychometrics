@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import moment, { Moment } from 'moment'
+import dayjs from '~/utils/dayjs'
 
 export const SECONDS_IN_HOUR = 86400
 const FORMAT = 'DD MMM YYYY / HH:mm'
@@ -7,7 +7,7 @@ const FORMAT = 'DD MMM YYYY / HH:mm'
 const allDays = _.range(0, 7)
 
 export const getMinutesAndSeconds = (time: number): string => (
-  moment(time * 1000).utc().format('mm:ss')
+  dayjs(time * 1000).utc().format('mm:ss')
 )
 
 export const getCountdownTime = (time: number): string => {
@@ -17,10 +17,10 @@ export const getCountdownTime = (time: number): string => {
   } else if (time < 60) {
     format = 's'
   }
-  return moment(time * 1000).utc().format(format)
+  return dayjs(time * 1000).utc().format(format)
 }
 
-export const formatedDate = date => moment(date).format(FORMAT)
+export const formatedDate = date => dayjs(date).format(FORMAT)
 
 export const minutesLeft = (start: Date, durationMs: number): number => {
   const delta = +start + durationMs - Date.now()
@@ -55,15 +55,17 @@ export const convertSecondsToMMSS = (totalSeconds: number): string => {
   return `${minutesFormatted}:${secondsFormatted}/10:00`
 }
 
-export const mergeDateAndTime = (date: Moment, time: Moment | null, timezone: string | undefined = undefined) => {
-  const finalTimezone = timezone || moment.tz.guess() || 'Asia/Dubai'
-  return moment.tz(date.format('YYYY-MM-DD'), finalTimezone).set({
-    hour: time?.hour(),
-    minute: time?.minute(),
-  })
+export const mergeDateAndTime = (
+  date: dayjs.Dayjs, time: dayjs.Dayjs | null, timezone: string| undefined = undefined,
+) => {
+  const finalTimezone = timezone || dayjs.tz.guess() || 'Asia/Dubai'
+  return (
+    dayjs.tz(date.format('YYYY-MM-DD'), finalTimezone).set('hour',
+      time?.hour() || 0).set('minute', time?.minute() || 0)
+  )
 }
 
-export const getAvailableDays = (startDate?: Moment, endDate?: Moment): number[] => {
+export const getAvailableDays = (startDate?: dayjs.Dayjs, endDate?: dayjs.Dayjs): number[] => {
   const availableDays: number[] = []
   if (startDate && endDate) {
     const daysDifference = endDate.diff(startDate, 'days')
@@ -84,7 +86,7 @@ export function secondsToDayHoursAndMinutes (
   hourAbbreviation: string | undefined = 'h',
   minuteAbbreviation: string | undefined = 'm',
 ) {
-  const duration = moment.duration(seconds, 'seconds')
+  const duration = dayjs.duration(seconds, 'seconds')
 
   const days = duration.days()
   const hours = duration.hours()
