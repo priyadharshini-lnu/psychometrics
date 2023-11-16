@@ -46,7 +46,7 @@ module Exports
         def self.formatted_answers(user_result, question, answers)
           answers = if question.of_sub_type?('Chat')
                       [answers.join("\r\n")]
-                    elsif question.of_sub_type?('Form')
+                    elsif question.of_sub_type?('Form') && question.props['formTypes'].present?
                       form_answers = answers[0] || []
                       question.props['formTypes'].map.with_index do |form_type, i|
                         if form_type['name'] == 'MultiSelect' && form_answers[i].is_a?(Array)
