@@ -30,7 +30,7 @@ export const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
       <Breadcrumb
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('reports.dashboard'),
           },
           {
