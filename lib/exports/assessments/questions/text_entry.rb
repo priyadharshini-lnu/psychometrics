@@ -49,7 +49,11 @@ module Exports
                     elsif question.of_sub_type?('Form')
                       form_answers = answers[0] || []
                       question.props['formTypes'].map.with_index do |form_type, i|
-                        form_type['name'] == 'MultiSelect' ? (form_answers[i] || []).join(', ') : form_answers[i]
+                        if form_type['name'] == 'MultiSelect' && form_answers[i].is_a?(Array)
+                          form_answers[i].join(', ')
+                        else
+                          form_answers[i]
+                        end
                       end
                     else
                       answers.flatten
