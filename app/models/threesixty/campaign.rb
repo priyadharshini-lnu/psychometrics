@@ -29,8 +29,6 @@ module Threesixty
     has_many :email_histories, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :license_usages, through: :campaign
 
-    enum type: { empty: 0, standard_360: 1, previous_360: 2 } # rubocop:disable Naming/VariableNumber
-
     delegate :client, :datasheet_column_names, :datasheet_data, :name, :subjects, :evaluators,
              :project, :participants, :datasheet, to: :campaign
     delegate :logo, to: :client

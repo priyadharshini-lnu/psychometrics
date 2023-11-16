@@ -97,7 +97,7 @@ class Report < ApplicationRecord
   enum provider: PROVIDERS, _prefix: :provider
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
-  serialize :external_settings, PsyJsonbSerializer
+  serialize :external_settings, coder: PsyJsonbSerializer
 
   mount_uploader :icon, Public::ImageUploader
   mount_uploader :poster, Public::ImageUploader

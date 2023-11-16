@@ -95,7 +95,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :highlights, dependent: :destroy
   has_many :norms, through: :dimension
   has_many :communications, dependent: :destroy
-  has_many :tasks, dependent: :destroy
   has_many :campaign_templates, dependent: :destroy
 
   # HABTM Factors
@@ -139,7 +138,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   validates :dimension, presence: true, if: :common?
   validates :name, presence: true
 
-  serialize :external_settings, PsyJsonbSerializer
+  serialize :external_settings, coder: PsyJsonbSerializer
 
   enum category: CATEGORIES
   enum status: STATUSES

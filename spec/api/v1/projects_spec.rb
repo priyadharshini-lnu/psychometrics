@@ -247,7 +247,7 @@ describe 'Projects' do
           ]
         }
 
-        let(:email) { CGI.escape user.email }
+        let(:email) { user.email }
         let(:project_id) { project.id }
 
         run_test! do |response|
@@ -257,7 +257,7 @@ describe 'Projects' do
       end
 
       response '404', 'User was not found' do
-        let(:email) { CGI.escape 'ttt@example.com' }
+        let(:email) { 'ttt@example.com' }
         let(:project_id) { project.id }
 
         schema '$ref' => '#/definitions/ApiError'
