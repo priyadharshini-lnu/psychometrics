@@ -44,22 +44,28 @@ module Exports
         end
 
         def self.formatted_answers(user_result, question, answers)
-          answers = if question.of_sub_type?('Chat')
-                      [answers.join("\r\n")]
-                    elsif question.of_sub_type?('Form') && question.props['formTypes'].present?
-                      form_answers = answers[0] || []
-                      question.props['formTypes'].map.with_index do |form_type, i|
-                        if form_type['name'] == 'MultiSelect' && form_answers[i].is_a?(Array)
-                          form_answers[i].join(', ')
-                        else
-                          form_answers[i]
-                        end
-                      end
-                    else
-                      answers.flatten
-                    end
+          answers = format_answers_based_on_question_type(question, answers)
           answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
+        end
+
+        def self.format_answers_based_on_question_type(question, answers)
+          return [answers.join("\r\n")] if question.of_sub_type?('Chat')
+          return format_form_answers(question, answers) if question.of_sub_type?('Form')
+
+          answers.flatten
+        end
+
+        def self.format_form_answers(question, answers)
+          form_answers = answers[0] || []
+          form_types = question.props['formTypes'] || []
+          Array.new(question.props['choices']) do |i|
+            if form_types[i] == 'MultiSelect' && form_answers[i].is_a?(Array)
+              form_answers[i].join(', ')
+            else
+              form_answers[i]
+            end
+          end
         end
 
         def self.result_label(answers, question)
