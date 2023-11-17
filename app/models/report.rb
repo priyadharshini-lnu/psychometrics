@@ -234,8 +234,8 @@ class Report < ApplicationRecord
   def pdf_dimension
     height = props&.dig('sizes', 'height') || 1100
     page_height_increment = 0
-    page_height_increment = 1 if [827, 1169].include?(height)
-    page_height_increment = 2 if height == 1100
+    page_height_increment = 1 if [827].include?(height)
+    page_height_increment = 2 if [1169, 1100].include?(height)
     {
       width: "#{props&.dig('sizes', 'width')}px",
       height: "#{height + page_height_increment}px"
