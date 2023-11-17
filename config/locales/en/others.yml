@@ -1764,8 +1764,10 @@ en:
           register: Register
           sign_in: Login
         title: Welcome!
-      signed_in: Signed in successfully.
+      signed_in: You have Signed in successfully!
+      signed_in_time: You last signed in on %{date_time}
       signed_out: Signed out successfully.
+      unsuccessful_sign_in_time: Your last sign-in attempt on %{date_time} was unsuccessful.
     two_factor_authentication:
       attempt: Please enter the OTP, you have received at your registered email address
       attempt_failed: Incorrect OTP! Please try again

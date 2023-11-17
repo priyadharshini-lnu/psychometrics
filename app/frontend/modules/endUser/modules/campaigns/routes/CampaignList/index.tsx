@@ -8,6 +8,7 @@ import {
 } from 'antd'
 import dayjs from '~/utils/dayjs'
 import { isRequestInProgress } from '~/core/request'
+import { Flash } from '~/components/Flash'
 
 import { ProfileCompletion } from '~/modules/endUser/modules/campaigns/components/ProfileCompletion'
 import { ProfileCardTitle } from '~/modules/endUser/modules/campaigns/components/ProfileCardTitle'
@@ -47,7 +48,6 @@ const mapDispatchToProps = {
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps)
-
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 const CampaignListComponent: FC<PropsFromRedux> = ({
@@ -63,6 +63,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   const [error, setError] = useState(false)
   const history = useHistory()
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
+  const [flashMessage, setFlashMessage] = useState(window.PsyGlobalState.flashMessage)
 
   useEffect(() => {
     fetchCampaigns().catch(() => {
@@ -74,6 +75,10 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     fetchWorkshop().catch(() => {
       setError(true)
     })
+  }, [])
+
+  useEffect(() => {
+    setFlashMessage(window.PsyGlobalState.flashMessage)
   }, [])
 
   const handleProfileCompletion = () => {
@@ -97,6 +102,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
         <div className={styles['container-campaign']}>
           <Row gutter={[32, 32]}>
             <Col span={24}>
+              <Flash flash={flashMessage} className="mb-5" />
               <Card
                 title={(<ProfileCardTitle />)}
                 className={styles.profileCard}

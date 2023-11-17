@@ -1,10 +1,10 @@
 import React from 'react'
 import { Alert } from 'antd'
 import _ from 'lodash'
-import styles from './styles.less'
 
 interface Props {
   flash: {type:string, value: string}[]
+  className?: string
 }
 
 const FLASH_TYPES = {
@@ -12,11 +12,12 @@ const FLASH_TYPES = {
 }
 
 export const Flash: React.FC<Props> = ({
-  flash,
+  className, flash,
 }) => {
   if (!flash.length) { return null }
+
   return (
-    <div className={styles.flash}>
+    <div className={className}>
       {flash.map((item, i) => (
         FLASH_TYPES[item.type] && !_.isEmpty(item.value)
           && <Alert message={item.value} type={FLASH_TYPES[item.type]} key={i} />))}

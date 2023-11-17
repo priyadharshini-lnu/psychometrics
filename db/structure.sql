@@ -4710,7 +4710,8 @@ CREATE TABLE public.users (
     photo character varying,
     timezone character varying,
     force_password_change boolean DEFAULT false,
-    global_assessor boolean DEFAULT false
+    global_assessor boolean DEFAULT false,
+    last_unsuccessful_attempt timestamp without time zone
 );
 
 
@@ -11896,9 +11897,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231005095208'),
 ('20231005095250'),
 ('20231006103234'),
+('20231026090227'),
 ('20231017110648'),
 ('20231020065639'),
 ('20231030120937'),
 ('20231101104312');
+
 
 

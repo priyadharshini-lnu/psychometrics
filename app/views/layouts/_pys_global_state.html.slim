@@ -3,5 +3,6 @@ javascript:
     realEnv: "#{ENV['REAL_ENV']}",
     currentUser: #{(current_user || {}).to_json(only: [:id, :email]).html_safe},
     sentryUrl: "#{ENV['SENTRY_URL']}",
-    features: #{Settings.features.to_h.transform_values { |v| v == true }.to_json.html_safe}
+    features: #{Settings.features.to_h.transform_values { |v| v == true }.to_json.html_safe},
+    flashMessage: #{flash_json_messages.to_json.html_safe}
   }
