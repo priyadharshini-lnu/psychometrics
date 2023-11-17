@@ -60,7 +60,7 @@ module Exports
           form_answers = answers[0] || []
           form_types = question.props['formTypes'] || []
           Array.new(question.props['choices']) do |i|
-            if form_types[i] == 'MultiSelect' && form_answers[i].is_a?(Array)
+            if form_types[i] && form_types[i]['name'] == 'MultiSelect' && form_answers[i].is_a?(Array)
               form_answers[i].join(', ')
             else
               form_answers[i]
