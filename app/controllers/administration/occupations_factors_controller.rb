@@ -70,7 +70,7 @@ module Administration
     end
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
       add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
       add_breadcrumb @dimension.name
       add_breadcrumb I18n.t('administration.breadcrumbs.occupations'), administration_dimension_occupations_path

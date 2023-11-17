@@ -180,7 +180,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
       <Breadcrumb
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('administration.clients.tenancies'),
           },
         ]}

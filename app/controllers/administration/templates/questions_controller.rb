@@ -101,7 +101,7 @@ module Administration
       private
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+        add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
         add_breadcrumb I18n.t('administration.breadcrumbs.question_center'), action: :index
       end
 
