@@ -54,6 +54,7 @@ interface Permissions {
   reportApprovals?: string
   campaignTemplates?: string
   auditLogs?: string
+  userAvailability?: string
 }
 
 // TODO: When all pages are implemented in single react, use this component instead of anchor tag
@@ -61,7 +62,7 @@ const Link = ({ href, children }) => {
   const isThreesixty = location.href.match(/\/(threesixty_campaigns)/)
   const selected = getSelected()
   const isAllowed = () => {
-    const allowedPages = ['profileDetails', 'changePassword', 'clients', 'users']
+    const allowedPages = ['profileDetails', 'changePassword', 'clients', 'users', 'userAvailability', 'reports']
     return !allowedPages.includes(selected)
   }
   if (isThreesixty || isAllowed()) {
@@ -163,7 +164,7 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   } : null,
   permissions.reports ? {
     key: 'reports',
-    label: <a href={permissions.reports}>{I18n.t('administration.navigation.reports')}</a>,
+    label: <Link href={permissions.reports}>{I18n.t('administration.navigation.reports')}</Link>,
     icon: <i className="fa fa-pie-chart" />,
   } : null,
   permissions.reportApprovals ? {
@@ -178,7 +179,7 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   } : null,
   {
     key: 'userAvailability',
-    label: <a href="/administration/user_availabilities">{I18n.t('administration.navigation.availability')}</a>,
+    label: <Link href={permissions.userAvailability}>{I18n.t('administration.navigation.availability')}</Link>,
     icon: <i className="fa fa-calendar" />,
   },
   permissions.auditLogs ? {
@@ -220,7 +221,7 @@ const getSelected = (): string => {
     return 'norms'
   }
 
-  if (location.href.match(/\/administration(\/)(dshboards)/)) {
+  if (location.href.match(/\/administration(\/)(dashboards)/)) {
     return 'dashboards'
   }
 
@@ -242,7 +243,7 @@ const getSelected = (): string => {
   if (location.href.match(/\/administration(\/)(communications)/)) {
     return 'communicationCenter'
   }
-  if (location.href.match(/\/administration(\/)(reports)/)) {
+  if (location.href.match(/\/admin(\/)(reports)/)) {
     return 'reports'
   }
   if (location.href.match(/\/administration(\/)(report_approvals)/)) {
@@ -269,7 +270,7 @@ const getSelected = (): string => {
     return 'assessorDashboard'
   }
 
-  if (location.href.match(/\/administration(\/)(user_availabilities)/)) {
+  if (location.href.match(/\/admin(\/)(user_availabilities)/)) {
     return 'userAvailability'
   }
 

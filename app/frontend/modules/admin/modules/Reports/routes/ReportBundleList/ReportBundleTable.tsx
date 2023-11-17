@@ -24,7 +24,7 @@ export const ReportBundleTable: React.FC<Props> = ({
       id="id"
       sorter
       render={reportBundle => (
-        <Link to={`/administration/report_families/${reportBundle.id}/reports`}>
+        <Link to={`/admin/report_families/${reportBundle.id}/reports`}>
           {reportBundle.id}
         </Link>
       )}

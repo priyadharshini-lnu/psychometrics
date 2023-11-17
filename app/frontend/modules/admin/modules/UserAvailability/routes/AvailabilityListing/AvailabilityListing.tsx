@@ -91,7 +91,7 @@ export const AvailabilityListing = () => {
       <Breadcrumb
         crumbs={[
           {
-            link: () => '/administration/user_availability',
+            link: () => '/admin/user_availability',
             label: () => I18n.t('administration.navigation.availability'),
           },
         ]}

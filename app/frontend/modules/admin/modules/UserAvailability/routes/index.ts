@@ -1,8 +1,10 @@
 import { AvailabilityListing } from '~/modules/admin/modules/UserAvailability/routes/AvailabilityListing'
 
-export const routes = [
+const routes = [
   {
     path: '/user_availabilities',
     component: AvailabilityListing,
   },
 ]
+
+export default routes

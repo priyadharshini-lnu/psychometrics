@@ -250,7 +250,7 @@ export class FixedHeader extends Component {
                 </form>
               </div>
               <div>
-                <a href="/administration/reports" className={`btn btn-default ${styles.back}`}>Back</a>
+                <a href="/admin/reports" className={`btn btn-default ${styles.back}`}>Back</a>
               </div>
             </div>
           </div>
