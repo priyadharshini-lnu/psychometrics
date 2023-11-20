@@ -118,6 +118,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
     class_name: 'CampaignAssessment', foreign_key: :assessor_form_id
   has_many :memberships, through: :assigns
+  has_many :campaign_factors, dependent: :restrict_with_error
 
   # HABTM Clients
   has_many :clients, through: :reports

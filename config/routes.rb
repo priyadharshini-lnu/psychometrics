@@ -1236,6 +1236,10 @@ Rails.application.routes.draw do
               end
             end
             jsonapi_resources :users, only: %i[index], controller: 'campaigns/users'
+
+            jsonapi_resources :campaign_factor_groups, only: %i[]
+            jsonapi_resources :campaign_factors, only: %i[]
+            jsonapi_resources :campaign_factor_values, only: %i[]
           end
           jsonapi_resources :workshops, only: %i[index] do
             jsonapi_relationships
