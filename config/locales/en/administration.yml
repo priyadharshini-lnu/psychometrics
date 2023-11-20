@@ -281,7 +281,7 @@ en:
           title: Basic Information
         confirm_message: Are you sure you want to delete an invitation?
         confirm_message_with_title: Are you sure you want to delete an invitation with title '%{invite_title}'?
-        confirm_title: Are you sure you want to delete invitation?
+        confirm_title: Confirm
         exceeded_subjects_count: Campaign has %{users} subjects. You can only add %{count} subjects per invite
         id: ID
         invites: Invites

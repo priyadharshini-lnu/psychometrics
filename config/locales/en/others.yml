@@ -1382,7 +1382,7 @@ en:
         content: Are you sure you want to send instructions with link to change password?
         successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
         title: Change password %{name}?
-      remove: Are you sure you want to remove user with email %{email} from this campaign?
+      remove: Are you sure you want to remove user with email '%{email}' from this campaign?
   campaigns:
     assessments_and_reports:
       assessor_assessments: Assessor Assessments
