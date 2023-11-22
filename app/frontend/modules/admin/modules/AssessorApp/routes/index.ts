@@ -5,6 +5,7 @@ import Evaluation from './Evaluation'
 import ReportPreview from './ReportPreview'
 import { ExternalReportPreview } from './ExternalReportPreview'
 import { WorkshopList } from './AssessmentCenter'
+import { ModerateScoring } from './ModerateScoring/ModerateScoring'
 
 const routes = [
   {
@@ -39,6 +40,10 @@ const routes = [
   {
     path: '/campaigns/:campaignId/evaluations/:userId',
     component: Evaluation,
+  },
+  {
+    path: '/campaigns/:campaignId/moderate_scoring/:userId',
+    component: ModerateScoring,
   },
 ]
 

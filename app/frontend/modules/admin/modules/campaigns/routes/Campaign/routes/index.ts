@@ -11,6 +11,9 @@ import { Dashboard } from './Dashboard'
 import {
   Scheduling, WorkshopList, Invites, InvitesForm, AssessmentCenterForm,
 } from './Scheduling'
+import {
+  ScoringGroups,
+} from './Scoring'
 import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
 import UsersAssessmentsReports
@@ -45,6 +48,7 @@ const routes = [
   { path: '/scheduling/assessment_center/:id/:tab', component: WorkshopPage },
   { path: '/scheduling/invites/add_invite', component: InvitesForm },
   { path: '/scheduling/invites/:inviteId/:tabName', component: IndividualInvite },
+  { path: '/scoring', component: ScoringGroups },
   { path: '/assessments_reports/*', component: AssessmentsReports },
   { path: '/assessments_reports', component: AssessmentsReports },
   { path: '/stats', component: Stats },
