@@ -7,7 +7,8 @@ module UsersResults
         def call
           factor = factor_data[:factor]
 
-          results = SubFactorQuestions.get_results(factor_data, extended_scoring, factor_hash)
+          results = SubFactorQuestions.get_results(factor_data, extended_scoring, factor_hash).
+                    select { |r| !r.key?('max_value') || r['max_value'].present? }
           score = calc_score(results)
           percentage = if factors_question_count[factor.id].present?
                          { 'percentage' => calc_percentage(results, factors_question_count[factor.id]) }

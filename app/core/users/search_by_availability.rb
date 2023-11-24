@@ -59,7 +59,6 @@ module Users
         WHERE
         start_date <= :start_date_time :: TIMESTAMP WITH time zone
         AND end_date >= :end_date_time :: TIMESTAMP WITH time zone
-        AND user_bookings.id is NULL
         #{user_scope_query_fragment}
         #{search_term_query_fragment}
         LIMIT :limit

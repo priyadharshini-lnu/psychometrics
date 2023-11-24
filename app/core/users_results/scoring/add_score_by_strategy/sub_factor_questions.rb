@@ -7,7 +7,8 @@ module UsersResults
         def call
           factor = factor_data[:factor]
 
-          results = SubFactorQuestions.get_results(factor_data, extended_scoring, factor_hash)
+          results = SubFactorQuestions.get_results(factor_data, extended_scoring, factor_hash).
+                    select { |r| !r.key?('max_value') || r['max_value'].present? }
           score = calc_score(results)
 
           broadcast :ok, extended_scoring.deep_merge(factor.id.to_s => { 'score' => score })
