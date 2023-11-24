@@ -243,9 +243,10 @@ const getSelected = (): string => {
   if (location.href.match(/\/administration(\/)(communications)/)) {
     return 'communicationCenter'
   }
-  if (location.href.match(/\/admin(\/)(reports)/)) {
+  if (location.href.match(/\/admin\/(reports|report_families)/)) {
     return 'reports'
   }
+
   if (location.href.match(/\/administration(\/)(report_approvals)/)) {
     return 'reportApprovals'
   }
