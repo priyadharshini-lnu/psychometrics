@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class WorkshopInviteSerializer < ActiveModel::Serializer
+  class WorkshopInviteSerializer < Panko::Serializer
     attributes :id, :title, :description, :duration, :total_invites
 
     def duration
@@ -18,7 +18,7 @@ module EndUser
     private
 
     def current_user
-      instance_options[:current_user]
+      context[:current_user]
     end
   end
 end

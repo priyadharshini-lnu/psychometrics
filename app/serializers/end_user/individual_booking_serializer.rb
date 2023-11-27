@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class IndividualBookingSerializer < ActiveModel::Serializer
+  class IndividualBookingSerializer < Panko::Serializer
     attributes :id, :title, :description, :duration, :status, :workshop_id, :preferred_language,
                :neurodivergent_comments, :allow_language_preference, :timezone, :reschedule_lead_time,
                :available_dates, :booked_date, :allow_neurodiversity_option, :allowed_languages,
@@ -12,6 +12,7 @@ module EndUser
     delegate :id, to: :workshop, prefix: true, allow_nil: true
     delegate :status, to: :workshop_invited_subject
     delegate :preferred_language, :neurodivergent, :neurodivergent_comments, to: :workshop_subject, allow_nil: true
+    delegate :title, :description, to: :object
 
     def booked_date
       if workshop
@@ -48,7 +49,7 @@ module EndUser
     end
 
     def current_user
-      @current_user ||= instance_options[:current_user]
+      @current_user ||= context[:current_user]
     end
   end
 end

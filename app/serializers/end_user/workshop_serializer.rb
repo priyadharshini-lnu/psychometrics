@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class WorkshopSerializer < ActiveModel::Serializer
+  class WorkshopSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :start_time, :duration, :completion_status, :attendance_status, :attended,
                :preworks, :activities, :meeting_link

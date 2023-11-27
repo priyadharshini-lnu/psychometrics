@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class HoganCredentialSerializer < ActiveModel::Serializer
+  class HoganCredentialSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :url, :user_id, :password, :unique_id, :first_name, :last_name, :language_id,
                :direct_assessment_id, :display_informed_consent, :return_url
@@ -49,11 +49,11 @@ module EndUser
     private
 
     def current_user
-      @current_user ||= instance_options[:current_user]
+      @current_user ||= context[:current_user]
     end
 
     def hogan_credential
-      @hogan_credential ||= instance_options[:hogan_credential]
+      @hogan_credential ||= context[:hogan_credential]
     end
   end
 end

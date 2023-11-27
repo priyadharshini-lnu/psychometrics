@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 module EndUser
-  class DetailedUserAssessmentSerializer < ActiveModel::Serializer
+  class DetailedUserAssessmentSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :timing, :assessment_category,
                :assessment_extra, :assessment_id, :available_locales,
                :selected_locale, :privacy_consent_required, :campaign_id
 
     def privacy_consent_required
-      current_user.privacy_consent_required?
+      context[:current_user].privacy_consent_required?
     end
 
     def url

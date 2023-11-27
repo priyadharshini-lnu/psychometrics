@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class BookingsSerializer < ActiveModel::Serializer
+  class BookingsSerializer < Panko::Serializer
     attributes :id, :title, :description, :duration, :status, :workshop_invite_id, :date,
                :timezone, :cancellation_lead_time, :reason
 
@@ -22,7 +22,7 @@ module EndUser
     end
 
     def current_user
-      @current_user ||= instance_options[:current_user]
+      @current_user ||= context[:current_user]
     end
   end
 end

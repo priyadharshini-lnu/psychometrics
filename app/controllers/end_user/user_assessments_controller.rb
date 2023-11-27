@@ -25,7 +25,11 @@ class EndUser::UserAssessmentsController < ApplicationController
     @selected_locale = @user_assessment.selected_locale || user_locale
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
-      format.json { render json: @user_assessment, serializer: EndUser::DetailedUserAssessmentSerializer }
+      format.json do
+        render json: ::EndUser::DetailedUserAssessmentSerializer.new(
+          context: { current_user: current_user }
+        ).serialize(@user_assessment)
+      end
     end
   end
 

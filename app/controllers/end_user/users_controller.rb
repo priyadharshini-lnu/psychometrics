@@ -32,7 +32,7 @@ class EndUser::UsersController < ApplicationController
           json.concat(
             Panko::ArraySerializer.new(
               campaigns['common'],
-              each_serializer: EndUser::ShortCampaignSerializer,
+              each_serializer: ::EndUser::ShortCampaignSerializer,
               context: { current_user: current_user }
             ).to_a
           )
@@ -73,8 +73,11 @@ class EndUser::UsersController < ApplicationController
     if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS))
       current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
       audit! :update_user_profile, current_user, project: @current_project, payload: form.attributes
-      render json: current_user, serializer: EndUser::CurrentUserSerializer,
-             project_id: @current_project.id, back_url: session[:back_url]
+
+      render json: ::EndUser::CurrentUserSerializer.new(
+        context: { project_id: @current_project.id,
+                   back_url: session[:back_url] }
+      ).serialize(current_user)
       session.delete(:back_url)
     else
       render json: { errors: current_user.errors.messages }, status: 400
@@ -112,7 +115,7 @@ class EndUser::UsersController < ApplicationController
                    find_by(workshop_subjects: { user_id: current_user.id })
 
         if workshop
-          render json: workshop, serializer: EndUser::WorkshopSerializer
+          render json: workshop, serializer: ::EndUser::WorkshopSerializer
         else
           head :no_content
         end

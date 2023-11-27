@@ -105,6 +105,7 @@ module Api
         this = self
         relationship_schema = this.relationship_schema(type)
         Dry::Schema.define do
+          config.validate_keys = true
           instance_eval(&this.resource_identifier)
           instance_eval(&relationship_schema) if relationship_schema
 

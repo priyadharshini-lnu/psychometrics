@@ -21,12 +21,15 @@ module EndUser
       @selected_locale = @user_assessment.selected_locale || user_locale
 
       UserAssessments::Pass.call!(@user_assessment, @selected_locale) unless @user_assessment.started_at?
-
-      render json: @user_assessment.users_result, serializer: UsersResultSerializer,
-             campaign: @user_assessment.campaign, participant: @user_assessment,
-             current_user: current_user, locale: @selected_locale,
-             piped_text_context: build_piped_context,
-             include: '**'
+      render json: UsersResultSerializer.new(
+        context: {
+          campaign: @user_assessment.campaign,
+          piped_text_context: build_piped_context,
+          participant: @user_assessment, locale: @selected_locale,
+          current_user: current_user,
+          include: '**'
+        }
+      ).serialize(@user_assessment.users_result).to_hash
     end
 
     def build_piped_context

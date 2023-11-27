@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module EndUser
-  class ReportSerializer < ActiveModel::Serializer
+  class ReportSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :name, :mindmill, :hogan, :results_hogan_url,
                :has_external_report, :generating, :pdf_url, :mindmill_report_url
 
-    attribute :external_report_url, if: -> { !!assigns_report&.external_report }
+    attributes :external_report_url, if: -> { !!assigns_report&.external_report }
 
     def mindmill
       object.mindmill?
@@ -51,7 +51,7 @@ module EndUser
     end
 
     def assign
-      @assign ||= instance_options[:assign]
+      @assign ||= context[:assign]
     end
   end
 end

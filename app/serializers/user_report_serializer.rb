@@ -6,12 +6,16 @@ class UserReportSerializer < ActiveModel::Serializer
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 
-  has_one :user, serializer: UserSerializer
+  has_one :user, method: :user
   has_one :report, serializer: ReportSerializer
   has_one :options, serializer: Threesixty::CampaignOptionsSerializer
   has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
   has_many :comments, each_serializer: UserReportCommentSerializer
   has_many :user_report_events, each_serializer: UserReportEventSerializer
+
+  def user
+    UserSerializer.new(user: object.user).serialize(object.user).transform_keys(&:to_sym)
+  end
 
   def user_report_events
     object.user_report_events.order(created_at: :desc)

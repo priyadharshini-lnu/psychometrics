@@ -3,7 +3,11 @@
 module Threesixty
   class EvaluatorSerializer < ActiveModel::Serializer
     attributes :id, :status, :report_status, :is_subject, :evaluations, :evaluators, :permissions
-    has_one :user, serializer: UserSerializer
+    has_one :user, method: :user
+
+    def user
+      UserSerializer.new(user: object.user).serialize(object.user).transform_keys(&:to_sym)
+    end
 
     def status
       Threesixty::Participants::GetStatus.call!(

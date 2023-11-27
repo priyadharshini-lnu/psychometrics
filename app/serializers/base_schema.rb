@@ -3,7 +3,10 @@
 class BaseSchema
   module ClassMethods
     def schema(response, serializer)
+      return super if whitelisted_schemas.include?(self)
+
       existing_schema = super
+
       unless existing_schema.config.validate_keys
         raise PankoOverride::Exceptions::KeyValidationMissing,
               "Schema class '#{name}' does not have 'config.validate_keys' set to true"
@@ -26,5 +29,9 @@ class BaseSchema
 
   def self.schema(response, serializer)
     raise NotImplementedError, 'define schema in subclass'
+  end
+
+  def self.whitelisted_schemas
+    [UsersResultSchema]
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersResultSerializer < ActiveModel::Serializer
+class UsersResultSerializer < Panko::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
              :campaign_id, :available_translations, :translations,
@@ -8,22 +8,22 @@ class UsersResultSerializer < ActiveModel::Serializer
              :subject_datasheet, :highlights, :user_assessment_id, :started_at,
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
              :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled,
-             :privacy_consent_required, :other_pending_assessments_count, :prework
-
-  attribute :relationship
+             :privacy_consent_required, :other_pending_assessments_count, :prework, :relationship, :campaign_options
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
   has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
   has_many :media_responses, serializer: MediaResponseSerializer
 
-  has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
   has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
-  delegate :campaign_options, to: :campaign
-  has_many :factors, serializer: ::UsersResults::FactorSerializer
 
   delegate :reset_count, :started_at, :prework, :other_pending_assessments_count, to: :user_assessment
   delegate :remaining_campaign_time, to: :campaign_user, allow_nil: true
+
+  def campaign_options
+    ::EndUser::CampaignOptionsSerializer.new(campaign_options: campaign.campaign_options).
+      serialize(campaign.campaign_options)
+  end
 
   def privacy_consent_required
     current_user.privacy_consent_required?
@@ -49,17 +49,18 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def status
-    return 'in_progress' if instance_options[:read_only]
+    return 'in_progress' if context[:read_only]
 
     object.real_status
   end
 
   def factors
-    Factor.where(id: object.scoring&.keys)
+    factor_records = Factor.where(id: object.scoring&.keys)
+    Panko::ArraySerializer.new(factor_records, each_serializer: ::UsersResults::FactorSerializer).to_a
   end
 
   def timed_out
-    return false if instance_options[:read_only]
+    return false if context[:read_only]
 
     user_assessment.expired?
   end
@@ -129,7 +130,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def participant
-    @participant ||= instance_options[:participant]
+    @participant ||= context[:participant]
   end
 
   def highlights
@@ -147,19 +148,19 @@ class UsersResultSerializer < ActiveModel::Serializer
   private
 
   def campaign
-    @campaign ||= instance_options[:campaign]
+    @campaign ||= context[:campaign]
   end
 
   def current_user
-    instance_options[:current_user]
+    context[:current_user]
   end
 
   def locale
-    instance_options[:locale] || user_assessment.selected_locale || I18n.default_locale
+    context[:locale] || user_assessment.selected_locale || I18n.default_locale
   end
 
   def piped_text_context
-    instance_options[:piped_text_context] || {}
+    context[:piped_text_context] || {}
   end
 
   def user_assessment
