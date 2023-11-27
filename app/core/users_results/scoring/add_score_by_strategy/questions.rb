@@ -6,7 +6,7 @@ module UsersResults
       class Questions < BaseStrategy
         def call
           factor = factor_data[:factor]
-          results = extended_scoring.dig(factor.id.to_s, 'results').
+          results = extended_scoring.dig(factor.id.to_s, 'results')&.
                     select { |r| !r.key?('max_value') || r['max_value'].present? }
           return  broadcast :ok, extended_scoring unless results
 
