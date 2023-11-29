@@ -116,6 +116,7 @@ class Condition extends Component {
         </option>
         <option value="DataSheet">Data Sheet</option>
         <option value="ReportData">Report Data</option>
+        <option value="CampaignFactors">Campaign Factors</option>
         {options.map(option => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -179,6 +180,7 @@ const conenctor = connect(
     assessments: state.report.builder.assessments,
     filters: state.report.builder.filters,
     dataSheetColumns: state.report.builder.data_sheet_columns,
+    campaignFactors: state.report.builder.campaign_factors,
   }),
 )
 

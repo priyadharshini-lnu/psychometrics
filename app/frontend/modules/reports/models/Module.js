@@ -16,6 +16,7 @@ import InnovationStyleConditionCollection from './InnovationStyleConditionCollec
 import ModulesTranslates from './ModulesTranslates'
 
 export const DATA_SHEET = 'DataSheet'
+export const CAMPAIGN_FACTORS = 'CampaignFactors'
 export const REPORT_DATA = 'ReportData'
 export const ASSESSMENT_DATA = 'AssessmentData'
 const ALL_FACTORS = 'All Factors'

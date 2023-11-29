@@ -13,6 +13,7 @@ export default {
   Stability: Scoring,
   EmbeddedData,
   DataSheet: Scoring,
+  CampaignFactors: Scoring,
   ReportData,
   'Saville#Ipsative': SavilleScoring,
   'Saville#Nipsative': SavilleScoring,
