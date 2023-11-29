@@ -148,6 +148,11 @@ export class FixedHeader extends Component {
     openDataSheet({ columns: AppStore.report.dataSheetColumns, id: builder.id })
   }
 
+  openCampaignFactorsModal = () => {
+    const { openCampaignFactors, report: { builder } } = this.props
+    openCampaignFactors({ columns: builder.campaign_factors, id: builder.id })
+  }
+
   openAliasModal = () => {
     const { openAlias } = this.props
     openAlias({ factors: AppStore.flatFactors })
@@ -224,6 +229,7 @@ export class FixedHeader extends Component {
                 <ul className="dropdown-menu">
                   <li><a onClick={this.openFilterModal}>Manage Filters</a></li>
                   <li><a onClick={this.openDataSheetModal}>Manage DataSheets</a></li>
+                  <li><a onClick={this.openCampaignFactorsModal}>Manage Campagin Factors</a></li>
                   <li><a onClick={this.export}>Export Translations</a></li>
                   <li>
                     <a

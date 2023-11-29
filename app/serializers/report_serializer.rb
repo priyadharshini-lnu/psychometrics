@@ -4,7 +4,7 @@ class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
              :category, :pages, :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language,
-             :locales
+             :locales, :campaign_factors
 
   has_many :filters, serializer: Reports::FilterSerializer
   has_many :assessments, serializer: Reports::AssessmentSerializer

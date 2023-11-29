@@ -29,6 +29,7 @@ export default connect(
     selectModule,
     openFilter: data => openModal('filter', data),
     openDataSheet: data => openModal('dataSheetModal', data),
+    openCampaignFactors: data => openModal('campaignFactorsModal', data),
     openAlias: data => openModal('alias', data),
     openDataConfiguration: data => openModal('dataConfiguration', data),
   },

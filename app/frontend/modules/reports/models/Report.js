@@ -81,6 +81,7 @@ const Report = function (attrs = {}) {
 
   this.factorNorms = attrs.factor_norms
   this.dataSheetColumns = attrs.data_sheet_columns
+  this.campaignFactors = attrs.campaign_factors
   this.relationships = attrs.relationships || []
   this.setFilters(attrs.filters)
   this.result_completed_at = attrs.result_completed_at

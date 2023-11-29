@@ -9,6 +9,7 @@ import {
   InitType, RenameReportType, UpdateCurrentPageType, AddPageType, SelectModuleType,
   ChangeSizeType, UpdatePagePositionType, SaveDataSheetType, CopyModuleType, CopyPageType,
   ChangeSkipLogic,
+  SAVE_CAMPAIGN_FACTORS,
 } from './actions'
 import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 
@@ -50,6 +51,7 @@ interface State {
     sections: DataConfigurationSection[]
   },
   data_sheet_columns: [],
+  campaign_factors: [],
   relationships: [],
   pages: number[],
   innovation_styles: {},
@@ -93,6 +95,7 @@ export const defaultState: State = {
   completed_assessments: [],
   data_configuration: { refs: [], sections: [] },
   data_sheet_columns: [],
+  campaign_factors: [],
   relationships: [],
   pages: [],
   innovation_styles: {},
@@ -180,6 +183,7 @@ const HANDLERS = {
   [COPY_PAGE]: (state: State, { pageId }: CopyPageType) => setIn(state, ['buffer', 'sourceId'], pageId),
   [COPY_MODULE]: (state: State, { moduleId }: CopyModuleType) => setIn(state, ['buffer', 'moduleId'], moduleId),
   [SAVE_DATA_SHEET]: (state: State, { data }: SaveDataSheetType) => setIn(state, ['data_sheet_columns'], data),
+  [SAVE_CAMPAIGN_FACTORS]: (state: State, { data }: SaveDataSheetType) => setIn(state, ['campaign_factors'], data),
   [CHANGE_SKIP_LOGIC]: (state: State, { value }: ChangeSkipLogic) => setIn(state, ['skipLogic'], value),
 }
 
