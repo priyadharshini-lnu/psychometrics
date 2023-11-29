@@ -8,6 +8,7 @@ import humps from 'humps'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
 import store, { history } from '~/modules/admin/store'
 import RouteList from '~/components/RouteList'
+import { DefaultAntThemeWrapper } from '~/glint'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { Schema } from '~/libs/jsonApi/schema'
 import { PortalMenu } from '~/components/MainMenu'
@@ -22,22 +23,24 @@ const client = new ApiClient({
 
 const App: React.FC<void> = () => (
   <div className="ms" style={{ background: 'white' }}>
-    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-    <Provider store={store as any}>
-      <ApiProvider client={client}>
-        <DndProvider backend={HTML5Backend}>
-          <Router>
-            <ConnectedRouter history={history}>
-              <PortalMenu />
-              <div className="ms">
-                <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-              </div>
-            </ConnectedRouter>
-          </Router>
-        </DndProvider>
-        <IncorrectResponseErrorModal />
-      </ApiProvider>
-    </Provider>
+    <DefaultAntThemeWrapper>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <Provider store={store as any}>
+        <ApiProvider client={client}>
+          <DndProvider backend={HTML5Backend}>
+            <Router>
+              <ConnectedRouter history={history}>
+                <PortalMenu />
+                <div className="ms">
+                  <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+                </div>
+              </ConnectedRouter>
+            </Router>
+          </DndProvider>
+          <IncorrectResponseErrorModal />
+        </ApiProvider>
+      </Provider>
+    </DefaultAntThemeWrapper>
   </div>
 )
 
