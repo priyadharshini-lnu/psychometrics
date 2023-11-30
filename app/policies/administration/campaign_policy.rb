@@ -235,19 +235,26 @@ module Administration
     end
 
     class Scope < Scope
+      def initialize(user, scope, options = {})
+        @user = user
+        @scope = [scope].flatten.last
+        @permission = options[:permission] || :view
+        @group = options[:group] || :campaigns
+      end
+
       def resolve
         return scope if @user.is?(:superadmin)
 
         permitted_client_admin_project_ids = @user.client_admin_project_ids.select do |project_id|
-          @user.has_permission?(:campaigns, :view, project_id: project_id)
+          @user.has_permission?(@group, @permission, project_id: project_id)
         end
 
         permitted_project_admin_project_ids = @user.project_admin_client_ids.select do |project_id|
-          @user.has_permission?(:campaigns, :view, project_id: project_id)
+          @user.has_permission?(@group, @permission, project_id: project_id)
         end
 
         permitted_campaign_ids = @user.campaign_admin_campaigns.select do |campaign|
-          @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
+          @user.has_permission?(@group, @permission, project_id: campaign.project_id, campaign_id: campaign.id)
         end.pluck(:id)
 
         permitted_campaign_ids += @user.assessors_campaings.pluck(:id)
