@@ -44,6 +44,24 @@ GIT
       validate_url (~> 1.0)
 
 GIT
+  remote: https://github.com/kaminari/kaminari
+  revision: 13b59ce7ab4e3d0e3072272251de734f918d5f8f
+  branch: master
+  specs:
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
+
+GIT
   remote: https://github.com/livestorm/jsonapi-utils
   revision: 36342943d59272daaa881c2d579d6ad2772b1ef9
   specs:
@@ -594,18 +612,6 @@ GEM
     jsonpath (1.1.3)
       multi_json
     jwt (2.2.3)
-    kaminari (1.2.2)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.2)
-      kaminari-activerecord (= 1.2.2)
-      kaminari-core (= 1.2.2)
-    kaminari-actionview (1.2.2)
-      actionview
-      kaminari-core (= 1.2.2)
-    kaminari-activerecord (1.2.2)
-      activerecord
-      kaminari-core (= 1.2.2)
-    kaminari-core (1.2.2)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -1151,7 +1157,7 @@ DEPENDENCIES
   jsonapi-utils!
   jsonpath (~> 1.1.2)
   jwt (~> 2.2.2)
-  kaminari (~> 1.2.1)
+  kaminari!
   listen (~> 3.7.1)
   meta_request!
   mimemagic
