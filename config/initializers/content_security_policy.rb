@@ -42,13 +42,19 @@ unless Rails.env.test?
     ]
 
     script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+
     style_src = %i[
       self unsafe_inline
     ]
     style_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
+    font_src = %i[
+      self data
+    ]
+    font_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+
     policy.default_src :self
-    policy.font_src    :self, :data
+    policy.font_src(*font_src)
     policy.img_src     '*', :data
     policy.media_src   '*'
     policy.object_src  '*'
