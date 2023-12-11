@@ -158,6 +158,26 @@ export const Facilitators: React.FC<Props> = ({
     setFormData(updatedFormsData)
   }
 
+  const copyValues = (index, values) => {
+    const updatedFormsData = [...formData]
+    updatedFormsData[index] = { ..._.omit(basicInfoDataWithoutDates, 'time') }
+    updatedFormsData[index].name = workshopNames[index]
+    updatedFormsData[index].start_time = startDateTime(index).format()
+    updatedFormsData[index].assessor_ids = values.assessor_ids || []
+    updatedFormsData[index].center_manager_ids = values.center_manager_ids || []
+    updatedFormsData[index].total_seats = values.total_seats
+    setFormData(updatedFormsData)
+  }
+
+  const copyToAll = (form) => {
+    const values = form.getFieldsValue()
+
+    forms.forEach((f, index) => {
+      f.setFieldsValue(values)
+      copyValues(index, values)
+    })
+  }
+
   return (
     <Space direction="vertical" size="large" style={{ display: 'flex' }}>
       {_.times(datesCount, (index) => {
@@ -242,6 +262,9 @@ export const Facilitators: React.FC<Props> = ({
                 initialValues={{ name: workshopNames[index], workshop_resources: workshopResources }}
                 onValuesChange={(_, values) => handleFormChange(index, values)}
               >
+                <div className={styles.right}>
+                  {index === 0 && <Button onClick={() => copyToAll(form)}>Copy To All</Button>}
+                </div>
                 <Input.Group>
                   <Row gutter={16}>
                     <Col xs={24} sm={8}>

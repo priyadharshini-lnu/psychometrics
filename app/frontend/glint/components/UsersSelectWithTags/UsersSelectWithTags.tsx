@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import {
   AutoComplete, Space, AutoCompleteProps, Empty,
 } from 'antd'
@@ -17,11 +17,18 @@ type UsersSelectWithTagsProps = {
 } & AutoCompleteProps
 
 export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
-  users, onUserSearch, preSelectedUsers, onChange, userIdField = 'id', ...props
+  users, onUserSearch, preSelectedUsers, onChange, userIdField = 'id', value, ...props
 }) => {
   const [selectedUsers, setSelectedUsers] = useState(preSelectedUsers || [])
   const [searchKey, setSearchKey] = useState('')
   const autoCompleteProps = _.omit(props, ['value'])
+
+  useEffect(() => {
+    const valueSelected = value ? value.map(id => users.find(user => user.id === id)) : null
+    if (valueSelected) {
+      setSelectedUsers(valueSelected)
+    }
+  }, [value])
 
   const handleUserSelect = (userId: string) => {
     const selectedUser = users.find(user => user.id === userId)
