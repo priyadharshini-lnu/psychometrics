@@ -8,7 +8,9 @@ import { CheckOutlined } from '@ant-design/icons'
 import SpreadSheet from '~/components/SpreadSheet'
 import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import {
-  getForm, createAllAssessors, fillAssessors, AssessorFormItem, getAvailableAssessments, clearForm,
+  getForm, clearForm,
+  createAllAssessors, fillAssessors, AssessorFormItem,
+  getAvailableAssessments, getLeadAssessorAssessment,
 } from '~/modules/admin/modules/campaigns/core/assessors'
 import { get as getAutocomplete } from '~/modules/admin/core/ui/autocomplete'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
@@ -55,12 +57,13 @@ const tableFields = [
   },
 ]
 
-
 const connecter = connect(
   (state: RootState) => ({
     errors: getForm(state).errors,
     assessors: getForm(state).attrs,
-    assessments: getAvailableAssessments(state),
+    assessments: getAvailableAssessments(state)
+      .concat(getLeadAssessorAssessment(state))
+      .filter(e => e),
     autocompletedAssessors: getAutocomplete(state).assessors || [],
     autocompletedSubjectsEvaluators: getAutocomplete(state).subjects || [],
   }),

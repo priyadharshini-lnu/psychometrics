@@ -78,6 +78,7 @@ export const CATEGORIES = [
   'case_study',
   'threesixty',
   'assessor_form',
+  'lead_assessor_form',
   'agile',
   'hogan',
   'saville',
@@ -98,6 +99,7 @@ export const CREATABLE_CATEGORIES = [
   'agile',
   'threesixty',
   'assessor_form',
+  'lead_assessor_form',
 ]
 
 

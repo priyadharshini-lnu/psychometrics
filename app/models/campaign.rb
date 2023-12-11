@@ -139,6 +139,11 @@ class Campaign < ApplicationRecord
       ).where.not(id: assessor_assessment_ids).uniq
   end
 
+  def lead_assessor_assessment
+    campaign_assessor_assessments.joins(:assessment).
+      find_by(assessment: { category: Assessment::CATEGORIES[:lead_assessor_form] })&.assessment
+  end
+
   def clone
     deep_clone(include: %i[
       campaign_reports campaign_assessments campaign_assessment_groups campaign_options

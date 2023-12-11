@@ -534,9 +534,12 @@ en:
           cancel: Cancel
           form:
             add: Add
+            add_lead_assessor: Add as Lead Assessor
+            add_lead_assessor_hint: Please, add Lead Assessor Form first
             assessments: Assessments
             assessor: Assessor
             assessor_placeholder: Search Assessor...
+            lead_assessment: Lead Assessment
             subject: Subject
             subject_placeholder: Search Subject...
           sheet:

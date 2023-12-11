@@ -32,7 +32,7 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
     fetchAssessments({
       apiConfig: {
         filter: {
-          category_eq: 'assessor_form',
+          category_in: ['assessor_form', 'lead_assessor_form'],
           filterable_fields: value,
         },
       },

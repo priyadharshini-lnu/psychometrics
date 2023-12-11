@@ -14,6 +14,7 @@ const defaultState: State = {
   list: [],
   current: null,
   availableAssessments: [],
+  leadAssessorAssessment: null,
   form: {
     attrs: [],
     errors: null,
@@ -30,7 +31,7 @@ export const get = (state: RootState): State => _.get(state, ['campaigns', 'asse
 export const getCurrent = (state: RootState) => _.get(get(state), ['current'])
 export const getForm = (state: RootState) => _.get(get(state), ['form'])
 export const getAvailableAssessments = (state: RootState) => _.get(get(state), ['availableAssessments'])
-
+export const getLeadAssessorAssessment = (state: RootState) => _.get(get(state), ['leadAssessorAssessment'])
 
 export const FETCH = 'campaigns/FETCH_ASSESSORS'
 export const CREATE = 'resource/campaigns/assessor/CREATE'
@@ -41,6 +42,7 @@ export const CREATE_ALL_ASSESSORS = 'campaigns/assessor/CREATE_ALL_ASSESSORS'
 export const CREATE_ALL_ASSESSORS_FAILURE = 'campaigns/assessor/CREATE_ALL_ASSESSORS_FAILURE'
 export const FILL_ASSESSORS = 'campaigns/assessor/FILL_ASSESSORS'
 export const FETCH_AVAILABLE_ASSESSMENTS = 'campaigns/assessor/FETCH_AVAILABLE_ASSESSMENTS'
+export const FETCH_LEAD_ASSESSOR_ASSESSMENT = 'campaigns/assessor/FETCH_LEAD_ASSESSOR_ASSESSMENT'
 export const CLEAR_FORM = 'campaigns/assessor/CLEAR_FORM'
 export const FETCH_SINGLE = 'campaigns/assessor/FETCH_SINGLE'
 
@@ -118,6 +120,14 @@ export const fetchAvailableAssessments = (campaignId: string | number) => ({
   },
 })
 
+export const fetchLeadAssessorAssessment = (campaignId: string | number) => ({
+  type: FETCH_LEAD_ASSESSOR_ASSESSMENT,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessors/lead_assessor_assessment`,
+  },
+})
+
 export const importAssessors = (campaignId: number, body: FormData) => ({
   type: IMPORT,
   campaignId,
@@ -129,7 +139,6 @@ export const importAssessors = (campaignId: number, body: FormData) => ({
     contentType: 'multipart/form-data;' as const,
   },
 })
-
 
 export const createAllAssessors = (campaignId: string, assessors: AssessorFormItem[]) => ({
   type: CREATE_ALL_ASSESSORS,
@@ -162,6 +171,7 @@ export interface AssessorFormItem {
   assessorLastName?: string
   subjectEmail?: string
   assessmentIds?: number[]
+  leadAssessmentId?: number
 }
 export interface Assessment {
   id: number
@@ -171,6 +181,7 @@ export interface State {
   list: Assessor[]
   current: SingleAssessor | null
   availableAssessments: Assessment[]
+  leadAssessorAssessment: Assessment | null
   form: {
     attrs: AssessorFormItem[]
     errors: null | { [key: string]: string[] }
@@ -185,6 +196,7 @@ export interface State {
 
 type FetchType = ApiActionResponse<State>
 type FetchAvailableAssessmentsType = ApiActionResponse<AvailableAssessment[]>
+type FetchLeadAssessorAssessmentType = ApiActionResponse<AvailableAssessment>
 type CreateType = ApiActionResponse<Assessor>
 type UpdateType = ApiActionResponse<Assessor>
 type RemoveType = ApiActionResponse<number>
@@ -195,6 +207,9 @@ const HANDLERS = {
   [FETCH_SINGLE]: (state: State, { response }: FetchSingleType) => ({ ...state, current: response }),
   [FETCH_AVAILABLE_ASSESSMENTS]: (state: State, { response }: FetchAvailableAssessmentsType) => (
     { ...state, availableAssessments: response }
+  ),
+  [FETCH_LEAD_ASSESSOR_ASSESSMENT]: (state: State, { response }: FetchLeadAssessorAssessmentType) => (
+    { ...state, leadAssessorAssessment: response }
   ),
   [CREATE]: (state: State, { response }: CreateType) => (setIn(state, ['list'], [response, ...state.list])),
   [FILL_ASSESSORS]: (state: State, { assessors }: CreateType) => (setIn(state, ['form', 'attrs'], assessors)),

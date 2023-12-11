@@ -71,6 +71,10 @@ module Administration
         render json: query.select(:id, :name).order(:name).map { |a| a.slice(:id, :name) }
       end
 
+      def lead_assessor_assessment
+        render json: campaign.lead_assessor_assessment&.slice(:id, :name)
+      end
+
       def import
         assessors = ::Assessors::ParseImportData.call!(params[:import_data])
         form = ::Assessors::CreateAllForm.from_params(assessors: assessors).with_context(campaign: campaign)

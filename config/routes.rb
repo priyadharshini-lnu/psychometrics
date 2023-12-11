@@ -259,6 +259,7 @@ Rails.application.routes.draw do
           collection do
             post :import
             get :available_assessments
+            get :lead_assessor_assessment
             post :create_all
           end
           member do

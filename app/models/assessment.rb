@@ -19,6 +19,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   THREESIXTY = 'threesixty'
   MINDMILL = 'mindmill'
   ASSESSOR_FORM = 'assessor_form'
+  LEAD_ASSESSOR_FORM = 'lead_assessor_form'
   HOGAN = 'hogan'
   AGILE = 'agile'
   SAVILLE = 'saville'
@@ -33,6 +34,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     THREESIXTY,
     MINDMILL,
     ASSESSOR_FORM,
+    LEAD_ASSESSOR_FORM,
     HOGAN,
     AGILE,
     SAVILLE,
@@ -47,6 +49,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     CASE_STUDY,
     THREESIXTY,
     ASSESSOR_FORM,
+    LEAD_ASSESSOR_FORM,
     AGILE,
     MEETING
   ].freeze
@@ -60,6 +63,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     hogan: HOGAN,
     agile: AGILE,
     assessor_form: ASSESSOR_FORM,
+    lead_assessor_form: LEAD_ASSESSOR_FORM,
     saville: SAVILLE,
     pearson: PEARSON,
     iiht: IIHT,
