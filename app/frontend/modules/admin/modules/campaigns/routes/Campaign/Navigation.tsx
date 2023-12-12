@@ -115,6 +115,9 @@ const getSelected = (pathname): string => {
   if (pathname.includes('/options')) {
     return 'options'
   }
+  if (pathname.includes('/scoring')) {
+    return 'scoring'
+  }
   return ''
 }
 

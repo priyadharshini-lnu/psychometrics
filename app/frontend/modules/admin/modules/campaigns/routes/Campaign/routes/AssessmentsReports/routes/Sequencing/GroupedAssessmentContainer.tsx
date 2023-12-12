@@ -3,7 +3,7 @@ import {
   Switch, Card, Space, Typography, Button, Modal, Tooltip, message, Result,
 } from 'antd'
 import {
-  DeleteOutlined, MenuOutlined, BlockOutlined, FolderOutlined,
+  DeleteOutlined, DragOutlined, BlockOutlined, FolderOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
@@ -19,9 +19,9 @@ interface Props {
   assessmentCount: number
   isLoading: boolean
   children: React.ReactNode
-  removeGroup: (groupId: number) => Promise<{ response: number }>
-  updateAssessmentGroups: (groupId: number) => void
-  modifyGroup: (groupdId: number, data: Partial<CampaignAssessmentGroup>) => void
+  removeGroup?: (groupId: number) => Promise<{ response: number }>
+  updateAssessmentGroups?: (groupId: number) => void
+  modifyGroup?: (groupdId: number, data: Partial<CampaignAssessmentGroup>) => void
   sortId?: string
   dragStyle?: CSSProperties
   attributes?: React.HTMLAttributes<HTMLElement>
@@ -58,8 +58,10 @@ export const GroupedAssessmentContainer = React.forwardRef(
         cancelText: I18n.t('assessments_reports.sequencing.modal.delete.cancel'),
         onOk: async () => {
           try {
-            const { response } = await removeGroup(group.id)
-            updateAssessmentGroups(response)
+            if (removeGroup && updateAssessmentGroups) {
+              const { response } = await removeGroup(group.id)
+              updateAssessmentGroups(response)
+            }
           } catch (error) {
             message.error(
               I18n.t('assessments_reports.sequencing.modal.delete.failed', {
@@ -73,20 +75,20 @@ export const GroupedAssessmentContainer = React.forwardRef(
 
     const handleTitleChange = (value: string) => {
       if (value) {
-        modifyGroup(group.id, {
+        modifyGroup?.(group.id, {
           name: value,
         })
       }
     }
 
     const handleAssessmentInOrderChange = (checked: boolean) => {
-      modifyGroup(group.id, {
+      modifyGroup?.(group.id, {
         previousAssessmentsRequired: checked,
       })
     }
 
     const handlePrevGroupRequiredChange = (checked: boolean) => {
-      modifyGroup(group.id, {
+      modifyGroup?.(group.id, {
         previousGroupRequired: checked,
       })
     }
@@ -101,7 +103,7 @@ export const GroupedAssessmentContainer = React.forwardRef(
           title={(
             <Space align="start">
               <Button
-                icon={<MenuOutlined />}
+                icon={<DragOutlined />}
                 size="small"
                 type="text"
                 className="cursor-grab"

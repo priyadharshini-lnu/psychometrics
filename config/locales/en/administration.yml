@@ -3992,6 +3992,8 @@ en:
         invites: Invites
         resources: Resources
         subjects: Subjects
+    scoring:
+      no_groups: No groups present
     search: Search
     security_setting:
       180_days: 180 Days
