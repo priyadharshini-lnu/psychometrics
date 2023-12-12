@@ -270,6 +270,24 @@ module Swagger
           CampaignAssessmentAssessorResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessorAssessment::Schema.single_resource_response
           ),
+          CampaignFactorGroupListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorGroup::Schema.multiple_resource_response
+          ),
+          CampaignFactorGroupCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorGroup::Schema.create_request
+          ),
+          CampaignFactorGroupResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorGroup::Schema.single_resource_response
+          ),
+          CampaignFactorListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactor::Schema.multiple_resource_response
+          ),
+          CampaignFactorCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactor::Schema.create_request
+          ),
+          CampaignFactorResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactor::Schema.single_resource_response
+          ),
           WorkshopResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.single_resource_response
           ),

@@ -169,6 +169,9 @@ en:
             view: View
           auditLogs:
             view: View
+          campaignFactors:
+            manage: Manage
+            view: View
           campaigns:
             bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage

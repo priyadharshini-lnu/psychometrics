@@ -156,7 +156,7 @@ module Administration
     end
 
     def stats?
-      @user.is?(:superadmin) || has_permission?(:campaign, :stats)
+      @user.is?(:superadmin) || has_permission?(:campaigns, :stats)
     end
 
     def view_dashboard?

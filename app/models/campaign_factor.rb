@@ -8,6 +8,15 @@ class CampaignFactor < ApplicationRecord
 
   has_many :campaign_factor_values, dependent: :destroy
 
-  enum factor_type:  { assessment: 0, datasheet: 1, assessor_scoring: 2, formula: 3 }
-  enum output_type:  { numeric: 0, string: 1 }
+  enum factor_type: { assessment: 0, datasheet: 1, assessor_scoring: 2, formula: 3 }
+  enum output_type: { numeric: 0, string: 1 }
+
+  before_create :set_position
+
+  def set_position
+    self.position = (
+      campaign.campaign_factor_groups.
+      where(id: campaign_factor_group_id).
+      maximum('position') || 0) + 1
+  end
 end

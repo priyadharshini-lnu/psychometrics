@@ -237,7 +237,7 @@
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
       "file": "app/controllers/end_user/iiht_user_assessments_controller.rb",
-      "line": 15,
+      "line": 16,
       "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
       "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url, :allow_other_host => true)",
       "render_path": null,
@@ -260,7 +260,7 @@
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
       "file": "app/controllers/end_user/iiht_user_assessments_controller.rb",
-      "line": 19,
+      "line": 20,
       "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
       "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).iiht_user_assessment.url, :allow_other_host => true)",
       "render_path": null,
@@ -375,7 +375,7 @@
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
       "file": "app/controllers/end_user/saville_user_assessments_controller.rb",
-      "line": 15,
+      "line": 16,
       "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
       "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url, :allow_other_host => true)",
       "render_path": null,
@@ -398,7 +398,7 @@
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
       "file": "app/controllers/end_user/saville_user_assessments_controller.rb",
-      "line": 19,
+      "line": 20,
       "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
       "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).saville_user_assessment.url, :allow_other_host => true)",
       "render_path": null,
@@ -411,6 +411,29 @@
       "confidence": "Weak",
       "cwe_id": [
         601
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "9339a36e564c6eeaf1dc1d84855f064d7b707100244be76dba4c75e071e08315",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/core/campaign_factor_groups/initialize_scoring.rb",
+      "line": 42,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ActiveRecord::Base.connection.execute(\"        SELECT DISTINCT\\n          f.id,\\n          #{CampaignFactorGroup.create(:name => (CampaignFactorGroup::DEFAULT_GROUP_NAME), :campaign_id => campaign.id).id} AS campaign_factor_group_id,\\n          f.name,\\n          REGEXP_REPLACE(LOWER(f.name), '\\\\W+', '_', 'gi') AS code,\\n          #{CampaignFactor.factor_types[:assessor_scoring]} AS factor_type,\\n          #{campaign.id} AS campaign_id,\\n          ROW_NUMBER () OVER () AS position\\n        FROM\\n          factors f\\n          INNER JOIN dimensions d ON f.dimension_id = d.id\\n          INNER JOIN assessments a ON a.dimension_id = d.id\\n          INNER JOIN factors_scoring fs ON fs.assessment_id = a.id\\n            AND fs.factor_id = f.id\\n        WHERE\\n          a.id IN( SELECT DISTINCT\\n              assessment_id FROM campaign_assessor_assessments\\n            WHERE\\n              campaign_id = #{campaign.id})\\n\".squish)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "CampaignFactorGroups::InitializeScoring",
+        "method": "call"
+      },
+      "user_input": "CampaignFactor.factor_types[:assessor_scoring]",
+      "confidence": "High",
+      "cwe_id": [
+        89
       ],
       "note": ""
     },
@@ -490,7 +513,7 @@
       "check_name": "Send",
       "message": "User controlled method execution",
       "file": "app/controllers/api/v2/administration/base_controller.rb",
-      "line": 180,
+      "line": 197,
       "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
       "code": "send(\"authorize_#{params[:action]}\")",
       "render_path": null,
@@ -503,29 +526,6 @@
       "confidence": "High",
       "cwe_id": [
         77
-      ],
-      "note": ""
-    },
-    {
-      "warning_type": "Mass Assignment",
-      "warning_code": 70,
-      "fingerprint": "b018533a5b2c8ce984c6bf1c4b9966a21af6f85313bc18902cb26ac9e15a1953",
-      "check_name": "MassAssignment",
-      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
-      "file": "app/controllers/api/v2/administration/base_controller.rb",
-      "line": 52,
-      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "params.permit!",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Api::V2::Administration::BaseController",
-        "method": "validate_requests_schema"
-      },
-      "user_input": null,
-      "confidence": "Medium",
-      "cwe_id": [
-        915
       ],
       "note": ""
     },
@@ -559,7 +559,7 @@
       "check_name": "MassAssignment",
       "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
       "file": "app/controllers/api/v2/administration/base_controller.rb",
-      "line": 65,
+      "line": 56,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit!",
       "render_path": null,
@@ -583,6 +583,29 @@
       "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
       "file": "app/controllers/api/v2/administration/base_controller.rb",
       "line": 67,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V2::Administration::BaseController",
+        "method": "validate_requests_schema"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "b018533a5b2c8ce984c6bf1c4b9966a21af6f85313bc18902cb26ac9e15a1953",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/api/v2/administration/base_controller.rb",
+      "line": 69,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit!",
       "render_path": null,
@@ -743,7 +766,7 @@
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
       "file": "app/controllers/end_user/pearson_user_assessments_controller.rb",
-      "line": 15,
+      "line": 16,
       "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
       "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url, :allow_other_host => true)",
       "render_path": null,
@@ -766,7 +789,7 @@
       "check_name": "Redirect",
       "message": "Possible unprotected redirect",
       "file": "app/controllers/end_user/pearson_user_assessments_controller.rb",
-      "line": 19,
+      "line": 20,
       "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
       "code": "redirect_to(UserAssessment.find_by!(:id => params[:id], :evaluator_id => current_user.id).pearson_user_assessment.url, :allow_other_host => true)",
       "render_path": null,
@@ -909,6 +932,6 @@
       "note": ""
     }
   ],
-  "updated": "2023-08-30 15:45:16 +0530",
+  "updated": "2023-12-11 12:49:28 +0300",
   "brakeman_version": "6.0.0"
 }

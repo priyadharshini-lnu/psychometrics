@@ -1238,8 +1238,17 @@ Rails.application.routes.draw do
             end
             jsonapi_resources :users, only: %i[index], controller: 'campaigns/users'
 
-            jsonapi_resources :campaign_factor_groups, only: %i[]
-            jsonapi_resources :campaign_factors, only: %i[]
+            jsonapi_resources :campaign_factor_groups, only: %i[index create update destroy] do
+              collection do
+                post :initialize_scoring
+                post :update_positions
+              end
+              jsonapi_resources :campaign_factors, only: %i[index create update destroy] do
+                collection do
+                  post :update_positions
+                end
+              end
+            end
             jsonapi_resources :campaign_factor_values, only: %i[]
           end
           jsonapi_resources :workshops, only: %i[index] do
