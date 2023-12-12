@@ -1,1 +1,1 @@
-export { AssessorEvaluations } from './AssessorEvaluations'
+export { default as AssessorEvaluations } from './AssessorEvaluations'

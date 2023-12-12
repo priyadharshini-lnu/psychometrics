@@ -52,7 +52,7 @@ class UsersResultSchema < BaseSchema
       required(:media_responses).maybe do
         array(MediaResponseSchema.schema(_, _))
       end
-      required(:campaign_user).hash(EndUser::CampaignUserSchema.schema(_, _))
+      required(:campaign_user).maybe(EndUser::CampaignUserSchema.schema(_, _))
       required(:campaign_options).hash(EndUser::CampaignOptionsSchema.schema(_, _))
     end
   end

@@ -1,1 +1,91 @@
-export const Evaluation = () => <div>Evaluation</div>
+import React, { useEffect, useState } from 'react'
+import {
+  connect, ConnectedProps, Provider,
+} from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { Layout, Card } from 'antd'
+import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
+import createAssessmentStore from '~/modules/admin/store/assessmentStore'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import {
+  fetchLeadAssessment, fetchAssessorAssessments, getLeadAssessorForm, getLeadAssessorResult,
+} from '../../core/scoreModerate'
+import { setStore, getStore } from '~/modules/survey/store/StoreWatchman'
+
+const { Content } = Layout
+
+const connecter = connect((state: RootState) => ({
+  userAssessmentId: state.assessors.scoreModerate.leadAssessorUserAssessmentId,
+  assessorForm: getLeadAssessorForm(state.assessors.scoreModerate),
+  assessorResult: getLeadAssessorResult(state.assessors.scoreModerate),
+}), {
+  fetchLeadAssessment,
+  fetchAssessorAssessments,
+})
+
+interface Props extends ConnectedProps<typeof connecter> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  store: any
+}
+
+const Evaluation = (props) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [store]: any = useState(createAssessmentStore())
+
+  return (
+    <Provider store={store}>
+      <LeadAssessorAssessment store={store} {...props} />
+    </Provider>
+  )
+}
+
+const LeadAssessorAssessment: React.FC<Props> = ({
+  userAssessmentId,
+  assessorForm,
+  assessorResult,
+  fetchLeadAssessment,
+  fetchAssessorAssessments,
+  store,
+}) => {
+  let parsedCampaignId
+  let parsedUserId
+
+  const { campaignId, userId } = useParams<{ campaignId?: string, userId?: string }>()
+  if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
+  if (userId) { parsedUserId = parseInt(userId, 10) }
+
+  useEffect(() => {
+    if (!getStore()) {
+      setStore(store)
+    }
+    fetchLeadAssessment(parsedCampaignId, parsedUserId)
+    fetchAssessorAssessments(parsedCampaignId, parsedUserId)
+  }, [])
+  const loaded = !!assessorForm
+  const bodyStyles = { padding: 0 }
+
+  return (
+    <Card
+      loading={!loaded}
+      bordered={false}
+      bodyStyle={bodyStyles}
+    >
+      <Content className="fluid-container">
+        {loaded && (
+          <AssessmentContainer
+            id="pass_assessment"
+            initialized={false}
+            type="pass_assessment"
+            data={assessorForm}
+            result={assessorResult}
+            resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${assessorResult.id}`}
+            rstore={store}
+            isAssessor
+          />
+        )}
+      </Content>
+    </Card>
+  )
+}
+
+export default connecter(Evaluation)

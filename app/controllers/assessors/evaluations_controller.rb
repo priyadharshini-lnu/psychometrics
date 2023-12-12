@@ -29,7 +29,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
 
     render json: {
       user_info: {
-        user: UserSerializer.new(user).to_hash,
+        user: UserSerializer.new.serialize(user).to_hash,
         datasheet_columns: datasheet_columns || [],
         datasheet: datasheet&.slice(*datasheet_columns.map { |col| col['name'] }) || {}
       },
@@ -69,13 +69,12 @@ class Assessors::EvaluationsController < Assessors::BaseController
     selected_locale = user_assessment.selected_locale || user_locale
 
     {
-      result: UsersResultSerializer.new(user_result, campaign: user_assessment.campaign,
-                                          participant: user_assessment,
-                                          current_user: current_user, locale: selected_locale,
-                                          piped_text_context: build_piped_context(user_assessment)).
-        to_hash(include: '**'),
-      assessment: AssessmentSerializer.new(user_assessment.assessment,
-                                           selected_locale: selected_locale,
+      result: UsersResultSerializer.new(context: { campaign: user_assessment.campaign,
+                                                   participant: user_assessment,
+                                                   current_user: current_user, locale: selected_locale,
+                                                   piped_text_context: build_piped_context(user_assessment) }).
+        serialize(user_result).to_hash,
+      assessment: AssessmentSerializer.new(user_assessment.assessment, selected_locale: selected_locale,
                                            piped_text_context: build_piped_context(user_assessment)).
         to_hash(include: '**')
     }

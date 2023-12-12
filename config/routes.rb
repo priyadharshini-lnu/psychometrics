@@ -100,6 +100,12 @@ Rails.application.routes.draw do
           get :evaluate
         end
       end
+      resources :score_moderations, only: %i[show] do
+        member do
+          get :assessor_assessments
+          get :assessment_with_results
+        end
+      end
     end
 
     resources :campaigns, only: [] do

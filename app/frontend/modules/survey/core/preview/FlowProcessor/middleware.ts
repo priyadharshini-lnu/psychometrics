@@ -38,7 +38,6 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   const nextPage = () => {
     const { preview } = getState()
     const page = getNextPage(preview)
-
     if (page) {
       dispatch(showPage(preview.currentPage + 1))
       processDisplayLogic()

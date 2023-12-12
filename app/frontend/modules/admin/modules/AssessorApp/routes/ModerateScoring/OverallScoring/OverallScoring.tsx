@@ -1,8 +1,8 @@
 import styles from './styles.less'
 
-export const Reports = ({ header }) => (
+export const OverallScoring = ({ header }) => (
   <div className={styles.sidebar}>
     {header}
-    Reports List
+    OverallScoring
   </div>
 )

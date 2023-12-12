@@ -1,48 +1,73 @@
-import { useState } from 'react'
-import {
-  Menu, Button,
-} from 'antd'
-import {
-  AppstoreOutlined, MailOutlined, SettingOutlined, CloseOutlined,
-} from '@ant-design/icons'
+import { FC, useState } from 'react'
+import { Button, Tabs, Space } from 'antd'
+import { CloseOutlined } from '@ant-design/icons'
+import { connect, ConnectedProps } from 'react-redux'
+import cs from 'classnames'
 import { ScoringTable } from './ScoringTable'
-import { Evaluation } from './Evaluation'
-
+import Evaluation from './Evaluation'
 import styles from './ModerateScoring.less'
 import { Profile } from './Profile'
 import { OverallScoring } from './OverallScoring'
 import { Reports } from './Reports'
 import { AssessorEvaluations } from './AssessorEvaluations'
+import { AssessorEvaluationsIcon } from './icons/AssessorEvaluations'
+import { OverallScoresIcon } from './icons/OverallScores'
+import { ProfileIcon } from './icons/Profile'
+import { ReportsIcon } from './icons/Reports'
+import { getLeadAssessorResult } from '../../core/scoreModerate'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const items = [
   {
     key: 'profile',
-    icon: <MailOutlined />,
+    icon: <ProfileIcon />,
   },
   {
     key: 'overallScoring',
-    icon: <AppstoreOutlined />,
+    icon: <OverallScoresIcon />,
   },
   {
     key: 'reports',
-    icon: <SettingOutlined />,
+    icon: <ReportsIcon />,
   },
   {
     key: 'assessorEvaluations',
-    icon: <SettingOutlined />,
+    icon: <AssessorEvaluationsIcon />,
   },
 ]
 
-export const ModerateScoring = () => {
-  const [tab, setTab] = useState(null)
-  const onChange = ({ key }) => {
+
+const connecter = connect((state: RootState) => ({
+  assessorResult: getLeadAssessorResult(state.assessors.scoreModerate),
+}), {
+})
+
+interface Props extends ConnectedProps<typeof connecter> {}
+
+export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
+  const [tab, setTab] = useState()
+  const onChange = (key) => {
     setTab(key)
   }
 
+  const tabHeader = tab && (
+    <div className={styles.tabheader}>
+      <div />
+      <Button type="text" onClick={() => setTab(undefined)}><CloseOutlined /></Button>
+    </div>
+  )
   return (
     <div>
       <div className={styles.header}>
-        User Executive Test
+        {assessorResult && (
+          <Space>
+            <Space>
+              {assessorResult.subject.first_name}
+              {assessorResult.subject.last_name}
+            </Space>
+            <span className={styles.email}>{assessorResult.subject.email}</span>
+          </Space>
+        )}
       </div>
       <div className={styles.main}>
         <div className={styles.evaluation}>
@@ -50,21 +75,29 @@ export const ModerateScoring = () => {
           <Evaluation />
         </div>
         {tab && (
-          <div className={styles.sidebar}>
-            <div className={styles.header}>
-              <div>Title</div>
-              <Button type="text" onClick={() => setTab(null)}><CloseOutlined /></Button>
-            </div>
-            {tab === 'profile' && <Profile />}
-            {tab === 'overallScoring' && <OverallScoring />}
-            {tab === 'reports' && <Reports />}
-            {tab === 'assessorEvaluations' && <AssessorEvaluations />}
-          </div>
+          <>
+            {tab === 'profile' && <Profile header={tabHeader} />}
+            {tab === 'overallScoring' && <OverallScoring header={tabHeader} />}
+            {tab === 'reports' && <Reports header={tabHeader} />}
+            {tab === 'assessorEvaluations' && <AssessorEvaluations header={tabHeader} />}
+          </>
         )}
-        <div className={styles.menu}>
-          <Menu onSelect={onChange} mode="inline" items={items} />
+        <div className={cs(styles.menu, { [styles.inactiveTab]: tab === undefined })}>
+          <Tabs
+            onChange={onChange}
+            onTabClick={onChange}
+            tabPosition="right"
+            activeKey={tab}
+            items={items.map(({ icon, key }) => ({
+              label: icon,
+              key,
+              children: null,
+            }))}
+          />
         </div>
       </div>
     </div>
   )
 }
+
+export const ModerateScoring = connecter(ModerateScoringComponent)

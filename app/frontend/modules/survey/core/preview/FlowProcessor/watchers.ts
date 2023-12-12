@@ -48,6 +48,7 @@ function* genInitPageProcessing () {
     yield genSimulatePassingAssessment()
     return
   }
+
   if (!state.preview.currentElement) {
     yield put(nextPage())
   } else if (isValidCurrentElementAndPage(state.preview)) {
