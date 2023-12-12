@@ -25,11 +25,11 @@ class EndUser::WorkshopsController < ApplicationController
     respond_to do |format|
       format.html { render 'end_user/users/dashboard' }
       format.json do
-        render json: @workshop,
-               campaign: @workshop_campaign,
-               workshop_user_assessments: @workshop_user_assessments,
-               serializer: ::EndUser::WorkshopSerializer,
-               current_user: current_user
+        render json: ::EndUser::WorkshopSerializer.new(context: {
+          campaign: @workshop_campaign,
+          workshop_user_assessments: @workshop_user_assessments,
+          current_user: current_user
+        }).serialize(@workshop)
       end
     end
   end

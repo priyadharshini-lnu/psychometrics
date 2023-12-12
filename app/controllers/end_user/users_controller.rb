@@ -115,7 +115,7 @@ class EndUser::UsersController < ApplicationController
                    find_by(workshop_subjects: { user_id: current_user.id })
 
         if workshop
-          render json: workshop, serializer: ::EndUser::WorkshopSerializer
+          render json: ::EndUser::WorkshopSerializer.new(context: { current_user: current_user }).serialize(workshop)
         else
           head :no_content
         end

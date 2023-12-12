@@ -11,7 +11,7 @@ module EndUser
       return unless user_assessments
 
       user_assessments.select { |r| r.prework == true }.map do |ua|
-        ::EndUser::UserAssessmentSerializer.new(ua)
+        ::EndUser::UserAssessmentSerializer.new(context: context).serialize(ua)
       end
     end
 
@@ -19,7 +19,7 @@ module EndUser
       return unless user_assessments
 
       user_assessments.select { |r| r.prework == false }.map do |ua|
-        ::EndUser::UserAssessmentSerializer.new(ua)
+        ::EndUser::UserAssessmentSerializer.new(context: context).serialize(ua)
       end
     end
 
@@ -30,7 +30,7 @@ module EndUser
     private
 
     def user_assessments
-      @user_assessments ||= instance_options[:workshop_user_assessments]
+      @user_assessments ||= context[:workshop_user_assessments]
     end
 
     def workshop_subject
@@ -38,7 +38,7 @@ module EndUser
     end
 
     def current_user
-      @current_user ||= instance_options[:current_user]
+      @current_user ||= context[:current_user]
     end
   end
 end

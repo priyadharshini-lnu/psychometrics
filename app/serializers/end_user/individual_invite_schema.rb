@@ -10,7 +10,7 @@ module EndUser
         required(:title).maybe(:str?)
         required(:description).maybe(:str?)
         required(:allow_language_preference).filled(:bool?)
-        required(:allowed_languages).filled(:array?)
+        required(:allowed_languages).maybe(:array?)
         required(:available_dates).array do
           hash do
             required(:id).filled(:int?)
