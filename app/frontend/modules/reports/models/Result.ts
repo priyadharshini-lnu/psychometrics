@@ -22,6 +22,7 @@ import {
   QuestionScoringWithoutFactorsObject,
   TopFactorType,
   UserReportData,
+  CampaignFactorResultsData,
 } from './Results/interfaces'
 
 import {
@@ -72,6 +73,8 @@ export default class Result<ExternalScoring = unknown> {
 
   dataSheet: object
 
+  campaignFactorResults: CampaignFactorResultsData
+
   reportData: object
 
   questions: QuestionScoringObject
@@ -96,6 +99,7 @@ export default class Result<ExternalScoring = unknown> {
     this.resultsByFilter = {}
     this.embeddedData = {}
     this.dataSheet = {}
+    this.campaignFactorResults = []
     this.reportData = {}
     this.groupedDataSheet = []
   }
@@ -108,6 +112,7 @@ export default class Result<ExternalScoring = unknown> {
     filters: Filter[] | null,
     notFilteredResults: RawResult[] = [],
     userReportData: UserReportData | null = null,
+    campaignFactorResults: CampaignFactorResultsData = [],
   ): Result => {
     filters = this.addIndividualFilter(filters)
     _.each(filters, (filter: Filter) => {
@@ -126,6 +131,7 @@ export default class Result<ExternalScoring = unknown> {
     this.usersScoring = SetUsersScoring.run(this.rawResults)
     this.externalScoring = SetExternalScoring.run(this.rawResults)
     this.dataSheet = SetDataSheet.run(this.rawResults)
+    this.campaignFactorResults = campaignFactorResults
     this.reportData = SetReportData.run(this.userReportData)
     this.groupedDataSheet = SetGroupedDataSheet.run(this.rawResults)
     this.mediaResponses = SetMediaResponses.run(this.rawResults)
@@ -153,6 +159,7 @@ export default class Result<ExternalScoring = unknown> {
       null,
       rawResults,
       this.userReportData,
+      this.campaignFactorResults,
     )
   }
 
@@ -213,6 +220,12 @@ export default class Result<ExternalScoring = unknown> {
     const factorIds = AppStore.subfactors[this.dimensionId].map(f => f.id)
     return GetTopFactors.run(rank, rank, factorIds, TopFactorType.SubFactor, this.resultsByFilter, this.dimensionId)[0]
   }
+
+  getCampaignFactorValue = (code): {type: string, name: string, code: string} => {
+    const factorNames = _.keyBy(AppStore.report.campaignFactors, 'code')
+    return factorNames[code]
+  }
+
 
   // eslint-disable-next-line arrow-body-style
   getOccupationByRank = (rank: number): OccupationFactor[] | null => {

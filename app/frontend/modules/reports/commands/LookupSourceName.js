@@ -1,4 +1,6 @@
+import _ from 'lodash'
 import I18nStore from '~/modules/reports/store/I18nStore'
+import AppStore from '~/modules/reports/store/AppStore'
 
 const LookupSourceName = {
   call (sources, sourceKey, sourceType) {
@@ -7,6 +9,10 @@ const LookupSourceName = {
     }
     if (sourceType === 'DataSheet') {
       return sourceKey
+    }
+    if (sourceType === 'CampaignFactors') {
+      const factor = _.find(AppStore.report.campaignFactors, { code: sourceKey })
+      return I18nStore.tCampaignFactorName(factor)
     }
     if (sourceType === 'ExternalFactor') {
       return I18nStore.tExternalFactorName(sources.id, (sources.factors.find(f => f.id === sourceKey) || {}))

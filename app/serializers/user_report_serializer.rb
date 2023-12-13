@@ -2,7 +2,7 @@
 
 class UserReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
-             :report_data, :permissions, :comments, :require_approval
+             :report_data, :permissions, :comments, :require_approval, :campaign_factor_results
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 
@@ -45,6 +45,19 @@ class UserReportSerializer < ActiveModel::Serializer
 
   def results
     @results ||= instance_options[:results]
+  end
+
+  def campaign_factor_results
+    [
+      {
+        code: 'overall1',
+        value: 9
+      },
+      {
+        code: 'wdfwe1sfsdf',
+        value: 4
+      }
+    ]
   end
 
   def report_data

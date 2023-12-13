@@ -98,6 +98,10 @@ export default function CampaignFactors ({ columns, close, saveCampaignFactors }
                       name={[field.name, 'name']}
                       rules={[
                         { required: true, message: 'Name is required' },
+                        {
+                          pattern: /^[^\s].*$/,
+                          message: 'Name cannot start with a space',
+                        },
                       ]}
                     >
                       <Input placeholder="Name" />

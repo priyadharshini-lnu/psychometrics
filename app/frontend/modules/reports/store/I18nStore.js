@@ -113,6 +113,13 @@ _.extend(I18nStore.prototype, {
     return factor.alias || factor.name
   },
 
+  tCampaignFactorName (factor) {
+    if (_.get(this, `locales.campaignFactors.${factor.code}`)) {
+      return this.locales.campaignFactors[factor.code].name
+    }
+    return factor.name
+  },
+
   tFactor (factor, key) {
     if (_.get(this, `locales.factor.${factor.id}.${key}`)) {
       return this.locales.factor[factor.id][key]
@@ -177,6 +184,12 @@ _.extend(I18nStore.prototype, {
             alias: factor.alias,
           }
         })
+        return hash
+      }, {}),
+      campaignFactors: _.reduce(AppStore.report.campaignFactors, (hash, factor) => {
+        hash[factor.code] = {
+          name: factor.name,
+        }
         return hash
       }, {}),
       occupation: _.reduce(AppStore.occupations, (hash, occupations) => {

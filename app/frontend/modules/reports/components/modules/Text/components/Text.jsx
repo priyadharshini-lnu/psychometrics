@@ -12,6 +12,7 @@ import store from '~/modules/reports/store/PageList'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import RichEditorStore from '~/modules/reports/store/RichEditorStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
+import LookupSourceName from '~/modules/reports/commands/LookupSourceName'
 import { SafeHTML } from '~/components/SafeHTML'
 import '~/modules/reports/commands/froalaCommands'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
@@ -215,7 +216,16 @@ class Text extends Component {
           />
         )
       } if (sourceType === 'ResultText') {
-        const textValue = LookupResultTextValue.run(model)
+        let textValue = LookupResultTextValue.run(model)
+        if (model.props.source.type === 'CampaignFactors') {
+          const factorResults = ResultStore.results[assessmentId].campaignFactorResults
+          const code = model.props.source.codes[0]
+          const value = factorResults && _.find(factorResults, { code })?.value
+          textValue = `${LookupSourceName.call({}, code, 'CampaignFactors')}: ${value}`
+          return (
+            textValue
+          )
+        }
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
             <div>{textValue}</div>
@@ -233,6 +243,17 @@ class Text extends Component {
       )
     }
     if (sourceType === 'ResultText') {
+      if (model.props.source.type === 'CampaignFactors') {
+        const code = model.props.source.codes[0]
+        const factorResults = ResultStore.results[assessmentId].campaignFactorResults
+        const value = factorResults && _.find(factorResults, { code })?.value
+        const textValue = `${LookupSourceName.call({}, code, 'CampaignFactors')}: ${value}`
+        return (
+          <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
+            <div>{textValue}</div>
+          </div>
+        )
+      }
       return (
         <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
           {/* TODO: Render as markdown only for Datasheet where the column is markdown */}

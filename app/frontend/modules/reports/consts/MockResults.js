@@ -282,6 +282,7 @@ const MockResults = {
   ],
 
   DataSheet: [5, 7, 8, 4, 2, 1],
+  CampaignFactors: [5, 7, 8, 4, 2, 1],
   ReportData: [5, 7, 8, 4, 2, 1],
   ExternalFactor: [5, 7, 8, 4, 2, 1],
   SavilleFactor: [5, 7, 8, 4, 2, 1],

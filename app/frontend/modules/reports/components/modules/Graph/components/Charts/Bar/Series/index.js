@@ -13,6 +13,7 @@ import PickGroupRank from './PickGroupRank'
 import TextEntry from './TextEntry'
 import MatrixTable from './MatrixTable'
 import DataSheet from './DataSheet'
+import CampaignFactors from './CampaignFactors'
 import SavilleFactor from './SavilleFactor'
 import ReportData from './ReportData'
 
@@ -32,6 +33,7 @@ export default {
   TextEntry,
   MatrixTable,
   DataSheet,
+  CampaignFactors,
   SavilleFactor,
   ReportData,
 }

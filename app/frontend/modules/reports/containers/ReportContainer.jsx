@@ -29,7 +29,7 @@ class ReportContainer extends Component {
     }
     data.skipLogic = skipLogic
     const normalizedData = normalize(data, schema)
-    store.init(data, results, user, campaign, userReport.reportData || [])
+    store.init(data, results, user, campaign, userReport.reportData || [], userReport.campaignFactorResults || [])
     rstore.dispatch(init(normalizedData, userReport))
     this.setState({ selectedLocale })
     const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
