@@ -28,11 +28,15 @@ module Assessors
         id: assessors.pluck(:assessment_ids).flatten.uniq, category: Assessment::CATEGORIES[:lead_assessor_form]
       )&.id
 
+      return unless lead_assessor_assessment_id
+
       assessment_ids_by_subject = assessors.
                                   group_by { |assessor| assessor[:subject_email] }.
                                   transform_values { |assessor| assessor.pluck(:assessment_ids).flatten }
 
-      if assessment_ids_by_subject.detect { |_, ids| ids.include?(lead_assessor_assessment_id) }
+      if assessment_ids_by_subject.values.detect do |assessment_ids|
+        assessment_ids.count(lead_assessor_assessment_id) > 1
+      end
         errors.add(:assessors, :multiple_leads_for_subject)
       end
     end
