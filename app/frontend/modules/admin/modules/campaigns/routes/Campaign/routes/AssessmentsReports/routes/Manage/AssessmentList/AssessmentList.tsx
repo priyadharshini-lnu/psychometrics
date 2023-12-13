@@ -156,24 +156,31 @@ const AssessmentList: React.FC<Props> = ({
                 )
               }
 
-              const open = () => {
+              const open = (response?:{ universalLink: string, enableUniversalLinks: boolean }) => {
                 openModal('UniversalLinkModal',
                   {
                     projectId: parsedProjectId,
                     campaignId: parsedCampaignId,
                     campaignAssessmentId: id,
-                    universalLink,
-                    enableUniversalLinks,
+                    universalLink: universalLink || response?.universalLink,
+                    enableUniversalLinks: enableUniversalLinks || response?.enableUniversalLinks,
                     allowMultipleResponses,
                     manageUniversalLink: permissions.enableUniversalLink,
                   })
               }
               return (
                 enableUniversalLinks ? (
-                  <a onClick={open}>
+                  <a onClick={() => open()}>
                     {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
                   </a>
-                ) : <a onClick={() => enableUniversalLink(campaignId, id).then(open)}>{I18n.t('frontend.activate')}</a>
+                ) : (
+                  <a onClick={() => enableUniversalLink(campaignId, id).then(
+                    ({ response }) => open(response),
+                  )}
+                  >
+                    {I18n.t('frontend.activate')}
+                  </a>
+                )
               )
             }}
           />

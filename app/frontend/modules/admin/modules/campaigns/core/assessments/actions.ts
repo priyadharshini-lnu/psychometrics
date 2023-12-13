@@ -1,3 +1,4 @@
+import ApiAction from 'interfaces/ApiAction'
 import * as t from 'io-ts'
 
 export const ENABLE_UNIVERSAL_LINK = 'campaigns/ENABLE_UNIVERSAL_LINK'
@@ -64,7 +65,8 @@ export const updateWorkshopActivity = (campaignId: number, id: number, body) => 
 })
 
 
-export const enableUniversalLink = (campaignId: string, id: number) => ({
+export const enableUniversalLink = (campaignId: string, id: number):
+  ApiAction<{ universalLink: string, enableUniversalLinks: boolean }> => ({
   type: ENABLE_UNIVERSAL_LINK,
   request: {
     method: 'put',
