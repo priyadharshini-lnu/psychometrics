@@ -27,7 +27,7 @@ const connecter = connect((state: RootState) => ({
 type Props = ConnectedProps<typeof connecter> & {
   form: FormInstance,
   next: () => void
-  prev: () => void
+  prev?: () => void
   onCancel?: () => void
 }
 
@@ -264,7 +264,7 @@ export const AddSubjectsComponent: FC<Props> = ({
               </Button>
             )
           }
-          <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>
+          {prev ? <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button> : null}
           <Button type="primary" onClick={next}>{I18n.t('administration.assessment_center.invite.next')}</Button>
         </Space>
       </div>
