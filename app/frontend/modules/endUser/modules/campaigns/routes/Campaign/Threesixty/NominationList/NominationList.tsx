@@ -7,7 +7,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { getApprovalNominations } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
+import { getApprovalNominations, getNominations } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
 import userPresenter from '~/presenters/user'
 import { SafeHTML } from '~/components/SafeHTML'
 import { CollapseItem } from '~/glint'
@@ -16,7 +16,7 @@ import styles from '../ListStyles.less'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connector = connect((state: any) => ({
-  nominations: state.campaigns.campaign.nominations,
+  nominations: getNominations(state.campaigns),
   nominationsCounters: state.campaigns.campaign.nominationsCounters,
   approvalNominations: getApprovalNominations(state.campaigns),
   options: state.campaigns.campaign.options.participants,
