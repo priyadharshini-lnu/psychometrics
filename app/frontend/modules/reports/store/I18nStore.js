@@ -114,10 +114,10 @@ _.extend(I18nStore.prototype, {
   },
 
   tCampaignFactorName (factor) {
-    if (_.get(this, `locales.campaignFactors.${factor.code}`)) {
+    if (factor?.code && _.get(this, `locales.campaignFactors.${factor.code}`)) {
       return this.locales.campaignFactors[factor.code].name
     }
-    return factor.name
+    return factor?.name
   },
 
   tFactor (factor, key) {

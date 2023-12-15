@@ -217,7 +217,7 @@ class Text extends Component {
         )
       } if (sourceType === 'ResultText') {
         let textValue = LookupResultTextValue.run(model)
-        if (model.props.source.type === 'CampaignFactors') {
+        if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
           const factorResults = ResultStore.results[assessmentId].campaignFactorResults
           const code = model.props.source.codes[0]
           const value = factorResults && _.find(factorResults, { code })?.value
@@ -243,7 +243,7 @@ class Text extends Component {
       )
     }
     if (sourceType === 'ResultText') {
-      if (model.props.source.type === 'CampaignFactors') {
+      if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
         const code = model.props.source.codes[0]
         const factorResults = ResultStore.results[assessmentId].campaignFactorResults
         const value = factorResults && _.find(factorResults, { code })?.value

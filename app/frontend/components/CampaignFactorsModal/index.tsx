@@ -99,8 +99,8 @@ export default function CampaignFactors ({ columns, close, saveCampaignFactors }
                       rules={[
                         { required: true, message: 'Name is required' },
                         {
-                          pattern: /^[^\s].*$/,
-                          message: 'Name cannot start with a space',
+                          pattern: /^[^\s].*(?<!\s)$/,
+                          message: 'Name cannot start or end with a space',
                         },
                       ]}
                     >
