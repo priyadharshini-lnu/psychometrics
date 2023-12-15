@@ -33,7 +33,7 @@ export const AssessorAssessmentTR = t.type({
 export const StateTR = t.type({
   list: t.array(AssessorAssessmentTR),
   total: t.number,
-  selectedIds: t.array(t.number),
+  selectedIds: t.union([t.array(t.number), t.undefined]),
 })
 
 export type AssessorAssessment = t.TypeOf<typeof AssessorAssessmentTR>

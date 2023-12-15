@@ -1801,9 +1801,9 @@ en:
       already_invited: This user already exists in the assessment centre you are attempting to add.
       assessor_assessment:
         already_added: Assessor Assessment already added to campaign.
+        lead_already_added: Only one Lead Assessor Assessment can be added to campaign.
       campaign_factor_group:
         last_factor_group: Cannot delete last Campaign factor group.
-        lead_already_added: Only one Lead Assessor Assessment can be added to campaign.
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite

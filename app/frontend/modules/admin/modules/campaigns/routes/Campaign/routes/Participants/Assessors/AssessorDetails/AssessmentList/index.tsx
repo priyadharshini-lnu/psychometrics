@@ -89,7 +89,7 @@ const AssessmentList: React.FC<Props> = ({
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
       onOk: async () => {
-        await bulkDelete(parsedCampaignId, parsedAssessorId, selectedIds)
+        await bulkDelete(parsedCampaignId, parsedAssessorId, selectedIds || [])
         await fetch(parsedCampaignId, parsedAssessorId, tableConfig)
         message.success(I18n.t('administration.assessor.assessments.bulk_delete_successful'))
       },
