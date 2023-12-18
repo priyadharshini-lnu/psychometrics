@@ -14,7 +14,7 @@ module EndUser
         required(:assessment_category).filled(:str?)
         optional(:assessment_extra).maybe do
           hash do
-            optional(:timer).maybe(:str?)
+            optional(:timer).maybe(:int?)
             optional(:icon_color).maybe(:str?)
             optional(:enable_video_check).maybe(:bool?)
             optional(:enable_audio_check).maybe(:bool?)
