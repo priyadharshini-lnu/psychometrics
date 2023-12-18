@@ -5,6 +5,7 @@ import {
 import { CopyOutlined, DownloadOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import styles from './styles.less'
+import { useUpdateEffect } from '~/hooks/useUpdateEffect'
 
 const { I18n } = window
 
@@ -36,9 +37,12 @@ const UniversalLinkModal: React.FC<Props> = ({
   const save = () => {
     saveUniversalLink(campaignId, id, { active, allowMultipleResponses: multipleResponses }).then(() => {
       message.info(I18n.t('universal_links.successfully_updated'))
-      close()
     })
   }
+
+  useUpdateEffect(() => {
+    save()
+  }, [multipleResponses, active])
 
   const regenerate = () => {
     Modal.confirm({
@@ -60,14 +64,7 @@ const UniversalLinkModal: React.FC<Props> = ({
       title="Universal Link"
       open
       onCancel={close}
-      footer={[
-        <Button key="deactivate" onClick={save}>
-          {I18n.t('universal_links.save')}
-        </Button>,
-        <Button key="universal_link_close" onClick={close}>
-          {I18n.t('universal_links.close')}
-        </Button>,
-      ]}
+      footer={null}
     >
       <div>
         <div className={styles.qrcode}>

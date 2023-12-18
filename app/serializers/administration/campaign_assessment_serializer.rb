@@ -22,7 +22,7 @@ module Administration
     end
 
     def universal_link
-      assessment.decorate.anonym_link_for_campaign(object.campaign) if object.enable_universal_links
+      assessment.decorate.anonym_link_for_campaign(object.campaign) if object.assessment_key
     end
 
     def norms

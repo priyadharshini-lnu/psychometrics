@@ -41,8 +41,8 @@ const AssessmentList: React.FC<Props> = ({
   exportExternalResults,
   updateExternalConfig,
   updatePrework,
-  updateWorkshopActivity,
   enableUniversalLink,
+  updateWorkshopActivity,
   toggleRequireScheduling,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
@@ -168,18 +168,14 @@ const AssessmentList: React.FC<Props> = ({
                     manageUniversalLink: permissions.enableUniversalLink,
                   })
               }
-              return (
-                enableUniversalLinks ? (
-                  <a onClick={() => open()}>
-                    {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
-                  </a>
-                ) : (
-                  <a onClick={() => enableUniversalLink(campaignId, id).then(
-                    ({ response }) => open(response),
-                  )}
-                  >
+              return (!universalLink
+                ? (
+                  <a onClick={() => enableUniversalLink(campaignId, id).then(({ response }) => open(response))}>
                     {I18n.t('frontend.activate')}
                   </a>
+                )
+                : (
+                  <a onClick={() => open()}>{I18n.t('frontend.manage')}</a>
                 )
               )
             }}

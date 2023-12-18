@@ -43,6 +43,8 @@ class CampaignAssessment < ApplicationRecord
   end
 
   def expired?
+    return false if key_expires_at.nil?
+
     Time.zone.now > key_expires_at.to_i
   end
 

@@ -13,12 +13,15 @@ module EndUser
     before_action :find_or_create_anonymous_user, only: [:show]
     initial_state_for :show
     before_action :perform_browser_check, only: [:show]
-    before_action :set_user_assessment_and_result, only: [:show]
+    before_action :set_user_assessment_and_result, only: [:show], if: -> { @campaign_assessment.present? }
     before_action :set_locale
 
     ANONYM_COOKIE_KEY = 'tte-anonym-payload'
 
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     def show
+      redirect_to(action: 'error', reason: 'link_expired') && return if @campaign_assessment.nil?
       redirect_to(action: 'error', reason: 'archived') && return if assessment.archived?
       redirect_to(action: 'error', reason: 'not_active') && return unless @campaign_assessment.enable_universal_links?
 
@@ -48,6 +51,9 @@ module EndUser
         end
       end
     end
+
+    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/PerceivedComplexity
 
     def restart
       cookies.delete(Users::AuthenticateAnonymousUser::ANONYM_COOKIE_KEY, domain: request.host)
