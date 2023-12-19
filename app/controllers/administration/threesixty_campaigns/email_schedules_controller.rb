@@ -29,8 +29,7 @@ module Administration
       def create
         form = ::Threesixty::EmailScheduleForm.from_params(params[:email_schedule])
         if form.valid?
-          email_schedule = threesixty_campaign.email_schedules.create!(form.attributes.merge(auto_triggered: false))
-          ::Threesixty::Emails::SendSingleScheduledEmail.call!(email_schedule)
+          threesixty_campaign.email_schedules.create!(form.attributes.merge(auto_triggered: false))
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: 400

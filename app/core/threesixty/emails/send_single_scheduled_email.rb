@@ -12,8 +12,10 @@ module Threesixty
       end
 
       def call
+        return if schedule_email.processing_started_at?
         return if schedule_email.scheduled_date.nil? || schedule_email.scheduled_date > Time.zone.now
 
+        schedule_email.update(processing_started_at: Time.zone.now)
         User.where(id: schedule_email.recipient_ids).each do |recipient|
           send_email(recipient)
         end
