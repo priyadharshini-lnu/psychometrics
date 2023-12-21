@@ -3443,6 +3443,7 @@ en:
     remove_message: Are you sure?
     roles:
       campaign_admin: Campaign Admin
+      campaign_assessor: Campaign Assessor
       campaign_user: Campaign User
       client_admin: Client Admin
       project_admin: Project Admin
