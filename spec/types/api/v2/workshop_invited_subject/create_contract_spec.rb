@@ -9,7 +9,8 @@ RSpec.describe Api::V2::WorkshopInvitedSubject::CreateContract do
     jsonapi_resource_request(
       'workshop_invited_subjects',
       {},
-      { user: { id: user.id.to_s, type: 'users' }, workshop_invite: { id: '1', type: 'workshop_invites' } }
+      { user: { id: user.id.to_s, type: 'users' },
+        workshop_invite: { id: workshop_invite.id.to_s, type: 'workshop_invites' } }
     )
   end
 

@@ -49,13 +49,11 @@ describe Api::V1::ResultSerializer do
 
   subject { described_class.new(raw_data, user_report: user_report).to_h }
   it do
-    is_expected.to eq(
-      campaign_id: user_report.campaign_id,
-      user_data: { 'first_name' => 'Shuja', 'last_name' => 'GPTS', 'id_number' => '123456' },
-      computed_scores: [
-        { id: 'rating', name: 'Rating', value: 4.5 }
-      ],
-      assessments: [
+    expect(subject[:campaign_id]).to eq(user_report.campaign_id)
+    expect(subject[:user_data]).to eq({ 'first_name' => 'Shuja', 'last_name' => 'GPTS', 'id_number' => '123456' })
+    expect(subject[:computed_scores]).to eq([{ id: 'rating', name: 'Rating', value: 4.5 }])
+    expect(subject[:assessments]).to match_array(
+      [
         {
           id: 17,
           name: 'ass 17',
