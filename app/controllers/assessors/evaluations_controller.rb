@@ -73,7 +73,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
                                                    participant: user_assessment,
                                                    current_user: current_user, locale: selected_locale,
                                                    piped_text_context: build_piped_context(user_assessment) }).
-        serialize(user_result).to_hash,
+        serialize(user_result),
       assessment: AssessmentSerializer.new(user_assessment.assessment, selected_locale: selected_locale,
                                            piped_text_context: build_piped_context(user_assessment)).
         to_hash(include: '**')

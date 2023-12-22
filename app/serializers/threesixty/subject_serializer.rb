@@ -7,7 +7,7 @@ module Threesixty
     has_one :user, method: :user
 
     def user
-      UserSerializer.new(user: object.user).serialize(object.user).transform_keys(&:to_sym)
+      UserSerializer.new.serialize(object.user)
     end
 
     def status

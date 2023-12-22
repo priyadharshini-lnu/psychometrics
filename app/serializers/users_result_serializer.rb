@@ -8,12 +8,12 @@ class UsersResultSerializer < Panko::Serializer
              :subject_datasheet, :highlights, :user_assessment_id, :started_at,
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
              :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled,
-             :privacy_consent_required, :other_pending_assessments_count, :prework, :relationship, :campaign_options
+             :privacy_consent_required, :other_pending_assessments_count, :prework, :relationship, :campaign_options,
+             :media_responses
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
   has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
-  has_many :media_responses, serializer: MediaResponseSerializer
 
   has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
 
@@ -142,7 +142,10 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def media_responses
-    object.media_responses.order(:created_at)
+    Panko::ArraySerializer.new(
+      object.media_responses.order(:created_at),
+      each_serializer: MediaResponseSerializer
+    ).to_a
   end
 
   private

@@ -6,7 +6,7 @@ module UsersResults
       Dry::Schema.JSON do
         config.validate_keys = true
 
-        required(:id).filled(:str?)
+        required(:id).filled(:int?)
         required(:name).filled(:str?)
       end
     end

@@ -29,7 +29,7 @@ module EndUser
           current_user: current_user,
           include: '**'
         }
-      ).serialize(@user_assessment.users_result).to_hash
+      ).serialize(@user_assessment.users_result)
     end
 
     def build_piped_context

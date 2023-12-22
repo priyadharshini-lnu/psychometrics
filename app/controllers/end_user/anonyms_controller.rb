@@ -99,11 +99,13 @@ module EndUser
                               to_hash(include: '**')
 
       serialized_results = UsersResultSerializer.new(
-        @user_result, participant: @user_assessment,
-        campaign: @campaign_assessment.campaign,
-        current_user: @current_user,
-        locale: @selected_locale
-      ).to_hash(include: '**')
+        context: {
+          participant: @user_assessment,
+          campaign: @campaign_assessment.campaign,
+          current_user: @current_user,
+          locale: @selected_locale, include: '**'
+        }
+      ).serialize(@user_result)
 
       render json: { assessment: serialized_assessment, user_result: serialized_results }
     end

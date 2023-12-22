@@ -8,8 +8,19 @@ class AssignSerializer < ActiveModel::Serializer
              :current_element, :current_page, :seedrandom, :reset_count, :highlights,
              :subject_datasheet, :prev_pages, :remaining_assessment_time, :report_data
 
-  has_one :user, serializer: UserSerializer
-  has_many :media_responses, serializer: MediaResponseSerializer
+  has_one :user, method: :user
+  has_many :media_responses, method: :media_responses
+
+  def user
+    UserSerializer.new.serialize(object.user)
+  end
+
+  def media_responses
+    Panko::ArraySerializer.new(
+      object.media_responses,
+      each_serializer: MediaResponseSerializer
+    ).to_a
+  end
 
   def remaining_assessment_time
     return unless object.expiry_date

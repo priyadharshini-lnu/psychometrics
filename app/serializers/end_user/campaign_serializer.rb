@@ -6,10 +6,9 @@ module EndUser
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
                :is_timed_campaign, :campaigns_count, :user_reports_available,
-               :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invite, :workshop
+               :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invite, :workshop, :user_assessments
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
-    has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
 
     def workshop_invite
       workshop_invite_record = object.workshop_invites.joins(:workshop_invited_subjects).where(
@@ -59,9 +58,17 @@ module EndUser
     end
 
     def user_assessments
-      UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id).
-        includes({ assessment: :agile }, :users_result, :campaign, :evaluator).
-        where.not(assessments: { category: :mindmill })
+      user_assessments = UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id).
+                         includes({ assessment: :agile }, :users_result, :campaign, :evaluator).
+                         where.not(assessments: { category: :mindmill })
+
+      Panko::ArraySerializer.new(
+        user_assessments,
+        each_serializer: ::EndUser::UserAssessmentSerializer,
+        context: {
+          current_user: context[:current_user]
+        }
+      ).to_a
     end
 
     def campaign_user

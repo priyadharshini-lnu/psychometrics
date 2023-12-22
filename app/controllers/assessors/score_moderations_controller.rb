@@ -21,7 +21,7 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
                    participant: lead_assessment,
                    current_user: current_user, locale: selected_locale,
                    piped_text_context: build_piped_context(lead_assessment) }
-      ).serialize(lead_assessment.users_result).to_hash
+      ).serialize(lead_assessment.users_result)
     }
   end
 
@@ -67,7 +67,7 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
                                            participant: user_assessment,
                                            current_user: current_user, locale: selected_locale,
                                            piped_text_context: build_piped_context(user_assessment) }).
-        serialize(user_assessment.users_result).to_hash
+        serialize(user_assessment.users_result)
     end
   end
 

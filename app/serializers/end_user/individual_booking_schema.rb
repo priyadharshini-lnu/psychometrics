@@ -9,12 +9,12 @@ module EndUser
         config.validate_keys = true
 
         required(:id).filled(:int?)
-        optional(:title).maybe(:str?)
-        optional(:description).maybe(:str?)
+        required(:title).filled(:str?)
+        required(:description).filled(:str?)
         required(:duration).maybe(:int?)
         required(:status).maybe(:str?)
         required(:workshop_id).maybe(:int?)
-        required(:preferred_language).filled(:str?)
+        required(:preferred_language).maybe(:str?)
         required(:neurodivergent_comments).maybe(:str?)
         required(:allow_language_preference).maybe(:bool?)
         required(:timezone).maybe(:str?)

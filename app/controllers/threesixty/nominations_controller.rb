@@ -19,8 +19,11 @@ module Threesixty
     end
 
     def search_evaluators
-      render json: Threesixty::Evaluators::SearchQuery.
-        new(@campaign.campaign, @subject, params[:q]).query, each_serializer: UserSerializer
+      render json: Panko::ArraySerializer.new(
+        Threesixty::Evaluators::SearchQuery.
+        new(@campaign.campaign, @subject, params[:q]).query,
+        each_serializer: UserSerializer
+      ).to_a
     end
 
     def request_approval

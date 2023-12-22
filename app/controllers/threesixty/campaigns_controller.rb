@@ -21,7 +21,7 @@ module Threesixty
               params[:type] == 'legacy' ? Assign.find(params[:id]) : UserAssessment.find(params[:id])
             end
 
-          render json: entity, serializer: ::EndUser::SystemChecksSerializer
+          render json: ::EndUser::SystemChecksSerializer.new.serialize(entity)
         end
       end
     end
