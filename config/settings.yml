@@ -1586,6 +1586,8 @@ providers:
     reports:
       - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
         name: Abstract Reasoning Aptitude-Rx (IA)
+      - id: 2D3459D6-BC5C-4F15-82B7-8AD312A7CF46
+        name: Abstract Reasoning Aptitude & Pace Report (Rx)
       - id: 8FB3153A-B53C-4263-A910-6DB6E1DC0C66
         name: Diagrammatic Analysis Aptitude & Pace Report (Rx)
       - id: 70945782-6B50-4C80-8EE6-308BD6D92A45

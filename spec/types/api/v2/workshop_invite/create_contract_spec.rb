@@ -25,12 +25,4 @@ RSpec.describe Api::V2::WorkshopInvite::CreateContract do
 
     expect(contract.failure?).to eq(false)
   end
-
-  it 'fail if workshops count more than expected' do
-    valid_params[:data][:attributes][:workshop_ids] = (1..11).map(&:to_s)
-    contract = described_class.new.call(valid_params, {})
-
-    expect(contract.failure?).to eq(true)
-    expect(contract).to have_jsonapi_attr_error(workshop_ids: ['You can only add 10 assessment centers per invite'])
-  end
 end

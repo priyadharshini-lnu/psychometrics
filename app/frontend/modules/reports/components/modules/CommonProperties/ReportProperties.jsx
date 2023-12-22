@@ -1,15 +1,18 @@
 import { Component } from 'react'
+import _ from 'lodash'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import { PAGE_SIZES } from '~/modules/reports/models/Report'
+import { PAGE_SIZES, ALL_PAGE_SIZES } from '~/modules/reports/models/Report'
 import connect from './connect'
 
 class ReportProperties extends Component {
-  getPageSizeLabel = (report) => {
-    const size = PAGE_SIZES.find(
+  currentSize = () => {
+    const { report } = this.props
+    return ALL_PAGE_SIZES.find(
       ({ width, height }) => width === report.props.sizes.width && height === report.props.sizes.height,
     )
-    return size.label
   }
+
+  getPageSizeLabel = () => this.currentSize().label
 
   changePageSize = ({ target }) => {
     const { changeSize, report } = this.props
@@ -26,8 +29,9 @@ class ReportProperties extends Component {
         <hr className={styles.divider} />
         <div>
           Page size
-          <select value={this.getPageSizeLabel(report)} onChange={this.changePageSize} className="form-control">
-            {PAGE_SIZES.map(({ label }) => <option key={label} value={label}>{label}</option>)}
+          <select value={this.getPageSizeLabel()} onChange={this.changePageSize} className="form-control">
+            {_.uniqBy([...PAGE_SIZES, this.currentSize()], 'width').map(({ label }) => (
+              <option key={label} value={label}>{label}</option>))}
           </select>
         </div>
       </div>

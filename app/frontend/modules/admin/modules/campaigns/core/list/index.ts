@@ -20,6 +20,7 @@ export const CREATE = 'resource/campaign/CREATE'
 export const UPDATE = 'resource/campaign/UPDATE'
 export const REMOVE = 'resource/campaign/REMOVE'
 export const FETCH_TEMPLATES_AND_ASSESSMENTS = 'campaigns/FETCH_TEMPLATES_AND_ASSESSMENTS'
+export const PDF_PASSWORD = 'campaigns/FETCH_PDF_PASSWORD'
 
 export const fetch = (projectId: number, tableConfig: TableConfig) => ({
   type: FETCH,
@@ -29,6 +30,15 @@ export const fetch = (projectId: number, tableConfig: TableConfig) => ({
     tableConfig,
     loader: true,
     url: `/administration/projects/${projectId}/new_campaigns`,
+  },
+})
+
+export const fetchPdfPassword = (projectId, campaignId: number) : ApiAction<{ pdfPassword: string }> => ({
+  type: PDF_PASSWORD,
+  request: {
+    method: 'get',
+    loader: true,
+    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/pdf_password`,
   },
 })
 

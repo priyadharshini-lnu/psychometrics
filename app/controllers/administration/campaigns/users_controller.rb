@@ -42,7 +42,8 @@ module Administration
             'export_completion_status',
             'import',
             'edit',
-            %w[remove destroy]
+            %w[remove destroy],
+            'export_sign_in_url'
           ],
           {
             project_id: campaign.project_id,
@@ -97,7 +98,11 @@ module Administration
         audit! :export_users, campaign, campaign: campaign
         AdminJob.call(
           :export_users,
-          { campaign_id: campaign.id, filters: params[:filters] },
+          {
+            campaign_id: campaign.id,
+            filters: params[:filters],
+            export_sign_in_url: params[:export_sign_in_url] == 'true'
+          },
           current_user
         )
         head :ok

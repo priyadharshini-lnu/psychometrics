@@ -84,6 +84,21 @@ const FIELDS = [
       },
     ],
   },
+  {
+    branch: 'Users',
+    fields: [
+      {
+        name: 'Magic URL',
+        type: 'link',
+        value: '${u://User/Field/MagicURL}',
+      },
+      {
+        name: 'Magic Link',
+        type: 'link',
+        value: '${u://User/Field/MagicLink?text=Click here to login}',
+      },
+    ],
+  },
 ]
 
 export default FIELDS

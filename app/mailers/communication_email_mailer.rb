@@ -31,7 +31,11 @@ class CommunicationEmailMailer < ApplicationMailer
   def replace_new_piped_texts
     Communications::PipedText::Perform.call!(
       @communication_email.communication.body,
-      { workshop: @communication_email.workshop, workshop_invite: @communication_email.workshop_invite }.compact
+      {
+        workshop: @communication_email.workshop,
+        workshop_invite: @communication_email.workshop_invite,
+        user: @communication_email.user
+      }.compact
     )
   end
 

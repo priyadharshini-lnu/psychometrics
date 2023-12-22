@@ -6,12 +6,18 @@ module Communications
 
     def perform(communication)
       campaign = communication.project_campaign
-      workshop_invited_subjects = campaign.workshop_invited_subjects.pending.joins(workshop_invite: :workshops).where(
-        %{
+      # rubocop:disable Layout/MultilineMethodCallIndentation
+      workshop_invited_subjects = WorkshopInvitedSubject.pending.
+        joins(workshop_invite: :workshops).
+        where(workshop_invites: { campaign_id: campaign.id }).
+        where(%{
           workshops.total_seats > workshops.booked_seats AND
-          NOW() < (workshops.start_time - (workshops.reschedule_lead_time * '1 second'::INTERVAL) - '8 hours'::INTERVAL)
-        }
-      )
+          NOW() < (
+            workshops.start_time - (workshops.reschedule_lead_time * '1 second'::INTERVAL) - '8 hours'::INTERVAL
+          )
+        }).distinct
+      # rubocop:enable Layout/MultilineMethodCallIndentation
+
       workshop_invited_subjects.find_each do |workshop_invited_subject|
         communication.emails.create!(
           campaign_user: workshop_invited_subject.campaign_user,

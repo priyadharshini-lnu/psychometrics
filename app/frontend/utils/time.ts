@@ -71,7 +71,7 @@ export const getAvailableDays = (startDate?: Moment, endDate?: Moment): number[]
       return [...allDays]
     }
     for (let diff = 0; diff <= daysDifference; diff += 1) {
-      availableDays.push((startDate.weekday() + diff) % 7)
+      availableDays.push((startDate.day() + diff) % 7)
     }
     return [...availableDays].sort()
   }

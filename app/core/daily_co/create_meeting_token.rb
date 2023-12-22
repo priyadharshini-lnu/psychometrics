@@ -13,7 +13,7 @@ module DailyCo
 
     def call
       role = meeting_room.get_role(current_user)
-      return broadcast(:error) if ROLES.exclude?(role) || meeting_room.external_id.blank?
+      return broadcast(:error) if role == 'none' || ROLES.exclude?(role) || meeting_room.external_id.blank?
 
       broadcast :ok, token(role)
     end
