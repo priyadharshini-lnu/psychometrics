@@ -33,7 +33,7 @@ module Users
         {
           name: 'campaign_assessor',
           paths: [
-            { name: client.name, value: "/admin/client/#{client.id}/projects" },
+            { name: client.name, value: "/admin/clients/#{client.id}/projects" },
             { name: project.name, value: "/admin/projects/#{project.id}/new_campaigns" },
             { name: campaign.name,
               value: "/admin/projects/#{project.id}/new_campaigns/#{assessor.campaign.id}/participants/assessors" }
