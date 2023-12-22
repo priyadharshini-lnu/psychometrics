@@ -8,6 +8,8 @@ module Communications
       # Will send two reminders. First on 2 days before the workshop starts and other on 1 day before workshop.
       day_range_for_reminder = (1.day.from_now.beginning_of_day...3.days.from_now.beginning_of_day)
       Communication.workshop_upcoming_reminder.joins(workshops: :workshop_subjects).
+        joins(workshops: :workshop_invited_subjects).
+        where(workshop_invited_subjects: { status: :accepted }).
         where(workshops: { start_time: day_range_for_reminder }).
         where.not(workshops: { status: :closed }).
         select('DISTINCT workshop_subjects.id workshop_subject_id, communications.*').

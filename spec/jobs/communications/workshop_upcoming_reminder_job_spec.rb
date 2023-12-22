@@ -73,14 +73,36 @@ describe Communications::WorkshopUpcomingReminderJob, type: :job do
     expect(communication_email).to eq(nil)
   end
 
+  it 'create communication_email if invite was accepted' do
+    workshop, workshop_invite, _, invited_subject = create_workshop__with_subject(2.days.from_now)
+    invited_subject.accepted!
+    described_class.perform_now
+
+    communication_email = CommunicationEmail.find_by(
+      campaign_user: campaign_user, workshop: workshop, workshop_invite: workshop_invite
+    )
+    expect(communication_email).to be_present
+  end
+
+  it "doesn't create communication_email if invite was canceled" do
+    workshop, workshop_invite, _, invited_subject = create_workshop__with_subject(2.days.from_now)
+    invited_subject.cancelled!
+    described_class.perform_now
+
+    communication_email = CommunicationEmail.find_by(
+      campaign_user: campaign_user, workshop: workshop, workshop_invite: workshop_invite
+    )
+    expect(communication_email).to eq(nil)
+  end
+
   def create_workshop__with_subject(start_time)
     workshop = create(:workshop, start_time: start_time, campaign: campaign, status: :open)
     workshop_invite = create(:workshop_invite, workshops: [workshop], campaign: campaign)
     workshop_invited_subject = create(
-      :workshop_invited_subject, workshop_invite: workshop_invite, user: user, status: :pending
+      :workshop_invited_subject, workshop_invite: workshop_invite, user: user, status: :accepted
     )
     workshop_subject = create(:workshop_subject, workshop: workshop, user: user,
       campaign: campaign, workshop_invited_subject: workshop_invited_subject)
-    [workshop, workshop_invite, workshop_subject]
+    [workshop, workshop_invite, workshop_subject, workshop_invited_subject]
   end
 end

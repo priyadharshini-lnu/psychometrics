@@ -10,34 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -118,103 +90,6 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
---
-
-CREATE VIEW c_10313.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
---
-
-CREATE VIEW c_10463.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.accesssheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'full name'::text) AS "full name",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'roll number'::text) AS "roll number",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'sample'::text) AS sample
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 61)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
---
-
-CREATE VIEW c_10542.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -567,8 +442,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -730,12 +605,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -958,82 +833,6 @@ ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
 
 
 --
--- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10313_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10463_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10501_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10542_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10543_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 72)
-  ORDER BY sheet_rows.id;
-
-
---
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1087,14 +886,14 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    schedule_time timestamp(6) without time zone,
     allow_multiple_responses boolean DEFAULT false,
+    schedule_time timestamp(6) without time zone,
     require_scheduling boolean DEFAULT false
 );
 
@@ -1151,6 +950,118 @@ ALTER SEQUENCE public.campaign_assessor_assessments_id_seq OWNED BY public.campa
 
 
 --
+-- Name: campaign_factor_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_factor_groups (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    campaign_id bigint NOT NULL,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_factor_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_factor_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_factor_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_factor_groups_id_seq OWNED BY public.campaign_factor_groups.id;
+
+
+--
+-- Name: campaign_factor_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_factor_values (
+    id bigint NOT NULL,
+    campaign_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    campaign_factor_id bigint NOT NULL,
+    string_value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    numeric_value double precision
+);
+
+
+--
+-- Name: campaign_factor_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_factor_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_factor_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_factor_values_id_seq OWNED BY public.campaign_factor_values.id;
+
+
+--
+-- Name: campaign_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_factors (
+    id bigint NOT NULL,
+    campaign_factor_group_id bigint,
+    "position" integer,
+    name character varying NOT NULL,
+    code character varying NOT NULL,
+    description text,
+    factor_type integer DEFAULT 0 NOT NULL,
+    output_type integer DEFAULT 0 NOT NULL,
+    campaign_id bigint NOT NULL,
+    factor_id bigint,
+    assessment_id bigint,
+    sheet_column_name character varying,
+    public_visibility boolean DEFAULT true NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    assessment_score_type integer DEFAULT 0,
+    formula text
+);
+
+
+--
+-- Name: campaign_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_factors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_factors_id_seq OWNED BY public.campaign_factors.id;
+
+
+--
 -- Name: campaign_option_translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1204,7 +1115,8 @@ CREATE TABLE public.campaign_options (
     description text,
     integration_type integer DEFAULT 0 NOT NULL,
     proctoring_trial boolean DEFAULT false,
-    workshop_booking_requires_prework_completion boolean DEFAULT false
+    workshop_booking_requires_prework_completion boolean DEFAULT false,
+    campaign_scoring_variables text
 );
 
 
@@ -3392,7 +3304,8 @@ CREATE TABLE public.reports (
     created_by_id bigint,
     updated_by_id bigint,
     data_only boolean DEFAULT false,
-    external_settings jsonb DEFAULT '{}'::jsonb
+    external_settings jsonb DEFAULT '{}'::jsonb,
+    campaign_factors jsonb DEFAULT '[]'::jsonb NOT NULL
 );
 
 
@@ -3556,6 +3469,38 @@ CREATE SEQUENCE public.reports_pages_id_seq
 --
 
 ALTER SEQUENCE public.reports_pages_id_seq OWNED BY public.reports_pages.id;
+
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.roles (
+    id bigint NOT NULL,
+    name character varying,
+    description text,
+    client_id bigint,
+    permissions jsonb
+);
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
 
 
 --
@@ -3746,6 +3691,20 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -4121,7 +4080,8 @@ CREATE TABLE public.threesixty_email_schedules (
     meta jsonb DEFAULT '{}'::jsonb,
     consolidated boolean DEFAULT false NOT NULL,
     auto_triggered boolean DEFAULT true,
-    template_id bigint
+    template_id bigint,
+    processing_started_at timestamp(6) without time zone
 );
 
 
@@ -4230,7 +4190,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4864,7 +4825,8 @@ CREATE TABLE public.users (
     photo character varying,
     timezone character varying,
     force_password_change boolean DEFAULT false,
-    global_assessor boolean DEFAULT false
+    global_assessor boolean DEFAULT false,
+    last_unsuccessful_attempt timestamp without time zone
 );
 
 
@@ -4900,10 +4862,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -4928,6 +4890,16 @@ CREATE SEQUENCE public.users_results_id_seq
 --
 
 ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
+
+
+--
+-- Name: users_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users_roles (
+    user_id bigint NOT NULL,
+    role_id bigint NOT NULL
+);
 
 
 --
@@ -5544,6 +5516,27 @@ ALTER TABLE ONLY public.campaign_assessor_assessments ALTER COLUMN id SET DEFAUL
 
 
 --
+-- Name: campaign_factor_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_groups ALTER COLUMN id SET DEFAULT nextval('public.campaign_factor_groups_id_seq'::regclass);
+
+
+--
+-- Name: campaign_factor_values id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_values ALTER COLUMN id SET DEFAULT nextval('public.campaign_factor_values_id_seq'::regclass);
+
+
+--
+-- Name: campaign_factors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factors ALTER COLUMN id SET DEFAULT nextval('public.campaign_factors_id_seq'::regclass);
+
+
+--
 -- Name: campaign_option_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5989,6 +5982,13 @@ ALTER TABLE ONLY public.reports_modules ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('public.reports_pages_id_seq'::regclass);
+
+
+--
+-- Name: roles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
 
 
 --
@@ -6519,6 +6519,30 @@ ALTER TABLE ONLY public.campaign_assessor_assessments
 
 
 --
+-- Name: campaign_factor_groups campaign_factor_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_groups
+    ADD CONSTRAINT campaign_factor_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_factor_values campaign_factor_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_values
+    ADD CONSTRAINT campaign_factor_values_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_factors campaign_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factors
+    ADD CONSTRAINT campaign_factors_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: campaign_option_translations campaign_option_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7044,6 +7068,14 @@ ALTER TABLE ONLY public.reports_pages
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
 
 
 --
@@ -7864,6 +7896,69 @@ CREATE INDEX index_campaign_assessor_assessments_on_assessment_id ON public.camp
 --
 
 CREATE INDEX index_campaign_assessor_assessments_on_campaign_id ON public.campaign_assessor_assessments USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_factor_groups_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factor_groups_on_campaign_id ON public.campaign_factor_groups USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_factor_values_on_campaign_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factor_values_on_campaign_factor_id ON public.campaign_factor_values USING btree (campaign_factor_id);
+
+
+--
+-- Name: index_campaign_factor_values_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factor_values_on_campaign_id ON public.campaign_factor_values USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_factor_values_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factor_values_on_user_id ON public.campaign_factor_values USING btree (user_id);
+
+
+--
+-- Name: index_campaign_factors_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factors_on_assessment_id ON public.campaign_factors USING btree (assessment_id);
+
+
+--
+-- Name: index_campaign_factors_on_campaign_factor_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factors_on_campaign_factor_group_id ON public.campaign_factors USING btree (campaign_factor_group_id);
+
+
+--
+-- Name: index_campaign_factors_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factors_on_campaign_id ON public.campaign_factors USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_factors_on_campaign_id_and_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_factors_on_campaign_id_and_code ON public.campaign_factors USING btree (campaign_id, code);
+
+
+--
+-- Name: index_campaign_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_factors_on_factor_id ON public.campaign_factors USING btree (factor_id);
 
 
 --
@@ -8826,6 +8921,20 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 
 
 --
+-- Name: index_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_roles_on_client_id ON public.roles USING btree (client_id);
+
+
+--
+-- Name: index_roles_on_name_and_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_roles_on_name_and_client_id ON public.roles USING btree (name, client_id);
+
+
+--
 -- Name: index_saml_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9358,6 +9467,20 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_users_roles_on_role_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_roles_on_role_id ON public.users_roles USING btree (role_id);
+
+
+--
+-- Name: index_users_roles_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_roles_on_user_id ON public.users_roles USING btree (user_id);
+
+
+--
 -- Name: index_webhook_event_logs_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9717,6 +9840,14 @@ ALTER TABLE ONLY public.assigns
 
 
 --
+-- Name: campaign_factor_values fk_rails_07fa4c59b5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_values
+    ADD CONSTRAINT fk_rails_07fa4c59b5 FOREIGN KEY (campaign_factor_id) REFERENCES public.campaign_factors(id) ON DELETE CASCADE;
+
+
+--
 -- Name: mindmill_credentials fk_rails_086b8723a8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9730,6 +9861,14 @@ ALTER TABLE ONLY public.mindmill_credentials
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT fk_rails_09d354f20c FOREIGN KEY (modified_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: roles fk_rails_0a0c2d3429; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT fk_rails_0a0c2d3429 FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -10029,6 +10168,14 @@ ALTER TABLE ONLY public.workshop_invites
 
 
 --
+-- Name: campaign_factor_values fk_rails_3708573fdc; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_values
+    ADD CONSTRAINT fk_rails_3708573fdc FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
 -- Name: agile_events fk_rails_37e3f56836; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10197,6 +10344,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: users_roles fk_rails_4a41696df6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_roles
+    ADD CONSTRAINT fk_rails_4a41696df6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: dashboards fk_rails_4d4d1beb84; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10250,6 +10405,14 @@ ALTER TABLE ONLY public.questions
 
 ALTER TABLE ONLY public.communication_emails
     ADD CONSTRAINT fk_rails_5c47ebbe76 FOREIGN KEY (workshop_id) REFERENCES public.workshops(id);
+
+
+--
+-- Name: campaign_factors fk_rails_5dd929bdc4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factors
+    ADD CONSTRAINT fk_rails_5dd929bdc4 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -10317,6 +10480,14 @@ ALTER TABLE ONLY public.workshop_managers
 
 
 --
+-- Name: campaign_factors fk_rails_667cccdf0c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factors
+    ADD CONSTRAINT fk_rails_667cccdf0c FOREIGN KEY (campaign_factor_group_id) REFERENCES public.campaign_factor_groups(id);
+
+
+--
 -- Name: webhook_subscriptions fk_rails_68548bd5a8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10338,6 +10509,14 @@ ALTER TABLE ONLY public.pearson_user_assessments
 
 ALTER TABLE ONLY public.webhook_subscriptions
     ADD CONSTRAINT fk_rails_69d6421690 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_factor_values fk_rails_6a0d5562d2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_values
+    ADD CONSTRAINT fk_rails_6a0d5562d2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -10562,6 +10741,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.design_settings
     ADD CONSTRAINT fk_rails_8c47501b9a FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_factors fk_rails_8e6105ce73; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factors
+    ADD CONSTRAINT fk_rails_8e6105ce73 FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE RESTRICT;
 
 
 --
@@ -10937,7 +11124,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -11221,6 +11408,14 @@ ALTER TABLE ONLY public.assigns_reports
 
 
 --
+-- Name: users_roles fk_rails_eb7b4658f8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_roles
+    ADD CONSTRAINT fk_rails_eb7b4658f8 FOREIGN KEY (role_id) REFERENCES public.roles(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: user_report_events fk_rails_eb9cac4a43; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11242,6 +11437,14 @@ ALTER TABLE ONLY public.norms
 
 ALTER TABLE ONLY public.campaign_assessor_assessments
     ADD CONSTRAINT fk_rails_ee2e737b88 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_factors fk_rails_ef0b6e1637; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factors
+    ADD CONSTRAINT fk_rails_ef0b6e1637 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
 
 
 --
@@ -11322,6 +11525,14 @@ ALTER TABLE ONLY public.threesixty_nomination_requirements
 
 ALTER TABLE ONLY public.agile_events
     ADD CONSTRAINT fk_rails_f7d0aa809c FOREIGN KEY (assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_factor_groups fk_rails_f82fe585a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_factor_groups
+    ADD CONSTRAINT fk_rails_f82fe585a1 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -11975,6 +12186,17 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231006103234'),
 ('20231017110648'),
 ('20231020065639'),
-('20231030120937');
+('20231026090227'),
+('20231030120937'),
+('20231101104312'),
+('20231117071639'),
+('20231117071951'),
+('20231117072837'),
+('20231117074000'),
+('20231211111901'),
+('20231213080938'),
+('20231213104811'),
+('20231218084715'),
+('20231219105643');
 
 

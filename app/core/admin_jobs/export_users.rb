@@ -9,7 +9,9 @@ module AdminJobs
     private
 
     def headers
-      UserDecorator.export_headers + profile_fields.map { |f| f.question.name }
+      default_headers  = UserDecorator.export_headers + profile_fields.map { |f| f.question.name }
+      default_headers += ['Sign In Link'] if export_sign_in_url?
+      default_headers
     end
 
     def data_row(user)
@@ -30,6 +32,7 @@ module AdminJobs
       profile_fields.each do |field|
         row << (user.user_profile.custom_fields || {})[field.question_id.to_s]
       end
+      row << user.authenticated_sign_in_url if export_sign_in_url?
       row
     end
 
@@ -45,6 +48,10 @@ module AdminJobs
 
     def file_name
       'users.csv'
+    end
+
+    def export_sign_in_url?
+      record.data['export_sign_in_url'] && Administration::Campaigns::UserPolicy.new(owner, User).export_sign_in_url?
     end
   end
 end

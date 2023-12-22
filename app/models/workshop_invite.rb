@@ -13,7 +13,6 @@ class WorkshopInvite < ApplicationRecord
 
   translates :title, :description
 
-  RESTRICTED_ASSESSMENT_CENTERS = 10
   RESTRICTED_SUBJECTS = 300
 
   def available_workshops_date_and_id

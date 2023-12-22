@@ -18,10 +18,6 @@ module Api
           if workshop_invite.workshop_ids.intersection(result[:data].collect { |e| e[:id].to_i }).present?
             key.failure(:already_invited)
           end
-
-          if workshop_invite.workshops.count + value.count > ::WorkshopInvite::RESTRICTED_ASSESSMENT_CENTERS
-            key.failure(:exceeded_workshops_count, { count: ::WorkshopInvite::RESTRICTED_ASSESSMENT_CENTERS })
-          end
         end
       end
     end

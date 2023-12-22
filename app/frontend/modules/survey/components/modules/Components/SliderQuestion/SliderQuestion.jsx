@@ -133,9 +133,9 @@ export const SliderQuestion = ({
                   max={100}
                   className={cs(styles.slider, 'ms-0 me-0')}
                     // Widthout this extra span with key, the tooltip doesn't move properly
-                  tipFormatter={
-                    hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>
-                  }
+                  tooltip={{
+                    formatter: hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>,
+                  }}
                   disabled={readOnly}
                 />
               </Col>

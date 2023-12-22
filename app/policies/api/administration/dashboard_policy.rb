@@ -41,7 +41,9 @@ module Api
         def resolve
           return Dashboard.all if user.is?(:superadmin)
 
-          campaign_ids = ::Administration::CampaignPolicy::Scope.new(user, Campaign).resolve.select do |campaign|
+          options = { group: :dashboards, permission: :view }
+          campaign_ids = ::Administration::CampaignPolicy::Scope.new(user, Campaign,
+                                                                     options).resolve.select do |campaign|
             user.has_permission?(:dashboards, :view, project_id: campaign.project_id, campaign_id: campaign.id)
           end
           Dashboard.where(campaign_id: campaign_ids)

@@ -146,7 +146,7 @@ class Properties extends Component {
     return (
       <div className={localStyles.containersBox}>
         <div className={localStyles.horizontalContainer}>
-          {_.map(['left', 'center', 'right'], (type, i) => (
+          {_.map(['left', 'center', 'right', 'justify'], (type, i) => (
             <div
               key={i}
               onClick={e => this.changeHorizontalAlign(type, e)}

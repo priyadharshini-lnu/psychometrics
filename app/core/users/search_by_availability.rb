@@ -42,13 +42,13 @@ module Users
                 dates + user_availability_days.end_time::time
               ):: TIMESTAMP AT TIME ZONE user_availability_dates.timezone AS end_date,
               dates,
-              EXTRACT(isodow FROM dates) AS day
+              EXTRACT(dow FROM dates) AS day
             FROM
               user_availability_dates
               LEFT JOIN user_availability_days ON user_availability_days.user_availability_date_id = user_availability_dates.id
               LEFT JOIN generate_series(:start_date, :end_date, interval '1 day') AS dates ON TRUE
             WHERE
-              user_availability_days."day" = EXTRACT(isodow FROM dates)
+              user_availability_days."day" = EXTRACT(dow FROM dates)
           ) available_users
           LEFT JOIN user_bookings ON user_bookings.user_id = available_users.user_id
           AND(
@@ -59,7 +59,6 @@ module Users
         WHERE
         start_date <= :start_date_time :: TIMESTAMP WITH time zone
         AND end_date >= :end_date_time :: TIMESTAMP WITH time zone
-        AND user_bookings.id is NULL
         #{user_scope_query_fragment}
         #{search_term_query_fragment}
         LIMIT :limit

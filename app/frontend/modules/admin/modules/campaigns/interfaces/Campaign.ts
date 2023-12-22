@@ -30,6 +30,7 @@ export default interface Campaign {
     viewWorkshops: boolean
     viewWorkshopInvites: boolean
     stats: boolean
+    pdfPassword: boolean
   }
 }
 
