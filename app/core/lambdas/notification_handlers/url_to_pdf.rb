@@ -11,8 +11,12 @@ module Lambdas
         end
 
         if data['update_record']
-          user_report.update_column(:pdf, data['file_name'])
-          user_report.prepared!
+          # user_report.update(pdf: data['file_name']) doesnt work with carrierwave.Refer below link.
+          # https://github.com/carrierwaveuploader/carrierwave/issues/2468
+          # This code will be changed with the active storage implementation.
+          user_report.write_attribute(:pdf, data['file_name']) # dont change this line.
+          user_report.status = :prepared
+          user_report.save!
         end
         update_admin_job_progress(data)
         notify_user(data) if data['notify_user_id']

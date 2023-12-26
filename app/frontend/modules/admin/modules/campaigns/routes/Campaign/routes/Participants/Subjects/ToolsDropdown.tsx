@@ -6,6 +6,7 @@ import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { ExportUsers, exportUsers } from '~/modules/admin/modules/campaigns/core/users'
 
 const { I18n } = window
 
@@ -58,14 +59,15 @@ const getMenuProps = ({
 
 interface Props {
   campaignId: number
-  openModal(name: string, data?: { campaignId: string, user?: User }): void
+  openModal(name: string, data?: { campaignId: number, user?: User, exportUsers: ExportUsers }): void
   exportCompletionStatuses(campaignId: number): Promise<void>
-  exportUsers(campaignId: number): Promise<void>
+  exportUsers: ExportUsers
   exportCompactCompletionStatuses(campaignId: number): Promise<void>
   permissions: {
     exportUsers: boolean,
     exportCompletionStatus: boolean,
     import: boolean,
+    exportSignInUrl: boolean,
   }
 }
 
@@ -78,10 +80,18 @@ const ToolsDropdown: React.FC<Props> = ({
     })
   }
 
-  const onUserExport = () => {
-    exportUsers(campaignId).then(() => {
+  const handleExportUsers = (campaignId, data?: { exportSignInUrl: boolean}) => (
+    exportUsers(campaignId, data).then(() => {
       message.success(I18n.t('frontend.campaign.users.actions.export.scheduled'))
     })
+  )
+
+  const onUserExport = () => {
+    if (permissions.exportSignInUrl) {
+      openModal('ExportUsersModal', { campaignId, exportUsers: handleExportUsers })
+    } else {
+      handleExportUsers(campaignId, { exportSignInUrl: false })
+    }
   }
 
   const onCompactExport = () => {

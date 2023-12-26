@@ -65,9 +65,10 @@ class User < ApplicationRecord
   end
 
   # Authentication
-  devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :secure_validatable, :password_archivable, :password_expirable,
-         :lockable, :timeoutable, request_keys: { subdomain: false }
+  devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable,
+         :magic_link_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
+         :secure_validatable, :password_archivable, :password_expirable, :lockable, :timeoutable,
+         request_keys: { subdomain: false }
 
   attr_accessor :create_by_invite, :terms, :current_membership
   # HRIS data
@@ -151,6 +152,15 @@ class User < ApplicationRecord
 
   delegate :subdomain, to: :project, allow_nil: true
   delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
+
+  def authenticated_sign_in_url
+    Utility::Url.generate(
+      :users_sign_in_link_url,
+      id: id,
+      subdomain: subdomain,
+      user: { email: email, token: encode_passwordless_token, remember_me: false }
+    )
+  end
 
   def last_workshop_subject(campaign_id)
     workshops ||= WorkshopSubject.where(

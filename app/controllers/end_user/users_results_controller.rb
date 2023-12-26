@@ -37,6 +37,7 @@ module EndUser
         evaluator: current_user,
         subject: current_user,
         threesixty_campaign: {},
+        campaign: @user_assessment.campaign,
         result: @user_assessment.users_result
       }
     end

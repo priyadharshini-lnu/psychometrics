@@ -9,7 +9,7 @@ module Administration
       skip_after_action :verify_policy_scoped, only: %i[index show]
       before_action :set_campaign, only: %i[
         show update assessments_and_reports fetch_campaign_options fetch_campaign_instructions
-        update_campaign_options destroy fetch_descriptions
+        update_campaign_options destroy fetch_descriptions pdf_password
       ]
       render_entrypoint %i[index show], element: 'project-container', entry: 'admin/project'
       before_action :set_project_init_state, only: %i[index show], if: -> { request.format.html? }
@@ -146,6 +146,10 @@ module Administration
 
       def set_resource_class
         @_resource_class ||= Campaign # rubocop:disable Naming/MemoizedInstanceVariableName
+      end
+
+      def pdf_password
+        render json: { pdf_password: @campaign.pdf_password }
       end
 
       private

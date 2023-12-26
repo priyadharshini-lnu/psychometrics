@@ -36,16 +36,31 @@ unless Rails.env.test?
     mocker_api_domain = "#{Settings.domain}:3037"
     websocket_protocol = protocol == 'https' ? 'wss' : 'ws'
 
+    script_src = [
+      :self, :unsafe_eval, :unsafe_inline, 'https://speedof.me', 'https://chatwoot.tte-work.com',
+      'https://svc.webspellchecker.net'
+    ]
+
+    script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+
+    style_src = %i[
+      self unsafe_inline
+    ]
+    style_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+
+    font_src = %i[
+      self data
+    ]
+    font_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+
     policy.default_src :self
-    policy.font_src    :self, :data
+    policy.font_src(*font_src)
     policy.img_src     '*', :data
     policy.media_src   '*'
     policy.object_src  '*'
     policy.frame_src   '*'
-    policy.script_src(
-      :self, :unsafe_eval, :unsafe_inline, 'https://speedof.me', 'https://chatwoot.tte-work.com', 'https://svc.webspellchecker.net'
-    )
-    policy.style_src :self, :unsafe_inline
+    policy.script_src(*script_src)
+    policy.style_src(*style_src)
     policy.connect_src(
       :self, 'https://speedof.me', 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
       'wss://*.amazonaws.com:8443'

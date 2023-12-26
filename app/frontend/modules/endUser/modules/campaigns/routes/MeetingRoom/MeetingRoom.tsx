@@ -36,9 +36,18 @@ const MeetingRoom = ({ fetchMeeting }: Props) => {
   }, [])
 
   useEffect(() => {
-    window.$chatwoot?.toggleBubbleVisibility('hide')
+    // toggleBubbleVisibility gives exception in production in few cases. No good way to fix it.
+    try {
+      window.$chatwoot?.toggleBubbleVisibility('hide')
+    } catch (error) {
+      console.error(error)
+    }
     return () => {
-      window.$chatwoot?.toggleBubbleVisibility('show')
+      try {
+        window.$chatwoot?.toggleBubbleVisibility('show')
+      } catch (error) {
+        console.error(error)
+      }
     }
   }, [])
 

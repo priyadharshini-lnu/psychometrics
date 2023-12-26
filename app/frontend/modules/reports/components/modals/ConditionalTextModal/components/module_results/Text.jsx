@@ -133,7 +133,7 @@ export class ConditionCollection extends Component {
             </div>
             <div className={styles.block} style={{ position: 'relative' }}>
               Border Color
-              <ColorPicker color={rgba2hex(borderColor)} onChange={this.changeBorder} />
+              <ColorPicker value={rgba2hex(borderColor)} onChange={this.changeBorder} />
             </div>
           </div>
         </div>

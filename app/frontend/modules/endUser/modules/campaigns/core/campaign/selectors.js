@@ -5,10 +5,26 @@ import { get as getCurrentUser } from '~/core/currentUser'
 export const get = state => _.get(state, ['campaigns', 'campaign'])
 export const getUserAssessmentData = state => _.get(state, ['campaigns', 'userAssessment', 'userAssessmentData'])
 
-export const getNominations = state => state.campaign.nominations
-export const getEvaluations = state => state.campaign.evaluations
-export const getManagedSubjects = state => state.campaign.managedSubjects
-export const getReports = state => state.campaign.reports
+export const getNominations = (state) => {
+  const { nominations } = state.campaign
+  const [selfNomination, otherNominations] = _.partition(nominations, { isSelf: true })
+  return [...selfNomination, ..._.sortBy(otherNominations, nomination => nomination.user.firstName)]
+}
+export const getEvaluations = (state) => {
+  const { evaluations } = state.campaign
+  const [selfEvaluation, otherEvaluations] = _.partition(evaluations, { isSelf: true })
+  return [...selfEvaluation, ..._.sortBy(otherEvaluations, evaluation => evaluation.subject.firstName)]
+}
+export const getManagedSubjects = (state) => {
+  const manageSubjects = state.campaign.managedSubjects
+  const [selfManageSubject, otherManageSubjects] = _.partition(manageSubjects, { isSelf: true })
+  return [...selfManageSubject, ..._.sortBy(otherManageSubjects, manageSubject => manageSubject.user.firstName)]
+}
+export const getReports = (state) => {
+  const { reports } = state.campaign
+  const [selfReport, otherReports] = _.partition(reports, { isSelf: true })
+  return [...selfReport, ..._.sortBy(otherReports, otherReport => otherReport.user.firstName)]
+}
 
 export const getTotalProgress = (campaign) => {
   const {

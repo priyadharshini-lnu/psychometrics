@@ -682,6 +682,8 @@ en:
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
+        super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
+        super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
       statuses:
         completed: Completed
@@ -1470,6 +1472,7 @@ en:
       create: Create
       delete: Delete
       edit: Edit
+      export: Export
       import: Import
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
@@ -1633,6 +1636,7 @@ en:
       invited: You have a pending invitation, accept it to finish creating your account.
       last_attempt: You have one more attempt before your account is locked.
       locked: Your account is locked.
+      magic_link_invalid: Invalid or expired login link.
       not_found_in_database: Invalid email or password.
       saml_user_not_present: User is not present in the system
       timeout: Your session expired. Please login again to continue.
@@ -1807,7 +1811,6 @@ en:
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
-      exceeded_workshops_count: You can only add %{count} assessment centers per invite
       filled?: can't be blank
       json?: Should be valid JSON
       key?: can't be blank
@@ -3325,6 +3328,9 @@ en:
         add_with_existing_response: Add user with existing response
         skip_existing: Skip existing user
     modals:
+      exports:
+        export_sign_in_url: Export with magic sign in URL
+        title: Export Users
       import:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
         imported_users: 'The number of imported users: %{number}'

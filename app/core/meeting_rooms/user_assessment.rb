@@ -10,16 +10,15 @@ module MeetingRooms
     end
 
     def get_role
-      if current_user.id == user_assessment.subject_id
-        return 'attendee'
-      end
+      return 'attendee' if current_user.id == user_assessment.subject_id
 
-      workshop = current_user.last_workshop(user_assessment.campaign_id)
+      workshop = user_assessment.subject.last_workshop(user_assessment.campaign_id)
 
-      if workshop &&
-         Api::Administration::WorkshopPolicy::Scope.new(current_user, ::Workshop).resolve.exists?(id: workshop.id)
-        return 'owner'
-      end
+      return 'none' unless workshop
+
+      return 'owner' if current_user.accessible_records(::Workshop, 'workshops.view').exists?(id: workshop.id)
+
+      return 'attendee' if workshop.workshop_assessors.exists?(user_id: current_user.id)
 
       'none'
     end

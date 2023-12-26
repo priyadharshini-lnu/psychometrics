@@ -101,7 +101,7 @@ class InnovationStyles extends Component {
               <div className={styles.row} key={innovationStyle.id}>
                 <div className={styles.score}>
                   <CircularProgress
-                    value={innovationStyle.score}
+                    value={_.round(innovationStyle.score)}
                     size={SCORE_PROGRESS_SIZE * scale}
                     circleStyle={circleStyle}
                     barStyle={barStyle}

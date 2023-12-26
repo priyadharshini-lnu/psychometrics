@@ -15,7 +15,7 @@ import {
   Divider,
 } from 'antd'
 import _ from 'lodash'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
@@ -112,10 +112,6 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const campaignId = campaignType === CampaignTypes.common ? campaignIdParams : currentCampaignId
 
-  const historyPath = (adminType === AdminTypes.CampaignAdmin)
-    ? `/admin/projects/${projectId}/new_campaigns/${campaignIdParams}/admins`
-    : `/admin/projects/${projectId}/admins`
-
   const showRequestSuccessMessage = (response) => {
     if (isEditMode) {
       message.success(
@@ -198,11 +194,8 @@ const AddEditDrawerComponent: FC<Props> = ({
     : I18n.t('administration.administrators.drawers.edit.save')
 
   const onClose = () => {
-    history.push(historyPath)
     handleClose()
   }
-
-  const history = useHistory()
 
   const transformValues = (values) => {
     if (isEditMode) {

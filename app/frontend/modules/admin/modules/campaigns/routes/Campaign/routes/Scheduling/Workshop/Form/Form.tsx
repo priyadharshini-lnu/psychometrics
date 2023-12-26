@@ -167,7 +167,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
             onPrevious={handlePrevious}
           />
         ))}
-      {step === 2 && <AddSubjects form={form} onCancel={handleCancel} next={handleNext} prev={handlePrevious} />}
+      {step === 2 && <AddSubjects form={form} onCancel={handleCancel} next={handleNext} />}
       {step === 3 && (
         <BaseInfoForm
           form={form}

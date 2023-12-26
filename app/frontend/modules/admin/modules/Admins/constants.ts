@@ -169,6 +169,7 @@ export const CampaignAdminGrants = {
     'manage_report_approvals',
   ],
   campaignFactors: ['view', 'manage'],
+  dashboards: ['view', 'accesssheet_view', 'accesssheet_manage', 'accesssheet_settings'],
   smsInvites: ['view', 'manage'],
   communications: ['view', 'manage'],
   datasheets: ['view', 'manage'],

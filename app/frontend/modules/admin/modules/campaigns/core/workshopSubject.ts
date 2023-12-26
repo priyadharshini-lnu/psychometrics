@@ -11,6 +11,7 @@ export const WorkshopSubjectTR = t.type({
   workshopActivities: t.string,
   user: t.union([
     t.type({
+      id: t.string,
       fullName: t.union([t.string, t.null]),
       email: t.union([t.string, t.null]),
     }),
