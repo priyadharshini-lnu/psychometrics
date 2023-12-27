@@ -14,7 +14,7 @@ module UsersResults
           acl: media_response.asset.acl
         )
       rescue StandardError => e
-        Rails.logger.error("Unable to copy media_response with id #{media_response.id}", e.message)
+        Rails.logger.error("Unable to copy media_response with id #{media_response.id}. #{e.message}")
         return
       end
 
