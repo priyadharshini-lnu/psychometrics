@@ -9,11 +9,17 @@ import {
 import Filter from './Filter'
 
 export const PAGE_SIZES = [
+  { width: 840, height: 1188, label: 'A4 - Portrait (840*1188)' },
+  { width: 1188, height: 840, label: 'A4 - Landscape (1188*840)' },
   { width: 850, height: 1100, label: 'Letter - Portrait (850x1100)' },
   { width: 1100, height: 850, label: 'Letter - Landscape (1100x850)' },
-  { width: 827, height: 1169, label: 'A4 - Portrait (827x1169)' },
-  { width: 1169, height: 827, label: 'A4 - Landscape (1169x827)' },
 ]
+export const LEGACY_PAGE_SIZES = [
+  { width: 827, height: 1169, label: 'Legacy - A4 - Portrait (827x1169)' },
+  { width: 1169, height: 827, label: 'Legacy - A4 - Landscape (1169x827)' },
+]
+export const ALL_PAGE_SIZES = [...PAGE_SIZES, ...LEGACY_PAGE_SIZES]
+
 const BASE_FONT_SIZE = 14
 
 export const SOURCE_TYPES = {

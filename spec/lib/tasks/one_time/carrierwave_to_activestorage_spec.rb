@@ -60,26 +60,27 @@ describe 'carrierwave:migrate_to_activestorage', type: :task do
   after { clear_enqueued_jobs }
 end
 
-# describe 'activestorage:rename_attributes', type: :task do
-#   let(:rename_task) { Rake::Task['activestorage:rename_attributes'] }
-#   let(:test_image) { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/images/test_image.jpeg')) }
+describe 'activestorage:rename_attributes', type: :task do
+  let(:rename_task) { Rake::Task['activestorage:rename_attributes'] }
+  let(:test_image) { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/images/test_image.jpeg')) }
 
-#   before do
-#     @record = create(:report)
-#     @record.as_icon.attach(test_image)
+  before do
+    @record = create(:report)
+    @record.as_icon.attach(test_image)
 
-#     rename_task.invoke
-#     perform_enqueued_jobs
-#   end
+    perform_enqueued_jobs
 
-#   it 'renames migrated attributes' do
-#     # expect(ActiveStorage::Attachment.count).to eq(2)
-#     expect(ActiveStorage::Attachment.first.record_id).to eq(@record.id)
-#     expect(ActiveStorage::Attachment.first.record_type).to eq(@record.class.name)
-#     expect(ActiveStorage::Attachment.first.name).to eq('icon')
-#     expect(ActiveStorage::VariantRecord.count).to eq(1)
-#     expect(@record.reload.as_icon.attached?).to be(false)
-#   end
+    rename_task.invoke
+  end
 
-#   after { clear_enqueued_jobs }
-# end
+  it 'renames migrated attributes' do
+    expect(ActiveStorage::Attachment.count).to eq(2)
+    expect(ActiveStorage::Attachment.first.record_id).to eq(@record.id)
+    expect(ActiveStorage::Attachment.first.record_type).to eq(@record.class.name)
+    expect(ActiveStorage::Attachment.first.name).to eq('icon')
+    expect(ActiveStorage::VariantRecord.count).to eq(1)
+    expect(@record.reload.as_icon.attached?).to be(false)
+  end
+
+  after { clear_enqueued_jobs }
+end

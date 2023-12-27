@@ -27,6 +27,21 @@ describe Communications::WorkshopInviteReminderJob, type: :job do
     expect(communication_email).to be_present
   end
 
+  it 'should creates only one communication_email per invited_subject' do
+    workshop_invite, = create_workshop__with_invite(1.day.from_now + 8.1.hours)
+    workshop2 = create(:workshop, start_time: 2.days.from_now + 8.1.hours,
+                       campaign: campaign, reschedule_lead_time: 1.day)
+    workshop_invite.workshops << workshop2
+
+    described_class.perform_now(communication)
+
+    communication_emails = CommunicationEmail.where(
+      campaign_user: campaign_user, workshop_invite: workshop_invite
+    )
+
+    expect(communication_emails.count).to eq(1)
+  end
+
   it "doesn't create communication_email if invite is not pending" do
     workshop_invite, workshop_invited_subject = create_workshop__with_invite(1.day.from_now + 8.1.hours)
     workshop_invited_subject.update!(status: :accepted)

@@ -105,9 +105,6 @@ export const Facilitators: React.FC<Props> = ({
   const workshopNames = basicInfoData.dates.map((_, i) => formatWorkshopDate(startDateTime(i)))
 
   const [formData, setFormData] = useState<Store[]>(Array.from({ length: datesCount }, () => ({})))
-  const [assessorIds, setAssessorIds] = useState<Store[]>(Array.from({ length: datesCount }, () => ({})))
-  const [centerManagerIds, setCenterManagerIds] = useState<Store[]>(Array.from({ length: datesCount }, () => ({})))
-
   const basicInfoDataWithoutDates = _.omit(basicInfoData, 'dates')
 
   const forms: FormInstance[] = Array.from({ length: datesCount })
@@ -142,13 +139,14 @@ export const Facilitators: React.FC<Props> = ({
 
   const handleFormChange = (index, formValues) => {
     const { workshop_resources: formWorkshopResources } = formValues
-    const updatedFormsData = [...formData]
+    const updatedFormsData = _.cloneDeep(formData)
     updatedFormsData[index] = { ...updatedFormsData[index], ...basicInfoDataWithoutDates }
     updatedFormsData[index].name = formValues.name ?? workshopNames[index]
     updatedFormsData[index].start_time = startDateTime(index).format()
     updatedFormsData[index] = _.omit(updatedFormsData[index], 'time')
-    updatedFormsData[index].assessor_ids = assessorIds[index].length ? assessorIds[index] : []
-    updatedFormsData[index].center_manager_ids = centerManagerIds[index].length ? centerManagerIds[index] : []
+    updatedFormsData[index].assessor_ids = formValues.assessor_ids?.length ? formValues.assessor_ids : []
+    updatedFormsData[index].center_manager_ids = formValues.center_manager_ids?.length
+      ? formValues.center_manager_ids : []
     updatedFormsData[index].total_seats = formValues.total_seats
     updatedFormsData[index].workshop_resources = filterInvalidResources(
       formWorkshopResources ?? updatedFormsData[index].workshop_resources,
@@ -306,10 +304,6 @@ export const Facilitators: React.FC<Props> = ({
                         setManagers(data)
                       })
                     }}
-                    onChange={(values) => {
-                      centerManagerIds[index] = values
-                      setCenterManagerIds(centerManagerIds)
-                    }}
                   />
                 </Form.Item>
                 <Form.Item
@@ -324,10 +318,6 @@ export const Facilitators: React.FC<Props> = ({
                       searchFacilitators(value, index, 'search_assessors').then((data: UserDetails[]) => {
                         setAssessors(data)
                       })
-                    }}
-                    onChange={(values) => {
-                      assessorIds[index] = values
-                      setAssessorIds(assessorIds)
                     }}
                   />
                 </Form.Item>

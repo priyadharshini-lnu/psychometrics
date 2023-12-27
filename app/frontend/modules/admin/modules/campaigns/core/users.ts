@@ -28,6 +28,7 @@ const defaultState = {
     exportCompletionStatus: false,
     import: false,
     edit: false,
+    exportSignInUrl: false,
   },
 }
 
@@ -108,13 +109,15 @@ export const exportCompactCompletionStatuses = (campaignId: number): ApiAction<{
   },
 })
 
-export const exportUsers = (campaignId: number): ApiAction<{}> => ({
+export const exportUsers = (campaignId: number, body: { exportSignInUrl: boolean }): ApiAction<{}> => ({
   type: EXPORT_USERS,
   request: {
     method: 'get',
+    body,
     url: `/administration/new_campaigns/${campaignId}/users/export`,
   },
 })
+export type ExportUsers = (campaignId: number, data?: { exportSignInUrl: boolean }) => Promise<void>
 
 
 export const remove = (campaignId: string, id: number) => ({
@@ -178,6 +181,7 @@ export interface State {
     create: boolean
     exportUsers: boolean,
     exportCompletionStatus: boolean,
+    exportSignInUrl: boolean,
     import: boolean,
     edit: boolean
   }
@@ -191,6 +195,7 @@ type FetchType = ApiActionResponse<{
     create: boolean,
     exportUsers: boolean,
     exportCompletionStatus: boolean,
+    exportSignInUrl: boolean,
     import: boolean,
     edit: boolean
   }

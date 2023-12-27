@@ -176,7 +176,8 @@ class UserReport < ApplicationRecord
   end
 
   def pdf_download_url
-    file_name = "#{user.email}-#{report.name}.pdf"
+    report_name = Utility::String.remove_non_ascii_chars(report.name).strip.presence || 'report'
+    file_name = "#{user.email}-#{report_name}.pdf"
     pdf.url(query: { 'response-content-disposition' => "attachment;filename=#{file_name}" })
   end
 end

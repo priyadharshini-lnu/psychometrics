@@ -43,6 +43,10 @@ module Administration
         can_mange_campaign_users?
       end
 
+      def export_sign_in_url?
+        @user.is?(:superadmin)
+      end
+
       def reset_password?
         has_permission?(:users, :reset_password, project_id: @record.project_id)
       end

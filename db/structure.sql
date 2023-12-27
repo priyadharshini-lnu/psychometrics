@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -897,9 +890,10 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
+    schedule_time timestamp(6) without time zone,
     require_scheduling boolean DEFAULT false
 );
 
@@ -998,9 +992,9 @@ CREATE TABLE public.campaign_factor_values (
     user_id bigint NOT NULL,
     campaign_factor_id bigint NOT NULL,
     string_value character varying,
-    numeric_value double precision,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    numeric_value double precision
 );
 
 
@@ -1042,7 +1036,9 @@ CREATE TABLE public.campaign_factors (
     sheet_column_name character varying,
     public_visibility boolean DEFAULT true NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    assessment_score_type integer DEFAULT 0,
+    formula text
 );
 
 
@@ -1119,7 +1115,8 @@ CREATE TABLE public.campaign_options (
     description text,
     integration_type integer DEFAULT 0 NOT NULL,
     proctoring_trial boolean DEFAULT false,
-    workshop_booking_requires_prework_completion boolean DEFAULT false
+    workshop_booking_requires_prework_completion boolean DEFAULT false,
+    campaign_scoring_variables text
 );
 
 
@@ -4083,7 +4080,8 @@ CREATE TABLE public.threesixty_email_schedules (
     meta jsonb DEFAULT '{}'::jsonb,
     consolidated boolean DEFAULT false NOT NULL,
     auto_triggered boolean DEFAULT true,
-    template_id bigint
+    template_id bigint,
+    processing_started_at timestamp(6) without time zone
 );
 
 
@@ -11584,6 +11582,10 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20231219105643'),
+('20231218084715'),
+('20231213104811'),
+('20231213080938'),
 ('20231211111901'),
 ('20231117074000'),
 ('20231117072837'),
@@ -11612,6 +11614,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230905113355'),
 ('20230829143631'),
 ('20230829124517'),
+('20230828122637'),
 ('20230824083112'),
 ('20230823110647'),
 ('20230822081633'),

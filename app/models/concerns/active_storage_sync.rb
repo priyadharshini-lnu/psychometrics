@@ -14,7 +14,7 @@ module ActiveStorageSync
 
     after_commit lambda {
       previous_changes.slice(*syncable_attributes).reject { |_k, v| v.first == v.last }.keys.compact.map do |attribute|
-        ActiveStorageSyncJob.perform_later(id, sti_model_name, attribute) if send(attribute).present?
+        ActiveStorageSyncJob.perform_later(id, sti_model_name, attribute) if self[attribute].present?
       end
     }, unless: :skip_active_storage_sync
 

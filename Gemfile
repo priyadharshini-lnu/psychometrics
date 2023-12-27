@@ -51,6 +51,7 @@ end
 gem 'devise',                     '~> 4.9.2'
 gem 'devise-i18n',                '~> 1.9.2'
 gem 'devise_invitable',           '~> 2.0.2'
+gem 'devise-passwordless',        '~> 1.0.1'
 gem 'devise_saml_authenticatable', '~> 1.7.0'
 
 gem 'dotiw', '~> 5.3.3'

@@ -16,6 +16,13 @@ module Communications
             name: 'workshop_invite',
             class_name: 'Communications::PipedText::Branches::WorkshopInvite',
             required_context: %i[workshop_invite]
+          },
+          {
+            key: 'u',
+            name: 'user',
+            class_name: 'Communications::PipedText::Branches::User',
+            required_context: %i[user],
+            allow_html: true
           }
         ].freeze
       end
