@@ -14,8 +14,8 @@ module Api
     end
 
     def update_positions
-      groups = params[:data][:attributes]
-      result = ::CampaignFactorGroups::UpdatePositions.call(campaign, groups)
+      result = ::CampaignFactorGroups::UpdatePositions.call(campaign, params[:data])
+
       if result[:ok]
         jsonapi_render json: result[:ok]
       else

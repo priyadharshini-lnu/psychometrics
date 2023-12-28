@@ -283,26 +283,33 @@ describe Api::V2::Administration::CampaignFactorGroupsController, swagger_doc: '
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignFactorGroupCreateRequest' },
-                required: true
+      parameter name: :body, in: :body, required: true
 
       response '200', 'Update campaign factor group positions' do
         examples 'application/json' => {
           data: [{
             type: 'campaign_factor_groups',
-            attributes: {
-              id: 1, position: 1
-            }
+            id: 1,
+            attributes: { position: 1 }
           }]
         }
 
+        let!(:another_group) { create(:campaign_factor_group, name: 'Test group 2', campaign_id: campaign_id) }
         let(:new_position) { 5 }
         let(:body) do
           {
-            data: {
-              type: 'campaign_factor_groups',
-              attributes: [{ id: campaign_factor_group_id, position: new_position }]
-            }
+            data: [
+              {
+                type: 'campaign_factor_groups',
+                id: campaign_factor_group_id,
+                attributes: { position: new_position }
+              },
+              {
+                type: 'campaign_factor_groups',
+                id: another_group.id,
+                attributes: { position: new_position + 1 }
+              }
+            ]
           }
         end
 
@@ -311,6 +318,7 @@ describe Api::V2::Administration::CampaignFactorGroupsController, swagger_doc: '
           expect(cfg).to have_key('id')
           expect(cfg).to have_attribute(:name).with_value('Test group')
           expect(cfg).to have_attribute(:position).with_value(5)
+          expect(CampaignFactorGroup.find(another_group.id).position).to eq(6)
           expect(cfg).to have_relationship(:campaign).
             with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
         end

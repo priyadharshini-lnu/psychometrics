@@ -195,24 +195,33 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
       security [basic: []]
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :campaign_factor_group_id, in: :path, type: :string
-      parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignFactorCreateRequest' },
-                required: true
+      parameter name: :body, in: :body, required: true
 
       response '200', 'Update campaign factor positions' do
         examples 'application/json' => {
           data: [{
             type: 'campaign_factors',
-            attributes: { id: 1, position: 1 }
+            id: 1,
+            attributes: { position: 1 }
           }]
         }
 
+        let!(:another_factor) { create(:campaign_factor, name: 'Factor 2', campaign_id: campaign_id) }
         let(:new_position) { 5 }
         let(:body) do
           {
-            data: {
-              type: 'campaign_factors',
-              attributes: [{ id: factor_id, position: new_position }]
-            }
+            data: [
+              {
+                type: 'campaign_factors',
+                id: factor_id,
+                attributes: { position: new_position }
+              },
+              {
+                type: 'campaign_factors',
+                id: another_factor.id,
+                attributes: { position: new_position + 1 }
+              }
+            ]
           }
         end
 
@@ -221,6 +230,7 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
           expect(cf).to have_key('id')
           expect(cf).to have_attribute(:name).with_value('Factor')
           expect(cf).to have_attribute(:position).with_value(5)
+          expect(CampaignFactor.find(another_factor.id).position).to eq(6)
           expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
           expect(cf).to have_relationship(:campaign_factor_group).
             with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })

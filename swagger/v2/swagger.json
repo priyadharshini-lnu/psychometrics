@@ -1070,8 +1070,8 @@
                       "data": [
                         {
                           "type": "campaign_factor_groups",
+                          "id": 1,
                           "attributes": {
-                            "id": 1,
                             "position": 1
                           }
                         }
@@ -1082,16 +1082,6 @@
               }
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/vnd.api+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CampaignFactorGroupCreateRequest"
-              }
-            }
-          },
-          "required": true
         }
       }
     },
@@ -1432,8 +1422,8 @@
                       "data": [
                         {
                           "type": "campaign_factors",
+                          "id": 1,
                           "attributes": {
-                            "id": 1,
                             "position": 1
                           }
                         }
@@ -1444,16 +1434,6 @@
               }
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/vnd.api+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CampaignFactorCreateRequest"
-              }
-            }
-          },
-          "required": true
         }
       }
     },

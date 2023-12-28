@@ -5,8 +5,8 @@ module Api
     validate_crud_requests Api::V2::CampaignFactor::Schema
 
     def update_positions
-      factors = params[:data][:attributes]
-      result = ::CampaignFactors::UpdatePositions.call(campaign, factors)
+      result = ::CampaignFactors::UpdatePositions.call(campaign, params[:data])
+
       if result[:ok]
         jsonapi_render json: result[:ok]
       else

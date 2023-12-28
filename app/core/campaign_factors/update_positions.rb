@@ -2,17 +2,20 @@
 
 module CampaignFactors
   class UpdatePositions < BaseCommand
-    private_attr_reader :campaign, :factors
+    private_attr_reader :campaign, :params
 
-    def initialize(campaign, factors)
+    def initialize(campaign, params)
       @campaign = campaign
-      @factors = factors
+      @params = params
     end
 
     def call
       transaction do
-        factors.each do |factors|
-          campaign.campaign_factors.find(factors['id']).update(position: factors['position'])
+        params.each do |factor_params|
+          campaign.
+            campaign_factors.
+            find(factor_params['id']).
+            update(position: factor_params['attributes']['position'])
         end
       end
       broadcast :ok, campaign.campaign_factors
