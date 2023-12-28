@@ -20,7 +20,7 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
 
   before { sign_in(superadmin) }
 
-  path '/campaigns/{campaign_id}/campaign_factor_groups/{campaign_factor_group_id}/campaign_factors' do
+  path '/campaigns/{campaign_id}/campaign_factors' do
     get 'CampaignFactors List' do
       operationId 'CampaignFactors'
       description 'Fetch campaign Factor list'
@@ -28,7 +28,6 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
       consumes 'application/json'
       security [basic: []]
       parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :campaign_factor_group_id, in: :path, type: :string
 
       response '200', 'Campaign factor list' do
         schema '$ref' => '#/components/schemas/CampaignFactorListResponse'
@@ -63,7 +62,6 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :campaign_factor_group_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignFactorCreateRequest' },
                 required: true
 
@@ -111,7 +109,7 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
     end
   end
 
-  path '/campaigns/{campaign_id}/campaign_factor_groups/{campaign_factor_group_id}/campaign_factors/{factor_id}' do
+  path '/campaigns/{campaign_id}/campaign_factors/{factor_id}' do
     patch 'Update CampaignFactor' do
       operationId 'UpdateCampaignFactors'
       description 'Update campaign Factor'
@@ -119,7 +117,6 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :campaign_factor_group_id, in: :path, type: :string
       parameter name: :factor_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/CampaignFactorCreateRequest' },
                 required: true
@@ -174,7 +171,6 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :campaign_factor_group_id, in: :path, type: :string
       parameter name: :factor_id, in: :path, type: :string
 
       response '204', 'Delete campaign factor' do
@@ -186,7 +182,7 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
     end
   end
 
-  path '/campaigns/{campaign_id}/campaign_factor_groups/{campaign_factor_group_id}/campaign_factors/update_positions' do
+  path '/campaigns/{campaign_id}/campaign_factors/update_positions' do
     post 'Update CampaignFactor positions' do
       operationId 'UpdateCampaignFactors'
       description 'Update campaign Factor positions'
@@ -194,7 +190,6 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :campaign_id, in: :path, type: :string
-      parameter name: :campaign_factor_group_id, in: :path, type: :string
       parameter name: :body, in: :body, required: true
 
       response '200', 'Update campaign factor positions' do

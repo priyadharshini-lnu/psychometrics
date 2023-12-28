@@ -1259,10 +1259,10 @@ Rails.application.routes.draw do
                 post :initialize_scoring
                 post :update_positions
               end
-              jsonapi_resources :campaign_factors, only: %i[index create update destroy] do
-                collection do
-                  post :update_positions
-                end
+            end
+            jsonapi_resources :campaign_factors, only: %i[index create update destroy] do
+              collection do
+                post :update_positions
               end
             end
             jsonapi_resources :campaign_factor_values, only: %i[]

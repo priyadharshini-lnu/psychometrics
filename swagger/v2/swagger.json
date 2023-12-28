@@ -1085,7 +1085,7 @@
         }
       }
     },
-    "/campaigns/{campaign_id}/campaign_factor_groups/{campaign_factor_group_id}/campaign_factors": {
+    "/campaigns/{campaign_id}/campaign_factors": {
       "get": {
         "summary": "CampaignFactors List",
         "operationId": "CampaignFactors",
@@ -1103,14 +1103,6 @@
         "parameters": [
           {
             "name": "campaign_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "campaign_factor_group_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1177,14 +1169,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "campaign_factor_group_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
@@ -1243,7 +1227,7 @@
         }
       }
     },
-    "/campaigns/{campaign_id}/campaign_factor_groups/{campaign_factor_group_id}/campaign_factors/{factor_id}": {
+    "/campaigns/{campaign_id}/campaign_factors/{factor_id}": {
       "patch": {
         "summary": "Update CampaignFactor",
         "operationId": "UpdateCampaignFactors",
@@ -1261,14 +1245,6 @@
         "parameters": [
           {
             "name": "campaign_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "campaign_factor_group_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1355,14 +1331,6 @@
             }
           },
           {
-            "name": "campaign_factor_group_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "factor_id",
             "in": "path",
             "required": true,
@@ -1378,7 +1346,7 @@
         }
       }
     },
-    "/campaigns/{campaign_id}/campaign_factor_groups/{campaign_factor_group_id}/campaign_factors/update_positions": {
+    "/campaigns/{campaign_id}/campaign_factors/update_positions": {
       "post": {
         "summary": "Update CampaignFactor positions",
         "operationId": "UpdateCampaignFactors",
@@ -1396,14 +1364,6 @@
         "parameters": [
           {
             "name": "campaign_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "campaign_factor_group_id",
             "in": "path",
             "required": true,
             "schema": {
