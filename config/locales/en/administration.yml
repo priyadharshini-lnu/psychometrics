@@ -3849,6 +3849,8 @@ en:
           description: Please enter the schedule information below. You can also select multiple dates to create multiple assessment centers.
           title: Basic Information
         cancellation_lead_time_label: Lead time for cancellation
+        copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
+        copy_to_all: Copy to other Assessment Centers
         create: Create
         dates_error: You can only add up to 5 dates.
         dates_label: Dates

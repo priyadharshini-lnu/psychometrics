@@ -164,6 +164,12 @@ export const Facilitators: React.FC<Props> = ({
     updatedFormsData[index].assessor_ids = values.assessor_ids || []
     updatedFormsData[index].center_manager_ids = values.center_manager_ids || []
     updatedFormsData[index].total_seats = values.total_seats
+    updatedFormsData[index].workshop_resources = filterInvalidResources(
+      values.formWorkshopResources ?? updatedFormsData[index].workshop_resources,
+    )
+    updatedFormsData[index].video_call_type = values.video_call_type ?? updatedFormsData[index].video_call_type
+    updatedFormsData[index].meeting_link = values.meeting_link ?? updatedFormsData[index].meeting_link
+
     setFormData(updatedFormsData)
   }
 
@@ -260,9 +266,6 @@ export const Facilitators: React.FC<Props> = ({
                 initialValues={{ name: workshopNames[index], workshop_resources: workshopResources }}
                 onValuesChange={(_, values) => handleFormChange(index, values)}
               >
-                <div className={styles.right}>
-                  {index === 0 && <Button onClick={() => copyToAll(form)}>Copy To All</Button>}
-                </div>
                 <Input.Group>
                   <Row gutter={16}>
                     <Col xs={24} sm={8}>
@@ -323,6 +326,16 @@ export const Facilitators: React.FC<Props> = ({
                 </Form.Item>
               </Form>
             </Panel>
+            <div>
+              {index === 0 && (
+                <Button onClick={() => copyToAll(form)}>
+                  {I18n.t('administration.scheduling.assessment_center_form.copy_to_all')}
+                </Button>
+              )}
+              <div className={styles.hint}>
+                {I18n.t('administration.scheduling.assessment_center_form.copy_hint')}
+              </div>
+            </div>
           </React.Fragment>
         )
       })}
