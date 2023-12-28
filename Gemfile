@@ -238,7 +238,6 @@ end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 3.37.1'
-  gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls_reborn', '~> 0.24.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 2.21'
@@ -246,11 +245,9 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'
   gem 'rubocop-faker'
-  gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.3.0'
   gem 'simplecov', '~> 0.21.2'
   gem 'timecop', '~> 0.9.1'
-  gem 'webdrivers', '~> 4.6.0'
   gem 'webmock', '~> 3.14.0'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'with_model', '~> 2.1.5'
@@ -268,3 +265,5 @@ gem 'xml-simple', '~> 1.1.5'
 gem 'sidekiq_alive', '~> 2.1.4'
 
 gem 'psych', '3.3.2'
+
+gem 'rufus-lua', '~> 1.1'

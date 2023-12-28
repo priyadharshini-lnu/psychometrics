@@ -311,9 +311,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    capybara-screenshot (1.0.26)
-      capybara (>= 1.0, < 4)
-      launchy
     carrierwave (1.3.3)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -335,7 +332,6 @@ GEM
     caxlsx_rails (0.6.3)
       actionpack (>= 3.1)
       caxlsx (>= 3.0)
-    childprocess (3.0.0)
     chronic (0.10.2)
     chunky_png (1.4.0)
     cli-ui (1.2.3)
@@ -619,8 +615,6 @@ GEM
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
-    launchy (2.5.2)
-      addressable (~> 2.8)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -885,6 +879,8 @@ GEM
       nokogiri (>= 1.10.8)
       rubyzip (>= 1.3.0)
     rubyzip (2.3.2)
+    rufus-lua (1.1.5)
+      ffi (~> 1.9)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -906,9 +902,6 @@ GEM
       nokogiri (>= 1.8.1)
       nori (~> 2.4)
       wasabi (~> 3.4)
-    selenium-webdriver (3.142.7)
-      childprocess (>= 0.5, < 4.0)
-      rubyzip (>= 1.2.2)
     sentry-rails (5.12.0)
       railties (>= 5.0)
       sentry-ruby (~> 5.12.0)
@@ -1044,10 +1037,6 @@ GEM
       addressable
       httpi (~> 2.0)
       nokogiri (>= 1.4.2)
-    webdrivers (4.6.1)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (>= 3.0, < 4.0)
     webmock (3.14.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -1109,7 +1098,6 @@ DEPENDENCIES
   bundler-audit
   byebug
   capybara (~> 3.37.1)
-  capybara-screenshot (~> 1.0.24)
   carrierwave (~> 1.3.2)
   carrierwave-base64 (~> 2.5.3)
   carrierwave_direct (~> 2.1.0)
@@ -1225,9 +1213,9 @@ DEPENDENCIES
   rubocop-rspec
   rubyXL (~> 3.4.6)
   rubyzip (~> 2.3)
+  rufus-lua (~> 1.1)
   sassc-rails (~> 2.1.2)
   savon (~> 2.12.1)
-  selenium-webdriver (~> 3.142.7)
   sentry-rails (~> 5.12.0)
   sentry-sidekiq (~> 5.12.0)
   shortener (~> 0.8.2)
@@ -1252,7 +1240,6 @@ DEPENDENCIES
   virtus (~> 1.0.5)
   vite_rails
   vite_ruby
-  webdrivers (~> 4.6.0)
   webhook_system!
   webmock (~> 3.14.0)
   wisper-rspec (~> 1.1.0)

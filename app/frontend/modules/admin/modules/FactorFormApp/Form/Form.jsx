@@ -10,6 +10,7 @@ import SubFactorList from './SubFactorList'
 import ExternalList from './ExternalList'
 import FIELDS from './fields'
 import styles from './styles.less'
+import LuaEditor from './LuaEditor'
 
 export default function Form (props) {
   const { factor, errors, factors } = props
@@ -127,6 +128,23 @@ export default function Form (props) {
         && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
       {resource.scoring_strategy === 'external_score'
         && <ExternalList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
+      {resource.scoring_strategy === 'custom_formula'
+        && (
+        <AntForm
+          layout="vertical"
+          onValuesChange={onValuesChange}
+          initialValues={{ custom_formula: resource.custom_formula }}
+        >
+          <AntForm.Item
+            label={I18n.t('administration.factors.form.scoring_strategies.custom_formula')}
+            name="custom_formula"
+            className="mtm"
+          >
+            <LuaEditor />
+          </AntForm.Item>
+        </AntForm>
+        )
+      }
     </>
   )
 }

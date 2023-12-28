@@ -21,7 +21,7 @@ module UsersResults
       # rubocop:enable Metrics/ParameterLists
 
       def call
-        extended_scoring = factor_hash.fetch_values(*factor_ids).reduce(scoring) do |extending_scoring, factor_data|
+        extended_scoring = factors.reduce(scoring) do |extending_scoring, factor_data|
           factor = factor_data[:factor]
           factor_scoring = extending_scoring[factor.id.to_s]
           factor_norm = factor_norm_hash[factor.id]
@@ -51,6 +51,15 @@ module UsersResults
         end
 
         broadcast :ok, extended_scoring
+      end
+
+      def factors
+        # TODO(atanych): quick solution for custom formula strategy
+        # TODO(atanych): but we need to apply a normal solution for all strategies where sub-factors are used
+        # TODO(atanych): ❗This solution does not work when we have 2+ custom formula depending on each other
+        factor_hash.fetch_values(*factor_ids).sort_by do |factor_data|
+          factor_data[:factor].custom_formula_strategy? ? 1 : 0
+        end
       end
     end
   end

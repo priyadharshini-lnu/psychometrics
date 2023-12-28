@@ -2796,6 +2796,7 @@ en:
             title: JSON Paths for Scores
         no_icon: No Logo yet
         scoring_strategies:
+          custom_formula: Custom Formula
           external_score: External Score
           questions: Questions (Average)
           questions_percentage: Questions (SUM / MAX Total)
@@ -2812,6 +2813,7 @@ en:
         icon: Icon
         new: Add
         scoring_strategies:
+          custom_formula: Custom Formula
           external_score: External Score
           questions: Questions (Average)
           questions_percentage: Questions (SUM / MAX Total)
@@ -2846,6 +2848,7 @@ en:
           copying: Copying
           deleting: Deleting
         scoring_strategies:
+          custom_formula: Custom Formula
           external_score: External Score
           questions: Questions (Average)
           questions_percentage: Questions (SUM / MAX Total)
