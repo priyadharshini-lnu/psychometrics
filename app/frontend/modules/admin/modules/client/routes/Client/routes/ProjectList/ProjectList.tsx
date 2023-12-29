@@ -10,12 +10,11 @@ import {
   Image,
   Typography,
   MenuProps,
-  Modal,
   Radio,
   Avatar,
   Row,
   Col,
-  message,
+  App,
   Skeleton,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
@@ -60,6 +59,7 @@ type Props = PropsFromRedux & TableProps
 
 const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
   const { clientId } = useParams<{ clientId: string }>()
+  const { modal, message } = App.useApp()
 
   const history = useHistory()
 
@@ -90,7 +90,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     const { id, name, disabled } = project
 
     const action = disabled ? 'unarchive' : 'archive'
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t(`administration.clients.projects.${action}.title`),
       content: I18n.t(`administration.clients.projects.${action}.content`, { project_name: name }),
       onOk: () => {

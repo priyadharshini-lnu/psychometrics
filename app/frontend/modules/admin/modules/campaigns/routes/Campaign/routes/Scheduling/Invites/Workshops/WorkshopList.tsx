@@ -1,5 +1,5 @@
 import {
-  Button, Modal, message,
+  Button, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 
@@ -71,11 +71,12 @@ const RemoveWorkshop: React.FC<{ workshop: WorkshopShort, campaignId:string, inv
   const { removeRelationships } = useResources<WorkshopInvite>('workshop_invites', {
     basePath: `campaigns/${campaignId}/workshop_invites/${inviteId}`,
   })
+  const { message, modal } = App.useApp()
 
   const { resource } = useResourceContext<WorkshopShort>()
 
   const removeWorkshop = ({ id, startTime }: WorkshopShort) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.title'),
       content: I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.content',
         { name: formatWorkshopDate(startTime) }),

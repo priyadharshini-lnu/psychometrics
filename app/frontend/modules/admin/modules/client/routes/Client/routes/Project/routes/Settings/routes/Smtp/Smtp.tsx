@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
-  Row, Col, Form, Input, Button, Switch, Radio, Space, message, Skeleton,
+  Row, Col, Form, Input, Button, Switch, Radio, Space, App, Skeleton,
 } from 'antd'
 import { MailOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
@@ -59,6 +59,7 @@ const SmtpComponent: React.FC<Props> = ({
   const [form] = Form.useForm()
   const { projectId } = useParams<{ projectId: string }>()
   const parsedProjectId = parseInt(projectId, 10)
+  const { message } = App.useApp()
 
   enum SubmitFormType {
     None = 'none',

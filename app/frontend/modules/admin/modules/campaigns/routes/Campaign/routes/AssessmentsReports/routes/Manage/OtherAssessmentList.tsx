@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Row, Col, Pagination,
+  Table, Row, Col, Pagination, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -69,6 +69,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
   }, [tableConfig.page])
 
   const { campaignId } = useParams<{ campaignId: string }>()
+  const { message } = App.useApp()
 
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedPage = parseInt(tableConfig.page as unknown as string, 10)
@@ -110,6 +111,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
                       exportRawFactorScores,
                       exportExternalResults,
                       optionsOverrides: { remove: false, updateExternalConfig: false },
+                      message,
                     })
                   }
                   innerElement={(

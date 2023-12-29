@@ -1,13 +1,14 @@
 import React from 'react'
 import {
   Alert,
-  Button, Col, Form, Input, message, Row, Skeleton, Switch, Upload, Select,
+  Button, Col, Form, Input, App, Row, Skeleton, Switch, Upload, Select,
 } from 'antd'
 import { UploadOutlined, CopyOutlined, RedoOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
+import { MessageInstance } from 'antd/es/message/interface'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import ResourceForm from '~/components/ResourceForm'
 import {
@@ -46,6 +47,7 @@ export const SettingsComponent: React.FC<Props> = ({
   const {
     updateResource, data, isLoading,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })
+  const { message } = App.useApp()
   const dashboard = data[0]
   const canBeRefreshed = !_.isEmpty(dashboard?.datasetId) && !_.isEmpty(dashboard?.reportId)
 
@@ -180,6 +182,7 @@ export const SettingsComponent: React.FC<Props> = ({
           refreshRequestInProgress={refreshRequestInProgress}
           capacityId={dashboard.capacityId}
           workspaceId={dashboard.workspaceId}
+          message={message}
         />
       </Col>
     </Row>
@@ -193,12 +196,13 @@ interface ViewNameInfoProps {
   canBeRefreshed: boolean
   refreshRequestInProgress: boolean
   handleRefresh: () => void
+  message: MessageInstance
   capacityId?: string | null
   workspaceId?: string | null
 }
 
 const ViewNameInfo: React.FC<ViewNameInfoProps> = ({
-  campaignId, capacityId, workspaceId, canBeRefreshed, handleRefresh, refreshRequestInProgress,
+  campaignId, capacityId, workspaceId, canBeRefreshed, handleRefresh, refreshRequestInProgress, message,
 }) => (
   <Alert
     message={(

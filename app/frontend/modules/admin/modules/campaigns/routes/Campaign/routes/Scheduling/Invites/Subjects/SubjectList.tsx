@@ -1,5 +1,5 @@
 import {
-  Button, Modal, Space, Tag, Typography, message,
+  Button, Space, Tag, Typography, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 
@@ -121,9 +121,10 @@ const Filter: React.FC<Props> = ({ openModal }) => {
 
 const RemoveSubject: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }> = ({ workshopInvitedSubject }) => {
   const { resource } = useResourceContext<WorkshopInvitedSubject>()
+  const { modal, message } = App.useApp()
 
   const removeSubject = ({ id, user }: WorkshopInvitedSubject) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.invited_subject.remove_confirm.title'),
       content: I18n.t('administration.invited_subject.remove_confirm.content', { subjectEmail: user.email }),
       okText: I18n.t('common.text.confirm'),

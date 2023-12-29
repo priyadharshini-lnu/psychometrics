@@ -11,8 +11,8 @@ import {
   Select,
   Input,
   Spin,
-  message,
   Divider,
+  App,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
@@ -92,6 +92,8 @@ const AddEditDrawerComponent: FC<Props> = ({
       firstName: '', lastName: '', name: '', email: '', id: '',
     },
   )
+
+  const { message } = App.useApp()
 
   const grantsHash = (): {} => {
     switch (adminType) {

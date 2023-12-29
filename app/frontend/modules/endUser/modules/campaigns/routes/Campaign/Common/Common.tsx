@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import {
-  Layout, Row, Col, Alert, Button, Result, Typography, Space, message, Modal,
+  Layout, Row, Col, Alert, Button, Result, Typography, Space, App,
 } from 'antd'
 import {
   InfoCircleOutlined,
@@ -65,6 +65,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   beginCampaign,
   continueCampaign,
 }) => {
+  const { modal, message } = App.useApp()
   const {
     isTimedCampaign,
     fixedTimed,
@@ -147,7 +148,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   const handleStartCampaignActivities = () => {
     if (!fixedTimed) { return startCampaignActivities() }
 
-    Modal.info({
+    modal.info({
       icon: false,
       title: null,
       content: campaignStartInstruction(),

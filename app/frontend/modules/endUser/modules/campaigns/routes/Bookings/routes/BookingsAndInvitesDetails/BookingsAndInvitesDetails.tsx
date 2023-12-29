@@ -3,7 +3,7 @@ import {
   FC, useState, useEffect, useRef,
 } from 'react'
 import {
-  Col, Layout, Form, message, Alert,
+  Col, Layout, Form, App, Alert,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
@@ -58,6 +58,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
   const location = useLocation()
   const questionResponseValueRef = useRef<Store>({})
+  const { message } = App.useApp()
   const currentTimezone = inviteOrBookingDetails?.timezone || dayjs.tz.guess() || 'Asia/Dubai'
   const currentTime = dayjs().tz(currentTimezone)
   const bookedDateTimeMomentObjectTz = bookedDateMomentObject

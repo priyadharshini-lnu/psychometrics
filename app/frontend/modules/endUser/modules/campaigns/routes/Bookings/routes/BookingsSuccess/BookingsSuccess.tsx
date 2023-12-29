@@ -3,7 +3,7 @@ import {
 } from 'react'
 import _ from 'lodash'
 import {
-  Row, Typography, Col, Space, message,
+  Row, Typography, Col, Space, App,
 } from 'antd'
 import {
   google, outlook, yahoo, ics, office365, CalendarEvent,
@@ -67,6 +67,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   const [requestCancellation, setRequestrequestCancellation] = useState<boolean>(false)
   const [bookingDetails, setbookingDetails] = useState<null | SingleBooking >(null)
   const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
+  const { message } = App.useApp()
   const bookedDateTime = bookingDetails?.bookedDate
   const bookedDateTimeMomentObject = bookedDateTime ? dayjs(bookedDateTime.date) : null
   const currentTimezone = bookingDetails?.timezone || dayjs.tz.guess() || 'Asia/Dubai'

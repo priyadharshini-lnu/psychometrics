@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  Modal, Button, message,
+  Modal, Button, App,
 } from 'antd'
 import { LoadingOutlined, ImportOutlined } from '@ant-design/icons'
 import cs from 'classnames'
@@ -19,6 +19,7 @@ export default function EvaluatorImportModal ({
   const [file, setFile] = useState(null)
   const [errors, setErrors] = useState(null)
   const [evaluatorsWhosePasswordNotChanged, setEvaluatorsWhosePasswordNotChanged] = useState(null)
+  const { message } = App.useApp()
 
   const importButtonIcon = () => {
     if (importInProgress) {

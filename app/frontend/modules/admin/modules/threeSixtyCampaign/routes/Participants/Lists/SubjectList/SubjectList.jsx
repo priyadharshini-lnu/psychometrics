@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Table, Row, Col,
+  Table, Row, Col, App,
 } from 'antd'
 import { UserOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from '~/presenters/user'
@@ -39,6 +39,7 @@ export default function SubjectList ({
   },
   match,
 }) {
+  const { message } = App.useApp()
   useEffect(() => {
     fetchSubjects(campaignId, page, searchTerm)
   }, [page, searchTerm])
@@ -146,6 +147,7 @@ export default function SubjectList ({
                       onUserUpdate,
                       permissions,
                       regenerateReport,
+                      message,
                     })
                   }
                   innerElement={(

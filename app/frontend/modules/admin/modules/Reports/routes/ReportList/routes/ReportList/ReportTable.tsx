@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import {
   Avatar,
-  Button, MenuProps, message,
+  Button, MenuProps, App,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MessageInstance } from 'antd/es/message/interface'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
@@ -124,10 +125,12 @@ const Dropdown: React.FC<DropDownProps> = (
   { report, openDrawer },
 ) => {
   const [confirmation, setConfirmation] = useState(false)
+  const { message } = App.useApp()
+
   return (
     <ConditionalDropdown
       menu={getActionsMenuProps({
-        report, setConfirmation, confirmation, openDrawer,
+        report, setConfirmation, confirmation, openDrawer, message,
       })}
     />
   )
@@ -138,10 +141,11 @@ interface ActionMenuProps {
   setConfirmation: (confirmation: boolean) => void
   confirmation: boolean
   openDrawer: (report: Report) => void
+  message: MessageInstance
 }
 
 const getActionsMenuProps = ({
-  setConfirmation, confirmation, report, openDrawer,
+  setConfirmation, confirmation, report, openDrawer, message,
 }: ActionMenuProps): MenuProps => {
   const { resource } = useResourceContext<Report>()
 

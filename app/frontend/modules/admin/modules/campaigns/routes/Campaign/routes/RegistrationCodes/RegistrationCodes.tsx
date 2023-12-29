@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import {
-  Dropdown, Table, Button, Row, Col, Pagination, message, Modal, MenuProps,
+  Dropdown, Table, Button, Row, Col, Pagination, App, MenuProps,
 } from 'antd'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
+import type { MessageInstance } from 'antd/es/message/interface'
 import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
@@ -63,6 +65,7 @@ const RegistrationCodes: React.FC<Props> = ({
   openModal,
   destroy,
 }) => {
+  const { modal, message } = App.useApp()
   useEffect(() => {
     fetch(campaignId, tableConfig)
   }, [tableConfig])
@@ -161,6 +164,8 @@ const RegistrationCodes: React.FC<Props> = ({
                       onCancelConfirm: () => destroy(campaignId, code.id),
                       permissions: code.permissions,
                       code,
+                      modal,
+                      message,
                     })}
                     innerElement={(
                       <Button type="link">
@@ -196,6 +201,8 @@ interface ActionMenuData {
     remove: boolean
   }
   code: RegistrationCode
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
 interface QRCodeMenuData {
@@ -239,10 +246,10 @@ const getQRCodeMenuProps = ({
 }
 
 const getActionsMenuProps = ({
-  onEdit, onCancelConfirm, permissions, code: { code },
+  onEdit, onCancelConfirm, permissions, code: { code }, modal, message,
 }:ActionMenuData): MenuProps => {
   const handleRemove = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,

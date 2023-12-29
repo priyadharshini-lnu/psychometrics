@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, MenuProps, Row, Col, Switch, message,
+  Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
@@ -36,6 +36,7 @@ const ReportList: React.FC<Props> = ({
   toggleUserDashboard,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
+  const { message } = App.useApp()
 
   const handleExportData = (campaignId: number, reportId: number) => {
     exportData(campaignId, reportId).then(() => {

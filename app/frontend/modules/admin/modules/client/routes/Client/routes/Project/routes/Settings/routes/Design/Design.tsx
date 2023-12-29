@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Form, Radio, Button, Upload, ConfigProvider, message,
+  Row, Col, Form, Radio, Button, Upload, ConfigProvider, App,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
@@ -32,6 +32,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
   const [form] = Form.useForm()
   const [designSettings] = data
   const [values, setValues] = useState({})
+  const { message } = App.useApp()
   useEffect(() => {
     if (designSettings) {
       form.setFieldsValue(designSettings)

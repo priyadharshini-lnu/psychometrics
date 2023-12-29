@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ConfigProvider, ThemeConfig } from 'antd'
+import { ConfigProvider, ThemeConfig, App } from 'antd'
 import { ConfigProviderProps } from 'antd/lib/config-provider'
 import { useSetCssVars } from '~/hooks/useSetCssVars'
 import { constants } from './constants'
@@ -23,8 +23,10 @@ export const DefaultAntThemeWrapper:FC<Props> = ({ theme, children, ...props }) 
   }
     {...props}
   >
-    <EmptyComponentForSettingCssVars />
-    {children}
+    <App>
+      <EmptyComponentForSettingCssVars />
+      {children}
+    </App>
   </ConfigProvider>
 )
 

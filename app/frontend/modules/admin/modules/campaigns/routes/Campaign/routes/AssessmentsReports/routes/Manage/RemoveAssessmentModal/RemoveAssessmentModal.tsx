@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Modal, Checkbox, message, Typography,
+  Modal, Checkbox, App, Typography,
 } from 'antd'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { SafeHTML } from '~/components/SafeHTML'
@@ -23,6 +23,7 @@ const RemoveAssessmentModal: React.FC<Props> = ({
   close, campaignId, remove, assessment, campaignAssessmentId, currentUser,
 }) => {
   const [removeUserAssessments, setRemoveUserAssessments] = useState(false)
+  const { message } = App.useApp()
 
   const { name } = assessment
 

@@ -1,5 +1,3 @@
-import { message } from 'antd'
-
 export const getActionsMenuProps = ({
   subjectId,
   campaignId,
@@ -13,6 +11,7 @@ export const getActionsMenuProps = ({
   onUserUpdate,
   permissions,
   regenerateReport,
+  message,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert

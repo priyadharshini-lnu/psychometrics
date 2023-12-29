@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
-  Input, Row, Col, Button, Empty, message, Switch, Select, TimePicker,
+  Input, Row, Col, Button, Empty, App, Switch, Select, TimePicker,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -36,6 +36,7 @@ export default function Emails ({
     params: { campaignId, id: selectedId },
   },
 }) {
+  const { message } = App.useApp()
   useEffect(() => {
     fetch(campaignId)
       .then(({ response }) => {

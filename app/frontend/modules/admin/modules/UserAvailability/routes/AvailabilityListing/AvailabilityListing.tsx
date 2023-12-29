@@ -1,5 +1,5 @@
 import {
-  Button, Col, Row, Space, Modal, message,
+  Button, Col, Row, Space, App,
 } from 'antd'
 import { BaseMeta } from 'hooks/useResources/interfaces'
 import { PlusOutlined } from '@ant-design/icons'
@@ -35,6 +35,7 @@ export const AvailabilityListing = () => {
   )
   const [showNewScheduleForm, setShowNewScheduleForm] = useState(false)
   const [errors, setErrors] = useState({} as ErrorMessageList)
+  const { modal, message } = App.useApp()
   const fetchSuccessful = isRequestSuccessful('fetch')
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export const AvailabilityListing = () => {
   }, [userAvailabilityDates.length, fetchSuccessful])
 
   const handleOnRemove = (id: string) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('frontend.availability.remove_confirm.title'),
       content: I18n.t('frontend.availability.remove_confirm.content'),
       okText: I18n.t('common.text.ok'),

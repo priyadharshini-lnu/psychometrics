@@ -1,6 +1,7 @@
-import { MenuProps, message } from 'antd'
+import { MenuProps } from 'antd'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MessageInstance } from 'antd/es/message/interface'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { Props as AssessmentListProps } from './AssessmentList'
 
@@ -19,6 +20,7 @@ export interface ActionMenuData {
   projectId?: number
   campaignId: number
   assessment: Assessment
+  message: MessageInstance
   optionsOverrides?: Partial<Options>
   openModal(name: string, data?: {
     projectId?: number, assessment?: Assessment, update?: Assessment,
@@ -37,7 +39,7 @@ export interface ActionMenuData {
 export const getActionsMenuProps = ({
   projectId, campaignId, assessment, openModal, rescoreResponses, exportRawResults,
   exportScoringResults, exportNormedResults, exportRawFactorScores,
-  exportExternalResults, updateExternalConfig, optionsOverrides,
+  exportExternalResults, updateExternalConfig, optionsOverrides, message,
 }:ActionMenuData): MenuProps => {
   const { id, name, permissions } = assessment
   const actions = { ...DEFAULT_OPTIONS, ...optionsOverrides || {} }

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress, Button,
+  Col, Row, Typography, Form, Upload, Input, Select, App, Layout, InputNumber, Space, Progress, Button,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import cs from 'classnames'
@@ -57,6 +57,7 @@ function ProfileComponent ({
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
+  const { message } = App.useApp()
 
   const uploadFile = (canvas) => {
     if (canvas) {

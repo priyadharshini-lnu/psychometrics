@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import {
-  Row, Col, Steps, Form, Modal,
+  Row, Col, Steps, Form, App,
 } from 'antd'
 import { useHistory, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -65,6 +65,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
   const [submitPage, showSubmitPage] = useState(false)
   const [workshops, setWorkshops] = useState<Workshop[]>([])
   const [form] = Form.useForm()
+  const { modal } = App.useApp()
 
   useEffect(() => {
     form.setFieldsValue({
@@ -114,7 +115,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
   }
 
   const handleCancel = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
       content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
       okText: I18n.t('common.text.confirm'),

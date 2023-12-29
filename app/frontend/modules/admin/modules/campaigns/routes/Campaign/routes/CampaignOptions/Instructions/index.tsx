@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Button, Select, message,
+  Row, Col, Button, Select, App,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import find from 'lodash/find'
@@ -47,6 +47,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
   const [savingInProgress, setSavingInProgress] = useState(false)
   const [leftLocale, setLeftLocale] = useState('en')
   const [rightLocale, setRightLocale] = useState(null)
+  const { message } = App.useApp()
 
   useEffect(() => {
     fetchInstructions(projectId, campaignId, [leftLocale, rightLocale])

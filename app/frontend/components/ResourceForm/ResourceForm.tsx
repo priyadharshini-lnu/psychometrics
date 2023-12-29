@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactNode } from 'react'
-import { Form, message, Alert } from 'antd'
+import { Form, App, Alert } from 'antd'
 import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
@@ -83,6 +83,7 @@ const ResourceForm: React.FC<Props> = ({
   const [status, setStatus] = useState<string | null>(null)
   const [fields, setFields] = useState<FieldData[] | []>([])
   const [baseErrors, setBaseErrors] = useState<string[] | JSONApiError[]>()
+  const { message } = App.useApp()
 
   const store = {
     fields: (storeManager && storeManager.fields) || fields,

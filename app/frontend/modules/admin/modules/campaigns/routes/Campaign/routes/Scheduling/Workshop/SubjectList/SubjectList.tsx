@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import {
-  Button, MenuProps, Space, Switch, Tag, message, Typography, Checkbox, Modal,
+  Button, MenuProps, Space, Switch, Tag, Typography, Checkbox, App,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { PlusOutlined } from '@ant-design/icons'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { ModalStaticFunctions } from 'antd/es/modal/confirm'
+import { MessageInstance } from 'antd/es/message/interface'
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
@@ -122,6 +124,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
   const { memberAction } = useResources('workshops', { basePath: `campaigns/${campaignId}/` })
   const [openSubjectForm, setOpenSubjectForm] = useState(false)
+  const { message, modal } = App.useApp()
 
   const toggleSelectedSubject = (checked, subject) => {
     if (checked) {
@@ -266,6 +269,8 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
                 getActionsMenuProps({
                   subject,
                   currentUser,
+                  modal,
+                  message,
                 })
               }
             />
@@ -287,12 +292,16 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
 interface ActionMenuData {
   subject: WorkshopSubject
   currentUser: SubjectTableProps['currentUser']
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
-const getActionsMenuProps = ({ subject, currentUser }: ActionMenuData): MenuProps => {
+const getActionsMenuProps = ({
+  subject, currentUser, modal, message,
+}:ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
   const handleMarkCancel = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.scheduling.subjects.confirm_title'),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Space, Input, Switch, Pagination, Button, MenuProps, Modal, message, Typography,
+  Table, Space, Input, Switch, Pagination, Button, MenuProps, App, Typography,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -54,6 +54,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
       responseType: WebhookTR,
     },
   )
+  const { modal, message } = App.useApp()
 
   useEffect(() => {
     fetch()
@@ -69,7 +70,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
   }
 
   const removeWebhook = (webhook) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
       content: I18n.t(
         'administration.project_tabs.webhooks.remove_webhook.content',

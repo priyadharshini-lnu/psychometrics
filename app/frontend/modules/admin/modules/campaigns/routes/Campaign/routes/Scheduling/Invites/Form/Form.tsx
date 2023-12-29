@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
-  Form, Row, Col, Steps, Modal,
+  Form, Row, Col, Steps, App,
 } from 'antd'
 import _ from 'lodash'
 import { useHistory, useParams } from 'react-router-dom'
@@ -26,6 +26,7 @@ export const InvitesForm = () => {
   const [submitPage, showSubmitPage] = useState(false)
   const [step, setStep] = useState(0)
   const [errors, setErrors] = useState<Errors | null>(null)
+  const { modal } = App.useApp()
 
   useEffect(() => {
     form.setFieldsValue({
@@ -58,7 +59,7 @@ export const InvitesForm = () => {
   }
 
   const handleCancel = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
       content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
       okText: I18n.t('common.text.confirm'),

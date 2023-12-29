@@ -8,7 +8,7 @@ import {
   Space,
   Typography,
   Form,
-  message,
+  App,
   Alert,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
@@ -88,6 +88,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   sheetType,
 }) => {
   const [errors, setErrors] = useState<string[] | undefined>()
+  const { message } = App.useApp()
 
   const isInEditMode = mode === DrawerModes.Edit
   const isInAddMode = mode === DrawerModes.Add

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Row, Col, Button, Descriptions, Switch, Tag, Modal, message, Space,
+  Row, Col, Button, Descriptions, Switch, Tag, App, Space,
 } from 'antd'
 import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -63,6 +63,7 @@ const AssessmentsReports: React.FC<Props> = ({
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
+  const { modal, message } = App.useApp()
 
   useEffect(() => {
     fetchSingleUser(parsedCampaignId, parsedUserId)
@@ -96,7 +97,7 @@ const AssessmentsReports: React.FC<Props> = ({
   const isFixedTime = campaign?.campaignOptions?.fixedTime || false
 
   const handleDelete = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Row, Col, Switch, Typography,
+  Table, Row, Col, Switch, Typography, App,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
@@ -47,6 +47,7 @@ const AssessmentList: React.FC<Props> = ({
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
+  const { message } = App.useApp()
 
   function handleWorkshopActivitySwitchToggle (assessment: Assessment, parsedCampaignId: number, checked: boolean) {
     if (checked) {
@@ -226,6 +227,7 @@ const AssessmentList: React.FC<Props> = ({
                     exportRawFactorScores,
                     exportExternalResults,
                     updateExternalConfig,
+                    message,
                   })
                 }
                 innerElement={(

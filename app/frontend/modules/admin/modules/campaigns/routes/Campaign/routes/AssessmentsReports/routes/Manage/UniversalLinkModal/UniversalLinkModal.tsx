@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Input, Modal, Button, message, Switch,
+  Input, Modal, Button, Switch, App,
 } from 'antd'
 import { CopyOutlined, DownloadOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -33,6 +33,7 @@ const UniversalLinkModal: React.FC<Props> = ({
 }) => {
   const [multipleResponses, setMultipleResponses] = useState(allowMultipleResponses)
   const [active, setActive] = useState(enableUniversalLinks)
+  const { message, modal } = App.useApp()
 
   const save = () => {
     saveUniversalLink(campaignId, id, { active, allowMultipleResponses: multipleResponses }).then(() => {
@@ -45,7 +46,7 @@ const UniversalLinkModal: React.FC<Props> = ({
   }, [multipleResponses, active])
 
   const regenerate = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.administrators.modals.delete.title'),
       content: 'Are you sure? This will make the existing URL unusable.',
       onOk: async () => {

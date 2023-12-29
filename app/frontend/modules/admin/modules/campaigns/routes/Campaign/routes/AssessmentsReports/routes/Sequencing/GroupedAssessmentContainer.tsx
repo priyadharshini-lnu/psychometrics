@@ -1,6 +1,6 @@
 import React, { CSSProperties, LegacyRef, RefObject } from 'react'
 import {
-  Switch, Card, Space, Typography, Button, Modal, Tooltip, message, Result,
+  Switch, Card, Space, Typography, Button, Tooltip, message, Result, App,
 } from 'antd'
 import {
   DeleteOutlined, DragOutlined, BlockOutlined, FolderOutlined,
@@ -47,8 +47,9 @@ export const GroupedAssessmentContainer = React.forwardRef(
     }: Props,
     ref: RefObject<HTMLDivElement>,
   ) => {
+    const { modal } = App.useApp()
     const handleDelete = () => {
-      Modal.confirm({
+      modal.confirm({
         title: I18n.t('assessments_reports.sequencing.modal.delete.title'),
         content: I18n.t('assessments_reports.sequencing.modal.delete.text', {
           name: group.name,

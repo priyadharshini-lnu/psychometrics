@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Modal, Form, Button, DatePicker, Checkbox, Row, Col, message,
+  Modal, Form, Button, DatePicker, Checkbox, Row, Col, App,
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
 import dayjs from '~/utils/dayjs'
@@ -32,6 +32,7 @@ export const SchedulingCampaignAssessment: React.FC<Props> = ({
 }) => {
   const [form] = Form.useForm()
   const unscheduled = Form.useWatch('unschedule', form)
+  const { message } = App.useApp()
 
   const schedule = () => {
     const data = {

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import {
-  Button, Switch, message, MenuProps,
+  Button, Switch, MenuProps, App,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MessageInstance } from 'antd/es/message/interface'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
@@ -145,10 +146,11 @@ const Dropdown: React.FC<DropDownProps> = (
   { assessment, openDrawer },
 ) => {
   const [confirmation, setConfirmation] = useState(false)
+  const { message } = App.useApp()
   return (
     <ConditionalDropdown
       menu={getActionsMenuProps({
-        assessment, setConfirmation, confirmation, openDrawer,
+        assessment, setConfirmation, confirmation, openDrawer, message,
       })}
     />
   )
@@ -159,10 +161,11 @@ interface ActionMenuData {
   setConfirmation: (confirmation: boolean) => void
   confirmation: boolean
   openDrawer: (assessment: Assessment) => void
+  message: MessageInstance
 }
 
 const getActionsMenuProps = ({
-  setConfirmation, confirmation, assessment, openDrawer,
+  setConfirmation, confirmation, assessment, openDrawer, message,
 }: ActionMenuData): MenuProps => {
   const { resource } = useResourceContext<Assessment>()
 

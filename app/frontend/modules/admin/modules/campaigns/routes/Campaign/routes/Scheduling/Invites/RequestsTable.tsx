@@ -1,8 +1,6 @@
 import { useParams } from 'react-router-dom'
 import {
-  Button,
-  Descriptions,
-  Modal, Space, Tag, Typography, message,
+  Button, Descriptions, App, Space, Tag, Typography,
 } from 'antd'
 import {
   WorkshopInvitedSubject, WorkshopInvitedSubjectTR,
@@ -113,9 +111,10 @@ const ActionButtons: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
   workshopInvitedSubject,
 }) => {
   const { resource } = useResourceContext<WorkshopInvitedSubject>()
+  const { modal, message } = App.useApp()
 
   const rejectInvitedSubject = ({ id, user: { fullName }, status }: WorkshopInvitedSubject) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t(
         'administration.assessment_center.invite_request.remove_confirm.title',
         {
@@ -152,7 +151,7 @@ const ActionButtons: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
   }
 
   const acceptInvitedSubject = ({ id, user: { fullName }, status }: WorkshopInvitedSubject) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t(
         'administration.assessment_center.invite_request.remove_confirm.title',
         {

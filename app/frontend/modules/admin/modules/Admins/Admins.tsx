@@ -7,9 +7,9 @@ import {
   Space,
   Button,
   Input,
-  Modal,
   message,
   Pagination,
+  App,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import {
@@ -68,6 +68,7 @@ const AdminsComponent: React.FC<Props> = ({
   adminType, campaignType, currentUser, openModal, currentCampaignId,
 }) => {
   const params = useParams<{ campaignId: string; projectId: string; clientId: string }>()
+  const { modal } = App.useApp()
   const { projectId } = params
   const { clientId } = params
   const campaignIdParam = params.campaignId
@@ -142,7 +143,7 @@ const AdminsComponent: React.FC<Props> = ({
   const handleDeleteAdminClick = (
     id: Admin['id'], firstName: Admin['firstName'], lastName: Admin['lastName'], email: Admin['email'],
   ) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.administrators.modals.delete.title'),
       content: I18n.t(
         'administration.administrators.modals.delete.content',

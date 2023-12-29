@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button, message,
+  Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button, App,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import cs from 'classnames'
@@ -51,6 +51,7 @@ function ProfileComponent ({
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
+  const { message } = App.useApp()
 
   const {
     fetchSingle, getResource, updateResource, isLoading,

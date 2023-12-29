@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  Modal, Button, Input, Alert, message,
+  Modal, Button, Input, Alert, App,
 } from 'antd'
 import { CheckOutlined, MailOutlined } from '@ant-design/icons'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
@@ -14,6 +14,7 @@ export default function SendTestEmailModal ({
 }) {
   const [email, setEmail] = useState(null)
   const [errors, setErrors] = useState(null)
+  const { message } = App.useApp()
 
   const handleSendTestEmail = () => {
     sendTestEmail(campaignId, id, email)
