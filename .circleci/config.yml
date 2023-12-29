@@ -411,13 +411,6 @@ jobs:
   build_docker_image:
     executor: tte-docker-build
     steps:
-      - run:
-          name: Check if running for PR
-          command: |
-            if [ -n "$CIRCLE_PULL_REQUEST" ]; then
-              echo "Docker build should be only for branches and not for PRs"
-              circleci-agent step halt
-            fi
       - checkout
       - azure-cli/install
       - azure-cli/login-with-user-or-service-principal
