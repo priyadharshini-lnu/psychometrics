@@ -15,7 +15,10 @@ module CampaignFactors
           campaign.
             campaign_factors.
             find(factor_params['id']).
-            update(position: factor_params['attributes']['position'])
+            update(
+              position: factor_params['attributes']['position'],
+              campaign_factor_group_id: factor_params['attributes']['campaign_factor_group_id']
+            )
         end
       end
       broadcast :ok, campaign.campaign_factors

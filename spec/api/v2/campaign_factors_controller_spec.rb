@@ -201,20 +201,20 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
           }]
         }
 
-        let!(:another_factor) { create(:campaign_factor, name: 'Factor 2', campaign_id: campaign_id) }
-        let(:new_position) { 5 }
+        let!(:second_factor_group) { create(:campaign_factor_group, campaign_id: campaign_id) }
+        let!(:second_factor) { create(:campaign_factor, name: 'Factor 2', campaign_id: campaign_id) }
         let(:body) do
           {
             data: [
               {
                 type: 'campaign_factors',
                 id: factor_id,
-                attributes: { position: new_position }
+                attributes: { position: 2, campaign_factor_group_id: second_factor_group.id }
               },
               {
                 type: 'campaign_factors',
-                id: another_factor.id,
-                attributes: { position: new_position + 1 }
+                id: second_factor.id,
+                attributes: { position: 3, campaign_factor_group_id: campaign_factor_group_id }
               }
             ]
           }
@@ -224,11 +224,13 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
           cf = JSON.parse(response.body)['data'].first
           expect(cf).to have_key('id')
           expect(cf).to have_attribute(:name).with_value('Factor')
-          expect(cf).to have_attribute(:position).with_value(5)
-          expect(CampaignFactor.find(another_factor.id).position).to eq(6)
+          expect(cf).to have_attribute(:position).with_value(2)
+          expect(cf).to have_attribute(:campaign_factor_group_id).with_value(second_factor_group.id)
+          expect(CampaignFactor.find(second_factor.id).position).to eq(3)
+          expect(CampaignFactor.find(second_factor.id).campaign_factor_group_id).to eq(campaign_factor_group.id)
           expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
           expect(cf).to have_relationship(:campaign_factor_group).
-            with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
+            with_data({ 'id' => second_factor_group.id.to_s, 'type' => 'campaign_factor_groups' })
         end
       end
     end
