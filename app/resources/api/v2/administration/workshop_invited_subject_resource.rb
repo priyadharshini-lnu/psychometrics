@@ -43,7 +43,7 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
       WorkshopInvitedSubject.
         includes(:workshop_subject, :workshop_invite).
         where(workshop_invites: {
-          campaign_id: options.dig(:context, :params, :filter, :workshop_invite_campaign_id_eq)
+          campaign_id: options.dig(:context, :params, :campaign_id)
         })
     end
   end
