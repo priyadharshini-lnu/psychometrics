@@ -11,14 +11,14 @@ module Api
         def update
           @campaign_assessment.update!(campaign_assessment_params)
           audit! :api_update, @campaign_assessment, payload: params, campaign: @campaign_assessment.campaign
-          render json: @campaign_assessment, serializer: ::Api::V1::CampaignAssessmentSerializer
+          render json: ::Api::V1::CampaignAssessmentSerializer.new.serialize(@campaign_assessment)
         end
 
         def destroy
           @campaign_assessment.destroy!
           audit! :api_delete, @campaign_assessment, payload: @campaign_assessment.log_attributes,
                 campaign: @campaign_assessment.campaign
-          render json: @campaign_assessment, serializer: ::Api::V1::CampaignAssessmentSerializer
+          render json: ::Api::V1::CampaignAssessmentSerializer.new.serialize(@campaign_assessment)
         end
 
         private

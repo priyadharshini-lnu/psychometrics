@@ -49,9 +49,7 @@ class UsersResultSchema < BaseSchema
       required(:user).hash(UserSchema.schema(_, _))
       required(:subject).hash(UserSchema.schema(_, _))
       required(:participant).hash(Threesixty::EndUser::ParticipantSchema.schema(_, _))
-      required(:media_responses).maybe do
-        array(MediaResponseSchema.schema(_, _))
-      end
+      required(:media_responses).array(MediaResponseSchema.schema(_, _))
       required(:campaign_user).maybe(EndUser::CampaignUserSchema.schema(_, _))
       required(:campaign_options).hash(EndUser::CampaignOptionsSchema.schema(_, _))
     end

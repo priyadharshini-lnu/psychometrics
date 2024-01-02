@@ -2,12 +2,14 @@
 
 module Api
   module V1
-    class ReportDimensionsSerializer < ActiveModel::Serializer
-      attribute :server_time do
+    class ReportDimensionsSerializer < Panko::Serializer
+      attributes :server_time
+
+      def server_time
         Time.now.utc.iso8601
       end
 
-      has_many :dimensions, serializer: Api::V1::DimensionSerializer
+      has_many :dimensions, each_serializer: Api::V1::DimensionSerializer
     end
   end
 end

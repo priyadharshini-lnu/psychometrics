@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class UserAssessmentsAndReportsSerializer < ActiveModel::Serializer
+    class UserAssessmentsAndReportsSerializer < Panko::Serializer
       attributes :reports, :assessments
 
       def reports

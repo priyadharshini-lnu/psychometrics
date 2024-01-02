@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class SsoAssignSerializer < ActiveModel::Serializer
+    class SsoAssignSerializer < Panko::Serializer
       attributes :id, :icon_url, :poster_url, :description, :campaign_id, :name, :url, :status
 
       delegate :id, :name, :description, to: :assessment
@@ -16,7 +16,7 @@ module Api
       end
 
       def url
-        "#{instance_options[:url]}?user_assessment_id=#{object.id}"
+        "#{context[:url]}?user_assessment_id=#{object.id}"
       end
 
       delegate :status, to: :object

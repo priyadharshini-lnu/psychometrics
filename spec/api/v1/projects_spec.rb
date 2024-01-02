@@ -57,6 +57,7 @@ describe 'Projects' do
 
         run_test! do |response|
           project = JSON.parse(response.body)
+
           expect(project).to have_key('id')
           expect(project['data_processing_consent']).to eq true
           expect(project['name']).to eq 'project1'

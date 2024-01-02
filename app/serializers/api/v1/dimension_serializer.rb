@@ -2,43 +2,44 @@
 
 module Api
   module V1
-    class DimensionSerializer < ActiveModel::Serializer
+    class DimensionSerializer < Panko::Serializer
       attributes :id, :name, :occupations, :factors
 
-      attribute :occupations, if: -> { include_occupations }
-      attribute :factors, if: -> { include_factors }
-
       def include_occupations
-        @instance_options[:include_occupations] == 'true'
+        context[:include_occupations] == 'true'
       end
 
       def include_factors
-        @instance_options[:include_factors] == 'true'
+        context[:include_factors] == 'true'
       end
 
       def report
-        @instance_options[:report]
+        context[:report]
       end
 
       def since
-        DateTime.parse(@instance_options[:since])
+        DateTime.parse(context[:since])
       end
 
       def occupations
+        return [] unless include_occupations
+
         return [] unless report.has_data_configuration_occupations?
 
-        occupation_list = if @instance_options[:since]
+        occupation_list = if context[:since]
                             object.occupations.where('occupations.updated_at > ?', since)
                           else
                             object.occupations
                           end
         occupation_list.map do |occupation|
-          Api::V1::OccupationSerializer.new(occupation)
+          Api::V1::OccupationSerializer.new.serialize(occupation)
         end
       end
 
       def factors
-        factor_list = if @instance_options[:since]
+        return [] unless include_factors
+
+        factor_list = if context[:since]
                         object.all_factors.where(id: report.data_configuration_factor_ids).
                           where('factors.updated_at > ?', since)
                       else
@@ -46,7 +47,7 @@ module Api
                       end
 
         factor_list.map do |factor|
-          Api::V1::FactorSerializer.new(factor)
+          Api::V1::FactorSerializer.new.serialize(factor)
         end
       end
     end

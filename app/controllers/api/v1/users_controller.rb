@@ -6,7 +6,7 @@ module Api
       def index
         user = project.end_users.find_by(email: params[:email])
         if user
-          render json: user, serializer: Api::V1::UserSerializer
+          render json: Api::V1::UserSerializer.new.serialize(user)
         else
           raise Api::Errors::ResourceNotFound, "User with email=#{params[:email]} was not found"
         end
@@ -35,7 +35,11 @@ module Api
 
             response[:ok]
           end.sample
-          render json: Api::V1::UserSerializer.new(user, project: project).to_h
+          render json: Api::V1::UserSerializer.new(
+            context: {
+              project: project
+            }
+          ).serialize(user)
         else
           render_validation_errors(form)
         end
@@ -47,7 +51,11 @@ module Api
           on(:invalid) { |f| render_validation_errors(f) }
           on(:ok) do |user|
             audit! :api_update, user, payload: params, project: project
-            render json: Api::V1::UserSerializer.new(user, project: project).to_h
+            render json: Api::V1::UserSerializer.new(
+              context: {
+                project: project
+              }
+            ).serialize(user)
           end
         end
       end
@@ -59,7 +67,9 @@ module Api
         render json: {
           expires_at: expires_at,
           url: url,
-          assessments: user_assessments.map { |ua| Api::V1::SsoAssignSerializer.new(ua, url: url).to_h }
+          assessments: user_assessments.map do |ua|
+                         Api::V1::SsoAssignSerializer.new(context: { url: url }).serialize(ua)
+                       end
         }
       end
 
@@ -71,7 +81,7 @@ module Api
             on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
           audit! :assessments_reports, campaign_user, payload: params, campaign: campaign_user.campaign
-          render json: campaign_user, serializer: Api::V1::UserAssessmentsAndReportsSerializer
+          render json: Api::V1::UserAssessmentsAndReportsSerializer.new.serialize(campaign_user)
         else
           render_validation_errors(form)
         end

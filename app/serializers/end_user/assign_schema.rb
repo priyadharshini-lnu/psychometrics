@@ -24,14 +24,12 @@ module EndUser
         required(:current_element).filled(:str?)
         required(:current_page).filled(:int?)
         required(:seedrandom).filled(:str?)
-        optional(:extra).maybe do
-          hash do
-            optional(:timer).maybe(:str?)
-            optional(:icon_color).maybe(:str?)
-            optional(:enable_video_check).maybe(:bool?)
-            optional(:enable_audio_check).maybe(:bool?)
-            optional(:enable_network_check).maybe(:bool?)
-          end
+        optional(:extra).hash do
+          optional(:timer).maybe(:str?)
+          optional(:icon_color).maybe(:str?)
+          optional(:enable_video_check).maybe(:bool?)
+          optional(:enable_audio_check).maybe(:bool?)
+          optional(:enable_network_check).maybe(:bool?)
         end
         required(:assessment_id).filled(:int?)
         required(:prev_pages).filled(:hash?)

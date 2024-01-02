@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class CampaignAssessmentsAndReportsSerializer < ActiveModel::Serializer
+    class CampaignAssessmentsAndReportsSerializer < Panko::Serializer
       attributes :reports, :assessments
 
       def reports

@@ -2,11 +2,11 @@
 
 module Api
   module V1
-    class ResultSerializer < ActiveModel::Serializer
+    class ResultSerializer < Panko::Serializer
       attributes :user_data, :assessments, :computed_scores, :campaign_id
 
-      def initialize(object, instance_options = {})
-        super(object, instance_options)
+      def initialize(object)
+        super(object)
         @assessments = {}
       end
 
@@ -19,15 +19,19 @@ module Api
       end
 
       def campaign_id
-        instance_options[:user_report]&.campaign_id
+        context[:user_report]&.campaign_id
       end
 
       def assessments
         assessment_ids = object.filter_map { |row| row.dig(:config_data, 'assessmentId') }.uniq
         assessments = Assessment.where(id: assessment_ids).all
-        assessments.map do |assessment|
-          Api::V1::Results::AssessmentSerializer.new(assessment, rows: object).to_h
-        end
+        Panko::ArraySerializer.new(
+          assessments,
+          each_serializer: Api::V1::Results::AssessmentSerializer,
+          context: {
+            rows: object
+          }
+        ).to_a
       end
 
       def computed_scores
@@ -36,9 +40,10 @@ module Api
             row.dig(:config_data, 'type') == 'user_data' ||
             (row.dig(:config_data, 'type') == 'datasheet' && row.dig(:config_data, 'category') != 'computed_scores')
         end
-        scores.map do |score|
-          Api::V1::Results::ComputedScoreSerializer.new(score).to_h
-        end
+        Panko::ArraySerializer.new(
+          scores,
+          each_serializer: Api::V1::Results::ComputedScoreSerializer
+        ).to_a
       end
     end
   end

@@ -47,10 +47,10 @@ describe Api::V1::ResultSerializer do
     create(:assessment, id: 18, name: 'ass 18')
   end
 
-  subject { described_class.new(raw_data, user_report: user_report).to_h }
+  subject { described_class.new(context: { user_report: user_report }).serialize(raw_data).deep_symbolize_keys }
   it do
     expect(subject[:campaign_id]).to eq(user_report.campaign_id)
-    expect(subject[:user_data]).to eq({ 'first_name' => 'Shuja', 'last_name' => 'GPTS', 'id_number' => '123456' })
+    expect(subject[:user_data]).to eq({ first_name: 'Shuja', last_name: 'GPTS', id_number: '123456' })
     expect(subject[:computed_scores]).to eq([{ id: 'rating', name: 'Rating', value: 4.5 }])
     expect(subject[:assessments]).to match_array(
       [

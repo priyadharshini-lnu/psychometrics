@@ -10,7 +10,7 @@ module Api
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
         ::Campaigns::Duplicate.call(form, @campaign) do
           on(:invalid) { |f| render_validation_errors(f) }
-          on(:ok) { |new_campaign| render json: Api::V1::CampaignSerializer.new(new_campaign).to_h }
+          on(:ok) { |new_campaign| render json: Api::V1::CampaignSerializer.new.serialize(new_campaign) }
         end
       end
 
@@ -19,11 +19,14 @@ module Api
         campaigns = CampaignUser.includes(:campaign).
                     where(campaign_id: project_campaign_ids, user_id: user.id).
                     map(&:campaign)
-        render json: campaigns, each_serializer: Api::V1::UserCampaignSerializer
+        render json: Panko::ArraySerializer.new(
+          campaigns,
+          each_serializer: Api::V1::CampaignSerializer
+        ).to_a
       end
 
       def show
-        render json: @campaign, serializer: Api::V1::CampaignSerializer
+        render json: Api::V1::CampaignSerializer.new.serialize(@campaign)
       end
 
       def assign_user
@@ -45,7 +48,11 @@ module Api
               on(:error) { raise Api::Errors::NotEnoughLicences, 'Not Enough Licenses' }
             end
           end
-          render json: Api::V1::UserSerializer.new(user.reload, project: project).to_h
+          render json: Api::V1::UserSerializer.new(
+            context: {
+              project: project
+            }
+          ).serialize(user.reload)
         else
           render_validation_errors(form)
         end
@@ -57,7 +64,7 @@ module Api
           normalized_params = ::Campaigns::NormalizeApiRequest.call!(campaign_params)
           campaign = Campaign.create!(normalized_params.merge(project_id: project.id))
           audit! :api_create, campaign, payload: params, campaign: campaign
-          render json: campaign, serializer: Api::V1::CampaignSerializer
+          render json: Api::V1::CampaignSerializer.new.serialize(campaign)
         else
           render_validation_errors(form)
         end
@@ -69,14 +76,14 @@ module Api
           normalized_params = ::Campaigns::NormalizeApiRequest.call!(campaign_params)
           @campaign.update!(normalized_params)
           audit! :api_update, @campaign, payload: params, campaign: @campaign
-          render json: @campaign, serializer: Api::V1::CampaignSerializer
+          render json: Api::V1::CampaignSerializer.new.serialize(@campaign)
         else
           render_validation_errors(form)
         end
       end
 
       def get_assessments_reports
-        render json: @campaign, serializer: Api::V1::CampaignAssessmentsAndReportsSerializer
+        render json: Api::V1::CampaignAssessmentsAndReportsSerializer.new.serialize(@campaign)
       end
 
       def assessments_reports
@@ -86,7 +93,7 @@ module Api
             on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
           end
           audit! :api_add_assessment_reports, @campaign, payload: params, campaign: @campaign
-          render json: @campaign, serializer: Api::V1::CampaignAssessmentsAndReportsSerializer
+          render json: Api::V1::CampaignAssessmentsAndReportsSerializer.new.serialize(@campaign)
         else
           render_validation_errors(form)
         end

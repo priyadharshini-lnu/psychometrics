@@ -15,14 +15,12 @@ module EndUser
         optional(:timing).maybe(:str?)
         required(:assessment_category).filled(:str?)
         optional(:completed_at).maybe(:str?)
-        optional(:assessment_extra).maybe do
-          hash do
-            optional(:timer).maybe(:int?)
-            optional(:icon_color).maybe(:str?)
-            optional(:enable_video_check).maybe(:bool?)
-            optional(:enable_audio_check).maybe(:bool?)
-            optional(:enable_network_check).maybe(:bool?)
-          end
+        optional(:assessment_extra).hash do
+          optional(:timer).maybe(:int?)
+          optional(:icon_color).maybe(:str?)
+          optional(:enable_video_check).maybe(:bool?)
+          optional(:enable_audio_check).maybe(:bool?)
+          optional(:enable_network_check).maybe(:bool?)
         end
         required(:assessment_id).filled(:int?)
         required(:status).filled(:str?)

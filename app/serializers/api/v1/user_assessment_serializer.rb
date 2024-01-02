@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class UserAssessmentSerializer < ActiveModel::Serializer
+    class UserAssessmentSerializer < Panko::Serializer
       attributes :id, :name, :description, :icon_url, :poster_url, :status, :started_at, :completed_at, :campaign_id,
                  :norm_id
 

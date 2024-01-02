@@ -23,9 +23,7 @@ module EndUser
         required(:campaign_time).maybe(:int?)
         required(:fixed_timed).maybe(:bool?)
         required(:campaign_options).hash(EndUser::CampaignOptionsSchema.schema(_, _))
-        required(:user_assessments).maybe do
-          array(EndUser::UserAssessmentSchema.schema(_, _))
-        end
+        required(:user_assessments).array(EndUser::UserAssessmentSchema.schema(_, _))
         required(:workshop_invite).maybe(:hash, EndUser::WorkshopInviteSchema.schema(_, _))
         required(:workshop).maybe(:hash, EndUser::ShortWorkshopSchema.schema(_, _))
       end
