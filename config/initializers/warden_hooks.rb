@@ -78,6 +78,9 @@ Warden::Manager.before_failure do |env, opts|
 end
 
 Warden::Manager.before_logout do |user, env, _opts|
+  # This hook is called twice. Second time the user is nil, so skipping adding audit log for second time.
+  next if user.blank?
+
   request = Rack::Request.new(env.request.env)
 
   AuditLogModule.audit! :sign_out, user,
