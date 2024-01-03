@@ -18,12 +18,10 @@ module EndUser
 
     ANONYM_COOKIE_KEY = 'tte-anonym-payload'
 
-    # rubocop:disable Metrics/CyclomaticComplexity
-    # rubocop:disable Metrics/PerceivedComplexity
     def show
-      redirect_to(action: 'error', reason: 'link_expired') && return if @campaign_assessment.nil?
-      redirect_to(action: 'error', reason: 'archived') && return if assessment.archived?
-      redirect_to(action: 'error', reason: 'not_active') && return unless @campaign_assessment.enable_universal_links?
+      if @campaign_assessment.nil? || assessment.archived? || !@campaign_assessment.enable_universal_links?
+        redirect_to(action: 'error') && return
+      end
 
       if params[:lang]
         @user_assessment.update(selected_locale: params[:lang])
@@ -51,9 +49,6 @@ module EndUser
         end
       end
     end
-
-    # rubocop:enable Metrics/CyclomaticComplexity
-    # rubocop:enable Metrics/PerceivedComplexity
 
     def restart
       cookies.delete(Users::AuthenticateAnonymousUser::ANONYM_COOKIE_KEY, domain: request.host)

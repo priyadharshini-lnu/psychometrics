@@ -715,6 +715,7 @@ en:
       archived: Archived
       expired: Expired
       not_active: Not Active
+    link_invalid_error_message: The link you're trying to access is invalid. Please contact the administrator to get the correct URL and proceed with the survey.
     notifications:
       restart:
         copy: You had already started this survey. You can choose to Continue or Restart.

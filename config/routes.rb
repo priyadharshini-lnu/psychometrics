@@ -877,11 +877,6 @@ Rails.application.routes.draw do
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
-    namespace :anonym do
-      get 'error', to: 'assessments#error'
-      get ':assessment_key/pass', to: 'assessments#pass', as: :assessment_pass
-    end
-
     resources :assigns, only: %i[index update], concerns: :media_uploades do
       get :pass, on: :member
       get :assessment, on: :member
@@ -899,9 +894,9 @@ Rails.application.routes.draw do
       get :workshop, to: 'users#workshop'
       get 'policy/:version', to: 'users#policy'
       post :accept_privacy, to: 'users#accept_privacy'
+      get 'anonym/error', to: 'anonyms#error'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       delete 'anonym/:assessment_key', to: 'anonyms#restart', as: :anonym_restart
-      get 'anonym/error', to: 'anonyms#error'
       get :workshop_invites, to: 'workshop_invited_subjects#invites', defaults: { format: :json }
       get :workshop_bookings, to: 'workshop_invited_subjects#bookings', defaults: { format: :json }
 
