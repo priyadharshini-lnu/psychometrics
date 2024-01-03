@@ -28,15 +28,34 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
   def assessor_assessments
     authorize(user, nil, campaign: campaign, policy_class: Assessors::ScoreModerationPolicy)
 
-    @assessor_assessments = Assessment.joins(:user_assessments).
-                            where(category: Assessment::CATEGORIES[:assessor_form]).
-                            where(user_assessments: { campaign_id: campaign.id, subject_id: user.id }).
-                            distinct.select(:id, :name)
+    assessor_assessments = Assessment.joins(:user_assessments).
+                           where(category: Assessment::CATEGORIES[:assessor_form]).
+                           where(user_assessments: { campaign_id: campaign.id, subject_id: user.id }).
+                           distinct.select(:id, :name)
 
     render json: {
-      assessor_assessments: @assessor_assessments.map do |a|
+      assessor_assessments: assessor_assessments.map do |a|
         { id: a.id, assessment_id: a.id, name: a.name }
       end
+    }
+  end
+
+  def reports
+    authorize(user, nil, campaign: campaign, policy_class: Assessors::ScoreModerationPolicy)
+
+    main_report = campaign.campaign_reports.find_by(main_report: true)
+    main_user_repot_id = if main_report
+                           campaign.user_reports.find_by(report_id: main_report.report_id, user_id: user.id)&.id
+                         end
+
+    user_reports = campaign.user_reports.where(user_id: user.id, status: :prepared).
+                   where.not(report_id: main_report&.report_id)
+
+    render json: {
+      reports: user_reports.map do |r|
+        ShortUserReportSerializer.new(r).to_hash
+      end,
+      main_report_id: main_user_repot_id
     }
   end
 

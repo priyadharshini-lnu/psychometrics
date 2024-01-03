@@ -67,6 +67,19 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     end
   end
 
+  describe 'toggle_main_report' do
+    it 'toggles campaign_report main_report column value' do
+      campaign_report = create(:campaign_report, campaign: campaign, report: report, main_report: false)
+      patch :toggle_main_report, params: {
+        new_campaign_id: campaign_report.campaign_id,
+        id: campaign_report.id,
+        main_report: true
+      }
+
+      expect(campaign_report.reload.main_report).to eq(true)
+    end
+  end
+
   describe 'assessments_and_reports' do
     it 'returns reports and assessments' do
       create(:campaign_report, campaign: campaign, report: report, report_family: report_family)
@@ -117,7 +130,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
   def check_campaign_reports_and_assesment_response(parsed_response)
     report_response = parsed_response['reports'].first
     expect(report_response.keys).to eq(
-      %w[id report_id name user_access assessor_access report_family_name permissions user_dashboard]
+      %w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report]
     )
     expect(report_response).to include({
       'name' => report.name,

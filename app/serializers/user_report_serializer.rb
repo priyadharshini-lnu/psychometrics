@@ -61,7 +61,7 @@ class UserReportSerializer < ActiveModel::Serializer
   end
 
   def report_data
-    UserReports::PrepareUserReportData.call!(object)
+    UserReports::PrepareUserReportData.call!(object, view_report_as)
   end
 
   def options
@@ -94,6 +94,10 @@ class UserReportSerializer < ActiveModel::Serializer
   end
 
   private
+
+  def view_report_as
+    instance_options[:view_report_as]
+  end
 
   def report
     @report ||= instance_options[:report]

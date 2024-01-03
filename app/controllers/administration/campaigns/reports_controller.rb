@@ -3,7 +3,8 @@
 module Administration
   module Campaigns
     class ReportsController < Administration::Campaigns::BaseController
-      before_action :set_resource, only: %i[destroy toggle_user_access toggle_assessor_access toggle_user_dashboard]
+      before_action :set_resource, only: %i[destroy toggle_user_access toggle_assessor_access toggle_user_dashboard
+                                            toggle_main_report]
 
       def create
         form = ::Campaigns::Reports::Form.from_params(resource_params)
@@ -50,6 +51,16 @@ module Administration
           resource.toggle!(:user_dashboard)
           audit! :toggle_user_dashboard, resource, payload: { user_dashboard: resource.user_dashboard },
             campaign: campaign
+        end
+        render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id,
+               project_id: campaign.project_id
+      end
+
+      def toggle_main_report
+        ActiveRecord::Base.transaction do
+          campaign.campaign_reports.where.not(id: resource.id).update_all(main_report: false)
+          resource.update(main_report: params[:main_report])
+          audit! :toggle_main_report, resource, payload: { main_report: params[:main_report] }, campaign: campaign
         end
         render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id,
                project_id: campaign.project_id
@@ -183,7 +194,8 @@ module Administration
             'regenerate',
             'toggle_user_access',
             'toggle_assessor_access',
-            'toggle_user_dashboard'
+            'toggle_user_dashboard',
+            'toggle_main_report'
           ],
           {
             project_id: campaign.project_id,

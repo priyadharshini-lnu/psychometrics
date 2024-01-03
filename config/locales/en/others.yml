@@ -1329,6 +1329,7 @@ en:
       export_data: Export Data
     column:
       assessor_access: Assessor Access
+      main_report: Main Report
       report_bundle: Report Bundle
       report_name: Report name
       user_access: User Access

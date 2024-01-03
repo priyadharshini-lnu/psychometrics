@@ -103,6 +103,7 @@ Rails.application.routes.draw do
       resources :score_moderations, only: %i[show] do
         member do
           get :assessor_assessments
+          get :reports
           get :assessment_with_results
         end
       end
@@ -217,6 +218,7 @@ Rails.application.routes.draw do
             patch :toggle_user_access
             patch :toggle_assessor_access
             patch :toggle_user_dashboard
+            patch :toggle_main_report
           end
         end
         resources :user_reports do

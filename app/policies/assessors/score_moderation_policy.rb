@@ -10,6 +10,10 @@ module Assessors
       @user.is?(:assessor) && lead_assessor?
     end
 
+    def reports?
+      @user.is?(:assessor) && lead_assessor?
+    end
+
     def assessment_with_results?
       @user.is?(:assessor) && lead_assessor?
     end

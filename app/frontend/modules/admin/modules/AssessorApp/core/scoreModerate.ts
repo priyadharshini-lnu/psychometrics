@@ -9,7 +9,18 @@ export const UserAssessmentTR = t.type({
   assessment_id: t.number,
 })
 
+export const UserReportTR = t.type({
+  id: t.number,
+  project_id: t.number,
+  campaign_id: t.number,
+  report_id: t.number,
+  name: t.string,
+  poster: t.string,
+  external_report: t.boolean,
+})
+
 export type UserAssessment = t.TypeOf<typeof UserAssessmentTR>
+export type UserReport = t.TypeOf<typeof UserReportTR>
 
 export const ResultTR = t.type({
   id: t.number,
@@ -23,6 +34,8 @@ export interface State {
   leadAssessorForm: null | UserAssessment
   assessorForms: {[id: number]: UserAssessment}
   assessorAssessments: UserAssessment[]
+  userReports: null | UserReport[]
+  mainReportId: null | number
   assessorResponses: {[id:number]: Result[]}
 }
 
@@ -32,12 +45,15 @@ const defaultState: State = {
   assessorResponses: {},
   assessorForms: {},
   assessorAssessments: [],
+  userReports: null,
+  mainReportId: null,
   loaded: false,
 }
 
 const FETCH_LEAD_ASSESSMENT = 'assessors/evaluating/FETCH_LEAD_ASSESSMENT'
 const FETCH_ASSESSOR_ASSESSMENTS = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSMENTS'
 const FETCH_ASSESSOR_ASSESSMENT = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSMENT'
+export const FETCH_REPORTS = 'assessors/evaluating/FETCH_REPORTS'
 
 type FetchLeadAssessmentsType = ApiActionResponse<{
   lead_assessor_user_assessment_id: number
@@ -47,6 +63,11 @@ type FetchLeadAssessmentsType = ApiActionResponse<{
 
 type FetchAssessorAssessmentsType = ApiActionResponse<{
   assessor_assessments: UserAssessment[]
+}>
+
+type FetchReportsType = ApiActionResponse<{
+  reports: UserReport[]
+  mainReportId: number
 }>
 
 // TODO: @fedor implement typedResponse and assessment/result type
@@ -63,6 +84,15 @@ export const fetchLeadAssessment = (parsedCampaignId: number, userId: number) =>
     url: `/assessors/campaigns/${parsedCampaignId}/score_moderations/${userId}`,
     body: {},
     camelize: false,
+  },
+})
+
+export const fetchReports = (parsedCampaignId: number, userId: number) => ({
+  type: FETCH_REPORTS,
+  request: {
+    method: 'get',
+    url: `/assessors/campaigns/${parsedCampaignId}/score_moderations/${userId}/reports`,
+    body: {},
   },
 })
 
@@ -87,6 +117,7 @@ export const fetchAssessorAssessment = (parsedCampaignId: number, userId: number
   assessmentId,
 })
 
+
 const HANDLERS = {
   [FETCH_LEAD_ASSESSMENT]: (state: State, { response }: FetchLeadAssessmentsType) => ({
     ...state,
@@ -98,6 +129,11 @@ const HANDLERS = {
   [FETCH_ASSESSOR_ASSESSMENTS]: (state: State, { response }: FetchAssessorAssessmentsType) => ({
     ...state,
     assessorAssessments: response.assessor_assessments,
+  }),
+  [FETCH_REPORTS]: (state: State, { response }: FetchReportsType) => ({
+    ...state,
+    userReports: response.reports,
+    mainReportId: response.mainReportId,
   }),
   [FETCH_ASSESSOR_ASSESSMENT]: (state: State, { response, requestAction: { assessmentId } }: FetchType) => ({
     ...state,

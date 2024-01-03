@@ -34,6 +34,7 @@ const ReportList: React.FC<Props> = ({
   toggleAssessorAccess,
   exportData,
   toggleUserDashboard,
+  toggleMainReport,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
@@ -100,6 +101,17 @@ const ReportList: React.FC<Props> = ({
                 checked={userDashboard}
                 disabled={!reportPermissions.toggleUserDashboard}
                 onChange={() => toggleUserDashboard(parsedCampaignId, id)}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_report.column.main_report')}
+            key="userDashboard"
+            render={({ mainReport, id }) => (
+              <Switch
+                checked={mainReport}
+                disabled={!reportPermissions.toggleMainReport}
+                onChange={() => toggleMainReport(parsedCampaignId, id, !mainReport)}
               />
             )}
           />

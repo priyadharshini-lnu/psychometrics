@@ -16,7 +16,7 @@ const connector = connect((state: RootState) => ({
 })
 
 interface Props extends ConnectedProps<typeof connector> {
-  header?: React.ReactNode
+  header: (title:string) => React.ReactNode
 }
 
 export const AssessorEvaluations: FC<Props> = ({
@@ -33,7 +33,7 @@ export const AssessorEvaluations: FC<Props> = ({
 
   return (
     <div className={styles.sidebar}>
-      {header}
+      {header(I18n.t('administration.assessor.moderate_score.assessor_evaluations'))}
       <div className={styles.evaluations}>
         {assessorAssessments.length > 0
           ? (

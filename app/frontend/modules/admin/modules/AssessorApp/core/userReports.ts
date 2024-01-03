@@ -49,6 +49,8 @@ const defaultState: State = {
 }
 
 export const FETCH_SINGLE = 'assessor/userReports/FETCH_SINGLE'
+export const FETCH_SINGLE_REQUEST = 'assessor/userReports/FETCH_SINGLE_REQUEST'
+
 
 export const get = (state: RootState): State => _.get(state, ['assessors', 'userReports'])
 export const getCurrent = (state: RootState): UserReportDetail => _.get(get(state), ['current'])
@@ -107,6 +109,7 @@ export const fetchExternalReportDetails = (campaignId: number, id: number) => ({
 const HANDLERS = {
   [FETCH_SINGLE_USER]: (state: State, { response }: ApiActionResponse<FetchSingle>) => (
     { ...state, list: response.userReports }),
+  [FETCH_SINGLE_REQUEST]: (state: State) => ({ ...state, current: { loaded: false } }),
   [FETCH_SINGLE]: (state: State, action: AnyAction) => ({
     ...state,
     current: {

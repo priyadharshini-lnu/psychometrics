@@ -557,8 +557,14 @@ en:
           body: Refer to the Export functionality to extract a template that can be used to Import here.
           title: Import Assessors
       moderate_score:
+        assessor_evaluations: Assessor Evaluations
+        main_report: Main Report
         no_completed_assessments: There are no completed assessments yet
         no_results: There are no any answered questions
+        other_reports: Other Reports
+        refresh: Refresh
+        reports: Reports
+        reports_count: "%{count} Reports"
         user_exec_test: User Executive Test
       remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
       saved_results: Answers successfully saved.

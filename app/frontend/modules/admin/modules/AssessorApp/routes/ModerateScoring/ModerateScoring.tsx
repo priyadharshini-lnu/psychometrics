@@ -50,12 +50,13 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
     setTab(key)
   }
 
-  const tabHeader = tab && (
-    <div className={styles.tabheader}>
-      <div />
+  const tabHeader = (title, withoutBorder = false) => tab && (
+    <div className={cs(styles.tabheader, { [styles.withoutBorder]: withoutBorder })}>
+      <div>{title}</div>
       <Button type="text" onClick={() => setTab(undefined)}><CloseOutlined /></Button>
     </div>
   )
+
   return (
     <div>
       <div className={styles.header}>

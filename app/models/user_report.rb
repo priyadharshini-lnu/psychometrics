@@ -108,8 +108,8 @@ class UserReport < ApplicationRecord
     pdf.file.present?
   end
 
-  def user_results
-    UserReports::GetUserResultsQuery.new(self).query
+  def user_results(view_report_as = nil)
+    UserReports::GetUserResultsQuery.new(self, view_report_as).query
   end
 
   def all_assessments_are_completed?

@@ -115,9 +115,9 @@ module Administration
           end
           format.json do
             render json: user_dashboard, report: user_dashboard.report,
-                   results: UserReports::GroupedResultsByAssessment.call!(user_dashboard),
+                   results: UserReports::GroupedResultsByAssessment.call!(user_dashboard, view_report_as),
                    piped_text_context: {},
-                   user_results: user_dashboard.user_results,
+                   user_results: user_dashboard.user_results(view_report_as),
                    serializer: Administration::IndividualDashboardSerializer,
                    include: '**'
           end

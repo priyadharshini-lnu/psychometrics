@@ -52,6 +52,10 @@ module Administration
       @user.has_permission?(:campaigns, :manage_users)
     end
 
+    def toggle_main_report?
+      @user.has_permission?(:campaigns, :manage_users)
+    end
+
     def regenerate?
       @user.is?(:superadmin) || has_permission?(:results, :bulk_regenerate_reports)
     end
