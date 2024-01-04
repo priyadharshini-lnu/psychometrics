@@ -16,7 +16,7 @@ class Dashboard < ApplicationRecord
   sync_to_active_storage :image
 
   def attachment_storage_path(attribute_name, filename)
-    "private/projects/#{project.id}/dashboard/#{attribute_name}/#{filename}"
+    "private/projects/#{project.id}/dashboard/#{id}/#{attribute_name}/#{filename}"
   end
 
   belongs_to :campaign

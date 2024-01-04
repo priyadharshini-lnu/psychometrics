@@ -24,7 +24,7 @@ class UserProfile < ApplicationRecord
   sync_to_active_storage :photo
 
   def attachment_storage_path(attribute_name, filename)
-    "public/user_profile/#{attribute_name}/#{filename}"
+    "public/user_profile/#{user_id}/#{attribute_name}/#{filename}"
   end
 
   def set_age_updated_at

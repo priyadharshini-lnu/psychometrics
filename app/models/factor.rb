@@ -52,7 +52,7 @@ class Factor < ApplicationRecord
   sync_to_active_storage :icon
 
   def attachment_storage_path(attribute_name, filename)
-    "public/factor/#{attribute_name}/#{filename}"
+    "public/factor/#{id}/#{attribute_name}/#{filename}"
   end
 
   accepts_nested_attributes_for :factors_sub_factors, allow_destroy: true
