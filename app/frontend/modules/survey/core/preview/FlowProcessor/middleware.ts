@@ -47,6 +47,28 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     }
   }
 
+  const needShowSubmitPage = () => {
+    const state = getState()
+    const { preview } = state
+
+    const {
+      showSubmitPage, enableBack, isThreesixty, showScoringOnEndPage,
+    } = preview
+
+    if (showSubmitPage) { return false }
+
+    const canNotEdit = _.get(
+      state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
+    )
+    if (showScoringOnEndPage) {
+      return true
+    }
+    if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
+      return true
+    }
+    return false
+  }
+
   const processNextElement = () => {
     const { preview } = getState()
     const {
@@ -87,28 +109,6 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
       dispatch(showErrors(errors))
       return
     }
-  }
-
-  const needShowSubmitPage = () => {
-    const state = getState()
-    const { preview } = state
-
-    const {
-      showSubmitPage, enableBack, isThreesixty, showScoringOnEndPage,
-    } = preview
-
-    if (showSubmitPage) { return false }
-
-    const canNotEdit = _.get(
-      state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
-    )
-    if (showScoringOnEndPage) {
-      return true
-    }
-    if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
-      return true
-    }
-    return false
   }
 
   dispatch(emptyErrors())
