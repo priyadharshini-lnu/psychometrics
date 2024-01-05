@@ -6,8 +6,7 @@ module UsersResults
       class CustomFormula < BaseStrategy
         def call
           factor = factor_data[:factor]
-          lua = define_lua_context(extended_scoring)
-          setup_sandbox(lua)
+          lua = define_lua_context
           score = eval_lua(lua, factor.custom_formula)
           lua.close
 
@@ -16,45 +15,52 @@ module UsersResults
 
         private
 
-        def define_lua_context(scoring)
-          s = Rufus::Lua::State.new
+        def define_lua_context
+          lua = Rufus::Lua::State.new
+          lua.eval('assessment, datasheet, user = {}, {}, {}')
 
-          s.eval('assessment, datasheet, user = {}, {}, {}')
-
-          s.function 'assessment.norm_score' do |factor_id|
-            scoring.dig(factor_id.to_i.to_s, 'norm_score')
+          lua.function 'assessment.norm_score' do |factor_id|
+            get_score(factor_id, 'norm_score')
           end
 
-          s.function 'assessment.raw_score' do |factor_id|
-            scoring.dig(factor_id.to_i.to_s, 'results')
+          lua.function 'assessment.raw_score' do |factor_id|
+            get_score(factor_id, 'score')
           end
 
-          s.function 'assessment.zscore' do |factor_id|
-            scoring.dig(factor_id.to_i.to_s, 'zscore')
+          lua.function 'assessment.zscore' do |factor_id|
+            get_score(factor_id, 'zscore')
           end
 
-          s
+          lua.function 'assessment.percentage_answered' do |factor_id|
+            get_score(factor_id, 'percentage')
+          end
+
+          lua
         end
 
-        def setup_sandbox(lua)
-          lua.eval(%(
-            arg=nil
-            debug.debug=nil
-            debug.getfenv=getfenv
-            debug.getregistry=nil
-            dofile=nil
-            io={write=io.write}
-            loadfile=nil
-            os = {time = os.time}
-            package.loaded.io=io
-            package.loaded.package=nil
-            package=nil
-            require=nil
-          ))
+        def get_score(factor_id, score_type)
+          factor_id = factor_id.to_i
+          score = extended_scoring.dig(factor_id.to_s, score_type)
+          return score if score
+
+          factor_data = factor_hash[factor_id]
+          return nil if factor_data.nil?
+
+          @extended_scoring = ::UsersResults::Scoring::AddScore.call!(
+            factor_hash,
+            [factor_id],
+            extended_scoring,
+            norm,
+            factor_norm_hash,
+            external_results,
+            factors_question_count,
+            visited_factor_ids
+          )
+          extended_scoring.dig(factor_id.to_i.to_s, score_type)
         end
 
         def eval_lua(lua, script)
-          lua.eval(script)
+          LuaEvaluator.eval(script, lua)
         rescue Rufus::Lua::LuaError
           nil
         end
