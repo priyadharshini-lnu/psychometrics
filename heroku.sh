@@ -8,4 +8,5 @@ elif  [[ $DYNO == "worker"* ]]; then
   bundle exec sidekiq -C config/sidekiq.yml
 elif  [[ $DYNO == "release"* ]]; then
   rake db:migrate
+  exit 0
 fi
