@@ -467,6 +467,7 @@ jobs:
           command: |
             docker push registry.heroku.com/<< parameters.app-name >>/web
             docker push registry.heroku.com/<< parameters.app-name >>/worker
+            docker push registry.heroku.com/<< parameters.app-name >>/release
   heroku_release:
     executor: heroku/default
     parameters:
@@ -478,7 +479,7 @@ jobs:
       - run:
           name: Release to heroku
           command: |
-            heroku container:release web worker -a << parameters.app-name >>
+            heroku container:release web worker release -a << parameters.app-name >>
 
 orbs:
   heroku: circleci/heroku@2.0.0
