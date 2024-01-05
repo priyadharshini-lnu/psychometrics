@@ -15,9 +15,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Here are the dependencies we need to build our app (and install Rails)
 # This example installs the PostgreSQL and SQLite libraries (two commonly used databases in Rails apps).
 #
-# We're also installing the latest nodejs
-RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python \
-    && curl -sL https://deb.nodesource.com/setup_14.x | bash \
+# We're also installing the latest nodejs and lua
+RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python liblua5.1-0 \
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
@@ -157,7 +157,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && apt-get update -qq &&  apt-get install -yq --no-install-recommends build-essential libpq-dev \
-    postgresql-client-11 shared-mime-info imagemagick \
+    postgresql-client-11 shared-mime-info imagemagick liblua5.1-0 \
     && gem update --system && gem install bundler -v $BUNDLER_VERSION \
     && apt-get --purge remove build-essential libpq-dev -y -qq \
     && apt-get clean \
