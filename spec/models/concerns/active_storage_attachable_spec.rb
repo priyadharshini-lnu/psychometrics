@@ -62,7 +62,7 @@ describe ActiveStorageAttachable do
       expect(@user_profile.as_photo.key).
         to match(%r{public/user_profile/#{@user_profile.user_id}/photo/\w+_})
       expect(@media_resp.as_asset.key).to match(
-        %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.users_result_id}/#{@media_resp.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
+        %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.users_result_id}/#{@media_resp.question_id}/#{@media_resp.id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
       )
     end
 
@@ -72,18 +72,19 @@ describe ActiveStorageAttachable do
 
         @membership = create(:membership, :for_campaign)
         @assign = create(:assign, membership: @membership)
-        @media_response = build_stubbed(
+        @media_response = create(
           :media_response,
           question: build(:question),
           users_result: nil,
-          assign: @assign,
-          as_asset: image
+          assign: @assign
         )
+
+        @media_response.as_asset.attach(image)
       end
 
       it 'stores correct attachment key' do
         expect(@media_response.as_asset.key).to match(
-          %r{private/projects/#{@media_response.assign.membership.project_membership.client_id}/media_response/#{@media_response.assign_id}/#{@media_response.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
+          %r{private/projects/#{@media_response.assign.membership.project_membership.client_id}/media_response/#{@media_response.assign_id}/#{@media_response.question_id}/#{@media_response.id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
         )
       end
     end
