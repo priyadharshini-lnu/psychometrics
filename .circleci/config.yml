@@ -461,6 +461,7 @@ jobs:
           command: |
             docker tag lhcontregistry.azurecr.io/psychometrics:latest-$CIRCLE_BRANCH registry.heroku.com/<< parameters.app-name >>/web
             docker tag lhcontregistry.azurecr.io/psychometrics:latest-$CIRCLE_BRANCH registry.heroku.com/<< parameters.app-name >>/worker
+            docker tag lhcontregistry.azurecr.io/psychometrics:latest-$CIRCLE_BRANCH registry.heroku.com/<< parameters.app-name >>/release
       - heroku_docker_login
       - run:
           name: Push Docker image to heroku
