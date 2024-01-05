@@ -175,5 +175,7 @@ COPY . ./
 
 COPY config/database.yml.sample config/database.yml
 
+RUN chmod u+x /app/heroku.sh
+
 # This gets executed when we run a container made from this image
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["/app/heroku.sh"]
