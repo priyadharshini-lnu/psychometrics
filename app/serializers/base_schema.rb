@@ -32,6 +32,6 @@ class BaseSchema
   end
 
   def self.whitelisted_schemas
-    [UsersResultSchema, ::Api::V1::ResultSchema]
+    [UsersResultSchema, ::Api::V1::ResultSchema, EndUser::CurrentUserSchema]
   end
 end

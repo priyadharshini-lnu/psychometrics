@@ -4,7 +4,7 @@ module EndUser
   class CurrentUserSchema < BaseSchema
     def self.schema(_, _)
       Dry::Schema.JSON do
-        config.validate_keys = true
+        config.validate_keys = false
 
         required(:id).filled(:int?)
         required(:email).filled(:str?)

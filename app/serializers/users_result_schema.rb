@@ -11,8 +11,8 @@ class UsersResultSchema < BaseSchema
       required(:id).filled(:int?)
       required(:status).filled(:str?)
       required(:step).filled(:int?)
-      optional(:answers).maybe(:hash?)
-      optional(:results).maybe(:hash?)
+      required(:answers).value { hash? | array? | nil? }
+      required(:results).value { hash? | array? | nil? }
       optional(:end_date) { str? | time? }
       optional(:scoring).maybe(:hash?)
       required(:user_id).maybe(:int?)
@@ -38,8 +38,8 @@ class UsersResultSchema < BaseSchema
       optional(:timed_out).maybe(:bool?)
       optional(:completed_at).maybe(:str?)
       optional(:factors).maybe(:array?)
-      required(:remaining_campaign_time).maybe(:float?)
-      required(:remaining_assessment_time).maybe(:float?)
+      required(:remaining_campaign_time).value { int? | float? | nil? }
+      required(:remaining_assessment_time).value { int? | float? | nil? }
       required(:reset_count).maybe(:int?)
       required(:hash_id).maybe(:str?)
       required(:proctoring_enabled).maybe(:bool?)
