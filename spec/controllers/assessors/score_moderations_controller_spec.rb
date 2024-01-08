@@ -10,6 +10,7 @@ RSpec.describe Assessors::ScoreModerationsController, type: :controller do
   let(:subject_user) { create(:user) }
   let(:lead_assessment) { create(:assessment, category: :lead_assessor_form) }
   let!(:campaign_assessments) do
+    create(:campaign_assessor_assessment, campaign: assessors_campaign, assessment: lead_assessment)
     create(:campaign_assessment, campaign: assessors_campaign, assessment: lead_assessment)
   end
   let!(:campaign_reports) do
@@ -32,7 +33,17 @@ RSpec.describe Assessors::ScoreModerationsController, type: :controller do
   after(:each) { sign_out(current_user) }
 
   describe 'reports' do
-    it 'returns subject reports' do
+    it 'main report should be nil for incomplete assessment' do
+      get :reports, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['reports'].size).to eq(1)
+      expect(parsed_response['reports'].first['id']).to eq(user_report2.id)
+      expect(parsed_response['main_report_id']).to eq(nil)
+    end
+
+    it 'returns subject reports and main report' do
+      create(:user_assessment, evaluator: current_user, campaign: assessors_campaign, subject: subject_user,
+           assessment: report.assessments.first, status: :completed)
       get :reports, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['reports'].size).to eq(1)

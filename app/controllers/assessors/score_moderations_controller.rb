@@ -44,9 +44,13 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
     authorize(user, nil, campaign: campaign, policy_class: Assessors::ScoreModerationPolicy)
 
     main_report = campaign.campaign_reports.find_by(main_report: true)
-    main_user_repot_id = if main_report
-                           campaign.user_reports.find_by(report_id: main_report.report_id, user_id: user.id)&.id
-                         end
+    main_user_report = if main_report
+                         campaign.user_reports.find_by(report_id: main_report.report_id, user_id: user.id)
+                       end
+
+    if main_user_report&.all_assessments_are_completed?(except_assessment_ids: [campaign.lead_assessor_assessment.id])
+      main_user_report_id = main_user_report.id
+    end
 
     user_reports = campaign.user_reports.where(user_id: user.id, status: :prepared).
                    where.not(report_id: main_report&.report_id)
@@ -55,7 +59,7 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
       reports: user_reports.map do |r|
         ShortUserReportSerializer.new(r).to_hash
       end,
-      main_report_id: main_user_repot_id
+      main_report_id: main_user_report_id
     }
   end
 

@@ -112,10 +112,10 @@ class UserReport < ApplicationRecord
     UserReports::GetUserResultsQuery.new(self, view_report_as).query
   end
 
-  def all_assessments_are_completed?
+  def all_assessments_are_completed?(except_assessment_ids: [])
     completed_assessment_ids = user_results.includes(:user_assessment).pluck('user_assessments.assessment_id')
 
-    report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
+    report.assessment_ids.all? { |id| except_assessment_ids.include?(id) || completed_assessment_ids.include?(id) }
   end
 
   def has_report_data_config?

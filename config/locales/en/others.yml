@@ -2030,6 +2030,7 @@ en:
     'no': 'No'
     passwordSetting:
       update_success: Security settings successfully updated
+    report_error: Oops, something went wrong with your report. Please contact the support.
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
       refresh: Refresh
