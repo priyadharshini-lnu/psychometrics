@@ -52,10 +52,10 @@ export const ReportsComponent: FC<Props> = ({
   }
 
   const reportPreviewUrl = (report) => {
-    if (report.external_report) {
-      return `/assessors/campaigns/${report.campaign_id}/external_user_report/${report.id}`
+    if (report.externalReport) {
+      return `/assessors/campaigns/${report.campaignId}/external_user_report/${report.id}`
     }
-    return `/assessors/campaigns/${report.campaign_id}/user_reports/${report.id}`
+    return `/assessors/campaigns/${report.campaignId}/user_reports/${report.id}`
   }
 
 
