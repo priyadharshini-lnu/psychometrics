@@ -216,6 +216,18 @@ module Swagger
           MembershipUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Membership::Schema.update_request
           ),
+          AdminRolesListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::AdminRole::Schema.multiple_resource_response
+          ),
+          AdminRoleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::AdminRole::Schema.single_resource_response
+          ),
+          AdminRoleCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::AdminRole::Schema.create_request
+          ),
+          AdminRoleUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::AdminRole::Schema.update_request
+          ),
           ResetPasswordRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.reset_password_request
           ),

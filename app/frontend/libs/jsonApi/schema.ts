@@ -11,6 +11,8 @@ import { Schema as licensesSchema } from '~/modules/admin/modules/client/core/li
 import { Schema as licenseUsagesSchema } from '~/modules/admin/modules/client/core/license_usages'
 import { Workshops as workshopsSchema } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Schema as userAvailabilityDate } from '~/modules/admin/modules/UserAvailability/core/userAvailabilityDates'
+import { Schema as membershipSchema } from '~/modules/admin/modules/client/core/admin'
+import { Schema as adminRoleSchema } from '~/modules/admin/modules/client/core/adminRole'
 import { Schema as workshopSubjectsSchema } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { Schema as workshopResourcesSchema } from '~/modules/admin/modules/campaigns/core/workshopResource'
 import {
@@ -32,6 +34,8 @@ export const Schema = {
   license_usages: licenseUsagesSchema,
   workshops: workshopsSchema,
   user_availability_dates: userAvailabilityDate,
+  memberships: membershipSchema,
+  admin_roles: adminRoleSchema,
   workshop_subjects: workshopSubjectsSchema,
   workshop_resources: workshopResourcesSchema,
   workshop_invited_subjects: workshopInviteSubjectsSchema,

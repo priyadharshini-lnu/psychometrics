@@ -22,6 +22,303 @@
     }
   },
   "paths": {
+    "/clients/{client_id}/admin_roles": {
+      "get": {
+        "summary": "Admin Roles list",
+        "operationId": "AdminRolesList",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Role name",
+                            "description": "Role description",
+                            "client_id": "1",
+                            "permissions": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRolesListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Admin Role",
+        "operationId": "CreateAdminRole",
+        "description": "Create new Admin Role",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Admin Role Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Role name",
+                            "description": "Role description",
+                            "client_id": "1",
+                            "permissions": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRoleResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRoleCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/clients/{client_id}/admin_roles/{admin_role_id}": {
+      "get": {
+        "summary": "Admin Role",
+        "operationId": "AdminRole",
+        "description": "Fetch Admin Role",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "admin_role_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin Role",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Role name",
+                            "description": "Role description",
+                            "client_id": "1",
+                            "permissions": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRoleResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an Admin Role",
+        "operationId": "UpdateAdminRole",
+        "description": "Update Admin Role",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "admin_role_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin Role Updated",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Role name",
+                            "description": "Role description",
+                            "client_id": "1",
+                            "permissions": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRoleResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRoleUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete Admin Role",
+        "operationId": "DeleteAdminRole",
+        "description": "Delete Admin Role",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "admin_role_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Admin Role Deleted"
+          }
+        }
+      }
+    },
     "/users/{user_id}/api_keys/": {
       "get": {
         "summary": "API Keys List",
@@ -2767,7 +3064,10 @@
                                 "view",
                                 "view_licenses"
                               ]
-                            }
+                            },
+                            "admin_role_ids": [
+                              1
+                            ]
                           },
                           "relationships": {
                             "user": {
@@ -11595,6 +11895,63 @@
                   "description": "Must be equal to memberships",
                   "nullable": false
                 },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "admin_roles": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Must be equal to admin_roles",
+                                "nullable": false
+                              },
+                              "id": {
+                                "type": "string",
+                                "nullable": false
+                              }
+                            },
+                            "required": [
+
+                            ],
+                            "nullable": true
+                          },
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
                 "links": {
                   "type": "object",
                   "properties": {
@@ -11795,6 +12152,63 @@
               "type": {
                 "type": "string",
                 "description": "Must be equal to memberships",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "admin_roles": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to admin_roles",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
                 "nullable": false
               },
               "links": {
@@ -12124,6 +12538,46 @@
                   "grant_names"
                 ],
                 "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "admin_roles": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to admin_roles",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
               }
             },
             "required": [
@@ -12294,6 +12748,294 @@
                   },
                   "email": {
                     "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "admin_roles": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to admin_roles",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AdminRolesListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to admin_roles",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "client_id": {
+                      "type": "integer",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description",
+                    "client_id"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "AdminRoleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to admin_roles",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "integer",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "client_id"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AdminRoleCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to admin_roles",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "integer",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "client_id"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AdminRoleUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to admin_roles",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "integer",
                     "nullable": false
                   }
                 },

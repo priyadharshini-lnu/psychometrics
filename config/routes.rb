@@ -1142,6 +1142,7 @@ Rails.application.routes.draw do
                 get :create_or_get
               end
             end
+            jsonapi_resources :admin_roles
             jsonapi_resources :projects, only: %i[index create update]
             jsonapi_resources :licenses, only: %i[index create update] do
               jsonapi_resources :license_usages, only: %i[index] do

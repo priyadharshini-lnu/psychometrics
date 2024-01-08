@@ -31,7 +31,9 @@ module Api
         end
 
         def self.relationships(_)
-          []
+          [
+            { name: :admin_roles, resource: :admin_roles, relationship: :many, required: false, allowed_blank: true }
+          ]
         end
       end
     end

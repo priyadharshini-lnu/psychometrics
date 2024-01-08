@@ -52,6 +52,8 @@ en:
     administrators:
       drawers:
         edit:
+          admin_role_select: Select admin role
+          admin_roles: Admin roles
           can_download_report: Download Report
           can_manage: Manage
           can_manage_messages: Manage messages
@@ -4034,6 +4036,14 @@ en:
       tfa_enabled: Enable Two Factor Authentication
       update_success_msg: Password settings successfull updated
     settings:
+      admin_roles:
+        admin_role_single: Admin Role
+        confirm_message: Are you sure you want to delete Admin role '%{role_name}'?
+        confirm_title: Confirmation Required
+        create: Add Admin Role
+        description: Description
+        name: Name
+        successful_remove: Admin role '%{role_name}' was successfully deleted.
       siem:
         description: Description
         destination_type: Destination Type
@@ -4052,6 +4062,8 @@ en:
         send_test_log_error_message: Test log has not been sent to your bucket, check your settings
         send_test_log_success_message: Test log has been successfully sent to your bucket
       tabs:
+        admin_roles: Admin Roles
+        permissions: Permissions
         siem: SIEM
     sheets:
       column:

@@ -263,6 +263,39 @@ ALTER SEQUENCE public.admin_jobs_id_seq OWNED BY public.admin_jobs.id;
 
 
 --
+-- Name: admin_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.admin_roles (
+    id bigint NOT NULL,
+    name character varying,
+    description text,
+    client_id bigint,
+    permissions jsonb,
+    membership_id bigint
+);
+
+
+--
+-- Name: admin_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.admin_roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: admin_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.admin_roles_id_seq OWNED BY public.admin_roles.id;
+
+
+--
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -442,8 +475,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -887,8 +920,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
@@ -1036,7 +1069,9 @@ CREATE TABLE public.campaign_factors (
     sheet_column_name character varying,
     public_visibility boolean DEFAULT true NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    assessment_score_type integer DEFAULT 0,
+    formula text
 );
 
 
@@ -1113,7 +1148,8 @@ CREATE TABLE public.campaign_options (
     description text,
     integration_type integer DEFAULT 0 NOT NULL,
     proctoring_trial boolean DEFAULT false,
-    workshop_booking_requires_prework_completion boolean DEFAULT false
+    workshop_booking_requires_prework_completion boolean DEFAULT false,
+    campaign_scoring_variables text
 );
 
 
@@ -3471,38 +3507,6 @@ ALTER SEQUENCE public.reports_pages_id_seq OWNED BY public.reports_pages.id;
 
 
 --
--- Name: roles; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.roles (
-    id bigint NOT NULL,
-    name character varying,
-    description text,
-    client_id bigint,
-    permissions jsonb
-);
-
-
---
--- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.roles_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
-
-
---
 -- Name: saml_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4453,6 +4457,16 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 
 --
+-- Name: user_admin_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_admin_roles (
+    user_id bigint NOT NULL,
+    admin_role_id bigint NOT NULL
+);
+
+
+--
 -- Name: user_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4888,16 +4902,6 @@ CREATE SEQUENCE public.users_results_id_seq
 --
 
 ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
-
-
---
--- Name: users_roles; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users_roles (
-    user_id bigint NOT NULL,
-    role_id bigint NOT NULL
-);
 
 
 --
@@ -5392,6 +5396,13 @@ ALTER TABLE ONLY public.activesupport_tables_migrations ALTER COLUMN id SET DEFA
 --
 
 ALTER TABLE ONLY public.admin_jobs ALTER COLUMN id SET DEFAULT nextval('public.admin_jobs_id_seq'::regclass);
+
+
+--
+-- Name: admin_roles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_roles ALTER COLUMN id SET DEFAULT nextval('public.admin_roles_id_seq'::regclass);
 
 
 --
@@ -5983,13 +5994,6 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
--- Name: roles id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
-
-
---
 -- Name: saml_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6370,6 +6374,14 @@ ALTER TABLE ONLY public.activesupport_tables_migrations
 
 ALTER TABLE ONLY public.admin_jobs
     ADD CONSTRAINT admin_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: admin_roles admin_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_roles
+    ADD CONSTRAINT admin_roles_pkey PRIMARY KEY (id);
 
 
 --
@@ -7069,14 +7081,6 @@ ALTER TABLE ONLY public.reports
 
 
 --
--- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.roles
-    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
-
-
---
 -- Name: saml_settings saml_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7579,6 +7583,27 @@ CREATE UNIQUE INDEX index_activesupport_tables_migrations_on_table_name ON publi
 --
 
 CREATE INDEX index_admin_jobs_on_owner_id ON public.admin_jobs USING btree (owner_id);
+
+
+--
+-- Name: index_admin_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_admin_roles_on_client_id ON public.admin_roles USING btree (client_id);
+
+
+--
+-- Name: index_admin_roles_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_admin_roles_on_membership_id ON public.admin_roles USING btree (membership_id);
+
+
+--
+-- Name: index_admin_roles_on_name_and_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_admin_roles_on_name_and_client_id ON public.admin_roles USING btree (name, client_id);
 
 
 --
@@ -8919,20 +8944,6 @@ CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btre
 
 
 --
--- Name: index_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_roles_on_client_id ON public.roles USING btree (client_id);
-
-
---
--- Name: index_roles_on_name_and_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_roles_on_name_and_client_id ON public.roles USING btree (name, client_id);
-
-
---
 -- Name: index_saml_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9227,6 +9238,20 @@ CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON pu
 
 
 --
+-- Name: index_user_admin_roles_on_admin_role_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_admin_roles_on_admin_role_id ON public.user_admin_roles USING btree (admin_role_id);
+
+
+--
+-- Name: index_user_admin_roles_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_admin_roles_on_user_id ON public.user_admin_roles USING btree (user_id);
+
+
+--
 -- Name: index_user_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9462,20 +9487,6 @@ CREATE INDEX index_users_on_modified_by_id ON public.users USING btree (modified
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
-
-
---
--- Name: index_users_roles_on_role_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_roles_on_role_id ON public.users_roles USING btree (role_id);
-
-
---
--- Name: index_users_roles_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_roles_on_user_id ON public.users_roles USING btree (user_id);
 
 
 --
@@ -9862,10 +9873,10 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: roles fk_rails_0a0c2d3429; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: admin_roles fk_rails_0a0c2d3429; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.roles
+ALTER TABLE ONLY public.admin_roles
     ADD CONSTRAINT fk_rails_0a0c2d3429 FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
@@ -9939,6 +9950,14 @@ ALTER TABLE ONLY public.user_reports
 
 ALTER TABLE ONLY public.licenses
     ADD CONSTRAINT fk_rails_139c7e09c4 FOREIGN KEY (report_family_id) REFERENCES public.report_families(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: admin_roles fk_rails_1622eafe73; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_roles
+    ADD CONSTRAINT fk_rails_1622eafe73 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
 
 
 --
@@ -10342,10 +10361,10 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
--- Name: users_roles fk_rails_4a41696df6; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: user_admin_roles fk_rails_4a41696df6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.users_roles
+ALTER TABLE ONLY public.user_admin_roles
     ADD CONSTRAINT fk_rails_4a41696df6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
@@ -11122,7 +11141,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -11406,11 +11425,11 @@ ALTER TABLE ONLY public.assigns_reports
 
 
 --
--- Name: users_roles fk_rails_eb7b4658f8; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: user_admin_roles fk_rails_eb7b4658f8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.users_roles
-    ADD CONSTRAINT fk_rails_eb7b4658f8 FOREIGN KEY (role_id) REFERENCES public.roles(id) ON DELETE RESTRICT;
+ALTER TABLE ONLY public.user_admin_roles
+    ADD CONSTRAINT fk_rails_eb7b4658f8 FOREIGN KEY (admin_role_id) REFERENCES public.admin_roles(id) ON DELETE RESTRICT;
 
 
 --
@@ -11582,7 +11601,11 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20231226114810'),
 ('20231219105643'),
+('20231218084715'),
+('20231213104811'),
+('20231213080938'),
 ('20231211111901'),
+('20231119201209'),
 ('20231117074000'),
 ('20231117072837'),
 ('20231117071951'),
@@ -12194,3 +12217,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

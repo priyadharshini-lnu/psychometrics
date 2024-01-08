@@ -82,11 +82,9 @@ const AddEditDrawerComponent: FC<Props> = ({
   const [form] = Form.useForm()
 
   const [selected, setSelected] = useState([])
-
   const [notFromList, setNotFromList] = useState(true)
-
+  const [adminRolesOpen, setAdminRolesOpen] = useState(false)
   const [open, setUserSelectOpen] = useState(true)
-
   const [selectedUser, setSelectedUser] = useState<Omit<UserDetails, 'enable_2fa'> | null>(
     {
       firstName: '', lastName: '', name: '', email: '', id: '',
@@ -136,6 +134,14 @@ const AddEditDrawerComponent: FC<Props> = ({
   } = useResources<UserDetails>('users')
 
   const {
+    data: adminRoles, fetch: fetchAdminRoles, isLoading: isAdminRolesLoading,
+  } = useResources<Admin>(
+    `clients/${clientId || projectId}/admin_roles`, {
+      apiConfig: { fields: { admin_roles: ['id', 'name'] } },
+    },
+  )
+
+  const {
     fetchSingle, getResource, getErrors,
   } = useResources<Admin>(
     'memberships',
@@ -147,6 +153,8 @@ const AddEditDrawerComponent: FC<Props> = ({
           project_id_eq: projectId,
           campaign_id_eq: `${campaignId}`,
         },
+        include: ['admin_roles'],
+        fields: { admin_roles: ['id', 'name'] },
       },
     },
   )
@@ -171,13 +179,20 @@ const AddEditDrawerComponent: FC<Props> = ({
   }, [adminId, isEditMode])
 
   useEffect(() => {
+    fetchAdminRoles()
+    form.setFieldsValue({
+      adminRoleIds: admin?.adminRoles.map(adminRole => adminRole?.id),
+    })
+  }, [admin])
+
+  useEffect(() => {
     if (isEditMode) {
-      form.setFieldsValue(({
+      form.setFieldsValue({
         email: admin?.email ?? '',
         firstName: admin?.firstName ?? '',
         lastName: admin?.lastName ?? '',
         grantNames: admin?.grantNames ?? {},
-      }))
+      })
     }
     return () => form.resetFields()
   }, [admin])
@@ -399,6 +414,21 @@ const AddEditDrawerComponent: FC<Props> = ({
                 </Form.Item>
               </>
             )}
+            <Form.Item
+              label={I18n.t('administration.administrators.drawers.edit.admin_roles')}
+              name="adminRoleIds"
+            >
+              <Select
+                mode="multiple"
+                showSearch={false}
+                placeholder={I18n.t('administration.administrators.drawers.edit.admin_role_select')}
+                options={_.map(adminRoles, role => ({ label: role.name, value: role.id }))}
+                open={adminRolesOpen}
+                onFocus={() => setAdminRolesOpen(true)}
+                onBlur={() => setAdminRolesOpen(false)}
+                notFoundContent={isAdminRolesLoading('fetch') ? <Spin size="small" /> : null}
+              />
+            </Form.Item>
             {_.map(grantsHash(), (grants, grantFor) => (
               <Fragment key={grantFor}>
                 <Form.Item
