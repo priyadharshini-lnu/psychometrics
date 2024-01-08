@@ -4,19 +4,19 @@ import {
 } from 'antd'
 import filter from 'lodash/filter'
 import { connect, ConnectedProps } from 'react-redux'
-import { CheckOutlined } from '@ant-design/icons'
 import SpreadSheet from '~/components/SpreadSheet'
 import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import {
   getForm, clearForm,
   createAllAssessors, fillAssessors, AssessorFormItem,
-  getAvailableAssessments, getLeadAssessorAssessment,
+  getAvailableAssessments, getLeadAssessorAssessment, CREATE_ALL_ASSESSORS,
 } from '~/modules/admin/modules/campaigns/core/assessors'
 import { get as getAutocomplete } from '~/modules/admin/core/ui/autocomplete'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { setIn } from '~/utils/immutable'
 import Form from './Form'
+import { isRequestInProgress } from '~/core/request'
 
 interface Props {
   projectId: string
@@ -66,6 +66,7 @@ const connecter = connect(
       .filter(e => e),
     autocompletedAssessors: getAutocomplete(state).assessors || [],
     autocompletedSubjectsEvaluators: getAutocomplete(state).subjects || [],
+    createAllInProgress: isRequestInProgress(state, CREATE_ALL_ASSESSORS),
   }),
   {
     createAllAssessors,
@@ -88,6 +89,7 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
   errors,
   userSearchUrl,
   adminsSearchUrl,
+  createAllInProgress,
 }) => {
   useEffect(() => () => {
     clearForm()
@@ -98,8 +100,9 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
       assessors,
       a => a.subjectEmail || a.assessorEmail || a.assessorLastName || a.assessorFirstName || a.assessmentIds?.length,
     ) as AssessorFormItem[]
-    createAllAssessors(campaignId, newAssessors)
-    close && close()
+    createAllAssessors(campaignId, newAssessors).then(() => {
+      close && close()
+    })
   }
 
   const onSubmitForm = (user) => {
@@ -123,8 +126,7 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
         <Button key="back" onClick={close}>
           {localI18n('cancel')}
         </Button>,
-        <Button key="submit" type="primary" onClick={handleOk}>
-          <CheckOutlined />
+        <Button key="submit" type="primary" onClick={handleOk} loading={createAllInProgress}>
           {localI18n('add')}
         </Button>,
       ]}

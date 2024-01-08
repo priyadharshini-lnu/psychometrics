@@ -45,13 +45,8 @@ module Assessors
     end
 
     def check_subject_already_have_lead_assessor
-      if subject && subject.
-         user_assessments.
-         where(campaign_id: context.campaign.id).
-         includes(:assessment).
-         count do |ua|
-           ua.assessment.category == Assessment::CATEGORIES[:lead_assessor_form]
-         end.positive?
+      new_lead_assessor_getting_added = Assessment.exists?(id: assessment_ids, category: :lead_assessor_form)
+      if subject && new_lead_assessor_getting_added && Users::GetLeadAssessor.call!(context.campaign, subject)
         errors.add(:assessment_ids, :lead_assessor_already_assigned)
       end
     end

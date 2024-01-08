@@ -80,6 +80,11 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     iiht: 'Assessments::Iiht'
   }.freeze
 
+  NON_USER_ASSESSMENT_CATEGORY = [
+    CATEGORIES[:assessor_form],
+    CATEGORIES[:lead_assessor_form]
+  ].freeze
+
   # STATUSES constant
   STATUSES = %i[in_progress finished].freeze
 

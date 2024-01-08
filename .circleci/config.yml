@@ -291,7 +291,7 @@ jobs:
 
   jest:
     executor: tte-executor
-    resource_class: medium
+    resource_class: large
     steps:
       - checkout
       - assets_files
