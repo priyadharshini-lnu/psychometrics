@@ -598,6 +598,10 @@ en:
           attributes:
             external_config:
               invalid: External Config should be a valid josn
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 'There is a cyclic dependency in the formula. Dependency: %{cyclic_path}'
         factors_norm:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from

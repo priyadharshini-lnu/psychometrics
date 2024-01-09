@@ -1213,7 +1213,7 @@ DEPENDENCIES
   rubocop-rspec
   rubyXL (~> 3.4.6)
   rubyzip (~> 2.3)
-  rufus-lua (~> 1.1)
+  rufus-lua (~> 1.1.5)
   sassc-rails (~> 2.1.2)
   savon (~> 2.12.1)
   sentry-rails (~> 5.12.0)

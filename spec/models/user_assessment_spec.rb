@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'sidekiq/testing'
 
 RSpec.describe UserAssessment, type: :model do
+  include ActiveJob::TestHelper
+
   it {
     should define_enum_for(:status).
       with_values(not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5)
@@ -173,6 +176,67 @@ status: :in_progress)
 
         expect(user_assessment.closed?).to eq(false)
       end
+    end
+  end
+
+  describe 'Calculate and save campaign scoring' do
+    let(:campaign) { create(:campaign) }
+    let(:assessment) { create(:assessment) }
+    let(:user) { create(:user) }
+    let(:factor1) { create(:factor, dimension: assessment.dimension) }
+    let!(:users_result) do
+      scoring = {}
+      scoring[factor1.id.to_s] = { 'norm_score' => 1, 'score' => 2 }
+      create(
+        :users_result, campaign: campaign, assessment: assessment,
+        scoring: scoring, subject: user, evaluator: user, status: :in_progress
+      )
+    end
+
+    it 'saves campaign scoring' do
+      cf_factor1 = create(
+        :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+        factor_type: 'assessment', assessment_score_type: 'score'
+      )
+      perform_enqueued_jobs do
+        users_result.user_assessment.update!(status: :completed)
+      end
+
+      campaign_factor = user.campaign_factor_values.find_by(
+        campaign_factor: cf_factor1, numeric_value: 2, campaign: users_result.campaign
+      )
+      expect(campaign_factor).to_not eq nil
+    end
+
+    it 'ignore calculating campaign scoring if user_assessment is not completed' do
+      cf_factor1 = create(
+        :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+        factor_type: 'assessment', assessment_score_type: 'score'
+      )
+      perform_enqueued_jobs do
+        users_result.user_assessment.update!(status: :not_started)
+      end
+      campaign_factor = user.campaign_factor_values.find_by(
+        campaign_factor: cf_factor1, numeric_value: 10, campaign: users_result.campaign
+      )
+
+      expect(campaign_factor).to eq nil
+    end
+
+    it 'ignore calculating campaign scoring if it is not a self assessment' do
+      users_result.update!(evaluator: create(:user))
+      cf_factor1 = create(
+        :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+        factor_type: 'assessment', assessment_score_type: 'score'
+      )
+      perform_enqueued_jobs do
+        users_result.user_assessment.update!(status: :completed)
+      end
+      campaign_factor = user.campaign_factor_values.find_by(
+        campaign_factor: cf_factor1, numeric_value: 10, campaign: users_result.campaign
+      )
+
+      expect(campaign_factor).to eq nil
     end
   end
 end

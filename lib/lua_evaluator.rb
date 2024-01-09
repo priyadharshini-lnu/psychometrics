@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-require 'zip'
-
 class LuaEvaluator
-  def self.eval(code, lua = nil)
-    lua ||= Rufus::Lua::State.new
+  def self.eval(code, lua)
     lua.eval(%(
       arg=nil
       debug.debug=nil

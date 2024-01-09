@@ -127,6 +127,7 @@ class User < ApplicationRecord
   has_many :user_availability_dates, dependent: :destroy
   has_many :user_availability_days, through: :user_availability_dates
   has_many :user_bookings
+  has_many :campaign_factor_values, dependent: :destroy
 
   has_and_belongs_to_many :roles, join_table: :user_admin_roles
 

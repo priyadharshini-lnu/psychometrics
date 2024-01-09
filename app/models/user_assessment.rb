@@ -95,7 +95,16 @@ class UserAssessment < ApplicationRecord
   after_commit -> { sync_assessor_form_status_to_subject_meeting },
                if: proc { status_previously_changed? }, on: %i[update]
 
+  after_commit -> { calculate_and_save_campaign_scoring },
+               if: proc { status_previously_changed? && completed? }, on: %i[update]
+
   alias result users_result
+
+  def calculate_and_save_campaign_scoring
+    if self_assessment? || assessment.lead_assessor_form?
+      CampaignScoring::CalculateAndSaveJob.perform_later(campaign, subject)
+    end
+  end
 
   def sync_assessor_form_status_to_subject_meeting
     subject_user_assessment = linked_subject_user_assessment

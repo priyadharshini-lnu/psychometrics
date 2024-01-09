@@ -1260,7 +1260,8 @@ CREATE TABLE public.campaign_users (
     expiry_date timestamp without time zone,
     status integer DEFAULT 0,
     schedule_start_date timestamp without time zone,
-    schedule_end_date timestamp without time zone
+    schedule_end_date timestamp without time zone,
+    campaign_scores_finalized boolean DEFAULT false
 );
 
 
@@ -11599,6 +11600,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240108073500'),
 ('20231226114810'),
 ('20231219105643'),
 ('20231218084715'),

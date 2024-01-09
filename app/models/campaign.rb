@@ -43,6 +43,7 @@ class Campaign < ApplicationRecord
            :proctoring_enabled?,
            :identification,
            :rules,
+           :campaign_scoring_variables,
            to: :campaign_options
 
   has_many :license_usages, inverse_of: :campaign

@@ -184,6 +184,7 @@ gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils'
 gem 'js-routes', '~> 1.4.4'
 gem 'rswag-api', '~> 2.11.0'
 gem 'rswag-ui', '~> 2.11.0'
+gem 'rufus-lua', '~> 1.1.5'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.5.0'
@@ -265,5 +266,3 @@ gem 'xml-simple', '~> 1.1.5'
 gem 'sidekiq_alive', '~> 2.1.4'
 
 gem 'psych', '3.3.2'
-
-gem 'rufus-lua', '~> 1.1'
