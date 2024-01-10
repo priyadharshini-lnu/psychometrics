@@ -271,8 +271,7 @@ CREATE TABLE public.admin_roles (
     name character varying,
     description text,
     client_id bigint,
-    permissions jsonb,
-    membership_id bigint
+    permissions jsonb
 );
 
 
@@ -1061,7 +1060,6 @@ CREATE TABLE public.campaign_factors (
     name character varying NOT NULL,
     code character varying NOT NULL,
     description text,
-    factor_type integer DEFAULT 0 NOT NULL,
     output_type integer DEFAULT 0 NOT NULL,
     campaign_id bigint NOT NULL,
     factor_id bigint,
@@ -1071,7 +1069,8 @@ CREATE TABLE public.campaign_factors (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     assessment_score_type integer DEFAULT 0,
-    formula text
+    formula text,
+    factor_type integer DEFAULT 0
 );
 
 
@@ -2551,6 +2550,38 @@ CREATE TABLE public.memberships (
     already_invited boolean DEFAULT false NOT NULL,
     campaign_id integer
 );
+
+
+--
+-- Name: memberships_admin_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.memberships_admin_roles (
+    id bigint NOT NULL,
+    membership_id bigint NOT NULL,
+    admin_role_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: memberships_admin_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.memberships_admin_roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: memberships_admin_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.memberships_admin_roles_id_seq OWNED BY public.memberships_admin_roles.id;
 
 
 --
@@ -4458,16 +4489,6 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 
 --
--- Name: user_admin_roles; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_admin_roles (
-    user_id bigint NOT NULL,
-    admin_role_id bigint NOT NULL
-);
-
-
---
 -- Name: user_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5813,6 +5834,13 @@ ALTER TABLE ONLY public.memberships ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: memberships_admin_roles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles ALTER COLUMN id SET DEFAULT nextval('public.memberships_admin_roles_id_seq'::regclass);
+
+
+--
 -- Name: mindmill_credentials id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6866,6 +6894,14 @@ ALTER TABLE ONLY public.membership_grants
 
 
 --
+-- Name: memberships_admin_roles memberships_admin_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles
+    ADD CONSTRAINT memberships_admin_roles_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: memberships memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7591,13 +7627,6 @@ CREATE INDEX index_admin_jobs_on_owner_id ON public.admin_jobs USING btree (owne
 --
 
 CREATE INDEX index_admin_roles_on_client_id ON public.admin_roles USING btree (client_id);
-
-
---
--- Name: index_admin_roles_on_membership_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_admin_roles_on_membership_id ON public.admin_roles USING btree (membership_id);
 
 
 --
@@ -8581,6 +8610,20 @@ CREATE INDEX index_membership_grants_on_membership_id ON public.membership_grant
 
 
 --
+-- Name: index_memberships_admin_roles_on_admin_role_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_admin_roles_on_admin_role_id ON public.memberships_admin_roles USING btree (admin_role_id);
+
+
+--
+-- Name: index_memberships_admin_roles_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_admin_roles_on_membership_id ON public.memberships_admin_roles USING btree (membership_id);
+
+
+--
 -- Name: index_memberships_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9236,20 +9279,6 @@ CREATE INDEX index_translations_on_resource_type_and_resource_id ON public.trans
 --
 
 CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON public.translations USING btree (translateable_type, translateable_id);
-
-
---
--- Name: index_user_admin_roles_on_admin_role_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_admin_roles_on_admin_role_id ON public.user_admin_roles USING btree (admin_role_id);
-
-
---
--- Name: index_user_admin_roles_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_admin_roles_on_user_id ON public.user_admin_roles USING btree (user_id);
 
 
 --
@@ -9954,14 +9983,6 @@ ALTER TABLE ONLY public.licenses
 
 
 --
--- Name: admin_roles fk_rails_1622eafe73; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.admin_roles
-    ADD CONSTRAINT fk_rails_1622eafe73 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
-
-
---
 -- Name: dimensions fk_rails_16b68b71cd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10151,6 +10172,14 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 ALTER TABLE ONLY public.report_approval_settings
     ADD CONSTRAINT fk_rails_2f5e81c8e9 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
+-- Name: memberships_admin_roles fk_rails_2fd8627d72; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles
+    ADD CONSTRAINT fk_rails_2fd8627d72 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
 
 
 --
@@ -10359,14 +10388,6 @@ ALTER TABLE ONLY public.threesixty_instruction_template_translations
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_4a3b56dde9 FOREIGN KEY (user_report_id) REFERENCES public.user_reports(id) ON DELETE CASCADE;
-
-
---
--- Name: user_admin_roles fk_rails_4a41696df6; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_admin_roles
-    ADD CONSTRAINT fk_rails_4a41696df6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -11338,6 +11359,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: memberships_admin_roles fk_rails_dd856566e9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles
+    ADD CONSTRAINT fk_rails_dd856566e9 FOREIGN KEY (admin_role_id) REFERENCES public.admin_roles(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_histories fk_rails_dee061b324; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11423,14 +11452,6 @@ ALTER TABLE ONLY public.bulk_reports
 
 ALTER TABLE ONLY public.assigns_reports
     ADD CONSTRAINT fk_rails_eb27834cf2 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
-
-
---
--- Name: user_admin_roles fk_rails_eb7b4658f8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_admin_roles
-    ADD CONSTRAINT fk_rails_eb7b4658f8 FOREIGN KEY (admin_role_id) REFERENCES public.admin_roles(id) ON DELETE RESTRICT;
 
 
 --
@@ -11600,6 +11621,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240108124935'),
 ('20240108073500'),
 ('20231226114810'),
 ('20231219105643'),

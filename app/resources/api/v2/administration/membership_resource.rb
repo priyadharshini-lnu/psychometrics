@@ -53,7 +53,11 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
   end
 
   def grant_names=(new_fields)
-    @model.build_grants(data: new_fields)
+    if @model.grants
+      @model.grants.data = new_fields
+    else
+      @model.build_grants(data: new_fields)
+    end
   end
 
   def user_id=(new_fields)

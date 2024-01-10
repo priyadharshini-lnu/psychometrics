@@ -9,7 +9,7 @@ class Api::V2::Administration::AdminRoleResource < Api::V2::Administration::Base
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
-  audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :name, :membership_id) }
+  audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :name) }
 
   def self.records(opts = {})
     # Ideally we should only pass client id and not project id.

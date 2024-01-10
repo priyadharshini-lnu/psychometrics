@@ -13,14 +13,12 @@ RSpec.describe Membership, type: :model do
   let!(:client_admin_role) do
     create(
       :admin_role,
-      membership_id: client_membership.id,
       permissions: { clients: %w[view view_licenses reset_password] }
     )
   end
   let!(:project_admin_role) do
     create(
       :admin_role,
-      membership_id: project_membership.id,
       permissions: { clients: %w[view view_licenses reset_password] }
     )
   end
@@ -29,6 +27,7 @@ RSpec.describe Membership, type: :model do
     context 'with admin role' do
       context 'with client membership' do
         it 'returns true if has specific client admin role grants' do
+          client_membership.admin_role_ids = [client_admin_role.id]
           expect(
             client_membership.user.has_permission?(:clients, :view, project_id: client_membership.client_id)
           ).to eq(true)
