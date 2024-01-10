@@ -187,6 +187,14 @@ module Api
         end
       end
 
+      def self.json_api_records(&)
+        Dry::Schema.define do
+          required(:data).array do
+            instance_eval(&)
+          end
+        end
+      end
+
       def self.attributes(_attribute, _type)
         proc {}
       end

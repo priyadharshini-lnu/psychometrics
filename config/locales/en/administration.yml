@@ -2548,6 +2548,9 @@ en:
         user: User
     clients_hierarchy: Project > Campaign > Sub Campaign
     close: Close
+    common:
+      reset: Reset
+      save: Save
     communications:
       copy:
         error: 'Communication #%{id} was not copied.'
@@ -4012,6 +4015,7 @@ en:
         subjects: Subjects
     scoring:
       no_groups: No groups present
+      scoring: Scoring
     search: Search
     security_setting:
       180_days: 180 Days

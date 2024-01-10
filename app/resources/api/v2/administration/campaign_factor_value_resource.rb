@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignFactorValueResource < Api::V2::Administration::BaseResource
-  attributes :int_value, :string_value
+  attributes :numeric_value, :string_value, :campaign_factor_id
+
+  ransack_filters %i[user_id_eq]
 
   def self.records(opts = {})
-    ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, CampaignFactorValue]).where(
-      campaign_id: opts[:context][:campaign].id
-    )
+    ::Api::Administration::CampaignFactorValuePolicy::Scope.new(
+      opts[:context][:user], CampaignFactorValue, campaign_id: opts[:context][:campaign].id
+    ).resolve
   end
 end

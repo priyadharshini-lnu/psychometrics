@@ -204,6 +204,9 @@ module Swagger
           UserCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.create_request
           ),
+          AssessorScoresResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.assessors_scores_response
+          ),
           MembershipListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Membership::Schema.multiple_resource_response
           ),
@@ -293,6 +296,12 @@ module Swagger
           ),
           CampaignFactorListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignFactor::Schema.multiple_resource_response
+          ),
+          CampaignFactorValuesResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorValue::Schema.multiple_resource_response
+          ),
+          CampaignFactorValueUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorValue::Schema.save_assessor_scoring_factor_value_request
           ),
           CampaignFactorCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignFactor::Schema.create_request

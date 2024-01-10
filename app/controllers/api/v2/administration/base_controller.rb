@@ -87,6 +87,18 @@ module Api
       end
     end
 
+    def json_api_records(data, type)
+      {
+        data: data.map do |record|
+          {
+            type: type,
+            id: record['id'],
+            attributes: record
+          }
+        end
+      }
+    end
+
     def json_api_attributes(record, attrs)
       {
         data: {

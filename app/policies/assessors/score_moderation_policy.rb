@@ -19,7 +19,7 @@ module Assessors
     end
 
     def lead_assessor?
-      Users::GetLeadAssessor.call!(@extra[:campaign], @record) == @user
+      Users::GetLeadAssessor.call!(@extra[:campaign], @record)&.id == @user.id
     end
   end
 end

@@ -1250,7 +1250,11 @@ Rails.application.routes.draw do
                 post :accept_request
               end
             end
-            jsonapi_resources :users, only: %i[index], controller: 'campaigns/users'
+            jsonapi_resources :users, only: %i[index], controller: 'campaigns/users' do
+              member do
+                get :assessors_scores
+              end
+            end
 
             jsonapi_resources :campaign_factor_groups, only: %i[index create update destroy] do
               collection do
@@ -1263,7 +1267,11 @@ Rails.application.routes.draw do
                 post :update_positions
               end
             end
-            jsonapi_resources :campaign_factor_values, only: %i[]
+            jsonapi_resources :campaign_factor_values, only: %i[index] do
+              collection do
+                post :save_assessor_scoring_factor_value
+              end
+            end
           end
           jsonapi_resources :workshops, only: %i[index] do
             jsonapi_relationships

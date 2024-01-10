@@ -14,6 +14,8 @@ class CampaignFactor < ApplicationRecord
 
   before_create :set_position
 
+  ransacker :factor_type, formatter: proc { |v| factor_types[v] }
+
   validate :validate_cyclic_path!
 
   def set_position

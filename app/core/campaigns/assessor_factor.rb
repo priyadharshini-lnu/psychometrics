@@ -16,7 +16,7 @@ module Campaigns
     def sql
       <<-SQL.squish
         SELECT DISTINCT
-          f.id,
+          f.id AS factor_id,
           #{campaign_factor_group_id} AS campaign_factor_group_id,
           f.name,
           REGEXP_REPLACE(LOWER(f.name), '\\W+', '_', 'gi') AS code,
