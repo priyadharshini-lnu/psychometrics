@@ -155,6 +155,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
             }}
             notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : null}
             filterOption={false}
+            allowClear
           >
             {getAssessments().map(({ id, name }) => <Select.Option key={id} value={id}>{name}</Select.Option>)}
           </Select>

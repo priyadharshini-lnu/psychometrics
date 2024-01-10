@@ -62,7 +62,7 @@ export const AssessmentTR = t.type({
       id: t.string,
       name: t.string,
     }),
-    t.undefined]),
+    t.undefined, t.null]),
 })
 
 
