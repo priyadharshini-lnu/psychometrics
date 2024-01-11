@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Card, List } from 'antd'
+import { Button, Card } from 'antd'
 import { CloseOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
@@ -31,18 +31,18 @@ export const UserInfoCard: FC<SubjectCardProps> = ({
   <Card
     bordered={bordered}
     className={cs({ [styles.userInfoCard]: true, [styles.transparent]: transparent })}
-    bodyStyle={{ padding: 8 }}
+    bodyStyle={{ padding: '1rem', paddingRight: '3rem' }}
   >
     {onRemove ? (
-      <div
+      <Button
+        type="text"
         data-testid={`remove-userinfo-${id}`}
         className={styles.remove}
+        icon={<CloseOutlined />}
         onClick={() => onRemove(id || '')}
-      >
-        <CloseOutlined className="fs-12" />
-      </div>
+      />
     ) : null}
-    <List.Item.Meta
+    <Card.Meta
       className={styles.meta}
       avatar={<ResourceAvatar name={nameText} size="large" src={avatarUrl} />}
       title={nameLabel}
