@@ -34,7 +34,7 @@ module AdminJobs
     def generate_title_link
       # rubocop:disable Layout/LineLength
       {
-        href: "/administration/clients/#{campaign.client.id}/projects/#{campaign.project_id}/threesixty_campaigns/#{threesixty_campaign.id}/participants/subjects",
+        href: "/admin/clients/#{campaign.client.id}/projects/#{campaign.project_id}/threesixty_campaigns/#{threesixty_campaign.id}/participants/subjects",
         label: "#{campaign.name} Reports"
       }
       # rubocop:enable Layout/LineLength
