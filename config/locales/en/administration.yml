@@ -4014,8 +4014,23 @@ en:
         resources: Resources
         subjects: Subjects
     scoring:
+      add_factor: Add Factor
+      add_group: Add Group
+      assessment: Assessment
+      code: Code
+      delete_group: Delete Group
+      description: Description
+      dimension: Dimension
+      factor: Factor
+      formula: Formula
+      get_started: Get Started
+      name: Name
       no_groups: No groups present
+      public: Public
+      save: Save
       scoring: Scoring
+      scoring_description: Campaign Scoring allows reporting accross assessments
+      type: Type
     search: Search
     security_setting:
       180_days: 180 Days

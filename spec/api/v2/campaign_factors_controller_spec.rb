@@ -73,7 +73,8 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
             id: '1',
             type: 'campaign_factors',
             attributes: {
-              name: 'Factor', position: 1, campaign_factor_group_id: 1, code: 'factor_code'
+              name: 'Factor', factor_type: 'formula', public_visibility: true, position: 1, campaign_factor_group_id: 1,
+              code: 'factor_code'
             },
             relationships: {
               campaign: { data: { type: 'campaigns', id: 1 } },
@@ -87,7 +88,8 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
             data: {
               type: 'campaign_factors',
               attributes: {
-                name: 'Factor', position: 1, campaign_factor_group_id: campaign_factor_group_id.to_i, code: 'fact_code'
+                name: 'Factor', position: 1, campaign_factor_group_id: campaign_factor_group_id.to_i,
+                code: 'fact_code', factor_type: 'formula', public_visibility: true
               },
               relationships: {
                 campaign: { data: { type: 'campaigns', id: campaign_id.to_s } },

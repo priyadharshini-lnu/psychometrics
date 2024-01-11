@@ -20,6 +20,10 @@ import {
 } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'
 import { Schema as campaignAssessmentSchema } from '~/modules/admin/modules/campaigns/core/campaignAssessment'
 import { Schema as workshopInviteSchema } from '~/modules/admin/modules/campaigns/core/invites'
+import {
+  Schema as campaignFactorGroupSchema,
+  UpdatePositionsSchema, CampaignFactorsSchema,
+} from '~/modules/admin/modules/campaigns/core/campaignFactorGroup'
 
 export const Schema = {
   clients: clientSchema,
@@ -42,4 +46,7 @@ export const Schema = {
   campaign_assessments: campaignAssessmentSchema,
   user_assessments: activitiesSchema,
   workshop_invites: workshopInviteSchema,
+  campaign_factor_groups: campaignFactorGroupSchema,
+  campaign_factors: CampaignFactorsSchema,
+  update_positions: UpdatePositionsSchema,
 }

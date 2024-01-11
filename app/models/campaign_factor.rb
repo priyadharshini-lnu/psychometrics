@@ -8,7 +8,7 @@ class CampaignFactor < ApplicationRecord
 
   has_many :campaign_factor_values, dependent: :destroy
 
-  enum factor_type: { assessment: 0, assessor_scoring: 1, formula: 2 }
+  enum factor_type: { assessment: 1, assessor_scoring: 2, formula: 3 }
   enum output_type: { numeric: 0, string: 1 }, _suffix: true
   enum assessment_score_type: { norm_score: 0, score: 1, zscore: 2, percentile: 3, percentage: 4 }
 

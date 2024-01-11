@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignFactorResource < Api::V2::Administration::BaseResource
-  attributes :name, :code, :position, :campaign_factor_group_id, :factor_id
+  attributes :name, :code, :position, :campaign_factor_group_id, :factor_type, :public_visibility, :description,
+             :formula, :factor_id, :description
 
   has_one :campaign
   has_one :campaign_factor_group, foreign_key_on: :related

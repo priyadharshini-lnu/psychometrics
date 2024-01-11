@@ -4,21 +4,22 @@ import {
 } from 'antd'
 import { DirectionalNavigateBackIcon } from '~/glint'
 
+const { I18n } = window
+
 export const AddGroupForm = ({ open, onClose, addGroup }) => (
-  <Drawer destroyOnClose closeIcon={<DirectionalNavigateBackIcon />} title="Add Group" open={open} onClose={onClose}>
+  <Drawer
+    destroyOnClose
+    closeIcon={<DirectionalNavigateBackIcon />}
+    title={I18n.t('administration.scoring.add_group')}
+    open={open}
+    onClose={onClose}
+  >
     <Form colon={false} layout="vertical" onFinish={addGroup}>
-      <Form.Item name="name" label="Name">
+      <Form.Item name="name" label={I18n.t('administration.scoring.name')}>
         <Input />
       </Form.Item>
-      {/* Added for testing purpose */}
-      {/* <Form.Item name="id" label="ID">
-        <Input />
-      </Form.Item>
-      <Form.Item name="position" label="Position">
-        <Input />
-      </Form.Item> */}
       <Form.Item>
-        <Button onClick={onClose} type="primary" htmlType="submit">Save</Button>
+        <Button onClick={onClose} type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>
       </Form.Item>
     </Form>
   </Drawer>

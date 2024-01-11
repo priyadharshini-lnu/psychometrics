@@ -1,5 +1,6 @@
 @media (min-width: 1025px) {
 .page-container { display: flex; align-items: stretch; }
+#administration .page-content {background: #fff;}
 .page-sidebar { flex: 0 0 auto; }
 .page-container .page-content,
 .page-container.page-navigation-toggled .page-content { margin: 0; }

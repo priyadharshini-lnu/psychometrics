@@ -27,6 +27,9 @@ module Api
           proc do
             attribute[:position].filled(:integer)
             attribute[:campaign_factor_group_id].filled(:integer)
+            attribute[:factor_type].filled(:string)
+            attribute[:public_visibility].filled(:bool)
+            optional(:description).maybe(:string)
           end
         end
 
