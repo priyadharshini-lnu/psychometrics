@@ -28,7 +28,7 @@ module AdminJobs
     private
 
     def parent_resource_url
-      "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/dashboard/accesssheets"
+      "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/dashboard/accesssheets"
     end
 
     def campaign

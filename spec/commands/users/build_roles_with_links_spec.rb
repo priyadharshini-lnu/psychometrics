@@ -19,18 +19,18 @@ describe Users::BuildRolesWithLinks do
       expect(roles).to eq [
         { :name => 'client_admin',
           :paths => [
-            { :name => client.name, :value => "/administration/clients/#{client.id}/projects" }
+            { :name => client.name, :value => "/admin/clients/#{client.id}/projects" }
           ] },
         { :name => 'project_admin', :paths => [
-          { :name => client.name, :value => "/administration/clients/#{client.id}/projects" },
-          { :name => project.name, :value => "/administration/projects/#{project.id}/new_campaigns" }
+          { :name => client.name, :value => "/admin/clients/#{client.id}/projects" },
+          { :name => project.name, :value => "/admin/projects/#{project.id}/new_campaigns" }
         ] },
         { :name => 'campaign_admin',
           :paths => [
-            { :name => client.name, :value => "/administration/clients/#{client.id}/projects" },
-            { :name => project.name, :value => "/administration/projects/#{project.id}/new_campaigns" },
+            { :name => client.name, :value => "/admin/clients/#{client.id}/projects" },
+            { :name => project.name, :value => "/admin/projects/#{project.id}/new_campaigns" },
             {
-              :name => campaign.name, :value => "/administration/projects/#{project.id}/new_campaigns/#{campaign.id}/admins" # rubocop:disable Layout/LineLength
+              :name => campaign.name, :value => "/admin/projects/#{project.id}/new_campaigns/#{campaign.id}/admins"
             }
           ] }
       ]
@@ -62,7 +62,7 @@ describe Users::BuildRolesWithLinks do
     it do
       roles = described_class.call!(regular)
 
-      expect(roles.first[:paths].last[:value]).to eq("/administration/clients/#{campaign.project.client.id}/projects/#{campaign.project.id}/threesixty_campaigns/#{threesixty_campaign.id}") # rubocop:disable Layout/LineLength
+      expect(roles.first[:paths].last[:value]).to eq("/admin/clients/#{campaign.project.client.id}/projects/#{campaign.project.id}/threesixty_campaigns/#{threesixty_campaign.id}") # rubocop:disable Layout/LineLength
     end
   end
 

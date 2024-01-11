@@ -9,7 +9,7 @@ module AdminJobs
 
       def generate_title_link
         {
-          href: '/administration/assessments',
+          href: '/admin/assessments',
           label: assessment.name.to_s
         }
       end

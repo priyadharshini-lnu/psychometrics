@@ -41,7 +41,7 @@ class UserReport < ApplicationRecord
   sync_to_active_storage :pdf
 
   def attachment_storage_path(attribute_name, filename)
-    "private/projects/#{project.id}/user_report/#{attribute_name}/#{filename}"
+    "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
   end
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }

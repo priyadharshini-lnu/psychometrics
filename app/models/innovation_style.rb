@@ -25,7 +25,7 @@ class InnovationStyle < ApplicationRecord
   sync_to_active_storage :icon
 
   def attachment_storage_path(attribute_name, filename)
-    "public/innovation_style/#{attribute_name}/#{filename}"
+    "public/innovation_style/#{id}/#{attribute_name}/#{filename}"
   end
 
   def log_attribute_for_delete

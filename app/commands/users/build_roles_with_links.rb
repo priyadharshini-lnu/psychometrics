@@ -54,7 +54,7 @@ module Users
       user.client_admin_clients.map do |client|
         {
           name: 'client_admin', paths: [
-            { name: client.name, value: "/administration/clients/#{client.id}/projects" }
+            { name: client.name, value: "/admin/clients/#{client.id}/projects" }
           ]
         }
       end
@@ -65,8 +65,8 @@ module Users
         {
           name: 'project_admin',
           paths: [
-            { name: project.client.name, value: "/administration/clients/#{project.client.id}/projects" },
-            { name: project.name, value: "/administration/projects/#{project.id}/new_campaigns" }
+            { name: project.client.name, value: "/admin/clients/#{project.client.id}/projects" },
+            { name: project.name, value: "/admin/projects/#{project.id}/new_campaigns" }
           ]
         }
       end
@@ -82,8 +82,8 @@ module Users
       {
         name: name,
         paths: [
-          { name: client.name, value: "/administration/clients/#{client.id}/projects" },
-          { name: project.name, value: "/administration/projects/#{project.id}/new_campaigns" },
+          { name: client.name, value: "/admin/clients/#{client.id}/projects" },
+          { name: project.name, value: "/admin/projects/#{project.id}/new_campaigns" },
           { name: campaign.name, value: build_campaign_url(client, project, campaign, name) }
         ]
       }
@@ -91,9 +91,9 @@ module Users
 
     def build_campaign_url(client, project, campaign, name)
       url = if campaign.threesixty?
-              "/administration/clients/#{client.id}/projects/#{project.id}/threesixty_campaigns/#{campaign.threesixty_campaign.id}" # rubocop:disable Layout/LineLength
+              "/admin/clients/#{client.id}/projects/#{project.id}/threesixty_campaigns/#{campaign.threesixty_campaign.id}" # rubocop:disable Layout/LineLength
             else
-              "/administration/projects/#{project.id}/new_campaigns/#{campaign.id}"
+              "/admin/projects/#{project.id}/new_campaigns/#{campaign.id}"
             end
 
       url += '/admins' if name == 'campaign_admin'

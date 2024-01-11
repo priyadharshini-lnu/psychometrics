@@ -46,23 +46,23 @@ describe ActiveStorageAttachable do
 
     it 'stores correct attachment key' do
       expect(@assessment.as_icon.key).
-        to match(%r{public/assessment/icon/\w+_test_image.jpeg})
+        to match(%r{public/assessment/#{@assessment.id}/icon/\w+_test_image.jpeg})
       expect(@dashboard.as_image.key).
-        to match(%r{private/projects/#{@dashboard.project.id}/dashboard/image/\w+_test_image.jpeg})
+        to match(%r{private/projects/#{@dashboard.project.id}/dashboard/#{@dashboard.id}/image/\w+_test_image.jpeg})
       expect(@design_setting.as_logo.key).
         to match(%r{public/projects/#{@design_setting.project.id}/design_setting/logo/\w+_test_image.jpeg})
       expect(@factor.as_icon.key).
-        to match(%r{public/factor/icon/\w+_test_image.jpeg})
+        to match(%r{public/factor/#{@factor.id}/icon/\w+_test_image.jpeg})
       expect(@innovation_style.as_icon.key).
-        to match(%r{public/innovation_style/icon/\w+_test_image.jpeg})
+        to match(%r{public/innovation_style/#{@innovation_style.id}/icon/\w+_test_image.jpeg})
       expect(@occupation.as_icon.key).
-        to match(%r{public/occupation/icon/\w+_test_image.jpeg})
+        to match(%r{public/occupation/#{@occupation.id}/icon/\w+_test_image.jpeg})
       expect(@report.as_icon.key).
-        to match(%r{public/report/icon/\w+_test_image.jpeg})
+        to match(%r{public/report/#{@report.id}/icon/\w+_test_image.jpeg})
       expect(@user_profile.as_photo.key).
-        to match(%r{public/user_profile/photo/\w+_})
+        to match(%r{public/user_profile/#{@user_profile.user_id}/photo/\w+_})
       expect(@media_resp.as_asset.key).to match(
-        %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.users_result_id}/#{@media_resp.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
+        %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.users_result_id}/#{@media_resp.question_id}/#{@media_resp.id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
       )
     end
 
@@ -72,18 +72,19 @@ describe ActiveStorageAttachable do
 
         @membership = create(:membership, :for_campaign)
         @assign = create(:assign, membership: @membership)
-        @media_response = build_stubbed(
+        @media_response = create(
           :media_response,
           question: build(:question),
           users_result: nil,
-          assign: @assign,
-          as_asset: image
+          assign: @assign
         )
+
+        @media_response.as_asset.attach(image)
       end
 
       it 'stores correct attachment key' do
         expect(@media_response.as_asset.key).to match(
-          %r{private/projects/#{@media_response.assign.membership.project_membership.client_id}/media_response/#{@media_response.assign_id}/#{@media_response.question_id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
+          %r{private/projects/#{@media_response.assign.membership.project_membership.client_id}/media_response/#{@media_response.assign_id}/#{@media_response.question_id}/#{@media_response.id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
         )
       end
     end
@@ -122,9 +123,9 @@ describe ActiveStorageAttachable do
 
     it 'stores correct attachment key' do
       expect(@library.as_file.key).
-        to match(%r{public/library/file/\w+_test_image.jpeg})
+        to match(%r{public/library/#{@library.id}/file/\w+_test_image.jpeg})
       expect(@user_report.as_pdf_file.key).
-        to match(%r{private/projects/#{@user_report.project.id}/user_report/pdf_file/\w+_test.pdf})
+        to match(%r{private/projects/#{@user_report.project.id}/user_report/#{@user_report.id}/pdf_file/\w+_test.pdf})
     end
   end
 

@@ -32,7 +32,7 @@ module AdminJobs
 
       return threesixty_datasheet_path if parent_resource.threesixty?
 
-      "/administration/projects/#{parent_resource.project_id}/new_campaigns/#{parent_resource.id}/datasheet"
+      "/admin/projects/#{parent_resource.project_id}/new_campaigns/#{parent_resource.id}/datasheet"
     end
 
     def parent_resource
@@ -44,9 +44,7 @@ module AdminJobs
       client = project.client
       threesixty_campaign = parent_resource.threesixty_campaign
 
-      # rubocop:disable Layout/LineLength
-      "/administration/clients/#{client.id}/projects/#{project.id}/threesixty_campaigns/#{threesixty_campaign.id}/datasheets"
-      # rubocop:enable Layout/LineLength
+      "/admin/clients/#{client.id}/projects/#{project.id}/threesixty_campaigns/#{threesixty_campaign.id}/datasheets"
     end
   end
 end

@@ -22,7 +22,7 @@ class MediaResponse < ApplicationRecord
   def attachment_storage_path(attribute_name, filename)
     project_id = users_result ? users_result.campaign.project_id : assign.membership.project_membership.client_id
 
-    "private/projects/#{project_id}/media_response/#{users_result_id || assign_id}/#{question_id}/#{attribute_name}/#{filename}" # rubocop:disable Layout/LineLength
+    "private/projects/#{project_id}/media_response/#{users_result_id || assign_id}/#{question_id}/#{id}/#{attribute_name}/#{filename}" # rubocop:disable Layout/LineLength
   end
 
   belongs_to :users_assessment

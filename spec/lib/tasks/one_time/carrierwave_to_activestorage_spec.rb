@@ -39,12 +39,12 @@ describe 'carrierwave:migrate_to_activestorage', type: :task do
 
   it 'migrates existing record to ActiveStorage' do
     expect(@assessment.reload.as_icon).to be_attached
-    expect(@assessment.reload.as_icon.key).to match(%r{public/assessment/icon/})
+    expect(@assessment.reload.as_icon.key).to match(%r{public/assessment/#{@assessment.id}/icon/})
     expect(@user_report.reload.as_pdf_file).to be_attached
     expect(@user_report.reload.as_pdf_file.key).
-      to match(%r{private/projects/#{@user_report.project.id}/user_report/pdf_file/})
+      to match(%r{private/projects/#{@user_report.project.id}/user_report/#{@user_report.id}/pdf_file/})
     expect(@report.reload.as_icon).to be_attached
-    expect(@report.reload.as_icon.key).to match(%r{public/report/icon/})
+    expect(@report.reload.as_icon.key).to match(%r{public/report/#{@report.id}/icon/})
     expect(@report_wo_attachment.reload.as_icon.attached?).to eq(false)
     expect(
       ActiveStorage::Attachment.

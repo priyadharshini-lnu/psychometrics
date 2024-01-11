@@ -167,7 +167,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   translates :name, :description, :timing
 
   def attachment_storage_path(attribute_name, filename)
-    "public/assessment/#{attribute_name}/#{filename}"
+    "public/assessment/#{id}/#{attribute_name}/#{filename}"
   end
 
   delegate :config, :translations, to: :agile, prefix: true
