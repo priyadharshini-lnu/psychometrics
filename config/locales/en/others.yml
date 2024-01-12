@@ -685,6 +685,7 @@ en:
         super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
+        workshop_status_export: Assessment Center Status Export
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors

@@ -7,6 +7,16 @@ module Api
 
     validate_crud_requests Api::V2::Projects::Schema
 
+    def workshop_status_export
+      AdminJob.call(
+        :workshop_status_export,
+        { project_id: project_id },
+        current_user
+      )
+
+      render json: :ok
+    end
+
     def context
       super.merge(
         client: client

@@ -14,6 +14,12 @@ class CampaignUser < ApplicationRecord
   has_many :user_reports, through: :user
   has_many :reports, through: :user_reports
   has_many :proctoring_sessions, dependent: :destroy
+  has_many :workshop_subjects,
+           -> { where('campaign_users.campaign_id = workshop_subjects.campaign_id') },
+           foreign_key: :user_id, primary_key: :user_id
+  has_many :workshop_invited_subjects,
+           -> { left_joins(:workshop_invite).where('workshop_invites.campaign_id = campaign_users.campaign_id') },
+           foreign_key: :user_id, primary_key: :user_id
 
   scope :in_progress, -> { where(completion_status: :in_progress) }
   scope :completed, -> { where(completion_status: :completed) }

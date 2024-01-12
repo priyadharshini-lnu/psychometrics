@@ -1222,7 +1222,11 @@ Rails.application.routes.draw do
             end
           end
           jsonapi_resources :report_families, only: %i[index]
-          jsonapi_resources :projects, only: :show
+          jsonapi_resources :projects, only: :show do
+            member do
+              get :workshop_status_export
+            end
+          end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
             get :reset_password

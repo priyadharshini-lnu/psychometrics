@@ -49,5 +49,9 @@ module AdminJobs
     def campaign
       @campaign ||= Campaign.find_by(id: record.data['campaign_id'])
     end
+
+    def project
+      @project ||= Project.find_by(id: record.data['project_id'])
+    end
   end
 end

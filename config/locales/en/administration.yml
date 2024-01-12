@@ -239,6 +239,7 @@ en:
           users:
             reset_password: Reset Password
           workshops:
+            export_status: Export Status
             manage: Manage
             view: View
     all: " - All - "
@@ -3439,6 +3440,10 @@ en:
       edit:
         success: Profile was successfully updated.
         title: Profile Editor
+    project:
+      tools:
+        workshop_status_export: Workshop Status Export
+        workshop_status_export_success: Workshop Status Export scheduled successfully.
     project_participants:
       cancel: Cancel
       column_actions: Actions
