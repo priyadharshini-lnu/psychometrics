@@ -1836,6 +1836,9 @@ en:
         already_exists: Subject already exists in the invite.
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
+      workshops:
+        no_available_assessor_slots: No available slots for assessor %{assessor}
+        no_available_manager_slots: No available slots for manager %{manager}
     users:
       registrations:
         new:

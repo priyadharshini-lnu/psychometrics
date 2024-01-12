@@ -26,7 +26,7 @@ module Api
       )
 
       if response && response[:error]
-        render json: { error: response[:error] }, status: 400
+        render json: { error: response[:error] }, status: 422
       else
         audit! :create_bulk_workshops, nil, payload: workshop_params, campaign: campaign
         jsonapi_render json: response[:workshops]
