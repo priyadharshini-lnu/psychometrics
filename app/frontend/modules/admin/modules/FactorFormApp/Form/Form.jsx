@@ -10,7 +10,7 @@ import SubFactorList from './SubFactorList'
 import ExternalList from './ExternalList'
 import FIELDS from './fields'
 import styles from './styles.less'
-import LuaEditor from './LuaEditor'
+import { LuaEditor } from '~/glint'
 
 export default function Form (props) {
   const { factor, errors, factors } = props

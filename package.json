@@ -45,6 +45,7 @@
     "@babel/preset-typescript": "^7.16.0",
     "@babel/register": "^7.16.0",
     "@babel/runtime": "^7.16.0",
+    "@codemirror/autocomplete": "^6.11.1",
     "@daily-co/daily-js": "^0.49.1",
     "@dnd-kit/core": "^5.0.1",
     "@dnd-kit/sortable": "^6.0.0",

@@ -11,7 +11,7 @@ module.exports = {
   cacheDirectory: '<rootDir>/tmp/cache/jest',
   moduleNameMapper: {
     '\\.svg$': '<rootDir>/app/frontend/__mocks__/svg.js',
-    '\\.(scss|less)$': 'identity-obj-proxy',
+    '\\.(scss|css|less)$': 'identity-obj-proxy',
     '~/(.*)': '<rootDir>/app/frontend/$1',
   },
   transform: {
@@ -34,6 +34,9 @@ module.exports = {
     'app/frontend/__mocks__/',
     'app/frontend/entrypoints/',
     'app/frontend/typings/',
+  ],
+  transformIgnorePatterns: [
+    '<rootDir>/node_modules/(?!(codemirror/lib/codemirror\\.css))',
   ],
   globals: {
     __DEV__: {},

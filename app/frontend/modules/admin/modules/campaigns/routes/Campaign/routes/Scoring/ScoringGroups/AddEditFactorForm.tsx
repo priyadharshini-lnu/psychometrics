@@ -3,7 +3,7 @@ import {
   Drawer, Form, Input, Button, Select,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
-import { DirectionalNavigateBackIcon } from '~/glint'
+import { DirectionalNavigateBackIcon, LuaEditor } from '~/glint'
 // import { useResources } from '~/hooks/useResources'
 
 type Props = {
@@ -87,7 +87,7 @@ export const AddEditFactorForm: FC<Props> = ({
     formFieldBasedOnFactorType = (
       <>
         <Form.Item name="formula" label={I18n.t('administration.scoring.formula')}>
-          <Input />
+          <LuaEditor controlled />
         </Form.Item>
       </>
     )
@@ -106,6 +106,7 @@ export const AddEditFactorForm: FC<Props> = ({
       title={I18n.t('administration.scoring.add_factor')}
       open={open}
       onClose={onClose}
+      width="70%"
     >
       <Form
         onFieldsChange={setFields}
