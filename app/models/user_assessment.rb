@@ -134,7 +134,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    %i[filter_by_subject_or_assessment workshop_activity prework campaign_id_eq subject_id_eq workshop_activities]
+    %i[filter_by_subject_or_assessment preworks workshop_activities]
   end
 
   def saville_norm_id

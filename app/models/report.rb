@@ -251,7 +251,7 @@ class Report < ApplicationRecord
   end
 
   def self.ransackable_scopes(_)
-    %i[provider_in filterable_fields assessments_id_in with_resource_state name_cont]
+    %i[filterable_fields with_resource_state]
   end
 
   private
