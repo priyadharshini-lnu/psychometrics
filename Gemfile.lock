@@ -615,6 +615,7 @@ GEM
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
+    language_server-protocol (3.17.0.3)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -694,6 +695,7 @@ GEM
     premailer-rails (1.11.1)
       actionmailer (>= 3)
       premailer (~> 1.7, >= 1.7.9)
+    prism (0.19.0)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -867,6 +869,16 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     rubocop-rspec (2.12.1)
       rubocop (~> 1.31)
+    ruby-lsp (0.13.3)
+      language_server-protocol (~> 3.17.0)
+      prism (>= 0.19.0, < 0.20)
+      sorbet-runtime (>= 0.5.5685)
+    ruby-lsp-rails (0.2.8)
+      actionpack (>= 6.0)
+      activerecord (>= 6.0)
+      railties (>= 6.0)
+      ruby-lsp (>= 0.13.0, < 0.14.0)
+      sorbet-runtime (>= 0.5.9897)
     ruby-progressbar (1.13.0)
     ruby-saml (1.15.0)
       nokogiri (>= 1.13.10)
@@ -961,6 +973,7 @@ GEM
       thor (~> 1.0)
       tilt (~> 2.0)
       yard (~> 0.9, >= 0.9.24)
+    sorbet-runtime (0.5.11190)
     spring (4.1.1)
     spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
@@ -1211,6 +1224,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  ruby-lsp-rails (~> 0.2.8)
   rubyXL (~> 3.4.6)
   rubyzip (~> 2.3)
   rufus-lua (~> 1.1.5)

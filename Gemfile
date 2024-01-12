@@ -234,6 +234,7 @@ group :development do
   # TODO: We have forket the gem to just increase the version dependent gem.
   # We can remove this fork and use original gem once the next version of gem is released.
   gem 'meta_request', git: 'https://github.com/TheTalentEnterprise/rails_panel', branch: 'tte-master'
+  gem 'ruby-lsp-rails', '~> 0.2.8'
   gem 'solargraph', '~>0.45.0'
 end
 group :test do
