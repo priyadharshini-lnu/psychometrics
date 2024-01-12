@@ -1,5 +1,7 @@
 import * as t from 'io-ts'
 
+export enum CampaignFactorOutputType { 'numeric' = 'numeric', 'string' = 'string' }
+
 export const CampaignFactorValueTR = t.type({
   id: t.string,
   campaignFactorId: t.number,

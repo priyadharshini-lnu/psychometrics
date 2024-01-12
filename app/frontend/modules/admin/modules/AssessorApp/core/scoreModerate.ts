@@ -2,12 +2,39 @@ import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
 import _ from 'lodash'
 import { createReducer } from '~/utils/redux'
+import {
+  CampaignFactorOutputType,
+} from '~/modules/admin/modules/campaigns/core/combinedScoring'
 
 export const UserAssessmentTR = t.type({
   id: t.number,
   name: t.string,
   assessment_id: t.number,
 })
+
+export const CampaignFactorTR = t.type({
+  id: t.string,
+  name: t.string,
+  outputType: t.keyof(CampaignFactorOutputType),
+})
+
+export const CampaignFactorGroupTR = t.type({
+  id: t.string,
+  name: t.string,
+  campaignFactors: t.array(CampaignFactorTR),
+})
+
+export type CampaignFactor = t.TypeOf<typeof CampaignFactorTR>
+export type CampaignFactorGroup = t.TypeOf<typeof CampaignFactorGroupTR>
+
+export const campaignFactorGroupSchema = {
+  type: 'campaign_factor_groups',
+  relationships: {
+    campaignFactors: {
+      type: 'campaign_factors',
+    },
+  },
+}
 
 export const UserReportTR = t.type({
   id: t.number,

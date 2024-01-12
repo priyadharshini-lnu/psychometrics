@@ -5,6 +5,9 @@ export const Schema = {
       type: 'campaigns',
       id: 'string',
     },
+    campaignFactors: {
+      type: 'campaign_factors',
+    },
   },
 }
 

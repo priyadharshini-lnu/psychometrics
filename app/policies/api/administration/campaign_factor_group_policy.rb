@@ -4,7 +4,7 @@ module Api
   module Administration
     class CampaignFactorGroupPolicy < ::Api::Administration::BasePolicy
       def index?
-        has_permission?(:campaign_factors, :view)
+        @user.is?(:assessor) || has_permission?(:campaign_factors, :view)
       end
 
       def create?
@@ -25,6 +25,19 @@ module Api
 
       def destroy?
         has_permission?(:campaign_factors, :manage)
+      end
+
+      class Scope < ::Api::Administration::BasePolicy::Scope
+        def resolve
+          if @user.has_permission?(:results, :scores, campaign_id: campaign_id) ||
+             @user.has_permission?(:campaign_factors, :view, campaign_id: campaign_id) ||
+             ::UserAssessments::GetLeadUserAssessmentsForAssessor.call!(campaign_id, @user).exists?
+            scope.where(campaign_id: campaign_id).joins(:campaign_factors).
+              where(campaign_factors: { public_visibility: true })
+          else
+            scope.none
+          end
+        end
       end
     end
   end

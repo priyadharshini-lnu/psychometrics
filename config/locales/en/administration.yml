@@ -564,6 +564,7 @@ en:
         no_completed_assessments: There are no completed assessments yet
         no_results: There are no any answered questions
         other_reports: Other Reports
+        overall_scoring: Overall Scoring
         refresh: Refresh
         reports: Reports
         reports_count: "%{count} Reports"
@@ -4026,6 +4027,7 @@ en:
       get_started: Get Started
       name: Name
       no_groups: No groups present
+      output_type: Output Type
       public: Public
       save: Save
       scoring: Scoring

@@ -9,6 +9,9 @@ describe Api::V2::Administration::CampaignFactorGroupsController, swagger_doc: '
   let(:campaign_id) { campaign.id }
   let!(:campaign_factor_group) { create(:campaign_factor_group, name: 'Test group', campaign_id: campaign_id) }
   let(:campaign_factor_group_id) { campaign_factor_group.id.to_s }
+  let!(:campaign_factors) do
+    create(:campaign_factor, campaign_factor_group: campaign_factor_group, public_visibility: true)
+  end
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
   before { sign_in(superadmin) }

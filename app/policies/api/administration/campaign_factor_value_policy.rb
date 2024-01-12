@@ -19,10 +19,7 @@ module Api
             scope.where(campaign_id: campaign_id)
           else
             user_id_where_current_user_is_lead_assessor =
-              UserAssessment.where(
-                evaluator_id: @user.id, campaign_id: campaign_id, relationship: Relationship.assessor_relationship
-              ).joins(:assessment).where(assessments: { category: Assessment::CATEGORIES[:lead_assessor_form] }).
-              select(:subject_id)
+              ::UserAssessments::GetLeadUserAssessmentsForAssessor.call!(campaign_id, @user).select(:subject_id)
 
             scope.where(campaign_id: campaign_id, user_id: user_id_where_current_user_is_lead_assessor)
           end

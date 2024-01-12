@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe UserAssessments::GetLeadUserAssessment do
+describe UserAssessments::GetLeadUserAssessmentForSubject do
   let(:project) { create(:project) }
   let(:campaign) { create(:campaign, project: project) }
   let!(:assessor) { create(:assessor) }

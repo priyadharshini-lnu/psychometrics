@@ -19,7 +19,7 @@ module UserReports
       ).order(completed_at: :desc)
 
       if view_report_as == :lead_assessor
-        lead_form = UserAssessments::GetLeadUserAssessment.call!(user_report.campaign, user_report.user)
+        lead_form = UserAssessments::GetLeadUserAssessmentForSubject.call!(user_report.campaign, user_report.user)
         user_assessments = user_assessments.or(
           UserAssessment.where(campaign_id: user_report.campaign_id, assessment_id: lead_form.assessment_id,
                                status: :in_progress, subject_id: user_report.user_id)

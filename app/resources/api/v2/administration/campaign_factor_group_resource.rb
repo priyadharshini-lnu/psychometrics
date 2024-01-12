@@ -14,8 +14,8 @@ class Api::V2::Administration::CampaignFactorGroupResource < Api::V2::Administra
   end
 
   def self.records(opts = {})
-    ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, CampaignFactorGroup]).where(
-      campaign_id: opts[:context][:campaign].id
-    ).order(:position)
+    ::Api::Administration::CampaignFactorGroupPolicy::Scope.new(
+      opts[:context][:user], CampaignFactorGroup, campaign_id: opts[:context][:campaign].id
+    ).resolve.distinct.order(:position)
   end
 end

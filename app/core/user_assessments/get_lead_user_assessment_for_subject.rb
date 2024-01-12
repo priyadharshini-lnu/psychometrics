@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UserAssessments
-  class GetLeadUserAssessment < BaseCommand
+  class GetLeadUserAssessmentForSubject < BaseCommand
     attr_reader :campaign, :user
 
     def initialize(campaign, user)

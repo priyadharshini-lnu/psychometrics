@@ -6,7 +6,7 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
   def show
     authorize(user, nil, campaign: campaign, policy_class: Assessors::ScoreModerationPolicy)
 
-    lead_assessment = UserAssessments::GetLeadUserAssessment.call!(campaign, user)
+    lead_assessment = UserAssessments::GetLeadUserAssessmentForSubject.call!(campaign, user)
 
     attributes = { last_activity_at: DateTime.current }
     attributes = attributes.merge(started_at: Time.zone.now) unless lead_assessment.started_at

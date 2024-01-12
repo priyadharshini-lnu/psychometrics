@@ -124,6 +124,13 @@ export const AddEditFactorForm: FC<Props> = ({
         <Form.Item name="description" label={I18n.t('administration.scoring.description')}>
           <Input.TextArea />
         </Form.Item>
+        <Form.Item name="outputType" label={I18n.t('administration.scoring.output_type')}>
+          <Select defaultValue="numeric">
+            {['numeric', 'string'].map(
+              value => <Select.Option key={value} value={value}>{value}</Select.Option>,
+            )}
+          </Select>
+        </Form.Item>
         <Form.Item name="factorType" label={I18n.t('administration.scoring.type')}>
           <Select>
             {factorTypes.map(type => <Select.Option key={type.value} value={type.value}>{type.label}</Select.Option>)}

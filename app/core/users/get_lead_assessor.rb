@@ -10,7 +10,7 @@ module Users
     end
 
     def call
-      lead_user_assessment = UserAssessments::GetLeadUserAssessment.call!(campaign, user)
+      lead_user_assessment = UserAssessments::GetLeadUserAssessmentForSubject.call!(campaign, user)
       broadcast :ok, lead_user_assessment&.evaluator
     end
   end
