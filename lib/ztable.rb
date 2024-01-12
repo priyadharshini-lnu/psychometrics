@@ -96,7 +96,7 @@ class Ztable
     zscore = zscore.clamp(MIN_Y_VALUE - MAX_X_VALUE, MAX_Y_VALUE + MAX_X_VALUE)
     return 50.0 if zscore.zero?
 
-    y_zscore = zscore.truncate(1)
+    y_zscore = zscore.to_f.truncate(1)
     x_zscore = (zscore - y_zscore).round(2).abs
     column = ZTABLE['Z'].index(x_zscore)
     percentile = ZTABLE[y_zscore.to_s][column] * 100
