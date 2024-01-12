@@ -309,7 +309,7 @@ class User < ApplicationRecord
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       %i[hris_data_cont role_scope_in filterable_fields admins search_query with_access_to_campaign
-         with_campaign_user campaign_users_completion_status_in campaign_users_status_in]
+         with_campaign_user]
     end
 
     # Available role for the filter form
