@@ -3927,6 +3927,7 @@ en:
         resource_name: Name
         schedule_time: Schedule Time
         scheduling_status: Scheduling status
+        seats: Seats
         start_time: Date & Time
         status: Status
         subject: Subject
@@ -4003,6 +4004,7 @@ en:
         form_title: Schedule Assessments
         import_job_scheduled: The uploaded file has been queued for import. Please check the status in the notifications
         language: Language
+        language_not_selected: Not Selected
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
         meeting_link_internal: Internal

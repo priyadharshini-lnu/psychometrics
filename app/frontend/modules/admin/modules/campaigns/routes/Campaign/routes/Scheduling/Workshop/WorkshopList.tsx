@@ -77,6 +77,12 @@ export const WorkshopList: React.FC = () => {
             render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
           />
           <Resource.Column<Workshop>
+            title={I18n.t('administration.scheduling.columns.seats')}
+            id="duration"
+            width="10%"
+            render={(_, { totalSeats, bookedSeats }) => `${bookedSeats}/${totalSeats}`}
+          />
+          <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.managers')}
             id="workshopManagers"
             render={(_, { workshopManagers }) => (

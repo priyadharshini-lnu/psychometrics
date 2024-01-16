@@ -24,11 +24,13 @@ describe AdminJobs::WorkshopStatusExport do
       'Last name',
       'Email',
       'Campaign',
+      'User Active',
       'Prework Status',
       'Prework Completed Date',
       'Scheduling Status',
       'AC Invite',
-      'AC Completion',
+      'AC Activity Completion',
+      'AC Attendance Status',
       'AC Date',
       'Preferred Language',
       'Late Cancelled',
@@ -53,10 +55,12 @@ describe AdminJobs::WorkshopStatusExport do
       user.last_name,
       user.email,
       campaign.name,
+      'Yes',
       'Completed',
       1.day.ago.to_s,
       nil,
       'Not Invited',
+      nil,
       nil,
       nil,
       nil,
@@ -77,10 +81,12 @@ describe AdminJobs::WorkshopStatusExport do
       user.last_name,
       user.email,
       campaign.name,
+      'Yes',
       'Completed',
       nil,
       nil,
       'Invited',
+      nil,
       nil,
       nil,
       nil,
@@ -101,7 +107,9 @@ describe AdminJobs::WorkshopStatusExport do
       :workshop_subject, user: user, campaign: campaign, preferred_language: 'en', scheduling_status: :late_rescheduled,
       created_at: 2.days.ago
     )
-    create(:workshop_subject, user: user, workshop: workshop, campaign: campaign, preferred_language: 'en')
+    workshop_subject = create(
+      :workshop_subject, user: user, workshop: workshop, campaign: campaign, preferred_language: 'ar'
+    )
     workshop_activity = create(:campaign_assessment, campaign: campaign, workshop_activity: true)
     create(
       :user_assessment, campaign: campaign,
@@ -118,13 +126,15 @@ describe AdminJobs::WorkshopStatusExport do
       user.last_name,
       user.email,
       campaign.name,
+      'Yes',
       'Completed',
       nil,
       'Scheduled',
       'Invited',
       'In Progress',
+      workshop_subject.attendance_status.humanize,
       workshop.start_time.to_s,
-      'en',
+      workshop_subject.preferred_language,
       1,
       1
     ])
@@ -134,7 +144,9 @@ describe AdminJobs::WorkshopStatusExport do
     create(:campaign_user, campaign: campaign, user: user)
     workshop = create(:workshop, campaign: campaign)
     create(:workshop_invited_subject, user: user, workshop_invite: create(:workshop_invite, campaign: campaign))
-    create(:workshop_subject, user: user, workshop: workshop, campaign: campaign, preferred_language: 'en')
+    workshop_subject = create(
+      :workshop_subject, user: user, workshop: workshop, campaign: campaign, preferred_language: 'en'
+    )
     workshop_activity = create(:campaign_assessment, campaign: campaign, workshop_activity: true)
     create(
       :user_assessment, campaign: campaign,
@@ -151,13 +163,15 @@ describe AdminJobs::WorkshopStatusExport do
       user.last_name,
       user.email,
       campaign.name,
+      'Yes',
       'Completed',
       nil,
       'Scheduled',
       'Invited',
       'Completed',
+      workshop_subject.attendance_status.humanize,
       workshop.start_time.to_s,
-      'en',
+      workshop_subject.preferred_language,
       0,
       0
     ])
