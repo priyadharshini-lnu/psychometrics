@@ -11,6 +11,7 @@ describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/s
   let(:user) { create(:user) }
   let(:user_id) { user.id }
   let(:campaign_id) { campaign.id }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let(:lead_assessment) { create(:assessment, category: :lead_assessor_form) }
   let!(:campaign_factor_group) { create(:campaign_factor_group, campaign_id: campaign_id) }
   let(:campaign_factor_group_id) { campaign_factor_group.id.to_s }

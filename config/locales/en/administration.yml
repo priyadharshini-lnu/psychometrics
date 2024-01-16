@@ -4028,6 +4028,8 @@ en:
       name: Name
       no_groups: No groups present
       output_type: Output Type
+      profile:
+        years: Years
       public: Public
       save: Save
       scoring: Scoring

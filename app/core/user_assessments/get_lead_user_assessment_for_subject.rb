@@ -11,7 +11,7 @@ module UserAssessments
 
     def call
       lead_form = UserAssessment.where(
-        campaign_id: campaign.id, subject_id: user.id, relationship: Relationship.assessor_relationship
+        campaign_id: campaign, subject_id: user.id, relationship: Relationship.assessor_relationship
       ).joins(:assessment).find_by(assessments: { category: Assessment::CATEGORIES[:lead_assessor_form] })
       broadcast :ok, lead_form
     end

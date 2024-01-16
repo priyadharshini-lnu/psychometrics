@@ -1188,6 +1188,11 @@ Rails.application.routes.draw do
           jsonapi_resources :external_reports
           jsonapi_resources :external_norms
           jsonapi_resources :dashboards, only: %i[index create update]
+          jsonapi_resources :datasheet_rows do
+            collection do
+              get :datasheet_for_assessor
+            end
+          end
           jsonapi_resources :design_settings, only: %i[index update] do
             scope module: :design_settings do
               resource :uploads, only: %i[update]
@@ -1250,7 +1255,7 @@ Rails.application.routes.draw do
                 post :accept_request
               end
             end
-            jsonapi_resources :users, only: %i[index], controller: 'campaigns/users' do
+            jsonapi_resources :users, only: %i[index show], controller: 'campaigns/users' do
               member do
                 get :assessors_scores
               end

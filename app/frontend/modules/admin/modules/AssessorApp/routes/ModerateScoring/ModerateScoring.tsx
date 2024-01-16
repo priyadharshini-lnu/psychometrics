@@ -45,17 +45,22 @@ const connecter = connect((state: RootState) => ({
 interface Props extends ConnectedProps<typeof connecter> {}
 
 export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
-  const [tab, setTab] = useState()
+  const [tab, setTab] = useState<string>()
   const onChange = (key) => {
     setTab(key)
+  }
+
+  const handleCloseTab = () => {
+    setTab('')
   }
 
   const tabHeader = (title, withoutBorder = false) => tab && (
     <div className={cs(styles.tabheader, { [styles.withoutBorder]: withoutBorder })}>
       <div>{title}</div>
-      <Button type="text" onClick={() => setTab(undefined)}><CloseOutlined /></Button>
+      <Button type="text" onClick={handleCloseTab}><CloseOutlined /></Button>
     </div>
   )
+
 
   return (
     <div>
@@ -77,7 +82,7 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
         </div>
         {tab && (
           <>
-            {tab === 'profile' && <Profile header={tabHeader} />}
+            {tab === 'profile' && <Profile header={tabHeader} onClose={handleCloseTab} />}
             {tab === 'overallScoring' && <OverallScoring header={tabHeader} />}
             {tab === 'reports' && <Reports header={tabHeader} />}
             {tab === 'assessorEvaluations' && <AssessorEvaluations header={tabHeader} />}
