@@ -129,8 +129,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
   def check_campaign_reports_and_assesment_response(parsed_response)
     report_response = parsed_response['reports'].first
-    expect(report_response.keys).to eq(
-      %w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report]
+    expect(report_response.keys).to contain_exactly(
+      *%w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report]
     )
     expect(report_response).to include({
       'name' => report.name,
@@ -140,8 +140,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     })
 
     assessment_response = parsed_response['assessments'].first
-    expect(assessment_response.keys).to eq(
-      %w[
+    expect(assessment_response.keys).to contain_exactly(
+      *%w[
         id
         assessment_id
         name

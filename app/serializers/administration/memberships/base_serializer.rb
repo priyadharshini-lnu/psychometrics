@@ -2,7 +2,7 @@
 
 module Administration
   module Memberships
-    class BaseSerializer < ActiveModel::Serializer
+    class BaseSerializer < Panko::Serializer
       attributes :id, :user_id, :first_name, :last_name, :email, :created_at
 
       def created_at
@@ -24,7 +24,7 @@ module Administration
       private
 
       def current_user
-        instance_options[:current_user]
+        context[:current_user]
       end
     end
   end

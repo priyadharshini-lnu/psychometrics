@@ -2,14 +2,13 @@
 
 Warden::Manager.after_authentication do |user, env, _opts|
   request = Rack::Request.new(env.request.env)
-
   if request.env['action_dispatch.request.unsigned_session_cookie']['saml_audit'].blank?
     AuditLogModule.audit! :sign_in,
                           user,
                           user: user,
                           payload: { email: user.email },
                           outcome: 'successful',
-                          request_details: { ip: request.ip },
+                          request_details: { ip: request.ip, request_id: request.env['action_dispatch.request_id'] },
                           interface_details: { user_agent: request.user_agent }
   end
 end
@@ -71,7 +70,7 @@ Warden::Manager.before_failure do |env, opts|
                           record_type: 'User',
                           payload: { email: request.params.dig('user', 'email') },
                           outcome: 'failed',
-                          request_details: { ip: request.ip },
+                          request_details: { ip: request.ip, request_id: request.env['action_dispatch.request_id'] },
                           interface_details: { user_agent: request.user_agent },
                           failure_reason: reason
   end
@@ -86,6 +85,6 @@ Warden::Manager.before_logout do |user, env, _opts|
   AuditLogModule.audit! :sign_out, user,
                         user: user,
                         payload: { email: user.email },
-                        request_details: { ip: request.ip },
+                        request_details: { ip: request.ip, request_id: request.env['action_dispatch.request_id'] },
                         interface_details: { user_agent: request.user_agent }
 end

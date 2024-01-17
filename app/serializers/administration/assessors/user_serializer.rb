@@ -2,7 +2,7 @@
 
 module Administration
   module Assessors
-    class UserSerializer < ActiveModel::Serializer
+    class UserSerializer < Panko::Serializer
       attributes :id, :email, :full_name, :total_evaluations, :completed_evaluations, :completion_status, :permissions
 
       def full_name
@@ -31,8 +31,8 @@ module Administration
             %w[remove_subject destroy]
           ],
           {
-            project_id: instance_options[:project_id],
-            campaign_id: instance_options[:campaign_id]
+            project_id: context[:project_id],
+            campaign_id: context[:campaign_id]
           }
         )
       end
@@ -40,11 +40,11 @@ module Administration
       private
 
       def current_user
-        @instance_options[:current_user]
+        context[:current_user]
       end
 
       def evaluation_count
-        instance_options.dig(:evaluations_count, object.id) || { total: 0, completed: 0, in_progress: 0 }
+        context.dig(:evaluations_count, object.id) || { total: 0, completed: 0, in_progress: 0 }
       end
     end
   end

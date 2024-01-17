@@ -65,11 +65,13 @@ module Administration
                            distinct(:assessment_id).
                            order(assessment_id: :desc)
 
-        list = ActiveModelSerializers::SerializableResource.new(
+        list = Panko::ArraySerializer.new(
           user_assessments.page(params[:page]).per(params[:size]).map(&:assessment),
           each_serializer: Campaigns::OtherAssessmentSerializer,
-          current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
-        )
+          context: {
+            current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+          }
+        ).to_a
 
         render json: {
           list: list,
@@ -130,12 +132,13 @@ module Administration
 
       def update_prework
         campaign_assessment.update!(prework: params[:prework])
-
-        render json: campaign_assessment,
-               serializer: Administration::CampaignAssessmentSerializer,
-               campaign_id: campaign.id,
-               project_id: campaign.project_id,
-               current_user: current_user
+        render json: Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       def update_workshop_activity
@@ -143,11 +146,13 @@ module Administration
         if form.valid?
           attributes = form.attributes
           campaign_assessment.update!(attributes)
-          render json: campaign_assessment,
-                 serializer: Administration::CampaignAssessmentSerializer,
-                 campaign_id: campaign.id,
-                 project_id: campaign.project_id,
-                 current_user: current_user
+          render json: Administration::CampaignAssessmentSerializer.new(
+            context: {
+              current_user: current_user,
+              project_id: campaign.project_id,
+              campaign_id: campaign.id
+            }
+          ).serialize(campaign_assessment)
         else
           render json: { errors: form.errors.messages }, status: :unprocessable_entity
         end
@@ -156,7 +161,13 @@ module Administration
       def toggle_require_scheduling
         campaign_assessment.update!(require_scheduling: params[:require_scheduling])
 
-        render json: campaign_assessment, serializer: Administration::CampaignAssessmentSerializer
+        render json: Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       def schedule_assessment
@@ -168,7 +179,13 @@ module Administration
 
         return head :ok unless campaign_assessment
 
-        render json: campaign_assessment, serializer: Administration::CampaignAssessmentSerializer
+        render json: Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       private

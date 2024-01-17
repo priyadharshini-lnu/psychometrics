@@ -14,13 +14,15 @@ module Administration
 
         respond_to do |format|
           format.json do
-            serialized_users = ActiveModelSerializers::SerializableResource.new(
+            serialized_users = Panko::ArraySerializer.new(
               users.page(params[:page]).per(params[:size] || 25),
               each_serializer: Administration::Campaigns::UserSerializer,
-              current_user: current_user,
-              campaign_id: campaign.id,
-              project_id: campaign.project_id
-            )
+              context: {
+                current_user: current_user,
+                campaign_id: campaign.id,
+                project_id: campaign.project_id
+              }
+            ).to_a
 
             render json: {
               list: serialized_users,
@@ -109,7 +111,12 @@ module Administration
       end
 
       def show
-        render json: resource, serializer: Administration::UserDetailSerializer, campaign: campaign
+        render json: Administration::UserDetailSerializer.new(
+          context: {
+            campaign: campaign,
+            current_user: current_user
+          }
+        ).serialize(resource)
       end
 
       def create
@@ -118,8 +125,13 @@ module Administration
           ::Campaigns::Users::Create.call(form, campaign, current_user) do
             on(:ok) do |user|
               audit! :create_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
-              return render json: user, serializer: Administration::Campaigns::UserSerializer,
-                            campaign_id: campaign.id, project_id: campaign.project_id
+              return render json: Administration::Campaigns::UserSerializer.new(
+                context: {
+                  current_user: current_user,
+                  campaign_id: campaign.id,
+                  project_id: campaign.project_id
+                }
+              ).serialize(user)
             end
             on(:error) do |errors|
               return render json: { errors: errors.is_a?(String) ? { base: errors } : errors },
@@ -136,8 +148,13 @@ module Administration
         if form.valid?
           audit! :update_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
           resource.update(form.attributes)
-          render json: resource, serializer: Administration::Campaigns::UserSerializer,
-                 campaign_id: campaign.id, project_id: campaign.project_id
+          render json: Administration::Campaigns::UserSerializer.new(
+            context: {
+              current_user: current_user,
+              campaign_id: campaign.id,
+              project_id: campaign.project_id
+            }
+          ).serialize(resource)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -171,7 +188,12 @@ module Administration
       def extend_time
         ::CampaignUsers::AddAdditionalTime.call!(campaign_user, params[:additional_time] * 60)
         audit! :extend_time, campaign_user, payload: { additional_time: params[:additional_time] }
-        render json: resource, serializer: Administration::UserDetailSerializer, campaign: campaign
+        render json: Administration::UserDetailSerializer.new(
+          context: {
+            campaign: campaign,
+            current_user: current_user
+          }
+        ).serialize(resource)
       end
 
       private

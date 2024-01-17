@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
+
 module Administration
   module Campaigns
     class ReportsController < Administration::Campaigns::BaseController
@@ -33,8 +35,13 @@ module Administration
 
       def toggle_user_access
         ::CampaignReports::ToggleUserAccess.call!(resource, params[:toggle_user_access])
-        render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id,
-               project_id: campaign.project_id
+        render json: ::Administration::CampaignReportSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(resource)
         audit! :toggle_user_access, resource, campaign: campaign
       end
 
@@ -52,8 +59,13 @@ module Administration
           audit! :toggle_user_dashboard, resource, payload: { user_dashboard: resource.user_dashboard },
             campaign: campaign
         end
-        render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id,
-               project_id: campaign.project_id
+        render json: ::Administration::CampaignReportSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(resource)
       end
 
       def toggle_main_report
@@ -62,8 +74,13 @@ module Administration
           resource.update(main_report: params[:main_report])
           audit! :toggle_main_report, resource, payload: { main_report: params[:main_report] }, campaign: campaign
         end
-        render json: resource, serializer: Administration::CampaignReportSerializer, campaign_id: campaign.id,
-               project_id: campaign.project_id
+        render json: ::Administration::CampaignReportSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(resource)
       end
 
       def export
@@ -73,24 +90,37 @@ module Administration
       end
 
       def assessments_and_reports
-        reports = ActiveModelSerializers::SerializableResource.new(
+        reports = Panko::ArraySerializer.new(
           campaign.campaign_reports.includes(:report, :report_family),
           each_serializer: Administration::CampaignReportSerializer,
-          current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
-        )
-        assessments = ActiveModelSerializers::SerializableResource.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).to_a
+
+        assessments = Panko::ArraySerializer.new(
           campaign.campaign_assessments.includes(
             :norm, assessment: %i[norms linked_assessment]
           ),
           each_serializer: Administration::CampaignAssessmentSerializer,
-          current_user: current_user, project_id: campaign.project_id,
-          campaign_id: campaign.id
-        )
-        assessor_assessments = ActiveModelSerializers::SerializableResource.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).to_a
+
+        assessor_assessments = Panko::ArraySerializer.new(
           campaign.assessor_assessments,
           each_serializer: Administration::AssessorAssessmentSerializer,
-          current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
-        )
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).to_a
 
         render json: {
           assessments: assessments,
@@ -110,11 +140,13 @@ module Administration
                        select(:report_id).
                        distinct(:report_id).
                        order(report_id: :desc)
-        list = ActiveModelSerializers::SerializableResource.new(
+        list = Panko::ArraySerializer.new(
           user_reports.page(params[:page]).per(params[:size]).map(&:report),
           each_serializer: Campaigns::OtherReportSerializer,
-          current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
-        )
+          context: {
+            current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+          }
+        ).to_a
 
         render json: {
           list: list,
@@ -130,8 +162,8 @@ module Administration
                           references(:reports).
                           distinct.
                           sort_by { |r| r[:name] }
-        render json: report_families,
-               each_serializer: Administration::ReportFamilySerializer
+        render json: Panko::ArraySerializer.new(report_families,
+                                                each_serializer: Administration::ReportFamilySerializer).to_a
       end
 
       def regenerate
@@ -210,3 +242,5 @@ module Administration
     end
   end
 end
+
+# rubocop:enable Metrics/ClassLength

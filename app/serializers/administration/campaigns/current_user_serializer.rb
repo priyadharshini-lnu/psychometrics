@@ -2,11 +2,11 @@
 
 module Administration
   module Campaigns
-    class CurrentUserSerializer < ActiveModel::Serializer
+    class CurrentUserSerializer < Panko::Serializer
       attributes :id, :grants, :role, :role_title, :permissions, :name
 
       def grants
-        instance_options[:current_membership]&.grants&.data || {}
+        context[:current_membership]&.grants&.data || {}
       end
 
       def role_title
@@ -26,25 +26,25 @@ module Administration
             %w[manage_project_general_settings update]
           ],
           {
-            project_id: instance_options[:project_id],
-            campaign_id: instance_options[:campaign_id]
+            project_id: context[:project_id],
+            campaign_id: context[:campaign_id]
           }
         )
         permissions['manage_project_saml_setting'] = Administration::SamlSettingPolicy.new(
-          object, SamlSetting, project_id: instance_options[:project_id], campaign_id: instance_options[:campaign_id]
+          object, SamlSetting, project_id: context[:project_id], campaign_id: context[:campaign_id]
         ).update?
         permissions['manage_project_integrations'] = Administration::IntegrationPolicy.new(
-          object, Integration, project_id: instance_options[:project_id], campaign_id: instance_options[:campaign_id]
+          object, Integration, project_id: context[:project_id], campaign_id: context[:campaign_id]
         ).update?
         permissions['manage_project_security_settings'] = Administration::SecuritySettingPolicy.new(
-          object, SecuritySetting, project_id: instance_options[:project_id],
-          campaign_id: instance_options[:campaign_id]
+          object, SecuritySetting, project_id: context[:project_id],
+          campaign_id: context[:campaign_id]
         ).update?
         permissions['manage_design_settings'] = Administration::ClientPolicy.new(
-          object, DesignSetting, project_id: instance_options[:project_id]
+          object, DesignSetting, project_id: context[:project_id]
         ).design?
         permissions['manage_profile_settings'] = Administration::ClientPolicy.new(
-          object, ProfileSetting, project_id: instance_options[:project_id]
+          object, ProfileSetting, project_id: context[:project_id]
         ).profile?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end

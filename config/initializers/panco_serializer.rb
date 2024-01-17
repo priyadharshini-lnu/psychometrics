@@ -9,13 +9,12 @@ module Panko
 
     class << self
       alias old_inherited inherited
+      alias old_attributes attributes
 
       def inherited(subclass)
         old_inherited(subclass)
 
         subclass.instance_eval do
-          alias :old_attributes :attributes
-
           def attributes(*args)
             old_attributes(*args)
             declared_attributes = args.select { |a| a.is_a?(Symbol) || a.is_a?(String) }

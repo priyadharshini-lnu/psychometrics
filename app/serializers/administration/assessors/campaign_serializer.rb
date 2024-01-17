@@ -2,7 +2,7 @@
 
 module Administration
   module Assessors
-    class CampaignSerializer < ActiveModel::Serializer
+    class CampaignSerializer < Panko::Serializer
       attributes :id, :name, :start_date, :end_date, :status, :completion_status,
                  :completed_subject_count, :total_subject_count
 
@@ -21,7 +21,7 @@ module Administration
       private
 
       def subject_status_count
-        instance_options.dig(:subject_statuses_count, object.id) || { total: 0, completed: 0, in_progress: 0 }
+        context.dig(:subject_statuses_count, object.id) || { total: 0, completed: 0, in_progress: 0 }
       end
     end
   end

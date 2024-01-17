@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class NavigationLinksSerializer < ActiveModel::Serializer
+  class NavigationLinksSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     include ApplicationHelper
 
@@ -49,7 +49,7 @@ module Administration
 
     def policy(name)
       klass = "#{Array.wrap(name).map(&:to_s).map(&:camelize).join('::')}Policy".constantize
-      klass.new(object, nil, project_id: instance_options[:project_id])
+      klass.new(object, nil, project_id: context[:project_id])
     end
 
     def current_user

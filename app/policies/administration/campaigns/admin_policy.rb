@@ -42,10 +42,6 @@ module Administration
         manage_admins?
       end
 
-      def find_or_create_user?
-        manage_admins?
-      end
-
       def reset_password?
         manage_admins?
       end

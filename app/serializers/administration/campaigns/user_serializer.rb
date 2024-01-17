@@ -2,18 +2,18 @@
 
 module Administration
   module Campaigns
-    class UserSerializer < ActiveModel::Serializer
+    class UserSerializer < Panko::Serializer
       attributes :id, :first_name, :last_name, :email, :full_name, :created_by, :updated_by,
                  :created_at, :updated_at, :locale, :active, :completion_status,
-                 :status, :permissions
+                 :status, :permissions, :started_at, :completed_at
 
       delegate :active, :completion_status, :status, to: :campaign_user
 
-      attribute :started_at do
+      def started_at
         campaign_user&.started_at && I18n.l(campaign_user&.started_at, format: :short)
       end
 
-      attribute :completed_at do
+      def completed_at
         campaign_user&.completed_at && I18n.l(campaign_user&.completed_at, format: :short)
       end
 
@@ -29,8 +29,8 @@ module Administration
             %w[remove destroy]
           ],
           {
-            project_id: instance_options[:project_id],
-            campaign_id: instance_options[:campaign_id]
+            project_id: context[:project_id],
+            campaign_id: context[:campaign_id]
           }
         )
       end
@@ -56,13 +56,13 @@ module Administration
       end
 
       def campaign_user
-        object.campaign_users.find { |cu| cu.campaign_id == @instance_options[:campaign_id] }
+        object.campaign_users.find { |cu| cu.campaign_id == context[:campaign_id] }
       end
 
       private
 
       def current_user
-        instance_options[:current_user]
+        context[:current_user]
       end
     end
   end

@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
 module Administration
-  class UserDetailSerializer < ActiveModel::Serializer
+  class UserDetailSerializer < Panko::Serializer
     attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :campaigns, :started_at,
-               :completion_status, :status, :additional_time, :active, :hogan_id, :permissions, :completed_at
-
-    has_many :user_assessments, serializer: Administration::UserAssessmentSerializer
-    has_many :user_reports, serializer: Administration::UserReportSerializer
-    has_many :proctoring_sessions, serializer: Administration::ProctoringSessionSerializer
+               :completion_status, :status, :additional_time, :active, :hogan_id, :permissions, :completed_at,
+               :proctoring_sessions, :user_assessments, :user_reports
 
     delegate :active, :completion_status, :additional_time, to: :campaign_user
 
@@ -56,16 +53,37 @@ module Administration
       if current_user.has_permission?(:assessors, :view, campaign_id: campaign.id)
         query
       else
-        query.where.not(relationship_id: Relationship.assessor_relationship.id)
+        query = query.where.not(relationship_id: Relationship.assessor_relationship.id)
       end
+      Panko::ArraySerializer.new(
+        query,
+        each_serializer: Administration::UserAssessmentSerializer,
+        context: {
+          current_user: current_user,
+          campaign: campaign
+        }
+      ).to_a
     end
 
     def user_reports
-      object.user_reports.where(campaign: campaign).includes(:report, :report_family)
+      user_reports = object.user_reports.where(campaign: campaign).includes(:report, :report_family)
+      Panko::ArraySerializer.new(
+        user_reports,
+        each_serializer: Administration::UserReportSerializer,
+        context: {
+          current_user: current_user,
+          campaign: campaign
+        }
+      ).to_a
     end
 
     def proctoring_sessions
-      campaign_user.proctoring_sessions.order(started_at: :desc)
+      proctoring_sessions = campaign_user.proctoring_sessions.order(started_at: :desc)
+
+      Panko::ArraySerializer.new(
+        proctoring_sessions,
+        each_serializer: Administration::ProctoringSessionSerializer
+      ).to_a
     end
 
     def permissions
@@ -93,7 +111,11 @@ module Administration
     private
 
     def campaign
-      @instance_options[:campaign]
+      context[:campaign]
+    end
+
+    def current_user
+      context[:current_user]
     end
 
     def campaign_user

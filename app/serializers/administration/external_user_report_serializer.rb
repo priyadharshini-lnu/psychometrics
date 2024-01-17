@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class ExternalUserReportSerializer < ActiveModel::Serializer
+  class ExternalUserReportSerializer < Panko::Serializer
     attributes :id, :report_name, :user_id, :user_email, :pdf_url, :can_download_report
 
     def report_name

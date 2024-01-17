@@ -8,13 +8,15 @@ class Assessors::UsersController < Administration::BaseController
   def index
     users = user_scope.ransack(params[:filters]).result
     paginated_users = users.page(params[:page])
-    serialized_users = ActiveModelSerializers::SerializableResource.new(
+    serialized_users = Panko::ArraySerializer.new(
       paginated_users, each_serializer: Administration::Assessors::UserSerializer,
-      current_user: current_user, project_id: campaign.project_id,
-      evaluations_count: ::Assessors::SubjectEvaluationsCount.call!(
-        paginated_users.pluck(:id), current_user, params[:campaign_id]
-      )
-    )
+      context: {
+        current_user: current_user, project_id: campaign.project_id,
+        evaluations_count: ::Assessors::SubjectEvaluationsCount.call!(
+          paginated_users.pluck(:id), current_user, params[:campaign_id]
+        )
+      }
+    ).to_a
 
     render json: {
       list: serialized_users,
@@ -25,16 +27,22 @@ class Assessors::UsersController < Administration::BaseController
   def show
     user_assessments = UserAssessment.where(evaluator: current_user, subject: @user, campaign_id: params[:campaign_id])
     user_reports = UserReport.assessor_report_for_campaign(params[:campaign_id]).where(user_id: @user.id)
-    serialized_user_assessments = ActiveModelSerializers::SerializableResource.new(
+    serialized_user_assessments = Panko::ArraySerializer.new(
       user_assessments, each_serializer: Administration::Assessors::UserAssessmentSerializer,
-      project_id: campaign.project_id
-    )
-    serialized_user_reports = ActiveModelSerializers::SerializableResource.new(
+      context: {
+        project_id: campaign.project_id
+      }
+    ).to_a
+    serialized_user_reports = Panko::ArraySerializer.new(
       user_reports, each_serializer: Administration::Assessors::UserReportSerializer
-    )
+    ).to_a
     render json: {
-      user: Administration::Assessors::UserSerializer.new(@user, current_user: current_user,
-        project_id: campaign.project_id).to_h,
+      user: Administration::Assessors::UserSerializer.new(
+        context: {
+          current_user: current_user,
+          project_id: campaign.project_id
+        }
+      ).serialize(@user),
       user_assessments: serialized_user_assessments,
       user_reports: serialized_user_reports
     }

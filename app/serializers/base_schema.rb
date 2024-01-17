@@ -32,6 +32,8 @@ class BaseSchema
   end
 
   def self.whitelisted_schemas
-    [UsersResultSchema, ::Api::V1::ResultSchema, EndUser::CurrentUserSchema, AssessorScoresSchema]
+    [UsersResultSchema, ::Api::V1::ResultSchema, ::Administration::DetailsDatasheetRowSchema, AuditLogSchema,
+     ActiveRecordAuditSchema, UsersResultSchema, ::Api::V1::ResultSchema, EndUser::CurrentUserSchema,
+     AssessorScoresSchema]
   end
 end

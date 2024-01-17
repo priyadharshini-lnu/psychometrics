@@ -155,10 +155,10 @@ subject_assessor_assessments" do
             'assessor_user_assessment_id' => user_assessment.id,
             'status' => user_assessment.status,
             'schedule_time' => user_assessment.schedule_time,
-            'meeting_type' => nil,
+            'meeting_type' => user_assessment.meeting_type,
             'meeting_link' => user_assessment.meeting_link,
             'linked_activity' => campaign_assessment.assessment.linked_assessment&.name,
-            'subject_linked_activity_present' => false,
+            'subject_linked_activity_present' => true,
             'assessor' => {
               'id' => user_assessment.evaluator.id.to_s,
               'name' => user_assessment.evaluator.name,

@@ -92,24 +92,6 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
     expect(response.status).to eq(200)
   end
 
-  it 'find_or_create_user' do
-    params = {
-      new_campaign_id: campaign.id,
-      project_id: campaign.project_id,
-      email: 'email@user.com'
-    }
-
-    get :find_or_create_user, params: params, format: :json
-
-    parsed_response = JSON.parse(response.body)
-
-    expect(parsed_response['email']).to eq(params[:email])
-
-    expect(parsed_response['grants']['data']).to eq(User::DEFAULT_CAMPAIGN_ADMIN_GRANTS)
-
-    expect(response.status).to eq(200)
-  end
-
   it 'create' do
     post :create, params: resource_params
 

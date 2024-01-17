@@ -9,13 +9,15 @@ module Administration
         def index
           user_assessments = assessor.user_assessments.where(campaign_id: assessor.campaign_id).
                              ransack(params[:filters]).result
-          serialized_user_assessments = ActiveModelSerializers::SerializableResource.new(
+          serialized_user_assessments = Panko::ArraySerializer.new(
             user_assessments.page(params[:page]),
             each_serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
-            current_user: current_user,
-            project_id: campaign.project_id,
-            campaign_id: campaign.id
-          )
+            context: {
+              current_user: current_user,
+              project_id: campaign.project_id,
+              campaign_id: campaign.id
+            }
+          ).to_a
 
           render json: { list: serialized_user_assessments, total: user_assessments.count }
         end
@@ -25,8 +27,13 @@ module Administration
                  with_context(campaign: campaign, assessor: assessor)
           if form.valid?
             user_assessment = ::Assessors::UserAssessments::Create.call!(form)
-            render json: user_assessment, serializer: ::Administration::Campaigns::Assessors::UserAssessmentSerializer,
-                   project_id: campaign.project_id, campaign_id: campaign.id
+            render json: ::Administration::Campaigns::Assessors::UserAssessmentSerializer.new(
+              context: {
+                project_id: campaign.project_id,
+                campaign_id: campaign.id,
+                current_user: current_user
+              }
+            ).serialize(user_assessment)
           else
             render json: { errors: form.errors.messages }, status: 422
           end

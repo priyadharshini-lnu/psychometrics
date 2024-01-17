@@ -9,16 +9,12 @@ class UsersResultSerializer < Panko::Serializer
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
              :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled,
              :privacy_consent_required, :other_pending_assessments_count, :prework, :relationship, :campaign_options,
-             :media_responses
+             :media_responses, :participant, :campaign_user, :user
 
-  has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
-  has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
-
-  has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
 
   delegate :reset_count, :started_at, :prework, :other_pending_assessments_count, to: :user_assessment
-  delegate :remaining_campaign_time, to: :campaign_user, allow_nil: true
+  delegate :remaining_campaign_time, to: :current_campaign_user, allow_nil: true
 
   def campaign_options
     ::EndUser::CampaignOptionsSerializer.new(campaign_options: campaign.campaign_options).
@@ -34,7 +30,7 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def proctoring_enabled
-    campaign_user&.proctoring_enabled?
+    current_campaign_user&.proctoring_enabled?
   end
 
   def remaining_assessment_time
@@ -65,16 +61,16 @@ class UsersResultSerializer < Panko::Serializer
     user_assessment.expired?
   end
 
-  def campaign_user
+  def current_campaign_user
     campaign.campaign_users.find_by(user_id: current_user.id) if current_user
   end
 
   def user_assessment_id
-    participant&.id
+    current_participant&.id
   end
 
   def available_translations
-    participant&.available_locales || ['en']
+    current_participant&.available_locales || ['en']
   end
 
   def translations
@@ -108,7 +104,7 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def user
-    object.evaluator
+    UserSerializer.new.serialize(object.evaluator)
   end
 
   def user_id
@@ -116,7 +112,7 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def relationship
-    return participant&.relationship&.name if object.assessment.threesixty?
+    return current_participant&.relationship&.name if object.assessment.threesixty?
 
     'Self'
   end
@@ -129,8 +125,8 @@ class UsersResultSerializer < Panko::Serializer
     campaign.datasheet_data(object.subject.email)
   end
 
-  def participant
-    @participant ||= context[:participant]
+  def current_participant
+    @current_participant ||= context[:participant]
   end
 
   def highlights
@@ -146,6 +142,14 @@ class UsersResultSerializer < Panko::Serializer
       object.media_responses.order(:created_at),
       each_serializer: MediaResponseSerializer
     ).to_a
+  end
+
+  def campaign_user
+    ::EndUser::CampaignUserSerializer.new(context: {}).serialize(current_campaign_user)
+  end
+
+  def participant
+    Threesixty::EndUser::ParticipantSerializer.new.serialize(current_participant)
   end
 
   private

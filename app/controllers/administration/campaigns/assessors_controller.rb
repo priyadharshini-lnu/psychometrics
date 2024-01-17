@@ -9,6 +9,7 @@ module Administration
         assessors = campaign.assessors.ransack(params[:filters]).result
         paginated_assessors = assessors.page(params[:page])
 
+        # rubocop:disable Metrics/BlockLength
         respond_to do |format|
           format.csv do
             user_assessment_by_subject_and_evaluator = UserAssessment.includes(:subject, :evaluator, :relationship).
@@ -25,17 +26,20 @@ module Administration
             }
           end
           format.json do
-            serialized_assessors = ActiveModelSerializers::SerializableResource.new(
+            serialized_assessors = Panko::ArraySerializer.new(
               paginated_assessors,
               each_serializer: Administration::Campaigns::AssessorSerializer,
-              current_user: current_user,
-              campaign_id: campaign.id,
-              project_id: campaign.project_id,
-              evalutions_count: ::Assessors::EvaluationsCount.call!(paginated_assessors.pluck(:user_id), campaign)
-            )
+              context: {
+                current_user: current_user,
+                campaign_id: campaign.id,
+                project_id: campaign.project_id,
+                evalutions_count: ::Assessors::EvaluationsCount.call!(paginated_assessors.pluck(:user_id), campaign)
+              }
+            ).to_a
             render json: { list: serialized_assessors, total: assessors.count, permissions: permissions }
           end
         end
+        # rubocop:enable Metrics/BlockLength
       end
 
       def permissions
@@ -90,9 +94,11 @@ module Administration
       end
 
       def show
-        render json: resource.user,
-               serializer: Administration::Assessors::UserSerializer,
-               project_id: campaign.project_id, campaign_id: campaign.id
+        render json: Administration::Assessors::UserSerializer.new(
+          context: {
+            project_id: campaign.project_id, campaign_id: campaign.id, current_user: current_user
+          }
+        ).serialize(resource.user)
       end
 
       def create

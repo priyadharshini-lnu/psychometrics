@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 module Administration
-  class DetailsDatasheetRowSerializer < ActiveModel::Serializer
+  class DetailsDatasheetRowSerializer < Panko::Serializer
     attributes :record, :type, :columns
+
+    def columns
+      object.datasheet.columns
+    end
 
     def record
       SheetRows::GetData.call!(object, datasheet: datasheet)

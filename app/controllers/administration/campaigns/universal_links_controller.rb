@@ -15,17 +15,35 @@ module Administration
 
       def enable
         campaign_assessment = ::Assessments::UniversalLink::Enable.call!(campaign, assessment)
-        render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
+        render json: ::Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       def update
         campaign_assessment = ::Assessments::UniversalLink::Update.call!(campaign, assessment, params)
-        render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
+        render json: ::Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       def regenerate
         campaign_assessment = ::Assessments::UniversalLink::Generate.call!(campaign, assessment)
-        render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
+        render json: ::Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       private

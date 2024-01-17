@@ -2,20 +2,20 @@
 
 module Administration
   module Campaigns
-    class OtherReportSerializer < ActiveModel::Serializer
+    class OtherReportSerializer < Panko::Serializer
       attributes :id, :name, :permissions
 
       def permissions
         GetPermissionsHash.call!(
           Administration::CampaignReportPolicy,
-          instance_options[:current_user],
+          context[:current_user],
           object,
           [
             'export'
           ],
           {
-            project_id: instance_options[:project_id],
-            campaign_id: instance_options[:campaign_id]
+            project_id: context[:project_id],
+            campaign_id: context[:campaign_id]
           }
         )
       end

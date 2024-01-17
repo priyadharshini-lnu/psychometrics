@@ -24,10 +24,12 @@ module Administration
           context: {
             participant: @participant, campaign: threesixty_campaign,
             current_user: current_user, locale: @selected_locale,
-            piped_text_context: piped_text_context, read_only: true,
+            piped_text_context: piped_text_context,
+            read_only: true,
             include: '**'
           }
         ).serialize(@users_result)
+
         @assessment = ::AssessmentSerializer.new(
           threesixty_campaign.assessment,
           piped_text_context: piped_text_context

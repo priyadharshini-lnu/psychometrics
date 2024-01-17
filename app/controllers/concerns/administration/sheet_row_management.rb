@@ -36,12 +36,11 @@ module Administration
 
     def show
       resource_datasheet = resource.sheet
-      response = [Administration::DetailsDatasheetRowSerializer.new(resource).to_h]
+      response = [Administration::DetailsDatasheetRowSerializer.new.serialize(resource)]
       return render json: response unless resource.sheet.campaign_id?
 
       project_row = resource_datasheet.campaign.project.sheets.first&.rows&.find_by(email: resource.email)
-      response << Administration::DetailsDatasheetRowSerializer.new(project_row).to_h if project_row
-
+      response << Administration::DetailsDatasheetRowSerializer.new.serialize(project_row) if project_row
       render json: response
     end
 

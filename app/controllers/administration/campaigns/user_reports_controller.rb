@@ -16,8 +16,12 @@ module Administration
         if form.valid?
           ::Campaigns::UserReports::Add.call(form, campaign_user, current_user) do
             on(:ok) do
-              render json: campaign_user.user, serializer: Administration::UserDetailSerializer,
-                     campaign: campaign_user.campaign
+              render json: Administration::UserDetailSerializer.new(
+                context: {
+                  campaign: campaign_user.campaign,
+                  current_user: current_user
+                }
+              ).serialize(campaign_user.user)
             end
             on(:error) { |errors| return render json: { errors: errors }, status: 422 }
           end
@@ -34,7 +38,12 @@ module Administration
         audit! :delete, resource, payload: resource.log_attributes, campaign: resource.campaign
         resource.destroy!
 
-        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
+        render json: Administration::UserDetailSerializer.new(
+          context: {
+            campaign: resource.campaign,
+            current_user: current_user
+          }
+        ).serialize(resource.user)
       end
 
       def start_qc

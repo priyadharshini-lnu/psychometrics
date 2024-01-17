@@ -10,7 +10,7 @@ module Administration
         if form.valid?
           project.security_setting.update(form.attributes)
           audit! :update, project.security_setting, payload: resource_params
-          render json: project.security_setting, serializer: ::Administration::Projects::SecuritySettingSerializer
+          render json: ::Administration::Projects::SecuritySettingSerializer.new.serialize(project.security_setting)
         else
           render json: { errors: form.errors.messages }, status: 422
         end

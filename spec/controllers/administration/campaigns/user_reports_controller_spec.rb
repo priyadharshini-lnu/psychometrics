@@ -221,8 +221,8 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   private
 
   def check_report_response(report_response)
-    expect(report_response.keys).to eq(
-      %w[id permissions report_id name user_access report_family_name status internal report_url]
+    expect(report_response.keys).to contain_exactly(
+      *%w[id permissions report_id name user_access report_family_name status internal report_url]
     )
     expect(report_response).to include({
       'report_id' => report.id,
@@ -236,8 +236,8 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   end
 
   def check_assessment_response(assessment_response)
-    expect(assessment_response.keys).to eq(
-      %w[
+    expect(assessment_response.keys).to contain_exactly(
+      *%w[
         id permissions assessment_id name category norm_name status norms norm_id
         additional_time is_expired is_external has_external_norm schedule_time require_scheduling
       ]
