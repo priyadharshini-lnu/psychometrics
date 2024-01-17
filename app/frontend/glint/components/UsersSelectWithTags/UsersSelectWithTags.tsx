@@ -24,7 +24,7 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
   const autoCompleteProps = _.omit(props, ['value'])
 
   useEffect(() => {
-    const valueSelected = value ? value.map(id => users.find(user => user.id === id)) : null
+    const valueSelected = value ? value.map(id => users.find(user => user.id === id)).filter(user => user) : null
     if (valueSelected) {
       setSelectedUsers(valueSelected)
     }
