@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { Button, Card } from 'antd'
+import React, { FC, useEffect } from 'react'
+import { Button, Card, Tooltip } from 'antd'
 import { CloseOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 
@@ -27,26 +27,44 @@ export const UserInfoCard: FC<SubjectCardProps> = ({
   onRemove,
   bordered = true,
   transparent,
-}) => (
-  <Card
-    bordered={bordered}
-    className={cs({ [styles.userInfoCard]: true, [styles.transparent]: transparent })}
-    bodyStyle={{ padding: '1rem', paddingRight: '3rem' }}
-  >
-    {onRemove ? (
-      <Button
-        type="text"
-        data-testid={`remove-userinfo-${id}`}
-        className={styles.remove}
-        icon={<CloseOutlined />}
-        onClick={() => onRemove(id || '')}
+}) => {
+  const descrptionRef = React.useRef<HTMLDivElement>(null)
+  const [descriptionOverflowing, setDescriptionOverflowing] = React.useState(false)
+
+  useEffect(() => {
+    setDescriptionOverflowing(descrptionRef.current
+      ? descrptionRef.current.scrollWidth > descrptionRef.current.clientWidth : false)
+  }, [email])
+
+  return (
+    <Card
+      bordered={bordered}
+      className={cs({ [styles.userInfoCard]: true, [styles.transparent]: transparent })}
+      bodyStyle={{ padding: '1rem' }}
+    >
+      {onRemove ? (
+        <Button
+          type="text"
+          data-testid={`remove-userinfo-${id}`}
+          className={styles.remove}
+          icon={<CloseOutlined />}
+          onClick={() => onRemove(id || '')}
+        />
+      ) : null}
+      <Card.Meta
+        className={styles.meta}
+        avatar={<ResourceAvatar name={nameText} size="large" src={avatarUrl} />}
+        title={nameLabel}
+        description={(
+          <>
+            {descriptionOverflowing ? (
+              <Tooltip placement="rightBottom" title={email}>
+                <div ref={descrptionRef} className={styles.description}>{email}</div>
+              </Tooltip>
+            ) : <div ref={descrptionRef} className={styles.description}>{email}</div>}
+          </>
+        )}
       />
-    ) : null}
-    <Card.Meta
-      className={styles.meta}
-      avatar={<ResourceAvatar name={nameText} size="large" src={avatarUrl} />}
-      title={nameLabel}
-      description={email}
-    />
-  </Card>
-)
+    </Card>
+  )
+}
