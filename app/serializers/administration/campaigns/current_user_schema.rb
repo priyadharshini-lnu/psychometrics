@@ -25,6 +25,8 @@ module Administration
               optional(:sms_invites).filled(:array).each(:str?)
               optional(:communications).filled(:array).each(:str?)
               optional(:registration_codes).filled(:array).each(:str?)
+              optional(:dashboards).filled(:array).each(:str?)
+              optional(:project_settings).filled(:array).each(:str?)
             end
           end
           required(:role).filled(:str?)
