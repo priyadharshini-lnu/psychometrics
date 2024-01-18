@@ -32,7 +32,8 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'permissions' => {
           'add_subject' => false,
           'remove_subject' => false
-        }
+        },
+        'assessor_can_moderate_scores' => false
       }])
     end
   end
@@ -52,7 +53,8 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'permissions' => {
           'add_subject' => false,
           'remove_subject' => false
-        }
+        },
+        'assessor_can_moderate_scores' => false
       })
     end
 

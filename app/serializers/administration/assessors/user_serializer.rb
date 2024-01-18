@@ -3,7 +3,8 @@
 module Administration
   module Assessors
     class UserSerializer < Panko::Serializer
-      attributes :id, :email, :full_name, :total_evaluations, :completed_evaluations, :completion_status, :permissions
+      attributes :id, :email, :full_name, :total_evaluations, :completed_evaluations, :completion_status, :permissions,
+                 :assessor_can_moderate_scores
 
       def full_name
         object.decorate.full_name
@@ -19,6 +20,10 @@ module Administration
 
       def completed_evaluations
         evaluation_count[:completed]
+      end
+
+      def assessor_can_moderate_scores
+        ::Users::GetLeadAssessor.call!(context[:campaign], object) == current_user
       end
 
       def permissions

@@ -738,6 +738,7 @@ en:
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Click here to continue
+      moderate: Moderate Scores
       next_assessment: Pass To Next Assessment
       pending_tasks:
         one: You have one 1 pending task

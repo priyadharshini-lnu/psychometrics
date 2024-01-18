@@ -40,7 +40,8 @@ class Assessors::UsersController < Administration::BaseController
       user: Administration::Assessors::UserSerializer.new(
         context: {
           current_user: current_user,
-          project_id: campaign.project_id
+          project_id: campaign.project_id,
+          campaign: campaign
         }
       ).serialize(@user),
       user_assessments: serialized_user_assessments,

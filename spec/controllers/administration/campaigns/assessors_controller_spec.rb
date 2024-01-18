@@ -94,7 +94,8 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
         'permissions' => {
           'add_subject' => true,
           'remove_subject' => true
-        }
+        },
+        'assessor_can_moderate_scores' => false
       })
     end
   end

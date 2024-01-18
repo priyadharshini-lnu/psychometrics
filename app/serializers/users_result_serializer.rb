@@ -145,7 +145,7 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def campaign_user
-    ::EndUser::CampaignUserSerializer.new(context: {}).serialize(current_campaign_user)
+    ::EndUser::CampaignUserSerializer.new(context: {}).serialize(current_campaign_user) if current_campaign_user
   end
 
   def participant

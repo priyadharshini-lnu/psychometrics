@@ -5,6 +5,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
   Table, Row, Col, Button,
+  Space,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { getCurrent, fetchSingle } from '~/modules/admin/modules/AssessorApp/core/users'
@@ -76,13 +77,23 @@ const UserDetails: React.FC<Props> = (
         <Row justify="space-between" align="middle">
           <Col><h3>{I18n.t('common.model.assessments')}</h3></Col>
           <Col>
-            <Button type="primary">
-              <a href={`/assessors/campaigns/${campaignId}/evaluations/${user.id}${status === 'completed' ? '?edit=true' : ''}`}>
-                {status === 'completed'
-                  ? I18n.t('assessments.actions.reevaluate')
-                  : I18n.t('assessments.actions.evaluate') }
-              </a>
-            </Button>
+            <Space>
+              <Button type="primary">
+                <a href={`/assessors/campaigns/${campaignId}/evaluations/${user.id}${status === 'completed' ? '?edit=true' : ''}`}>
+                  {status === 'completed'
+                    ? I18n.t('assessments.actions.reevaluate')
+                    : I18n.t('assessments.actions.evaluate') }
+                </a>
+              </Button>
+              {user.assessorCanModerateScores
+                && (
+                <Button type="primary">
+                  <a href={`/assessors/campaigns/${campaignId}/moderate_scoring/${user.id}`}>
+                    {I18n.t('assessments.actions.moderate')}
+                  </a>
+                </Button>
+                )}
+            </Space>
           </Col>
         </Row>
         <Row>

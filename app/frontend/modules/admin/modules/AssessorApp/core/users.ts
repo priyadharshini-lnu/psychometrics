@@ -26,6 +26,7 @@ const SingleUserTR = t.type({
   id: t.number,
   email: t.string,
   fullName: t.string,
+  assessorCanModerateScores: t.boolean,
 })
 export type SingleUser = t.TypeOf<typeof SingleUserTR>
 

@@ -287,6 +287,8 @@ const ScoringTable: React.FC = () => {
     })),
   ]
 
+  if (columnsData.length === 0) return null
+
   return (
     <div className={styles.container}>
       <h3 className={styles.header}>{I18n.t('administration.scoring.scoring')}</h3>
