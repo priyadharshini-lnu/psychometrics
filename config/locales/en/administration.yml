@@ -4018,6 +4018,7 @@ en:
       add_factor: Add Factor
       add_group: Add Group
       assessment: Assessment
+      assessment_scoring_type: Assessment Scoring Type
       code: Code
       delete_group: Delete Group
       description: Description
@@ -4032,8 +4033,17 @@ en:
         years: Years
       public: Public
       save: Save
+      score_types:
+        norm_score: Norm Score
+        percentage: Percentage
+        percentile: Percentile
+        score: Score
+        zscore: Z Score
       scoring: Scoring
       scoring_description: Campaign Scoring allows reporting accross assessments
+      select_assessment: Select Assessment or Diminsion
+      select_assessment_first: Select Assessment First
+      select_factor: Select Factor
       type: Type
     search: Search
     security_setting:

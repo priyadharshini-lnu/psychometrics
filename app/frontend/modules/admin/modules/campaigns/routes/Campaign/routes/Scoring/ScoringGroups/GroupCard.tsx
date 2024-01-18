@@ -18,7 +18,7 @@ export type CampaignFactorGroup = {
 type Props = {
   group: CampaignFactorGroup
   removeGroup: (groupId: string) => void
-  addFactor: (groupId: string) => void
+  addFactor: (groupId: string) => Promise<void> | void
   hasFactors: boolean
   onGroupNameChange?: (value: string, group: CampaignFactorGroup) => void
   sortId?: string
@@ -88,7 +88,7 @@ type GroupCardSortableProps = {
   items: string[]
   hasFactors: boolean
   removeGroup: (groupId: string) => void
-  addFactor: (groupId: string) => void
+  addFactor: (groupId: string) => Promise<void> | void
   children?: React.ReactNode
   onGroupNameChange?: (value: string, group: CampaignFactorGroup) => void
   groupsCount: number

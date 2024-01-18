@@ -92,7 +92,7 @@ module Api
         data: data.map do |record|
           {
             type: type,
-            id: record['id'],
+            id: record['id'].to_s,
             attributes: record
           }
         end

@@ -40,7 +40,7 @@ export type OwnProps = {
   readableResourceName?: string
   requestScope?: string
   resource?: Resource
-  resourceId?: number
+  resourceId?: number | string
   request?: Partial<Request>
   submitRequest?: (values: object) => Promise<unknown>
   showSuccessMessages?: boolean

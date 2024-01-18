@@ -25,10 +25,16 @@ module Api
 
         def self.create_attributes(attribute)
           proc do
+            attribute[:code].filled(:string)
+            attribute[:name].filled(:string)
+            attribute[:output_type].filled(:string)
             attribute[:position].filled(:integer)
-            attribute[:campaign_factor_group_id].filled(:integer)
-            attribute[:factor_type].filled(:string)
+            attribute[:factor_type].filled(:string, included_in?: ::CampaignFactor.factor_types.keys)
             attribute[:public_visibility].filled(:bool)
+
+            optional(:assessment_score_type).maybe(:string, included_in?: ::CampaignFactor.assessment_score_types.keys)
+            optional(:assessment_id).maybe(:integer)
+            optional(:factor_id).maybe(:integer)
             optional(:description).maybe(:string)
           end
         end

@@ -25,7 +25,7 @@ type Props = {
   ref: LegacyRef<HTMLDivElement>
   style?: CSSProperties
   removeFactor: (factorId: string) => void
-  editFactor: (newData, factor: CampaignFactor) => void
+  editFactor: (newData, factor: CampaignFactor) => Promise<void> | void
 }
 
 export const Factor = React.forwardRef(
@@ -75,7 +75,7 @@ type FactorSortableProps = {
   sortId: string
   factor: CampaignFactor
   removeFactor: (factorId: string) => void
-  editFactor: (newData, factor: CampaignFactor) => void
+  editFactor: (newData, factor: CampaignFactor) => Promise<void> | void
 }
 
 export const FactorSortable:FC<FactorSortableProps> = ({

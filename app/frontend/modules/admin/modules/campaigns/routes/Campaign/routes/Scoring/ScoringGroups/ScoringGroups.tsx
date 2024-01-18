@@ -313,12 +313,12 @@ export const ScoringGroups = () => {
       campaignFactorGroup: { id: currentGroupId },
     }
 
-    addCampaignFactor(newFactor).then(() => {
+    return addCampaignFactor(newFactor).then(() => {
       fetchAndUpdateFactors()
     })
   }
 
-  const handleEditFactor = (data, factor: CampaignFactor) => {
+  const handleEditFactor = (data, factor: CampaignFactor): Promise<void> => {
     const factorData = {
       ...data,
       id: factor.id,
@@ -328,7 +328,7 @@ export const ScoringGroups = () => {
       campaignFactorGroup: { id: factor.campaignFactorGroupId.toString() },
     }
 
-    updateCampaignFactor(factorData).then(() => {
+    return updateCampaignFactor(factorData).then(() => {
       fetchAndUpdateFactors()
     })
   }

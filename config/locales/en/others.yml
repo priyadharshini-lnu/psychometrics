@@ -1821,11 +1821,14 @@ en:
       filled?: can't be blank
       json?: Should be valid JSON
       key?: can't be blank
+      match_regexp?: invalid value
       missed?: can't be blank
       not_in_the_list?: invalid value passed
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
+      size?: size should be less %{size}
+      uniq?: should be unique
       update_workshop:
         less_than_booked: The total seats must be greater than booked
       user_availability_date:

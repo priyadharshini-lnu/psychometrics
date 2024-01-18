@@ -1229,6 +1229,8 @@ Rails.application.routes.draw do
               jsonapi_resources :campaign_assessments, only: %i[index]
             end
 
+            jsonapi_resources :campaign_assessments, only: %i[index]
+
             jsonapi_resources :workshop_subjects, only: %i[index] do
               member do
                 post :update_subject_details_and_assessments
@@ -1255,6 +1257,15 @@ Rails.application.routes.draw do
             jsonapi_resources :users, only: %i[index show], controller: 'campaigns/users' do
               member do
                 get :assessors_scores
+              end
+            end
+
+            jsonapi_resources :dimensions, controller: 'campaigns/dimensions' do
+              collection do
+                get :assessor_dimensions
+              end
+              member do
+                get :factors
               end
             end
 

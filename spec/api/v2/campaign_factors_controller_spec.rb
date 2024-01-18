@@ -89,7 +89,7 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
               type: 'campaign_factors',
               attributes: {
                 name: 'Factor', position: 1, campaign_factor_group_id: campaign_factor_group_id.to_i,
-                code: 'fact_code', factor_type: 'formula', public_visibility: true
+                code: 'fact_code', factor_type: 'formula', public_visibility: true, output_type: 'numeric'
               },
               relationships: {
                 campaign: { data: { type: 'campaigns', id: campaign_id.to_s } },

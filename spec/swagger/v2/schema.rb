@@ -377,6 +377,12 @@ module Swagger
           ),
           WorkshopUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.update_request
+          ),
+          DimensionListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dimension::Schema.multiple_resource_response
+          ),
+          FactorListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Factor::Schema.multiple_resource_response
           )
         }
       }

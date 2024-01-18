@@ -15,3 +15,12 @@ export const truncateWithStartEndCharCount = (str: string, start_length: number,
     `${str.substr(0, start_length)}...${str.substr(str.length - end_length)}`
   )
 }
+
+export const slugify = (str: string) => String(str)
+  .normalize('NFKD') // split accented characters into their base characters and diacritical marks
+  .replace(/[\u0300-\u036f]/g, '') // remove all the accents, which happen to be all in the \u03xx UNICODE block.
+  .trim() // trim leading or trailing whitespace
+  .toLowerCase() // convert to lowercase
+  .replace(/[^a-z0-9 -]/g, '') // remove non-alphanumeric characters
+  .replace(/\s+/g, '_') // replace spaces with hyphens
+  .replace(/-+/g, '_')
