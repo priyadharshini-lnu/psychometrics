@@ -3,11 +3,15 @@
 require 'rails_helper'
 
 describe Assessors::CreateOneForm do
+  let(:super_admin) { create(:superadmin) }
   let(:project) { create(:project) }
-
   let(:campaign) { create(:campaign, project: project) }
-  let(:assessment1) { create(:assessment, category: :assessor_form) }
-  let(:assessment2) { create(:assessment, category: :assessor_form) }
+  let(:assessment1) do
+    create(:assessment, category: :assessor_form, owner_id: project.parent.id, created_by: super_admin)
+  end
+  let(:assessment2) do
+    create(:assessment, category: :assessor_form, owner_id: project.parent.id, created_by: super_admin)
+  end
 
   it 'invalid emails' do
     form = described_class.new(subject_email: 'accc')
