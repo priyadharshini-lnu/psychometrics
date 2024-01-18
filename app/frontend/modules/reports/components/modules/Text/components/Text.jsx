@@ -220,7 +220,7 @@ class Text extends Component {
         if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
           const factorResults = ResultStore.results[assessmentId].campaignFactorResults
           const code = model.props.source.codes[0]
-          const value = factorResults && _.find(factorResults, { code })?.value
+          const value = factorResults && (_.find(factorResults, { code })?.value || '')
           textValue = `${LookupSourceName.call({}, code, 'CampaignFactors')}: ${value}`
           return (
             textValue
@@ -246,7 +246,7 @@ class Text extends Component {
       if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
         const code = model.props.source.codes[0]
         const factorResults = ResultStore.results[assessmentId].campaignFactorResults
-        const value = factorResults && _.find(factorResults, { code })?.value
+        const value = factorResults && (_.find(factorResults, { code })?.value || '')
         const textValue = `${LookupSourceName.call({}, code, 'CampaignFactors')}: ${value}`
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>

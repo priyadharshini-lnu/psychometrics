@@ -48,16 +48,14 @@ class UserReportSerializer < ActiveModel::Serializer
   end
 
   def campaign_factor_results
-    [
+    object.campaign.campaign_factor_values.where(
+      user_id: object.user_id, campaign_factors: { public_visibility: true }
+    ).includes(:campaign_factor).map do |cfv|
       {
-        code: 'overall1',
-        value: 9
-      },
-      {
-        code: 'wdfwe1sfsdf',
-        value: 4
+        code: cfv.campaign_factor.code,
+        value: cfv.value
       }
-    ]
+    end
   end
 
   def report_data

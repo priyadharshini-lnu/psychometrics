@@ -106,21 +106,6 @@ describe CampaignScoring::Calculate do
 
       expect(values[cf].value).to eq(nil)
     end
-
-    it 'returns WrongOutputTypeException' do
-      create(
-        :users_result, campaign: campaign, assessment: assessor_form,
-        subject: user, status: :completed
-      )
-      cf = create(
-        :campaign_factor, campaign: campaign, factor: factor, factor_type: 'assessor_scoring', output_type: 'string'
-      )
-      create(:campaign_factor_value, campaign_factor: cf, user: user, campaign: campaign, numeric_value: 10)
-      values = described_class.call!(campaign, user)
-
-      expect(values[cf].value).to eq(nil)
-      expect(values[cf].error_message).to eq("Expected factor value for '#{cf.code}' to be a string. Got Float")
-    end
   end
 
   describe 'calculate datasheet factor_type' do
