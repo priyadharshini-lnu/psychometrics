@@ -14,7 +14,7 @@ module Api
 
         rule(data: { attributes: :name }) do
           key.failure(:size?, size: 64) if value.length > 64
-          unless value.match?(::RegexConstants::SHEET_COLUMN_REGEX)
+          unless value.match?(::RegexConstants::LUA_VARIABLE)
             key.failure(:match_regexp?)
           end
         end

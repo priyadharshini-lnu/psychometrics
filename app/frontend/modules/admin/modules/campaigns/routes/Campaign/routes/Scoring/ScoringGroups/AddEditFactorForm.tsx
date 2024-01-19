@@ -295,14 +295,12 @@ export const AddEditFactorForm: FC<Props> = ({
       destroyOnClose
     >
       <ResourceForm
-        resourceName="memberships"
+        resourceName="campaign_factors"
         storeManager={{ form }}
         resource={editFactor ? factorData : undefined}
         resourceId={factorData?.id}
-        readableResourceName="Admin"
         formProps={{
           labelAlign: 'left',
-          id: 'edit_participant_form',
           preserve: false,
           initialValues,
         }}
@@ -312,7 +310,9 @@ export const AddEditFactorForm: FC<Props> = ({
           updateResource: editFactor,
         }}
         onSuccessfulSubmission={handleFormFinish}
-        transformValues={values => (_.omit(values, 'dimension_id'))}
+        transformValues={(values: FactorData) => ({
+          ..._.omit(values, 'dimension_id'), code: values.code || slugify(values.name),
+        })}
       >
         {() => (
           <>
