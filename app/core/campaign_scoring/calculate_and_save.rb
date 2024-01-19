@@ -13,7 +13,7 @@ module CampaignScoring
     end
 
     def call
-      return broadcast :campaign_scores_unchanged if campaign_user&.campaign_scores_finalized?
+      return broadcast :campaign_scores_unchanged if campaign_user.campaign_scores_finalized?
 
       indexed_factor_values = CampaignScoring::Calculate.call!(campaign, user)
       campaign_factor_values = indexed_factor_values.flat_map do |cf, factor_value|
@@ -26,7 +26,8 @@ module CampaignScoring
         campaign_factor_value.value = factor_value.value
         campaign_factor_value.save!
         campaign_factor_value
-      end.compact
+      end
+      campaign_user.update!(campaign_scores_finalized: true) if campaign_user.all_campaign_scores_present?
 
       broadcast :ok, campaign_factor_values, indexed_factor_values
     end

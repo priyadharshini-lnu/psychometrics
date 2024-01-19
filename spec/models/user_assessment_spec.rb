@@ -194,6 +194,7 @@ status: :in_progress)
     end
 
     it 'saves campaign scoring' do
+      create(:campaign_user, campaign: campaign, user: user)
       cf_factor1 = create(
         :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
         factor_type: 'assessment', assessment_score_type: 'score'

@@ -19,6 +19,7 @@ describe CampaignScoring::CalculateAndSave do
   end
 
   it 'saves campaign factor values' do
+    create(:campaign_user, campaign: campaign, user: user)
     datasheet = create(:datasheet, campaign: campaign)
     create(:sheet_row, email: user.email, sheet: datasheet, data: { 'Grade' => 'Senior', 'Previous Score' => 10 })
     cf_factor1 = create(
@@ -72,6 +73,7 @@ describe CampaignScoring::CalculateAndSave do
   end
 
   it "doesn't recompute already computed factor" do
+    create(:campaign_user, campaign: campaign, user: user)
     cf_factor1 = create(
       :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
       factor_type: 'assessment', assessment_score_type: 'score'
@@ -82,5 +84,27 @@ describe CampaignScoring::CalculateAndSave do
 
     indexed_campaign_factor_values = campaign_factor_values.index_by(&:campaign_factor_id)
     expect(indexed_campaign_factor_values[cf_factor1.id].value).to eq(10)
+  end
+
+  it 'mark campaign_scores_finalized if all scores were calculated' do
+    campaign_user = create(:campaign_user, campaign: campaign, user: user, campaign_scores_finalized: false)
+    create(
+      :campaign_factor, code: 'factor2', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: 'assessment', assessment_score_type: 'norm_score'
+    )
+    described_class.call!(campaign, user)
+
+    expect(campaign_user.reload.campaign_scores_finalized).to eq(true)
+  end
+
+  it 'does not mark campaign_scores_finalized if all scores were calculated' do
+    campaign_user = create(:campaign_user, campaign: campaign, user: user, campaign_scores_finalized: false)
+    create(
+      :campaign_factor, code: 'factor2', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: 'assessment', assessment_score_type: 'norm_score', output_type: 'string'
+    )
+    described_class.call!(campaign, user)
+
+    expect(campaign_user.reload.campaign_scores_finalized).to eq(false)
   end
 end

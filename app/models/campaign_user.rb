@@ -131,4 +131,8 @@ class CampaignUser < ApplicationRecord
 
     user_preworks_count['completed'] == user_preworks_count['total']
   end
+
+  def all_campaign_scores_present?
+    campaign.campaign_factor_values.count == campaign.campaign_factors.count
+  end
 end

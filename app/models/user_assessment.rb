@@ -101,6 +101,8 @@ class UserAssessment < ApplicationRecord
   alias result users_result
 
   def calculate_and_save_campaign_scoring
+    return unless campaign_user
+
     if self_assessment? || assessment.lead_assessor_form?
       CampaignScoring::CalculateAndSaveJob.perform_later(campaign, subject)
     end

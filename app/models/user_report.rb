@@ -83,6 +83,10 @@ class UserReport < ApplicationRecord
     end
   end
 
+  def campaign_user
+    CampaignUser.find_by(campaign_id: campaign_id, user_id: user_id)
+  end
+
   def start_approval!
     return ready! if not_ready? && has_approval_workflow?
   end
