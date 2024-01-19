@@ -38,6 +38,7 @@ export const ScoringGroups = () => {
   const [addGroup, setAddGroup] = useState(false)
   const [openAddEditFactor, setOpenAddEditFactor] = useState(false)
   const [currentGroupId, setCurrentGroupId] = useState<string>('')
+  const [currentFactor, setCurrentFactor] = useState<CampaignFactor | undefined>(undefined)
   const { campaignId } = useParams<{campaignId: string}>()
   const [factorGroupsLocalState, setFactorGroupsLocalState] = useState<CampaignFactorGroup[]>([])
   const [campaignFactorsLocalState, setCampaignFactorsLocalState] = useState<CampaignFactor[]>([])
@@ -137,6 +138,11 @@ export const ScoringGroups = () => {
     return Object.keys(prefixedGroupWithPrefixedFactorIds).find(
       key => prefixedGroupWithPrefixedFactorIds[key].includes(id),
     )
+  }
+
+  const handleOpenEditFactor = (factor: CampaignFactor) => {
+    setCurrentFactor(factor)
+    setOpenAddEditFactor(true)
   }
 
   const handleGroupDragnDrop = (activeId: string, overId: string) => {
@@ -318,14 +324,14 @@ export const ScoringGroups = () => {
     })
   }
 
-  const handleEditFactor = (data, factor: CampaignFactor): Promise<void> => {
+  const handleEditFactor = (data): Promise<void> => {
     const factorData = {
       ...data,
-      id: factor.id,
-      position: factor.position,
-      campaignFactorGroupId: factor.campaignFactorGroupId,
+      id: currentFactor?.id,
+      position: currentFactor?.position,
+      campaignFactorGroupId: currentFactor?.campaignFactorGroupId,
       campaign: { id: campaignId },
-      campaignFactorGroup: { id: factor.campaignFactorGroupId.toString() },
+      campaignFactorGroup: { id: currentFactor?.campaignFactorGroupId.toString() },
     }
 
     return updateCampaignFactor(factorData).then(() => {
@@ -430,12 +436,6 @@ export const ScoringGroups = () => {
             </Button>
           </Space>
         </Col>
-        <AddGroupForm addGroup={handleAddGroup} open={addGroup} onClose={() => setAddGroup(false)} />
-        <AddEditFactorForm
-          addFactor={handleAddFactor}
-          open={openAddEditFactor}
-          onClose={() => setOpenAddEditFactor(false)}
-        />
       </Row>
       {sortedGroups.length === 0
         ? (
@@ -495,7 +495,7 @@ export const ScoringGroups = () => {
                               sortId={`factor_${factor.id}`}
                               factor={factor}
                               removeFactor={handleRemoveFactor}
-                              editFactor={handleEditFactor}
+                              onEditFactor={handleOpenEditFactor}
                             />
                           ))}
                         </Space>
@@ -527,7 +527,7 @@ export const ScoringGroups = () => {
                         key={factor.id}
                         factor={factor}
                         removeFactor={() => {}}
-                        editFactor={() => {}}
+                        onEditFactor={() => {}}
                       />
                     ))}
                   </GroupCard>
@@ -537,7 +537,7 @@ export const ScoringGroups = () => {
                       .find(factor => factor.id === getItemIdFromSortingId(activeId).toString())
                       || {} as CampaignFactor}
                     removeFactor={() => {}}
-                    editFactor={() => {}}
+                    onEditFactor={() => {}}
                   />
                 )
               ) : null
@@ -547,6 +547,17 @@ export const ScoringGroups = () => {
           )}
         </DndContext>
       ) : null}
+      <AddGroupForm addGroup={handleAddGroup} open={addGroup} onClose={() => setAddGroup(false)} />
+      <AddEditFactorForm
+        addFactor={handleAddFactor}
+        open={openAddEditFactor}
+        onClose={() => {
+          setOpenAddEditFactor(false)
+          setCurrentFactor(undefined)
+        }}
+        factorData={currentFactor}
+        editFactor={handleEditFactor}
+      />
     </Flex>
   )
 }

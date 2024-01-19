@@ -4032,6 +4032,7 @@ en:
       profile:
         years: Years
       public: Public
+      required_error: Can't be empty
       save: Save
       score_types:
         norm_score: Norm Score

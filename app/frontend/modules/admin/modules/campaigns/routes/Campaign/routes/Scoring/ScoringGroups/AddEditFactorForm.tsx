@@ -280,14 +280,19 @@ export const AddEditFactorForm: FC<Props> = ({
     />
   )
 
+  const handleClose = () => {
+    form.resetFields()
+    onClose()
+  }
+
   return (
     <Drawer
-      destroyOnClose
       closeIcon={<DirectionalNavigateBackIcon />}
       title={I18n.t('administration.scoring.add_factor')}
       open={open}
-      onClose={onClose}
       width="70%"
+      onClose={handleClose}
+      destroyOnClose
     >
       <ResourceForm
         resourceName="memberships"

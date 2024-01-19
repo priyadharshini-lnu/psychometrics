@@ -9,6 +9,8 @@ import {
 import { DragOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 
+import styles from './GroupCard.less'
+
 export type CampaignFactorGroup = {
   id: string
   name: string
@@ -51,7 +53,9 @@ export const GroupCard = React.forwardRef(
               onChange: (value) => { onGroupNameChange && onGroupNameChange(value, group) },
               tooltip: I18n.t('assessments_reports.sequencing.edit_group_name'),
               maxLength: 40,
+              triggerType: ['icon', 'text'],
             }}
+            className={styles.editableText}
           >
             {group.name}
           </Typography.Text>

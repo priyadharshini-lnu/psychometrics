@@ -7,8 +7,6 @@ import { CSS } from '@dnd-kit/utilities'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 import { MenuOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
-import { AddEditFactorForm } from './AddEditFactorForm'
-
 export type CampaignFactor = {
   position: number,
   name: string,
@@ -25,19 +23,13 @@ type Props = {
   ref: LegacyRef<HTMLDivElement>
   style?: CSSProperties
   removeFactor: (factorId: string) => void
-  editFactor: (newData, factor: CampaignFactor) => Promise<void> | void
+  onEditFactor: (factor: CampaignFactor) => Promise<void> | void
 }
 
 export const Factor = React.forwardRef(
   ({
-    factor, attributes, listeners, dragStyle, style, removeFactor, editFactor,
+    factor, attributes, listeners, dragStyle, style, removeFactor, onEditFactor,
   }: Props, ref:RefObject<HTMLDivElement>) => {
-    const [openEditFactor, setOpenEditFactor] = React.useState(false)
-
-    const handleEditFactor = (newData: CampaignFactor|{}) => {
-      editFactor(newData, factor)
-    }
-
     const handleDeleteFactor = () => {
       removeFactor(factor.id)
     }
@@ -54,18 +46,12 @@ export const Factor = React.forwardRef(
             </Col>
             <Col span={6}>
               <Space className="w-100 justify-end">
-                <EditOutlined onClick={() => setOpenEditFactor(true)} />
+                <EditOutlined onClick={() => onEditFactor(factor)} />
                 <DeleteOutlined onClick={handleDeleteFactor} />
               </Space>
             </Col>
           </Row>
         </div>
-        <AddEditFactorForm
-          open={openEditFactor}
-          onClose={() => setOpenEditFactor(false)}
-          editFactor={handleEditFactor}
-          factorData={factor}
-        />
       </>
     )
   },
@@ -75,11 +61,11 @@ type FactorSortableProps = {
   sortId: string
   factor: CampaignFactor
   removeFactor: (factorId: string) => void
-  editFactor: (newData, factor: CampaignFactor) => Promise<void> | void
+  onEditFactor: (factor: CampaignFactor) => Promise<void> | void
 }
 
 export const FactorSortable:FC<FactorSortableProps> = ({
-  factor, sortId, removeFactor, editFactor,
+  factor, sortId, removeFactor, onEditFactor,
 }) => {
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging,
@@ -107,7 +93,7 @@ export const FactorSortable:FC<FactorSortableProps> = ({
       dragStyle={dragStyle}
       style={containerStyle}
       removeFactor={removeFactor}
-      editFactor={editFactor}
+      onEditFactor={onEditFactor}
     />
   )
 }

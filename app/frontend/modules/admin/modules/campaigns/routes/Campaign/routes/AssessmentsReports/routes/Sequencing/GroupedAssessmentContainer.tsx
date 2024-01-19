@@ -102,7 +102,7 @@ export const GroupedAssessmentContainer = React.forwardRef(
           size="small"
           loading={isLoading}
           title={(
-            <Space align="start">
+            <Space className="w-100">
               <Button
                 icon={<DragOutlined />}
                 size="small"
@@ -113,11 +113,12 @@ export const GroupedAssessmentContainer = React.forwardRef(
               />
               <Typography.Text
                 title={group.name}
-                className={cs(styles.maxWidth30Chars)}
+                className={cs(styles.maxWidth30Chars, styles.editableText)}
                 ellipsis
                 editable={group.groupType !== 'assessment_center' ? {
                   onChange: handleTitleChange,
                   tooltip: I18n.t('assessments_reports.sequencing.edit_group_name'),
+                  triggerType: ['icon', 'text'],
                 } : false}
               >
                 {group.name}
