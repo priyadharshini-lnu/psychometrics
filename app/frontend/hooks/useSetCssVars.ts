@@ -30,6 +30,7 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
       const cssVarsFromToken = [
         { varName: '--ant-primary-color', value: colorPrimary },
         { varName: '--ant-primary-1', value: colorPalette[0] },
+        { varName: '--ant-primary-4', value: colorPalette[3] },
         { varName: '--ant-primary-7', value: colorPalette[6] },
         { varName: '--ant-warning-color', value: colorWarning },
         { varName: '--ant-error-color', value: colorError },
