@@ -33,8 +33,8 @@ module Api
             attribute[:public_visibility].filled(:bool)
 
             optional(:assessment_score_type).maybe(:string, included_in?: ::CampaignFactor.assessment_score_types.keys)
-            optional(:assessment_id).maybe(:integer)
-            optional(:factor_id).maybe(:integer)
+            optional(:assessment_id).maybe(:string)
+            optional(:factor_id).maybe(:string)
             optional(:description).maybe(:string)
           end
         end

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, ReactNode } from 'react'
 import { Form, App, Alert } from 'antd'
+import humps from 'humps'
 import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
@@ -203,6 +204,7 @@ const ResourceForm: React.FC<Props> = ({
 
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
+    errors = { ...errors, ...humps.decamelizeKeys(errors) }
     removeErrors()
     _.each(errors, (error: string | string[] | JSONApiError, name: string) => {
       const field = _.find(store.fields, field => _.includes(field.name as string[], name))

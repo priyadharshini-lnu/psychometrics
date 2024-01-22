@@ -10,7 +10,6 @@ module Api
 
         def self.base_attributes(attribute)
           proc do
-            attribute[:id].filled(:integer)
             attribute[:name].filled(:string)
           end
         end

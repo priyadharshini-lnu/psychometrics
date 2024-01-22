@@ -1819,6 +1819,8 @@ en:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
       filled?: can't be blank
+      invalid_lua_name: should be valid lua variable name
+      invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
       json?: Should be valid JSON
       key?: can't be blank
       match_regexp?: invalid value

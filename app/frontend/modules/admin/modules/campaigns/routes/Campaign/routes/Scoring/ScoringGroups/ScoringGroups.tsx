@@ -69,7 +69,17 @@ export const ScoringGroups = () => {
     removeResource: removeCampaignFactor,
     updateResource: updateCampaignFactor,
   } = useResources<CampaignFactor>(
-    'campaign_factors', { basePath: `campaigns/${campaignId}` },
+    'campaign_factors', {
+      basePath: `campaigns/${campaignId}`,
+      apiConfig: {
+        include: ['assessment', 'factor', 'dimension'],
+        fields: {
+          dimensions: ['id', 'name'],
+          assessments: ['id', 'name'],
+          factors: ['id', 'name'],
+        },
+      },
+    },
   )
 
   const {

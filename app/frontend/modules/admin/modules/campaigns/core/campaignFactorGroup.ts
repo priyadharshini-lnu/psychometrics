@@ -36,5 +36,17 @@ export const CampaignFactorsSchema = {
       type: 'campaign_factor_groups',
       id: 'string',
     },
+    assessment: {
+      type: 'assessments',
+      id: 'string',
+    },
+    factor: {
+      type: 'factors',
+      id: 'string',
+    },
+    dimension: {
+      type: 'dimensions',
+      id: 'string',
+    },
   },
 }

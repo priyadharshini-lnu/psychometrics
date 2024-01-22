@@ -10,11 +10,14 @@ module Api
           if ::CampaignFactor.exists?(campaign_id: _context[:params][:campaign_id], code: value)
             key.failure(:uniq?)
           end
+          unless value.match?(::RegexConstants::LUA_VARIABLE)
+            key.failure(:invalid_lua_name)
+          end
         end
 
         rule(data: { attributes: :name }) do
           key.failure(:size?, size: 64) if value.length > 64
-          unless value.match?(::RegexConstants::LUA_VARIABLE)
+          unless value.match?(::RegexConstants::SHEET_COLUMN_REGEX)
             key.failure(:match_regexp?)
           end
         end

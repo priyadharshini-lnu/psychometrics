@@ -13,8 +13,8 @@ RSpec.describe Api::V2::CampaignFactor::Contract do
       'campaign_factors',
       {
         name: 'Factor', code: 'factor', output_type: 'numeric', public_visibility: true, position: 1,
-        factor_type: 'assessment', assessment_id: assessment.id, factor_id: factor.id, campaign_id: campaign.id,
-        assessment_score_type: 'norm_score'
+        factor_type: 'assessment', assessment_id: assessment.id.to_s, factor_id: factor.id.to_s,
+        campaign_id: campaign.id.to_s, assessment_score_type: 'norm_score'
       },
       {
         campaign_factor_group: { type: 'campaign_factor_groups', id: campaign_factor_group.id.to_s },

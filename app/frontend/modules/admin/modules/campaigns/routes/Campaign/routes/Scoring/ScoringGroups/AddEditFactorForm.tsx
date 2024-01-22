@@ -1,4 +1,6 @@
-import { FC, useState, Fragment } from 'react'
+import {
+  FC, useEffect, useState, Fragment,
+} from 'react'
 import _ from 'lodash'
 import {
   Drawer, Form, Input, Button, Select, Spin,
@@ -12,6 +14,9 @@ import { useResources } from '~/hooks/useResources'
 
 interface FactorData extends Store {
   id: number | string
+  dimensionId?: string
+  assessmentId?: string
+  factorId?: string
 }
 
 type Props = {
@@ -60,12 +65,25 @@ export const AddEditFactorForm: FC<Props> = ({
   const { campaignId } = useParams<{campaignId: string}>()
   const [form] = Form.useForm()
   const nameValue = Form.useWatch('name', form)
-
   const factorType = Form.useWatch('factorType', form)
 
   const isNew = factorData === undefined
-  const initialValues = factorData || { publicVisibility: true, outputType: 'numeric' }
-  const [dimensionId, setDimensionId] = useState<string>('')
+  const initialValues = factorData
+    ? {
+      ...factorData,
+      assessment_id: factorData.assessmentId,
+      factor_id: factorData.factorId,
+      dimension_id: factorData.dimensionId,
+    }
+    : { publicVisibility: true, outputType: 'numeric' }
+  const [dimensionId, setDimensionId] = useState<string>(factorData?.dimensionId || '')
+
+  useEffect(() => {
+    if (open) {
+      setDimensionId(factorData?.dimensionId || '')
+      form.resetFields()
+    }
+  }, [factorData, open])
 
   const {
     data: dimensions, setData: setDimensions, isLoading: isDimensionsLoading,
@@ -97,13 +115,14 @@ export const AddEditFactorForm: FC<Props> = ({
     basePath: `campaigns/${campaignId}/dimensions/${dimensionId}`,
   })
 
+
   const getAssessments = (): Assessment[] => {
     if (!factorData || !factorData.assessment
-        || assessments.find(d => factorData?.assessment?.id === d.id)) {
+        || assessments.find(d => factorData?.assessmentId === d.assessment.id)) {
       return assessments
     }
 
-    return [...assessments, factorData.assessment]
+    return [...assessments, { ...factorData.assessment, assessment: factorData.assessment }]
   }
 
   const getDimensions = (): Dimension[] => {
@@ -117,7 +136,7 @@ export const AddEditFactorForm: FC<Props> = ({
 
   const getFactors = (): Factor[] => {
     if (!factorData || !factorData.factor
-        || assessmentFactors.find(d => factorData?.factor?.id === d.id)) {
+        || assessmentFactors.find(d => factorData?.facrorId === d.id)) {
       return assessmentFactors
     }
 
@@ -161,7 +180,6 @@ export const AddEditFactorForm: FC<Props> = ({
           }))}
         />
       </Form.Item>
-
       <Form.Item
         name="factor_id"
         label={I18n.t('administration.scoring.factor')}

@@ -9,7 +9,7 @@ module Api
       ).resolve(CampaignAssessorAssessment.where(campaign_id: campaign_id).select(:assessment_id)).
                    ransack(params[:filter]).result.select(:id, :name)
 
-      render json: json_api_records(dimensions, 'dimensions')
+      jsonapi_render json: dimensions.to_a, options: { resource: Api::V2::Administration::DimensionResource }
     end
 
     def factors
@@ -21,7 +21,7 @@ module Api
         campaign_id: campaign_id
       ).resolve(assessment_ids).find(params[:id]).factors.ransack(params[:filter]).result
 
-      render json: json_api_records(factors, 'factors')
+      jsonapi_render json: factors.to_a, options: { resource: Api::V2::Administration::FactorResource }
     end
   end
 end

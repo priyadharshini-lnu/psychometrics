@@ -13,6 +13,9 @@ export type CampaignFactor = {
   id: string,
   code: string,
   campaignFactorGroupId: number,
+  dimensionId?: string,
+  assessmentId?: string,
+  factorId?: string,
 }
 
 type Props = {
