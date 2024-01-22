@@ -20,6 +20,7 @@ import UsersAssessmentsReports
   from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
 import AssessorsDetails
   from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
+import { Weightages } from './Scoring/Weigthages'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
@@ -48,6 +49,7 @@ const routes = [
   { path: '/scheduling/assessment_center/:id/:tab', component: WorkshopPage },
   { path: '/scheduling/invites/add_invite', component: InvitesForm },
   { path: '/scheduling/invites/:inviteId/:tabName', component: IndividualInvite },
+  { path: '/scoring/settings/weightages', component: Weightages },
   { path: '/scoring', component: ScoringGroups },
   { path: '/assessments_reports/*', component: AssessmentsReports },
   { path: '/assessments_reports', component: AssessmentsReports },

@@ -33,6 +33,7 @@ class Campaign < ApplicationRecord
   has_many :campaign_factor_groups, dependent: :destroy
   has_many :campaign_factors, dependent: :destroy
   has_many :campaign_factor_values, dependent: :destroy
+  has_many :campaign_assessor_assessment_factor_weights, dependent: :destroy
 
   delegate :fixed_time?,
            :fixed_time,

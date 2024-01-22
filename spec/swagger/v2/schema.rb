@@ -87,6 +87,7 @@ module Swagger
               more_info: { type: 'string', 'x-nullable': true }
             }
           },
+          OKResponse: { type: 'string', example: 'ok', enum: ['ok'] },
           ChangePasswordRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.change_password_request
           ),
@@ -377,6 +378,12 @@ module Swagger
           ),
           WorkshopUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.update_request
+          ),
+          CampaignAssessorAssessmentFactorWeightListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.multiple_resource_response
+          ),
+          CampaignAssessorAssessmentFactorWeightBulkUpsertRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.bulk_upsert
           ),
           DimensionListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Dimension::Schema.multiple_resource_response

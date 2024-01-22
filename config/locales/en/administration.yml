@@ -4046,6 +4046,10 @@ en:
       select_assessment_first: Select Assessment First
       select_factor: Select Factor
       type: Type
+      weightages:
+        assessorForms: Assessor Forms
+        tools: Tools
+        weightages: Weightages
     search: Search
     security_setting:
       180_days: 180 Days

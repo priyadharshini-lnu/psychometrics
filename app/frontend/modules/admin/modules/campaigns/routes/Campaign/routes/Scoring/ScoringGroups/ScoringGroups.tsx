@@ -5,7 +5,7 @@ import {
 import { createPortal } from 'react-dom'
 import cs from 'classnames'
 import {
-  Row, Col, Space, Button, Typography, Dropdown, Empty, Flex,
+  Row, Col, Space, Button, Typography, Empty, Flex,
 } from 'antd'
 import {
   DndContext, useSensor, useSensors, MouseSensor, TouchSensor, DragEndEvent, DragOverlay, DragStartEvent,
@@ -23,6 +23,7 @@ import { AddEditFactorForm } from './AddEditFactorForm'
 import { GroupCard, GroupCardSortable, type CampaignFactorGroup } from './GroupCard'
 import { Factor, FactorSortable, type CampaignFactor } from './Factor'
 import { getGroupById, updateArrayItemsPositionOnIndices, getItemIdFromSortingId } from '~/utils/dnd'
+import { ToolsDropdown } from './ToolsDropdown'
 
 const getFactorsByGroupId = (factors: CampaignFactor[], groupId: string) => factors
   .filter(factor => factor.campaignFactorGroupId === parseInt(groupId, 10))
@@ -424,9 +425,7 @@ export const ScoringGroups = () => {
         </Col>
         <Col>
           <Space>
-            <Dropdown menu={{ items: [] }}>
-              <Button>Menu</Button>
-            </Dropdown>
+            <ToolsDropdown />
             <Button
               type="primary"
               onClick={() => setAddGroup(true)}

@@ -950,6 +950,38 @@ ALTER SEQUENCE public.campaign_assessments_id_seq OWNED BY public.campaign_asses
 
 
 --
+-- Name: campaign_assessor_assessment_factor_weights; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_assessor_assessment_factor_weights (
+    id bigint NOT NULL,
+    campaign_id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    weight double precision DEFAULT 1.0 NOT NULL
+);
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_assessor_assessment_factor_weights_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_assessor_assessment_factor_weights_id_seq OWNED BY public.campaign_assessor_assessment_factor_weights.id;
+
+
+--
 -- Name: campaign_assessor_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5540,6 +5572,13 @@ ALTER TABLE ONLY public.campaign_assessments ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: campaign_assessor_assessment_factor_weights id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessor_assessment_factor_weights_id_seq'::regclass);
+
+
+--
 -- Name: campaign_assessor_assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6550,6 +6589,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 
 --
+-- Name: campaign_assessor_assessment_factor_weights campaign_assessor_assessment_factor_weights_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT campaign_assessor_assessment_factor_weights_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: campaign_assessor_assessments campaign_assessor_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7553,6 +7600,20 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 
 
 --
+-- Name: idx_on_assessment_id_3b131a93ee; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_assessment_id_3b131a93ee ON public.campaign_assessor_assessment_factor_weights USING btree (assessment_id);
+
+
+--
+-- Name: idx_on_campaign_id_bbe9cda192; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_campaign_id_bbe9cda192 ON public.campaign_assessor_assessment_factor_weights USING btree (campaign_id);
+
+
+--
 -- Name: index_53a664e244a4bc3ce19609177c48692ee2fa83fa; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7935,6 +7996,13 @@ CREATE UNIQUE INDEX index_campaign_assessments_on_campaign_id_and_assessment_id 
 --
 
 CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessments USING btree (norm_id);
+
+
+--
+-- Name: index_campaign_assessor_assessment_factor_weights_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessor_assessment_factor_weights_on_factor_id ON public.campaign_assessor_assessment_factor_weights USING btree (factor_id);
 
 
 --
@@ -9895,6 +9963,14 @@ ALTER TABLE ONLY public.mindmill_credentials
 
 
 --
+-- Name: campaign_assessor_assessment_factor_weights fk_rails_08dafb599b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT fk_rails_08dafb599b FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
+
+
+--
 -- Name: users fk_rails_09d354f20c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10212,6 +10288,14 @@ ALTER TABLE ONLY public.libraries
 
 ALTER TABLE ONLY public.workshop_invites
     ADD CONSTRAINT fk_rails_3495a4f69c FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights fk_rails_35545a6526; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT fk_rails_35545a6526 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -11071,6 +11155,14 @@ ALTER TABLE ONLY public.privacy_links
 
 
 --
+-- Name: campaign_assessor_assessment_factor_weights fk_rails_b77e3149f6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT fk_rails_b77e3149f6 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11621,6 +11713,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240117104237'),
 ('20240108124935'),
 ('20240108073500'),
 ('20231226114810'),

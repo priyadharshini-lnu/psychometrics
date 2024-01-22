@@ -50,7 +50,9 @@ module Administration
             'view_workshops',
             'view_workshop_invites',
             'stats',
-            'pdf_password'
+            'pdf_password',
+            'view_campaign_scoring',
+            'manage_campaign_scoring'
           ],
           {
             project_id: project.id,

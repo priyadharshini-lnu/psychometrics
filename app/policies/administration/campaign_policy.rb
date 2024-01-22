@@ -220,6 +220,14 @@ module Administration
       @user.is?(:superadmin)
     end
 
+    def view_campaign_scoring?
+      has_permission?(:campaign_factors, :view)
+    end
+
+    def manage_campaign_scoring?
+      has_permission?(:campaign_factors, :manage)
+    end
+
     private
 
     def can_manage_campaign?

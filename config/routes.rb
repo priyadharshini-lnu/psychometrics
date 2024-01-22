@@ -1285,6 +1285,11 @@ Rails.application.routes.draw do
                 post :save_assessor_scoring_factor_value
               end
             end
+            jsonapi_resources :campaign_assessor_assessment_factor_weights, only: %i[index] do
+              collection do
+                post :bulk_upsert
+              end
+            end
           end
           jsonapi_resources :workshops, only: %i[index] do
             jsonapi_relationships
