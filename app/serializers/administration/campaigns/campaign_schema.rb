@@ -39,6 +39,8 @@ module Administration
             required(:view_workshop_invites).filled(:bool?)
             required(:stats).filled(:bool?)
             required(:pdf_password).filled(:bool?)
+            required(:view_campaign_scoring).filled(:bool?)
+            required(:manage_campaign_scoring).filled(:bool?)
           end
           required(:assessments).array(Administration::Campaigns::AssessmentSchema.schema(_, _))
           required(:reports).array(Administration::Campaigns::ReportSchema.schema(_, _))
