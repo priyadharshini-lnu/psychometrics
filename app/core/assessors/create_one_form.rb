@@ -28,7 +28,8 @@ module Assessors
         relationships: { name: Relationship::ASSESSOR },
         subject: subject,
         evaluator: assessor_user,
-        campaign: context.campaign
+        campaign: context.campaign,
+        assessment_id: assessment_ids
       )
 
         errors.add(:assessor_email, :already_exists)

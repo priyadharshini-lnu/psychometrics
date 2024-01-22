@@ -27,7 +27,10 @@ module CampaignScoring
         campaign_factor_value.save!
         campaign_factor_value
       end
-      campaign_user.update!(campaign_scores_finalized: true) if campaign_user.all_campaign_scores_present?
+      if campaign_user.all_campaign_scores_present?
+        campaign_user.update!(campaign_scores_finalized: true, campaign_scores_finalized_date: Time.current)
+      end
+      campaign_user.update!(campaign_scores_calculated_date: Time.current)
 
       broadcast :ok, campaign_factor_values, indexed_factor_values
     end
