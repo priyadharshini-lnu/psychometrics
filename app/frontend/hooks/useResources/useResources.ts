@@ -246,6 +246,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           resolve(camelizedData)
           if (args.updateStore && args.responseType === responseType) {
             updateIndividualRecord(camelizedData)
+          } else if (args.updateStore) {
+            updateMultipleRecord(camelizedData)
           }
           responseTypeValidation(memberResponseType, camelizedData)
         }
@@ -253,6 +255,20 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
         reject(formattedErrors)
       }
       setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const updateMultipleRecord = (camelizedResponse: R[]) => {
+    setState((previousState: ResourceState<R[], M>) => {
+      let { data } = previousState
+      const normalizedData = _.keyBy(camelizedResponse, 'id')
+      data = previousState.data.map((resource) => {
+        if (normalizedData[resource.id]) {
+          return normalizedData[resource.id]
+        }
+        return resource
+      })
+      return { ...previousState, data }
     })
   }
 

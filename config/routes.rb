@@ -1280,6 +1280,17 @@ Rails.application.routes.draw do
                 post :update_positions
               end
             end
+            jsonapi_resources :campaign_user_scorings, only: %i[index] do
+              member do
+                post :rescore
+                post :change_finalized_campaign_score
+              end
+              collection do
+                get :campaign_scores
+                post :rescore_bulk
+                post :change_finalized_campaign_score_bulk
+              end
+            end
             jsonapi_resources :campaign_factor_values, only: %i[index] do
               collection do
                 post :save_assessor_scoring_factor_value

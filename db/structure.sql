@@ -474,8 +474,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -633,10 +633,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
@@ -841,8 +841,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -919,12 +918,13 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    schedule_time timestamp(6) without time zone,
     allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false
 );
@@ -1092,6 +1092,7 @@ CREATE TABLE public.campaign_factors (
     name character varying NOT NULL,
     code character varying NOT NULL,
     description text,
+    factor_type integer DEFAULT 0 NOT NULL,
     output_type integer DEFAULT 0 NOT NULL,
     campaign_id bigint NOT NULL,
     factor_id bigint,
@@ -1101,8 +1102,7 @@ CREATE TABLE public.campaign_factors (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     assessment_score_type integer DEFAULT 0,
-    formula text,
-    factor_type integer DEFAULT 0
+    formula text
 );
 
 
@@ -1292,7 +1292,9 @@ CREATE TABLE public.campaign_users (
     status integer DEFAULT 0,
     schedule_start_date timestamp without time zone,
     schedule_end_date timestamp without time zone,
-    campaign_scores_finalized boolean DEFAULT false
+    campaign_scores_finalized boolean DEFAULT false,
+    campaign_scores_calculated_date timestamp(6) without time zone,
+    campaign_scores_finalized_date timestamp(6) without time zone
 );
 
 
@@ -2519,7 +2521,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    id uuid DEFAULT gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -3389,12 +3391,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -11255,7 +11257,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -11713,6 +11715,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240118090133'),
 ('20240117104237'),
 ('20240108124935'),
 ('20240108073500'),
@@ -11751,6 +11754,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230905113355'),
 ('20230829143631'),
 ('20230829124517'),
+('20230828122637'),
 ('20230824083112'),
 ('20230823110647'),
 ('20230822081633'),
@@ -12334,4 +12338,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

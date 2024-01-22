@@ -38,7 +38,8 @@ class AdminJob < ApplicationJob
     bulk_regenerate_threesixty_reports: AdminJobs::BulkRegenerateThreesixtyReports,
     bulk_create_workshop_invites: AdminJobs::BulkCreateWorkshopInvites,
     super_admin_assessment_raw_result_export: AdminJobs::SuperAdmin::AssessmentRawResultExport,
-    super_admin_assessment_raw_factor_export: AdminJobs::SuperAdmin::AssessmentRawFactorExport
+    super_admin_assessment_raw_factor_export: AdminJobs::SuperAdmin::AssessmentRawFactorExport,
+    bulk_rescore_campaign_factors: AdminJobs::BulkRescoreCampaignFactors
   }.freeze
 
   def perform(record)

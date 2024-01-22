@@ -29,7 +29,8 @@ module Api
         def self.relationships(_type)
           [
             { name: :campaign, resource: :campaigns, relationship: :one },
-            { name: :campaign_factor, resource: :campaign_factor_groups, relationship: :one }
+            { name: :campaign_factor, resource: :campaign_factor_groups, relationship: :one },
+            { name: :user, resource: :user, relationship: :one }
           ]
         end
       end

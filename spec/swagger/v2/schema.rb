@@ -379,6 +379,21 @@ module Swagger
           WorkshopUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.update_request
           ),
+          CampaignUserResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.single_resource_response
+          ),
+          CampaignUserListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.multiple_resource_response
+          ),
+          CampaignUserScoringsChangeFinalizeRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.campaign_user_scorings_change_finalize_request
+          ),
+          CampaignUserScoringsChangeFinalizeBulkRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.campaign_user_scorings_change_finalize_bulk_request
+          ),
+          CampaignUserScoringsRescoreBulkRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.rescore_bulk_request
+          ),
           CampaignAssessorAssessmentFactorWeightListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.multiple_resource_response
           ),

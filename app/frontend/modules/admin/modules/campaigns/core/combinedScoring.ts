@@ -30,7 +30,27 @@ export const ScoreTR = t.type({
   scores: t.record(t.string, t.union([t.number, t.null])),
 })
 
+export const CampaignScoresTR = t.type({
+  id: t.string,
+  user: t.type({
+    id: t.string,
+    firstName: t.string,
+    lastName: t.string,
+    email: t.string,
+  }),
+  campaignScoresFinalized: t.union([t.boolean, t.null]),
+  campaignScoresFinalizedDate: t.union([t.string, t.null]),
+  campaignScoresCalculatedDate: t.union([t.string, t.null]),
+  campaignFactorValues: t.array(t.type({
+    id: t.string,
+    campaignFactorId: t.number,
+    numericValue: t.union([t.number, t.null]),
+    stringValue: t.union([t.string, t.null]),
+  })),
+})
+
 // Export the types
 export type Factor = t.TypeOf<typeof FactorTR>;
 export type Score = t.TypeOf<typeof ScoreTR>;
 export type CampaignFactorValue = t.TypeOf<typeof CampaignFactorValueTR>;
+export type CampaignScores = t.TypeOf<typeof CampaignScoresTR>

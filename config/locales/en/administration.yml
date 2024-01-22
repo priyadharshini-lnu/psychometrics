@@ -241,6 +241,7 @@ en:
             bulk_regenerate_reports: Bulk Regenerate Reports
             download_report: Download Report
             edit_report: Edit Report
+            finalize_scores: Finalize Scores
             raw_responses: Raw Responses
             regenerate_report: Regenerate Report
             report_data: Report Data
@@ -4026,6 +4027,7 @@ en:
       factor: Factor
       formula: Formula
       get_started: Get Started
+      id: Id
       name: Name
       no_groups: No groups present
       output_type: Output Type
@@ -4045,6 +4047,19 @@ en:
       select_assessment: Select Assessment or Diminsion
       select_assessment_first: Select Assessment First
       select_factor: Select Factor
+      subject: Subject
+      subject_list:
+        actions: Actions
+        calculated_date: Calculated Date
+        finalized: Finalized
+        finalized_date: Finalized Date
+        mark_finalized: Mark Finalized
+        mark_not_finalized: Mark Not Finalized
+        rescore: Rescore
+      subjects: Subjects
+      tabs:
+        settings: Settings
+        subject_scores: Subject Scores
       type: Type
       weightages:
         assessorForms: Assessor Forms

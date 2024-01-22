@@ -50,6 +50,7 @@ module AllowedPermissions
       reset_progress
       regenerate_report
       bulk_regenerate_reports
+      finalize_scores
     ],
     'assessors' => %w[view manage],
     'registration_codes' => %w[view manage],
@@ -98,6 +99,7 @@ module AllowedPermissions
       reset_progress
       regenerate_report
       bulk_regenerate_reports
+      finalize_scores
     ],
     'registration_codes' => %w[view manage],
     'communications' => %w[view manage],
@@ -131,6 +133,7 @@ module AllowedPermissions
       rescore_responses
       regenerate_report
       bulk_regenerate_reports
+      finalize_scores
     ],
     'workshops' => %w[view manage]
   }.freeze

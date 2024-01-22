@@ -100,6 +100,7 @@ export const ClientAdminGrants = {
     'reset_progress',
     'regenerate_report',
     'bulk_regenerate_reports',
+    'finalize_scores',
   ],
   assessors: ['view', 'manage'],
   registrationCodes: ['view', 'manage'],
@@ -149,6 +150,7 @@ export const ProjectAdminGrants = {
     'reset_progress',
     'regenerate_report',
     'bulk_regenerate_reports',
+    'finalize_scores',
   ],
   registrationCodes: ['view', 'manage'],
   communications: ['view', 'manage'],
@@ -184,6 +186,7 @@ export const CampaignAdminGrants = {
     'rescore_responses',
     'regenerate_report',
     'bulk_regenerate_reports',
+    'finalize_scores',
   ],
   workshops: ['view', 'manage'],
 }

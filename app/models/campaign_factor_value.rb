@@ -3,6 +3,7 @@
 class CampaignFactorValue < ApplicationRecord
   belongs_to :campaign
   belongs_to :user
+  belongs_to :campaign_user, primary_key: :user_id, foreign_key: :user_id
   belongs_to :campaign_factor
 
   def value

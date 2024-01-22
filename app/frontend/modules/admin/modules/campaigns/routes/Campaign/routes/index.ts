@@ -12,7 +12,9 @@ import {
   Scheduling, WorkshopList, Invites, InvitesForm, AssessmentCenterForm,
 } from './Scheduling'
 import {
+  Scoring,
   ScoringGroups,
+  SubjectScoresList,
 } from './Scoring'
 import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
@@ -49,8 +51,17 @@ const routes = [
   { path: '/scheduling/assessment_center/:id/:tab', component: WorkshopPage },
   { path: '/scheduling/invites/add_invite', component: InvitesForm },
   { path: '/scheduling/invites/:inviteId/:tabName', component: IndividualInvite },
-  { path: '/scoring/settings/weightages', component: Weightages },
-  { path: '/scoring', component: ScoringGroups },
+  {
+    path: '/scoring',
+    component: Scoring,
+    routes: [
+      { redirect: true, from: '/scoring', to: '/scoring/subject_scores' },
+      { path: '/scoring/subject_scores', component: SubjectScoresList },
+      { path: '/scoring/settings', component: ScoringGroups },
+      { path: '/scoring/settings/weightages', component: Weightages },
+
+    ],
+  },
   { path: '/assessments_reports/*', component: AssessmentsReports },
   { path: '/assessments_reports', component: AssessmentsReports },
   { path: '/stats', component: Stats },

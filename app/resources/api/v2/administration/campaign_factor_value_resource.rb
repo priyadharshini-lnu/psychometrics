@@ -3,6 +3,10 @@
 class Api::V2::Administration::CampaignFactorValueResource < Api::V2::Administration::BaseResource
   attributes :numeric_value, :string_value, :campaign_factor_id
 
+  has_one :campaign
+  has_one :user
+  has_one :campaign_factor
+
   ransack_filters %i[user_id_eq]
 
   def self.records(opts = {})
