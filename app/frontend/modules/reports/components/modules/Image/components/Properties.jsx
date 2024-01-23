@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Select from 'react-select'
+import { Space, InputNumber, Select as AntSelect } from 'antd'
 import { LibraryStore } from '~/libs/library'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import LibraryTransport from '~/modules/reports/cable/LibraryChannel'
@@ -7,6 +8,9 @@ import Socket from '~/modules/reports/cable'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from '~/modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
+import { rgba2hex } from '~/utils/color'
+import ChoicesInput from '~/modules/reports/components/ChoicesInput'
+import { ColorPicker } from '~/glint'
 import QuestionsSelect from './QuestionsSelect'
 import connect from '../connect'
 
@@ -14,6 +18,7 @@ const TYPE_OPTIONS = [
   { label: 'Simple Image', value: 'SimpleImage' },
   { label: 'Conditional Image', value: 'ConditionalImage' },
   { label: 'Uploaded Image', value: 'ResponseImage' },
+  { label: 'User Profile Image', value: 'UserProfileImage' },
 ]
 
 class Properties extends Component {
@@ -34,10 +39,51 @@ class Properties extends Component {
     this.update()
   }
 
+  changeBorderColor = (color) => {
+    const { model } = this.props
+    model.props.style.borderColor = color
+    model.update()
+  }
+
+  changeBorderRadius = (val) => {
+    const { model } = this.props
+    model.props.style.borderRadius = val
+    model.update()
+  }
+
+  changeBorderWidth = (val) => {
+    const { model } = this.props
+    model.props.style.borderWidth = val
+    model.update()
+  }
+
+  changeBorderStyle = (val) => {
+    const { model } = this.props
+    model.props.style.borderStyle = val
+    model.update()
+  }
+
   changeUrl = (e) => {
     const { model } = this.props
     const val = e.currentTarget.value
     model.props.url = val
+    model.update()
+  }
+
+  changeBorder = (e) => {
+    const { model } = this.props
+    const val = e.currentTarget.checked
+    model.props.border = val
+    if (val) {
+      model.props.style = model.props.style ? model.props.style : { style: 'solid' }
+    }
+    model.update()
+  }
+
+  changeAspectRatio = (e) => {
+    const { model } = this.props
+    const val = e.currentTarget.checked
+    model.props.aspectRatio = val
     model.update()
   }
 
@@ -82,6 +128,10 @@ class Properties extends Component {
 
   render () {
     const { model, questions } = this.props
+    const {
+      borderRadius, borderColor = {}, borderWidth, borderStyle,
+    } = (model.props.style || {})
+
     return (
       <div>
         <div className={styles.title}>Image Options</div>
@@ -136,6 +186,66 @@ class Properties extends Component {
           <div className={styles.block}>
             <button className="btn btn-default" onClick={this.expand}>Expand to page sizes</button>
           </div>
+        </div>
+        <div className={styles.block} style={{ position: 'relative' }}>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.aspectRatio}
+              onChange={this.changeAspectRatio}
+            />
+            Resize with Aspect Ratio
+          </label>
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.block} style={{ position: 'relative' }}>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.border}
+              onChange={this.changeBorder}
+            />
+            Border
+          </label>
+        </div>
+        {model.props.border && (
+          <>
+            <Space.Compact block>
+              <div className={styles.inline}>
+                <label>Width</label>
+                <InputNumber value={borderWidth || 0} min={0} onChange={this.changeBorderWidth} max={100} />
+              </div>
+              <div className={styles.inline}>
+                <label>Style</label>
+                <AntSelect
+                  style={{ width: '100%' }}
+                  onChange={this.changeBorderStyle}
+                  value={borderStyle}
+                  options={[
+                    { value: 'solid' },
+                    { value: 'dashed' },
+                    { value: 'dotted' },
+                    { value: 'double' },
+                    { value: 'groove' },
+                    { value: 'ridge' },
+                    { value: 'inset' },
+                    { value: 'outset' },
+                  ]}
+                />
+              </div>
+            </Space.Compact>
+            <div className={styles.block} style={{ position: 'relative' }}>
+              Border Color
+              <ColorPicker value={rgba2hex(borderColor)} onChange={this.changeBorderColor} />
+            </div>
+          </>
+        )}
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          Rounded Corners
+          <ChoicesInput value={borderRadius || 0} onChange={this.changeBorderRadius} maxValue={1000} />
         </div>
         <hr className={styles.divider} />
       </div>
