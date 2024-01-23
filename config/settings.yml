@@ -1400,6 +1400,13 @@ providers:
           - 94437446-E07B-4CF2-B3EF-32717D16F00E
         report_ids:
           - B64D89DF-B364-46CC-A2D1-F033BE7DD6DF
+      - id: 38FA53A8-FFD5-4297-9BF4-2A75E66296DB
+        name: Workplace English - Office (IA)
+        default_norm_id: 49D33D43-5C5E-45EF-A1F0-43ACA45628CF
+        norm_ids:
+          - 49D33D43-5C5E-45EF-A1F0-43ACA45628CF
+        report_ids:
+          - 88A6D290-1CB9-4828-9838-2441C3D5E049
     norms:
       - id: 998C485C-B931-416D-8404-9B284160F688
         name: Abstract Reasoning Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
@@ -1595,6 +1602,8 @@ providers:
         name: Wave Professional Styles V4 - Professionals & Managers (GCC, IA, 2021)
       - id: 216C7F4D-D141-47E9-B2D1-89219C264B02
         name: Wave Professional Styles V4 - Senior Managers & Executives (GCC, IA, 2021)
+      - id: 49D33D43-5C5E-45EF-A1F0-43ACA45628CF
+        name: Workplace English - Office Norm
     reports:
       - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
         name: Abstract Reasoning Aptitude-Rx (IA)
@@ -1712,6 +1721,8 @@ providers:
         name: Swift Technical Aptitude & Pace Report (Rx)
       - id: B64D89DF-B364-46CC-A2D1-F033BE7DD6DF
         name: Verbal Comprehension Aptitude & Pace Report (Rx)
+      - id: 88A6D290-1CB9-4828-9838-2441C3D5E049
+        name: Workplace English - Office Report
 
 checking_wizard:
   speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>
