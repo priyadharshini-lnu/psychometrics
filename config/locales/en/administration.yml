@@ -584,7 +584,7 @@ en:
       add: Add
       modals:
         add_assessor_assessment:
-          assessment_placeholder: Assessment Name
+          assessment_placeholder: Select an Assessment
       name: Assessor Assessment
     assessor_campaigns:
       statuses:

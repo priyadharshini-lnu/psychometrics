@@ -1,6 +1,6 @@
-import React from 'react'
-import { Form, Select } from 'antd'
-import debounce from 'lodash/debounce'
+import { debounce } from 'lodash'
+import React, { useEffect } from 'react'
+import { Form, Select, Spin } from 'antd'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { CreateResource } from '~/hooks/useResources/interfaces'
 import { CampaignAssessorAssessments } from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
@@ -25,19 +25,26 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
   }
 
   const {
-    data: assessments, fetch: fetchAssessments,
+    data: assessments, fetch: fetchAssessments, isLoading,
   } = useResources<Assessment>('assessments')
+  const assessmentsLoading = isLoading('fetch')
+
+  const fetchAssessmentsByValue = (value: string) => fetchAssessments({
+    apiConfig: {
+      filter: {
+        category_in: ['assessor_form', 'lead_assessor_form'],
+        filterable_fields: value,
+      },
+    },
+  })
 
   const searchAvailableAssessments = debounce((value) => {
-    fetchAssessments({
-      apiConfig: {
-        filter: {
-          category_in: ['assessor_form', 'lead_assessor_form'],
-          filterable_fields: value,
-        },
-      },
-    })
+    fetchAssessmentsByValue(value)
   }, 50)
+
+  useEffect(() => {
+    fetchAssessmentsByValue('')
+  }, [])
 
   return (
     <ResourceFormModal
@@ -55,16 +62,17 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
             <Select
               showSearch
               filterOption={false}
-              onSearch={(value) => {
-                searchAvailableAssessments(value)
-              }}
               placeholder={
                 I18n.t('administration.assessor_assessment.modals.add_assessor_assessment.assessment_placeholder')
               }
+              onSearch={searchAvailableAssessments}
+              notFoundContent={assessmentsLoading ? <Spin size="small" /> : null}
             >
-              {assessments.map(({ id, name }) => (
-                <Option key={id} value={id}>{name}</Option>
-              ))}
+              {
+                assessments.map(({ id, name }) => (
+                  <Option key={id} value={id}>{name}</Option>
+                ))
+              }
             </Select>
           </Form.Item>
         </>
