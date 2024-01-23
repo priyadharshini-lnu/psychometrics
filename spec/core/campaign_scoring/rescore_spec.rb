@@ -49,10 +49,14 @@ describe CampaignScoring::Rescore do
         return avg_factor_score + previous_score
       }
     )
+    campaign_factor_value = create(
+      :campaign_factor_value, campaign_factor: cf_factor1, user: user, campaign: campaign, numeric_value: 100
+    )
 
     campaign_factor_values = described_class.call!(campaign, user)
     indexed_campaign_factor_values = campaign_factor_values.index_by(&:campaign_factor_id)
 
+    expect(CampaignFactorValue.find_by(id: campaign_factor_value.id)).to eq(nil)
     expect(indexed_campaign_factor_values[cf_factor1.id].value).to eq(2)
     expect(indexed_campaign_factor_values[cf_factor2.id].value).to eq(4.8)
     expect(indexed_campaign_factor_values[cf_factor3.id].value).to eq('Senior')
@@ -60,26 +64,19 @@ describe CampaignScoring::Rescore do
     expect(indexed_campaign_factor_values[cf_factor5.id].value).to eq(((2 + 4.8) / 2) + (10 * 0.5))
   end
 
-  it 'saves campaign factor values' do
-    campaign_user.update(campaign_scores_finalized: true)
+  it "doesn't remove already computed factor with type assessor_scoring" do
     cf_factor = create(
-      :campaign_factor, code: 'factor2', campaign: campaign, assessment: assessment, factor: factor1,
-      factor_type: 'assessment', assessment_score_type: 'norm_score'
-    )
-    described_class.call!(campaign, user)
-    expect(campaign_user.reload.campaign_scores_finalized).to eq(true)
-    expect(cf_factor.campaign_factor_values.find_by(user: user).value).to eq(1)
-  end
-
-  it "doesn't recompute already computed factor" do
-    cf_factor1 = create(
       :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
-      factor_type: 'assessment', assessment_score_type: 'score'
+      factor_type: 'assessor_scoring', assessment_score_type: 'score'
+    )
+    campaign_factor_value = create(
+      :campaign_factor_value, campaign_factor: cf_factor, user: user, campaign: campaign, numeric_value: 100
     )
 
-    campaign_factor_values = described_class.call!(campaign, user)
+    described_class.call!(campaign, user)
 
-    indexed_campaign_factor_values = campaign_factor_values.index_by(&:campaign_factor_id)
-    expect(indexed_campaign_factor_values[cf_factor1.id].value).to eq(2)
+    cfv = CampaignFactorValue.find_by(id: campaign_factor_value.id)
+    expect(cfv).to_not eq(nil)
+    expect(cfv.numeric_value).to eq(100)
   end
 end

@@ -11,7 +11,7 @@ export const CampaignFactorValueTR = t.type({
 
 export const FactorTR = t.type({
   id: t.string,
-  factorId: t.number,
+  factorId: t.string,
   name: t.string,
 })
 

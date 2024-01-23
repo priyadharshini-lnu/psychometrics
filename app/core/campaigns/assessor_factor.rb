@@ -21,6 +21,7 @@ module Campaigns
           f.name,
           REGEXP_REPLACE(LOWER(f.name), '\\W+', '_', 'gi') AS code,
           #{CampaignFactor.factor_types[:assessor_scoring]} AS factor_type,
+          #{CampaignFactor.assessment_score_types[:score]} AS assessment_score_type,
           #{campaign_id} AS campaign_id,
           ROW_NUMBER () OVER () AS position
         FROM

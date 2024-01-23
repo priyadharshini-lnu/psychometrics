@@ -100,7 +100,7 @@ module CampaignScoring
       users_result = user_assessments[assessment_id.to_i]&.users_result
       return nil unless users_result
 
-      users_result.scoring.dig(factor_id.to_i.to_s, score_type)
+      users_result.scoring&.dig(factor_id.to_i.to_s, score_type)
     end
 
     def campaign_scoring_variables_as_lua_table

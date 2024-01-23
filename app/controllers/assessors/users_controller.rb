@@ -14,6 +14,10 @@ class Assessors::UsersController < Administration::BaseController
         current_user: current_user, project_id: campaign.project_id,
         evaluations_count: ::Assessors::SubjectEvaluationsCount.call!(
           paginated_users.pluck(:id), current_user, params[:campaign_id]
+        ),
+        moderation_count: ::Assessors::SubjectEvaluationsCount.call!(
+          paginated_users.pluck(:id), current_user, params[:campaign_id],
+          assessment_category: :lead_assessor_form
         )
       }
     ).to_a
@@ -25,7 +29,10 @@ class Assessors::UsersController < Administration::BaseController
   end
 
   def show
-    user_assessments = UserAssessment.where(evaluator: current_user, subject: @user, campaign_id: params[:campaign_id])
+    user_assessments = UserAssessment.joins(:assessment).where(
+      evaluator: current_user, subject: @user, campaign_id: params[:campaign_id],
+      relationship: Relationship.assessor_relationship, assessment: { category: :assessor_form }
+    )
     user_reports = UserReport.assessor_report_for_campaign(params[:campaign_id]).where(user_id: @user.id)
     serialized_user_assessments = Panko::ArraySerializer.new(
       user_assessments, each_serializer: Administration::Assessors::UserAssessmentSerializer,

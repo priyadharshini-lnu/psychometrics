@@ -14,7 +14,10 @@ const UserTR = t.type({
   email: t.string,
   totalEvaluations: t.number,
   completedEvaluations: t.number,
-  completionStatus: t.string,
+  evaluationCompletionStatus: t.string,
+  totalModeration: t.number,
+  completedModeration: t.number,
+  moderationCompletionStatus: t.string,
 })
 
 const UserListResponseTR = t.type({

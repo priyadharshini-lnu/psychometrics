@@ -154,7 +154,7 @@ const ScoringTable: React.FC = () => {
   }, [initializeFinalScores])
 
 
-  const handleFinalScoreChange = (factorId: number, value: number | string | null) => {
+  const handleFinalScoreChange = (factorId: string, value: number | string | null) => {
     setFinalScores({ ...finalScores, [factorId]: value || '-' })
     setHasChanges(true)
   }

@@ -28,8 +28,24 @@ class CampaignUser < ApplicationRecord
   after_commit :finish_proctoring_session,
                if: proc { status_previously_changed? && %w[completed timed_out].include?(status) },
                on: [:update]
+  after_commit :generate_or_remove_report_on_score_finalized,
+               if: proc { campaign_scores_finalized_previously_changed? },
+               on: [:update]
   delegate :proctoring_enabled?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
+
+  def generate_or_remove_report_on_score_finalized
+    if campaign_scores_finalized?
+      UserReports::GenerateAndSavePdfJob.perform_later(campaign_factor_dependent_user_reports.pluck(:id), user)
+    else
+      UserReports::RemovePdfJob.perform_later(campaign_factor_dependent_user_reports.pluck(:id))
+    end
+  end
+
+  def campaign_factor_dependent_user_reports
+    UserReport.joins(:report).merge(Report.campaign_factor_dependable).
+      where(campaign_id: campaign_id, user_id: user_id)
+  end
 
   def compute_and_set_status
     return if campaign.fixed_timed? && completion_status != 'completed'
@@ -137,6 +153,6 @@ class CampaignUser < ApplicationRecord
   end
 
   def all_campaign_scores_present?
-    campaign.campaign_factor_values.count == campaign.campaign_factors.count
+    campaign_factor_values.count == campaign_factors.count
   end
 end

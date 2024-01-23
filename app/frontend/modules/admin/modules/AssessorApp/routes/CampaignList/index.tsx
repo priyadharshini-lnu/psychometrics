@@ -124,17 +124,31 @@ const CampaignList: React.FC<Props> = (
               render={({ status }) => capitalize(status)}
             />
             <Column
-              title={I18n.t('common.column.completion_status')}
+              title={I18n.t('assessors.campaigns_list.column.evaluation_status')}
               key="completion_status"
-              render={({ completionStatus }) => (
-                I18n.t(`administration.assessor_campaigns.statuses.${completionStatus}`)
+              render={({ evaluationCompletionStatus }) => (
+                I18n.t(`administration.assessor_campaigns.statuses.${evaluationCompletionStatus}`)
               )}
             />
             <Column
-              title={I18n.t('common.column.completion_count')}
+              title={I18n.t('assessors.campaigns_list.column.evaluation_count')}
               key="completionCount"
-              render={({ completedSubjectCount, totalSubjectCount }) => (
-                `${completedSubjectCount} / ${totalSubjectCount}`
+              render={({ completedSubjectEvaluationCount, totalSubjectEvaluationCount }) => (
+                `${completedSubjectEvaluationCount} / ${totalSubjectEvaluationCount}`
+              )}
+            />
+            <Column
+              title={I18n.t('assessors.campaigns_list.column.moderation_status')}
+              key="moderationStatus"
+              render={({ moderationCompletionStatus }) => (
+                I18n.t(`administration.assessor_campaigns.statuses.${moderationCompletionStatus}`)
+              )}
+            />
+            <Column
+              title={I18n.t('assessors.campaigns_list.column.moderation_count')}
+              key="moderationCount"
+              render={({ completedSubjectModerationCount, totalSubjectModerationCount }) => (
+                `${completedSubjectModerationCount} / ${totalSubjectModerationCount}`
               )}
             />
           </Table>

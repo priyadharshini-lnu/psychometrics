@@ -12,7 +12,10 @@ module Administration
           required(:full_name).filled(:str?)
           required(:total_evaluations).maybe(:int?)
           required(:completed_evaluations).filled(:int?)
-          required(:completion_status).filled(:str?)
+          required(:evaluation_completion_status).filled(:str?)
+          required(:total_moderation).maybe(:int?)
+          required(:completed_moderation).filled(:int?)
+          required(:moderation_completion_status).filled(:str?)
           required(:assessor_can_moderate_scores).filled(:bool?)
           required(:permissions).hash do
             required(:add_subject).filled(:bool?)

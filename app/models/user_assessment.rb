@@ -101,10 +101,11 @@ class UserAssessment < ApplicationRecord
   alias result users_result
 
   def calculate_and_save_campaign_scoring
-    return unless campaign_user
+    return unless CampaignUser.exists?(campaign_id: campaign_id, user_id: subject_id)
 
     if self_assessment? || assessment.lead_assessor_form?
-      CampaignScoring::CalculateAndSaveJob.perform_later(campaign, subject)
+      # TODO: Investigate why users_result.scoring is nil if we don't add delay of 30 seconds
+      CampaignScoring::CalculateAndSaveJob.set(wait: 30.seconds).perform_later(campaign, subject)
     end
   end
 

@@ -90,7 +90,10 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
         'full_name' => assessor.user.decorate.full_name,
         'completed_evaluations' => 0,
         'total_evaluations' => 0,
-        'completion_status' => 'completed',
+        'evaluation_completion_status' => 'completed',
+        'moderation_completion_status' => 'completed',
+        'completed_moderation' => 0,
+        'total_moderation' => 0,
         'permissions' => {
           'add_subject' => true,
           'remove_subject' => true

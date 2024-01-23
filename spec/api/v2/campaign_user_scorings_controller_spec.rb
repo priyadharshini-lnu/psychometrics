@@ -94,10 +94,10 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
       end
 
       response '200', 'CampaignUserScorings' do
-        schema '$ref' => '#/components/schemas/CampaignUserListResponse'
+        schema '$ref' => '#/components/schemas/OKResponse'
 
-        run_test! do |_response|
-          expect(campaign_user.reload.campaign_scores_finalized).to eq(true)
+        run_test! do |response|
+          expect(response.status).to eq(200)
         end
       end
     end

@@ -12,7 +12,12 @@ class Assessors::CampaignsController < Assessors::BaseController
     serialized_campaigns = Panko::ArraySerializer.new(
       paginated_campaigns, each_serializer: Administration::Assessors::CampaignSerializer,
       context: {
-        subject_statuses_count: Assessors::SubjectStatusesCount.call!(current_user, paginated_campaigns.pluck(:id))
+        subject_evaluation_statuses_count: Assessors::SubjectStatusesCount.call!(
+          current_user, paginated_campaigns.pluck(:id)
+        ),
+        subject_moderation_statuses_count: Assessors::SubjectStatusesCount.call!(
+          current_user, paginated_campaigns.pluck(:id), assessment_category: :lead_assessor_form
+        )
       }
     ).to_a
     render json: {

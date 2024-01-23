@@ -666,6 +666,7 @@ en:
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        bulk_rescore_campaign_factors: Bulk Rescore Campaign Factors
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
@@ -967,6 +968,13 @@ en:
       no_assessments: Drag and drop the assessments
       no_ungrouped_assessments: Drag and drop the assessments here for ungrouping
       ungrouped_assessments: Ungrouped assessments
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: Evaluation Count
+        evaluation_status: Evaluation Status
+        moderation_count: Moderation Count
+        moderation_status: Moderation Status
   assigns:
     assign:
       accept_privacy_modal:

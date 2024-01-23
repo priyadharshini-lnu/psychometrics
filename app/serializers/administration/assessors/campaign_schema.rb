@@ -12,9 +12,12 @@ module Administration
           required(:start_date).maybe(:str?)
           required(:end_date).maybe(:str?)
           required(:status).filled(:str?)
-          required(:completion_status).filled(:str?)
-          required(:completed_subject_count).filled(:int?)
-          required(:total_subject_count).filled(:int?)
+          required(:evaluation_completion_status).filled(:str?)
+          required(:completed_subject_evaluation_count).filled(:int?)
+          required(:total_subject_evaluation_count).filled(:int?)
+          required(:moderation_completion_status).filled(:str?)
+          required(:completed_subject_moderation_count).filled(:int?)
+          required(:total_subject_moderation_count).filled(:int?)
         end
       end
     end

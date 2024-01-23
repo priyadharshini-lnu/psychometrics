@@ -10,6 +10,7 @@ import store, { history } from '~/modules/admin/store'
 import RouteList from '~/components/RouteList'
 import { DefaultAntThemeWrapper } from '~/glint'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
+import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import { Schema } from '~/libs/jsonApi/schema'
 import { PortalMenu } from '~/components/MainMenu'
 import routes from './routes'
@@ -38,6 +39,7 @@ const App: React.FC<void> = () => (
             </Router>
           </DndProvider>
           <IncorrectResponseErrorModal />
+          <DisplayExceptionModal />
         </ApiProvider>
       </Provider>
     </DefaultAntThemeWrapper>

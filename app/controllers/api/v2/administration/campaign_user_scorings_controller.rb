@@ -22,13 +22,14 @@ module Api
     end
 
     def change_finalized_campaign_score_bulk
-      campaign_users = ::CampaignUser.where(campaign_id: campaign.id, user_id: params[:data][:attributes][:user_ids])
-      campaign_users.update_all(
-        campaign_scores_finalized: params[:data][:attributes][:finalized],
-        campaign_scores_finalized_date: params[:data][:attributes][:finalized] ? Time.current : nil
+      CampaignUsers::ChangeCampaignScoreFinalized.call!(
+        campaign: campaign,
+        user_ids: params[:data][:attributes][:user_ids],
+        current_user: current_user,
+        campaign_score_finalized: params[:data][:attributes][:finalized]
       )
 
-      jsonapi_render json: campaign_users, options: { resource: ::Api::V2::Administration::CampaignUserResource }
+      render json: :ok
     end
 
     def rescore_bulk

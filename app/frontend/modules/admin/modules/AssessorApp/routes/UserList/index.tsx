@@ -113,14 +113,28 @@ const UserList: React.FC<Props> = (
               dataIndex="email"
             />
             <Column
-              title={I18n.t('common.column.completion_status')}
+              title={I18n.t('assessors.campaigns_list.column.evaluation_status')}
               key="status"
-              render={({ completionStatus }) => I18n.t(`administration.assessor_subjects.statuses.${completionStatus}`)}
+              render={({ evaluationCompletionStatus }) => (
+                I18n.t(`administration.assessor_subjects.statuses.${evaluationCompletionStatus}`)
+              )}
             />
             <Column
-              title={I18n.t('common.column.completion_count')}
+              title={I18n.t('assessors.campaigns_list.column.evaluation_count')}
               key="evaluationsCompleted"
               render={({ totalEvaluations, completedEvaluations }) => `${completedEvaluations} / ${totalEvaluations}`}
+            />
+            <Column
+              title={I18n.t('assessors.campaigns_list.column.moderation_status')}
+              key="status"
+              render={({ moderationCompletionStatus }) => (
+                I18n.t(`administration.assessor_subjects.statuses.${moderationCompletionStatus}`)
+              )}
+            />
+            <Column
+              title={I18n.t('assessors.campaigns_list.column.moderation_count')}
+              key="evaluationsCompleted"
+              render={({ totalModeration, completedModeration }) => `${completedModeration} / ${totalModeration}`}
             />
           </Table>
         </Col>

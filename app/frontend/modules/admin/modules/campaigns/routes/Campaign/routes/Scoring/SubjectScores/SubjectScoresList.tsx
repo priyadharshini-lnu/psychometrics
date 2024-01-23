@@ -124,16 +124,14 @@ export function SubjectScoresList () {
         action: 'change_finalized_campaign_score_bulk',
         method: 'post',
         body: { userIds: selectedRowKeys, finalized: true },
-        updateStore: true,
-        responseType: t.array(CampaignScoresTR),
+        responseType: t.literal('ok'),
       })
     } else if (action === 'mark_not_finalized') {
       collectionAction({
         action: 'change_finalized_campaign_score_bulk',
         method: 'post',
         body: { userIds: selectedRowKeys, finalized: false },
-        updateStore: true,
-        responseType: t.array(CampaignScoresTR),
+        responseType: t.literal('ok'),
       })
     } else if (action === 'rescore') {
       collectionAction({

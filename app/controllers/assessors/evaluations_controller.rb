@@ -9,8 +9,9 @@ class Assessors::EvaluationsController < Assessors::BaseController
     authorize(UserAssessment)
     campaign = Campaign.find(params[:campaign_id])
     user = User.find(params[:id])
-    @assessor_assessments = policy_scope(UserAssessment).where(
-      campaign_id: campaign.id, subject_id: user.id
+    @assessor_assessments = policy_scope(UserAssessment).joins(:assessment).where(
+      campaign_id: campaign.id, subject_id: user.id, assessments: { category: :assessor_form },
+      relationship: Relationship.assessor_relationship
     ).order(:id)
 
     assessment_ids = @assessor_assessments.map(&:assessment).map(&:linked_assessment_id)
