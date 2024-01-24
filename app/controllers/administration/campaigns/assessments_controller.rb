@@ -105,9 +105,13 @@ module Administration
       def update_norm
         campaign_assessment.update_norm!(params[:norm_id])
 
-        if params[:apply]
+        if params[:apply] && params[:norm_id].present?
           AdminJob.call(:rescore_assessment,
-                        { campaign_id: campaign.id, assessment_id: assessment.id, fixed_norm: true },
+                        {
+                          campaign_id: campaign.id,
+                          assessment_id: assessment.id,
+                          norm_id: params[:norm_id]
+                        },
                         current_user)
         end
         render json: { norm_name: campaign_assessment.norm_name }

@@ -1279,6 +1279,7 @@ en:
         title: Update Available Locales
       update_norm:
         apply: Apply this change to existing users in this campaign
+        cannot_remove_norm: Cannot remove norm for completed assessment.
         select_norm: Select Norm
         success_msg: Norms successfully updated
         title: Update Norm

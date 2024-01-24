@@ -3,23 +3,12 @@
 module AdminJobs
   class RescoreAssessment < AdminJobs::Base
     def call
-      if campaign_assessment
-        norm_id = if campaign_assessment.has_external_norm?
-                    campaign_assessment.external_norm_id
-                  else
-                    campaign_assessment.norm_id
-                  end
-
-        norm_data = {
-          norm_id: norm_id,
-          fixed_norm: record.data['fixed_norm'],
-          nullifly_norm: true
-        }
-      end
       record.update(total_tasks: results.count)
       results.find_each do |res|
         record.increment_completed_tasks!
-        ::UsersResults::Recompute.call!(res, owner, norm_data || {})
+        user_assessment = res.user_assessment
+        user_assessment.update_norm!(record.data['norm_id']) if record.data['norm_id'].present?
+        ::UsersResults::Recompute.call!(res, owner)
       end
       remove_report_pdf if campaign.threesixty?
       broadcast :ok
