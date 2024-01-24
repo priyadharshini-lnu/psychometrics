@@ -2449,6 +2449,7 @@ en:
     old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
     password_confirmation: Password Confirmation
+    photo: Photo
     success_update: Profile was saved successfully
     timezone: Timezone
     title: My Profile
