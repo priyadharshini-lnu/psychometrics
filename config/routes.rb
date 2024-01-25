@@ -1230,6 +1230,7 @@ Rails.application.routes.draw do
             end
 
             jsonapi_resources :campaign_assessments, only: %i[index]
+            jsonapi_resources :campaign_scoring_variables, only: %i[index update]
 
             jsonapi_resources :workshop_subjects, only: %i[index] do
               member do

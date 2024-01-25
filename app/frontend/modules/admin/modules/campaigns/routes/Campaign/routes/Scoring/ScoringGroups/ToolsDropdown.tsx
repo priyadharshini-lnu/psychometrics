@@ -9,9 +9,13 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
-export const ToolsDropdown: React.FC = () => (
+type ToolsDropdownProps = {
+  onClick?: ({ key }) => void
+}
+
+export const ToolsDropdown: React.FC<ToolsDropdownProps> = ({ onClick }) => (
   <ConditionalDropdown
-    menu={getMenuProps()}
+    menu={getMenuProps(onClick)}
     innerElement={(
       <Button>
         <ToolOutlined />
@@ -24,12 +28,16 @@ export const ToolsDropdown: React.FC = () => (
   />
 )
 
-const getMenuProps = (): MenuProps => {
+const getMenuProps = (onClick): MenuProps => {
   const menuItems:ItemType[] = [
     {
       key: 'weightages',
       label: <Link to="settings/weightages">{I18n.t('administration.scoring.weightages.weightages')}</Link>,
     },
+    {
+      key: 'variables',
+      label: I18n.t('administration.scoring.variables'),
+    },
   ]
-  return ({ items: menuItems })
+  return ({ items: menuItems, onClick })
 }

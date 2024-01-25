@@ -4022,6 +4022,7 @@ en:
       assessment: Assessment
       assessment_scoring_type: Assessment Scoring Type
       average: Average
+      campaign_scoring_variables: Campaign Scoring Variables
       code: Code
       delete_group: Delete Group
       description: Description
@@ -4066,6 +4067,7 @@ en:
         settings: Settings
         subject_scores: Subject Scores
       type: Type
+      variables: Variables
       weightages:
         assessorForms: Assessor Forms
         tools: Tools

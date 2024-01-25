@@ -24,6 +24,7 @@ import { GroupCard, GroupCardSortable, type CampaignFactorGroup } from './GroupC
 import { Factor, FactorSortable, type CampaignFactor } from './Factor'
 import { getGroupById, updateArrayItemsPositionOnIndices, getItemIdFromSortingId } from '~/utils/dnd'
 import { ToolsDropdown } from './ToolsDropdown'
+import { ManageVariablesForm } from './ManageVariablesForm'
 
 const getFactorsByGroupId = (factors: CampaignFactor[], groupId: string) => factors
   .filter(factor => factor.campaignFactorGroupId === parseInt(groupId, 10))
@@ -40,6 +41,7 @@ export const ScoringGroups = () => {
   const [openAddEditFactor, setOpenAddEditFactor] = useState(false)
   const [currentGroupId, setCurrentGroupId] = useState<string>('')
   const [currentFactor, setCurrentFactor] = useState<CampaignFactor | undefined>(undefined)
+  const [openVariablesForm, setOpenVariablesForm] = useState(false)
   const { campaignId } = useParams<{campaignId: string}>()
   const [factorGroupsLocalState, setFactorGroupsLocalState] = useState<CampaignFactorGroup[]>([])
   const [campaignFactorsLocalState, setCampaignFactorsLocalState] = useState<CampaignFactor[]>([])
@@ -366,6 +368,12 @@ export const ScoringGroups = () => {
     })
   }
 
+  const handleToolsDropdown = ({ key }) => {
+    if (key === 'variables') {
+      setOpenVariablesForm(true)
+    }
+  }
+
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
     setActiveId(null)
     const activeId = active?.id
@@ -435,7 +443,7 @@ export const ScoringGroups = () => {
         </Col>
         <Col>
           <Space>
-            <ToolsDropdown />
+            <ToolsDropdown onClick={handleToolsDropdown} />
             <Button
               type="primary"
               onClick={() => setAddGroup(true)}
@@ -566,6 +574,10 @@ export const ScoringGroups = () => {
         }}
         factorData={currentFactor}
         editFactor={handleEditFactor}
+      />
+      <ManageVariablesForm
+        open={openVariablesForm}
+        close={() => setOpenVariablesForm(false)}
       />
     </Flex>
   )

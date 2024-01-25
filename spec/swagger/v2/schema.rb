@@ -405,6 +405,15 @@ module Swagger
           ),
           FactorListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Factor::Schema.multiple_resource_response
+          ),
+          CampaignScoringVariableResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignScoringVariable::Schema.multiple_resource_response
+          ),
+          CampaignScoringVariableSingleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignScoringVariable::Schema.single_resource_response
+          ),
+          CampaignScoringVariableUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignScoringVariable::Schema.update_request
           )
         }
       }
