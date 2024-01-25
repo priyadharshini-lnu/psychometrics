@@ -1,12 +1,10 @@
 import { useEffect, useMemo } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import {
-  Button, Flex, Form, Input, Space, Table,
+  Table,
 } from 'antd'
-import { PageHeader } from '@ant-design/pro-layout'
 import _ from 'lodash'
 import { ColumnProps } from 'antd/es/table'
-import styles from './styles.less'
 import { useResources } from '~/hooks/useResources'
 import { Weightage } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 
@@ -24,26 +22,18 @@ type Factor = {
   name: string;
 }
 
-
 type FactorsMap = Record<string, Factor>;
 type WeightagesMap = Record<string, Record<string, number>>;
-
-type factorWeightage = {
-  value: number | null;
-  disabled: boolean;
-}
 
 type DataType = {
   key: React.Key;
   assessmentName: string;
-  [key: string]: factorWeightage | string | number ;
+  [key: string]: string | number | null;
 }
 
 export function Weightages () {
-  const { projectId, campaignId } = useParams<{ projectId: string, campaignId: string }>()
-  const history = useHistory()
+  const { campaignId } = useParams<{ projectId: string, campaignId: string }>()
 
-  const [form] = Form.useForm()
   const {
     data: campaignAssessmentsData,
     fetch: fetchCampaignAssessments,
@@ -57,7 +47,6 @@ export function Weightages () {
   const {
     data: FactorWeightagesData,
     fetch: fetchFactorWeightages,
-    collectionAction: updateFactorWeightages,
   } = useResources<Weightage>('campaign_assessor_assessment_factor_weights', {
     basePath: `campaigns/${campaignId}`,
   })
@@ -74,58 +63,8 @@ export function Weightages () {
   const dataSource: DataType[] = useMemo(() => createDataSource(campaignAssessmentsData, factorsMap, weightagesMap),
     [campaignAssessmentsData, factorsMap, weightagesMap])
 
-
-  const handleSubmit = async () => {
-    const formValues = form.getFieldsValue(true)
-    const payload = _.flatMap(formValues, (
-      factors: { [factorId: string]: string | null },
-      assessmentId: string,
-    ) => _.chain(factors)
-      .pickBy(value => value !== null)
-      .map((value, factorId) => ({
-        assessment_id: assessmentId,
-        factor_id: factorId,
-        weight: parseFloat(value as string),
-      }))
-      .value())
-
-    updateFactorWeightages({
-      action: 'bulk_upsert',
-      method: 'post',
-      body: {
-        data: payload,
-      },
-    })
-  }
-
-  const handleReset = () => {
-    form.resetFields()
-  }
-
   return (
-    <>
-      <PageHeader
-        className={styles.pageHeader}
-        onBack={() => history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/scoring/settings`)}
-        title={<Space>{I18n.t('administration.scoring.weightages.weightages')}</Space>}
-      />
-      <Form form={form} onFinish={handleSubmit}>
-        <Table columns={columns} dataSource={dataSource} pagination={false} />
-        <Form.Item>
-          <Flex justify="flex-end" gap={8} style={{ padding: '2rem' }}>
-            <Button onClick={handleReset}>
-              {I18n.t('administration.common.reset')}
-            </Button>
-            <Button
-              type="primary"
-              htmlType="submit"
-            >
-              {I18n.t('administration.common.save')}
-            </Button>
-          </Flex>
-        </Form.Item>
-      </Form>
-    </>
+    <Table columns={columns} dataSource={dataSource} pagination={false} />
   )
 }
 
@@ -165,10 +104,7 @@ const createDataSource = (
   _.forEach(factors, (factor, factorId) => {
     const weightData = _.get(weightages, [assessment.assessmentId, factorId], 1)
     const factorExists = _.some(assessment.factors, { id: factorId })
-    rowData[factorId] = {
-      value: factorExists ? weightData : null,
-      disabled: !factorExists,
-    }
+    rowData[factorId] = factorExists ? weightData : null
   })
 
   return rowData
@@ -187,18 +123,6 @@ const createColumns = (factors: FactorsMap): ColumnProps<DataType>[] => {
     title: factor.name,
     dataIndex: factorId,
     key: factorId,
-    render: (_, record) => {
-      const inputProps = record[factorId] as factorWeightage
-      return (
-        <Form.Item
-          name={[record.key, factorId]}
-          initialValue={inputProps?.value}
-          noStyle
-        >
-          <Input disabled={inputProps.disabled} />
-        </Form.Item>
-      )
-    },
   }))
 
   return [...baseColumns, ...factorColumns]

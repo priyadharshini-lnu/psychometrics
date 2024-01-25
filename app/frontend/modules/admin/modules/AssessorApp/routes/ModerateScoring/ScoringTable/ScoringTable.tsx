@@ -2,69 +2,42 @@ import React, {
   useCallback, useEffect, useMemo, useState,
 } from 'react'
 import {
-  Table, InputNumber, Skeleton, Flex, Button, Typography,
+  Table, InputNumber, Skeleton, Flex, Button, Typography, Modal,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import {
-  Factor, FactorTR, Score, ScoreTR, CampaignFactorValue, CampaignFactorValueTR,
+  Factor, FactorTR, Score, ScoreTR, CampaignFactorValue, CampaignFactorValueTR, Weightage,
 } from '~/modules/admin/modules/campaigns/core/combinedScoring'
+import { median } from '~/utils/array'
 import styles from './ScoringTable.less'
 import { useResources } from '~/hooks/useResources'
+import { Weightages } from './Weightages'
+import { calculateAverageScores } from './commands/calculateAverageScores'
+import { calculateHighLowScores } from './commands/calculateHighLowScores'
+import { calculateWeightedAverageScores } from './commands/calculateWeightedAverageScores'
+
 
 const { I18n } = window
 
-const median = (a: number[]) => {
-  const half = Math.floor(a.length / 2)
-  a.sort((a, b) => a - b)
-  if (a.length % 2) return a[half]
-  return (a[half - 1] + a[half]) / 2.0
+type DataType = {
+  key: React.Key;
+  [key: string]: string | number | boolean | null;
 }
-
-const calculateAverageScores = (
-  columnsData: Factor[],
-  evaluatorsData: Score[],
-): Record<string, number | string> => {
-  const averages: Record<string, string> = {}
-  columnsData.forEach((factor) => {
-    let total = 0
-    let count = 0
-    evaluatorsData.forEach((evaluator) => {
-      const score = evaluator.scores[factor.factorId]
-      if (score !== undefined && score !== null) {
-        total += score
-        count += 1
-      }
-    })
-    averages[factor.factorId] = count > 0 ? (total / count).toFixed(1) : '-'
-  })
-  return averages
-}
-const calculateHighLowScores = (
-  columnsData: Factor[],
-  evaluatorsData: Score[],
-): Record<string, { high: string, low: string }> => {
-  const highLows: Record<string, { high: string, low: string }> = {}
-  columnsData.forEach((factor) => {
-    let high = -Infinity
-    let low = Infinity
-    evaluatorsData.forEach((evaluator) => {
-      const score = evaluator.scores[factor.factorId]
-      if (score !== undefined && score !== null) {
-        high = Math.max(high, score)
-        low = Math.min(low, score)
-      }
-    })
-    highLows[factor.factorId] = {
-      high: high === -Infinity ? '-' : high.toString(),
-      low: low === Infinity ? '-' : low.toString(),
-    }
-  })
-  return highLows
-}
-
 const sortEvaluatorsByEmail = (
   evaluators: Score[],
 ) => evaluators.slice().sort((a, b) => a.evaluator.email.localeCompare(b.evaluator.email))
+
+const processData = (dataWithAverages, averageRow, scoreRange, weightedAverageRow, finalRow): DataType[] => {
+  if (dataWithAverages.length === 0) return []
+  const baseData = [...dataWithAverages, averageRow, scoreRange]
+  if (weightedAverageRow.scores) {
+    baseData.push(weightedAverageRow)
+  }
+  if (finalRow.scores) {
+    baseData.push(finalRow)
+  }
+  return baseData
+}
 
 const ScoringTable: React.FC = () => {
   const { campaignId, userId } = useParams<{ campaignId: string, userId: string }>()
@@ -112,12 +85,26 @@ const ScoringTable: React.FC = () => {
       },
     },
   )
-  const [hasChanges, setHasChanges] = useState(false)
+
+  const {
+    data: factorWeightagesData,
+    fetch: fetchFactorWeightages,
+    isLoading: isWeightageLoading,
+  } = useResources<Weightage>('campaign_assessor_assessment_factor_weights', {
+    basePath: `campaigns/${campaignId}`,
+  })
+
   const sortedEvaluatorsData = useMemo(() => sortEvaluatorsByEmail(evaluatorsData), [evaluatorsData])
   const averageScores = useMemo(() => calculateAverageScores(columnsData, evaluatorsData),
     [columnsData, evaluatorsData])
   const highLowScores = useMemo(() => calculateHighLowScores(columnsData, evaluatorsData),
     [columnsData, evaluatorsData])
+  const weightedAverageScores = useMemo(() => calculateWeightedAverageScores(
+    columnsData,
+    evaluatorsData,
+    factorWeightagesData,
+  ),
+  [columnsData, evaluatorsData, factorWeightagesData])
   const [finalScores, setFinalScores] = useState<Record<string, number| string>>(averageScores)
   const factorIdToIdMap = useMemo(() => columnsData.reduce((acc, factor) => {
     acc[`factorId${factor.factorId}`] = factor.id
@@ -125,11 +112,21 @@ const ScoringTable: React.FC = () => {
     return acc
   }, {}), [columnsData])
 
+  const [open, setOpen] = useState(false)
+
+  const showModal = () => {
+    setOpen(true)
+  }
+
+  const handleCancel = () => {
+    setOpen(false)
+  }
 
   useEffect(() => {
     fetchScores()
     fetchFactors()
     fetchFinalScore()
+    fetchFactorWeightages()
   }, [])
 
   const initializeFinalScores = useCallback(() => {
@@ -142,21 +139,20 @@ const ScoringTable: React.FC = () => {
           newFinalScores[factorId] = scoreData.numericValue || scoreData.stringValue || '-'
         }
       })
+    } else if (weightedAverageScores && Object.keys(weightedAverageScores).length > 0) {
+      Object.assign(newFinalScores, weightedAverageScores)
     } else {
       Object.assign(newFinalScores, averageScores)
     }
     setFinalScores(newFinalScores)
-    setHasChanges(false)
-  }, [finalScoreData, averageScores, factorIdToIdMap])
+  }, [finalScoreData, weightedAverageScores, averageScores, factorIdToIdMap])
 
   useEffect(() => {
     initializeFinalScores()
   }, [initializeFinalScores])
 
-
   const handleFinalScoreChange = (factorId: string, value: number | string | null) => {
     setFinalScores({ ...finalScores, [factorId]: value || '-' })
-    setHasChanges(true)
   }
 
   const handleSave = () => {
@@ -174,7 +170,6 @@ const ScoringTable: React.FC = () => {
         },
       },
     )
-    setHasChanges(false)
   }
 
   const handleReset = () => {
@@ -199,14 +194,35 @@ const ScoringTable: React.FC = () => {
     }
   })
 
+
   const averageRow = {
-    assessors: 'Average',
+    assessors: factorWeightagesData.length > 0
+      ? `${I18n.t('administration.scoring.actual_average')}`
+      : `${I18n.t('administration.scoring.average')}`,
     scores: averageScores,
     key: 'average',
   }
 
+  const weightedAverageRow = {
+    assessors: (
+      <Flex vertical justify="flex-start">
+        <span>{I18n.t('administration.scoring.weighted_average')}</span>
+        <Button
+          type="link"
+          onClick={showModal}
+          style={{ width: 'unset', display: 'flex', padding: 'unset' }
+           }
+        >
+          {I18n.t('administration.scoring.show_weightages')}
+        </Button>
+      </Flex>
+    ),
+    scores: weightedAverageScores,
+    key: 'weightedAverage',
+  }
+
   const scoreRange = {
-    assessors: 'Score range',
+    assessors: `${I18n.t('administration.scoring.score_range')}`,
     key: 'scoreRange',
     scores: columnsData.reduce((acc, factor) => {
       const { high, low } = highLowScores[factor.factorId]
@@ -217,7 +233,7 @@ const ScoringTable: React.FC = () => {
 
 
   const finalRow = {
-    assessors: 'Final',
+    assessors: `${I18n.t('administration.scoring.final')}`,
     key: 'final',
     scores: columnsData.reduce((acc, factor) => ({
       ...acc,
@@ -287,37 +303,59 @@ const ScoringTable: React.FC = () => {
     })),
   ]
 
+  const dataSource = useMemo(() => processData(
+    dataWithAverages,
+    averageRow,
+    scoreRange,
+    weightedAverageRow,
+    finalRow,
+  ), [dataWithAverages, averageRow, scoreRange, weightedAverageRow, finalRow])
+
   if (columnsData.length === 0) return null
 
   return (
-    <div className={styles.container}>
-      <h3 className={styles.header}>{I18n.t('administration.scoring.scoring')}</h3>
-      {isFactorsLoading('fetch') && isFinalScoreLoading('fetch') && isScoresLoading('fetch') ? <Skeleton active />
-        : (
-          <Table
-            dataSource={dataWithAverages.length ? [...dataWithAverages, averageRow, scoreRange, finalRow] : []}
-            columns={columns}
-            pagination={false}
-            className={styles.table}
-            rowClassName={rowClassName}
-          />
-        )}
-      <Flex justify="flex-end" gap={8} style={{ padding: '2rem' }}>
-        <Button
-          onClick={handleReset}
-          disabled={!hasChanges}
-        >
-          {I18n.t('administration.common.reset')}
-        </Button>
-        <Button
-          type="primary"
-          onClick={handleSave}
-          disabled={!hasChanges}
-        >
-          {I18n.t('administration.common.save')}
-        </Button>
-      </Flex>
-    </div>
+    <>
+      <div className={styles.container}>
+        <h3 className={styles.header}>{I18n.t('administration.scoring.scoring')}</h3>
+        {isFactorsLoading('fetch')
+        && isFinalScoreLoading('fetch')
+        && isScoresLoading('fetch')
+        && isWeightageLoading('fetch') ? <Skeleton active />
+          : (
+            <Table
+              dataSource={dataSource}
+              columns={columns}
+              pagination={false}
+              className={styles.table}
+              rowClassName={rowClassName}
+            />
+          )}
+        <Flex justify="flex-end" gap={8} style={{ padding: '2rem' }}>
+          <Button
+            onClick={handleReset}
+          >
+            {I18n.t('administration.common.reset')}
+          </Button>
+          <Button
+            type="primary"
+            onClick={handleSave}
+          >
+            {I18n.t('administration.common.save')}
+          </Button>
+        </Flex>
+      </div>
+      <Modal
+        open={open}
+        title={I18n.t('administration.scoring.weightages.weightages')}
+        onCancel={handleCancel}
+        footer={<></>}
+        width={1200}
+      >
+        {factorWeightagesData.length > 0
+          ? <Weightages /> : null
+          }
+      </Modal>
+    </>
   )
 }
 

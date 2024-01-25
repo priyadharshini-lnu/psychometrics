@@ -28,7 +28,7 @@ const getMenuProps = (): MenuProps => {
   const menuItems:ItemType[] = [
     {
       key: 'weightages',
-      label: <Link to="scoring/settings/weightages">{I18n.t('administration.scoring.weightages.weightages')}</Link>,
+      label: <Link to="settings/weightages">{I18n.t('administration.scoring.weightages.weightages')}</Link>,
     },
   ]
   return ({ items: menuItems })

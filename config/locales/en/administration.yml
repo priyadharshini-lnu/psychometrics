@@ -4016,15 +4016,18 @@ en:
         resources: Resources
         subjects: Subjects
     scoring:
+      actual_average: Actual Average
       add_factor: Add Factor
       add_group: Add Group
       assessment: Assessment
       assessment_scoring_type: Assessment Scoring Type
+      average: Average
       code: Code
       delete_group: Delete Group
       description: Description
       dimension: Dimension
       factor: Factor
+      final: Final
       formula: Formula
       get_started: Get Started
       id: Id
@@ -4036,6 +4039,7 @@ en:
       public: Public
       required_error: Can't be empty
       save: Save
+      score_range: Score Range
       score_types:
         norm_score: Norm Score
         percentage: Percentage
@@ -4047,6 +4051,7 @@ en:
       select_assessment: Select Assessment or Diminsion
       select_assessment_first: Select Assessment First
       select_factor: Select Factor
+      show_weightages: Show Weightages
       subject: Subject
       subject_list:
         actions: Actions
@@ -4065,6 +4070,7 @@ en:
         assessorForms: Assessor Forms
         tools: Tools
         weightages: Weightages
+      weighted_average: Weighted Average
     search: Search
     security_setting:
       180_days: 180 Days

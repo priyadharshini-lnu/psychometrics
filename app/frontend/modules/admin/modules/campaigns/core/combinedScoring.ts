@@ -49,6 +49,13 @@ export const CampaignScoresTR = t.type({
   })),
 })
 
+export type Weightage = {
+  id: string;
+  weight: number;
+  assessment: { id: string; type: string };
+  factor: { id: string; type: string };
+}
+
 // Export the types
 export type Factor = t.TypeOf<typeof FactorTR>;
 export type Score = t.TypeOf<typeof ScoreTR>;
