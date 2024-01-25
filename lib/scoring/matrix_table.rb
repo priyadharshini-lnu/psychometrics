@@ -6,7 +6,7 @@ module Scoring
       values = []
       options = []
       result['answers'].each do |answer|
-        next unless answer['value'] && (result.dig('not_applicable', answer['choice'].to_s) != true)
+        next unless answer['value'] && not_applicable?(result, answer['choice']) != true
 
         object = scoring_template.detect do |template|
           template['scale'] == answer['scale'] && template['choice'] == answer['choice']
@@ -31,7 +31,7 @@ module Scoring
 
       max_values = scoring_template_by_choice.map do |choice, templates|
         next if question.props['choices'] <= choice.to_i
-        next if result.dig('not_applicable', choice.to_s) == true
+        next if not_applicable?(result, choice)
         next unless answered_choices.include?(choice)
 
         choice_values = templates.filter_map do |template|
@@ -46,6 +46,14 @@ module Scoring
         end
       end
       max_values.compact.sum
+    end
+
+    def not_applicable?(result, choice)
+      not_applicable = result['not_applicable']
+      return false if not_applicable.nil?
+      return false unless not_applicable.is_a?(Hash)
+
+      not_applicable[choice.to_s] == true
     end
   end
 end
