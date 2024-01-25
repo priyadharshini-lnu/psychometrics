@@ -28,7 +28,7 @@ module PipedText
             value = if branch[:allow_html]
                       value
                     elsif value
-                      CGI.escapeHTML(value)
+                      CGI.escapeHTML(value.to_s)
                     else
                       ''
                     end
