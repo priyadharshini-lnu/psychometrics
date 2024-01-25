@@ -155,7 +155,7 @@ function ProfileComponent ({
                       accept=".jpg, .jpeg, |image/*"
                       showUploadList={false}
                       maxCount={1}
-                      className={styles.upload}
+                      className={cs(styles.upload, { [styles.error]: errors?.photo })}
                       onChange={onChangeFile}
                       beforeUpload={() => false}
                     >
