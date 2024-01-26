@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignFactorValue < ApplicationRecord
+  audited
+
   belongs_to :campaign
   belongs_to :user
   belongs_to :campaign_user, primary_key: :user_id, foreign_key: :user_id

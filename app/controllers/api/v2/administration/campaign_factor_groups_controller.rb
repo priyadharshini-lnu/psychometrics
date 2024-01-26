@@ -6,6 +6,8 @@ module Api
 
     def initialize_scoring
       result = ::CampaignFactorGroups::InitializeScoring.call(campaign)
+      audit! :initialize_scoring, campaign, payload: {}, campaign: campaign
+
       if result[:ok]
         jsonapi_render json: result[:ok]
       else
@@ -15,6 +17,7 @@ module Api
 
     def update_positions
       result = ::CampaignFactorGroups::UpdatePositions.call(campaign, params[:data])
+      audit! :update_positions, campaign, payload: params, campaign: campaign
 
       if result[:ok]
         jsonapi_render json: result[:ok]

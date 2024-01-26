@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignFactor < ApplicationRecord
+  audited
+
   belongs_to :campaign_factor_group
   belongs_to :campaign
   belongs_to :factor

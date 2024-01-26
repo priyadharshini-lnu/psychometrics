@@ -6,6 +6,7 @@ module Api
 
     def change_finalized_campaign_score
       campaign_user = ::CampaignUser.find_by(campaign_id: campaign.id, user_id: @user.id)
+      audit! :change_finalized_campaign_score, campaign_user, payload: params[:data][:attributes], campaign: campaign
 
       campaign_user.update!(
         campaign_scores_finalized: params[:data][:attributes][:finalized],
@@ -16,12 +17,15 @@ module Api
     end
 
     def rescore
+      audit! :campaign_scoring_rescore, @user, payload: {}, campaign: campaign
       ::CampaignScoring::Rescore.call!(campaign, @user)
 
       render json: {}
     end
 
     def change_finalized_campaign_score_bulk
+      audit! :change_finalized_campaign_score_bulk, nil, record_type: CampaignUser,
+        payload: params[:data][:attributes], campaign: campaign
       CampaignUsers::ChangeCampaignScoreFinalized.call!(
         campaign: campaign,
         user_ids: params[:data][:attributes][:user_ids],
@@ -33,6 +37,9 @@ module Api
     end
 
     def rescore_bulk
+      audit! :campaign_scoring_rescore_bulk, nil, record_type: CampaignUser,
+        payload: params[:data][:attributes], campaign: campaign
+
       AdminJob.call(
         :bulk_rescore_campaign_factors,
         { user_ids: params[:data][:attributes][:user_ids], campaign_id: campaign.id },

@@ -7,6 +7,7 @@ module Api
 
     def update_positions
       result = ::CampaignFactors::UpdatePositions.call(campaign, params[:data])
+      audit! :update_positions, campaign, payload: params, campaign: campaign
 
       if result[:ok]
         jsonapi_render json: result[:ok]

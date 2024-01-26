@@ -5,6 +5,7 @@ module Api
     validate_crud_requests Api::V2::CampaignFactorValue::Schema
 
     def save_assessor_scoring_factor_value
+      audit! :save_assessor_scoring_factor_value, campaign, payload: params[:data][:attributes], campaign: campaign
       ::CampaignFactors::SaveAssessorScoringFactorValue.call!(campaign, params[:data][:attributes], current_user)
 
       head :ok

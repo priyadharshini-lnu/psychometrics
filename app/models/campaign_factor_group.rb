@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignFactorGroup < ApplicationRecord
+  audited
+
   belongs_to :campaign
 
   has_many :campaign_factors, dependent: :destroy
