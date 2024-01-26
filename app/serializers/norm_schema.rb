@@ -7,7 +7,7 @@ class NormSchema < BaseSchema
 
       required(:id) { int? | str? }
       required(:name).filled(:str?)
-      required(:norm_type).filled(:str?)
+      required(:norm_type).maybe(:str?)
     end
   end
 end
