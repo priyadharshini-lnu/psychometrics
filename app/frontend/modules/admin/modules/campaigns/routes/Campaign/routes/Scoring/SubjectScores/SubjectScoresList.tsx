@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Skeleton, Row, Col,
+  Table, Skeleton, Row, Col, App,
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { CheckOutlined, AppstoreOutlined } from '@ant-design/icons'
@@ -31,6 +31,7 @@ type DataType = {
 }
 
 export function SubjectScoresList () {
+  const { modal, message } = App.useApp()
   const { campaignId } = useParams<{ campaignId: string }>()
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
@@ -90,7 +91,7 @@ export function SubjectScoresList () {
     onChange: onSelectChange,
   }
 
-  const handleAction = (action: string, subject: DataType) => {
+  const handleIndividualAction = (action: string, subject: DataType) => {
     if (action === 'mark_finalized') {
       memberAction({
         id: subject?.id,
@@ -98,7 +99,9 @@ export function SubjectScoresList () {
         method: 'post',
         updateStore: true,
         body: { finalized: true },
-      })
+      }).then(
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject })),
+      )
     } else if (action === 'mark_not_finalized') {
       memberAction({
         id: subject?.id,
@@ -106,7 +109,9 @@ export function SubjectScoresList () {
         method: 'post',
         updateStore: true,
         body: { finalized: false },
-      })
+      }).then(
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject })),
+      )
     } else if (action === 'rescore') {
       memberAction({
         id: subject?.id,
@@ -114,7 +119,9 @@ export function SubjectScoresList () {
         method: 'post',
         body: {},
         responseType: {},
-      })
+      }).then(
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject })),
+      )
     }
   }
 
@@ -125,27 +132,54 @@ export function SubjectScoresList () {
         method: 'post',
         body: { userIds: selectedRowKeys, finalized: true },
         responseType: t.literal('ok'),
-      })
+      }).then(
+        message.success(I18n.t('frontend.resource.update_success',
+          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_mark_finalized') })),
+      )
     } else if (action === 'mark_not_finalized') {
       collectionAction({
         action: 'change_finalized_campaign_score_bulk',
         method: 'post',
         body: { userIds: selectedRowKeys, finalized: false },
         responseType: t.literal('ok'),
-      })
+      }).then(
+        message.success(I18n.t('frontend.resource.update_success',
+          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_mark_not_finalized') })),
+      )
     } else if (action === 'rescore') {
       collectionAction({
         action: 'rescore_bulk',
         method: 'post',
         body: { userIds: selectedRowKeys },
         responseType: {},
-      })
+      }).then(
+        message.success(I18n.t('frontend.resource.update_success',
+          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_rescore') })),
+      )
     }
+  }
+
+  const handleConfirmAction = (action: string, subject: DataType) => {
+    const { title, content } = actionDetails(action, subject)
+    modal.confirm({
+      title,
+      content,
+      onOk: () => handleIndividualAction(action, subject),
+    })
+  }
+
+  const handleBulkConfirmAction = (action: string) => {
+    const { title, content } = bulkActionDetails(action)
+    modal.confirm({
+      title,
+      content,
+      onOk: () => handleBulkAction(action),
+    })
   }
 
   const tableColumns: ColumnsType<DataType> = useMemo(() => createSortedTableColumns(
     campaignFactorData,
-    handleAction,
+    handleConfirmAction,
   ), [campaignFactorData])
 
   const dataSource = useMemo(() => processData(CampaignFactorValuesData), [CampaignFactorValuesData])
@@ -160,7 +194,18 @@ export function SubjectScoresList () {
           </span>
         </Col>
         <div>
-          <ToolsDropdown isBulk onClick={action => handleBulkAction(action)} />
+          <ToolsDropdown
+            isBulk
+            onClick={action => handleBulkConfirmAction(action)}
+            isDisabled={selectedRowKeys.length === 0}
+            persmission={
+            {
+              markFinalized: true,
+              markNotFinalized: true,
+              rescore: true,
+            }
+          }
+          />
         </div>
       </Row>
       {(isCampaignFactorsLoading || isCampaignFactorValuesLoading) ? (
@@ -173,6 +218,7 @@ export function SubjectScoresList () {
           columns={tableColumns}
           pagination={false}
           bordered
+          scroll={{ x: 'max-content' }}
         />
       )}
     </div>
@@ -208,12 +254,16 @@ function createSortedTableColumns (
       title: I18n.t('administration.scoring.id'),
       dataIndex: 'id',
       key: 'id',
+      width: 80,
+      fixed: 'left',
     },
     {
       title: I18n.t('administration.scoring.subject'),
       dataIndex: 'subject',
       key: 'subject',
       className: styles.columnBorderEnd,
+      width: 200,
+      fixed: 'left',
     },
   ]
 
@@ -250,8 +300,19 @@ function createSortedTableColumns (
     {
       title: I18n.t('common.column.action'),
       key: 'actions',
+      width: 80,
+      fixed: 'right',
       render: subject => (
-        <ToolsDropdown onClick={action => handleAction(action, subject)} />
+        <ToolsDropdown
+          onClick={action => handleAction(action, subject)}
+          persmission={
+          {
+            markFinalized: subject.finalized === false,
+            markNotFinalized: subject.finalized === true,
+            rescore: true,
+          }
+        }
+        />
       ),
     },
   ]
@@ -281,3 +342,39 @@ const processData = (
 
   return userData
 })
+
+const actionDetails = (action: string, subject: DataType) => {
+  if (action === 'mark_finalized') {
+    return {
+      title: I18n.t('administration.scoring.subject_list.mark_finalized'),
+      content: I18n.t('administration.scoring.subject_list.mark_finalized_confirm', { email: subject.subject }),
+    }
+  } if (action === 'mark_not_finalized') {
+    return {
+      title: I18n.t('administration.scoring.subject_list.mark_not_finalized'),
+      content: I18n.t('administration.scoring.subject_list.mark_not_finalized_confirm', { email: subject.subject }),
+    }
+  }
+  return {
+    title: I18n.t('administration.scoring.subject_list.rescore'),
+    content: I18n.t('administration.scoring.subject_list.rescore_confirm', { email: subject.subject }),
+  }
+}
+
+const bulkActionDetails = (action: string) => {
+  if (action === 'mark_finalized') {
+    return {
+      title: I18n.t('administration.scoring.subject_list.bulk_mark_finalized'),
+      content: I18n.t('administration.scoring.subject_list.bulk_mark_finalized_confirm'),
+    }
+  } if (action === 'mark_not_finalized') {
+    return {
+      title: I18n.t('administration.scoring.subject_list.bulk_mark_not_finalized'),
+      content: I18n.t('administration.scoring.subject_list.bulk_mark_not_finalized_confirm'),
+    }
+  }
+  return {
+    title: I18n.t('administration.scoring.subject_list.bulk_rescore'),
+    content: I18n.t('administration.scoring.subject_list.bulk_rescore_confirm'),
+  }
+}

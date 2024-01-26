@@ -5,6 +5,8 @@ import {
   Table, InputNumber, Skeleton, Flex, Button, Typography, Modal,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import _ from 'lodash'
+import type { ColumnsType } from 'antd/es/table'
 import {
   Factor, FactorTR, Score, ScoreTR, CampaignFactorValue, CampaignFactorValueTR, Weightage,
 } from '~/modules/admin/modules/campaigns/core/combinedScoring'
@@ -30,7 +32,7 @@ const sortEvaluatorsByEmail = (
 const processData = (dataWithAverages, averageRow, scoreRange, weightedAverageRow, finalRow): DataType[] => {
   if (dataWithAverages.length === 0) return []
   const baseData = [...dataWithAverages, averageRow, scoreRange]
-  if (weightedAverageRow.scores) {
+  if (!_.isEmpty(weightedAverageRow.scores)) {
     baseData.push(weightedAverageRow)
   }
   if (finalRow.scores) {
@@ -278,11 +280,12 @@ const ScoringTable: React.FC = () => {
     }, {})
   }, [columnsData, evaluatorsData])
 
-  const columns = [
+  const columns: ColumnsType<DataType> = [
     {
       title: 'Assessors',
       dataIndex: 'assessors',
       key: 'assessors',
+      fixed: 'left',
     },
     ...columnsData.map(factor => ({
       title: factor.name,
@@ -328,6 +331,7 @@ const ScoringTable: React.FC = () => {
               pagination={false}
               className={styles.table}
               rowClassName={rowClassName}
+              scroll={{ x: 'max-content' }}
             />
           )}
         <Flex justify="flex-end" gap={8} style={{ padding: '2rem' }}>

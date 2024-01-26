@@ -153,7 +153,14 @@ const UserList: React.FC<Props> = ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+            scroll={{ x: 1500 }}
+          >
             <Column
               title={I18n.t('administration.campaigns.users.id')}
               key="id"
@@ -164,6 +171,8 @@ const UserList: React.FC<Props> = ({
                   {id}
                 </Link>
               )}
+              width={80}
+              fixed="left"
             />
             <Column
               title={I18n.t('administration.campaigns.users.is_active')}

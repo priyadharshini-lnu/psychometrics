@@ -8,45 +8,66 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
+type Persmission = {
+  markFinalized: boolean,
+  markNotFinalized: boolean,
+  rescore: boolean,
+}
+
 type Props = {
   isBulk?: boolean,
   onClick: (action: string) => void,
+  persmission: Persmission,
+  isDisabled?: boolean,
 }
 
-export const ToolsDropdown: React.FC<Props> = ({ isBulk, onClick }: Props) => (
-  <ConditionalDropdown
-    menu={getMenuProps({ onClick, isBulk })}
-    innerElement={isBulk ? (
-      <Button>
-        <ToolOutlined />
-        <span>{I18n.t('administration.scoring.subject_list.actions')}</span>
-        <DownOutlined />
-      </Button>
-    ) : (
-      <a>
-        <MoreOutlined />
-      </a>
-    )}
-    className="mrm"
-    hideForEmptyMenu
-  />
-)
+export const ToolsDropdown: React.FC<Props> = ({
+  isBulk, onClick, persmission, isDisabled,
+}: Props) => {
+  const btn = (
+    <Button>
+      <ToolOutlined />
+      <span>{I18n.t('administration.scoring.subject_list.actions')}</span>
+      <DownOutlined />
+    </Button>
+  )
+  if (isDisabled) {
+    return (btn)
+  }
+  return (
+    <ConditionalDropdown
+      menu={getMenuProps({ onClick, isBulk, persmission })}
+      innerElement={isBulk ? (btn) : (
+        <a>
+          <MoreOutlined />
+        </a>
+      )}
+      className="mrm"
+      hideForEmptyMenu
+    />
+  )
+}
 
-const getMenuProps = ({ onClick }: Props): MenuProps => {
-  const menuItems:ItemType[] = [
-    {
+const getMenuProps = ({ onClick, persmission }: Props): MenuProps => {
+  const menuItems:ItemType[] = []
+  if (persmission?.markFinalized) {
+    menuItems.push({
       key: 'mark_finalized',
       label: I18n.t('administration.scoring.subject_list.mark_finalized'),
-    },
-    {
+    })
+  }
+  if (persmission?.markNotFinalized) {
+    menuItems.push({
       key: 'mark_not_finalized',
       label: I18n.t('administration.scoring.subject_list.mark_not_finalized'),
-    },
-    {
+    })
+  }
+  if (persmission?.rescore) {
+    menuItems.push({
       key: 'rescore',
       label: I18n.t('administration.scoring.subject_list.rescore'),
-    },
-  ]
+    })
+  }
 
   const handleMenuClick = ({ key }) => {
     onClick(key)
