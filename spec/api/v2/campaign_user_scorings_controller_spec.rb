@@ -14,8 +14,8 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
   let(:campaign_factor_group_id) { campaign_factor_group.id.to_s }
   let!(:campaign_factor) do
     create(
-      :campaign_factor,
-      name: 'Factor', campaign_factor_group_id: campaign_factor_group_id, campaign_id: campaign_id
+      :campaign_factor, name: 'Factor', campaign_factor_group_id: campaign_factor_group_id,
+      campaign_id: campaign_id, formula: 'return 4'
     )
   end
   let(:factor_id) { campaign_factor.id.to_s }
@@ -98,6 +98,7 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
 
         run_test! do |response|
           expect(response.status).to eq(200)
+          expect(campaign_user.reload.campaign_scores_finalized).to eq(true)
         end
       end
     end
@@ -113,9 +114,13 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 
+      before { expect(campaign_user.campaign_factor_values).to be_empty }
+
       response '200', 'CampaignUserScorings' do
         run_test! do |response|
           expect(response.status).to eq(200)
+
+          expect(campaign_user.campaign_factor_values.first.numeric_value).to eq(4)
         end
       end
     end
