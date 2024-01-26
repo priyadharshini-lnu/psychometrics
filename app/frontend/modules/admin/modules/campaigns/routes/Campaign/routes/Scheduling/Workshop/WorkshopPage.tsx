@@ -28,8 +28,13 @@ const STATUS_TAG_COLOR = {
   open: 'success',
   closed: 'error',
 }
+interface LocationState {
+  state?: {
+    search?: string
+  }
+}
 
-export const WorkshopPage: FC<{}> = () => {
+export const WorkshopPage: FC<{location: LocationState}> = ({ location }) => {
   const {
     id, campaignId, tab,
   } = useParams<{ id: string, campaignId: string, tab: string | undefined }>()
@@ -40,7 +45,7 @@ export const WorkshopPage: FC<{}> = () => {
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
 
   const handleTabChange = (currentTab) => {
-    routeUtils.moveTo(history, prefixPath, `/assessment_center/${id}/${currentTab}`)
+    routeUtils.moveTo(history, prefixPath, `/assessment_center/${id}/${currentTab}`, false, location.state)
     setCurrentTab(currentTab)
   }
 
@@ -72,6 +77,8 @@ export const WorkshopPage: FC<{}> = () => {
     )
   }
 
+  const backUrl = location?.state?.search ? `/assessment_center${location.state?.search}` : '/assessment_center'
+
   return (
     <>
       <div className="pt-6 ps-6 pe-6">
@@ -79,7 +86,7 @@ export const WorkshopPage: FC<{}> = () => {
           title={(
             <>
               <Space>
-                <ArrowLeftOutlined onClick={() => routeUtils.moveTo(history, prefixPath, '/assessment_center')} />
+                <ArrowLeftOutlined onClick={() => routeUtils.moveTo(history, prefixPath, backUrl)} />
                 {workshop.name}
               </Space>
             </>
