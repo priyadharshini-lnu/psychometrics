@@ -104,7 +104,10 @@ export const ProjectComponent: FC<Props> = ({
   }
 
   const canShowSettingsTab = () => {
-    const permissions = ['manageProjectSmtpSettings', 'manageProjectSamlSetting', 'manageProjectIntegrations']
+    const permissions = [
+      'manageProjectSmtpSettings', 'manageProjectSamlSetting', 'manageProjectIntegrations', 'manageProjectWebhooks',
+      'manageProjectSecuritySettings', 'manageProjectGeneralSettings',
+    ]
     return some(permissions, permission => currentUser.permissions[permission])
   }
 
