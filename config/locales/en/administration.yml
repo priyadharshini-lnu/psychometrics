@@ -3558,6 +3558,9 @@ en:
       design_settings:
         background_color: Background Color
         background_label: Background
+        background_size: Background Size
+        background_size_contain: Contain
+        background_size_cover: Cover
         bg_upload: Upload
         client_logo_label: Client Logo
         color_label: Color
