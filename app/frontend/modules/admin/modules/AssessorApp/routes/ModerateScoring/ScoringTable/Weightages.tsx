@@ -64,7 +64,7 @@ export function Weightages () {
     [campaignAssessmentsData, factorsMap, weightagesMap])
 
   return (
-    <Table columns={columns} dataSource={dataSource} pagination={false} />
+    <Table columns={columns} dataSource={dataSource} pagination={false} scroll={{ x: 'max-content' }} />
   )
 }
 
@@ -116,6 +116,7 @@ const createColumns = (factors: FactorsMap): ColumnProps<DataType>[] => {
       title: I18n.t('administration.scoring.weightages.assessorForms'),
       dataIndex: 'assessmentName',
       key: 'assessmentName',
+      fixed: 'left',
     },
   ]
 

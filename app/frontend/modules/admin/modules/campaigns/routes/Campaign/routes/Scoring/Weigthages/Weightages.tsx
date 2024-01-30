@@ -110,7 +110,7 @@ export function Weightages () {
         title={<Space>{I18n.t('administration.scoring.weightages.weightages')}</Space>}
       />
       <Form form={form} onFinish={handleSubmit}>
-        <Table columns={columns} dataSource={dataSource} pagination={false} />
+        <Table columns={columns} dataSource={dataSource} pagination={false} scroll={{ x: 'max-content' }} />
         <Form.Item>
           <Flex justify="flex-end" gap={8} style={{ padding: '2rem' }}>
             <Button onClick={handleReset}>
@@ -180,6 +180,7 @@ const createColumns = (factors: FactorsMap): ColumnProps<DataType>[] => {
       title: I18n.t('administration.scoring.weightages.assessorForms'),
       dataIndex: 'assessmentName',
       key: 'assessmentName',
+      fixed: 'left',
     },
   ]
 
