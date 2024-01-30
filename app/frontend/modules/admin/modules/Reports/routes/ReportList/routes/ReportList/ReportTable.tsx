@@ -126,27 +126,6 @@ const Dropdown: React.FC<DropDownProps> = (
 ) => {
   const [confirmation, setConfirmation] = useState(false)
   const { message } = App.useApp()
-
-  return (
-    <ConditionalDropdown
-      menu={getActionsMenuProps({
-        report, setConfirmation, confirmation, openDrawer, message,
-      })}
-    />
-  )
-}
-
-interface ActionMenuProps {
-  report: Report
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
-  openDrawer: (report: Report) => void
-  message: MessageInstance
-}
-
-const getActionsMenuProps = ({
-  setConfirmation, confirmation, report, openDrawer, message,
-}: ActionMenuProps): MenuProps => {
   const { resource } = useResourceContext<Report>()
 
   const handleOnConfirm = () => resource.removeResource(report.id).then(() => {
@@ -154,6 +133,37 @@ const getActionsMenuProps = ({
   }).catch((err) => {
     message.error(err.base[0].title)
   })
+
+  return (
+    <>
+      <ConditionalDropdown
+        menu={getActionsMenuProps({
+          report, setConfirmation, openDrawer, message,
+        })}
+      />
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('reports.actions.remove.confirm_title')}
+        message={I18n.t('reports.actions.remove.confirm_message', { name: report.name })}
+        onConfirm={handleOnConfirm}
+        close={() => setConfirmation(false)}
+      />
+    </>
+
+  )
+}
+
+interface ActionMenuProps {
+  report: Report
+  setConfirmation: (confirmation: boolean) => void
+  openDrawer: (report: Report) => void
+  message: MessageInstance
+}
+
+const getActionsMenuProps = ({
+  setConfirmation, report, openDrawer, message,
+}: ActionMenuProps): MenuProps => {
+  const { resource } = useResourceContext<Report>()
 
   const toggleArchive = () => resource.updateResource({
     id: report.id,
@@ -245,14 +255,6 @@ const getActionsMenuProps = ({
           <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('reports.actions.remove.confirm_title')}
-              message={I18n.t('reports.actions.remove.confirm_message', { name: report.name })}
-              onConfirm={handleOnConfirm}
-              onCancel={() => setConfirmation(false)}
-            />
-          )}
         </>
       ),
     },

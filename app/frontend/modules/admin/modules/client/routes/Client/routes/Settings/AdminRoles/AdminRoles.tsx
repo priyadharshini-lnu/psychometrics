@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import {
   Button, message, MenuProps, Space, Checkbox,
@@ -26,7 +26,6 @@ type Props = PropsFromRedux
 
 const AdminRolesList: React.FC<Props> = ({ openModal }) => {
   const { clientId } = useParams<{ clientId: string }>()
-  const [confirmation, setConfirmation] = useState(false)
   const config = {
     responseType: AdminRoleTR,
     basePath: `clients/${clientId}`,
@@ -77,8 +76,6 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
               menu={
                 getActionsMenuProps({
                   role,
-                  setConfirmation,
-                  confirmation,
                   openModal,
                 })
               }
@@ -86,7 +83,7 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
           )}
         />
       </Resource.Table>
-      <Modals modals={{ AdminRolesForm }} />
+      <Modals modals={{ AdminRolesForm, ConfirmationModal }} />
     </Resource>
   )
 }
@@ -113,18 +110,15 @@ const ResourceFilter = ({ openModal }) => {
 
 interface ActionMenuData {
   role: AdminRole
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
 const getActionsMenuProps = ({
-  role, setConfirmation, confirmation, openModal,
+  role, openModal,
 }: ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<AdminRole>()
 
   const handleOnConfirm = () => resource.removeResource(role.id).then(() => {
-    setConfirmation(false)
     message.success(
       I18n.t('administration.settings.admin_roles.successful_remove', { role_name: role?.name }),
     )
@@ -150,19 +144,15 @@ const getActionsMenuProps = ({
     key: 'remove',
     label: (
       <>
-        <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
+        <Button
+          type="link"
+          onClick={
+            () => openModal('ConfirmationModal', { onConfirm: handleOnConfirm, open: true })
+          }
+          className="ps-0"
+        >
           {I18n.t('common.actions.remove')}
         </Button>
-        {confirmation && (
-          <ConfirmationModal
-            title={I18n.t('administration.settings.admin_roles.confirm_title')}
-            message={
-              I18n.t('administration.settings.admin_roles.confirm_message', { role_name: role?.name })
-            }
-            onConfirm={handleOnConfirm}
-            onCancel={() => setConfirmation(false)}
-          />
-        )}
       </>
     ),
   })

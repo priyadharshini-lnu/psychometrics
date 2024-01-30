@@ -3459,7 +3459,9 @@ en:
       remove:
         confirm_message: Are you sure you want to delete the user with an email '%{email}'?
         confirm_title: Confirmation Required
+        error_message: Could not remove the user due to error - %{error}
         success_message: "%{email} has been removed"
+        system_error_message: Could not remove the user, please try again later or contact support.
       reset_password:
         option: Reset Password
     admins: Admins

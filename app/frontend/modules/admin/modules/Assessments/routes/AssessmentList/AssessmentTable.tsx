@@ -147,26 +147,6 @@ const Dropdown: React.FC<DropDownProps> = (
 ) => {
   const [confirmation, setConfirmation] = useState(false)
   const { message } = App.useApp()
-  return (
-    <ConditionalDropdown
-      menu={getActionsMenuProps({
-        assessment, setConfirmation, confirmation, openDrawer, message,
-      })}
-    />
-  )
-}
-
-interface ActionMenuData {
-  assessment: Assessment
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
-  openDrawer: (assessment: Assessment) => void
-  message: MessageInstance
-}
-
-const getActionsMenuProps = ({
-  setConfirmation, confirmation, assessment, openDrawer, message,
-}: ActionMenuData): MenuProps => {
   const { resource } = useResourceContext<Assessment>()
 
   const handleOnConfirm = () => resource.removeResource(assessment.id).then(() => {
@@ -174,6 +154,39 @@ const getActionsMenuProps = ({
   }).catch(() => {
     message.error(I18n.t('common.errors.something_wrong'))
   })
+  return (
+    <>
+      <ConditionalDropdown
+        menu={getActionsMenuProps({
+          assessment, setConfirmation, openDrawer, message,
+        })}
+      />
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('assessments.actions.remove.confirm_title')}
+        message={I18n.t('assessments.actions.remove.confirm_message', { name: assessment.name })}
+        onConfirm={handleOnConfirm}
+        onCancel={(e) => {
+          e.stopPropagation()
+          setConfirmation(false)
+        }}
+        close={() => null}
+      />
+    </>
+  )
+}
+
+interface ActionMenuData {
+  assessment: Assessment
+  setConfirmation: (confirmation: boolean) => void
+  openDrawer: (assessment: Assessment) => void
+  message: MessageInstance
+}
+
+const getActionsMenuProps = ({
+  setConfirmation, assessment, openDrawer, message,
+}: ActionMenuData): MenuProps => {
+  const { resource } = useResourceContext<Assessment>()
 
   const toggleArchive = () => resource.memberAction({
     id: assessment.id,
@@ -294,17 +307,6 @@ const getActionsMenuProps = ({
           <Button type="link" className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('assessments.actions.remove.confirm_title')}
-              message={I18n.t('assessments.actions.remove.confirm_message', { name: assessment.name })}
-              onConfirm={handleOnConfirm}
-              onCancel={(e) => {
-                e.stopPropagation()
-                setConfirmation(false)
-              }}
-            />
-          )}
         </>
       ),
     },

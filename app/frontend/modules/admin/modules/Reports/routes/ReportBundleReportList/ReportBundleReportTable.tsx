@@ -50,33 +50,43 @@ const Dropdown: React.FC<DropDownProps> = (
   { reportBundleReport },
 ) => {
   const [confirmation, setConfirmation] = useState(false)
-  return (
-    <ConditionalDropdown
-      menu={getActionsMenuProps({
-        reportBundleReport, setConfirmation, confirmation,
-      })}
-    />
-  )
-}
-
-interface ActionMenuProps {
-  reportBundleReport: ReportBundleReport
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
-}
-
-const getActionsMenuProps = ({
-  setConfirmation, confirmation, reportBundleReport,
-}: ActionMenuProps): MenuProps => {
   const { resource } = useResourceContext<Report>()
-
 
   const handleOnConfirm = () => resource.removeResource(reportBundleReport.id).then(() => {
     message.info(I18n.t('report_bundles.reports.actions.remove.success_message', { name: reportBundleReport.name }))
   }).catch((err) => {
     message.error(err.base[0].title)
   })
+  return (
+    <>
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('report_bundles.reports.actions.remove.confirm_title')}
+        message={I18n.t(
+          'report_bundles.reports.actions.remove.confirm_message',
+          { name: reportBundleReport.name, report_bundle_name: reportBundleReport.bundleName },
+        )}
+        onConfirm={handleOnConfirm}
+        close={() => setConfirmation(false)}
+      />
+      <ConditionalDropdown
+        menu={getActionsMenuProps({
+          reportBundleReport, setConfirmation,
+        })}
+      />
+    </>
 
+  )
+}
+
+interface ActionMenuProps {
+  reportBundleReport: ReportBundleReport
+  setConfirmation: (confirmation: boolean) => void
+}
+
+const getActionsMenuProps = ({
+  setConfirmation, reportBundleReport,
+}: ActionMenuProps): MenuProps => {
   const menuItems = [
     reportBundleReport.meta.permissions.manage && {
       key: 'remove',
@@ -85,17 +95,6 @@ const getActionsMenuProps = ({
           <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('report_bundles.reports.actions.remove.confirm_title')}
-              message={I18n.t(
-                'report_bundles.reports.actions.remove.confirm_message',
-                { name: reportBundleReport.name, report_bundle_name: reportBundleReport.bundleName },
-              )}
-              onConfirm={handleOnConfirm}
-              onCancel={() => setConfirmation(false)}
-            />
-          )}
         </>
       ),
     },

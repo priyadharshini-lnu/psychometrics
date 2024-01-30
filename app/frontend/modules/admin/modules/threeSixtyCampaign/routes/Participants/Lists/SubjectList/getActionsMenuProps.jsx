@@ -12,6 +12,7 @@ export const getActionsMenuProps = ({
   permissions,
   regenerateReport,
   message,
+  setShowResetSubjectModal,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
@@ -84,6 +85,7 @@ export const getActionsMenuProps = ({
   const removeSubject = (subjectId) => {
     openModal('ResetSubjectModal', {
       onConfirm: removeLicenceUsage => remove(campaignId, subjectId, removeLicenceUsage),
+      open: true,
     })
   }
 
@@ -239,6 +241,7 @@ export const getActionsMenuProps = ({
       return unmarkEvaluationAsComplete(subjectId)
     }
     if (key === 'remove_subject') {
+      setShowResetSubjectModal(true)
       return removeSubject(subjectId)
     }
     if (key === 'remove_campaign') {
