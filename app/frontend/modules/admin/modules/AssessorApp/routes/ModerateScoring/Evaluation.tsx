@@ -9,8 +9,10 @@ import createAssessmentStore from '~/modules/admin/store/assessmentStore'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   fetchLeadAssessment, fetchAssessorAssessments, getLeadAssessorForm, getLeadAssessorResult,
+  FetchLeadAssessmentsType,
 } from '../../core/scoreModerate'
 import { setStore, getStore } from '~/modules/survey/store/StoreWatchman'
+import { sendMessage } from '~/utils/messageBus'
 
 const { Content } = Layout
 
@@ -58,7 +60,11 @@ const LeadAssessorAssessment: React.FC<Props> = ({
     if (!getStore()) {
       setStore(store)
     }
-    fetchLeadAssessment(parsedCampaignId, parsedUserId)
+    fetchLeadAssessment(parsedCampaignId, parsedUserId).then(({ response }) => {
+      const { status } = (response as FetchLeadAssessmentsType).lead_assessor_result
+
+      sendMessage('assessment:finished', status)
+    })
     fetchAssessorAssessments(parsedCampaignId, parsedUserId)
   }, [])
   const loaded = !!assessorForm

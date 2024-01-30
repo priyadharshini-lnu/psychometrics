@@ -17,6 +17,7 @@ import { Weightages } from './Weightages'
 import { calculateAverageScores } from './commands/calculateAverageScores'
 import { calculateHighLowScores } from './commands/calculateHighLowScores'
 import { calculateWeightedAverageScores } from './commands/calculateWeightedAverageScores'
+import { useMessageBus } from '~/hooks/useMessageBus'
 
 
 const { I18n } = window
@@ -94,6 +95,16 @@ const ScoringTable: React.FC = () => {
     isLoading: isWeightageLoading,
   } = useResources<Weightage>('campaign_assessor_assessment_factor_weights', {
     basePath: `campaigns/${campaignId}`,
+  })
+
+  const [disabled, setDisabled] = useState<boolean>(true)
+
+  useMessageBus('assessment:finished', (status) => {
+    if (status === 'completed') {
+      setDisabled(true)
+    } else {
+      setDisabled(false)
+    }
   })
 
   const sortedEvaluatorsData = useMemo(() => sortEvaluatorsByEmail(evaluatorsData), [evaluatorsData])
@@ -335,13 +346,12 @@ const ScoringTable: React.FC = () => {
             />
           )}
         <Flex justify="flex-end" gap={8} style={{ padding: '2rem' }}>
-          <Button
-            onClick={handleReset}
-          >
+          <Button onClick={handleReset} disabled={disabled}>
             {I18n.t('administration.common.reset')}
           </Button>
           <Button
             type="primary"
+            disabled={disabled}
             onClick={handleSave}
           >
             {I18n.t('administration.common.save')}

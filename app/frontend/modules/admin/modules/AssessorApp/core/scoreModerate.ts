@@ -82,7 +82,7 @@ const FETCH_ASSESSOR_ASSESSMENTS = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSME
 const FETCH_ASSESSOR_ASSESSMENT = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSMENT'
 export const FETCH_REPORTS = 'assessors/evaluating/FETCH_REPORTS'
 
-type FetchLeadAssessmentsType = ApiActionResponse<{
+export type FetchLeadAssessmentsType = ApiActionResponse<{
   lead_assessor_user_assessment_id: number
   lead_assessor_form: UserAssessment
   lead_assessor_result: Result
