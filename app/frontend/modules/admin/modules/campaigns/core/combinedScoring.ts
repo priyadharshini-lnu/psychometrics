@@ -30,6 +30,13 @@ export const ScoreTR = t.type({
   scores: t.record(t.string, t.union([t.number, t.null])),
 })
 
+const ErrorTR = t.type({
+  factorId: t.string,
+  message: t.string,
+})
+
+export type Error = t.TypeOf<typeof ErrorTR>
+
 export const CampaignScoresTR = t.type({
   id: t.string,
   user: t.type({
@@ -41,6 +48,7 @@ export const CampaignScoresTR = t.type({
   campaignScoresFinalized: t.union([t.boolean, t.null]),
   campaignScoresFinalizedDate: t.union([t.string, t.null]),
   campaignScoresCalculatedDate: t.union([t.string, t.null]),
+  campaignScoresErrors: t.union([t.array(ErrorTR), t.null]),
   campaignFactorValues: t.array(t.type({
     id: t.string,
     campaignFactorId: t.number,

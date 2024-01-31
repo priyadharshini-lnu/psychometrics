@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Skeleton, Row, Col, App,
+  Table, Skeleton, Row, Col, App, Popover,
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import { CheckOutlined, AppstoreOutlined } from '@ant-design/icons'
+import { CheckOutlined, AppstoreOutlined, WarningFilled } from '@ant-design/icons'
 import _ from 'lodash'
 import * as t from 'io-ts'
 import cs from 'classnames'
@@ -13,7 +13,7 @@ import { CampaignFactorGroup } from '../ScoringGroups/GroupCard'
 import { CampaignFactor } from '../ScoringGroups/Factor'
 import { ToolsDropdown } from './ToolsDropdown'
 import styles from './styles.less'
-import { CampaignScores, CampaignScoresTR } from '~/modules/admin/modules/campaigns/core/combinedScoring'
+import { CampaignScores, CampaignScoresTR, type Error } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 import { formatedDate } from '~/utils/time'
 
 const { I18n } = window
@@ -27,7 +27,8 @@ type DataType = {
   finalized: boolean | null;
   finalizedDate: string | null;
   calculatedDate: string | null;
-  [key: string]: string | number | boolean | null;
+  errors: Error[] | null;
+  [key: string]: string | number | boolean | null | Error[];
 }
 
 export function SubjectScoresList () {
@@ -69,7 +70,9 @@ export function SubjectScoresList () {
           campaign_user_scorings: [
             'campaign_scores_finalized',
             'campaign_scores_finalized_date',
-            'campaign_scores_calculated_date'],
+            'campaign_scores_calculated_date',
+            'campaign_scores_errors',
+          ],
         },
         include: ['campaign_factor_values', 'user'],
       },
@@ -117,6 +120,7 @@ export function SubjectScoresList () {
         id: subject?.id,
         action: 'rescore',
         method: 'post',
+        updateStore: true,
         body: {},
         responseType: {},
       }).then(
@@ -295,7 +299,29 @@ function createSortedTableColumns (
       title: I18n.t('administration.scoring.subject_list.finalized'),
       dataIndex: 'finalized',
       key: 'finalized',
-      render: (finalized: boolean) => (finalized ? <CheckOutlined className={styles.icon} /> : null),
+      render: (finalized: boolean, subject) => {
+        if (subject.errors) {
+          const factors = _.chain(campaignFactorData).map('campaignFactors').flatten().value()
+          const content = subject.errors.map((error) => {
+            const factor = factors.find(factor => factor.id === error.factorId)
+            return (
+              <div style={{ maxWidth: 500 }}>
+                <strong>
+                  {factor?.name}
+                  {': '}
+                </strong>
+                {error.message}
+              </div>
+            )
+          })
+          return (
+            <Popover content={content} title={I18n.t('administration.scoring.subject_list.calculation_errors')}>
+              <WarningFilled className={styles.warning} />
+            </Popover>
+          )
+        }
+        return (finalized ? <CheckOutlined className={styles.icon} /> : null)
+      },
     },
     {
       title: I18n.t('common.column.action'),
@@ -307,7 +333,7 @@ function createSortedTableColumns (
           onClick={action => handleAction(action, subject)}
           persmission={
           {
-            markFinalized: subject.finalized === false,
+            markFinalized: subject.finalized === false && subject.errors === null,
             markNotFinalized: subject.finalized === true,
             rescore: true,
           }
@@ -332,6 +358,7 @@ const processData = (
     finalizedDate: valueData.campaignScoresFinalizedDate,
     calculatedDate: valueData.campaignScoresCalculatedDate,
     finalized: valueData.campaignScoresFinalized,
+    errors: valueData.campaignScoresErrors,
   }
 
   _.forEach(valueData.campaignFactorValues, (score) => {

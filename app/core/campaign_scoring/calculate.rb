@@ -2,12 +2,13 @@
 
 module CampaignScoring
   class Calculate < BaseCommand
-    private_attr_reader :campaign, :user, :user_assessments,
+    private_attr_reader :campaign, :user, :user_assessments, :campaign_user,
                         :existing_campaign_factor_values
 
     def initialize(campaign, user)
       @campaign = campaign
       @user = user
+      @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
       @existing_campaign_factor_values =
         campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
       @user_assessments = campaign.user_assessments.includes(:users_result).where(
@@ -19,13 +20,18 @@ module CampaignScoring
     end
 
     def call
+      campaign_user.update(campaign_scores_errors: nil) if campaign_user.campaign_scores_errors.present?
       campaign_factors_sorted_by_formula_factors_at_end.each do |cf, _acc|
         calculate_campaign_factor_value(cf)
       rescue StandardError => e
         @factor_values[cf] = CampaignScoring::FactorValue.new(nil, e)
         Rails.logger.error(e.message)
-        next if e.is_a?(Rufus::Lua::LuaError) && e.is_a?(CampaignScoring::Exceptions::Base)
-
+        if e.is_a?(Rufus::Lua::LuaError) || e.is_a?(CampaignScoring::Exceptions::Base)
+          errors = campaign_user.campaign_scores_errors || []
+          errors << { factor_id: cf.id.to_s, message: e.message }
+          campaign_user.update(campaign_scores_errors: errors)
+          next
+        end
         Sentry.capture_exception(e)
       end
 
@@ -139,6 +145,11 @@ module CampaignScoring
       if campaign_factor.string_output_type? && !factor_value.is_a?(String)
         raise CampaignScoring::Exceptions::WrongOutputType,
               "Expected factor value for '#{campaign_factor.code}' to be a string. Got #{factor_value.class.name}"
+      end
+
+      if factor_value.is_a?(Numeric) && factor_value.infinite?
+        raise CampaignScoring::Exceptions::WrongOutputType,
+              "Expected factor value for '#{campaign_factor.code}'. Got Infinity value"
       end
 
       if campaign_factor.numeric_output_type? && !factor_value.is_a?(Numeric)

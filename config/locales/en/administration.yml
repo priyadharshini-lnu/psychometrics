@@ -4063,6 +4063,7 @@ en:
         bulk_rescore: Bulk Rescore
         bulk_rescore_confirm: Rescoring the selected users. Are you sure you want to proceed?
         calculated_date: Calculated Date
+        calculation_errors: Calculation Errors
         finalized: Finalized
         finalized_date: Finalized Date
         mark_finalized: Mark Finalized

@@ -1294,7 +1294,8 @@ CREATE TABLE public.campaign_users (
     schedule_end_date timestamp without time zone,
     campaign_scores_finalized boolean DEFAULT false,
     campaign_scores_calculated_date timestamp(6) without time zone,
-    campaign_scores_finalized_date timestamp(6) without time zone
+    campaign_scores_finalized_date timestamp(6) without time zone,
+    campaign_scores_errors json
 );
 
 
@@ -11715,6 +11716,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240126082502'),
 ('20240118090133'),
 ('20240117104237'),
 ('20240108124935'),

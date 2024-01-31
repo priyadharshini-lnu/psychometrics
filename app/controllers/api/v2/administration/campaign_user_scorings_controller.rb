@@ -20,7 +20,8 @@ module Api
       audit! :campaign_scoring_rescore, @user, payload: {}, campaign: campaign
       ::CampaignScoring::Rescore.call!(campaign, @user)
 
-      render json: {}
+      campaign_user = ::CampaignUser.find_by(campaign_id: campaign.id, user_id: @user.id)
+      jsonapi_render json: campaign_user, options: { resource: ::Api::V2::Administration::CampaignUserResource }
     end
 
     def change_finalized_campaign_score_bulk

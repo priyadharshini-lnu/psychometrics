@@ -7,6 +7,7 @@ describe CampaignScoring::Calculate do
   let(:assessment) { create(:assessment) }
   let(:factor) { create(:factor, dimension: assessment.dimension) }
   let(:user) { create(:user) }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
 
   describe 'calculate assessment factor_type' do
     let!(:users_result) do
@@ -56,6 +57,17 @@ describe CampaignScoring::Calculate do
       values = described_class.call!(campaign, user)
 
       expect(values[cf].value).to eq(4)
+    end
+
+    it 'returns Infinity' do
+      cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'numeric',
+        formula: 'return 1/0'
+      )
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq(nil)
+      expect(values[cf].error_message).to eq("Expected factor value for '#{cf.code}'. Got Infinity value")
     end
 
     it 'returns WrongOutputTypeException' do
