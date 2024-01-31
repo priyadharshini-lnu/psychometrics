@@ -13,6 +13,7 @@ module Api
             if %i[create update].include?(type)
               optional(:user_id).array(:string)
               optional(:client_id).maybe(:string)
+              optional(:project_id).maybe(:string)
             end
             attribute[:role].filled(:string)
             attribute[:grant_names].filled(:hash).schema do

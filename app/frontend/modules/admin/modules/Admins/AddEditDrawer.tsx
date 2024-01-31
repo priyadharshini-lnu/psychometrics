@@ -50,6 +50,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 interface OwnProps {
   updateAdmin?: UpdateResource<Admin>
   createAdmin: CreateResource<Admin>
+  requestErrors?: { [key: string]: string; }[] | null | undefined
   permissions: AdminPermissions
   currentUserGrants: CurrentUserPermissions
   isSuperAdmin: boolean
@@ -78,8 +79,17 @@ const AddEditDrawerComponent: FC<Props> = ({
   campaignType,
   currentCampaignId,
   addOrUpdateInProgress,
+  requestErrors,
 }) => {
   const [form] = Form.useForm()
+
+  const errors = _.compact(
+    [
+      requestErrors && _.get(requestErrors[0], ['email', 'title']),
+      requestErrors && _.get(requestErrors[0], ['userId', 'title']),
+      requestErrors && _.get(requestErrors[0], ['projectId', 'title']),
+    ],
+  )
 
   const [selected, setSelected] = useState([])
   const [notFromList, setNotFromList] = useState(true)
@@ -112,6 +122,7 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const campaignId = campaignType === CampaignTypes.common ? campaignIdParams : currentCampaignId
 
+
   const showRequestSuccessMessage = (response) => {
     if (isEditMode) {
       message.success(
@@ -142,7 +153,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   )
 
   const {
-    fetchSingle, getResource, getErrors,
+    fetchSingle, getResource,
   } = useResources<Admin>(
     'memberships',
     {
@@ -159,14 +170,6 @@ const AddEditDrawerComponent: FC<Props> = ({
     },
   )
 
-  const requestErrors = getErrors('add')
-
-  const errors = _.compact(
-    [
-      requestErrors && _.get(requestErrors[0], ['email', 'title']),
-      requestErrors && _.get(requestErrors[0], ['userId', 'title']),
-    ],
-  )
 
   const admin = getResource(adminId)
 

@@ -88,7 +88,7 @@ const AdminsComponent: React.FC<Props> = ({
 
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, createResource, updateResource,
-    removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter,
+    removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter, getErrors,
   } = useResources<ProjectAdmin, Meta>(
     'memberships',
     {
@@ -102,6 +102,9 @@ const AdminsComponent: React.FC<Props> = ({
       },
     },
   )
+
+  const createRequestErrors = getErrors('add')
+
   useEffect(() => {
     fetch()
   }, [])
@@ -310,6 +313,7 @@ const AdminsComponent: React.FC<Props> = ({
         handleClose={handleDrawerClose}
         updateAdmin={updateResource}
         createAdmin={createResource}
+        requestErrors={createRequestErrors}
         isSuperAdmin={isSuperAdmin(currentUser)}
         permissions={meta.permissions}
         currentUserGrants={meta.usersGrants}
