@@ -51,6 +51,8 @@ describe 'Projects' do
             webhook: 'https://my.site.com',
             name: 'project1',
             login_box_position: 'right',
+            enable_strong_password: true,
+            enable_2factor_auth: true,
             data_processing_consent: true
           }
         end

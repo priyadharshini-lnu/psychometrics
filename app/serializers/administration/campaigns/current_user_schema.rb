@@ -27,6 +27,8 @@ module Administration
               optional(:registration_codes).filled(:array).each(:str?)
               optional(:dashboards).filled(:array).each(:str?)
               optional(:project_settings).filled(:array).each(:str?)
+              optional(:reports).filled(:array).each(:str?)
+              optional(:campaign_factors).filled(:array).each(:str?)
             end
           end
           required(:role).filled(:str?)

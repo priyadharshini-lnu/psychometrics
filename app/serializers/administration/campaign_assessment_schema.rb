@@ -35,7 +35,7 @@ module Administration
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)
-        required(:all_locales).filled(:array?)
+        required(:all_locales).maybe(:array?)
         required(:external_config).maybe(:hash?)
         required(:campaign_assessment_id).filled(:int?)
         required(:prework).filled(:bool?)
