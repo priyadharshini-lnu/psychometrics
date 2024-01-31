@@ -31,7 +31,7 @@ class Dimension < ApplicationRecord
     slice(:owner_id, :name)
   end
 
-  def clone_and_save
+  def clone_and_save(user_id:)
     @cloned_dimension = deep_clone(
       include: [
         { all_factors: :factors_sub_factors },
@@ -46,6 +46,7 @@ class Dimension < ApplicationRecord
     end
 
     @cloned_dimension.gen_uniq_name
+    @cloned_dimension.created_by_id = @cloned_dimension.updated_by_id = user_id
     if @cloned_dimension.save
       # SubFactors have link to original dimension.
       Factor.where(parent_id: @cloned_dimension.factor_ids).update_all(dimension_id: @cloned_dimension.id)
