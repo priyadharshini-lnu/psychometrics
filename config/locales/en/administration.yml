@@ -383,7 +383,7 @@ en:
           selected_users: Selected Users
       copy:
         error: 'Assessment #%{name} was not copied.'
-        successfully: Assessment %{name} was Copied Successfully.
+        successfully: Assessment %{name} was copied successfully.
       create:
         successfully: Assessment %{name} was Created Successfully.
       dashboard: Assessment Dashboard
@@ -984,7 +984,7 @@ en:
             empty_client_ids: Select clients to continue
         copy:
           error: 'Assessment #%{name} was not copied.'
-          successfully: Assessment %{name} was Copied Successfully.
+          successfully: Assessment %{name} was copied successfully.
         create:
           successfully: Assessment %{name} was Created Successfully.
         dashboard: Assessment Dashboard
@@ -2784,7 +2784,7 @@ en:
     factors:
       copy:
         error: "%{name} factor was not copied"
-        successfully: "%{name} factor was copied successfully"
+        successfully: Factor %{name} was copied successfully
       create:
         error: "%{name} factor was not created"
         successfully: "%{name} factor was created successfully"
@@ -3603,9 +3603,9 @@ en:
     psychometrics: Psychometrics
     questions:
       copy:
-        successfully: Question %{name} copied successfully
+        successfully: Question %{name} was copied successfully
       create:
-        successfully: Question %{name} created successfully
+        successfully: Question %{name} was created successfully
       destroy:
         successfully: Question %{name} was successfully deleted.
       edit:

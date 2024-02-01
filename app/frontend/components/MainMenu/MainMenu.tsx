@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { Link as RouterLink } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Layout, Menu, Avatar, Drawer,
+  Layout, Menu, Drawer,
 } from 'antd'
 import {
   MonitorOutlined, ArrowRightOutlined, MenuUnfoldOutlined,
@@ -11,15 +11,14 @@ import {
 } from '@ant-design/icons'
 import { useMedia } from 'react-use-media'
 import cs from 'classnames'
-import logo from '~/modules/endUser/assets/images/lighthouseLogoTall.png'
-import logoSmall from '~/modules/auth/media/TTE_Logo_Color_Monogram.png'
 import styles from './MainMenu.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { camelizeKeys } from '~/utils/object'
 import { openSubmenu, triggerCollapse } from '~/modules/admin/core/ui/menu'
-import { shortify } from '~/utils/string'
 import { DefaultAntThemeWrapper } from '~/glint'
+import { UserAvatar } from '~/components/UserAvatar'
+import { SIDEBAR_WIDTH } from '~/constants/sidebar'
 
 const { I18n } = window
 
@@ -295,7 +294,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
 
   const menu = (
     <>
-      <UserMenu currentUser={currentUser} collapsed={collapsed} />
+      <UserAvatar currentUser={currentUser} collapsed={collapsed} />
       <Menu
         theme="light"
         selectedKeys={[getSelected()]}
@@ -325,9 +324,11 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
         </div>
         <Drawer
           closable={false}
-          bodyStyle={{ padding: 0 }}
+          styles={{
+            body: { padding: 0 },
+          }}
           placement="left"
-          width="220"
+          width={SIDEBAR_WIDTH}
           open={!showSubmenu && !collapsed}
           onClose={() => closeMenu()}
         >
@@ -339,7 +340,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
       <Layout.Sider
         id="top_sidebar"
         className={styles.sider}
-        width={220}
+        width={SIDEBAR_WIDTH}
         theme="light"
         collapsed={collapsed}
         collapsedWidth={55}
@@ -352,25 +353,6 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
       </Layout.Sider>
     )
 }
-
-
-export const UserMenu = ({ currentUser, collapsed }) => (
-  <>
-    <div className={cs(styles.logo, { [styles.small]: collapsed })}>
-      <img src={collapsed ? logoSmall : logo} />
-    </div>
-    <a href="/admin/profile/details">
-      <div className={styles.userName}>
-        {collapsed ? (
-          <Avatar alt={currentUser.name}>
-            {shortify(currentUser.name)}
-          </Avatar>
-        ) : currentUser.name}
-      </div>
-    </a>
-    <div className={styles.role}>{currentUser.roleTitle}</div>
-  </>
-)
 
 // TODO: remove portals after implementing all pages in react
 export const Portal = ({ Component, container, ...props }) => {

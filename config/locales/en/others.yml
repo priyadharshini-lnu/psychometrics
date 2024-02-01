@@ -732,7 +732,7 @@ en:
         success_message: Asessment %{name} archived successfully
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Asessment %{name} coppied successfully
+        success_message: Asessment %{name} was copied successfully
       details: Details
       download_csv: Download CSV
       edit: Edit
@@ -2533,7 +2533,7 @@ en:
         success_message: Report %{name} archived successfully
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Report %{name} coppied successfully
+        success_message: Report %{name} was copied successfully
       details: Details
       download: Download report
       download_csv: Download CSV
@@ -2552,9 +2552,9 @@ en:
         success_message: Report %{name} has been removed
       rescore: Rescore
       restore:
-        success_message: Report %{name} restored successfully
+        success_message: Report %{name} was restored successfully
       unarchived:
-        success_message: Report %{name} unarchived successfully
+        success_message: Report %{name} was unarchived successfully
       view: View Report
     active: Active
     archived: Archived
