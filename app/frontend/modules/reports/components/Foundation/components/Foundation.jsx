@@ -26,7 +26,8 @@ class Foundation extends Component {
   componentDidUpdate (prevProps) {
     const { preview, module } = this.props
     if (preview || !module) { return }
-    if (prevProps.module.meta.hidden !== module.meta.hidden) {
+    if (prevProps.module.meta.hidden !== module.meta.hidden
+      || prevProps.module.props.aspectRatio !== module.props.aspectRatio) {
       this.applyInteract()
     }
   }

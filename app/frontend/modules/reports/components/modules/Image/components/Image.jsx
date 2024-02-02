@@ -27,11 +27,44 @@ export class Image extends Component {
 
   renderImg () {
     const { module: model, preview } = this.props
+
+    const {
+      borderColor = {}, borderRadius, borderWidth, borderStyle,
+    } = (model.props.style || {})
+
+    const style = {
+      borderRadius,
+    }
+
+    if (model.props.border) {
+      style.borderWidth = `${borderWidth}px`
+      style.borderStyle = `${borderStyle || 'solid'}`
+      if (borderColor) {
+        style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
+      }
+    }
+
+    if (preview && model.props.sourceType === 'UserProfileImage') {
+      const { user } = ResultStore
+      return (
+        <img
+          className={`${styles.image} ${styles.responseImage}`}
+          src={user?.photo}
+          style={{
+            maxWidth: model.props.position.width,
+            maxHeight: model.props.position.height,
+            ...style,
+          }}
+          onLoad={this.load}
+        />
+      )
+    }
+
     if (model.props.url) {
       return (
         <div
           className={styles.image}
-          style={{ backgroundImage: `url("${model.props.url}")` }}
+          style={{ ...style, backgroundImage: `url("${model.props.url}")` }}
           onDoubleClick={this.openEditor}
         />
       )
@@ -39,7 +72,7 @@ export class Image extends Component {
       return (
         <div
           className={styles.image}
-          style={{ backgroundImage: `url(${GetImageURL.run(model)})` }}
+          style={{ ...style, backgroundImage: `url(${GetImageURL.run(model)})` }}
         />
       )
     }
@@ -54,6 +87,7 @@ export class Image extends Component {
           className={`${styles.image} ${styles.responseImage}`}
           src={mediaResponse.url}
           style={{
+            ...style,
             maxWidth: model.props.position.width,
             maxHeight: model.props.position.height,
           }}
@@ -65,16 +99,35 @@ export class Image extends Component {
   }
 
   renderText () {
+    const { module: model } = this.props
+    const {
+      borderColor = {}, borderRadius, borderWidth, borderStyle,
+    } = (model.props.style || {})
+
+    const style = {
+      borderRadius,
+    }
+
+    if (model.props.border) {
+      style.borderWidth = `${borderWidth}px`
+      style.borderStyle = `${borderStyle || 'solid'}`
+      if (borderColor) {
+        style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
+      }
+    }
+
     return (
-      <div className={styles.image} onDoubleClick={this.openEditor}>
+      <div style={style} className={styles.image} onDoubleClick={this.openEditor}>
         <span>Image</span>
       </div>
     )
   }
 
   render () {
+    const { module } = this.props
+
     return (
-      <Foundation {...this.props} aspectRatio={false}>
+      <Foundation {...this.props} aspectRatio={module.props.aspectRatio}>
         {this.renderImg()}
       </Foundation>
     )

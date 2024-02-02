@@ -97,6 +97,11 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     )
   }
 
+  if (userAssessmentData.assessmentCategory === 'agile') {
+    location.href = assessmentUrl(userAssessmentData, locale || I18n.currentLocale())
+    return null
+  }
+
   return <Redirect to={assessmentUrl(userAssessmentData, locale || I18n.currentLocale())} />
 }
 

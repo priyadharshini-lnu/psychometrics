@@ -1,6 +1,7 @@
 import { createReducer } from '~/utils/redux'
 
 type LoginBoxPosition = 'left' | 'right' | 'auto'
+type BackgroundSize = 'cover' | 'contain'
 
 interface State {
   id?: number
@@ -16,6 +17,7 @@ interface State {
   warning_color?: string,
   success_color?: string,
   info_color?: string,
+  background_size: BackgroundSize,
 }
 
 export const defaultState: State = {
@@ -25,6 +27,7 @@ export const defaultState: State = {
   login_box_position: 'auto',
   saml_login_allowed: false,
   saml_enforced: false,
+  background_size: 'cover',
 }
 
 export default createReducer({}, defaultState)

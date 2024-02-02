@@ -11,6 +11,7 @@ export const DesignSettingsTR = t.type({
   logo: t.union([t.string, t.null]),
   secondaryLogo: t.union([t.string, t.null]),
   loginBoxPosition: t.union([t.string, t.null]),
+  backgroundSize: t.string,
   primaryColor: t.union([t.string, t.null]),
   errorColor: t.union([t.string, t.null]),
   warningColor: t.union([t.string, t.null]),

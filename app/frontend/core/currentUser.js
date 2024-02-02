@@ -10,7 +10,7 @@ const SET_USER = 'threeSixty/user/SET_USER'
 export const CHANGE_PASSWORD = 'endUser/CHANGE_PASSWORD'
 
 export const get = state => _.get(state, ['currentUser'])
-
+export const getPermissions = state => _.get(get(state), ['permissions'])
 export function isSuperAdmin (user) {
   return user.role === 'Users::SuperAdmin'
 }

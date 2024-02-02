@@ -8,7 +8,7 @@ module Api
           'design_settings'
         end
 
-        def self.attributes(_attribute, _)
+        def self.attributes(attribute, _)
           proc do
             optional(:background_color).maybe(:string)
             optional(:error_color).maybe(:string)
@@ -17,6 +17,7 @@ module Api
             optional(:primary_color).maybe(:string)
             optional(:success_color).maybe(:string)
             optional(:warning_color).maybe(:string)
+            attribute[:background_size].filled(:string)
           end
         end
 

@@ -683,6 +683,7 @@ en:
         super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
+        workshop_status_export: Assessment Center Status Export
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
@@ -1294,6 +1295,7 @@ en:
         title: Update Available Locales
       update_norm:
         apply: Apply this change to existing users in this campaign
+        cannot_remove_norm: Cannot remove norm for completed assessment.
         select_norm: Select Norm
         success_msg: Norms successfully updated
         title: Update Norm
@@ -2436,6 +2438,7 @@ en:
     old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
     password_confirmation: Password Confirmation
+    photo: Photo
     success_update: Profile was saved successfully
     timezone: Timezone
     title: My Profile

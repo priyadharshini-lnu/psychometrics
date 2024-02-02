@@ -30,4 +30,12 @@ class UserProfile < ApplicationRecord
   def set_age_updated_at
     self.age_updated_at = Time.current
   end
+
+  def profile_locale
+    locale
+  end
+
+  def profile_locale=(val)
+    self[:locale] = val
+  end
 end

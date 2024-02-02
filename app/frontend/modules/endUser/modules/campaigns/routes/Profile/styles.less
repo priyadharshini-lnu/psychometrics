@@ -28,6 +28,12 @@
     height: 250px;
     background-color: var(--ant-primary-1);
   }
+
+  &.error {
+    :global(.ant-upload.ant-upload-select-picture-card) {
+      border: 1px solid @error-color;
+    }
+  }
 }
 
 .uploadBtn {

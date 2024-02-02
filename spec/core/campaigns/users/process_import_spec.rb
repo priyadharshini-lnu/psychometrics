@@ -18,6 +18,8 @@ describe Campaigns::Users::ProcessImport do
         schedule_end_date: 2.days.from_now.to_s,
         created_at: '11 Jul 2020 / 16:39',
         age: 32,
+        gender: 'male',
+        profile_locale: 'en',
         custom_field: '1111',
         custom_field2: '1111'
       },
@@ -118,6 +120,7 @@ describe Campaigns::Users::ProcessImport do
     expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
     expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
     expect(fedor_user.user_profile).to have_attributes(age: 32)
+    expect(fedor_user.user_profile).to have_attributes(gender: 'male', profile_locale: 'en')
     expect(fedor_user.user_profile).to have_attributes(custom_fields: {})
     expect(fedor_campaign_user.schedule_start_date).to eq(1.day.from_now)
     expect(fedor_campaign_user.schedule_end_date).to eq(2.days.from_now)
@@ -154,7 +157,7 @@ describe Campaigns::Users::ProcessImport do
       expect(imported_users.size).to eq(3)
       expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
       expect(fedor_user.user_profile).to have_attributes(age: 32)
-      expect(fedor_user.user_profile).to have_attributes(custom_fields: { 'custom_field' => '1111' })
+      expect(fedor_user.user_profile).to have_attributes(custom_fields: { question.id.to_s => '1111' })
       expect(vlad_user.user_profile).to have_attributes(age: 35)
     end
   end

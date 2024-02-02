@@ -5,9 +5,14 @@ require 'rails_helper'
 RSpec.describe Administration::Campaigns::AssessorsController, type: :controller do
   let(:current_user) { create(:superadmin) }
   let(:assessor) { create(:assessor) }
-  let(:campaign) { create(:campaign) }
-  let!(:assessment1) { create(:assessment, category: :assessor_form, name: 'A 1') }
-  let!(:assessment2) { create(:assessment, category: :assessor_form, name: 'A 2') }
+  let(:project) { create(:project) }
+  let(:campaign) { create(:campaign, project: project) }
+  let!(:assessment1) do
+    create(:assessment, category: :assessor_form, name: 'A 1', owner_id: project.parent.id, created_by: current_user)
+  end
+  let!(:assessment2) do
+    create(:assessment, category: :assessor_form, name: 'A 2', owner_id: project.parent.id, created_by: current_user)
+  end
   let(:user) { create(:user) }
   let!(:subject) do
     user = create(:user, project: campaign.project, email: 'fedor@gmail.com')

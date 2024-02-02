@@ -481,7 +481,8 @@ describe Reports::BuildResults do
                     type: 'zscore_factor',
                     factorId: 1,
                     assessmentId: user_result.assessment.id
-                  }
+                  },
+                  round: 1
                 }
               ]
             }
@@ -505,11 +506,12 @@ describe Reports::BuildResults do
                 'factorId' => 1,
                 'type' => 'zscore_factor'
               },
+              'round' => 1,
               'type' => 'zscore_to_percentile'
             },
             key: nil,
             name: 'Overall Score',
-            value: 95.449
+            value: 95.4
           }
         ])
       end

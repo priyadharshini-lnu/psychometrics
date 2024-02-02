@@ -13,7 +13,7 @@ module Threesixty
 
           def nomination_approval_table
             ActionController::Base.render(
-              template: '_templates/nomination_approval_table.html.erb', assigns: { nominations: nominations }
+              template: '_templates/nomination_approval_table', assigns: { nominations: nominations }
             )
           end
 
