@@ -395,6 +395,7 @@ providers:
     report_packages:
       - id: RPtFlashLeadSummary
         name: LEAD Series + Summary + Flash
+        default_assessment_id: HPI
         report_ids:
           - EcHDSLFCML
           - EcMVPILFVML
@@ -403,6 +404,7 @@ providers:
           - EcHPIHDSMVPIPESML
       - id: RPInsightFlashPkg
         name: PKG-Insights + Flash, ID
+        default_assessment_id: HPI
         report_ids:
           - EcHPIHDSMVPIFR
           - EcHPIINSRV2
