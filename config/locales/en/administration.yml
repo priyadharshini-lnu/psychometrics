@@ -250,6 +250,7 @@ en:
           users:
             reset_password: Reset Password
           workshops:
+            export_status: Export Status
             manage: Manage
             view: View
     all: " - All - "
@@ -3404,6 +3405,10 @@ en:
       edit:
         success: Profile was successfully updated.
         title: Profile Editor
+    project:
+      tools:
+        workshop_status_export: Workshop Status Export
+        workshop_status_export_success: Workshop Status Export scheduled successfully.
     project_participants:
       cancel: Cancel
       column_actions: Actions
@@ -3518,6 +3523,9 @@ en:
       design_settings:
         background_color: Background Color
         background_label: Background
+        background_size: Background Size
+        background_size_contain: Contain
+        background_size_cover: Cover
         bg_upload: Upload
         client_logo_label: Client Logo
         color_label: Color
@@ -3892,6 +3900,7 @@ en:
         resource_name: Name
         schedule_time: Schedule Time
         scheduling_status: Scheduling status
+        seats: Seats
         start_time: Date & Time
         status: Status
         subject: Subject
@@ -3968,6 +3977,7 @@ en:
         form_title: Schedule Assessments
         import_job_scheduled: The uploaded file has been queued for import. Please check the status in the notifications
         language: Language
+        language_not_selected: Not Selected
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
         meeting_link_internal: Internal

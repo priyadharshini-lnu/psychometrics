@@ -104,7 +104,7 @@ export const ClientAdminGrants = {
   registrationCodes: ['view', 'manage'],
   datasheets: ['view', 'manage'],
   auditLogs: ['view'],
-  workshops: ['view', 'manage'],
+  workshops: ['view', 'manage', 'export_status'],
 }
 
 export const ProjectAdminGrants = {
@@ -153,7 +153,7 @@ export const ProjectAdminGrants = {
   assessors: ['view', 'manage'],
   reports: ['manage'],
   datasheets: ['view', 'manage'],
-  workshops: ['view', 'manage'],
+  workshops: ['view', 'manage', 'export_status'],
 }
 
 export const CampaignAdminGrants = {

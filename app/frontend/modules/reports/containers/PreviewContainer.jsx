@@ -48,7 +48,7 @@ class PreviewContainer extends Component {
 
     const normalizedData = normalize(parsedData, schema)
     store.init(parsedData, results ? JSON.parse(results) : null, user, campaign, userReportData)
-    rstore.dispatch(init(normalizedData))
+    rstore.dispatch(init(normalizedData, userReportData))
   }
 
   render () {

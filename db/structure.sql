@@ -1758,7 +1758,8 @@ CREATE TABLE public.design_settings (
     error_color character varying,
     warning_color character varying,
     success_color character varying,
-    info_color character varying
+    info_color character varying,
+    background_size character varying DEFAULT 'cover'::character varying
 );
 
 
@@ -12198,5 +12199,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231213104811'),
 ('20231218084715'),
 ('20231219105643');
+('20240129143541');
 
 

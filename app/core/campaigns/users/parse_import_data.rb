@@ -44,11 +44,15 @@ module Campaigns
       private
 
       def keys
-        @keys ||= HEADER_IMPORT_KEYS + profile_fields.map { |pf| pf.question.name.to_sym }
+        @keys ||= HEADER_IMPORT_KEYS + profile_fields + profile_custom_fields.map { |pf| pf.question.name.to_sym }
       end
 
       def profile_fields
-        @profile_fields ||= @campaign.project.profile_setting.profile_fields.includes(:question)
+        @profile_fields ||= %i[age gender profile_locale]
+      end
+
+      def profile_custom_fields
+        @profile_custom_fields ||= @campaign.project.profile_setting.profile_fields.includes(:question)
       end
     end
   end

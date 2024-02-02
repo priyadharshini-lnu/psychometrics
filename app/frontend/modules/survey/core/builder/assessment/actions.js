@@ -75,6 +75,7 @@ export const uploadDataSheet = (id, body) => ({
     method: 'post',
     url: `/administration/assessments/${id}/upload_data_sheet`,
     body,
+    contentType: 'multipart/form-data;',
   },
 })
 

@@ -13,7 +13,7 @@ module Administration
         object.decorate.role
       end
 
-      def permissions
+      def permissions # rubocop:disable Metrics/AbcSize
         permissions = GetPermissionsHash.call!(
           Administration::ProjectPolicy,
           object,
@@ -24,6 +24,7 @@ module Administration
             'manage_project_smtp_settings',
             'manage_project_webhooks',
             %w[manage_project_general_settings update]
+
           ],
           {
             project_id: instance_options[:project_id],
@@ -46,6 +47,9 @@ module Administration
         permissions['manage_profile_settings'] = Administration::ClientPolicy.new(
           object, ProfileSetting, project_id: instance_options[:project_id]
         ).profile?
+        permissions['workshop_status_export'] = Api::Administration::ProjectPolicy.new(
+          object, Project, project_id: instance_options[:project_id]
+        ).workshop_status_export?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
 

@@ -38,6 +38,8 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
       firstRoute = '/integrations'
     } else if (permissions.manageProjectSecuritySettings) {
       firstRoute = '/security'
+    } else if (permissions.manageProjectWebhooks) {
+      firstRoute = '/webhooks'
     }
     return [{ redirect: true, from: '', to: firstRoute }, ...routes]
   }

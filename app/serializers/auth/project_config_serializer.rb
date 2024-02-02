@@ -4,7 +4,7 @@ module Auth
   class ProjectConfigSerializer < ActiveModel::Serializer
     attributes :id, :background_color, :login_box_position, :background, :saml_login_allowed,
                :saml_enforced, :client_logo, :secondary_logo, :primary_color,
-               :error_color, :warning_color, :success_color, :info_color
+               :error_color, :warning_color, :success_color, :info_color, :background_size
 
     DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
 
@@ -14,7 +14,7 @@ module Auth
       end
     end
 
-    delegate :background_color, :login_box_position, to: :design_setting
+    delegate :background_color, :login_box_position, :background_size, to: :design_setting
 
     def client_logo
       design_setting.logo&.url

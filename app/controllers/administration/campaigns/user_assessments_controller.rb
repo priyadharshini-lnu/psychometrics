@@ -8,8 +8,8 @@ module Administration
 
       def update_norm
         user_result = resource.users_result
-        options = { norm_id: params[:norm_id], fixed_norm: true }
-        ::UsersResults::Recompute.call!(user_result, current_user, options)
+        resource.update_norm!(params[:norm_id])
+        ::UsersResults::Recompute.call!(user_result, current_user)
 
         render json: { norm_name: resource.norm_name }
       end
