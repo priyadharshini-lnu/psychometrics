@@ -6,10 +6,11 @@ import { CSS } from '@dnd-kit/utilities'
 import {
   Card, Space, Button, Typography,
 } from 'antd'
-import { DragOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
+import {
+  DragOutlined, PlusOutlined, DeleteOutlined, EditOutlined,
+} from '@ant-design/icons'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
-
-import styles from './GroupCard.less'
+import { GroupForm } from './AddGroupForm'
 
 export type CampaignFactorGroup = {
   id: string
@@ -42,26 +43,45 @@ export const GroupCard = React.forwardRef(
       groupsCount,
     }: Props, ref:RefObject<HTMLDivElement>,
   ) => {
+    const [editName, setEditName] = React.useState(false)
+    const handleFormFinish = (data: { name: string }) => {
+      const { name } = data
+      if (name !== group.name) {
+        onGroupNameChange?.(name, group)
+      }
+      setEditName(false)
+    }
+    const handleBlur = (form) => {
+      form.submit()
+    }
+
     const titleElement = (
       <Space className="w-100 justify-between">
         <Space>
           <DragOutlined {...attributes} {...listeners} />
-          <Typography.Text
-            title={group.name}
-            ellipsis
-            editable={{
-              onChange: (value) => { onGroupNameChange && onGroupNameChange(value, group) },
-              tooltip: I18n.t('assessments_reports.sequencing.edit_group_name'),
-              maxLength: 40,
-              triggerType: ['icon', 'text'],
-            }}
-            className={styles.editableText}
-          >
-            {group.name}
-          </Typography.Text>
+          {editName ? (
+            <GroupForm
+              initialValues={{ name: group.name }}
+              onBlur={handleBlur}
+              onFormFinish={handleFormFinish}
+              noStyle
+              nameLabel=""
+            />
+          ) : (
+            <>
+              <Typography.Text
+                title={group.name}
+                ellipsis
+              >
+                {group.name}
+              </Typography.Text>
+              <EditOutlined onClick={() => setEditName(true)} />
+            </>
+          )}
         </Space>
         {!hasFactors
-        && groupsCount > 1 && <DeleteOutlined className="items-end" onClick={() => removeGroup(group.id)} />}
+        && groupsCount > 1
+        && !editName && <DeleteOutlined className="items-end" onClick={() => removeGroup(group.id)} />}
       </Space>
     )
     return (

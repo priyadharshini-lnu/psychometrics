@@ -485,7 +485,7 @@ export const ScoringGroups = () => {
               {sortedGroups.map((group) => {
                 const factors = getFactorsByGroupId(campaignFactorsLocalState, group.id)
                 return (
-                  <Col key={group.name}>
+                  <Col key={`${group.name}-${group.id}`}>
                     <GroupCardSortable
                       items={getPrefixFactorIds(factors)}
                       key={group.name}

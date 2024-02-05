@@ -4035,6 +4035,7 @@ en:
       name: Name
       no_groups: No groups present
       output_type: Output Type
+      pattern_error: Only alphanumeric characters, spaces and dashes are allowed.
       profile:
         years: Years
       public: Public
