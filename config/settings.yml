@@ -1298,6 +1298,7 @@ providers:
           - 5DF31F3A-2F95-4969-A61A-E0247E2A3A30
           - F31ED9E3-2EBD-4CED-B2CC-E371FEFCF33F
           - 4E34D3A4-BA06-4279-B9F4-A3EA234D18B3
+          - 44968427-ffc5-4703-a804-30c081cd60e9
       - id: A6DB5C4B-8D1E-426C-B215-DB638327F44F
         name: Work Strengths (IA) V2
         default_norm_id: C61621ED-894E-4368-A7B1-1E8931512FD3
@@ -1725,6 +1726,8 @@ providers:
         name: Verbal Comprehension Aptitude & Pace Report (Rx)
       - id: 88A6D290-1CB9-4828-9838-2441C3D5E049
         name: Workplace English - Office Report
+      - id: 44968427-FFC5-4703-A804-30C081CD60E9
+        name: EG11 Leadership Behaviours Professional Styles Score Extraction Report
 
 checking_wizard:
   speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>
