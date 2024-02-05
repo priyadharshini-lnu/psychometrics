@@ -63,7 +63,9 @@ executors:
     machine:
       image: ubuntu-2004:2022.07.1
       docker_layer_caching: true
-
+    environment:
+      AWS_DEFAULT_REGION: eu-west-1
+      AWS_REGION: eu-west-1
 
 commands:
   bundle_restore:
@@ -425,17 +427,28 @@ jobs:
           use-buildkit: true
           extra_build_args: '--build-arg BUILDKIT_INLINE_CACHE=1'
           registry: lhcontregistry.azurecr.io
+      - aws-cli/setup:
+          profile_name: default
+      - run: |
+          docker create --name temp_container lhcontregistry.azurecr.io/psychometrics:latest-$CIRCLE_BRANCH
+          mkdir -p sync
+          docker cp temp_container:/app/public/assets sync/assets
+          docker cp temp_container:/app/public/vite sync/vite
+          docker rm temp_container
+          aws s3 cp --recursive sync/assets s3://psychometrics-static-assets/assets
+          aws s3 cp --recursive sync/vite s3://psychometrics-static-assets/vite
       - docker/push:
           step-name: Push Docker image - latest
           image: psychometrics
           tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM'
           registry: lhcontregistry.azurecr.io
 orbs:
-  heroku: circleci/heroku@2.0.0
-  jira: circleci/jira@1.3.1
+  aws-cli: circleci/aws-cli@4.1.2
   azure-acr: circleci/azure-acr@0.2.1
   azure-cli: circleci/azure-cli@1.2.2
   docker: circleci/docker@2.2.0
+  heroku: circleci/heroku@2.0.0
+  jira: circleci/jira@1.3.1
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
@@ -528,3 +541,4 @@ workflows:
               only:
                 - master
                 - review
+                - cisync
