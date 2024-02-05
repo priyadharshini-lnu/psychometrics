@@ -1803,6 +1803,7 @@ en:
         already_exists: Subject already exists in the invite.
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
+        part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
   ecommerce:
     carts:
       show:
