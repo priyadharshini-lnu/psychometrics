@@ -658,6 +658,75 @@
         }
       }
     },
+    "/campaigns/{campaign_id}/workshop_subjects/{workshop_subject_id}/campaign_assessor_assessments/subject_assessor_assessments": {
+      "get": {
+        "summary": "returns all assessor assessments for a subject",
+        "operationId": "GetSubjectsAssessorAssessments",
+        "description": "Get all subject specific assessor assessments",
+        "tags": [
+          "Subject Assessor Assessments"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workshop_subject_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subject Assessor Assessments",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "type": "subject_assessor_assessments",
+                          "attributes": {
+                            "id": "1",
+                            "name": "Assessment 1",
+                            "user_assessment_id": 1,
+                            "status": "pending",
+                            "schedule_time": "2020-10-10T10:10:10.000Z",
+                            "meeting_link": "https://meet.google.com/abc-xyz",
+                            "linked_activity": "Assessment 1",
+                            "assessor": {
+                              "id": "1",
+                              "name": "John Doe",
+                              "photo_url": "https://example.com/photo.jpg"
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/clients/": {
       "get": {
         "summary": "Clients List",
@@ -3163,6 +3232,138 @@
         }
       }
     },
+    "/users/change_password/": {
+      "post": {
+        "summary": "Change Password",
+        "operationId": "ChangePassword",
+        "description": "Change Password",
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "Change Password",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "type": "users",
+                      "data": {
+                        "id": "770",
+                        "attributes": {
+                          "current_password": "Password@916",
+                          "password": "Password@916",
+                          "password_confirmation": "Password@916"
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePasswordResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "patch": {
+        "summary": "Update a user",
+        "operationId": "UpdateUser",
+        "description": "Update a User",
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User Updated",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "type": "users",
+                      "data": {
+                        "type": "users",
+                        "id": "34861",
+                        "attributes": {
+                          "first_name": "John",
+                          "last_name": "Doe",
+                          "user_profile_data": {
+                            "locale": "en",
+                            "timezone": "Asia/Calcutta"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdateRequest"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserResponse"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/projects/{project_id}/webhooks/": {
       "get": {
         "summary": "Webhook List",
@@ -3566,7 +3767,7 @@
         }
       }
     },
-    "/workshop_invites/{workshop_invite_id}/workshop_invited_subjects": {
+    "/campaigns/{campaign_id}/workshop_invites/{workshop_invite_id}/workshop_invited_subjects": {
       "get": {
         "summary": "Get Workshop Invited Subject List",
         "operationId": "WorkshopInvitedSubjectList",
@@ -3584,6 +3785,14 @@
         "parameters": [
           {
             "name": "workshop_invite_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "campaign_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -3649,6 +3858,14 @@
         ],
         "parameters": [
           {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "workshop_invite_id",
             "in": "path",
             "required": true,
@@ -3710,7 +3927,7 @@
         }
       }
     },
-    "/workshop_invites/{workshop_invite_id}/workshop_invited_subjects/{id}": {
+    "/campaigns/{campaign_id}/workshop_invites/{workshop_invite_id}/workshop_invited_subjects/{id}": {
       "delete": {
         "summary": "Delete Workshop Invited Subject",
         "operationId": "DeleteWorkshopInvitedSubject",
@@ -3741,6 +3958,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3750,7 +3975,240 @@
         }
       }
     },
-    "/workshop_invites": {
+    "/campaigns/{campaign_id}/workshop_invited_subjects": {
+      "get": {
+        "summary": "Get Workshop Invited Subject List",
+        "operationId": "WorkshopInvitedSubjectList",
+        "description": "Fetch Workshop Invited Subject List",
+        "tags": [
+          "WorkshopInvitedSubject"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[workshop_invite_campaign_id_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WorkshopInvitedSubject list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": [
+                          {
+                            "id": 2,
+                            "type": "workshop_invited_subjects",
+                            "attributes": {
+                              "status": "requested_cancellation",
+                              "reason": null,
+                              "booked_workshop_date_time": null
+                            },
+                            "relationships": {
+                              "user": {
+                                "data": {
+                                  "type": "users",
+                                  "id": 5
+                                }
+                              },
+                              "workshop_invite": {
+                                "data": {
+                                  "type": "workshop_invites",
+                                  "id": "1"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopInvitedSubjectListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/workshop_invited_subjects/{id}/reject_request": {
+      "post": {
+        "summary": "Reject Workshop Invited Subject Request",
+        "operationId": "WorkshopInvitedSubjectRejectRequest",
+        "description": "Reject Workshop Invited Subject Request",
+        "tags": [
+          "WorkshopInvitedSubject"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WorkshopInvitedSubject list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": 2,
+                          "type": "workshop_invited_subjects",
+                          "attributes": {
+                            "status": "requested_rescheduling_rejected",
+                            "reason": null,
+                            "booked_workshop_date_time": null
+                          },
+                          "relationships": {
+                            "user": {
+                              "data": {
+                                "type": "users",
+                                "id": 5
+                              }
+                            },
+                            "workshop_invite": {
+                              "data": {
+                                "type": "workshop_invites",
+                                "id": "1"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopInvitedSubjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/workshop_invited_subjects/{id}/accept_request": {
+      "post": {
+        "summary": "Accept Workshop Invited Subject Request",
+        "operationId": "WorkshopInvitedSubjectAcceptRequest",
+        "description": "Accept Workshop Invited Subject Request",
+        "tags": [
+          "WorkshopInvitedSubject"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "WorkshopInvitedSubject list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": 2,
+                          "type": "workshop_invited_subjects",
+                          "attributes": {
+                            "status": "requested_rescheduling_accepted",
+                            "reason": null,
+                            "booked_workshop_date_time": null
+                          },
+                          "relationships": {
+                            "user": {
+                              "data": {
+                                "type": "users",
+                                "id": 5
+                              }
+                            },
+                            "workshop_invite": {
+                              "data": {
+                                "type": "workshop_invites",
+                                "id": "1"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopInvitedSubjectResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/workshop_invites": {
       "get": {
         "summary": "Get Workshop List",
         "operationId": "WorkshopList",
@@ -3763,6 +4221,16 @@
             "basic": [
 
             ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -3812,7 +4280,14 @@
           }
         ],
         "parameters": [
-
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -3832,7 +4307,7 @@
                           "allow_neurodiversity_option": true,
                           "subjects": [
                             {
-                              "user_id": 111
+                              "user_id": "111"
                             }
                           ],
                           "translations": [
@@ -3871,6 +4346,46 @@
             }
           },
           "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/workshop_invites/{workshop_invite_id}": {
+      "delete": {
+        "summary": "Delete Workshop Invite",
+        "operationId": "DeleteWorkshopInvite",
+        "description": "Delete Workshop Invite",
+        "tags": [
+          "Workshop"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workshop_invite_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Workshop Invite Deleted"
+          }
         }
       }
     },
@@ -4212,8 +4727,7 @@
                             "attendance_status": "no_status",
                             "attended": false,
                             "preworks": "0/0",
-                            "workshop_activities": "0/0",
-                            "completion_status": "not_started"
+                            "workshop_activities": "0/0"
                           },
                           "relationships": {
                             "user": {
@@ -4294,7 +4808,6 @@
                         },
                         "attributes": {
                           "attendance_status": "no_show",
-                          "completion_status": "not_started",
                           "attended": false,
                           "preworks": "2/3",
                           "workshop_activities": "2/3"
@@ -4452,7 +4965,7 @@
         }
       }
     },
-    "/workshops/{workshop_id}/bulk_update_subjects": {
+    "/campaigns/{campaign_id}/workshops/{workshop_id}/bulk_update_subjects": {
       "post": {
         "summary": "Bulk update workshop subjects",
         "operationId": "BulkUpdateSubjects",
@@ -4468,6 +4981,14 @@
           }
         ],
         "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "workshop_id",
             "in": "path",
@@ -4521,6 +5042,85 @@
           "required": true
         }
       }
+    },
+    "/campaigns/{campaign_id}/workshops/{workshop_id}": {
+      "put": {
+        "summary": "Update workshop",
+        "operationId": "UpdateWorkshop",
+        "description": "Update workshop",
+        "tags": [
+          "Workshops"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workshop_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "UpdateWorkshop",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": {
+                        "type": "workshops",
+                        "id": "1",
+                        "attributes": {
+                          "total_seats": 20,
+                          "name": "name",
+                          "video_call_type": "custom",
+                          "meeting_link": "https://www.abc.com",
+                          "workshop_assessors_ids": [
+                            1
+                          ],
+                          "workshop_managers_ids": [
+                            1
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
     }
   },
   "security": {
@@ -4557,6 +5157,76 @@
             "x-nullable": true
           }
         }
+      },
+      "ChangePasswordRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "current_password": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "password": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "password_confirmation": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "current_password",
+                  "password",
+                  "password_confirmation"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "ChangePasswordResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "message"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
       },
       "ClientsListResponse": {
         "type": "object",
@@ -4672,7 +5342,7 @@
                     },
                     "year": {
                       "type": "integer",
-                      "description": "Greater than or equal to 2021, Lower than or equal to 2033",
+                      "description": "Greater than or equal to 2022, Lower than or equal to 2034",
                       "nullable": false
                     }
                   },
@@ -4871,7 +5541,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
+                    "description": "Greater than or equal to 2022, Lower than or equal to 2034",
                     "nullable": false
                   }
                 },
@@ -4962,7 +5632,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
+                    "description": "Greater than or equal to 2022, Lower than or equal to 2034",
                     "nullable": false
                   }
                 },
@@ -5070,7 +5740,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
+                    "description": "Greater than or equal to 2022, Lower than or equal to 2034",
                     "nullable": false
                   }
                 },
@@ -5281,6 +5951,50 @@
 
                       ],
                       "nullable": false
+                    },
+                    "linked_assessment": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to assessments",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
                     }
                   },
                   "required": [
@@ -5308,10 +6022,6 @@
                       "type": "string",
                       "nullable": false
                     },
-                    "description": {
-                      "type": "string",
-                      "nullable": false
-                    },
                     "type": {
                       "type": "string",
                       "enum": [
@@ -5327,6 +6037,10 @@
                     "category": {
                       "type": "string",
                       "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
                     },
                     "timing": {
                       "type": "string",
@@ -5381,7 +6095,6 @@
                   },
                   "required": [
                     "name",
-                    "description",
                     "type",
                     "category"
                   ],
@@ -5859,6 +6572,50 @@
 
                     ],
                     "nullable": false
+                  },
+                  "linked_assessment": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to assessments",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
                   }
                 },
                 "required": [
@@ -5886,10 +6643,6 @@
                     "type": "string",
                     "nullable": false
                   },
-                  "description": {
-                    "type": "string",
-                    "nullable": false
-                  },
                   "type": {
                     "type": "string",
                     "enum": [
@@ -5905,6 +6658,10 @@
                   "category": {
                     "type": "string",
                     "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true
                   },
                   "timing": {
                     "type": "string",
@@ -5959,7 +6716,6 @@
                 },
                 "required": [
                   "name",
-                  "description",
                   "type",
                   "category"
                 ],
@@ -6590,10 +7346,14 @@
                     "warning_color": {
                       "type": "string",
                       "nullable": true
+                    },
+                    "background_size": {
+                      "type": "string",
+                      "nullable": false
                     }
                   },
                   "required": [
-
+                    "background_size"
                   ],
                   "nullable": false
                 }
@@ -6744,10 +7504,14 @@
                   "warning_color": {
                     "type": "string",
                     "nullable": true
+                  },
+                  "background_size": {
+                    "type": "string",
+                    "nullable": false
                   }
                 },
                 "required": [
-
+                  "background_size"
                 ],
                 "nullable": false
               }
@@ -8423,6 +9187,91 @@
               "links",
               "attributes",
               "meta"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "UserUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to users",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "full_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "enable_2fa": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "created_by": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "modified_by": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "role": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "photo_url": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
             ],
             "nullable": false
           }
@@ -10135,6 +10984,36 @@
                     "type": "boolean",
                     "nullable": true
                   },
+                  "custom_privacy_consent": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "custom_privacy_policy_version": {
+                    "type": "integer",
+                    "nullable": true
+                  },
+                  "custom_privacy_consent_texts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "locale": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "text": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "locale",
+                        "text"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
                   "enable_live_chat": {
                     "type": "boolean",
                     "nullable": true
@@ -10226,6 +11105,36 @@
                   "privacy_consent": {
                     "type": "boolean",
                     "nullable": true
+                  },
+                  "custom_privacy_consent": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "custom_privacy_policy_version": {
+                    "type": "integer",
+                    "nullable": true
+                  },
+                  "custom_privacy_consent_texts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "locale": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "text": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "locale",
+                        "text"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
                   },
                   "enable_live_chat": {
                     "type": "boolean",
@@ -10320,6 +11229,36 @@
                   "privacy_consent": {
                     "type": "boolean",
                     "nullable": true
+                  },
+                  "custom_privacy_consent": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "custom_privacy_policy_version": {
+                    "type": "integer",
+                    "nullable": true
+                  },
+                  "custom_privacy_consent_texts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "locale": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "text": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "locale",
+                        "text"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
                   },
                   "enable_live_chat": {
                     "type": "boolean",
@@ -10428,6 +11367,36 @@
                     "privacy_consent": {
                       "type": "boolean",
                       "nullable": true
+                    },
+                    "custom_privacy_consent": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "custom_privacy_policy_version": {
+                      "type": "integer",
+                      "nullable": true
+                    },
+                    "custom_privacy_consent_texts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "locale": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "text": {
+                            "type": "string",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "locale",
+                          "text"
+                        ],
+                        "nullable": false
+                      },
+                      "nullable": false
                     },
                     "enable_live_chat": {
                       "type": "boolean",
@@ -11169,6 +12138,10 @@
               "attributes": {
                 "type": "object",
                 "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
                   "start_time": {
                     "type": "string",
                     "nullable": false
@@ -11176,11 +12149,17 @@
                   "duration": {
                     "type": "integer",
                     "nullable": false
+                  },
+                  "total_seats": {
+                    "type": "integer",
+                    "nullable": false
                   }
                 },
                 "required": [
+                  "name",
                   "start_time",
-                  "duration"
+                  "duration",
+                  "total_seats"
                 ],
                 "nullable": false
               }
@@ -11216,7 +12195,7 @@
               "relationships": {
                 "type": "object",
                 "properties": {
-                  "workshop": {
+                  "workshops": {
                     "type": "object",
                     "properties": {
                       "data": {
@@ -11301,14 +12280,6 @@
                   "allow_neurodiversity_option": {
                     "type": "boolean",
                     "nullable": false
-                  },
-                  "workshop_ids": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "nullable": false
-                    },
-                    "nullable": false
                   }
                 },
                 "required": [
@@ -11352,7 +12323,7 @@
                 "relationships": {
                   "type": "object",
                   "properties": {
-                    "workshop": {
+                    "workshops": {
                       "type": "object",
                       "properties": {
                         "data": {
@@ -11437,14 +12408,6 @@
                     "allow_neurodiversity_option": {
                       "type": "boolean",
                       "nullable": false
-                    },
-                    "workshop_ids": {
-                      "type": "array",
-                      "items": {
-                        "type": "string",
-                        "nullable": false
-                      },
-                      "nullable": false
                     }
                   },
                   "required": [
@@ -11495,11 +12458,6 @@
           "data": {
             "type": "object",
             "properties": {
-              "type": {
-                "type": "string",
-                "description": "Must be equal to workshop_invites",
-                "nullable": false
-              },
               "attributes": {
                 "type": "object",
                 "properties": {
@@ -11526,58 +12484,61 @@
                       "nullable": false
                     },
                     "nullable": false
-                  }
-                },
-                "required": [
-                  "allowed_languages",
-                  "allow_language_preference",
-                  "allow_neurodiversity_option"
-                ],
-                "nullable": false
-              },
-              "relationships": {
-                "type": "object",
-                "properties": {
-                  "workshop": {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "type": {
-                              "type": "string",
-                              "description": "Must be equal to workshops",
-                              "nullable": false
-                            },
-                            "id": {
-                              "type": "string",
-                              "nullable": false
-                            }
-                          },
-                          "required": [
-
-                          ],
-                          "nullable": true
-                        },
-                        "nullable": true
-                      }
+                  },
+                  "subjects": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "user_id": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "user_id"
+                      ],
+                      "nullable": false
                     },
-                    "required": [
-
-                    ],
+                    "nullable": false
+                  },
+                  "translations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "locale": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "title": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "description": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "locale",
+                        "title",
+                        "description"
+                      ],
+                      "nullable": false
+                    },
                     "nullable": false
                   }
                 },
                 "required": [
-
+                  "allow_language_preference",
+                  "allow_neurodiversity_option",
+                  "translations"
                 ],
                 "nullable": false
               }
             },
             "required": [
-              "type",
               "attributes"
             ],
             "nullable": false
@@ -11770,6 +12731,10 @@
                 "attributes": {
                   "type": "object",
                   "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
                     "start_time": {
                       "type": "string",
                       "nullable": false
@@ -11777,11 +12742,17 @@
                     "duration": {
                       "type": "integer",
                       "nullable": false
+                    },
+                    "total_seats": {
+                      "type": "integer",
+                      "nullable": false
                     }
                   },
                   "required": [
+                    "name",
                     "start_time",
-                    "duration"
+                    "duration",
+                    "total_seats"
                   ],
                   "nullable": false
                 }
@@ -11958,6 +12929,51 @@
 
                       ],
                       "nullable": false
+                    },
+                    "workshop": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to workshops",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
                     }
                   },
                   "required": [
@@ -11981,23 +12997,9 @@
                 "attributes": {
                   "type": "object",
                   "properties": {
-                    "attendance_status": {
-                      "type": "string",
-                      "nullable": false
-                    },
-                    "completion_status": {
-                      "type": "string",
-                      "nullable": false
-                    },
-                    "attended": {
-                      "type": "boolean",
-                      "nullable": false
-                    }
                   },
                   "required": [
-                    "attendance_status",
-                    "completion_status",
-                    "attended"
+
                   ],
                   "nullable": false
                 }
@@ -12221,10 +13223,6 @@
                     "type": "string",
                     "nullable": false
                   },
-                  "completion_status": {
-                    "type": "string",
-                    "nullable": false
-                  },
                   "attended": {
                     "type": "boolean",
                     "nullable": false
@@ -12247,6 +13245,34 @@
                           "type": {
                             "type": "string",
                             "description": "Must be equal to users",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  },
+                  "workshop": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to workshops",
                             "nullable": false
                           },
                           "id": {
@@ -13651,6 +14677,54 @@
         "required": [
           "data",
           "meta"
+        ]
+      },
+      "WorkshopUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "total_seats": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "workshop_assessors_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "workshop_managers_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "total_seats",
+                  "workshop_assessors_ids",
+                  "workshop_managers_ids"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
         ]
       }
     }

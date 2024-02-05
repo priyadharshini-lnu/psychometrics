@@ -32,6 +32,10 @@ module Campaigns
       def create_campaign_user
         if existing_user_in_project
           @user = existing_user_in_project
+          if form.first_name.present? && form.last_name &&
+             (@user.first_name != form.first_name || @user.last_name != form.last_name)
+            @user.update!(first_name: form.first_name, last_name: form.last_name, modifier: current_user)
+          end
         else
           user_attributes = form.to_h.except(
             :operation, :campaign_ids, :schedule_start_date, :schedule_start_date, :schedule_end_date, :active

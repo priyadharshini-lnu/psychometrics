@@ -122,6 +122,48 @@ the campaign\'s default assessments and reports.'
         end
       end
 
+      response '200', 'User updated' do
+        schema '$ref' => '#/definitions/User'
+        examples 'application/json' => {
+          id: 14_602,
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'john.doe@example.com',
+          created_at: '2019-03-04T15:47:33.570+04:00',
+          updated_at: '2019-03-04T15:47:33.950+04:00',
+          campaign_ids: [
+            510
+          ],
+          existing_record: 'accept'
+        }
+
+        let(:first_name) { 'Max' }
+        let(:last_name) { 'Holloway' }
+        let(:email) { 'max@example.com' }
+        let(:project_id) { project.id }
+        let(:body) do
+          {
+            email: email,
+            first_name: first_name,
+            last_name: last_name,
+            campaigns: [
+              { id: campaign.id, active: true, existing_record: 'new_evaluation' }
+            ],
+            existing_record: 'accept'
+          }
+        end
+
+        before { create(:user, project: project, email: 'max@example.com') }
+        run_test! do |response|
+          user = JSON.parse(response.body)
+          expect(user['id']).to be
+          expect(user['first_name']).to eq first_name
+          expect(user['last_name']).to eq last_name
+          expect(user['email']).to eq email
+          expect(user['campaigns'][0]['id']).to eq campaign.id
+        end
+      end
+
       response '400', 'User with this email exists' do
         schema '$ref' => '#/definitions/ApiError'
         examples 'application/json' => {
