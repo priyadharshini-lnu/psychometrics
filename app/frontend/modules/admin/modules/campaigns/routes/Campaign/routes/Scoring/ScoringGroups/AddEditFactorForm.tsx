@@ -63,6 +63,9 @@ export const AddEditFactorForm: FC<Props> = ({
   open, onClose, addFactor, factorData, editFactor,
 }) => {
   const { campaignId } = useParams<{campaignId: string}>()
+  // this is required to trigger re-render when fields changed through form.setFieldsValue
+  const [, setFields] = useState({})
+  const [codeValueEditedByUser, setCodeValueEditedByUser] = useState(false)
   const [form] = Form.useForm()
   const nameValue = Form.useWatch('name', form)
   const factorType = Form.useWatch('factorType', form)
@@ -79,9 +82,15 @@ export const AddEditFactorForm: FC<Props> = ({
   const [dimensionId, setDimensionId] = useState<string>(factorData?.dimensionId || '')
 
   useEffect(() => {
+    const deriveCodeFromName = !factorData?.code && !codeValueEditedByUser
+    deriveCodeFromName && form.setFieldsValue({ code: slugify(nameValue || '') })
+  }, [nameValue])
+
+  useEffect(() => {
     if (open) {
       setDimensionId(factorData?.dimensionId || '')
       form.resetFields()
+      setCodeValueEditedByUser(false)
     }
   }, [factorData, open])
 
@@ -287,19 +296,7 @@ export const AddEditFactorForm: FC<Props> = ({
     )
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const ControlledCodeInput: FC<{value?:string, onChange?: (value: string) => void;}> = ({ value = '', onChange }) => (
-    <Input
-      type="text"
-      value={value || slugify(nameValue || '')}
-      onChange={(e) => {
-        onChange && onChange(e.target.value)
-      }}
-    />
-  )
-
   const handleClose = () => {
-    form.resetFields()
     onClose()
   }
 
@@ -321,6 +318,13 @@ export const AddEditFactorForm: FC<Props> = ({
           labelAlign: 'left',
           preserve: false,
           initialValues,
+          onFieldsChange: (_, allFields) => {
+            setFields(allFields)
+          },
+          validateMessages: {
+            required: I18n.t('administration.scoring.required_error'),
+            pattern: { mismatch: I18n.t('administration.scoring.pattern_error') },
+          },
         }}
         scrollToFirstError
         request={{
@@ -329,7 +333,9 @@ export const AddEditFactorForm: FC<Props> = ({
         }}
         onSuccessfulSubmission={handleFormFinish}
         transformValues={(values: FactorData) => ({
-          ..._.omit(values, 'dimension_id'), code: values.code || slugify(values.name),
+          ..._.omit(values, 'dimension_id'),
+          code: values.code || slugify(values.name),
+          name: nameValue.trim(),
         })}
       >
         {() => (
@@ -337,11 +343,24 @@ export const AddEditFactorForm: FC<Props> = ({
             <Form.Item
               name="name"
               label={I18n.t('administration.scoring.name')}
+              rules={[{
+                required: true,
+                whitespace: true,
+                pattern: /^[a-zA-Z0-9\- ]+$/,
+              }]}
             >
-              <Input />
+              <Input maxLength={64} />
             </Form.Item>
             <Form.Item name="code" label={I18n.t('administration.scoring.code')}>
-              <ControlledCodeInput />
+              <Input
+                maxLength={64}
+                onInput={(e) => {
+                  !codeValueEditedByUser && setCodeValueEditedByUser(true)
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignorets-ignore
+                  e.target.value = alphaNumericWithUnderscore(e.target.value)
+                }}
+              />
             </Form.Item>
             <Form.Item name="description" label={I18n.t('administration.scoring.description')}>
               <Input.TextArea />
@@ -383,3 +402,7 @@ export const AddEditFactorForm: FC<Props> = ({
     </Drawer>
   )
 }
+
+const alphaNumericWithUnderscore = string => string.trim() // trim leading or trailing whitespace
+  .toLowerCase() // convert to lowercase
+  .replace(/[^a-z0-9_]/g, '') // remove non-alphanumeric characters expcept underscore
