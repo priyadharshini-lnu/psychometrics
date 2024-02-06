@@ -229,9 +229,10 @@ const AdminsComponent: React.FC<Props> = ({
           >
             <Table.Column
               dataIndex="userId"
+              key="userId"
               title={I18n.t('administration.administrators.list.columns.id')}
               sorter
-              sortOrder={getSortOrder('user_id')}
+              sortOrder={getSortOrder('userId')}
             />
             <Table.Column
               dataIndex="name"
@@ -246,17 +247,19 @@ const AdminsComponent: React.FC<Props> = ({
             />
             <Table.Column
               dataIndex="email"
+              key="user.email"
               title={I18n.t('administration.administrators.list.columns.email')}
               sorter
               sortOrder={getSortOrder('user.email')}
             />
             <Table.Column
               dataIndex="createdAt"
+              key="createdAt"
               title={I18n.t(
                 'administration.administrators.list.columns.created_at',
               )}
               sorter
-              sortOrder={getSortOrder('created_at')}
+              sortOrder={getSortOrder('createdAt')}
             />
             <Table.Column
               dataIndex="actions"
