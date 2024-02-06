@@ -27,7 +27,7 @@ export const TextEntry: FC<Props> = ({
   if (field.props.type === 'SingleLine') {
     return (
       <div>
-        <Input value={value ?? defaultValue} onChange={change} />
+        <Input value={value ?? defaultValue} onChange={change} readOnly={locked} />
       </div>
     )
   }

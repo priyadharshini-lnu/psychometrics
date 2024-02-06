@@ -18,12 +18,16 @@ export class FixedHeader extends Component {
   componentDidMount () {
     $(document).on('scroll', _.debounce(e => this.bodyScroll(e), 200))
     $(document).on('keydown', this.bodyKeyDown)
+    $(document).on('copy', this.onCopy)
+    $(document).on('paste', this.onPaste)
     this.listener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
   componentWillUnmount () {
     $(document).off('scroll', this.bodyScroll)
     $(document).off('keydown', this.bodyKeyDown)
+    $(document).off('copy', this.onCopy)
+    $(document).off('paste', this.onPaste)
     this.listener.remove()
   }
 
@@ -33,10 +37,51 @@ export class FixedHeader extends Component {
     updateCurrentPage($(e.currentTarget).scrollTop(), pages)
   }
 
+  onCopy = ({ originalEvent }) => {
+    const {
+      richEditorOpened, selected, module,
+    } = this.props
+
+    if (selected?.type !== 'Module') { return }
+    if (originalEvent.target) {
+      if (originalEvent.target.tagName === 'INPUT') {
+        return
+      }
+    }
+
+    if (richEditorOpened) { return }
+
+    const data = {
+      type: 'Module',
+      data: module,
+    }
+
+    originalEvent.preventDefault()
+    originalEvent.clipboardData.setData('text/plain', JSON.stringify(data))
+  }
+
+  onPaste = ({ originalEvent }) => {
+    const {
+      richEditorOpened, pasteModule, currentPage, selectModule,
+    } = this.props
+    if (richEditorOpened) { return }
+
+    originalEvent.preventDefault()
+    const data = originalEvent.clipboardData.getData('text/plain')
+    try {
+      const { type, data: moduleData } = JSON.parse(data)
+      if (type === 'Module') {
+        const module = new Module({ ..._.cloneDeep(moduleData), id: null }, currentPage)
+        module.shift()
+        pasteModule(currentPage.id, module)
+        selectModule('Module', module.id)
+      }
+    } catch (e) { /* empty */ }
+  }
+
   bodyKeyDown = (e) => {
     const {
       richEditorOpened, removeModule, selected, unselectModules,
-      copyModule, pasteModule, currentPage, bufferedModule, selectModule,
       module, updateModule, report,
     } = this.props
     if (e.target.nodeName === 'INPUT') { return }
@@ -45,21 +90,6 @@ export class FixedHeader extends Component {
     if (e.keyCode === 8 || e.keyCode === 46) {
       unselectModules()
       selected.moduleId && removeModule(selected.moduleId)
-    }
-
-    if ((e.ctrlKey || e.metaKey) && e.keyCode === 67) {
-      if (selected.moduleId) {
-        copyModule(selected.moduleId)
-      }
-    }
-
-    if ((e.ctrlKey || e.metaKey) && e.keyCode === 86) {
-      if (bufferedModule) {
-        const module = new Module({ ..._.cloneDeep(bufferedModule), id: null }, currentPage)
-        module.shift()
-        pasteModule(currentPage.id, module)
-        selectModule('Module', module.id)
-      }
     }
 
     if (module && [37, 38, 39, 40].includes(e.keyCode)) {
