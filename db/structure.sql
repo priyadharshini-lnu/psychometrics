@@ -5396,6 +5396,7 @@ CREATE TABLE public.workshops (
     updated_at timestamp(6) without time zone NOT NULL,
     name character varying,
     status integer DEFAULT 0,
+    allow_late_cancellation_and_rescheduling boolean DEFAULT false NOT NULL,
     CONSTRAINT booked_seats_not_exceed_total_seats CHECK ((booked_seats <= total_seats)),
     CONSTRAINT booked_seats_positive CHECK ((booked_seats >= 0))
 );
@@ -11716,6 +11717,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240131091031'),
 ('20240126082502'),
 ('20240118090133'),
 ('20240117104237'),

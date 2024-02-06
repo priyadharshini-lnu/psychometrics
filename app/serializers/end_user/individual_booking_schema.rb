@@ -19,6 +19,7 @@ module EndUser
         required(:allow_language_preference).maybe(:bool?)
         required(:timezone).maybe(:str?)
         required(:reschedule_lead_time).maybe(:int?)
+        required(:allow_late_cancellation_and_rescheduling).maybe(:bool?)
         required(:available_dates).array do
           hash do
             required(:id).filled(:int?)

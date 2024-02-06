@@ -30,6 +30,7 @@ interface Props {
     video_call_type: number
     meeting_link: string
     cancellation_lead_time: number
+    allow_late_cancellation_and_rescheduling: boolean
     reschedule_lead_time: number
     workshop_resources: {
       key: number
@@ -85,6 +86,7 @@ export const Facilitators: React.FC<Props> = ({
     duration: basicInfoData.duration,
     cancellation_lead_time: basicInfoData.cancellation_lead_time,
     reschedule_lead_time: basicInfoData.reschedule_lead_time,
+    allow_late_cancellation_and_rescheduling: basicInfoData.allow_late_cancellation_and_rescheduling,
     timezone: basicInfoData.timezone,
     workshop_resources: filterInvalidResources(facilitator.workshop_resources),
   })

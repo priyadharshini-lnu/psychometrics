@@ -26,6 +26,7 @@ export const WorkshopTR = t.type({
   timezone: t.string,
   videoCallType: t.string,
   cancellationLeadTime: t.number,
+  allowLateCancellationAndRescheduling: t.boolean,
   rescheduleLeadTime: t.number,
   meetingLink: t.union([t.string, t.null]),
   workshopManagers: t.array(userDetailsTR),

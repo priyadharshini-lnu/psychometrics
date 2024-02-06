@@ -32,6 +32,7 @@ interface BasicInfoData {
   meeting_link: string,
   cancellation_lead_time: number,
   reschedule_lead_time: number,
+  allow_late_cancellation_and_rescheduling: boolean,
   workshop_resources: {
     key: number,
     name: string,
@@ -58,6 +59,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
     workshop_resources: workshop?.workshopResources || [{ key: 1, name: '', url: '' }],
     cancellation_lead_time: workshop?.cancellationLeadTime,
     reschedule_lead_time: workshop?.rescheduleLeadTime,
+    allow_late_cancellation_and_rescheduling: workshop?.allowLateCancellationAndRescheduling,
   })
   const history = useHistory()
   const [step, setStep] = useState(0)

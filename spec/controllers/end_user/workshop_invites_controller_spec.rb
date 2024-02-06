@@ -231,6 +231,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       it 'returns success' do
         workshop_invited_subject.update!(status: 'accepted')
         create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
+        workshop.update!(allow_late_cancellation_and_rescheduling: true)
 
         post :cancel_or_request_cancellation, params: {
           workshop_id: workshop.id,
@@ -245,10 +246,32 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         expect(workshop_invited_subject.reload.reason).to eq('test')
       end
 
-      it 'allows request cancellation even if passed cancellation deadline' do
+      it 'returns error is passed cancellation deadline and late cancellation now allowed' do
         workshop_invited_subject.update!(status: 'accepted')
         workshop_subject
         workshop.update!(cancellation_lead_time: 0)
+
+        frozen_time = workshop.start_time - workshop.cancellation_lead_time.hours + 1.hour
+
+        allow(Time).to receive(:now).and_return(frozen_time)
+
+        post :cancel_or_request_cancellation, params: {
+          workshop_id: workshop.id,
+          id: workshop_invite.id,
+          status: 'requested_cancellation',
+          reason: 'test'
+        }
+
+        expect(response.status).to eq(400)
+        expect(JSON.parse(response.body)['errors']).to eq(
+          [I18n.t('administration.bookings.errors.late_cancellation_not_allowed')]
+        )
+      end
+
+      it 'allows request cancellation even if passed cancellation deadline only if late cancellation allowed' do
+        workshop_invited_subject.update!(status: 'accepted')
+        workshop_subject
+        workshop.update!(cancellation_lead_time: 0, allow_late_cancellation_and_rescheduling: true)
         workshop_booked_seats = workshop.booked_seats
 
         frozen_time = workshop.start_time - workshop.cancellation_lead_time.hours + 1.hour
@@ -325,11 +348,36 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         )
       end
 
-      it 'allows requested_rescheduling even if passed reschedule deadline' do
+      it 'returns error if requested_rescheduling is passed and late reschedule not allowed' do
+        workshop_invited_subject.update!(status: 'accepted')
+        create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
+        new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
+        workshop.update!(reschedule_lead_time: 0)
+
+        frozen_time = workshop.start_time + 1.hour
+
+        allow(Time).to receive(:current).and_return(frozen_time)
+
+        post :reschedule_or_request_reschedule, params: {
+          workshop_id: workshop.id,
+          id: workshop_invite.id,
+          new_workshop_booking_id: new_workshop.id,
+          status: 'requested_rescheduling',
+          reason: 'test',
+          new_workshop_id: new_workshop.id
+        }
+
+        expect(response.status).to eq(400)
+        expect(JSON.parse(response.body)['errors']).to eq(
+          [I18n.t('administration.bookings.errors.late_rescheduling_not_allowed')]
+        )
+      end
+
+      it 'allows requested_rescheduling even if passed reschedule deadline only if late reschedule allowed' do
         workshop_invited_subject.update!(status: 'accepted')
         workshop_subject = create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
-        workshop.update!(reschedule_lead_time: 0)
+        workshop.update!(reschedule_lead_time: 0, allow_late_cancellation_and_rescheduling: true)
         workshop_booked_seats = workshop.booked_seats
 
         frozen_time = workshop.start_time - workshop.reschedule_lead_time.hours + 1.hour

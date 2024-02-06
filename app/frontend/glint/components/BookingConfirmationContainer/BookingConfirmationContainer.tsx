@@ -13,7 +13,11 @@ export const BookingConfirmationContainer: FC<Props> = ({ headerContent, details
     <div className="ta-c">{headerContent}</div>
     <Divider />
     <div>{detailsContent}</div>
-    <Divider />
-    <div>{footerContent}</div>
+    {footerContent ? (
+      <>
+        <Divider />
+        <div>{footerContent}</div>
+      </>
+    ) : null}
   </div>
 )

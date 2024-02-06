@@ -82,6 +82,7 @@ const fetchSingleBookingResponseTR = t.intersection([fetchSingleInviteResponseTR
     workshopId: t.union([t.number, t.null]),
     neurodivergent: t.union([t.boolean, t.null]),
     neurodivergentComments: t.union([t.string, t.null]),
+    allowLateCancellationAndRescheduling: t.boolean,
     bookedDate: t.union([
       t.type({
         id: t.number,

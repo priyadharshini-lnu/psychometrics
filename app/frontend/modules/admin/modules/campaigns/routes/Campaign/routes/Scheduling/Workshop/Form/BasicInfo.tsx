@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  DatePicker, Form, Row, Space, Col, TimePicker, Radio, Button, Tag, Input,
+  DatePicker, Form, Row, Space, Col, TimePicker, Radio, Button, Tag, Input, Switch,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
 import dayjs from '~/utils/dayjs'
@@ -251,6 +251,16 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
               </Form.Item>
             </Col>
           </Row>
+          <Form.Item
+            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_rescheduling')}
+            {...fieldLayout}
+            name="allow_late_cancellation_and_rescheduling"
+            rules={[{ required: true }]}
+            valuePropName="checked"
+            initialValue={false}
+          >
+            <Switch />
+          </Form.Item>
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
             {...fieldLayout}

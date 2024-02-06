@@ -151,7 +151,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
               video_call_type: 'custom',
               meeting_link: 'https://www.abc.com',
               workshop_assessors_ids: [1],
-              workshop_managers_ids: [1]
+              workshop_managers_ids: [1],
+              allow_late_cancellation_and_rescheduling: false
             }
           }
         }
@@ -167,7 +168,8 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
                 video_call_type: 'custom',
                 meeting_link: 'https://www.abc.com',
                 workshop_assessors_ids: [assessor.user_id.to_s, user1.id.to_s],
-                workshop_managers_ids: [user2.id.to_s]
+                workshop_managers_ids: [user2.id.to_s],
+                allow_late_cancellation_and_rescheduling: false
               }
             }
           }
@@ -183,6 +185,7 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
           expect(workshop.workshop_managers).to include(WorkshopManager.find_by(user_id: user2.id))
           expect(workshop.workshop_managers).not_to include(manager)
           expect(workshop.workshop_managers.count).to eq(1)
+          expect(workshop.allow_late_cancellation_and_rescheduling).to eq(false)
         end
       end
     end

@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { FC, useState, useEffect } from 'react'
 import {
-  Form, Typography, InputNumber, Input, Radio,
+  Form, Typography, InputNumber, Input, Radio, Switch,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
@@ -90,6 +90,14 @@ export const WorkshopEditFormModal: FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Input />
+          </Form.Item>
+          <Form.Item
+            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_rescheduling')}
+            name="allowLateCancellationAndRescheduling"
+            rules={[{ required: true }]}
+            valuePropName="checked"
+          >
+            <Switch />
           </Form.Item>
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}
