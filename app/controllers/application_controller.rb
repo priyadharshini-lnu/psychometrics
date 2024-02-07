@@ -67,6 +67,8 @@ class ApplicationController < ::BaseController
 
   def ensure_user_profile_completed
     return if request.method != 'GET' || request.path == '/profile_details'
+    return if request.controller_class.to_s.start_with?('Devise::TwoFactorAuthenticationController')
+
     return unless @current_project && current_user
 
     update_in = @current_project.profile_setting.update_in || 9999
