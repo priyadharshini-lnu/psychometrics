@@ -8,17 +8,17 @@ class MembershipGrantsSchema < BaseSchema
       required(:id).filled(:int?)
       required(:membership_id).filled(:int?)
       required(:data).hash do
-        optional(:users).filled(:array).each(:str?)
-        optional(:results).filled(:array).each(:str?)
-        optional(:assessors).filled(:array).each(:str?)
-        optional(:campaigns).filled(:array).each(:str?)
-        optional(:clients).filled(:array).each(:str?)
-        optional(:projects).filled(:array).each(:str?)
-        optional(:workshops).filled(:array).each(:str?)
-        optional(:datasheets).filled(:array).each(:str?)
-        optional(:sms_invites).filled(:array).each(:str?)
-        optional(:communications).filled(:array).each(:str?)
-        optional(:registration_codes).filled(:array).each(:str?)
+        optional(:users).maybe(:array).each(:str?)
+        optional(:results).maybe(:array).each(:str?)
+        optional(:assessors).maybe(:array).each(:str?)
+        optional(:campaigns).maybe(:array).each(:str?)
+        optional(:clients).maybe(:array).each(:str?)
+        optional(:projects).maybe(:array).each(:str?)
+        optional(:workshops).maybe(:array).each(:str?)
+        optional(:datasheets).maybe(:array).each(:str?)
+        optional(:sms_invites).maybe(:array).each(:str?)
+        optional(:communications).maybe(:array).each(:str?)
+        optional(:registration_codes).maybe(:array).each(:str?)
       end
     end
   end
