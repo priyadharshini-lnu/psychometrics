@@ -30,7 +30,7 @@ module EndUser
     private
 
     def user_assessments
-      @user_assessments ||= context[:workshop_user_assessments]
+      context[:workshop_user_assessments]
     end
 
     def workshop_subject
@@ -38,7 +38,7 @@ module EndUser
     end
 
     def current_user
-      @current_user ||= context[:current_user]
+      context[:current_user]
     end
   end
 end

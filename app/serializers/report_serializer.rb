@@ -120,12 +120,12 @@ class ReportSerializer < ActiveModel::Serializer
   def assigns
     return [] unless @instance_options[:membership]
 
-    @assigns ||= Assign.includes(:membership).joins(:membership).
-                 where(assessment_id: object.assessment_ids,
-                       memberships: {
-                         client_id: @instance_options[:membership].client_id,
-                         user_id: @instance_options[:membership].user_id
-                       })
+    Assign.includes(:membership).joins(:membership).
+      where(assessment_id: object.assessment_ids,
+            memberships: {
+              client_id: @instance_options[:membership].client_id,
+              user_id: @instance_options[:membership].user_id
+            })
   end
 
   def factor_norms
@@ -161,7 +161,7 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def connected_campaign
-    @connected_campaign ||= Campaign.joins(:threesixty_campaign).find_by(threesixty_campaigns: { report_id: object.id })
+    Campaign.joins(:threesixty_campaign).find_by(threesixty_campaigns: { report_id: object.id })
   end
 
   def non_threesixty_relationships

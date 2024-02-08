@@ -17,11 +17,11 @@ class UserDashboardSerializer < ActiveModel::Serializer
   end
 
   def results
-    @results ||= instance_options[:results]
+    instance_options[:results]
   end
 
   def options
-    @options ||= instance_options[:options]
+    instance_options[:options]
   end
 
   def module_overrides
@@ -31,7 +31,7 @@ class UserDashboardSerializer < ActiveModel::Serializer
   private
 
   def report
-    @report ||= instance_options[:report]
+    instance_options[:report]
   end
 
   def current_user

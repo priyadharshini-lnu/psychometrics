@@ -34,7 +34,7 @@ module Threesixty
     end
 
     def results
-      @results ||= instance_options[:results]
+      instance_options[:results]
     end
 
     def report_data
@@ -42,7 +42,7 @@ module Threesixty
     end
 
     def options
-      @options ||= instance_options[:options]
+      instance_options[:options]
     end
 
     def evalaution_completed_for_subject
@@ -69,7 +69,7 @@ module Threesixty
     private
 
     def report
-      @report ||= instance_options[:report]
+      instance_options[:report]
     end
 
     def current_user

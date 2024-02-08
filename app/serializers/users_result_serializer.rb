@@ -126,7 +126,7 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def current_participant
-    @current_participant ||= context[:participant]
+    context[:participant]
   end
 
   def highlights
@@ -155,7 +155,7 @@ class UsersResultSerializer < Panko::Serializer
   private
 
   def campaign
-    @campaign ||= context[:campaign]
+    context[:campaign]
   end
 
   def current_user

@@ -43,15 +43,15 @@ module EndUser
     private
 
     def assessment
-      @assessment ||= object.assessment
+      object.assessment
     end
 
     def assigns_report
-      @assigns_report ||= assign.original_or_self.assigns_reports.find_by(report: object)
+      assign.original_or_self.assigns_reports.find_by(report: object)
     end
 
     def assign
-      @assign ||= context[:assign]
+      context[:assign]
     end
   end
 end

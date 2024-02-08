@@ -49,11 +49,11 @@ module EndUser
     private
 
     def current_user
-      @current_user ||= context[:current_user]
+      context[:current_user]
     end
 
     def hogan_credential
-      @hogan_credential ||= context[:hogan_credential]
+      context[:hogan_credential]
     end
   end
 end

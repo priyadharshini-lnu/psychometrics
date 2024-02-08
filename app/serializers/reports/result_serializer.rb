@@ -86,7 +86,7 @@ module Reports
     private
 
     def campaign
-      @campaign ||= instance_options[:campaign]
+      instance_options[:campaign]
     end
 
     def normalize_hogan(items)

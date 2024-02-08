@@ -35,22 +35,22 @@ module EndUser
     private
 
     def workshop_invited_subject
-      @workshop_invited_subject ||= WorkshopInvitedSubject.find_by(
+      WorkshopInvitedSubject.find_by(
         user_id: current_user.id,
         workshop_invite_id: object.id
       )
     end
 
     def workshop_subject
-      @workshop_subject ||= current_user.last_workshop_subject(object.campaign_id)
+      current_user.last_workshop_subject(object.campaign_id)
     end
 
     def workshop
-      @workshop ||= workshop_subject&.workshop
+      workshop_subject&.workshop
     end
 
     def current_user
-      @current_user ||= context[:current_user]
+      context[:current_user]
     end
   end
 end

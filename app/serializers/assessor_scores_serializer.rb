@@ -35,6 +35,6 @@ class AssessorScoresSerializer < Panko::Serializer
   end
 
   def campaign
-    @campaign ||= context[:campaign]
+    context[:campaign]
   end
 end

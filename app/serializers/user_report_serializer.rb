@@ -44,7 +44,7 @@ class UserReportSerializer < ActiveModel::Serializer
   end
 
   def results
-    @results ||= instance_options[:results]
+    instance_options[:results]
   end
 
   def campaign_factor_results
@@ -63,7 +63,7 @@ class UserReportSerializer < ActiveModel::Serializer
   end
 
   def options
-    @options ||= instance_options[:options]
+    instance_options[:options]
   end
 
   def evalaution_completed_for_subject
@@ -98,7 +98,7 @@ class UserReportSerializer < ActiveModel::Serializer
   end
 
   def report
-    @report ||= instance_options[:report]
+    instance_options[:report]
   end
 
   def current_user

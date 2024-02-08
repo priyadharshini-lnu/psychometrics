@@ -15,11 +15,11 @@ module EndUser
     end
 
     def workshop
-      @workshop ||= current_user.last_workshop(object.workshop_invite.campaign_id)
+      current_user.last_workshop(object.workshop_invite.campaign_id)
     end
 
     def current_user
-      @current_user ||= context[:current_user]
+      context[:current_user]
     end
   end
 end
