@@ -18,7 +18,7 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
     }
   }
 
-  ransack_filters %i[filterable_fields workshop_invite_campaign_id_eq]
+  ransack_filters %i[filterable_fields workshop_invite_campaign_id_eq user_id_eq]
 
   filter :status_in, apply: lambda { |records, statuses, _options|
     records.where(status: statuses)
