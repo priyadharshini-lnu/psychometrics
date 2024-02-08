@@ -4087,6 +4087,7 @@ en:
       variables: Variables
       weightages:
         assessorForms: Assessor Forms
+        successful_update: Weightages successfully updated
         tools: Tools
         weightages: Weightages
       weighted_average: Weighted Average

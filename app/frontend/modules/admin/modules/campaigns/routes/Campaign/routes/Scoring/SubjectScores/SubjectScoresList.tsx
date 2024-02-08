@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Skeleton, Row, Col, App, Popover,
+  Table, Skeleton, Row, Col, App, Popover, Pagination,
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { CheckOutlined, AppstoreOutlined, WarningFilled } from '@ant-design/icons'
@@ -15,6 +15,7 @@ import { ToolsDropdown } from './ToolsDropdown'
 import styles from './styles.less'
 import { CampaignScores, CampaignScoresTR, type Error } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 import { formatedDate } from '~/utils/time'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 
 const { I18n } = window
 
@@ -55,8 +56,11 @@ export function SubjectScoresList () {
   const {
     data: CampaignFactorValuesData,
     fetch: fetchFinalScores,
+    changePage,
+    meta, currentPage, pageSize,
     memberAction,
     collectionAction,
+    requests,
   } = useResources<CampaignScores>(
     'campaign_user_scorings',
     {
@@ -215,15 +219,32 @@ export function SubjectScoresList () {
       {(isCampaignFactorsLoading || isCampaignFactorValuesLoading) ? (
         <Skeleton active />
       ) : (
-        <Table
-          rowSelection={rowSelection}
-          size="small"
-          dataSource={dataSource}
-          columns={tableColumns}
-          pagination={false}
-          bordered
-          scroll={{ x: 'max-content' }}
-        />
+        <>
+          <TableLayout
+            table={(
+              <Table
+                rowSelection={rowSelection}
+                size="small"
+                dataSource={dataSource}
+                columns={tableColumns}
+                bordered
+                pagination={false}
+                scroll={{ x: 'max-content' }}
+              />
+              )}
+            disableHeader
+            recordCount={meta.recordCount}
+            loading={false}
+            requestStatus={requests.fetch?.status}
+          />
+          <Pagination
+            current={currentPage}
+            pageSize={pageSize}
+            total={meta.recordCount}
+            onChange={changePage}
+            className="pl"
+          />
+        </>
       )}
     </div>
   )

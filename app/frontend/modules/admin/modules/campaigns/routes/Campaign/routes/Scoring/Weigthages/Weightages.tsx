@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import {
-  Button, Flex, Form, Input, Space, Table,
+  Button, Flex, Form, Input, Space, Table, App,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
 import _ from 'lodash'
@@ -42,6 +42,7 @@ type DataType = {
 export function Weightages () {
   const { projectId, campaignId } = useParams<{ projectId: string, campaignId: string }>()
   const history = useHistory()
+  const { message } = App.useApp()
 
   const [form] = Form.useForm()
   const {
@@ -95,6 +96,8 @@ export function Weightages () {
       body: {
         data: payload,
       },
+    }).then(() => {
+      message.success(I18n.t('administration.scoring.weightages.successful_update'))
     })
   }
 
