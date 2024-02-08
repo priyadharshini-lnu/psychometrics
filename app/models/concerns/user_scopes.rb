@@ -12,7 +12,7 @@ module UserScopes
 
     # Search entity by word
     scope :search_query, lambda { |query|
-      where('first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
+      where('CONCAT(first_name, \' \', last_name) ILIKE ? OR email ILIKE ?', "%#{query}%", "%#{query}%")
     }
 
     # Fileter by client

@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class UserReportSerializer < ActiveModel::Serializer
+    class UserReportSerializer < Panko::Serializer
       attributes :id, :name, :description, :icon_url, :poster_url, :status, :assessments, :campaign_id, :output_type,
                  :user_access
 
@@ -29,8 +29,8 @@ module Api
 
       def assessments
         object.report.assessment_ids.filter_map do |id|
-          user_assessment = instance_options[:user_assessments][id]
-          user_assessment ? Api::V1::UserAssessmentSerializer.new(user_assessment).to_h : nil
+          user_assessment = context[:user_assessments][id]
+          user_assessment ? Api::V1::UserAssessmentSerializer.new.serialize(user_assessment) : nil
         end
       end
 

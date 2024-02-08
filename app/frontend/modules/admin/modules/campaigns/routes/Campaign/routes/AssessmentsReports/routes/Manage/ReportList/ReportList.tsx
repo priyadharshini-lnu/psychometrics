@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, MenuProps, Row, Col, Switch, message,
+  Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
@@ -34,8 +34,10 @@ const ReportList: React.FC<Props> = ({
   toggleAssessorAccess,
   exportData,
   toggleUserDashboard,
+  toggleMainReport,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
+  const { message } = App.useApp()
 
   const handleExportData = (campaignId: number, reportId: number) => {
     exportData(campaignId, reportId).then(() => {
@@ -99,6 +101,17 @@ const ReportList: React.FC<Props> = ({
                 checked={userDashboard}
                 disabled={!reportPermissions.toggleUserDashboard}
                 onChange={() => toggleUserDashboard(parsedCampaignId, id)}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_report.column.main_report')}
+            key="userDashboard"
+            render={({ mainReport, id }) => (
+              <Switch
+                checked={mainReport}
+                disabled={!reportPermissions.toggleMainReport}
+                onChange={() => toggleMainReport(parsedCampaignId, id, !mainReport)}
               />
             )}
           />

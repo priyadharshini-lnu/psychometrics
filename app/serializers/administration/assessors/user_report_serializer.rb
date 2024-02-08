@@ -2,7 +2,7 @@
 
 module Administration
   module Assessors
-    class UserReportSerializer < ActiveModel::Serializer
+    class UserReportSerializer < Panko::Serializer
       attributes :id, :name, :internal, :status, :report_url
 
       delegate :name, to: :report

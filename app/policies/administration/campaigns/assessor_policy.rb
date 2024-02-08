@@ -15,6 +15,12 @@ module Administration
         )
       end
 
+      def lead_assessor_assessment?
+        @user.is?(:superadmin) || @user.has_permission?(
+          :assessors, :view, project_id: project_id, campaign_id: campaign_id
+        )
+      end
+
       def create_all?
         @user.is?(:superadmin) || @user.has_permission?(
           :workshops, :manage, project_id: project_id, campaign_id: campaign_id

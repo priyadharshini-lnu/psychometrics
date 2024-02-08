@@ -2,18 +2,18 @@
 
 module UserReports
   class GroupedResultsByAssessment < BaseCommand
-    private_attr_reader :user_report, :campaign
+    private_attr_reader :user_report, :campaign, :view_report_as
 
-    def initialize(user_report)
+    def initialize(user_report, view_report_as)
       @user_report = user_report
       @campaign = user_report.campaign
+      @view_report_as = view_report_as
     end
 
     def call
       serialized_result = user_report.
-                          user_results.
-                          joins(:user_assessment).
-                          merge(UserAssessment.completed).map do |user_result|
+                          user_results(view_report_as).
+                          map do |user_result|
                             ::Reports::ResultSerializer.new(user_result, campaign: campaign).to_h
                           end.group_by { |result| result[:assessment_id] }
 

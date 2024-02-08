@@ -7,13 +7,15 @@ import {
 } from '@ant-design/icons'
 import cs from 'classnames'
 import { useMedia } from 'react-use-media'
-import { UserMenu } from '~/components/MainMenu/MainMenu'
+import { UserAvatar } from '~/components/UserAvatar'
 import styles from './Subnavigation.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
 import {
   addSubmenu, closeSubmenu, removeSubmenu, triggerCollapse,
 } from '~/modules/admin/core/ui/menu'
+import { camelizeKeys } from '~/utils/object'
+import { SIDEBAR_WIDTH } from '~/constants/sidebar'
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -21,7 +23,7 @@ const { I18n } = window
 
 const connecter = connect(
   (state: RootState) => ({
-    currentUser: getCurrentUser(state),
+    currentUser: camelizeKeys(getCurrentUser(state)),
     showSubmenu: state.ui.menu.showSubmenu,
     collapsed: state.ui.menu.collapsed,
   }),
@@ -63,7 +65,6 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
 
   const handleOnSelect = ({ key }): ReturnType<typeof closeSubmenu> | void => {
     if (key === 'back_to_main_menu') {
-      // setShow(false)
       return closeSubmenu()
     }
     onSelect?.(key)
@@ -77,12 +78,13 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
 
   const menu = (
     <>
-      <UserMenu currentUser={currentUser} collapsed={collapsed} />
+      <UserAvatar currentUser={currentUser} collapsed={collapsed} />
       <Menu
         onSelect={handleOnSelect}
         selectedKeys={selectedKeys}
         mode="inline"
         items={itemsWithBack}
+        className={styles.menu}
       />
     </>
   )
@@ -94,9 +96,11 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
   return isMobile ? (
     <Drawer
       closable={false}
-      bodyStyle={{ padding: 0 }}
+      styles={{
+        body: { padding: 0 },
+      }}
       placement="left"
-      width="220"
+      width={SIDEBAR_WIDTH}
       open={showSubmenu && !collapsed}
       onClose={() => closeMenu()}
     >
@@ -104,7 +108,7 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
     </Drawer>
   ) : (
     <Layout.Sider
-      width={220}
+      width={SIDEBAR_WIDTH}
       theme="light"
       collapsed={collapsed}
       collapsedWidth={55}

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MediaResponseSerializer < ActiveModel::Serializer
+class MediaResponseSerializer < Panko::Serializer
   attributes :id, :user_selected, :filename, :question_id, :url, :created_at
 
   def url

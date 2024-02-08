@@ -26,16 +26,21 @@ module Administration
                         ransack(params[:filters]).
                         result.
                         includes(:reports, :assessments, :project, :threesixty_campaign)
-            serialized_campaigns = ActiveModelSerializers::SerializableResource.new(
+
+            serialized_campaigns = Panko::ArraySerializer.new(
               campaigns.page(params[:page]).per(params[:size] || 25),
               each_serializer: Administration::Campaigns::CampaignSerializer,
-              current_user: current_user, project_id: params[:project_id]
-            )
+              context: {
+                current_user: current_user,
+                project_id: params[:project_id]
+              }
+            ).to_a
+
             render json: {
               campaigns: serialized_campaigns,
               total: campaigns.count,
               permissions: permissions
-            }, each_serializer: Administration::Campaigns::CampaignSerializer
+            }
           end
         end
       end
@@ -67,8 +72,11 @@ module Administration
         respond_to do |format|
           format.html { render :index }
           format.json do
-            render json: @campaign, serializer: Administration::Campaigns::CampaignSerializer,
-                   current_user: current_user
+            render json: Administration::Campaigns::CampaignSerializer.new(
+              context: {
+                current_user: current_user
+              }
+            ).serialize(@campaign)
           end
         end
       end
@@ -86,7 +94,11 @@ module Administration
         if form.valid?
           @campaign.update!(form.attributes)
           audit! :update, @campaign, payload: resource_params, campaign: @campaign
-          render json: @campaign, serializer: Administration::Campaigns::CampaignSerializer
+          render json: Administration::Campaigns::CampaignSerializer.new(
+            context: {
+              current_user: current_user
+            }
+          ).serialize(@campaign)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -96,15 +108,15 @@ module Administration
         templates = policy_scope(CampaignTemplate).all
         campaigns = project.project_campaigns.where(type: 'threesixty').includes(threesixty_campaign: :assessment)
 
-        render json: Administration::Campaigns::TemplatesAndAssementsSerializer.new({
+        render json: Administration::Campaigns::TemplatesAndAssementsSerializer.new.serialize({
           templates: templates, campaigns: campaigns
-        }).to_h
+        })
       end
 
       def fetch_campaign_options
         campaign_options = @campaign.campaign_options
 
-        render json: campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
+        render json: Administration::Campaigns::CampaignOptionsSerializer.new.serialize(campaign_options)
       end
 
       def fetch_campaign_instructions
@@ -138,7 +150,7 @@ module Administration
           Mobility.with_locale(params[:locale]) do
             campaign_options.update(campaign_options_params)
           end
-          render json: campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
+          render json: Administration::Campaigns::CampaignOptionsSerializer.new.serialize(campaign_options)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -174,7 +186,11 @@ module Administration
         if form.valid?
           campaign = Campaign.create!(form.attributes.merge(project_id: project.id))
           audit! :create, campaign, payload: resource_params, campaign: campaign
-          render json: campaign, serializer: Administration::Campaigns::CampaignSerializer
+          render json: Administration::Campaigns::CampaignSerializer.new(
+            context: {
+              current_user: current_user
+            }
+          ).serialize(campaign)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -185,7 +201,11 @@ module Administration
         if form.valid?
           threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form, current_user)
           audit! :create, threesixty_campaign, payload: resource_params, campaign: threesixty_campaign.campaign
-          render json: threesixty_campaign.campaign, serializer: Administration::Campaigns::CampaignSerializer
+          render json: Administration::Campaigns::CampaignSerializer.new(
+            context: {
+              current_user: current_user
+            }
+          ).serialize(threesixty_campaign.campaign)
         else
           render json: { errors: form.errors.messages }, status: 422
         end

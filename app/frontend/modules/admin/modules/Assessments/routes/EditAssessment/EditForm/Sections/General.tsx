@@ -20,6 +20,7 @@ export const General: React.FC<Props> = ({ assessment }) => {
 
   const [form] = Form.useForm()
   const iconColor = Form.useWatch('iconColor', form)
+  const category = Form.useWatch('category', form)
 
   useEffect(() => {
     if (!assessment.iconColor) {
@@ -33,8 +34,12 @@ export const General: React.FC<Props> = ({ assessment }) => {
 
   const handleUpdate = (values: Assessment) => {
     setIsLoading(true)
+    let newValues = values
 
-    return updateResource(values).then(() => setIsLoading(false)).catch(() => setIsLoading(false))
+    if (values.linkedAssessment === undefined && category === 'assessor_form') {
+      newValues = { ...values, linkedAssessment: null }
+    }
+    return updateResource(newValues).then(() => setIsLoading(false)).catch(() => setIsLoading(false))
   }
 
   return (

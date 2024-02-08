@@ -2,26 +2,25 @@
 
 module Administration
   module CampaignAssessmentGroups
-    class GroupsAndAssessmentsSerializer < ActiveModel::Serializer
+    class GroupsAndAssessmentsSerializer < Panko::Serializer
       attributes :groups, :assessments
 
       def groups
-        object.campaign_assessment_groups.map { |g| CampaignAssessmentGroups::GroupSerializer.new(g).to_h }
+        object.campaign_assessment_groups.map { |g| CampaignAssessmentGroups::GroupSerializer.new.serialize(g) }
       end
 
       def assessments
         object.campaign_assessments.map do |g|
           CampaignAssessmentGroups::CampaignAssessmentSerializer.new(
-            g,
-            { current_user: current_user, project_id: g.campaign.project_id, campaign_id: g.campaign.id }
-          ).to_h
+            context: { current_user: current_user, project_id: g.campaign.project_id, campaign_id: g.campaign.id }
+          ).serialize(g)
         end
       end
 
       private
 
       def current_user
-        instance_options[:current_user]
+        context[:current_user]
       end
     end
   end

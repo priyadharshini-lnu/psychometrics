@@ -3,6 +3,8 @@
 class Api::V2::Administration::Campaigns::UserResource < Api::V2::Administration::BaseResource
   attributes :id, :name, :email
 
+  has_one :user_profile, foreign_key_on: :related
+
   ransack_filters %i[search_query]
 
   def name

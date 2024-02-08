@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import {
   Avatar,
-  Button, MenuProps, message,
+  Button, MenuProps, App,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MessageInstance } from 'antd/es/message/interface'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
@@ -124,25 +125,7 @@ const Dropdown: React.FC<DropDownProps> = (
   { report, openDrawer },
 ) => {
   const [confirmation, setConfirmation] = useState(false)
-  return (
-    <ConditionalDropdown
-      menu={getActionsMenuProps({
-        report, setConfirmation, confirmation, openDrawer,
-      })}
-    />
-  )
-}
-
-interface ActionMenuProps {
-  report: Report
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
-  openDrawer: (report: Report) => void
-}
-
-const getActionsMenuProps = ({
-  setConfirmation, confirmation, report, openDrawer,
-}: ActionMenuProps): MenuProps => {
+  const { message } = App.useApp()
   const { resource } = useResourceContext<Report>()
 
   const handleOnConfirm = () => resource.removeResource(report.id).then(() => {
@@ -150,6 +133,37 @@ const getActionsMenuProps = ({
   }).catch((err) => {
     message.error(err.base[0].title)
   })
+
+  return (
+    <>
+      <ConditionalDropdown
+        menu={getActionsMenuProps({
+          report, setConfirmation, openDrawer, message,
+        })}
+      />
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('reports.actions.remove.confirm_title')}
+        message={I18n.t('reports.actions.remove.confirm_message', { name: report.name })}
+        onConfirm={handleOnConfirm}
+        close={() => setConfirmation(false)}
+      />
+    </>
+
+  )
+}
+
+interface ActionMenuProps {
+  report: Report
+  setConfirmation: (confirmation: boolean) => void
+  openDrawer: (report: Report) => void
+  message: MessageInstance
+}
+
+const getActionsMenuProps = ({
+  setConfirmation, report, openDrawer, message,
+}: ActionMenuProps): MenuProps => {
+  const { resource } = useResourceContext<Report>()
 
   const toggleArchive = () => resource.updateResource({
     id: report.id,
@@ -241,14 +255,6 @@ const getActionsMenuProps = ({
           <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('reports.actions.remove.confirm_title')}
-              message={I18n.t('reports.actions.remove.confirm_message', { name: report.name })}
-              onConfirm={handleOnConfirm}
-              onCancel={() => setConfirmation(false)}
-            />
-          )}
         </>
       ),
     },

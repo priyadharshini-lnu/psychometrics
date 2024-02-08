@@ -51,12 +51,15 @@ describe 'Projects' do
             webhook: 'https://my.site.com',
             name: 'project1',
             login_box_position: 'right',
+            enable_strong_password: true,
+            enable_2factor_auth: true,
             data_processing_consent: true
           }
         end
 
         run_test! do |response|
           project = JSON.parse(response.body)
+
           expect(project).to have_key('id')
           expect(project['data_processing_consent']).to eq true
           expect(project['name']).to eq 'project1'
@@ -247,7 +250,7 @@ describe 'Projects' do
           ]
         }
 
-        let(:email) { CGI.escape user.email }
+        let(:email) { user.email }
         let(:project_id) { project.id }
 
         run_test! do |response|
@@ -257,7 +260,7 @@ describe 'Projects' do
       end
 
       response '404', 'User was not found' do
-        let(:email) { CGI.escape 'ttt@example.com' }
+        let(:email) { 'ttt@example.com' }
         let(:project_id) { project.id }
 
         schema '$ref' => '#/definitions/ApiError'

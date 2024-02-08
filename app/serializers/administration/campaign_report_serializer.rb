@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Administration
-  class CampaignReportSerializer < ActiveModel::Serializer
+  class CampaignReportSerializer < Panko::Serializer
     attributes :id, :report_id, :name, :user_access, :assessor_access, :report_family_name, :permissions,
-               :user_dashboard
+               :user_dashboard, :main_report
 
     delegate :name, to: :report
     delegate :name, to: :report_family, prefix: true
@@ -18,8 +18,8 @@ module Administration
           %w[remove destroy]
         ],
         {
-          project_id: @instance_options[:project_id],
-          campaign_id: @instance_options[:campaign_id]
+          project_id: context[:project_id],
+          campaign_id: context[:campaign_id]
         }
       )
     end
@@ -27,7 +27,7 @@ module Administration
     private
 
     def current_user
-      @instance_options[:current_user]
+      context[:current_user]
     end
 
     def report

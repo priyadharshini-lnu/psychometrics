@@ -17,10 +17,12 @@ module Users
 
     def sql
       <<-SQL.squish
-        SELECT users.id, users.email, users.first_name, users.last_name, users.locale
+        SELECT users.id, users.email, users.first_name, users.last_name, user_profiles.locale
         FROM users
         JOIN campaign_users on users.id = campaign_users.user_id
-        WHERE campaign_id = :campaign_id AND (users.email LIKE :query OR users.first_name LIKE :query OR users.last_name LIKE :query)
+        JOIN user_profiles ON users.id = user_profiles.user_id
+        WHERE campaign_id = :campaign_id AND
+          (CONCAT(users.first_name, ' ', users.last_name) ILIKE :query OR users.email ILIKE :query)
         LIMIT :limit
       SQL
     end

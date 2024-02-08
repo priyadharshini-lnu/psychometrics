@@ -11,12 +11,18 @@ import { Dashboard } from './Dashboard'
 import {
   Scheduling, WorkshopList, Invites, InvitesForm, AssessmentCenterForm,
 } from './Scheduling'
+import {
+  Scoring,
+  ScoringGroups,
+  SubjectScoresList,
+} from './Scoring'
 import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
 import UsersAssessmentsReports
   from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
 import AssessorsDetails
   from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
+import { Weightages } from './Scoring/Weigthages'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
@@ -45,6 +51,17 @@ const routes = [
   { path: '/scheduling/assessment_center/:id/:tab', component: WorkshopPage },
   { path: '/scheduling/invites/add_invite', component: InvitesForm },
   { path: '/scheduling/invites/:inviteId/:tabName', component: IndividualInvite },
+  {
+    path: '/scoring',
+    component: Scoring,
+    routes: [
+      { redirect: true, from: '/scoring', to: '/scoring/subject_scores' },
+      { path: '/scoring/subject_scores', component: SubjectScoresList },
+      { path: '/scoring/settings', component: ScoringGroups },
+      { path: '/scoring/settings/weightages', component: Weightages },
+
+    ],
+  },
   { path: '/assessments_reports/*', component: AssessmentsReports },
   { path: '/assessments_reports', component: AssessmentsReports },
   { path: '/stats', component: Stats },

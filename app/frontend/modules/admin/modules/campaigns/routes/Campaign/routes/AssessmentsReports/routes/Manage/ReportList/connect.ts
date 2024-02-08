@@ -4,6 +4,7 @@ import {
   selectRecords, toggleAssessorAccess,
   exportData,
   toggleUserDashboard,
+  toggleMainReport,
 } from '~/modules/admin/modules/campaigns/core/reports'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -18,6 +19,7 @@ const connecter = connect(
     toggleAssessorAccess,
     toggleUserDashboard,
     exportData,
+    toggleMainReport,
   },
 )
 

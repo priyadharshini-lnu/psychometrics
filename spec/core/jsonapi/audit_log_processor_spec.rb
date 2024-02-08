@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-require Rails.root.join('spec/fixtures/audit_log/base_resource.rb')
+require Rails.root.join('spec/fixtures/models/base_resource.rb')
 Dir[Rails.root.join('spec/fixtures/**/*.rb')].each { |file| require file }
 
 describe JsonApi::AuditLogProcessor do

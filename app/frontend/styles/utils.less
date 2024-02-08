@@ -1,4 +1,3 @@
-@import '~/styles/ant.variable.less';
 @import './variables.less';
 
 :global {
@@ -131,6 +130,10 @@
     .p@{key} {
       padding: @value;
     }
+
+    .m@{key} {
+      margin: @value;
+    }
   })
 
   .block {
@@ -237,6 +240,6 @@
   }
 
   .color-primary {
-    color: @primary-color !important;
+    color: var(--ant-primary-color) !important;
   }
 }

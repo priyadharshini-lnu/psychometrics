@@ -52,6 +52,8 @@ en:
     administrators:
       drawers:
         edit:
+          admin_role_select: Select admin role
+          admin_roles: Admin roles
           can_download_report: Download Report
           can_manage: Manage
           can_manage_messages: Manage messages
@@ -169,6 +171,9 @@ en:
             view: View
           auditLogs:
             view: View
+          campaignFactors:
+            manage: Manage
+            view: View
           campaigns:
             bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage
@@ -236,6 +241,7 @@ en:
             bulk_regenerate_reports: Bulk Regenerate Reports
             download_report: Download Report
             edit_report: Edit Report
+            finalize_scores: Finalize Scores
             raw_responses: Raw Responses
             regenerate_report: Regenerate Report
             report_data: Report Data
@@ -281,8 +287,8 @@ en:
           required_error: Can't be empty
           title: Basic Information
         confirm_message: Are you sure you want to delete an invitation?
-        confirm_message_with_title: Are you sure you want to delete an invitation with title '%{invite_title}'?
-        confirm_title: Are you sure you want to delete invitation?
+        confirm_message_with_title: Are you sure you want to remove the Invite with title '%{invite_title}'?
+        confirm_title: Confirm
         exceeded_subjects_count: Campaign has %{users} subjects. You can only add %{count} subjects per invite
         id: ID
         invites: Invites
@@ -378,7 +384,7 @@ en:
           selected_users: Selected Users
       copy:
         error: 'Assessment #%{name} was not copied.'
-        successfully: Assessment %{name} was Copied Successfully.
+        successfully: Assessment %{name} was copied successfully.
       create:
         successfully: Assessment %{name} was Created Successfully.
       dashboard: Assessment Dashboard
@@ -535,9 +541,12 @@ en:
           cancel: Cancel
           form:
             add: Add
+            add_lead_assessor: Add as Lead Assessor
+            add_lead_assessor_hint: Please, add Lead Assessor Form first
             assessments: Assessments
             assessor: Assessor
             assessor_placeholder: Search Assessor...
+            lead_assessment: Lead Assessment
             subject: Subject
             subject_placeholder: Search Subject...
           sheet:
@@ -551,6 +560,17 @@ en:
         import:
           body: Refer to the Export functionality to extract a template that can be used to Import here.
           title: Import Assessors
+      moderate_score:
+        assessor_evaluations: Assessor Evaluations
+        main_report: Main Report
+        no_completed_assessments: There are no completed assessments yet
+        no_results: There are no any answered questions
+        other_reports: Other Reports
+        overall_scoring: Overall Scoring
+        refresh: Refresh
+        reports: Reports
+        reports_count: "%{count} Reports"
+        user_exec_test: User Executive Test
       remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
       saved_results: Answers successfully saved.
       status: Status
@@ -565,7 +585,7 @@ en:
       add: Add
       modals:
         add_assessor_assessment:
-          assessment_placeholder: Assessment Name
+          assessment_placeholder: Select an Assessment
       name: Assessor Assessment
     assessor_campaigns:
       statuses:
@@ -652,6 +672,8 @@ en:
         already_cancelled: You have already cancelled the booking.
         cancellation_deadline_passed: Cancellation deadline passed.
         cancelled_and_rebook_deadline_passed: Cancelled and deadline passed for book again.
+        late_cancellation_not_allowed: Late cancellation is not allowed.
+        late_rescheduling_not_allowed: Late rescheduling is not allowed.
         prework_not_completed: Please complete all prework activities before booking a slot for Assessment center.
         reschedule_deadline_passed: Reschedule deadline passed.
         seats_not_available: Seats not available.
@@ -965,7 +987,7 @@ en:
             empty_client_ids: Select clients to continue
         copy:
           error: 'Assessment #%{name} was not copied.'
-          successfully: Assessment %{name} was Copied Successfully.
+          successfully: Assessment %{name} was copied successfully.
         create:
           successfully: Assessment %{name} was Created Successfully.
         dashboard: Assessment Dashboard
@@ -2531,6 +2553,9 @@ en:
         user: User
     clients_hierarchy: Project > Campaign > Sub Campaign
     close: Close
+    common:
+      reset: Reset
+      save: Save
     communications:
       copy:
         error: 'Communication #%{id} was not copied.'
@@ -2762,7 +2787,7 @@ en:
     factors:
       copy:
         error: "%{name} factor was not copied"
-        successfully: "%{name} factor was copied successfully"
+        successfully: Factor %{name} was copied successfully
       create:
         error: "%{name} factor was not created"
         successfully: "%{name} factor was created successfully"
@@ -2787,6 +2812,7 @@ en:
             title: JSON Paths for Scores
         no_icon: No Logo yet
         scoring_strategies:
+          custom_formula: Custom Formula
           external_score: External Score
           questions: Questions (Average)
           questions_percentage: Questions (SUM / MAX Total)
@@ -2803,6 +2829,7 @@ en:
         icon: Icon
         new: Add
         scoring_strategies:
+          custom_formula: Custom Formula
           external_score: External Score
           questions: Questions (Average)
           questions_percentage: Questions (SUM / MAX Total)
@@ -2837,6 +2864,7 @@ en:
           copying: Copying
           deleting: Deleting
         scoring_strategies:
+          custom_formula: Custom Formula
           external_score: External Score
           questions: Questions (Average)
           questions_percentage: Questions (SUM / MAX Total)
@@ -3585,9 +3613,9 @@ en:
     psychometrics: Psychometrics
     questions:
       copy:
-        successfully: Question %{name} copied successfully
+        successfully: Question %{name} was copied successfully
       create:
-        successfully: Question %{name} created successfully
+        successfully: Question %{name} was created successfully
       destroy:
         successfully: Question %{name} was successfully deleted.
       edit:
@@ -3841,12 +3869,15 @@ en:
         schedule_time: Schedule Time
       add_subject: Add subject
       assessment_center_form:
+        allow_late_cancellation_and_rescheduling: Allow late cancellation and rescheduling
         assessor_ids_label: Assessors
         back: Back
         basic_info_panel:
           description: Please enter the schedule information below. You can also select multiple dates to create multiple assessment centers.
           title: Basic Information
         cancellation_lead_time_label: Lead time for cancellation
+        copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
+        copy_to_all: Copy to other Assessment Centers
         create: Create
         dates_error: You can only add up to 5 dates.
         dates_label: Dates
@@ -3918,15 +3949,18 @@ en:
         meeting_link_https: Meeting link must start with "https://"
       id: ID
       info:
+        allowed: Allowed
         assessors: Assessors
         booked: Seats Booked
         cancellation_lead_time: Cancellation Lead Time
         date: Date & Time
         duration: Duration
         join_meeting: Join Room
+        late_cancellation_and_rescheduling: Late cancellation and rescheduling
         link: Meeting link
         managers: Center Managers
         none: None
+        not_allowed: Not Allowed
         remaining: Seats Remaining
         reschedule_lead_time: Reschedule Lead Time
         search_placehoder: Search by id, email or name
@@ -3997,6 +4031,76 @@ en:
         invites: Invites
         resources: Resources
         subjects: Subjects
+    scoring:
+      actual_average: Actual Average
+      add_factor: Add Factor
+      add_group: Add Group
+      assessment: Assessment
+      assessment_scoring_type: Assessment Scoring Type
+      average: Average
+      campaign_scoring_variables: Campaign Scoring Variables
+      code: Code
+      delete_group: Delete Group
+      description: Description
+      dimension: Dimension
+      factor: Factor
+      final: Final
+      formula: Formula
+      get_started: Get Started
+      id: Id
+      name: Name
+      no_groups: No groups present
+      output_type: Output Type
+      pattern_error: Only alphanumeric characters, spaces and dashes are allowed.
+      profile:
+        years: Years
+      public: Public
+      required_error: Can't be empty
+      save: Save
+      score_range: Score Range
+      score_types:
+        norm_score: Norm Score
+        percentage: Percentage
+        percentile: Percentile
+        score: Score
+        zscore: Z Score
+      scoring: Scoring
+      scoring_description: Campaign Scoring allows reporting accross assessments
+      select_assessment: Select Assessment or Diminsion
+      select_assessment_first: Select Assessment First
+      select_factor: Select Factor
+      show_weightages: Show Weightages
+      subject: Subject
+      subject_list:
+        actions: Actions
+        bulk_mark_finalized: Bulk Mark Finalized
+        bulk_mark_finalized_confirm: Finalizing score for selected users will generate the report which uses campaign factor for the users. Are you sure you want to proceed?”
+        bulk_mark_not_finalized: Bulk Mark Not Finalized
+        bulk_mark_not_finalized_confirm: Removing finalize from the selected users will remove the generated report which uses campaign factor for the users. Are you sure you want to proceed?
+        bulk_rescore: Bulk Rescore
+        bulk_rescore_confirm: Rescoring the selected users. Are you sure you want to proceed?
+        calculated_date: Calculated Date
+        calculation_errors: Calculation Errors
+        finalized: Finalized
+        finalized_date: Finalized Date
+        mark_finalized: Mark Finalized
+        mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?”
+        mark_not_finalized: Mark Not Finalized
+        mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
+        rescore: Rescore
+        rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
+      subjects: Subjects
+      tabs:
+        settings: Settings
+        subject_scores: Subject Scores
+      type: Type
+      variables: Variables
+      weightages:
+        assessorForms: Assessor Forms
+        successful_update: Weightages successfully updated
+        tools: Tools
+        weightages: Weightages
+      weighted_average: Weighted Average
     search: Search
     security_setting:
       180_days: 180 Days
@@ -4021,6 +4125,14 @@ en:
       tfa_enabled: Enable Two Factor Authentication
       update_success_msg: Password settings successfull updated
     settings:
+      admin_roles:
+        admin_role_single: Admin Role
+        confirm_message: Are you sure you want to delete Admin role '%{role_name}'?
+        confirm_title: Confirmation Required
+        create: Add Admin Role
+        description: Description
+        name: Name
+        successful_remove: Admin role '%{role_name}' was successfully deleted.
       siem:
         description: Description
         destination_type: Destination Type
@@ -4039,6 +4151,8 @@ en:
         send_test_log_error_message: Test log has not been sent to your bucket, check your settings
         send_test_log_success_message: Test log has been successfully sent to your bucket
       tabs:
+        admin_roles: Admin Roles
+        permissions: Permissions
         siem: SIEM
     sheets:
       column:

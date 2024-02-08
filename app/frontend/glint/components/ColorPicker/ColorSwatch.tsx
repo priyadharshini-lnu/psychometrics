@@ -65,6 +65,7 @@ export const ColorSwatchItem:FC<ColorSwatchItemProps> = ({
       key={backgroundColor}
       style={{ background: backgroundColor }}
       className={cs([styles.swatchItem, className])}
+      type="button"
     />
   )
 }

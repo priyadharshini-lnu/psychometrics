@@ -7,7 +7,8 @@ RSpec.describe Assessors::UsersController, type: :controller do
   let(:assessors_campaign) { current_user.assessors.first.campaign }
   let(:subject_user) { create(:user) }
   let!(:assessors_user_assessment) do
-    create(:user_assessment, evaluator: current_user, campaign: assessors_campaign, subject: subject_user)
+    create(:user_assessment, evaluator: current_user, campaign: assessors_campaign, subject: subject_user,
+      relationship: Relationship.assessor_relationship, assessment: create(:assessment, category: :assessor_form))
   end
   let(:assessors_user) { assessors_user_assessment.subject }
   let!(:non_assssor_campaign) { create(:campaign) }
@@ -26,13 +27,17 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'id' => assessors_user.id,
         'full_name' => assessors_user.decorate.full_name,
         'email' => assessors_user.email,
-        'completion_status' => 'not_started',
+        'evaluation_completion_status' => 'not_started',
         'completed_evaluations' => 0,
         'total_evaluations' => 1,
+        'moderation_completion_status' => 'completed',
+        'total_moderation' => 0,
+        'completed_moderation' => 0,
         'permissions' => {
           'add_subject' => false,
           'remove_subject' => false
-        }
+        },
+        'assessor_can_moderate_scores' => false
       }])
     end
   end
@@ -48,11 +53,15 @@ RSpec.describe Assessors::UsersController, type: :controller do
         'email' => subject_user.email,
         'completed_evaluations' => 0,
         'total_evaluations' => 0,
-        'completion_status' => 'completed',
+        'evaluation_completion_status' => 'completed',
+        'completed_moderation' => 0,
+        'moderation_completion_status' => 'completed',
+        'total_moderation' => 0,
         'permissions' => {
           'add_subject' => false,
           'remove_subject' => false
-        }
+        },
+        'assessor_can_moderate_scores' => false
       })
     end
 

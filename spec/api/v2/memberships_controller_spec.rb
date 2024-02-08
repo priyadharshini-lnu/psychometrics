@@ -237,7 +237,8 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
               grants_names: {
                 norms: %w[view manage],
                 clients: %w[view view_licenses]
-              }
+              },
+              admin_role_ids: [1]
             },
             relationships: {
               user: {
@@ -252,6 +253,7 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
 
         let(:membership_id) { client_admin.id }
         let(:user) { client_admin.user }
+        let(:admin_role) { create(:admin_role, client_id: client_admin.client_id) }
         let(:body) do
           jsonapi_resource_request(
             'memberships',
@@ -262,7 +264,8 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
               last_name: client_admin.user.last_name,
               grant_names: {
                 clients: %w[view view_licenses]
-              }
+              },
+              admin_role_ids: [admin_role.id]
             }
           )
         end
@@ -273,6 +276,7 @@ describe Api::V2::Administration::MembershipsController, swagger_doc: 'v2/swagge
           expect(membership_response).to have_attribute(:first_name).with_value(user.first_name)
           expect(membership_response).to have_attribute(:last_name).with_value(user.last_name)
           expect(membership_response).to have_attribute(:email).with_value(user.email)
+          expect(membership_response).to have_attribute(:admin_role_ids).with_value([admin_role.id])
         end
       end
     end

@@ -6,8 +6,8 @@ import {
 } from 'antd'
 import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import moment, { Moment } from 'moment'
 import { RangeValue } from 'rc-picker/lib/interface'
+import dayjs from '~/utils/dayjs'
 import { get as getLogs, fetch, fetchActions } from '~/modules/admin/modules/AuditLog/core'
 import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -56,11 +56,11 @@ const AuditLogList: React.FC<Props> = (
     fetch(tableConfig)
   }, [tableConfig])
 
-  let initialRange: [Moment, Moment] | null = null
+  let initialRange: [dayjs.Dayjs, dayjs.Dayjs] | null = null
   if (tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq) {
-    initialRange = [moment(tableConfig.filters.created_at_gteq), moment(tableConfig.filters.created_at_lteq)]
+    initialRange = [dayjs(tableConfig.filters.created_at_gteq), dayjs(tableConfig.filters.created_at_lteq)]
   }
-  const [range, setRange] = useState<RangeValue<Moment> | null | undefined>(initialRange || null)
+  const [range, setRange] = useState<RangeValue<dayjs.Dayjs> | null | undefined>(initialRange || null)
 
 
   const filterProps = (type: string, value = '', filter = '') => ({
@@ -143,7 +143,7 @@ const AuditLogList: React.FC<Props> = (
               dataIndex="createdAt"
               key="createdAt"
               render={createdAt => (
-                moment(createdAt).format('lll')
+                dayjs(createdAt).format('lll')
               )}
               filterDropdown={({
                 confirm,

@@ -51,6 +51,18 @@ describe Threesixty::Evaluators::CreateAll do
     end
   end
 
+  it 'stores locale for evaluator user profile' do
+    described_class.call!([{
+      evaluator_email: 'daniel@cc.com',
+      relationship_name: 'peer',
+      subject: first_subject,
+      subject_email: 'smith@cc.com',
+      evaluator_locale: 'en'
+    }], threesixty_campaign)
+
+    expect(User.last.locale).to eq('en')
+  end
+
   it "doesn't create new evaluator record when it already exists" do
     user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', first_name: 'Daniel')
     create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)

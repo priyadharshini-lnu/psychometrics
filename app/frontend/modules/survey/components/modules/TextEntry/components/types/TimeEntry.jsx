@@ -1,12 +1,12 @@
 import { TimePicker } from 'antd'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 
 export default function TimeEntry () {
   return (
     <TimePicker
       format="h:mm a"
       placeholder="HH:mm"
-      defaultValue={moment('12:00 am', 'h:mm a')}
+      defaultValue={dayjs('12:00 am', 'h:mm a')}
     />
   )
 }

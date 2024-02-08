@@ -1,9 +1,9 @@
 import {
   Table, Tag, Switch, Input, TimePicker, Space,
 } from 'antd'
-import moment from 'moment-timezone'
-
 import { useEffect, useState } from 'react'
+import dayjs from '~/utils/dayjs'
+
 import { PROGRESS_STATUSES } from './EditSubjectDrawer'
 
 const { I18n } = window
@@ -52,7 +52,7 @@ const ScheduleTime = ({ assessment, onTimeChange }) => {
       <Switch
         onChange={(current) => {
           setActive(current)
-          onTimeChange(moment(), id)
+          onTimeChange(dayjs(), id)
         }}
         defaultChecked={active}
         disabled={status === 'completed'}
@@ -62,7 +62,7 @@ const ScheduleTime = ({ assessment, onTimeChange }) => {
           className="w-100"
           disabled={status !== 'not_started' || !active}
           format="hh:mm A"
-          defaultValue={scheduleTime ? moment(scheduleTime) : moment()}
+          defaultValue={scheduleTime ? dayjs(scheduleTime) : dayjs()}
           onChange={value => onTimeChange(value, id)}
         />
       ) : <Input disabled value="Not Scheduled" />}

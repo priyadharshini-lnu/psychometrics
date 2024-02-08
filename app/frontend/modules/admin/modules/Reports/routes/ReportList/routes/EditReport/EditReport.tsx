@@ -35,7 +35,7 @@ export const EditReport: React.FC = () => {
           },
           {
             label: () => I18n.t('reports.reports'),
-            link: () => '/administration/reports',
+            link: () => '/admin/reports',
           },
           {
             label: () => report.name,

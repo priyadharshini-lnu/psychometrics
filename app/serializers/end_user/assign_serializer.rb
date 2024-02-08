@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 module EndUser
-  class AssignSerializer < ActiveModel::Serializer
+  class AssignSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :status, :step, :type, :completion_percent, :url, :assigned_reports,
                :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
-               :current_element, :current_page, :seedrandom, :assessment_extra, :assessment_id, :prev_pages
-    attribute :mindmill_url, if: -> { object.assessment.mindmill? }
-    attribute :hogan_url, if: -> { object.assessment.hogan? }
-    attribute :need_confirm
+               :current_element, :current_page, :seedrandom, :assessment_extra, :assessment_id,
+               :prev_pages, :need_confirm
+    attributes :mindmill_url, if: -> { object.assessment.mindmill? }
+    attributes :hogan_url, if: -> { object.assessment.hogan? }
 
     def status
       object.real_status

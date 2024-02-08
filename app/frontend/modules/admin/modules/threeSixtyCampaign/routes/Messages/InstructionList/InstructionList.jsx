@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
-  Row, Col, Button, Empty, message, Select,
+  Row, Col, Button, Empty, App, Select,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -28,6 +28,7 @@ export default function InstructionList ({
     params: { campaignId, id: selectedId },
   },
 }) {
+  const { message } = App.useApp()
   useEffect(() => {
     fetch(campaignId)
       .then(({ response }) => {

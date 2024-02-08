@@ -33,12 +33,13 @@ export const AssessorAssessmentTR = t.type({
 export const StateTR = t.type({
   list: t.array(AssessorAssessmentTR),
   total: t.number,
+  selectedIds: t.union([t.array(t.number), t.undefined]),
 })
 
 export type AssessorAssessment = t.TypeOf<typeof AssessorAssessmentTR>
 export type State = t.TypeOf<typeof StateTR>
 
-const defaultState: State = { list: [], total: 0 }
+const defaultState: State = { list: [], total: 0, selectedIds: [] }
 
 export const fetch = (campaignId: number, assessorId: number, tableConfig: TableConfig): ApiAction<State> => ({
   type: FETCH,

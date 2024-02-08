@@ -31,6 +31,8 @@ export default interface Campaign {
     viewWorkshopInvites: boolean
     stats: boolean
     pdfPassword: boolean
+    viewCampaignScoring: boolean
+    manageCampaignScoring: boolean
   }
 }
 

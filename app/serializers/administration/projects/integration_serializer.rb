@@ -2,10 +2,10 @@
 
 module Administration
   module Projects
-    class IntegrationSerializer < ActiveModel::Serializer
+    class IntegrationSerializer < Panko::Serializer
       include Rails.application.routes.url_helpers
 
-      attributes :id, :name, :active, :details
+      attributes :id, :name, :active, :details, :user, :tenant_id, :tenancy_name
 
       def details
         if object.iiht?
@@ -21,8 +21,16 @@ module Administration
         end
       end
 
-      def serializable_hash(*)
-        super.merge(object.config.except('password'))
+      def user
+        object.config['user']
+      end
+
+      def tenant_id
+        object.config['tenant_id']
+      end
+
+      def tenancy_name
+        object.config['tenancy_name']
       end
     end
   end

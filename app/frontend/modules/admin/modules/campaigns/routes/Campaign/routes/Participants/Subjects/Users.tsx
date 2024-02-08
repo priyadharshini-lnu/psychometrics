@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import {
-  Table, MenuProps, Row, Col, Input, Select, Pagination, Button, Modal, Switch, Tag, message, Tooltip,
+  Table, MenuProps, Row, Col, Input, Select, Pagination, Button, Switch, Tag, App, Tooltip,
 } from 'antd'
+import type { MessageInstance } from 'antd/es/message/interface'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
@@ -96,6 +98,7 @@ const UserList: React.FC<Props> = ({
   exportCompactCompletionStatuses,
   exportUsers,
 }) => {
+  const { modal, message } = App.useApp()
   useEffect(() => {
     fetch(campaignId, tableConfig)
   }, [tableConfig])
@@ -150,7 +153,14 @@ const UserList: React.FC<Props> = ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+            scroll={{ x: 1500 }}
+          >
             <Column
               title={I18n.t('administration.campaigns.users.id')}
               key="id"
@@ -161,6 +171,8 @@ const UserList: React.FC<Props> = ({
                   {id}
                 </Link>
               )}
+              width={80}
+              fixed="left"
             />
             <Column
               title={I18n.t('administration.campaigns.users.is_active')}
@@ -272,6 +284,8 @@ const UserList: React.FC<Props> = ({
                       openModal,
                       remove: () => remove(campaignId, user.id),
                       permissions: user.permissions,
+                      modal,
+                      message,
                     })
                   }
                   innerElement={(
@@ -318,15 +332,17 @@ interface ActionMenuData {
     remove: boolean
   },
   openModal(name: string, props: object): void
+  modal: Omit<ModalStaticFunctions, 'warn'>,
+  message: MessageInstance
 }
 
 const getActionsMenuProps = ({
-  onEdit, remove, campaignId, projectId, permissions, openModal, user,
+  onEdit, remove, campaignId, projectId, permissions, openModal, user, modal, message,
 }: ActionMenuData):MenuProps => {
   const { email, id } = user
 
   const handleDelete = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,

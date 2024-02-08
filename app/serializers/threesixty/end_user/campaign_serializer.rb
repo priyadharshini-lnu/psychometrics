@@ -59,7 +59,7 @@ module Threesixty
       end
 
       def nomination_users
-        @nomination_users ||= nomination_subjects.map(&:user)
+        nomination_subjects.map(&:user)
       end
 
       def current_user

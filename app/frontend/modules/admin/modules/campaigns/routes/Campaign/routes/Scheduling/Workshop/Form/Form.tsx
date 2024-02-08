@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import {
-  Row, Col, Steps, Form, Modal,
+  Row, Col, Steps, Form, App,
 } from 'antd'
-import moment from 'moment'
 import { useHistory, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
+import dayjs from '~/utils/dayjs'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
@@ -24,14 +24,15 @@ import { getData } from '~/modules/admin/core/ui/temp'
 const { I18n } = window
 
 interface BasicInfoData {
-  dates: moment.Moment[],
-  time: moment.Moment,
+  dates: dayjs.Dayjs[],
+  time: dayjs.Dayjs,
   duration: number,
   timezone: string,
   video_call_type: number,
   meeting_link: string,
   cancellation_lead_time: number,
   reschedule_lead_time: number,
+  allow_late_cancellation_and_rescheduling: boolean,
   workshop_resources: {
     key: number,
     name: string,
@@ -50,14 +51,15 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
   const [basicInfoData, setBasicInfoData] = useState<BasicInfoData>({
     dates: [],
-    time: moment(),
+    time: dayjs(),
     duration: workshop?.duration || 0,
-    timezone: workshop?.timezone || moment.tz.guess(),
+    timezone: workshop?.timezone || dayjs.tz.guess(),
     video_call_type: VIDEO_CALL_TYPES[workshop?.videoCallType] || 0,
     meeting_link: workshop?.meetingLink || '',
     workshop_resources: workshop?.workshopResources || [{ key: 1, name: '', url: '' }],
     cancellation_lead_time: workshop?.cancellationLeadTime,
     reschedule_lead_time: workshop?.rescheduleLeadTime,
+    allow_late_cancellation_and_rescheduling: workshop?.allowLateCancellationAndRescheduling,
   })
   const history = useHistory()
   const [step, setStep] = useState(0)
@@ -65,6 +67,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
   const [submitPage, showSubmitPage] = useState(false)
   const [workshops, setWorkshops] = useState<Workshop[]>([])
   const [form] = Form.useForm()
+  const { modal } = App.useApp()
 
   useEffect(() => {
     form.setFieldsValue({
@@ -114,7 +117,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
   }
 
   const handleCancel = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
       content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
       okText: I18n.t('common.text.confirm'),

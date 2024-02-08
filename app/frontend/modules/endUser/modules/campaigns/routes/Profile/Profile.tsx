@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, message, Layout, InputNumber, Space, Progress, Button,
+  Col, Row, Typography, Form, Upload, Input, Select, App, Layout, InputNumber, Space, Progress, Button,
 } from 'antd'
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
-import moment from 'moment-timezone'
 import cs from 'classnames'
 import _ from 'lodash'
+import dayjs from '~/utils/dayjs'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { CropImageModal } from '~/glint/components/CropImageModal'
 import Utils from '~/modules/reports/utils/Utils'
@@ -27,7 +27,7 @@ const { I18n } = window
 const locales = I18n.availableLocales
 const { Content } = Layout
 
-const timeZones = moment.tz.names()
+const timeZones = Intl.supportedValuesOf('timeZone')
 
 interface Image {
   type?: string
@@ -58,6 +58,7 @@ function ProfileComponent ({
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
+  const { message } = App.useApp()
 
   const uploadFile = (canvas) => {
     if (canvas) {
@@ -106,14 +107,14 @@ function ProfileComponent ({
     setShowCropper(true)
   }
 
-  const timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${moment.tz(zone).format('Z')}) ${zone}` }))
-    .sort((a, b) => Number(moment.tz(a.zone).format('ZZ')) - Number(moment.tz(b.zone).format('ZZ')))
-  const timezoneGuess = moment.tz.guess()
+  const timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${dayjs().tz(zone).format('Z')}) ${zone}` }))
+    .sort((a, b) => Number(dayjs().tz(a.zone).format('ZZ')) - Number(dayjs().tz(b.zone).format('ZZ')))
+  const timezoneGuess = dayjs.tz.guess()
 
   if (timezoneGuess) {
     timezoneNames.unshift({
       zone: timezoneGuess,
-      label: `(GMT${moment.tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
+      label: `(GMT${dayjs().tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
     })
   }
   const headerElement = (

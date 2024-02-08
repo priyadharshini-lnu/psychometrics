@@ -294,7 +294,7 @@ export const SpeechToTextInput: FC<Props> = ({
             <InfoCircleOutlined aria-hidden="true" />
           </Tooltip>
           <Button
-            type="ghost"
+            ghost
             onClick={isDictating ? stopDictation : startDictation}
             disabled={!canRecordAudio || isDisabled}
             loading={isLoading}

@@ -7,14 +7,14 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
       class="ms-4 me-4"
     >
       <span
-        class="ant-typography"
+        class="ant-typography css-dev-only-do-not-override-2i2tap"
       >
         <strong>
           Answer type
         </strong>
       </span>
       <div
-        class="ant-select ant-select-sm w-100 ant-select-single ant-select-show-arrow"
+        class="ant-select ant-select-sm w-100 css-dev-only-do-not-override-2i2tap ant-select-single ant-select-show-arrow"
       >
         <div
           class="ant-select-selector"
@@ -23,9 +23,9 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
             class="ant-select-selection-search"
           >
             <input
-              aria-activedescendant="rc_select_TEST_OR_SSR_list_0"
               aria-autocomplete="list"
               aria-controls="rc_select_TEST_OR_SSR_list"
+              aria-expanded="false"
               aria-haspopup="listbox"
               aria-owns="rc_select_TEST_OR_SSR_list"
               autocomplete="off"
@@ -75,25 +75,23 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
       </div>
     </div>
     <div
-      class="ant-divider ant-divider-horizontal mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-2i2tap ant-divider-horizontal mt-4 mb-4"
       role="separator"
     />
     <div
-      class="ant-space ant-space-vertical"
+      class="ant-space css-dev-only-do-not-override-2i2tap ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small"
     >
       <div
         class="ant-space-item"
-        style="margin-bottom: 8px;"
       >
         <div
-          class="ant-space ant-space-vertical ms-4 me-4"
+          class="ant-space css-dev-only-do-not-override-2i2tap ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4"
         >
           <div
             class="ant-space-item"
-            style="margin-bottom: 8px;"
           >
             <span
-              class="ant-typography"
+              class="ant-typography css-dev-only-do-not-override-2i2tap"
             >
               <strong>
                 No. of choices
@@ -104,13 +102,13 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
             class="ant-space-item"
           >
             <div
-              class="ant-row ant-row-no-wrap ant-row-space-between ant-row-middle"
+              class="ant-row ant-row-no-wrap ant-row-space-between ant-row-middle css-dev-only-do-not-override-2i2tap"
             >
               <div
-                class="ant-col"
+                class="ant-col css-dev-only-do-not-override-2i2tap"
               >
                 <button
-                  class="ant-btn ant-btn-default ant-btn-sm"
+                  class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-default ant-btn-sm"
                   type="button"
                 >
                   <span
@@ -135,19 +133,19 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
                 </button>
               </div>
               <div
-                class="ant-col ant-col-8"
+                class="ant-col ant-col-8 css-dev-only-do-not-override-2i2tap"
               >
                 <input
-                  class="ant-input ant-input-sm ta-c"
+                  class="ant-input ant-input-sm css-dev-only-do-not-override-2i2tap ta-c"
                   type="text"
                   value="2"
                 />
               </div>
               <div
-                class="ant-col"
+                class="ant-col css-dev-only-do-not-override-2i2tap"
               >
                 <button
-                  class="ant-btn ant-btn-default ant-btn-sm"
+                  class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-default ant-btn-sm"
                   type="button"
                 >
                   <span
@@ -164,14 +162,11 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
                       viewBox="64 64 896 896"
                       width="1em"
                     >
-                      <defs>
-                        <style />
-                      </defs>
                       <path
                         d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"
                       />
                       <path
-                        d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"
+                        d="M192 474h672q8 0 8 8v60q0 8-8 8H160q-8 0-8-8v-60q0-8 8-8z"
                       />
                     </svg>
                   </span>
@@ -183,16 +178,15 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
       </div>
       <div
         class="ant-space-item"
-        style="margin-bottom: 8px;"
       >
         <div
-          class="ant-space ant-space-horizontal ant-space-align-center ms-4 me-4"
+          class="ant-space css-dev-only-do-not-override-2i2tap ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4"
         >
           <div
             class="ant-space-item"
           >
             <button
-              class="ant-btn ant-btn-primary"
+              class="ant-btn css-dev-only-do-not-override-2i2tap ant-btn-primary"
               type="button"
             >
               <span
@@ -223,13 +217,12 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
       </div>
       <div
         class="ant-space-item"
-        style="margin-bottom: 8px;"
       >
         <label
-          class="ant-checkbox-wrapper ms-4 me-4"
+          class="ant-checkbox-wrapper ms-4 me-4 css-dev-only-do-not-override-2i2tap"
         >
           <span
-            class="ant-checkbox"
+            class="ant-checkbox ant-wave-target css-dev-only-do-not-override-2i2tap"
           >
             <input
               class="ant-checkbox-input"
@@ -251,20 +244,20 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
           class="ms-4 me-4"
         >
           <span
-            class="ant-typography"
+            class="ant-typography css-dev-only-do-not-override-2i2tap"
           >
             <strong>
               Orientation
             </strong>
           </span>
           <div
-            class="ant-radio-group ant-radio-group-outline mt-2"
+            class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-2i2tap"
           >
             <label
-              class="ant-radio-wrapper ant-radio-wrapper-checked"
+              class="ant-radio-wrapper ant-radio-wrapper-checked css-dev-only-do-not-override-2i2tap"
             >
               <span
-                class="ant-radio ant-radio-checked"
+                class="ant-radio ant-wave-target ant-radio-checked"
               >
                 <input
                   checked=""
@@ -281,10 +274,10 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
               </span>
             </label>
             <label
-              class="ant-radio-wrapper"
+              class="ant-radio-wrapper css-dev-only-do-not-override-2i2tap"
             >
               <span
-                class="ant-radio"
+                class="ant-radio ant-wave-target"
               >
                 <input
                   class="ant-radio-input"
@@ -304,17 +297,17 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
       </div>
     </div>
     <div
-      class="ant-divider ant-divider-horizontal mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-2i2tap ant-divider-horizontal mt-4 mb-4"
       role="separator"
     />
     <div
       class="ms-4 me-4"
     >
       <label
-        class="ant-checkbox-wrapper"
+        class="ant-checkbox-wrapper css-dev-only-do-not-override-2i2tap"
       >
         <span
-          class="ant-checkbox"
+          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-2i2tap"
         >
           <input
             class="ant-checkbox-input"
@@ -330,17 +323,17 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
       </label>
     </div>
     <div
-      class="ant-divider ant-divider-horizontal mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-2i2tap ant-divider-horizontal mt-4 mb-4"
       role="separator"
     />
     <section
       class="ms-4 me-4 mb-4"
     >
       <label
-        class="ant-checkbox-wrapper mt-2"
+        class="ant-checkbox-wrapper mt-2 css-dev-only-do-not-override-2i2tap"
       >
         <span
-          class="ant-checkbox"
+          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-2i2tap"
         >
           <input
             class="ant-checkbox-input"
@@ -359,20 +352,20 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
       class="ms-4 me-4 mb-4"
     >
       <span
-        class="ant-typography"
+        class="ant-typography css-dev-only-do-not-override-2i2tap"
       >
         <strong>
           Validation type
         </strong>
       </span>
       <div
-        class="ant-radio-group ant-radio-group-outline mt-2"
+        class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-2i2tap"
       >
         <label
-          class="ant-radio-wrapper"
+          class="ant-radio-wrapper css-dev-only-do-not-override-2i2tap"
         >
           <span
-            class="ant-radio"
+            class="ant-radio ant-wave-target"
           >
             <input
               class="ant-radio-input"
@@ -388,10 +381,10 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
           </span>
         </label>
         <label
-          class="ant-radio-wrapper"
+          class="ant-radio-wrapper css-dev-only-do-not-override-2i2tap"
         >
           <span
-            class="ant-radio"
+            class="ant-radio ant-wave-target"
           >
             <input
               class="ant-radio-input"
@@ -404,7 +397,7 @@ exports[`Assessment builder - MultipleChoice - Property panel Should match snaps
           </span>
           <span>
             <div
-              class="ant-space ant-space-horizontal ant-space-align-center"
+              class="ant-space css-dev-only-do-not-override-2i2tap ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small"
             >
               <div
                 class="ant-space-item"

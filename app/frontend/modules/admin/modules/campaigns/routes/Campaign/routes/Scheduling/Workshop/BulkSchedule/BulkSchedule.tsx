@@ -3,7 +3,8 @@ import {
   Drawer, Table, Avatar, Checkbox, Space, Radio, TimePicker, Button, Col, Row,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import moment from 'moment'
+
+import dayjs from '~/utils/dayjs'
 import { ResourceAvatar } from '~/glint'
 import { CampaignAssessment, CampaignAssessmentTR } from '~/modules/admin/modules/campaigns/core/campaignAssessment'
 import {
@@ -74,12 +75,12 @@ export const BulkSchedule: React.FC<Props> = ({
   const changeAction = (assessment, value) => {
     let { time } = assessment
     if (value === 'schedule' && !time) {
-      time = mergeDateAndTime(moment(workshopStartTime), moment())
+      time = mergeDateAndTime(dayjs(workshopStartTime), dayjs())
     }
     setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, action: value, time } : d)))
   }
   const changeTime = (assessment, time) => {
-    time = mergeDateAndTime(moment(workshopStartTime), time)
+    time = mergeDateAndTime(dayjs(workshopStartTime), time)
     setData(data.map(d => (d.assessmentId === assessment.assessmentId ? { ...d, time: time.toDate() } : d)))
   }
 
@@ -120,7 +121,7 @@ export const BulkSchedule: React.FC<Props> = ({
                 <TimePicker
                   format={settings.timeFormat}
                   onChange={value => changeTime(assessment, value)}
-                  defaultValue={moment()}
+                  defaultValue={dayjs()}
                 />
               )}
             </Space>

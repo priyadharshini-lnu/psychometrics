@@ -2,11 +2,12 @@
 
 module UserReports
   class PrepareUserReportData < BaseCommand
-    private_attr_reader :user_report, :report
+    private_attr_reader :user_report, :report, :view_report_as
 
-    def initialize(user_report)
+    def initialize(user_report, view_report_as = nil)
       @user_report = user_report
       @report = @user_report.report
+      @view_report_as = view_report_as
     end
 
     def call
@@ -19,7 +20,7 @@ module UserReports
     private
 
     def report_user_results
-      user_report.user_results.includes(:user_assessment).
+      user_report.user_results(view_report_as).includes(:user_assessment).
         filter { |ur| report.data_configuration_assessment_ids.include?(ur.user_assessment.assessment_id) }
     end
   end

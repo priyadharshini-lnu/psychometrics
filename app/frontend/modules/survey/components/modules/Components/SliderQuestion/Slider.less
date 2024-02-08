@@ -58,27 +58,6 @@
   }
 }
 
-.slider {
-  :global {
-    .ant-slider-handle {
-      // TODO: Remove after antd update https://github.com/ant-design/ant-design/pull/36018/files
-      &::after {
-        position: absolute;
-        top: -6px;
-        right: -6px;
-        bottom: -6px;
-        left: -6px;
-        content: "";
-      }
-      &.ant-slider-handle-dragging {
-        width: 28px;
-        height: 28px;
-        margin-top: -11px;
-      }
-    }
-  }
-}
-
 @media (max-width: @screen-sm) {
   .responseLabelRow,
   .gridMarksRow {

@@ -101,7 +101,7 @@ export const PageSider: FC<PageSiderProps> = ({
             open={drawerOpen}
             placement="left"
             onClose={handleDrawerVisibility}
-            className={styles['sider-drawer']}
+            rootClassName={styles['sider-drawer']}
           >
             <div className={styles.drawerItemsContainer}>
               {logoEle}

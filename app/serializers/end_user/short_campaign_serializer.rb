@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 module EndUser
-  class ShortCampaignSerializer < ActiveModel::Serializer
+  class ShortCampaignSerializer < Panko::Serializer
     attributes :id, :name, :type, :status, :completion_percentage, :progress_status, :user_reports_available,
                :description, :timing, :scheduled_at, :scheduled_in
 
     delegate :scheduled_at, :scheduled_in, to: :campaign_user, allow_nil: true
 
     def completion_percentage
-      uas = instance_options[:current_user].user_assessments.where(campaign: object)
+      uas = context[:current_user].user_assessments.where(campaign: object)
       completed_count = uas.count(&:completed?)
       return 0 unless uas.length.positive?
 
@@ -20,7 +20,7 @@ module EndUser
     end
 
     def user_reports_available
-      object.user_reports.exists?(user_id: instance_options[:current_user], user_access: true)
+      object.user_reports.exists?(user_id: context[:current_user], user_access: true)
     end
 
     def description
@@ -32,7 +32,7 @@ module EndUser
     end
 
     def campaign_user
-      object.campaign_users.find_by(user_id: instance_options[:current_user])
+      object.campaign_users.find_by(user_id: context[:current_user])
     end
   end
 end

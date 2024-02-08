@@ -12,9 +12,11 @@ module Administration
       @logs = @q.result.order('audit_logs.id desc')
       respond_to do |format|
         format.json do
-          serialized_logs = @logs.page(params[:page]).includes(:client, :project, :campaign).
-                            per(params[:size] || 25).
-                            map { |l| AuditLogSerializer.new(l) }
+          serialized_logs = Panko::ArraySerializer.new(
+            @logs.page(params[:page]).includes(:client, :project, :campaign).
+            per(params[:size] || 25),
+            each_serializer: AuditLogSerializer
+          ).to_a
           render json: {
             list: serialized_logs,
             total: @logs.count,
@@ -28,7 +30,7 @@ module Administration
     def show
       authorize @log
       respond_to do |format|
-        format.json { render json: @log, serializer: AuditLogSerializer }
+        format.json { render json: AuditLogSerializer.new.serialize(@log) }
       end
     end
 

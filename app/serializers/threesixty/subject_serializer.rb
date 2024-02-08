@@ -4,7 +4,12 @@ module Threesixty
   class SubjectSerializer < ActiveModel::Serializer
     attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions
 
-    has_one :user, serializer: UserSerializer
+    has_one :user, method: :user
+
+    def user
+      UserSerializer.new.serialize(object.user)
+    end
+
     def status
       Threesixty::Participants::GetStatus.call!(
         object,

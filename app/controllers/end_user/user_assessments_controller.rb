@@ -25,7 +25,11 @@ class EndUser::UserAssessmentsController < ApplicationController
     @selected_locale = @user_assessment.selected_locale || user_locale
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
-      format.json { render json: @user_assessment, serializer: EndUser::DetailedUserAssessmentSerializer }
+      format.json do
+        render json: ::EndUser::DetailedUserAssessmentSerializer.new(
+          context: { current_user: current_user }
+        ).serialize(@user_assessment)
+      end
     end
   end
 
@@ -33,7 +37,7 @@ class EndUser::UserAssessmentsController < ApplicationController
     lang = params[:lang] || @user_assessment.selected_locale || user_locale
     if @current_project.available_locales.include?(lang.to_s)
       cookies[:locale] = lang
-      current_user&.update_column(:locale, lang)
+      current_user&.user_profile&.update(locale: lang)
     end
     set_locale
 
@@ -48,7 +52,7 @@ class EndUser::UserAssessmentsController < ApplicationController
     lang = params[:lang] || @user_assessment.selected_locale || user_locale
     if @current_project.available_locales.include?(lang.to_s)
       cookies[:locale] = lang
-      current_user&.update_column(:locale, lang)
+      current_user&.user_profile&.update(locale: lang)
     end
     set_locale
 

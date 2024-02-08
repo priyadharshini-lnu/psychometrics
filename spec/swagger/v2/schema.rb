@@ -87,6 +87,7 @@ module Swagger
               more_info: { type: 'string', 'x-nullable': true }
             }
           },
+          OKResponse: { type: 'string', example: 'ok', enum: ['ok'] },
           ChangePasswordRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.change_password_request
           ),
@@ -204,6 +205,9 @@ module Swagger
           UserCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.create_request
           ),
+          AssessorScoresResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::User::Schema.assessors_scores_response
+          ),
           MembershipListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Membership::Schema.multiple_resource_response
           ),
@@ -215,6 +219,18 @@ module Swagger
           ),
           MembershipUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Membership::Schema.update_request
+          ),
+          AdminRolesListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::AdminRole::Schema.multiple_resource_response
+          ),
+          AdminRoleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::AdminRole::Schema.single_resource_response
+          ),
+          AdminRoleCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::AdminRole::Schema.create_request
+          ),
+          AdminRoleUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::AdminRole::Schema.update_request
           ),
           ResetPasswordRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::User::Schema.reset_password_request
@@ -269,6 +285,30 @@ module Swagger
           ),
           CampaignAssessmentAssessorResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessorAssessment::Schema.single_resource_response
+          ),
+          CampaignFactorGroupListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorGroup::Schema.multiple_resource_response
+          ),
+          CampaignFactorGroupCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorGroup::Schema.create_request
+          ),
+          CampaignFactorGroupResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorGroup::Schema.single_resource_response
+          ),
+          CampaignFactorListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactor::Schema.multiple_resource_response
+          ),
+          CampaignFactorValuesResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorValue::Schema.multiple_resource_response
+          ),
+          CampaignFactorValueUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactorValue::Schema.save_assessor_scoring_factor_value_request
+          ),
+          CampaignFactorCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactor::Schema.create_request
+          ),
+          CampaignFactorResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignFactor::Schema.single_resource_response
           ),
           WorkshopResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.single_resource_response
@@ -338,6 +378,42 @@ module Swagger
           ),
           WorkshopUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.update_request
+          ),
+          CampaignUserResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.single_resource_response
+          ),
+          CampaignUserListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.multiple_resource_response
+          ),
+          CampaignUserScoringsChangeFinalizeRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.campaign_user_scorings_change_finalize_request
+          ),
+          CampaignUserScoringsChangeFinalizeBulkRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.campaign_user_scorings_change_finalize_bulk_request
+          ),
+          CampaignUserScoringsRescoreBulkRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignUser::Schema.rescore_bulk_request
+          ),
+          CampaignAssessorAssessmentFactorWeightListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.multiple_resource_response
+          ),
+          CampaignAssessorAssessmentFactorWeightBulkUpsertRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.bulk_upsert(only_float_weight: true)
+          ),
+          DimensionListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Dimension::Schema.multiple_resource_response
+          ),
+          FactorListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Factor::Schema.multiple_resource_response
+          ),
+          CampaignScoringVariableResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignScoringVariable::Schema.multiple_resource_response
+          ),
+          CampaignScoringVariableSingleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignScoringVariable::Schema.single_resource_response
+          ),
+          CampaignScoringVariableUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignScoringVariable::Schema.update_request
           )
         }
       }

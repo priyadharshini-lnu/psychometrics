@@ -6,7 +6,6 @@ module Administration
     before_action :set_resource, only: %i[destroy copy download_history toggle_status sidebar show]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize, except: [:sidebar]
-    after_action :init_breadcrumbs
 
     def index
       @_filter_form = policy_scope(resource_class).
@@ -113,11 +112,6 @@ module Administration
 
     def set_resource_class
       @_resource_class ||= Communication # rubocop:disable Naming/MemoizedInstanceVariableName
-    end
-
-    def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
     def resource_params

@@ -5,7 +5,7 @@ module Administration
     extend ActiveSupport::Concern
 
     included do
-      skip_after_action :verify_policy_scoped, only: %i[index show find_or_create_user]
+      skip_after_action :verify_policy_scoped, only: %i[index show]
       prepend_before_action :set_resource_class
       before_action :set_resource, only: %i[show update destroy spoof reset_password]
     end
@@ -13,13 +13,15 @@ module Administration
     def index
       respond_to do |format|
         format.json do
-          serialized_admins = ActiveModelSerializers::SerializableResource.new(
+          serialized_admins = Panko::ArraySerializer.new(
             admins.page(params[:page]),
             each_serializer: Administration::Memberships::WithPermissionsSerializer,
-            current_user: current_user,
-            project_id: campaign.project_id,
-            campaign_id: campaign.id
-          )
+            context: {
+              current_user: current_user,
+              project_id: campaign.project_id,
+              campaign_id: campaign.id
+            }
+          ).to_a
 
           render json: {
             list: serialized_admins,
@@ -31,19 +33,13 @@ module Administration
     end
 
     def show
-      render json: resource, serializer: Administration::Memberships::WithGrantsAndPermissionsSerializer,
-             current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
-    end
-
-    def find_or_create_user
-      form = ::Memberships::PrepareUserForm.from_params(params)
-      ::Memberships::PrepareUserToCreateCommand.call(form, default_grants) do
-        on(:ok) do |admin|
-          return render json: admin, serializer: Administration::Memberships::WithGrantsSerializer,
-                        current_user: current_user, project_id: campaign.project_id
-        end
-        on(:invalid) { |f| return render json: { errors: f.errors.full_messages.first }, status: 400 }
-      end
+      render json: Administration::Memberships::WithGrantsAndPermissionsSerializer.new(
+        context: {
+          current_user: current_user,
+          project_id: campaign.project_id,
+          campaign_id: campaign.id
+        }
+      ).serialize(resource)
     end
 
     def create
@@ -53,8 +49,11 @@ module Administration
         ) do
         on(:ok) do |admin|
           audit! :create, admin, campaign: campaign, payload: permitted_resource_params
-          return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
-                        current_user: current_user, project_id: campaign.project_id
+          return render json: Administration::Memberships::WithPermissionsSerializer.new(
+            context: {
+              current_user: current_user, project_id: campaign.project_id
+            }
+          ).serialize(admin)
         end
       end
     end
@@ -64,8 +63,11 @@ module Administration
       ::Campaigns::Admins::Update.call(resource, form, current_user, permitted_resource_params) do
         on(:ok) do |admin|
           audit! :update, admin, campaign: campaign, payload: permitted_resource_params
-          return render json: admin, serializer: Administration::Memberships::WithPermissionsSerializer,
-                        current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+          return render json: Administration::Memberships::WithPermissionsSerializer.new(
+            context: {
+              current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+            }
+          ).serialize(admin)
         end
         on(:invalid) do |f|
           return render json: { errors: f.errors.full_messages.first }, status: 400

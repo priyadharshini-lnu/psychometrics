@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class UserReportSerializer < ActiveModel::Serializer
+  class UserReportSerializer < Panko::Serializer
     attributes :id, :permissions, :report_id, :name, :user_access, :report_family_name, :status, :internal, :report_url
 
     delegate :name, :mindmill, to: :report
@@ -49,11 +49,11 @@ module Administration
     private
 
     def campaign
-      instance_options[:campaign]
+      context[:campaign]
     end
 
     def current_user
-      @instance_options[:current_user]
+      context[:current_user]
     end
 
     def report

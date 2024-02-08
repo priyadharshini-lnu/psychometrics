@@ -2,8 +2,9 @@ import { useEffect, FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Redirect, RouteComponentProps } from 'react-router-dom'
 import { push } from 'connected-react-router'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, PageHeader, Col, Progress, Space, ProgressProps,
+  Layout, Col, Progress, Space, ProgressProps,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'

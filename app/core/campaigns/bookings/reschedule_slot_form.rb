@@ -13,8 +13,15 @@ module Campaigns
       validate :validate_seats_availability
       validate :validate_reschedule_deadline
       validate :validate_user_finished_prework
+      validate :validate_late_cancellation_and_rescheduling
 
       private
+
+      def validate_late_cancellation_and_rescheduling
+        if !workshop.allow_late_cancellation_and_rescheduling? && status == 'requested_rescheduling'
+          errors.add(:base, I18n.t('administration.bookings.errors.late_rescheduling_not_allowed'))
+        end
+      end
 
       def validate_seats_availability
         return if errors.present?

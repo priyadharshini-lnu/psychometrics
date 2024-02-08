@@ -1,10 +1,10 @@
 import {
-  Button, Col, Row, Space, Modal, message,
+  Button, Col, Row, Space, App,
 } from 'antd'
 import { BaseMeta } from 'hooks/useResources/interfaces'
 import { PlusOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { useResources } from '~/hooks/useResources'
 import {
   UserAvailabilityDate, UserAvailabilityDateTR,
@@ -29,12 +29,13 @@ export const AvailabilityListing = () => {
       responseType: UserAvailabilityDateTR,
       apiConfig: {
         include: ['user_availability_days'],
-        filter: { end_date_gteq: moment().format('YYYY-MM-DD') },
+        filter: { end_date_gteq: dayjs().format('YYYY-MM-DD') },
       },
     },
   )
   const [showNewScheduleForm, setShowNewScheduleForm] = useState(false)
   const [errors, setErrors] = useState({} as ErrorMessageList)
+  const { modal, message } = App.useApp()
   const fetchSuccessful = isRequestSuccessful('fetch')
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export const AvailabilityListing = () => {
   }, [userAvailabilityDates.length, fetchSuccessful])
 
   const handleOnRemove = (id: string) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('frontend.availability.remove_confirm.title'),
       content: I18n.t('frontend.availability.remove_confirm.content'),
       okText: I18n.t('common.text.ok'),
@@ -91,7 +92,7 @@ export const AvailabilityListing = () => {
       <Breadcrumb
         crumbs={[
           {
-            link: () => '/administration/user_availability',
+            link: () => '/admin/user_availability',
             label: () => I18n.t('administration.navigation.availability'),
           },
         ]}

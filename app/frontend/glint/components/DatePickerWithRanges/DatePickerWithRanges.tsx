@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import moment from 'moment'
 import { DatePicker } from 'antd'
 import { RangePickerProps } from 'antd/lib/date-picker'
+import dayjs from '~/utils/dayjs'
 
 const { I18n } = window
 
@@ -10,25 +10,25 @@ export const DatePickerWithRanges: FC<RangePickerProps> = ({ ranges, ...props })
     {...props}
     ranges={{
       [I18n.t('glint.datepicker_with_ranges.today')]: [
-        moment(), moment(),
+        dayjs(), dayjs(),
       ],
       [I18n.t('glint.datepicker_with_ranges.yesterday')]: [
-        moment().subtract(1, 'd'), moment().subtract(1, 'd'),
+        dayjs().subtract(1, 'd'), dayjs().subtract(1, 'd'),
       ],
       [I18n.t('glint.datepicker_with_ranges.current_week')]: [
-        moment().startOf('w'), moment().endOf('w'),
+        dayjs().startOf('w'), dayjs().endOf('w'),
       ],
       [I18n.t('glint.datepicker_with_ranges.last_week')]: [
-        moment().subtract(1, 'w').startOf('w'), moment().subtract(1, 'w').endOf('w'),
+        dayjs().subtract(1, 'w').startOf('w'), dayjs().subtract(1, 'w').endOf('w'),
       ],
       [I18n.t('glint.datepicker_with_ranges.current_month')]: [
-        moment().startOf('M'), moment().endOf('M'),
+        dayjs().startOf('M'), dayjs().endOf('M'),
       ],
       [I18n.t('glint.datepicker_with_ranges.last_month')]: [
-        moment().subtract(1, 'M').startOf('M'), moment().subtract(1, 'M').endOf('M'),
+        dayjs().subtract(1, 'M').startOf('M'), dayjs().subtract(1, 'M').endOf('M'),
       ],
       [I18n.t('glint.datepicker_with_ranges.all_time')]: [
-        moment().subtract(100, 'y'), moment().add(100, 'y'),
+        dayjs().subtract(100, 'y'), dayjs().add(100, 'y'),
       ],
       ...ranges,
     }}

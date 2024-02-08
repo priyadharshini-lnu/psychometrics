@@ -5,4 +5,5 @@ class CampaignAssessorAssessment < ApplicationRecord
 
   belongs_to :campaign
   belongs_to :assessment
+  has_many :factors, -> { distinct }, through: :assessment
 end

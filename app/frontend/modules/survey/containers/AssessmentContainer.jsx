@@ -13,6 +13,7 @@ import { INIT } from '~/modules/survey/core/preview/FlowProcessor/consts'
 // import { connected, disconnected } from '~/core/connection'
 import containerStyles from './AssessmentContainer.less'
 import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
+import { DefaultAntThemeWrapper } from '~/glint'
 import '~/modules/survey/styles/globals.less'
 import '~/modules/survey/utils/i18n'
 
@@ -66,21 +67,23 @@ class AssessmentContainer extends Component {
       disabled, selectedLocale, type, showAsSinglePage,
     } = this.props
     return (
-      <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
-        <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
-          {/* <ConnectionCheck
+      <DefaultAntThemeWrapper>
+        <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
+          <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
+            {/* <ConnectionCheck
             onConnected={() => rstore.dispatch(connected())}
             onDisconnected={() => rstore.dispatch(disconnected())}
           /> */}
-          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-          <DndProvider backend={HTML5Backend}>
-            <div className={containerStyles.previewConainer}>
-              {disabled && this.overlay()}
-              <AssessmentPreview showAsSinglePage={showAsSinglePage} type={type} />
-            </div>
-          </DndProvider>
-        </ConfigProvider>
-      </ErrorBoundary>
+            {type === 'preview_assessment' && <Header langs={this.langPartial} />}
+            <DndProvider backend={HTML5Backend}>
+              <div className={containerStyles.previewConainer}>
+                {disabled && this.overlay()}
+                <AssessmentPreview showAsSinglePage={showAsSinglePage} type={type} />
+              </div>
+            </DndProvider>
+          </ConfigProvider>
+        </ErrorBoundary>
+      </DefaultAntThemeWrapper>
     )
   }
 }

@@ -11,8 +11,8 @@ import {
   Select,
   Input,
   Spin,
-  message,
   Divider,
+  App,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
@@ -50,6 +50,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 interface OwnProps {
   updateAdmin?: UpdateResource<Admin>
   createAdmin: CreateResource<Admin>
+  requestErrors?: { [key: string]: string; }[] | null | undefined
   permissions: AdminPermissions
   currentUserGrants: CurrentUserPermissions
   isSuperAdmin: boolean
@@ -78,20 +79,29 @@ const AddEditDrawerComponent: FC<Props> = ({
   campaignType,
   currentCampaignId,
   addOrUpdateInProgress,
+  requestErrors,
 }) => {
   const [form] = Form.useForm()
 
+  const errors = _.compact(
+    [
+      requestErrors && _.get(requestErrors[0], ['email', 'title']),
+      requestErrors && _.get(requestErrors[0], ['userId', 'title']),
+      requestErrors && _.get(requestErrors[0], ['projectId', 'title']),
+    ],
+  )
+
   const [selected, setSelected] = useState([])
-
   const [notFromList, setNotFromList] = useState(true)
-
+  const [adminRolesOpen, setAdminRolesOpen] = useState(false)
   const [open, setUserSelectOpen] = useState(true)
-
   const [selectedUser, setSelectedUser] = useState<Omit<UserDetails, 'enable_2fa'> | null>(
     {
       firstName: '', lastName: '', name: '', email: '', id: '',
     },
   )
+
+  const { message } = App.useApp()
 
   const grantsHash = (): {} => {
     switch (adminType) {
@@ -111,6 +121,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   const campaignIdParams = params.campaignId
 
   const campaignId = campaignType === CampaignTypes.common ? campaignIdParams : currentCampaignId
+
 
   const showRequestSuccessMessage = (response) => {
     if (isEditMode) {
@@ -134,7 +145,15 @@ const AddEditDrawerComponent: FC<Props> = ({
   } = useResources<UserDetails>('users')
 
   const {
-    fetchSingle, getResource, getErrors,
+    data: adminRoles, fetch: fetchAdminRoles, isLoading: isAdminRolesLoading,
+  } = useResources<Admin>(
+    `clients/${clientId || projectId}/admin_roles`, {
+      apiConfig: { fields: { admin_roles: ['id', 'name'] } },
+    },
+  )
+
+  const {
+    fetchSingle, getResource,
   } = useResources<Admin>(
     'memberships',
     {
@@ -145,18 +164,12 @@ const AddEditDrawerComponent: FC<Props> = ({
           project_id_eq: projectId,
           campaign_id_eq: `${campaignId}`,
         },
+        include: ['admin_roles'],
+        fields: { admin_roles: ['id', 'name'] },
       },
     },
   )
 
-  const requestErrors = getErrors('add')
-
-  const errors = _.compact(
-    [
-      requestErrors && _.get(requestErrors[0], ['email', 'title']),
-      requestErrors && _.get(requestErrors[0], ['userId', 'title']),
-    ],
-  )
 
   const admin = getResource(adminId)
 
@@ -169,13 +182,20 @@ const AddEditDrawerComponent: FC<Props> = ({
   }, [adminId, isEditMode])
 
   useEffect(() => {
+    fetchAdminRoles()
+    form.setFieldsValue({
+      adminRoleIds: admin?.adminRoles.map(adminRole => adminRole?.id),
+    })
+  }, [admin])
+
+  useEffect(() => {
     if (isEditMode) {
-      form.setFieldsValue(({
+      form.setFieldsValue({
         email: admin?.email ?? '',
         firstName: admin?.firstName ?? '',
         lastName: admin?.lastName ?? '',
         grantNames: admin?.grantNames ?? {},
-      }))
+      })
     }
     return () => form.resetFields()
   }, [admin])
@@ -397,6 +417,21 @@ const AddEditDrawerComponent: FC<Props> = ({
                 </Form.Item>
               </>
             )}
+            <Form.Item
+              label={I18n.t('administration.administrators.drawers.edit.admin_roles')}
+              name="adminRoleIds"
+            >
+              <Select
+                mode="multiple"
+                showSearch={false}
+                placeholder={I18n.t('administration.administrators.drawers.edit.admin_role_select')}
+                options={_.map(adminRoles, role => ({ label: role.name, value: role.id }))}
+                open={adminRolesOpen}
+                onFocus={() => setAdminRolesOpen(true)}
+                onBlur={() => setAdminRolesOpen(false)}
+                notFoundContent={isAdminRolesLoading('fetch') ? <Spin size="small" /> : null}
+              />
+            </Form.Item>
             {_.map(grantsHash(), (grants, grantFor) => (
               <Fragment key={grantFor}>
                 <Form.Item
@@ -407,7 +442,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                   }
                 >
                   { isSuperAdmin ? (
-                    <Checkbox.Group className={styles.grants_checkbox_group}>
+                    <Checkbox.Group rootClassName={styles.grants_checkbox_group}>
                       {_.map(grants, grant => (
                         <Checkbox key={grant as string} value={grant}>
                           {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
@@ -423,9 +458,9 @@ const AddEditDrawerComponent: FC<Props> = ({
                     </Checkbox.Group>
                   )
                     : (
-                      <Checkbox.Group className={styles.grants_checkbox_group}>
+                      <Checkbox.Group rootClassName={styles.grants_checkbox_group}>
                         {_.map(grants, grant => (
-                          _.get(currentUserGrants, grantFor, []).includes(grant) && (
+                          _.get(currentUserGrants, grantFor, [] as unknown[]).includes(grant) && (
                           <Checkbox value={grant} key={grant as string}>
                             {I18n.t(`administration.administrators.permissions.labels.${grantFor}.${grant}`)}
                           </Checkbox>

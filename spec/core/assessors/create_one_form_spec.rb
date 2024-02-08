@@ -23,9 +23,11 @@ describe Assessors::CreateOneForm do
 
   it 'already existing subject+assessor connection' do
     relationship = create(:relationship, name: Relationship::ASSESSOR)
-    create(:user_assessment, campaign: campaign, subject_id: create(:user, email: 'a@a.com'),
+    user_assessment = create(:user_assessment, campaign: campaign, subject_id: create(:user, email: 'a@a.com'),
            evaluator_id: create(:user, email: 'b@b.com'), relationship: relationship)
-    form = described_class.new(subject_email: 'a@a.com', evaluator_email: 'b@b.com')
+    form = described_class.new(
+      subject_email: 'a@a.com', evaluator_email: 'b@b.com', assessment_ids: [user_assessment.assessment_id]
+    )
     form.with_context(campaign: campaign)
     form.validate
     expect(form.errors.messages[:assessor_email]).to include('The subject with this assessor are already connected')

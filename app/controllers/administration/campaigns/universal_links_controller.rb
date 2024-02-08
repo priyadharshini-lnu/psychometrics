@@ -13,25 +13,37 @@ module Administration
         end
       end
 
-      def activate
+      def enable
         campaign_assessment = ::Assessments::UniversalLink::Enable.call!(campaign, assessment)
-        render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
-      end
-
-      def toggle_multiple_responses
-        campaign_assessment = campaign.campaign_assessments.find_by(assessment_id: assessment.id)
-        campaign_assessment.toggle!(:allow_multiple_responses)
-        render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
+        render json: ::Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       def update
-        campaign_assessment = ::Assessments::UniversalLink::Generate.call!(campaign, assessment)
-        render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
+        campaign_assessment = ::Assessments::UniversalLink::Update.call!(campaign, assessment, params)
+        render json: ::Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
-      def destroy
-        campaign_assessment = ::Assessments::UniversalLink::Disable.call!(campaign, assessment)
-        render json: campaign_assessment, serializer: ::Administration::CampaignAssessmentSerializer
+      def regenerate
+        campaign_assessment = ::Assessments::UniversalLink::Generate.call!(campaign, assessment)
+        render json: ::Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
       end
 
       private

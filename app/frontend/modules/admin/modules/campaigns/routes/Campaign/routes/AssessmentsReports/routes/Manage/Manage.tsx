@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Button, Space, message,
+  Row, Col, Button, Space, App,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { RouteComponentProps } from 'react-router-dom'
@@ -86,6 +86,8 @@ const Manage: React.FC<Props> = ({
   const parsedCampaignId = parseInt(campaignId, 10)
 
   const stateManager = useCampaignAssessorAssessmentsStore()
+
+  const { message } = App.useApp()
 
   const handleRegenerateReports = () => {
     regenerateReports(parsedCampaignId, selectedIds).then(() => {

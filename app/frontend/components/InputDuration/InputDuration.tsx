@@ -3,6 +3,7 @@ import {
 } from 'react'
 import { Input } from 'antd'
 import { InputProps } from 'antd/lib/input/Input'
+import styles from './InputDuration.less'
 
 const MINUTE = 60
 const HOUR = 60 * MINUTE
@@ -11,16 +12,20 @@ const DAY = 24 * HOUR
 interface Props extends Omit<InputProps, 'value' | 'onChange'> {
   value: string | number
   onChange: (value: number) => void
+  masked?: boolean
 }
 
 const InputDuration: FC<Props> = ({
   value = '',
   onChange,
+  masked = false,
   ...restInputProps
 }) => {
   const [inputValue, setInputValue] = useState(maskUp(value))
+  const [showMask, setShowMask] = useState(false)
 
   const maskAndReturnIntValue = () => {
+    setShowMask(false)
     const maskedValue = maskUp(inputValue)
 
     if (maskedValue !== inputValue) {
@@ -35,7 +40,7 @@ const InputDuration: FC<Props> = ({
     const {
       target: { value },
     } = event
-
+    setShowMask(true)
     setInputValue(value)
   }
 
@@ -51,13 +56,23 @@ const InputDuration: FC<Props> = ({
   }, [value])
 
   return (
-    <Input
-      onChange={handleOnChange}
-      onBlur={maskAndReturnIntValue}
-      onKeyPress={handleOnKeyPress}
-      value={inputValue}
-      {...restInputProps}
-    />
+    <>
+      {masked && showMask && (
+        <div
+          className={styles.mask}
+          onClick={maskAndReturnIntValue}
+        />
+      )}
+      <Input
+        style={{ zIndex: (masked && showMask) ? 5001 : 'initial' }}
+        onFocus={() => setShowMask(true)}
+        onChange={handleOnChange}
+        onBlur={maskAndReturnIntValue}
+        onKeyPress={handleOnKeyPress}
+        value={inputValue}
+        {...restInputProps}
+      />
+    </>
   )
 }
 

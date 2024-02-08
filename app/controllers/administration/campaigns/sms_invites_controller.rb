@@ -11,6 +11,7 @@ module Administration
                       includes(:creator, :registered_user).
                       ransack(params[:filters]).result
 
+        # rubocop:disable Metrics/BlockLength
         respond_to do |format|
           format.csv do
             headers['Content-Disposition'] = 'attachment; filename="users.csv"'
@@ -23,13 +24,15 @@ module Administration
             }
           end
           format.json do
-            serialized_sms_invites = ActiveModelSerializers::SerializableResource.new(
+            serialized_sms_invites = Panko::ArraySerializer.new(
               sms_invites.page(params[:page]),
               each_serializer: Administration::Campaigns::SmsInvitesSerializer,
-              current_user: current_user,
-              campaign_id: campaign.id,
-              project_id: campaign.project_id
-            )
+              context: {
+                current_user: current_user,
+                campaign_id: campaign.id,
+                project_id: campaign.project_id
+              }
+            ).to_a
 
             render json: {
               list: serialized_sms_invites,
@@ -39,6 +42,7 @@ module Administration
             }
           end
         end
+        # rubocop:enable Metrics/BlockLength
       end
 
       def create
@@ -48,7 +52,7 @@ module Administration
           sms_invite = campaign.sms_invites.create!(
             form.attributes.merge(creator: current_user)
           )
-          render json: sms_invite, serializer: SmsInvitesSerializer
+          render json: Administration::Campaigns::SmsInvitesSerializer.new.serialize(sms_invite)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -59,7 +63,7 @@ module Administration
                with_context(campaign: campaign, sms_invite: resource)
         if form.valid?
           resource.update!(form.attributes)
-          render json: resource, serializer: SmsInvitesSerializer
+          render json: Administration::Campaigns::SmsInvitesSerializer.new.serialize(resource)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -89,7 +93,10 @@ module Administration
       def search
         sms_invites = campaign.sms_invites.ransack(params).result.limit(10)
 
-        render json: sms_invites, each_serializer: Administration::Campaigns::SmsInvitesSearchSerializer
+        render json: Panko::ArraySerializer.new(
+          sms_invites,
+          each_serializer: Administration::Campaigns::SmsInvitesSearchSerializer
+        ).to_a
       end
 
       def download_example_import_file

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Button, Select, Input, Typography, message,
+  Row, Col, Button, Select, Input, Typography, App,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import find from 'lodash/find'
@@ -46,6 +46,7 @@ const DescriptionComponent: React.FC<Props> = ({
   const [leftLocale, setLeftLocale] = useState('en')
   const [rightLocale, setRightLocale] = useState<string | null>(null)
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const { message } = App.useApp()
 
   useEffect(() => {
     fetchDescriptions(projectId, campaignId, [leftLocale, rightLocale])

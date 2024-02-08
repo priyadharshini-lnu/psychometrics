@@ -3,9 +3,8 @@ import {
   FC, useState, useEffect, useRef,
 } from 'react'
 import {
-  Col, Layout, Form, message, Alert,
+  Col, Layout, Form, App, Alert,
 } from 'antd'
-import moment, { Moment } from 'moment-timezone'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   useParams, useLocation, useHistory, Link,
@@ -14,6 +13,7 @@ import cs from 'classnames'
 import qs from 'qs'
 
 import { Store } from 'antd/lib/form/interface'
+import dayjs from '~/utils/dayjs'
 import { get as getCurrentUser } from '~/core/currentUser'
 import {
   bookSlot, SingleInvite, SingleBooking, fetchBooking, fetchInvite, rescheduleBooking, requestRescheduleBooking,
@@ -39,7 +39,7 @@ const connector = connect((state: RootState) => ({
 
 type TimeSlot = {
   id: number,
-  date: Moment
+  date: dayjs.Dayjs
 }
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
@@ -50,7 +50,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const [inviteOrBookingDetails, setInviteOrBookingDetails] = useState<null | SingleInvite | SingleBooking>(null)
   const bookedDateMomentObject = (
     inviteOrBookingDetails && 'bookedDate' in inviteOrBookingDetails && inviteOrBookingDetails.bookedDate
-  ) ? { id: inviteOrBookingDetails.bookedDate.id, date: moment(inviteOrBookingDetails.bookedDate.date) } : null
+  ) ? { id: inviteOrBookingDetails.bookedDate.id, date: dayjs(inviteOrBookingDetails.bookedDate.date) } : null
   const [selectedDateTime, setSelectedDateTime] = useState<TimeSlot | null>(bookedDateMomentObject)
   const [book, setBook] = useState(false)
   const [questionForm] = Form.useForm()
@@ -58,8 +58,9 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
   const location = useLocation()
   const questionResponseValueRef = useRef<Store>({})
-  const currentTimezone = inviteOrBookingDetails?.timezone || moment.tz.guess() || 'Asia/Dubai'
-  const currentTime = moment().tz(currentTimezone)
+  const { message } = App.useApp()
+  const currentTimezone = inviteOrBookingDetails?.timezone || dayjs.tz.guess() || 'Asia/Dubai'
+  const currentTime = dayjs().tz(currentTimezone)
   const bookedDateTimeMomentObjectTz = bookedDateMomentObject
     ? bookedDateMomentObject.date.clone().tz(currentTimezone) : null
   const deadlineToAllowRescheduleByUser = bookedDateTimeMomentObjectTz?.clone()
@@ -86,7 +87,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   }
 
   const availableDates = inviteOrBookingDetails
-    ? inviteOrBookingDetails.availableDates.map(dateObj => ({ id: dateObj.id, date: moment(dateObj.date) })) : []
+    ? inviteOrBookingDetails.availableDates.map(dateObj => ({ id: dateObj.id, date: dayjs(dateObj.date) })) : []
 
   const selectedDateId = selectedDateTime?.id
 
@@ -176,7 +177,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
             onCancelOfConfirmBooking={() => setBook(false)}
             bookingDateTime={selectedDateTime.date}
             language={questionForm.getFieldValue('language') ? questionForm.getFieldValue('preferredLanguage') : ''}
-            bookingTimeZone={inviteOrBookingDetails.timezone || moment.tz.guess()}
+            bookingTimeZone={inviteOrBookingDetails.timezone || dayjs.tz.guess()}
             duration={inviteOrBookingDetails.duration || 0}
             title={inviteOrBookingDetails.title || ''}
             onConfirmBooking={(reason) => {

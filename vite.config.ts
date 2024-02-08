@@ -38,8 +38,8 @@ const IGNORE_VENDORS = [
   'video.js',
   'powerbi-client',
   'react-pdf',
-  'moment-timezone',
-  '@thetalententerprise/interactive-assessments'
+  '@thetalententerprise/interactive-assessments',
+  'dayjs'
 ]
 const server = SSL ? {
   https: {

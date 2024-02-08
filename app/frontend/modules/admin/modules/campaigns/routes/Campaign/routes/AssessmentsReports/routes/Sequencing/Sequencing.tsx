@@ -47,6 +47,7 @@ import { AssessmentSortable } from './AssessmentSortable'
 import { AddGroup } from './AddGroup'
 import { Assessment } from './Assessment'
 import { GroupedAssessmentContainer } from './GroupedAssessmentContainer'
+import { getGroupById, getItemIdFromSortingId, updateArrayItemsPositionOnIndices } from '~/utils/dnd'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -519,10 +520,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
               activeId ? (
                 activeId in prefixedGroupWithPrefixedAssessmentIds ? (
                   <GroupedAssessmentContainer
-                    campaignId={parsedCampaignId}
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    group={getGroupById(groups, getItemIdFromSortingId(activeId))}
+                    group={getGroupById(groups, getItemIdFromSortingId(activeId), 'id')}
                     assessmentCount={getAssessmentsByGroupId(assessments, getItemIdFromSortingId(activeId)).length}
                     isLoading={false}
                   >
@@ -553,19 +551,8 @@ const SequencingComponent: FC<PropsFromRedux> = ({
   )
 }
 
-const updateArrayItemsPositionOnIndices = <T, >(inputArray: Array<T>, field: keyof T): Array<T> => inputArray
-  .map((item, index: number) => ({ ...item, [field]: index + 1 }))
-
 const getAssessmentsByGroupId = (assessments: Array<CampaignAssessment>, groupId: number | null) => assessments
   .filter(assessment => assessment.campaignAssessmentGroupId === groupId)
   .sort((sortedAssessmentA, sortedAssessmentB) => sortedAssessmentA.position - sortedAssessmentB.position)
-
-const getGroupById = (groups: Array<CampaignAssessmentGroup>, groupId: number) => groups
-  .find(group => group.id === groupId)
-
-export const getItemIdFromSortingId = (sortingId: string): number => {
-  const [, id] = sortingId.split('_')
-  return parseInt(id, 10)
-}
 
 export const Sequencing = connecter(SequencingComponent)

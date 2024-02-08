@@ -38,15 +38,17 @@ module Threesixty
           @existing_evaluators_whose_password_not_changed << user if evaluator[:evaluator_password].present?
           user.update!(first_name: evaluator[:evaluator_first_name], last_name: evaluator[:evaluator_last_name])
         else
-          user = ::Users::Regular.create!(
-            email: evaluator[:evaluator_email],
-            password: evaluator[:evaluator_password],
-            first_name: evaluator[:evaluator_first_name],
-            last_name: evaluator[:evaluator_last_name],
-            locale: evaluator[:evaluator_locale],
-            create_by_invite: evaluator[:evaluator_password].blank?,
-            project: project
-          )
+          ActiveRecord::Base.transaction do
+            user = ::Users::Regular.create!(
+              email: evaluator[:evaluator_email],
+              password: evaluator[:evaluator_password],
+              first_name: evaluator[:evaluator_first_name],
+              last_name: evaluator[:evaluator_last_name],
+              create_by_invite: evaluator[:evaluator_password].blank?,
+              project: project
+            )
+            user.user_profile.update(locale: evaluator[:evaluator_locale])
+          end
         end
 
         user

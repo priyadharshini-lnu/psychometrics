@@ -12,6 +12,7 @@ import Timing from '../../Base/Series/Timing'
 import TextEntry from '../../Base/Series/TextEntry'
 import DataSheet from '../../Base/Series/DataSheet'
 import ReportData from '../../Base/Series/ReportData'
+import CampaignFactors from '../../Base/Series/CampaignFactors'
 
 import PickGroupRank from './PickGroupRank'
 import HotSpot from './HotSpot'
@@ -34,5 +35,6 @@ export default {
   ExternalFactor,
   SavilleFactor,
   DataSheet,
+  CampaignFactors,
   ReportData,
 }

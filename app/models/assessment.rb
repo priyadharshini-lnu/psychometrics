@@ -19,6 +19,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   THREESIXTY = 'threesixty'
   MINDMILL = 'mindmill'
   ASSESSOR_FORM = 'assessor_form'
+  LEAD_ASSESSOR_FORM = 'lead_assessor_form'
   HOGAN = 'hogan'
   AGILE = 'agile'
   SAVILLE = 'saville'
@@ -33,6 +34,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     THREESIXTY,
     MINDMILL,
     ASSESSOR_FORM,
+    LEAD_ASSESSOR_FORM,
     HOGAN,
     AGILE,
     SAVILLE,
@@ -47,6 +49,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     CASE_STUDY,
     THREESIXTY,
     ASSESSOR_FORM,
+    LEAD_ASSESSOR_FORM,
     AGILE,
     MEETING
   ].freeze
@@ -60,6 +63,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     hogan: HOGAN,
     agile: AGILE,
     assessor_form: ASSESSOR_FORM,
+    lead_assessor_form: LEAD_ASSESSOR_FORM,
     saville: SAVILLE,
     pearson: PEARSON,
     iiht: IIHT,
@@ -75,6 +79,11 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     pearson: 'Assessments::Pearson',
     iiht: 'Assessments::Iiht'
   }.freeze
+
+  NON_USER_ASSESSMENT_CATEGORY = [
+    CATEGORIES[:assessor_form],
+    CATEGORIES[:lead_assessor_form]
+  ].freeze
 
   # STATUSES constant
   STATUSES = %i[in_progress finished].freeze
@@ -95,7 +104,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :highlights, dependent: :destroy
   has_many :norms, through: :dimension
   has_many :communications, dependent: :destroy
-  has_many :tasks, dependent: :destroy
   has_many :campaign_templates, dependent: :destroy
 
   # HABTM Factors
@@ -119,6 +127,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
     class_name: 'CampaignAssessment', foreign_key: :assessor_form_id
   has_many :memberships, through: :assigns
+  has_many :campaign_factors, dependent: :restrict_with_error
 
   # HABTM Clients
   has_many :clients, through: :reports
@@ -139,7 +148,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   validates :dimension, presence: true, if: :common?
   validates :name, presence: true
 
-  serialize :external_settings, PsyJsonbSerializer
+  serialize :external_settings, coder: PsyJsonbSerializer
 
   enum category: CATEGORIES
   enum status: STATUSES

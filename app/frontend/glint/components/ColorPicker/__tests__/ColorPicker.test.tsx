@@ -87,7 +87,7 @@ test('user should see previously selected colors in recently used color list', a
     await user.click(document.body)
   })
 
-  const recentlyUsedColorElements = within(getByTestId('recentlyUsedColors')).getAllByRole('button')
+  const recentlyUsedColorElements = getByTestId('recentlyUsedColors').querySelectorAll('button')
   recentlyUsedColorElements.forEach((recentlyUsedColorElement, index) => {
     expect(recentlyUsedColorElement.id).toBe(REVERSED_COLORS[index])
   })
@@ -207,7 +207,7 @@ test('user should not see duplicate colors in recently used color list when same
     trigger && fireEvent.click(trigger)
 
     const EXPECTED_REORDERED_COLORS = [COLORS[0], COLORS[2], COLORS[1]]
-    const recentlyUsedColorElements = within(getByTestId('recentlyUsedColors')).getAllByRole('button')
+    const recentlyUsedColorElements = getByTestId('recentlyUsedColors').querySelectorAll('button')
     recentlyUsedColorElements.forEach((recentlyUsedColorElement, index) => {
       expect(recentlyUsedColorElement.id).toBe(EXPECTED_REORDERED_COLORS[index])
     })

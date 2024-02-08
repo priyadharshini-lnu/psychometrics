@@ -1,10 +1,11 @@
-import { FC, ReactElement } from 'react'
+import { FC, ReactElement, ReactNode } from 'react'
 import { Card } from 'antd'
 import styles from './ThreesixtyCard.less'
 
 type Props = {
   title: string | ReactElement
   helpIcon?: string | ReactElement
+  children: ReactNode
 }
 
 export const ThreesixtyCard: FC<Props> = ({ title, helpIcon, children }) => (

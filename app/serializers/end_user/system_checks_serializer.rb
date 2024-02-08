@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 module EndUser
-  class SystemChecksSerializer < ActiveModel::Serializer
+  class SystemChecksSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :url, :checks, :id, :config, :transcribe_supported_locales
-    attribute :campaign_id, if: -> { object.assessment.threesixty? }
-    attribute :url
+    attributes :campaign_id
 
     def url
       if object.assessment.agile?
@@ -20,6 +19,8 @@ module EndUser
     end
 
     def campaign_id
+      return unless object.assessment.threesixty?
+
       object.campaign.threesixty_campaign.id
     end
 

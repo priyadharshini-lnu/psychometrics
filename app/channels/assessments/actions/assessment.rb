@@ -25,7 +25,7 @@ module Assessments
 
       action :norms do |_data, _current_user, assessment|
         assessment.norms.map do |norm|
-          NormSerializer.new(norm).to_hash
+          NormSerializer.new.serialize(norm)
         end
       end
     end

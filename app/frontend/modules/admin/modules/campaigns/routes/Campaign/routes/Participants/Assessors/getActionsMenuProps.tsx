@@ -1,6 +1,5 @@
-import React from 'react'
 import {
-  MenuProps, Modal, message,
+  MenuProps, App,
 } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -21,8 +20,9 @@ interface ActionMenuData {
 export const getActionsMenuProps = ({
   campaignId, id, remove, email, permissions,
 }: ActionMenuData):MenuProps => {
+  const { modal, message } = App.useApp()
   const handleDelete = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,

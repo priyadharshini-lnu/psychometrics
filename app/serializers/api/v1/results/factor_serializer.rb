@@ -3,7 +3,7 @@
 module Api
   module V1
     module Results
-      class FactorSerializer < ActiveModel::Serializer
+      class FactorSerializer < Panko::Serializer
         attributes :id, :name, :value
 
         def id

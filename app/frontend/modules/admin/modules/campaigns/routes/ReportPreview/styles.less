@@ -1,5 +1,5 @@
 @import '~/styles/spacing.less';
-@import '~/styles/ant.variable.less';
+@import '~/styles/antv4.variable.less';
 
 :global {
   .reportContainer {
@@ -57,7 +57,7 @@
     border-left: 3px solid transparent;
     padding: @space-4;
     &.highlighted {
-      border-left: 3px solid @base-primary;
+      border-left: 3px solid var(--ant-primary-color);
       background-color:#E9F7F6;
     }
   }

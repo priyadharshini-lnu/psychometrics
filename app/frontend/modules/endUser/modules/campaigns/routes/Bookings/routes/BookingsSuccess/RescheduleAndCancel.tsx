@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import {
-  Form, Space, Button, Input, Popconfirm, PopconfirmProps,
+  Form, Space, Button, Input, Popconfirm,
 } from 'antd'
 
 import { DirectionalArrowIcon } from '~/glint'
@@ -15,11 +15,14 @@ type Props = {
   requestForCancelInProgress: boolean
   requestForRescheduleInProgress: boolean
   allowCancelByUser: boolean
+  allowRescheduleByUser: boolean,
   cancelInProgress: boolean
+  allowLateCancellationAndRescheduling: boolean
 }
 export const RescheduleAndCancel: FC<Props> = ({
   cancelBooking, onCancelBooking, onRescheduleBooking, requestForRescheduleInProgress, requestForCancelInProgress,
-  onRequestCancellation, allowCancelByUser, cancelInProgress,
+  onRequestCancellation, allowCancelByUser, cancelInProgress, allowRescheduleByUser,
+  allowLateCancellationAndRescheduling,
 }) => {
   const [openConfirmPopup, setOpenConfirmPopup] = useState(false)
   const [requestCancelForm] = Form.useForm()
@@ -34,37 +37,38 @@ export const RescheduleAndCancel: FC<Props> = ({
     }
   }, [cancelInProgress])
 
+  const cancelBtn = (
+    <Button
+      onClick={() => {
+        allowCancelByUser ? setOpenConfirmPopup(true) : onCancelBooking(true)
+      }}
+      className="ps-2 pe-2"
+      type="link"
+    >
+      {I18n.t('frontend.bookings.buttons.cancel_booking')}
+    </Button>
+  )
+
+
   if (cancelBooking) {
     return (
       <>
         <label className="block" htmlFor="reason">{reasonLabel}</label>
-        <Form
-          form={requestCancelForm}
-          onFinish={(values) => {
-            onRequestCancellation(values.reason)
-          }}
-        >
+        <Form form={requestCancelForm} onFinish={(values) => { onRequestCancellation(values.reason) }}>
           <Form.Item name="reason" rules={[{ required: true }]}><Input.TextArea rows={3} /></Form.Item>
         </Form>
         <div className="ta-e">
           <Space>
-            <Button
-              size="small"
-              onClick={() => {
-                onCancelBooking(false)
-              }}
-            >
+            <Button size="small" onClick={() => { onCancelBooking(false) }}>
               {I18n.t('frontend.bookings.buttons.nevermind')}
             </Button>
-
             <Button
               loading={requestForRescheduleInProgress || requestForCancelInProgress}
               size="small"
               type="primary"
               onClick={() => requestCancelForm.submit()}
             >
-              {requestButtonText}
-              {' '}
+              {`${requestButtonText} `}
               <DirectionalArrowIcon />
             </Button>
           </Space>
@@ -72,55 +76,36 @@ export const RescheduleAndCancel: FC<Props> = ({
       </>
     )
   }
+
   return (
     <>
       <Space size={2}>
         <span>{I18n.t('frontend.bookings.need_changes')}</span>
-        <CancelButtonWrapper
-          allowCancelByUser={allowCancelByUser}
-          cancelInProgress={cancelInProgress}
-          onConfirm={() => onCancelBooking(true)}
-          open={openConfirmPopup}
-          onCancel={() => setOpenConfirmPopup(false)}
-        >
-          <Button
-            onClick={() => {
-              allowCancelByUser ? setOpenConfirmPopup(true) : onCancelBooking(true)
-            }}
-            className="ps-2 pe-2"
-            type="link"
+        {allowCancelByUser ? (
+          <Popconfirm
+            title={I18n.t('frontend.bookings.cancel_booking_confirmation')}
+            okButtonProps={{ loading: cancelInProgress }}
+            cancelButtonProps={{ disabled: cancelInProgress }}
+            onConfirm={() => onCancelBooking(true)}
+            onCancel={() => setOpenConfirmPopup(false)}
+            open={openConfirmPopup}
+            okText={I18n.t('frontend.bookings.buttons.yes_text')}
+            cancelText={I18n.t('frontend.bookings.buttons.no_text')}
           >
-            {I18n.t('frontend.bookings.buttons.cancel_booking')}
+            {cancelBtn}
+          </Popconfirm>
+        ) : null}
+        {!allowCancelByUser && allowLateCancellationAndRescheduling ? cancelBtn : null}
+        {(allowCancelByUser && allowRescheduleByUser && !allowLateCancellationAndRescheduling)
+        || (allowLateCancellationAndRescheduling)
+          ? <span>{I18n.t('frontend.bookings.or')}</span>
+          : null}
+        {(!allowRescheduleByUser && allowLateCancellationAndRescheduling) || allowRescheduleByUser ? (
+          <Button className="ps-2 pe-2" type="link" onClick={() => onRescheduleBooking()}>
+            {I18n.t('frontend.bookings.buttons.reschedule')}
           </Button>
-        </CancelButtonWrapper>
-        <span>{I18n.t('frontend.bookings.or')}</span>
-        <Button className="ps-2 pe-2" type="link" onClick={() => onRescheduleBooking()}>
-          {I18n.t('frontend.bookings.buttons.reschedule')}
-        </Button>
+        ) : null}
       </Space>
     </>
   )
 }
-
-type CancelButtonWrapperProps = Omit<PopconfirmProps, 'title'|'okText'|'cancelText'> & {
-  allowCancelByUser: boolean
-  cancelInProgress: boolean
-}
-const CancelButtonWrapper:FC<CancelButtonWrapperProps> = ({
-  allowCancelByUser, children, cancelInProgress, onConfirm, open, onCancel,
-}) => (
-  allowCancelByUser ? (
-    <Popconfirm
-      title={I18n.t('frontend.bookings.cancel_booking_confirmation')}
-      okButtonProps={{ loading: cancelInProgress }}
-      cancelButtonProps={{ disabled: cancelInProgress }}
-      onConfirm={onConfirm}
-      onCancel={onCancel}
-      open={open}
-      okText={I18n.t('frontend.bookings.buttons.yes_text')}
-      cancelText={I18n.t('frontend.bookings.buttons.no_text')}
-    >
-      {children}
-    </Popconfirm>
-  ) : <>{children}</>
-)

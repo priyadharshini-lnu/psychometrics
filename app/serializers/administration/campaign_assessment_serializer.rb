@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class CampaignAssessmentSerializer < ActiveModel::Serializer
+  class CampaignAssessmentSerializer < Panko::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_id, :enable_universal_links,
                :universal_link, :norms, :is_external, :assessor_form_name, :permissions,
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
@@ -22,13 +22,13 @@ module Administration
     end
 
     def universal_link
-      assessment.decorate.anonym_link_for_campaign(object.campaign) if object.enable_universal_links
+      assessment.decorate.anonym_link_for_campaign(object.campaign) if object.assessment_key
     end
 
     def norms
       return assessment.external_norms if assessment.has_external_norm?
 
-      assessment.norms.map { |n| NormSerializer.new(n).to_h }
+      assessment.norms.map { |n| NormSerializer.new.serialize(n) }
     end
 
     def has_external_norm
@@ -57,8 +57,8 @@ module Administration
           'schedule_assessment'
         ],
         {
-          project_id: instance_options[:project_id],
-          campaign_id: instance_options[:campaign_id]
+          project_id: context[:project_id],
+          campaign_id: context[:campaign_id]
         }
       )
     end
@@ -70,7 +70,7 @@ module Administration
     private
 
     def current_user
-      instance_options[:current_user]
+      context[:current_user]
     end
 
     def norm

@@ -28,6 +28,7 @@ class Client < ApplicationRecord
   attr_accessor :operator
 
   belongs_to :tte, class_name: 'Client'
+  belongs_to :client, foreign_key: :tte_id, class_name: 'Client', inverse_of: :projects
   belongs_to :project_manager, class_name: 'User'
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'

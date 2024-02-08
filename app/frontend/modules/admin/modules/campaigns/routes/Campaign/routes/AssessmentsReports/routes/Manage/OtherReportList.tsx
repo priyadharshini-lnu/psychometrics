@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, MenuProps, Row, Col, message, Pagination,
+  Table, MenuProps, Row, Col, App, Pagination,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { MoreOutlined } from '@ant-design/icons'
@@ -57,6 +57,7 @@ const OtherReportListComponent: React.FC<Props> = ({
   }, [tableConfig.page])
   const { campaignId } = useParams<{ campaignId: string }>()
   const parsedPage = parseInt(tableConfig.page as unknown as string, 10)
+  const { message } = App.useApp()
 
   const parsedCampaignId = parseInt(campaignId, 10)
 

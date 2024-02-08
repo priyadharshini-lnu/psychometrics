@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Row, Col, Modal, message, MenuProps,
+  Table, Row, Col, message, MenuProps, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -24,6 +24,7 @@ type Props = PropsFromRedux
 
 const AssessmentList: React.FC<Props> = () => {
   const { campaignId } = useParams<{ campaignId: string }>()
+  const { modal } = App.useApp()
 
   const stateManager = useCampaignAssessorAssessmentsStore()
 
@@ -42,7 +43,7 @@ const AssessmentList: React.FC<Props> = () => {
   }, [])
 
   const removeAssessorAssessment = (assessorAssessment) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
       content: I18n.t(
         'administration.project_tabs.webhooks.remove_webhook.content',

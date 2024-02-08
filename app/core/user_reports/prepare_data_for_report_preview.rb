@@ -2,12 +2,13 @@
 
 module UserReports
   class PrepareDataForReportPreview < BaseCommand
-    private_attr_reader :user_report, :report, :options
+    private_attr_reader :user_report, :report, :options, :view_report_as
 
     def initialize(user_report, options)
       @user_report = user_report
       @report = @user_report.report
       @options = options
+      @view_report_as = options[:view_report_as]
     end
 
     def call
@@ -15,7 +16,7 @@ module UserReports
 
       broadcast :ok,
                 user: Reports::UserSerializer.new(user_report.user).to_json,
-                results: UserReports::GroupedResultsByAssessment.call!(user_report).to_json,
+                results: UserReports::GroupedResultsByAssessment.call!(user_report, view_report_as).to_json,
                 user_report_data: UserReports::PrepareUserReportData.call!(user_report).to_json,
                 data: ReportSerializer.new(
                   report,

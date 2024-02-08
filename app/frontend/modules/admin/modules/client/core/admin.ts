@@ -38,6 +38,11 @@ export const ProjectAdminTR = t.type({
       email: t.string,
     }),
     t.undefined]),
+  adminRoles: t.array(t.type({
+    id: t.string,
+    name: t.string,
+    type: t.string,
+  })),
 })
 
 const AdminPermissionsTR = t.type({
@@ -66,6 +71,11 @@ const CampaignAdminTR = t.type({
     assessors: t.array(t.string),
     datashteets: t.array(t.string),
   }),
+  adminRoles: t.array(t.type({
+    id: t.string,
+    name: t.string,
+    type: t.string,
+  })),
 })
 
 export const CurrentUserPermissionsTR = t.type({
@@ -101,10 +111,18 @@ export const ProjectAdminViewTR = t.type({
   userId: t.string,
 })
 
-
 export type ProjectAdmin = t.TypeOf<typeof ProjectAdminTR>
 export type CampaignAdmin = t.TypeOf<typeof CampaignAdminTR>
 export type Admin = t.TypeOf<typeof AdminTR>
 export type ProjectAdminViewDetails = t.TypeOf<typeof ProjectAdminViewTR>
 export type AdminPermissions = t.TypeOf<typeof AdminPermissionsTR>
 export type CurrentUserPermissions = t.TypeOf<typeof CurrentUserPermissionsTR>
+
+export const Schema = {
+  type: 'memberships',
+  relationships: {
+    admin_roles: {
+      type: 'admin_roles',
+    },
+  },
+}

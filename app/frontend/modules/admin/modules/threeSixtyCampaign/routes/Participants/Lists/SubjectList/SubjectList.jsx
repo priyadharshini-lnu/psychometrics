@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Row, Col,
+  Table, Row, Col, App,
 } from 'antd'
 import { UserOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from '~/presenters/user'
@@ -39,6 +39,8 @@ export default function SubjectList ({
   },
   match,
 }) {
+  const { message } = App.useApp()
+  const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
   useEffect(() => {
     fetchSubjects(campaignId, page, searchTerm)
   }, [page, searchTerm])
@@ -146,6 +148,8 @@ export default function SubjectList ({
                       onUserUpdate,
                       permissions,
                       regenerateReport,
+                      message,
+                      setShowResetSubjectModal,
                     })
                   }
                   innerElement={(
@@ -165,7 +169,7 @@ export default function SubjectList ({
       <CreateSubjectModal match={match} />
       <SubjectImportModal match={match} />
       <UserEditModal match={match} />
-      <ResetSubjectModal />
+      <ResetSubjectModal open={showResetSubjectModal} />
     </>
   )
 }

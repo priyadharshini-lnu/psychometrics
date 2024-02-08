@@ -1,4 +1,3 @@
-import React from 'react'
 import { Typography, Col, Row } from 'antd'
 import { BookingConfirmationContainer } from '~/glint'
 

@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from 'react'
+import { FC, useState, useRef } from 'react'
 import {
   Button, Select, Row, Col, Space, List, Dropdown, Spin, Modal, Input, InputRef, FormInstance, Alert, message,
 } from 'antd'
@@ -15,7 +15,6 @@ import { User, UserTR } from '~/modules/admin/modules/campaigns/core/user'
 import styles from './Form.less'
 import { useResources } from '~/hooks/useResources'
 import { uploadCSV, UPLOAD_CSV } from '~/modules/admin/modules/client/core/workshopInvite'
-import { Errors } from './BaseInfo'
 import { isRequestInProgress } from '~/core/request'
 
 const BULK_IMPORT_ACTION = 'import_subjects_from_campaign'
@@ -35,7 +34,7 @@ export const AddSubjectsComponent: FC<Props> = ({
   form, next, prev, uploadCSV, uploadInProgress, onCancel,
 }) => {
   const [uploadModal, showUploadModal] = useState(false)
-  const [importErrors, setImportErrors] = useState<Errors[]>([])
+  const [importErrors, setImportErrors] = useState<{title: string}[]>([])
   const [csvErrors, setCSVErrors] = useState<{index: number, email:string}[]>([])
   const ref = useRef<InputRef>(null)
   const { campaignId } = useParams<{campaignId: string}>()
@@ -215,8 +214,12 @@ export const AddSubjectsComponent: FC<Props> = ({
             <Col flex="1">
               <Alert
                 message="Errors"
-                description={importErrors.map(
-                  error => error.title,
+                description={(
+                  <>
+                    {importErrors.map(
+                      error => error.title,
+                    )}
+                  </>
                 )}
                 type="error"
               />

@@ -1,0 +1,37 @@
+# frozen_string_literal: true
+
+module Api
+  module Administration
+    class CampaignUserScoringPolicy < ::Api::Administration::BasePolicy
+      def index?
+        has_permission?(:campaign_factors, :view)
+      end
+
+      def change_finalized_campaign_score?
+        has_permission?(:results, :finalize_scores)
+      end
+
+      def rescore?
+        has_permission?(:results, :rescore_responses)
+      end
+
+      def change_finalized_campaign_score_bulk?
+        has_permission?(:results, :finalize_scores)
+      end
+
+      def rescore_bulk?
+        has_permission?(:results, :rescore_responses)
+      end
+
+      class Scope < ::Api::Administration::BasePolicy::Scope
+        def resolve
+          if @user.has_permission?(:campaign_factors, :view)
+            scope.includes(:user, :campaign_factor_values).where(campaign_id: campaign_id)
+          else
+            scope.none
+          end
+        end
+      end
+    end
+  end
+end

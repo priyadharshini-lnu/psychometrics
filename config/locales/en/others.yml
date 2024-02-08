@@ -61,6 +61,7 @@ en:
           attributes:
             assessors:
               email_duplicated: The subject and assessor emails are duplicated
+              multiple_leads_for_subject: Multiple Lead Assessors assigned to subject
             evaluators:
               email_duplicated: The subject and evaluator emails are duplicated
             subjects:
@@ -69,6 +70,7 @@ en:
           attributes:
             assessment_ids:
               invalid: Assessment %{id} can't be attached to an assessor
+              lead_assessor_already_assigned: Subject can be assigned only one Lead Assessor
             assessor_email:
               already_exists: The subject with this assessor are already connected
               blank: Assessor Email can't be blank
@@ -596,6 +598,10 @@ en:
           attributes:
             external_config:
               invalid: External Config should be a valid josn
+        campaign_factor:
+          attributes:
+            formula:
+              cyclic_dependency_found: 'There is a cyclic dependency in the formula. Dependency: %{cyclic_path}'
         factors_norm:
           score_from_must_be_number: Score from must be number
           score_to_less_than_score_from: Score to is less than Score from
@@ -660,6 +666,7 @@ en:
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        bulk_rescore_campaign_factors: Bulk Rescore Campaign Factors
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
@@ -714,6 +721,7 @@ en:
       archived: Archived
       expired: Expired
       not_active: Not Active
+    link_invalid_error_message: The link you're trying to access is invalid. Please contact the administrator to get the correct URL and proceed with the survey.
     notifications:
       restart:
         copy: You had already started this survey. You can choose to Continue or Restart.
@@ -725,13 +733,14 @@ en:
         success_message: Asessment %{name} archived successfully
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Asessment %{name} coppied successfully
+        success_message: Asessment %{name} was copied successfully
       details: Details
       download_csv: Download CSV
       edit: Edit
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Click here to continue
+      moderate: Moderate Scores
       next_assessment: Pass To Next Assessment
       pending_tasks:
         one: You have one 1 pending task
@@ -819,6 +828,7 @@ en:
         case_study: Case Studies
         hogan: Hogan
         iiht: IIHT
+        lead_assessor_form: Lead Assessor Form
         meeting: Meeting
         mindmill: Mindmill
         organisational: Org Surveys
@@ -959,6 +969,13 @@ en:
       no_assessments: Drag and drop the assessments
       no_ungrouped_assessments: Drag and drop the assessments here for ungrouping
       ungrouped_assessments: Ungrouped assessments
+  assessors:
+    campaigns_list:
+      column:
+        evaluation_count: Evaluation Count
+        evaluation_status: Evaluation Status
+        moderation_count: Moderation Count
+        moderation_status: Moderation Status
   assigns:
     assign:
       accept_privacy_modal:
@@ -1327,6 +1344,7 @@ en:
       export_data: Export Data
     column:
       assessor_access: Assessor Access
+      main_report: Main Report
       report_bundle: Report Bundle
       report_name: Report name
       user_access: User Access
@@ -1386,7 +1404,7 @@ en:
         content: Are you sure you want to send instructions with link to change password?
         successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
         title: Change password %{name}?
-      remove: Are you sure you want to remove user with email %{email} from this campaign?
+      remove: Are you sure you want to remove user with email '%{email}' from this campaign?
   campaigns:
     assessments_and_reports:
       assessor_assessments: Assessor Assessments
@@ -1551,6 +1569,7 @@ en:
       projects: Projects
       report: Report
       reports: Reports
+      scoring: Scoring
       sms_invite: SMS Invite
     status:
       completed: Completed
@@ -1770,8 +1789,10 @@ en:
           register: Register
           sign_in: Login
         title: Welcome!
-      signed_in: Signed in successfully.
+      signed_in: You have Signed in successfully!
+      signed_in_time: You last signed in on %{date_time}
       signed_out: Signed out successfully.
+      unsuccessful_sign_in_time: Your last sign-in attempt on %{date_time} was unsuccessful.
     two_factor_authentication:
       attempt: Please enter the OTP, you have received at your registered email address
       attempt_failed: Incorrect OTP! Please try again
@@ -1783,7 +1804,7 @@ en:
       max_login_attempts_reached: You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP
       otp: Code
       submit: Verify
-      success: Login with Two Factor Authentication was successful
+      success: Login with Two Factor Authentication was successful.
       title: One-Time Password
     unlocks:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
@@ -1801,17 +1822,27 @@ en:
       already_invited: This user already exists in the assessment centre you are attempting to add.
       assessor_assessment:
         already_added: Assessor Assessment already added to campaign.
+        lead_already_added: Only one Lead Assessor Assessment can be added to campaign.
+      campaign_factor_group:
+        last_factor_group: Cannot delete last Campaign factor group.
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
       filled?: can't be blank
+      invalid_lua_name: should be valid lua variable name
+      invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
+      invalid_value: invalid value '%{value}' in line number %{row}
       json?: Should be valid JSON
       key?: can't be blank
+      match_regexp?: invalid value
       missed?: can't be blank
       not_in_the_list?: invalid value passed
+      not_uniq_variable: name '%{value}' line number %{row} is duplicating
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
+      size?: size should be less %{size}
+      uniq?: should be unique
       update_workshop:
         less_than_booked: The total seats must be greater than booked
       user_availability_date:
@@ -1823,6 +1854,9 @@ en:
         already_exists: Subject already exists in the invite.
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
+      workshops:
+        no_available_assessor_slots: No available slots for assessor %{assessor}
+        no_available_manager_slots: No available slots for manager %{manager}
     users:
       registrations:
         new:
@@ -2021,6 +2055,7 @@ en:
     'no': 'No'
     passwordSetting:
       update_success: Security settings successfully updated
+    report_error: Oops, something went wrong with your report. Please contact the support.
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
       refresh: Refresh
@@ -2501,7 +2536,7 @@ en:
         success_message: Report %{name} archived successfully
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Report %{name} coppied successfully
+        success_message: Report %{name} was copied successfully
       details: Details
       download: Download report
       download_csv: Download CSV
@@ -2520,9 +2555,9 @@ en:
         success_message: Report %{name} has been removed
       rescore: Rescore
       restore:
-        success_message: Report %{name} restored successfully
+        success_message: Report %{name} was restored successfully
       unarchived:
-        success_message: Report %{name} unarchived successfully
+        success_message: Report %{name} was unarchived successfully
       view: View Report
     active: Active
     archived: Archived
@@ -3285,11 +3320,15 @@ en:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
+    active: Active
     allow_multiple_respones: Allow users to submit multiple responses
+    are_you_sure: Are you sure? This will make the existing URL unusable.
     close: Close
     deactivate_link: Deactivate Link
     png: PNG
     regenerate_link: Regenerate Link
+    save: Save
+    successfully_generated: Successfully generated
     successfully_updated: Successfully updated
     svg: SVG
   update_profile:
@@ -3423,7 +3462,9 @@ en:
       remove:
         confirm_message: Are you sure you want to delete the user with an email '%{email}'?
         confirm_title: Confirmation Required
+        error_message: Could not remove the user due to error - %{error}
         success_message: "%{email} has been removed"
+        system_error_message: Could not remove the user, please try again later or contact support.
       reset_password:
         option: Reset Password
     admins: Admins
@@ -3439,6 +3480,7 @@ en:
     remove_message: Are you sure?
     roles:
       campaign_admin: Campaign Admin
+      campaign_assessor: Campaign Assessor
       campaign_user: Campaign User
       client_admin: Client Admin
       project_admin: Project Admin

@@ -5,5 +5,13 @@ class Api::V2::Administration::CampaignAssessmentResource < Api::V2::Administrat
 
   has_one :assessment
 
-  ransack_filters %i[workshop_activity_eq campaign_id_eq]
+  ransack_filters %i[workshop_activity_eq campaign_id_eq assessment_name_cont assessment_archived_eq
+                     assessment_category_not_in]
+
+  def self.records(opts = {})
+    ::Api::Administration::CampaignAssessmentPolicy::Scope.new(
+      opts[:context][:user], ::CampaignAssessment,
+      campaign_id: opts[:context][:campaign].id
+    ).resolve.distinct
+  end
 end

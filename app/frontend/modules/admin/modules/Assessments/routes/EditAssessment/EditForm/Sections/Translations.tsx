@@ -1,7 +1,7 @@
 import * as t from 'io-ts'
 import React, { useState, useEffect } from 'react'
 import {
-  Button, Col, Row, Select, Input, Form, Divider, Alert as AntAlert, message,
+  Button, Col, Row, Select, Input, Form, Divider, Alert as AntAlert, App,
 } from 'antd'
 import { MemberAction } from 'hooks/useResources/interfaces'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
@@ -34,6 +34,7 @@ export const Translations: React.FC<Props> = ({ assessment, memberAction }) => {
   const [refLocale, setRefLocale] = useState('')
   const [baseLocale, setBaseLocale] = useState('en')
   const [translations, setTranslations] = useState({})
+  const { message } = App.useApp()
 
   const fetchTranslations = (locale: string) => memberAction({
     id: assessment.id,

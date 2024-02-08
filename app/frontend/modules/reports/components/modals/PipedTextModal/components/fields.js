@@ -1,36 +1,36 @@
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 
 const DATE_FORMATS = [
   {
-    name: moment().format('M/D/YYYY'),
+    name: dayjs().format('M/D/YYYY'),
     format: '%-d/%-m/%Y',
   },
   {
-    name: moment().format('YYYY-M-D'),
+    name: dayjs().format('YYYY-M-D'),
     format: '%Y-%-m-%-d',
   },
   {
-    name: `${moment().format('MM/DD/YYYY')} (leading zero)`,
+    name: `${dayjs().format('MM/DD/YYYY')} (leading zero)`,
     format: '%m/%d/%Y',
   },
   {
-    name: `${moment().format('DD/MM/YYYY')} (leading zero)`,
+    name: `${dayjs().format('DD/MM/YYYY')} (leading zero)`,
     format: '%d/%m/%Y',
   },
   {
-    name: `${moment().format('YYYY/MM/DD')} (leading zero)`,
+    name: `${dayjs().format('YYYY/MM/DD')} (leading zero)`,
     format: '%Y/%m/%d',
   },
   {
-    name: `${moment().format('DD MMM YYYY')}`,
+    name: `${dayjs().format('DD MMM YYYY')}`,
     format: '%d %b %Y',
   },
   {
-    name: `${moment().format('dddd, MMMM YYYY')}`,
+    name: `${dayjs().format('dddd, MMMM YYYY')}`,
     format: '%A, %B %Y',
   },
   {
-    name: `${moment().format()}`,
+    name: `${dayjs().format()}`,
     format: '%FT%T%:z',
   },
   {
@@ -38,22 +38,22 @@ const DATE_FORMATS = [
     format: '%FT%T%:z',
   },
   {
-    name: `${moment().format('h:m A')}`,
+    name: `${dayjs().format('h:m A')}`,
     format: '%l:%M %p',
     other: false,
   },
   {
-    name: `${moment().format('h:ma')}`,
+    name: `${dayjs().format('h:ma')}`,
     format: '%l:%M%P',
     other: false,
   },
   {
-    name: `${moment().format('H:m')}`,
+    name: `${dayjs().format('H:m')}`,
     format: '%k:%M',
     other: false,
   },
   {
-    name: `${moment().format('H:m:s')}`,
+    name: `${dayjs().format('H:m:s')}`,
     format: '%k:%M:%S',
     other: false,
   },

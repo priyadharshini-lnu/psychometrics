@@ -89,6 +89,7 @@ _.extend(Question.prototype, {
     this.props.defaultValues = _.cloneDeep(DefaultProps[this.type].defaultValues || [])
     this.resetResult()
     this.emit('resetDefaultValues')
+    this.result.reduxAnswer()
   },
 
   rename (name) {

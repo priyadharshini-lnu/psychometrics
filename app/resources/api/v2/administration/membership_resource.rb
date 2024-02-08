@@ -2,9 +2,10 @@
 
 class Api::V2::Administration::MembershipResource < Api::V2::Administration::BaseResource
   attributes :user_id, :client_id, :project_id, :campaign_id, :name, :first_name, :last_name, :email, :created_at,
-             :role, :grant_names
+             :role, :grant_names, :admin_role_ids
 
   has_one :user
+  has_many :admin_roles
 
   ransack_filters %i[client_id_eq campaign_id_eq project_id_eq with_role filterable_fields]
 
@@ -19,6 +20,10 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
   audit_log_for :destroy, payload: ->(_, record) { record.log_attribute_for_delete }
+
+  def self.records(opts)
+    super(opts).includes(:admin_roles)
+  end
 
   def set_user_as_admin
     if @model.user.new_record?
@@ -48,7 +53,11 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
   end
 
   def grant_names=(new_fields)
-    @model.build_grants(data: new_fields)
+    if @model.grants
+      @model.grants.data = new_fields
+    else
+      @model.build_grants(data: new_fields)
+    end
   end
 
   def user_id=(new_fields)

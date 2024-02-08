@@ -37,14 +37,24 @@ module Administration
       def update_additional_time
         ::UsersResults::AddAdditionalTime.call!(resource.users_result, params[:additional_time] * 60)
 
-        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
+        render json: Administration::UserDetailSerializer.new(
+          context: {
+            campaign: resource.campaign,
+            current_user: current_user
+          }
+        ).serialize(resource.user)
       end
 
       def destroy
         resource.destroy!
         audit! :delete, resource, payload: resource.log_attributes, campaign: resource.campaign
 
-        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
+        render json: Administration::UserDetailSerializer.new(
+          context: {
+            campaign: resource.campaign,
+            current_user: current_user
+          }
+        ).serialize(resource.user)
       end
 
       def rescore_response
@@ -61,8 +71,12 @@ module Administration
         ::UsersResults::Reset.call(resource) do
           on(:ok) do
             audit! :reset, resource, campaign: resource.campaign
-            return render json: resource.user, serializer: Administration::UserDetailSerializer,
-                          campaign: resource.campaign
+            return render json: Administration::UserDetailSerializer.new(
+              context: {
+                campaign: resource.campaign,
+                current_user: current_user
+              }
+            ).serialize(resource.user)
           end
           on(:error) do |error|
             return render json: { errors: error }, status: 422
@@ -74,7 +88,12 @@ module Administration
         ::UserAssessments::ResetProgress.call!(resource, reset_flag: true)
         audit! :reset_progress, resource, campaign: resource.campaign
 
-        render json: resource.user, serializer: Administration::UserDetailSerializer, campaign: resource.campaign
+        render json: Administration::UserDetailSerializer.new(
+          context: {
+            campaign: resource.campaign,
+            current_user: current_user
+          }
+        ).serialize(resource.user)
       end
 
       def toggle_require_scheduling
@@ -82,13 +101,23 @@ module Administration
         attrs[:schedule_time] = nil unless params[:require_scheduling]
         resource.update!(attrs)
 
-        render json: resource, serializer: Administration::UserAssessmentSerializer, campaign: resource.campaign
+        render json: Administration::UserAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            campaign: resource.campaign
+          }
+        ).serialize(resource)
       end
 
       def schedule_assessment
         resource.update!(schedule_time: params[:schedule_time])
 
-        render json: resource, serializer: Administration::UserAssessmentSerializer, campaign: resource.campaign
+        render json: Administration::UserAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            campaign: resource.campaign
+          }
+        ).serialize(resource)
       end
 
       private

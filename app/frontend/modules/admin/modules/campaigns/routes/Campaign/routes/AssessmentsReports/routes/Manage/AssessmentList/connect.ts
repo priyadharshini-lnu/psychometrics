@@ -1,8 +1,8 @@
 import { connect, ConnectedProps } from 'react-redux'
 import { get as getAssessments } from '~/modules/admin/modules/campaigns/core/assessments'
 import {
-  activateUniversalLink, rescoreResponses, remove, exportRawResults, exportScoringResults,
-  exportNormedResults, exportRawFactorScores, exportExternalResults, updateExternalConfig,
+  rescoreResponses, remove, exportRawResults, exportScoringResults,
+  exportNormedResults, exportRawFactorScores, enableUniversalLink, exportExternalResults, updateExternalConfig,
   updatePrework, updateWorkshopActivity, toggleRequireScheduling,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -16,7 +16,6 @@ const connecter = connect(
   }),
   {
     openModal,
-    activateUniversalLink,
     rescoreResponses,
     remove,
     exportRawResults,
@@ -24,6 +23,7 @@ const connecter = connect(
     exportNormedResults,
     exportRawFactorScores,
     exportExternalResults,
+    enableUniversalLink,
     updateExternalConfig,
     updatePrework,
     updateWorkshopActivity,

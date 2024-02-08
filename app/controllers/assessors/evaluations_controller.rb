@@ -9,8 +9,9 @@ class Assessors::EvaluationsController < Assessors::BaseController
     authorize(UserAssessment)
     campaign = Campaign.find(params[:campaign_id])
     user = User.find(params[:id])
-    @assessor_assessments = policy_scope(UserAssessment).where(
-      campaign_id: campaign.id, subject_id: user.id
+    @assessor_assessments = policy_scope(UserAssessment).joins(:assessment).where(
+      campaign_id: campaign.id, subject_id: user.id, assessments: { category: :assessor_form },
+      relationship: Relationship.assessor_relationship
     ).order(:id)
 
     assessment_ids = @assessor_assessments.map(&:assessment).map(&:linked_assessment_id)
@@ -29,7 +30,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
 
     render json: {
       user_info: {
-        user: UserSerializer.new(user).to_hash,
+        user: UserSerializer.new.serialize(user),
         datasheet_columns: datasheet_columns || [],
         datasheet: datasheet&.slice(*datasheet_columns.map { |col| col['name'] }) || {}
       },
@@ -69,11 +70,17 @@ class Assessors::EvaluationsController < Assessors::BaseController
     selected_locale = user_assessment.selected_locale || user_locale
 
     {
-      result: UsersResultSerializer.new(user_result, campaign: user_assessment.campaign,
-                                          participant: user_assessment,
-                                          current_user: current_user, locale: selected_locale,
-                                          piped_text_context: build_piped_context(user_assessment)).
-        to_hash(include: '**'),
+      result: UsersResultSerializer.new(
+        context: {
+          campaign: user_assessment.campaign,
+          participant: user_assessment,
+          current_user: current_user,
+          locale: selected_locale,
+          piped_text_context: build_piped_context(user_assessment),
+          include: '**'
+        }
+      ).serialize(user_result),
+
       assessment: AssessmentSerializer.new(user_assessment.assessment,
                                            selected_locale: selected_locale,
                                            piped_text_context: build_piped_context(user_assessment)).

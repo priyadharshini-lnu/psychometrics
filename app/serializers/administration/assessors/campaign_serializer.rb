@@ -2,26 +2,44 @@
 
 module Administration
   module Assessors
-    class CampaignSerializer < ActiveModel::Serializer
-      attributes :id, :name, :start_date, :end_date, :status, :completion_status,
-                 :completed_subject_count, :total_subject_count
+    class CampaignSerializer < Panko::Serializer
+      attributes :id, :name, :start_date, :end_date, :status, :evaluation_completion_status,
+                 :completed_subject_evaluation_count, :total_subject_evaluation_count,
+                 :completed_subject_moderation_count, :total_subject_moderation_count,
+                 :moderation_completion_status
 
-      def completion_status
-        ::Assessors::GetStatusFromCounts.call!(subject_status_count)
+      def evaluation_completion_status
+        ::Assessors::GetStatusFromCounts.call!(subject_evaluation_statuses_count)
       end
 
-      def completed_subject_count
-        subject_status_count[:completed]
+      def moderation_completion_status
+        ::Assessors::GetStatusFromCounts.call!(subject_moderation_statuses_count)
       end
 
-      def total_subject_count
-        subject_status_count[:total]
+      def completed_subject_evaluation_count
+        subject_evaluation_statuses_count[:completed]
+      end
+
+      def total_subject_evaluation_count
+        subject_evaluation_statuses_count[:total]
+      end
+
+      def completed_subject_moderation_count
+        subject_moderation_statuses_count[:completed]
+      end
+
+      def total_subject_moderation_count
+        subject_moderation_statuses_count[:total]
       end
 
       private
 
-      def subject_status_count
-        instance_options.dig(:subject_statuses_count, object.id) || { total: 0, completed: 0, in_progress: 0 }
+      def subject_evaluation_statuses_count
+        context.dig(:subject_evaluation_statuses_count, object.id) || UserAssessment.statuses_count.merge(total: 0)
+      end
+
+      def subject_moderation_statuses_count
+        context.dig(:subject_moderation_statuses_count, object.id) || UserAssessment.statuses_count.merge(total: 0)
       end
     end
   end

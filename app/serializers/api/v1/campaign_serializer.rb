@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class CampaignSerializer < ActiveModel::Serializer
+    class CampaignSerializer < Panko::Serializer
       attributes :id, :name, :status, :start_date, :end_date, :fixed_time, :duration, :enable_instructions,
                  :instructions, :created_at, :updated_at, :description
 

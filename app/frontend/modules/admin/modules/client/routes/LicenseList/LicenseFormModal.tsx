@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Form, DatePicker, InputNumber, Select, Spin,
 } from 'antd'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
@@ -17,8 +17,8 @@ interface Props {
 }
 
 interface LicenseFormValues extends Omit<License, 'startDate' | 'endDate'> {
-  startDate: moment.Moment
-  endDate: moment.Moment
+  startDate: dayjs.Dayjs
+  endDate: dayjs.Dayjs
 }
 
 export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
@@ -41,8 +41,8 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
   const requestResponseDateFormat = 'YYYY-MM-DD'
   const licenseResource = license ? {
     ...license,
-    startDate: moment(license.startDate, requestResponseDateFormat),
-    endDate: moment(license.endDate, requestResponseDateFormat),
+    startDate: dayjs(license.startDate, requestResponseDateFormat),
+    endDate: dayjs(license.endDate, requestResponseDateFormat),
   } : undefined
 
   return (

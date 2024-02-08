@@ -1,4 +1,5 @@
 import React from 'react'
+import { ConfigProvider } from 'antd'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
@@ -22,24 +23,29 @@ const client = new ApiClient({
 })
 
 const App: React.FC<void> = () => (
-  <div className={cs(styles.container)}>
-    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-    <Provider store={store as any}>
-      <ApiProvider client={client}>
-        <DndProvider backend={HTML5Backend}>
-          <Router>
-            <ConnectedRouter history={history}>
-              <PortalMenu />
-              <div className="ms">
-                <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-              </div>
-            </ConnectedRouter>
-          </Router>
-        </DndProvider>
-        <IncorrectResponseErrorModal />
-      </ApiProvider>
-    </Provider>
-  </div>
+  <ConfigProvider
+    theme={{ token: { colorPrimary: '#009ea7' } }}
+  >
+    <div className={cs(styles.container)}>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <Provider store={store as any}>
+        <ApiProvider client={client}>
+          <DndProvider backend={HTML5Backend}>
+            <Router>
+              <ConnectedRouter history={history}>
+                <PortalMenu />
+                <div className="ms">
+                  <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+                </div>
+              </ConnectedRouter>
+            </Router>
+          </DndProvider>
+          <IncorrectResponseErrorModal />
+        </ApiProvider>
+      </Provider>
+    </div>
+  </ConfigProvider>
+
 )
 
 export default App

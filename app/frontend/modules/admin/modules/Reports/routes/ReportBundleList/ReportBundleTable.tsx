@@ -24,7 +24,7 @@ export const ReportBundleTable: React.FC<Props> = ({
       id="id"
       sorter
       render={reportBundle => (
-        <Link to={`/administration/report_families/${reportBundle.id}/reports`}>
+        <Link to={`/admin/report_families/${reportBundle.id}/reports`}>
           {reportBundle.id}
         </Link>
       )}
@@ -68,25 +68,6 @@ const Dropdown: React.FC<DropDownProps> = (
   { reportBundle, toggleModal },
 ) => {
   const [confirmation, setConfirmation] = useState(false)
-  return (
-    <ConditionalDropdown
-      menu={getActionsMenuProps({
-        reportBundle, setConfirmation, confirmation, toggleModal,
-      })}
-    />
-  )
-}
-
-interface ActionMenuProps {
-  reportBundle: ReportBundle
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
-  toggleModal: (reportBundle: ReportBundle) => void
-}
-
-const getActionsMenuProps = ({
-  setConfirmation, confirmation, reportBundle, toggleModal,
-}: ActionMenuProps): MenuProps => {
   const { resource } = useResourceContext<ReportBundle>()
 
   const handleOnConfirm = () => resource.removeResource(reportBundle.id).then(() => {
@@ -94,7 +75,34 @@ const getActionsMenuProps = ({
   }).catch((err) => {
     message.error(err.base[0].title)
   })
+  return (
+    <>
+      <ConditionalDropdown
+        menu={getActionsMenuProps({
+          reportBundle, setConfirmation, toggleModal,
+        })}
+      />
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('report_bundles.actions.remove.confirm_title')}
+        message={I18n.t('report_bundles.actions.remove.confirm_message', { name: reportBundle.name })}
+        onConfirm={handleOnConfirm}
+        close={() => setConfirmation(false)}
+      />
+    </>
 
+  )
+}
+
+interface ActionMenuProps {
+  reportBundle: ReportBundle
+  setConfirmation: (confirmation: boolean) => void
+  toggleModal: (reportBundle: ReportBundle) => void
+}
+
+const getActionsMenuProps = ({
+  setConfirmation, reportBundle, toggleModal,
+}: ActionMenuProps): MenuProps => {
   const menuItems = [
     reportBundle.meta.permissions.manage && {
       key: 'edit',
@@ -114,14 +122,6 @@ const getActionsMenuProps = ({
           <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('report_bundles.actions.remove.confirm_title')}
-              message={I18n.t('report_bundles.actions.remove.confirm_message', { name: reportBundle.name })}
-              onConfirm={handleOnConfirm}
-              onCancel={() => setConfirmation(false)}
-            />
-          )}
         </>
       ),
     },

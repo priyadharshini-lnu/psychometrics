@@ -13,17 +13,22 @@ const ResultStore = function () {
 ResultStore.prototype = new EventEmitter()
 
 _.extend(ResultStore.prototype, {
-  setResults (resultGroups, user, assessmentIds, campaign = {}, userReportData = []) {
+  setResults (resultGroups, user, assessmentIds, campaign = {}, userReportData = [], campaignFactorResultsData = []) {
     _.each(assessmentIds, (id) => {
       this.results[id] = new Result(id)
     })
 
     this.user = JSON.parse(user)
     this.userReportData = userReportData
+    this.campaignFactorResultsData = campaignFactorResultsData
     this.campaignDetails = JSON.parse(campaign)
-
     _.each(resultGroups, (results, assessmentId) => {
-      this.results[assessmentId].init(results, this.user, AppStore.report.filters, [], this.userReportData)
+      this.results[assessmentId].init(results,
+        this.user,
+        AppStore.report.filters,
+        [],
+        this.userReportData,
+        this.campaignFactorResultsData)
     })
     this.realResults = true
   },
@@ -73,6 +78,17 @@ _.extend(ResultStore.prototype, {
           return res
         }, {})
         this.results[assessmentId].groupedDataSheet = [this.results[assessmentId].dataSheet]
+        break
+      case 'CampaignFactors':
+        this.results[assessmentId].campaignFactorResults = (sourceModel || []).reduce((res, field, index) => {
+          const mockResults = MockResults[sourceType]
+          res = [...res, {
+            code: field,
+            value: mockResults[index % mockResults.length],
+          }]
+          return res
+        }, [])
+        this.results[assessmentId].groupedCampaignFactors = [this.results[assessmentId].campaignFactorResults]
         break
       case 'ReportData':
         this.results[assessmentId].reportData = (sourceModel || []).reduce((res, field, index) => {

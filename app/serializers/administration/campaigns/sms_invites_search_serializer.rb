@@ -2,10 +2,10 @@
 
 module Administration
   module Campaigns
-    class SmsInvitesSearchSerializer < ActiveModel::Serializer
-      attributes :id
+    class SmsInvitesSearchSerializer < Panko::Serializer
+      attributes :id, :full_name
 
-      attribute :full_name do
+      def full_name
         "#{object.first_name} #{object.last_name}"
       end
     end

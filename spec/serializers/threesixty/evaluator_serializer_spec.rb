@@ -41,7 +41,7 @@ describe Threesixty::EvaluatorSerializer do
         evaluator_with_subject, counters: counters, option: option, current_user: current_user
       ).to_hash
       expect(result[:is_subject]).to eq true
-      expect(result[:user][:email]).to eq 'dustin@poirier.com'
+      expect(result[:user]['email']).to eq 'dustin@poirier.com'
       expect(result[:evaluators]).to eq '4 / 5'
       expect(result[:evaluations]).to eq '3 / 5'
       expect(result[:status]).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED

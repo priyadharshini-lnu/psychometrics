@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom'
 import {
   Button, Space, Typography,
 } from 'antd'
-import moment from 'moment-timezone'
 import cs from 'classnames'
+import dayjs from '~/utils/dayjs'
 
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
 import {
@@ -19,8 +19,8 @@ const { I18n } = window
 
 export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
   const history = useHistory()
-  const currentTime = moment.tz()
-  const bookingStartTimeMomentObj = moment(bookingDetails?.startTime)
+  const currentTime = dayjs.tz()
+  const bookingStartTimeMomentObj = dayjs(bookingDetails?.startTime)
   const [canJoinMeeting, setCanJoinMeeting] = useState(currentTime.isAfter(bookingStartTimeMomentObj))
   const secondsLeftToStartAssessmentCenter = bookingStartTimeMomentObj.diff(currentTime, 'seconds')
   const totalInvites = inviteDetails?.totalInvites || 0

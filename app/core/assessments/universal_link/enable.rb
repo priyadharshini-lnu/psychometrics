@@ -15,7 +15,6 @@ module Assessments
 
         campaign_assessment = campaign.campaign_assessments.find_by(assessment_id: assessment.id)
         campaign_assessment.update!(enable_universal_links: true)
-
         Generate.call!(@campaign, @assessment) unless campaign_assessment.has_valid_universal_link?
 
         broadcast(:ok, campaign_assessment.reload)

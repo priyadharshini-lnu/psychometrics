@@ -8,7 +8,7 @@ import {
   Space,
   Typography,
   Form,
-  message,
+  App,
   Alert,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
@@ -88,6 +88,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   sheetType,
 }) => {
   const [errors, setErrors] = useState<string[] | undefined>()
+  const { message } = App.useApp()
 
   const isInEditMode = mode === DrawerModes.Edit
   const isInAddMode = mode === DrawerModes.Add
@@ -183,7 +184,7 @@ const AddEditDrawerComponent: FC<Props> = ({
         </Col>
       </Row>
       <Skeleton loading={isFetching} active title>
-        {errors && <Alert type="error" description={Object.values(errors).join(',')} className="mb-2" />}
+        {errors && <Alert type="error" description={Object.values(errors).join(',')} rootClassName="mb-2" />}
         <Form
           name="add_edit_record_form"
           form={form}

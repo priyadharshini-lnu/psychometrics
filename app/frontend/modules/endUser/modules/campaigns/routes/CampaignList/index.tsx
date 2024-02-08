@@ -6,8 +6,9 @@ import { useHistory } from 'react-router-dom'
 import {
   Col, Row, Typography, Layout, Card, Skeleton,
 } from 'antd'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { isRequestInProgress } from '~/core/request'
+import { Flash } from '~/components/Flash'
 
 import { ProfileCompletion } from '~/modules/endUser/modules/campaigns/components/ProfileCompletion'
 import { ProfileCardTitle } from '~/modules/endUser/modules/campaigns/components/ProfileCardTitle'
@@ -47,7 +48,6 @@ const mapDispatchToProps = {
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps)
-
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 const CampaignListComponent: FC<PropsFromRedux> = ({
@@ -63,6 +63,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   const [error, setError] = useState(false)
   const history = useHistory()
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
+  const [flashMessage, setFlashMessage] = useState(window.PsyGlobalState.flashMessage)
 
   useEffect(() => {
     fetchCampaigns().catch(() => {
@@ -76,6 +77,10 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     })
   }, [])
 
+  useEffect(() => {
+    setFlashMessage(window.PsyGlobalState.flashMessage)
+  }, [])
+
   const handleProfileCompletion = () => {
     history.push('/profile_details')
   }
@@ -83,7 +88,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   const isProfileComplete = profileCompletionPercentage === 100
   const profileCardSubHeading = isProfileComplete
     ? (profileLastUpdatedAt
-      && `${I18n.t('campaign.profile.last_updated_text')} ${moment(profileLastUpdatedAt).format('ll')}`)
+      && `${I18n.t('campaign.profile.last_updated_text')} ${dayjs(profileLastUpdatedAt).format('ll')}`)
     : I18n.t('campaign.profile.sub_heading')
 
   return (
@@ -97,10 +102,12 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
         <div className={styles['container-campaign']}>
           <Row gutter={[32, 32]}>
             <Col span={24}>
+              <Flash flash={flashMessage} className="mb-5" />
               <Card
                 title={(<ProfileCardTitle />)}
                 className={styles.profileCard}
                 bordered={false}
+                headStyle={{ paddingBlock: '1rem' }}
               >
                 <ProfileCompletion
                   title={isProfileComplete

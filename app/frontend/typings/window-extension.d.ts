@@ -18,7 +18,11 @@ declare global {
       },
       features: {
         [key: string]: boolean
-      }
+      },
+      flashMessage: {
+        type: string
+        value: string
+      }[]
     },
     Utils: {
       isElementInViewport: (HTMLElement) => boolean

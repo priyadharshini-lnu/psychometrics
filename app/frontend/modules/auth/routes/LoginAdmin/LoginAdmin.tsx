@@ -6,7 +6,7 @@ import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
-import { Flash } from '../../components/Flash'
+import { Flash } from '~/components/Flash'
 
 const { I18n } = window
 
@@ -24,7 +24,7 @@ const LoginComponent: React.FC<Props> = ({
     <>
       <Flash flash={flash} />
       <form
-        className="ant-form ant-form-vertical"
+        className={styles.form}
         action="/administration"
         method="post"
       >

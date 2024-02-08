@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import {
-  Button, Switch, message, MenuProps,
+  Button, Switch, MenuProps, App,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MessageInstance } from 'antd/es/message/interface'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
@@ -145,25 +146,7 @@ const Dropdown: React.FC<DropDownProps> = (
   { assessment, openDrawer },
 ) => {
   const [confirmation, setConfirmation] = useState(false)
-  return (
-    <ConditionalDropdown
-      menu={getActionsMenuProps({
-        assessment, setConfirmation, confirmation, openDrawer,
-      })}
-    />
-  )
-}
-
-interface ActionMenuData {
-  assessment: Assessment
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
-  openDrawer: (assessment: Assessment) => void
-}
-
-const getActionsMenuProps = ({
-  setConfirmation, confirmation, assessment, openDrawer,
-}: ActionMenuData): MenuProps => {
+  const { message } = App.useApp()
   const { resource } = useResourceContext<Assessment>()
 
   const handleOnConfirm = () => resource.removeResource(assessment.id).then(() => {
@@ -171,6 +154,39 @@ const getActionsMenuProps = ({
   }).catch(() => {
     message.error(I18n.t('common.errors.something_wrong'))
   })
+  return (
+    <>
+      <ConditionalDropdown
+        menu={getActionsMenuProps({
+          assessment, setConfirmation, openDrawer, message,
+        })}
+      />
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('assessments.actions.remove.confirm_title')}
+        message={I18n.t('assessments.actions.remove.confirm_message', { name: assessment.name })}
+        onConfirm={handleOnConfirm}
+        onCancel={(e) => {
+          e.stopPropagation()
+          setConfirmation(false)
+        }}
+        close={() => null}
+      />
+    </>
+  )
+}
+
+interface ActionMenuData {
+  assessment: Assessment
+  setConfirmation: (confirmation: boolean) => void
+  openDrawer: (assessment: Assessment) => void
+  message: MessageInstance
+}
+
+const getActionsMenuProps = ({
+  setConfirmation, assessment, openDrawer, message,
+}: ActionMenuData): MenuProps => {
+  const { resource } = useResourceContext<Assessment>()
 
   const toggleArchive = () => resource.memberAction({
     id: assessment.id,
@@ -291,17 +307,6 @@ const getActionsMenuProps = ({
           <Button type="link" className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('assessments.actions.remove.confirm_title')}
-              message={I18n.t('assessments.actions.remove.confirm_message', { name: assessment.name })}
-              onConfirm={handleOnConfirm}
-              onCancel={(e) => {
-                e.stopPropagation()
-                setConfirmation(false)
-              }}
-            />
-          )}
         </>
       ),
     },

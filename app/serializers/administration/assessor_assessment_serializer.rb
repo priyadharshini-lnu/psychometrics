@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class AssessorAssessmentSerializer < ActiveModel::Serializer
+  class AssessorAssessmentSerializer < Panko::Serializer
     attributes :id, :name, :permissions, :linked_assessment_name
 
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
@@ -22,8 +22,8 @@ module Administration
           rescore_responses
         ],
         {
-          project_id: instance_options[:project_id],
-          campaign_id: instance_options[:campaign_id]
+          project_id: context[:project_id],
+          campaign_id: context[:campaign_id]
         }
       )
     end
@@ -31,7 +31,7 @@ module Administration
     private
 
     def current_user
-      instance_options[:current_user]
+      context[:current_user]
     end
   end
 end

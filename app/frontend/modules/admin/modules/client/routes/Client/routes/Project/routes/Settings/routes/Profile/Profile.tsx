@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Form, Button, Select, message,
+  Row, Col, Form, Button, Select, App,
 } from 'antd'
 import humps from 'humps'
 import { useParams } from 'react-router-dom'
@@ -28,6 +28,7 @@ export const Profile: React.FC<{}> = () => {
   const [form] = Form.useForm()
   const [profileSettings] = data
   const [values, setValues] = useState({})
+  const { message } = App.useApp()
 
   useEffect(() => {
     if (profileSettings) {

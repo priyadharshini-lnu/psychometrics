@@ -9,8 +9,11 @@ module Administration
         form = SamlSettings::Form.from_params(resource_params).with_context(new_record: true)
         if form.valid?
           project.create_saml_setting(test_settings: form.attributes)
-          render json: project.saml_setting, serializer: ::Administration::Projects::SamlSettingSerializer,
-                 requires_verification: true
+          render json: ::Administration::Projects::SamlSettingSerializer.new(
+            context: {
+              requires_verification: true
+            }
+          ).serialize(project.saml_setting)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -36,8 +39,11 @@ module Administration
           end
         end
 
-        render json: project.saml_setting, serializer: ::Administration::Projects::SamlSettingSerializer,
-               requires_verification: requires_verification
+        render json: ::Administration::Projects::SamlSettingSerializer.new(
+          context: {
+            requires_verification: requires_verification
+          }
+        ).serialize(project.saml_setting)
       end
 
       def destroy

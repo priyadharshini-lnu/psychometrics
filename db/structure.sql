@@ -263,6 +263,38 @@ ALTER SEQUENCE public.admin_jobs_id_seq OWNED BY public.admin_jobs.id;
 
 
 --
+-- Name: admin_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.admin_roles (
+    id bigint NOT NULL,
+    name character varying,
+    description text,
+    client_id bigint,
+    permissions jsonb
+);
+
+
+--
+-- Name: admin_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.admin_roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: admin_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.admin_roles_id_seq OWNED BY public.admin_roles.id;
+
+
+--
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -601,16 +633,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -809,7 +841,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -893,7 +926,6 @@ CREATE TABLE public.campaign_assessments (
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
     allow_multiple_responses boolean DEFAULT false,
-    schedule_time timestamp(6) without time zone,
     require_scheduling boolean DEFAULT false
 );
 
@@ -915,6 +947,38 @@ CREATE SEQUENCE public.campaign_assessments_id_seq
 --
 
 ALTER SEQUENCE public.campaign_assessments_id_seq OWNED BY public.campaign_assessments.id;
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_assessor_assessment_factor_weights (
+    id bigint NOT NULL,
+    campaign_id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    weight double precision DEFAULT 1.0 NOT NULL
+);
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_assessor_assessment_factor_weights_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_assessor_assessment_factor_weights_id_seq OWNED BY public.campaign_assessor_assessment_factor_weights.id;
 
 
 --
@@ -992,9 +1056,9 @@ CREATE TABLE public.campaign_factor_values (
     user_id bigint NOT NULL,
     campaign_factor_id bigint NOT NULL,
     string_value character varying,
+    numeric_value double precision,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    numeric_value double precision
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -1028,7 +1092,6 @@ CREATE TABLE public.campaign_factors (
     name character varying NOT NULL,
     code character varying NOT NULL,
     description text,
-    factor_type integer DEFAULT 0 NOT NULL,
     output_type integer DEFAULT 0 NOT NULL,
     campaign_id bigint NOT NULL,
     factor_id bigint,
@@ -1038,7 +1101,8 @@ CREATE TABLE public.campaign_factors (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     assessment_score_type integer DEFAULT 0,
-    formula text
+    formula text,
+    factor_type integer DEFAULT 0
 );
 
 
@@ -1152,7 +1216,8 @@ CREATE TABLE public.campaign_reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     assessor_access boolean DEFAULT false,
-    user_dashboard boolean DEFAULT false
+    user_dashboard boolean DEFAULT false,
+    main_report boolean DEFAULT false
 );
 
 
@@ -1226,7 +1291,11 @@ CREATE TABLE public.campaign_users (
     expiry_date timestamp without time zone,
     status integer DEFAULT 0,
     schedule_start_date timestamp without time zone,
-    schedule_end_date timestamp without time zone
+    schedule_end_date timestamp without time zone,
+    campaign_scores_finalized boolean DEFAULT false,
+    campaign_scores_calculated_date timestamp(6) without time zone,
+    campaign_scores_finalized_date timestamp(6) without time zone,
+    campaign_scores_errors json
 );
 
 
@@ -1876,7 +1945,8 @@ CREATE TABLE public.factors (
     use_sub_factor_norm_score boolean,
     external_scoring jsonb DEFAULT '[]'::jsonb,
     scale_min double precision,
-    scale_max double precision
+    scale_max double precision,
+    custom_formula character varying
 );
 
 
@@ -2453,7 +2523,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -2516,6 +2586,38 @@ CREATE TABLE public.memberships (
     already_invited boolean DEFAULT false NOT NULL,
     campaign_id integer
 );
+
+
+--
+-- Name: memberships_admin_roles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.memberships_admin_roles (
+    id bigint NOT NULL,
+    membership_id bigint NOT NULL,
+    admin_role_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: memberships_admin_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.memberships_admin_roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: memberships_admin_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.memberships_admin_roles_id_seq OWNED BY public.memberships_admin_roles.id;
 
 
 --
@@ -3291,12 +3393,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -3470,38 +3572,6 @@ CREATE SEQUENCE public.reports_pages_id_seq
 --
 
 ALTER SEQUENCE public.reports_pages_id_seq OWNED BY public.reports_pages.id;
-
-
---
--- Name: roles; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.roles (
-    id bigint NOT NULL,
-    name character varying,
-    description text,
-    client_id bigint,
-    permissions jsonb
-);
-
-
---
--- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.roles_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
 
 
 --
@@ -4191,8 +4261,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -4863,10 +4932,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -4891,16 +4960,6 @@ CREATE SEQUENCE public.users_results_id_seq
 --
 
 ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
-
-
---
--- Name: users_roles; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users_roles (
-    user_id bigint NOT NULL,
-    role_id bigint NOT NULL
-);
 
 
 --
@@ -5338,6 +5397,7 @@ CREATE TABLE public.workshops (
     updated_at timestamp(6) without time zone NOT NULL,
     name character varying,
     status integer DEFAULT 0,
+    allow_late_cancellation_and_rescheduling boolean DEFAULT false NOT NULL,
     CONSTRAINT booked_seats_not_exceed_total_seats CHECK ((booked_seats <= total_seats)),
     CONSTRAINT booked_seats_positive CHECK ((booked_seats >= 0))
 );
@@ -5395,6 +5455,13 @@ ALTER TABLE ONLY public.activesupport_tables_migrations ALTER COLUMN id SET DEFA
 --
 
 ALTER TABLE ONLY public.admin_jobs ALTER COLUMN id SET DEFAULT nextval('public.admin_jobs_id_seq'::regclass);
+
+
+--
+-- Name: admin_roles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_roles ALTER COLUMN id SET DEFAULT nextval('public.admin_roles_id_seq'::regclass);
 
 
 --
@@ -5507,6 +5574,13 @@ ALTER TABLE ONLY public.campaign_assessment_groups ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.campaign_assessments ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessments_id_seq'::regclass);
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessor_assessment_factor_weights_id_seq'::regclass);
 
 
 --
@@ -5804,6 +5878,13 @@ ALTER TABLE ONLY public.memberships ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: memberships_admin_roles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles ALTER COLUMN id SET DEFAULT nextval('public.memberships_admin_roles_id_seq'::regclass);
+
+
+--
 -- Name: mindmill_credentials id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5983,13 +6064,6 @@ ALTER TABLE ONLY public.reports_modules ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('public.reports_pages_id_seq'::regclass);
-
-
---
--- Name: roles id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
 
 
 --
@@ -6376,6 +6450,14 @@ ALTER TABLE ONLY public.admin_jobs
 
 
 --
+-- Name: admin_roles admin_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_roles
+    ADD CONSTRAINT admin_roles_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: agile_events agile_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6509,6 +6591,14 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 ALTER TABLE ONLY public.campaign_assessments
     ADD CONSTRAINT campaign_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights campaign_assessor_assessment_factor_weights_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT campaign_assessor_assessment_factor_weights_pkey PRIMARY KEY (id);
 
 
 --
@@ -6856,6 +6946,14 @@ ALTER TABLE ONLY public.membership_grants
 
 
 --
+-- Name: memberships_admin_roles memberships_admin_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles
+    ADD CONSTRAINT memberships_admin_roles_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: memberships memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7069,14 +7167,6 @@ ALTER TABLE ONLY public.reports_pages
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
-
-
---
--- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.roles
-    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
 
 
 --
@@ -7515,6 +7605,20 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 
 
 --
+-- Name: idx_on_assessment_id_3b131a93ee; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_assessment_id_3b131a93ee ON public.campaign_assessor_assessment_factor_weights USING btree (assessment_id);
+
+
+--
+-- Name: idx_on_campaign_id_bbe9cda192; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_campaign_id_bbe9cda192 ON public.campaign_assessor_assessment_factor_weights USING btree (campaign_id);
+
+
+--
 -- Name: index_53a664e244a4bc3ce19609177c48692ee2fa83fa; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7582,6 +7686,20 @@ CREATE UNIQUE INDEX index_activesupport_tables_migrations_on_table_name ON publi
 --
 
 CREATE INDEX index_admin_jobs_on_owner_id ON public.admin_jobs USING btree (owner_id);
+
+
+--
+-- Name: index_admin_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_admin_roles_on_client_id ON public.admin_roles USING btree (client_id);
+
+
+--
+-- Name: index_admin_roles_on_name_and_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_admin_roles_on_name_and_client_id ON public.admin_roles USING btree (name, client_id);
 
 
 --
@@ -7883,6 +8001,13 @@ CREATE UNIQUE INDEX index_campaign_assessments_on_campaign_id_and_assessment_id 
 --
 
 CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessments USING btree (norm_id);
+
+
+--
+-- Name: index_campaign_assessor_assessment_factor_weights_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessor_assessment_factor_weights_on_factor_id ON public.campaign_assessor_assessment_factor_weights USING btree (factor_id);
 
 
 --
@@ -8558,6 +8683,20 @@ CREATE INDEX index_membership_grants_on_membership_id ON public.membership_grant
 
 
 --
+-- Name: index_memberships_admin_roles_on_admin_role_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_admin_roles_on_admin_role_id ON public.memberships_admin_roles USING btree (admin_role_id);
+
+
+--
+-- Name: index_memberships_admin_roles_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_admin_roles_on_membership_id ON public.memberships_admin_roles USING btree (membership_id);
+
+
+--
 -- Name: index_memberships_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8919,20 +9058,6 @@ CREATE INDEX index_reports_on_updated_by_id ON public.reports USING btree (updat
 --
 
 CREATE INDEX index_reports_pages_on_report_id ON public.reports_pages USING btree (report_id);
-
-
---
--- Name: index_roles_on_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_roles_on_client_id ON public.roles USING btree (client_id);
-
-
---
--- Name: index_roles_on_name_and_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_roles_on_name_and_client_id ON public.roles USING btree (name, client_id);
 
 
 --
@@ -9468,20 +9593,6 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
--- Name: index_users_roles_on_role_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_roles_on_role_id ON public.users_roles USING btree (role_id);
-
-
---
--- Name: index_users_roles_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_roles_on_user_id ON public.users_roles USING btree (user_id);
-
-
---
 -- Name: index_webhook_event_logs_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9857,6 +9968,14 @@ ALTER TABLE ONLY public.mindmill_credentials
 
 
 --
+-- Name: campaign_assessor_assessment_factor_weights fk_rails_08dafb599b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT fk_rails_08dafb599b FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
+
+
+--
 -- Name: users fk_rails_09d354f20c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9865,10 +9984,10 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: roles fk_rails_0a0c2d3429; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: admin_roles fk_rails_0a0c2d3429; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.roles
+ALTER TABLE ONLY public.admin_roles
     ADD CONSTRAINT fk_rails_0a0c2d3429 FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
@@ -10137,6 +10256,14 @@ ALTER TABLE ONLY public.report_approval_settings
 
 
 --
+-- Name: memberships_admin_roles fk_rails_2fd8627d72; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles
+    ADD CONSTRAINT fk_rails_2fd8627d72 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
 -- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -10166,6 +10293,14 @@ ALTER TABLE ONLY public.libraries
 
 ALTER TABLE ONLY public.workshop_invites
     ADD CONSTRAINT fk_rails_3495a4f69c FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_assessor_assessment_factor_weights fk_rails_35545a6526; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT fk_rails_35545a6526 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -10342,14 +10477,6 @@ ALTER TABLE ONLY public.threesixty_instruction_template_translations
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_4a3b56dde9 FOREIGN KEY (user_report_id) REFERENCES public.user_reports(id) ON DELETE CASCADE;
-
-
---
--- Name: users_roles fk_rails_4a41696df6; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_roles
-    ADD CONSTRAINT fk_rails_4a41696df6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -11033,6 +11160,14 @@ ALTER TABLE ONLY public.privacy_links
 
 
 --
+-- Name: campaign_assessor_assessment_factor_weights fk_rails_b77e3149f6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
+    ADD CONSTRAINT fk_rails_b77e3149f6 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11321,6 +11456,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: memberships_admin_roles fk_rails_dd856566e9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.memberships_admin_roles
+    ADD CONSTRAINT fk_rails_dd856566e9 FOREIGN KEY (admin_role_id) REFERENCES public.admin_roles(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_histories fk_rails_dee061b324; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11406,14 +11549,6 @@ ALTER TABLE ONLY public.bulk_reports
 
 ALTER TABLE ONLY public.assigns_reports
     ADD CONSTRAINT fk_rails_eb27834cf2 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
-
-
---
--- Name: users_roles fk_rails_eb7b4658f8; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_roles
-    ADD CONSTRAINT fk_rails_eb7b4658f8 FOREIGN KEY (role_id) REFERENCES public.roles(id) ON DELETE RESTRICT;
 
 
 --
@@ -11583,622 +11718,630 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20160704140756'),
-('20160707123619'),
-('20160712152012'),
-('20160715101548'),
-('20160715135817'),
-('20160715170819'),
-('20160719101711'),
-('20160719133948'),
-('20160720135509'),
-('20160727114043'),
-('20160728132804'),
-('20160729125547'),
-('20160729131418'),
-('20160729132345'),
-('20160729151936'),
-('20160729153128'),
-('20160801114116'),
-('20160801134001'),
-('20160802125448'),
-('20160802155248'),
-('20160803141451'),
-('20160804075858'),
-('20160804080947'),
-('20160815094812'),
-('20160815153553'),
-('20160818140150'),
-('20160819162030'),
-('20160826113309'),
-('20160830144749'),
-('20160901125651'),
-('20160901134715'),
-('20160906140931'),
-('20160907153406'),
-('20160907162030'),
-('20160909134047'),
-('20160912064637'),
-('20160913102254'),
-('20160916111821'),
-('20160916124428'),
-('20160919070648'),
-('20160919071110'),
-('20160919082421'),
-('20160920142609'),
-('20160922072552'),
-('20160923160817'),
-('20160930140037'),
-('20161010082144'),
-('20161011141925'),
-('20161011144225'),
-('20161012114132'),
-('20161013084133'),
-('20161013102335'),
-('20161013125051'),
-('20161013134427'),
-('20161013161101'),
-('20161014065337'),
-('20161019113157'),
-('20161020145001'),
-('20161021080332'),
-('20161025151414'),
-('20161025152859'),
-('20161025154640'),
-('20161026111535'),
-('20161026120042'),
-('20161027095910'),
-('20161031091451'),
-('20161031094940'),
-('20161031105250'),
-('20161031105418'),
-('20161101141317'),
-('20161102071143'),
-('20161102110210'),
-('20161102115438'),
-('20161103111612'),
-('20161103154036'),
-('20161108112600'),
-('20161110090142'),
-('20161111102005'),
-('20161115143900'),
-('20161118142126'),
-('20161121143132'),
-('20161123094818'),
-('20161125121349'),
-('20161125125141'),
-('20161128103519'),
-('20161128114937'),
-('20161202113205'),
-('20161212094131'),
-('20161212140458'),
-('20161214081142'),
-('20161214140548'),
-('20161215061834'),
-('20161215093728'),
-('20161215150055'),
-('20161215150257'),
-('20161221074135'),
-('20161221074304'),
-('20161223065642'),
-('20161223081235'),
-('20161227132227'),
-('20161228153020'),
-('20161228155944'),
-('20161229122752'),
-('20161229135459'),
-('20161230083037'),
-('20170103114938'),
-('20170103143542'),
-('20170104152307'),
-('20170110140747'),
-('20170111162217'),
-('20170112100616'),
-('20170112124314'),
-('20170117071238'),
-('20170202144948'),
-('20170206123137'),
-('20170213114450'),
-('20170221103830'),
-('20170221140404'),
-('20170222124313'),
-('20170222125039'),
-('20170222151629'),
-('20170224073543'),
-('20170224110918'),
-('20170227091003'),
-('20170301091546'),
-('20170522131832'),
-('20170523102840'),
-('20170524094716'),
-('20170525130219'),
-('20170529070551'),
-('20170529093632'),
-('20170605123103'),
-('20170605192137'),
-('20170606124638'),
-('20170607143545'),
-('20170607153346'),
-('20170607160409'),
-('20170613075933'),
-('20170613095544'),
-('20170613120241'),
-('20170613125409'),
-('20170619080808'),
-('20170619091417'),
-('20170619095847'),
-('20170626093642'),
-('20170627080609'),
-('20170627115325'),
-('20170627145630'),
-('20170628110310'),
-('20170628110320'),
-('20170629130155'),
-('20170704060854'),
-('20170706095454'),
-('20170708231022'),
-('20170725101235'),
-('20171115115341'),
-('20171115115658'),
-('20171115115739'),
-('20171117095652'),
-('20171117122756'),
-('20171201131314'),
-('20171206151008'),
-('20171206161732'),
-('20171207080044'),
-('20171207135522'),
-('20171208153022'),
-('20171208171730'),
-('20171210004245'),
-('20171212142402'),
-('20180428143634'),
-('20180503095443'),
-('20180504074309'),
-('20180504075242'),
-('20180504082538'),
-('20180504091841'),
-('20180514140843'),
-('20180522075755'),
-('20180529094014'),
-('20180601084716'),
-('20180618090010'),
-('20180619110647'),
-('20180710120413'),
-('20180723121434'),
-('20180724151241'),
-('20180731094932'),
-('20180915101319'),
-('20181002152730'),
-('20181010120450'),
-('20181013151355'),
-('20181022210715'),
-('20181028143714'),
-('20181028180057'),
-('20181103095056'),
-('20181111105703'),
-('20181112210040'),
-('20181114075818'),
-('20181114150808'),
-('20181117114931'),
-('20181118154257'),
-('20181119095817'),
-('20181124083412'),
-('20181209135656'),
-('20181217073128'),
-('20181224184633'),
-('20190101143027'),
-('20190105160407'),
-('20190113180725'),
-('20190127164957'),
-('20190210122115'),
-('20190210123606'),
-('20190221202711'),
-('20190303082715'),
-('20190304063803'),
-('20190312220042'),
-('20190315160908'),
-('20190331125508'),
-('20190406093054'),
-('20190406205517'),
-('20190407085318'),
-('20190407142655'),
-('20190411194041'),
-('20190418194558'),
-('20190419104112'),
-('20190419193357'),
-('20190419202055'),
-('20190421102715'),
-('20190501212516'),
-('20190506131431'),
-('20190507165939'),
-('20190507170240'),
-('20190507170817'),
-('20190520160715'),
-('20190523104920'),
-('20190525115528'),
-('20190601163131'),
-('20190604121645'),
-('20190612100829'),
-('20190612132144'),
-('20190613190324'),
-('20190617125849'),
-('20190620132719'),
-('20190630092817'),
-('20190703092738'),
-('20190706094201'),
-('20190710140100'),
-('20190713155551'),
-('20190717131104'),
-('20190720204116'),
-('20190721163707'),
-('20190721170324'),
-('20190724063809'),
-('20190724064016'),
-('20190726083527'),
-('20190726090828'),
-('20190728141145'),
-('20190804195715'),
-('20190805173213'),
-('20190819122240'),
-('20190819122944'),
-('20190825080403'),
-('20190825114742'),
-('20190825132401'),
-('20190827080838'),
-('20190828084401'),
-('20190829135506'),
-('20190901055329'),
-('20190901150954'),
-('20190902100425'),
-('20190902100625'),
-('20190903131845'),
-('20190915124839'),
-('20190916070023'),
-('20190916070101'),
-('20190916212215'),
-('20190917082805'),
-('20190917122130'),
-('20190917140510'),
-('20190925063942'),
-('20190925142902'),
-('20190925143623'),
-('20190926091345'),
-('20190926112747'),
-('20190930111830'),
-('20190930140807'),
-('20191001075231'),
-('20191007075951'),
-('20191016134103'),
-('20191028205331'),
-('20191029104332'),
-('20191030081833'),
-('20191110113047'),
-('20191111083124'),
-('20191111104014'),
-('20191211142942'),
-('20191218192252'),
-('20191225145152'),
-('20200119071623'),
-('20200122113926'),
-('20200127101833'),
-('20200204141530'),
-('20200207070850'),
-('20200216190418'),
-('20200216190542'),
-('20200219084808'),
-('20200303084836'),
-('20200317122132'),
-('20200318224159'),
-('20200322064957'),
-('20200326091232'),
-('20200402100717'),
-('20200402101021'),
-('20200402112802'),
-('20200402115623'),
-('20200406101817'),
-('20200420101736'),
-('20200420102139'),
-('20200420102632'),
-('20200519155451'),
-('20200524174421'),
-('20200525102435'),
-('20200531072928'),
-('20200624204627'),
-('20200630075308'),
-('20200701104517'),
-('20200701144435'),
-('20200701154607'),
-('20200702112737'),
-('20200705114339'),
-('20200705132139'),
-('20200707220715'),
-('20200709155934'),
-('20200712100454'),
-('20200712101935'),
-('20200716130505'),
-('20200723074036'),
-('20200723074255'),
-('20200726145344'),
-('20200727142806'),
-('20200727190907'),
-('20200728071304'),
-('20200729181439'),
-('20200730091354'),
-('20200802191402'),
-('20200816155957'),
-('20200823090240'),
-('20200823094516'),
-('20200826053004'),
-('20200830120330'),
-('20200903100939'),
-('20200908070555'),
-('20200909073506'),
-('20200913050839'),
-('20200913071803'),
-('20200914055928'),
-('20200922123931'),
-('20200923102431'),
-('20200927105604'),
-('20200929061648'),
-('20200930103418'),
-('20201004131024'),
-('20201007061140'),
-('20201007072553'),
-('20201011102042'),
-('20201015102640'),
-('20201020084827'),
-('20201020224539'),
-('20201021071559'),
-('20201108094635'),
-('20201110230420'),
-('20201111132959'),
-('20201117134043'),
-('20201208081411'),
-('20201210065543'),
-('20201215150644'),
-('20201216101338'),
-('20201219091914'),
-('20201223095358'),
-('20201223181811'),
-('20201223192549'),
-('20201226142007'),
-('20201226152556'),
-('20210104093506'),
-('20210112082218'),
-('20210118113839'),
-('20210124114207'),
-('20210127111351'),
-('20210201174626'),
-('20210206160719'),
-('20210209061539'),
-('20210209133316'),
-('20210215142202'),
-('20210216092744'),
-('20210216133140'),
-('20210228092218'),
-('20210304111031'),
-('20210304111041'),
-('20210308170950'),
-('20210316134414'),
-('20210319150315'),
-('20210320201644'),
-('20210321134006'),
-('20210321142256'),
-('20210411073736'),
-('20210419090439'),
-('20210419092225'),
-('20210429142157'),
-('20210509083519'),
-('20210512100320'),
-('20210518140350'),
-('20210527094321'),
-('20210531064834'),
-('20210606072330'),
-('20210606105059'),
-('20210610160411'),
-('20210614064633'),
-('20210616195712'),
-('20210617154459'),
-('20210621071756'),
-('20210623082242'),
-('20210627110306'),
-('20210627134315'),
-('20210715124554'),
-('20210718070252'),
-('20210728151708'),
-('20210804125607'),
-('20210805081530'),
-('20210812053648'),
-('20210823120858'),
-('20210823132111'),
-('20210830121355'),
-('20210913092232'),
-('20210917131407'),
-('20210919105932'),
-('20211011103826'),
-('20211013070031'),
-('20211017084949'),
-('20211018074847'),
-('20211018123332'),
-('20211026125300'),
-('20211027170600'),
-('20211102165147'),
-('20211111110056'),
-('20211114082155'),
-('20211121115043'),
-('20211209113042'),
-('20211216105541'),
-('20211219131442'),
-('20220104123545'),
-('20220105075135'),
-('20220105083037'),
-('20220114152459'),
-('20220118121431'),
-('20220121064435'),
-('20220124132616'),
-('20220131060602'),
-('20220131062936'),
-('20220201110758'),
-('20220215140722'),
-('20220311084649'),
-('20220311105318'),
-('20220321102808'),
-('20220329105142'),
-('20220412191741'),
-('20220425192928'),
-('20220425201109'),
-('20220427143253'),
-('20220428111329'),
-('20220512111341'),
-('20220512120041'),
-('20220513062033'),
-('20220527063033'),
-('20220527125017'),
-('20220606151635'),
-('20220608104948'),
-('20220609042528'),
-('20220609110619'),
-('20220609111758'),
-('20220609112219'),
-('20220609114435'),
-('20220609120021'),
-('20220609123501'),
-('20220609124428'),
-('20220609125511'),
-('20220610114559'),
-('20220613192348'),
-('20220616103155'),
-('20220630112848'),
-('20220704083505'),
-('20220712103553'),
-('20220713095522'),
-('20220714145940'),
-('20220720075400'),
-('20220721114549'),
-('20220725113027'),
-('20220727081709'),
-('20220727115619'),
-('20220728085459'),
-('20220728121608'),
-('20220728134015'),
-('20220729103746'),
-('20220809130239'),
-('20220810132037'),
-('20220817094010'),
-('20220817165939'),
-('20220818101822'),
-('20220820184329'),
-('20220822202512'),
-('20220829100916'),
-('20220908094242'),
-('20220909080050'),
-('20220920101241'),
-('20220927143437'),
-('20220927180013'),
-('20220929123807'),
-('20220929190534'),
-('20221102140423'),
-('20221102141534'),
-('20221102142001'),
-('20221108082420'),
-('20221122133505'),
-('20221122172755'),
-('20221122172756'),
-('20221128115835'),
-('20221205213642'),
-('20221207114653'),
-('20221207122631'),
-('20221208114251'),
-('20221213173037'),
-('20221214083458'),
-('20221227102943'),
-('20230110201437'),
-('20230112110725'),
-('20230112121853'),
-('20230113060633'),
-('20230116123826'),
-('20230117130759'),
-('20230207074200'),
-('20230216143441'),
-('20230223085853'),
-('20230315112437'),
-('20230317094144'),
-('20230320091546'),
-('20230328102230'),
-('20230406132537'),
-('20230417090859'),
-('20230504155413'),
-('20230511105741'),
-('20230518075547'),
-('20230518123651'),
-('20230531090612'),
-('20230531090613'),
-('20230606123535'),
-('20230608131329'),
-('20230608131330'),
-('20230608131331'),
-('20230608150754'),
-('20230615093244'),
-('20230627162930'),
-('20230627181938'),
-('20230717125048'),
-('20230719111228'),
-('20230721123804'),
-('20230721125540'),
-('20230725084846'),
-('20230727152255'),
-('20230728040657'),
-('20230728041212'),
-('20230731105207'),
-('20230801090740'),
-('20230803064449'),
-('20230807112038'),
-('20230808200613'),
-('20230809193337'),
-('20230809193508'),
-('20230810103629'),
-('20230811114945'),
-('20230818091139'),
-('20230818140419'),
-('20230821092143'),
-('20230821100124'),
-('20230822081633'),
-('20230823110647'),
-('20230824083112'),
-('20230828122637'),
-('20230829124517'),
-('20230829143631'),
-('20230905113355'),
-('20230912064131'),
-('20230918133925'),
-('20230918143010'),
-('20230919051922'),
-('20230919070332'),
-('20230919093339'),
-('20230920072704'),
-('20230921123131'),
-('20230926124141'),
-('20230927131437'),
-('20231003100838'),
-('20231003130242'),
-('20231005095208'),
-('20231005095250'),
-('20231006103234'),
-('20231017110648'),
-('20231020065639'),
-('20231026090227'),
-('20231030120937'),
-('20231101104312'),
-('20231117071639'),
-('20231117071951'),
-('20231117072837'),
-('20231117074000'),
-('20231211111901'),
-('20231213080938'),
-('20231213104811'),
-('20231218084715'),
+('20240206082940'),
+('20240131091031'),
+('20240129143541'),
+('20240126082502'),
+('20240118090133'),
+('20240117104237'),
+('20240108124935'),
+('20240108073500'),
+('20231226114810'),
 ('20231219105643'),
-('20240129143541');
-
+('20231218084715'),
+('20231213104811'),
+('20231213080938'),
+('20231211111901'),
+('20231119201209'),
+('20231117074000'),
+('20231117072837'),
+('20231117071951'),
+('20231117071639'),
+('20231112145927'),
+('20231101104312'),
+('20231030120937'),
+('20231026090227'),
+('20231020065639'),
+('20231017110648'),
+('20231006103234'),
+('20231005095250'),
+('20231005095208'),
+('20231003130242'),
+('20231003100838'),
+('20230927131437'),
+('20230926124141'),
+('20230921123131'),
+('20230920072704'),
+('20230919093339'),
+('20230919070332'),
+('20230919051922'),
+('20230918143010'),
+('20230918133925'),
+('20230912064131'),
+('20230905113355'),
+('20230829143631'),
+('20230829124517'),
+('20230824083112'),
+('20230823110647'),
+('20230822081633'),
+('20230821100124'),
+('20230821092143'),
+('20230818140419'),
+('20230818091139'),
+('20230811114945'),
+('20230810103629'),
+('20230809193508'),
+('20230809193337'),
+('20230808200613'),
+('20230807112038'),
+('20230803064449'),
+('20230801090740'),
+('20230731105207'),
+('20230728041212'),
+('20230728040657'),
+('20230727152255'),
+('20230725084846'),
+('20230721125540'),
+('20230721123804'),
+('20230719111228'),
+('20230717125048'),
+('20230627181938'),
+('20230627162930'),
+('20230615093244'),
+('20230608150754'),
+('20230608131331'),
+('20230608131330'),
+('20230608131329'),
+('20230606123535'),
+('20230531090613'),
+('20230531090612'),
+('20230518123651'),
+('20230518075547'),
+('20230511105741'),
+('20230504155413'),
+('20230417090859'),
+('20230406132537'),
+('20230328102230'),
+('20230320091546'),
+('20230317094144'),
+('20230315112437'),
+('20230223085853'),
+('20230216143441'),
+('20230207074200'),
+('20230117130759'),
+('20230116123826'),
+('20230113060633'),
+('20230112121853'),
+('20230112110725'),
+('20230110201437'),
+('20221227102943'),
+('20221214083458'),
+('20221213173037'),
+('20221208114251'),
+('20221207122631'),
+('20221207114653'),
+('20221205213642'),
+('20221128115835'),
+('20221122172756'),
+('20221122172755'),
+('20221122133505'),
+('20221108082420'),
+('20221102142001'),
+('20221102141534'),
+('20221102140423'),
+('20220929190534'),
+('20220929123807'),
+('20220927180013'),
+('20220927143437'),
+('20220920101241'),
+('20220909080050'),
+('20220908094242'),
+('20220829100916'),
+('20220822202512'),
+('20220820184329'),
+('20220818101822'),
+('20220817165939'),
+('20220817094010'),
+('20220810132037'),
+('20220809130239'),
+('20220729103746'),
+('20220728134015'),
+('20220728121608'),
+('20220728085459'),
+('20220727115619'),
+('20220727081709'),
+('20220725113027'),
+('20220721114549'),
+('20220720075400'),
+('20220714145940'),
+('20220713095522'),
+('20220712103553'),
+('20220704083505'),
+('20220630112848'),
+('20220616103155'),
+('20220613192348'),
+('20220610114559'),
+('20220609125511'),
+('20220609124428'),
+('20220609123501'),
+('20220609120021'),
+('20220609114435'),
+('20220609112219'),
+('20220609111758'),
+('20220609110619'),
+('20220609042528'),
+('20220608104948'),
+('20220606151635'),
+('20220527125017'),
+('20220527063033'),
+('20220513062033'),
+('20220512120041'),
+('20220512111341'),
+('20220428111329'),
+('20220427143253'),
+('20220425201109'),
+('20220425192928'),
+('20220412191741'),
+('20220329105142'),
+('20220321102808'),
+('20220311105318'),
+('20220311084649'),
+('20220215140722'),
+('20220201110758'),
+('20220131062936'),
+('20220131060602'),
+('20220124132616'),
+('20220121064435'),
+('20220118121431'),
+('20220114152459'),
+('20220105083037'),
+('20220105075135'),
+('20220104123545'),
+('20211219131442'),
+('20211216105541'),
+('20211209113042'),
+('20211121115043'),
+('20211114082155'),
+('20211111110056'),
+('20211102165147'),
+('20211027170600'),
+('20211026125300'),
+('20211018123332'),
+('20211018074847'),
+('20211017084949'),
+('20211013070031'),
+('20211011103826'),
+('20210919105932'),
+('20210917131407'),
+('20210913092232'),
+('20210830121355'),
+('20210823132111'),
+('20210823120858'),
+('20210812053648'),
+('20210805081530'),
+('20210804125607'),
+('20210728151708'),
+('20210718070252'),
+('20210715124554'),
+('20210627134315'),
+('20210627110306'),
+('20210623082242'),
+('20210621071756'),
+('20210617154459'),
+('20210616195712'),
+('20210614064633'),
+('20210610160411'),
+('20210606105059'),
+('20210606072330'),
+('20210531064834'),
+('20210527094321'),
+('20210518140350'),
+('20210512100320'),
+('20210509083519'),
+('20210429142157'),
+('20210419092225'),
+('20210419090439'),
+('20210411073736'),
+('20210321142256'),
+('20210321134006'),
+('20210320201644'),
+('20210319150315'),
+('20210316134414'),
+('20210308170950'),
+('20210304111041'),
+('20210304111031'),
+('20210228092218'),
+('20210216133140'),
+('20210216092744'),
+('20210215142202'),
+('20210209133316'),
+('20210209061539'),
+('20210206160719'),
+('20210201174626'),
+('20210127111351'),
+('20210124114207'),
+('20210118113839'),
+('20210112082218'),
+('20210104093506'),
+('20201226152556'),
+('20201226142007'),
+('20201223192549'),
+('20201223181811'),
+('20201223095358'),
+('20201219091914'),
+('20201216101338'),
+('20201215150644'),
+('20201210065543'),
+('20201208081411'),
+('20201117134043'),
+('20201111132959'),
+('20201110230420'),
+('20201108094635'),
+('20201021071559'),
+('20201020224539'),
+('20201020084827'),
+('20201015102640'),
+('20201011102042'),
+('20201007072553'),
+('20201007061140'),
+('20201004131024'),
+('20200930103418'),
+('20200929061648'),
+('20200927105604'),
+('20200923102431'),
+('20200922123931'),
+('20200914055928'),
+('20200913071803'),
+('20200913050839'),
+('20200909073506'),
+('20200908070555'),
+('20200903100939'),
+('20200830120330'),
+('20200826053004'),
+('20200823094516'),
+('20200823090240'),
+('20200816155957'),
+('20200802191402'),
+('20200730091354'),
+('20200729181439'),
+('20200728071304'),
+('20200727190907'),
+('20200727142806'),
+('20200726145344'),
+('20200723074255'),
+('20200723074036'),
+('20200716130505'),
+('20200712101935'),
+('20200712100454'),
+('20200709155934'),
+('20200707220715'),
+('20200705132139'),
+('20200705114339'),
+('20200702112737'),
+('20200701154607'),
+('20200701144435'),
+('20200701104517'),
+('20200630075308'),
+('20200624204627'),
+('20200531072928'),
+('20200525102435'),
+('20200524174421'),
+('20200519155451'),
+('20200420102632'),
+('20200420102139'),
+('20200420101736'),
+('20200406101817'),
+('20200402115623'),
+('20200402112802'),
+('20200402101021'),
+('20200402100717'),
+('20200326091232'),
+('20200322064957'),
+('20200318224159'),
+('20200317122132'),
+('20200303084836'),
+('20200219084808'),
+('20200216190542'),
+('20200216190418'),
+('20200207070850'),
+('20200204141530'),
+('20200127101833'),
+('20200122113926'),
+('20200119071623'),
+('20191225145152'),
+('20191218192252'),
+('20191211142942'),
+('20191111104014'),
+('20191111083124'),
+('20191110113047'),
+('20191030081833'),
+('20191029104332'),
+('20191028205331'),
+('20191016134103'),
+('20191007075951'),
+('20191001075231'),
+('20190930140807'),
+('20190930111830'),
+('20190926112747'),
+('20190926091345'),
+('20190925143623'),
+('20190925142902'),
+('20190925063942'),
+('20190917140510'),
+('20190917122130'),
+('20190917082805'),
+('20190916212215'),
+('20190916070101'),
+('20190916070023'),
+('20190915124839'),
+('20190903131845'),
+('20190902100625'),
+('20190902100425'),
+('20190901150954'),
+('20190901055329'),
+('20190829135506'),
+('20190828084401'),
+('20190827080838'),
+('20190825132401'),
+('20190825114742'),
+('20190825080403'),
+('20190819122944'),
+('20190819122240'),
+('20190805173213'),
+('20190804195715'),
+('20190728141145'),
+('20190726090828'),
+('20190726083527'),
+('20190724064016'),
+('20190724063809'),
+('20190721170324'),
+('20190721163707'),
+('20190720204116'),
+('20190717131104'),
+('20190713155551'),
+('20190710140100'),
+('20190706094201'),
+('20190703092738'),
+('20190630092817'),
+('20190620132719'),
+('20190617125849'),
+('20190613190324'),
+('20190612132144'),
+('20190612100829'),
+('20190604121645'),
+('20190601163131'),
+('20190525115528'),
+('20190523104920'),
+('20190520160715'),
+('20190507170817'),
+('20190507170240'),
+('20190507165939'),
+('20190506131431'),
+('20190501212516'),
+('20190421102715'),
+('20190419202055'),
+('20190419193357'),
+('20190419104112'),
+('20190418194558'),
+('20190411194041'),
+('20190407142655'),
+('20190407085318'),
+('20190406205517'),
+('20190406093054'),
+('20190331125508'),
+('20190315160908'),
+('20190312220042'),
+('20190304063803'),
+('20190303082715'),
+('20190221202711'),
+('20190210123606'),
+('20190210122115'),
+('20190127164957'),
+('20190113180725'),
+('20190105160407'),
+('20190101143027'),
+('20181224184633'),
+('20181217073128'),
+('20181209135656'),
+('20181124083412'),
+('20181119095817'),
+('20181118154257'),
+('20181117114931'),
+('20181114150808'),
+('20181114075818'),
+('20181112210040'),
+('20181111105703'),
+('20181103095056'),
+('20181028180057'),
+('20181028143714'),
+('20181022210715'),
+('20181013151355'),
+('20181010120450'),
+('20181002152730'),
+('20180915101319'),
+('20180731094932'),
+('20180724151241'),
+('20180723121434'),
+('20180710120413'),
+('20180619110647'),
+('20180618090010'),
+('20180601084716'),
+('20180529094014'),
+('20180522075755'),
+('20180514140843'),
+('20180504091841'),
+('20180504082538'),
+('20180504075242'),
+('20180504074309'),
+('20180503095443'),
+('20180428143634'),
+('20171212142402'),
+('20171210004245'),
+('20171208171730'),
+('20171208153022'),
+('20171207135522'),
+('20171207080044'),
+('20171206161732'),
+('20171206151008'),
+('20171201131314'),
+('20171117122756'),
+('20171117095652'),
+('20171115115739'),
+('20171115115658'),
+('20171115115341'),
+('20170725101235'),
+('20170708231022'),
+('20170706095454'),
+('20170704060854'),
+('20170629130155'),
+('20170628110320'),
+('20170628110310'),
+('20170627145630'),
+('20170627115325'),
+('20170627080609'),
+('20170626093642'),
+('20170619095847'),
+('20170619091417'),
+('20170619080808'),
+('20170613125409'),
+('20170613120241'),
+('20170613095544'),
+('20170613075933'),
+('20170607160409'),
+('20170607153346'),
+('20170607143545'),
+('20170606124638'),
+('20170605192137'),
+('20170605123103'),
+('20170529093632'),
+('20170529070551'),
+('20170525130219'),
+('20170524094716'),
+('20170523102840'),
+('20170522131832'),
+('20170301091546'),
+('20170227091003'),
+('20170224110918'),
+('20170224073543'),
+('20170222151629'),
+('20170222125039'),
+('20170222124313'),
+('20170221140404'),
+('20170221103830'),
+('20170213114450'),
+('20170206123137'),
+('20170202144948'),
+('20170117071238'),
+('20170112124314'),
+('20170112100616'),
+('20170111162217'),
+('20170110140747'),
+('20170104152307'),
+('20170103143542'),
+('20170103114938'),
+('20161230083037'),
+('20161229135459'),
+('20161229122752'),
+('20161228155944'),
+('20161228153020'),
+('20161227132227'),
+('20161223081235'),
+('20161223065642'),
+('20161221074304'),
+('20161221074135'),
+('20161215150257'),
+('20161215150055'),
+('20161215093728'),
+('20161215061834'),
+('20161214140548'),
+('20161214081142'),
+('20161212140458'),
+('20161212094131'),
+('20161202113205'),
+('20161128114937'),
+('20161128103519'),
+('20161125125141'),
+('20161125121349'),
+('20161123094818'),
+('20161121143132'),
+('20161118142126'),
+('20161115143900'),
+('20161111102005'),
+('20161110090142'),
+('20161108112600'),
+('20161103154036'),
+('20161103111612'),
+('20161102115438'),
+('20161102110210'),
+('20161102071143'),
+('20161101141317'),
+('20161031105418'),
+('20161031105250'),
+('20161031094940'),
+('20161031091451'),
+('20161027095910'),
+('20161026120042'),
+('20161026111535'),
+('20161025154640'),
+('20161025152859'),
+('20161025151414'),
+('20161021080332'),
+('20161020145001'),
+('20161019113157'),
+('20161014065337'),
+('20161013161101'),
+('20161013134427'),
+('20161013125051'),
+('20161013102335'),
+('20161013084133'),
+('20161012114132'),
+('20161011144225'),
+('20161011141925'),
+('20161010082144'),
+('20160930140037'),
+('20160923160817'),
+('20160922072552'),
+('20160920142609'),
+('20160919082421'),
+('20160919071110'),
+('20160919070648'),
+('20160916124428'),
+('20160916111821'),
+('20160913102254'),
+('20160912064637'),
+('20160909134047'),
+('20160907162030'),
+('20160907153406'),
+('20160906140931'),
+('20160901134715'),
+('20160901125651'),
+('20160830144749'),
+('20160826113309'),
+('20160819162030'),
+('20160818140150'),
+('20160815153553'),
+('20160815094812'),
+('20160804080947'),
+('20160804075858'),
+('20160803141451'),
+('20160802155248'),
+('20160802125448'),
+('20160801134001'),
+('20160801114116'),
+('20160729153128'),
+('20160729151936'),
+('20160729132345'),
+('20160729131418'),
+('20160729125547'),
+('20160728132804'),
+('20160727114043'),
+('20160720135509'),
+('20160719133948'),
+('20160719101711'),
+('20160715170819'),
+('20160715135817'),
+('20160715101548'),
+('20160712152012'),
+('20160707123619'),
+('20160704140756');
 

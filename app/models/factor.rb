@@ -22,6 +22,7 @@ class Factor < ApplicationRecord
   has_many :occupations_factors, dependent: :destroy
   has_many :innovation_styles_factors, dependent: :destroy
   has_many :aliases, class_name: 'FactorsAlias', dependent: :destroy
+  has_many :campaign_factors, dependent: :restrict_with_error
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
@@ -41,7 +42,8 @@ class Factor < ApplicationRecord
     sub_factor_questions_sum: 5,
     external_score: 6,
     questions_percentage: 7,
-    sub_factors_sum: 8
+    sub_factors_sum: 8,
+    custom_formula: 9
   }, _suffix: :strategy
 
   mount_uploader :icon, Public::ImageUploader

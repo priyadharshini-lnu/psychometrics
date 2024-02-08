@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import {
   Table, Dropdown, Tag, message,
 } from 'antd'
-import moment from 'moment'
 import { MoreOutlined } from '@ant-design/icons'
+import dayjs from '~/utils/dayjs'
 import { STATUSES } from '~/modules/admin/constants/mailHistory'
 import styles from './styles.less'
 import Pagination from '../../../components/Pagination'
@@ -53,8 +53,8 @@ export default function MailHistory ({
       key: 'scheduledDate',
       render: (date, record) => (
         <>
-          {moment(date).format('YYYY-MM-DD HH:mm:ss')}
-          <div className={styles.scheduledAt}>{unDelivered(record) && moment(date).fromNow()}</div>
+          {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}
+          <div className={styles.scheduledAt}>{unDelivered(record) && dayjs(date).fromNow()}</div>
         </>
       ),
     },

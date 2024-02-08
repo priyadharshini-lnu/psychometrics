@@ -42,6 +42,14 @@ export const getMenuItems = (arr: object[],
   ))
 }
 
+export const median = (a: number[]) => {
+  const half = Math.floor(a.length / 2)
+  a.sort((a, b) => a - b)
+  if (a.length % 2) return a[half]
+  return (a[half - 1] + a[half]) / 2.0
+}
+
+
 export default {
   shuffle,
   joinJSXElements,
