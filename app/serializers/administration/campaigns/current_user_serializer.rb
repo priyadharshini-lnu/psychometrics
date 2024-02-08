@@ -48,7 +48,7 @@ module Administration
           object, ProfileSetting, project_id: context[:project_id]
         ).profile?
         permissions['workshop_status_export'] = Api::Administration::ProjectPolicy.new(
-          object, Project, project_id: instance_options[:project_id]
+          object, Project, project_id: context[:project_id]
         ).workshop_status_export?
         permissions.transform_keys! { |k| k.camelcase(:lower) }
       end
