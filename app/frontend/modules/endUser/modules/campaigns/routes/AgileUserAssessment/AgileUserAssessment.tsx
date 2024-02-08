@@ -100,7 +100,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
 
   return (
     <>
-      {remainingCampaignTime && (
+      {remainingCampaignTime > 0 && (
       <GlintPageHeader>
         <Col span={16} className="ta-c">
           <CountdownTimer

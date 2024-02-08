@@ -7,6 +7,7 @@ export default function ResetSubjectModal ({
   data: { onConfirm },
   closeModal,
   currentUser,
+  open,
 }) {
   const [removeLicenceUsage, setRemoveLicenceUsage] = useState(false)
   const confirmationTitle = I18n.t('threesixty.confirmation_required')
@@ -23,6 +24,7 @@ export default function ResetSubjectModal ({
       message={confirmationMessage}
       onConfirm={handleOnConfirm}
       onCancel={closeModal}
+      open={open}
     >
       { isSuperAdmin(currentUser) && (
       <Checkbox checked={removeLicenceUsage} onChange={() => setRemoveLicenceUsage(!removeLicenceUsage)}>

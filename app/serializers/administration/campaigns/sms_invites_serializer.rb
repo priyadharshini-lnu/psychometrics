@@ -2,14 +2,14 @@
 
 module Administration
   module Campaigns
-    class SmsInvitesSerializer < ActiveModel::Serializer
-      attributes :id, :first_name, :last_name, :mobile_no, :email, :locale, :status
+    class SmsInvitesSerializer < Panko::Serializer
+      attributes :id, :first_name, :last_name, :mobile_no, :email, :locale, :status, :created_by, :created_at
 
-      attribute :created_by do
+      def created_by
         object.creator.decorate.full_name
       end
 
-      attribute :created_at do
+      def created_at
         I18n.l object.created_at, format: :short
       end
     end

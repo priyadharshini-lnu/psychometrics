@@ -200,21 +200,23 @@ export const AudioRecorder: React.FC<Props> = ({
         <Col span="24">
           <DynamicAudioIcon level={level} pulse={pulse} />
         </Col>
-        {recordingState === RECORDER_STATES.RECORDED && fileUrl() && (
-          <Col span="24" className="mb-6">
-            <AudioPlayer
-              playerState={playerState}
-              playAudio={playAudio}
-              pauseAudioPlay={pauseAudioPlay}
-              setPlayerElement={(playerElement): void => {
-                playerRef.current = playerElement
-              }}
-              onComplete={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))
-              }
-              audioFileUrl={fileUrl() as string}
-            />
-          </Col>
-        )}
+        <>
+          {recordingState === RECORDER_STATES.RECORDED && fileUrl() && (
+            <Col span="24" className="mb-6">
+              <AudioPlayer
+                playerState={playerState}
+                playAudio={playAudio}
+                pauseAudioPlay={pauseAudioPlay}
+                setPlayerElement={(playerElement): void => {
+                  playerRef.current = playerElement
+                }}
+                onComplete={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))
+                }
+                audioFileUrl={fileUrl() as string}
+              />
+            </Col>
+          )}
+        </>
         {recordingState !== RECORDER_STATES.RECORDED && (
           <Col span="24" className="mb-6">
             <Space>

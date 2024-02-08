@@ -13,10 +13,33 @@ module Users
         if user.role == 'Users::Regular'
           build_for_regular_user
         else
-          build_for_superadmin + build_for_client_admins + build_for_project_admins + build_for_campaign_admins
+          build_for_superadmin +
+            build_for_client_admins +
+            build_for_project_admins +
+            build_for_campaign_admins +
+            build_for_campaign_assessor
         end
 
       broadcast :ok, roles
+    end
+
+    def build_for_campaign_assessor
+      assessors = user.assessors.includes(campaign: { project: :client })
+      assessors.map do |assessor|
+        campaign = assessor.campaign
+        project = campaign.project
+        client = project.client
+
+        {
+          name: 'campaign_assessor',
+          paths: [
+            { name: client.name, value: "/admin/clients/#{client.id}/projects" },
+            { name: project.name, value: "/admin/projects/#{project.id}/new_campaigns" },
+            { name: campaign.name,
+              value: "/admin/projects/#{project.id}/new_campaigns/#{assessor.campaign.id}/participants/assessors" }
+          ]
+        }
+      end
     end
 
     def build_for_regular_user

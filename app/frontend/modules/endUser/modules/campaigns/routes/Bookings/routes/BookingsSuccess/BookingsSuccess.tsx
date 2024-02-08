@@ -2,9 +2,8 @@ import {
   useState, FC, useEffect, useRef,
 } from 'react'
 import _ from 'lodash'
-import moment from 'moment'
 import {
-  Row, Typography, Col, Space, message,
+  Row, Typography, Col, Space, App,
 } from 'antd'
 import {
   google, outlook, yahoo, ics, office365, CalendarEvent,
@@ -15,6 +14,7 @@ import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
 import Tour from '@rc-component/tour'
+import dayjs from '~/utils/dayjs'
 import {
   GoogleCalendarIcon, YahooIcon, OutlookIcon, IcalIcon, Office365Icon,
 } from '~/glint/icons'
@@ -62,15 +62,16 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   bookingDetailsLoading, fetchSingleBooking, cancelBooking, requestForRescheduleInProgress,
   requestCancelBooking, requestForCancelInProgress, cancelInProgress,
 }) => {
+  const { message } = App.useApp()
   const tourRef = useRef<HTMLDivElement>(null)
   const queryString = qs.parse(location.search.substring(1))
   const [requestCancellation, setRequestrequestCancellation] = useState<boolean>(false)
   const [bookingDetails, setbookingDetails] = useState<null | SingleBooking >(null)
   const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
   const bookedDateTime = bookingDetails?.bookedDate
-  const bookedDateTimeMomentObject = bookedDateTime ? moment(bookedDateTime.date) : null
-  const currentTimezone = bookingDetails?.timezone || moment.tz.guess() || 'Asia/Dubai'
-  const currentTime = moment().tz(currentTimezone)
+  const bookedDateTimeMomentObject = bookedDateTime ? dayjs(bookedDateTime.date) : null
+  const currentTimezone = bookingDetails?.timezone || dayjs.tz.guess() || 'Asia/Dubai'
+  const currentTime = dayjs().tz(currentTimezone)
   const bookedDateTimeMomentObjectTz = bookedDateTimeMomentObject?.clone().tz(currentTimezone)
   const duration = bookingDetails?.duration || 0
   const history = useHistory()
@@ -78,10 +79,14 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   const workshopId = bookingDetails?.workshopId
 
   const deadlineToAllowCancelByUser = bookedDateTimeMomentObjectTz?.clone()
-    .subtract(bookingDetails?.cancellationLeadTime, 's')
+    .subtract(bookingDetails?.cancellationLeadTime || 0, 's')
+  const deadlineToAllowRescheduleByUser = bookedDateTimeMomentObjectTz?.clone()
+    .subtract(bookingDetails?.rescheduleLeadTime || 0, 's')
   const bookingEndTime = bookedDateTimeMomentObjectTz?.clone().add(duration, 's')
   const meetingTime = `${bookedDateTimeMomentObjectTz?.clone().format('hh:mmA')} - ${bookingEndTime?.format('hh:mmA')}`
-  const allowCancelByUser = currentTime.isSameOrBefore(deadlineToAllowCancelByUser)
+  const allowCancelByUser = !!deadlineToAllowCancelByUser && currentTime.isSameOrBefore(deadlineToAllowCancelByUser)
+  const allowRescheduleByUser = !!deadlineToAllowRescheduleByUser
+  && currentTime.isSameOrBefore(deadlineToAllowRescheduleByUser)
 
   useEffect(() => {
     fetchSingleBooking(inviteOrBookingId).then(({ response }) => {
@@ -213,6 +218,25 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
     </Space>
   )
 
+  const footerContent = (
+    !allowRescheduleByUser
+     && !allowCancelByUser
+     && !bookingDetails?.allowLateCancellationAndRescheduling)
+    ? null : (
+      <RescheduleAndCancel
+        cancelBooking={requestCancellation}
+        onCancelBooking={handleCancelBooking}
+        onRescheduleBooking={handleRescheduleBooking}
+        onRequestCancellation={handleRequestCancelBooking}
+        requestForRescheduleInProgress={requestForRescheduleInProgress}
+        requestForCancelInProgress={requestForCancelInProgress}
+        allowCancelByUser={allowCancelByUser}
+        cancelInProgress={cancelInProgress}
+        allowLateCancellationAndRescheduling={bookingDetails?.allowLateCancellationAndRescheduling || false}
+        allowRescheduleByUser={allowRescheduleByUser}
+      />
+    )
+
   return (
     <main className="flex items-center justify-center">
       {bookingDetailsLoading ? (
@@ -225,18 +249,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
         <BookingConfirmationContainer
           headerContent={headerContent}
           detailsContent={detailsContent}
-          footerContent={(
-            <RescheduleAndCancel
-              cancelBooking={requestCancellation}
-              onCancelBooking={handleCancelBooking}
-              onRescheduleBooking={handleRescheduleBooking}
-              onRequestCancellation={handleRequestCancelBooking}
-              requestForRescheduleInProgress={requestForRescheduleInProgress}
-              requestForCancelInProgress={requestForCancelInProgress}
-              allowCancelByUser={allowCancelByUser}
-              cancelInProgress={cancelInProgress}
-            />
-          )}
+          footerContent={footerContent}
         />
       )}
     </main>

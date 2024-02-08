@@ -3,8 +3,11 @@ import * as t from 'io-ts'
 export const UserProfileTR = t.type({
   id: t.string,
   userId: t.number,
+  age: t.union([t.number, t.null]),
   timezone: t.union([t.string, t.null]),
   locale: t.union([t.string, t.null]),
+  gender: t.union([t.string, t.null]),
+  photoUrl: t.union([t.string, t.null]),
 })
 
 export type UserProfile = t.TypeOf<typeof UserProfileTR>

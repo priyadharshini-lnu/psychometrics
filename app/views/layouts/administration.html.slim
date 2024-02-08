@@ -14,7 +14,6 @@ html
     = render 'layouts/favicons'
     = vite_client_tag
     = vite_react_refresh_tag
-    = vite_stylesheet_tag 'ant.less'
 
   body#administration data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
     .page-container

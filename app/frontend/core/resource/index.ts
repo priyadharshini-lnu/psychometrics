@@ -4,7 +4,7 @@ export const fetch = (
   requestScope: string | undefined,
   resourceName: string,
   resourceBaseUrl: string,
-  resourceId: number,
+  resourceId: number | string,
   mocked?: boolean,
 ) => ({
   type: getActionType(requestScope, resourceName, 'FETCH'),
@@ -37,7 +37,7 @@ export const update = (
   requestScope: string | undefined,
   resourceName: string,
   resourceBaseUrl: string,
-  resourceId: number,
+  resourceId: number | string,
   data: object,
   mocked?: boolean,
 ) => ({

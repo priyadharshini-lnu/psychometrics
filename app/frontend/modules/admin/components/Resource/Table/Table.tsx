@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { FC, Children, ReactElement } from 'react'
 import { Table as AntTable, Pagination } from 'antd'
+import { ExpandableConfig } from 'antd/lib/table/interface'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useResourceContext } from '../ResourceContext'
 import { Column } from '../Column'
@@ -10,9 +11,13 @@ const { Column: AntColumn } = AntTable
 type Props = {
   children: React.ReactNode[]
   pagination?: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  expandable?: ExpandableConfig<any>
 }
 
-export const Table: FC<Props> = ({ pagination, children }) => {
+export const Table: FC<Props> = ({
+  pagination, children, expandable,
+}) => {
   const arrayChildren = Children.toArray(children).filter(Boolean) as ReactElement[]
   arrayChildren.forEach((c) => {
     if (c?.type !== Column) throw new Error('Only Resource.Column is supported inside Resource.Table')
@@ -27,6 +32,7 @@ export const Table: FC<Props> = ({ pagination, children }) => {
       dataSource={resource.data}
       pagination={false}
       loading={tableLoading}
+      expandable={expandable}
       onChange={resource.handleTableChange}
     >
       {arrayChildren.map((c) => {

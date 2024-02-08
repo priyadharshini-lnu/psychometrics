@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { DATA_SHEET } from '~/modules/reports/models/Module'
+import { CAMPAIGN_FACTORS, DATA_SHEET } from '~/modules/reports/models/Module'
 import localStyles from './Scoring.less'
 import styles from '../../Condition.less'
 
@@ -12,10 +12,16 @@ export class Scoring extends Component {
   }
 
   getSubjects (assessment) {
-    const { condition, factors, dataSheetColumns } = this.props
+    const {
+      condition, factors, dataSheetColumns, campaignFactors,
+    } = this.props
 
     if (condition.type === DATA_SHEET) {
       return dataSheetColumns.map(column => ({ id: column.name, name: column.name }))
+    }
+
+    if (condition.type === CAMPAIGN_FACTORS) {
+      return campaignFactors?.map(column => ({ id: column.code, name: column.name }))
     }
 
     return factors[assessment.dimension_id]

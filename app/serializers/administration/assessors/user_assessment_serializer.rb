@@ -2,7 +2,7 @@
 
 module Administration
   module Assessors
-    class UserAssessmentSerializer < ActiveModel::Serializer
+    class UserAssessmentSerializer < Panko::Serializer
       attributes :id, :assessment_name, :status
 
       delegate :name, to: :assessment, prefix: true

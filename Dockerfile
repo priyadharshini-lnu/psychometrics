@@ -4,7 +4,7 @@ FROM ruby:3.1.2-slim as ruby-base
 # Can be overriden at run-time with -e
 ENV APP_DIR="/app"
 ENV PATH="${PATH}:${APP_DIR}/bin" \
-    NODE_VERSION="14.17.3" \
+    NODE_VERSION="18.16.1" \
     YARN_VERSION="1.22.5" \
     BUNDLER_VERSION="2.3.17" \
     RAILS_ENV="production" \
@@ -15,9 +15,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Here are the dependencies we need to build our app (and install Rails)
 # This example installs the PostgreSQL and SQLite libraries (two commonly used databases in Rails apps).
 #
-# We're also installing the latest nodejs
-RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python \
-    && curl -sL https://deb.nodesource.com/setup_14.x | bash \
+# We're also installing the latest nodejs and lua
+RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python liblua5.1-0 \
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
@@ -52,7 +52,7 @@ WORKDIR ${APP_DIR}
 FROM ruby-base as ruby-gems
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
-ENV NODE_VERSION 14.17.3
+ENV NODE_VERSION 18.16.1
 ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
@@ -79,7 +79,7 @@ FROM ruby-base as yarn-deps
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
-ENV NODE_VERSION 14.17.3
+ENV NODE_VERSION 18.16.1
 ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
@@ -100,7 +100,7 @@ FROM ruby-base as bundle-assets
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
-ENV NODE_VERSION 14.17.3
+ENV NODE_VERSION 18.16.1
 ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
@@ -140,7 +140,7 @@ FROM ruby:3.1.2-slim
 
 ENV APP_DIR=/app
 ENV PATH="${PATH}:${APP_DIR}/bin"
-ENV NODE_VERSION 14.17.3
+ENV NODE_VERSION 18.16.1
 ENV YARN_VERSION 1.22.5
 ENV BUNDLER_VERSION=2.3.17
 ENV RAILS_ENV=production
@@ -157,7 +157,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && apt-get update -qq &&  apt-get install -yq --no-install-recommends build-essential libpq-dev \
-    postgresql-client-11 shared-mime-info imagemagick \
+    postgresql-client-11 shared-mime-info imagemagick liblua5.1-0 \
     && gem update --system && gem install bundler -v $BUNDLER_VERSION \
     && apt-get --purge remove build-essential libpq-dev -y -qq \
     && apt-get clean \
@@ -175,5 +175,7 @@ COPY . ./
 
 COPY config/database.yml.sample config/database.yml
 
+RUN chmod u+x /app/heroku.sh
+
 # This gets executed when we run a container made from this image
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["/app/heroku.sh"]

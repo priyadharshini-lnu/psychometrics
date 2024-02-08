@@ -150,6 +150,7 @@ const CampaignOptions: React.FC<Props> = ({
                   <Row align="middle">
                     <Col span={5} offset={2}>
                       <InputDuration
+                        masked
                         placeholder={I18n.t('administration.components.input_duration.placeholder')}
                         {...parametersForFixedTimeDuration}
                       />

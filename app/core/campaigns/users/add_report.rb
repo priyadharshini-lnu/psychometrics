@@ -47,7 +47,7 @@ module Campaigns
       private
 
       def assessments
-        options[:assessments].reject(&:assessor_form?)
+        options[:assessments].reject { |a| Assessment::NON_USER_ASSESSMENT_CATEGORY.include?(a.category) }
       end
 
       def set_approval_status_for_user_report(user_report)

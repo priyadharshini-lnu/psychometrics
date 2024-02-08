@@ -3,8 +3,8 @@
 class AuditLog < ApplicationRecord
   include RansackAssocSearchableFields
 
-  serialize :payload, JSON
-  serialize :request, JSON
+  serialize :payload, coder: JSON
+  serialize :request, coder: JSON
 
   belongs_to :user, optional: true
   belongs_to :record, polymorphic: true, optional: true

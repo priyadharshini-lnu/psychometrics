@@ -19,13 +19,13 @@ module Api
           acc << indexed_user_assessments[id]
         end
 
-        render json: ordered_user_assessments.map { |a| Api::V1::UserAssessmentSerializer.new(a).to_h }
+        render json: ordered_user_assessments.map { |a| Api::V1::UserAssessmentSerializer.new.serialize(a) }
       end
 
       def update
         @user_assessment.update!(user_assessment_params)
         audit! :api_update, @user_assessment, payload: params, campaign: @user_assessment.campaign
-        render json: @user_assessment, serializer: Api::V1::UserAssessmentSerializer
+        render json: Api::V1::UserAssessmentSerializer.new.serialize(@user_assessment)
       end
 
       private

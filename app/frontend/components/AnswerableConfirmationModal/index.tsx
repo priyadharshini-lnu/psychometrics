@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import {
   Modal, Input, Button, Alert,
 } from 'antd'
@@ -11,7 +11,7 @@ interface Props {
   onConfirm(): void | Promise<unknown>
   onWrongAnswer?(): void
   onCancel(): void
-  children?: HTMLElement
+  children?: ReactNode
 }
 
 const { I18n } = window

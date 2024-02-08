@@ -2,13 +2,13 @@
 
 module Administration
   module Campaigns
-    class OtherAssessmentSerializer < ActiveModel::Serializer
+    class OtherAssessmentSerializer < Panko::Serializer
       attributes :id, :name, :category, :permissions
 
       def permissions
         GetPermissionsHash.call!(
           Administration::CampaignAssessmentPolicy,
-          instance_options[:current_user],
+          context[:current_user],
           object,
           %w[
             import_results
@@ -22,8 +22,8 @@ module Administration
             schedule_assessment
           ],
           {
-            project_id: instance_options[:project_id],
-            campaign_id: instance_options[:campaign_id]
+            project_id: context[:project_id],
+            campaign_id: context[:campaign_id]
           }
         )
       end

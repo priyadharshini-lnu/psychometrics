@@ -36,6 +36,7 @@ import {
   ANSWER, MARK_ASSESSMENT_TIMED_OUT, REMOVE_QUESTION_IN_PROGRESS, SHOW_SUBMIT_PAGE,
 } from './consts'
 import { InProgressQuestion } from './interfaces'
+import { sendMessage } from '~/utils/messageBus'
 
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 
@@ -48,6 +49,7 @@ function* genInitPageProcessing () {
     yield genSimulatePassingAssessment()
     return
   }
+
   if (!state.preview.currentElement) {
     yield put(nextPage())
   } else if (isValidCurrentElementAndPage(state.preview)) {
@@ -173,6 +175,10 @@ function* genRestart ({ response }: AnyAction) {
   }
 }
 
+function genFinishedEvent () {
+  sendMessage('assessment:finished', 'completed')
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(INIT, genFetchLocalResults),
@@ -184,5 +190,6 @@ export const watchers = [
   takeEvery([CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genUpdateResultsAsNotDirty),
   takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),
   takeLatest(REMOVE_QUESTION_IN_PROGRESS, genPassAssessmentIfTimedOut),
+  takeLatest([SHOW_END], genFinishedEvent),
   debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_SUBMIT_PAGE, SHOW_END], genSaveResults),
 ]

@@ -10,9 +10,12 @@ const CampaignTR = t.type({
   id: t.number,
   name: t.string,
   status: t.string,
-  completedSubjectCount: t.number,
-  totalSubjectCount: t.number,
-  completionStatus: t.string,
+  completedSubjectEvaluationCount: t.number,
+  totalSubjectEvaluationCount: t.number,
+  completedSubjectModerationCount: t.number,
+  totalSubjectModerationCount: t.number,
+  evaluationCompletionStatus: t.string,
+  moderationCompletionStatus: t.string,
 })
 
 const CampaignListResponseTR = t.type({

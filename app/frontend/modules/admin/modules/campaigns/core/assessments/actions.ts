@@ -1,9 +1,9 @@
+import ApiAction from 'interfaces/ApiAction'
 import * as t from 'io-ts'
 
-export const ACTIVATE_UNIVERSAL_LINK = 'campaigns/ACTIVATE_UNIVERSAL_LINK'
-export const DEACTIVATE_UNIVERSAL_LINK = 'campaigns/DEACTIVATE_UNIVERSAL_LINK'
+export const ENABLE_UNIVERSAL_LINK = 'campaigns/ENABLE_UNIVERSAL_LINK'
+export const SAVE_UNIVERSAL_LINK = 'campaigns/SAVE_UNIVERSAL_LINK'
 export const REGENERATE_UNIVERSAL_LINK = 'campaigns/REGENERATE_UNIVERSAL_LINK'
-export const TOGGLE_MULTIPLE_RESPONSES = 'campaigns/TOGGLE_MULTIPLE_RESPONSES'
 
 export const IMPORT_RAW_RESULTS = 'campaigns/assessments/IMPORT_RAW_RESULTS'
 export const IMPORT_SCORING_RESULTS = 'campaigns/assessments/IMPORT_SCORING_RESULTS'
@@ -64,36 +64,34 @@ export const updateWorkshopActivity = (campaignId: number, id: number, body) => 
   },
 })
 
-export const activateUniversalLink = (campaignId: string, id: number) => ({
-  type: ACTIVATE_UNIVERSAL_LINK,
+
+export const enableUniversalLink = (campaignId: string, id: number):
+  ApiAction<{ universalLink: string, enableUniversalLinks: boolean }> => ({
+  type: ENABLE_UNIVERSAL_LINK,
   request: {
-    method: 'post',
-    url: `/administration/new_campaigns/${campaignId}/universal_links/${id}/activate`,
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/universal_links/${id}/enable`,
   },
   campaignId,
 })
 
-export const deactivateUniversalLink = (campaignId: string, id: number) => ({
-  type: DEACTIVATE_UNIVERSAL_LINK,
-  request: {
-    method: 'delete',
-    url: `/administration/new_campaigns/${campaignId}/universal_links/${id}`,
-  },
-})
 
-export const toggleMultipleResponses = (campaignId: string, id: number) => ({
-  type: TOGGLE_MULTIPLE_RESPONSES,
+export const saveUniversalLink = (campaignId: string, id: number, data) => ({
+  type: SAVE_UNIVERSAL_LINK,
   request: {
     method: 'put',
-    url: `/administration/new_campaigns/${campaignId}/universal_links/${id}/toggle_multiple_responses`,
+    url: `/administration/new_campaigns/${campaignId}/universal_links/${id}`,
+    body: data,
   },
+  campaignId,
 })
+
 
 export const regenerateUniversalLink = (campaignId: string, id: number) => ({
   type: REGENERATE_UNIVERSAL_LINK,
   request: {
     method: 'put',
-    url: `/administration/new_campaigns/${campaignId}/universal_links/${id}`,
+    url: `/administration/new_campaigns/${campaignId}/universal_links/${id}/regenerate`,
   },
   campaignId,
 })

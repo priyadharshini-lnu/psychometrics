@@ -1,14 +1,14 @@
 import React, {
-  FC, useEffect, useContext, useRef,
+  FC, useEffect, useContext,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Layout, Typography, Tabs,
 } from 'antd'
 import { RouteComponentProps, useHistory } from 'react-router-dom'
-import useDimensions from 'react-use-dimensions'
 
 import _ from 'lodash'
+import { useReportDimensions } from '~/hooks/useReportDimensions'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   fetchInsights, getReports, getUserDashboard, FETCH_INSIGHTS,
@@ -82,13 +82,10 @@ interface InsightBodyProps {
 
 const InsightsBody: FC<InsightBodyProps> = ({ userDashboard, isUserReportAvailable }) => {
   const { isMobile } = useContext(MediaQueryContext)
-  const [containerRef, containerSize] = useDimensions()
-  const [reportRef, reportSize] = useDimensions()
-  const reportSizeRef = useRef(null)
-  if (reportSizeRef.current == null && reportSize.width) {
-    reportSizeRef.current = reportSize.width
-  }
-  const scale = containerSize.width && reportSizeRef.current ? (containerSize.width / reportSizeRef.current) : 1
+  const {
+    containerRef, reportRef, scale, reportSize,
+  } = useReportDimensions()
+
   const report = userDashboard && (
     <Row justify="center">
       <Col xs={24} ref={containerRef} className={styles.reportOuter} style={{ height: reportSize.height || 'auto' }}>

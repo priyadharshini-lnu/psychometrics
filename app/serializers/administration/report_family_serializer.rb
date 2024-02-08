@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class ReportFamilySerializer < ActiveModel::Serializer
+  class ReportFamilySerializer < Panko::Serializer
     attributes :id, :name, :reports
 
     def reports

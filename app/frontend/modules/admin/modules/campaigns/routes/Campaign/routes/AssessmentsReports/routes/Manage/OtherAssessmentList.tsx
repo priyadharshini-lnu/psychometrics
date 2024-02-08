@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Row, Col, Pagination,
+  Table, Row, Col, Pagination, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { fetchOtherAssessments, getOther } from '~/modules/admin/modules/campaigns/core/assessments'
 import {
-  activateUniversalLink, rescoreResponses, remove, exportRawResults, exportScoringResults,
+  rescoreResponses, remove, exportRawResults, exportScoringResults,
   exportNormedResults, exportRawFactorScores, exportExternalResults,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -32,7 +32,6 @@ const connector = connect(
   {
     fetchOtherAssessments,
     openModal,
-    activateUniversalLink,
     rescoreResponses,
     remove,
     exportRawResults,
@@ -70,6 +69,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
   }, [tableConfig.page])
 
   const { campaignId } = useParams<{ campaignId: string }>()
+  const { message } = App.useApp()
 
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedPage = parseInt(tableConfig.page as unknown as string, 10)
@@ -111,6 +111,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
                       exportRawFactorScores,
                       exportExternalResults,
                       optionsOverrides: { remove: false, updateExternalConfig: false },
+                      message,
                     })
                   }
                   innerElement={(

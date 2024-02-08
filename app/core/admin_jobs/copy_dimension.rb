@@ -5,7 +5,7 @@ module AdminJobs
     include Rails.application.routes.url_helpers
 
     def call
-      dimension.clone_and_save
+      dimension.clone_and_save(user_id: record.owner_id)
 
       broadcast :ok
     end

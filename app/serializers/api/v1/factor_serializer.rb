@@ -2,10 +2,10 @@
 
 module Api
   module V1
-    class FactorSerializer < ActiveModel::Serializer
-      attributes :id, :name, :description
+    class FactorSerializer < Panko::Serializer
+      attributes :id, :name, :description, :updated_at
 
-      attribute :updated_at do
+      def updated_at
         object.updated_at.utc.iso8601
       end
     end

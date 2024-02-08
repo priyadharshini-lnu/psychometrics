@@ -2,8 +2,8 @@ import React from 'react'
 import {
   Radio,
 } from 'antd'
-import moment from 'moment'
 import { useParams } from 'react-router-dom'
+import dayjs from '~/utils/dayjs'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/assessors/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 
@@ -68,13 +68,13 @@ export const WorkshopList: React.FC = () => {
             title={I18n.t('administration.scheduling.columns.start_time')}
             id="startTime"
             width="15%"
-            render={(_, { startTime }) => moment(startTime).format('lll')}
+            render={(_, { startTime }) => dayjs(startTime).format('lll')}
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.duration')}
             id="duration"
             width="10%"
-            render={(_, { duration }) => moment.duration(duration, 'seconds').humanize()}
+            render={(_, { duration }) => dayjs.duration(duration, 'seconds').humanize()}
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.campaign_name')}

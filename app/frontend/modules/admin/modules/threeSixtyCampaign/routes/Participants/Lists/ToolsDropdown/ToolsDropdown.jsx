@@ -1,5 +1,5 @@
 import {
-  Button, Menu, message, Modal,
+  Button, Menu, App,
 } from 'antd'
 import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -71,9 +71,10 @@ export default function ToolsDropdown ({
       onConfirm: removeLicenceUsage => resetCampaign(campaignId, removeLicenceUsage),
     })
   }
+  const { modal, message } = App.useApp()
 
   const handleRescoreAssessment = (campaignId) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('campaign_assessment.modals.rescore.title'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -94,7 +95,7 @@ export default function ToolsDropdown ({
 
 
   const handleRegenerateReports = (campaignId) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('campaign_assessment.modals.regenerate.title'),
       icon: <ExclamationCircleOutlined />,
       centered: true,

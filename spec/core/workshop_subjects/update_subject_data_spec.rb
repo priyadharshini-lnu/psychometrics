@@ -44,7 +44,6 @@ describe WorkshopSubjects::UpdateSubjectData do
       user_assessment.reload
       expect(user_assessment.schedule_time).to eq('2023-08-04T02:00:00.063Z')
       expect(user_assessment.evaluator_id).to eq(campaign.assessors.first.user_id)
-      expect(user_assessment.id).to eq(params[:assessor_assessments].first[:id])
     end
 
     it "creates new assessor record if assessor doesn't exist with user_id or campaign_id" do

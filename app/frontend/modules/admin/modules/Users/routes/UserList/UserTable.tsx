@@ -107,23 +107,41 @@ const Dropdown: React.FC<DropdownProps> = ({
   user, openResetPasswordModal, userTab, currentUser,
 }) => {
   const [confirmation, setConfirmation] = useState(false)
+  const { resource } = useResourceContext<User>()
+
+  const handleOnConfirm = () => resource.removeResource(user.id).then(() => {
+    message.info(I18n.t('users.actions.remove.success_message', { email: user.email }))
+  }).catch(response => (message.error(response.error
+    ? I18n.t('users.actions.remove.error_message', { error: response.error })
+    : I18n.t('users.actions.remove.system_error_message'))
+  ))
+
   return (
-    <ConditionalDropdown menu={getActionsMenuProps({
-      user, openResetPasswordModal, setConfirmation, confirmation, userTab, currentUser,
-    })}
-    />
+    <>
+      <ConditionalDropdown menu={getActionsMenuProps({
+        user, openResetPasswordModal, setConfirmation, userTab, currentUser,
+      })}
+      />
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('users.actions.remove.confirm_title')}
+        message={I18n.t('users.actions.remove.confirm_message', { email: user.email })}
+        onConfirm={handleOnConfirm}
+        close={() => setConfirmation(false)}
+      />
+    </>
+
   )
 }
 
 interface ActionMenuData extends DropdownProps {
   user: User
   setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
   openResetPasswordModal: DropdownProps['openResetPasswordModal']
 }
 
 const getActionsMenuProps = ({
-  setConfirmation, confirmation, user, openResetPasswordModal, userTab, currentUser,
+  setConfirmation, user, openResetPasswordModal, userTab, currentUser,
 }: ActionMenuData):MenuProps => {
   const history = useHistory()
   const { resource } = useResourceContext<User>()
@@ -140,10 +158,6 @@ const getActionsMenuProps = ({
   const handleAPIKeysClick = (userId: Admin['userId']) => {
     history.push(`/admin/users/admins/${userId}/api_keys`)
   }
-
-  const handleOnConfirm = () => resource.removeResource(user.id).then(() => {
-    message.info(I18n.t('users.actions.remove.success_message', { email: user.email }))
-  }).catch(e => message.error(JSON.stringify(e)))
 
   const menuItems = [
     user.meta.permissions.resetPassword && {
@@ -167,14 +181,6 @@ const getActionsMenuProps = ({
           <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('users.actions.remove.confirm_title')}
-              message={I18n.t('users.actions.remove.confirm_message', { email: user.email })}
-              onConfirm={handleOnConfirm}
-              onCancel={() => setConfirmation(false)}
-            />
-          )}
         </>
       ),
     },

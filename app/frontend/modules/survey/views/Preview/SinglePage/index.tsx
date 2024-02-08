@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
-import { Button } from 'antd'
+import { Button, Alert } from 'antd'
 import { useMessageBus } from '~/hooks/useMessageBus'
 import { RootState } from '~/modules/survey/core/rootReducers'
 import { getAllAnsweredQuestions } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -52,6 +52,14 @@ const SinglePage: React.FC<Props> = ({
   const filteredQuestions = visibleQuestions.length
     ? questions.filter((q:{id:number}) => visibleQuestions.includes(q.id))
     : questions
+
+  if (!questions.length) {
+    return (
+      <div ref={ref} className={styles.page}>
+        <Alert type="warning" message={I18n.t('administration.assessor.moderate_score.no_results')} />
+      </div>
+    )
+  }
 
   return (
     <div ref={ref} className={styles.page}>

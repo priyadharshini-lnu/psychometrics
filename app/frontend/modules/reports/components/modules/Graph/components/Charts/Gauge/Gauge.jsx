@@ -114,7 +114,11 @@ class Gauge extends Component {
     }
     return (
       <div className={styles.gauge}>
-        {['Factor', 'ExternalFactor', 'DataSheet', 'SavilleFactor'].includes(sourceType) && sourceModel
+        {['Factor',
+          'ExternalFactor',
+          'DataSheet',
+          'CampaignFactors',
+          'SavilleFactor'].includes(sourceType) && sourceModel
           && _.map(sourceModel, (factor, i) => (
             <div
               style={cssStyles}

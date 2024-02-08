@@ -1,7 +1,6 @@
 import _ from 'lodash'
-import moment from 'moment-timezone'
-import { Moment } from 'moment'
 import { FormInstance } from 'antd'
+import dayjs from '~/utils/dayjs'
 import { UserAvailabilityDate, UserAvailabilityDay } from './interfaces'
 
 export const parseInitialAvailability = _.memoize((initialAvailability?: UserAvailabilityDate) => {
@@ -11,7 +10,7 @@ export const parseInitialAvailability = _.memoize((initialAvailability?: UserAva
 
   const sortedAvailabilityDays = _.sortBy(
     initialAvailability.availabilityDays,
-    o => moment(o.endTime, 'hh:mm'),
+    o => dayjs(o.endTime, 'hh:mm'),
   )
 
   const initialAvailabilityDays = sortedAvailabilityDays.reduce(
@@ -19,18 +18,18 @@ export const parseInitialAvailability = _.memoize((initialAvailability?: UserAva
       const { day } = userAvailabilityDay
       val[day] ||= []
       val[day].push({
-        startTime: moment(userAvailabilityDay.startTime, 'hh:mm'),
-        endTime: moment(userAvailabilityDay.endTime, 'hh:mm'),
+        startTime: dayjs(userAvailabilityDay.startTime, 'hh:mm'),
+        endTime: dayjs(userAvailabilityDay.endTime, 'hh:mm'),
       })
       return val
     },
-    {} as UserAvailabilityDay<Moment>,
+    {} as UserAvailabilityDay<dayjs.Dayjs>,
   )
 
   return {
     ...initialAvailability,
-    startDate: moment(initialAvailability.startDate),
-    endDate: moment(initialAvailability.endDate),
+    startDate: dayjs(initialAvailability.startDate),
+    endDate: dayjs(initialAvailability.endDate),
     availabilityDays: initialAvailabilityDays,
   }
 })
@@ -47,7 +46,7 @@ export const dayOptions = [
 
 export const defaultCheckedList = [1, 2, 3, 4, 5]
 export const getInitialCheckedDayList = (
-  formInstance: FormInstance, availabilityDays?: UserAvailabilityDay<moment.Moment>,
+  formInstance: FormInstance, availabilityDays?: UserAvailabilityDay<dayjs.Dayjs>,
 ) => {
   const selectedDays = availabilityDays ? Object.keys(availabilityDays) : []
   if (selectedDays.length > 0) {
@@ -55,8 +54,8 @@ export const getInitialCheckedDayList = (
   }
   defaultCheckedList.forEach((day) => {
     formInstance.setFieldValue(day.toString(), [{
-      startTime: moment('09:00', 'HH:mm'),
-      endTime: moment('17:00', 'HH:mm'),
+      startTime: dayjs('09:00', 'HH:mm'),
+      endTime: dayjs('17:00', 'HH:mm'),
     }])
   })
   return defaultCheckedList

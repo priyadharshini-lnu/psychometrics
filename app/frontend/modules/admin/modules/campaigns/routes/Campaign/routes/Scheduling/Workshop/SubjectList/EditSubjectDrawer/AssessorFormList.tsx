@@ -3,7 +3,7 @@ import {
 } from 'antd'
 import { EditOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 
 import { ResourceAvatar } from '~/glint'
 import { PROGRESS_STATUSES } from './EditSubjectDrawer'
@@ -43,7 +43,7 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
       dataIndex="scheduleTime"
       render={scheduleTime => (
         scheduleTime && (
-        <span>{moment(scheduleTime).format('HH:mm A')}</span>
+        <span>{dayjs(scheduleTime).format('HH:mm A')}</span>
         )
       )}
     />

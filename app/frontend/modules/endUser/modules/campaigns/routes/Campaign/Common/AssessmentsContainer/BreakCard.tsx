@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import moment, { Moment } from 'moment-timezone'
 import { Col, Space } from 'antd'
 import { ClockCircleFilled } from '@ant-design/icons'
+import dayjs from '~/utils/dayjs'
 import { DetailsCard } from '~/glint'
 import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
@@ -48,14 +48,14 @@ export const BreakCard: FC<Props> = ({
   )
 }
 
-const getTimeText = (time: Moment) => {
-  const currentTime = moment.tz()
+const getTimeText = (time: dayjs.Dayjs) => {
+  const currentTime = dayjs.tz()
   const isActivityHappeningToday = currentTime.diff(time, 'days') === 0
   return isActivityHappeningToday
     ? time.clone().format('h:mmA') : time.clone().format('MMMM DD, YYYY, h:mmA')
 }
 
-const getEarliestDate = (dateOne:Moment, dateTwo:Moment) => {
+const getEarliestDate = (dateOne:dayjs.Dayjs, dateTwo:dayjs.Dayjs) => {
   if (!dateOne.isValid()) {
     return dateTwo
   }
@@ -66,15 +66,15 @@ const getEarliestDate = (dateOne:Moment, dateTwo:Moment) => {
 }
 
 const getWorkshopActivityBreakData = (currentWorkshopActivity, nextWorkshopActivity) => {
-  const currentTime = moment.tz()
+  const currentTime = dayjs.tz()
 
   if (!currentWorkshopActivity.scheduleTime || !nextWorkshopActivity.scheduleTime) return null
 
   const currentActivityEndTimeMoment = getEarliestDate(
-    moment(currentWorkshopActivity.completedAt),
-    moment(currentWorkshopActivity.scheduleTime).add(currentWorkshopActivity.workshopActivityDuration, 'minutes'),
+    dayjs(currentWorkshopActivity.completedAt),
+    dayjs(currentWorkshopActivity.scheduleTime).add(currentWorkshopActivity.workshopActivityDuration, 'minutes'),
   )
-  const nextActivityStartTimeMoment = moment(nextWorkshopActivity.scheduleTime)
+  const nextActivityStartTimeMoment = dayjs(nextWorkshopActivity.scheduleTime)
   if (nextActivityStartTimeMoment.diff(currentActivityEndTimeMoment, 'minutes') >= MINIMUM_BREAK_DURATION) {
     return ({
       startTime: currentActivityEndTimeMoment.clone(),

@@ -2,16 +2,21 @@
 
 module Administration
   module Campaigns
-    class TemplatesAndAssementsSerializer < ActiveModel::Serializer
-      has_many :templates, serializer: Administration::Campaigns::TemplateSerializer
-      has_many :assessments, serializer: Administration::Campaigns::ShortAssessmentSerializer
+    class TemplatesAndAssementsSerializer < Panko::Serializer
+      attributes :assessments, :templates
 
       def assessments
-        object[:campaigns].map { |campaign| campaign.threesixty_campaign.assessment }
+        Panko::ArraySerializer.new(
+          object[:campaigns].map { |campaign| campaign.threesixty_campaign.assessment },
+          each_serializer: Administration::Campaigns::ShortAssessmentSerializer
+        ).to_a
       end
 
       def templates
-        object[:templates]
+        Panko::ArraySerializer.new(
+          object[:templates],
+          each_serializer: Administration::Campaigns::TemplateSerializer
+        ).to_a
       end
     end
   end

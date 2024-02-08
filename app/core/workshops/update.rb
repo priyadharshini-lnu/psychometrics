@@ -11,7 +11,11 @@ module Workshops
 
     def call
       Workshop.transaction do
-        @workshop.update!(params.slice(:name, :total_seats, :video_call_type, :meeting_link))
+        @workshop.update!(params.slice(:name,
+                                       :total_seats,
+                                       :video_call_type,
+                                       :allow_late_cancellation_and_rescheduling,
+                                       :meeting_link))
 
         workshop.workshop_assessors.where.not(user_id: params[:workshop_assessors_ids]).destroy_all
         params[:workshop_assessors_ids].each do |assessor_user_id|

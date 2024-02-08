@@ -3,7 +3,11 @@
 module Threesixty::EndUser
   class CampaignNomineeSerializer < ActiveModel::Serializer
     attributes :id, :is_self, :campaign_id, :counters, :is_nomination_completed
-    has_one :user, serializer: UserSerializer
+    has_one :user, method: :user
+
+    def user
+      UserSerializer.new.serialize(object.user)
+    end
 
     def campaign_id
       object.campaign.threesixty_campaign.id

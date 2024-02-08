@@ -8,7 +8,7 @@ module ActiveStorageCreateVariant
   end
 
   def create_variant
-    variants = record.class.attachment_reflections[name].variants&.keys
+    variants = record.class.attachment_reflections[name].named_variants&.keys
 
     if variants.present?
       ActiveStorageCreateVariantJob.perform_later(record, name, variants)

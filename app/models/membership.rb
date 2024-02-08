@@ -43,6 +43,9 @@ class Membership < ApplicationRecord
   has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
   has_many :clients_reports, through: :clients_assigns, source: :reports
+  has_many :memberships_admin_roles, dependent: :destroy
+  has_many :admin_roles, through: :memberships_admin_roles, dependent: :destroy
+
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   has_one :hogan_credential, dependent: :destroy
   has_one :grants, class_name: 'MembershipGrant'
@@ -168,7 +171,16 @@ class Membership < ApplicationRecord
     privacy_consents.take.present?
   end
 
+  def has_grants_through_role?(scope, grant)
+    admin_roles.any? do |admin_role|
+      admin_role = admin_role.user_role_specific_permissions(role)
+      admin_role.key?(scope.to_s) && admin_role[scope.to_s]&.include?(grant.to_s)
+    end
+  end
+
   def has_grant?(scope, grant)
+    return true if has_grants_through_role?(scope, grant)
+
     return false unless grants
 
     grants.has_grant?(scope, grant)

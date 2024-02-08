@@ -4,7 +4,7 @@ import {
 } from 'react-redux'
 import { Layout, Card } from 'antd'
 import _ from 'lodash'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
 import createAssessmentStore from '~/modules/admin/store/assessmentStore'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -66,7 +66,7 @@ const UserAssessment: React.FC<Props> = ({
         <div>
           {I18n.t('administration.assessor.completed_at')}
           {': '}
-          <b>{moment(subjectForm.result.completed_at).format('DD MMM YYYY')}</b>
+          <b>{dayjs(subjectForm.result.completed_at).format('DD MMM YYYY')}</b>
         </div>
         )}
       </div>

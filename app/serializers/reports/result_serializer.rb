@@ -7,7 +7,7 @@ module Reports
                :occupations, :innovation_styles
 
     has_one :user, serializer: UserSerializer
-    has_many :media_responses, serializer: MediaResponseSerializer
+    has_many :media_responses, method: :media_responses
 
     def status
       object.real_status
@@ -77,12 +77,16 @@ module Reports
 
     def media_responses
       object.media_responses.order(:created_at)
+      Panko::ArraySerializer.new(
+        object.media_responses.order(:created_at),
+        each_serializer: MediaResponseSerializer
+      ).to_a
     end
 
     private
 
     def campaign
-      @campaign ||= instance_options[:campaign]
+      instance_options[:campaign]
     end
 
     def normalize_hogan(items)

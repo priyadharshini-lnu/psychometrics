@@ -11,28 +11,28 @@ module ProjectInitialState
     @init_state.merge!({
       currentUser: ::Administration::Campaigns::CurrentUserSerializer.
                   new(
-                    current_user,
-                    current_membership: current_membership,
-                    project_id: project.id,
-                    campaign_id: @campaign&.id
-                  ).
-                  to_h,
+                    context: {
+                      current_membership: current_membership,
+                      project_id: project.id,
+                      campaign_id: @campaign&.id
+                    }
+                  ).serialize(current_user),
       project: {
-        smtpSetting: ActiveModelSerializers::SerializableResource.new(
-          project.smtp_setting, {
-            key_transform: :camel_lower, serializer: ::Administration::Projects::SmtpSettingSerializer
+        smtpSetting: ::Administration::Projects::SmtpSettingSerializer.new(
+          context: {
+            key_transform: :camel_lower
           }
-        ).as_json,
-        samlSetting: ActiveModelSerializers::SerializableResource.new(
-          project.saml_setting, {
-            key_transform: :camel_lower, serializer: ::Administration::Projects::SamlSettingSerializer
+        ).serialize(project.smtp_setting),
+        samlSetting: ::Administration::Projects::SamlSettingSerializer.new(
+          context: {
+            key_transform: :camel_lower
           }
-        ).as_json,
-        securitySetting: ActiveModelSerializers::SerializableResource.new(
-          project.security_setting, {
-            key_transform: :camel_lower, serializer: ::Administration::Projects::SecuritySettingSerializer
+        ).serialize(project.saml_setting),
+        securitySetting: ::Administration::Projects::SecuritySettingSerializer.new(
+          context: {
+            key_transform: :camel_lower
           }
-        ).as_json
+        ).serialize(project.security_setting)
       },
       config: {
         availableLocales: I18n.available_locales,

@@ -1,7 +1,9 @@
 import React from 'react'
 import {
-  Table, MenuProps, Row, Col, message, Modal, Button, Switch,
+  Table, MenuProps, Row, Col, App, Button, Switch,
 } from 'antd'
+import type { MessageInstance } from 'antd/es/message/interface'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -55,6 +57,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
+  const { modal, message } = App.useApp()
 
   return (
     <Row>
@@ -157,6 +160,8 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     assessment,
                     remove: () => remove(parsedCampaignId, assessment.id),
                     resetProgress,
+                    modal,
+                    message,
                   })
                 }
                 innerElement={(
@@ -191,16 +196,18 @@ interface ActionMenuData {
     parentType?: ParentResourceType
     testMode?: boolean
   }): void
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
 const getActionsMenuProps = ({
-  rescoreResponse, openModal, campaignId, userId, projectId, assessment,
+  rescoreResponse, openModal, campaignId, userId, projectId, assessment, modal, message,
   reset, remove, resetProgress,
 }: ActionMenuData): MenuProps => {
   const { name, permissions } = assessment
 
   const handleReset = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('campaign_assessment.modals.reset.title', { name }),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -225,7 +232,7 @@ const getActionsMenuProps = ({
   }
 
   const handleDelete = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -241,7 +248,7 @@ const getActionsMenuProps = ({
   }
 
   const handleResetProgress = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       content: I18n.t('user_assessments.modals.reset.content', { name }),
       onOk () {

@@ -23,6 +23,7 @@ export default function Item ({
       required={required}
       colon={false}
       {...getProps(name)}
+      labelAlign="left"
     >
       <Field field={field} context={context} onChange={onChange} />
     </Form.Item>

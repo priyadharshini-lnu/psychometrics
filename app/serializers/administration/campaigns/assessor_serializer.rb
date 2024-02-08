@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class AssessorSerializer < ActiveModel::Serializer
+    class AssessorSerializer < Panko::Serializer
       attributes :id, :full_name, :email, :permissions,
                  :status, :total_evaluations, :completed_evaluations
 
@@ -36,8 +36,8 @@ module Administration
             %w[login_as spoof]
           ],
           {
-            project_id: instance_options[:project_id],
-            campaign_id: instance_options[:campaign_id]
+            project_id: context[:project_id],
+            campaign_id: context[:campaign_id]
           }
         )
       end
@@ -45,11 +45,11 @@ module Administration
       private
 
       def evalutions_count
-        instance_options[:evalutions_count][object.user_id] || { total: 0, completed: 0 }
+        context[:evalutions_count][object.user_id] || { total: 0, completed: 0 }
       end
 
       def current_user
-        instance_options[:current_user]
+        context[:current_user]
       end
 
       def user

@@ -1,7 +1,0 @@
-header
-  .row
-    .col-xs-12.logo-wrap
-      - if @client && @client.project && @client.project.logo.present?
-        = image_tag @client.project.logo.url, class: 'logo', alt: @client.project.decorate.display_name
-      - else
-        = image_tag 'tteLogo.svg', class: 'img-responsive', alt: 'The Talent Enterprise logo'

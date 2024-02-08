@@ -2,7 +2,7 @@
 
 module Administration
   module Threesixty
-    class CurrentUserSerializer < ActiveModel::Serializer
+    class CurrentUserSerializer < Panko::Serializer
       attributes :id, :is_manager, :email, :first_name, :last_name, :full_name, :role,
                  :is_anonym, :permissions, :photo, :timezone, :last_sign_in_at, :role_title, :name
 
@@ -61,11 +61,11 @@ module Administration
       end
 
       def current_project_id
-        instance_options[:project_id]
+        context[:project_id]
       end
 
       def campaign_id
-        instance_options[:campaign_id]
+        context[:campaign_id]
       end
     end
   end

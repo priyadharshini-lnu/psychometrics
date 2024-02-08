@@ -9,9 +9,9 @@ import {
 } from 'antd'
 import { CopyOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
-import moment from 'moment'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ConnectedProps, connect } from 'react-redux'
+import dayjs from '~/utils/dayjs'
 import {
   WorkshopUserAcitivity, WorkshopUserAcitivityTR,
 } from '~/modules/admin/modules/campaigns/core/workshopActivity'
@@ -130,7 +130,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
             width="10%"
             title={I18n.t('administration.scheduling.columns.schedule_time')}
             id="scheduleTime"
-            render={({ scheduleTime }) => scheduleTime && moment(scheduleTime).format('HH:mm')}
+            render={({ scheduleTime }) => scheduleTime && dayjs(scheduleTime).format('HH:mm')}
           />
           <Resource.Column<WorkshopUserAcitivity>
             width="30%"

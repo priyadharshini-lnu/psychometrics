@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import {
-  Dropdown, Table, Button, Row, Col, Pagination, message, Modal, MenuProps,
+  Dropdown, Table, Button, Row, Col, Pagination, App, MenuProps,
 } from 'antd'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
+import type { MessageInstance } from 'antd/es/message/interface'
 import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import moment from 'moment'
+
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import dayjs from '~/utils/dayjs'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
@@ -62,6 +65,7 @@ const RegistrationCodes: React.FC<Props> = ({
   openModal,
   destroy,
 }) => {
+  const { modal, message } = App.useApp()
   useEffect(() => {
     fetch(campaignId, tableConfig)
   }, [tableConfig])
@@ -152,14 +156,16 @@ const RegistrationCodes: React.FC<Props> = ({
                         campaignId,
                         code: {
                           ...code,
-                          startDate: moment(code.startDate),
-                          endDate: moment(code.endDate),
+                          startDate: dayjs(code.startDate),
+                          endDate: dayjs(code.endDate),
                           disabled: !code.disabled,
                         },
                       }),
                       onCancelConfirm: () => destroy(campaignId, code.id),
                       permissions: code.permissions,
                       code,
+                      modal,
+                      message,
                     })}
                     innerElement={(
                       <Button type="link">
@@ -195,6 +201,8 @@ interface ActionMenuData {
     remove: boolean
   }
   code: RegistrationCode
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
 interface QRCodeMenuData {
@@ -238,10 +246,10 @@ const getQRCodeMenuProps = ({
 }
 
 const getActionsMenuProps = ({
-  onEdit, onCancelConfirm, permissions, code: { code },
+  onEdit, onCancelConfirm, permissions, code: { code }, modal, message,
 }:ActionMenuData): MenuProps => {
   const handleRemove = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,

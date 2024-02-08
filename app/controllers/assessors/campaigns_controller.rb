@@ -9,11 +9,17 @@ class Assessors::CampaignsController < Assessors::BaseController
 
     campaigns = search.result
     paginated_campaigns = campaigns.page(params[:page])
-    serialized_campaigns = ActiveModelSerializers::SerializableResource.new(
+    serialized_campaigns = Panko::ArraySerializer.new(
       paginated_campaigns, each_serializer: Administration::Assessors::CampaignSerializer,
-      subject_statuses_count: Assessors::SubjectStatusesCount.call!(current_user, paginated_campaigns.pluck(:id))
-    )
-
+      context: {
+        subject_evaluation_statuses_count: Assessors::SubjectStatusesCount.call!(
+          current_user, paginated_campaigns.pluck(:id)
+        ),
+        subject_moderation_statuses_count: Assessors::SubjectStatusesCount.call!(
+          current_user, paginated_campaigns.pluck(:id), assessment_category: :lead_assessor_form
+        )
+      }
+    ).to_a
     render json: {
       list: serialized_campaigns,
       total: campaigns.count

@@ -9,12 +9,15 @@ describe Projects::UsersQuery do
   before do
     create(:sheet_row, sheet: datasheet, email: 'tony@ferg.com')
     create(:sheet_row, sheet: datasheet, email: 'el@kwin.com')
-    create(:user, email: 'tony@alal.com', project: project)
+    user = create(:user, email: 'tony@alal.com', project: project)
+    user.user_profile.update(locale: 'en')
     create(:user, email: 'tony@coco.com')
   end
+
   it do
     result = described_class.new(project, 'ony').to_a
     expect(result.size).to eq 2
+    expect(result.last.locale).to eq('en')
     expect(result.map(&:email)).to match_array %w[tony@ferg.com tony@alal.com]
   end
 end

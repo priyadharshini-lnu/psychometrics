@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useRef } from 'react'
 import { message } from 'antd'
-import { MessageType } from 'antd/lib/message'
+import { MessageType } from 'antd/lib/message/interface'
 
 const { App, I18n } = window
 

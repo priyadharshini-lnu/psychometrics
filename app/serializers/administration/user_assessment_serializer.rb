@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class UserAssessmentSerializer < ActiveModel::Serializer
+  class UserAssessmentSerializer < Panko::Serializer
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling
 
@@ -16,7 +16,7 @@ module Administration
     def norms
       return assessment.external_norms if assessment.has_external_norm?
 
-      assessment.norms.map { |n| NormSerializer.new(n).to_h }
+      assessment.norms.map { |n| NormSerializer.new.serialize(n) }
     end
 
     def is_expired
@@ -55,11 +55,11 @@ module Administration
     private
 
     def campaign
-      instance_options[:campaign]
+      context[:campaign]
     end
 
     def current_user
-      instance_options[:current_user]
+      context[:current_user]
     end
 
     def norm

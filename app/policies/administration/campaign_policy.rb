@@ -156,7 +156,7 @@ module Administration
     end
 
     def stats?
-      @user.is?(:superadmin) || has_permission?(:campaign, :stats)
+      @user.is?(:superadmin) || has_permission?(:campaigns, :stats)
     end
 
     def view_dashboard?
@@ -218,6 +218,14 @@ module Administration
 
     def pdf_password?
       @user.is?(:superadmin)
+    end
+
+    def view_campaign_scoring?
+      has_permission?(:campaign_factors, :view)
+    end
+
+    def manage_campaign_scoring?
+      has_permission?(:campaign_factors, :manage)
     end
 
     private

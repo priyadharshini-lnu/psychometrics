@@ -10,3 +10,13 @@
   // Desperate attempt, fix with LH-1231
   color: rgba(0, 0, 0, 0.45) !important;
 }
+
+.editableText:global(.ant-typography-edit-content) {
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+  left: -4px;
+  & :global(.ant-input) {
+    padding-inline-start: 4px;
+  }
+}

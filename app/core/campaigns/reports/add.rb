@@ -96,7 +96,7 @@ module Campaigns
                         report.assessments.select { |a| form.assessment_ids.include?(a.id) }
                       end
 
-        assessments.reject(&:assessor_form?)
+        assessments.reject { |a| Assessment::NON_USER_ASSESSMENT_CATEGORY.include?(a.category) }
       end
     end
   end

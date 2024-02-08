@@ -2,14 +2,14 @@
 
 module Administration
   module Campaigns
-    class CampaignSerializer < ActiveModel::Serializer
+    class CampaignSerializer < Panko::Serializer
       include Rails.application.routes.url_helpers
 
       attributes :id, :name, :start_date, :end_date, :type, :status, :campaign_url, :is_threesixty,
                  :is_fixed_time, :project_id, :permissions
 
-      has_many :assessments, serializer: Administration::Campaigns::AssessmentSerializer
-      has_many :reports, serializer: Administration::Campaigns::ReportSerializer
+      has_many :assessments, each_serializer: Administration::Campaigns::AssessmentSerializer
+      has_many :reports, each_serializer: Administration::Campaigns::ReportSerializer
 
       def campaign_url
         if object.threesixty?
@@ -50,7 +50,9 @@ module Administration
             'view_workshops',
             'view_workshop_invites',
             'stats',
-            'pdf_password'
+            'pdf_password',
+            'view_campaign_scoring',
+            'manage_campaign_scoring'
           ],
           {
             project_id: project.id,
@@ -66,7 +68,7 @@ module Administration
       end
 
       def current_user
-        instance_options[:current_user]
+        context[:current_user]
       end
     end
   end

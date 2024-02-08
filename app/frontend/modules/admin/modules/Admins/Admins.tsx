@@ -7,9 +7,9 @@ import {
   Space,
   Button,
   Input,
-  Modal,
   message,
   Pagination,
+  App,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import {
@@ -68,6 +68,7 @@ const AdminsComponent: React.FC<Props> = ({
   adminType, campaignType, currentUser, openModal, currentCampaignId,
 }) => {
   const params = useParams<{ campaignId: string; projectId: string; clientId: string }>()
+  const { modal } = App.useApp()
   const { projectId } = params
   const { clientId } = params
   const campaignIdParam = params.campaignId
@@ -87,7 +88,7 @@ const AdminsComponent: React.FC<Props> = ({
 
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, createResource, updateResource,
-    removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter,
+    removeResource, currentPage, pageSize, changePage, getFilteredValue, changeFilter, getErrors,
   } = useResources<ProjectAdmin, Meta>(
     'memberships',
     {
@@ -101,6 +102,9 @@ const AdminsComponent: React.FC<Props> = ({
       },
     },
   )
+
+  const createRequestErrors = getErrors('add')
+
   useEffect(() => {
     fetch()
   }, [])
@@ -142,7 +146,7 @@ const AdminsComponent: React.FC<Props> = ({
   const handleDeleteAdminClick = (
     id: Admin['id'], firstName: Admin['firstName'], lastName: Admin['lastName'], email: Admin['email'],
   ) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.administrators.modals.delete.title'),
       content: I18n.t(
         'administration.administrators.modals.delete.content',
@@ -225,9 +229,10 @@ const AdminsComponent: React.FC<Props> = ({
           >
             <Table.Column
               dataIndex="userId"
+              key="userId"
               title={I18n.t('administration.administrators.list.columns.id')}
               sorter
-              sortOrder={getSortOrder('user_id')}
+              sortOrder={getSortOrder('userId')}
             />
             <Table.Column
               dataIndex="name"
@@ -242,17 +247,19 @@ const AdminsComponent: React.FC<Props> = ({
             />
             <Table.Column
               dataIndex="email"
+              key="user.email"
               title={I18n.t('administration.administrators.list.columns.email')}
               sorter
               sortOrder={getSortOrder('user.email')}
             />
             <Table.Column
               dataIndex="createdAt"
+              key="createdAt"
               title={I18n.t(
                 'administration.administrators.list.columns.created_at',
               )}
               sorter
-              sortOrder={getSortOrder('created_at')}
+              sortOrder={getSortOrder('createdAt')}
             />
             <Table.Column
               dataIndex="actions"
@@ -309,6 +316,7 @@ const AdminsComponent: React.FC<Props> = ({
         handleClose={handleDrawerClose}
         updateAdmin={updateResource}
         createAdmin={createResource}
+        requestErrors={createRequestErrors}
         isSuperAdmin={isSuperAdmin(currentUser)}
         permissions={meta.permissions}
         currentUserGrants={meta.usersGrants}

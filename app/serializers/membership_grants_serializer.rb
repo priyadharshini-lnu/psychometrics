@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class MembershipGrantsSerializer < ActiveModel::Serializer
+class MembershipGrantsSerializer < Panko::Serializer
   attributes :id, :membership_id, :data
 end

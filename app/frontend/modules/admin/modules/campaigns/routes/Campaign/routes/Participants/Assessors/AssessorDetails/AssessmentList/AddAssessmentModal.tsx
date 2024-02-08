@@ -57,7 +57,7 @@ const AddAssessmentModal: React.FC<Props> = ({
     setAutocompletedSubject(userPresenter.getFullNameWithEmail(data))
   }
 
-  const fieldItemPropsForSubject = (errors: string[]): { validateStatus: 'error', help: string[] } | {} => {
+  const fieldItemPropsForSubject = (errors: string[] | undefined): { validateStatus: 'error', help: string[] } | {} => {
     if (isEmpty(errors)) return {}
 
     return { validateStatus: 'error', help: errors }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class ProctoringSessionSerializer < ActiveModel::Serializer
+  class ProctoringSessionSerializer < Panko::Serializer
     attributes :id, :session_id, :started_at, :completed_at, :score, :comment, :archive_url, :report_url, :conclusion
 
     def started_at

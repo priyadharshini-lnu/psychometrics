@@ -4,11 +4,15 @@ class EndUser::WorkshopInvitesController < ApplicationController
   before_action :set_resource, only: %i[fetch_invite fetch_booking book]
 
   def fetch_invite
-    render json: @_resource, serializer: ::EndUser::IndividualInviteSerializer
+    render json: ::EndUser::IndividualInviteSerializer.new(
+      context: { current_user: current_user }
+    ).serialize(@_resource)
   end
 
   def fetch_booking
-    render json: @_resource, serializer: ::EndUser::IndividualBookingSerializer, current_user: current_user
+    render json: ::EndUser::IndividualBookingSerializer.new(
+      context: { current_user: current_user }
+    ).serialize(@_resource)
   end
 
   def book

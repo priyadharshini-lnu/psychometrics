@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Button, Space, Badge, Modal, message,
+  Button, Space, Badge, App,
 } from 'antd'
 import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 
@@ -50,6 +50,7 @@ const RemoveColumnsComponent: FC<Props> = ({
   removeColumns,
   sheetType,
 }) => {
+  const { modal, message } = App.useApp()
   if (selectedRowKeys.length === 0) {
     return null
   }
@@ -67,7 +68,7 @@ const RemoveColumnsComponent: FC<Props> = ({
   }
 
   const openConfirmModalForDelete = (): void => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.sheets.modals.remove_columns.title', {
         count: selectedCount,
       }),

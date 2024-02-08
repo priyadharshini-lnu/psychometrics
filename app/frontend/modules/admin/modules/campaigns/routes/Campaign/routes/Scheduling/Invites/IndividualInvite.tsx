@@ -1,4 +1,5 @@
-import { Space, PageHeader, Tabs } from 'antd'
+import { PageHeader } from '@ant-design/pro-layout'
+import { Space, Tabs } from 'antd'
 import { useHistory, useParams } from 'react-router-dom'
 import { MailOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'

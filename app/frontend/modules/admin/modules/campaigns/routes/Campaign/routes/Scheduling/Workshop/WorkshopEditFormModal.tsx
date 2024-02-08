@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import { FC, useState, useEffect } from 'react'
 import {
-  Form, Typography, InputNumber, Input, Radio,
+  Form, Typography, InputNumber, Input, Radio, Switch,
 } from 'antd'
-import moment from 'moment-timezone'
 import { useParams } from 'react-router-dom'
+import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import {
   UserDetails, userDetailsListTR, Workshop,
@@ -52,9 +52,9 @@ export const WorkshopEditFormModal: FC<Props> = ({
       method: 'get',
       body: {
         startDateTime: workshop.startTime,
-        endDateTime: moment.tz(
+        endDateTime: dayjs.tz(
           workshop.startTime, workshop.timezone,
-        ).add(workshop.duration, 's').format(moment.defaultFormat),
+        ).add(workshop.duration, 's').format(),
         campaignId,
         projectId,
         searchTerm: searchKey,
@@ -90,6 +90,14 @@ export const WorkshopEditFormModal: FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Input />
+          </Form.Item>
+          <Form.Item
+            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_rescheduling')}
+            name="allowLateCancellationAndRescheduling"
+            rules={[{ required: true }]}
+            valuePropName="checked"
+          >
+            <Switch />
           </Form.Item>
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.video_call_type_label')}

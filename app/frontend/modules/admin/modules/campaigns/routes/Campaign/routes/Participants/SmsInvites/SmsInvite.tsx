@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Row, Col, Input, Select, Pagination, Button, Space, MenuProps, message, Modal,
+  Table, Row, Col, Input, Select, Pagination, Button, Space, MenuProps, App,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
@@ -81,6 +81,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
 }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
+  const { modal, message } = App.useApp()
 
   useEffect(() => {
     fetch(campaignId, tableConfig)
@@ -93,7 +94,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
   }
 
   const handleDelete = (smsInvite: SmsInvite) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,

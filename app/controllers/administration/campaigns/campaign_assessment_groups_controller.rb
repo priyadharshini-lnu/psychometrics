@@ -7,21 +7,23 @@ module Administration
       before_action :pundit_authorize
 
       def index
-        render json: campaign,
-               serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer,
-               current_user: current_user
+        render json: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer.new(
+          context: {
+            current_user: current_user
+          }
+        ).serialize(campaign)
       end
 
       def create
         group = campaign.campaign_assessment_groups.create(resource_params)
         audit! :create, campaign, payload: resource_params, campaign: campaign
-        render json: group, serializer: Administration::CampaignAssessmentGroups::GroupSerializer
+        render json: Administration::CampaignAssessmentGroups::GroupSerializer.new.serialize(group)
       end
 
       def update
         audit! :update, campaign, payload: resource_params, campaign: campaign
         resource.update(resource_params)
-        render json: resource, serializer: Administration::CampaignAssessmentGroups::GroupSerializer
+        render json: Administration::CampaignAssessmentGroups::GroupSerializer.new.serialize(resource)
       end
 
       def destroy
@@ -35,8 +37,11 @@ module Administration
         groups = update_position_params[:campaign_assessment_groups]
         ::CampaignAssessmentGroups::UpdatePositions.call(campaign, groups) do
           on(:ok) do
-            render json: campaign,
-                   serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
+            render json: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer.new(
+              context: {
+                current_user: current_user
+              }
+            ).serialize(campaign)
           end
           on(:error) { |errors| return render json: { errors: errors }, status: 400 }
         end

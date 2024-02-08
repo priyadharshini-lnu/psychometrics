@@ -26,7 +26,7 @@ module Api
       )
 
       if response && response[:error]
-        render json: { error: response[:error] }, status: 400
+        render json: { error: response[:error] }, status: 422
       else
         audit! :create_bulk_workshops, nil, payload: workshop_params, campaign: campaign
         jsonapi_render json: response[:workshops]
@@ -60,6 +60,7 @@ module Api
           :video_call_type,
           :start_time,
           :timezone,
+          :allow_late_cancellation_and_rescheduling,
           {
             workshop_resources: %i[name url],
             center_manager_ids: [],
@@ -95,6 +96,7 @@ module Api
 
     def workshop_update_params
       params.require(:data).require(:attributes).permit(:name, :meeting_link, :total_seats, :video_call_type,
+                                                        :allow_late_cancellation_and_rescheduling,
                                                         workshop_managers_ids: [], workshop_assessors_ids: [])
     end
 

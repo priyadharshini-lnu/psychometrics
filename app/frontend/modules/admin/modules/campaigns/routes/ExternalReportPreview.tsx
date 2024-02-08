@@ -1,8 +1,9 @@
 import {
   useEffect, FC, useState, lazy, Suspense,
 } from 'react'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space,
+  Layout, Button, Row, Col, Spin, Space,
 } from 'antd'
 import { ArrowLeftOutlined, DownloadOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'

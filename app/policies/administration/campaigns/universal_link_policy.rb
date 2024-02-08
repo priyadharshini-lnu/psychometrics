@@ -9,7 +9,7 @@ module Administration
         )
       end
 
-      def activate?
+      def enable?
         @user.is?(:superadmin)
       end
 
@@ -17,11 +17,7 @@ module Administration
         @user.is?(:superadmin)
       end
 
-      def destroy?
-        @user.is?(:superadmin)
-      end
-
-      def toggle_multiple_responses?
+      def regenerate?
         @user.is?(:superadmin)
       end
     end

@@ -7,9 +7,7 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
 
   attribute :next_assessment_url, if: -> { object.completed? }
 
-  has_many :factors, serializer: UsersResults::FactorSerializer, if: lambda {
-    @instance_options[:current_user]&.assessor? && object.completed?
-  }
+  has_many :factors, method: :factors
 
   def next_assessment_url
     next_assessment = UserAssessments::GetNext.call!(object.user_assessment)
@@ -17,7 +15,13 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
   end
 
   def factors
-    Factor.where(id: object.scoring&.keys)
+    return unless @instance_options[:current_user]&.assessor? && object.completed?
+
+    factors = Factor.where(id: object.scoring&.keys)
+    Panko::ArraySerializer.new(
+      factors,
+      each_serializer: UsersResults::FactorSerializer
+    ).to_a
   end
 
   def expired

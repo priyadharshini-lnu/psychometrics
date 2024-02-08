@@ -9,7 +9,7 @@ module Administration
         form = SmtpSettings::Form.from_params(smtp_setting_params)
         if form.valid?
           project.smtp_setting.update(form.attributes)
-          render json: project.smtp_setting, serializer: ::Administration::Projects::SmtpSettingSerializer
+          render json: ::Administration::Projects::SmtpSettingSerializer.new.serialize(project.smtp_setting)
         else
           render json: { errors: form.errors.messages }, status: 422
         end

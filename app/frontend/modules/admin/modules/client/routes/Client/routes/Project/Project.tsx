@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {

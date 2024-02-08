@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Button, PageHeader, message, Row, Col, Typography, notification,
+  Layout, Button, App, Row, Col, Typography, notification,
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
@@ -39,6 +40,7 @@ const ReportComponent = ({
   }, match: { params }, fetchReport, updateStatus, downloadReport, checkReport,
   options: { approval: { managerApprovesReports }, access: { disableDownloadReport } }, history,
 }) => {
+  const { message } = App.useApp()
   useEffect(() => {
     fetchReport(params.campaignId, params.id)
   }, [])

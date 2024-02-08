@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class CurrentUserSerializer < ActiveModel::Serializer
+  class CurrentUserSerializer < Panko::Serializer
     attributes :id, :email, :first_name, :last_name, :full_name, :role,
                :is_anonym, :photo, :timezone, :custom_fields,
                :age, :gender, :locale, :profile_completion_percentage, :last_sign_in_at, :updated_at,
@@ -12,7 +12,7 @@ module EndUser
     end
 
     def back_url
-      instance_options[:back_url]
+      context[:back_url]
     end
 
     def update_profile_required
@@ -58,7 +58,7 @@ module EndUser
     end
 
     def current_project_id
-      instance_options[:project_id]
+      context[:project_id]
     end
   end
 end

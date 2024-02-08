@@ -84,7 +84,7 @@ module UserReports
     def report_preview_url
       if current_user.is?(:regular)
         report_preview_user_url
-      elsif current_user.is?(:assessor) && options[:view_report_as] == :assessor
+      elsif current_user.is?(:assessor) && %i[assessor lead_assessor].include?(options[:view_report_as])
         report_preview_assessor_url
       else
         report_preview_admin_url

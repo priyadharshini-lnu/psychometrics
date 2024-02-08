@@ -23,8 +23,11 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
     ) do
       on(:ok) do
         hogan_credential = HoganCredential.find_by(user_id: current_user.id)
-        render json: ::EndUser::HoganCredentialSerializer.new(user_assessment, current_user: current_user,
-                                                            hogan_credential: hogan_credential, include: '**').to_h
+        render json: ::EndUser::HoganCredentialSerializer.new(context: {
+          current_user: current_user,
+          hogan_credential: hogan_credential, include: '**'
+        }).
+          serialize(user_assessment)
       end
       on(:invalid) do
         render(json: { error: '412' }, status: :precondition_failed)

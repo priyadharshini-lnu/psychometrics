@@ -1,0 +1,59 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+
+// The prefix to use on all css classes from ant.
+@ant-prefix: ant;
+@success-color: ~'var(--@{ant-prefix}-success-color)';
+@normal-color: #d9d9d9;
+@white: #fff;
+@black: #000;
+
+@text-color: fade(@black, 85%);
+@text-color-secondary: fade(@black, 45%);
+@font-size-base: 14px;
+@border-radius-base: 2px;
+@border-radius-sm: @border-radius-base;
+@padding-lg: 24px; // containers
+@border-color-base: hsv(0, 0, 85%); // base border outline a component
+@border-color-split: rgba(0, 0, 0, 0.06); // split border inside a component
+@background-color-base: hsv(0, 0, 96%); // Default grey background color
+@disabled-bg: @background-color-base;
+@disabled-color: fade(#000, 25%);
+
+// Media queries breakpoints
+// smallest break point is @screen-md
+@screen-xs: 480px;
+@screen-xs-min: @screen-xs;
+// 👆 Extra small screen / phone
+
+// 👇 Small screen / tablet
+@screen-sm: 576px;
+@screen-sm-min: @screen-sm;
+
+// Medium screen / desktop
+@screen-md: 768px;
+@screen-md-min: @screen-md;
+
+// Large screen / wide desktop
+@screen-lg: 992px;
+
+// Extra large screen / full hd
+@screen-xl: 1200px;
+@screen-xl-min: @screen-xl;
+
+// Extra extra large screen / large desktop
+@screen-xxl: 1600px;
+
+// provide a maximum
+@screen-xs-max: (@screen-sm-min - 1px);
+@screen-sm-max: (@screen-md-min - 1px);
+@screen-lg-max: (@screen-xl-min - 1px);
+
+@modal-mask-bg: fade(@black, 45%);
+
+@card-padding-base: 24px;
+@card-padding-base-sm: (@card-padding-base / 2);
+@card-shadow: 0 1px 2px 0 rgba(0,0,0,.03), 0 1px 6px -1px rgba(0,0,0,.02), 0 2px 4px 0 rgba(0,0,0,.02);
+
+@avatar-bg: #ccc;
+
+@drawer-body-padding: @padding-lg;

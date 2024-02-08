@@ -22,7 +22,9 @@ module Assessors
     end
 
     def view_report_as
-      :assessor
+      lead_assessor = Users::GetLeadAssessor.call!(campaign, resource.user)
+
+      lead_assessor&.id == current_user.id ? :lead_assessor : :assessor
     end
   end
 end

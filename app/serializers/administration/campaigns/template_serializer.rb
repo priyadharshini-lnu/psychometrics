@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class TemplateSerializer < ActiveModel::Serializer
+    class TemplateSerializer < Panko::Serializer
       attributes :id, :name, :assessment_id
     end
   end

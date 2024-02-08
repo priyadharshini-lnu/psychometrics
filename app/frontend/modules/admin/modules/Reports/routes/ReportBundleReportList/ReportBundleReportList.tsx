@@ -48,7 +48,7 @@ export const ReportBundleReportList: React.FC = () => {
             label: () => I18n.t('reports.dashboard'),
           },
           {
-            link: () => '/administration/report_families',
+            link: () => '/admin/report_families',
             label: () => I18n.t('report_bundles.report_bundles'),
           },
           {

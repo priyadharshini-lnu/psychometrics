@@ -24,6 +24,7 @@ export const PASTE_PAGE = 'report/PASTE_PAGE'
 export const COPY_MODULE = 'report/COPY_MODULE'
 export const PASTE_MODULE = 'report/PASTE_MODULE'
 export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
+export const SAVE_CAMPAIGN_FACTORS = 'report/SAVE_CAMPAIGN_FACTORS'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
 
@@ -50,6 +51,7 @@ export const pasteModule = (pageId: number, module: ModuleInterface) => ({
 })
 
 export const saveDataSheet = (data: object[]) => ({ type: SAVE_DATA_SHEET, data })
+export const saveCampaignFactors = (data: object[]) => ({ type: SAVE_CAMPAIGN_FACTORS, data })
 export const uploadDataSheet = (id: number, body: { file: File }) => ({
   type: UPLOAD_DATA_SHEET,
   request: {

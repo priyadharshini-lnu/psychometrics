@@ -514,7 +514,6 @@ const HANDLERS = {
   ),
   [OPEN_RICH_EDITOR]: (state: State) => setIn(state, ['current', 'richEditorOpened'], true),
   [CLOSE_RICH_EDITOR]: (state: State) => setIn(state, ['current', 'richEditorOpened'], false),
-  [APPROVE_REPORT]: (state: State) => setIn(state, ['current', 'approved'], true),
   [START_QC]: (state: State, { response }: StartQC) => setIn(state, ['current', 'approvalStatus'], response.status),
   [ABORT_QC]: (state: State, { response }: AbortQC) => setIn(state, ['current', 'approvalStatus'], response.status),
   [APPROVE_REPORT]: (state: State, { response }: ApproveReport) => setIn(

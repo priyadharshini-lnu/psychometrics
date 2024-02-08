@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { takeLatest, put, select } from 'redux-saga/effects'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { getCurrentCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import { createReducer } from '~/utils/redux'
 import { updateIn } from '~/utils/immutable'
@@ -124,7 +124,7 @@ export type ChangeSelectedAction = ReturnType<typeof changeSelected>
 
 const HANDLERS = {
   [FETCH_SCHEDULABLE_TEMPLATE]: (state: State, { response }: FetchSchedultTemplateAction) => {
-    const scheduledDate = moment().format()
+    const scheduledDate = dayjs().format()
     const list = response.map(emailSchedule => ({ ...emailSchedule, scheduledDate }))
     return { ...state, list }
   },

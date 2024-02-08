@@ -1,5 +1,5 @@
 import { DatePicker } from 'antd'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 
 export default function DateTimeEntry () {
   return (
@@ -7,7 +7,7 @@ export default function DateTimeEntry () {
       size="default"
       format="YYYY-MM-DD HH:mm:ss"
       disabledTime={false}
-      showTime={{ defaultValue: moment('00:00:00', 'HH:mm:ss') }}
+      showTime={{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }}
     />
   )
 }

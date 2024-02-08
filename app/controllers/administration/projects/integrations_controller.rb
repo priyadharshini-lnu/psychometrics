@@ -7,7 +7,10 @@ module Administration
 
       def index
         integrations = policy_scope(resource_class).where(project_id: project.id)
-        render json: integrations, each_serializer: Administration::Projects::IntegrationSerializer
+        render json: Panko::ArraySerializer.new(
+          integrations,
+          each_serializer: ::Administration::Projects::IntegrationSerializer
+        ).to_a
       end
 
       def create
@@ -15,7 +18,7 @@ module Administration
         if form.valid?
           integration = project.integrations.create!(form.attributes)
           audit! :create, integration, payload: resource_params.except(:password), project: project
-          render json: integration, serializer: ::Administration::Projects::IntegrationSerializer
+          render json: ::Administration::Projects::IntegrationSerializer.new.serialize(integration)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -26,7 +29,7 @@ module Administration
         if form.valid?
           resource.update!(form.attributes)
           audit! :update, resource, payload: resource_params.except(:password), project: project
-          render json: resource, serializer: ::Administration::Projects::IntegrationSerializer
+          render json: ::Administration::Projects::IntegrationSerializer.new.serialize(resource)
         else
           render json: { errors: form.errors.messages }, status: 422
         end

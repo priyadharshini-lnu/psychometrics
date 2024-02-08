@@ -13,14 +13,15 @@ module EndUser
     before_action :find_or_create_anonymous_user, only: [:show]
     initial_state_for :show
     before_action :perform_browser_check, only: [:show]
-    before_action :set_user_assessment_and_result, only: [:show]
+    before_action :set_user_assessment_and_result, only: [:show], if: -> { @campaign_assessment.present? }
     before_action :set_locale
 
     ANONYM_COOKIE_KEY = 'tte-anonym-payload'
 
     def show
-      redirect_to(action: 'error', reason: 'archived') && return if assessment.archived?
-      redirect_to(action: 'error', reason: 'not_active') && return unless @campaign_assessment.enable_universal_links?
+      if @campaign_assessment.nil? || assessment.archived? || !@campaign_assessment.enable_universal_links?
+        redirect_to(action: 'error') && return
+      end
 
       if params[:lang]
         @user_assessment.update(selected_locale: params[:lang])
@@ -93,11 +94,13 @@ module EndUser
                               to_hash(include: '**')
 
       serialized_results = UsersResultSerializer.new(
-        @user_result, participant: @user_assessment,
-        campaign: @campaign_assessment.campaign,
-        current_user: @current_user,
-        locale: @selected_locale
-      ).to_hash(include: '**')
+        context: {
+          participant: @user_assessment,
+          campaign: @campaign_assessment.campaign,
+          current_user: @current_user,
+          locale: @selected_locale, include: '**'
+        }
+      ).serialize(@user_result)
 
       render json: { assessment: serialized_assessment, user_result: serialized_results }
     end

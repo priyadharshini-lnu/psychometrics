@@ -1,13 +1,13 @@
 import {
   Button, Input, Dropdown, DatePicker,
 } from 'antd'
-import moment from 'moment'
 import { CaretDownOutlined } from '@ant-design/icons'
+import dayjs from '~/utils/dayjs'
 import styles from './styles.less'
 
 export default function ScheduledDateField ({ scheduledDate, updateScheduleDate }) {
   const handleScheduleDateChange = ({ key }) => {
-    updateScheduleDate(moment().add(...key.split(',')).format())
+    updateScheduleDate(dayjs().add(...key.split(',')).format())
   }
   const menuItems = [
     { key: [0, 'hours'], label: 'Send Now' },
@@ -20,7 +20,7 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
     { key: [28, 'days'], label: 'Send in 28 days' },
   ]
 
-  const date = scheduledDate ? moment(scheduledDate) : undefined
+  const date = scheduledDate ? dayjs(scheduledDate) : undefined
   return (
     <Input.Group compact>
       <DatePicker

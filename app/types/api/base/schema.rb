@@ -90,7 +90,6 @@ module Api
       def self.define_schema(&)
         namespace = self.namespace
         Dry::Schema.define do
-          config.messages.load_paths += I18n.load_path.filter { |file| file.match(/\.yml$/) }
           config.messages.namespace = namespace
 
           instance_eval(&)
@@ -105,6 +104,7 @@ module Api
         this = self
         relationship_schema = this.relationship_schema(type)
         Dry::Schema.define do
+          config.validate_keys = true
           instance_eval(&this.resource_identifier)
           instance_eval(&relationship_schema) if relationship_schema
 
@@ -182,6 +182,14 @@ module Api
             required(:attributes).hash do
               instance_eval(&)
             end
+          end
+        end
+      end
+
+      def self.json_api_records(&)
+        Dry::Schema.define do
+          required(:data).array do
+            instance_eval(&)
           end
         end
       end

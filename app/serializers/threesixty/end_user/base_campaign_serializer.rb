@@ -38,22 +38,20 @@ module Threesixty
       end
 
       def nomination_subjects
-        @nomination_subjects ||=
-          ::Threesixty::NominationsByUserQuery.new(object, current_user, all_managed_subjects)
+        ::Threesixty::NominationsByUserQuery.new(object, current_user, all_managed_subjects)
       end
 
       def evaluations
-        @evaluations ||= ::Threesixty::EvaluationsByUserQuery.new(object, current_user)
+        ::Threesixty::EvaluationsByUserQuery.new(object, current_user)
       end
 
       def reports
-        @reports ||=
-          ::Threesixty::UsersReportsQuery.new(object, all_managed_subjects, current_user)
+        ::Threesixty::UsersReportsQuery.new(object, all_managed_subjects, current_user)
       end
 
       def all_managed_subjects
-        @all_managed_subjects ||= Threesixty::Evaluators::GetManagedSubjectsQuery.new(object, current_user).
-                                  query.includes(:user)
+        Threesixty::Evaluators::GetManagedSubjectsQuery.new(object, current_user).
+          query.includes(:user)
       end
 
       def current_user

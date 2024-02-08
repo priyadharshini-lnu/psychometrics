@@ -19,7 +19,10 @@ module EndUser
       respond_to do |format|
         format.html { render 'campaigns/show' }
         format.json do
-          render json: ::EndUser::CampaignSerializer.new(@campaign, current_user: current_user, include: '**').to_h
+          render json: ::EndUser::CampaignSerializer.new(
+            context: { current_user: current_user,
+                       include: '**' }
+          ).serialize(@campaign)
         end
       end
     end
@@ -46,7 +49,9 @@ module EndUser
               piped_text_context: piped_text_context).to_hash(include: '**')
           end
           user_reports = @campaign.user_reports.where(user_id: current_user, user_access: true).filter_map do |ur|
-            EndUser::UserReportSerializer.new(ur) unless ur == user_dashboard_report
+            unless ur == user_dashboard_report
+              ::EndUser::UserReportSerializer.new(context: { user_report: ur }).serialize(ur)
+            end
           end
 
           render json: { user_dashboard: user_dashboard, user_reports: user_reports }

@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import moment from 'moment-timezone'
+import dayjs from '~/utils/dayjs'
 
 import { DatePickerWithRanges } from '~/glint'
 
-const today = moment()
-const yesterday = moment().subtract(1, 'd')
+const today = dayjs()
+const yesterday = dayjs().subtract(1, 'd')
 const dateFormat = 'DD/MM/YYYY'
 
 describe('Proper dates should be selected after ', () => {
@@ -60,8 +60,8 @@ describe('Proper dates should be selected after ', () => {
   })
 
   test('cliking on Current Week', async () => {
-    const expectedStartDate = moment().startOf('w').clone().format(dateFormat)
-    const expectedEndDate = moment().endOf('w').clone().format(dateFormat)
+    const expectedStartDate = dayjs().startOf('w').clone().format(dateFormat)
+    const expectedEndDate = dayjs().endOf('w').clone().format(dateFormat)
     render(
       <div id="container">
         <DatePickerWithRanges format={dateFormat} />
@@ -84,9 +84,9 @@ describe('Proper dates should be selected after ', () => {
   })
 
   test('cliking on Last Week', async () => {
-    const expectedStartDate = moment().subtract(1, 'w').startOf('w').clone()
+    const expectedStartDate = dayjs().subtract(1, 'w').startOf('w').clone()
       .format(dateFormat)
-    const expectedEndDate = moment().subtract(1, 'w').endOf('w').clone()
+    const expectedEndDate = dayjs().subtract(1, 'w').endOf('w').clone()
       .format(dateFormat)
     render(
       <div id="container">
@@ -110,8 +110,8 @@ describe('Proper dates should be selected after ', () => {
   })
 
   test('cliking on Current Month', async () => {
-    const expectedStartDate = moment().startOf('M').clone().format(dateFormat)
-    const expectedEndDate = moment().endOf('M').clone().format(dateFormat)
+    const expectedStartDate = dayjs().startOf('M').clone().format(dateFormat)
+    const expectedEndDate = dayjs().endOf('M').clone().format(dateFormat)
     render(
       <div id="container">
         <DatePickerWithRanges format={dateFormat} />
@@ -134,9 +134,9 @@ describe('Proper dates should be selected after ', () => {
   })
 
   test('cliking on Last Month', async () => {
-    const expectedStartDate = moment().subtract(1, 'M').startOf('M').clone()
+    const expectedStartDate = dayjs().subtract(1, 'M').startOf('M').clone()
       .format(dateFormat)
-    const expectedEndDate = moment().subtract(1, 'M').endOf('M').clone()
+    const expectedEndDate = dayjs().subtract(1, 'M').endOf('M').clone()
       .format(dateFormat)
     render(
       <div id="container">
@@ -160,9 +160,9 @@ describe('Proper dates should be selected after ', () => {
   })
 
   test('cliking on All Time', async () => {
-    const expectedStartDate = moment().subtract(100, 'y').clone()
+    const expectedStartDate = dayjs().subtract(100, 'y').clone()
       .format(dateFormat)
-    const expectedEndDate = moment().add(100, 'y').clone()
+    const expectedEndDate = dayjs().add(100, 'y').clone()
       .format(dateFormat)
     render(
       <div id="container">

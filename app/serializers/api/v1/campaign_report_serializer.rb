@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class CampaignReportSerializer < ActiveModel::Serializer
+    class CampaignReportSerializer < Panko::Serializer
       attributes :id, :report_family_id, :user_access, :assessor_access
     end
   end

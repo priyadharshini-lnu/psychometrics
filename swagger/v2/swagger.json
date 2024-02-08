@@ -22,6 +22,303 @@
     }
   },
   "paths": {
+    "/clients/{client_id}/admin_roles": {
+      "get": {
+        "summary": "Admin Roles list",
+        "operationId": "AdminRolesList",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Role name",
+                            "description": "Role description",
+                            "client_id": "1",
+                            "permissions": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRolesListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Admin Role",
+        "operationId": "CreateAdminRole",
+        "description": "Create new Admin Role",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Admin Role Created",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Role name",
+                            "description": "Role description",
+                            "client_id": "1",
+                            "permissions": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRoleResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRoleCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/clients/{client_id}/admin_roles/{admin_role_id}": {
+      "get": {
+        "summary": "Admin Role",
+        "operationId": "AdminRole",
+        "description": "Fetch Admin Role",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "admin_role_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin Role",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Role name",
+                            "description": "Role description",
+                            "client_id": "1",
+                            "permissions": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRoleResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an Admin Role",
+        "operationId": "UpdateAdminRole",
+        "description": "Update Admin Role",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "admin_role_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin Role Updated",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "data": {
+                          "id": "1",
+                          "type": "admin_roles",
+                          "attributes": {
+                            "name": "Role name",
+                            "description": "Role description",
+                            "client_id": "1",
+                            "permissions": null
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AdminRoleResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminRoleUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete Admin Role",
+        "operationId": "DeleteAdminRole",
+        "description": "Delete Admin Role",
+        "tags": [
+          "AdminRoles"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "admin_role_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Admin Role Deleted"
+          }
+        }
+      }
+    },
     "/users/{user_id}/api_keys/": {
       "get": {
         "summary": "API Keys List",
@@ -541,6 +838,123 @@
         }
       }
     },
+    "/campaigns/{campaign_id}/campaign_assessor_assessment_factor_weights/": {
+      "get": {
+        "summary": "Campaign Assessor Assessment Factor Weight List",
+        "operationId": "CampaignAssessorAssessmentFactorWeightList",
+        "description": "Fetch Campaigns Assessor Assessment Factor Weights list",
+        "tags": [
+          "Campaign Assessor Assessment Factor Weight"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaigns Assessor Assessment Factor Weight list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                        "type": "campaign_assessor_assessment_factor_weight",
+                        "data": {
+                          "id": "1",
+                          "attributes": {
+                            "weight": 0.5
+                          },
+                          "relationships": {
+                            "assessment": {
+                              "data": {
+                                "type": "assessments",
+                                "id": "101"
+                              }
+                            },
+                            "factor": {
+                              "data": {
+                                "type": "factors",
+                                "id": "10"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignAssessorAssessmentFactorWeightListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_assessor_assessment_factor_weights/bulk_upsert": {
+      "post": {
+        "summary": "Campaign Assessor Assessment Factor Weight Bulk Upsert",
+        "operationId": "CampaignAssessorAssessmentFactorWeightBulkUpsert",
+        "description": "Fetch Campaigns Assessor Assessment Factor Weights Bulk Upsert",
+        "tags": [
+          "Campaign Assessor Assessment Factor Weight"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaigns Assessor Assessment Factor Weight Bulk Upsert",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OKResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignAssessorAssessmentFactorWeightBulkUpsertRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
     "/campaigns/{campaign_id}/campaign_assessor_assessments/": {
       "get": {
         "summary": "Campaign Assessor Assessment List",
@@ -720,6 +1134,1366 @@
                       }
                     ]
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factor_groups": {
+      "get": {
+        "summary": "CampaignFactorGroups List",
+        "operationId": "CampaignFactorGroups",
+        "description": "Fetch campaign Factor Group list",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign factor group list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factor_groups",
+                          "attributes": {
+                            "name": "Test group",
+                            "position": 1
+                          },
+                          "relationships": {
+                            "campaign": {
+                              "data": {
+                                "type": "campaigns",
+                                "id": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignFactorGroupListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create CampaignFactorGroup",
+        "operationId": "CreateCampaignFactorGroups",
+        "description": "Create campaign Factor Group list",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create campaign factor group",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factor_groups",
+                          "attributes": {
+                            "name": "Test group",
+                            "position": 1
+                          },
+                          "relationships": {
+                            "campaign": {
+                              "data": {
+                                "type": "campaigns",
+                                "id": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignFactorGroupResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignFactorGroupCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factor_groups/{campaign_factor_group_id}": {
+      "patch": {
+        "summary": "Update CampaignFactorGroup Position",
+        "operationId": "UpdateCampaignFactorGroupsPosition",
+        "description": "Update campaign Factor Group position",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "campaign_factor_group_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update campaign factor group position",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factor_groups",
+                          "attributes": {
+                            "name": "Test group",
+                            "position": 2
+                          },
+                          "relationships": {
+                            "campaign": {
+                              "data": {
+                                "type": "campaigns",
+                                "id": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignFactorGroupResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignFactorGroupCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete CampaignFactorGroup",
+        "operationId": "DeleteCampaignFactorGroups",
+        "description": "Delete campaign Factor Group list",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "campaign_factor_group_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete campaign factor group"
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factor_groups/initialize_scoring": {
+      "post": {
+        "summary": "Initialize default CampaignFactorGroup and populate campaign scorings",
+        "operationId": "InitializeCampaignFactorGroup",
+        "description": "Initialize default campaign Factor Group",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Initialize default campaign factor group",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "type": "campaign_factor_groups",
+                          "attributes": {
+                            "name": "Assessment Center",
+                            "position": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignFactorGroupResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factor_groups/update_positions": {
+      "post": {
+        "summary": "Update CampaignFactorGroup positions",
+        "operationId": "UpdateCampaignFactorGroups",
+        "description": "Update campaign Factor Group positions",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update campaign factor group positions",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "type": "campaign_factor_groups",
+                          "id": 1,
+                          "attributes": {
+                            "position": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factor_values": {
+      "get": {
+        "summary": "CampaignFactors List",
+        "operationId": "CampaignFactors",
+        "description": "Fetch campaign Factor list",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[user_id_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign factor list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factor_values",
+                          "attributes": {
+                            "factor_id": 1,
+                            "numeric_value": 3
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignFactorValuesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factor_values/save_assessor_scoring_factor_value": {
+      "post": {
+        "summary": "Update CampaignFactorValue",
+        "operationId": "UpdateCampaignFactorValue",
+        "description": "Update Campaign Factor Value",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[user_id_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update campaign factor",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factor_values",
+                          "attributes": {
+                            "factor_id": 1,
+                            "numeric_value": 3
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignFactorValueUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factors": {
+      "get": {
+        "summary": "CampaignFactors List",
+        "operationId": "CampaignFactors",
+        "description": "Fetch campaign Factor list",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign factor list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factors",
+                          "attributes": {
+                            "name": "Factor",
+                            "position": 1
+                          },
+                          "relationships": {
+                            "campaign": {
+                              "data": {
+                                "type": "campaigns",
+                                "id": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignFactorListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create CampaignFactor",
+        "operationId": "CreateCampaignFactors",
+        "description": "Create campaign Factor list",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create campaign factor",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factors",
+                          "attributes": {
+                            "name": "Factor",
+                            "factor_type": "formula",
+                            "public_visibility": true,
+                            "position": 1,
+                            "campaign_factor_group_id": 1,
+                            "code": "factor_code"
+                          },
+                          "relationships": {
+                            "campaign": {
+                              "data": {
+                                "type": "campaigns",
+                                "id": 1
+                              }
+                            },
+                            "campaign_factor_group": {
+                              "data": {
+                                "type": "campaign_factor_groups",
+                                "id": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignFactorResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignFactorCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factors/{factor_id}": {
+      "patch": {
+        "summary": "Update CampaignFactor",
+        "operationId": "UpdateCampaignFactors",
+        "description": "Update campaign Factor",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "factor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update campaign factor",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_factors",
+                          "attributes": {
+                            "name": "Updated Factor name",
+                            "position": 1
+                          },
+                          "relationships": {
+                            "campaign": {
+                              "data": {
+                                "type": "campaigns",
+                                "id": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignFactorResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignFactorCreateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "summary": "Delete CampaignFactor",
+        "operationId": "DeleteCampaignFactors",
+        "description": "Delete campaign Factor list",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "factor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete campaign factor"
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_factors/update_positions": {
+      "post": {
+        "summary": "Update CampaignFactor positions",
+        "operationId": "UpdateCampaignFactors",
+        "description": "Update campaign Factor positions",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update campaign factor positions",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "type": "campaign_factors",
+                          "id": 1,
+                          "attributes": {
+                            "position": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_scoring_variables": {
+      "get": {
+        "summary": "CampaignScoringVariables List",
+        "operationId": "CampaignScoringVariables",
+        "description": "Fetch campaign scoring variables",
+        "tags": [
+          "CampaignScoringVariables"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign scoring variables",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_scoring_variables",
+                          "attributes": {
+                            "variables": "test = 1"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignScoringVariableResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_scoring_variables/{campaign_option_id}": {
+      "patch": {
+        "summary": "Update CampaignScoringVariables",
+        "operationId": "UpdateCampaignScoringVariabless",
+        "description": "Update campaign scoring values",
+        "tags": [
+          "CampaignScoringVariables"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "campaign_option_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update campaign scoring variables",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_scoring_variables",
+                          "attributes": {
+                            "variables": "test = 1"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignScoringVariableSingleResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "invalid request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_scoring_variables",
+                          "attributes": {
+                            "variables": "test = 1"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignScoringVariableUpdateRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_user_scorings/{user_id}/change_finalized_campaign_score": {
+      "post": {
+        "summary": "Change campaign user finalized",
+        "operationId": "CampaignUserScorings",
+        "description": "Change campaign user finalized",
+        "tags": [
+          "CampaignUserScorings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignUserScorings",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "campaign_users",
+                          "attributes": {
+                            "campaign_scores_finalized": true,
+                            "campaign_scores_finalized_date": "2020-01-01T00:00:00.000Z",
+                            "campaign_scores_calculated_date": "2020-01-01T00:00:00.000Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignUserResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignUserScoringsChangeFinalizeRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_user_scorings/change_finalized_campaign_score_bulk": {
+      "post": {
+        "summary": "Rescore campaign user finalized",
+        "operationId": "RescoreCampaignUserScorings",
+        "description": "Rescore campaign user scoring",
+        "tags": [
+          "CampaignUserScorings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignUserScorings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OKResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignUserScoringsChangeFinalizeBulkRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_user_scorings/{user_id}/rescore": {
+      "post": {
+        "summary": "Rescore campaign user finalized",
+        "operationId": "RescoreCampaignUserScorings",
+        "description": "Rescore campaign user scoring",
+        "tags": [
+          "CampaignUserScorings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignUserScorings"
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_user_scorings/rescore_bulk": {
+      "post": {
+        "summary": "Rescore campaign user finalized",
+        "operationId": "RescoreCampaignUserScorings",
+        "description": "Rescore campaign user scoring",
+        "tags": [
+          "CampaignUserScorings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignUserScorings"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CampaignUserScoringsRescoreBulkRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/dimensions/assessor_dimensions": {
+      "get": {
+        "summary": "Dimensions List",
+        "operationId": "DimenstionsList",
+        "description": "Fetch dimensions list",
+        "tags": [
+          "Dimension"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign factor list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "dimensions",
+                          "attributes": {
+                            "id": "1",
+                            "name": "Dimension"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/DimensionListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/dimensions/{dimensions_id}/factors": {
+      "get": {
+        "summary": "Dimensions List",
+        "operationId": "DimenstionsList",
+        "description": "Fetch dimensions list",
+        "tags": [
+          "Dimension"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dimensions_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign factor list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "factors",
+                          "attributes": {
+                            "id": "1",
+                            "name": "Factor"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/FactorListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/users/{user_id}/assessors_scores": {
+      "get": {
+        "summary": "Assessor Scores List",
+        "operationId": "CampaignFactors",
+        "description": "Fetch campaign Factor list",
+        "tags": [
+          "Campaign Factor Scoring"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign factor list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "assessor_scores",
+                          "attributes": {
+                            "evaluator": {
+                              "id": "1",
+                              "first_name": "John",
+                              "last_name": "Doe",
+                              "email": "johndoe@email.com"
+                            },
+                            "assessment": {
+                              "id": "1",
+                              "name": "Assessment 1"
+                            },
+                            "scores": {
+                              "1": 3
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/AssessorScoresResponse"
                 }
               }
             }
@@ -2097,7 +3871,10 @@
                                 "view",
                                 "view_licenses"
                               ]
-                            }
+                            },
+                            "admin_role_ids": [
+                              1
+                            ]
                           },
                           "relationships": {
                             "user": {
@@ -4649,11 +6426,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "filter[workshop_invite_campaign_id_eq]",
-            "in": "query",
-            "required": true
           }
         ],
         "responses": {
@@ -5616,7 +7388,7 @@
         }
       }
     },
-    "/workshops/{workshop_id}/bulk_update_subjects": {
+    "/campaigns/{campaign_id}/workshops/{workshop_id}/bulk_update_subjects": {
       "post": {
         "summary": "Bulk update workshop subjects",
         "operationId": "BulkUpdateSubjects",
@@ -5632,6 +7404,14 @@
           }
         ],
         "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "workshop_id",
             "in": "path",
@@ -5740,7 +7520,8 @@
                           ],
                           "workshop_managers_ids": [
                             1
-                          ]
+                          ],
+                          "allow_late_cancellation_and_rescheduling": false
                         }
                       }
                     }
@@ -5800,6 +7581,13 @@
             "x-nullable": true
           }
         }
+      },
+      "OKResponse": {
+        "type": "string",
+        "example": "ok",
+        "enum": [
+          "ok"
+        ]
       },
       "ChangePasswordRequest": {
         "type": "object",
@@ -5985,7 +7773,7 @@
                     },
                     "year": {
                       "type": "integer",
-                      "description": "Greater than or equal to 2021, Lower than or equal to 2033",
+                      "description": "Greater than or equal to 2022, Lower than or equal to 2034",
                       "nullable": false
                     }
                   },
@@ -6184,7 +7972,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
+                    "description": "Greater than or equal to 2022, Lower than or equal to 2034",
                     "nullable": false
                   }
                 },
@@ -6275,7 +8063,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
+                    "description": "Greater than or equal to 2022, Lower than or equal to 2034",
                     "nullable": false
                   }
                 },
@@ -6383,7 +8171,7 @@
                   },
                   "year": {
                     "type": "integer",
-                    "description": "Greater than or equal to 2021, Lower than or equal to 2033",
+                    "description": "Greater than or equal to 2022, Lower than or equal to 2034",
                     "nullable": false
                   }
                 },
@@ -6665,10 +8453,6 @@
                       "type": "string",
                       "nullable": false
                     },
-                    "description": {
-                      "type": "string",
-                      "nullable": false
-                    },
                     "type": {
                       "type": "string",
                       "enum": [
@@ -6684,6 +8468,10 @@
                     "category": {
                       "type": "string",
                       "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
                     },
                     "timing": {
                       "type": "string",
@@ -6738,7 +8526,6 @@
                   },
                   "required": [
                     "name",
-                    "description",
                     "type",
                     "category"
                   ],
@@ -7287,10 +9074,6 @@
                     "type": "string",
                     "nullable": false
                   },
-                  "description": {
-                    "type": "string",
-                    "nullable": false
-                  },
                   "type": {
                     "type": "string",
                     "enum": [
@@ -7306,6 +9089,10 @@
                   "category": {
                     "type": "string",
                     "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true
                   },
                   "timing": {
                     "type": "string",
@@ -7360,7 +9147,6 @@
                 },
                 "required": [
                   "name",
-                  "description",
                   "type",
                   "category"
                 ],
@@ -10907,6 +12693,103 @@
           "data"
         ]
       },
+      "AssessorScoresResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "evaluator": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "first_name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "last_name": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "email": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "assessment": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "name": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "scores": {
+                      "type": "object",
+                      "properties": {
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "evaluator",
+                    "assessment"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
       "MembershipListResponse": {
         "type": "object",
         "properties": {
@@ -10922,6 +12805,63 @@
                 "type": {
                   "type": "string",
                   "description": "Must be equal to memberships",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "admin_roles": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Must be equal to admin_roles",
+                                "nullable": false
+                              },
+                              "id": {
+                                "type": "string",
+                                "nullable": false
+                              }
+                            },
+                            "required": [
+
+                            ],
+                            "nullable": true
+                          },
+                          "nullable": true
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
                   "nullable": false
                 },
                 "links": {
@@ -11126,6 +13066,63 @@
                 "description": "Must be equal to memberships",
                 "nullable": false
               },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "admin_roles": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to admin_roles",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      },
+                      "links": {
+                        "type": "object",
+                        "properties": {
+                        },
+                        "required": [
+
+                        ],
+                        "nullable": false
+                      },
+                      "self": {
+                        "type": "string",
+                        "nullable": false
+                      },
+                      "related": {
+                        "type": "string",
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
               "links": {
                 "type": "object",
                 "properties": {
@@ -11318,6 +13315,10 @@
                     "type": "string",
                     "nullable": true
                   },
+                  "project_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
                   "role": {
                     "type": "string",
                     "nullable": false
@@ -11453,6 +13454,46 @@
                   "grant_names"
                 ],
                 "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "admin_roles": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to admin_roles",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
               }
             },
             "required": [
@@ -11493,6 +13534,10 @@
                     "nullable": false
                   },
                   "client_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "project_id": {
                     "type": "string",
                     "nullable": true
                   },
@@ -11623,6 +13668,294 @@
                   },
                   "email": {
                     "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "admin_roles": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to admin_roles",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AdminRolesListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to admin_roles",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "client_id": {
+                      "type": "integer",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description",
+                    "client_id"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "AdminRoleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to admin_roles",
+                "nullable": false
+              },
+              "links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "self"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "integer",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "client_id"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "links",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AdminRoleCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to admin_roles",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "integer",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "description",
+                  "client_id"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "AdminRoleUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to admin_roles",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "client_id": {
+                    "type": "integer",
                     "nullable": false
                   }
                 },
@@ -13538,6 +15871,1019 @@
           "data"
         ]
       },
+      "CampaignFactorGroupListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to campaign_factor_groups",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "campaign": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaigns",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    },
+                    "campaign_factors": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Must be equal to campaign_factors",
+                                "nullable": false
+                              },
+                              "id": {
+                                "type": "string",
+                                "nullable": false
+                              }
+                            },
+                            "required": [
+
+                            ],
+                            "nullable": true
+                          },
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "campaign"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "position": {
+                      "type": "integer",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "position"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "relationships",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "CampaignFactorGroupCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_factor_groups",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "position": {
+                    "type": "integer",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "position"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "campaign": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaigns",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "campaign_factors": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaign_factors",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "campaign"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignFactorGroupResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_factor_groups",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "campaign": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaigns",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "campaign_factors": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaign_factors",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "campaign"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "position": {
+                    "type": "integer",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "name",
+                  "position"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "relationships",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignFactorListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to campaign_factors",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "campaign": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaigns",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    },
+                    "campaign_factor_group": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaign_factor_groups",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "campaign"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "position": {
+                      "type": "integer",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "position"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "relationships",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "CampaignFactorValuesResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to campaign_factor_values",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "campaign": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaigns",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "campaign_factor": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaign_factor_groups",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to user",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "numeric_value": {
+                      "type": "float",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "numeric_value"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "CampaignFactorValueUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "scores": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "campaign_factor_id": {
+                  "type": "integer",
+                  "nullable": false
+                },
+                "score": {
+                  "type": "float",
+                  "nullable": false
+                }
+              },
+              "required": [
+                "campaign_factor_id",
+                "score"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": false
+          }
+        },
+        "required": [
+          "scores",
+          "user_id"
+        ]
+      },
+      "CampaignFactorCreateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_factors",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "name": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "output_type": {
+                    "type": "string",
+                    "nullable": false
+                  },
+                  "position": {
+                    "type": "integer",
+                    "nullable": false
+                  },
+                  "factor_type": {
+                    "type": "string",
+                    "enum": [
+                      "assessment",
+                      "assessor_scoring",
+                      "formula"
+                    ],
+                    "nullable": false
+                  },
+                  "public_visibility": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "assessment_score_type": {
+                    "type": "string",
+                    "enum": [
+                      "norm_score",
+                      "score",
+                      "zscore",
+                      "percentile",
+                      "percentage"
+                    ],
+                    "nullable": true
+                  },
+                  "assessment_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "factor_id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "code",
+                  "name",
+                  "output_type",
+                  "position",
+                  "factor_type",
+                  "public_visibility"
+                ],
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "campaign": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaigns",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "campaign_factor_group": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaign_factor_groups",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "campaign",
+                  "campaign_factor_group"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "type",
+              "attributes",
+              "relationships"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignFactorResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_factors",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "campaign": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaigns",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "campaign_factor_group": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to campaign_factor_groups",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "campaign"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "position": {
+                    "type": "integer",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "position"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "relationships",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
       "WorkshopResponse": {
         "type": "object",
         "properties": {
@@ -14578,18 +17924,9 @@
                 "attributes": {
                   "type": "object",
                   "properties": {
-                    "attendance_status": {
-                      "type": "string",
-                      "nullable": false
-                    },
-                    "attended": {
-                      "type": "boolean",
-                      "nullable": false
-                    }
                   },
                   "required": [
-                    "attendance_status",
-                    "attended"
+
                   ],
                   "nullable": false
                 }
@@ -16282,6 +19619,10 @@
                     "type": "integer",
                     "nullable": false
                   },
+                  "allow_late_cancellation_and_rescheduling": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
                   "workshop_assessors_ids": {
                     "type": "array",
                     "items": {
@@ -16301,6 +19642,7 @@
                 },
                 "required": [
                   "total_seats",
+                  "allow_late_cancellation_and_rescheduling",
                   "workshop_assessors_ids",
                   "workshop_managers_ids"
                 ],
@@ -16308,6 +19650,815 @@
               }
             },
             "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignUserResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_users",
+                "nullable": false
+              },
+              "relationships": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Must be equal to users",
+                            "nullable": false
+                          },
+                          "id": {
+                            "type": "string",
+                            "nullable": false
+                          }
+                        },
+                        "required": [
+                          "type",
+                          "id"
+                        ],
+                        "nullable": false
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ],
+                    "nullable": false
+                  },
+                  "campaign_factor_values": {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to campaign_factor_values",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": true
+                        },
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+
+                    ],
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "user"
+                ],
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "campaign_scores_finalized": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "campaign_scores_finalized_date": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "campaign_scores_calculated_date": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "campaign_scores_finalized",
+                  "campaign_scores_finalized_date",
+                  "campaign_scores_calculated_date"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "relationships",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignUserListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to campaign_users",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to users",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "data"
+                      ],
+                      "nullable": false
+                    },
+                    "campaign_factor_values": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "description": "Must be equal to campaign_factor_values",
+                                "nullable": false
+                              },
+                              "id": {
+                                "type": "string",
+                                "nullable": false
+                              }
+                            },
+                            "required": [
+
+                            ],
+                            "nullable": true
+                          },
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "user"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "campaign_scores_finalized": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "campaign_scores_finalized_date": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "campaign_scores_calculated_date": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "campaign_scores_finalized",
+                    "campaign_scores_finalized_date",
+                    "campaign_scores_calculated_date"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "relationships",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "CampaignUserScoringsChangeFinalizeRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "finalized": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "finalized"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignUserScoringsChangeFinalizeBulkRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "finalized": {
+                    "type": "boolean",
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "user_ids",
+                  "finalized"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignUserScoringsRescoreBulkRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "user_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": false
+                    },
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "user_ids"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignAssessorAssessmentFactorWeightListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to campaign_assessor_assessment_factor_weights",
+                  "nullable": false
+                },
+                "relationships": {
+                  "type": "object",
+                  "properties": {
+                    "assessment": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to assessments",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    },
+                    "factor": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "description": "Must be equal to factor",
+                              "nullable": false
+                            },
+                            "id": {
+                              "type": "string",
+                              "nullable": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ],
+                          "nullable": false
+                        },
+                        "links": {
+                          "type": "object",
+                          "properties": {
+                          },
+                          "required": [
+
+                          ],
+                          "nullable": false
+                        },
+                        "self": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "related": {
+                          "type": "string",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+
+                      ],
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "weight": {
+                      "type": "float",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "weight"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "CampaignAssessorAssessmentFactorWeightBulkUpsertRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "factor_id": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "assessment_id": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "weight": {
+                          "type": "float",
+                          "nullable": false
+                        }
+                      },
+                      "required": [
+                        "factor_id",
+                        "assessment_id",
+                        "weight"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
+                  }
+                },
+                "required": [
+                  "data"
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "DimensionListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to dimensions",
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "FactorListResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to factors",
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignScoringVariableResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to campaign_scoring_variables",
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "variables": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignScoringVariableSingleResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_scoring_variables",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "variables": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "CampaignScoringVariableUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to campaign_scoring_variables",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "variables": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
               "attributes"
             ],
             "nullable": false

@@ -7,6 +7,7 @@ const settings = {
     'case_study',
     'threesixty',
     'assessor_form',
+    'lead_assessor_form',
     'hogan',
     'agile',
     'saville',

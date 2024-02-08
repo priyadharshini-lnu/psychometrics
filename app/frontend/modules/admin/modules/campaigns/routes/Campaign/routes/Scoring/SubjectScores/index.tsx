@@ -1,0 +1,1 @@
+export { SubjectScoresList } from './SubjectScoresList'

@@ -11,6 +11,7 @@ import {
   DashboardOutlined,
   LineChartOutlined,
   CalendarOutlined,
+  RadarChartOutlined,
 } from '@ant-design/icons'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from '~/utils/route'
@@ -65,6 +66,11 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     <Link route={`${basePath}/datasheet`}>{I18n.t('common.model.datasheet')}</Link>,
     icon: <DatabaseOutlined />,
   } : null,
+  permissions.viewCampaignScoring ? {
+    key: 'scoring',
+    label: <Link route={`${basePath}/scoring`}>{I18n.t('common.model.scoring')}</Link>,
+    icon: <RadarChartOutlined />,
+  } : null,
   permissions.manageCampaignAdmins ? {
     key: 'admins',
     label:
@@ -108,6 +114,9 @@ const getSelected = (pathname): string => {
   }
   if (pathname.includes('/options')) {
     return 'options'
+  }
+  if (pathname.includes('/scoring')) {
+    return 'scoring'
   }
   return ''
 }

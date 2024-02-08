@@ -7,7 +7,7 @@ module Api
       DESIGN_ATTRIBUTES = %i[logo background secondary_logo login_box_position background_color].freeze
       SECURITY_SETTINGS = %i[enforce_strong_password tfa_enabled].freeze
       def show
-        render json: project, serializer: Api::V1::ProjectSerializer
+        render json: Api::V1::ProjectSerializer.new.serialize(project)
       end
 
       def create
@@ -18,7 +18,7 @@ module Api
           project.design_setting.update!(normalized_params.slice(*DESIGN_ATTRIBUTES))
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
           audit! :api_create, project, payload: params, project: project
-          render json: project, serializer: Api::V1::ProjectSerializer
+          render json: Api::V1::ProjectSerializer.new.serialize(project)
         else
           render_validation_errors(form)
         end
@@ -33,7 +33,7 @@ module Api
           project.security_setting.update!(normalized_params.slice(SECURITY_SETTINGS))
           WebhookSubscriptions::Save.call!(project, project_params[:webhook])
           audit! :api_update, project, payload: params, project: project
-          render json: project, serializer: Api::V1::ProjectSerializer
+          render json: Api::V1::ProjectSerializer.new.serialize(project)
         else
           render_validation_errors(form)
         end

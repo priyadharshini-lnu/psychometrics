@@ -4,9 +4,9 @@ import cs from 'classnames'
 import {
   Tag, Tabs, Row, Col, Avatar, Typography, Space, Divider,
 } from 'antd'
-import moment from 'moment'
 import _ from 'lodash'
 import { CheckOutlined, UserOutlined } from '@ant-design/icons'
+import dayjs from '~/utils/dayjs'
 import {
   get as getUserReport,
   getCurrent,
@@ -121,7 +121,7 @@ function Sidebar ({
                             {override ? (
                               <>
                                 {' '}
-                                {moment(override.updatedAt).fromNow()}
+                                {dayjs(override.updatedAt).fromNow()}
                                 {' '}
                                 by
                                 {' '}
@@ -172,7 +172,7 @@ function Sidebar ({
                       }
                   >
                     <Text className={styles.timestamp} type="secondary">
-                      {moment(reportEvent.createdAt).fromNow()}
+                      {dayjs(reportEvent.createdAt).fromNow()}
                     </Text>
                     <div className={styles.name}>
                       <b>{reportEvent.initiator.fullName}</b>

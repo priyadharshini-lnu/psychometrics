@@ -16,6 +16,7 @@ import InnovationStyleConditionCollection from './InnovationStyleConditionCollec
 import ModulesTranslates from './ModulesTranslates'
 
 export const DATA_SHEET = 'DataSheet'
+export const CAMPAIGN_FACTORS = 'CampaignFactors'
 export const REPORT_DATA = 'ReportData'
 export const ASSESSMENT_DATA = 'AssessmentData'
 const ALL_FACTORS = 'All Factors'
@@ -149,6 +150,8 @@ _.extend(Module.prototype, {
         return getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
       case 'DataSheet':
         return this.props.source.columns
+      case 'CampaignFactors':
+        return this.props.source.codes
       case 'ReportData':
         return (this.props.source.reportDataColumns || []).map(c => c.value)
       case 'EmbeddedData':
@@ -298,12 +301,16 @@ _.extend(Module.prototype, {
     return this.props.source && this.props.source.type === DATA_SHEET
   },
 
+  isBasedOnCampaignFactors () {
+    return this.props.source && this.props.source.type === CAMPAIGN_FACTORS
+  },
+
   isBasedOnReportData () {
     return this.props.source && this.props.source.type === REPORT_DATA
   },
 
   isBasedOnAssessment () {
-    return !this.isBasedOnDataSheet() && !this.isBasedOnReportData()
+    return !this.isBasedOnDataSheet() && !this.isBasedOnReportData() && !this.isBasedOnCampaignFactors()
   },
 
   shift () {

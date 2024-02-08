@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class NavigationLinksSerializer < ActiveModel::Serializer
+  class NavigationLinksSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     include ApplicationHelper
 
@@ -24,7 +24,7 @@ module Administration
         links['norms'] = administration_norms_path if policy(%i[administration norm]).index?
         links['dimensions'] = administration_dimensions_path if policy(%i[administration dimension]).index?
         links['assessments'] = administration_assessments_path if policy(%i[administration assessment]).index?
-        links['user_availability'] = administration_user_availabilities_path
+        links['user_availability'] = "#{admin_path}/user_availabilities"
         if policy(%i[administration question]).index?
           links['question_center'] = administration_templates_questions_path
         end
@@ -32,7 +32,7 @@ module Administration
         if policy(%i[administration communication]).index?
           links['communication_center'] = administration_communications_path
         end
-        links['reports'] = administration_reports_path if policy(%i[administration report]).index?
+        links['reports'] = "#{admin_path}/reports" if policy(%i[administration report]).index?
         if policy(%i[administration report_approval]).index?
           links['report_approvals'] = "#{administration_report_approvals_path}/my_tasks"
         end
@@ -49,7 +49,7 @@ module Administration
 
     def policy(name)
       klass = "#{Array.wrap(name).map(&:to_s).map(&:camelize).join('::')}Policy".constantize
-      klass.new(object, nil, project_id: instance_options[:project_id])
+      klass.new(object, nil, project_id: context[:project_id])
     end
 
     def current_user

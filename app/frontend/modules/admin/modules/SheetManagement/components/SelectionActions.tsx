@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Button, Space, Badge, Modal, message,
+  Button, Space, Badge, App,
 } from 'antd'
 import {
   DeleteOutlined,
@@ -62,6 +62,7 @@ const SelectionActionsComponent: FC<Props> = ({
   tableConfigs,
   sheetType,
 }) => {
+  const { modal, message } = App.useApp()
   if (selectedRowKeys.length === 0) {
     return null
   }
@@ -81,7 +82,7 @@ const SelectionActionsComponent: FC<Props> = ({
   }
 
   const openConfirmModalForDelete = (): void => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.sheets.modals.delete_records.title', {
         count: selectedCount,
       }),

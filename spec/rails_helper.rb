@@ -7,16 +7,15 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
-require 'capybara-screenshot/rspec'
-require 'selenium-webdriver'
-require 'features/helpers'
 require 'wisper/rspec/matchers'
 require 'rectify/rspec'
-require 'capybara_config'
 require 'rspec/mocks'
 require 'webmock/rspec'
 require 'savon/mock/spec_helper'
 require 'redlock/testing'
+
+require Rails.root.join('spec/fixtures/models/base_resource.rb')
+Dir[Rails.root.join('spec/fixtures/**/*.rb')].each { |file| require file }
 
 Redlock::Client.testing_mode = :bypass
 
@@ -38,7 +37,6 @@ end
 
 RSpec.configure do |config|
   config.color = true
-  config.include Features::Helpers, type: :feature
   config.include AbstractController::Translation
   config.include FactoryBot::Syntax::Methods
   config.include Warden::Test::Helpers
@@ -96,28 +94,9 @@ RSpec.configure do |config|
     end
   end
 
-  Capybara::Screenshot.autosave_on_failure = ENV['CIRCLECI'].nil? # skip for circleci artifacts
-
-  config.after(:each) do |example|
-    if ENV.fetch('CIRCLECI', nil) &&
-       example.example_group.include?(Capybara::DSL) && Capybara.page.current_url != '' && example.exception
-      save_timestamped_screenshot(Capybara.page, example.metadata)
-    end
-  end
-
   %i[controller view request].each do |type|
     config.include ::Rails::Controller::Testing::TestProcess, type: type
     config.include ::Rails::Controller::Testing::TemplateAssertions, type: type
     config.include ::Rails::Controller::Testing::Integration, type: type
-  end
-
-  def save_timestamped_screenshot(page, meta)
-    filename = File.basename(meta[:file_path])
-    line_number = meta[:line_number]
-    screenshot_name = "#{filename}-#{line_number}.#{Time.zone.now.usec / 1_000}.png"
-    screenshot_path = "#{ENV.fetch('CIRCLE_ARTIFACTS', Rails.root.join('tmp/capybara'))}/#{screenshot_name}"
-
-    page.save_screenshot(screenshot_path)
-    puts "\n  Screenshot: #{screenshot_path}"
   end
 end

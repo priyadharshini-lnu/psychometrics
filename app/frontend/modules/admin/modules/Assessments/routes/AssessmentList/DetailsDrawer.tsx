@@ -32,7 +32,7 @@ export const DetailsDrawer: FC<Props> = ({
       <Row>
         <Descriptions
           layout="horizontal"
-          className="mb-6 w-100"
+          rootClassName="mb-6 w-100"
           bordered
           column={1}
         >

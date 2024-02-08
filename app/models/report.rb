@@ -69,6 +69,7 @@ class Report < ApplicationRecord
   end
 
   scope :assignable, -> { where(disabled: false, archived: false) }
+  scope :campaign_factor_dependable, -> { where.not("campaign_factors::text = '[]'") }
 
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
@@ -97,7 +98,7 @@ class Report < ApplicationRecord
   enum provider: PROVIDERS, _prefix: :provider
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
-  serialize :external_settings, PsyJsonbSerializer
+  serialize :external_settings, coder: PsyJsonbSerializer
 
   mount_uploader :icon, Public::ImageUploader
   mount_uploader :poster, Public::ImageUploader
@@ -251,7 +252,7 @@ class Report < ApplicationRecord
   end
 
   def self.ransackable_scopes(_)
-    %i[provider_in filterable_fields assessments_id_in with_resource_state name_cont]
+    %i[filterable_fields with_resource_state]
   end
 
   private

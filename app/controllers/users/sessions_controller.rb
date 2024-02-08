@@ -8,8 +8,13 @@ module Users
     before_action :perform_browser_check, only: [:new]
     after_action :redirect_to_return_url, only: [:new]
     skip_before_action :ensure_user_profile_completed, only: [:destroy]
+    after_action :set_user_flash_message, only: [:create]
 
     private
+
+    def set_user_flash_message
+      flash[:notice] = I18n.t('devise.sessions.signed_in')
+    end
 
     def after_sign_out_path_for(_)
       @after_signout_path || compute_after_signout_path

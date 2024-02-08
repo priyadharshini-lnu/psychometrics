@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { PageLoadSpinner } from '~/glint'
+import { PageLoadSpinner, DefaultAntThemeWrapper } from '~/glint'
 
 export const withLoadingSpinner = (Component: (props:object) => React.ReactElement, maxWaitTime: number) => (
   props: object,
@@ -23,7 +23,9 @@ export const withLoadingSpinner = (Component: (props:object) => React.ReactEleme
 
   if (pageLoading) {
     return (
-      <PageLoadSpinner size="large" />
+      <DefaultAntThemeWrapper>
+        <PageLoadSpinner size="large" />
+      </DefaultAntThemeWrapper>
     )
   }
 

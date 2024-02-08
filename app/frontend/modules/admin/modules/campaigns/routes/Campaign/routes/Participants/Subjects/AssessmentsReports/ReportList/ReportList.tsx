@@ -1,7 +1,9 @@
 import React from 'react'
 import {
-  Table, MenuProps, Row, Col, Switch, Modal, message,
+  Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
+import type { MessageInstance } from 'antd/es/message/interface'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
@@ -42,6 +44,7 @@ const ReportList: React.FC<Props> = ({
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedProjectId = parseInt(projectId, 10)
+  const { modal, message } = App.useApp()
 
   return (
     <Row>
@@ -102,6 +105,8 @@ const ReportList: React.FC<Props> = ({
                     reportUrl: userReport.reportUrl,
                     permissions: userReport.permissions,
                     openModal,
+                    modal,
+                    message,
                   })
                 }
                 innerElement={(
@@ -139,10 +144,13 @@ interface ActionMenuData {
     parentType?: ParentResourceType
     testMode?: boolean
   }): void
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
 const getActionsMenuProps = ({
-  campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl, permissions, openModal,
+  campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl,
+  permissions, openModal, modal, message,
 }:ActionMenuData):MenuProps => {
   const previewUrl = () => {
     if (internal) {
@@ -152,7 +160,7 @@ const getActionsMenuProps = ({
     return `/admin/projects/${projectId}/new_campaigns/${campaignId}/external_user_report/${userReportId}`
   }
   const handleDelete = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,

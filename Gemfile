@@ -12,9 +12,10 @@ gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.4.0'
 gem 'jwt',                        '~> 2.2.2'
 # gem 'newrelic_rpm',               '~> 9.2', '>= 9.2.2', group: 'production'
+gem 'panko_serializer', '~> 0.8.1'
 gem 'pg',                         '~> 1.4'
 gem 'puma',                       '~> 5.6.7'
-gem 'rails',                      '~> 7.0'
+gem 'rails',                      '~> 7.1.2'
 gem 'rails-i18n',                 '~> 7.0'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'sprockets-rails'
@@ -77,12 +78,12 @@ gem 'cocoon', '1.2.15'
 gem 'simple_form',                '5.1.0'
 ### Pagination helpers
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
-gem 'kaminari',                   '~> 1.2.1'
+gem 'kaminari', git: 'https://github.com/kaminari/kaminari', branch: 'master'
 ### Breadcrumbs
 gem 'breadcrumbs_on_rails',       '~> 4.1.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
-gem 'ransack',                    '~> 2.6.0'
+gem 'ransack',                    '~> 4.1.1'
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.5'
 
@@ -120,22 +121,21 @@ gem 'roo', '~> 2.9'
 gem 'acts_as_list', '~> 1.0.2'
 
 ### add fake destroying logic for models
-gem 'active_model_serializers', '~> 0.10.0'
+gem 'active_model_serializers', '~> 0.10.14'
 
 # Error tracking
-gem 'sentry-rails', '~> 4.1.5'
-gem 'sentry-ruby', '~> 4.1.4'
-gem 'sentry-sidekiq', '~> 4.1.2'
+gem 'sentry-rails', '~> 5.12.0'
+gem 'sentry-sidekiq', '~> 5.12.0'
 
 # DSL for activerecord
-gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'master'
+gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'tte-master'
 
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.2'
 
 gem 'active_storage_validations', '~> 1.0.3'
 gem 'ancestry', '~> 3.0.0'
-gem 'audited', '~> 5.3', '>= 5.3.3'
+gem 'audited', '~> 5.4.2'
 gem 'aws-sdk-s3', '~> 1'
 gem 'aws-sdk-sqs', '~> 1.38.0'
 gem 'aws-sigv4', '~> 1'
@@ -145,7 +145,7 @@ gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct', '~> 2.1.0'
 gem 'fog-aws', '~> 3.5.2'
 gem 'image_processing', '~> 1.2'
-gem 'inky-rb', '~> 1.3.8', require: 'inky'
+gem 'inky-rb', '~> 1.4.2.1', require: 'inky'
 gem 'mini_magick', '~> 4.11.0'
 gem 'remotipart', '~> 1.3.1'
 
@@ -159,7 +159,7 @@ gem 'hashids', '~> 1.0.5'
 gem 'dry-swagger', '~> 0.7.2'
 gem 'dry-validation', '~> 1.10'
 gem 'jsonpath', '~> 1.1.2'
-gem 'mobility', '~> 1.0.0'
+gem 'mobility', '~> 1.2.9'
 gem 'reform-rails', '~> 0.2.3'
 gem 'validates_timeliness', '7.0.0.beta2' # TODO: upgrade when released non-beta
 gem 'virtus', '~> 1.0.5'
@@ -182,11 +182,12 @@ gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag-api', '~> 2.5.1'
-gem 'rswag-ui', '~> 2.9'
+gem 'rswag-api', '~> 2.11.0'
+gem 'rswag-ui', '~> 2.11.0'
+gem 'rufus-lua', '~> 1.1.5'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
-gem 'activerecord-import', '~> 1.4.0'
+gem 'activerecord-import', '~> 1.5.0'
 gem 'possessive', '~> 1.0.1'
 
 gem 'addressable', '~> 2.7'
@@ -213,7 +214,7 @@ group :development, :test do
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
   gem 'i18n-tasks', '~> 1.0'
-  gem 'rswag-specs', '~> 2.9'
+  gem 'rswag-specs', '~> 2.11'
   gem 'rubocop', '~>  1.31.2', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails', require: false
@@ -222,7 +223,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bullet', '~> 7.0.1'
+  gem 'bullet', '~> 7.1.3'
   gem 'listen', '~> 3.7.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring', '~> 4.1.1'
@@ -230,13 +231,15 @@ group :development do
 
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard', '~> 2.18.0'
-  gem 'meta_request', '~> 0.7.0'
+  # TODO: We have forket the gem to just increase the version dependent gem.
+  # We can remove this fork and use original gem once the next version of gem is released.
+  gem 'meta_request', git: 'https://github.com/TheTalentEnterprise/rails_panel', branch: 'tte-master'
+  gem 'ruby-lsp-rails', '~> 0.2.8'
   gem 'solargraph', '~>0.45.0'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 3.37.1'
-  gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls_reborn', '~> 0.24.0', require: false
   gem 'database_cleaner', '~> 2.0.1'
   gem 'faker', '~> 2.21'
@@ -244,11 +247,9 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'
   gem 'rubocop-faker'
-  gem 'selenium-webdriver', '~> 3.142.7'
   gem 'shoulda-matchers', '~> 4.3.0'
   gem 'simplecov', '~> 0.21.2'
   gem 'timecop', '~> 0.9.1'
-  gem 'webdrivers', '~> 4.6.0'
   gem 'webmock', '~> 3.14.0'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'with_model', '~> 2.1.5'

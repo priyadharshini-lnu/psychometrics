@@ -1,0 +1,1 @@
+export { Weightages } from './Weightages'

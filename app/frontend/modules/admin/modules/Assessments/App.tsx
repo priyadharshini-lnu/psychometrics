@@ -9,6 +9,7 @@ import store, { history } from '~/modules/admin/store'
 import Layout from './Layout'
 import { Schema } from '~/libs/jsonApi/schema'
 import { PortalMenu } from '~/components/MainMenu'
+import { DefaultAntThemeWrapper } from '~/glint'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
@@ -16,20 +17,22 @@ const client = new ApiClient({
 })
 
 const App: React.FC<void> = () => (
-  <div style={{ background: 'white' }}>
-    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-    <Provider store={store as any}>
-      <ApiProvider client={client}>
-        <Router>
-          <ConnectedRouter history={history}>
-            <PortalMenu />
-            <Layout />
-          </ConnectedRouter>
-        </Router>
-        <IncorrectResponseErrorModal />
-      </ApiProvider>
-    </Provider>
-  </div>
+  <DefaultAntThemeWrapper>
+    <div style={{ background: 'white' }}>
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      <Provider store={store as any}>
+        <ApiProvider client={client}>
+          <Router>
+            <ConnectedRouter history={history}>
+              <PortalMenu />
+              <Layout />
+            </ConnectedRouter>
+          </Router>
+          <IncorrectResponseErrorModal />
+        </ApiProvider>
+      </Provider>
+    </div>
+  </DefaultAntThemeWrapper>
 )
 
 export default App

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import {
-  Select, Button, Form, Modal,
+  Select, Button, Form, App,
 } from 'antd'
 import QuestionPresenter from '~/modules/survey/presenters/question'
 import styles from './ResourceManager.less'
@@ -15,9 +15,10 @@ export default function Resource ({
     && assessmentQuestions[resource.assessmentId].map(({ id, name, props }) => ({
       id, label: QuestionPresenter.getName({ name, props }, 150),
     }))
+  const { modal } = App.useApp()
 
   const remove = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.resource.remove_confirm.title'),
       content: I18n.t('administration.resource.remove_confirm.message'),
       okText: I18n.t('common.text.confirm'),

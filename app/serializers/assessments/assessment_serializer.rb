@@ -47,8 +47,8 @@ module Assessments
     end
 
     def connected_campaign
-      @connected_campaign ||= Campaign.
-                              joins(:threesixty_campaign).find_by(threesixty_campaigns: { assessment_id: object.id })
+      Campaign.
+        joins(:threesixty_campaign).find_by(threesixty_campaigns: { assessment_id: object.id })
     end
 
     def resources_data
