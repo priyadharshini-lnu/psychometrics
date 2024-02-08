@@ -102,9 +102,9 @@ export function SubjectScoresList () {
         method: 'post',
         updateStore: true,
         body: { finalized: true },
-      }).then(
-        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject })),
-      )
+      }).then(() => {
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject }))
+      })
     } else if (action === 'mark_not_finalized') {
       memberAction({
         id: subject?.id,
@@ -112,9 +112,9 @@ export function SubjectScoresList () {
         method: 'post',
         updateStore: true,
         body: { finalized: false },
-      }).then(
-        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject })),
-      )
+      }).then(() => {
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject }))
+      })
     } else if (action === 'rescore') {
       memberAction({
         id: subject?.id,
@@ -123,9 +123,9 @@ export function SubjectScoresList () {
         updateStore: true,
         body: {},
         responseType: {},
-      }).then(
-        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject })),
-      )
+      }).then(() => {
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject }))
+      })
     }
   }
 
@@ -136,30 +136,30 @@ export function SubjectScoresList () {
         method: 'post',
         body: { userIds: selectedRowKeys, finalized: true },
         responseType: t.literal('ok'),
-      }).then(
+      }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
-          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_mark_finalized') })),
-      )
+          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_mark_finalized') }))
+      })
     } else if (action === 'mark_not_finalized') {
       collectionAction({
         action: 'change_finalized_campaign_score_bulk',
         method: 'post',
         body: { userIds: selectedRowKeys, finalized: false },
         responseType: t.literal('ok'),
-      }).then(
+      }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
-          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_mark_not_finalized') })),
-      )
+          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_mark_not_finalized') }))
+      })
     } else if (action === 'rescore') {
       collectionAction({
         action: 'rescore_bulk',
         method: 'post',
         body: { userIds: selectedRowKeys },
         responseType: {},
-      }).then(
+      }).then(() => {
         message.success(I18n.t('frontend.resource.update_success',
-          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_rescore') })),
-      )
+          { readableResourceName: I18n.t('administration.scoring.subject_list.bulk_rescore') }))
+      })
     }
   }
 

@@ -398,7 +398,7 @@ module Swagger
             Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.multiple_resource_response
           ),
           CampaignAssessorAssessmentFactorWeightBulkUpsertRequest: Api::Base::GenerateSwagger.call!(
-            Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.bulk_upsert
+            Api::V2::CampaignAssessorAssessmentFactorWeight::Schema.bulk_upsert(only_float_weight: true)
           ),
           DimensionListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Dimension::Schema.multiple_resource_response

@@ -89,7 +89,7 @@ describe Api::V2::Administration::CampaignAssessorAssessmentFactorWeightsControl
                   {
                     factor_id: factor.id.to_s,
                     assessment_id: assessment.id.to_s,
-                    weight: 0.34
+                    weight: 1
                   }
                 ]
               }
@@ -102,7 +102,7 @@ describe Api::V2::Administration::CampaignAssessorAssessmentFactorWeightsControl
           new_factor_weight = CampaignAssessorAssessmentFactorWeight.find_by(
             factor: factor, assessment: assessment, campaign: campaign_assessor_assessment_factor_weight.campaign
           )
-          expect(new_factor_weight.weight).to eq(0.34)
+          expect(new_factor_weight.weight).to eq(1.0)
         end
       end
     end
