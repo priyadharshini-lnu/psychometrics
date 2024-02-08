@@ -2,7 +2,7 @@ import { useState } from 'react'
 import _ from 'lodash'
 import {
   Form as AntForm, Checkbox,
-  InputNumber, Space, Alert,
+  InputNumber, Alert,
 } from 'antd'
 import BaseForm from '~/modules/admin/components/Form'
 import HiddenInputList from './HiddenInputList'
@@ -75,27 +75,22 @@ export default function Form (props) {
             scale_max: resource.scale_max,
           }}
           onValuesChange={onValuesChange}
+          layout="vertical"
+          colon={false}
         >
-          <div className="mtm mbm">
-            <Space>
-              <AntForm.Item
-                label="Scale Min"
-                name="scale_min"
-                validateStatus={errors.scale_min?.length && 'error'}
-              >
-                <InputNumber />
-              </AntForm.Item>
-              <AntForm.Item label="Max" name="scale_max">
-                <InputNumber />
-              </AntForm.Item>
-            </Space>
+          <AntForm.Item
+            label="Scale Min"
+            name="scale_min"
+            validateStatus={errors.scale_min?.length && 'error'}
+          >
+            <InputNumber />
+          </AntForm.Item>
+          <AntForm.Item label="Scale Max" name="scale_max">
+            <InputNumber />
+          </AntForm.Item>
             {errors.scale_min?.length && <Alert message={errors.scale_min.join(', ')} type="error" />}
-          </div>
         </AntForm>
       )}
-      <div className="ant-form-vertical">
-        <InputFile onChange={onChange} value={resource.icon} />
-      </div>
       {(resource.scoring_strategy === 'sub_factor_questions_sum' || resource.scoring_strategy === 'questions_sum')
         && (
         <div className="mtm mbm">
@@ -145,6 +140,9 @@ export default function Form (props) {
         </AntForm>
         )
       }
+      <div className="ant-form-vertical">
+        <InputFile onChange={onChange} value={resource.icon} />
+      </div>
     </>
   )
 }
@@ -152,7 +150,13 @@ export default function Form (props) {
 
 // TODO (atanych): dont use this component in future. We should avoid ruby form and ruby modal and use react entirely
 const InputFile = ({ value, onChange }) => (
-  <AntForm.Item label="Icon" className={styles.fileContainer} labelCol={{ flex: 'none' }}>
+  <AntForm.Item
+    colon={false}
+    labelAlign="left"
+    label="Icon"
+    className={styles.fileContainer}
+    labelCol={{ flex: 'none' }}
+  >
     <input name="resource[icon]" type="file" className="mbm" />
     {value && (
       <div className="mtm">

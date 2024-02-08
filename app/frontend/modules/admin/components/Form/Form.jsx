@@ -4,7 +4,7 @@ export default function Form ({
   fields, context, onChange, resource,
 }) {
   return (
-    <div className="ant-form-vertical">
+    <>
       {fields.map(field => (
         <Item
           key={field.name}
@@ -13,6 +13,6 @@ export default function Form ({
           onChange={onChange}
         />
       ))}
-    </div>
+    </>
   )
 }

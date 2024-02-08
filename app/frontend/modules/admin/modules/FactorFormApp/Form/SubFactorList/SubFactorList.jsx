@@ -41,7 +41,7 @@ export default function SubFactorList ({
   const dataSource = _.sortBy(factor[FACTORS_SUB_FACTORS], ['position'])
   const columns = GetColumnsByStrategy.run(factor, onUpdate, onRemove, tableErrors)
   return (
-    <Card className={styles.container} title={<Title factors={factors} factor={factor} onAdd={onAdd} />}>
+    <Card className={`${styles.container} mbl`} title={<Title factors={factors} factor={factor} onAdd={onAdd} />}>
       {factor[FACTORS_SUB_FACTORS].length ? (
         <DnDProvider>
           <table className="table table-bordered">
