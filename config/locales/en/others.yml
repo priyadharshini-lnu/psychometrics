@@ -3516,7 +3516,7 @@ en:
     actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
     blank: can't be blank
     character_count: 'Characters count '
-    character_range: Your response must be at least %{min} and no more than %{max} characters.
+    character_range: Your response must be at least %{min} and no more than %{max} characters long.
     date: Your response must be a valid date (mm/dd/yyyy)
     each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
     email: Your response must be a valid email
@@ -3529,7 +3529,7 @@ en:
     least_hotspot: Please answer at least %{min} choice(s).
     max_character: Your response must be no more than %{max} characters.
     max_word: Your response must not be more than %{max} words.
-    min_character: Your response must be at least %{min} characters.
+    min_character: Your response must contain at least %{min} characters.
     min_word: Your response must be atleast %{min} words
     most: Please select at most %{max} choice(s)
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.

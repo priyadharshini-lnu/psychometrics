@@ -9,9 +9,12 @@ const QuestionList = ({
 }) => {
   const transition = useTransition(questions, {
     from: { opacity: 0, transform: `translate(0px, ${backButtonPressed ? -100 : 100}px)` },
-    enter: {
-      opacity: 1, position: 'relative', transform: 'translate(0px, 0px)', delay: 300,
-    },
+    enter: [
+      {
+        opacity: 1, position: 'relative', transform: 'translate(0px, 0px)', delay: 300,
+      },
+      { transform: 'none', delay: 1 },
+    ],
     leave: { opacity: 0, position: 'absolute', transform: `translate(0px, ${backButtonPressed ? 100 : -100}px)` },
     config: (item, state) => {
       switch (state) {
