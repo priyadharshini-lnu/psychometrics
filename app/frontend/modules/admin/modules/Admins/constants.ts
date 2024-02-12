@@ -161,7 +161,6 @@ export const ProjectAdminGrants = {
 }
 
 export const CampaignAdminGrants = {
-  users: ['reset_password'],
   assessors: ['view', 'manage'],
   campaigns: [
     'view',
