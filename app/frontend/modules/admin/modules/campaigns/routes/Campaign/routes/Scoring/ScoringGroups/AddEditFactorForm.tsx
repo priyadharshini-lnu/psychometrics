@@ -314,6 +314,7 @@ export const AddEditFactorForm: FC<Props> = ({
         storeManager={{ form }}
         resource={editFactor ? factorData : undefined}
         resourceId={factorData?.id}
+        showSuccessMessages
         formProps={{
           labelAlign: 'left',
           preserve: false,

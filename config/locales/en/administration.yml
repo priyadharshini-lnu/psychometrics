@@ -4044,7 +4044,11 @@ en:
       description: Description
       dimension: Dimension
       factor: Factor
+      factor_group_removed_successfully: Campaign Factor group removed successfully
+      factor_group_update_successfully: Campaign Factor group updated successfully
+      factor_removed_successfully: Campaign Factor removed successfully
       final: Final
+      final_score_updated_successfully: Final score updated successfully
       formula: Formula
       get_started: Get Started
       id: Id
@@ -4055,6 +4059,10 @@ en:
       profile:
         years: Years
       public: Public
+      remove_factor_confirmation_content: Are you sure you want to remove the factor '%{factor_name}'?
+      remove_factor_confirmation_title: Remove Factor
+      remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
+      remove_factor_group_confirmation_title: Remove Factor Group
       required_error: Can't be empty
       save: Save
       score_range: Score Range

@@ -2,7 +2,7 @@ import React, {
   useCallback, useEffect, useMemo, useState,
 } from 'react'
 import {
-  Table, InputNumber, Skeleton, Flex, Button, Typography, Modal,
+  Table, InputNumber, Skeleton, Flex, Button, Typography, Modal, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
@@ -44,6 +44,7 @@ const processData = (dataWithAverages, averageRow, scoreRange, weightedAverageRo
 
 const ScoringTable: React.FC = () => {
   const { campaignId, userId } = useParams<{ campaignId: string, userId: string }>()
+  const { message } = App.useApp()
 
   const {
     data: columnsData, fetch: fetchFactors, isLoading: isFactorsLoading,
@@ -182,7 +183,9 @@ const ScoringTable: React.FC = () => {
           user_id: userId,
         },
       },
-    )
+    ).catch(() => {}).then(() => {
+      message.success(I18n.t('administration.scoring.final_score_updated_successfully'))
+    })
   }
 
   const handleReset = () => {

@@ -5,7 +5,7 @@ import {
 import { createPortal } from 'react-dom'
 import cs from 'classnames'
 import {
-  Row, Col, Space, Button, Typography, Empty, Flex,
+  Row, Col, Space, Button, Typography, Empty, Flex, App,
 } from 'antd'
 import {
   DndContext, useSensor, useSensors, MouseSensor, TouchSensor, DragEndEvent, DragOverlay, DragStartEvent,
@@ -48,6 +48,7 @@ export const ScoringGroups = () => {
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))
   const [activeId, setActiveId] = useState<string | null>(null)
   const recentlyMovedToNewContainer = useRef(false)
+  const { modal, message } = App.useApp()
 
   const {
     createResource: initializeScoring,
@@ -317,6 +318,7 @@ export const ScoringGroups = () => {
       campaign: { id: campaignId },
     }
     updateFactorGroup(payload).then(() => {
+      message.success(I18n.t('administration.scoring.factor_group_update_successfully'))
       fetchAndUpdateFactorGroups()
     })
   }
@@ -354,12 +356,22 @@ export const ScoringGroups = () => {
 
   const handleRemoveFactor = (factorId: string) => {
     removeCampaignFactor(factorId).then(() => {
+      message.success(I18n.t('administration.scoring.factor_removed_successfully'))
       fetchAndUpdateFactors()
+    })
+  }
+
+  const handleConfirmRemoveFactor = (factor: CampaignFactor) => {
+    modal.confirm({
+      title: I18n.t('administration.scoring.remove_factor_confirmation_title'),
+      content: I18n.t('administration.scoring.remove_factor_confirmation_content', { factor_name: factor.name }),
+      onOk: () => handleRemoveFactor(factor.id),
     })
   }
 
   const handleRemoveGroup = (groupId: string) => {
     removeCampaignFactorGroup(groupId).then(() => {
+      message.success(I18n.t('administration.scoring.factor_group_removed_successfully'))
       fetchFactorGroups({ apiConfig: { fields: { campaign_factor_groups: ['id', 'name', 'position'] } } }).then(
         ({ data }) => {
           setFactorGroupsLocalState([...data])
@@ -367,6 +379,15 @@ export const ScoringGroups = () => {
       )
     })
   }
+
+  const handleConfirmRemoveFactorGroup = (group: CampaignFactorGroup) => {
+    modal.confirm({
+      title: I18n.t('administration.scoring.remove_factor_group_confirmation_title'),
+      content: I18n.t('administration.scoring.remove_factor_group_confirmation_content', { group_name: group.name }),
+      onOk: () => handleRemoveGroup(group.id),
+    })
+  }
+
 
   const handleToolsDropdown = ({ key }) => {
     if (key === 'variables') {
@@ -491,7 +512,7 @@ export const ScoringGroups = () => {
                       key={group.name}
                       sortId={`group_${group.id}`}
                       group={group}
-                      removeGroup={handleRemoveGroup}
+                      removeGroup={handleConfirmRemoveFactorGroup}
                       addFactor={(groupId) => {
                         setCurrentGroupId(groupId)
                         setOpenAddEditFactor(true)
@@ -511,7 +532,7 @@ export const ScoringGroups = () => {
                               key={factor.id}
                               sortId={`factor_${factor.id}`}
                               factor={factor}
-                              removeFactor={handleRemoveFactor}
+                              removeFactor={handleConfirmRemoveFactor}
                               onEditFactor={handleOpenEditFactor}
                             />
                           ))}
