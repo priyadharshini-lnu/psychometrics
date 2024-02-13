@@ -50,10 +50,12 @@ module Campaigns
             :create, user, user: current_user, campaign: campaign, payload: form.attributes
           )
         end
-        @campaign_user = campaign.campaign_users.create(
-          user: user, active: form.active, schedule_start_date: form.schedule_start_date,
+        @campaign_user = campaign.campaign_users.find_or_initialize_by(user: user)
+        campaign_user.assign_attributes(
+          active: form.active, schedule_start_date: form.schedule_start_date,
           schedule_end_date: form.schedule_end_date
         )
+        campaign_user.save!
       end
 
       def add_reports_and_assessments

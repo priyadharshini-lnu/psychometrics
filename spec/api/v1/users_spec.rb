@@ -153,7 +153,10 @@ the campaign\'s default assessments and reports.'
           }
         end
 
-        before { create(:user, project: project, email: 'max@example.com') }
+        before do
+          user = create(:user, project: project, email: 'max@example.com')
+          create(:campaign_user, campaign: campaign, user: user)
+        end
         run_test! do |response|
           user = JSON.parse(response.body)
           expect(user['id']).to be

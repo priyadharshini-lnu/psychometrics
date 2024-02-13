@@ -7961,6 +7961,13 @@ CREATE INDEX index_campaign_users_on_campaign_id ON public.campaign_users USING 
 
 
 --
+-- Name: index_campaign_users_on_campaign_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_users_on_campaign_id_and_user_id ON public.campaign_users USING btree (campaign_id, user_id);
+
+
+--
 -- Name: index_campaign_users_on_completed_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12120,6 +12127,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231020065639'),
 ('20231219105643'),
 ('20240129143541'),
-('20240206082940');
+('20240206082940'),
+('20240213142024');
 
 
