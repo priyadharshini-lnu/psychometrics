@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Form, Layout, Typography, Input, Row, Col, Space, Button, Image,
 } from 'antd'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import { useResources } from '~/hooks/useResources'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
 import ResourceForm from '~/components/ResourceForm'
@@ -76,6 +77,12 @@ export const ChangePassword: React.FC = () => {
                   >
                     <Input.Password />
                   </Form.Item>
+                  <>
+                    <Typography.Text type="warning">
+                      <InfoCircleOutlined className={styles.infoIcon} />
+                      {I18n.t('change_password_page.warning_message')}
+                    </Typography.Text>
+                  </>
                   <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
                     <Button
                       type="primary"

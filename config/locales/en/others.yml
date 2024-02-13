@@ -1421,6 +1421,7 @@ en:
     password: Password
     password_confirmation: Password Confirmation
     title: Change Password
+    warning_message: 'Important: Changing your password will log you out.'
   checking_wizard:
     audio_check:
       access: Access
