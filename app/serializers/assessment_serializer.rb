@@ -24,7 +24,7 @@ class AssessmentSerializer < ActiveModel::Serializer
     return [] unless object.dimension
 
     object.dimension.all_factors.includes(:sub_factors).
-      map { |factor| Factors::WithSubFactorsSerializer.new(factor).to_hash }
+      map { |factor| Factors::WithSubFactorsSerializer.new(factor, assessment_id: object.id).to_hash }
   end
 
   def resources_content

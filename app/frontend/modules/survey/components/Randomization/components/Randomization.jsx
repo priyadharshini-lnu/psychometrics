@@ -17,6 +17,7 @@ export class Randomization extends Component {
       this.setState({
         type: model.props.randomization.type,
         questions: model.props.randomization.questions || '',
+        perPage: model.props.randomization.perPage || '',
       })
     }
   }
@@ -27,6 +28,10 @@ export class Randomization extends Component {
 
   handleChangeQuestions = (e) => {
     this.setState({ questions: Math.abs(parseInt(e.currentTarget.value, 10)) || '' })
+  }
+
+  handleChangePerPage = (e) => {
+    this.setState({ perPage: Math.abs(parseInt(e.currentTarget.value, 10)) || '' })
   }
 
   save = () => {
@@ -49,7 +54,7 @@ export class Randomization extends Component {
 
   render () {
     const { close, entityName } = this.props
-    const { type, questions } = this.state
+    const { type, questions, perPage } = this.state
     return (
       <Modal show keyboard={false}>
         <Header>
@@ -92,7 +97,7 @@ export class Randomization extends Component {
             {' '}
             Present only
             <input
-              value={questions}
+              value={type === 'Some' ? questions : undefined}
               onChange={this.handleChangeQuestions}
               className={styles.questionInput}
               disabled={type !== 'Some'}
@@ -101,6 +106,31 @@ export class Randomization extends Component {
             {' '}
             {entityName}
             s
+          </label>
+          <label className={styles.inputLabel}>
+            <input
+              checked={type === 'ByFactors'}
+              type="radio"
+              value="ByFactors"
+              onChange={this.handleChangeType}
+            />
+            {' '}
+            Select only
+            <input
+              value={type === 'ByFactors' ? questions : undefined}
+              onChange={this.handleChangeQuestions}
+              className={styles.questionInput}
+              disabled={type !== 'ByFactors'}
+            />
+            questions per factor and show
+            <input
+              value={type === 'ByFactors' ? perPage : undefined}
+              onChange={this.handleChangePerPage}
+              className={styles.questionInput}
+              disabled={type !== 'ByFactors'}
+            />
+            {' '}
+            per page
           </label>
         </Body>
         <Footer>
