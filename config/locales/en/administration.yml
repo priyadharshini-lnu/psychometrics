@@ -3914,12 +3914,16 @@ en:
         no_show: No Show
         no_status: No Status
         on_time: On Time
+      attended:
+        attended: Attended
+        not_attended: Not Attended
       campaign_participants: Campaign participants
       columns:
         activity: Activity
         assessor: Assessor
         assessors: Assessors
         attendance: Attendance
+        attended: Attended
         campaign_name: Campaign Name
         duration: Duration
         managers: Mangers
