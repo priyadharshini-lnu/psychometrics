@@ -3,7 +3,7 @@
 module PrivatableUploader
   def initialize(*)
     super
-    self.fog_directory = Rails.application.secrets.s3_compatible_storage[:private_bucket]
+    self.fog_directory = Settings.secrets.s3_compatible_storage[:private_bucket]
   end
 
   def fog_public

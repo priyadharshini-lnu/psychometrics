@@ -7,7 +7,7 @@ module EndUser
                :direct_assessment_id, :display_informed_consent, :return_url
 
     def url
-      Rails.application.secrets.hogan[:login_url]
+      Settings.secrets.hogan[:login_url]
     end
 
     def user_id

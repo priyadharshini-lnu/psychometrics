@@ -33,7 +33,7 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
     end
 
     it 'create Pearson Schedule if assessment url is not present and marks user_assessment in progress' do
-      config = Rails.application.secrets.pearson
+      config = Settings.secrets.pearson
       url = Faker::Internet.url
       allow(Pearson::GetAuthToken).to receive(:call!)
       allow_any_instance_of(UserAssessment).to receive(:pearson_assessment_language).and_return('en-Gb')

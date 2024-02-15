@@ -63,12 +63,11 @@ module Swagger
           New attributes could also be added to the request schema but would be optional.
         DESCRIPTION
       },
-      securityDefinitions: { basic: { type: :basic } },
+      securitySchemes: { basic: { type: :basic } },
       paths: {},
       security: {},
-      basePath: '/api/v2/administration',
       servers: [{
-        url: 'https://ttedev.me:3030'
+        url: 'https://ttedev.me:3030/api/v2/administration'
       }],
       schemes: %w[http https],
       consumes: [

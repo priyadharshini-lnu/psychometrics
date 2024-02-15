@@ -339,8 +339,8 @@ Devise.setup do |config|
 
   # ==> TwoFactorAuthentication
   # https://github.com/Houdini/two_factor_authentication
-  config.max_login_attempts = 3 # Maximum second factor attempts count
-  config.allowed_otp_drift_seconds = 30 # Allowed TOTP time drift between client and server
+  config.maximum_attempts = 3 # Maximum second factor attempts count
+  config.allowed_clock_drift_in_seconds = 30 # Allowed TOTP time drift between client and server
   config.otp_length = 6 # TOTP code length
   config.direct_otp_valid_for = 20.minutes # Time before direct OTP becomes invalid
   config.direct_otp_length = 6 # Direc t OTP code length

@@ -47,7 +47,7 @@ module Projects
       path = UserReport.new.pdf.store_dir
       user_reports.pluck(:id, :pdf).each do |id, pdf_file|
         ObjectStorage::RemoveFileJob.perform_later(
-          "#{path}/#{id}/#{pdf_file}", Rails.application.secrets.s3_compatible_storage[:private_bucket]
+          "#{path}/#{id}/#{pdf_file}", Settings.secrets.s3_compatible_storage[:private_bucket]
         )
       end
       user_reports.delete_all
@@ -68,7 +68,7 @@ module Projects
       path = MediaResponse.new.asset.store_dir
       media_responses.pluck(:asset).each do |asset_file|
         ObjectStorage::RemoveFileJob.perform_later(
-          "#{path}/#{asset_file}", Rails.application.secrets.s3_compatible_storage[:private_bucket]
+          "#{path}/#{asset_file}", Settings.secrets.s3_compatible_storage[:private_bucket]
         )
       end
       media_responses.delete_all

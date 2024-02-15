@@ -28,7 +28,7 @@ describe LambdaNotificationsController, type: :controller do
   private
 
   def encode_lambda_message(message)
-    seceret = Rails.application.secrets.aws.dig(:lambda, :signing_secret)
+    seceret = Settings.secrets.aws.dig(:lambda, :signing_secret)
     JWT.encode({ data: message }, seceret, 'HS256')
   end
 end

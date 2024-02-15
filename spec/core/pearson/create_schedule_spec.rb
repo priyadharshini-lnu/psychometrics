@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Pearson::CreateSchedule do
   it 'creates schedule in pearson and updates user_assessment with url and schdule_id' do
-    config = Rails.application.secrets.pearson
+    config = Settings.secrets.pearson
     pearson_user_assessment = create(:pearson_user_assessment, schedule_id: nil, url: nil)
     user_assessment = pearson_user_assessment.user_assessment
     allow(Pearson::GetAuthToken).to receive(:call!)

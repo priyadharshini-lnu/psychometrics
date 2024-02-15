@@ -48,11 +48,11 @@ source 'https://rails-assets.org/' do
 end
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.9.2'
+gem 'devise',                     '~> 4.9.3'
 gem 'devise-i18n',                '~> 1.9.2'
-gem 'devise_invitable',           '~> 2.0.2'
+gem 'devise_invitable',           '~> 2.0.9'
 gem 'devise-passwordless',        '~> 1.0.1'
-gem 'devise_saml_authenticatable', '~> 1.7.0'
+gem 'devise_saml_authenticatable', '~> 1.9.1'
 
 gem 'dotiw', '~> 5.3.3'
 gem 'icalendar', '~> 2.9.0'
@@ -62,7 +62,7 @@ gem 'icalendar', '~> 2.9.0'
 gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
   branch: 'fix_deprecated_methods'
 # rubocop:enable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
-gem 'devise-security', '~> 0.17.0'
+gem 'devise-security', '~> 0.18.0'
 gem 'pundit', '~> 2.1.1'
 
 ### Assets
@@ -124,8 +124,8 @@ gem 'acts_as_list', '~> 1.0.2'
 gem 'active_model_serializers', '~> 0.10.14'
 
 # Error tracking
-gem 'sentry-rails', '~> 5.12.0'
-gem 'sentry-sidekiq', '~> 5.12.0'
+gem 'sentry-rails', '~> 5.15.2'
+gem 'sentry-sidekiq', '~> 5.15.2'
 
 # DSL for activerecord
 gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', branch: 'tte-master'
@@ -209,7 +209,7 @@ group :development, :test do
   gem 'parallel_tests', '~> 4.2'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
-  gem 'rspec-rails', '~> 5.1.2'
+  gem 'rspec-rails', '~> 6.1'
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'

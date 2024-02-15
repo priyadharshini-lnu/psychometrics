@@ -13,7 +13,7 @@ module Sms
     def call
       message = Sms::TwilioClient.get.messages.create(
         **options.merge(
-          from: Rails.application.secrets.twilio[:from_mobile_no],
+          from: Settings.secrets.twilio[:from_mobile_no],
           to: to_mobile_no,
           body: body
         )
