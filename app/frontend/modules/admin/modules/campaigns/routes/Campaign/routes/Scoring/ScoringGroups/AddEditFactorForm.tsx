@@ -3,7 +3,7 @@ import {
 } from 'react'
 import _ from 'lodash'
 import {
-  Drawer, Form, Input, Button, Select, Spin,
+  Drawer, Form, Input, Button, Select, Spin, Switch,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
 import { useParams } from 'react-router-dom'
@@ -386,13 +386,8 @@ export const AddEditFactorForm: FC<Props> = ({
               </Select>
             </Form.Item>
             {formFieldBasedOnFactorType}
-            <Form.Item
-              valuePropName="checked"
-              name="publicVisibility"
-              wrapperCol={{ span: 1 }}
-              label={I18n.t('administration.scoring.public')}
-            >
-              <Input type="checkbox" />
+            <Form.Item label={I18n.t('administration.scoring.public')} name="publicVisibility" valuePropName="checked">
+              <Switch />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>
