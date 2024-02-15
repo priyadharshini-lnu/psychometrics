@@ -31,6 +31,7 @@ module UsersResults
         norm_id: user_assessment.fixed_norm? ? user_assessment.norm_id : nil,
         reset_count: user_assessment.reset_count + 1,
         expiry_date: nil,
+        selected_locale: nil,
         additional_time: nil,
         started_at: nil,
         last_activity_at: nil,
