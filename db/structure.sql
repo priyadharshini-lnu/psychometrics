@@ -483,7 +483,8 @@ CREATE TABLE public.assessments (
     updated_by_id bigint,
     external_settings jsonb DEFAULT '{}'::jsonb,
     linked_assessment_id integer,
-    linked_questions json DEFAULT '{}'::json
+    linked_questions json DEFAULT '{}'::json,
+    default_language character varying DEFAULT 'en'::character varying
 );
 
 
@@ -1092,6 +1093,7 @@ CREATE TABLE public.campaign_factors (
     name character varying NOT NULL,
     code character varying NOT NULL,
     description text,
+    factor_type integer DEFAULT 0 NOT NULL,
     output_type integer DEFAULT 0 NOT NULL,
     campaign_id bigint NOT NULL,
     factor_id bigint,
@@ -1101,8 +1103,7 @@ CREATE TABLE public.campaign_factors (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     assessment_score_type integer DEFAULT 0,
-    formula text,
-    factor_type integer DEFAULT 0
+    formula text
 );
 
 
@@ -11718,7 +11719,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20240206082940'),
+('20240213123231'),
 ('20240131091031'),
 ('20240129143541'),
 ('20240126082502'),

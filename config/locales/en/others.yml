@@ -1525,6 +1525,7 @@ en:
       created_at: Created At
       created_by: Created By
       created_date: Created Date
+      default_language: Default Language
       description: Description
       details: Details
       dimension: Dimension
