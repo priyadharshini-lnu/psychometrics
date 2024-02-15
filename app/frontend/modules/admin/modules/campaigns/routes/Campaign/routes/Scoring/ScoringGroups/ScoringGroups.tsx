@@ -306,6 +306,7 @@ export const ScoringGroups = () => {
     }
 
     createCampaignFactorGroup(newGroup).then(() => {
+      message.success(I18n.t('administration.scoring.factor_group_added_successfully'))
       fetchAndUpdateFactorGroups()
     })
   }
