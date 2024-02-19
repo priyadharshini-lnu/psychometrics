@@ -8,8 +8,12 @@ module Administration
 
     def index
       object = params[:fields].index_with { |field| send(field) }
-
-      render json: BreadcrumbSerializer.new(object, fields: params[:fields]).to_h
+      render json: BreadcrumbSerializer.new(
+        only: params[:fields].map(&:to_sym),
+        context: {
+          fields: params[:fields]
+        }
+      ).serialize(object)
     end
 
     def campaign

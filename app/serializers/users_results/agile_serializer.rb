@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UsersResults
-  class AgileSerializer < ActiveModel::Serializer
+  class AgileSerializer < Panko::Serializer
     attributes :id, :groups, :locale, :completed_groups, :assets, :available_locales, :other_pending_assessments_count,
                :remaining_campaign_time
 

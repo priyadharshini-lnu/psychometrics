@@ -14,7 +14,7 @@ module Assessments
         block = ::Block.find(data.delete('block_id'))
         data['assessment_id'] = assessment.id
         question = block.questions.create!(data)
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :update do |data|
@@ -54,7 +54,7 @@ module Assessments
         question = ::Question.find(data['id'])
         question.update(deleted_at: nil)
         question.move_to_bottom
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :permanent_destroy do |data|
@@ -66,14 +66,14 @@ module Assessments
         parent = ::Question.find(data['parent_id'])
         question = ::Question.create!(data['question'])
         question.insert_at(parent.position + 1)
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :insert_before do |data|
         parent = ::Question.find(data['parent_id'])
         question = ::Question.create!(data['question'])
         question.insert_at(parent.position)
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :clone do |data|
@@ -81,7 +81,7 @@ module Assessments
         question = parent.clone
         question.insert_at(parent.position + 1)
         question.save
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :unlink_template do |data|
@@ -94,13 +94,19 @@ module Assessments
 
       action :create_by_template do |data|
         template = ::Question.templates.find(data['template_id'])
-        Assessments::Actions::Question::CreateByTemplate::QuestionSerializer.new(template).to_hash(include: '**')
+        Assessments::Actions::Question::CreateByTemplate::QuestionSerializer.new(
+          context: { include: '**' }
+        ).serialize(template)
       end
 
       action :save_as_template do |data|
         question = ::Question.find(data['id'])
         question.dup_for_template!
-        QuestionSerializer.new(question).to_hash(include: '**')
+        QuestionSerializer.new(
+          context: {
+            include: '**'
+          }
+        ).serialize(question)
       end
     end
   end

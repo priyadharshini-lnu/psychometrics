@@ -19,14 +19,16 @@ module UsersResults::ControllerConcern
     progress_was_reseted = user_assessment.progress_reseted
     ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
-    render json: @users_result,
-           serializer: UsersResultUpdateSerializer,
-           current_block_id: params[:current_block_id],
-           current_user: current_user,
-           threesixty_campaign: @users_result.campaign.threesixty_campaign,
-           campaign: @users_result.campaign,
-           locale: current_user.locale,
-           progress_was_reseted: progress_was_reseted
+    render json: UsersResultUpdateSerializer.new(
+      context: {
+        current_block_id: params[:current_block_id],
+        current_user: current_user,
+        threesixty_campaign: @users_result.campaign.threesixty_campaign,
+        campaign: @users_result.campaign,
+        locale: current_user.locale,
+        progress_was_reseted: progress_was_reseted
+      }
+    ).serialize(@users_result)
   end
 
   def update_meta_data

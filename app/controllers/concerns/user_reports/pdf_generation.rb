@@ -23,13 +23,17 @@ module UserReports::PdfGeneration
           return render json: Administration::ExternalUserReportSerializer.new.serialize(resource)
         end
 
-        render json: resource, report: resource.report,
-               results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as),
-               piped_text_context: resource.piped_text_context,
-               user_results: resource.user_results(view_report_as),
-               view_report_as: view_report_as,
-               serializer: ::UserReportSerializer,
-               include: '**'
+        render json: ::UserReportSerializer.new(
+          context: {
+            report: resource.report,
+            results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as),
+            piped_text_context: resource.piped_text_context,
+            user_results: resource.user_results(view_report_as),
+            view_report_as: view_report_as,
+            current_user: current_user,
+            include: '**'
+          }
+        ).serialize(resource)
       end
     end
   end

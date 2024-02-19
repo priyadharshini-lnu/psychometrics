@@ -85,6 +85,6 @@ class AdminJobRecord < ApplicationRecord
   end
 
   def broadcast(action)
-    AdminJobChannel.broadcast_to(owner, action: action, job: AdminJobRecordSerializer.new(self))
+    AdminJobChannel.broadcast_to(owner, action: action, job: AdminJobRecordSerializer.new.serialize(self))
   end
 end

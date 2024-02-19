@@ -82,7 +82,13 @@ module EndUser
     def assigned_reports
       reports = object.original_assigns_reports.map(&:report)
       reports = reports.select { |report| Reports::IsGeneratable.call!(report, object) }
-      reports.map { |report| ::EndUser::ReportSerializer.new(report, assign: object).to_h }
+      Panko::ArraySerializer.new(
+        reports,
+        each_serializer: ::EndUser::ReportSerializer,
+        context: {
+          assign: object
+        }
+      ).to_a
     end
 
     def need_confirm

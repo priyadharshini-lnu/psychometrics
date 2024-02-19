@@ -32,11 +32,14 @@ describe Threesixty::SubjectSerializer do
     end
 
     it do
-      result = described_class.new(subject, option: option, counters: counters, current_user: current_user).to_hash
+      result = described_class.new(context: {
+        option: option, counters: counters, current_user: current_user
+      }).serialize(subject).deep_symbolize_keys
+
       expect(result[:evaluators]).to eq '4 / 5'
       expect(result[:report_status]).to eq Threesixty::Participants::GetReportStatus::INCOMPLETE
       expect(result[:evaluations]).to eq '3 / 5'
-      expect(result[:user]['email']).to eq 'dustin@poirier.com'
+      expect(result[:user][:email]).to eq 'dustin@poirier.com'
     end
   end
   describe 'subject is not evaluator' do
@@ -68,17 +71,15 @@ describe Threesixty::SubjectSerializer do
     end
 
     it do
-      result = described_class.new(
-        subject, option: option,
-        nomination_requirement: nomination_requirement,
-        counters: counters,
-        current_user: current_user
-      ).to_hash
+      result = described_class.new(context: {
+        option: option, counters: counters, nomination_requirement: nomination_requirement, current_user: current_user
+      }).serialize(subject).deep_symbolize_keys
+
       expect(result[:evaluators]).to eq '5 / 5'
       expect(result[:report_status]).to eq Threesixty::Participants::GetReportStatus::DENIED
       expect(result[:status]).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
       expect(result[:evaluations]).to eq '3 / 5'
-      expect(result[:user]['email']).to eq 'dustin@poirier.com'
+      expect(result[:user][:email]).to eq 'dustin@poirier.com'
     end
   end
 end

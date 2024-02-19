@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PsyJsonbSerializer < ActiveModel::Serializer
+class PsyJsonbSerializer
   def self.dump(hash)
     hash
   end

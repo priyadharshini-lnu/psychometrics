@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ShortUserSerializer < ActiveModel::Serializer
+class ShortUserSerializer < Panko::Serializer
   attributes :id, :full_name, :avatar_url
 
   def full_name

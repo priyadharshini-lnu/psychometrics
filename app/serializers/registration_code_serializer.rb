@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RegistrationCodeSerializer < ActiveModel::Serializer
+class RegistrationCodeSerializer < Panko::Serializer
   include Rails.application.routes.url_helpers
   attributes :id, :code, :name, :total_count, :use_count, :start_date, :end_date, :disabled, :url,
              :restricted_domains, :permissions
@@ -26,8 +26,8 @@ class RegistrationCodeSerializer < ActiveModel::Serializer
         %w[edit update]
       ],
       {
-        project_id: instance_options[:project_id],
-        campaign_id: instance_options[:campaign_id]
+        project_id: context[:project_id],
+        campaign_id: context[:campaign_id]
       }
     )
   end
@@ -35,6 +35,6 @@ class RegistrationCodeSerializer < ActiveModel::Serializer
   private
 
   def current_user
-    @instance_options[:current_user]
+    context[:current_user]
   end
 end

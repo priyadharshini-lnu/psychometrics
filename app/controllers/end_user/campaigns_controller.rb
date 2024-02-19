@@ -41,12 +41,13 @@ module EndUser
             piped_text_context = { subject: user_dashboard_report.user }
 
             results = user_dashboard_report.user_results.map do |result|
-              ::Reports::ResultSerializer.new(result, campaign: @campaign).to_h
+              ::Reports::ResultSerializer.new(context: { campaign: @campaign }).serialize(result)
             end.group_by { |result| result[:assessment_id] }
 
-            user_dashboard = ::UserDashboardSerializer.new(user_dashboard_report, scope: current_user,
-              report: user_dashboard_report.report, results: results,
-              piped_text_context: piped_text_context).to_hash(include: '**')
+            user_dashboard = ::UserDashboardSerializer.new(
+              context: { scope: current_user, report: user_dashboard_report.report, results: results,
+                         piped_text_context: piped_text_context, current_user: current_user, include: '**' }
+            ).serialize(user_dashboard_report)
           end
           user_reports = @campaign.user_reports.where(user_id: current_user, user_access: true).filter_map do |ur|
             unless ur == user_dashboard_report

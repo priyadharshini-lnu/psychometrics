@@ -8,7 +8,10 @@ module Administration
     def index
       jobs = policy_scope(AdminJobRecord).order(created_at: :desc).offset(params[:offset] || 0).limit(20).all
       render json: {
-        jobs: jobs.map { |job| AdminJobRecordSerializer.new(job) },
+        jobs: Panko::ArraySerializer.new(
+          jobs,
+          each_serializer: AdminJobRecordSerializer
+        ).to_a,
         unread: policy_scope(AdminJobRecord).where(read: false).count
       }
     end

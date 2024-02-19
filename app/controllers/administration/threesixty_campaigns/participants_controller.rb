@@ -18,8 +18,10 @@ module Administration
           (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id))
         end.includes(:users_result)
 
-        render json: participants,
-               each_serializer: ::Threesixty::ParticipantSerializer
+        render json: Panko::ArraySerializer.new(
+          participants,
+          each_serializer: ::Threesixty::ParticipantSerializer
+        ).to_a
       end
 
       def update
@@ -33,7 +35,7 @@ module Administration
                                                                                    resource.threesixty_subject,
                                                                                    resource.evaluator_id)
           end
-          format.json { render json: resource, serializer: ::Threesixty::ParticipantSerializer }
+          format.json { render json: ::Threesixty::ParticipantSerializer.new.serialize(resource) }
         end
       end
 

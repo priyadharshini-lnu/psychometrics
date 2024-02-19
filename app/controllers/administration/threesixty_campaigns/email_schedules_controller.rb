@@ -19,9 +19,13 @@ module Administration
 
         users_hash = User.where(id: recipient_ids).pluck(:id, :email).to_h
 
-        email_schedules = email_schedules.map do |history|
-          ::Threesixty::EmailScheduleSerializer.new(history, users_hash: users_hash).to_h
-        end
+        email_schedules = Panko::ArraySerializer.new(
+          email_schedules,
+          each_serializer: ::Threesixty::EmailScheduleSerializer,
+          context: {
+            users_hash: users_hash
+          }
+        ).to_A
 
         render json: { email_schedules: email_schedules, total: total }
       end

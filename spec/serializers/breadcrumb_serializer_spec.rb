@@ -5,29 +5,46 @@ require 'rails_helper'
 describe BreadcrumbSerializer do
   describe '#to_hash' do
     it 'client and project' do
-      data = described_class.new({
-        'client' => build(:client, id: 1, name: 'client'),
-        'project' => build(:client, id: 2, name: 'project')
-      }, fields: %w[client project]).to_hash
+      data = described_class.new(
+        only: %w[client project].map(&:to_sym),
+        context: {
+          fields: %w[client project]
+        }
+      ).serialize(
+        {
+          'client' => build(:client, id: 1, name: 'client'),
+          'project' => build(:client, id: 2, name: 'project')
+        }
+      ).deep_symbolize_keys
 
       expect(data).to eq({ client: { id: 1, name: 'client' }, project: { id: 2, name: 'project' } })
     end
 
     it 'client and project, but fields=[client]' do
       data = described_class.new({
-        'client' => build(:client, id: 1, name: 'client'),
-        'project' => build(:client, id: 2, name: 'project')
-      }, fields: ['client']).to_hash
+        only: ['client'].map(&:to_sym),
+        context: {
+          fields: ['client']
+        }
+      }).serialize(
+        { 'client' => build(:client, id: 1, name: 'client'),
+          'project' => build(:client, id: 2, name: 'project') }
+      ).deep_symbolize_keys
 
       expect(data).to eq({ client: { id: 1, name: 'client' } })
     end
 
     it 'client and project and campaign, but fields=[client, campaign]' do
       data = described_class.new({
+        only: %w[client campaign].map(&:to_sym),
+        context: {
+          fields: %w[client campaign]
+        }
+      }).serialize({
         'client' => build(:client, id: 1, name: 'client'),
         'project' => build(:client, id: 2, name: 'project'),
         'campaign' => build(:campaign, id: 3, name: 'campaign')
-      }, fields: %w[client campaign]).to_hash
+      }).deep_symbolize_keys
 
       expect(data).to eq({ client: { id: 1, name: 'client' }, campaign: { id: 3, name: 'campaign' } })
     end

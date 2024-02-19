@@ -65,8 +65,10 @@ module Administration
         @_users = @search.result(distinct: true)
         respond_to do |format|
           format.json do
-            render json: ::ActiveModel::Serializer::CollectionSerializer.
-              new(users, serializer: MembershipSerializer).to_json
+            render json: Panko::ArraySerializer.new(
+              users,
+              each_serializer: MembershipSerializer
+            ).to_a
           end
         end
       end
@@ -79,8 +81,10 @@ module Administration
         @_users = @search.result(distinct: true)
         respond_to do |format|
           format.json do
-            render json: ::ActiveModel::Serializer::CollectionSerializer.
-              new(users, serializer: MembershipSerializer).to_json
+            render json: Panko::ArraySerializer.new(
+              users,
+              each_serializer: MembershipSerializer
+            ).to_a
           end
         end
       end

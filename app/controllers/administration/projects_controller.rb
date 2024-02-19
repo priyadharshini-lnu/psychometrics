@@ -9,9 +9,10 @@ module Administration
     def show; end
 
     def search_users
-      users = ::Projects::UsersQuery.new(resource, params[:q]).to_a.map do |user|
-        ::Projects::SearchUserSerializer.new(user).to_h
-      end
+      users = Panko::ArraySerializer.new(
+        ::Projects::UsersQuery.new(resource, params[:q]).to_a,
+        each_serializer: ::Projects::SearchUserSerializer
+      ).to_a
       render json: users
     end
 

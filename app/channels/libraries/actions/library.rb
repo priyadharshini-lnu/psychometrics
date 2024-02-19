@@ -17,13 +17,14 @@ module Libraries
                     search_query(data['search_query']).
                     with_type(data['with_type']).
                     order(type: :asc, created_at: :desc)
-        items = libraries.map do |library|
-          LibrarySerializer.new(library).to_hash
-        end
+        items = Panko::ArraySerializer.new(
+          libraries,
+          each_serializer: LibrarySerializer
+        ).to_a
 
         # Build breadcrumb
         breadcrumbs = (folder.try(:path) || []).each do |f|
-          LibrarySerializer.new(f).to_hash
+          LibrarySerializer.new.serialize(f)
         end
 
         { items: items, breadcrumbs: breadcrumbs }

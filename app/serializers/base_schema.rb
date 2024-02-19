@@ -33,7 +33,16 @@ class BaseSchema
 
   def self.whitelisted_schemas
     [UsersResultSchema, ::Api::V1::ResultSchema, ::Administration::DetailsDatasheetRowSchema, AuditLogSchema,
-     ActiveRecordAuditSchema, UsersResultSchema, ::Api::V1::ResultSchema, EndUser::CurrentUserSchema,
-     AssessorScoresSchema]
+     ActiveRecordAuditSchema, EndUser::CurrentUserSchema, AssessorScoresSchema, AdminJobRecordSchema,
+     AssessmentSchema, QuestionSchema, BlockSchema, HighlightSchema,
+     Reports::FilterSchema, Reports::AssessmentSchema, Reports::PageSchema,
+     Reports::ModuleSchema, ReportSchema, UserDashboardSchema, UsersResults::AgileSchema,
+     Threesixty::EndUser::CampaignNomineeSchema, Threesixty::CampaignOptionsSchema, Threesixty::UserReportSchema,
+     Threesixty::EndUser::CampaignSchema, Reports::ResultSchema, UserReportSchema,
+     Administration::IndividualDashboardSchema,
+     Assessments::Actions::Block::CreateByTemplate::QuestionSchema,
+     Assessments::Actions::Block::CreateByTemplate::BlockSchema,
+     Assessments::Actions::Question::CreateByTemplate::QuestionSchema,
+     Assessments::QuestionSchema, Assessments::AssessmentSchema, Assessments::BlockSchema, Assessments::FactorSchema]
   end
 end

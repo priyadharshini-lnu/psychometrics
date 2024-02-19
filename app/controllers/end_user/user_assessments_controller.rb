@@ -12,11 +12,13 @@ class EndUser::UserAssessmentsController < ApplicationController
   def assessment
     @selected_locale = @user_assessment.selected_locale || user_locale
 
-    render json: @user_assessment.assessment,
-           serializer: AssessmentSerializer,
-           include: '**',
-           selected_locale: @selected_locale,
-           piped_text_context: build_piped_context
+    render json: AssessmentSerializer.new(
+      context: {
+        selected_locale: @selected_locale,
+        piped_text_context: build_piped_context,
+        include: '**'
+      }
+    ).serialize(@user_assessment.assessment)
   end
 
   def show

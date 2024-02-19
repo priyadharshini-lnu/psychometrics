@@ -10,7 +10,12 @@ module Administration
         builder = ::Builders::ReportBuilder.new(@report, params.require(:builder), current_user)
         if builder.save
           @report = Report.includes(pages: [:modules]).find(@report.id)
-          render json: { data: ReportSerializer.new(@report, builder: true).to_hash(include: '**') }
+          render json: { data: ReportSerializer.new(
+            context: {
+              builder: true,
+              include: '**'
+            }
+          ).serialize(@report) }
         else
           render json: { error: true }, status: 400
         end

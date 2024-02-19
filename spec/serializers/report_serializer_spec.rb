@@ -23,7 +23,7 @@ describe ReportSerializer do
     end
 
     it do
-      relationships = described_class.new(report).relationships
+      relationships = described_class.new(context: {}).serialize(report).deep_symbolize_keys[:relationships]
       expect(relationships).to match_array [
         { id: 1001, type: 'global', name: 'manager', assign_type: 'manual' },
         { id: 1002, type: 'campaign', name: 'peer', assign_type: 'manual' }
@@ -34,7 +34,7 @@ describe ReportSerializer do
   describe '#data_sheet_columns' do
     describe 'common report' do
       it {
-        expect(described_class.new(common_report).data_sheet_columns).
+        expect(described_class.new(context: {}).serialize(common_report)['data_sheet_columns']).
           to eq [{ 'name' => 'field1', 'type' => 'HTML' }]
       }
     end
@@ -46,7 +46,7 @@ describe ReportSerializer do
       end
 
       it {
-        expect(described_class.new(report).data_sheet_columns).to eq [
+        expect(described_class.new(context: {}).serialize(report)['data_sheet_columns']).to eq [
           { 'name' => 'field1', 'type' => 'Text' },
           { 'name' => 'field2', 'type' => 'Number' }
         ]
@@ -61,7 +61,7 @@ describe ReportSerializer do
     end
 
     it do
-      data = described_class.new(report).to_hash
+      data = described_class.new(context: {}).serialize(report).deep_symbolize_keys
       expect(data[:category]).to eq 'threesixty'
     end
   end

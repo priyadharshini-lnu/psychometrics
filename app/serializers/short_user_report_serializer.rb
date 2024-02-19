@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ShortUserReportSerializer < ActiveModel::Serializer
+class ShortUserReportSerializer < Panko::Serializer
   attributes :id, :status, :campaign_id, :project_id, :poster, :name, :report_id, :external_report
 
   def campaign_id

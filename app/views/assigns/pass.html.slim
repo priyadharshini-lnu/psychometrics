@@ -8,9 +8,10 @@
       .clearfix
     .panel-body
       .assessment-box
-        #psychometrics_preview[data-result="#{AssignSerializer.new(@assign).to_json}"
+        #psychometrics_preview[data-result="#{AssignSerializer.new(context:{}).serialize(@assign)}"
                                data-type="pass_assessment"
-                               data-data="#{AssessmentSerializer.new(@assign.assessment).to_json(include: '**')}"
+                               data-data="#{AssessmentSerializer.new(context:{
+                                include: '**'}).serialize(@assign.assessment)}"
                                data-locales=@translations.to_json
                                data-dashboard-url=assessment_completed_path]
 

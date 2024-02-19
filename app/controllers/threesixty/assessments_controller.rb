@@ -18,8 +18,13 @@ module Threesixty
       assessment = @campaign.assessment
       authorize [:threesixty, assessment]
       @selected_locale = user_locale
-      render json: assessment, serializer: ::AssessmentSerializer, include: '**',
-             selected_locale: @selected_locale, piped_text_context: piped_text_context
+      render json: AssessmentSerializer.new(
+        context: {
+          include: '**',
+          selected_locale: @selected_locale,
+          piped_text_context: piped_text_context
+        }
+      ).serialize(assessment)
     end
 
     private

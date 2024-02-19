@@ -8,7 +8,7 @@ module Assessments
       action :create do |data, current_user|
         question = ::Question.find(data.delete('question_id'))
         comment  = question.comments.create!(data.merge(created_by: current_user.id))
-        CommentSerializer.new(comment).to_hash
+        CommentSerializer.new.serialize(comment)
       end
 
       action :destroy do |data|

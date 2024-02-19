@@ -35,7 +35,7 @@ describe Reports::ResultSerializer do
 
   describe '#external_scoring' do
     it do
-      external_scoring = described_class.new(users_result).external_scoring
+      external_scoring = described_class.new(context: {}).serialize(users_result)['external_scoring']
       expect(external_scoring).to eq({
         'RawScale' => {
           '01' => 42.0,

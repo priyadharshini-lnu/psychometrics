@@ -25,9 +25,10 @@ module Administration
       end
 
       def search
-        users = ::Threesixty::Subjects::UsersQuery.new(threesixty_campaign.campaign, params[:q]).query.map do |user|
-          ::Projects::SearchUserSerializer.new(user).to_h
-        end
+        users = Panko::ArraySerializer.new(
+          ::Threesixty::Subjects::UsersQuery.new(threesixty_campaign.campaign, params[:q]).query,
+          each_serializer: ::Projects::SearchUserSerializer
+        ).to_a
         render json: users
       end
 

@@ -14,7 +14,7 @@ module Threesixty
       end
 
       def campaign_user
-        object.campaign_users.find_by(user_id: instance_options[:current_user])
+        object.campaign_users.find_by(user_id: context[:current_user])
       end
     end
   end

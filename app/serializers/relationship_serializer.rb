@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class RelationshipSerializer < ActiveModel::Serializer
+class RelationshipSerializer < Panko::Serializer
   attributes :id, :type, :name, :assign_type
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class FactorsSubFactorSerializer < ActiveModel::Serializer
+class FactorsSubFactorSerializer < Panko::Serializer
   attributes :id, :weight, :name, :sub_factor_id, :predicate, :value, :position
 
   def name

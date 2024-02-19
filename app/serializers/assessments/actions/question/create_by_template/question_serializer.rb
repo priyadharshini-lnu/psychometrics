@@ -5,7 +5,7 @@ module Assessments
     module Question
       module CreateByTemplate
         # Class serialize template for create block by template
-        class QuestionSerializer < ActiveModel::Serializer
+        class QuestionSerializer < Panko::Serializer
           attributes :name, :type, :position, :props, :deleted, :created_at,
                      :validation, :required_validation, :display_logic, :skip_logic, :template_id
 

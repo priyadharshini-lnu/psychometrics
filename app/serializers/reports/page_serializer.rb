@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
 module Reports
-  class PageSerializer < ActiveModel::Serializer
+  class PageSerializer < Panko::Serializer
     attributes :id, :name, :position, :props, :display_logic, :modules
 
     def modules
-      object.modules.order(:id).map do |mod|
-        ModuleSerializer.new(mod, piped_text_context: @instance_options[:piped_text_context],
-                                  builder: @instance_options[:builder])
-      end
+      Panko::ArraySerializer.new(
+        object.modules.order(:id),
+        each_serializer: ModuleSerializer,
+        context: {
+          piped_text_context: context[:piped_text_context],
+          builder: context[:builder]
+        }
+      ).to_a
     end
   end
 end

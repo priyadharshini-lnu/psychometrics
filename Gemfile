@@ -121,7 +121,6 @@ gem 'roo', '~> 2.9'
 gem 'acts_as_list', '~> 1.0.2'
 
 ### add fake destroying logic for models
-gem 'active_model_serializers', '~> 0.10.14'
 
 # Error tracking
 gem 'sentry-rails', '~> 5.15.2'

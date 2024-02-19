@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LibrarySerializer < ActiveModel::Serializer
+class LibrarySerializer < Panko::Serializer
   include Rails.application.routes.url_helpers
 
   attributes :id, :name, :description, :thumb, :file, :icon, :type, :parent_id, :created_at

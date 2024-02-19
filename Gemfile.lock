@@ -175,11 +175,6 @@ GEM
     active_link_to (1.0.5)
       actionpack
       addressable
-    active_model_serializers (0.10.14)
-      actionpack (>= 4.1)
-      activemodel (>= 4.1)
-      case_transform (>= 0.2)
-      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     active_storage_validations (1.0.4)
       activejob (>= 5.2.0)
       activemodel (>= 5.2.0)
@@ -322,8 +317,6 @@ GEM
     carrierwave_direct (2.1.0)
       carrierwave (>= 1.0.0)
       fog-aws
-    case_transform (0.2)
-      activesupport
     caxlsx (3.4.1)
       htmlentities (~> 4.3, >= 4.3.4)
       marcel (~> 1.0)
@@ -600,7 +593,6 @@ GEM
     json (2.6.3)
     json-schema (3.0.0)
       addressable (>= 2.8)
-    jsonapi-renderer (0.2.2)
     jsonapi-resources (0.9.12)
       activerecord (>= 4.1)
       concurrent-ruby
@@ -1083,7 +1075,6 @@ PLATFORMS
 
 DEPENDENCIES
   active_link_to (~> 1.0.5)
-  active_model_serializers (~> 0.10.14)
   active_storage_validations (~> 1.0.3)
   activerecord-import (~> 1.5.0)
   acts_as_list (~> 1.0.2)
