@@ -152,6 +152,14 @@ module Administration
       can_manage_asssessment?
     end
 
+    def import_questions?
+      has_permission?(:assessments, :manage, project_id: record.owner_id)
+    end
+
+    def import_questions_sample_file?
+      import_questions?
+    end
+
     private
 
     def can_manage_asssessment?

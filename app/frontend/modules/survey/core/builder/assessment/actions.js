@@ -82,3 +82,14 @@ export const uploadDataSheet = (id, body) => ({
 export const toggleInstructions = () => ({ type: TOGGLE_INSTRUCTIONS })
 
 export const updateInstructionsContent = content => ({ type: UPDATE_INSTRUCTIONS_CONTENT, content })
+
+export const IMPORT_QUESTIONS = 'builder/assessment/IMPORT_QUESTIONS'
+export const importQuestions = (assessmentId, body) => ({
+  type: IMPORT_QUESTIONS,
+  request: {
+    url: `/administration/assessments/${assessmentId}/import_questions`,
+    method: 'post',
+    body,
+    contentType: 'multipart/form-data;',
+  },
+})

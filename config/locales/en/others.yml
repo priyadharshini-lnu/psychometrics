@@ -45,6 +45,10 @@ en:
             blank: Answers can't be blank
           group_id:
             blank: Group id can't be blank
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: Please upload xlsx file
         assign_report:
           attributes:
             adding_report_ids:
@@ -167,6 +171,50 @@ en:
               contains_repeats: Password must not contain repeats
               too_short: Password is too short. Minimum %{count} character required
               too_weak: 'Password must contain: Minimum 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: Block Name can't be blank
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: MatrixTable question property 'answersType' can't be blank
+              inclusion: MatrixTable question property 'answerType' should be 'SingleAnswer' or 'MultipleAnswer'
+            type:
+              blank: MatrixTable question property 'type' can't be blank
+              inclusion: MatrixTable question type should have 'Likert'
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: MultipleChoice question property 'type' can't be blank.
+              inclusion: MultipleChoice question property 'type' should be 'SingleAnswer', 'MultipleAnswer' or 'Dropdown'
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: Question Name can't be blank
+            type:
+              blank: Question Title can't be blank
+              inclusion: Question type should be 'TextEntry', 'MultipleChoice', 'MatrixTable' or 'StaticContent'
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: randomization.questions can't be blank if randomization.type is 'Some'
+            type:
+              inclusion: randomization.type should be either 'All', 'Some' or 'No'
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: Required validation type should be either 'Force' or 'Request'
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: Static Content question property type can't be blank
+              inclusion: Static Content  question property type should be 'Text'
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: TextEntry question property 'type' can't be blank.
+              inclusion: TextEntry question property 'type' should be 'Single Line', 'Multi Line' or 'Essay Text Box'
         register:
           attributes:
             email:
@@ -674,6 +722,7 @@ en:
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
         import_accesssheet: Import Accessheet
+        import_assessment_questions: Import Assessment Questions
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
         import_question_translations: Import Question Translations

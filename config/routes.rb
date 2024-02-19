@@ -635,6 +635,8 @@ Rails.application.routes.draw do
         post :upload_data_sheet
         delete :soft_delete
         put :restore
+        post :import_questions
+        get :import_questions_sample_file
       end
 
       collection do

@@ -93,7 +93,7 @@ gem 'i18n-js',                    '~> 3.9.2'
 ### Decorator
 gem 'draper', '~> 4.0.2'
 ### For organisation ENV variable
-gem 'config',                     '~> 4.2.0'
+gem 'config',                     '~> 5.1.0'
 gem 'figaro',                     '~> 1.2.0'
 
 gem 'premailer-rails',            '~> 1.11.1'

@@ -40,7 +40,8 @@ class AdminJob < ApplicationJob
     super_admin_assessment_raw_result_export: AdminJobs::SuperAdmin::AssessmentRawResultExport,
     super_admin_assessment_raw_factor_export: AdminJobs::SuperAdmin::AssessmentRawFactorExport,
     workshop_status_export: AdminJobs::WorkshopStatusExport,
-    bulk_rescore_campaign_factors: AdminJobs::BulkRescoreCampaignFactors
+    bulk_rescore_campaign_factors: AdminJobs::BulkRescoreCampaignFactors,
+    import_assessment_questions: AdminJobs::ImportAssessmentQuestions
   }.freeze
 
   def perform(record)
@@ -59,6 +60,7 @@ class AdminJob < ApplicationJob
   class << self
     def call(operation, data, owner, file = nil)
       record = AdminJobRecord.create!(operation: operation, data: data, file: file, owner: owner)
+
       record.broadcast(:create)
       perform_later(record)
     end
