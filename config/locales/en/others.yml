@@ -1833,13 +1833,13 @@ en:
       filled?: can't be blank
       invalid_lua_name: should be valid lua variable name
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
-      invalid_value: invalid value '%{value}' in line number %{row}
+      invalid_value: invalid statement '%{value}' on line number %{row}
       json?: Should be valid JSON
       key?: can't be blank
       match_regexp?: invalid value
       missed?: can't be blank
       not_in_the_list?: invalid value passed
-      not_uniq_variable: name '%{value}' line number %{row} is duplicating
+      not_uniq_variable: variable '%{value}' redefined on line number %{row}
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
