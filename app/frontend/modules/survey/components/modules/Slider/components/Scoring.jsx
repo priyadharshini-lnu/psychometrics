@@ -23,16 +23,20 @@ export class Scoring extends Component {
     this.forceUpdate()
   }
 
-  change = (index, e) => {
+  change = (index, val, type) => {
     const { scoring } = this.props
-    const value = Utils.parseFloat(e.currentTarget ? e.currentTarget.value : e)
-    scoring.changeValue(index, value)
+    const value = Utils.parseFloat(val)
+    if (isNaN(value)) {
+      scoring.changeValue(index, undefined, type)
+    } else {
+      scoring.changeValue(index, value, type)
+    }
     this.forceUpdate()
   }
 
-  toggle = (index, reverse = false) => {
+  toggle = (index) => {
     const { scoring } = this.props
-    scoring.toggle(index, reverse)
+    scoring.toggle(index)
     this.forceUpdate()
   }
 
@@ -47,17 +51,16 @@ export class Scoring extends Component {
           return (
             <div key={i} className={styles.scoringRow}>
               <ScoringCell
-                value={object.value}
-                onChange={e => this.change(i, e)}
+                value={object.min}
+                onChange={e => this.change(i, e.target.value, 'min')}
               />
-              <ScoringLabel
-                onToggle={() => this.toggle(i, true)}
-                value={object.reverse}
-                label="Reverse"
+              <ScoringCell
+                value={object.max}
+                onChange={e => this.change(i, e.target.value, 'max')}
               />
               <ScoringLabel
                 onToggle={() => this.toggle(i)}
-                value={object.value}
+                value={object.min || object.max}
                 label={props.choicesTexts[i] || module.defaultChoiceText(i + 1)}
               />
             </div>

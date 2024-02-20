@@ -5,30 +5,20 @@ import BaseScoringModule from './BaseScoringModule'
 class Slider extends BaseScoringModule {
   fill (question) {
     _.times(question.props.choices, (index) => {
-      this.scoring.props.push({ index, value: index + 1 })
+      this.scoring.props.push({ index, min: 1, max: 5 })
     })
   }
 
-  changeValue (index, value) {
+  changeValue (index, value, type) {
     if (Utils.isNumeric(value)) {
       const object = _.find(this.scoring.props, { index })
       if (object) {
-        object.value = value
+        object[type] = value
       } else {
-        this.scoring.props.push({ index, value })
+        this.scoring.props.push({ index, [type]: value })
       }
     } else {
       _.remove(this.scoring.props, { index })
-    }
-  }
-
-  toggleReverse (index) {
-    const object = _.find(this.scoring.props, { index })
-    if (!object) { return }
-    if (object.reverse) {
-      _.unset(object, 'reverse')
-    } else {
-      _.set(object, 'reverse', true)
     }
   }
 
@@ -37,16 +27,12 @@ class Slider extends BaseScoringModule {
     if (object) {
       _.remove(this.scoring.props, { index })
     } else {
-      this.scoring.props.push({ index, value: '1' })
+      this.scoring.props.push({ index, min: 1, max: 5 })
     }
   }
 
-  toggle (index, reverse) {
-    if (reverse) {
-      this.toggleReverse(index)
-    } else {
-      this.toggleValue(index)
-    }
+  toggle (index) {
+    this.toggleValue(index)
   }
 }
 

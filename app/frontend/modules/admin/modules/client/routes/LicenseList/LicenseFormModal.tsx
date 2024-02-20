@@ -28,7 +28,6 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
   } = useResources<ReportFamily>(
     'report_families',
     {
-      trackUrl: true,
       responseType: ReportFamilyTR,
       apiConfig: {
         fields: { report_families: ['id', 'name'] },

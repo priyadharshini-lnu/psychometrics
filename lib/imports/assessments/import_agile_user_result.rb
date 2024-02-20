@@ -29,8 +29,7 @@ module Imports
 
             ::UsersResults::Recompute.call!(
               user_result,
-              user_result.user,
-              norm_id: user_result.norm_id
+              user_result.user
             )
           end
         else
