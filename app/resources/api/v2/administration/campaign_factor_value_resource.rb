@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignFactorValueResource < Api::V2::Administration::BaseResource
-  attributes :numeric_value, :string_value, :campaign_factor_id
+  attributes :numeric_value, :string_value, :campaign_factor_id, :value
 
   has_one :campaign
   has_one :user

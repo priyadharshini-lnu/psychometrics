@@ -23,11 +23,11 @@ type CampaignFactorGroupType = CampaignFactorGroup & {campaignFactors: CampaignF
 
 type DataType = {
   key: React.Key;
-  id: string;
-  subject: string;
-  finalized: boolean | null;
-  finalizedDate: string | null;
-  calculatedDate: string | null;
+  userId: string;
+  email: string;
+  campaignScoresFinalized: boolean | null;
+  campaignScoresFinalizedDate: string | null;
+  campaignScoresCalculatedDate: string | null;
   errors: Error[] | null;
   [key: string]: string | number | boolean | null | Error[];
 }
@@ -61,6 +61,8 @@ export function SubjectScoresList () {
     memberAction,
     collectionAction,
     requests,
+    getSortOrder,
+    handleTableChange,
   } = useResources<CampaignScores>(
     'campaign_user_scorings',
     {
@@ -70,7 +72,7 @@ export function SubjectScoresList () {
       apiConfig: {
         fields: {
           users: ['id', 'email', 'first_name', 'last_name'],
-          campaign_factor_values: ['id', 'numeric_value', 'campaign_factor_id', 'string_value'],
+          campaign_factor_values: ['value', 'campaign_factor_id'],
           campaign_user_scorings: [
             'campaign_scores_finalized',
             'campaign_scores_finalized_date',
@@ -101,34 +103,34 @@ export function SubjectScoresList () {
   const handleIndividualAction = (action: string, subject: DataType) => {
     if (action === 'mark_finalized') {
       memberAction({
-        id: subject?.id,
+        id: subject?.userId,
         action: 'change_finalized_campaign_score',
         method: 'post',
         updateStore: true,
         body: { finalized: true },
       }).then(() => {
-        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject }))
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.email }))
       })
     } else if (action === 'mark_not_finalized') {
       memberAction({
-        id: subject?.id,
+        id: subject?.userId,
         action: 'change_finalized_campaign_score',
         method: 'post',
         updateStore: true,
         body: { finalized: false },
       }).then(() => {
-        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject }))
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.email }))
       })
     } else if (action === 'rescore') {
       memberAction({
-        id: subject?.id,
+        id: subject?.userId,
         action: 'rescore',
         method: 'post',
         updateStore: true,
         body: {},
         responseType: {},
       }).then(() => {
-        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.subject }))
+        message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.email }))
       })
     }
   }
@@ -188,9 +190,14 @@ export function SubjectScoresList () {
   const tableColumns: ColumnsType<DataType> = useMemo(() => createSortedTableColumns(
     campaignFactorData,
     handleConfirmAction,
-  ), [campaignFactorData])
+    getSortOrder,
+  ), [campaignFactorData, getSortOrder])
 
   const dataSource = useMemo(() => processData(CampaignFactorValuesData), [CampaignFactorValuesData])
+
+  const handleChange = (pagination, filters, sorter) => {
+    handleTableChange(pagination, filters, sorter)
+  }
 
   return (
     <div>
@@ -227,6 +234,7 @@ export function SubjectScoresList () {
                 size="small"
                 dataSource={dataSource}
                 columns={tableColumns}
+                onChange={handleChange}
                 bordered
                 pagination={false}
                 scroll={{ x: 'max-content' }}
@@ -254,6 +262,7 @@ export function SubjectScoresList () {
 function createSortedTableColumns (
   campaignFactorData: CampaignFactorGroupType[],
   handleAction: (actions: string, subject)=> void,
+  getSortOrder,
 ): ColumnsType<DataType> {
   const sortedGroupColumns: ColumnsType<DataType> = campaignFactorData?.map(group => ({
     ...group,
@@ -264,8 +273,10 @@ function createSortedTableColumns (
       title: group.name,
       children: group.campaignFactors.sort((a, b) => a.position - b.position).map((factor, factorIndex) => ({
         title: factor.name,
-        dataIndex: `factor_${factor.id}`,
-        key: `factor_${factor.id}`,
+        dataIndex: `${factor.id}`,
+        key: `${factor.id}`,
+        sorter: true,
+        sortOrder: getSortOrder(`${factor.id}`),
         className: cs(factorIndex === 0 ? styles.columnBorderStart : null,
           factorIndex === group.campaignFactors.length - 1 ? styles.columnBorderEnd : null,
           even ? styles.evenGroup : styles.oddGroup),
@@ -277,27 +288,33 @@ function createSortedTableColumns (
   const staticBeforeColumns: ColumnsType<DataType> = [
     {
       title: I18n.t('administration.scoring.id'),
-      dataIndex: 'id',
-      key: 'id',
+      dataIndex: 'userId',
+      key: 'userId',
       width: 80,
       fixed: 'left',
+      sorter: true,
+      sortOrder: getSortOrder('userId'),
     },
     {
       title: I18n.t('administration.scoring.subject'),
-      dataIndex: 'subject',
-      key: 'subject',
+      dataIndex: 'email',
+      key: 'email',
       className: styles.columnBorderEnd,
       width: 200,
       fixed: 'left',
+      sorter: true,
+      sortOrder: getSortOrder('email'),
     },
   ]
 
   const staticAfterColumns: ColumnsType<DataType> = [
     {
       title: I18n.t('administration.scoring.subject_list.calculated_date'),
-      dataIndex: 'calculatedDate',
-      key: 'calculatedDate',
+      dataIndex: 'campaignScoresCalculatedDate',
+      key: 'campaignScoresCalculatedDate',
       className: styles.columnBorderStart,
+      sorter: true,
+      sortOrder: getSortOrder('campaignScoresCalculatedDate'),
       render: (calculatedDate) => {
         if (calculatedDate) {
           return formatedDate(calculatedDate)
@@ -307,8 +324,10 @@ function createSortedTableColumns (
     },
     {
       title: I18n.t('administration.scoring.subject_list.finalized_date'),
-      dataIndex: 'finalizedDate',
-      key: 'finalizedDate',
+      dataIndex: 'campaignScoresFinalizedDate',
+      key: 'campaignScoresFinalizedDate',
+      sorter: true,
+      sortOrder: getSortOrder('campaignScoresFinalizedDate'),
       render: (finalizedDate) => {
         if (finalizedDate) {
           return formatedDate(finalizedDate)
@@ -318,9 +337,11 @@ function createSortedTableColumns (
     },
     {
       title: I18n.t('administration.scoring.subject_list.finalized'),
-      dataIndex: 'finalized',
-      key: 'finalized',
-      render: (finalized: boolean, subject) => {
+      dataIndex: 'campaignScoresFinalized',
+      key: 'campaignScoresFinalized',
+      sorter: true,
+      sortOrder: getSortOrder('campaignScoresFinalized'),
+      render: (campaignScoresFinalized: boolean, subject) => {
         if (subject.errors) {
           const factors = _.chain(campaignFactorData).map('campaignFactors').flatten().value()
           const content = subject.errors.map((error) => {
@@ -341,7 +362,7 @@ function createSortedTableColumns (
             </Popover>
           )
         }
-        return (finalized ? <CheckOutlined className={styles.icon} /> : null)
+        return (campaignScoresFinalized ? <CheckOutlined className={styles.icon} /> : null)
       },
     },
     {
@@ -354,8 +375,8 @@ function createSortedTableColumns (
           onClick={action => handleAction(action, subject)}
           persmission={
           {
-            markFinalized: subject.finalized === false && subject.errors === null,
-            markNotFinalized: subject.finalized === true,
+            markFinalized: subject.campaignScoresFinalized === false && subject.errors === null,
+            markNotFinalized: subject.campaignScoresFinalized === true,
             rescore: true,
           }
         }
@@ -371,20 +392,20 @@ function createSortedTableColumns (
 const processData = (
   CampaignFactorValuesData: CampaignScores[],
 ): DataType[] => _.map(CampaignFactorValuesData, (valueData) => {
-  const userId = valueData.user.id
+  const userId = valueData?.user.id
   const userData = {
     key: userId,
-    id: userId,
-    subject: valueData.user.email,
-    finalizedDate: valueData.campaignScoresFinalizedDate,
-    calculatedDate: valueData.campaignScoresCalculatedDate,
-    finalized: valueData.campaignScoresFinalized,
-    errors: valueData.campaignScoresErrors,
+    userId,
+    email: valueData?.user.email,
+    campaignScoresFinalizedDate: valueData?.campaignScoresFinalizedDate,
+    campaignScoresCalculatedDate: valueData?.campaignScoresCalculatedDate,
+    campaignScoresFinalized: valueData?.campaignScoresFinalized,
+    errors: valueData?.campaignScoresErrors,
   }
 
   _.forEach(valueData.campaignFactorValues, (score) => {
-    const factorKey = `factor_${score.campaignFactorId}`
-    const factorValue = score.numericValue || score.stringValue || '-'
+    const factorKey = `${score.campaignFactorId}`
+    const factorValue = score.value || '-'
     userData[factorKey] = factorValue
   })
 
@@ -395,17 +416,17 @@ const actionDetails = (action: string, subject: DataType) => {
   if (action === 'mark_finalized') {
     return {
       title: I18n.t('administration.scoring.subject_list.mark_finalized'),
-      content: I18n.t('administration.scoring.subject_list.mark_finalized_confirm', { email: subject.subject }),
+      content: I18n.t('administration.scoring.subject_list.mark_finalized_confirm', { email: subject.email }),
     }
   } if (action === 'mark_not_finalized') {
     return {
       title: I18n.t('administration.scoring.subject_list.mark_not_finalized'),
-      content: I18n.t('administration.scoring.subject_list.mark_not_finalized_confirm', { email: subject.subject }),
+      content: I18n.t('administration.scoring.subject_list.mark_not_finalized_confirm', { email: subject.email }),
     }
   }
   return {
     title: I18n.t('administration.scoring.subject_list.rescore'),
-    content: I18n.t('administration.scoring.subject_list.rescore_confirm', { email: subject.subject }),
+    content: I18n.t('administration.scoring.subject_list.rescore_confirm', { email: subject.email }),
   }
 }
 

@@ -23,6 +23,51 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
 
   before { sign_in(superadmin) }
 
+  path '/campaigns/{campaign_id}/campaign_user_scorings' do
+    let!(:campaign_factor) do
+      factor = create(
+        :campaign_factor, name: 'Factor', campaign_factor_group_id: campaign_factor_group_id,
+        campaign_id: campaign_id, factor_type: :assessor_scoring
+      )
+      factor.campaign_factor_values.create!(campaign_id: campaign_id, numeric_value: 3, user_id: user.id)
+      factor
+    end
+    get 'Get campaign user scorings' do
+      operationId 'GetCampaignUserScorings'
+      description 'Get campaign user scorings'
+      tags 'CampaignUserScorings'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+
+      response '200', 'CampaignUserScorings' do
+        schema '$ref' => '#/components/schemas/CampaignUserListResponse'
+
+        run_test! do |response|
+          expect(response).to have_http_status(200)
+          json_response = JSON.parse(response.body)
+
+          expect(json_response['data']).not_to be_empty
+          expect(json_response['data'].size).to eq(1)
+          expect(json_response['meta']['record_count']).to eq(1)
+          expect(json_response['meta']['page_count']).to eq(1)
+
+          scoring = json_response['data'].first
+          expect(scoring['id']).to eq(campaign_user.id.to_s)
+          expect(scoring['attributes']['user']['id']).to eq(user.id.to_s)
+          expect(scoring['attributes']['user']['email']).to eq(user.email)
+          expect(scoring['attributes']['user']['first_name']).to eq(user.first_name)
+          expect(scoring['attributes']['user']['last_name']).to eq(user.last_name)
+          expect(scoring['attributes']['campaign_scores_finalized']).to eq(false)
+          expect(scoring['attributes']['campaign_id']).to eq(campaign.id)
+          expect(scoring['attributes']['campaign_factor_values'].
+            first['campaign_factor_id'].to_i).to eq(campaign_factor.id)
+          expect(scoring['attributes']['campaign_factor_values'].first['value']).to eq('3')
+        end
+      end
+    end
+  end
+
   path '/campaigns/{campaign_id}/campaign_user_scorings/{user_id}/change_finalized_campaign_score' do
     post 'Change campaign user finalized' do
       operationId 'CampaignUserScorings'
@@ -120,7 +165,7 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
         run_test! do |response|
           expect(response.status).to eq(200)
 
-          expect(campaign_user.campaign_factor_values.first.numeric_value).to eq(4)
+          expect(campaign_user.campaign_factor_values.first.value).to eq(4)
         end
       end
     end
