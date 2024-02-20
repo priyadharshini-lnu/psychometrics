@@ -12,10 +12,9 @@ import { CREATE as CREATE_REPORT } from '../reports'
 import { FETCH_ASSESSMENTS_AND_REPORTS } from '../current'
 
 import {
-  ACTIVATE_UNIVERSAL_LINK,
   REGENERATE_UNIVERSAL_LINK,
-  DEACTIVATE_UNIVERSAL_LINK,
-  TOGGLE_MULTIPLE_RESPONSES,
+  ENABLE_UNIVERSAL_LINK,
+  SAVE_UNIVERSAL_LINK,
   FETCH_NORMS, UPDATE_NORM,
   REMOVE, UPDATE_ASSESSOR_FORM,
   UPDATE_AVAILABLE_LOCALES,
@@ -116,9 +115,8 @@ const HANDLERS = {
     other: response,
   }),
   [CREATE_REPORT]: (state, { response }: FetchType) => ({ ...state, list: response.assessments }),
-  [ACTIVATE_UNIVERSAL_LINK]: updateAssessment,
-  [DEACTIVATE_UNIVERSAL_LINK]: updateAssessment,
-  [TOGGLE_MULTIPLE_RESPONSES]: updateAssessment,
+  [ENABLE_UNIVERSAL_LINK]: updateAssessment,
+  [SAVE_UNIVERSAL_LINK]: updateAssessment,
   [REGENERATE_UNIVERSAL_LINK]: updateAssessment,
   [UPDATE_EXTERNAL_CONFIG]: updateAssessment,
   [FETCH_NORMS]: (state, { response, requestAction: { request } }: FetchNormsType) => {

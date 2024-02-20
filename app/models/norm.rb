@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Norm < ApplicationRecord
+  audited
+
   include Copyable
   include RansackSearchableFields
   include OwnerValidations

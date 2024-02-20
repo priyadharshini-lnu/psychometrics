@@ -34,8 +34,15 @@ export interface Block {
   props?: { randomization?, staticContent? }
 }
 
+export interface Factor {
+  id: number
+  name: string
+  question_ids: number[]
+}
+
 export interface BlocksInterface {
   blocks: Block[]
+  factors: Factor[]
 }
 export interface PageInterface {
   questions: number[]
@@ -186,6 +193,7 @@ export interface I18nInterface {
   tBlock (block: any, key: string, path: string[]): string
   tCustomValidation (question: Question, message: string, uuid: string): string
   tInstructions(): string
+  uiLocale?: string
 }
 
 export interface QuestionErrors {

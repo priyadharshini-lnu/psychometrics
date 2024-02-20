@@ -3,7 +3,7 @@
 module Administration
   class ProfilesController < Administration::BaseController
     before_action :set_profile, only: %i[edit update]
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), :admin_path
 
     def edit
       authorize user, nil, policy_class: UserProfilePolicy

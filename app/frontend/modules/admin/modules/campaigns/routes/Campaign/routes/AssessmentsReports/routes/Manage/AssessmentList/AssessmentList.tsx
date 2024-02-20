@@ -1,13 +1,13 @@
 import React from 'react'
 import {
-  Table, Row, Col, Switch, Typography,
+  Table, Row, Col, Switch, Typography, App,
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { ActionsMenu } from './ActionsMenu'
+import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
@@ -33,7 +33,6 @@ const AssessmentList: React.FC<Props> = ({
   },
   match: { params: { projectId, campaignId } },
   openModal,
-  activateUniversalLink,
   rescoreResponses,
   exportRawResults,
   exportScoringResults,
@@ -42,11 +41,13 @@ const AssessmentList: React.FC<Props> = ({
   exportExternalResults,
   updateExternalConfig,
   updatePrework,
+  enableUniversalLink,
   updateWorkshopActivity,
   toggleRequireScheduling,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
+  const { message } = App.useApp()
 
   function handleWorkshopActivitySwitchToggle (assessment: Assessment, parsedCampaignId: number, checked: boolean) {
     if (checked) {
@@ -150,29 +151,33 @@ const AssessmentList: React.FC<Props> = ({
             render={({
               enableUniversalLinks, universalLink, id, isExternal, allowMultipleResponses,
             }) => {
-              if (enableUniversalLinks && !isExternal) {
+              if (isExternal) {
                 return (
-                  <a
-                    onClick={
-                      () => openModal('UniversalLinkModal',
-                        {
-                          projectId: parsedProjectId,
-                          campaignId: parsedCampaignId,
-                          campaignAssessmentId: id,
-                          universalLink,
-                          allowMultipleResponses,
-                          manageUniversalLink: permissions.enableUniversalLink,
-                        })
-                    }
-                  >
-                    {permissions.enableUniversalLink ? I18n.t('frontend.manage') : 'Show'}
-                  </a>
+                  I18n.t('common.text.na')
                 )
               }
-              return (
-                permissions.enableUniversalLink && !isExternal ? (
-                  <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
-                ) : I18n.t('common.text.na')
+
+              const open = (response?:{ universalLink: string, enableUniversalLinks: boolean }) => {
+                openModal('UniversalLinkModal',
+                  {
+                    projectId: parsedProjectId,
+                    campaignId: parsedCampaignId,
+                    campaignAssessmentId: id,
+                    universalLink: universalLink || response?.universalLink,
+                    enableUniversalLinks: enableUniversalLinks || response?.enableUniversalLinks,
+                    allowMultipleResponses,
+                    manageUniversalLink: permissions.enableUniversalLink,
+                  })
+              }
+              return (!universalLink
+                ? (
+                  <a onClick={() => enableUniversalLink(campaignId, id).then(({ response }) => open(response))}>
+                    {I18n.t('frontend.activate')}
+                  </a>
+                )
+                : (
+                  <a onClick={() => open()}>{I18n.t('frontend.manage')}</a>
+                )
               )
             }}
           />
@@ -210,7 +215,7 @@ const AssessmentList: React.FC<Props> = ({
             render={assessment => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     assessment,
                     campaignId: parsedCampaignId,
                     projectId: parsedProjectId,
@@ -222,7 +227,8 @@ const AssessmentList: React.FC<Props> = ({
                     exportRawFactorScores,
                     exportExternalResults,
                     updateExternalConfig,
-                  }) as React.ReactElement
+                    message,
+                  })
                 }
                 innerElement={(
                   <a>

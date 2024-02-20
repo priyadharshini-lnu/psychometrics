@@ -1,5 +1,5 @@
 import {
-  Menu, Button, Dropdown, Row, Col,
+  Button, Dropdown, Row, Col,
 } from 'antd'
 import { ScheduleOutlined, CaretDownOutlined } from '@ant-design/icons'
 import styles from './styles.less'
@@ -9,9 +9,6 @@ export default function TitleBar ({ emailTemplate, openModal }) {
     { key: 'EmailScheduleModal', label: I18n.t('administration.threesixty_campaigns.email_templates.schedule_email') },
     { key: 'SendTestEmailModal', label: I18n.t('administration.threesixty_campaigns.email_templates.send_test_email') },
   ]
-  const menu = (
-    <Menu items={menuItems} onClick={({ key }) => openModal(key, { selectedEmailTemplateId: emailTemplate.id })} />
-  )
 
   return (
     <div className={styles.container}>
@@ -38,7 +35,10 @@ export default function TitleBar ({ emailTemplate, openModal }) {
               </Button>
               <Dropdown
                 className="dropdown"
-                overlay={menu}
+                menu={{
+                  items: menuItems,
+                  onClick: ({ key }) => openModal(key, { selectedEmailTemplateId: emailTemplate.id }),
+                }}
                 placement="bottomLeft"
                 trigger={['click']}
               >

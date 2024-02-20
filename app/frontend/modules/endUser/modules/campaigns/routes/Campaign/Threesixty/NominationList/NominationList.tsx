@@ -134,7 +134,7 @@ const NominationListComponent = ({
             {I18n.t('threesixty.nomination_help_modal.title')}
           </>
         )}
-        visible={showHelp}
+        open={showHelp}
         onCancel={() => setShowHelp(false)}
         footer={null}
       >

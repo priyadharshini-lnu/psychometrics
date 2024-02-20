@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Space, Switch, Tag, message, Typography, Checkbox, Modal,
+  Button, MenuProps, Space, Switch, Tag, Typography, Checkbox, App,
 } from 'antd'
-import _ from 'lodash'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { PlusOutlined } from '@ant-design/icons'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { ModalStaticFunctions } from 'antd/es/modal/confirm'
+import { MessageInstance } from 'antd/es/message/interface'
 import { useResources } from '~/hooks/useResources'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import {
@@ -40,7 +42,6 @@ const SCHEDULING_STATUS_TO_TAG_COLOR = {
   late_rescheduled: 'error',
 }
 const UNACTIONABLE_SCHEDULING_STATUSES = ['rescheduled', 'cancelled', 'late_rescheduled', 'late_cancelled']
-const CANCELLED_SCHEDULING_STATUSES = ['cancelled', 'late_cancelled']
 
 interface OwnProps {
   workshop: Workshop
@@ -123,6 +124,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
   const { memberAction } = useResources('workshops', { basePath: `campaigns/${campaignId}/` })
   const [openSubjectForm, setOpenSubjectForm] = useState(false)
+  const { message, modal } = App.useApp()
 
   const toggleSelectedSubject = (checked, subject) => {
     if (checked) {
@@ -264,10 +266,12 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           render={subject => (
             <ConditionalDropdown
               menu={
-                ActionsMenu({
+                getActionsMenuProps({
                   subject,
                   currentUser,
-                }) as React.ReactElement
+                  modal,
+                  message,
+                })
               }
             />
           )}
@@ -285,17 +289,19 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   subject: WorkshopSubject
   currentUser: SubjectTableProps['currentUser']
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
-  subject, currentUser,
-}) => {
+const getActionsMenuProps = ({
+  subject, currentUser, modal, message,
+}:ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
   const handleMarkCancel = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.scheduling.subjects.confirm_title'),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
@@ -325,39 +331,36 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  const menuItems = [
-    resource.meta.permissions?.remove && !CANCELLED_SCHEDULING_STATUSES.includes(
-      subject.schedulingStatus,
-    ) && {
-      key: 'remove',
-      label: (
-        <>
-          <Button type="link" onClick={handleMarkCancel} className="ps-0">
-            Mark Cancel
-          </Button>
-        </>
-      ),
-    },
-    isSuperAdmin(currentUser) && {
-      key: 'loginAs',
-      label: (
-        <Button
-          type="link"
-          href={`/administration/users/${subject.user?.id}/spoof`}
-          rel="noopener noreferrer"
-          target="_blank"
-          className="ps-0 color-primary"
-        >
-          {I18n.t('administration.administrators.list.actions.login')}
+  const menuItems:ItemType[] = []
+
+  resource.meta.permissions?.remove && !UNACTIONABLE_SCHEDULING_STATUSES.includes(
+    subject.schedulingStatus,
+  ) && menuItems.push({
+    key: 'remove',
+    label: (
+      <>
+        <Button type="link" onClick={handleMarkCancel} className="ps-0">
+          Mark Cancel
         </Button>
-      ),
-    },
-  ]
+      </>
+    ),
+  })
+  isSuperAdmin(currentUser) && menuItems.push({
+    key: 'loginAs',
+    label: (
+      <Button
+        type="link"
+        href={`/administration/users/${subject.user?.id}/spoof`}
+        rel="noopener noreferrer"
+        target="_blank"
+        className="ps-0 color-primary"
+      >
+        {I18n.t('administration.administrators.list.actions.login')}
+      </Button>
+    ),
+  })
 
-
-  return (
-    <Menu items={_.compact(menuItems)} />
-  )
+  return ({ items: menuItems })
 }
 
 export const SubjectList = connecter(SubjectListComponent)

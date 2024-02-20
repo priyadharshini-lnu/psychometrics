@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersResult < ApplicationRecord
+  audited
+
   include EncodableId
 
   has_one :participant, class_name: 'Threesixty::Participant'

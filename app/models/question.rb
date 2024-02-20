@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Question < ApplicationRecord
+  audited
+
   include Copyable
   include OwnerValidations
 
@@ -43,6 +45,7 @@ class Question < ApplicationRecord
       reorder('reposition ASC')
   }
 
+  before_validation -> { self.name = 'PB' }, if: -> { type == 'PageBreak' }
   before_save :dup_for_template, if: :save_as_template
   before_create :set_assessment_id, if: proc { assessment_id.nil? }
   before_create :set_view

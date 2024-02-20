@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react'
 import {
-  Avatar, Row, Col, Button, Space,
+  Avatar, Row, Col, Button, Space, theme,
 } from 'antd'
 import { useHistory } from 'react-router-dom'
-import moment from 'moment-timezone'
 import { secondsToDayHoursAndMinutes, SECONDS_IN_HOUR } from '~/utils/time'
+import dayjs from '~/utils/dayjs'
 import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
 import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerText'
 import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
@@ -15,6 +15,7 @@ import { CountdownTimer, DetailsCard, DirectionalArrowIcon } from '~/glint'
 import styles from './styles.less'
 
 const { I18n } = window
+const { useToken } = theme
 
 interface Props {
   userAssessment: UserAssessment
@@ -42,8 +43,9 @@ export const AssessmentCard: React.FC<Props> = ({
   } = userAssessment
   let taskStatus = status
   const [loading, setLoading] = useState(false)
-  const scheduleTimeMomentObj = moment(scheduleTime)
-  const currentTime = moment.tz()
+  const { token } = useToken()
+  const scheduleTimeMomentObj = dayjs(scheduleTime)
+  const currentTime = dayjs.tz()
   const [withinActivityScheduleTime, setWithinActivityScheduleTime] = useState(
     scheduleTime ? currentTime.isSameOrAfter(scheduleTimeMomentObj) : false,
   )
@@ -83,7 +85,7 @@ export const AssessmentCard: React.FC<Props> = ({
     <Avatar src={iconUrl} />
   ) : (
     <Avatar
-      className={styles.titleAvatar}
+      style={{ backgroundColor: token.colorPrimary }}
     >
       {shortify(assessmentName)}
     </Avatar>
@@ -153,8 +155,8 @@ interface StartTimeDisplayProps {
 const StartTimeDisplay = ({ userAssessment, onCountdownFinish }: StartTimeDisplayProps) => {
   const { scheduleTime } = userAssessment
   if (!scheduleTime) return null
-  const scheduleTimeMomentObj = moment(scheduleTime)
-  const secondsLeftForScheduleTime = scheduleTimeMomentObj.diff(moment(), 'seconds')
+  const scheduleTimeMomentObj = dayjs(scheduleTime)
+  const secondsLeftForScheduleTime = scheduleTimeMomentObj.diff(dayjs(), 'seconds')
 
   if (secondsLeftForScheduleTime <= 0) return null
   if (secondsLeftForScheduleTime >= SECONDS_IN_HOUR) {
@@ -180,8 +182,8 @@ const StartTimeDisplay = ({ userAssessment, onCountdownFinish }: StartTimeDispla
 }
 
 const MeetingInfo: FC<MeetingInfoProps> = ({ meetingLink, meetingTime }) => {
-  const currentTime = moment.tz()
-  const meetingTimeMomentObj = moment(meetingTime)
+  const currentTime = dayjs.tz()
+  const meetingTimeMomentObj = dayjs(meetingTime)
   const [canJoinMeeting, setCanJoinMeeting] = useState(
     meetingTime ? currentTime.isSameOrAfter(meetingTimeMomentObj) : true,
   )

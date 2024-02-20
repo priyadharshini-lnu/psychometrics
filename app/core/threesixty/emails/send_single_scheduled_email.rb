@@ -38,19 +38,19 @@ module Threesixty
         if user_ids
           if schedule_email.consolidatable?
             context[:"#{other_participator_type}_ids"] = user_ids
-            Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).
+            Threesixty::ScheduleEmailMailer.send_scheduled_email(schedule_email, context).
               deliver_later(queue: 'mailers_low_priority')
           else
             User.where(id: user_ids).each do |user|
               context[other_participator_type] = user
-              Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).
+              Threesixty::ScheduleEmailMailer.send_scheduled_email(schedule_email, context).
                 deliver_later(queue: 'mailers_low_priority')
             end
           end
           create_email_histories(user_ids, context)
         else
           create_email_history(context)
-          Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).
+          Threesixty::ScheduleEmailMailer.send_scheduled_email(schedule_email, context).
             deliver_later(queue: 'mailers_low_priority')
         end
         create_or_update_reminder_history(recipient)

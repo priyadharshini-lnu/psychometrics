@@ -1,9 +1,9 @@
 import React, { CSSProperties, LegacyRef, RefObject } from 'react'
 import {
-  Switch, Card, Space, Typography, Button, Modal, Tooltip, message, Result,
+  Switch, Card, Space, Typography, Button, Tooltip, message, Result, App,
 } from 'antd'
 import {
-  DeleteOutlined, MenuOutlined, BlockOutlined, FolderOutlined,
+  DeleteOutlined, DragOutlined, BlockOutlined, FolderOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
@@ -19,9 +19,9 @@ interface Props {
   assessmentCount: number
   isLoading: boolean
   children: React.ReactNode
-  removeGroup: (groupId: number) => Promise<{ response: number }>
-  updateAssessmentGroups: (groupId: number) => void
-  modifyGroup: (groupdId: number, data: Partial<CampaignAssessmentGroup>) => void
+  removeGroup?: (groupId: number) => Promise<{ response: number }>
+  updateAssessmentGroups?: (groupId: number) => void
+  modifyGroup?: (groupdId: number, data: Partial<CampaignAssessmentGroup>) => void
   sortId?: string
   dragStyle?: CSSProperties
   attributes?: React.HTMLAttributes<HTMLElement>
@@ -47,8 +47,9 @@ export const GroupedAssessmentContainer = React.forwardRef(
     }: Props,
     ref: RefObject<HTMLDivElement>,
   ) => {
+    const { modal } = App.useApp()
     const handleDelete = () => {
-      Modal.confirm({
+      modal.confirm({
         title: I18n.t('assessments_reports.sequencing.modal.delete.title'),
         content: I18n.t('assessments_reports.sequencing.modal.delete.text', {
           name: group.name,
@@ -58,8 +59,10 @@ export const GroupedAssessmentContainer = React.forwardRef(
         cancelText: I18n.t('assessments_reports.sequencing.modal.delete.cancel'),
         onOk: async () => {
           try {
-            const { response } = await removeGroup(group.id)
-            updateAssessmentGroups(response)
+            if (removeGroup && updateAssessmentGroups) {
+              const { response } = await removeGroup(group.id)
+              updateAssessmentGroups(response)
+            }
           } catch (error) {
             message.error(
               I18n.t('assessments_reports.sequencing.modal.delete.failed', {
@@ -73,20 +76,20 @@ export const GroupedAssessmentContainer = React.forwardRef(
 
     const handleTitleChange = (value: string) => {
       if (value) {
-        modifyGroup(group.id, {
+        modifyGroup?.(group.id, {
           name: value,
         })
       }
     }
 
     const handleAssessmentInOrderChange = (checked: boolean) => {
-      modifyGroup(group.id, {
+      modifyGroup?.(group.id, {
         previousAssessmentsRequired: checked,
       })
     }
 
     const handlePrevGroupRequiredChange = (checked: boolean) => {
-      modifyGroup(group.id, {
+      modifyGroup?.(group.id, {
         previousGroupRequired: checked,
       })
     }
@@ -99,9 +102,9 @@ export const GroupedAssessmentContainer = React.forwardRef(
           size="small"
           loading={isLoading}
           title={(
-            <Space align="start">
+            <Space className="w-100">
               <Button
-                icon={<MenuOutlined />}
+                icon={<DragOutlined />}
                 size="small"
                 type="text"
                 className="cursor-grab"
@@ -110,11 +113,12 @@ export const GroupedAssessmentContainer = React.forwardRef(
               />
               <Typography.Text
                 title={group.name}
-                className={cs(styles.maxWidth30Chars)}
+                className={cs(styles.maxWidth30Chars, styles.editableText)}
                 ellipsis
                 editable={group.groupType !== 'assessment_center' ? {
                   onChange: handleTitleChange,
                   tooltip: I18n.t('assessments_reports.sequencing.edit_group_name'),
+                  triggerType: ['icon', 'text'],
                 } : false}
               >
                 {group.name}

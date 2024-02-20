@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class ShortAssessmentSerializer < ActiveModel::Serializer
+    class ShortAssessmentSerializer < Panko::Serializer
       attributes :id, :name
     end
   end

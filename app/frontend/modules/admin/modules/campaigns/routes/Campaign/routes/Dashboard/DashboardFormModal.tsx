@@ -39,7 +39,7 @@ export const DashboardFormModal: React.FC<Props> = ({
   const handleDashboardCreation = (values) => {
     const resource = formDataToResource({ ...values, campaignId }, 'dashboards')
     return createResource(resource).then(() => {
-      history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/dashboard`)
+      history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/dashboard`)
     })
   }
 

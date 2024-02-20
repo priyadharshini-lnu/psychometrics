@@ -30,6 +30,7 @@ module Administration
 
         respond_to do |format|
           if resource.save
+            audit! :create, resource, payload: resource_params
             format.js
           else
             format.js { render :new }
@@ -44,8 +45,10 @@ module Administration
 
       # PATCH/PUT /administration/resources/1
       def update
-        block = ::Builders::Templates::BlockBuilder.new(resource, params.require(:block))
-        if block.save
+        builder = ::Builders::Templates::BlockBuilder.new(resource, params.require(:block))
+
+        if builder.save
+          audit! :update, builder.block, payload: params.require(:block)
           render json: { data: BlockSerializer.new(resource).to_hash(include: '**') }
         else
           render json: { error: true }, status: 400
@@ -55,7 +58,10 @@ module Administration
       # DELETE /administration/resources/1
       def destroy
         resource.destroy
+
         respond_to do |format|
+          audit! :delete, resource, payload: resource.attributes
+
           format.html do
             redirect_back(
               fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
@@ -69,6 +75,7 @@ module Administration
         @cloned_resource = resource.clone
         respond_to do |format|
           if @cloned_resource.save
+            audit! :copy, @cloned_resource, payload: { source_id: resource.id }
             format.js
           else
             format.js { render :error, locals: { message: t('.error', name: resource.decorate.display_name) } }

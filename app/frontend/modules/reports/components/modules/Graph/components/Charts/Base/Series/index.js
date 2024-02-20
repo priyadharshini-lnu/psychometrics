@@ -14,6 +14,7 @@ import TextEntry from './TextEntry'
 import MatrixTable from './MatrixTable'
 import DataSheet from './DataSheet'
 import ReportData from './ReportData'
+import CampaignFactors from './CampaignFactors'
 
 export default {
   Slider,
@@ -31,5 +32,6 @@ export default {
   MatrixTable,
   ExternalFactor,
   DataSheet,
+  CampaignFactors,
   ReportData,
 }

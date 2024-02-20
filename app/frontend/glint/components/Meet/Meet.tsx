@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import DailyIframe, { DailyCall, DailyCallOptions } from '@daily-co/daily-js'
 
 const CALL_OPTIONS: DailyCallOptions = {
@@ -37,6 +37,10 @@ const Meet = ({ url, token }: Props) => {
 
     newCallFrame.join().then(() => {
       setCallFrame(newCallFrame)
+    })
+
+    newCallFrame.leave().then(() => {
+      window.close()
     })
   }, [videoRef])
 

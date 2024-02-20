@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import { FC, useState } from 'react'
-import { Moment } from 'moment'
 import {
   Row, Typography, Col, Space, Button, Input,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
+import dayjs from '~/utils/dayjs'
 
 import { isRequestInProgress } from '~/core/request'
 import { BOOK_SLOT, RESCHEDULE_BOOKING } from '~/modules/endUser/modules/campaigns/core/bookings'
@@ -15,7 +15,7 @@ import { getLanguageNameFromCode } from '~/utils/locales'
 const { I18n } = window
 const { Title, Text } = Typography
 type BookingConfirmProps = {
-  bookingDateTime: Moment
+  bookingDateTime: dayjs.Dayjs
   language: string
   duration: number
   onCancelOfConfirmBooking: ()=> void

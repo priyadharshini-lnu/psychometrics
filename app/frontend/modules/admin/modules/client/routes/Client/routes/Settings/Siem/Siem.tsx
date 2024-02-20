@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Row, Col, Form, Input, Button, Switch, Space, Typography, Select, message,
+  Row, Col, Form, Input, Button, Switch, Space, Typography, Select, App,
 } from 'antd'
 import { MailOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
@@ -172,6 +172,7 @@ const TestConnection: React.FC<{ settings: ClientAuditlogExportSetting, clientId
     responseType: ClientAuditlogExportSettingtTR,
     basePath: `clients/${clientId}`,
   })
+  const { message } = App.useApp()
 
   const handleTestConnection = () => {
     setIsLoading(true)

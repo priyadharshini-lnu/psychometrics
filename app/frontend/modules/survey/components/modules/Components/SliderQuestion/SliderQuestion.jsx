@@ -3,7 +3,6 @@ import { useState } from 'react'
 import {
   Slider as AntSlider, InputNumber, Row, Col, Button,
 } from 'antd'
-import cs from 'classnames'
 import _ from 'lodash'
 
 import Utils from '~/modules/survey/utils'
@@ -131,12 +130,12 @@ export const SliderQuestion = ({
                   value={preview ? values[choiceId]?.value : props.fakeResults[choiceId]}
                   min={1}
                   max={100}
-                  className={cs(styles.slider, 'ms-0 me-0')}
+                  className="ms-0 me-0"
                     // Widthout this extra span with key, the tooltip doesn't move properly
+                  disabled={readOnly}
                   tooltip={{
                     formatter: hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>,
                   }}
-                  disabled={readOnly}
                 />
               </Col>
               {!hideValue && (

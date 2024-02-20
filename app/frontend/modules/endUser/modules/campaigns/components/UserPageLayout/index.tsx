@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { Layout } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -19,8 +19,12 @@ const connector = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>
+type ComponentProps = {
+  children: ReactNode
+}
+type Props = ComponentProps & PropsFromRedux
 
-const UserPageLayoutComponent: FC<PropsFromRedux> = ({ campaign, updateProfileRequired, children }) => (
+const UserPageLayoutComponent: FC<Props> = ({ campaign, updateProfileRequired, children }) => (
   <Layout className={styles.container}>
     <UserPageSider
       updateProfileRequired={updateProfileRequired}

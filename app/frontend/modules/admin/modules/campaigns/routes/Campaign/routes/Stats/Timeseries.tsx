@@ -7,10 +7,10 @@ import type { RangePickerProps } from 'antd/es/date-picker'
 import {
   Row, Col, Card, DatePicker,
 } from 'antd'
-import moment, { Moment } from 'moment'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getTimeseries, fetchTimeseries } from '~/modules/admin/modules/campaigns/core/stats'
 import { buildHighchartOptions } from './options'
+import dayjs from '~/utils/dayjs'
 
 Highcharts3D(Highcharts)
 CustomEvents(Highcharts)
@@ -23,17 +23,17 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 interface OwnProps { campaignId: string }
 type Props = PropsFromRedux & OwnProps
 
-const disabledDate: RangePickerProps['disabledDate'] = current => current && current > moment().endOf('day')
+const disabledDate: RangePickerProps['disabledDate'] = current => current && current > dayjs().endOf('day')
 
 const connector = connect((state: RootState) => ({ timeseries: getTimeseries(state) }), { fetchTimeseries })
 
-const DEFAULT_RANGE: [Moment, Moment] = [
-  moment().subtract(1, 'week').startOf('week'),
-  moment().subtract(1, 'week').endOf('week'),
+const DEFAULT_RANGE: [dayjs.Dayjs, dayjs.Dayjs] = [
+  dayjs().subtract(1, 'week').startOf('week'),
+  dayjs().subtract(1, 'week').endOf('week'),
 ]
 
 const TimeseriesComponent: React.FC<Props> = ({ timeseries, fetchTimeseries, campaignId }) => {
-  const [range, setRange] = useState<[Moment, Moment]>(DEFAULT_RANGE)
+  const [range, setRange] = useState<[dayjs.Dayjs, dayjs.Dayjs]>(DEFAULT_RANGE)
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
   useEffect(() => { fetchTimeseries(campaignId, range) }, [range])
@@ -62,7 +62,7 @@ const TimeseriesComponent: React.FC<Props> = ({ timeseries, fetchTimeseries, cam
             <RangePicker
               clearIcon={false}
               disabledDate={disabledDate}
-              onChange={(val: [Moment, Moment]) => setRange(val)}
+              onChange={(val: [dayjs.Dayjs, dayjs.Dayjs]) => setRange(val)}
               value={range}
               renderExtraFooter={() => (
                 <Row justify="space-between">
@@ -70,8 +70,8 @@ const TimeseriesComponent: React.FC<Props> = ({ timeseries, fetchTimeseries, cam
                     <a
                       href="#"
                       onClick={() => setRange([
-                        moment().subtract(1, 'week').startOf('week'),
-                        moment().subtract(1, 'week').endOf('week'),
+                        dayjs().subtract(1, 'week').startOf('week'),
+                        dayjs().subtract(1, 'week').endOf('week'),
                       ])}
                     >
                       {I18n.t('administration.stats.users.date_presets.last_week')}
@@ -81,20 +81,20 @@ const TimeseriesComponent: React.FC<Props> = ({ timeseries, fetchTimeseries, cam
                     <a
                       href="#"
                       onClick={() => setRange([
-                        moment().subtract(1, 'month').startOf('month'),
-                        moment().subtract(1, 'month').endOf('month'),
+                        dayjs().subtract(1, 'month').startOf('month'),
+                        dayjs().subtract(1, 'month').endOf('month'),
                       ])}
                     >
                       {I18n.t('administration.stats.users.date_presets.last_month')}
                     </a>
                   </Col>
                   <Col>
-                    <a href="#" onClick={() => setRange([moment().subtract(7, 'd'), moment()])}>
+                    <a href="#" onClick={() => setRange([dayjs().subtract(7, 'd'), dayjs()])}>
                       {I18n.t('administration.stats.users.date_presets.last_7_days')}
                     </a>
                   </Col>
                   <Col>
-                    <a href="#" onClick={() => setRange([moment().subtract(30, 'd'), moment()])}>
+                    <a href="#" onClick={() => setRange([dayjs().subtract(30, 'd'), dayjs()])}>
                       {I18n.t('administration.stats.users.date_presets.last_30_days')}
                     </a>
                   </Col>

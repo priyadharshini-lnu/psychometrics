@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import {
-  Dropdown, Table, Button, Menu, Row, Col, Pagination, message, Modal,
+  Dropdown, Table, Button, Row, Col, Pagination, App, MenuProps,
 } from 'antd'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
+import type { MessageInstance } from 'antd/es/message/interface'
 import {
   CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import moment from 'moment'
+
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import dayjs from '~/utils/dayjs'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
@@ -62,6 +65,7 @@ const RegistrationCodes: React.FC<Props> = ({
   openModal,
   destroy,
 }) => {
+  const { modal, message } = App.useApp()
   useEffect(() => {
     fetch(campaignId, tableConfig)
   }, [tableConfig])
@@ -140,32 +144,29 @@ const RegistrationCodes: React.FC<Props> = ({
                   )}
                   {code.permissions.downloadQrcode && (
                     <Dropdown
-                      overlay={() => (
-                        QRCodeMenu({
-                          campaignId,
-                          code,
-                        }) as React.ReactElement
-                      )}
+                      menu={getQRCodeMenuProps({ campaignId, code })}
                       trigger={['click']}
                     >
                       <Button type="text" icon={<QrcodeOutlined />} />
                     </Dropdown>
                   )}
                   <ConditionalDropdown
-                    menu={ActionsMenu({
+                    menu={getActionsMenuProps({
                       onEdit: () => openModal('CodeModal', {
                         campaignId,
                         code: {
                           ...code,
-                          startDate: moment(code.startDate),
-                          endDate: moment(code.endDate),
+                          startDate: dayjs(code.startDate),
+                          endDate: dayjs(code.endDate),
                           disabled: !code.disabled,
                         },
                       }),
                       onCancelConfirm: () => destroy(campaignId, code.id),
                       permissions: code.permissions,
                       code,
-                    }) as React.ReactElement}
+                      modal,
+                      message,
+                    })}
                     innerElement={(
                       <Button type="link">
                         <MoreOutlined />
@@ -192,7 +193,7 @@ const RegistrationCodes: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   onEdit(): void
   onCancelConfirm(): void
   permissions: {
@@ -200,17 +201,19 @@ interface ActionMenuProps {
     remove: boolean
   }
   code: RegistrationCode
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
-interface QRCodeMenuProps {
+interface QRCodeMenuData {
   campaignId: string
   code: RegistrationCode
 }
 
-const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
+const getQRCodeMenuProps = ({
   code: { id },
   campaignId,
-}) => {
+}:QRCodeMenuData):MenuProps => {
   const menuItems = [
     {
       key: 'png',
@@ -219,7 +222,7 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
         <a
           download
         // eslint-disable-next-line max-len
-          href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
+          href={`/admin/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png`}
         >
           PNG
         </a>
@@ -239,16 +242,14 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
       ),
     },
   ]
-  return (
-    <Menu items={menuItems} />
-  )
+  return ({ items: menuItems })
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, onCancelConfirm, permissions, code: { code },
-}) => {
+const getActionsMenuProps = ({
+  onEdit, onCancelConfirm, permissions, code: { code }, modal, message,
+}:ActionMenuData): MenuProps => {
   const handleRemove = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -282,9 +283,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export default withEnhancedTable(RegistrationCodes, 'RegistrationCodes', { maintainHistory: true })

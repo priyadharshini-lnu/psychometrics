@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   Row, Col, Button, Space, Divider, Menu, Typography, Pagination, Dropdown, Spin, SpaceProps,
-  ConfigProvider,
+  ConfigProvider, theme,
 } from 'antd'
 import { MailOutlined, SettingOutlined, DownOutlined } from '@ant-design/icons'
+
+import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 
 interface Props {
   config: {
@@ -43,27 +45,30 @@ const menuItems = [
     ],
   },
 ]
+const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS } = constants
+const { useToken } = theme
 
 const SplitSpace: React.FC<SpaceProps> = props => (
   <Space split={<Divider type="vertical" />} size={4} {...props} />
 )
 
 export const DesignPreview: React.FC<Props> = ({ config }) => {
-  useEffect(() => {
-    ConfigProvider.config({
-      theme: {
-        primaryColor: config.primaryColor,
-        infoColor: config.infoColor,
-        successColor: config.successColor,
-        processingColor: config.processingColor,
-        errorColor: config.errorColor,
-        warningColor: config.warningColor,
-      },
-    })
-  }, [config])
+  const { token } = useToken()
+  const primaryColor = config.primaryColor || DEFAULT_PRIMARY_COLOR
 
   return (
-    <ConfigProvider>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: primaryColor,
+          colorError: config.errorColor || token.colorError,
+          colorWarning: config.warningColor || token.colorWarning,
+          colorSuccess: config.successColor || token.colorSuccess,
+          colorInfo: config.infoColor || token.colorInfo,
+          borderRadius: DEFAULT_BORDER_RADIUS,
+        },
+      }}
+    >
       <Space direction="vertical" split={<Divider />} style={{ width: '100%' }} size={0}>
 
         <SplitSpace>
@@ -95,21 +100,20 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
 
           {/* Dropdown */}
           <Dropdown
-            overlay={(
-              <Menu
-                items={[
-                  {
-                    key: '1',
-                    label: '1st menu item',
-                  },
-                  {
-                    key: '2',
-                    label: 'a danger item',
-                    danger: true,
-                  },
-                ]}
-              />
-              )}
+            menu={{
+              items: [
+                {
+                  key: '1',
+                  label: '1st menu item',
+                },
+                {
+                  key: '2',
+                  label: 'a danger item',
+                  danger: true,
+                },
+              ],
+            }
+            }
           >
             <a onClick={e => e.preventDefault()}>
               <Space>

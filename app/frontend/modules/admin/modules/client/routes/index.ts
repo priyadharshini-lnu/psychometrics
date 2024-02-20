@@ -8,10 +8,7 @@ import { LicenseList } from './LicenseList'
 import { LicenseUsageList } from './LicenseList/LicenseUsage'
 
 export const routes = [
-  {
-    path: '/',
-    component: ClientList,
-  },
+  { redirect: true, from: '/', to: '/clients' },
   {
     path: '/clients',
     component: ClientList,

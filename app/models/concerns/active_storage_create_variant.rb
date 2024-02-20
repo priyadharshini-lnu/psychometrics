@@ -8,10 +8,10 @@ module ActiveStorageCreateVariant
   end
 
   def create_variant
-    if record.class.respond_to?(:attachment_variants)
-      record.class.attachment_variants[name.to_sym].each do |variant|
-        ActiveStorageCreateVariantJob.perform_later(blob, variant)
-      end
+    variants = record.class.attachment_reflections[name].named_variants&.keys
+
+    if variants.present?
+      ActiveStorageCreateVariantJob.perform_later(record, name, variants)
     end
   end
 

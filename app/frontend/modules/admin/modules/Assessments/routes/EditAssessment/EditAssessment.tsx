@@ -13,7 +13,7 @@ export const EditAssessment: React.FC = () => {
     fetchSingle({ id })
   }, [id])
 
-  const { fetchSingle, getResource } = useResources<Assessment>('assessments', {
+  const { fetchSingle, getResource, memberAction } = useResources<Assessment>('assessments', {
     responseType: AssessmentTR,
     apiConfig: {
       include: ['dimension', 'owner', 'project', 'linked_assessment'],
@@ -30,7 +30,7 @@ export const EditAssessment: React.FC = () => {
       <Breadcrumb
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('assessments.dashboard'),
           },
           {
@@ -45,7 +45,7 @@ export const EditAssessment: React.FC = () => {
           },
         ]}
       />
-      <EditForm assessment={assessment} />
+      <EditForm assessment={assessment} memberAction={memberAction} />
     </>
   )
 }

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SmsInvite < ApplicationRecord
+  audited
+
   has_shortened_urls
   belongs_to :campaign
   belongs_to :creator, class_name: 'User'

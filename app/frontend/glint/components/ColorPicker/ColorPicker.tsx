@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import {
-  Popover, Space, Button, message,
+  Popover, Space, Button, App,
 } from 'antd'
 import { TooltipPlacement } from 'antd/lib/tooltip'
 import { CopyOutlined } from '@ant-design/icons'
@@ -39,6 +39,7 @@ export const ColorPicker: FC<props> = ({
   const [, copyValue] = useCopyToClipboard()
   const { open: openEyeDropper, isSupported: eyeDroppeSupported } = useEyeDropper()
   let updatedRecentColors = [...recentColors]
+  const { message } = App.useApp()
 
   useEffect(() => {
     setPickedColor(value || defaultColor)

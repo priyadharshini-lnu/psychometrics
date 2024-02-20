@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import {
-  Table, Space, Pagination, Button, Menu,
+  Table, Space, Pagination, Button, MenuProps,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -131,13 +131,13 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
             render={reportApprovalSettings => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     reportApprovalSettings,
                     updateResource,
                     removeResource,
                     openModal,
                     campaignId,
-                  }) as React.ReactElement
+                  })
                 }
               />
             )}
@@ -186,7 +186,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
     </>
   )
 }
-interface ActionMenuProps {
+interface ActionMenuData {
   reportApprovalSettings: ReportApprovalSettings
   updateResource: UpdateResource<ReportApprovalSettings>
   removeResource: RemoveResource
@@ -194,9 +194,9 @@ interface ActionMenuProps {
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   reportApprovalSettings, updateResource, removeResource, openModal, campaignId,
-}) => {
+}: ActionMenuData): MenuProps => {
   const { id } = reportApprovalSettings
   const reportId = reportApprovalSettings.report.id
   const menuItems = [
@@ -220,9 +220,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export const ReportApprovalSetting = connecter(ReportApprovalSettingComponent)

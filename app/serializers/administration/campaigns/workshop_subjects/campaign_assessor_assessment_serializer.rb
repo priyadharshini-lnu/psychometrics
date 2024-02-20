@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     module WorkshopSubjects
-      class CampaignAssessorAssessmentSerializer < ActiveModel::Serializer
+      class CampaignAssessorAssessmentSerializer < Panko::Serializer
         attributes :id, :name, :assessor_user_assessment_id, :status, :schedule_time, :meeting_link,
                    :linked_activity, :assessor, :subject_linked_activity_present, :meeting_type
 
@@ -45,15 +45,15 @@ module Administration
         end
 
         def subject_user_assessment
-          subject_user_assessments[object.assessment&.linked_assessment_id]
+          subject_user_assessments[object.assessment&.linked_assessment_id || assessor_user_assessment&.evaluator_id]
         end
 
         def subject_user_assessments
-          instance_options[:subject_user_assessments]
+          context[:subject_user_assessments]
         end
 
         def assessor_user_assessments
-          instance_options[:assessor_user_assessments]
+          context[:assessor_user_assessments]
         end
 
         def assessor_user_assessment
@@ -61,7 +61,7 @@ module Administration
         end
 
         def current_user
-          instance_options[:current_user]
+          context[:current_user]
         end
       end
     end

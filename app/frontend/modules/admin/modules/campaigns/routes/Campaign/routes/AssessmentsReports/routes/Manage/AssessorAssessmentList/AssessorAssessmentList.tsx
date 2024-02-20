@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Row, Col, Menu, Modal, message,
+  Table, Row, Col, message, MenuProps, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -24,6 +24,7 @@ type Props = PropsFromRedux
 
 const AssessmentList: React.FC<Props> = () => {
   const { campaignId } = useParams<{ campaignId: string }>()
+  const { modal } = App.useApp()
 
   const stateManager = useCampaignAssessorAssessmentsStore()
 
@@ -42,7 +43,7 @@ const AssessmentList: React.FC<Props> = () => {
   }, [])
 
   const removeAssessorAssessment = (assessorAssessment) => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
       content: I18n.t(
         'administration.project_tabs.webhooks.remove_webhook.content',
@@ -92,10 +93,10 @@ const AssessmentList: React.FC<Props> = () => {
               render={assessorAssessment => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       assessorAssessment,
                       removeAssessorAssessment,
-                    }) as React.ReactElement
+                    })
                   }
                 />
               )}
@@ -107,14 +108,14 @@ const AssessmentList: React.FC<Props> = () => {
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   assessorAssessment: CampaignAssessorAssessments
   removeAssessorAssessment(assessorAssessment: CampaignAssessorAssessments): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   assessorAssessment, removeAssessorAssessment,
-}) => {
+}: ActionMenuData): MenuProps => {
   const menuItems: ItemType[] = [
     {
       key: I18n.t('administration.project_tabs.webhooks.actions.delete.key'),
@@ -128,9 +129,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export default connecter(AssessmentList)

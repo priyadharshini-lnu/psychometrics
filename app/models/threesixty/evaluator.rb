@@ -2,6 +2,8 @@
 
 module Threesixty
   class Evaluator < ApplicationRecord
+    audited
+
     include Threesixty::Participator
 
     has_many :participants, primary_key: :user_id

@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import _ from 'lodash'
-import {
-  Dropdown, Menu, Input,
-} from 'antd'
+import { Dropdown, Input } from 'antd'
 import { CaretDownOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import styles from './styles.less'
@@ -49,17 +47,17 @@ export default function Tab ({
     }
   })
 
-  const menu = index => (
-    <Menu
-      onClick={handleMenuClick(index)}
-      items={[
+  const getMenuProps = index => (
+    {
+      items: [
         { label: 'Move Up', key: 'moveUp' },
         { label: 'Move down', key: 'moveDown' },
         { label: 'Rename', key: 'rename' },
         { label: 'Copy', key: 'copy' },
         { label: 'Delete', key: 'delete' },
-      ]}
-    />
+      ],
+      onClick: handleMenuClick(index),
+    }
   )
 
   const renameWithValidation = () => {
@@ -94,7 +92,7 @@ export default function Tab ({
       <div className={styles.menu}>
         <Dropdown
           className="dropdown"
-          overlay={menu(index)}
+          menu={getMenuProps(index)}
           placement="bottomLeft"
           trigger={['click']}
         >

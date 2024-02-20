@@ -5,10 +5,11 @@ import _ from 'lodash'
 import {
   Space, Form, DatePicker, Button, Typography, Alert, Row, Col, Checkbox,
 } from 'antd'
-import moment, { Moment } from 'moment-timezone'
+
 import cs from 'classnames'
 
 import { CopyOutlined } from '@ant-design/icons'
+import dayjs from '~/utils/dayjs'
 import { ScheduleDay } from '~/glint/components/ScheduleAvailability/ScheduleDay'
 import { Panel } from '~/glint'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
@@ -21,7 +22,7 @@ import {
   dayOptions, defaultCheckedList, getInitialCheckedDayList, parseInitialAvailability,
 } from './utils'
 
-const allDays = moment.weekdays()
+const allDays = dayjs.weekdays()
 const dateDisplayFormat = 'Do MMMM YYYY'
 const dateFormat = 'DD/MM/YYYY'
 const { I18n } = window
@@ -76,8 +77,8 @@ export const ScheduleAvailability:FC<Props> = ({
     ? I18n.t('glint.schedule_availability.saved_schedule_description')
     : I18n.t('glint.schedule_availability.new_schedule_description')
 
-  const startDate: Moment | undefined = dateSelectionForm.getFieldValue('startDate')
-  const endDate: Moment | undefined = dateSelectionForm.getFieldValue('endDate')
+  const startDate: dayjs.Dayjs | undefined = dateSelectionForm.getFieldValue('startDate')
+  const endDate: dayjs.Dayjs | undefined = dateSelectionForm.getFieldValue('endDate')
 
   useEffect(() => {
     setAvailableWeekDays([...getAvailableDays(startDate, endDate)])
@@ -131,8 +132,8 @@ export const ScheduleAvailability:FC<Props> = ({
         dateSelectionForm.setFieldValue(day, null)
       } else if (!dateSelectionForm.getFieldValue(day)) {
         dateSelectionForm.setFieldValue(day, [{
-          startTime: moment('09:00', 'HH:mm'),
-          endTime: moment('17:00', 'HH:mm'),
+          startTime: dayjs('09:00', 'HH:mm'),
+          endTime: dayjs('17:00', 'HH:mm'),
         }])
       }
     })

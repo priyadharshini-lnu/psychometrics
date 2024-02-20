@@ -4,7 +4,7 @@ executors:
   tte-executor-full:
     docker:
       - &docker_image
-        image: talententerprise/tte:ruby-3.1.2-node-14.18.3
+        image: talententerprise/tte:ruby-3.1.2-node-18.16.1-lua-5.1
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -61,7 +61,7 @@ executors:
 
   tte-docker-build:
     machine:
-      image: ubuntu-2004:2022.07.1
+      image: ubuntu-2204:2023.10.1
       docker_layer_caching: true
     environment:
       AWS_DEFAULT_REGION: eu-west-1
@@ -182,6 +182,13 @@ commands:
           paths:
             - tmp/cache/vite
             - tmp/cache/assets/sprockets
+  heroku_docker_login:
+    steps:
+      - run:
+          name: Login to heroku
+          command: |
+            echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
+
 
 jobs:
   bundle:
@@ -286,7 +293,7 @@ jobs:
 
   jest:
     executor: tte-executor
-    resource_class: medium
+    resource_class: large
     steps:
       - checkout
       - assets_files
@@ -409,20 +416,35 @@ jobs:
       - heroku/deploy-via-git:
           force: true
           app-name: << parameters.app-name >>
+      - run:
+          name: Check if deployment is successful
+          command: |
+            result=$(heroku releases -n 1 -a << parameters.app-name >>)
+            echo $result
+            if [[ $result == *"failed"* ]]; then
+                echo "Deployment failed"
+                exit 1
+            fi
 
   build_docker_image:
     executor: tte-docker-build
+    parameters:
+      app-name:
+        type: string
     steps:
       - checkout
-      - azure-cli/install
-      - azure-cli/login-with-user-or-service-principal
-      - azure-acr/acr-login:
-          registry-name: lhcontregistry
-          configure-docker-credentials-store: true
+      - when:
+          condition:
+            equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - azure-cli/install
+            - azure-cli/login-with-user-or-service-principal
+            - azure-acr/acr-login:
+                registry-name: lhcontregistry
+                configure-docker-credentials-store: true
       - docker/build:
           step-name: Build Docker image - latest
           image: psychometrics
-          # cache_from: 'lhcontregistry.azurecr.io/psychometrics:latest-$CIRCLE_BRANCH,lhcontregistry.azurecr.io/psychometrics:cache-webpacker-$CIRCLE_BRANCH'
           tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM'
           use-buildkit: true
           extra_build_args: '--build-arg BUILDKIT_INLINE_CACHE=1'
@@ -437,17 +459,47 @@ jobs:
           docker rm temp_container
           aws s3 cp --recursive sync/assets s3://psychometrics-static-assets/assets
           aws s3 cp --recursive sync/vite s3://psychometrics-static-assets/vite
-      - docker/push:
-          step-name: Push Docker image - latest
-          image: psychometrics
-          tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM'
-          registry: lhcontregistry.azurecr.io
+      - when:
+          condition:
+            equal: [ master, << pipeline.git.branch >> ]
+          steps:
+            - docker/push:
+                step-name: Push Docker image - latest
+                image: psychometrics
+                tag: 'latest-$CIRCLE_BRANCH,$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM'
+                registry: lhcontregistry.azurecr.io
+      - run:
+          name: Tag Docker image for heroku
+          command: |
+            docker tag lhcontregistry.azurecr.io/psychometrics:latest-$CIRCLE_BRANCH registry.heroku.com/<< parameters.app-name >>/web
+            docker tag lhcontregistry.azurecr.io/psychometrics:latest-$CIRCLE_BRANCH registry.heroku.com/<< parameters.app-name >>/worker
+            docker tag lhcontregistry.azurecr.io/psychometrics:latest-$CIRCLE_BRANCH registry.heroku.com/<< parameters.app-name >>/release
+      - heroku_docker_login
+      - run:
+          name: Push Docker image to heroku
+          command: |
+            docker push registry.heroku.com/<< parameters.app-name >>/web
+            docker push registry.heroku.com/<< parameters.app-name >>/worker
+            docker push registry.heroku.com/<< parameters.app-name >>/release
+  heroku_release:
+    executor: heroku/default
+    parameters:
+      app-name:
+        type: string
+    steps:
+      - heroku/install
+      - heroku_docker_login
+      - run:
+          name: Release to heroku
+          command: |
+            heroku container:release web worker release -a << parameters.app-name >>
+
 orbs:
   aws-cli: circleci/aws-cli@4.1.2
+  heroku: circleci/heroku@2.0.0
   azure-acr: circleci/azure-acr@0.2.1
   azure-cli: circleci/azure-cli@1.2.2
-  docker: circleci/docker@2.2.0
-  heroku: circleci/heroku@2.0.0
+  docker: circleci/docker@2.4.0
   jira: circleci/jira@1.3.1
 
 # We use workflows to orchestrate the jobs that we declared above.
@@ -484,61 +536,57 @@ workflows:
           requires:
             - jest
             - rspec
-          post-steps:
-            - jira/notify:
-                job_type: build
-                issue_regexp: '[A-Za-z]{2,4}-[0-9]+'
-
-      - heroku_deploy:
-          name: heroku_staging
-          app-name: tte-lighthouse-staging
-          requires:
-            - jest
-            - rspec
+      - build_docker_image:
+          name: build_image_develop
+          app-name: tte-lighthouse-develop
           filters:
             branches:
-              only: master
-          post-steps:
-            - jira/notify:
-                environment: lh-staging
-                environment_type: staging
-                job_type: deployment
-                issue_regexp: '[A-Za-z]{2,4}-[0-9]+'
-
-      - heroku_deploy:
-          name: heroku_review
-          app-name: tte-lighthouse
-          requires:
-            - jest
-            - rspec
-          filters:
-            branches:
-              only: review
-          post-steps:
-            - jira/notify:
-                environment: lh-review
-                environment_type: testing
-                job_type: deployment
-                issue_regexp: '[A-Za-z]{2,4}-[0-9]+'
-      - heroku_deploy:
-          name: heroku_develop
+              only:
+                - develop
+      - heroku_release:
+          name: heroku_release_develop
           app-name: tte-lighthouse-develop
           requires:
+            - build_image_develop
             - jest
             - rspec
           filters:
             branches:
-              only: develop
-          post-steps:
-            - jira/notify:
-                environment: lh-develop
-                environment_type: development
-                job_type: deployment
-                issue_regexp: '[A-Za-z]{2,4}-[0-9]+'
+              only:
+                - develop
       - build_docker_image:
+          name: build_image_review
+          app-name: tte-lighthouse
+          filters:
+            branches:
+              only:
+                - review
+      - heroku_release:
+          name: heroku_release_review
+          app-name: tte-lighthouse
+          requires:
+            - build_image_review
+            - jest
+            - rspec
+          filters:
+            branches:
+              only:
+                - review
+      - build_docker_image:
+          name: build_image_staging
+          app-name: tte-lighthouse-staging
           filters:
             branches:
               only:
                 - master
-                - review
-                - cisync
+      - heroku_release:
+          name: heroku_release_staging
+          app-name: tte-lighthouse-staging
+          requires:
+            - build_image_staging
+            - jest
+            - rspec
+          filters:
+            branches:
+              only:
+                - master

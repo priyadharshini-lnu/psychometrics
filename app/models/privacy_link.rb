@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PrivacyLink < ApplicationRecord
+  audited
+
   belongs_to :client
 
   validates :text, :link, presence: true

@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     module Assessors
-      class UserAssessmentSerializer < ActiveModel::Serializer
+      class UserAssessmentSerializer < Panko::Serializer
         attributes :id, :assessment_name, :subject_name, :subject_email, :status, :permissions
 
         delegate :email, to: :subject, prefix: true
@@ -29,8 +29,8 @@ module Administration
               %w[reset_evaluation reset]
             ],
             {
-              project_id: instance_options[:project_id],
-              campaign_id: instance_options[:campaign_id]
+              project_id: context[:project_id],
+              campaign_id: context[:campaign_id]
             }
           )
         end
@@ -38,7 +38,7 @@ module Administration
         private
 
         def current_user
-          instance_options[:current_user]
+          context[:current_user]
         end
 
         def subject

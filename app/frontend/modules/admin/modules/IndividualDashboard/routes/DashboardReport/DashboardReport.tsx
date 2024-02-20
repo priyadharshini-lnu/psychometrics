@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Skeleton, Row, Col, PageHeader, Descriptions, InputNumber, Button,
+  Skeleton, Row, Col, Descriptions, InputNumber, Button,
 } from 'antd'
 import { useLocation, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'

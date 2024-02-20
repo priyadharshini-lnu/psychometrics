@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class License < ApplicationRecord
+  audited
+
   self.inheritance_column = :_type_disabled
 
   belongs_to :client, counter_cache: true

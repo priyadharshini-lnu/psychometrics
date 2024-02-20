@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ReportsAccess < ApplicationRecord
+  audited
+
   belongs_to :report
   belongs_to :membership
   belongs_to :assessment

@@ -2,8 +2,9 @@
 
 class AuditLog < ApplicationRecord
   include RansackAssocSearchableFields
-  serialize :payload, JSON
-  serialize :request, JSON
+
+  serialize :payload, coder: JSON
+  serialize :request, coder: JSON
 
   belongs_to :user, optional: true
   belongs_to :record, polymorphic: true, optional: true
@@ -11,13 +12,19 @@ class AuditLog < ApplicationRecord
   belongs_to :project, class_name: 'Client'
   belongs_to :campaign
 
+  has_many :active_record_audits, foreign_key: 'request_uuid', primary_key: 'request_uuid'
+
   validates :action, presence: true
+
+  enum outcome: { failed: 0, successful: 1 }
 
   after_initialize :initialize_payload_request
 
   add_searchable_assoc_scope :client
   add_searchable_assoc_scope :project
   add_searchable_assoc_scope :campaign
+
+  enum :interface, %i[api browser]
 
   scope :user_search, lambda {  |search_term|
     if (search_term !~ /\D/) && search_term.present?

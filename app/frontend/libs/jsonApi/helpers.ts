@@ -16,7 +16,7 @@ export const resourceToFormData = (resource: Resource, resourceName: string) => 
     const relationship = relationships[name]
     if (relationship) {
       const association = relationship.association || 'hasOne'
-      name = relationship.field || (association === 'hasOne' ? `${name}Id` : `${name}Ids`)
+      name = relationship.field || (association === 'hasOne' ? `${name}Id` : `${relationship?.singularName || name}Ids`)
       value = association === 'hasOne' ? value.id : value.map(v => v.id)
     }
     acc[name] = value
@@ -32,8 +32,9 @@ export const formDataToResource = (formData: { [key: string]: unknown }, resourc
   return _.reduce(relationships, (acc, relationship, relationshipName: string) => {
     const association = relationship.association || 'hasOne'
     const camelizedRelationshipName = _.camelCase(relationshipName)
-    const field = relationship.field
-      || (association === 'hasOne' ? `${camelizedRelationshipName}Id` : `${camelizedRelationshipName}Ids`)
+    const field = relationship.field || (association === 'hasOne'
+      ? `${camelizedRelationshipName}Id`
+      : `${relationship?.singularName || camelizedRelationshipName}Ids`)
 
     if (formData[camelizedRelationshipName] === undefined && formData[field] !== undefined) {
       const val = formData[field]

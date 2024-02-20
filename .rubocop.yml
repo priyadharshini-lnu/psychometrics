@@ -1,6 +1,8 @@
 require:
   - rubocop-performance
   - rubocop-rails
+  - ./lib/custom_rubocops/avoid_direct_use_of_mail_method.rb
+  - ./lib/custom_rubocops/avoid_using_memoization_in_serializers.rb
 AllCops:
   NewCops: enable
   Exclude:
@@ -12,6 +14,13 @@ AllCops:
     - bin/*
   UseCache: true
   CacheRootDirectory: tmp
+
+AvoidDirectUseOfMailMethod:
+  Include:
+    - app/mailers/**/*
+AvoidUsingMemoizationInSerializers:
+   Include:
+    - app/serializers/**/*
 
 ##
 ## Layout

@@ -9,7 +9,7 @@ import {
   Form,
   Select,
   Switch,
-  message,
+  App,
   Tooltip,
 } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons'
@@ -64,6 +64,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
   const [form] = Form.useForm()
   const [errors, setErrors] = useState<{name?: string}>({})
   const [name, setName] = useState('')
+  const { message } = App.useApp()
   const allowedForDashboardUse = name.length <= MAX_LENGTH_FOR_DASHBOARD_USE
 
   const handleFormSubmit = async (
@@ -97,7 +98,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
       title={I18n.t('administration.sheets.drawers.add_edit.title_add')}
       placement="right"
       closable={false}
-      visible={isOpen}
+      open={isOpen}
       width="30%"
       zIndex={1001}
       maskClosable={false}

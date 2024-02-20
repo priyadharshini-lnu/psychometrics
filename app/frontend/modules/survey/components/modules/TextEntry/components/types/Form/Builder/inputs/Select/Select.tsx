@@ -3,7 +3,7 @@ import { Select as BaseSelect, Dropdown, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import { BuilderModel } from '~/modules/survey/interfaces/questions/TextEntry'
 import styles from '../../../FormStyle.less'
-import OptionList from './OptionList'
+import { getOptionListMenuProps } from './getOptionListMenuProps'
 
 const { Option } = BaseSelect
 
@@ -29,7 +29,8 @@ const Select: React.FC<Props> = ({
       </BaseSelect>
       <Dropdown
         className={styles.dropdown}
-        overlay={(<OptionList type={type} model={model} index={index} />)}
+        menu={
+          getOptionListMenuProps({ type, model, index })}
         open={open}
       >
         <Button type="link" onClick={() => setOpen(!open)}>

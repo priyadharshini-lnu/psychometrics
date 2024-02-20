@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Form as AntForm, Select, Button } from 'antd'
+import {
+  Form as AntForm, Select, Button, Checkbox, Tooltip,
+} from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
 import UserAutocomplete from '~/components/UserAutocomplete'
 
 import {
   AssessorFormItem,
-  getAvailableAssessments,
-  fetchAvailableAssessments,
+  getAvailableAssessments, getLeadAssessorAssessment,
+  fetchAvailableAssessments, fetchLeadAssessorAssessment,
 } from '~/modules/admin/modules/campaigns/core/assessors'
 import { get as getAutocomplete } from '~/modules/admin/core/ui/autocomplete'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -24,9 +26,11 @@ const connecter = connect(
     autocompletedAssessors: getAutocomplete(state).assessors || [],
     autocompletedSubjects: getAutocomplete(state).subjects || [],
     assessments: getAvailableAssessments(state),
+    leadAssessment: getLeadAssessorAssessment(state),
   }),
   {
     fetchAvailableAssessments,
+    fetchLeadAssessorAssessment,
   },
 )
 
@@ -52,19 +56,23 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 const Form: React.FC<Props & PropsFromRedux> = ({
   campaignId,
   assessments,
+  leadAssessment,
   autocompletedSubjects,
   autocompletedAssessors,
   onSubmit,
   fetchAvailableAssessments,
+  fetchLeadAssessorAssessment,
   userSearchUrl,
   adminsSearchUrl,
 }) => {
   const [assessor, setAssessor] = useState({} as AssessorFormItem)
   const [autocompletedSubject, setAutocompletedSubject] = useState('')
   const [autocompletedAssessor, setAutocompletedAssessor] = useState('')
+  const [leadSelected, setLeadSelected] = useState(false)
 
   useEffect(() => {
     fetchAvailableAssessments(campaignId)
+    fetchLeadAssessorAssessment(campaignId)
   }, [])
 
   useEffect(() => {
@@ -82,10 +90,18 @@ const Form: React.FC<Props & PropsFromRedux> = ({
   }
 
   const onClick = () => {
-    setAssessor({ assessmentIds: assessor.assessmentIds })
     setAutocompletedSubject('')
     setAutocompletedAssessor('')
     onSubmit(assessor)
+  }
+
+  const handleSelectedAssessments = (e) => {
+    if (leadSelected) {
+      setAssessor({ ...assessor, assessmentIds: [assessments[0].id] })
+    } else {
+      setAssessor({ ...assessor, assessmentIds: [(leadAssessment?.id) || 0] })
+    }
+    setLeadSelected(e.target.checked)
   }
 
   return (
@@ -111,19 +127,43 @@ const Form: React.FC<Props & PropsFromRedux> = ({
           source="assessors"
           placeholder={localI18n('assessor_placeholder')}
         />
-      </AntForm.Item>
-      <AntForm.Item label={localI18n('assessments')}>
-        <Select
-          mode="multiple"
-          value={assessor.assessmentIds}
-          onChange={ids => setAssessor({ ...assessor, assessmentIds: ids })}
-          filterOption={(input, option) => option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        <Checkbox
+          onChange={handleSelectedAssessments}
+          disabled={!leadAssessment}
         >
-          {assessments.map(a => (
-            <Select.Option key={a.name} value={a.id}>{a.name}</Select.Option>
-          ))}
-        </Select>
+          {leadAssessment
+            ? localI18n('add_lead_assessor')
+            : (
+              <Tooltip title={localI18n('add_lead_assessor_hint')}>
+                {localI18n('add_lead_assessor')}
+              </Tooltip>
+            )
+          }
+        </Checkbox>
       </AntForm.Item>
+      {!leadSelected && (
+        <AntForm.Item label={localI18n('assessments')}>
+          <Select
+            mode="multiple"
+            value={assessor.assessmentIds}
+            onChange={ids => setAssessor({ ...assessor, assessmentIds: ids })}
+            filterOption={(input, option) => option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          >
+            {assessments.map(a => (<Select.Option key={a.name} value={a.id}>{a.name}</Select.Option>))}
+          </Select>
+        </AntForm.Item>
+      )}
+      {leadSelected && (
+        <AntForm.Item label={localI18n('lead_assessment')}>
+          <Select
+            disabled
+            mode="multiple"
+            value={leadAssessment?.id}
+          >
+            <Select.Option key={leadAssessment?.name} value={leadAssessment?.id}>{leadAssessment?.name}</Select.Option>
+          </Select>
+        </AntForm.Item>
+      )}
       <AntForm.Item wrapperCol={{ span: 12, offset: 5 }}>
         <Button type="primary" onClick={onClick}>
           {localI18n('add')}

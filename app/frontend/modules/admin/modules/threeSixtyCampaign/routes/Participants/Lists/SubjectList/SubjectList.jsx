@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Row, Col,
+  Table, Row, Col, App,
 } from 'antd'
 import { UserOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from '~/presenters/user'
@@ -9,7 +9,7 @@ import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components
 import ResetSubjectModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import styles from './SubjectList.less'
-import ActionsMenu from './ActionMenu'
+import { getActionsMenuProps } from './getActionsMenuProps'
 import ToolsDropdown from '../ToolsDropdown'
 import { Manage } from '../Manage'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
@@ -39,6 +39,8 @@ export default function SubjectList ({
   },
   match,
 }) {
+  const { message } = App.useApp()
+  const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
   useEffect(() => {
     fetchSubjects(campaignId, page, searchTerm)
   }, [page, searchTerm])
@@ -132,7 +134,7 @@ export default function SubjectList ({
               }) => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       subjectId: id,
                       email,
                       user,
@@ -146,6 +148,8 @@ export default function SubjectList ({
                       onUserUpdate,
                       permissions,
                       regenerateReport,
+                      message,
+                      setShowResetSubjectModal,
                     })
                   }
                   innerElement={(
@@ -165,7 +169,7 @@ export default function SubjectList ({
       <CreateSubjectModal match={match} />
       <SubjectImportModal match={match} />
       <UserEditModal match={match} />
-      <ResetSubjectModal />
+      <ResetSubjectModal open={showResetSubjectModal} />
     </>
   )
 }

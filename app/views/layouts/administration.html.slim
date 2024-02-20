@@ -14,13 +14,13 @@ html
     = render 'layouts/favicons'
     = vite_client_tag
     = vite_react_refresh_tag
-    = vite_stylesheet_tag 'ant.less'
 
   body#administration data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
     .page-container
       = render partial: 'left_sidebar'
       .page-content
-        = render partial: 'top_sidebar'
+        - unless request.path =~ /\/admin\/meet\//
+          = render partial: 'top_sidebar'
         .page-content-wrap
           .row
             #flash-messages.col-md-12

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Sheet < ApplicationRecord
+  audited
+
   EMAIL_COLUMN = 'Email'
   ADVANCE_TYPES = %w[HTML Markdown].freeze
   ALL_COLUMN_TYPES = %w[String Text Number HTML Markdown].freeze

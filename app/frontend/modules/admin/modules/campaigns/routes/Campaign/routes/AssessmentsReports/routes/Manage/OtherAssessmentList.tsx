@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Row, Col, Pagination,
+  Table, Row, Col, Pagination, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { fetchOtherAssessments, getOther } from '~/modules/admin/modules/campaigns/core/assessments'
 import {
-  activateUniversalLink, rescoreResponses, remove, exportRawResults, exportScoringResults,
+  rescoreResponses, remove, exportRawResults, exportScoringResults,
   exportNormedResults, exportRawFactorScores, exportExternalResults,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -16,7 +16,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
-import { ActionsMenu } from './AssessmentList/ActionsMenu'
+import { getActionsMenuProps } from './AssessmentList/getActionsMenuProps'
 
 const { Column } = Table
 const { I18n } = window
@@ -32,7 +32,6 @@ const connector = connect(
   {
     fetchOtherAssessments,
     openModal,
-    activateUniversalLink,
     rescoreResponses,
     remove,
     exportRawResults,
@@ -70,6 +69,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
   }, [tableConfig.page])
 
   const { campaignId } = useParams<{ campaignId: string }>()
+  const { message } = App.useApp()
 
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedPage = parseInt(tableConfig.page as unknown as string, 10)
@@ -100,7 +100,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
               render={assessment => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       assessment,
                       campaignId: parsedCampaignId,
                       openModal,
@@ -111,7 +111,8 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
                       exportRawFactorScores,
                       exportExternalResults,
                       optionsOverrides: { remove: false, updateExternalConfig: false },
-                    }) as React.ReactElement
+                      message,
+                    })
                   }
                   innerElement={(
                     <a>

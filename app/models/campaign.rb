@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
+  audited except: %i[encrypted_pdf_password encrypted_pdf_password_iv]
+
   include RansackSearchableFields
 
   self.inheritance_column = :_type_disabled
@@ -16,6 +18,11 @@ class Campaign < ApplicationRecord
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :campaign_options, dependent: :destroy
+  has_one :accesssheet, dependent: :destroy
+  has_one :project_datasheet, through: :project, source: :datasheet
+  has_one :campaign_datasheet, class_name: 'Datasheet', dependent: :destroy
+  has_one :dashboard
+
   has_many :sheets, dependent: :destroy
   has_many :workshops, dependent: :destroy
   has_many :workshop_assessors, through: :workshops
@@ -23,10 +30,10 @@ class Campaign < ApplicationRecord
   has_many :workshop_invited_subjects, through: :workshop_invites, source: :workshop_invited_subjects
   has_many :workshop_subjects, dependent: :destroy
   has_many :campaign_assessor_assessments, dependent: :destroy
-  has_one :accesssheet, dependent: :destroy
-  has_one :project_datasheet, through: :project, source: :datasheet
-  has_one :campaign_datasheet, class_name: 'Datasheet', dependent: :destroy
-  has_one :dashboard
+  has_many :campaign_factor_groups, dependent: :destroy
+  has_many :campaign_factors, dependent: :destroy
+  has_many :campaign_factor_values, dependent: :destroy
+  has_many :campaign_assessor_assessment_factor_weights, dependent: :destroy
 
   delegate :fixed_time?,
            :fixed_time,
@@ -37,6 +44,7 @@ class Campaign < ApplicationRecord
            :proctoring_enabled?,
            :identification,
            :rules,
+           :campaign_scoring_variables,
            to: :campaign_options
 
   has_many :license_usages, inverse_of: :campaign
@@ -131,6 +139,11 @@ class Campaign < ApplicationRecord
       where(
         user_assessments: { campaign_id: id, relationship_id: Relationship.assessor_relationship.id }
       ).where.not(id: assessor_assessment_ids).uniq
+  end
+
+  def lead_assessor_assessment
+    campaign_assessor_assessments.joins(:assessment).
+      find_by(assessment: { category: Assessment::CATEGORIES[:lead_assessor_form] })&.assessment
   end
 
   def clone

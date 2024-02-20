@@ -9,17 +9,22 @@ module Administration
       def update
         resource.update(resource_params)
         audit! :update, resource, payload: resource_params, campaign: resource.campaign
-        render json: resource,
-               serializer: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer,
-               current_user: current_user
+        render json: Administration::CampaignAssessmentGroups::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user
+          }
+        ).serialize(resource)
       end
 
       def update_positions
         campaign_assessments = update_position_params[:campaign_assessments]
         ::CampaignAssessments::UpdatePositions.call(campaign, campaign_assessments) do
           on(:ok) do
-            render json: campaign,
-                   serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
+            render json: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer.new(
+              context: {
+                current_user: current_user
+              }
+            ).serialize(campaign)
           end
           on(:error) { |errors| return render json: { errors: errors }, status: 400 }
         end
@@ -29,7 +34,13 @@ module Administration
         resource.update(external_config: params.dig(:campaign_assessment, :external_config))
         if resource.valid?
           audit! :update, resource, payload: resource_params, campaign: resource.campaign
-          render json: resource, serializer: Administration::CampaignAssessmentSerializer
+          render json: Administration::CampaignAssessmentSerializer.new(
+            context: {
+              current_user: current_user,
+              project_id: campaign.project_id,
+              campaign_id: campaign.id
+            }
+          ).serialize(resource)
         else
           render json: { errors: resource.errors.messages }, status: 422
         end

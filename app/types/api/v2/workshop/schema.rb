@@ -44,6 +44,7 @@ module Api
         def self.update_request
           json_api_attributes do
             required(:total_seats).filled(:integer)
+            required(:allow_late_cancellation_and_rescheduling).filled(:bool)
             required(:workshop_assessors_ids).array(:string)
             required(:workshop_managers_ids).array(:string)
           end
@@ -70,6 +71,7 @@ module Api
               end
               required(:name).filled(:string)
               required(:start_time).filled(:string)
+              required(:allow_late_cancellation_and_rescheduling).filled(:bool)
               optional(:center_manager_ids).array(:string)
               optional(:assessor_ids).array(:string)
               optional(:meeting_link).maybe(:string)

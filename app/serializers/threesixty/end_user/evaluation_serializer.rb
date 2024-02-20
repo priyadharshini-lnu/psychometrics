@@ -5,8 +5,12 @@ module Threesixty::EndUser
     attributes :id, :is_self, :evaluator_id, :campaign_id, :evaluator_nomination_status, :status,
                :subject_evaluation_closed, :assessment_extra, :assessment_id
 
-    has_one :user, serializer: UserSerializer
-    has_one :subject, serializer: UserSerializer
+    has_one :user, method: :user
+    has_one :subject, method: :subject
+
+    def subject
+      UserSerializer.new.serialize(object.subject)
+    end
 
     def campaign_id
       object.campaign.threesixty_campaign.id
@@ -29,7 +33,7 @@ module Threesixty::EndUser
     end
 
     def user
-      object.evaluator
+      UserSerializer.new.serialize(object.evaluator)
     end
 
     def is_self

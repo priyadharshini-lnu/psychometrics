@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import moment from 'moment'
 import {
   Row, Col, Space, Avatar, Typography,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UserOutlined } from '@ant-design/icons'
+import dayjs from '~/utils/dayjs'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
@@ -37,7 +37,7 @@ const ProfileCardTitleComponent: FC<Props> = ({ currentUser }) => (
       <Text>
         {I18n.t('campaign.profile.last_login_text')}
         {' '}
-        {moment(currentUser.lastSignInAt).format('ll')}
+        {dayjs(currentUser.lastSignInAt).format('ll')}
       </Text>
     </Col>
     )}

@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class User < ApplicationRecord
+  audited except: %i[encrypted_password encrypted_invitation_raw authentication_token spoof_token]
+
   include UserScopes
   include UserRoles
   include UserValidations
@@ -125,6 +127,8 @@ class User < ApplicationRecord
   has_many :user_availability_dates, dependent: :destroy
   has_many :user_availability_days, through: :user_availability_dates
   has_many :user_bookings
+  has_many :campaign_factor_values, dependent: :destroy
+
   has_one :security_setting, through: :project
   has_one :user_profile
 
@@ -139,16 +143,14 @@ class User < ApplicationRecord
   before_save :ensure_authentication_token
   before_save do
     self.email = email.downcase
-    self.locale = locale.presence
   end
 
   after_create :create_user_profile
 
-  mount_uploader :photo, Public::ImageUploader
-
   has_one_time_password(encrypted: true)
 
   delegate :subdomain, to: :project, allow_nil: true
+  delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
 
   def authenticated_sign_in_url
     Utility::Url.generate(
@@ -241,6 +243,10 @@ class User < ApplicationRecord
     slice(:id, :email)
   end
 
+  def can_receives_communication?
+    !disabled?
+  end
+
   def active_for_authentication?
     super && !disabled?
   end
@@ -301,7 +307,7 @@ class User < ApplicationRecord
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       %i[hris_data_cont role_scope_in filterable_fields admins search_query with_access_to_campaign
-         with_campaign_user campaign_users_completion_status_in campaign_users_status_in]
+         with_campaign_user]
     end
 
     # Available role for the filter form

@@ -36,7 +36,7 @@ module AdminJobs
 
     def generate_title_link
       {
-        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessors",
+        href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessors",
         label: campaign.name
       }
     end

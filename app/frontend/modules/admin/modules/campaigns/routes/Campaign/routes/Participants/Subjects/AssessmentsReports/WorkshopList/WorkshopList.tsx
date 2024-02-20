@@ -19,10 +19,19 @@ const ATTENDANCE_TAG_COLORS = {
   dropped_out: 'warning',
 }
 
+const SCHEDULING_STATUS_TO_TAG_COLOR = {
+  scheduled: 'success',
+  rescheduled: 'error',
+  cancelled: 'error',
+  late_scheduled: 'error',
+  late_rescheduled: 'error',
+}
+
 const ResponseTR = t.type({
   id: WorkshopSubjectTR.props.id,
   attendanceStatus: WorkshopSubjectTR.props.attendanceStatus,
   schedulingStatus: WorkshopSubjectTR.props.schedulingStatus,
+  attended: WorkshopSubjectTR.props.attended,
   workshop: t.type({
     id: WorkshopTR.props.id,
     name: WorkshopTR.props.name,
@@ -64,7 +73,7 @@ const WorkshopList: React.FC = () => {
           render={(_, { workshop }) => (
             <a
               // eslint-disable-next-line max-len
-              href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/scheduling/assessment_center/${workshop.id}`}
+              href={`/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/assessment_center/${workshop.id}`}
             >
               {workshop.name}
             </a>
@@ -77,11 +86,32 @@ const WorkshopList: React.FC = () => {
           render={(_, { workshop }) => formatWorkshopDate(workshop.startTime)}
         />
         <Resource.Column<Response>
+          title={I18n.t('administration.scheduling.columns.attended')}
+          id="attended"
+          render={(_, { attended }) => (
+            <Tag color={attended ? 'success' : 'error'}>
+              {attended
+                ? I18n.t('administration.scheduling.attended.attended')
+                : I18n.t('administration.scheduling.attended.not_attended')
+                }
+            </Tag>
+          )}
+        />
+        <Resource.Column<Response>
           title={I18n.t('administration.scheduling.attendance_status.column_name')}
           id="attendanceStatus"
           render={(_, { attendanceStatus }) => (
             <Tag color={ATTENDANCE_TAG_COLORS[attendanceStatus]}>
               {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
+            </Tag>
+          )}
+        />
+        <Resource.Column<Response>
+          title={I18n.t('administration.scheduling.columns.scheduling_status')}
+          id="scheduling_status"
+          render={(_, { schedulingStatus }) => (
+            <Tag color={SCHEDULING_STATUS_TO_TAG_COLOR[schedulingStatus]}>
+              {I18n.t(`administration.scheduling.scheduling_statuses.${schedulingStatus}`)}
             </Tag>
           )}
         />

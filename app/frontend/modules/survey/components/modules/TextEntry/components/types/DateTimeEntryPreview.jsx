@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { DatePicker } from 'antd'
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import { getIn } from '~/utils/immutable'
 
 const FORMAT = 'YYYY-MM-DD HH:mm:ss'
@@ -18,11 +18,11 @@ export default class DateTimeEntryPreview extends Component {
 
     return (
       <DatePicker
-        value={value ? moment(value, FORMAT) : null}
+        value={value ? dayjs(value, FORMAT) : null}
         format={FORMAT}
         disabledTime={false}
         onChange={this.changeAnswer}
-        showTime={{ defaultValue: moment('00:00:00', 'HH:mm:ss') }}
+        showTime={{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }}
       />
     )
   }

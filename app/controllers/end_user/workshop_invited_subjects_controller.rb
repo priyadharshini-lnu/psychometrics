@@ -6,11 +6,11 @@ class EndUser::WorkshopInvitedSubjectsController < ApplicationController
       user_id: current_user.id
     ).bookings
 
-    serialized_resources = ActiveModelSerializers::SerializableResource.new(
+    serialized_resources = Panko::ArraySerializer.new(
       @resources,
       each_serializer: ::EndUser::BookingsSerializer,
-      current_user: current_user
-    )
+      context: { current_user: current_user }
+    ).to_a
 
     render json: {
       list: serialized_resources
@@ -22,10 +22,10 @@ class EndUser::WorkshopInvitedSubjectsController < ApplicationController
       user_id: current_user.id
     ).invites
 
-    serialized_resources = ActiveModelSerializers::SerializableResource.new(
+    serialized_resources = Panko::ArraySerializer.new(
       @resources,
       each_serializer: ::EndUser::WorkshopInvitedSubjectSerializer
-    )
+    ).to_a
 
     render json: {
       list: serialized_resources

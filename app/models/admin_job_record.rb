@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AdminJobRecord < ApplicationRecord
+  audited
+
   self.table_name = 'admin_jobs'
 
   include ActiveStorageAttachable
@@ -19,7 +21,7 @@ class AdminJobRecord < ApplicationRecord
   sync_to_active_storage :file
 
   def attachment_storage_path(attribute_name, filename)
-    "private/admin_job/#{attribute_name}/#{filename}"
+    "private/admin_job/#{id}/#{attribute_name}/#{filename}"
   end
 
   enum operation: {
@@ -53,7 +55,9 @@ class AdminJobRecord < ApplicationRecord
     bulk_create_workshop_invites: 27,
     super_admin_assessment_raw_result_export: 28,
     super_admin_assessment_raw_factor_export: 29,
-    workshop_status_export: 30
+    workshop_status_export: 30,
+    bulk_rescore_campaign_factors: 31,
+    import_assessment_questions: 32
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

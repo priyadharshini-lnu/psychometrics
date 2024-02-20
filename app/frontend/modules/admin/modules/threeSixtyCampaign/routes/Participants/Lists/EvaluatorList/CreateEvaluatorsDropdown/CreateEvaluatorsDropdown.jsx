@@ -1,6 +1,4 @@
-import {
-  Button, Menu,
-} from 'antd'
+import { Button } from 'antd'
 import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
@@ -23,13 +21,10 @@ const CreateEvaluatorsDropdown = ({ openModal, permissions }) => {
       openModal('EvaluatorImportModal')
     }
   }
-  const menu = (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
 
   return (
     <ConditionalDropdown
-      menu={menu}
+      menu={{ items: menuItems, onClick: handleMenuClick }}
       className="mrm"
       hideForEmptyMenu
       innerElement={(

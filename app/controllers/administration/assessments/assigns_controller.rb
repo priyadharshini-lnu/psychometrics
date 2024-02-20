@@ -88,7 +88,7 @@ module Administration
       private
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+        add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
         add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), %i[administration assessments]
         add_breadcrumb t('.title', name: @assessment.decorate.display_name), request.path
       end

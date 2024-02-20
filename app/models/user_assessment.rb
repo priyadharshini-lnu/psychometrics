@@ -2,6 +2,7 @@
 
 # rubocop:disable Metrics/ClassLength
 class UserAssessment < ApplicationRecord
+  audited
   DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
 
   belongs_to :assessment
@@ -94,7 +95,19 @@ class UserAssessment < ApplicationRecord
   after_commit -> { sync_assessor_form_status_to_subject_meeting },
                if: proc { status_previously_changed? }, on: %i[update]
 
+  after_commit -> { calculate_and_save_campaign_scoring },
+               if: proc { status_previously_changed? && completed? }, on: %i[update]
+
   alias result users_result
+
+  def calculate_and_save_campaign_scoring
+    return unless CampaignUser.exists?(campaign_id: campaign_id, user_id: subject_id)
+
+    if self_assessment? || assessment.lead_assessor_form?
+      # TODO: Investigate why users_result.scoring is nil if we don't add delay of 30 seconds
+      CampaignScoring::CalculateAndSaveJob.set(wait: 30.seconds).perform_later(campaign, subject)
+    end
+  end
 
   def sync_assessor_form_status_to_subject_meeting
     subject_user_assessment = linked_subject_user_assessment
@@ -124,7 +137,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def self.ransackable_scopes(_auth_object = nil)
-    %i[filter_by_subject_or_assessment workshop_activity prework campaign_id_eq subject_id_eq workshop_activities]
+    %i[filter_by_subject_or_assessment preworks workshop_activities]
   end
 
   def saville_norm_id

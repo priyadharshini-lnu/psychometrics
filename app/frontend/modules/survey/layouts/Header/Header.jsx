@@ -5,8 +5,8 @@ import {
   EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
-import moment from 'moment'
 import cs from 'classnames'
+import dayjs from '~/utils/dayjs'
 import ActionsHistory from '~/modules/survey/components/ActionsHistory'
 import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
@@ -22,6 +22,11 @@ export class Header extends Component {
   openDataSheetModal = () => {
     const { openDataSheetModal, assessment } = this.props
     openDataSheetModal({ columns: assessment.data_sheet_columns, id: assessment.id })
+  }
+
+  openImportQuestionsModal = () => {
+    const { openImportQuestionsModal, assessment } = this.props
+    openImportQuestionsModal({ assessmentId: assessment.id })
   }
 
   openSettings = () => {
@@ -95,7 +100,7 @@ export class Header extends Component {
 
   updateTimer = (time) => {
     const { assessment: { extra }, updateExtra } = this.props
-    const timer = time && moment.duration(time.format('HH:mm:ss')).asSeconds()
+    const timer = time && dayjs.duration(time.format('HH:mm:ss')).asSeconds()
     updateExtra({ ...extra, timer })
   }
 
@@ -134,7 +139,7 @@ export class Header extends Component {
           {isAssessmentTimerAdded && (
           <Space>
             <ClockCircleOutlined size={24} />
-            {moment.utc(extra.timer * 1000).format('HH:mm:ss')}
+            {dayjs.utc(extra.timer * 1000).format('HH:mm:ss')}
           </Space>
           )}
         </Space>
@@ -197,6 +202,9 @@ export class Header extends Component {
                 </a>
               </li>
               <MenuItem onSelect={this.openDataSheetModal}>Manage Datasheet</MenuItem>
+              <MenuItem onSelect={this.openImportQuestionsModal}>
+                {I18n.t('administration.assessments.menu.import_questions')}
+              </MenuItem>
             </DropdownButton>
             <form
               style={{ display: 'none' }}

@@ -18,6 +18,8 @@ module Administration
     private
 
     def user_not_authorized
+      audit! :user_not_authorized, current_user, payload: params, outcome: :failed,
+      failure_reason: :user_not_authorized
       render plain: I18n.t('errors.forbidden'), status: 403
     end
 
@@ -51,14 +53,16 @@ module Administration
 
       @init_state = {
         currentUser: ::Administration::Campaigns::CurrentUserSerializer.new(
-          current_user,
-          project_id: params[:client_id]
-        ).to_h,
+          context: {
+            project_id: params[:client_id]
+          }
+        ).serialize(current_user),
         ui: {
           menu: ::Administration::NavigationLinksSerializer.new(
-            current_user,
-            project_id: params[:client_id]
-          ).to_h
+            context: {
+              project_id: params[:client_id]
+            }
+          ).serialize(current_user)
         },
         config: {
           availableLocales: I18n.available_locales,

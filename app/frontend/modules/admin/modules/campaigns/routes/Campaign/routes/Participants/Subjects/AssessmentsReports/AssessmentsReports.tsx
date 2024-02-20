@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Row, Col, Button, PageHeader, Descriptions, Switch, Tag, Modal, message, Space,
+  Row, Col, Button, Descriptions, Switch, Tag, App, Space,
 } from 'antd'
 import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -62,6 +63,7 @@ const AssessmentsReports: React.FC<Props> = ({
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
+  const { modal, message } = App.useApp()
 
   useEffect(() => {
     fetchSingleUser(parsedCampaignId, parsedUserId)
@@ -82,7 +84,7 @@ const AssessmentsReports: React.FC<Props> = ({
     const campaigns = _.map(user.campaigns, (campaign) => {
       if (campaign.id === parsedCampaignId) { return campaign.name }
       return (
-        <a key={campaign.id} href={`/administration/projects/${projectId}/new_campaigns/${campaignId}`}>
+        <a key={campaign.id} href={`/admin/projects/${projectId}/new_campaigns/${campaignId}`}>
           {campaign.name}
         </a>
       )
@@ -95,7 +97,7 @@ const AssessmentsReports: React.FC<Props> = ({
   const isFixedTime = campaign?.campaignOptions?.fixedTime || false
 
   const handleDelete = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -105,7 +107,7 @@ const AssessmentsReports: React.FC<Props> = ({
       cancelText: I18n.t('common.text.cancel'),
       onOk: () => {
         remove(campaignId, parsedUserId)
-        history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/users`)
+        history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/users`)
         message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email: user.email }))
       },
     })
@@ -233,7 +235,7 @@ const AssessmentsReports: React.FC<Props> = ({
                   })}
                 >
                   <PlusOutlined />
-                  <span>{I18n.t('reports.actions.add')}</span>
+                  <span>{I18n.t('user_reports.actions.add')}</span>
                 </Button>
               )}
             </Space>

@@ -91,6 +91,29 @@ module Api
             required(:message).maybe(:string)
           end
         end
+
+        def self.assessors_scores_response
+          json_api_records do
+            Dry::Schema.define do
+              required(:id).filled(:string)
+              required(:type).filled(:string)
+              required(:attributes).hash do
+                required(:id).maybe(:str?)
+                required(:evaluator).hash do
+                  optional(:id).maybe(:str?)
+                  optional(:first_name).maybe(:str?)
+                  optional(:last_name).maybe(:str?)
+                  optional(:email).maybe(:str?)
+                end
+                required(:assessment).hash do
+                  optional(:id).maybe(:str?)
+                  optional(:name).maybe(:str?)
+                end
+                optional(:scores).hash {} # rubocop:disable Lint/EmptyBlock
+              end
+            end
+          end
+        end
       end
     end
   end

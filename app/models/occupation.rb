@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Occupation < ApplicationRecord
+  audited
+
   include RansackSearchableFields
   include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
@@ -27,7 +29,7 @@ class Occupation < ApplicationRecord
   sync_to_active_storage :alternative_icon, :icon, :indicative_roles_image, :key_career_tracks_image
 
   def attachment_storage_path(attribute_name, filename)
-    "public/occupation/#{attribute_name}/#{filename}"
+    "public/occupation/#{id}/#{attribute_name}/#{filename}"
   end
 
   def log_attribute_for_delete

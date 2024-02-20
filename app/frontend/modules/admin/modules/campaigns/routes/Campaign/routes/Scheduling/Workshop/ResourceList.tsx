@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Button,
-  Menu,
+  MenuProps,
   Space,
   message,
 } from 'antd'
@@ -23,6 +23,11 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 
 const { I18n } = window
 
+const MODALS = {
+  WorkshopResourceForm,
+  ConfirmationModal,
+}
+
 const connector = connect(
   null,
   { openModal },
@@ -33,7 +38,6 @@ type Props = PropsFromRedux
 
 export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
   const { id, campaignId } = useParams<{ id: string, campaignId: string }>()
-  const [confirmation, setConfirmation] = useState(false)
 
   const config = {
     responseType: WorkshopResourceTR,
@@ -74,18 +78,16 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
             render={workshopResource => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     workshopResource,
-                    setConfirmation,
-                    confirmation,
                     openModal,
-                  }) as React.ReactElement
+                  })
                 }
               />
             )}
           />
         </Resource.Table>
-        <Modals modals={{ WorkshopResourceForm }} />
+        <Modals modals={MODALS} />
       </Resource>
     </>
   )
@@ -113,20 +115,17 @@ const ResourceFilter = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   workshopResource: WorkshopResource
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
   openModal: (modalName: string, modalProps: unknown) => void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
-  workshopResource, setConfirmation, confirmation, openModal,
-}) => {
+const getActionsMenuProps = ({
+  workshopResource, openModal,
+}: ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<WorkshopResource>()
 
   const handleOnConfirm = () => resource.removeResource(workshopResource.id).then(() => {
-    setConfirmation(false)
     message.success(
       I18n.t('administration.scheduling.resources.successful_remove', { resource_name: workshopResource?.name }),
     )
@@ -152,26 +151,20 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     key: 'remove',
     label: (
       <>
-        <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
+        <Button
+          type="link"
+          onClick={
+          () => openModal('ConfirmationModal', { open: true, onConfirm: handleOnConfirm })
+        }
+          className="ps-0"
+        >
           {I18n.t('common.actions.remove')}
         </Button>
-        {confirmation && (
-          <ConfirmationModal
-            title={I18n.t('administration.scheduling.resources.confirm_title')}
-            message={
-              I18n.t('administration.scheduling.resources.confirm_message', { resource_name: workshopResource?.name })
-            }
-            onConfirm={handleOnConfirm}
-            onCancel={() => setConfirmation(false)}
-          />
-        )}
       </>
     ),
   })
 
-  return (
-    <Menu items={menuItems} />
-  )
+  return ({ items: menuItems })
 }
 
 export const ResourceList = connector(ResourceListComponent)

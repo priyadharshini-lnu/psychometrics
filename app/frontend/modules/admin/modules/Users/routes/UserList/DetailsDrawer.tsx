@@ -27,13 +27,13 @@ export const DetailsDrawer: FC<Props> = ({
       placement="right"
       closable
       onClose={close}
-      visible
+      open
       width="40%"
     >
       <Row>
         <Descriptions
           layout="horizontal"
-          className="mb-6 w-100"
+          rootClassName="mb-6 w-100"
           bordered
           column={1}
         >

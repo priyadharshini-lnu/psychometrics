@@ -31,8 +31,10 @@ export const InputField: React.FC<Props> = ({
 
   return (
     <Form.Item
+      colon={false}
       className={styles.input}
       label={label}
+      labelAlign="left"
       hasFeedback={errors.length > 0}
       validateStatus={errors.length > 0 ? 'error' : 'success'}
       help={errors.length

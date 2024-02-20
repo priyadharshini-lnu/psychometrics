@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Modal, Switch, Tag, message, Tooltip,
+  Table, MenuProps, Row, Col, Input, Select, Pagination, Button, Switch, Tag, App, Tooltip,
 } from 'antd'
+import type { MessageInstance } from 'antd/es/message/interface'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
@@ -96,6 +98,7 @@ const UserList: React.FC<Props> = ({
   exportCompactCompletionStatuses,
   exportUsers,
 }) => {
+  const { modal, message } = App.useApp()
   useEffect(() => {
     fetch(campaignId, tableConfig)
   }, [tableConfig])
@@ -150,17 +153,26 @@ const UserList: React.FC<Props> = ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+            scroll={{ x: 1500 }}
+          >
             <Column
               title={I18n.t('administration.campaigns.users.id')}
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
+                <Link to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
                   {id}
                 </Link>
               )}
+              width={80}
+              fixed="left"
             />
             <Column
               title={I18n.t('administration.campaigns.users.is_active')}
@@ -214,10 +226,8 @@ const UserList: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('administration.campaigns.users.updated_by')}
-              key="updated_by"
-              sorter
-              sortOrder={getSortOrder('email')}
-              dataIndex="updated_by"
+              key="updatedBy"
+              dataIndex="updatedBy"
             />
             <Column
               title={I18n.t('administration.campaigns.users.completion_status')}
@@ -266,7 +276,7 @@ const UserList: React.FC<Props> = ({
               render={(user: User) => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       onEdit: () => openModal('UserFormModal', { campaignId, user }),
                       projectId,
                       campaignId,
@@ -274,7 +284,9 @@ const UserList: React.FC<Props> = ({
                       openModal,
                       remove: () => remove(campaignId, user.id),
                       permissions: user.permissions,
-                    }) as React.ReactElement
+                      modal,
+                      message,
+                    })
                   }
                   innerElement={(
                     <Button
@@ -307,7 +319,7 @@ const UserList: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   onEdit(): void
   projectId: string
   campaignId: string
@@ -320,15 +332,17 @@ interface ActionMenuProps {
     remove: boolean
   },
   openModal(name: string, props: object): void
+  modal: Omit<ModalStaticFunctions, 'warn'>,
+  message: MessageInstance
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, remove, campaignId, projectId, permissions, openModal, user,
-}) => {
+const getActionsMenuProps = ({
+  onEdit, remove, campaignId, projectId, permissions, openModal, user, modal, message,
+}: ActionMenuData):MenuProps => {
   const { email, id } = user
 
   const handleDelete = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -379,14 +393,12 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu
-      items={menuItems}
-      onClick={handleMenuClick}
-      id={`menu_campaign-subjects-${email}`}
-      aria-labelledby={`menu-button_campaign-subjects-${email}`}
-    />
-  )
+  return ({
+    items: menuItems,
+    onClick: handleMenuClick,
+    id: `menu_campaign-subjects-${email}`,
+    'aria-labelledby': `menu-button_campaign-subjects-${email}`,
+  })
 }
 
 export default withEnhancedTable<{}>(UserList, 'usersList', {

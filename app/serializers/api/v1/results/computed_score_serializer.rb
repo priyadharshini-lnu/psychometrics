@@ -3,7 +3,7 @@
 module Api
   module V1
     module Results
-      class ComputedScoreSerializer < ActiveModel::Serializer
+      class ComputedScoreSerializer < Panko::Serializer
         attributes :id, :name, :value
 
         def id

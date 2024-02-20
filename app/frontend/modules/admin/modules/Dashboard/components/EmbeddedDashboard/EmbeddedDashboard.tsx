@@ -1,10 +1,8 @@
 import React, {
   useEffect, useRef, useState,
 } from 'react'
-import {
-  Button,
-  PageHeader, Result, Skeleton,
-} from 'antd'
+import { PageHeader } from '@ant-design/pro-layout'
+import { Button, Result, Skeleton } from 'antd'
 import { ColumnWidthOutlined, FullscreenOutlined } from '@ant-design/icons'
 import { useHistory } from 'react-router-dom'
 import _ from 'lodash'

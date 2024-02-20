@@ -32,7 +32,7 @@ export default function NominationRequirementModal ({
       width={1000}
       title="Nomination Requirements"
       bodyStyle={{ padding: '0px' }}
-      visible
+      open
       onCancel={closeModal}
       footer={[
         <Button

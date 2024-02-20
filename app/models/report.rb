@@ -2,6 +2,8 @@
 
 # rubocop:disable Metrics/ClassLength
 class Report < ApplicationRecord
+  audited
+
   include Copyable
   include RansackSearchableFields
   include SoftDelete
@@ -38,9 +40,6 @@ class Report < ApplicationRecord
   has_many :clients_reports, dependent: :restrict_with_error
   has_many :clients, through: :clients_reports
   has_many :translations, as: :resource, dependent: :destroy
-  # TODO: Remove product_reports and products associations with models and table
-  has_many :product_reports, dependent: :destroy
-  has_many :products, through: :product_reports
   has_many :assigns_reports, dependent: :restrict_with_error
   has_many :user_reports, dependent: :restrict_with_error
   has_many :campaign_reports, dependent: :restrict_with_error
@@ -70,6 +69,7 @@ class Report < ApplicationRecord
   end
 
   scope :assignable, -> { where(disabled: false, archived: false) }
+  scope :campaign_factor_dependable, -> { where.not("campaign_factors::text = '[]'") }
 
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
@@ -98,20 +98,20 @@ class Report < ApplicationRecord
   enum provider: PROVIDERS, _prefix: :provider
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
-  serialize :external_settings, PsyJsonbSerializer
+  serialize :external_settings, coder: PsyJsonbSerializer
 
   mount_uploader :icon, Public::ImageUploader
   mount_uploader :poster, Public::ImageUploader
 
-  has_one_image_attachment :as_icon, variants: [:icon]
-  has_one_image_attachment :as_poster, variants: [:icon]
+  has_one_image_attachment :as_icon, variants: [:thumb]
+  has_one_image_attachment :as_poster, variants: [:thumb]
 
   # TODO: remove after migration to ActStor
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :icon, :poster
 
   def attachment_storage_path(attribute_name, filename)
-    "public/report/#{attribute_name}/#{filename}"
+    "public/report/#{id}/#{attribute_name}/#{filename}"
   end
 
   def delete_assessments_reports
@@ -134,6 +134,7 @@ class Report < ApplicationRecord
   scope :with_assessment_category, lambda { |assessment_category|
     assessment_category == 'all' ? all : joins(:assessments).where(assessments: { category: assessment_category })
   }
+
   # Search entity by assessment
   scope :with_assessment, lambda { |assessment_id|
     joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
@@ -248,6 +249,10 @@ class Report < ApplicationRecord
 
   def external_settings?
     provider_hogan? || provider_saville?
+  end
+
+  def self.ransackable_scopes(_)
+    %i[filterable_fields with_resource_state]
   end
 
   private

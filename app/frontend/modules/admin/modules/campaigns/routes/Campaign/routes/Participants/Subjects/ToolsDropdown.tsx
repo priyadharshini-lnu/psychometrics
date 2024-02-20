@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Button, Menu, message,
+  Button, MenuProps, message,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
@@ -10,14 +10,14 @@ import { ExportUsers, exportUsers } from '~/modules/admin/modules/campaigns/core
 
 const { I18n } = window
 
-const menu = ({
+const getMenuProps = ({
   campaignId,
   openModal,
   permissions,
   onExport,
   onUserExport,
   onCompactExport,
-}) => {
+}): MenuProps => {
   const menuItems: ItemType[] = []
   const exportMenuItems = [
     { key: 'export_completion', label: I18n.t('user.toolbar.export_detailed_completion_status') },
@@ -54,9 +54,7 @@ const menu = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 interface Props {
@@ -104,7 +102,7 @@ const ToolsDropdown: React.FC<Props> = ({
 
   return (
     <ConditionalDropdown
-      menu={menu({
+      menu={getMenuProps({
         campaignId,
         openModal,
         permissions,

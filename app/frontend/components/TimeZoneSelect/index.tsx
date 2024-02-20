@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import moment from 'moment-timezone'
 import { Select, SelectProps } from 'antd'
+import dayjs from '~/utils/dayjs'
 
-const timeZones = moment.tz.names()
-
+const timeZones = Intl.supportedValuesOf('timeZone')
 const { Option } = Select
 
 interface Props extends SelectProps {
@@ -28,15 +27,15 @@ const TimeZoneSelect: React.FC<Props> = ({
     onChange && onChange(tz)
   }
 
-  let timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${moment.tz(zone).format('Z')}) ${zone}` }))
-    .sort((a, b) => Number(moment.tz(a.zone).format('ZZ')) - Number(moment.tz(b.zone).format('ZZ')))
-  const timezoneGuess = moment.tz.guess()
+  let timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${dayjs().tz(zone).format('Z')}) ${zone}` }))
+    .sort((a, b) => Number(dayjs().tz(a.zone).format('ZZ')) - Number(dayjs().tz(b.zone).format('ZZ')))
+  const timezoneGuess = dayjs.tz.guess()
 
   if (timezoneGuess) {
     timezoneNames = [
       {
         zone: timezoneGuess,
-        label: `(GMT${moment.tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
+        label: `(GMT${dayjs().tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
       },
       ...timezoneNames.filter(z => z.zone !== timezoneGuess),
     ]

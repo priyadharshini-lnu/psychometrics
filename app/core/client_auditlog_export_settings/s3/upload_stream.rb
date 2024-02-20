@@ -17,7 +17,8 @@ module ClientAuditlogExportSettings
         BuildObject.call!(settings, file_name).upload_stream do |write_stream|
           query.find_in_batches(batch_size: BATCH_SIZE) do |batch|
             batch.each do |record|
-              write_stream << "#{record.attributes.to_json}\n"
+              audit_logs = AuditLogObject.call!(record)
+              write_stream << "#{audit_logs.to_json}\n"
             end
           end
         end

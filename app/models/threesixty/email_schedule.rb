@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Threesixty::EmailSchedule < ApplicationRecord
+  audited
+
   belongs_to :threesixty_campaign, class_name: 'Threesixty::Campaign'
   belongs_to :template, class_name: 'Threesixty::EmailTemplate'
   has_many :email_histories, class_name: 'Threesixty::EmailHistory', foreign_key: :threesixty_email_schedule_id,

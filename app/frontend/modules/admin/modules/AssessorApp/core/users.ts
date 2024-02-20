@@ -14,7 +14,10 @@ const UserTR = t.type({
   email: t.string,
   totalEvaluations: t.number,
   completedEvaluations: t.number,
-  completionStatus: t.string,
+  evaluationCompletionStatus: t.string,
+  totalModeration: t.number,
+  completedModeration: t.number,
+  moderationCompletionStatus: t.string,
 })
 
 const UserListResponseTR = t.type({
@@ -26,6 +29,7 @@ const SingleUserTR = t.type({
   id: t.number,
   email: t.string,
   fullName: t.string,
+  assessorCanModerateScores: t.boolean,
 })
 export type SingleUser = t.TypeOf<typeof SingleUserTR>
 

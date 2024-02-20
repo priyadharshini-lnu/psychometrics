@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignReport < ApplicationRecord
+  audited
+
   belongs_to :campaign
   belongs_to :report
   belongs_to :report_family

@@ -4,8 +4,8 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { SearchOutlined } from '@ant-design/icons'
-import moment from 'moment'
 import _ from 'lodash'
+import dayjs from '~/utils/dayjs'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
@@ -183,7 +183,7 @@ const TasksListComponent: React.FC<Props> = ({
               <div>{qcUser?.name}</div>
               {qcAt && (
               <div>
-                {moment(qcAt).format('DD MM YYYY / hh:mm')}
+                {dayjs(qcAt).format('DD MM YYYY / hh:mm')}
               </div>
               )}
             </>
@@ -198,7 +198,7 @@ const TasksListComponent: React.FC<Props> = ({
               <div>{approverUser?.name}</div>
               {approvedAt && (
               <div>
-                {moment(approvedAt).format('DD MM YYYY / hh:mm')}
+                {dayjs(approvedAt).format('DD MM YYYY / hh:mm')}
               </div>
               )}
             </>
@@ -211,7 +211,7 @@ const TasksListComponent: React.FC<Props> = ({
             id, campaign, projectId, pdfUrl, approvalStatus,
           }) => (
             <Space>
-              <a href={`/administration/projects/${projectId}/new_campaigns/${campaign.id}/user_reports/${id}`}>
+              <a href={`/admin/projects/${projectId}/new_campaigns/${campaign.id}/user_reports/${id}`}>
                 {I18n.t('administration.report_approval.review')}
               </a>
               {approvalStatus === 'approved' && pdfUrl && (

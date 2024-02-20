@@ -2,7 +2,7 @@ import { ChangeEvent, FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory, useLocation, useParams } from 'react-router'
 import {
-  Col, Input, Pagination, Row, Table, Modal, message,
+  Col, Input, Pagination, Row, Table, App, Modal,
 } from 'antd'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -79,9 +79,9 @@ const AssessorsComponent: FC<Props> = ({
   const drawerAssessorId = searchParams.get(
     DRAWER_SEARCH_PARAMS.ASSESSOR_ID,
   ) as string
-
   const params = useParams<{ projectId: string }>()
   const projectId = parseInt(params.projectId, 10)
+  const { modal, message } = App.useApp()
 
   useDocumentTitle(
     I18n.t('administration.document_titles.project_assessors', {
@@ -131,7 +131,7 @@ const AssessorsComponent: FC<Props> = ({
     const assessor = assessorsList.find(assessor => assessor.id === id)
     const name = `${assessor?.firstName ?? ''} ${assessor?.lastName ?? ''}`
 
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.project_users.modal_delete_title'),
       content: I18n.t('administration.project_users.modal_delete_content', {
         name,
@@ -161,7 +161,7 @@ const AssessorsComponent: FC<Props> = ({
     const assessor = assessorsList.find(assessor => assessor.id === id)
     const email = assessor?.email ?? ''
 
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.project_users.model_reset_email'),
       content: I18n.t(
         'administration.project_users.modal_reset_email_content',
@@ -304,7 +304,7 @@ const AssessorsComponent: FC<Props> = ({
         </Col>
       </Row>
       <EditDrawer
-        isVisible={drawerMode === DrawerMode.Edit}
+        isOpen={drawerMode === DrawerMode.Edit}
         projectId={projectId}
         assessorId={drawerAssessorId}
         handleClose={handleDrawerClose}

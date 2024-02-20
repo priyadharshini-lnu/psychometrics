@@ -12,6 +12,7 @@ import TextEntry from '../../Base/Series/TextEntry'
 import DataSheet from './DataSheet'
 import ReportData from './ReportData'
 import SavilleFactor from './SavilleFactor'
+import CampaignFactors from './CampaignFactors'
 
 export default {
   Slider: Base,
@@ -29,6 +30,7 @@ export default {
   ExternalFactor,
   TextEntry,
   DataSheet,
+  CampaignFactors,
   SavilleFactor,
   ReportData,
 }

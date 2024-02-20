@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Table, Menu, Input, Pagination, Modal, message, Button, Space,
+  Row, Col, Table, MenuProps, Input, Pagination, Button, Space, App,
 } from 'antd'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
+import type { MessageInstance } from 'antd/es/message/interface'
 import {
   MoreOutlined, AppstoreOutlined, ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
 } from '@ant-design/icons'
@@ -72,6 +74,7 @@ const AssessmentList: React.FC<Props> = ({
   rescore,
 }) => {
   const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
+  const { modal, message } = App.useApp()
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedAssessorId = parseInt(id, 10)
 
@@ -80,7 +83,7 @@ const AssessmentList: React.FC<Props> = ({
   }, [tableConfig])
 
   const handleBulkDelete = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -89,7 +92,7 @@ const AssessmentList: React.FC<Props> = ({
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
       onOk: async () => {
-        await bulkDelete(parsedCampaignId, parsedAssessorId, selectedIds)
+        await bulkDelete(parsedCampaignId, parsedAssessorId, selectedIds || [])
         await fetch(parsedCampaignId, parsedAssessorId, tableConfig)
         message.success(I18n.t('administration.assessor.assessments.bulk_delete_successful'))
       },
@@ -182,13 +185,15 @@ const AssessmentList: React.FC<Props> = ({
               render={({ subjectEmail, id, permissions }) => (
                 <ConditionalDropdown
                   menu={
-                    ActionsMenu({
+                    getActionsMenuProps({
                       subjectEmail,
                       reset: () => reset(parsedCampaignId, parsedAssessorId, id),
                       resetProgress: () => resetProgress(parsedCampaignId, parsedAssessorId, id),
                       rescore: () => rescore(parsedCampaignId, parsedAssessorId, id),
                       permissions,
-                    }) as React.ReactElement
+                      modal,
+                      message,
+                    })
                   }
                   innerElement={(
                     <a>
@@ -215,7 +220,7 @@ const AssessmentList: React.FC<Props> = ({
   )
 }
 
-interface ActionsMenuProps {
+interface ActionsMenuData {
   subjectEmail: string
   reset(): Promise<{ response: unknown}>
   rescore(): Promise<{ response: unknown}>
@@ -223,13 +228,15 @@ interface ActionsMenuProps {
   permissions: {
     resetEvaluation: boolean
   }
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
-const ActionsMenu: React.FC<ActionsMenuProps> = ({
-  subjectEmail, reset, resetProgress, permissions, rescore,
-}) => {
+const getActionsMenuProps = ({
+  subjectEmail, reset, resetProgress, permissions, rescore, modal, message,
+}: ActionsMenuData): MenuProps => {
   const handleReset = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -245,7 +252,7 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
   }
 
   const handleResetProgress = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
@@ -279,9 +286,7 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
       return rescore()
     }
   }
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export default connecter(withEnhancedTable<{}>(AssessmentList, 'assessorAssessmentsList', { maintainHistory: true }))

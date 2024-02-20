@@ -2,6 +2,10 @@
 
 module Reports
   class Page < ApplicationRecord
+    self.table_name_prefix = 'reports_'
+
+    audited
+
     include Copyable
 
     belongs_to :report, touch: true
@@ -13,9 +17,5 @@ module Reports
     acts_as_list scope: :report_id
 
     validates :report, presence: true
-
-    def self.table_name_prefix
-      'reports_'
-    end
   end
 end

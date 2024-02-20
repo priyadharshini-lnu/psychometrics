@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Switch, message,
+  Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
@@ -34,8 +34,10 @@ const ReportList: React.FC<Props> = ({
   toggleAssessorAccess,
   exportData,
   toggleUserDashboard,
+  toggleMainReport,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
+  const { message } = App.useApp()
 
   const handleExportData = (campaignId: number, reportId: number) => {
     exportData(campaignId, reportId).then(() => {
@@ -103,12 +105,23 @@ const ReportList: React.FC<Props> = ({
             )}
           />
           <Column
+            title={I18n.t('campaign_report.column.main_report')}
+            key="userDashboard"
+            render={({ mainReport, id }) => (
+              <Switch
+                checked={mainReport}
+                disabled={!reportPermissions.toggleMainReport}
+                onChange={() => toggleMainReport(parsedCampaignId, id, !mainReport)}
+              />
+            )}
+          />
+          <Column
             title={I18n.t('common.column.action')}
             key="action"
             render={report => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     campaignId: parsedCampaignId,
                     campaignReportId: report.id,
                     reportId: report.reportId,
@@ -116,7 +129,7 @@ const ReportList: React.FC<Props> = ({
                     permissions: report.permissions,
                     openModal,
                     exportData: handleExportData,
-                  }) as React.ReactElement
+                  })
                 }
                 innerElement={(
                   <a>
@@ -132,7 +145,7 @@ const ReportList: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   campaignId: number
   reportId: number
   campaignReportId: number
@@ -145,9 +158,9 @@ interface ActionMenuProps {
   exportData(campaignId: number, reportId: number): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   campaignId, reportId, campaignReportId, reportName, openModal, permissions, exportData,
-}) => {
+}: ActionMenuData): MenuProps => {
   const menuItems: ItemType[] = []
   permissions.export && menuItems.push({
     key: 'export',
@@ -167,9 +180,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export default withRouter(ReportList)

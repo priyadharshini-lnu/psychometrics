@@ -23,6 +23,7 @@ import {
   RemoveRelationships, AddRelationship,
 } from './interfaces'
 import { formatErrors, defaultState } from './utils'
+import { isLiveEnvironment } from '~/utils/isLiveEnvironment'
 
 export function useResources<R extends {id: string}, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
@@ -84,7 +85,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }
 
   const responseTypeValidation = (responseType: ResponseType, data) => {
-    if (window.PsyGlobalState.realEnv === 'production') { return }
+    if (isLiveEnvironment()) { return }
 
     if (responseType) {
       const decoded = t.array(responseType).decode([data])
@@ -178,7 +179,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return new Promise(async (resolve, reject) => {
       let response: IResult<R> | null = null
       if (method === 'get') {
-        response = await client.fetch<R>([fetchResourceName, id, action, apiConfig || {}])
+        const newApiConfig = _.merge({}, apiConfig, humps.decamelizeKeys(body || {}))
+        response = await client.fetch<R>([fetchResourceName, id, action, newApiConfig || {}])
       } else {
         response = await client.mutate<R>(
           [resourceName, id, action, apiConfig || {}], humps.decamelizeKeys(body || {}),
@@ -244,6 +246,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           resolve(camelizedData)
           if (args.updateStore && args.responseType === responseType) {
             updateIndividualRecord(camelizedData)
+          } else if (args.updateStore) {
+            updateMultipleRecord(camelizedData)
           }
           responseTypeValidation(memberResponseType, camelizedData)
         }
@@ -251,6 +255,20 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
         reject(formattedErrors)
       }
       setRequestStatus(requestKey, formattedErrors)
+    })
+  }
+
+  const updateMultipleRecord = (camelizedResponse: R[]) => {
+    setState((previousState: ResourceState<R[], M>) => {
+      let { data } = previousState
+      const normalizedData = _.keyBy(camelizedResponse, 'id')
+      data = previousState.data.map((resource) => {
+        if (normalizedData[resource.id]) {
+          return normalizedData[resource.id]
+        }
+        return resource
+      })
+      return { ...previousState, data }
     })
   }
 
@@ -494,7 +512,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
         const filterName = `${columnKey}_in`
         if (filterValues === null) {
           removeFilter(filterName)
-        } else {
+        } else if (!_.isEqual(filterValues, queryState?.filter?.[filterName])) {
           const values = filterValues as string[]
           changeFilter(filterName, values)
         }

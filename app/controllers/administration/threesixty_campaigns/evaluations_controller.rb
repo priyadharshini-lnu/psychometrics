@@ -21,11 +21,14 @@ module Administration
         @users_result.current_page = 0
         piped_text_context = get_piped_text_context
         @results = UsersResultSerializer.new(
-          @users_result,
-          participant: @participant, campaign: threesixty_campaign,
-          current_user: current_user, locale: @selected_locale,
-          piped_text_context: piped_text_context, read_only: true
-        ).to_hash(include: '**')
+          context: {
+            participant: @participant, campaign: threesixty_campaign,
+            current_user: current_user, locale: @selected_locale,
+            piped_text_context: piped_text_context,
+            read_only: true,
+            include: '**'
+          }
+        ).serialize(@users_result)
 
         @assessment = ::AssessmentSerializer.new(
           threesixty_campaign.assessment,

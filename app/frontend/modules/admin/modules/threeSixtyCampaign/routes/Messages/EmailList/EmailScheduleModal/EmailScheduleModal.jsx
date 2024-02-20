@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Input, message, Switch,
+  Modal, Button, Input, App, Switch,
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 import cs from 'classnames'
@@ -31,6 +31,7 @@ export default function EmailScheduleModal ({
   },
 }) {
   const [errors, setErrors] = useState(null)
+  const { message } = App.useApp()
   const emailSchedule = _.find(list, ({ id }) => id === selectedId)
   const isEdit = !!data.selectedEmailScheduleId
 
@@ -81,7 +82,7 @@ export default function EmailScheduleModal ({
     <Modal
       width={800}
       title="Schedule Email"
-      visible
+      open
       onCancel={closeModal}
       bodyStyle={{ padding: '0px' }}
       footer={[

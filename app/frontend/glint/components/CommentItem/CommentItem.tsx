@@ -1,14 +1,14 @@
 import { FC, useState } from 'react'
 import {
-  Row, Col, Avatar, Dropdown, Menu, Typography, Space, Input, Button, Modal,
+  Row, Col, Avatar, Dropdown, Typography, Space, Input, Button, Modal,
 } from 'antd'
 import {
   MoreOutlined, UserOutlined, ExclamationCircleOutlined, CheckOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import moment from 'moment'
 import _ from 'lodash'
+import dayjs from '~/utils/dayjs'
 import styles from './CommentItem.less'
 
 type Props = {
@@ -72,7 +72,6 @@ export const CommentItem: FC<Props> = ({
       onCommentResolve && onCommentResolve(comment.id, comment.resolved)
     }
   }
-  const menu = <Menu items={menuItems} onClick={handleMenuClick} />
   const avatarIcon = creator.avatarUrl ? null : <UserOutlined />
   const handleSave = () => {
     onCommentEditSave && onCommentEditSave({ commentText, commentId: comment.id }).then(() => {
@@ -97,7 +96,7 @@ export const CommentItem: FC<Props> = ({
           <Avatar size={40} icon={avatarIcon} src={creator.avatarUrl} />
         </Col>
         <Col flex={1}>
-          <Text className={styles.timestamp} type="secondary">{moment(comment.createdAt).fromNow()}</Text>
+          <Text className={styles.timestamp} type="secondary">{dayjs(comment.createdAt).fromNow(true)}</Text>
           <div className={styles.name}>{creator.fullName}</div>
         </Col>
         {comment.resolved && (
@@ -109,7 +108,7 @@ export const CommentItem: FC<Props> = ({
           <div className={styles.actionMenu}>
             <Dropdown
               trigger={['click']}
-              overlay={menu}
+              menu={{ items: menuItems, onClick: handleMenuClick }}
             >
               <a>
                 <MoreOutlined data-testid="more-options" className={styles.triggerIcon} />

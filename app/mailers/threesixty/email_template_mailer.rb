@@ -10,6 +10,7 @@ module Threesixty
       from_name = email_template.from || smtp_setting.from_name
       from_email = smtp_setting.enabled? && smtp_setting.from_email.presence
       from_email ||= "no-reply@#{Settings.domain}"
+      # rubocop:disable CustomRubocops/AvoidDirectUseOfMailMethod
       mail(
         from: "#{from_name} <#{from_email}>",
         to: to_email,
@@ -19,6 +20,7 @@ module Threesixty
         content_type: 'text/html',
         delivery_method_options: smtp_setting.settings_for_email
       )
+      # rubocop:enable CustomRubocops/AvoidDirectUseOfMailMethod
     end
   end
 end

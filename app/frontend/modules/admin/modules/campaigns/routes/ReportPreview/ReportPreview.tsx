@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import cs from 'classnames'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, message, Affix, Dropdown, Menu, Tag,
+  Layout, Button, Row, Col, Spin, Space, App, Affix, Dropdown, Tag,
 } from 'antd'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
 import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
@@ -41,6 +42,7 @@ export default function ReportPreview ({
   const [pages, setPages] = useState([])
   const location = useLocation()
   const history = useHistory()
+  const { message } = App.useApp()
 
   const params = new URLSearchParams(location.search)
 
@@ -107,10 +109,7 @@ export default function ReportPreview ({
       { key: 'all', label: I18n.t('common.text.all_pages') },
     ]
     const actionList = [
-      <Dropdown overlay={(
-        <Menu items={menuItems} onClick={onChangeView} />
-        )}
-      >
+      <Dropdown menu={{ items: menuItems, onClick: onChangeView }}>
         <Button>
           <Space>
             {I18n.t('common.text.view_as')}
@@ -203,21 +202,21 @@ export default function ReportPreview ({
             },
           }}
           crumbs={[{
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('administration.clients.tenancies'),
           }, {
-            link: state => `/administration/clients/${state.client.id}/projects`,
+            link: state => `/admin/clients/${state.client.id}/projects`,
             label: state => state.client.name,
           }, {
-            link: state => `/administration/projects/${state.project.id}/new_campaigns`,
+            link: state => `/admin/projects/${state.project.id}/new_campaigns`,
             label: state => state.project.name,
           }, {
-            link: state => `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
+            link: state => `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
             label: state => state.campaign?.name,
           }, {
             link: state => (reportIsLoaded()
               // eslint-disable-next-line max-len
-              ? `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}/users/${userReport.user.id}`
+              ? `/admin/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/users/${userReport.user.id}`
               : ''),
             label: () => (reportIsLoaded() ? userReport.user.email : ''),
           }, {

@@ -17,7 +17,7 @@ module AdminJobs
       return {} unless campaign
 
       {
-        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}",
+        href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}",
         label: campaign.name
       }
     end

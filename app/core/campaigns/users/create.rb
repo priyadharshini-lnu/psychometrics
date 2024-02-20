@@ -29,7 +29,7 @@ module Campaigns
         @existing_user_in_project ||= User.find_by(project_id: campaign.project_id, email: form.email)
       end
 
-      def create_campaign_user
+      def create_campaign_user # rubocop:disable Metrics/AbcSize
         if existing_user_in_project
           @user = existing_user_in_project
           if form.first_name.present? && form.last_name &&
@@ -37,18 +37,22 @@ module Campaigns
             @user.update!(first_name: form.first_name, last_name: form.last_name, modifier: current_user)
           end
         else
-          user_attributes = form.to_h.except(
-            :operation, :campaign_ids, :schedule_start_date, :schedule_start_date, :schedule_end_date, :active
-          ).merge(
-            project: project,
-            create_by_invite: true,
-            creator: current_user,
-            modifier: current_user
-          )
-          @user = User.create!(user_attributes)
-          AuditLogModule.audit!(
-            :create, user, user: current_user, campaign: campaign, payload: form.attributes
-          )
+          ActiveRecord::Base.transaction do
+            user_attributes = form.to_h.except(
+              :operation, :campaign_ids, :active, :locale,
+              :schedule_start_date, :schedule_start_date, :schedule_end_date
+            ).merge(
+              project: project,
+              create_by_invite: true,
+              creator: current_user,
+              modifier: current_user
+            )
+            @user = User.create!(user_attributes)
+            @user.user_profile.update(locale: form.locale)
+            AuditLogModule.audit!(
+              :create, user, user: current_user, campaign: campaign, payload: form.attributes
+            )
+          end
         end
         @campaign_user = campaign.campaign_users.find_or_initialize_by(user: user)
         campaign_user.assign_attributes(

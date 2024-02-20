@@ -7,6 +7,12 @@ class TestSchema < Api::Base::Schema
     'clients'
   end
 
+  def self.define_schema(&)
+    Dry::Schema.define do
+      instance_eval(&)
+    end
+  end
+
   def self.attributes(attribute, _)
     proc do
       attribute[:name].filled(:string)

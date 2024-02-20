@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Library < ApplicationRecord
+  audited
+
   include OwnerValidations
   include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
@@ -22,7 +24,7 @@ class Library < ApplicationRecord
   sync_to_active_storage :file
 
   def attachment_storage_path(attribute_name, filename)
-    "public/library/#{attribute_name}/#{filename}"
+    "public/library/#{id}/#{attribute_name}/#{filename}"
   end
 
   validates :name, presence: true, if: proc { folder? }

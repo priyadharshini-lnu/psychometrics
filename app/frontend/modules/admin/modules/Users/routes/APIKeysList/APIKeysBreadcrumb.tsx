@@ -15,12 +15,12 @@ export const APIKeysBreadcrumb: React.FC = () => {
       <Breadcrumb
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('users.dashboard'),
           },
           {
             label: () => I18n.t('users.admins'),
-            link: () => '/administration/users/admins',
+            link: () => '/admin/users/admins',
           },
           {
             label: () => resource.meta.user?.email,

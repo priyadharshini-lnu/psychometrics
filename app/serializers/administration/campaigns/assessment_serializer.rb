@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class AssessmentSerializer < ActiveModel::Serializer
+    class AssessmentSerializer < Panko::Serializer
       attributes :id, :name, :icon_url, :icon_color
 
       def icon_url

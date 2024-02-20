@@ -20,7 +20,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       scheduled_date: Time.zone.now.advance(days: 2)
     )
 
-    expect(Threesixty::ScheduleEmailMailer).to_not receive(:send_email)
+    expect(Threesixty::ScheduleEmailMailer).to_not receive(:send_scheduled_email)
     described_class.call!(email_schedule)
   end
 
@@ -31,10 +31,10 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       scheduled_date: Time.zone.now
     )
 
-    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_scheduled_email).
       with(email_schedule, { recipient: recipients[0], threesixty_campaign: email_schedule.threesixty_campaign }).
       and_return(message_delivery)
-    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_scheduled_email).
       with(email_schedule, { recipient: recipients[1], threesixty_campaign: email_schedule.threesixty_campaign }).
       and_return(message_delivery)
 
@@ -52,7 +52,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       meta: { subject_ids: subjects.map(&:id) }
     )
 
-    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_scheduled_email).
       with(
         email_schedule,
         {
@@ -64,7 +64,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       ).
       and_return(message_delivery)
 
-    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_scheduled_email).
       with(
         email_schedule,
         {
@@ -90,7 +90,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       meta: { evaluator_ids: evaluators.map(&:id), subject_ids: 1 }
     )
 
-    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_scheduled_email).
       with(
         email_schedule,
         {
@@ -102,7 +102,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       ).
       and_return(message_delivery)
 
-    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_scheduled_email).
       with(
         email_schedule,
         {
@@ -241,7 +241,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       subject_id: subjects[1].id
     )
 
-    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_scheduled_email).
       once.with(email_schedule,
                 hash_including(subject_ids: subjects.map(&:id))).and_return(message_delivery)
 
@@ -271,7 +271,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       subject_id: subjects[1].id
     )
 
-    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).twice.and_return(message_delivery)
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_scheduled_email).twice.and_return(message_delivery)
 
     described_class.call!(email_schedule)
   end

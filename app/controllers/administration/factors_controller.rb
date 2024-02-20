@@ -120,7 +120,7 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
     add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
     add_breadcrumb @dimension.name
     add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
@@ -133,7 +133,7 @@ class Administration::FactorsController < Administration::BaseController
   def resource_params
     params.require(:resource).permit(:id, :name, :description, :icon, :remove_icon, :dimension_id, :scoring_strategy,
                                      :code, :use_percentage, :use_sub_factor_norm_score,
-                                     :scale_min, :scale_max,
+                                     :scale_min, :scale_max, :custom_formula,
                                      external_scoring: %i[type jsonpath],
                                      factors_sub_factors_attributes:
                                       %i[id weight _destroy sub_factor_id position predicate value])

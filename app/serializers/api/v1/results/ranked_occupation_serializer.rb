@@ -3,7 +3,7 @@
 module Api
   module V1
     module Results
-      class RankedOccupationSerializer < ActiveModel::Serializer
+      class RankedOccupationSerializer < Panko::Serializer
         attributes :id, :rank, :name, :value, :stars
 
         def id

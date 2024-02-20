@@ -1,5 +1,6 @@
-import React, { useState, useEffect, ReactElement } from 'react'
-import { Form, message, Alert } from 'antd'
+import React, { useState, useEffect, ReactNode } from 'react'
+import { Form, App, Alert } from 'antd'
+import humps from 'humps'
 import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
@@ -30,7 +31,7 @@ interface JSONApiError {
   detail?: string
 }
 
-type ChildrenProps = {
+export type ChildrenProps = {
   form: FormInstance, status: string | null, isEdit: boolean, fieldsUtil: FieldsUtil
 }
 
@@ -40,7 +41,7 @@ export type OwnProps = {
   readableResourceName?: string
   requestScope?: string
   resource?: Resource
-  resourceId?: number
+  resourceId?: number | string
   request?: Partial<Request>
   submitRequest?: (values: object) => Promise<unknown>
   showSuccessMessages?: boolean
@@ -54,7 +55,7 @@ export type OwnProps = {
     fields?: FieldData[],
     setFields?(fields: object): void
   }
-  children(props: ChildrenProps): ReactElement | React.FC
+  children(props: ChildrenProps): ReactNode
   scrollToFirstError?: boolean
   mockRequest?: boolean
   nullifyEmptyString?: boolean
@@ -83,6 +84,7 @@ const ResourceForm: React.FC<Props> = ({
   const [status, setStatus] = useState<string | null>(null)
   const [fields, setFields] = useState<FieldData[] | []>([])
   const [baseErrors, setBaseErrors] = useState<string[] | JSONApiError[]>()
+  const { message } = App.useApp()
 
   const store = {
     fields: (storeManager && storeManager.fields) || fields,
@@ -202,6 +204,7 @@ const ResourceForm: React.FC<Props> = ({
 
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
+    errors = { ...errors, ...humps.decamelizeKeys(errors) }
     removeErrors()
     _.each(errors, (error: string | string[] | JSONApiError, name: string) => {
       const field = _.find(store.fields, field => _.includes(field.name as string[], name))

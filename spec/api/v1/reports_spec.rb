@@ -200,6 +200,7 @@ describe 'Reports' do
 
         run_test! do |response|
           result = JSON.parse(response.body)
+
           expect(result['assessments']).to be_an_instance_of(Array)
           expect(result).to have_key('user_data')
         end

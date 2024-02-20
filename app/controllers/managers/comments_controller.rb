@@ -10,7 +10,10 @@ module Managers
       @resource = @task.comments.new(resource_params)
       @resource.creator = current_user
       respond_to do |format|
-        format.js if @resource.save
+        if @resource.save
+          audit! :create, @resource, payload: resource_params, user: current_user
+          format.js
+        end
       end
     end
 

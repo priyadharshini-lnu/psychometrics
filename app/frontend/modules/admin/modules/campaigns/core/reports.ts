@@ -35,6 +35,7 @@ export const CREATE = 'resource/campaigns/report/CREATE'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 export const TOGGLE_USER_DASHBOARD = 'resource/campaigns/report/TOGGLE_USER_DASHBOARD'
+export const TOGGLE_MAIN_REPORT = 'resource/campaigns/report/TOGGLE_MAIN_REPORT'
 export const TOGGLE_ASSESSOR_ACCESS = 'campaigns/report/TOGGLE_ASSESSOR_ACCESS'
 export const TOGGLE_ASSESSOR_ACCESS_REQUEST = 'campaigns/report/TOGGLE_ASSESSOR_ACCESS_REQUEST'
 export const SELECT_RECORDS = 'campaigns/reports/SELECT_RECORDS'
@@ -71,6 +72,17 @@ export const toggleUserDashboard = (campaignId: number, campaignReportId: number
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/reports/${campaignReportId}/toggle_user_dashboard`,
+  },
+})
+
+export const toggleMainReport = (campaignId: number, campaignReportId: number, value: boolean) => ({
+  type: TOGGLE_MAIN_REPORT,
+  request: {
+    method: 'patch',
+    url: `/administration/new_campaigns/${campaignId}/reports/${campaignReportId}/toggle_main_report`,
+    body: {
+      mainReport: value,
+    },
   },
 })
 
@@ -140,6 +152,7 @@ export interface State {
     toggleUserAccess: boolean
     toggleAssessorAccess: boolean
     toggleUserDashboard: boolean
+    toggleMainReport: boolean
     addReport: boolean
     bulkDownload: boolean
     regenerate: boolean
@@ -192,6 +205,11 @@ const HANDLERS = {
   [TOGGLE_USER_DASHBOARD]: (state: State, { response }: ToggleUserAccessType) => (
     updateIn(state, ['list'], (reports: Report[]) => _.map(reports, (report: Report) => (
       report.id === response.id ? response : { ...report, userDashboard: false }
+    )))
+  ),
+  [TOGGLE_MAIN_REPORT]: (state: State, { response }: ToggleUserAccessType) => (
+    updateIn(state, ['list'], (reports: Report[]) => _.map(reports, (report: Report) => (
+      report.id === response.id ? response : { ...report, mainReport: false }
     )))
   ),
   [TOGGLE_ASSESSOR_ACCESS_REQUEST]: (state: State, { id }: ToggleAssessorAccessType) => (

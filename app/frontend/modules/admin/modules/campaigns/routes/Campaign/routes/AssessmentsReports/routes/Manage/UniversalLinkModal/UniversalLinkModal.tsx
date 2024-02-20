@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {
-  Input, Modal, Button, message, Switch,
+  Input, Modal, Button, Switch, App,
 } from 'antd'
 import { CopyOutlined, DownloadOutlined } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import styles from './styles.less'
+import { useUpdateEffect } from '~/hooks/useUpdateEffect'
 
 const { I18n } = window
 
@@ -12,12 +13,11 @@ interface Props {
   campaignId: string
   campaignAssessmentId: number
   universalLink: string
-  manageUniversalLink: boolean
+  enableUniversalLinks: boolean
   allowMultipleResponses: boolean
   close(): void
-  deactivateUniversalLink(campaignId: string, id: number): void
-  regenerateUniversalLink(campaignId: string, id: number): void
-  toggleMultipleResponses(campaignId: string, id: number): Promise<{response: unknown}>
+  saveUniversalLink(campaignId: string, id: number, data): Promise<{response: unknown}>
+  regenerateUniversalLink(campaignId: string, id: number): Promise<{response: unknown}>
 ()
 }
 
@@ -25,28 +25,37 @@ const UniversalLinkModal: React.FC<Props> = ({
   campaignId,
   campaignAssessmentId: id,
   universalLink,
-  manageUniversalLink,
+  enableUniversalLinks,
   allowMultipleResponses,
   close,
-  deactivateUniversalLink,
+  saveUniversalLink,
   regenerateUniversalLink,
-  toggleMultipleResponses,
 }) => {
   const [multipleResponses, setMultipleResponses] = useState(allowMultipleResponses)
+  const [active, setActive] = useState(enableUniversalLinks)
+  const { message, modal } = App.useApp()
 
-  const deactivate = () => {
-    deactivateUniversalLink(campaignId, id)
-    close()
+  const save = () => {
+    saveUniversalLink(campaignId, id, { active, allowMultipleResponses: multipleResponses }).then(() => {
+      message.info(I18n.t('universal_links.successfully_updated'))
+    })
   }
+
+  useUpdateEffect(() => {
+    save()
+  }, [multipleResponses, active])
 
   const regenerate = () => {
-    regenerateUniversalLink(campaignId, id)
-  }
-
-  const onToggleMultipleResponses = () => {
-    toggleMultipleResponses(campaignId, id).then(() => {
-      message.success(I18n.t('universal_links.successfully_updated'))
-      setMultipleResponses(!multipleResponses)
+    modal.confirm({
+      title: I18n.t('administration.administrators.modals.delete.title'),
+      content: 'Are you sure? This will make the existing URL unusable.',
+      onOk: async () => {
+        regenerateUniversalLink(campaignId, id).then(() => {
+          message.info(I18n.t('universal_links.successfully_generated'))
+        }).catch((error) => {
+          message.error(error)
+        })
+      },
     })
   }
 
@@ -54,20 +63,9 @@ const UniversalLinkModal: React.FC<Props> = ({
     <Modal
       width={650}
       title="Universal Link"
-      visible
+      open
       onCancel={close}
-      footer={manageUniversalLink ? [
-        <Button key="deactivate" onClick={deactivate}>
-          {I18n.t('universal_links.deactivate_link')}
-        </Button>,
-        <Button key="regenerate" type="primary" onClick={regenerate}>
-          {I18n.t('universal_links.regenerate_link')}
-        </Button>,
-      ] : [
-        <Button key="universal_link_close" onClick={close}>
-          {I18n.t('universal_links.close')}
-        </Button>,
-      ]}
+      footer={null}
     >
       <div>
         <div className={styles.qrcode}>
@@ -89,22 +87,35 @@ const UniversalLinkModal: React.FC<Props> = ({
           </a>
         </div>
 
-        <div className={styles.input}>
-          <Input
-            value={universalLink}
-            suffix={(
-              <CopyToClipboard
-                text={universalLink}
-                onCopy={() => message.info('URL is copied to clipboard successfully')}
-              >
-                <CopyOutlined />
-              </CopyToClipboard>
+        <div className={styles.controls}>
+          <div className={styles.link}>
+            <Input
+              value={universalLink}
+              className={styles.input}
+              suffix={(
+                <CopyToClipboard
+                  text={universalLink}
+                  onCopy={() => message.info('URL is copied to clipboard successfully')}
+                >
+                  <CopyOutlined />
+                </CopyToClipboard>
             )}
-          />
+            />
+            <Button key="regenerate" type="primary" onClick={regenerate}>
+              {I18n.t('universal_links.regenerate_link')}
+            </Button>
+
+          </div>
+
           <div className={styles.checkbox}>
-            <Switch onChange={onToggleMultipleResponses} checked={multipleResponses} />
+            <Switch onChange={() => setMultipleResponses(!multipleResponses)} checked={multipleResponses} />
             {' '}
             {I18n.t('universal_links.allow_multiple_respones')}
+          </div>
+          <div className={styles.checkbox}>
+            <Switch onChange={() => setActive(!active)} checked={active} />
+            {' '}
+            {I18n.t('universal_links.active')}
           </div>
         </div>
       </div>

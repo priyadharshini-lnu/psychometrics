@@ -4,6 +4,7 @@ import users from './users'
 import userAssessments from './userAssessments'
 import userReports from './userReports'
 import evaluation from './evaluation'
+import scoreModerate from './scoreModerate'
 
 export default combineReducers({
   campaigns,
@@ -11,4 +12,5 @@ export default combineReducers({
   userAssessments,
   userReports,
   evaluation,
+  scoreModerate,
 })

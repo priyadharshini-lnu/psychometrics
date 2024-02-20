@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import {
-  Button, Menu, Switch, message,
+  Button, Switch, MenuProps, App,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { MessageInstance } from 'antd/es/message/interface'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
@@ -145,25 +146,7 @@ const Dropdown: React.FC<DropDownProps> = (
   { assessment, openDrawer },
 ) => {
   const [confirmation, setConfirmation] = useState(false)
-  return (
-    <ConditionalDropdown
-      menu={ActionsMenu({
-        assessment, setConfirmation, confirmation, openDrawer,
-      }) as React.ReactElement}
-    />
-  )
-}
-
-interface ActionMenuProps {
-  assessment: Assessment
-  setConfirmation: (confirmation: boolean) => void
-  confirmation: boolean
-  openDrawer: (assessment: Assessment) => void
-}
-
-const ActionsMenu: React.FC<ActionMenuProps> = ({
-  setConfirmation, confirmation, assessment, openDrawer,
-}) => {
+  const { message } = App.useApp()
   const { resource } = useResourceContext<Assessment>()
 
   const handleOnConfirm = () => resource.removeResource(assessment.id).then(() => {
@@ -171,6 +154,39 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   }).catch(() => {
     message.error(I18n.t('common.errors.something_wrong'))
   })
+  return (
+    <>
+      <ConditionalDropdown
+        menu={getActionsMenuProps({
+          assessment, setConfirmation, openDrawer, message,
+        })}
+      />
+      <ConfirmationModal
+        open={confirmation}
+        title={I18n.t('assessments.actions.remove.confirm_title')}
+        message={I18n.t('assessments.actions.remove.confirm_message', { name: assessment.name })}
+        onConfirm={handleOnConfirm}
+        onCancel={(e) => {
+          e.stopPropagation()
+          setConfirmation(false)
+        }}
+        close={() => null}
+      />
+    </>
+  )
+}
+
+interface ActionMenuData {
+  assessment: Assessment
+  setConfirmation: (confirmation: boolean) => void
+  openDrawer: (assessment: Assessment) => void
+  message: MessageInstance
+}
+
+const getActionsMenuProps = ({
+  setConfirmation, assessment, openDrawer, message,
+}: ActionMenuData): MenuProps => {
+  const { resource } = useResourceContext<Assessment>()
 
   const toggleArchive = () => resource.memberAction({
     id: assessment.id,
@@ -206,11 +222,32 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
   })
 
+  const handleMenuClick = ({ key }) => {
+    if (key === 'details') {
+      return openDrawer(assessment)
+    }
+    if (key === 'edit') {
+      return history.push(`${settings.urlPrefix}/${assessment.id}/edit`)
+    }
+    if (key === 'copy') {
+      return copy()
+    }
+    if (key === 'archive') {
+      return toggleArchive()
+    }
+    if (key === 'restore') {
+      return restore()
+    }
+    if (key === 'remove') {
+      return setConfirmation(true)
+    }
+  }
+
   const menuItems = [
     {
       key: 'details',
       label: (
-        <Button type="link" onClick={() => openDrawer(assessment)} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('assessments.actions.details')}
         </Button>),
     },
@@ -219,7 +256,6 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       label: (
         <Button
           type="link"
-          onClick={() => history.push(`${settings.urlPrefix}/${assessment.id}/edit`)}
           className="ps-0"
         >
           {I18n.t('assessments.actions.edit')}
@@ -235,7 +271,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     assessment.meta.permissions.manage && !assessment.deleted && {
       key: 'copy',
       label: (
-        <Button type="link" onClick={copy} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('common.actions.copy')}
         </Button>
       ),
@@ -243,7 +279,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     assessment.meta.permissions.manage && !assessment.archived && {
       key: 'archive',
       label: (
-        <Button type="link" onClick={toggleArchive} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('common.actions.archive')}
         </Button>
       ),
@@ -251,7 +287,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     assessment.meta.permissions.manage && assessment.archived && {
       key: 'archive',
       label: (
-        <Button type="link" onClick={toggleArchive} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('common.actions.unarchive')}
         </Button>
       ),
@@ -259,7 +295,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     assessment.meta.permissions.manage && assessment.deleted && {
       key: 'restore',
       label: (
-        <Button type="link" onClick={restore} className="ps-0">
+        <Button type="link" className="ps-0">
           {I18n.t('common.actions.restore')}
         </Button>
       ),
@@ -268,21 +304,13 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       key: 'remove',
       label: (
         <>
-          <Button type="link" onClick={() => setConfirmation(true)} className="ps-0">
+          <Button type="link" className="ps-0">
             {I18n.t('common.actions.remove')}
           </Button>
-          {confirmation && (
-            <ConfirmationModal
-              title={I18n.t('assessments.actions.remove.confirm_title')}
-              message={I18n.t('assessments.actions.remove.confirm_message', { name: assessment.name })}
-              onConfirm={handleOnConfirm}
-              onCancel={() => setConfirmation(false)}
-            />
-          )}
         </>
       ),
     },
   ].filter(m => m) as ItemType[]
 
-  return (<Menu items={menuItems} />)
+  return ({ items: menuItems, onClick: handleMenuClick })
 }

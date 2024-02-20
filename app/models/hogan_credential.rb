@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HoganCredential < ApplicationRecord
+  audited except: %i[encrypted_password encrypted_password_iv]
+
   belongs_to :membership
   belongs_to :user
   has_many :hogan_logs, foreign_key: :participant_id, primary_key: :participant_id

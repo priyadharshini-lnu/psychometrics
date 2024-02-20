@@ -2,16 +2,17 @@
 
 module Assessors
   class SubjectStatusesCount < BaseCommand
-    private_attr_reader :assessor_user, :campaign_ids
+    private_attr_reader :assessor_user, :campaign_ids, :assessment_category
 
-    def initialize(assessor_user, campaign_ids)
+    def initialize(assessor_user, campaign_ids, assessment_category: :assessor_form)
       @assessor_user = assessor_user
       @campaign_ids = campaign_ids
+      @assessment_category = assessment_category
     end
 
     def call
       result = get_user_assessments.group(:campaign_id, :subject_id).
-               select('campaign_id, subject_id, array_agg(status) as statuses').
+               select('campaign_id, subject_id, array_agg(user_assessments.status) as statuses').
                index_by { |ua| [ua.campaign_id, ua.subject_id] }.
                each_with_object({}) do |(k, ua), acc|
         campaign_id = k.first
@@ -28,9 +29,10 @@ module Assessors
     private
 
     def get_user_assessments
-      UserAssessment.where(
+      UserAssessment.joins(:assessment).where(
         relationship: Relationship.assessor_relationship,
-        evaluator: assessor_user, campaign_id: campaign_ids
+        evaluator: assessor_user, campaign_id: campaign_ids,
+        assessments: { category: assessment_category }
       )
     end
 

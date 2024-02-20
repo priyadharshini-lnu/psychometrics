@@ -87,7 +87,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     return <CheckingWizard assessmentId={assessmentId} userAssessmentId={userAssessmentId} />
   }
 
-  if (!locale && !availableLocales.includes(I18n.currentLocale())) {
+  if (availableLocales && !locale && !availableLocales.includes(I18n.currentLocale())) {
     return (
       <LanguageSelection
         locales={availableLocales}

@@ -1,7 +1,8 @@
-import { useState } from 'react'
 import {
-  Tag, Button, message, Modal, Menu,
+  Tag, Button, App, MenuProps,
 } from 'antd'
+import type { MessageInstance } from 'antd/es/message/interface'
+import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import {
   useParams, useLocation, useHistory, Link,
@@ -19,7 +20,7 @@ export const InvitesTable = () => {
 
   const history = useHistory()
   const location = useLocation()
-  const [confirmation, setConfirmation] = useState(false)
+  const { modal, message } = App.useApp()
 
   const openForm = () => {
     history.push(`${location.pathname}/add_invite`)
@@ -82,7 +83,7 @@ export const InvitesTable = () => {
             render={data => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({ invite: data, confirmation, setConfirmation }) as React.ReactElement
+                  getActionsMenuProps({ invite: data, modal, message })
                 }
               />
             )}
@@ -113,13 +114,13 @@ const Filter: React.FC<FilterProps> = ({ openForm }) => {
   )
 }
 
-interface ActionMenuProps {
-  invite: WorkshopInvite
-  confirmation: boolean
-  setConfirmation: (value: boolean) => void
+interface ActionMenuData {
+  invite: WorkshopInvite,
+  modal: Omit<ModalStaticFunctions, 'warn'>
+  message: MessageInstance
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({ invite }) => {
+const getActionsMenuProps = ({ invite, modal, message }: ActionMenuData): MenuProps => {
   const { resource } = useResourceContext<WorkshopInvite>()
 
   const handleOnConfirm = () => resource.removeResource(invite.id).then(() => {
@@ -133,7 +134,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ invite }) => {
   })
 
   const handleRemove = () => {
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.assessment_center.invite.confirm_title'),
       content: invite.title
         ? I18n.t('administration.assessment_center.invite.confirm_message_with_title', { invite_title: invite.title })
@@ -157,7 +158,5 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ invite }) => {
     ),
   })
 
-  return (
-    <Menu items={menuItems} />
-  )
+  return ({ items: menuItems })
 }

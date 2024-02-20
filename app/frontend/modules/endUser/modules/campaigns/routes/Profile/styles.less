@@ -1,5 +1,5 @@
 @import '~/glint/styles/mixins.less';
-@import '~/styles/ant.variable.less';
+@import '~/styles/antv4.variable.less';
 @import '~/styles/spacing.less';
 
 .container {
@@ -31,7 +31,7 @@
 
   &.error {
     :global(.ant-upload.ant-upload-select-picture-card) {
-      border: 1px solid @error-color;
+      border: 1px solid var(--ant-error-color);
     }
   }
 }

@@ -25,12 +25,15 @@ module Threesixty
 
           set_read_results if params[:is_read] == 'true'
 
-          render json: @users_result, serializer: UsersResultSerializer,
-                 participant: @participant, campaign: @campaign,
-                 current_user: current_user, locale: @selected_locale,
-                 piped_text_context: get_piped_text_context,
-                 read_only:  params[:is_read] == 'true',
-                 include: '**'
+          render json: UsersResultSerializer.new(
+            context: {
+              participant: @participant, campaign: @campaign,
+              current_user: current_user, locale: @selected_locale,
+              piped_text_context: get_piped_text_context,
+              read_only: params[:is_read] == 'true',
+              include: '**'
+            }
+          ).serialize(@users_result)
         end
       end
     end

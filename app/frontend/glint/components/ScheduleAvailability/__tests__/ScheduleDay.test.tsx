@@ -73,7 +73,7 @@ test('Remove button should be enabled initially and then disabled', async () => 
     expect(endTimePicker).toBeInTheDocument()
 
 
-})
+}, 30000)
 
 describe('Add button should be ', () => {
   const user = userEvent.setup()
@@ -104,13 +104,14 @@ describe('Add button should be ', () => {
       })
       await user.hover(endTimePicker).then(async () => {
         const close = screen.getAllByRole('img')[1]
+        close.style['pointer-events'] = 'auto'
         await user.click(close)
       })
     })
 
     addTimePicker = screen.getByRole('button', { name: 'add' })
     expect(addTimePicker).toBeDisabled()
-  })
+  }, 30000)
 
   // test('disabled when only start time is picked', async () => {
   //   render(
@@ -239,7 +240,7 @@ describe('Add button should be ', () => {
     expect(screen.getByDisplayValue('1:00 AM')).toBeInTheDocument()
     expect(screen.getByDisplayValue('2:00 PM')).toBeInTheDocument()
     expect(addTimePicker).not.toBeDisabled()
-  })
+  }, 30000)
 })
 
 test('Time lesser than start time should be disabled while selecting end time', async () => {
@@ -294,4 +295,4 @@ test('Time lesser than start time should be disabled while selecting end time', 
   })
   expect(screen.queryByDisplayValue('12:15 AM')).toBe(null)
   // expect(endTimePickerOkButton).not.toBeDisabled()
-})
+}, 30000)

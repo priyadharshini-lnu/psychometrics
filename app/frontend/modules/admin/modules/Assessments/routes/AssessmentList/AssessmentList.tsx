@@ -29,7 +29,7 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
       <Breadcrumb
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('assessments.dashboard'),
           },
           {

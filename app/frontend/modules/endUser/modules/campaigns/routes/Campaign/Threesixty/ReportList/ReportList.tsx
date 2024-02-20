@@ -52,19 +52,18 @@ const ReportListComponent = ({
 
   return (
     <>
-      {reportToShow && (
       <ConfirmationModal
+        open={!!reportToShow}
         title={I18n.t('threesixty.close_evaluation_modal.title')}
         message={I18n.t('threesixty.close_evaluation_modal.message',
           {
             pronoun_or_name:
-            reportToShow.isSelf ? I18n.t('threesixty.you') : userPresenter.getFullName(reportToShow.user),
+            reportToShow?.isSelf ? I18n.t('threesixty.you') : userPresenter.getFullName(reportToShow?.user),
           })
         }
         onConfirm={() => redirectToReport(reportToShow)}
-        onCancel={() => setReportToShow(null)}
+        close={() => setReportToShow(null)}
       />
-      )}
       <ThreesixtyCard
         title={<Title level={5}>{I18n.t('threesixty.reports')}</Title>}
         helpIcon={reportHelp && (
@@ -118,7 +117,7 @@ const ReportListComponent = ({
               {I18n.t('threesixty.reports_help_modal.title')}
             </>
           )}
-          visible={showHelp}
+          open={showHelp}
           onCancel={() => setShowHelp(false)}
           footer={null}
         >

@@ -1,13 +1,13 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import moment from 'moment-timezone'
 import mediaQuery from 'css-mediaquery'
 
 import { TimeSlotSelection, TIME_FORMAT } from '~/glint/components/BookingCard/TimeSlotSelection'
 import { GlintProvider } from '~/glint'
+import dayjs from '~/utils/dayjs'
 
 const dateTimeFormatString = 'DD/MM/YYYY hh:mm A'
-const availableSlots = [{id: 1, date:'2023-07-15T09:00:00.100+05:30'}, {id:2, date:'2023-07-15T09:30:00.100+05:30'}].map(({id, date}) => ({id, date:moment(date)}))
+const availableSlots = [{id: 1, date:'2023-07-15T09:00:00.100+05:30'}, {id:2, date:'2023-07-15T09:30:00.100+05:30'}].map(({id, date}) => ({id, date:dayjs(date)}))
 const slotToBeSelected = availableSlots[1].date
 
 function createMatchMedia (width) {

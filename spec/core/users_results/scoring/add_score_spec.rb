@@ -80,6 +80,162 @@ describe UsersResults::Scoring::AddScore do
     )
   end
 
+  describe 'when scoring_strategy: :custom_formula' do
+    let(:factor1) { create(:factor) }
+    let(:scoring) do
+      {
+        factor1.id.to_s => {
+          'results' => [
+            { 'value' => [2, 3, 4], 'question_id' => 1 },
+            { 'value' => 5, 'question_id' => 2 },
+            { 'value' => 2, 'question_id' => 3 }
+          ],
+          'score' => 5,
+          'norm_score' => 3,
+          'zscore' => 2,
+          'percentage' => 90
+        }
+      }
+    end
+    let(:factor_hash) do
+      {
+        factor2.id => { factor: factor2, sub_factor_hash: {} },
+        factor1.id => { factor: factor1, sub_factor_hash: {} }
+      }
+    end
+
+    let(:factor_ids) { factor_hash.keys }
+
+    let(:factor2) { create(:factor, scoring_strategy: :custom_formula, custom_formula:) }
+
+    describe 'when custom formula contains assessment.norm_score' do
+      let(:custom_formula) { "return assessment.norm_score(#{factor1.id})" }
+
+      it 'calculates lua script properly' do
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(3)
+      end
+    end
+
+    describe 'when custom formula contains assessment.zscore' do
+      let(:custom_formula) { "return assessment.zscore(#{factor1.id})" }
+      it 'calculates lua script properly' do
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(2)
+      end
+    end
+
+    describe 'when custom formula contains assessment.raw_score' do
+      let(:custom_formula) do
+        "
+         return assessment.raw_score(#{factor1.id})
+        "
+      end
+
+      it 'calculates lua script properly' do
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(5)
+      end
+    end
+
+    describe 'when custom formula contains assessment.percentage' do
+      let(:custom_formula) { "return assessment.percentage_answered(#{factor1.id})" }
+
+      it 'calculates lua script properly' do
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(90)
+      end
+    end
+
+    describe 'formula factor can depend on other formula factor' do
+      let(:custom_formula) { "return assessment.raw_score(#{factor1.id})" }
+
+      it 'calculates lua script properly' do
+        factor3 = create(
+          :factor, scoring_strategy: :custom_formula,
+          custom_formula: "return assessment.raw_score(#{factor2.id}) * 2"
+        )
+        factor4 = create(
+          :factor, scoring_strategy: :custom_formula,
+          custom_formula: "return assessment.raw_score(#{factor2.id}) * assessment.raw_score(#{factor3.id})"
+        )
+
+        factor_hash = {
+          factor1.id => { factor: factor1, sub_factor_hash: {} },
+          factor2.id => { factor: factor2, sub_factor_hash: {} },
+          factor3.id => { factor: factor3, sub_factor_hash: {} },
+          factor4.id => { factor: factor4, sub_factor_hash: {} }
+        }
+
+        result = described_class.call!(factor_hash, factor_hash.keys, scoring, five_scale_norm, {}, {})
+
+        factor2_score = 5
+        factor3_score = factor2_score * 2
+        factor4_score = factor2_score * factor3_score
+        expect(result[factor2.id.to_s]['score']).to eq(factor2_score)
+        expect(result[factor3.id.to_s]['score']).to eq(factor3_score)
+        expect(result[factor4.id.to_s]['score']).to eq(factor4_score)
+      end
+    end
+
+    describe 'has cyclic dependency' do
+      let(:custom_formula) { "return assessment.raw_score(#{factor1.id})" }
+
+      it 'returns nil' do
+        factor3 = create(:factor, scoring_strategy: :custom_formula)
+        # factor with cyclic dependency
+        factor4 = create(
+          :factor, scoring_strategy: :custom_formula,
+          custom_formula: "return assessment.raw_score(#{factor2.id}) * assessment.raw_score(#{factor3.id})"
+        )
+        # factor with cyclic dependency
+        factor3.update(custom_formula: "return assessment.raw_score(#{factor4.id}) * 2")
+
+        factor5 = create(
+          :factor, scoring_strategy: :custom_formula,
+          custom_formula: "return assessment.norm_score(#{factor1.id}) + assessment.raw_score(#{factor2.id})"
+        )
+
+        factor_hash = {
+          factor1.id => { factor: factor1, sub_factor_hash: {} },
+          factor2.id => { factor: factor2, sub_factor_hash: {} },
+          factor3.id => { factor: factor3, sub_factor_hash: {} },
+          factor4.id => { factor: factor4, sub_factor_hash: {} },
+          factor5.id => { factor: factor5, sub_factor_hash: {} }
+        }
+
+        result = described_class.call!(factor_hash, factor_hash.keys, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(5)
+        expect(result[factor3.id.to_s]['score']).to eq(nil)
+        expect(result[factor4.id.to_s]['score']).to eq(nil)
+        expect(result[factor5.id.to_s]['score']).to eq(3 + 5)
+      end
+    end
+
+    describe 'when custom formula contains invalid data' do
+      let(:custom_formula) { 'something' }
+      it 'returns nil' do
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(nil)
+      end
+    end
+
+    describe 'when custom formula contains invalid factor' do
+      let(:custom_formula) { 'return assessment.zscore(111)' }
+      it 'returns nil' do
+        result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
+        expect(result[factor2.id.to_s]['score']).to eq(nil)
+      end
+    end
+  end
+
   it 'scoring_strategy: :sub_factor_questions' do
     factor1 = create(:factor, scoring_strategy: :sub_factor_questions)
     factor2 = create(:factor, scoring_strategy: :sub_factor_questions)

@@ -15,7 +15,13 @@ module Api
                            index_by(&:assessment_id)
 
         render json: user_reports.includes(report: :modules).
-          map { |r| Api::V1::UserReportSerializer.new(r, user_assessments: user_assessments).to_h }
+          map { |r|
+                       Api::V1::UserReportSerializer.new(
+                         context: {
+                           user_assessments: user_assessments
+                         }
+                       ).serialize(r)
+                     }
       end
 
       def results
@@ -36,8 +42,8 @@ module Api
           raise Api::Errors::ResourceNotConfigured, no_config_message(params[:id])
         end
 
-        render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call!(report, user_report_results),
-                                                   user_report: @user_report).to_h
+        render json: Api::V1::ResultSerializer.new(context: { user_report: @user_report }).
+          serialize(::Reports::BuildResults.call!(report, user_report_results))
       end
 
       def pdf
@@ -55,10 +61,12 @@ module Api
         raise Api::Errors::ResourceNotFound, "Report with id #{params[:id]} was not found." unless report
         raise Api::Errors::ResourceNotConfigured, no_config_message(params[:id]) if report.data_configuration.blank?
 
-        render json: report,
-               include: '**',
-               serializer: Api::V1::ReportDimensionsSerializer,
-          **serialization_params.merge(report: report)
+        render json: Api::V1::ReportDimensionsSerializer.new(
+          context: {
+            include: '**',
+            **serialization_params.merge(report: report)
+          }
+        ).serialize(report)
       end
 
       def report
@@ -78,7 +86,11 @@ module Api
         user_assessments = UserAssessment.where(subject_id: user.id, evaluator_id: user.id, campaign_id: campaign_id).
                            joins(:users_result, :assessment).
                            index_by(&:assessment_id)
-        render json: @user_report, user_assessments: user_assessments, serializer: Api::V1::UserReportSerializer
+        render json: Api::V1::UserReportSerializer.new(
+          context: {
+            user_assessments: user_assessments
+          }
+        ).serialize(@user_report)
       end
 
       private

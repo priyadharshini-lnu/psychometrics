@@ -1,16 +1,24 @@
 .sidebar {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   height: 100%;
   z-index: 500;
   box-shadow: 0 0 3px #aaa;
+  background-color: white;
 }
 
 .hide {
   animation: 0.5s hide;
   z-index: 100;
   transform: translateX(0);
+}
+
+.menu:global(.ant-menu-inline-collapsed) {
+  width: auto;
+  & :global(.ant-menu-item){
+    margin-block: 0;
+  }
 }
 
 .show {

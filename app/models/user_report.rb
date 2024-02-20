@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserReport < ApplicationRecord
+  audited
+
   include WorkflowActiverecord
   include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
@@ -39,7 +41,7 @@ class UserReport < ApplicationRecord
   sync_to_active_storage :pdf
 
   def attachment_storage_path(attribute_name, filename)
-    "private/projects/#{project.id}/user_report/#{attribute_name}/#{filename}"
+    "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
   end
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
@@ -81,6 +83,10 @@ class UserReport < ApplicationRecord
     end
   end
 
+  def campaign_user
+    CampaignUser.find_by(campaign_id: campaign_id, user_id: user_id)
+  end
+
   def start_approval!
     return ready! if not_ready? && has_approval_workflow?
   end
@@ -106,14 +112,14 @@ class UserReport < ApplicationRecord
     pdf.file.present?
   end
 
-  def user_results
-    UserReports::GetUserResultsQuery.new(self).query
+  def user_results(view_report_as = nil)
+    UserReports::GetUserResultsQuery.new(self, view_report_as).query
   end
 
-  def all_assessments_are_completed?
+  def all_assessments_are_completed?(except_assessment_ids: [])
     completed_assessment_ids = user_results.includes(:user_assessment).pluck('user_assessments.assessment_id')
 
-    report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
+    report.assessment_ids.all? { |id| except_assessment_ids.include?(id) || completed_assessment_ids.include?(id) }
   end
 
   def has_report_data_config?
@@ -138,6 +144,7 @@ class UserReport < ApplicationRecord
   def generatable?
     generate = all_assessments_are_completed? && (external_report? || !report_modules_empty?)
     generate &&= approved? if has_approval_workflow?
+    generate &&= campaign_user.campaign_scores_finalized? if report.campaign_factors.present?
     generate
   end
 
@@ -177,5 +184,11 @@ class UserReport < ApplicationRecord
     report_name = Utility::String.remove_non_ascii_chars(report.name).strip.presence || 'report'
     file_name = "#{user.email}-#{report_name}.pdf"
     pdf.url(query: { 'response-content-disposition' => "attachment;filename=#{file_name}" })
+  end
+
+  def remove_pdf!
+    return unless prepared?
+
+    update!(remove_pdf: true, status: :not_prepared, approval_status: :not_ready)
   end
 end

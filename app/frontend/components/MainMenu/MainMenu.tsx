@@ -1,9 +1,9 @@
-import React, { useState, FC, useEffect } from 'react'
+import { useState, FC, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Link as RouterLink } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Layout, Menu, Avatar, Drawer,
+  Layout, Menu, Drawer,
 } from 'antd'
 import {
   MonitorOutlined, ArrowRightOutlined, MenuUnfoldOutlined,
@@ -11,14 +11,14 @@ import {
 } from '@ant-design/icons'
 import { useMedia } from 'react-use-media'
 import cs from 'classnames'
-import logo from '~/modules/endUser/assets/images/lighthouseLogoTall.png'
-import logoSmall from '~/modules/auth/media/TTE_Logo_Color_Monogram.png'
 import styles from './MainMenu.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { camelizeKeys } from '~/utils/object'
 import { openSubmenu, triggerCollapse } from '~/modules/admin/core/ui/menu'
-import { shortify } from '~/utils/string'
+import { DefaultAntThemeWrapper } from '~/glint'
+import { UserAvatar } from '~/components/UserAvatar'
+import { SIDEBAR_WIDTH } from '~/constants/sidebar'
 
 const { I18n } = window
 
@@ -53,13 +53,21 @@ interface Permissions {
   reportApprovals?: string
   campaignTemplates?: string
   auditLogs?: string
+  userAvailability?: string
 }
 
 // TODO: When all pages are implemented in single react, use this component instead of anchor tag
 const Link = ({ href, children }) => {
+  const isThreesixty = location.href.match(/\/(threesixty_campaigns)/)
   const selected = getSelected()
-  return (selected !== 'profileDetails' && selected !== 'changePassword')
-    ? <a href={href}>{children}</a> : <RouterLink to={href}>{children}</RouterLink>
+  const isAllowed = () => {
+    const allowedPages = ['profileDetails', 'changePassword', 'clients', 'users', 'userAvailability', 'reports']
+    return !allowedPages.includes(selected)
+  }
+  if (isThreesixty || isAllowed()) {
+    return <a href={href}>{children}</a>
+  }
+  return <RouterLink to={href}>{children}</RouterLink>
 }
 
 const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
@@ -92,17 +100,17 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   permissions.clients ? {
     key: 'clients',
     label:
-    <a href={permissions.clients}>
+    <Link href={permissions.clients}>
       {I18n.t('administration.navigation.clients')}
-    </a>,
+    </Link>,
     icon: <i className="fa fa-briefcase" />,
   } : null,
   permissions.users ? {
     key: 'users',
     label:
-    <a href={permissions.users}>
+    <Link href={permissions.users}>
       {I18n.t('administration.navigation.users')}
-    </a>,
+    </Link>,
     icon: <i className="fa fa-users" />,
   } : null,
   permissions.norms ? {
@@ -155,7 +163,7 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   } : null,
   permissions.reports ? {
     key: 'reports',
-    label: <a href={permissions.reports}>{I18n.t('administration.navigation.reports')}</a>,
+    label: <Link href={permissions.reports}>{I18n.t('administration.navigation.reports')}</Link>,
     icon: <i className="fa fa-pie-chart" />,
   } : null,
   permissions.reportApprovals ? {
@@ -170,7 +178,7 @@ const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   } : null,
   {
     key: 'userAvailability',
-    label: <a href="/administration/user_availabilities">{I18n.t('administration.navigation.availability')}</a>,
+    label: <Link href={permissions.userAvailability}>{I18n.t('administration.navigation.availability')}</Link>,
     icon: <i className="fa fa-calendar" />,
   },
   permissions.auditLogs ? {
@@ -212,7 +220,7 @@ const getSelected = (): string => {
     return 'norms'
   }
 
-  if (location.href.match(/\/administration(\/)(dshboards)/)) {
+  if (location.href.match(/\/administration(\/)(dashboards)/)) {
     return 'dashboards'
   }
 
@@ -220,7 +228,7 @@ const getSelected = (): string => {
     return 'dimensions'
   }
 
-  if (location.href.match(/\/administration(\/)(users)/)) {
+  if (location.href.match(/\/admin(\/)(users)/)) {
     return 'users'
   }
 
@@ -234,9 +242,10 @@ const getSelected = (): string => {
   if (location.href.match(/\/administration(\/)(communications)/)) {
     return 'communicationCenter'
   }
-  if (location.href.match(/\/administration(\/)(reports)/)) {
+  if (location.href.match(/\/admin\/(reports|report_families)/)) {
     return 'reports'
   }
+
   if (location.href.match(/\/administration(\/)(report_approvals)/)) {
     return 'reportApprovals'
   }
@@ -261,7 +270,7 @@ const getSelected = (): string => {
     return 'assessorDashboard'
   }
 
-  if (location.href.match(/\/administration(\/)(user_availabilities)/)) {
+  if (location.href.match(/\/admin(\/)(user_availabilities)/)) {
     return 'userAvailability'
   }
 
@@ -285,13 +294,14 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
 
   const menu = (
     <>
-      <UserMenu currentUser={currentUser} collapsed={collapsed} />
+      <UserAvatar currentUser={currentUser} collapsed={collapsed} />
       <Menu
         theme="light"
         selectedKeys={[getSelected()]}
         mode="inline"
         items={menuItems(links, hasSubmenu)}
         onClick={onSelect}
+        className={styles.menu}
       />
     </>
   )
@@ -300,6 +310,8 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     triggerCollapse()
     if (hasSubmenu) openSubmenu()
   }
+  const isMeet = location.href.match(/\/(meet)/)
+  if (isMeet) return null
 
   return isMobile
     ? (
@@ -312,9 +324,11 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
         </div>
         <Drawer
           closable={false}
-          bodyStyle={{ padding: 0 }}
+          styles={{
+            body: { padding: 0 },
+          }}
           placement="left"
-          width="220"
+          width={SIDEBAR_WIDTH}
           open={!showSubmenu && !collapsed}
           onClose={() => closeMenu()}
         >
@@ -325,8 +339,8 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     : (
       <Layout.Sider
         id="top_sidebar"
-        className={styles.menu}
-        width={220}
+        className={styles.sider}
+        width={SIDEBAR_WIDTH}
         theme="light"
         collapsed={collapsed}
         collapsedWidth={55}
@@ -339,24 +353,6 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
       </Layout.Sider>
     )
 }
-
-export const UserMenu = ({ currentUser, collapsed }) => (
-  <>
-    <div className={cs(styles.logo, { [styles.small]: collapsed })}>
-      <img src={collapsed ? logoSmall : logo} />
-    </div>
-    <a href="/admin/profile/details">
-      <div className={styles.userName}>
-        {collapsed ? (
-          <Avatar alt={currentUser.name}>
-            {shortify(currentUser.name)}
-          </Avatar>
-        ) : currentUser.name}
-      </div>
-    </a>
-    <div className={styles.role}>{currentUser.roleTitle}</div>
-  </>
-)
 
 // TODO: remove portals after implementing all pages in react
 export const Portal = ({ Component, container, ...props }) => {
@@ -375,5 +371,9 @@ export const MainMenu = connecter(MainMenuComponent)
 
 export const PortalMenu = () => {
   const node = document.getElementById('main_menu')
-  return <Portal Component={MainMenu} container={node} />
+  return (
+    <DefaultAntThemeWrapper>
+      <Portal Component={MainMenu} container={node} />
+    </DefaultAntThemeWrapper>
+  )
 }

@@ -40,7 +40,7 @@ const connector = connect(
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
-  isVisible: boolean
+  isOpen: boolean
   projectId: number
   assessorId: string
   handleClose: () => void
@@ -49,7 +49,7 @@ interface OwnProps {
 type Props = PropsFromRedux & OwnProps
 
 const EditDrawerComponent: FC<Props> = ({
-  isVisible,
+  isOpen,
   projectId,
   assessorId,
   handleClose,
@@ -84,7 +84,7 @@ const EditDrawerComponent: FC<Props> = ({
       closable={false}
       width="40%"
       zIndex={1001}
-      visible={isVisible}
+      open={isOpen}
       destroyOnClose
     >
       <Row justify="space-between" align="middle" className="mb-4">

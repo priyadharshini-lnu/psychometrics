@@ -22,7 +22,9 @@ class EndUser::CampaignUsersController < ApplicationController
       CampaignUsers::BeginCampaign.call!(@campaign_user)
     end
 
-    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
+    render json: ::EndUser::CampaignUserSerializer.new(context: {
+      **data
+    }).serialize(@campaign_user)
   end
 
   def proctoring_redirect
@@ -54,7 +56,9 @@ class EndUser::CampaignUsersController < ApplicationController
       CampaignUsers::ContinueCampaign.call(@campaign_user)
     end
 
-    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer, **data
+    render json: ::EndUser::CampaignUserSerializer.new(context: {
+      **data
+    }).serialize(@campaign_user)
   end
 
   private

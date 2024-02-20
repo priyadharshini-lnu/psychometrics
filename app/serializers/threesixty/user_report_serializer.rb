@@ -6,11 +6,14 @@ module Threesixty
                :evalaution_completed_for_subject, :report_data, :permissions
 
     attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
-
-    has_one :user, serializer: UserSerializer
+    has_one :user, method: :user
     has_one :report, serializer: ReportSerializer
     has_one :options, serializer: Threesixty::CampaignOptionsSerializer
     has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
+
+    def user
+      UserSerializer.new.serialize(object.user)
+    end
 
     def campaign_id
       object.campaign.threesixty_campaign&.id || object.campaign_id
@@ -31,7 +34,7 @@ module Threesixty
     end
 
     def results
-      @results ||= instance_options[:results]
+      instance_options[:results]
     end
 
     def report_data
@@ -39,7 +42,7 @@ module Threesixty
     end
 
     def options
-      @options ||= instance_options[:options]
+      instance_options[:options]
     end
 
     def evalaution_completed_for_subject
@@ -66,7 +69,7 @@ module Threesixty
     private
 
     def report
-      @report ||= instance_options[:report]
+      instance_options[:report]
     end
 
     def current_user

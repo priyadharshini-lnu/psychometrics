@@ -3,13 +3,14 @@
 module Api
   module Administration
     class BasePolicy
-      private_attr_accessor :user, :record, :project_id, :campaign_id
+      private_attr_accessor :user, :record, :project_id, :campaign_id, :filter
 
       def initialize(user, record, extras = {})
         @user = user
         @record = [record].flatten.last
         @project_id = extras[:project_id]
         @campaign_id = extras[:campaign_id]
+        @filter = extras[:filter]
       end
 
       def has_permission?(resource_type, permission, options = {})

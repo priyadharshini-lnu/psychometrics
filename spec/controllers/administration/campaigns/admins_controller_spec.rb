@@ -40,7 +40,7 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
 
       get :spoof, params: { new_campaign_id: campaign_admin_membership.campaign_id, id: campaign_admin_membership.id }
 
-      expect(response).to redirect_to(administration_root_path)
+      expect(response).to redirect_to(admin_path)
     end
   end
 
@@ -88,24 +88,6 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
     parsed_response = JSON.parse(response.body)
 
     expect(parsed_response).to eq({ 'id' => campaign_admin_membership.id })
-
-    expect(response.status).to eq(200)
-  end
-
-  it 'find_or_create_user' do
-    params = {
-      new_campaign_id: campaign.id,
-      project_id: campaign.project_id,
-      email: 'email@user.com'
-    }
-
-    get :find_or_create_user, params: params, format: :json
-
-    parsed_response = JSON.parse(response.body)
-
-    expect(parsed_response['email']).to eq(params[:email])
-
-    expect(parsed_response['grants']['data']).to eq(User::DEFAULT_CAMPAIGN_ADMIN_GRANTS)
 
     expect(response.status).to eq(200)
   end

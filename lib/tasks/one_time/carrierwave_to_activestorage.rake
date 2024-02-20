@@ -15,7 +15,8 @@ namespace :carrierwave do
       'occupations' => Occupation,
       'reports' => Report,
       'user_profiles' => UserProfile,
-      'user_reports' => UserReport
+      'user_reports' => UserReport,
+      'admin_jobs' => AdminJobRecord
     }
 
     puts 'Starting CarrierWave to ActiveStorage attachments migration.'

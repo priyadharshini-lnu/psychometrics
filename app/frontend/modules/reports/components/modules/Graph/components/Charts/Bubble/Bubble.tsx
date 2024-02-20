@@ -81,7 +81,7 @@ const getBubbleChartOptions = (model: PropertiesModel, size: Size): ChartOptions
 
   const sourceType = model.getSourceType()
 
-  if (!['Factor', 'DataSheet', 'EmbeddedData'].includes(sourceType)) {
+  if (!['Factor', 'DataSheet', 'CampaignFactors', 'EmbeddedData'].includes(sourceType)) {
     return defaultChartOptions
   }
 

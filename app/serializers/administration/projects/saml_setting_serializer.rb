@@ -2,12 +2,11 @@
 
 module Administration
   module Projects
-    class SamlSettingSerializer < ActiveModel::Serializer
+    class SamlSettingSerializer < Panko::Serializer
       include Rails.application.routes.url_helpers
 
       attributes :id, :enabled, :enforced, :entity_id, :sso_service_url, :cert, :after_signout_url,
-                 :assertion_consumer_service_url, :issuer
-      attribute :saml_signin_url, if: -> { instance_options[:requires_verification] }
+                 :assertion_consumer_service_url, :issuer, :saml_signin_url
 
       def assertion_consumer_service_url
         saml_user_session_url(url_options)
@@ -18,6 +17,8 @@ module Administration
       end
 
       def saml_signin_url
+        return unless context[:requires_verification]
+
         new_saml_user_session_url(
           url_options.merge(saml_setting_type: :test)
         )

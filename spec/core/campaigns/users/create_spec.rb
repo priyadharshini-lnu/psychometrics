@@ -6,7 +6,7 @@ describe Campaigns::Users::Create do
   let(:form) do
     Campaigns::Users::CreateForm.new(
       first_name: 'John', last_name: 'Doe', email: Faker::Internet.email, operation: 'add_and_allow_new_response',
-      schedule_start_date: 1.day.from_now, schedule_end_date: 2.days.from_now
+      schedule_start_date: 1.day.from_now, schedule_end_date: 2.days.from_now, locale: 'en'
     )
   end
   let!(:campaign) { create(:campaign) }
@@ -20,6 +20,12 @@ describe Campaigns::Users::Create do
     expect do
       described_class.call!(form, campaign, current_user)
     end.to change { User.count }.by(1)
+  end
+
+  it 'stores user profile locale' do
+    described_class.call!(form, campaign, current_user)
+
+    expect(User.last.locale).to eq('en')
   end
 
   it "doesn't create user record if user already exists in the project" do

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class InnovationStyle < ApplicationRecord
+  audited
+
   include RansackSearchableFields
   include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
@@ -23,7 +25,7 @@ class InnovationStyle < ApplicationRecord
   sync_to_active_storage :icon
 
   def attachment_storage_path(attribute_name, filename)
-    "public/innovation_style/#{attribute_name}/#{filename}"
+    "public/innovation_style/#{id}/#{attribute_name}/#{filename}"
   end
 
   def log_attribute_for_delete

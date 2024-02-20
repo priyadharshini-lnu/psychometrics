@@ -2,7 +2,7 @@ import { FC, ChangeEvent, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams, useHistory, useLocation } from 'react-router'
 import {
-  Col, Input, Row, Space, Table, Modal, message, Pagination,
+  Col, Input, Row, Space, Table, App, Modal, Pagination,
 } from 'antd'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -78,6 +78,7 @@ const ParticipantsComponent: FC<Props> = ({
 
   const params = useParams<{ projectId: string }>()
   const projectId = parseInt(params.projectId, 10)
+  const { message, modal } = App.useApp()
 
   const drawerParticipantId = searchParams.get(
     DRAWER_SEARCH_PARAMS.PARTICIPANT_ID,
@@ -128,7 +129,7 @@ const ParticipantsComponent: FC<Props> = ({
       participant?.lastName ?? ''
     }`
 
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.project_users.modal_delete_title'),
       content: I18n.t('administration.project_users.modal_delete_content', {
         name,
@@ -160,7 +161,7 @@ const ParticipantsComponent: FC<Props> = ({
     )
     const email = participant?.email ?? ''
 
-    Modal.confirm({
+    modal.confirm({
       title: I18n.t('administration.project_users.model_reset_email'),
       content: I18n.t(
         'administration.project_users.modal_reset_email_content',
@@ -323,7 +324,7 @@ const ParticipantsComponent: FC<Props> = ({
         </Col>
       </Row>
       <EditDrawer
-        isVisible={drawerMode === DrawerMode.Edit}
+        isOpen={drawerMode === DrawerMode.Edit}
         projectId={projectId}
         participantId={drawerParticipantId}
         handleClose={handleDrawerClose}

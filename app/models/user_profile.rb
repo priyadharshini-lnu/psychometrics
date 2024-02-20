@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserProfile < ApplicationRecord
+  audited
+
   include ActiveStorageAttachable
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
   # TODO: remove after migration to ActiveStorage
@@ -11,6 +13,9 @@ class UserProfile < ApplicationRecord
   enum gender: { male: 0, female: 1, not_disclosed: 2 }
 
   before_save :set_age_updated_at, if: :age_changed?
+  before_save do
+    self.locale = locale.presence
+  end
 
   belongs_to :user
 
@@ -22,7 +27,7 @@ class UserProfile < ApplicationRecord
   sync_to_active_storage :photo
 
   def attachment_storage_path(attribute_name, filename)
-    "public/user_profile/#{attribute_name}/#{filename}"
+    "public/user_profile/#{user_id}/#{attribute_name}/#{filename}"
   end
 
   def set_age_updated_at

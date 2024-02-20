@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import {
-  Button, Menu, message,
+  Button, message,
 } from 'antd'
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -67,13 +67,9 @@ const ToolsDropdown: FC<Props> = ({
     }
   }
 
-  const toolsMenu = (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
-
   return (
     <ConditionalDropdown
-      menu={toolsMenu}
+      menu={{ items: menuItems, onClick: handleMenuClick }}
       hideForEmptyMenu
       innerElement={(
         <Button>

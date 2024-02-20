@@ -6,10 +6,8 @@ import {
 import {
   PlusCircleOutlined, MinusCircleOutlined,
 } from '@ant-design/icons'
-
 import cs from 'classnames'
-
-import moment from 'moment'
+import dayjs from '~/utils/dayjs'
 import {
   allMinutes,
   getDefaultTimesFromPreviousDays,
@@ -42,13 +40,13 @@ export const ScheduleDay:FC<Props> = ({
   const addTimeSlot = (name, add) => {
     const currentFieldData = formInstance.getFieldValue(formName)
 
-    const currentDayEndTimestamp = moment(currentFieldData[0]?.endTime).date()
-    const newEndTimeTimestamp = moment(currentFieldData[name]?.endTime, 'HH:mm:ss')
+    const currentDayEndTimestamp = dayjs(currentFieldData[0]?.endTime).date()
+    const newEndTimeTimestamp = dayjs(currentFieldData[name]?.endTime, 'HH:mm:ss')
       .add(120, 'minutes')
       .subtract(1, 'second')
       .date()
-    const newStartTime = moment(currentFieldData[name]?.endTime, 'HH:mm:ss').add(60, 'minutes')
-    const newEndTime = moment(currentFieldData[name]?.endTime, 'HH:mm:ss').add(120, 'minutes')
+    const newStartTime = dayjs(currentFieldData[name]?.endTime, 'HH:mm:ss').add(60, 'minutes')
+    const newEndTime = dayjs(currentFieldData[name]?.endTime, 'HH:mm:ss').add(120, 'minutes')
     if (Number(newEndTimeTimestamp) === Number(currentDayEndTimestamp)) {
       add({
         startTime: newStartTime,
@@ -56,11 +54,11 @@ export const ScheduleDay:FC<Props> = ({
       })
     } else if (
       newEndTimeTimestamp > currentDayEndTimestamp
-      && moment(currentFieldData[name]?.endTime, 'HH:mm:ss').isBefore(moment('23:59:59', 'HH:mm:ss'))
+      && dayjs(currentFieldData[name]?.endTime, 'HH:mm:ss').isBefore(dayjs('23:59:59', 'HH:mm:ss'))
     ) {
       add({
-        startTime: moment(currentFieldData[name]?.endTime, 'HH:mm:ss').add(1, 'minutes'),
-        endTime: moment('23:59:59', 'HH:mm:ss'),
+        startTime: dayjs(currentFieldData[name]?.endTime, 'HH:mm:ss').add(1, 'minutes'),
+        endTime: dayjs('23:59:59', 'HH:mm:ss'),
       })
     }
   }
@@ -85,7 +83,7 @@ export const ScheduleDay:FC<Props> = ({
                 disabledMins,
                 startTimeHour,
               } = getDisabledHourDataForEndTime(name, fieldData)
-              const startTime = fieldData[name]?.startTime
+              const startTime = fieldData[name]?.startTime as dayjs.Dayjs
               const errors = errorMessages?.[index.toString()] || {}
 
               return (
@@ -205,7 +203,7 @@ export const ScheduleDay:FC<Props> = ({
       {errorMessages?.base && (
       <Row className="mb-3" style={{ marginTop: '-8px' }}>
         <Col span={18} offset={6}>
-          <Typography.Text type="danger">{errorMessages.base}</Typography.Text>
+          <Typography.Text type="danger">{errorMessages.base as unknown as string}</Typography.Text>
         </Col>
       </Row>
       )}

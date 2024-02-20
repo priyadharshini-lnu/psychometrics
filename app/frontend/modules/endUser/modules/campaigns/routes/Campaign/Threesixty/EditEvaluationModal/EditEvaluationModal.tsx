@@ -34,7 +34,7 @@ export const EditEvaluationModal: React.FC<Props> = ({
   return (
     <Modal
       title={I18n.t('campaign.edit_evaluation.title')}
-      visible={show}
+      open={show}
       onCancel={close}
       footer={(
         <div>

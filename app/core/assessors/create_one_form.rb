@@ -17,6 +17,7 @@ module Assessors
     validate :check_subject
     validate :check_existing_assessor_subject_relation
     validate :check_assessment_ids
+    validate :check_subject_already_have_lead_assessor
 
     def check_subject
       errors.add(:subject_email, :not_exists, email: subject_email) unless subject
@@ -27,7 +28,8 @@ module Assessors
         relationships: { name: Relationship::ASSESSOR },
         subject: subject,
         evaluator: assessor_user,
-        campaign: context.campaign
+        campaign: context.campaign,
+        assessment_id: assessment_ids
       )
 
         errors.add(:assessor_email, :already_exists)
@@ -35,9 +37,18 @@ module Assessors
     end
 
     def check_assessment_ids
-      available_assessment_ids = Assessors::AvailableAssessmentsQuery.new(context.campaign.client).query.pluck(:id)
+      available_assessment_ids = Assessors::AvailableAssessmentsQuery.new(context.campaign.client).query.pluck(:id).
+                                 push(context.campaign.lead_assessor_assessment&.id).flatten
+
       assessment_ids.each do |id|
         errors.add(:assessment_ids, :invalid, id: id) if available_assessment_ids.exclude?(id)
+      end
+    end
+
+    def check_subject_already_have_lead_assessor
+      new_lead_assessor_getting_added = Assessment.exists?(id: assessment_ids, category: :lead_assessor_form)
+      if subject && new_lead_assessor_getting_added && Users::GetLeadAssessor.call!(context.campaign, subject)
+        errors.add(:assessment_ids, :lead_assessor_already_assigned)
       end
     end
 

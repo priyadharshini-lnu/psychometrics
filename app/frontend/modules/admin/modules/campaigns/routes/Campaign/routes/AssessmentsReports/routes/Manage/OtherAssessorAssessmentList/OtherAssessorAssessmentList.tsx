@@ -1,12 +1,13 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, message,
+  Table, MenuProps, Row, Col, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { MessageInstance } from 'antd/es/message/interface'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import {
@@ -50,6 +51,7 @@ const AssessmentList: React.FC<Props> = ({
 }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
+  const { message } = App.useApp()
 
   return (
     <Row>
@@ -76,7 +78,7 @@ const AssessmentList: React.FC<Props> = ({
             render={assessment => (
               <ConditionalDropdown
                 menu={
-                  ActionsMenu({
+                  getActionsMenuProps({
                     assessment,
                     openModal,
                     campaignId: parsedCampaignId,
@@ -86,7 +88,8 @@ const AssessmentList: React.FC<Props> = ({
                     exportNormedResults,
                     exportRawFactorScores,
                     exportExternalResults,
-                  }) as React.ReactElement
+                    message,
+                  })
                 }
                 innerElement={(
                   <a>
@@ -102,7 +105,7 @@ const AssessmentList: React.FC<Props> = ({
   )
 }
 
-interface ActionMenuProps {
+interface ActionMenuData {
   campaignId: number
   assessment: Assessment
   openModal(name: string, data?: {
@@ -115,13 +118,14 @@ interface ActionMenuProps {
   exportNormedResults: Props['exportNormedResults']
   exportRawFactorScores: Props['exportRawFactorScores']
   exportExternalResults: Props['exportExternalResults']
+  message: MessageInstance
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({
+const getActionsMenuProps = ({
   campaignId, assessment, openModal, rescoreResponses, exportRawResults,
   exportScoringResults, exportNormedResults, exportRawFactorScores,
-  exportExternalResults,
-}) => {
+  exportExternalResults, message,
+}: ActionMenuData): MenuProps => {
   const { id, name, permissions } = assessment
 
   const handleRescoreResponse = () => {
@@ -236,9 +240,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     }
   }
 
-  return (
-    <Menu items={menuItems} onClick={handleMenuClick} />
-  )
+  return ({ items: menuItems, onClick: handleMenuClick })
 }
 
 export default connecter(AssessmentList)

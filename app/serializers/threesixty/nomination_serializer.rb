@@ -6,13 +6,13 @@ module Threesixty
 
     has_many :evaluators, serializer: Threesixty::EndUser::NomineeSerializer
     has_many :relationships, serializer: RelationshipSerializer
-    has_one :subject, serializer: UserSerializer
+    has_one :subject, method: :subject
     has_one :options, serializer: CampaignOptionsSerializer
     has_one :requirements, serializer: Threesixty::EndUser::NominationRequirementSerializer
     has_many :instructions, serializer: InstructionTemplateSerializer
 
     def subject
-      object.user
+      UserSerializer.new.serialize(object.user)
     end
 
     def evalaution_completed_for_subject

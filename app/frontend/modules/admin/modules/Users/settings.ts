@@ -1,5 +1,5 @@
 const settings = {
-  urlPrefix: '/administration/users',
+  urlPrefix: '/admin/users',
   pageLimit: 25,
 }
 

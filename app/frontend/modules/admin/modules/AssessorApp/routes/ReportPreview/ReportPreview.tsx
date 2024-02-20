@@ -1,7 +1,8 @@
 import { FC, useEffect } from 'react'
 import cs from 'classnames'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Button, Row, Col, PageHeader, Spin, Space, Dropdown, Menu,
+  Layout, Button, Row, Col, Spin, Space, Dropdown, Skeleton,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
@@ -52,7 +53,6 @@ const ReportPreview: FC<Props> = ({
         locales,
       }, report, results, user,
     } = userReport
-
     return (
       <Report
         data={report}
@@ -73,6 +73,8 @@ const ReportPreview: FC<Props> = ({
   }
 
   const { user } = userReport
+
+  if (!userReport.loaded) { return <Skeleton active /> }
 
   return (
     <Layout>
@@ -113,17 +115,14 @@ const ReportPreview: FC<Props> = ({
           )}
           extra={[
             <Dropdown
-              overlay={(
-                <Menu
-                  items={
-                  [
+              menu={
+                {
+                  items: [
                     { key: 'subject', label: I18n.t('common.text.subject') },
                     { key: 'all', label: I18n.t('common.text.all_pages') },
-                  ]
-                }
-                  onClick={onChangeView}
-                />
-              )}
+                  ],
+                  onClick: onChangeView,
+                }}
             >
               <Button>
                 <Space>

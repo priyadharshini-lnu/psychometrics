@@ -83,14 +83,13 @@ module Api
           required(:data).array do
             this.single_resource(:multiple_response)
           end
-          required(:meta).value(this.index_meta_schema)
+          required(:meta).value(this.index_meta_schema) if this.meta?
         end
       end
 
       def self.define_schema(&)
         namespace = self.namespace
         Dry::Schema.define do
-          config.messages.load_paths += I18n.load_path.filter { |file| file.match(/\.yml$/) }
           config.messages.namespace = namespace
 
           instance_eval(&)
@@ -105,6 +104,7 @@ module Api
         this = self
         relationship_schema = this.relationship_schema(type)
         Dry::Schema.define do
+          config.validate_keys = true
           instance_eval(&this.resource_identifier)
           instance_eval(&relationship_schema) if relationship_schema
 
@@ -118,7 +118,9 @@ module Api
             instance_eval(&this.attributes(method(:required), type))
           end
 
-          required(:meta).value(this.individual_record_meta_schema) if this.respond_to?(:individual_record_meta_schema)
+          if this.respond_to?(:individual_record_meta_schema) && this.meta?
+            required(:meta).value(this.individual_record_meta_schema)
+          end
         end
       end
 
@@ -184,11 +186,23 @@ module Api
         end
       end
 
+      def self.json_api_records(&)
+        Dry::Schema.define do
+          required(:data).array do
+            instance_eval(&)
+          end
+        end
+      end
+
       def self.attributes(_attribute, _type)
         proc {}
       end
 
       def self.links?
+        true
+      end
+
+      def self.meta?
         true
       end
     end

@@ -60,6 +60,9 @@ class Question extends Component {
   }
 
   hasDefaultValues (model) {
+    if (!model.props.defaultValues) {
+      debugger
+    }
     if (model.props.defaultValues.length > 0) {
       return model.type !== 'TextEntry' || _.some(
         model.props.defaultValues, object => object.value,

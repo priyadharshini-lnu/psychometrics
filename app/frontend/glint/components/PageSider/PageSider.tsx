@@ -43,7 +43,7 @@ export const PageSider: FC<PageSiderProps> = ({
   onOpenChange,
 }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(false)
-  const [drawerVisible, setDrawerVisible] = useState(false)
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const { isMobile, isTablet } = useContext(MediaQueryContext)
 
   const handleTrigger = () => {
@@ -53,12 +53,12 @@ export const PageSider: FC<PageSiderProps> = ({
   const handleClick = (info: SelectInfo) => {
     onMenuSelect && onMenuSelect(info)
     if (isMobile || isTablet) {
-      setDrawerVisible(false)
+      setDrawerOpen(false)
     }
   }
 
   const handleDrawerVisibility = () => {
-    setDrawerVisible(!drawerVisible)
+    setDrawerOpen(!drawerOpen)
   }
   const menu = (
     <Menu
@@ -98,10 +98,10 @@ export const PageSider: FC<PageSiderProps> = ({
         <>
           {drawerTrigger}
           <Drawer
-            visible={drawerVisible}
+            open={drawerOpen}
             placement="left"
             onClose={handleDrawerVisibility}
-            className={styles['sider-drawer']}
+            rootClassName={styles['sider-drawer']}
           >
             <div className={styles.drawerItemsContainer}>
               {logoEle}

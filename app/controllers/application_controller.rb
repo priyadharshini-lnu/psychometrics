@@ -19,7 +19,6 @@ class ApplicationController < ::BaseController
   #
   def layout_by_resource
     return 'devise'     if request.controller_class.to_s.start_with?('Administration')
-    return 'ecommerce'  if request.controller_class.to_s.start_with?('Ecommerce')
     return 'devise'     if request.controller_class.to_s.start_with?('Devise')
 
     'users_new' # NOTE: seems it does not use anywhere
@@ -92,7 +91,6 @@ class ApplicationController < ::BaseController
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Assessors')
-    return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s.start_with?('Api::V1')
     return if request.controller_class.to_s.start_with?('Webhooks')
 
@@ -110,6 +108,8 @@ class ApplicationController < ::BaseController
   # rubocop:enable all
 
   def user_not_authorized
+    audit! :user_not_authorized, current_user, payload: params, outcome: :failed,
+    failure_reason: :user_not_authorized
     respond_to do |format|
       format.html { render plain: I18n.t('errors.forbidden'), status: 403 }
       format.json { render json: { error: [I18n.t('errors.forbidden_action')] }, status: 403 }

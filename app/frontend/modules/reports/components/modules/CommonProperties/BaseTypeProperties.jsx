@@ -1,12 +1,15 @@
 import { Component } from 'react'
 import _ from 'lodash'
 import Select from 'react-select'
-import { DATA_SHEET, REPORT_DATA, ASSESSMENT_DATA } from '~/modules/reports/models/Module'
+import {
+  DATA_SHEET, REPORT_DATA, ASSESSMENT_DATA, CAMPAIGN_FACTORS,
+} from '~/modules/reports/models/Module'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 
 const OPTIONS = [
   { label: 'Assessment', value: ASSESSMENT_DATA },
   { label: 'Datasheet', value: DATA_SHEET },
+  { label: 'Campaign Factors', value: CAMPAIGN_FACTORS },
   { label: 'Report Data', value: REPORT_DATA },
 ]
 class BaseTypeProperties extends Component {

@@ -18,6 +18,7 @@ export const AssessmentTR = t.type({
   disabled: t.boolean,
   archived: t.boolean,
   deleted: t.boolean,
+  defaultLanguage: t.string,
   iconUrl: t.union([t.string, t.null, t.undefined]),
   iconColor: t.union([t.string, t.null, t.undefined]),
   type: t.string,
@@ -62,7 +63,7 @@ export const AssessmentTR = t.type({
       id: t.string,
       name: t.string,
     }),
-    t.undefined]),
+    t.undefined, t.null]),
 })
 
 
@@ -78,6 +79,7 @@ export const CATEGORIES = [
   'case_study',
   'threesixty',
   'assessor_form',
+  'lead_assessor_form',
   'agile',
   'hogan',
   'saville',
@@ -98,6 +100,7 @@ export const CREATABLE_CATEGORIES = [
   'agile',
   'threesixty',
   'assessor_form',
+  'lead_assessor_form',
 ]
 
 

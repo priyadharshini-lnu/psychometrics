@@ -61,6 +61,8 @@ module Api
 
     def create_global_assessor
       user = ::Users::CreateOrModifyGlobalAssessor.call!(current_user, create_resource_params)
+      audit! :create_global_assessor, user, payload: create_resource_params
+
       jsonapi_render json: user
     end
 

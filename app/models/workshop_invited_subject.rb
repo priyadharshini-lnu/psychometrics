@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class WorkshopInvitedSubject < ApplicationRecord
+  audited
+
   belongs_to :workshop_invite
   belongs_to :user
 

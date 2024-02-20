@@ -130,8 +130,8 @@ module Administration
 
         def serialized_current_user
           ::Administration::Threesixty::CurrentUserSerializer.new(
-            current_user, project_id: project.id, campaign_id: threesixty_campaign.campaign_id
-          ).as_json.deep_transform_keys! { |key| key.to_s.camelize(:lower) }
+            context: { project_id: project.id, campaign_id: threesixty_campaign.campaign_id }
+          ).serialize(current_user).deep_transform_keys! { |key| key.to_s.camelize(:lower) }
         end
 
         def set_campaign_template_and_assessments

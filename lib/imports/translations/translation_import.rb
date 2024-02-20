@@ -34,7 +34,7 @@ module Imports
           collect_translations[branch_type][id] ||= {}
           data.each do |locale, translation|
             locale = locale.split(' / ').last
-            next if locale == 'en' || translation.blank? # Default locale or not translated
+            next if locale == default_locale || translation.blank? # Default locale or not translated
 
             collect_translations[branch_type][id][locale] ||= {}
             collect_translations[branch_type][id][locale][key] = translation
@@ -80,6 +80,10 @@ module Imports
       end
 
       private
+
+      def default_locale
+        @default_locale ||= resource_type == Assessment::TYPES[:common] ? assessment.default_language : 'en'
+      end
 
       def translatable_branches
         raise NotImplementedError

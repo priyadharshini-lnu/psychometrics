@@ -12,6 +12,10 @@ module Utility
       str.chars.slice_when { |x, y| y != x.next }.any? { |a| a.size >= seq_length }
     end
 
+    def self.join_into_sentence(array)
+      array.map { |v| "'#{v}'" }.to_sentence
+    end
+
     def self.remove_non_ascii_chars(str)
       encoding_options = {
         invalid: :replace,          # Replace invalid byte sequences

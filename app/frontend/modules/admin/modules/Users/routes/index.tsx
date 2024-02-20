@@ -2,25 +2,25 @@ import { UserList } from './UserList'
 import { APIKeysList } from './APIKeysList'
 
 const routes = [
-  { redirect: true, from: '', to: '/users' },
+  { redirect: true, from: '/users', to: '/users/users' },
   {
-    path: '/users',
+    path: '/users/users',
     component: () => <UserList userTab="Users::Regular" />,
   },
   {
-    path: '/admins',
+    path: '/users/admins',
     component: () => <UserList userTab="Users::Admin" />,
   },
   {
-    path: '/superadmins',
+    path: '/users/superadmins',
     component: () => <UserList userTab="Users::SuperAdmin" />,
   },
   {
-    path: '/global-assessors',
+    path: '/users/global-assessors',
     component: () => <UserList userTab="Users::GlobalAssessors" />,
   },
   {
-    path: '/admins/:adminId/api_keys',
+    path: '/users/admins/:adminId/api_keys',
     component: () => <APIKeysList />,
   },
 ]

@@ -2,8 +2,9 @@ import React, { useEffect, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
+import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Row, Col, PageHeader, Dropdown, Menu, Tag,
+  Row, Col, Dropdown, Tag, theme,
 } from 'antd'
 
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
@@ -29,10 +30,12 @@ const STATUSES = {
   in_progress: { text: I18n.t('campaign_assessment.statuses.in_progress'), color: 'warning' },
   completed: { text: I18n.t('campaign_assessment.statuses.completed'), color: 'success' },
 }
+const { useToken } = theme
 
 export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   campaigns, fetchCampaigns, activeCampaignId, extra,
 }) => {
+  const { token } = useToken()
   const history = useHistory()
   const activeCampaign = campaigns.find(campaign => campaign.id === activeCampaignId)
   const completedCampaignsCount = campaigns.filter(campaign => campaign.progressStatus === 'completed').length
@@ -76,18 +79,18 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
     )
   })
 
-  const menu = (
-    <Menu
-      theme="light"
-      selectedKeys={activeCampaign && [`${activeCampaign.id}`]}
-      onClick={handleCampaignSelect}
-      className={styles.dropdownMenu}
-      items={menuItems}
-    />
-  )
-
   const titleElement = campaigns.length > 1 ? (
-    <Dropdown overlay={menu} trigger={['click']} className={styles.campaignDropdown}>
+    <Dropdown
+      menu={{
+        items: menuItems,
+        selectedKeys: activeCampaign && [`${activeCampaign.id}`],
+        onClick: handleCampaignSelect,
+        className: styles.dropdownMenu,
+        theme: 'light',
+      }}
+      trigger={['click']}
+      className={styles.campaignDropdown}
+    >
       <a onClick={e => e.preventDefault()}>
         <Row wrap={false}>
           <Col>{activeCampaign && activeCampaignName}</Col>
@@ -101,9 +104,10 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
         </Row>
       </a>
     </Dropdown>
-  ) : <Col className={styles.campaignDropdown}>{activeCampaign && activeCampaignName}</Col>
+  ) : <Col style={{ fontSize: '20px' }} className={styles.campaignDropdown}>{activeCampaign && activeCampaignName}</Col>
   return (
     <PageHeader
+      style={{ backgroundColor: token.colorPrimary }}
       className={styles.campaignHeader}
       onBack={handleNavigation}
       backIcon={<DirectionalNavigateBackIcon className={styles.backIcon} />}
@@ -111,6 +115,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       title={titleElement}
       extra={extra}
     />
+
   )
 }
 

@@ -27,6 +27,7 @@ module Administration
 
       respond_to do |format|
         if resource.save
+          audit! :create, resource, payload: params
           format.js
         else
           resource_currencies = resource.prices.map(&:price_currency)

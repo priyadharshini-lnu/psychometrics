@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignUser < ApplicationRecord
+  audited
+
   enum completion_status: { not_started: 0, in_progress: 1, completed: 2 }
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4 }, _suffix: :campaign
 
@@ -20,6 +22,10 @@ class CampaignUser < ApplicationRecord
   has_many :workshop_invited_subjects,
            -> { left_joins(:workshop_invite).where('workshop_invites.campaign_id = campaign_users.campaign_id') },
            foreign_key: :user_id, primary_key: :user_id
+  has_many :campaign_factors, through: :campaign
+  has_many :campaign_factor_values, lambda {
+    joins(:campaign_user).where('campaign_factor_values.campaign_id = campaign_users.campaign_id')
+  }, primary_key: :user_id, foreign_key: :user_id
 
   scope :in_progress, -> { where(completion_status: :in_progress) }
   scope :completed, -> { where(completion_status: :completed) }
@@ -28,8 +34,24 @@ class CampaignUser < ApplicationRecord
   after_commit :finish_proctoring_session,
                if: proc { status_previously_changed? && %w[completed timed_out].include?(status) },
                on: [:update]
+  after_commit :generate_or_remove_report_on_score_finalized,
+               if: proc { campaign_scores_finalized_previously_changed? },
+               on: [:update]
   delegate :proctoring_enabled?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
+
+  def generate_or_remove_report_on_score_finalized
+    if campaign_scores_finalized?
+      UserReports::GenerateAndSavePdfJob.perform_later(campaign_factor_dependent_user_reports.pluck(:id), user)
+    else
+      UserReports::RemovePdfJob.perform_later(campaign_factor_dependent_user_reports.pluck(:id))
+    end
+  end
+
+  def campaign_factor_dependent_user_reports
+    UserReport.joins(:report).merge(Report.campaign_factor_dependable).
+      where(campaign_id: campaign_id, user_id: user_id)
+  end
 
   def compute_and_set_status
     return if campaign.fixed_timed? && completion_status != 'completed'
@@ -134,5 +156,9 @@ class CampaignUser < ApplicationRecord
     return true unless user_preworks_count
 
     user_preworks_count['completed'] == user_preworks_count['total']
+  end
+
+  def all_campaign_scores_present?
+    campaign_factor_values.count == campaign_factors.count
   end
 end

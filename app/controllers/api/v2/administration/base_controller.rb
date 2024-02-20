@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
+
 module Api
   class V2::Administration::BaseController < ActionController::Base
     include AuditLogModule::ControllerHelper
@@ -73,6 +75,30 @@ module Api
       end
     end
 
+    def audit_log_for_record_not_found(error)
+      query = {}
+      query[error.primary_key] = error.id
+      if error.model && error.id && error.primary_key && !error.model.safe_constantize.find_by(query)
+        audit! :record_not_found, current_user, payload: params.merge(model: error.model, model_id: error.id),
+        outcome: :failed, failure_reason: :record_not_found
+      else
+        audit! :user_not_authorized, current_user, payload: params,
+        outcome: :failed, failure_reason: :user_not_authorized
+      end
+    end
+
+    def json_api_records(data, type)
+      {
+        data: data.map do |record|
+          {
+            type: type,
+            id: record['id'].to_s,
+            attributes: record
+          }
+        end
+      }
+    end
+
     def json_api_attributes(record, attrs)
       {
         data: {
@@ -110,6 +136,8 @@ module Api
     end
 
     def user_not_authorized
+      audit! :user_not_authorized, current_user, payload: params, outcome: :failed,
+      failure_reason: :user_not_authorized
       errors = [{
         title: I18n.t('errors.forbidden'),
         status: 403
@@ -130,6 +158,7 @@ module Api
     end
 
     def rescue_record_not_found(error)
+      audit_log_for_record_not_found(error)
       jsonapi_render_errors JSONAPI::Exceptions::RecordNotFound.new(error.id)
     end
 
@@ -244,3 +273,4 @@ module Api
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

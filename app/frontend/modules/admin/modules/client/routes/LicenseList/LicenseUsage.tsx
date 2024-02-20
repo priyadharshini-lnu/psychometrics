@@ -2,8 +2,8 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import moment from 'moment'
 import { Radio, Space, Switch } from 'antd'
+import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { LicenseUsage, LicenseUsageTR } from '~/modules/admin/modules/client/core/license_usages'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -75,7 +75,7 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             dataIndex="createdAt"
             sorter
             render={createdAt => (
-              moment(createdAt).format('lll')
+              dayjs(createdAt).format('lll')
             )}
           />
           <Resource.Column<LicenseUsage>
@@ -84,7 +84,7 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             dataIndex="statusUpdatedAt"
             sorter
             render={statusUpdatedAt => (
-              statusUpdatedAt ? moment(statusUpdatedAt).format('lll') : null
+              statusUpdatedAt ? dayjs(statusUpdatedAt).format('lll') : null
             )}
           />
           <Resource.Column<LicenseUsage>
@@ -112,15 +112,15 @@ const BreadcrumbsComponent = () => {
       }}
       crumbs={[
         {
-          link: () => '/administration',
+          link: () => '/admin',
           label: () => I18n.t('administration.clients.tenancies'),
         },
         {
-          link: () => `/administration/clients/${clientId}/projects`,
+          link: () => `/admin/clients/${clientId}/projects`,
           label: state => state.client.name,
         },
         {
-          link: () => `/administration/clients/${clientId}/licenses`,
+          link: () => `/admin/clients/${clientId}/licenses`,
           label: () => I18n.t('administration.breadcrumbs.licenses'),
         },
         {

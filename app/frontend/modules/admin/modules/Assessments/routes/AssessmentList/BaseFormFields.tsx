@@ -19,6 +19,7 @@ const { I18n } = window
 interface Props {
   assessment?: Assessment
   form: FormInstance
+  showTranslatableFields?: boolean
 }
 
 type OptionsType = {
@@ -26,7 +27,8 @@ type OptionsType = {
   name: string
 }
 
-export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
+export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslatableFields }) => {
+  const { availableLocales } = I18n
   const {
     data: dimensions, fetch: fetchDimensions, isLoading: isDimensionsLoading,
   } = useResources<Dimension>('dimensions')
@@ -36,6 +38,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
   const {
     data: assessments, fetch: fetchAssessments, isLoading: isAssessmentsLoading,
   } = useResources<LinkedAssessment>('assessments')
+
 
   const type = Form.useWatch('type', form)
   const category = Form.useWatch('category', form)
@@ -99,22 +102,28 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
         </Select>
       </Form.Item>
       {ExternalAssessmentFieldsComponent && <ExternalAssessmentFieldsComponent form={form} assessment={assessment} />}
-      <Form.Item
-        name="name"
-        label={I18n.t('common.column.name')}
-        rules={[{ required: true }]}
-      >
-        <Input />
-      </Form.Item>
-      <Form.Item
-        name="description"
-        label={I18n.t('common.column.description')}
-      >
-        <TextArea />
-      </Form.Item>
-      <Form.Item name="timing" label={I18n.t('common.column.timing')}>
-        <TextArea />
-      </Form.Item>
+      {showTranslatableFields
+        && (
+          <>
+            <Form.Item
+              name="name"
+              label={I18n.t('common.column.name')}
+              rules={[{ required: true }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              name="description"
+              label={I18n.t('common.column.description')}
+            >
+              <TextArea />
+            </Form.Item>
+            <Form.Item name="timing" label={I18n.t('common.column.timing')}>
+              <TextArea />
+            </Form.Item>
+          </>
+        )
+      }
       <Form.Item
         name="category"
         className={cs({ hidden: isCategoryHidden() })}
@@ -148,6 +157,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
             }}
             notFoundContent={isAssessmentsLoading('fetch') ? <Spin size="small" /> : null}
             filterOption={false}
+            allowClear
           >
             {getAssessments().map(({ id, name }) => <Select.Option key={id} value={id}>{name}</Select.Option>)}
           </Select>
@@ -173,6 +183,19 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form }) => {
           ))}
         </Select>
       </Form.Item>
+      {type === 'common' && (
+        <Form.Item
+          name="defaultLanguage"
+          label={I18n.t('common.column.default_language')}
+          initialValue={assessment?.defaultLanguage || 'en'}
+        >
+          <Select>
+            {availableLocales.map(locale => (
+              <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+      )}
     </>
   )
 }

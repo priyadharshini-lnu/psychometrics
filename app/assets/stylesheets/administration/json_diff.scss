@@ -1,0 +1,65 @@
+.deletion {
+  position: relative;
+  color: red;
+}
+
+.addition {
+  position: relative;
+  color: green;
+}
+
+.deletion::before,
+.addition::before {
+  display: block;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-left: -10px;
+}
+
+.deletion::before {
+  content: '-';
+}
+
+.addition::before {
+  content: '+';
+}
+
+.unchanged {
+  color: gray;
+}
+
+.diff,
+textarea {
+  font-family: monospace;
+  white-space: pre;
+  padding: 10px 10px 10px 20px;
+}
+
+textarea {
+  background: white;
+  color: black;
+  padding: 10px;
+  margin: 0;
+}
+
+.json-inputs {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.json-inputs > * {
+  flex: 50%;
+  height: 450px;
+  margin-right: 5px;
+}
+
+.json-inputs > * + * {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.error {
+  color: red;
+}

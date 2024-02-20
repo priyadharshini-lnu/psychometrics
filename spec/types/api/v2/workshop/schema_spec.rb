@@ -16,6 +16,7 @@ RSpec.describe Api::V2::Workshop::Schema do
             reschedule_lead_time: 3600,
             video_call_type: 0,
             start_time: 'Wed Jul 05 2023 00:07:43 GMT+0530',
+            allow_late_cancellation_and_rescheduling: true,
             workshop_resources: [
               {
                 name: 'name',
@@ -68,6 +69,7 @@ RSpec.describe Api::V2::Workshop::Schema do
             timezone: ["can't be blank"],
             cancellation_lead_time: ['must be an integer'],
             reschedule_lead_time: ['must be an integer'],
+            allow_late_cancellation_and_rescheduling: ["can't be blank"],
             video_call_type: ["can't be blank"],
             workshop_resources: {
               0 => {

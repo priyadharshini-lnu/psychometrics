@@ -73,8 +73,11 @@ module Threesixty::InitialState
   end
 
   def serialized_current_user
-    ::EndUser::CurrentUserSerializer.new(current_user, project_id: @current_project.id).
-      as_json.
+    serializer = ::EndUser::CurrentUserSerializer.new(
+      context: { project_id: @current_project.id }
+    )
+
+    serializer.serialize(current_user).as_json.
       deep_transform_keys! { |key| key.to_s.camelize(:lower) }
   end
 

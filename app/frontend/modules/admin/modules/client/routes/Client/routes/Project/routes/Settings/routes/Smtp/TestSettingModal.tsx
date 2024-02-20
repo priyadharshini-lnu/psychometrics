@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Modal, Button, message, Input, Alert,
+  Modal, Button, App, Input, Alert,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined, MailOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -39,6 +39,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
 }) => {
   const [email, setEmail] = useState<string>('')
   const [errors, setErrors] = useState(null)
+  const { message } = App.useApp()
 
   const handleOnSubmit = () => {
     sendTestEmail(projectId, smtpSetting, email)
@@ -54,7 +55,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
     <Modal
       width={650}
       title={I18n.t('administration.smtp_settings.test_modal.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,

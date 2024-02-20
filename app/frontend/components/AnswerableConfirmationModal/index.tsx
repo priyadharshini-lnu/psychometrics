@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import {
   Modal, Input, Button, Alert,
 } from 'antd'
@@ -11,7 +11,7 @@ interface Props {
   onConfirm(): void | Promise<unknown>
   onWrongAnswer?(): void
   onCancel(): void
-  children?: HTMLElement
+  children?: ReactNode
 }
 
 const { I18n } = window
@@ -47,7 +47,7 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
     <Modal
       width={580}
       title={<div>{confirmationTitle || I18n.t('threesixty.confirmation_required')}</div>}
-      visible
+      open
       onOk={handleConfirmation}
       onCancel={onCancel}
       footer={[

@@ -76,7 +76,7 @@ class AssignsController < ApplicationController
     media = MediaResponse.find(params[:media_id])
     media.asset_key = params[:asset_key]
     if media.save
-      render json: media.reload, serializer: MediaResponseSerializer
+      render json: MediaResponseSerializer.new.serialize(media.reload)
     else
       error_message = media.errors.messages.values.join(',')
       media.destroy
@@ -98,7 +98,7 @@ class AssignsController < ApplicationController
     media = @assign.media_responses.find(params[:media_id])
     MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
 
-    render json: media.reload, serializer: MediaResponseSerializer
+    render json: MediaResponseSerializer.new.serialize(media.reload)
   end
 
   def mark_as_user_selected_take
@@ -112,6 +112,7 @@ class AssignsController < ApplicationController
   def set_assign
     @assign = policy_scope(Assign).where.not(status: %i[completed timed_out]).find(params[:id])
   rescue ActiveRecord::RecordNotFound
+    audit! :record_not_found, current_user, payload: params, outcome: :failed, failure_reason: :record_not_found
     redirect_to root_path
   end
 

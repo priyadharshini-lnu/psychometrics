@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Form, Input, Button, Switch, message,
+  Row, Col, Form, Input, Button, Switch, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
@@ -33,6 +33,7 @@ const SamlComponent: React.FC<Props> = ({
 }) => {
   const [form] = Form.useForm()
   const { projectId } = useParams<{ projectId: string }>()
+  const { message } = App.useApp()
 
   const handleSuccessfullSave = ({ response: { samlSigninUrl } }: ApiActionResponse<{ samlSigninUrl?: string }>) => {
     if (samlSigninUrl) {

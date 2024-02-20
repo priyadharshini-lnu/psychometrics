@@ -7,8 +7,8 @@ import {
 import map from 'lodash/map'
 import capitalize from 'lodash/capitalize'
 import { AppstoreOutlined } from '@ant-design/icons'
-import moment from 'moment'
 import { Link } from 'react-router-dom'
+import dayjs from '~/utils/dayjs'
 import { STATUSES, DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import { get as getCampaigns, fetch } from '~/modules/admin/modules/AssessorApp/core/campaigns'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -109,14 +109,14 @@ const CampaignList: React.FC<Props> = (
               key="startDate"
               sorter
               sortOrder={getSortOrder('startDate')}
-              render={({ startDate }) => (startDate ? moment(startDate).format('L LT') : ' - ')}
+              render={({ startDate }) => (startDate ? dayjs(startDate).format('L LT') : ' - ')}
             />
             <Column
               title={I18n.t('administration.dates.end')}
               key="endDate"
               sorter
               sortOrder={getSortOrder('endDate')}
-              render={({ endDate }) => (endDate ? moment(endDate).format('L LT') : ' - ')}
+              render={({ endDate }) => (endDate ? dayjs(endDate).format('L LT') : ' - ')}
             />
             <Column
               title={I18n.t('administration.campaigns.listing.status')}
@@ -124,17 +124,31 @@ const CampaignList: React.FC<Props> = (
               render={({ status }) => capitalize(status)}
             />
             <Column
-              title={I18n.t('common.column.completion_status')}
+              title={I18n.t('assessors.campaigns_list.column.evaluation_status')}
               key="completion_status"
-              render={({ completionStatus }) => (
-                I18n.t(`administration.assessor_campaigns.statuses.${completionStatus}`)
+              render={({ evaluationCompletionStatus }) => (
+                I18n.t(`administration.assessor_campaigns.statuses.${evaluationCompletionStatus}`)
               )}
             />
             <Column
-              title={I18n.t('common.column.completion_count')}
+              title={I18n.t('assessors.campaigns_list.column.evaluation_count')}
               key="completionCount"
-              render={({ completedSubjectCount, totalSubjectCount }) => (
-                `${completedSubjectCount} / ${totalSubjectCount}`
+              render={({ completedSubjectEvaluationCount, totalSubjectEvaluationCount }) => (
+                `${completedSubjectEvaluationCount} / ${totalSubjectEvaluationCount}`
+              )}
+            />
+            <Column
+              title={I18n.t('assessors.campaigns_list.column.moderation_status')}
+              key="moderationStatus"
+              render={({ moderationCompletionStatus }) => (
+                I18n.t(`administration.assessor_campaigns.statuses.${moderationCompletionStatus}`)
+              )}
+            />
+            <Column
+              title={I18n.t('assessors.campaigns_list.column.moderation_count')}
+              key="moderationCount"
+              render={({ completedSubjectModerationCount, totalSubjectModerationCount }) => (
+                `${completedSubjectModerationCount} / ${totalSubjectModerationCount}`
               )}
             />
           </Table>

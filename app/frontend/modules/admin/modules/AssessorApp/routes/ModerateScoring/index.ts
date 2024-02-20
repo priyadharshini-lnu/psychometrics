@@ -1,0 +1,1 @@
+export { ModerateScoring } from './ModerateScoring'

@@ -13,6 +13,7 @@ class EndUser::UsersController < ApplicationController
   end
 
   def dashboard
+    # rubocop:disable Metrics/BlockLength
     respond_to do |format|
       format.html do
         render 'end_user/users/dashboard'
@@ -27,7 +28,15 @@ class EndUser::UsersController < ApplicationController
                     includes(:threesixty_campaign, { campaign_options: :translations }).group_by(&:type)
 
         json = []
-        json.concat(serializer_campaign(campaigns['common'], ::EndUser::ShortCampaignSerializer)) if campaigns['common']
+        if campaigns['common']
+          json.concat(
+            Panko::ArraySerializer.new(
+              campaigns['common'],
+              each_serializer: ::EndUser::ShortCampaignSerializer,
+              context: { current_user: current_user }
+            ).to_a
+          )
+        end
 
         if campaigns['threesixty']
           json.concat(serializer_campaign(campaigns['threesixty'].map(&:threesixty_campaign),
@@ -37,6 +46,7 @@ class EndUser::UsersController < ApplicationController
         render json: json
       end
     end
+    # rubocop:enable Metrics/BlockLength
   end
 
   def policy
@@ -53,7 +63,7 @@ class EndUser::UsersController < ApplicationController
   def change_locale
     cookies[:locale] = params[:locale] if @current_project.available_locales.include?(params[:locale])
     set_locale
-    current_user&.update_column(:locale, I18n.locale)
+    current_user&.user_profile&.update(locale: I18n.locale)
   end
 
   def update_details
@@ -63,8 +73,11 @@ class EndUser::UsersController < ApplicationController
     if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS, :photo))
       current_user.user_profile.update!(form.attributes.slice(*(UserProfile::PROFILE_FIELDS - [:photo])))
       audit! :update_user_profile, current_user, project: @current_project, payload: form.attributes
-      render json: current_user, serializer: EndUser::CurrentUserSerializer,
-             project_id: @current_project.id, back_url: session[:back_url]
+
+      render json: ::EndUser::CurrentUserSerializer.new(
+        context: { project_id: @current_project.id,
+                   back_url: session[:back_url] }
+      ).serialize(current_user)
       session.delete(:back_url)
     else
       render json: { errors: current_user.errors.messages }, status: 400
@@ -102,7 +115,7 @@ class EndUser::UsersController < ApplicationController
                    find_by(workshop_subjects: { user_id: current_user.id })
 
         if workshop
-          render json: workshop, serializer: EndUser::WorkshopSerializer
+          render json: ::EndUser::WorkshopSerializer.new(context: { current_user: current_user }).serialize(workshop)
         else
           head :no_content
         end

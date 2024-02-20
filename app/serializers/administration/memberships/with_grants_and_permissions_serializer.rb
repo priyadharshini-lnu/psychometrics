@@ -4,6 +4,7 @@ module Administration
   module Memberships
     class WithGrantsAndPermissionsSerializer < BaseSerializer
       attributes :permissions, :campaigns
+
       has_one :grants, serializer: MembershipGrantsSerializer
 
       def permissions
@@ -19,8 +20,8 @@ module Administration
             'send_mail'
           ],
           {
-            project_id: instance_options[:project_id],
-            campaign_id: instance_options[:campaign_id]
+            project_id: context[:project_id],
+            campaign_id: context[:campaign_id]
           }
         )
         permissions.transform_keys! { |k| k.camelcase(:lower) }

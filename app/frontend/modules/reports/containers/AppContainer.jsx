@@ -12,6 +12,7 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import Result from '~/modules/reports/models/Result'
 import '~/modules/reports/styles/globals.less'
 import store from '../store'
+import { DefaultAntThemeWrapper } from '~/glint'
 
 class AppContainer extends Component {
   undoListener = null
@@ -40,13 +41,15 @@ class AppContainer extends Component {
 
   render () {
     return (
-      <Provider store={store}>
-        <div className="row">
-          <DndProvider backend={HTML5Backend}>
-            <Dashboard />
-          </DndProvider>
-        </div>
-      </Provider>
+      <DefaultAntThemeWrapper>
+        <Provider store={store}>
+          <div className="row">
+            <DndProvider backend={HTML5Backend}>
+              <Dashboard />
+            </DndProvider>
+          </div>
+        </Provider>
+      </DefaultAntThemeWrapper>
     )
   }
 }

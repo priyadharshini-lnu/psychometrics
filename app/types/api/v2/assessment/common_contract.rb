@@ -14,6 +14,8 @@ module Api
         rule(data: { relationships: :linked_assessment }) do
           next unless value
 
+          next if value[:data].nil?
+
           assessment = ::Assessment.find(value[:data][:id])
 
           if assessment.linked_assessor_form && assessment.linked_assessor_form.id != _context[:params][:id].to_i

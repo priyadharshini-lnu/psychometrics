@@ -58,7 +58,7 @@ const UserListComponent: React.FC<Props> = ({
       <Breadcrumb
         crumbs={[
           {
-            link: () => '/administration',
+            link: () => '/admin',
             label: () => I18n.t('users.dashboard'),
           },
           {

@@ -1,6 +1,6 @@
-import moment from 'moment/moment'
 import { FormInstance } from 'antd'
 import _ from 'lodash'
+import dayjs from '~/utils/dayjs'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const getDefaultTimesFromPreviousDays = (currentIndex, formInstance: FormInstance,
@@ -19,8 +19,8 @@ export const getDefaultTimesFromPreviousDays = (currentIndex, formInstance: Form
 
   if (!foundPreviousDay) {
     add({
-      startTime: moment('9:00:00', 'HH:mm:ss'),
-      endTime: moment('17:00:00', 'HH:mm:ss'),
+      startTime: dayjs('9:00:00', 'HH:mm:ss'),
+      endTime: dayjs('17:00:00', 'HH:mm:ss'),
     })
   }
 }
@@ -35,13 +35,13 @@ type DisbledHoursData = {
   startTimeHour?: number
 }
 export const getDisabledHourDataForEndTime = (fieldDataIndex: number, fieldData):DisbledHoursData => {
-  const startTime = fieldData[fieldDataIndex]?.startTime
+  const startTime = fieldData[fieldDataIndex]?.startTime as dayjs.Dayjs
   if (!startTime) {
     return { disabledHours: [], disabledMins: [] }
   }
 
   const startTimeHour = startTime?.hour()
-  const startTimeMinutes = startTime?.minutes()
+  const startTimeMinutes = startTime?.minute()
   const disabledHours = allHours.filter(hour => hour < startTimeHour)
   const disabledMins = allMinutes.filter(minutes => minutes <= startTimeMinutes)
   return ({ disabledHours, disabledMins, startTimeHour })

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module EndUser
-  class UserAssessmentSerializer < ActiveModel::Serializer
+  class UserAssessmentSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :timing, :assessment_category, :completed_at,
                :assessment_extra, :assessment_id, :status, :completion_percent, :available_locales,
@@ -91,7 +91,7 @@ module EndUser
     private
 
     def current_user
-      @current_user ||= instance_options[:current_user]
+      context[:current_user]
     end
   end
 end

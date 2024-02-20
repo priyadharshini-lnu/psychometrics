@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class WorkshopManager < ApplicationRecord
+  audited
   include WorkshopFacilitators
 
   belongs_to :workshop

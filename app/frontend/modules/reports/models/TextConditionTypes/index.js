@@ -3,6 +3,7 @@ import Scoring from './Scoring'
 import ExternalScoring from './ExternalScoring'
 import { SavilleScoring } from './SavilleScoring'
 import DataSheet from './DataSheet'
+import CampaignFactors from './CampaignFactors'
 import ReportData from './ReportData'
 
 export default {
@@ -16,6 +17,7 @@ export default {
   Score: ExternalScoring,
   Stability: ExternalScoring,
   DataSheet,
+  CampaignFactors,
   ReportData,
   'Saville#Ipsative': SavilleScoring,
   'Saville#Nipsative': SavilleScoring,

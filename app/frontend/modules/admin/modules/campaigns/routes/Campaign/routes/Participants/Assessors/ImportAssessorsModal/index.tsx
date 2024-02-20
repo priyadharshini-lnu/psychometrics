@@ -61,7 +61,7 @@ const ImportAssessorsModal: React.FC<OwnProps> = ({
     <Modal
       width={700}
       title={I18n.t('administration.assessor.modals.import.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button

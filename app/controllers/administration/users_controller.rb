@@ -8,8 +8,6 @@ class Administration::UsersController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
   append_after_action :verify_policy_scoped, except: %i[index search_admins]
 
-  render_entrypoint :index, element: 'users', entry: 'admin/users'
-
   def spoof
     resource.admin? ? login_as_other_admin : login_as_end_user
   end
@@ -111,7 +109,7 @@ class Administration::UsersController < Administration::BaseController
 
   def login_as_other_admin
     redirect_url = if resource.is?(:client_admin, :project_admin, :campaign_admin)
-                     administration_root_path
+                     admin_path
                    elsif resource.assessors.exists?
                      assessors_dashboard_path
                    else
@@ -133,7 +131,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
     add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
   end
 

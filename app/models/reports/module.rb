@@ -2,6 +2,10 @@
 
 module Reports
   class Module < ApplicationRecord
+    self.table_name_prefix = 'reports_'
+
+    audited
+
     include Copyable
 
     belongs_to :page, class_name: 'Reports::Page', touch: true
@@ -16,9 +20,5 @@ module Reports
 
     # Disables single column inheritance
     self.inheritance_column = :_type_disabled
-
-    def self.table_name_prefix
-      'reports_'
-    end
   end
 end

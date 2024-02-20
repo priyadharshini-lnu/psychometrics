@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Modal, Button, Form, Select, message,
+  Modal, Button, Form, Select, App,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -42,6 +42,7 @@ const UpdateLocalesModal: React.FC<Props> = ({
   const [form] = Form.useForm()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_fields, setFields] = useState({})
+  const { message } = App.useApp()
 
   const handleUpdate = (params: { availableLocales: string[] }) => {
     updateAvailableLocales(campaignId, campaignAssessmentId, params).then(() => {
@@ -54,7 +55,7 @@ const UpdateLocalesModal: React.FC<Props> = ({
     <Modal
       width={650}
       title={I18n.t('campaign_assessment.modals.update_locales.title')}
-      visible
+      open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,

@@ -59,8 +59,8 @@ class Administration::NormsController < Administration::BaseController
   def destroy
     resource.destroy
     respond_to do |format|
+      audit! :delete, resource, payload: resource.attributes
       format.html do
-        audit! :delete, resource, payload: resource.try(:log_attribute_for_delete)
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end
       format.js
@@ -136,7 +136,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
     add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
   end
 

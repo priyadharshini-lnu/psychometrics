@@ -27,15 +27,37 @@ module Api
 
     def toggle_archive
       resource.toggle!(:archived)
+      audit! :toggle_archive, resource, payload: { archived: resource.archived }
+      jsonapi_render json: resource
+    end
+
+    def fetch_translations
+      locale = params[:locale]
+      object = Mobility.with_locale(locale) do
+        { name: resource.name, description: resource.description, timing: resource.timing, locale: locale }
+      end
+
+      render json: object
+    end
+
+    def update_translations
+      attrs = params[:data][:attributes]
+      locale = attrs[:locale]
+      Mobility.with_locale(locale) do
+        resource.update!(name: attrs[:name], description: attrs[:description], timing: attrs[:timing])
+      end
+
       jsonapi_render json: resource
     end
 
     def copy
+      audit! :copy, resource, payload: { source_id: resource.id }
       result = ::Assessments::CopyAssessment.call!(resource.id, current_user)
       jsonapi_render json: result[:assessment]
     end
 
     def restore
+      audit! :restore, resource, payload: { source_id: resource.id }
       resource.restore!
       jsonapi_render json: resource
     end

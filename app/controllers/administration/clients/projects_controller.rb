@@ -9,8 +9,6 @@ module Administration
       before_action :set_privacy_link_enabled, only: %i[new edit create update]
       append_before_action :pundit_authorize, except: %i[index sidebar]
 
-      render_entrypoint :index, element: 'client-container', entry: 'admin/client'
-
       def index; end
 
       def new

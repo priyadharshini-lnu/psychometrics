@@ -168,6 +168,12 @@ export const WorkshopPage: FC<{location: LocationState}> = ({ location }) => {
           >
             {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
           </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('administration.scheduling.info.late_cancellation_and_rescheduling')}>
+            {workshop.allowLateCancellationAndRescheduling
+              ? I18n.t('administration.scheduling.info.allowed')
+              : I18n.t('administration.scheduling.info.not_allowed')
+            }
+          </Descriptions.Item>
         </Descriptions>
         <Divider />
         <div>
