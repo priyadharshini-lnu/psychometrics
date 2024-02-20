@@ -303,7 +303,7 @@ export const AddEditFactorForm: FC<Props> = ({
   return (
     <Drawer
       closeIcon={<DirectionalNavigateBackIcon />}
-      title={I18n.t('administration.scoring.add_factor')}
+      title={factorData ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
       open={open}
       width="70%"
       onClose={handleClose}

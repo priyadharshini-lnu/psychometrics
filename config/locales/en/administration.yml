@@ -4059,6 +4059,7 @@ en:
       delete_group: Delete Group
       description: Description
       dimension: Dimension
+      edit_factor: Edit Factor
       factor: Factor
       factor_group_added_successfully: Campaign Factor group added successfully
       factor_group_removed_successfully: Campaign Factor group removed successfully
