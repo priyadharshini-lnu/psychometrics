@@ -29,7 +29,7 @@ module Campaigns
         @existing_user_in_project ||= User.find_by(project_id: campaign.project_id, email: form.email)
       end
 
-      def create_campaign_user
+      def create_campaign_user # rubocop:disable Metrics/AbcSize
         if existing_user_in_project
           @user = existing_user_in_project
           if form.first_name.present? && form.last_name &&
