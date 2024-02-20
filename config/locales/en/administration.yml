@@ -4153,7 +4153,7 @@ en:
     settings:
       admin_roles:
         admin_role_single: Admin Role
-        confirm_message: Are you sure you want to delete Admin role '%{role_name}'?
+        confirm_message: Are you sure you want to delete admin role '%{role_name}'?
         confirm_title: Confirmation Required
         create: Add Admin Role
         description: Description

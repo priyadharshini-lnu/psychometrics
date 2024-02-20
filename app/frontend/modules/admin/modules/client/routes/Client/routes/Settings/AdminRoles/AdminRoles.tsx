@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import {
-  Button, message, MenuProps, Space, Checkbox,
+  Button, message, MenuProps, Space, Checkbox, App,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { PlusOutlined } from '@ant-design/icons'
@@ -117,14 +117,30 @@ const getActionsMenuProps = ({
   role, openModal,
 }: ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<AdminRole>()
+  const { modal } = App.useApp()
 
-  const handleOnConfirm = () => resource.removeResource(role.id).then(() => {
-    message.success(
-      I18n.t('administration.settings.admin_roles.successful_remove', { role_name: role?.name }),
-    )
-  }).catch(() => {
-    message.error(I18n.t('common.errors.something_wrong'))
-  })
+  const handleRemove = () => {
+    modal.confirm({
+      title: I18n.t('administration.administrators.modals.delete.title'),
+      content: I18n.t(
+        'administration.settings.admin_roles.confirm_message',
+        { role_name: role.name },
+      ),
+      okText: I18n.t('administration.administrators.modals.delete.okText'),
+      cancelText: I18n.t(
+        'administration.administrators.modals.delete.cancelText',
+      ),
+      onOk: async () => {
+        await resource.removeResource(role.id).then(() => {
+          message.success(
+            I18n.t('administration.settings.admin_roles.successful_remove', { role_name: role?.name }),
+          )
+        }).catch(() => {
+          message.error(I18n.t('common.errors.something_wrong'))
+        })
+      },
+    })
+  }
 
   const menuItems: ItemType[] = []
   resource.meta.permissions?.edit && menuItems.push({
@@ -146,9 +162,7 @@ const getActionsMenuProps = ({
       <>
         <Button
           type="link"
-          onClick={
-            () => openModal('ConfirmationModal', { onConfirm: handleOnConfirm, open: true })
-          }
+          onClick={handleRemove}
           className="ps-0"
         >
           {I18n.t('common.actions.remove')}
