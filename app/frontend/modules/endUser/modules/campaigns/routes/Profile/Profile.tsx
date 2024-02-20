@@ -6,7 +6,6 @@ import {
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import _ from 'lodash'
-import dayjs from '~/utils/dayjs'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { CropImageModal } from '~/glint/components/CropImageModal'
 import Utils from '~/modules/reports/utils/Utils'
@@ -26,8 +25,6 @@ const { Text, Title } = Typography
 const { I18n } = window
 const locales = I18n.availableLocales
 const { Content } = Layout
-
-const timeZones = Intl.supportedValuesOf('timeZone')
 
 interface Image {
   type?: string
@@ -107,16 +104,6 @@ function ProfileComponent ({
     setShowCropper(true)
   }
 
-  const timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${dayjs().tz(zone).format('Z')}) ${zone}` }))
-    .sort((a, b) => Number(dayjs().tz(a.zone).format('ZZ')) - Number(dayjs().tz(b.zone).format('ZZ')))
-  const timezoneGuess = dayjs.tz.guess()
-
-  if (timezoneGuess) {
-    timezoneNames.unshift({
-      zone: timezoneGuess,
-      label: `(GMT${dayjs().tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
-    })
-  }
   const headerElement = (
     <Col flex="auto" span={24} className="ta-e">
       <LangDropdown />
@@ -259,28 +246,6 @@ function ProfileComponent ({
                         ))}
                       </Select>
                     </Form.Item>
-
-                    {/* <Form.Item
-                      name="timezone"
-                      label={I18n.t('profile.timezone')}
-                      hasFeedback
-                      help={errors?.timezone}
-                      validateStatus={errors?.timezone ? 'error' : ''}
-                    >
-                      <Select
-                        disabled={lockedFields.timezone}
-                        size="large"
-                        showSearch
-                        filterOption={(search, option) => `${option?.value}`
-                          .toLowerCase().includes(search.toLowerCase())}
-                      >
-                        {timezoneNames.map((item, i) => (
-                          <Select.Option key={i} value={item.zone}>
-                            {item.label}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item> */}
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
                         <Col key={field.question_id} xs={24} sm={24} md={field.half_size ? 12 : 24}>

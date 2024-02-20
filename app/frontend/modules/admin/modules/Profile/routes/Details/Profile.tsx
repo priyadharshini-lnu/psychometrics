@@ -6,7 +6,6 @@ import {
 import { PlusOutlined, EditOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import _ from 'lodash'
-import dayjs from '~/utils/dayjs'
 import { useResources } from '~/hooks/useResources'
 import { camelizeKeys } from '~/utils/object'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -19,12 +18,11 @@ import { CropImageModal } from '~/glint/components/CropImageModal'
 import styles from './styles.less'
 import { UserTR, User, UserProfile } from '~/modules/admin/modules/client/core/users'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { useTimezones } from '~/hooks/useTimezones'
 
 const { Title } = Typography
 const { I18n } = window
 const { Content } = Layout
-
-const timeZones = Intl.supportedValuesOf('timeZone')
 
 interface Image {
   type?: string
@@ -52,6 +50,7 @@ function ProfileComponent ({
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
   const { message } = App.useApp()
+  const timezoneOptions = useTimezones()
 
   const {
     fetchSingle, getResource, updateResource, isLoading,
@@ -105,17 +104,6 @@ function ProfileComponent ({
       type: file.type,
     })
     setShowCropper(true)
-  }
-
-  const timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${dayjs().tz(zone).format('Z')}) ${zone}` }))
-    .sort((a, b) => Number(dayjs().tz(a.zone).format('ZZ')) - Number(dayjs().tz(b.zone).format('ZZ')))
-  const timezoneGuess = dayjs.tz.guess()
-
-  if (timezoneGuess) {
-    timezoneNames.unshift({
-      zone: timezoneGuess,
-      label: `(GMT${dayjs().tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
-    })
   }
 
   return (
@@ -246,8 +234,8 @@ function ProfileComponent ({
                         filterOption={(search, option) => `${option?.value}`
                           .toLowerCase().includes(search.toLowerCase())}
                       >
-                        {timezoneNames.map((item, i) => (
-                          <Select.Option key={i} value={item.zone}>
+                        {timezoneOptions.map((item, i) => (
+                          <Select.Option key={i} value={item.value}>
                             {item.label}
                           </Select.Option>
                         ))}
