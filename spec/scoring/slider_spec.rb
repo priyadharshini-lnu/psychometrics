@@ -6,7 +6,9 @@ RSpec.describe Scoring::TextEntry do
   let!(:slider) { Scoring::Slider.new }
   let!(:template_data) do
     [
-      { 'index' => 0, 'value' => 2 }, { 'index' => 1, 'value' => 3 }, { 'index' => 2, 'value' => 4 }
+      { 'index' => 0, 'min' => 0, 'max' => 2 },
+      { 'index' => 1, 'min' => 0, 'max' => 3 },
+      { 'index' => 2, 'min' => 0, 'max' => 4 }
     ]
   end
   let!(:question) { Question.new(props: { 'minValue' => 50, 'maxValue' => 200, 'choices' => 3 }) }
@@ -44,9 +46,9 @@ RSpec.describe Scoring::TextEntry do
         context 'when scoring is reversed, answer: #1 - 100, #2, #3 - 200' do
           it 'returns 4/9' do
             reverse_template_data = [
-              { 'index' => 0, 'value' => 2, 'reverse' => true },
-              { 'index' => 1, 'value' => 3, 'reverse' => true },
-              { 'index' => 2, 'value' => 4, 'reverse' => true }
+              { 'index' => 0, 'min' => 2, 'max' => 0 },
+              { 'index' => 1, 'min' => 3, 'max' => 0 },
+              { 'index' => 2, 'min' => 4, 'max' => 0 }
             ]
             result = slider.calculate(question,
                                       { 'answers' => [

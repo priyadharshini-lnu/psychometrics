@@ -32,6 +32,10 @@ module Campaigns
       def create_campaign_user
         if existing_user_in_project
           @user = existing_user_in_project
+          if form.first_name.present? && form.last_name &&
+             (@user.first_name != form.first_name || @user.last_name != form.last_name)
+            @user.update!(first_name: form.first_name, last_name: form.last_name, modifier: current_user)
+          end
         else
           ActiveRecord::Base.transaction do
             user_attributes = form.to_h.except(
@@ -50,10 +54,12 @@ module Campaigns
             )
           end
         end
-        @campaign_user = campaign.campaign_users.create(
-          user: user, active: form.active, schedule_start_date: form.schedule_start_date,
+        @campaign_user = campaign.campaign_users.find_or_initialize_by(user: user)
+        campaign_user.assign_attributes(
+          active: form.active, schedule_start_date: form.schedule_start_date,
           schedule_end_date: form.schedule_end_date
         )
+        campaign_user.save!
       end
 
       def add_reports_and_assessments

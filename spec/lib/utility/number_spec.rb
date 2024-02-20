@@ -23,6 +23,9 @@ describe Utility::Number do
       expect(
         described_class.scale(0.5, 0, 1, 0, 5)
       ).to eq(2.5)
+      expect(
+        described_class.scale(0.5, 0, 1, 5, 0)
+      ).to eq(2.5)
     end
   end
 end

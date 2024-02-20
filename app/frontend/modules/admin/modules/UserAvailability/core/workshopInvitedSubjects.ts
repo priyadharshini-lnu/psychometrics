@@ -25,7 +25,7 @@ export const Schema = {
     user: {
       type: 'users',
     },
-    workshop_invite: {
+    workshopInvite: {
       type: 'workshop_invites',
     },
   },

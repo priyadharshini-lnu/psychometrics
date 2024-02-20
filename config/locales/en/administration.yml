@@ -3951,6 +3951,7 @@ en:
         start_time: Date & Time
         status: Status
         subject: Subject
+        title: Title
       date_presets:
         all_time: All time
         current_month: Current month

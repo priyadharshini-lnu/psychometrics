@@ -126,8 +126,7 @@ module Imports
           if user_result.completed?
             ::UsersResults::Recompute.call!(
               user_result,
-              user_result.user,
-              norm_id: user_result.norm_id
+              user_result.user
             )
           end
           user_result

@@ -1908,6 +1908,7 @@ en:
       workshops:
         no_available_assessor_slots: No available slots for assessor %{assessor}
         no_available_manager_slots: No available slots for manager %{manager}
+        part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
     users:
       registrations:
         new:
