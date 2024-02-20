@@ -65,6 +65,7 @@ export const AddEditFactorForm: FC<Props> = ({
   const { campaignId } = useParams<{campaignId: string}>()
   // this is required to trigger re-render when fields changed through form.setFieldsValue
   const [, setFields] = useState({})
+  const [isEditing, setIsEditing] = useState(false)
   const [codeValueEditedByUser, setCodeValueEditedByUser] = useState(false)
   const [form] = Form.useForm()
   const nameValue = Form.useWatch('name', form)
@@ -93,6 +94,10 @@ export const AddEditFactorForm: FC<Props> = ({
       setCodeValueEditedByUser(false)
     }
   }, [factorData, open])
+
+  useEffect(() => {
+    setIsEditing(!!factorData)
+  }, [factorData])
 
   const {
     data: dimensions, setData: setDimensions, isLoading: isDimensionsLoading,
@@ -303,7 +308,7 @@ export const AddEditFactorForm: FC<Props> = ({
   return (
     <Drawer
       closeIcon={<DirectionalNavigateBackIcon />}
-      title={factorData ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
+      title={isEditing ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
       open={open}
       width="70%"
       onClose={handleClose}
