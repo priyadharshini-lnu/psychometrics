@@ -494,7 +494,7 @@ jobs:
           command: |
             heroku container:release web worker release -a << parameters.app-name >>
   heroku_release_production:
-    executor: heroku/default
+    executor: tte-docker-build
     parameters:
       source-app-name:
         type: string
