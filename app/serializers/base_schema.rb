@@ -9,7 +9,7 @@ class BaseSchema
 
       unless existing_schema.config.validate_keys
         raise PankoOverride::Exceptions::KeyValidationMissing,
-              "Schema class '#{name}' does not have 'config.validate_keys' set to true"
+              "Schema class '#{name}' does not have 'config.validate_keys' set to true. Please set it to true or whitelist the schema in whitelisted_schemas method" # rubocop:disable Layout/LineLength
       end
       existing_schema
     end
@@ -43,6 +43,7 @@ class BaseSchema
      Assessments::Actions::Block::CreateByTemplate::QuestionSchema,
      Assessments::Actions::Block::CreateByTemplate::BlockSchema,
      Assessments::Actions::Question::CreateByTemplate::QuestionSchema,
-     Assessments::QuestionSchema, Assessments::AssessmentSchema, Assessments::BlockSchema, Assessments::FactorSchema]
+     Assessments::QuestionSchema, Assessments::AssessmentSchema, Assessments::BlockSchema, Assessments::FactorSchema,
+     UsersResultUpdateSchema]
   end
 end
