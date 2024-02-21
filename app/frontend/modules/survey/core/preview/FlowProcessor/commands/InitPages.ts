@@ -10,7 +10,6 @@ const InitPages = {
       const symbolId = Symbol.for(b.id.toString())
       pages = { ...pages, [symbolId]: [] }
 
-
       const questions = _.reduce(b.questions, (questions: number[], q) => {
         if (q.deleted) { return questions }
 
@@ -65,7 +64,12 @@ const InitPages = {
         pages[symbolId] = [...pages[symbolId], attrs]
       }
       if (b.props && b.props.randomization) {
-        pages[symbolId] = RandomizeBlockQuestions.run(b.props.randomization, pages[symbolId], seed + b.id)
+        pages[symbolId] = RandomizeBlockQuestions.run(
+          b.props.randomization,
+          pages[symbolId],
+          seed + b.id,
+          data.factors,
+        )
       }
       return { ...pages }
     }, {})

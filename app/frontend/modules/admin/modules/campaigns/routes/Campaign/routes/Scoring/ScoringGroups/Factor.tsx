@@ -25,7 +25,7 @@ type Props = {
   listeners?: DraggableSyntheticListeners
   ref: LegacyRef<HTMLDivElement>
   style?: CSSProperties
-  removeFactor: (factorId: string) => void
+  removeFactor: (factor: CampaignFactor) => void
   onEditFactor: (factor: CampaignFactor) => Promise<void> | void
 }
 
@@ -34,7 +34,7 @@ export const Factor = React.forwardRef(
     factor, attributes, listeners, dragStyle, style, removeFactor, onEditFactor,
   }: Props, ref:RefObject<HTMLDivElement>) => {
     const handleDeleteFactor = () => {
-      removeFactor(factor.id)
+      removeFactor(factor)
     }
 
     return (
@@ -63,7 +63,7 @@ export const Factor = React.forwardRef(
 type FactorSortableProps = {
   sortId: string
   factor: CampaignFactor
-  removeFactor: (factorId: string) => void
+  removeFactor: (factor: CampaignFactor) => void
   onEditFactor: (factor: CampaignFactor) => Promise<void> | void
 }
 

@@ -6,6 +6,7 @@ export const getMaintenanceDate = (state: RootState) => _.get(state, ['config', 
 export const getlighthousePrivacyUrl = (state: RootState) => _.get(state, ['config', 'lighthousePrivacyUrl'])
 export const getprivacyPolicyVersion = (state: RootState) => _.get(state, ['config', 'privacyPolicyVersion'])
 export const getCustomPrivacyConsentText = (state: RootState) => _.get(state, ['config', 'customPrivacyConsentText'])
+export const getShowBookings = (state: RootState) => _.get(state, ['config', 'showBookings'])
 
 export const defaultState = {
   agileAssetsUrl: '',

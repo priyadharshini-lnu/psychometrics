@@ -28,6 +28,7 @@ type OptionsType = {
 }
 
 export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslatableFields }) => {
+  const { availableLocales } = I18n
   const {
     data: dimensions, fetch: fetchDimensions, isLoading: isDimensionsLoading,
   } = useResources<Dimension>('dimensions')
@@ -37,6 +38,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
   const {
     data: assessments, fetch: fetchAssessments, isLoading: isAssessmentsLoading,
   } = useResources<LinkedAssessment>('assessments')
+
 
   const type = Form.useWatch('type', form)
   const category = Form.useWatch('category', form)
@@ -181,6 +183,19 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
           ))}
         </Select>
       </Form.Item>
+      {type === 'common' && (
+        <Form.Item
+          name="defaultLanguage"
+          label={I18n.t('common.column.default_language')}
+          initialValue={assessment?.defaultLanguage || 'en'}
+        >
+          <Select>
+            {availableLocales.map(locale => (
+              <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+      )}
     </>
   )
 }

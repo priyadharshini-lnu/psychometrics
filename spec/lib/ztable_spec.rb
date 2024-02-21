@@ -28,6 +28,12 @@ describe Ztable do
       expect(percentile).to eq(42.858)
     end
 
+    it 'returns percentile for a zscore which is integer' do
+      percentile = described_class.percentile(3)
+
+      expect(percentile).to eq(99.865)
+    end
+
     # TODO: spec other edge cases
   end
 end

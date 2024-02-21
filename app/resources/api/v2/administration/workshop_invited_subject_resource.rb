@@ -18,7 +18,7 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
     }
   }
 
-  ransack_filters %i[filterable_fields]
+  ransack_filters %i[filterable_fields workshop_invite_campaign_id_eq user_id_eq]
 
   filter :status_in, apply: lambda { |records, statuses, _options|
     records.where(status: statuses)
@@ -43,7 +43,7 @@ class Api::V2::Administration::WorkshopInvitedSubjectResource < Api::V2::Adminis
       WorkshopInvitedSubject.
         includes(:workshop_subject, :workshop_invite).
         where(workshop_invites: {
-          campaign_id: options[:context][:params][:campaign_id]
+          campaign_id: options.dig(:context, :params, :campaign_id)
         })
     end
   end

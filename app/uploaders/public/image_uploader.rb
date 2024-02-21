@@ -29,7 +29,7 @@ module Public
     end
 
     def raster_extensions
-      %w[jpg jpeg gif png bmp]
+      %w[jpg jpeg png bmp]
     end
 
     def filename

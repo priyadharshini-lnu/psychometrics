@@ -9,7 +9,7 @@ module Assessors
     end
 
     def query
-      Assessment.assessor_form.where("owner_id is NULL OR owner_id = #{client.id}")
+      Assessment.assessor_form.where("owner_id = #{client.id}")
     end
   end
 end

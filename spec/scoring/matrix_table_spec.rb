@@ -9,12 +9,12 @@ RSpec.describe Scoring::MatrixTable do
       { 'scale' => 0, 'choice' => 0, 'value' => 1 },
       { 'scale' => 1, 'choice' => 0, 'value' => 2 },
       { 'scale' => 2, 'choice' => 0, 'value' => 3 },
+      { 'scale' => 0, 'choice' => 1, 'value' => 3 },
+      { 'scale' => 1, 'choice' => 1, 'value' => 2 },
+      { 'scale' => 2, 'choice' => 1, 'value' => 1 },
       { 'scale' => 0, 'choice' => 2, 'value' => 1 },
       { 'scale' => 1, 'choice' => 2, 'value' => 2 },
-      { 'scale' => 2, 'choice' => 2, 'value' => 3 },
-      { 'choice' => 1, 'scale' => 0, 'value' => 3 },
-      { 'choice' => 1, 'scale' => 1, 'value' => 2 },
-      { 'choice' => 1, 'scale' => 2, 'value' => 1 }
+      { 'scale' => 2, 'choice' => 2, 'value' => 3 }
     ]
   end
 
@@ -55,15 +55,16 @@ RSpec.describe Scoring::MatrixTable do
 
     context 'with not applicable option' do
       context 'when answer: s1c1, no applicable, s2c3' do
-        it 'returns nil' do
+        it 'returns 1.5' do
           result = matrix_table.calculate(
-            Question.new(props: { 'choices' => 2, 'scalePoints' => 2 }),
+            Question.new(props: { 'choices' => 3, 'scalePoints' => 2 }),
             { 'answers' => [
               { 'scale' => 0, 'choice' => 0, 'value' => true },
               { 'scale' => 1, 'choice' => 2, 'value' => true }
             ], 'not_applicable' => { '1' => true } }, template_data
-          )[:value]
-          expect(result).to eq(3 / 2.0)
+          )
+          expect(result[:value]).to eq(3 / 2.0)
+          expect(result[:max_value]).to eq(4)
         end
       end
       it 'returns nil' do
@@ -71,8 +72,21 @@ RSpec.describe Scoring::MatrixTable do
           Question.new(props: { 'choices' => 1, 'scalePoints' => 1 }),
           { 'answers' => [], 'not_applicable' => { '0' => true, '1' => true, '2' => true } },
           template_data
-        )[:value]
-        expect(result).to be_nil
+        )
+        expect(result[:value]).to be_nil
+        expect(result[:max_value]).to eq(0)
+      end
+      it 'returns nil' do
+        result = matrix_table.calculate(
+          Question.new(props: { 'choices' => 2, 'scalePoints' => 2 }),
+          { 'answers' => [
+            { 'scale' => 1, 'choice' => 0, 'value' => true },
+            { 'scale' => 1, 'choice' => 1, 'value' => true }
+          ], 'not_applicable' => false },
+          template_data
+        )
+        expect(result[:value]).to eq(2)
+        expect(result[:max_value]).to eq(5)
       end
     end
   end

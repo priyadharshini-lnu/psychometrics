@@ -58,6 +58,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     const update = () => {
       const jsonData = _.pick(values, [
         'backgroundColor',
+        'backgroundSize',
         'loginBoxPosition',
         'primaryColor',
         'errorColor',
@@ -150,6 +151,12 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
                 {I18n.t('administration.projects.design_settings.bg_upload')}
               </Button>
             </Upload>
+          </Form.Item>
+          <Form.Item name="backgroundSize" label={I18n.t('administration.projects.design_settings.background_size')}>
+            <Radio.Group>
+              <Radio value="cover">{I18n.t('administration.projects.design_settings.background_size_cover')}</Radio>
+              <Radio value="contain">{I18n.t('administration.projects.design_settings.background_size_contain')}</Radio>
+            </Radio.Group>
           </Form.Item>
           <Form.Item name="secondaryLogo" label={I18n.t('administration.projects.design_settings.sec_logo_label')}>
             <Upload

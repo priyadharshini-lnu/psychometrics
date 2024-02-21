@@ -13,6 +13,7 @@ import EndOfAssessmentModal from '../EndOfAssessmentModal'
 import DataSheetModal from '../DataSheetModal'
 import { SettingsModal } from '../SettingsModal/SettingsModal'
 import { LinkedAssessmentModal } from '../LinkedAssessmentModal/LinkedAssessmentModal'
+import { ImportQuestionsModal } from '../ImportQuestionsModal'
 
 const MODALS = {
   dataSheetModal: DataSheetModal,
@@ -29,6 +30,7 @@ const MODALS = {
   endOfAssessment: EndOfAssessmentModal,
   settings: SettingsModal,
   linkedAssessment: LinkedAssessmentModal,
+  importQuestionsModal: ImportQuestionsModal,
 }
 
 

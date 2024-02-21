@@ -10,7 +10,7 @@ module Api
 
             required(:id).filled(:int?)
             required(:name).filled(:str?)
-            required(:value).maybe(:int?)
+            required(:value).value { int? | float? | nil? }
           end
         end
       end

@@ -29,6 +29,11 @@ const UpdateNormModal: React.FC<Props> = ({
   const [_fields, setFields] = useState({})
 
   const handleUpdate = (params) => {
+    if (assessment.status === 'completed' && params.normId === null) {
+      message.error(I18n.t('campaign_assessment.modals.update_norm.cannot_remove_norm'))
+      return
+    }
+
     updateNorm(campaignId, campaignAssessmentId, params).then(() => {
       message.info(I18n.t('campaign_assessment.modals.update_norm.success_msg'))
       close()
@@ -75,7 +80,7 @@ const UpdateNormModal: React.FC<Props> = ({
             <Option
               label="default"
               key="default"
-              value=""
+              value={null}
             >
               {I18n.t('common.text.default')}
             </Option>

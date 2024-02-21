@@ -25,7 +25,7 @@ export default function ExternalList ({
   }
 
   const onAdd = () => {
-    const value = [{ type: 'raw', jsonpath: '' }, ...factor[EXTERNAL_SCORING]]
+    const value = [{ type: 'score', jsonpath: '' }, ...factor[EXTERNAL_SCORING]]
     onChange({ currentTarget: { name: EXTERNAL_SCORING, value } })
   }
 
@@ -46,7 +46,12 @@ export default function ExternalList ({
             {rows.map((row, i) => (
               <tr key={i}>
                 <td className={styles.td} style={{ width: 150 }}>
-                  <Select style={{ width: '100%' }} value={row.type} onChange={type => onUpdate(i, { type })}>
+                  <Select
+                    style={{ width: '100%' }}
+                    value={row.type}
+                    onChange={type => onUpdate(i, { type })}
+                    getPopupContainer={node => node.parentNode}
+                  >
                     {TYPES.map(type => (
                       <Select.Option key={type} value={type}>
                         {I18n.t(`administration.factors.form.components.ExternalList.table.types.${type}`)}

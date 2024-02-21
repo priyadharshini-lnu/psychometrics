@@ -3,7 +3,7 @@
 class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy
+  before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy import_questions
                                         preview export toggle_archive questions factors soft_delete restore]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -59,6 +59,22 @@ class Administration::AssessmentsController < Administration::BaseController
   def upload_data_sheet
     @form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: 'Datasheet')
     render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
+  end
+
+  def import_questions
+    form = Assessments::QuestionsImport::ImportForm.new(file: params[:file]).with_context(assessment: resource)
+    return render json: { errors: form.errors.full_messages }, status: 422 unless form.valid?
+
+    AdminJob.call(:import_assessment_questions, { assessment_id: resource.id }, current_user, params[:file])
+
+    head :ok
+  end
+
+  def import_questions_sample_file
+    send_file(
+      Rails.public_path.join('example_csv/import_assessment_questions_sample_file.xlsx'),
+      type: 'application/xlsx'
+    )
   end
 
   private

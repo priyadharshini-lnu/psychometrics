@@ -4,7 +4,7 @@ module Api
   module Administration
     class CampaignAssessorAssessmentPolicy < BasePolicy
       def index?
-        has_permission?(:assessors, :view)
+        has_permission?(:assessors, :view) || @user.is?(:assessor)
       end
 
       def create?

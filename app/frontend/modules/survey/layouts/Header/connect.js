@@ -20,6 +20,7 @@ export default connect(
   }),
   {
     openDataSheetModal: data => openModal('dataSheetModal', data),
+    openImportQuestionsModal: data => openModal('importQuestionsModal', data),
     openFlow: data => openModal('flow', data),
     openMapNorms: data => openModal('mapNorms', data),
     openCreateByTemplate: data => openModal('createByTemplate', data),

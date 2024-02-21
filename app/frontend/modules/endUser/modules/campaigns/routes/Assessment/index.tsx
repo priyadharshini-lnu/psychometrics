@@ -1,6 +1,6 @@
 import { useEffect, FC, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Redirect, RouteComponentProps, useHistory } from 'react-router-dom'
+import { RouteComponentProps, useHistory } from 'react-router-dom'
 import WizardIsRequired from '~/modules/endUser/core/WizardIsRequired'
 import { PrivacyConsent } from './PrivacyConsent'
 import { LanguageSelection } from './LanguageSelection'
@@ -97,7 +97,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     )
   }
 
-  return <Redirect to={assessmentUrl(userAssessmentData, locale || I18n.currentLocale())} />
+  location.href = assessmentUrl(userAssessmentData, locale || selectedLocale || I18n.currentLocale())
+
+  return null
 }
 
 export const Assessment = connector(UserAssessmentComponent)

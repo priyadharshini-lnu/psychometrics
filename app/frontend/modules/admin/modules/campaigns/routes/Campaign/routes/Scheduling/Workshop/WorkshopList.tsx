@@ -37,6 +37,7 @@ export const WorkshopList: React.FC = () => {
     apiConfig: {
       include: ['workshop_managers', 'workshop_assessors', 'workshop_resources'],
       include_meta: ['permissions'],
+      trackUrl: true,
       fields: {
         workshop_managers: ['id', 'full_name', 'photo_url', 'email'],
         workshop_assessors: ['id', 'full_name', 'photo_url', 'email'],
@@ -60,7 +61,11 @@ export const WorkshopList: React.FC = () => {
             title={I18n.t('administration.scheduling.columns.name')}
             id="name"
             width="20%"
-            render={(_, { id, name }) => <Link to={`assessment_center/${id}`}>{name}</Link>}
+            render={(_, { id, name }) => (
+              <Link to={{ pathname: `assessment_center/${id}`, state: { search: location.search } }}>
+                {name}
+              </Link>
+            )}
             sorter
           />
           <Resource.Column<Workshop>
@@ -75,6 +80,12 @@ export const WorkshopList: React.FC = () => {
             id="duration"
             width="10%"
             render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
+          />
+          <Resource.Column<Workshop>
+            title={I18n.t('administration.scheduling.columns.seats')}
+            id="duration"
+            width="10%"
+            render={(_, { totalSeats, bookedSeats }) => `${bookedSeats}/${totalSeats}`}
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.managers')}

@@ -24,6 +24,11 @@ export class Header extends Component {
     openDataSheetModal({ columns: assessment.data_sheet_columns, id: assessment.id })
   }
 
+  openImportQuestionsModal = () => {
+    const { openImportQuestionsModal, assessment } = this.props
+    openImportQuestionsModal({ assessmentId: assessment.id })
+  }
+
   openSettings = () => {
     const { openSettings } = this.props
     openSettings()
@@ -197,6 +202,9 @@ export class Header extends Component {
                 </a>
               </li>
               <MenuItem onSelect={this.openDataSheetModal}>Manage Datasheet</MenuItem>
+              <MenuItem onSelect={this.openImportQuestionsModal}>
+                {I18n.t('administration.assessments.menu.import_questions')}
+              </MenuItem>
             </DropdownButton>
             <form
               style={{ display: 'none' }}

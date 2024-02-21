@@ -142,7 +142,15 @@ module Swagger
               description: 'deprecated, use "campaigns". In case both "campaigns"  and "campaign_ids" are provided
 , "campaigns" will be used'
             },
-            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true }
+            campaigns: { type: 'array', items: { '$ref' => '#/definitions/NewUserCampaign' }, 'x-nullable': true },
+            existing_record: {
+              type: 'string',
+              enum: %w[reject accept],
+              default: 'reject',
+              description: '**reject**: This will return an error if the user already exists.
+              **accept**: This will update the user if existing record is found.
+              '
+            }
           },
           required: %w[email first_name last_name campaign_ids]
         },

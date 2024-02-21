@@ -93,7 +93,7 @@ gem 'i18n-js',                    '~> 3.9.2'
 ### Decorator
 gem 'draper', '~> 4.0.2'
 ### For organisation ENV variable
-gem 'config',                     '~> 4.2.0'
+gem 'config',                     '~> 5.1.0'
 gem 'figaro',                     '~> 1.2.0'
 
 gem 'premailer-rails',            '~> 1.11.1'
@@ -151,7 +151,7 @@ gem 'remotipart', '~> 1.3.1'
 gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.1.1'
 gem 'rectify', '~> 0.13.0'
-gem 'sidekiq', '~> 7.1.6'
+gem 'sidekiq', '~> 6.5.12'
 
 gem 'hashids', '~> 1.0.5'
 
@@ -258,7 +258,7 @@ end
 gem 'rqrcode', '~> 2.1.1'
 
 # a scheduling add-on for sidekiq
-gem 'sidekiq-cron', '~> 1.10.1'
+gem 'sidekiq-cron', '~> 1.7.0'
 
 gem 'xml-simple', '~> 1.1.5'
 

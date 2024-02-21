@@ -41,7 +41,7 @@ module UserReports
 
       {
         campaign: user_report.campaign,
-        subject: user_report.subject,
+        subject: user_result.subject,
         report: user_report.report,
         results: Api::V1::ResultSerializer.new(context: { user_report: user_report }).serialize(built_results)
       }

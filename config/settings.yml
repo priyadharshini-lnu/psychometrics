@@ -395,6 +395,7 @@ providers:
     report_packages:
       - id: RPtFlashLeadSummary
         name: LEAD Series + Summary + Flash
+        default_assessment_id: HPI
         report_ids:
           - EcHDSLFCML
           - EcMVPILFVML
@@ -403,6 +404,7 @@ providers:
           - EcHPIHDSMVPIPESML
       - id: RPInsightFlashPkg
         name: PKG-Insights + Flash, ID
+        default_assessment_id: HPI
         report_ids:
           - EcHPIHDSMVPIFR
           - EcHPIINSRV2
@@ -1296,6 +1298,7 @@ providers:
           - 5DF31F3A-2F95-4969-A61A-E0247E2A3A30
           - F31ED9E3-2EBD-4CED-B2CC-E371FEFCF33F
           - 4E34D3A4-BA06-4279-B9F4-A3EA234D18B3
+          - 44968427-FFC5-4703-A804-30C081CD60E9
       - id: A6DB5C4B-8D1E-426C-B215-DB638327F44F
         name: Work Strengths (IA) V2
         default_norm_id: C61621ED-894E-4368-A7B1-1E8931512FD3
@@ -1400,6 +1403,73 @@ providers:
           - 94437446-E07B-4CF2-B3EF-32717D16F00E
         report_ids:
           - B64D89DF-B364-46CC-A2D1-F033BE7DD6DF
+      - id: 38FA53A8-FFD5-4297-9BF4-2A75E66296DB
+        name: Workplace English - Office (IA)
+        default_norm_id: 49D33D43-5C5E-45EF-A1F0-43ACA45628CF
+        norm_ids:
+          - 49D33D43-5C5E-45EF-A1F0-43ACA45628CF
+        report_ids:
+          - 88A6D290-1CB9-4828-9838-2441C3D5E049
+      - id: E2501CD5-358C-4CBB-95EB-7AA75E58E1D0
+        name: Numerical Analysis Aptitude-Rx (IA)
+        default_norm_id: 83D4B936-7771-41E3-9802-0298006DF3EE
+        norm_ids:
+          - 83D4B936-7771-41E3-9802-0298006DF3EE
+          - 4D77CDC5-B527-4F07-90A0-06BA60929EEC
+          - F0FA3592-11ED-44EA-AB86-0D3C57769292
+          - 10BFC1C1-668A-458A-94BC-15C258ABD974
+          - 47636708-494F-4811-9107-1CE9398B9997
+          - 230DFBF5-0C7D-4E7B-A472-1DFE3E39BDF9
+          - 0DB7534A-5584-4224-B43C-1E7146A60609
+          - 33A1B890-D383-44AE-9CD9-2A12747E04BE
+          - 42DE1225-7642-4644-979E-2AEEE364005F
+          - 9EFB51BA-D7D0-450E-9016-30061E87A2DF
+          - F1B70660-7C84-49DF-92BA-358C9F0B4CD9
+          - EA409B5A-801C-4C43-8C73-3A0FAF5D1A5B
+          - F65047B0-1D38-4E68-837B-3E85B0335962
+          - 8D3746B6-7EDC-4FB4-A183-409FEA2A5C6F
+          - 97296F62-B661-4C84-B6C0-41A32E1D83AC
+          - EA519DCA-3858-42F7-9AFF-46D483200189
+          - 290558D3-9C22-431F-983C-4B8F1E0A18F3
+          - 7C8FEC50-13EF-4D81-BBC5-4BB289661647
+          - 3C8D234E-6E92-47D7-AD4C-53CEA241D96E
+          - CCE7FB82-7F1C-44FB-A2D6-5DDFBDFF2F1C
+          - F77D17D6-67B4-4AE6-B313-5E3B012212C0
+          - A4A3BFD5-AEEB-4C77-99E7-5F55F6E4E768
+          - 2128490D-E8CC-4F8B-BB7D-6965FFB60B57
+          - 7737F537-346F-42B8-B021-751BFE50096F
+          - CD009717-D995-4C9F-AAE3-76327FA3D365
+          - AC1DF0CC-31D2-4712-9D6F-803D3D8B4B50
+          - AE251272-4546-49B1-9A0F-85AB845068C5
+          - 2C69DA36-EE11-4032-86F7-98F553BF2E29
+          - 571BACB4-6E13-48E0-A8B2-9BC184862A98
+          - 93538048-32CD-4FA2-8E82-9DD13DF95637
+          - 8EFBD753-B198-4E05-BA15-9FD91E9A8EC3
+          - 43BA1FFF-2DE0-4F74-885D-A05DECC49095
+          - A03D3293-76CE-494E-9779-A3FA8031FB51
+          - 602D084E-9D1B-419E-AAEE-A76E44EBD7C4
+          - 53BDE83C-FA7B-4993-BE2E-AC101BF46865
+          - 79557F8F-F871-4719-BE94-B3B1DD0C612B
+          - 4D456A28-78BE-458B-A601-B51847E760F4
+          - 08086B61-4723-4D04-BD1C-B97E60A472FB
+          - 1F49B6B7-909B-496E-93BC-C19B29C29FD0
+          - 70F2F5BD-A6C1-4C3E-9139-C748D0204EBE
+          - 17B3875A-3536-4658-9B83-C98178C1F87F
+          - C69C4367-9694-4D82-89C2-CC14751E0148
+          - 6AC747AE-2599-4702-ACF6-CFAB590FC2D0
+          - 18342422-A672-4D9F-AF92-D37E9348B20A
+          - 8211D5F9-1402-4244-8380-D8CFA8FC3BB1
+          - C8CB0CC3-41ED-414C-96FF-D92C0E962DB9
+          - E65EA587-CEA9-4B37-8343-DC6C0E0C13FA
+          - 03A43B02-BED5-4EAD-BA20-E1AD91362391
+          - 7946642C-70A6-4228-A4B9-E1F39B9FD332
+          - 9FF3922F-1F7F-46F3-82C3-E6863CAA82C3
+          - 1232DB74-4CF5-4302-881D-EE9DE4063166
+          - B7876519-322D-4D39-A1F9-F0B3B3722CAE
+          - AF3BD6BC-117D-4D5E-9D00-F679BC1D4437
+          - 6E8AC6F1-B8DB-43B2-862C-FC87AC045951
+        report_ids:
+          - E10E68CF-9B20-4C35-8867-81E2D767718F
     norms:
       - id: 998C485C-B931-416D-8404-9B284160F688
         name: Abstract Reasoning Aptitude & Pace (Rx) - English as an Additional Language Group (INT, IA, 2021)
@@ -1595,6 +1665,116 @@ providers:
         name: Wave Professional Styles V4 - Professionals & Managers (GCC, IA, 2021)
       - id: 216C7F4D-D141-47E9-B2D1-89219C264B02
         name: Wave Professional Styles V4 - Senior Managers & Executives (GCC, IA, 2021)
+      - id: 49D33D43-5C5E-45EF-A1F0-43ACA45628CF
+        name: Workplace English - Office Norm
+      - id:  83D4B936-7771-41E3-9802-0298006DF3EE
+        name: Individual Contributors (INT, IA, 2021)
+      - id:  4D77CDC5-B527-4F07-90A0-06BA60929EEC
+        name: Graduates - All (LAm & Carib, IA, 2021)
+      - id:  F0FA3592-11ED-44EA-AB86-0D3C57769292
+        name: Senior Managers & Executives (US, IA, 2015)
+      - id:  10BFC1C1-668A-458A-94BC-15C258ABD974
+        name: Individual Contributors (UK, IA, 2021)
+      - id:  47636708-494F-4811-9107-1CE9398B9997
+        name: Graduates - All (LAm, IA, 2015)
+      - id:  230DFBF5-0C7D-4E7B-A472-1DFE3E39BDF9
+        name: Professionals & Managers (INT, IA, 2015)
+      - id:  0DB7534A-5584-4224-B43C-1E7146A60609
+        name: English (as Additional Language) (INT, IA, 2015)
+      - id:  33A1B890-D383-44AE-9CD9-2A12747E04BE
+        name: Professionals & Managers (US, IA, 2021)
+      - id:  42DE1225-7642-4644-979E-2AEEE364005F
+        name: Professionals & Managers (AF, IA, 2015)
+      - id:  9EFB51BA-D7D0-450E-9016-30061E87A2DF
+        name: Graduates - All (Asia, IA, 2021)
+      - id:  F1B70660-7C84-49DF-92BA-358C9F0B4CD9
+        name: Professionals & Managers (AF, IA, 2021)
+      - id:  EA409B5A-801C-4C43-8C73-3A0FAF5D1A5B
+        name: Senior Managers & Executives (UK, IA, 2021)
+      - id:  F65047B0-1D38-4E68-837B-3E85B0335962
+        name: Graduates - All (IN, IA, 2021)
+      - id:  8D3746B6-7EDC-4FB4-A183-409FEA2A5C6F
+        name: Senior Managers & Executives (UK, IA, 2015)
+      - id:  97296F62-B661-4C84-B6C0-41A32E1D83AC
+        name: Professionals & Managers (US, IA, 2015)
+      - id:  EA519DCA-3858-42F7-9AFF-46D483200189
+        name: Senior Managers & Executives (INT, IA, 2021)
+      - id:  290558D3-9C22-431F-983C-4B8F1E0A18F3
+        name: Graduates - Recent (INT, IA, 2021)
+      - id:  7C8FEC50-13EF-4D81-BBC5-4BB289661647
+        name: Professionals & Managers (Asia, IA, 2021)
+      - id:  3C8D234E-6E92-47D7-AD4C-53CEA241D96E
+        name: Graduates - All (EUR, IA, 2021)
+      - id:  CCE7FB82-7F1C-44FB-A2D6-5DDFBDFF2F1C
+        name: Professionals & Managers (LAm & Carib, IA, 2021)
+      - id:  F77D17D6-67B4-4AE6-B313-5E3B012212C0
+        name: Graduates - All (INT, IA, 2015)
+      - id:  A4A3BFD5-AEEB-4C77-99E7-5F55F6E4E768
+        name: Professionals & Managers (INT, IA, 2021)
+      - id:  2128490D-E8CC-4F8B-BB7D-6965FFB60B57
+        name: Professionals & Managers (UK, IA, 2021)
+      - id:  7737F537-346F-42B8-B021-751BFE50096F
+        name: Graduates - All (Asia, IA, 2015)
+      - id:  CD009717-D995-4C9F-AAE3-76327FA3D365
+        name: Professionals & Managers (EUR, IA, 2015)
+      - id:  AC1DF0CC-31D2-4712-9D6F-803D3D8B4B50
+        name: Professionals & Managers (EUR, IA, 2021)
+      - id:  AE251272-4546-49B1-9A0F-85AB845068C5
+        name: Graduates - Recent (UK, IA, 2021)
+      - id:  2C69DA36-EE11-4032-86F7-98F553BF2E29
+        name: Individual Contributors (US, IA, 2021)
+      - id:  571BACB4-6E13-48E0-A8B2-9BC184862A98
+        name: Mixed Occupational Group (INT, IA, 2021)
+      - id:  93538048-32CD-4FA2-8E82-9DD13DF95637
+        name: Graduates - All (ME, IA, 2015)
+      - id:  8EFBD753-B198-4E05-BA15-9FD91E9A8EC3
+        name: Senior Managers & Executives (US, IA, 2021)
+      - id:  43BA1FFF-2DE0-4F74-885D-A05DECC49095
+        name: Senior Managers & Executives (INT, IA, 2015)
+      - id:  A03D3293-76CE-494E-9779-A3FA8031FB51
+        name: Professionals & Managers (LAm, IA, 2015)
+      - id:  602D084E-9D1B-419E-AAEE-A76E44EBD7C4
+        name: Mixed Occupational Group (US, IA, 2021)
+      - id:  53BDE83C-FA7B-4993-BE2E-AC101BF46865
+        name: Graduates - All (UK, IA, 2021)
+      - id:  79557F8F-F871-4719-BE94-B3B1DD0C612B
+        name: Graduates - All (EUR, IA, 2015)
+      - id:  4D456A28-78BE-458B-A601-B51847E760F4
+        name: Graduates - All (AF, IA, 2015)
+      - id:  08086B61-4723-4D04-BD1C-B97E60A472FB
+        name: Graduates - All (ME, IA, 2021)
+      - id:  1F49B6B7-909B-496E-93BC-C19B29C29FD0
+        name: Graduates - All (US, IA, 2015)
+      - id:  70F2F5BD-A6C1-4C3E-9139-C748D0204EBE
+        name: Professionals & Managers (UK, IA, 2015)
+      - id:  17B3875A-3536-4658-9B83-C98178C1F87F
+        name: Graduates - All (US, IA, 2021)
+      - id:  C69C4367-9694-4D82-89C2-CC14751E0148
+        name: Graduates - All (AF, IA, 2021)
+      - id:  6AC747AE-2599-4702-ACF6-CFAB590FC2D0
+        name: Professionals & Managers (ME, IA, 2021)
+      - id:  18342422-A672-4D9F-AF92-D37E9348B20A
+        name: English (as Additional Language) (INT, IA, 2021)
+      - id:  8211D5F9-1402-4244-8380-D8CFA8FC3BB1
+        name: Graduates - Recent (US, IA, 2021)
+      - id:  C8CB0CC3-41ED-414C-96FF-D92C0E962DB9
+        name: Graduates - All (IN, IA, 2015)
+      - id:  E65EA587-CEA9-4B37-8343-DC6C0E0C13FA
+        name: Graduates - All (UK, IA, 2015)
+      - id:  03A43B02-BED5-4EAD-BA20-E1AD91362391
+        name: Graduates - Recent (INT, IA, 2017)
+      - id:  7946642C-70A6-4228-A4B9-E1F39B9FD332
+        name: Mixed Occupational Group (UK, IA, 2021)
+      - id:  9FF3922F-1F7F-46F3-82C3-E6863CAA82C3
+        name: Graduates - All (INT, IA, 2021)
+      - id:  1232DB74-4CF5-4302-881D-EE9DE4063166
+        name: Professionals & Managers (IN, IA, 2015)
+      - id:  B7876519-322D-4D39-A1F9-F0B3B3722CAE
+        name: Graduates - Recent (UK, IA, 2017)
+      - id:  AF3BD6BC-117D-4D5E-9D00-F679BC1D4437
+        name: Professionals & Managers (Asia, IA, 2015)
+      - id:  6E8AC6F1-B8DB-43B2-862C-FC87AC045951
+        name: Professionals & Managers (ME, IA, 2015)
     reports:
       - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
         name: Abstract Reasoning Aptitude-Rx (IA)
@@ -1712,6 +1892,12 @@ providers:
         name: Swift Technical Aptitude & Pace Report (Rx)
       - id: B64D89DF-B364-46CC-A2D1-F033BE7DD6DF
         name: Verbal Comprehension Aptitude & Pace Report (Rx)
+      - id: 88A6D290-1CB9-4828-9838-2441C3D5E049
+        name: Workplace English - Office Report
+      - id: 44968427-FFC5-4703-A804-30C081CD60E9
+        name: EG11 Leadership Behaviours Professional Styles Score Extraction Report
+      - id: E10E68CF-9B20-4C35-8867-81E2D767718F
+        name: Numerical Analysis Aptitude & Pace (Rx) Report
 
 checking_wizard:
   speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>

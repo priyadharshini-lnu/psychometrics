@@ -6,7 +6,7 @@ module Campaigns
       private_attr_reader :campaign, :current_user, :rows, :operation, :job_record, :imported_users
       private_attr_accessor :users_those_pwd_not_changed
 
-      PROFILE_FIELDS = %i[age gender timezone locale].freeze
+      PROFILE_FIELDS = %i[age gender timezone locale profile_locale].freeze
 
       def initialize(campaign, current_user, rows, operation, job_record)
         @campaign = campaign
@@ -28,7 +28,10 @@ module Campaigns
             user = campaign.users.find_by(email: attrs[:email])
             user_data = attrs.slice(*Users::ParseImportData::HEADER_IMPORT_KEYS)
             profile_data = attrs.slice(*PROFILE_FIELDS)
-            custom_fields_data = attrs.slice(*custom_fields)
+            custom_fields_data = attrs.slice(*custom_fields).to_h do |name, value|
+              field = profile_fields.find_by(questions: { name: name })
+              [field.question_id.to_s, value]
+            end
 
             if user
               user = update_user(user, user_data)

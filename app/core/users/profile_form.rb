@@ -11,6 +11,7 @@ module Users
     attribute :locale, String
     attribute :gender, String
     attribute :custom_fields, Hash
+    attribute :photo, String
 
     validates :first_name, :last_name, presence: true
     validate :validate_project_fields, if: :project?

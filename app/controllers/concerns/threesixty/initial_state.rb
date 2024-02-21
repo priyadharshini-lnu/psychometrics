@@ -50,7 +50,8 @@ module Threesixty::InitialState
         },
         lighthousePrivacyUrl: Settings.privacy_url,
         privacyPolicyVersion: @current_project.current_privacy_policy_version,
-        customPrivacyConsentText: custom_privacy_consent_text
+        customPrivacyConsentText: custom_privacy_consent_text,
+        showBookings: show_bookings?
       },
       currentUser: serialized_current_user,
       liveChat: {
@@ -59,6 +60,10 @@ module Threesixty::InitialState
         enabled: @current_project.enable_live_chat
       }
     }
+  end
+
+  def show_bookings?
+    WorkshopInvitedSubject.where(user: current_user).any?
   end
 
   def custom_privacy_consent_text

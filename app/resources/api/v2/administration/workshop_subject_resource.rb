@@ -27,7 +27,7 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   end
 
   def language
-    @model.preferred_language || @model.user.locale
+    @model.preferred_language
   end
 
   def self.records(opts = {})

@@ -115,7 +115,7 @@ describe Api::V2::Administration::CampaignScoringVariablesController, swagger_do
 
         run_test! do |response|
           errors = JSON.parse(response.body)['errors']
-          expect(errors.first['title']).to eq("invalid value 'test2 = afd3' in line number 2")
+          expect(errors.first['title']).to eq("invalid statement 'test2 = afd3' on line number 2")
         end
       end
     end

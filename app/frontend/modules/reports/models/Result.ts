@@ -165,7 +165,7 @@ export default class Result<ExternalScoring = unknown> {
 
   sortOccupations = (): void => {
     AppStore.sortedOccupations[this.dimensionId] = _.orderBy(
-      AppStore.occupations[this.dimensionId], ['stars', 'name'], ['desc', 'asc'],
+      AppStore.occupations[this.dimensionId], ['value', 'name'], ['desc', 'asc'],
     )
   }
 
