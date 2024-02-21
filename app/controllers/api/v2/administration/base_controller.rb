@@ -255,6 +255,20 @@ module Api
       {}
     end
 
+    def limit_and_offset
+      return @limit_and_offset if defined?(@limit_and_offset)
+
+      page_size = if params.dig(:page,
+                                :size).to_i.positive?
+                    params.dig(:page, :size).to_i
+                  else
+                    JSONAPI.configuration.default_page_size
+                  end
+      page_number = params.dig(:page, :number).to_i.positive? ? params.dig(:page, :number).to_i : 1
+      offset = (page_number - 1) * page_size
+      @limit_and_offset ||= { limit: page_size, offset: offset }
+    end
+
     def convert_model_errors_to_json_api_standard(input_errors)
       converted_errors = []
       input_errors.each do |field, messages|

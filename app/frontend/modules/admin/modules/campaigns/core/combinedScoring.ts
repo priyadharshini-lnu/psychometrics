@@ -50,10 +50,8 @@ export const CampaignScoresTR = t.type({
   campaignScoresCalculatedDate: t.union([t.string, t.null]),
   campaignScoresErrors: t.union([t.array(ErrorTR), t.null]),
   campaignFactorValues: t.array(t.type({
-    id: t.string,
     campaignFactorId: t.number,
-    numericValue: t.union([t.number, t.null]),
-    stringValue: t.union([t.string, t.null]),
+    value: t.union([t.string, t.number, t.null]),
   })),
 })
 

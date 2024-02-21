@@ -1,0 +1,91 @@
+# frozen_string_literal: true
+
+module CampaignUsers
+  class CampaignUserScoresQuery < Rectify::Query
+    private_attr_reader :campaign_id, :sort, :limit, :offset
+
+    def initialize(campaign_id:, sort: { field: 'email', direction: :asc }, limit: 25, offset: 0)
+      @campaign_id = campaign_id
+      @sort = sort
+      @limit = limit.to_i
+      @offset = offset.to_i
+    end
+
+    def query
+      ActiveRecord::Base.connection.execute(ApplicationRecord.sanitize_sql([sql, params]))
+    end
+
+    private
+
+    def sql
+      sanitized_sort_column = ActiveRecord::Base.connection.quote_column_name(sort[:field])
+      factor_columns = dynamic_factor_columns
+      base_query = <<~SQL.squish
+        SELECT
+          cu.id,
+          cu.campaign_scores_calculated_date,
+          cu.campaign_scores_errors,
+          cu.campaign_scores_finalized,
+          cu.campaign_scores_finalized_date,
+          cu.campaign_id,
+          u.email,
+          u.first_name,
+          u.last_name,
+      SQL
+      base_query += "#{factor_columns.empty? ? '' : 'ct.*,'} cu.user_id FROM campaign_users cu
+      JOIN users u ON cu.user_id = u.id "
+      if factor_columns.present?
+        base_query += "LEFT JOIN (#{crosstab_query}) AS ct ON cu.user_id = ct.user_id "
+      end
+      base_query += "WHERE cu.campaign_id = #{campaign_id} ORDER BY #{sanitized_sort_column} #{sort[:direction]}
+      LIMIT #{limit} OFFSET #{offset};"
+      base_query
+    end
+
+    def crosstab_query
+      factor_columns = dynamic_factor_columns
+      if factor_columns.empty?
+        ''
+      else
+        <<~SQL.squish
+          SELECT * FROM crosstab(
+            $$SELECT cu.user_id, cfv.campaign_factor_id::text,
+              CASE
+                WHEN cf.output_type = 0 THEN cfv.numeric_value::text
+                ELSE cfv.string_value
+              END
+             FROM campaign_users cu
+             JOIN campaign_factor_values cfv ON cu.campaign_id = cfv.campaign_id AND cu.user_id = cfv.user_id
+             JOIN campaign_factors cf ON cfv.campaign_factor_id = cf.id
+             WHERE cu.campaign_id = #{campaign_id}
+             ORDER BY 1,2$$,
+             '#{campaign_factor_ids_query.to_sql}'
+          ) AS final_result(user_id INT, #{dynamic_factor_columns})
+        SQL
+      end
+    end
+
+    def campaign_factor_ids_query
+      CampaignFactor.where(campaign_id: campaign_id).
+        select(:id).
+        distinct.
+        order(:id)
+    end
+
+    def campaign_factor_ids
+      @campaign_factor_ids ||= campaign_factor_ids_query.pluck(:id)
+    end
+
+    def dynamic_factor_columns
+      factor_ids = campaign_factor_ids
+      factor_ids.map { |id| "\"#{id}\" TEXT" }.join(', ')
+    end
+
+    def params
+      {
+        campaign_id: campaign_id,
+        sort: sort
+      }
+    end
+  end
+end
