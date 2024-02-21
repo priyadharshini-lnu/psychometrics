@@ -22,13 +22,21 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
   const [selectedUsers, setSelectedUsers] = useState(preSelectedUsers || [])
   const [searchKey, setSearchKey] = useState('')
   const autoCompleteProps = _.omit(props, ['value'])
+  const [localUsers, setLocalUsers] = useState<Record<string, UserDetails>>({})
 
   useEffect(() => {
-    const valueSelected = value ? value.map(id => users.find(user => user.id === id)).filter(user => user) : null
-    if (valueSelected) {
+    const newLocalUsers = _.keyBy(users, 'id')
+    const updatedLocalUsers = { ...localUsers, ...newLocalUsers }
+    setLocalUsers(updatedLocalUsers)
+  }, [users])
+
+  useEffect(() => {
+    const valueSelected = value ? _.map(value, id => localUsers[id]).filter(user => user) : null
+
+    if (valueSelected && valueSelected?.length > 0) {
       setSelectedUsers(valueSelected)
     }
-  }, [value])
+  }, [value, localUsers])
 
   const handleUserSelect = (userId: string) => {
     const selectedUser = users.find(user => user.id === userId)
