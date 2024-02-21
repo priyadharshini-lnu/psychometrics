@@ -64,7 +64,7 @@ class AssessmentContainer extends Component {
 
   render () {
     const {
-      disabled, selectedLocale, type, showAsSinglePage,
+      disabled, selectedLocale, type, showAsSinglePage, data,
     } = this.props
     return (
       <DefaultAntThemeWrapper>
@@ -78,7 +78,11 @@ class AssessmentContainer extends Component {
             <DndProvider backend={HTML5Backend}>
               <div className={containerStyles.previewConainer}>
                 {disabled && this.overlay()}
-                <AssessmentPreview showAsSinglePage={showAsSinglePage} type={type} />
+                <AssessmentPreview
+                  showAsSinglePage={showAsSinglePage}
+                  type={type}
+                  defaultLanguage={data.default_language}
+                />
               </div>
             </DndProvider>
           </ConfigProvider>

@@ -5,7 +5,7 @@ import styles from './QuestionList.less'
 
 
 const QuestionList = ({
-  page, questions, readOnly, backButtonPressed = false,
+  page, questions, readOnly, backButtonPressed = false, defaultLanguage = 'en',
 }) => {
   const transition = useTransition(questions, {
     from: { opacity: 0, transform: `translate(0px, ${backButtonPressed ? -100 : 100}px)` },
@@ -31,7 +31,7 @@ const QuestionList = ({
 
     return (
       <a.div className={styles.main} style={{ ...style }} key={q.key}>
-        <Question readOnly={readOnly} page={page} model={q} key={question.id} />
+        <Question readOnly={readOnly} page={page} model={q} key={question.id} defaultLanguage={defaultLanguage} />
       </a.div>
     )
   })

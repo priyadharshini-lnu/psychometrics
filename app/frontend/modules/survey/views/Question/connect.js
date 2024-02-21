@@ -16,6 +16,7 @@ export default connect(
     blocksOrder: assessment.blocks,
     moduleConfig: moduleConfig(builder, props.model.id),
     linkedAssessment: assessment.linkedAssessment,
+    assessmentDefaultLanguage: assessment.defaultLanguage,
     timestamp, // NOTE: @fedor used to fake update
   }),
   {
