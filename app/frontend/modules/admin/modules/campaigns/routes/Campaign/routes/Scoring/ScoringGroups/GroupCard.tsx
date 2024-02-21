@@ -20,7 +20,7 @@ export type CampaignFactorGroup = {
 
 type Props = {
   group: CampaignFactorGroup
-  removeGroup: (groupId: string) => void
+  removeGroup: (group: CampaignFactorGroup) => void
   addFactor: (groupId: string) => Promise<void> | void
   hasFactors: boolean
   onGroupNameChange?: (value: string, group: CampaignFactorGroup) => void
@@ -81,7 +81,7 @@ export const GroupCard = React.forwardRef(
         </Space>
         {!hasFactors
         && groupsCount > 1
-        && !editName && <DeleteOutlined className="items-end" onClick={() => removeGroup(group.id)} />}
+        && !editName && <DeleteOutlined className="items-end" onClick={() => removeGroup(group)} />}
       </Space>
     )
     return (
@@ -111,7 +111,7 @@ type GroupCardSortableProps = {
   group: CampaignFactorGroup
   items: string[]
   hasFactors: boolean
-  removeGroup: (groupId: string) => void
+  removeGroup: (group: CampaignFactorGroup) => void
   addFactor: (groupId: string) => Promise<void> | void
   children?: React.ReactNode
   onGroupNameChange?: (value: string, group: CampaignFactorGroup) => void

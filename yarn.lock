@@ -4594,10 +4594,10 @@ address@^1.0.1:
   resolved "https://registry.yarnpkg.com/address/-/address-1.2.2.tgz#2b5248dac5485a6390532c6a517fda2e3faac89e"
   integrity sha512-4B/qKCfeE/ODUaAUpSwfzazo5x29WD4r3vXiWsB7I2mSDAihwEqKO+g8GELZUQSSAo5e1XTYh3ZVfLyxBc12nA==
 
-advanced-cropper@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/advanced-cropper/-/advanced-cropper-0.9.0.tgz#a7bb2e2b050462536b025e12457bf1c0c81f9f4f"
-  integrity sha512-fJ3BFEFdPaddP2X2r6ctAhnsvQqCrZSHqgV+fq3x7krXwnueMkE/QS4m9o2yAB8RlErZu+fDBwYTyH0UCMqMcw==
+advanced-cropper@~0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/advanced-cropper/-/advanced-cropper-0.18.0.tgz#dc09a572ac719ee6f149a73ffd4ef094b7b7e1a1"
+  integrity sha512-Bo0fiW8F+kI4f8zEm8YXIDkGNi+aXaQPxqDijU7hY+1ETACbvFnNCxssspgAwHBy9RpFlcXMmjcq+LImUOhaqQ==
   dependencies:
     tslib "^2.4.0"
 
@@ -11400,12 +11400,12 @@ rc-virtual-list@^3.5.1:
     rc-resize-observer "^1.0.0"
     rc-util "^5.15.0"
 
-react-advanced-cropper@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/react-advanced-cropper/-/react-advanced-cropper-0.9.0.tgz#c06a854e73c95b21ac2466dd66d40d84111e6269"
-  integrity sha512-fh7vgPOSLc97OBlbbiNLVNeDCrAa8fmZL2SsJgtbQWSIj0iaAjQRry3PFhYNyt+20dTGjI43ov2d6F2WsLndIA==
+react-advanced-cropper@^0.19.4:
+  version "0.19.4"
+  resolved "https://registry.yarnpkg.com/react-advanced-cropper/-/react-advanced-cropper-0.19.4.tgz#39ca10f6ffad47945aece3f2e0723842c630ff0a"
+  integrity sha512-CJAeOyg5gMvrhZoaMKcP6XJf10xanUCHqRCFXUtIiKxcHgSGAVGedd/zjvCIG4E1hMoFwaaFazS/Hw0Odhtjmw==
   dependencies:
-    advanced-cropper "^0.9.0"
+    advanced-cropper "~0.18.0"
     classnames "^2.2.6"
     tslib "^2.4.0"
 

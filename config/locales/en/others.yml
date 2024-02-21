@@ -45,6 +45,10 @@ en:
             blank: Answers can't be blank
           group_id:
             blank: Group id can't be blank
+        assessment_question_import_form:
+          attributes:
+            file:
+              invalid_format: Please upload xlsx file
         assign_report:
           attributes:
             adding_report_ids:
@@ -167,6 +171,50 @@ en:
               contains_repeats: Password must not contain repeats
               too_short: Password is too short. Minimum %{count} character required
               too_weak: 'Password must contain: Minimum 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+        questions_import_block_form:
+          attributes:
+            name:
+              blank: Block Name can't be blank
+        questions_import_matrix_table_form:
+          attributes:
+            answersType:
+              blank: MatrixTable question property 'answersType' can't be blank
+              inclusion: MatrixTable question property 'answerType' should be 'SingleAnswer' or 'MultipleAnswer'
+            type:
+              blank: MatrixTable question property 'type' can't be blank
+              inclusion: MatrixTable question type should have 'Likert'
+        questions_import_multiple_choice_form:
+          attributes:
+            type:
+              blank: MultipleChoice question property 'type' can't be blank.
+              inclusion: MultipleChoice question property 'type' should be 'SingleAnswer', 'MultipleAnswer' or 'Dropdown'
+        questions_import_question_form:
+          attributes:
+            name:
+              blank: Question Name can't be blank
+            type:
+              blank: Question Title can't be blank
+              inclusion: Question type should be 'TextEntry', 'MultipleChoice', 'MatrixTable' or 'StaticContent'
+        questions_import_randomization_property_form:
+          attributes:
+            questions:
+              blank: randomization.questions can't be blank if randomization.type is 'Some'
+            type:
+              inclusion: randomization.type should be either 'All', 'Some' or 'No'
+        questions_import_required_validation_form:
+          attributes:
+            type:
+              inclusion: Required validation type should be either 'Force' or 'Request'
+        questions_import_static_content_form:
+          attributes:
+            type:
+              blank: Static Content question property type can't be blank
+              inclusion: Static Content  question property type should be 'Text'
+        questions_import_text_entry_form:
+          attributes:
+            type:
+              blank: TextEntry question property 'type' can't be blank.
+              inclusion: TextEntry question property 'type' should be 'Single Line', 'Multi Line' or 'Essay Text Box'
         register:
           attributes:
             email:
@@ -674,6 +722,7 @@ en:
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
         import_accesssheet: Import Accessheet
+        import_assessment_questions: Import Assessment Questions
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
         import_question_translations: Import Question Translations
@@ -690,6 +739,7 @@ en:
         super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
+        workshop_status_export: Assessment Center Status Export
       statuses:
         completed: Completed
         completed_with_errors: Completed with errors
@@ -1311,6 +1361,7 @@ en:
         title: Update Available Locales
       update_norm:
         apply: Apply this change to existing users in this campaign
+        cannot_remove_norm: Cannot remove norm for completed assessment.
         select_norm: Select Norm
         success_msg: Norms successfully updated
         title: Update Norm
@@ -1419,6 +1470,7 @@ en:
     password: Password
     password_confirmation: Password Confirmation
     title: Change Password
+    warning_message: 'Important: Changing your password will log you out.'
   checking_wizard:
     audio_check:
       access: Access
@@ -1522,6 +1574,7 @@ en:
       created_at: Created At
       created_by: Created By
       created_date: Created Date
+      default_language: Default Language
       description: Description
       details: Details
       dimension: Dimension
@@ -1829,13 +1882,13 @@ en:
       filled?: can't be blank
       invalid_lua_name: should be valid lua variable name
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
-      invalid_value: invalid value '%{value}' in line number %{row}
+      invalid_value: invalid statement '%{value}' on line number %{row}
       json?: Should be valid JSON
       key?: can't be blank
       match_regexp?: invalid value
       missed?: can't be blank
       not_in_the_list?: invalid value passed
-      not_uniq_variable: name '%{value}' line number %{row} is duplicating
+      not_uniq_variable: variable '%{value}' redefined on line number %{row}
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
@@ -1855,6 +1908,7 @@ en:
       workshops:
         no_available_assessor_slots: No available slots for assessor %{assessor}
         no_available_manager_slots: No available slots for manager %{manager}
+        part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
     users:
       registrations:
         new:
@@ -2471,6 +2525,7 @@ en:
     old_data: Your profile data is %{months} months old. Please confirm details to proceed further
     password: Password
     password_confirmation: Password Confirmation
+    photo: Photo
     success_update: Profile was saved successfully
     timezone: Timezone
     title: My Profile
@@ -3513,7 +3568,7 @@ en:
     actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
     blank: can't be blank
     character_count: 'Characters count '
-    character_range: Your response must be at least %{min} and no more than %{max} characters.
+    character_range: Your response must be at least %{min} and no more than %{max} characters long.
     date: Your response must be a valid date (mm/dd/yyyy)
     each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
     email: Your response must be a valid email
@@ -3526,7 +3581,7 @@ en:
     least_hotspot: Please answer at least %{min} choice(s).
     max_character: Your response must be no more than %{max} characters.
     max_word: Your response must not be more than %{max} words.
-    min_character: Your response must be at least %{min} characters.
+    min_character: Your response must contain at least %{min} characters.
     min_word: Your response must be atleast %{min} words
     most: Please select at most %{max} choice(s)
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.

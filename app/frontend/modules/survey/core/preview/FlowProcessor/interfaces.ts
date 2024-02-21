@@ -34,8 +34,15 @@ export interface Block {
   props?: { randomization?, staticContent? }
 }
 
+export interface Factor {
+  id: number
+  name: string
+  question_ids: number[]
+}
+
 export interface BlocksInterface {
   blocks: Block[]
+  factors: Factor[]
 }
 export interface PageInterface {
   questions: number[]

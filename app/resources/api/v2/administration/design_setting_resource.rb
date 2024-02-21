@@ -2,7 +2,8 @@
 
 class Api::V2::Administration::DesignSettingResource < Api::V2::Administration::BaseResource
   attributes :logo, :secondary_logo, :background, :background_color, :login_box_position,
-             :primary_color, :error_color, :warning_color, :success_color, :info_color
+             :primary_color, :error_color, :warning_color, :success_color, :info_color,
+             :background_size
 
   has_one :project
 

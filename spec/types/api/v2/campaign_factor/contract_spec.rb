@@ -54,7 +54,47 @@ RSpec.describe Api::V2::CampaignFactor::Contract do
   end
 
   it 'passes if all params are valid' do
-    contract = Api::V2::CampaignFactor::Contract.new.call(valid_params, { current_user: user, params: valid_params })
+    contract = Api::V2::CampaignFactor::Contract.new.call(
+      valid_params, { current_user: user, params: valid_params }
+    )
+
+    expect(contract.failure?).to eq(false)
+  end
+
+  it 'validates if same name already exists while creating a new factor' do
+    create(:campaign_factor, campaign: campaign, campaign_factor_group: campaign_factor_group, name: 'Factor')
+    params = jsonapi_merge_attributes(valid_params, { name: 'Factor' }).merge(campaign_id: campaign.id.to_s)
+    contract = Api::V2::CampaignFactor::Contract.new.call(params, { current_user: user, params: params })
+
+    expect(contract.failure?).to eq(true)
+    expect(contract).to have_jsonapi_attr_error(
+      name: ['should be unique']
+    )
+  end
+
+  it 'validates if same name already exists while updating a existing factor' do
+    campaign_factor_one = create(:campaign_factor, campaign: campaign, campaign_factor_group: campaign_factor_group,
+    name: 'Factor one')
+    create(:campaign_factor, campaign: campaign, campaign_factor_group: campaign_factor_group, name: 'Factor two')
+    params = jsonapi_merge_attributes(valid_params, { name: 'Factor two', id: campaign_factor_one.id }).merge(
+      campaign_id: campaign.id.to_s
+    )
+    contract = Api::V2::CampaignFactor::Contract.new.call(params, { current_user: user, params: params })
+
+    expect(contract.failure?).to eq(true)
+    expect(contract).to have_jsonapi_attr_error(
+      name: ['should be unique']
+    )
+  end
+
+  it 'validates if same name already exists only within same campaign' do
+    campaign_two = create(:campaign)
+    create(:campaign_factor, campaign: campaign, campaign_factor_group: campaign_factor_group, name: 'Factor')
+    # create(:campaign_factor, campaign: campaign, campaign_factor_group: campaign_factor_group, name: 'Factor')
+    params = jsonapi_merge_attributes(valid_params, { name: 'Factor', campaign: campaign_two }).merge(
+      campaign_id: campaign_two.id.to_s
+    )
+    contract = Api::V2::CampaignFactor::Contract.new.call(params, { current_user: user, params: params })
 
     expect(contract.failure?).to eq(false)
   end

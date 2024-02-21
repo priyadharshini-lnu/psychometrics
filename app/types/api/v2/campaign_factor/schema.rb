@@ -12,6 +12,8 @@ module Api
           case type
             when :create
               create_attributes(attribute)
+            when :update
+              update_factor_attributes(attribute)
             else
               base_attributes(attribute)
           end
@@ -24,6 +26,22 @@ module Api
         end
 
         def self.create_attributes(attribute)
+          proc do
+            attribute[:code].filled(:string)
+            attribute[:name].filled(:string)
+            attribute[:output_type].filled(:string)
+            attribute[:position].filled(:integer)
+            attribute[:factor_type].filled(:string, included_in?: ::CampaignFactor.factor_types.keys)
+            attribute[:public_visibility].filled(:bool)
+
+            optional(:assessment_score_type).maybe(:string, included_in?: ::CampaignFactor.assessment_score_types.keys)
+            optional(:assessment_id).maybe(:string)
+            optional(:factor_id).maybe(:string)
+            optional(:description).maybe(:string)
+          end
+        end
+
+        def self.update_factor_attributes(attribute)
           proc do
             attribute[:code].filled(:string)
             attribute[:name].filled(:string)

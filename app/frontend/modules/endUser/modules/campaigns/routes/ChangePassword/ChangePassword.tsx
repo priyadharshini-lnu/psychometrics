@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Form, Layout, Typography, Input, Row, Col, Space, Button,
 } from 'antd'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { DirectionalArrowIcon, PageHeader as GlintPageHeader } from '~/glint'
 import ResourceForm from '~/components/ResourceForm'
@@ -63,6 +64,12 @@ export const ChangePasswordComponent: React.FC<Props> = ({ changePassword, saveI
                   >
                     <Input.Password />
                   </Form.Item>
+                  <>
+                    <Typography.Text type="warning">
+                      <InfoCircleOutlined className={styles.infoIcon} />
+                      {I18n.t('change_password_page.warning_message')}
+                    </Typography.Text>
+                  </>
                   <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
                     <Button
                       type="primary"

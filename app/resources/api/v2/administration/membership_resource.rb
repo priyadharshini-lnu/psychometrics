@@ -41,7 +41,7 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
   end
 
   def send_invitation_email
-    @model.reload.user.invite!(context[:current_user], @model.client_id)
+    @model.reload.user.invite!(context[:current_user], @model)
   end
 
   def self.sortable_fields(context)

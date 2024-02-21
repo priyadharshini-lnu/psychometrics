@@ -120,9 +120,12 @@ class Client < ApplicationRecord
   with_options if: :project? do
     validates :subdomain, presence: true, length: { minimum: 3, maximum: 32 }, uniqueness: true
     validates :webhook, http_url: { presence: false }
+  end
+  with_options if: :project? do
     validate :subdomain_format_validation
     validate :reserved_subdomain_validation
   end
+
   # disabled this validation as it was causing error while saving sub-campaign
   # TODO: Needs to be investigated
   # validate :relevant_reports, if: -> { report_ids.any? && end_level? }

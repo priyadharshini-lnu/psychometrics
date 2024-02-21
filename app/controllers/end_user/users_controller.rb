@@ -70,8 +70,8 @@ class EndUser::UsersController < ApplicationController
     form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user, project: @current_project)
     return render json: { errors: form.errors.messages }, status: 400 unless form.valid?
 
-    if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS))
-      current_user.user_profile.update!(form.attributes.slice(*UserProfile::PROFILE_FIELDS))
+    if current_user.update(form.attributes.except(*UserProfile::PROFILE_FIELDS, :photo))
+      current_user.user_profile.update!(form.attributes.slice(*(UserProfile::PROFILE_FIELDS - [:photo])))
       audit! :update_user_profile, current_user, project: @current_project, payload: form.attributes
 
       render json: ::EndUser::CurrentUserSerializer.new(

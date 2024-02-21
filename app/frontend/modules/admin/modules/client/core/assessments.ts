@@ -18,6 +18,7 @@ export const AssessmentTR = t.type({
   disabled: t.boolean,
   archived: t.boolean,
   deleted: t.boolean,
+  defaultLanguage: t.string,
   iconUrl: t.union([t.string, t.null, t.undefined]),
   iconColor: t.union([t.string, t.null, t.undefined]),
   type: t.string,

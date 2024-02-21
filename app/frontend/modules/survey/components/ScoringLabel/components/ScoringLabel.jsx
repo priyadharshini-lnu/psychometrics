@@ -4,7 +4,7 @@ import styles from './ScoringLabel.less'
 const ScoringLabel = ({ value, label, onToggle }) => (
   <div
     onClick={onToggle}
-    className={`${styles.container} ${Utils.isNumeric(value) ? styles.fill : styles.empty}`}
+    className={`${styles.container} ${Utils.isNumeric(value) || value === true ? styles.fill : styles.empty}`}
   >
     {label}
   </div>

@@ -43,6 +43,7 @@ export const LayoutComponent = ({ config }) => {
   }
   if (config.background) {
     bgStyles.backgroundImage = `url(${config.background})`
+    bgStyles.backgroundSize = config.background_size || 'cover'
   }
 
   return (

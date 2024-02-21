@@ -5,10 +5,15 @@ module Exports
     class AssessmentExport
       def initialize(assessment_id, data = {})
         @package = Axlsx::Package.new
+        @assessment = ::Assessment.find(assessment_id)
         wb = @package.workbook
         wb.add_worksheet(name: 'AssessmentTranslations') do |sheet|
-          sheet.add_row ['Key', 'Default Locale / en', *(I18n.available_locales - [I18n.default_locale]).
-            map { |locale| [I18n.t("languages.#{locale}"), locale].join(' / ') }]
+          sheet.add_row [
+            'Key', "Default Locale / #{@assessment.default_language}",
+            *(I18n.available_locales - [@assessment.default_language.to_sym]).map do |locale|
+              [I18n.t("languages.#{locale}"), locale].join(' / ')
+            end
+          ]
 
           process_branch('block', data, sheet, assessment_id)
           process_branch('question', data, sheet, assessment_id)
@@ -28,7 +33,7 @@ module Exports
                          group_by(&:locale)
           props.each do |key, translation|
             new_row = ["#{name}:#{id}:#{key}", translation]
-            (I18n.available_locales - [I18n.default_locale]).each do |l|
+            (I18n.available_locales - [@assessment.default_language.to_sym]).each do |l|
               new_row << translations[l.to_s].try(:first).try(:props).try(:[], key)
             end
             sheet.add_row(new_row)

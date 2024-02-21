@@ -312,6 +312,21 @@ class UserAssessment < ApplicationRecord
     DEEMED_COMPLETED_STATUS.include?(status)
   end
 
+  def update_norm!(norm_id)
+    return if completed? && norm_id.blank?
+
+    if saville?
+      saville_user_assessment.update!(norm_id: norm_id)
+    elsif pearson?
+      return unless not_started?
+
+      pearson_user_assessment.update!(norm_id: norm_id)
+    else
+      update!(norm_id: norm_id)
+    end
+    update!(fixed_norm: true) if norm_id.present?
+  end
+
   private
 
   def saville_norm_name

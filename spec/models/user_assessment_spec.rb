@@ -179,6 +179,50 @@ status: :in_progress)
     end
   end
 
+  describe '#update_norm!' do
+    it 'updates saville norms' do
+      assessment = create(:assessment, :saville)
+      user_assessment = create(:user_assessment, assessment: assessment)
+      saville_user_assessment = create(:saville_user_assessment, user_assessment: user_assessment)
+      norm_id = '05EDB032-2AB3-4B9E-8CCC-F5BCB7FE4337'
+      user_assessment.update_norm!(norm_id)
+
+      expect(saville_user_assessment.norm_id).to eq(norm_id)
+      expect(user_assessment.fixed_norm).to eq(true)
+    end
+
+    it 'updates pearson norm if user assessment is not stated' do
+      assessment = create(:assessment, :pearson)
+      user_assessment = create(:user_assessment, assessment: assessment, status: :not_started)
+      pearson_user_assessment = create(:pearson_user_assessment, user_assessment: user_assessment)
+      norm_id = '00000000-0000-0000-0000-000000000000'
+      user_assessment.update_norm!(norm_id)
+
+      expect(pearson_user_assessment.norm_id).to eq(norm_id)
+      expect(user_assessment.fixed_norm).to eq(true)
+    end
+
+    it 'does not updates pearson norm if user assessment is started' do
+      assessment = create(:assessment, :pearson)
+      user_assessment = create(:user_assessment, assessment: assessment, status: :in_progress)
+      pearson_user_assessment = create(:pearson_user_assessment, user_assessment: user_assessment)
+      norm_id = '00000000-0000-0000-0000-000000000000'
+      user_assessment.update_norm!(norm_id)
+
+      expect(pearson_user_assessment.norm_id).to_not eq(norm_id)
+      expect(user_assessment.fixed_norm).to eq(false)
+    end
+
+    it 'updates regular user assessment norm' do
+      user_assessment = create(:user_assessment)
+      norm_id = create(:norm).id
+      user_assessment.update_norm!(norm_id)
+
+      expect(user_assessment.norm_id).to eq(norm_id)
+      expect(user_assessment.fixed_norm).to eq(true)
+    end
+  end
+
   describe 'Calculate and save campaign scoring' do
     let(:campaign) { create(:campaign) }
     let(:assessment) { create(:assessment) }

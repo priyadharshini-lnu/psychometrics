@@ -88,7 +88,7 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
             data: {
               type: 'campaign_factors',
               attributes: {
-                name: 'Factor', position: 1, campaign_factor_group_id: campaign_factor_group_id.to_i,
+                name: 'Factor two', position: 2, campaign_factor_group_id: campaign_factor_group_id.to_i,
                 code: 'fact_code', factor_type: 'formula', public_visibility: true, output_type: 'numeric'
               },
               relationships: {
@@ -102,7 +102,7 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
         run_test! do |response|
           cf = JSON.parse(response.body)['data']
           expect(cf).to have_key('id')
-          expect(cf).to have_attribute(:name).with_value('Factor')
+          expect(cf).to have_attribute(:name).with_value('Factor two')
           expect(cf).to have_relationship(:campaign).with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
           expect(cf).to have_relationship(:campaign_factor_group).
             with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
@@ -131,10 +131,12 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
             id: '1',
             type: 'campaign_factors',
             attributes: {
-              name: 'Updated Factor name', position: 1
+              name: 'Factor', factor_type: 'formula', public_visibility: true, position: 1, campaign_factor_group_id: 1,
+              code: 'factor_code', output_type: 'numeric'
             },
             relationships: {
-              campaign: { data: { type: 'campaigns', id: 1 } }
+              campaign: { data: { type: 'campaigns', id: 1 } },
+              campaign_factor_group: { data: { type: 'campaign_factor_groups', id: 1 } }
             }
           }]
         }
@@ -145,10 +147,12 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
               type: 'campaign_factors',
               id: factor_id,
               attributes: {
-                name: 'Updated Factor name', position: 2
+                name: 'Updated Factor name', factor_type: 'formula', public_visibility: true, position: 2,
+                campaign_factor_group_id: campaign_factor_group_id.to_i, code: 'factor_code', output_type: 'numeric'
               },
               relationships: {
-                campaign: { data: { type: 'campaigns', id: campaign_id.to_s } }
+                campaign: { data: { type: 'campaigns', id: campaign_id.to_s } },
+                campaign_factor_group: { data: { type: 'campaign_factor_groups', id: campaign_factor_group_id } }
               }
             }
           }

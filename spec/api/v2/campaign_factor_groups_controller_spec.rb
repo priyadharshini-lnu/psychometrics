@@ -81,7 +81,7 @@ describe Api::V2::Administration::CampaignFactorGroupsController, swagger_doc: '
             data: {
               type: 'campaign_factor_groups',
               attributes: {
-                name: 'Test group', position: 1
+                name: 'Test group two', position: 2
               },
               relationships: {
                 campaign: { data: { type: 'campaigns', id: campaign_id.to_s } }
@@ -93,7 +93,7 @@ describe Api::V2::Administration::CampaignFactorGroupsController, swagger_doc: '
         run_test! do |response|
           cfg = JSON.parse(response.body)['data']
           expect(cfg).to have_key('id')
-          expect(cfg).to have_attribute(:name).with_value('Test group')
+          expect(cfg).to have_attribute(:name).with_value('Test group two')
           expect(cfg).to have_relationship(:campaign).
             with_data({ 'id' => campaign_id.to_s, 'type' => 'campaigns' })
         end

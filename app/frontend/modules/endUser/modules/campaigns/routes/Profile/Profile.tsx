@@ -41,6 +41,7 @@ interface Errors {
   last_name?: []
   locale?: []
   timezone?: []
+  photo?: []
 }
 
 const AVAILABLE_QUESTIONS = {
@@ -76,7 +77,7 @@ function ProfileComponent ({
   const customFields = _.reduce(user.customFields, (res, field, id) => ({ ...res, [`field_${id}`]: field }), {})
 
   const submitForm = (values) => {
-    const data = _.reduce({ ...values }, (res, val, key) => {
+    const data = _.reduce({ ...values, photo: user.photo }, (res, val, key) => {
       const data = key.match(/field_(\d+)/)
       if (data) {
         return { ...res, customFields: { ...res.customFields, [data[1]]: val ?? customFields[key] } }
@@ -145,13 +146,17 @@ function ProfileComponent ({
               <Title level={3}>{I18n.t('profile.title')}</Title>
               <Row gutter={64}>
                 <Col xs={24} sm={24} md={12} lg={8}>
-                  <Form.Item>
+                  <Form.Item
+                    help={errors?.photo}
+                    validateStatus={errors?.photo ? 'error' : ''}
+                    required={requiredFields.photo}
+                  >
                     <Upload
                       listType="picture-card"
                       accept=".jpg, .jpeg, |image/*"
                       showUploadList={false}
                       maxCount={1}
-                      className={styles.upload}
+                      className={cs(styles.upload, { [styles.error]: errors?.photo })}
                       onChange={onChangeFile}
                       beforeUpload={() => false}
                     >
@@ -311,6 +316,7 @@ function ProfileComponent ({
                     onCrop={uploadFile}
                     onCancel={() => setShowCropper(false)}
                     image={image}
+                    showControls
                   />
                 </Col>
               </Row>

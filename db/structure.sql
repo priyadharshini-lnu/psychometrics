@@ -474,8 +474,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -483,7 +483,8 @@ CREATE TABLE public.assessments (
     updated_by_id bigint,
     external_settings jsonb DEFAULT '{}'::jsonb,
     linked_assessment_id integer,
-    linked_questions json DEFAULT '{}'::json
+    linked_questions json DEFAULT '{}'::json,
+    default_language character varying DEFAULT 'en'::character varying
 );
 
 
@@ -633,10 +634,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
@@ -841,7 +842,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -918,13 +920,12 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    schedule_time timestamp(6) without time zone,
     allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false
 );
@@ -1092,7 +1093,6 @@ CREATE TABLE public.campaign_factors (
     name character varying NOT NULL,
     code character varying NOT NULL,
     description text,
-    factor_type integer DEFAULT 0 NOT NULL,
     output_type integer DEFAULT 0 NOT NULL,
     campaign_id bigint NOT NULL,
     factor_id bigint,
@@ -1102,7 +1102,8 @@ CREATE TABLE public.campaign_factors (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     assessment_score_type integer DEFAULT 0,
-    formula text
+    formula text,
+    factor_type integer DEFAULT 0
 );
 
 
@@ -1827,7 +1828,8 @@ CREATE TABLE public.design_settings (
     error_color character varying,
     warning_color character varying,
     success_color character varying,
-    info_color character varying
+    info_color character varying,
+    background_size character varying DEFAULT 'cover'::character varying
 );
 
 
@@ -2522,7 +2524,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -3392,12 +3394,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -8129,6 +8131,13 @@ CREATE INDEX index_campaign_users_on_campaign_id ON public.campaign_users USING 
 
 
 --
+-- Name: index_campaign_users_on_campaign_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_users_on_campaign_id_and_user_id ON public.campaign_users USING btree (campaign_id, user_id);
+
+
+--
 -- Name: index_campaign_users_on_completed_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11259,7 +11268,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -11717,7 +11726,11 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240213142024'),
+('20240213123231'),
+('20240206082940'),
 ('20240131091031'),
+('20240129143541'),
 ('20240126082502'),
 ('20240118090133'),
 ('20240117104237'),
@@ -11758,7 +11771,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230905113355'),
 ('20230829143631'),
 ('20230829124517'),
-('20230828122637'),
 ('20230824083112'),
 ('20230823110647'),
 ('20230822081633'),
@@ -12342,3 +12354,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

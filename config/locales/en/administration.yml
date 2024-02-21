@@ -256,6 +256,7 @@ en:
           users:
             reset_password: Reset Password
           workshops:
+            export_status: Export Status
             manage: Manage
             view: View
     all: " - All - "
@@ -365,6 +366,16 @@ en:
         skip: Skip for now
         title: Assessment centers created
       upcoming: Upcoming
+    assessment_question_import:
+      errors:
+        doesnt_have_header: "'%{sub_header}' does not have header"
+        invalid_headers: 'Following headers are invalid: %{headers}'
+        invalid_scores: Scores for factor %{factor_name} are invalid. Scores should be comma separated numeric values
+        invalid_sub_header: "'%{sub_header}' is not a valid subheader for header '%{header}'"
+        scores_not_allowed: Scores can only be added for MultiChoice and Matrix type question
+      modal:
+        title: Import Questions
+      successfully_scheduled: Question Import scheduled successfully.
     assessments:
       assessment: Assessment
       assigns:
@@ -450,6 +461,8 @@ en:
         type: Type
         updated_at: Modified date
       map_norms: Map Norms
+      menu:
+        import_questions: Import Questions
       menus:
         add_timer: Add timer
         remove_timer: Remove timer
@@ -3432,6 +3445,10 @@ en:
       edit:
         success: Profile was successfully updated.
         title: Profile Editor
+    project:
+      tools:
+        workshop_status_export: Workshop Status Export
+        workshop_status_export_success: Workshop Status Export scheduled successfully.
     project_participants:
       cancel: Cancel
       column_actions: Actions
@@ -3546,6 +3563,9 @@ en:
       design_settings:
         background_color: Background Color
         background_label: Background
+        background_size: Background Size
+        background_size_contain: Contain
+        background_size_cover: Cover
         bg_upload: Upload
         client_logo_label: Client Logo
         color_label: Color
@@ -3906,12 +3926,16 @@ en:
         no_show: No Show
         no_status: No Status
         on_time: On Time
+      attended:
+        attended: Attended
+        not_attended: Not Attended
       campaign_participants: Campaign participants
       columns:
         activity: Activity
         assessor: Assessor
         assessors: Assessors
         attendance: Attendance
+        attended: Attended
         campaign_name: Campaign Name
         duration: Duration
         managers: Mangers
@@ -3923,9 +3947,11 @@ en:
         resource_name: Name
         schedule_time: Schedule Time
         scheduling_status: Scheduling status
+        seats: Seats
         start_time: Date & Time
         status: Status
         subject: Subject
+        title: Title
       date_presets:
         all_time: All time
         current_month: Current month
@@ -4002,6 +4028,7 @@ en:
         form_title: Schedule Assessments
         import_job_scheduled: The uploaded file has been queued for import. Please check the status in the notifications
         language: Language
+        language_not_selected: Not Selected
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
         meeting_link_custom: Custom
         meeting_link_internal: Internal
@@ -4033,8 +4060,14 @@ en:
       delete_group: Delete Group
       description: Description
       dimension: Dimension
+      edit_factor: Edit Factor
       factor: Factor
+      factor_group_added_successfully: Campaign Factor group added successfully
+      factor_group_removed_successfully: Campaign Factor group removed successfully
+      factor_group_update_successfully: Campaign Factor group updated successfully
+      factor_removed_successfully: Campaign Factor removed successfully
       final: Final
+      final_score_updated_successfully: Final score updated successfully
       formula: Formula
       get_started: Get Started
       id: Id
@@ -4045,6 +4078,10 @@ en:
       profile:
         years: Years
       public: Public
+      remove_factor_confirmation_content: Are you sure you want to remove the factor '%{factor_name}'?
+      remove_factor_confirmation_title: Remove Factor
+      remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
+      remove_factor_group_confirmation_title: Remove Factor Group
       required_error: Can't be empty
       save: Save
       score_range: Score Range
@@ -4117,7 +4154,7 @@ en:
     settings:
       admin_roles:
         admin_role_single: Admin Role
-        confirm_message: Are you sure you want to delete Admin role '%{role_name}'?
+        confirm_message: Are you sure you want to delete admin role '%{role_name}'?
         confirm_title: Confirmation Required
         create: Add Admin Role
         description: Description

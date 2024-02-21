@@ -88,12 +88,20 @@ module Hogan
         group: group,
         norm_id: report.external_settings[:norm_id],
         language_id: report.external_settings[:language_id],
-        assessment_id: assessment.external_settings[:assessment_id],
+        assessment_id: assessment_id_for_report(user_report.external_report_id, package_id),
         participant_id: credentials.participant_id,
         provider: credentials&.provider,
         report_id: package_id || user_report.external_report_id,
         suitability_id: report.external_settings[:suitability_id]&.to_s
       }, &)
+    end
+
+    def assessment_id_for_report(report_id, package_id)
+      if package_id.present?
+        Settings.providers.hogan.report_packages.find { |p| p['id'] == package_id }&.default_assessment_id
+      else
+        Settings.providers.hogan.reports.find { |r| r['id'] == report_id }&.assessment_ids&.first
+      end
     end
 
     def lock_manager

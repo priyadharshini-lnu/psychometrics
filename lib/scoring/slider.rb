@@ -13,11 +13,19 @@ module Scoring
         object = scoring_template.find { |template| template['index'] == answer['index'] }
         next unless object
 
-        percent = (answer['value'].to_f - min_value) / (max_value - min_value)
-        percent = 1 - percent if object['reverse']
-        scoring += object['value'] * percent
+        scoring += Utility::Number.scale(answer['value'].to_f, min_value, max_value, object['min'], object['max'])
       end
-      { value: scoring / choices, options: [] }
+      {
+        value: scoring / choices,
+        options: [],
+        max_value: calculate_max_score(question, scoring_template, result),
+        value_sum: scoring
+      }
+    end
+
+    def calculate_max_score(question, scoring_template, _result)
+      total = scoring_template.sum { |template| [template['min'], template['max']].max }
+      total / question.props['choices'].to_i
     end
   end
 end

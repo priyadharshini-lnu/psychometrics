@@ -3,7 +3,7 @@ import {
 } from 'react'
 import _ from 'lodash'
 import {
-  Drawer, Form, Input, Button, Select, Spin,
+  Drawer, Form, Input, Button, Select, Spin, Switch,
 } from 'antd'
 import { Store } from 'antd/lib/form/interface'
 import { useParams } from 'react-router-dom'
@@ -65,6 +65,7 @@ export const AddEditFactorForm: FC<Props> = ({
   const { campaignId } = useParams<{campaignId: string}>()
   // this is required to trigger re-render when fields changed through form.setFieldsValue
   const [, setFields] = useState({})
+  const [isEditing, setIsEditing] = useState(false)
   const [codeValueEditedByUser, setCodeValueEditedByUser] = useState(false)
   const [form] = Form.useForm()
   const nameValue = Form.useWatch('name', form)
@@ -93,6 +94,10 @@ export const AddEditFactorForm: FC<Props> = ({
       setCodeValueEditedByUser(false)
     }
   }, [factorData, open])
+
+  useEffect(() => {
+    setIsEditing(!!factorData)
+  }, [factorData])
 
   const {
     data: dimensions, setData: setDimensions, isLoading: isDimensionsLoading,
@@ -303,7 +308,7 @@ export const AddEditFactorForm: FC<Props> = ({
   return (
     <Drawer
       closeIcon={<DirectionalNavigateBackIcon />}
-      title={I18n.t('administration.scoring.add_factor')}
+      title={isEditing ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
       open={open}
       width="70%"
       onClose={handleClose}
@@ -314,6 +319,7 @@ export const AddEditFactorForm: FC<Props> = ({
         storeManager={{ form }}
         resource={editFactor ? factorData : undefined}
         resourceId={factorData?.id}
+        showSuccessMessages
         formProps={{
           labelAlign: 'left',
           preserve: false,
@@ -385,13 +391,8 @@ export const AddEditFactorForm: FC<Props> = ({
               </Select>
             </Form.Item>
             {formFieldBasedOnFactorType}
-            <Form.Item
-              valuePropName="checked"
-              name="publicVisibility"
-              wrapperCol={{ span: 1 }}
-              label={I18n.t('administration.scoring.public')}
-            >
-              <Input type="checkbox" />
+            <Form.Item label={I18n.t('administration.scoring.public')} name="publicVisibility" valuePropName="checked">
+              <Switch />
             </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>

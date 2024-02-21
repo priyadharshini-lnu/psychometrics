@@ -47,6 +47,7 @@ import RemoveCampaignModal from './RemoveCampaignModal'
 import CommonCampaignFormModal from './CommonCampaignFormModal'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import { PDFPasswordModal } from './PDFPasswordModal'
+import ToolsDropdown from './ToolsDropdown'
 
 const MODALS = {
   CommonCampaignFormModal,
@@ -127,6 +128,7 @@ const CampaignListComponent: React.FC<Props> = ({
               value={filters.filterableFields}
               onChange={e => changeFilter('filterableFields', e.target.value)}
             />
+            <ToolsDropdown />
             {permissions.create && (
               <CreateCampaignDropdown
                 openModal={openModal}

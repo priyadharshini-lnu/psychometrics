@@ -17,6 +17,10 @@ import {
   getProjectLogo,
   getName as getProjectName,
 } from '~/modules/endUser/modules/campaigns/core/project'
+import {
+  getShowBookings,
+} from '~/modules/endUser/core/config'
+
 import { CampaignIcon } from '~/glint/icons'
 import { PageSider } from '~/glint'
 import styles from './styles.less'
@@ -24,6 +28,7 @@ import styles from './styles.less'
 const connector = connect((state: RootState) => ({
   logo: getProjectLogo(state),
   projectName: getProjectName(state),
+  showBookings: getShowBookings(state),
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -31,11 +36,12 @@ type UserPageSiderProps = {
   showInsights: boolean
   siderFooter: (collapsed: boolean) => React.ReactElement
   updateProfileRequired: boolean
+  showBookings?: boolean
 } & PropsFromRedux
 
 const { I18n } = window
 
-const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
+const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookings?: boolean) => ([{
   key: 'dashboard',
   label: I18n.t('campaign.dashboard_menu.home'),
   icon: <HomeOutlined className={styles.siderIcon} />,
@@ -47,12 +53,11 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
   ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
-}] : [],
-{
+}] : [], ...showBookings ? [{
   key: 'invites',
   label: I18n.t('campaign.dashboard_menu.bookings'),
   icon: <CalendarOutlined className={styles.siderIcon} />,
-},
+}] : [],
 {
   key: 'profile',
   label: I18n.t('campaign.dashboard_menu.profile'),
@@ -64,11 +69,11 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean) => ([{
 }])
 
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
-  showInsights, siderFooter, logo, projectName, updateProfileRequired,
+  showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings,
 }) => {
   const location = useLocation()
   const { pathname } = location
-  let menuItems = getMenuItems()
+  let menuItems = getMenuItems(false, false, showBookings)
   let activeItem:string
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
@@ -102,7 +107,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   if (pathname.includes('/campaigns/') || isThreesixty) {
     const [,, campaignId] = location.pathname.split('/')
     campaignIdRef.current = campaignId
-    menuItems = getMenuItems(true, pathname.includes('/threesixty_campaigns/') ? false : showInsights)
+    menuItems = getMenuItems(true, pathname.includes('/threesixty_campaigns/') ? false : showInsights, showBookings)
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else {
     activeItem = pathname.slice(1)

@@ -280,7 +280,9 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       <Col span={3}>
         <Space size="small" align="end" direction="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.language')}</Text>
-          <Text className="flex-end">{subjectData?.language}</Text>
+          <Text className="flex-end">
+            {subjectData?.language || I18n.t('administration.scheduling.subjects.language_not_selected')}
+          </Text>
         </Space>
       </Col>
       <Col span={3}>

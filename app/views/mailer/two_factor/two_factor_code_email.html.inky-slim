@@ -1,16 +1,16 @@
 container.email-container
   row
-    columns.email-content  
+    columns.email-content
       p Dear #{@user.decorate.display_name},
       p
         | Please enter the below mentioned One time password (OTP) to log in to your Lighthouse account with The Talent Enterprise:
   row
     columns.email-content.otp
-      p 
+      p
         = @code
   row
     columns.email-content
-      p This OTP is valid for 20 minutes.
+      p This OTP is valid for #{Devise.direct_otp_valid_for.inspect}.
   row
     columns.email-content
       p You are receiving this email because you tried to log in to your Lighthouse account with The Talent Enterprise. Please do not disclose the above OTP to anyone.

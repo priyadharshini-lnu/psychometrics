@@ -342,7 +342,7 @@ Devise.setup do |config|
   config.maximum_attempts = 3 # Maximum second factor attempts count
   config.allowed_clock_drift_in_seconds = 30 # Allowed TOTP time drift between client and server
   config.otp_length = 6 # TOTP code length
-  config.direct_otp_valid_for = 20.minutes # Time before direct OTP becomes invalid
+  config.direct_otp_valid_for = 1.hour # Time before direct OTP becomes invalid
   config.direct_otp_length = 6 # Direc t OTP code length
   config.remember_otp_session_for_seconds = 30.days # Time before browser has to perform 2FA again. Default is 0
   config.otp_secret_encryption_key = ENV.fetch('OTP_SECRET_ENCRYPTION_KEY', nil)

@@ -18,6 +18,7 @@ export const ProjectGeneralSettingsTR = t.type({
   text: t.union([t.string, t.null]),
   link: t.union([t.string, t.null]),
   enablePrivacyLink: t.boolean,
+  showBookings: t.boolean,
 })
 
 export type ProjectGeneralSettings = t.TypeOf<typeof ProjectGeneralSettingsTR>
