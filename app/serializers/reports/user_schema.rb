@@ -10,6 +10,7 @@ module Reports
         required(:first_name).filled(:str?)
         required(:last_name).filled(:str?)
         required(:email).filled(:str?)
+        required(:photo).maybe(:str?)
       end
     end
   end
