@@ -19,7 +19,7 @@ module Administration
     end
 
     def can_download_report
-      current_user.has_permission?(:results, :download_report, project_id: object.project.id)
+      context[:current_user].has_permission?(:results, :download_report, project_id: object.project.id)
     end
   end
 end
