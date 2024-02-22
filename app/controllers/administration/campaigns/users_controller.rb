@@ -144,7 +144,8 @@ module Administration
       end
 
       def update
-        form = ::Campaigns::Users::EditForm.from_params(resource_params).with_context(campaign: campaign)
+        form = ::Campaigns::Users::EditForm.from_params(resource_params).
+               with_context(campaign: campaign, current_campaign_user_id: resource.id)
         if form.valid?
           audit! :update_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
           resource.update(form.attributes)
