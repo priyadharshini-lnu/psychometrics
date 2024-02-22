@@ -7,7 +7,7 @@ module Administration
     end
 
     def open_channel?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_permission?(:reports, :manage, project_id: project_id)
     end
 
     # Can preview Report
