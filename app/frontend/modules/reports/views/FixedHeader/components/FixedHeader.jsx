@@ -43,8 +43,9 @@ export class FixedHeader extends Component {
     } = this.props
 
     if (selected?.type !== 'Module') { return }
+
     if (originalEvent.target) {
-      if (originalEvent.target.tagName === 'INPUT') {
+      if (originalEvent.target.tagName === 'INPUT' || originalEvent.target.tagName === 'TEXTAREA') {
         return
       }
     }
@@ -65,6 +66,12 @@ export class FixedHeader extends Component {
       richEditorOpened, pasteModule, currentPage, selectModule,
     } = this.props
     if (richEditorOpened) { return }
+
+    if (originalEvent.target) {
+      if (originalEvent.target.tagName === 'INPUT' || originalEvent.target.tagName === 'TEXTAREA') {
+        return
+      }
+    }
 
     originalEvent.preventDefault()
     const data = originalEvent.clipboardData.getData('text/plain')
