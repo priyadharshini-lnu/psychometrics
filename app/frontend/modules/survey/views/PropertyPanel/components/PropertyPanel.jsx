@@ -145,19 +145,20 @@ class PropertyPanel extends Component {
     const q = QuestionSerializer.wrap(question)
     return (
       <ConfigProvider componentSize="small">
-        <Space
-          className={styles.main}
-          style={style}
-          key={q.id}
-          direction="vertical"
-          split={<Divider style={{ margin: 0 }} />}
-          size={1}
-        >
-          {this.renderQuestiontypeBtn(q)}
-          {this.renderCustomProperties(q)}
-          {this.renderCommonProperties(q)}
-          {this.renderDefaultAction(q)}
-        </Space>
+        <div className={styles.main} style={style}>
+          <Space
+            className={styles.innerContent}
+            key={q.id}
+            direction="vertical"
+            split={<Divider style={{ margin: 0 }} />}
+            size={1}
+          >
+            {this.renderQuestiontypeBtn(q)}
+            {this.renderCustomProperties(q)}
+            {this.renderCommonProperties(q)}
+            {this.renderDefaultAction(q)}
+          </Space>
+        </div>
       </ConfigProvider>
     )
   }
