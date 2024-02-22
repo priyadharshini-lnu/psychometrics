@@ -45,7 +45,7 @@ export class FixedHeader extends Component {
     if (selected?.type !== 'Module') { return }
 
     if (originalEvent.target) {
-      if (originalEvent.target.tagName === 'INPUT') {
+      if (originalEvent.target.tagName === 'INPUT' || originalEvent.target.tagName === 'TEXTAREA') {
         return
       }
     }
@@ -68,7 +68,7 @@ export class FixedHeader extends Component {
     if (richEditorOpened) { return }
 
     if (originalEvent.target) {
-      if (originalEvent.target.tagName === 'INPUT') {
+      if (originalEvent.target.tagName === 'INPUT' || originalEvent.target.tagName === 'TEXTAREA') {
         return
       }
     }
