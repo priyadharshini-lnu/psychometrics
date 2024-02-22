@@ -1,5 +1,5 @@
 import {
-  Button, Menu, App,
+  Button, App,
 } from 'antd'
 import { ToolOutlined, DownOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -56,9 +56,7 @@ const getCustomMenuProps = ({
       label: I18n.t('campaign_assessment.actions.regenerate'),
     },
   ]
-  return (
-    <Menu onClick={handleMenuClick} items={menuItems} />
-  )
+  return { items: menuItems, onClick: handleMenuClick }
 }
 
 export default function ToolsDropdown ({
