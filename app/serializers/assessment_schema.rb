@@ -36,7 +36,7 @@ class AssessmentSchema < BaseSchema
       required(:options).maybe(:hash?)
       required(:default_norm_id).maybe(:int?)
       required(:extra).hash do
-        optional(:timer).maybe(:str?)
+        optional(:timer).maybe(:int?)
         optional(:icon_color).maybe(:str?)
         optional(:enable_video_check).maybe(:bool?)
         optional(:enable_audio_check).maybe(:bool?)

@@ -81,7 +81,7 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
 
     render json: {
       assessment: AssessmentSerializer.new(
-        content: {
+        context: {
           include: '**',
           selected_locale: selected_locale,
           piped_text_context: build_piped_context(user_assessments.first)

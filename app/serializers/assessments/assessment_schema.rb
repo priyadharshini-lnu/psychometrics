@@ -16,7 +16,7 @@ module Assessments
         required(:disabled).filled(:bool?)
         required(:created_at).filled(:str?)
         required(:flow).maybe(:hash?)
-        required(:norm_rules).maybe(:array?)
+        required(:norm_rules).maybe(:hash?)
         required(:factors).array(Assessments::FactorSchema.schema(_, _))
         required(:enable_back).filled(:bool?)
         required(:enable_progress).filled(:bool?)

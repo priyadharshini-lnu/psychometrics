@@ -43,7 +43,7 @@ class AssessmentSerializer < Panko::Serializer
     Panko::ArraySerializer.new(
       questions,
       each_serializer: QuestionSerializer,
-      content: {
+      context: {
         piped_text_context: piped_text_context
       }
     ).to_a

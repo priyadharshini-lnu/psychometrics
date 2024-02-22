@@ -6,13 +6,15 @@ class UsersResultUpdateSchema < BaseSchema
     Dry::Schema.JSON do
       config.validate_keys = false
 
-      required(:expired).filled(:bool?)
-      required(:current_block).array(BlockSchema.schema(_, _))
-      required(:translations).filled(:hash?)
+      required(:expired).maybe(:bool?)
+      required(:current_block).hash(BlockSchema.schema(_, _))
+      required(:translations).maybe(:hash?)
       required(:progress_was_reseted).maybe(:bool?)
-      optional(:factors).array(UsersResults::FactorSchema.schema(_, _))
-      optional(:next_assessment_url).maybe(:str?)
-      optional(:scoring).maybe(:hash?)
+      required(:factors).maybe do
+        array(UsersResults::FactorSchema.schema(_, _))
+      end
+      required(:next_assessment_url).maybe(:str?)
+      required(:scoring).maybe(:hash?)
     end
   end
 end
