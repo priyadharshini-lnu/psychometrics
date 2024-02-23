@@ -164,15 +164,18 @@ export const WorkshopPage: FC<{location: LocationState}> = ({ location }) => {
             <ResourcesTag resources={workshop.workshopAssessors} />
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('administration.scheduling.info.cancellation_lead_time')}
+            span={2}
+            label={I18n.t('administration.scheduling.info.late_cancellation_and_rescheduling')}
           >
-            {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('administration.scheduling.info.late_cancellation_and_rescheduling')}>
             {workshop.allowLateCancellationAndRescheduling
               ? I18n.t('administration.scheduling.info.allowed')
               : I18n.t('administration.scheduling.info.not_allowed')
             }
+          </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('administration.scheduling.info.cancellation_lead_time')}
+          >
+            {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
           </Descriptions.Item>
         </Descriptions>
         <Divider />
