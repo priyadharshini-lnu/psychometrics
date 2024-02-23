@@ -8,7 +8,7 @@ module Assessments
 
         required(:id).filled(:int?)
         required(:text).filled(:str?)
-        required(:created_by).filled(:str?)
+        required(:created_by).filled(:int?)
         required(:created_at).filled(:str?)
         required(:author).filled(:str?)
       end
