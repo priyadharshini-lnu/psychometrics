@@ -14,6 +14,11 @@ import styles from './AssessmentList.less'
 
 const { I18n } = window
 
+interface JSONApiError {
+  title: string
+  detail?: string
+}
+
 type Props = {
   openDrawer: (assessment: Assessment) => void
 }
@@ -151,8 +156,8 @@ const Dropdown: React.FC<DropDownProps> = (
 
   const handleOnConfirm = () => resource.removeResource(assessment.id).then(() => {
     message.info(I18n.t('assessments.actions.remove.success_message', { name: assessment.name }))
-  }).catch(() => {
-    message.error(I18n.t('common.errors.something_wrong'))
+  }).catch((errors: {base: JSONApiError[]}) => {
+    message.error(errors.base[0].title)
   })
   return (
     <>
