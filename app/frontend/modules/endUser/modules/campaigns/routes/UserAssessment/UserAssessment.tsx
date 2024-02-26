@@ -185,6 +185,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
                   rstore={store}
+                  renderedByEnduser
                 />
               </ResourcesTabs>
               )}
