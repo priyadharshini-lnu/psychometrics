@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
@@ -16,12 +16,25 @@ class Block extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
     last: PropTypes.bool,
+    first: PropTypes.bool,
   }
 
-  state = {
-    opened: true,
-    showPrompt: false,
-    showDeleteConfirmation: false,
+  constructor (props) {
+    super(props)
+    this.questionContentRef = createRef(null)
+    this.state = {
+      opened: true,
+      showPrompt: false,
+      showDeleteConfirmation: false,
+    }
+  }
+
+  componentDidMount () {
+    if (this.questionContentRef.current) {
+      const { setFirstBlockContentOffset } = this.props
+      const { offsetTop } = this.questionContentRef.current
+      setFirstBlockContentOffset(offsetTop)
+    }
   }
 
   onCancelConfirm = () => {
@@ -199,7 +212,7 @@ class Block extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, first } = this.props
     const { opened, showPrompt, showDeleteConfirmation } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
@@ -217,7 +230,11 @@ class Block extends Component {
         </div>
         {this.isTemplate(model) && this.renderTemplateWarning()}
         {(model.props.staticContent) && <StaticContent model={model} />}
-        <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
+        <div
+          ref={first ? this.questionContentRef : undefined}
+          className={[styles.content]}
+          style={{ display: opened ? 'block' : 'none' }}
+        >
           <QuestionList block={model} />
           <Footer {...this.props} onMinimize={this.expand} />
         </div>

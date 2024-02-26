@@ -1,5 +1,4 @@
-import { Component } from 'react'
-import PropTypes from 'prop-types'
+import { useEffect, useRef, useState } from 'react'
 import _ from 'lodash'
 import {
   Divider, Checkbox, Space, ConfigProvider,
@@ -12,156 +11,138 @@ import Menu from '~/modules/survey/components/ModulesMenu'
 import { Properties } from '~/modules/survey/components/modules'
 import styles from './PropertyPanel.less'
 
-class PropertyPanel extends Component {
-  static propTypes = {
-    restricted: PropTypes.bool,
-  }
+const QUESTION_BLOCK_BOTTOM_MARGIN = 20
+const QUESTION_BLOCK_BOTTOM_PADDING = 15
+const QUESTION_BLOCK_BOTTOM_OFFSET = QUESTION_BLOCK_BOTTOM_MARGIN + QUESTION_BLOCK_BOTTOM_PADDING
 
-  addNote = () => {
-    const { question, addNote } = this.props
-    addNote(question)
+const PropertyPanelComponent = (props) => {
+  const {
+    question, offset, addPageBreak, addSkipLogic, copyQuestion, addNote, restricted,
+    openDisplayLogic, changeType, openPreview, firstBlockContentOffset,
+  } = props
+  const panelRef = useRef(null)
+  const [isOverflown, setIsOverflown] = useState(false)
+  const style = {
+    top: isOverflown ? 'unset' : offset,
+    visibility: question ? 'visible' : 'hidden',
+    bottom: isOverflown ? 0 : 'unset',
   }
+  const serializedQuestion = QuestionSerializer.wrap(question)
+  const { allowContentCopy } = serializedQuestion.props
+  const View = Properties[`${serializedQuestion.type}Properties`]
 
-  addPageBreak = () => {
-    const { question, addPageBreak } = this.props
-    addPageBreak(question, new Question({ name: 'PB', type: 'PageBreak' }))
-  }
+  useEffect(() => {
+    const htmlElement = document.getElementsByTagName('html')[0]
+    const panelHeight = panelRef.current?.scrollHeight
+    if (panelHeight) {
+      const panelHeightWithOffset = panelHeight + offset
+      const questionContentHeight = htmlElement.scrollHeight - firstBlockContentOffset - QUESTION_BLOCK_BOTTOM_OFFSET
+      panelHeightWithOffset > questionContentHeight ? setIsOverflown(true) : setIsOverflown(false)
+    }
+  }, [question, panelRef.current?.scrollHeight])
 
-  preview = () => {
-    const { question, openPreview } = this.props
-    openPreview({ question })
-  }
-
-  copyQuestion = () => {
-    const { copyQuestion, question } = this.props
-    const newQuestionParams = _.extend({}, _.cloneDeep(question), { id: null })
-    const newQuestion = new Question(newQuestionParams)
-    copyQuestion(question, newQuestion)
-  }
-
-  displayLogic = () => {
-    const { question, openDisplayLogic } = this.props
-    openDisplayLogic({ question, logicElement: question.displayLogic || new LogicElement() })
-  }
-
-  addSkipLogic = () => {
-    const { question, addSkipLogic } = this.props
-    addSkipLogic(question)
-  }
-
-  changeType = (type, props = {}) => {
-    const { question, changeType } = this.props
+  const changeQuestionType = (type, props = {}) => {
     if (question.type === type && _.isEmpty(props)) { return }
     Action('QuestionChangeType', question, { oldType: question.type, newType: type })
     changeType(question, type, props)
   }
 
-  renderDefaultAction () {
-    const { restricted } = this.props
-    return (
-      <div className={styles.fieldset}>
-        {!restricted && (
-          <a onClick={this.addPageBreak} className={styles.menuitem}>
+  const questiontypeBtn = (
+    <div className={styles.fieldset} style={{ position: 'relative' }}>
+      <span className={styles.label}>Change Question Type</span>
+      <button type="button" data-toggle="dropdown" className={`btn btn-success dropdown-toggle ${styles.menuButton}`}>
+        <span className={`fa fa-${serializedQuestion.moduleConfig.icon} ${styles.icon}`} />
+        <span>{serializedQuestion.moduleConfig.moduleName}</span>
+        <span className="caret" />
+      </button>
+      <Menu onSelect={changeQuestionType} />
+    </div>
+  )
+
+  const defaultAction = (
+    <div className={styles.fieldset}>
+      {!restricted && (
+        <>
+          <a
+            onClick={() => addPageBreak(question, new Question({ name: 'PB', type: 'PageBreak' }))}
+            className={styles.menuitem}
+          >
             <span className={`fa fa-file-o ${styles.icon}`} />
             <span>Add Page Break</span>
           </a>
-        )}
-        {!restricted && (
-          <a onClick={this.displayLogic} className={styles.menuitem}>
+          <a
+            onClick={() => openDisplayLogic({ question, logicElement: question.displayLogic || new LogicElement() })}
+            className={styles.menuitem}
+          >
             <span className={`fa fa-eye ${styles.icon}`} />
             <span>Add Display Logic</span>
           </a>
-        )}
-        {!restricted && (
-          <a onClick={this.addSkipLogic} className={styles.menuitem}>
+          <a onClick={() => addSkipLogic(question)} className={styles.menuitem}>
             <span className={`fa fa-eye-slash  ${styles.icon}`} />
             <span>Add Skip Logic</span>
           </a>
-        )}
-        {!restricted && (
-          <a onClick={this.copyQuestion} className={styles.menuitem}>
+          <a
+            onClick={() => {
+              const newQuestionParams = _.extend({}, _.cloneDeep(question), { id: null })
+              const newQuestion = new Question(newQuestionParams)
+              copyQuestion(question, newQuestion)
+            }}
+            className={styles.menuitem}
+          >
             <span className={`fa fa-check-circle-o ${styles.icon}`} />
             <span>Copy Question</span>
           </a>
-        )}
-        {!restricted && (
-          <a onClick={this.addNote} className={styles.menuitem}>
+          <a onClick={() => addNote(question)} className={styles.menuitem}>
             <span className={`fa fa-pencil-square-o ${styles.icon}`} />
             <span>Add Note</span>
           </a>
-        )}
-        <a onClick={this.preview} className={styles.menuitem}>
-          <span className={`icon fa fa-search ${styles.icon}`} />
-          <span>Preview Question</span>
-        </a>
-      </div>
-    )
-  }
+        </>
+      )}
+      <a onClick={() => openPreview({ question })} className={styles.menuitem}>
+        <span className={`icon fa fa-search ${styles.icon}`} />
+        <span>Preview Question</span>
+      </a>
+    </div>
+  )
 
-  renderQuestiontypeBtn (model) {
-    return (
-      <div className={styles.fieldset} style={{ position: 'relative' }}>
-        <span className={styles.label}>Change Question Type</span>
-        <button type="button" data-toggle="dropdown" className={`btn btn-success dropdown-toggle ${styles.menuButton}`}>
-          <span className={`fa fa-${model.moduleConfig.icon} ${styles.icon}`} />
-          <span>{model.moduleConfig.moduleName}</span>
-          <span className="caret" />
-        </button>
-        <Menu onSelect={this.changeType} />
-      </div>
-    )
-  }
+  const customProperties = View ? <View model={serializedQuestion} restricted={restricted} /> : null
 
-  renderCustomProperties (model) {
-    const { restricted } = this.props
-    const View = Properties[`${model.type}Properties`]
-    if (!View) { return null }
-    return <View model={model} restricted={restricted} />
-  }
+  const commonProperties = (
+    <div className={styles.fieldset}>
+      <Checkbox
+        onChange={({ target: { checked } }) => serializedQuestion.changeProps({ allowContentCopy: checked })}
+        defaultChecked={allowContentCopy}
+      >
+        {I18n.t('administration.survey_builder.property_panel.allow_content_copy')}
+      </Checkbox>
+    </div>
+  )
 
-  renderCommonProperties (model) {
-    const { allowContentCopy } = model.props
-
-    return (
-      <div className={styles.fieldset}>
-        <Checkbox
-          onChange={({ target: { checked } }) => model.changeProps({ allowContentCopy: checked })}
-          defaultChecked={allowContentCopy}
+  return (
+    <ConfigProvider componentSize="small">
+      <div className={styles.main} style={style}>
+        <Space
+          className={styles.innerContent}
+          key={serializedQuestion.id}
+          direction="vertical"
+          split={<Divider style={{ margin: 0 }} />}
+          size={1}
+          ref={panelRef}
         >
-          {I18n.t('administration.survey_builder.property_panel.allow_content_copy')}
-        </Checkbox>
+          {questiontypeBtn}
+          {customProperties}
+          {commonProperties}
+          {defaultAction}
+        </Space>
       </div>
-    )
-  }
+    </ConfigProvider>
+  )
+}
 
-  render () {
-    const { question, offset } = this.props
-    const style = {
-      top: offset,
-      visibility: question ? 'visible' : 'hidden',
-    }
+const PropertyPanel = (props) => {
+  const { question } = props
 
-    if (!question) { return null }
-    const q = QuestionSerializer.wrap(question)
-    return (
-      <ConfigProvider componentSize="small">
-        <div className={styles.main} style={style}>
-          <Space
-            className={styles.innerContent}
-            key={q.id}
-            direction="vertical"
-            split={<Divider style={{ margin: 0 }} />}
-            size={1}
-          >
-            {this.renderQuestiontypeBtn(q)}
-            {this.renderCustomProperties(q)}
-            {this.renderCommonProperties(q)}
-            {this.renderDefaultAction(q)}
-          </Space>
-        </div>
-      </ConfigProvider>
-    )
-  }
+  return question ? <PropertyPanelComponent {...props} /> : null
 }
 
 export default PropertyPanel
