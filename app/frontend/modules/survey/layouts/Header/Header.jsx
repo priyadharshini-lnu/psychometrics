@@ -12,7 +12,6 @@ import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { perform } from '~/modules/survey/core/temp/socket'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
-import SerializeAssessment from '~/modules/survey/core/builder/assessment/SerializeAssessment'
 import styles from './Header.less'
 import { Tabs } from './Tabs'
 
@@ -109,8 +108,6 @@ export class Header extends Component {
   }
 
   openPreview = () => {
-    const { builder } = this.props
-    this.previewData.value = JSON.stringify(SerializeAssessment.run(builder))
     this.previewForm.submit()
   }
 
