@@ -2566,6 +2566,8 @@ en:
     clients_hierarchy: Project > Campaign > Sub Campaign
     close: Close
     common:
+      disabled: Diasbled
+      enabled: Enabled
       reset: Reset
       save: Save
     communications:

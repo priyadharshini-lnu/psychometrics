@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :created_at, :updated_at, :created_by, :modified_by, :archived, :deleted,
-             :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon, :active,
+             :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon,
              :external_settings, :provider, :provider
 
   ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in]
@@ -43,10 +43,6 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
 
   def deleted
     @model.deleted?
-  end
-
-  def active
-    !@model.disabled
   end
 
   def external_settings
