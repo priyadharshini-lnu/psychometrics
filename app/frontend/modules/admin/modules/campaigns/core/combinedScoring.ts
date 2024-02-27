@@ -45,6 +45,7 @@ export const CampaignScoresTR = t.type({
     lastName: t.string,
     email: t.string,
   }),
+  stackRank: t.union([t.number, t.null, t.undefined]),
   campaignScoresFinalized: t.union([t.boolean, t.null]),
   campaignScoresFinalizedDate: t.union([t.string, t.null]),
   campaignScoresCalculatedDate: t.union([t.string, t.null]),

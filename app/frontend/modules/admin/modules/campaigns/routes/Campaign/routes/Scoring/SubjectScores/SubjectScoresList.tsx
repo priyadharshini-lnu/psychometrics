@@ -29,6 +29,7 @@ type DataType = {
   campaignScoresFinalizedDate: string | null;
   campaignScoresCalculatedDate: string | null;
   errors: Error[] | null;
+  stackRank: number | null ;
   [key: string]: string | number | boolean | null | Error[];
 }
 
@@ -47,7 +48,7 @@ export function SubjectScoresList () {
     apiConfig: {
       fields: {
         campaign_factor_groups: ['id', 'name', 'position', 'campaign_factors'],
-        campaign_factors: ['name', 'position', 'id'],
+        campaign_factors: ['name', 'position', 'id', 'ranked'],
       },
       include: ['campaign_factors'],
     },
@@ -264,6 +265,7 @@ function createSortedTableColumns (
   handleAction: (actions: string, subject)=> void,
   getSortOrder,
 ): ColumnsType<DataType> {
+  let stackRankColumn: string | null = null
   const sortedGroupColumns: ColumnsType<DataType> = campaignFactorData?.map(group => ({
     ...group,
     campaignFactors: group.campaignFactors.sort((a, b) => a.position - b.position),
@@ -271,16 +273,19 @@ function createSortedTableColumns (
     const even = index % 2 === 0
     return ({
       title: group.name,
-      children: group.campaignFactors.sort((a, b) => a.position - b.position).map((factor, factorIndex) => ({
-        title: factor.name,
-        dataIndex: `${factor.id}`,
-        key: `${factor.id}`,
-        sorter: true,
-        sortOrder: getSortOrder(`${factor.id}`),
-        className: cs(factorIndex === 0 ? styles.columnBorderStart : null,
-          factorIndex === group.campaignFactors.length - 1 ? styles.columnBorderEnd : null,
-          even ? styles.evenGroup : styles.oddGroup),
-      })),
+      children: group.campaignFactors.sort((a, b) => a.position - b.position).map((factor, factorIndex) => {
+        stackRankColumn = factor.ranked ? `${factor.name}` : stackRankColumn
+        return ({
+          title: factor.name,
+          dataIndex: `${factor.id}`,
+          key: `${factor.id}`,
+          sorter: true,
+          sortOrder: getSortOrder(`${factor.id}`),
+          className: cs(factorIndex === 0 ? styles.columnBorderStart : null,
+            factorIndex === group.campaignFactors.length - 1 ? styles.columnBorderEnd : null,
+            even ? styles.evenGroup : styles.oddGroup),
+        })
+      }),
       className: cs(styles.columnBorderEnd, styles.columnBorderStart, even ? styles.evenGroup : styles.oddGroup),
     })
   }) || []
@@ -366,24 +371,36 @@ function createSortedTableColumns (
       },
     },
     {
-      title: I18n.t('common.column.action'),
+      title: I18n.t('administration.scoring.subject_list.actions'),
       key: 'actions',
-      width: 80,
       fixed: 'right',
+      width: 100,
       render: subject => (
-        <ToolsDropdown
-          onClick={action => handleAction(action, subject)}
-          persmission={
-          {
-            markFinalized: subject.campaignScoresFinalized === false && subject.errors === null,
-            markNotFinalized: subject.campaignScoresFinalized === true,
-            rescore: true,
-          }
-        }
-        />
+        <div>
+          <ToolsDropdown
+            onClick={action => handleAction(action, subject)}
+            persmission={
+                {
+                  markFinalized: true,
+                  markNotFinalized: true,
+                  rescore: true,
+                }
+              }
+          />
+        </div>
       ),
     },
   ]
+
+  if (stackRankColumn !== null) {
+    sortedGroupColumns.push({
+      title: I18n.t('administration.scoring.subject_list.rank'),
+      dataIndex: 'stackRank',
+      key: 'stackRank',
+      sorter: true,
+      sortOrder: getSortOrder('stackRank'),
+    })
+  }
 
   return [...staticBeforeColumns, ...sortedGroupColumns, ...staticAfterColumns]
 }
@@ -400,6 +417,7 @@ const processData = (
     campaignScoresFinalizedDate: valueData?.campaignScoresFinalizedDate,
     campaignScoresCalculatedDate: valueData?.campaignScoresCalculatedDate,
     campaignScoresFinalized: valueData?.campaignScoresFinalized,
+    stackRank: valueData?.stackRank || null,
     errors: valueData?.campaignScoresErrors,
   }
 

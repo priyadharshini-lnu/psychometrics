@@ -4078,6 +4078,7 @@ en:
       profile:
         years: Years
       public: Public
+      ranked: Ranked
       remove_factor_confirmation_content: Are you sure you want to remove the factor '%{factor_name}'?
       remove_factor_confirmation_title: Remove Factor
       remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
@@ -4114,6 +4115,7 @@ en:
         mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?”
         mark_not_finalized: Mark Not Finalized
         mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
+        rank: Rank
         rescore: Rescore
         rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
       subjects: Subjects

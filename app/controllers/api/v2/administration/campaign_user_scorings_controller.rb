@@ -38,6 +38,7 @@ module Api
             campaign_scores_finalized: score['campaign_scores_finalized'],
             campaign_scores_finalized_date: score['campaign_scores_finalized_date'],
             campaign_id: score['campaign_id'],
+            stack_rank: score['stack_rank'],
             campaign_factor_values: campaign_factor_values
           }
         }

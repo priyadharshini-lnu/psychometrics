@@ -394,6 +394,9 @@ export const AddEditFactorForm: FC<Props> = ({
             <Form.Item label={I18n.t('administration.scoring.public')} name="publicVisibility" valuePropName="checked">
               <Switch />
             </Form.Item>
+            <Form.Item label={I18n.t('administration.scoring.ranked')} name="ranked" valuePropName="checked">
+              <Switch />
+            </Form.Item>
             <Form.Item>
               <Button type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>
             </Form.Item>
