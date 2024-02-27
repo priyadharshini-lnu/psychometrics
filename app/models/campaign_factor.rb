@@ -32,7 +32,7 @@ class CampaignFactor < ApplicationRecord
     return @dependencies_factor_code if defined?(@dependencies_factor_code)
     return [] if formula.blank?
 
-    @dependencies_factor_code = formula.scan(/__([a-zA-Z0-9_]+)/).flatten
+    @dependencies_factor_code = formula.scan(/__([a-zA-Z0-9_]+)/).flatten.uniq
   end
 
   def dependencies
