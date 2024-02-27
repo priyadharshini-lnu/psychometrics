@@ -64,10 +64,12 @@ class AssessmentContainer extends Component {
 
   render () {
     const {
-      disabled, selectedLocale, type, showAsSinglePage, data,
+      disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser,
     } = this.props
     return (
-      <DefaultAntThemeWrapper>
+      <ThemeWrapper
+        renderedByEnduser={renderedByEnduser}
+      >
         <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
           <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
             {/* <ConnectionCheck
@@ -87,9 +89,14 @@ class AssessmentContainer extends Component {
             </DndProvider>
           </ConfigProvider>
         </ErrorBoundary>
-      </DefaultAntThemeWrapper>
+      </ThemeWrapper>
     )
   }
 }
+
+const ThemeWrapper = ({ renderedByEnduser, children }) => (
+  renderedByEnduser
+    ? <>{children}</> : <DefaultAntThemeWrapper>{children}</DefaultAntThemeWrapper>
+)
 
 export default connect(state => ({ disabled: state.preview.disabled }), {})(AssessmentContainer)

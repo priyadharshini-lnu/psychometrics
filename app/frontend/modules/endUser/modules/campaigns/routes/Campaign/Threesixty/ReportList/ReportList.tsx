@@ -55,11 +55,11 @@ const ReportListComponent = ({
       <ConfirmationModal
         open={!!reportToShow}
         title={I18n.t('threesixty.close_evaluation_modal.title')}
-        message={I18n.t('threesixty.close_evaluation_modal.message',
+        message={reportToShow ? I18n.t('threesixty.close_evaluation_modal.message',
           {
             pronoun_or_name:
-            reportToShow?.isSelf ? I18n.t('threesixty.you') : userPresenter.getFullName(reportToShow?.user),
-          })
+            reportToShow.isSelf ? I18n.t('threesixty.you') : userPresenter.getFullName(reportToShow.user || {}),
+          }) : ''
         }
         onConfirm={() => redirectToReport(reportToShow)}
         close={() => setReportToShow(null)}

@@ -22,17 +22,26 @@ export const UsersSelectWithTags: FC<UsersSelectWithTagsProps> = ({
   const [selectedUsers, setSelectedUsers] = useState(preSelectedUsers || [])
   const [searchKey, setSearchKey] = useState('')
   const autoCompleteProps = _.omit(props, ['value'])
+  const [localUsers, setLocalUsers] = useState<Record<string, UserDetails>>(_.keyBy(preSelectedUsers, 'userId'))
 
   useEffect(() => {
-    const valueSelected = value ? value.map(id => users.find(user => user.id === id)).filter(user => user) : null
-    if (valueSelected) {
+    const newLocalUsers = _.keyBy(users, 'userId')
+    const updatedLocalUsers = { ...localUsers, ...newLocalUsers }
+    setLocalUsers(updatedLocalUsers)
+  }, [users])
+
+  useEffect(() => {
+    const valueSelected = value ? _.map(value, id => localUsers[id]).filter(user => user) : null
+
+    if (valueSelected && valueSelected?.length > 0) {
       setSelectedUsers(valueSelected)
     }
   }, [value])
 
   const handleUserSelect = (userId: string) => {
-    const selectedUser = users.find(user => user.id === userId)
-    if (selectedUser && !_.map(selectedUsers, 'id').includes(userId)) {
+    const selectedUser = _.find(users, { id: userId })
+    const presentInSelected = _.find(selectedUsers, { id: userId })
+    if (selectedUser && !presentInSelected) {
       const updatedUsers = [...selectedUsers, selectedUser]
       setSelectedUsers(updatedUsers)
       onChange && onChange(_.map(updatedUsers, userIdField))

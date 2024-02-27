@@ -47,7 +47,11 @@ const SettingsModalComponent = ({
   }
 
   const updateTimer = (time) => {
-    const timer = time && dayjs.duration(time.format('HH:mm:ss')).asSeconds()
+    const timer = time && dayjs.duration({
+      hours: time.hour(),
+      minutes: time.minute(),
+      seconds: time.second(),
+    }).asSeconds()
     updateExtra({ ...extra, timer })
   }
 
