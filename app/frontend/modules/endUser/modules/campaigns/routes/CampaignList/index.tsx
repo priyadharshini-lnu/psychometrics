@@ -20,7 +20,7 @@ import {
   FETCH,
 } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { fetchWorkshop, FETCH_WORKSHOP } from '~/modules/endUser/modules/campaigns/core/workshops'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { PageHeader, MediaQueryContext } from '~/glint'
 
 import Campaigns from './Campaigns'
@@ -95,7 +95,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     <>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown />
+          <LangDropdownWithChangeLocale />
         </Col>
       </PageHeader>
       <Content className={styles.pageContent}>

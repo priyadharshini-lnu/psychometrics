@@ -9,7 +9,7 @@ import cs from 'classnames'
 import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import styles from './styles.less'
 import { fetchAssessorAssessment, getAssessorForm, getCurrentAssessorForm } from '../../core/evaluation'
 
@@ -80,9 +80,9 @@ const AssessorAssessment: React.FC<Props> = ({
           {enableProgress
           && (<Progress key="1" percent={progress} style={{ width: '200px' }} />)}
           {loaded && (
-          <Language
-            selectedLanguage={assessorForm.result.selected_locale}
-            availableTranslations={assessorForm.result.available_translations}
+          <LangDropdownWithChangeUrl
+            currentLocale={assessorForm.result.selected_locale.code}
+            locales={assessorForm.result.available_translations}
           />
           )}
         </Space>

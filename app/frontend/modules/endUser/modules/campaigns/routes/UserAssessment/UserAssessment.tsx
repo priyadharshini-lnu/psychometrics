@@ -9,7 +9,7 @@ import {
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
-import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import store from '~/modules/endUser/store'
 import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/ResourcesTabs'
@@ -138,9 +138,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
           {availableTranslations
               && availableTranslations.length > 1
               && (
-              <Language
-                selectedLanguage={selectedLanguage}
-                availableTranslations={availableTranslations || []}
+              <LangDropdownWithChangeUrl
+                currentLocale={selectedLanguage.code}
+                locales={availableTranslations || []}
               />
               )
             }

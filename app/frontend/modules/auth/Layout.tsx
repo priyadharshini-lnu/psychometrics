@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import { connect } from 'react-redux'
 import cs from 'classnames'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { isRtl } from '~/utils/locales'
 import routes from './routes'
 import styles from './styles.less'
@@ -54,7 +54,7 @@ export const LayoutComponent = ({ config }) => {
             <div className={styles.logoWrapper}>
               <img src={config.client_logo || logo} className={styles.logo} />
             </div>
-            {config.id && <LangDropdown />}
+            {config.id && <LangDropdownWithChangeLocale />}
           </Layout.Header>
           <Layout.Content className={styles.content}>
             {routes.map((route, i) => (

@@ -10,7 +10,7 @@ import dayjs from '~/utils/dayjs'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { CropImageModal } from '~/glint/components/CropImageModal'
 import Utils from '~/modules/reports/utils/Utils'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import {
   sync,
   get as getUser,
@@ -119,7 +119,7 @@ function ProfileComponent ({
   }
   const headerElement = (
     <Col flex="auto" span={24} className="ta-e">
-      <LangDropdown />
+      <LangDropdownWithChangeLocale />
     </Col>
   )
 
