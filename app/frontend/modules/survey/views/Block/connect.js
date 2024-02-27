@@ -4,6 +4,7 @@ import {
   createBlock, removeBlock, addQuestion, cloneBlock, renameBlock,
   saveAsTemplate, unlinkTemplate, updateBlockProps,
 } from '~/modules/survey/core/builder/assessment/block/actions'
+import { setFirstBlockContentOffset } from '~/modules/survey/core/temp/propertyPanel'
 import { unselectQuestion, moveBlockDown, moveBlockUp } from '~/modules/survey/core/builder/assessment/actions'
 
 export default connect(
@@ -22,5 +23,6 @@ export default connect(
     saveAsTemplate,
     unlinkTemplate,
     updateBlockProps,
+    setFirstBlockContentOffset,
   },
 )

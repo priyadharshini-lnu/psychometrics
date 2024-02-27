@@ -20,7 +20,11 @@ module UserReports::PdfGeneration
       end
       format.json do
         if resource.external_report?
-          return render json: Administration::ExternalUserReportSerializer.new.serialize(resource)
+          return render(
+            json: Administration::ExternalUserReportSerializer.new(
+              context: { current_user: current_user }
+            ).serialize(resource)
+          )
         end
 
         render json: resource, report: resource.report,

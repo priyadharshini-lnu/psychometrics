@@ -154,7 +154,14 @@ const getActionsMenuProps = ({
         <Button
           type="link"
           onClick={
-          () => openModal('ConfirmationModal', { open: true, onConfirm: handleOnConfirm })
+          () => openModal('ConfirmationModal', {
+            title: I18n.t('administration.scheduling.resources.confirm_title'),
+            message: I18n.t(
+              'administration.scheduling.resources.confirm_message', { resource_name: workshopResource?.name },
+            ),
+            open: true,
+            onConfirm: handleOnConfirm,
+          })
         }
           className="ps-0"
         >

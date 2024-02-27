@@ -13,7 +13,6 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { ConfirmationModal } from '~/glint'
 
 const { I18n } = window
 
@@ -83,7 +82,7 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
           )}
         />
       </Resource.Table>
-      <Modals modals={{ AdminRolesForm, ConfirmationModal }} />
+      <Modals modals={{ AdminRolesForm }} />
     </Resource>
   )
 }

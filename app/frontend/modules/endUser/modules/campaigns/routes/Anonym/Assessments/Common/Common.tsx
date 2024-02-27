@@ -131,6 +131,7 @@ const CommonComponent: React.FC<Props> = ({
                 selectedLocale={selectedLanguage && selectedLanguage.code}
                 rstore={store}
                 isAnonymousAssessment="true"
+                renderedByEnduser
               />
             </ResourcesTabs>
           </div>

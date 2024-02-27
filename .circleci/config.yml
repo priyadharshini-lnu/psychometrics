@@ -493,6 +493,30 @@ jobs:
           name: Release to heroku
           command: |
             heroku container:release web worker release -a << parameters.app-name >>
+  heroku_release_production:
+    executor: tte-docker-build
+    parameters:
+      source-app-name:
+        type: string
+      target-app-name:
+        type: string
+    steps:
+      - heroku/install
+      - heroku_docker_login
+      - run:
+          name: Release to heroku
+          command: |
+            docker pull registry.heroku.com/<< parameters.source-app-name >>/web
+            docker pull registry.heroku.com/<< parameters.source-app-name >>/worker
+            docker pull registry.heroku.com/<< parameters.source-app-name >>/release
+            docker tag registry.heroku.com/<< parameters.source-app-name >>/web registry.heroku.com/<< parameters.target-app-name >>/web
+            docker tag registry.heroku.com/<< parameters.source-app-name >>/worker registry.heroku.com/<< parameters.target-app-name >>/worker
+            docker tag registry.heroku.com/<< parameters.source-app-name >>/release registry.heroku.com/<< parameters.target-app-name >>/release
+            docker push registry.heroku.com/<< parameters.target-app-name >>/web
+            docker push registry.heroku.com/<< parameters.target-app-name >>/worker
+            docker push registry.heroku.com/<< parameters.target-app-name >>/release
+            heroku container:release web worker release -a << parameters.target-app-name >>
+
 
 orbs:
   aws-cli: circleci/aws-cli@4.1.2
@@ -590,3 +614,14 @@ workflows:
             branches:
               only:
                 - master
+      - hold:
+          name: approve_production
+          type: approval
+          requires:
+            - heroku_release_staging
+      - heroku_release_production:
+          name: heroku_release_production
+          source-app-name: tte-lighthouse-staging
+          target-app-name: tte-lighthouse-prod
+          requires:
+            - approve_production

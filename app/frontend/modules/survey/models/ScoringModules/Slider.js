@@ -34,6 +34,10 @@ class Slider extends BaseScoringModule {
   toggle (index) {
     this.toggleValue(index)
   }
+
+  isEmptyValues () {
+    return !_.some(this.scoring.props, object => object.min !== undefined || object.max !== undefined)
+  }
 }
 
 export default Slider
