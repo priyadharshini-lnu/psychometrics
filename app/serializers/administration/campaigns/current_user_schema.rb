@@ -29,6 +29,12 @@ module Administration
               optional(:project_settings).maybe(:array).each(:str?)
               optional(:reports).maybe(:array).each(:str?)
               optional(:campaign_factors).maybe(:array).each(:str?)
+              optional(:norms).maybe(:array).each(:str?)
+              optional(:questions).maybe(:array).each(:str?)
+              optional(:audit_logs).maybe(:array).each(:str?)
+              optional(:dimensions).maybe(:array).each(:str?)
+              optional(:assessments).maybe(:array).each(:str?)
+              optional(:media_libraries).maybe(:array).each(:str?)
             end
           end
           required(:role).filled(:str?)
