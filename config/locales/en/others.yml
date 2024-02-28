@@ -1875,13 +1875,17 @@ en:
       assessor_assessment:
         already_added: Assessor Assessment already added to campaign.
         lead_already_added: Only one Lead Assessor Assessment can be added to campaign.
+      campaign_factor:
+        code_already_exists: A factor with the same code already exists.
+        invalid_lua_name: should be valid lua variable name
+        name_already_exists: A factor with the same name already exists.
       campaign_factor_group:
+        group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
       filled?: can't be blank
-      invalid_lua_name: should be valid lua variable name
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
       invalid_value: invalid statement '%{value}' on line number %{row}
       json?: Should be valid JSON

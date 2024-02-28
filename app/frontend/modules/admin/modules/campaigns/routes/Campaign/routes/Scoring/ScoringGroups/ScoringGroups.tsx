@@ -305,21 +305,18 @@ export const ScoringGroups = () => {
       campaign: { id: campaignId },
     }
 
-    createCampaignFactorGroup(newGroup).then(() => {
-      message.success(I18n.t('administration.scoring.factor_group_added_successfully'))
+    return createCampaignFactorGroup(newGroup).then(() => {
       fetchAndUpdateFactorGroups()
     })
   }
 
   const handleGroupNameChange = (value, group) => {
     const payload = {
-      id: group.id,
-      name: value,
+      ...value,
       position: group.position,
       campaign: { id: campaignId },
     }
-    updateFactorGroup(payload).then(() => {
-      message.success(I18n.t('administration.scoring.factor_group_update_successfully'))
+    return updateFactorGroup(payload).then(() => {
       fetchAndUpdateFactorGroups()
     })
   }

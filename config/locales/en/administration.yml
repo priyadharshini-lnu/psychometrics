@@ -4062,9 +4062,7 @@ en:
       dimension: Dimension
       edit_factor: Edit Factor
       factor: Factor
-      factor_group_added_successfully: Campaign Factor group added successfully
       factor_group_removed_successfully: Campaign Factor group removed successfully
-      factor_group_update_successfully: Campaign Factor group updated successfully
       factor_removed_successfully: Campaign Factor removed successfully
       final: Final
       final_score_updated_successfully: Final score updated successfully
