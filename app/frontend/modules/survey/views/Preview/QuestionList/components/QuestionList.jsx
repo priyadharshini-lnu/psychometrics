@@ -11,11 +11,20 @@ const QuestionList = ({
     from: { opacity: 0, transform: `translate(0px, ${backButtonPressed ? -100 : 100}px)` },
     enter: [
       {
-        opacity: 1, position: 'relative', transform: 'translate(0px, 0px)', delay: 300,
+        opacity: 1,
+        position: 'relative',
+        transform: 'translate(0px, 0px)',
+        delay: 300,
+        pointerEvents: 'auto',
       },
       { transform: 'none', delay: 1 },
     ],
-    leave: { opacity: 0, position: 'absolute', transform: `translate(0px, ${backButtonPressed ? 100 : -100}px)` },
+    leave: {
+      opacity: 0,
+      position: 'absolute',
+      transform: `translate(0px, ${backButtonPressed ? 100 : -100}px)`,
+      pointerEvents: 'none',
+    },
     config: (item, state) => {
       switch (state) {
         case 'enter': return { delay: 200, duration: 500 }
