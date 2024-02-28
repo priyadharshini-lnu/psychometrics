@@ -525,6 +525,7 @@ en:
     assessor:
       add_subject_modal:
         assessment: Assessment
+        mark_as_lead_assessor: Mark as lead assesor for above subject
         subject: Subject
         subject_placeholder: Search subject..
         title: Add subject
