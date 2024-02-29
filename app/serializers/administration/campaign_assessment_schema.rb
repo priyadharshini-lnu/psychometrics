@@ -18,7 +18,9 @@ module Administration
         required(:norm_id).maybe(:int?)
         required(:enable_universal_links).filled(:bool?)
         required(:universal_link).maybe(:str?)
-        required(:norms).array(NormSchema.schema(_, _))
+        required(:norms).maybe do
+          array(NormSchema.schema(_, _))
+        end
         required(:is_external).filled(:bool?)
         required(:assessor_form_name).maybe(:str?)
         required(:permissions).hash do

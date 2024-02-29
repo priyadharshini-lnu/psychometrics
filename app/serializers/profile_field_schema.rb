@@ -14,8 +14,8 @@ class ProfileFieldSchema < BaseSchema
         required(:type).filled(:str?)
         required(:props).filled(:hash?)
       end
-      required(:locked).filled(:bool?)
-      required(:translations).filled(:hash?)
+      required(:locked).maybe(:bool?)
+      required(:translations).maybe(:hash?)
     end
   end
 end

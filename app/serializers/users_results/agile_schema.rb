@@ -7,13 +7,13 @@ module UsersResults
         config.validate_keys = false
 
         required(:id).filled(:int?)
-        required(:groups).filled(:hash?)
-        required(:locale).filled(:str?)
-        required(:completed_groups).filled(:hash?)
+        required(:groups).value { array? | hash? | nil? }
+        required(:locale).maybe(:hash?)
+        required(:completed_groups).value { array? | hash? | nil? }
         required(:assets).filled(:hash?)
         required(:available_locales).filled(:array?).each(:str?)
         required(:other_pending_assessments_count).filled(:int?)
-        required(:remaining_campaign_time).filled(:str?)
+        required(:remaining_campaign_time).maybe(:str?)
       end
     end
   end
