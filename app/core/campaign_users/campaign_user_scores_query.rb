@@ -34,6 +34,7 @@ module CampaignUsers
           cu.campaign_scores_finalized,
           cu.campaign_scores_finalized_date,
           cu.campaign_id,
+          u.id as user_id,
           u.email,
           u.first_name,
           u.last_name,

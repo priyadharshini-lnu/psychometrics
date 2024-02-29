@@ -8,14 +8,18 @@ import { CheckOutlined, AppstoreOutlined, WarningFilled } from '@ant-design/icon
 import _ from 'lodash'
 import * as t from 'io-ts'
 import cs from 'classnames'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import { CampaignFactorGroup } from '../ScoringGroups/GroupCard'
 import { CampaignFactor } from '../ScoringGroups/Factor'
 import { ToolsDropdown } from './ToolsDropdown'
+import { Tools } from './Tools'
 import styles from './styles.less'
 import { CampaignScores, CampaignScoresTR, type Error } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 import { formatedDate } from '~/utils/time'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
+import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
 
 const { I18n } = window
 
@@ -33,7 +37,17 @@ type DataType = {
   [key: string]: string | number | boolean | null | Error[];
 }
 
-export function SubjectScoresList () {
+const connector = connect(
+  (state: RootState) => ({
+    campaignPermissions: getCurrentCampaign(state).permissions,
+  }),
+  {
+    fetch,
+  },
+)
+type Props = ConnectedProps<typeof connector>
+
+const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const { modal, message } = App.useApp()
   const { campaignId } = useParams<{ campaignId: string }>()
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
@@ -136,6 +150,18 @@ export function SubjectScoresList () {
     }
   }
 
+  const handleToolAction = (action: string) => {
+    if (action === 'export') {
+      collectionAction({
+        action: 'export_scorings',
+        method: 'get',
+        responseType: t.literal('ok'),
+      }).then(() => {
+        message.success(I18n.t('administration.scoring.subject_list.export_success'))
+      })
+    }
+  }
+
   const handleBulkAction = (action: string) => {
     if (action === 'mark_finalized') {
       collectionAction({
@@ -210,6 +236,10 @@ export function SubjectScoresList () {
           </span>
         </Col>
         <div>
+          <Tools
+            persmission={{ export: campaignPermissions.viewCampaignScoring }}
+            onClick={action => handleToolAction(action)}
+          />
           <ToolsDropdown
             isBulk
             onClick={action => handleBulkConfirmAction(action)}
@@ -259,6 +289,7 @@ export function SubjectScoresList () {
   )
 }
 
+export const SubjectScoresList = connector(SubjectScoresListComponent)
 
 function createSortedTableColumns (
   campaignFactorData: CampaignFactorGroupType[],

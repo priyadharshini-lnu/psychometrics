@@ -99,6 +99,17 @@ module Api
       render json: {}
     end
 
+    def export_scorings
+      audit! :export_campaign_scorings, nil, record_type: CampaignUser, payload: nil, campaign: campaign
+
+      AdminJob.call(
+        :export_campaign_scorings,
+        { campaign_id: campaign.id },
+        current_user
+      )
+      render json: :ok
+    end
+
     def find_user
       @user = User.find(params[:id])
     end

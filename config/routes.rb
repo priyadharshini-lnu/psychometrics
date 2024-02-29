@@ -1294,6 +1294,7 @@ Rails.application.routes.draw do
               end
               collection do
                 get :campaign_scores
+                get :export_scorings
                 post :rescore_bulk
                 post :change_finalized_campaign_score_bulk
               end

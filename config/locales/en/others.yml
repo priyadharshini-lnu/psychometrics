@@ -718,6 +718,7 @@ en:
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
+        export_campaign_scorings: Export Campaign Scorings
         export_report_data: Export report data
         export_users: Campaign Users Export
         external_assessment_export: External Results Export

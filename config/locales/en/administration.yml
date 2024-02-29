@@ -4062,6 +4062,8 @@ en:
       description: Description
       dimension: Dimension
       edit_factor: Edit Factor
+      export:
+        details: Campaign scorings
       factor: Factor
       factor_group_removed_successfully: Campaign Factor group removed successfully
       factor_removed_successfully: Campaign Factor removed successfully
@@ -4108,6 +4110,8 @@ en:
         bulk_rescore_confirm: Rescoring the selected users. Are you sure you want to proceed?
         calculated_date: Calculated Date
         calculation_errors: Calculation Errors
+        export: Export Scorings
+        export_success: Export scores job scheduled successfull
         finalized: Finalized
         finalized_date: Finalized Date
         mark_finalized: Mark Finalized
@@ -4117,6 +4121,7 @@ en:
         rank: Rank
         rescore: Rescore
         rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
+        tools: Tools
       subjects: Subjects
       tabs:
         settings: Settings

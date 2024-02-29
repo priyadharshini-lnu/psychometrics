@@ -23,6 +23,10 @@ module Api
         has_permission?(:results, :rescore_responses)
       end
 
+      def export_scorings?
+        has_permission?(:campaign_factors, :view)
+      end
+
       class Scope < ::Api::Administration::BasePolicy::Scope
         def resolve
           if @user.has_permission?(:campaign_factors, :view)
