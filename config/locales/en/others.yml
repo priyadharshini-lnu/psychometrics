@@ -787,6 +787,10 @@ en:
       download_csv: Download CSV
       edit: Edit
       evaluate: Evaluate
+      export_normed: Normed Factor Scores
+      export_raw_labels: Raw (with labels)
+      export_raw_scores: Raw Factor Scores
+      export_raw_without_labels: Raw (without labels)
       extend_time: Extend time
       goto_dashboard: Click here to continue
       moderate: Moderate Scores
@@ -914,6 +918,9 @@ en:
       title: Instructions
     messages:
       finish: "Thank you for your time. \nYour responses have now been recorded."
+      norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
+      raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
+      raw_results_export_scheduled: Assessment Raw Results export job scheduled successfully
     page:
       back: Back
       confirm_message: |-

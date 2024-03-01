@@ -114,7 +114,9 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
           Api::Administration::AssessmentPolicy,
           context[:user],
           @model,
-          %w[manage],
+          %w[manage
+             export_raw_results
+             export_raw_factor_scores export_normed_results],
           {
             project_id: Project.last.id
           }

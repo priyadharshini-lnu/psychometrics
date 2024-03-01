@@ -30,6 +30,18 @@ module Api
       def manage?
         show?
       end
+
+      def export_raw_results?
+        @user.is?(:superadmin)
+      end
+
+      def export_raw_factor_scores?
+        @user.is?(:superadmin)
+      end
+
+      def export_normed_results?
+        @user.is?(:superadmin)
+      end
     end
   end
 end

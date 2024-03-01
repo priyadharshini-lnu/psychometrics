@@ -62,6 +62,34 @@ module Api
       jsonapi_render json: resource
     end
 
+    def export_raw_results
+      with_labels = params[:with_lables] == 'true'
+      AdminJob.call(
+        :super_admin_assessment_raw_result_export,
+        { assessment_id: params[:assessment_id].to_i, export_with_labels: with_labels },
+        current_user
+      )
+
+      jsonapi_render json: resource
+    end
+
+    def export_normed_results
+      AdminJob.call(
+        :super_admin_assessment_norm_export,
+        { assessment_id: params[:assessment_id].to_i },
+        current_user
+      )
+
+      jsonapi_render json: resource
+    end
+
+    def export_raw_factor_scores
+      AdminJob.call(:super_admin_assessment_raw_factor_export, { assessment_id: params[:assessment_id].to_i },
+                    current_user)
+
+      jsonapi_render json: resource
+    end
+
     private
 
     def resource

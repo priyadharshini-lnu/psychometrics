@@ -56,6 +56,9 @@ export const AssessmentTR = t.type({
   meta: t.type({
     permissions: t.type({
       manage: t.boolean,
+      exportRawResults: t.boolean,
+      exportRawFactorScores: t.boolean,
+      exportNormedResults: t.boolean,
     }),
   }),
   linkedAssessment: t.union([

@@ -1185,6 +1185,9 @@ Rails.application.routes.draw do
             scope module: :assessments do
               resource :uploads, only: %i[update]
             end
+            get :export_raw_factor_scores
+            get :export_raw_results
+            get :export_normed_results
           end
           jsonapi_resources :dimensions
           jsonapi_resources :external_assessments

@@ -227,6 +227,31 @@ const getActionsMenuProps = ({
     message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
   })
 
+  const exportRawFactorScore = () => resource.memberAction({
+    id: assessment.id,
+    action: 'export_raw_factor_scores',
+    method: 'get',
+  }).then(() => {
+    message.success(I18n.t('assessments.messages.raw_factor_export_scheduled'))
+  })
+
+  const exportNormedResults = () => resource.memberAction({
+    id: assessment.id,
+    action: 'export_normed_results',
+    method: 'get',
+  }).then(() => {
+    message.success(I18n.t('assessments.messages.norm_results_export_scheduled'))
+  })
+
+  const exportRawResult = (with_labels: boolean) => resource.memberAction({
+    id: assessment.id,
+    action: 'export_raw_results',
+    method: 'get',
+    body: { with_lables: with_labels },
+  }).then(() => {
+    message.success(I18n.t('assessments.messages.raw_results_export_scheduled'))
+  })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'details') {
       return openDrawer(assessment)
@@ -246,8 +271,19 @@ const getActionsMenuProps = ({
     if (key === 'remove') {
       return setConfirmation(true)
     }
+    if (key === 'export_with_label') {
+      return exportRawResult(true)
+    }
+    if (key === 'export_without_label') {
+      return exportRawResult(false)
+    }
+    if (key === 'export_raw_factor_score') {
+      return exportRawFactorScore()
+    }
+    if (key === 'export_normed_results') {
+      return exportNormedResults()
+    }
   }
-
   const menuItems = [
     {
       key: 'details',
@@ -313,6 +349,40 @@ const getActionsMenuProps = ({
             {I18n.t('common.actions.remove')}
           </Button>
         </>
+      ),
+    },
+    assessment.meta.permissions.exportRawResults && { type: 'divider' },
+    assessment.meta.permissions.exportRawResults && { key: 'export', label: 'Export' },
+    assessment.meta.permissions.exportRawResults && {
+      key: 'export_with_label',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.export_raw_labels')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.exportRawResults && {
+      key: 'export_without_label',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.export_raw_without_labels')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.exportRawFactorScores && {
+      key: 'export_raw_factor_score',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.export_raw_scores')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.exportNormedResults && {
+      key: 'export_normed_results',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.export_normed')}
+        </Button>
       ),
     },
   ].filter(m => m) as ItemType[]
