@@ -86,6 +86,7 @@ module Campaigns
         existing_result = existing_user_result_to_copy(assessment)
         user_result = existing_result ? UsersResults::Copy.call!(existing_result) : create_new_user_result(assessment)
         campaign_assessment = CampaignAssessment.find_by(campaign: campaign, assessment: assessment)
+
         user_assessment = UserAssessment.create(
           users_result_id:  user_result.id,
           campaign: campaign,

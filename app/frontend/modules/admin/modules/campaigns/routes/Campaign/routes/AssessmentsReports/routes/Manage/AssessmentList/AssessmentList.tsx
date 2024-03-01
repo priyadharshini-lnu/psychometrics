@@ -44,6 +44,7 @@ const AssessmentList: React.FC<Props> = ({
   enableUniversalLink,
   updateWorkshopActivity,
   toggleRequireScheduling,
+  toggleAutoAssign,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -72,6 +73,16 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessment_name')}
             key="name"
             dataIndex="name"
+          />
+          <Column
+            title={I18n.t('campaign_assessment.column.auto_assign')}
+            key="autoAssign"
+            render={({ autoAssign, id }) => (
+              <Switch
+                checked={autoAssign}
+                onChange={() => toggleAutoAssign(parsedCampaignId, id, !autoAssign)}
+              />
+            )}
           />
           <Column
             title={I18n.t('common.column.require_scheduling')}

@@ -3,7 +3,7 @@
 module Administration
   class CampaignReportSerializer < Panko::Serializer
     attributes :id, :report_id, :name, :user_access, :assessor_access, :report_family_name, :permissions,
-               :user_dashboard, :main_report
+               :user_dashboard, :main_report, :auto_assign
 
     delegate :name, to: :report
     delegate :name, to: :report_family, prefix: true

@@ -1305,6 +1305,7 @@ en:
       assessment_center_activity: Assessment Center Activity
       assessment_name: Assessment name
       assessor_form: Assessor Form
+      auto_assign: Auto Assign
       locales: Locales
       norm: Norm
       prework: Prework
@@ -1394,6 +1395,7 @@ en:
       export_data: Export Data
     column:
       assessor_access: Assessor Access
+      auto_assign: Auto Assign
       main_report: Main Report
       report_bundle: Report Bundle
       report_name: Report name

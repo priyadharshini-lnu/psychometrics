@@ -214,6 +214,7 @@ Rails.application.routes.draw do
             post :export
             patch :toggle_user_access
             patch :toggle_assessor_access
+            patch :toggle_auto_assign
             patch :toggle_user_dashboard
             patch :toggle_main_report
           end
@@ -307,6 +308,7 @@ Rails.application.routes.draw do
             put :update_prework
             put :update_workshop_activity
             put :toggle_require_scheduling
+            put :toggle_auto_assign
             put :schedule_assessment
           end
           collection do

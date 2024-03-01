@@ -64,6 +64,12 @@ module Campaigns
 
       def add_reports_and_assessments
         campaign.campaign_reports.includes(:report).map do |campaign_report|
+          next unless campaign_report.auto_assign?
+
+          assessments = campaign_report.report.assessments.joins(:campaign_assessments).where(campaign_assessments: {
+            campaign_id: campaign.id, auto_assign: true
+          })
+
           Campaigns::Users::AddReport.call!(
             campaign_user,
             campaign_report.report,
@@ -71,7 +77,7 @@ module Campaigns
             report_family_id: campaign_report.report_family_id,
             user_access: campaign_report.user_access,
             operation: form.operation,
-            assessments: campaign_report.report.assessments
+            assessments: assessments
           )
         end
       end

@@ -49,6 +49,8 @@ describe Campaigns::Users::Create do
     reports = create_list(:report, 2, assessments: assessments)
     campaign_report1 = create(:campaign_report, campaign: campaign, report: reports[0])
     campaign_report2 = create(:campaign_report, campaign: campaign, report: reports[1])
+    create(:campaign_assessment, campaign: campaign, assessment: assessments[0])
+    create(:campaign_assessment, campaign: campaign, assessment: assessments[1])
 
     described_class.call!(form, campaign, current_user)
 

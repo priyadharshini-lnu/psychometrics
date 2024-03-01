@@ -23,6 +23,7 @@ import {
   UPDATE_WORKSHOP_ACTIVITY,
   SCHEDULE_ASSESSMENT,
   TOGGLE_REQUIRE_SCHEDULE,
+  TOGGLE_AUTO_ASSIGN,
 } from './actions'
 
 const defaultState: State = {
@@ -142,6 +143,11 @@ const HANDLERS = {
     )))
   ),
   [TOGGLE_REQUIRE_SCHEDULE]: (state, { response }: ApiActionResponse<Assessment>) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
+      assessment.id === response.id ? response : assessment
+    )))
+  ),
+  [TOGGLE_AUTO_ASSIGN]: (state, { response }: ApiActionResponse<Assessment>) => (
     updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
       assessment.id === response.id ? response : assessment
     )))
