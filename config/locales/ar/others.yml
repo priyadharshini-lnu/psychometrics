@@ -617,7 +617,7 @@ ar:
       single_value_cluster:
         competency: الكفاءة
         description: " الوصف"
-        developmental_rating: التقييم التنموي
+        developmental_rating: التقييم التطويري
         questions: أسئلة
       strength_clusters:
         index_sub_factors_considered: عوامل فرعية للمؤشرات المزدهرة التي تم اعتبارها لتوفير النتيجة النهائية لبيئة العمل %{workstyle}
@@ -639,7 +639,7 @@ ar:
         statistic: الاحصائيه
         value: 'القيمة '
       three_sixty_report_summary:
-        completed: تم اكماله
+        completed: مُكتمل
         footnote: "* مستثناة بسبب الحد الأدنى للمتطلبات"
         invited: المدعوين
         number_of_evaluators_invited: عدد المقيّمين المدعوين
