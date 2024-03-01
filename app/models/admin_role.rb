@@ -7,7 +7,11 @@ class AdminRole < ApplicationRecord
   has_many :memberships_admin_roles, dependent: :destroy
   has_many :memberships, through: :memberships_admin_roles
 
-  def user_role_specific_permissions(role)
+  def user_role_specific_permissions(membership)
+    role = membership.role
+    if role == 'campaign_admin' && membership.campaign.threesixty?
+      role = 'threesixty_campaign_admin'
+    end
     permissions.
       slice(*PERMISSION_BY_ADMIN_TYPE[role].keys).
       each_with_object({}) do |(permission, grants), allowed|

@@ -138,9 +138,32 @@ module AllowedPermissions
     'workshops' => %w[view manage]
   }.freeze
 
+  THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS = {
+    'campaigns' => %w[
+      view
+      manage
+      manage_users
+      participant_options
+      reset_nominations
+      report_options
+    ],
+    'datasheets' => %w[view manage],
+    'messages' => %w[email instructions options],
+    'results' => %w[
+      view_report
+      download_report
+      raw_responses
+      reset_responses
+      rescore_responses
+      regenerate_report
+      bulk_regenerate_reports
+    ]
+  }.freeze
+
   PERMISSION_BY_ADMIN_TYPE = {
     'client_admin' => CLIENT_ADMIN_PERMISSIONS,
     'project_admin' => PROJECT_ADMIN_PERMISSIONS,
-    'campaign_admin' => CAMPAIGN_ADMIN_PERMISSIONS
+    'campaign_admin' => CAMPAIGN_ADMIN_PERMISSIONS,
+    'threesixty_campaign_admin' => THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS
   }.freeze
 end

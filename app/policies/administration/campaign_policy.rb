@@ -71,6 +71,10 @@ module Administration
       )
     end
 
+    def update?
+      has_permission?(:campaigns, :manage)
+    end
+
     def projects?
       @user.is?(:superadmin) || @user.has_permission?(:clients, :manage, project_id: project_id)
     end
