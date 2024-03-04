@@ -2820,7 +2820,7 @@ en:
                 norm_score: Normed Score
                 percentage: Percentage
                 percentile: Percentile Score
-                score: Raw
+                score: Score
                 zscore: Z Score
             title: JSON Paths for Scores
         no_icon: No Logo yet

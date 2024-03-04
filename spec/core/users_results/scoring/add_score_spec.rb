@@ -671,8 +671,8 @@ describe UsersResults::Scoring::AddScore do
     result = described_class.call!(factor_hash, factor_ids, {}, five_scale_norm, {}, external_results)
 
     expect(result).to eq(
-      factor1.id.to_s => { 'percentage' => '1', 'zscore' => '4' },
-      factor2.id.to_s => { 'score' => '5', 'norm_score' => nil }
+      factor1.id.to_s => { 'percentage' => 1.0, 'zscore' => 4.0 },
+      factor2.id.to_s => { 'score' => 5.0, 'norm_score' => nil }
     )
   end
 
