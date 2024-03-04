@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assessments
-  class Mindmill < Assessment
+  class Mindmill < ::Assessment
     validates :name, presence: true, length: { maximum: 150, allow_blank: true }
     validates :mindmill_id, presence: true, inclusion: {
       in: Settings.providers.mindmill.assessments.map(&:id), allow_nil: true
@@ -11,7 +11,7 @@ module Assessments
 
     # Need for create right urls
     def self.model_name
-      Assessment.model_name
+      ::Assessment.model_name
     end
 
     private

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :assessment, class: 'Assessments::Common' do
+  factory :assessment, class: '::Assessments::Common' do
     sequence(:name) { |i| "assessment #{i}" }
     description { Faker::Lorem.characters(number: 5) }
     dimension
@@ -13,7 +13,7 @@ FactoryBot.define do
       end
     end
 
-    factory :hogan_assessment, class: 'Assessments::Hogan' do
+    factory :hogan_assessment, class: '::Assessments::Hogan' do
       category { Assessment::CATEGORIES[:hogan] }
       type { ::Assessments::Hogan }
       dimension { nil }

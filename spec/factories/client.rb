@@ -39,15 +39,15 @@ FactoryBot.define do
 
     trait :with_reports do
       transient do
-        with_assessments { nil }
+        with_assessments { create_list(:assessment, 1) }
       end
 
       after(:create) do |client, evaluator|
-        assessments = evaluator.with_assessments || build_list(:assessment, 1)
+        assessments = evaluator.with_assessments
         report_family = client.root.report_families.take
         report = create(:report, report_families: [report_family], assessments: assessments)
         create :clients_report, client: client, report: report, report_family: report_family
-        client.assessment_ids = report.assessment_ids
+        client.assessments = report.assessments
       end
     end
 

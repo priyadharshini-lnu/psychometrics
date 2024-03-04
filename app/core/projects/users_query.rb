@@ -26,6 +26,7 @@ module Projects
         FROM sheet_rows
         JOIN sheets on sheets.id = sheet_rows.sheet_id and sheets.project_id = :project_id
         WHERE sheets.type = 'Datasheet' AND sheet_rows.email LIKE :query
+        ORDER BY id ASC
         LIMIT :limit
       SQL
     end

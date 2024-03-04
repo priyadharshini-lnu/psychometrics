@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 describe ReportSerializer do
-  let(:common_report) { create(:report, data_sheet_columns: [{ 'name' => 'field1', 'type' => 'HTML' }]) }
-  let(:threesixty_campaign) { create(:threesixty_campaign) }
-  let(:campaign) { threesixty_campaign.campaign }
+  let!(:common_report) { create(:report, data_sheet_columns: [{ 'name' => 'field1', 'type' => 'HTML' }]) }
+  let!(:threesixty_campaign) { create(:threesixty_campaign) }
+  let!(:campaign) { threesixty_campaign.campaign }
   let(:report) do
     report = threesixty_campaign.report
     report.update(data_sheet_columns: [{ 'name' => 'field1', 'type' => 'HTML' }])

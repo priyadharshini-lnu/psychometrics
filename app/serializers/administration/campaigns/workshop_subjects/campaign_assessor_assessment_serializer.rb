@@ -45,7 +45,7 @@ module Administration
         end
 
         def subject_user_assessment
-          subject_user_assessments[object.assessment&.linked_assessment_id || assessor_user_assessment&.evaluator_id]
+          subject_user_assessments[object.assessment&.linked_assessment_id || assessor_user_assessment&.assessment_id]
         end
 
         def subject_user_assessments

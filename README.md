@@ -14,7 +14,7 @@ Rails version: 7.0.5
 
 Bundler version: 2.3.17
 
-Node version: 14.18.3
+Node version: 18.16.*
 
 Database: PostgresSql@14
 
