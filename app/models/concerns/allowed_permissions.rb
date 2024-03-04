@@ -82,6 +82,7 @@ module AllowedPermissions
       reset_nominations
       report_options
       manage_report_approvals
+      view_stats
     ],
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'messages' => %w[email instructions options],
@@ -134,6 +135,7 @@ module AllowedPermissions
       regenerate_report
       bulk_regenerate_reports
       finalize_scores
+      view_stats
     ],
     'workshops' => %w[view manage]
   }.freeze
