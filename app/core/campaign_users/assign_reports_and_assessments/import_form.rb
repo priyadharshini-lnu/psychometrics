@@ -46,19 +46,21 @@ module CampaignUsers
             user = users.find { |u| u.email == attrs[:email] }
             unless user
               errors.add(:import_data,
-                         "Row #{(batch * 100) + (index + 1)}: User with email '#{attrs[:email]}' not found")
+                         I18n.t('assign_reports.errors.user_not_found',
+                                row: (batch * 100) + (index + 1), email: attrs[:email]))
             end
           end
         end
       end
 
       def validate_bundle_reports_licences
-        bundle_ids = import_data[1..].pluck(:report_bundle_id).uniq
+        bundle_ids = report_bundles_ids.uniq
         licenses = Licenses::FetchQuery.new(context.campaign.client, bundle_ids).query
         bundle_ids.each do |bundle_id|
           license = licenses.find { |l| l.report_family_id == bundle_id }
-
-          errors.add(:import_data, "Bundle with id #{bundle_id} doesn't have licenses") unless license
+          unless license
+            errors.add(:import_data, I18n.t('assign_reports.errors.not_enought_licenses', bundle_id: bundle_id))
+          end
         end
       end
 

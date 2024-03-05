@@ -113,6 +113,14 @@ module Administration
         end
       end
 
+      def export_reports_and_assessments
+        audit! :export_reports_and_assessments, campaign, campaign: campaign
+        AdminJob.call(:export_reports_and_assessments, {
+          campaign_id: params[:new_campaign_id]
+        }, current_user, params[:import_data])
+        render json: :ok
+      end
+
       def export
         audit! :export_users, campaign, campaign: campaign
         AdminJob.call(

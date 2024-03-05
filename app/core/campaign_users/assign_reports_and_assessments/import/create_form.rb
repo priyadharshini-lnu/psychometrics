@@ -28,7 +28,7 @@ module CampaignUsers
         end
 
         def validate_assessment_in_report
-          report = context.reports_data[report_id][0]
+          report = context.reports_data[report_id]&.at(0)
 
           unless report&.assessments_ids&.include?(assessment_id)
             errors.add(:assessment_id, I18n.t('assign_reports.assessment_not_in_report',
@@ -37,7 +37,7 @@ module CampaignUsers
         end
 
         def validate_report_in_bundle
-          bundle = context.report_bundles_data[report_bundle_id][0]
+          bundle = context.report_bundles_data[report_bundle_id]&.at(0)
           unless bundle&.reports_ids&.include?(report_id)
             errors.add(:report_id,
                        I18n.t('assign_reports.report_not_in_bundle', report_id: report_id, bundle_id: report_bundle_id))

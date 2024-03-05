@@ -55,6 +55,8 @@ export const EXPORT_COMPLETION_STATUSES = 'resource/campaigns/users/EXPORT_COMPL
 export const EXPORT_COMPACT_COMPLETION_STATUSES = 'resource/campaigns/users/EXPORT_COMPACT_COMPLETION_STATUSES'
 export const EXPORT_USERS = 'resource/campaigns/users/EXPORT_USERS'
 export const ASSIGN_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/ASSIGN_REPORTS_AND_ASSESSMENTS'
+export const EXPORT_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/EXPORT_REPORTS_AND_ASSESSMENTS'
+
 export interface ShortUser {
   firstName: string
   lastName: string
@@ -102,6 +104,14 @@ export const assignReportsAndAssessments = (campaignId: number, body: any): ApiA
     body,
     loader: true,
     contentType: 'multipart/form-data;',
+  },
+})
+
+export const exportReportsAndAssessments = (campaignId: number): ApiAction<{}> => ({
+  type: EXPORT_REPORTS_AND_ASSESSMENTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/users/export_reports_and_assessments`,
   },
 })
 

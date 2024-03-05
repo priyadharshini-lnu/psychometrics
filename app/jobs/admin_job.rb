@@ -43,6 +43,7 @@ class AdminJob < ApplicationJob
     bulk_rescore_campaign_factors: AdminJobs::BulkRescoreCampaignFactors,
     import_assessment_questions: AdminJobs::ImportAssessmentQuestions,
     assign_reports_and_assessments: AdminJobs::AssignReportsAndAssessments,
+    export_reports_and_assessments: AdminJobs::ExportReportsAndAssessments,
     export_campaign_scorings: AdminJobs::ExportCampaignScorings
   }.freeze
 

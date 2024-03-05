@@ -62,6 +62,7 @@ interface Props {
   openModal(name: string, data?: object): void
   exportCompletionStatuses(campaignId: number): Promise<void>
   exportCompactCompletionStatuses(campaignId: number): Promise<void>
+  exportReportsAndAssessments(campaignId: number): Promise<void>
   exportUsers(campaignId: number): Promise<void>
 }
 
@@ -98,6 +99,7 @@ const UserList: React.FC<Props> = ({
   toggleActive,
   exportCompletionStatuses,
   exportCompactCompletionStatuses,
+  exportReportsAndAssessments,
   exportUsers,
 }) => {
   const { modal, message } = App.useApp()
@@ -123,6 +125,7 @@ const UserList: React.FC<Props> = ({
             campaignId={parseInt(campaignId, 10)}
             exportCompletionStatuses={exportCompletionStatuses}
             exportCompactCompletionStatuses={exportCompactCompletionStatuses}
+            exportReportsAndAssessments={exportReportsAndAssessments}
             exportUsers={exportUsers}
             openModal={openModal}
             permissions={permissions}

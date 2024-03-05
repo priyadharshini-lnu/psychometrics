@@ -722,6 +722,7 @@ en:
         copy_dimension: Copy Dimension
         export_campaign_scorings: Export Campaign Scorings
         export_report_data: Export report data
+        export_reports_and_assessments: Export Reports and Assessments
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
         import_accesssheet: Import Accessheet
@@ -1030,6 +1031,9 @@ en:
         moderation_status: Moderation Status
   assign_reports:
     assessment_not_in_report: with id %{assessment_id} is not part of report with id %{report_id}
+    errors:
+      not_enought_licenses: Bundle with id %{bundle_id} doesn't have licenses
+      user_not_found: 'Row %{row}: User with email ''%{email}'' not found'
     report_bundle_not_found: Report Bundle with id %{bundle_id} is not found
     report_not_found: Report with id %{report_id} is not found
     report_not_in_bundle: with id %{report_id} is not part of report bundle with id %{bundle_id}
@@ -1320,6 +1324,7 @@ en:
       universal_link: Universal link
     messages:
       export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
+      export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job scheduled successfully
       external_results_export_scheduled: External Assessment export job scheduled successfully
       norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
@@ -2090,6 +2095,8 @@ en:
           export:
             details: Campaign Users
             scheduled: User export scheduled successfully.
+          export_reports_and_assessments:
+            details: Reports and Assessments
         completion_statuses:
           completed: Completed
           in_progress: In Progress
@@ -3441,6 +3448,7 @@ en:
       export: Export Users
       export_compact_completion_status: Compact
       export_detailed_completion_status: Detailed
+      export_reports_and_assessments: Export Reports and Assessments
       import: Import Users
       import_reports: Import Reports and Assessments
   user_assessments:

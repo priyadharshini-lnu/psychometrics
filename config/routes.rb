@@ -255,6 +255,7 @@ Rails.application.routes.draw do
           collection do
             post :import
             post :assign_reports_and_assessments
+            get :export_reports_and_assessments
             get :export
             get :export_completion_status
             get :export_compact_completion_status

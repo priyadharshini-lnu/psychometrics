@@ -34,7 +34,7 @@ module CampaignUsers
               next unless user && campaign_user
 
               report = reports.find { |r| r.id == attrs[:report_id] }
-              assessment = assessments.find { |r| r.id == attrs[:assessment_id] }
+              assessment = assessments.find { |a| a.id == attrs[:assessment_id] }
 
               Campaigns::Users::AddReport.call(campaign_user, report, {
                 assessments: [assessment],

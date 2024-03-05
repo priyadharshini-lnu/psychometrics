@@ -12,8 +12,11 @@ module AdminJobs
         campaign, record.owner, import_data[1..], record
       )
 
-      content = content_tag(:div, I18n.t('user.modals.import.imported_reports'))
-      broadcast :ok, { content: content }
+      broadcast :ok
+    end
+
+    def generate_details
+      [[I18n.t('user.modals.import.imported_reports')]]
     end
 
     def generate_title_link
