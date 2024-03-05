@@ -9,7 +9,7 @@ module Threesixty
     has_one :relationship, serializer: RelationshipSerializer
 
     def evaluation_status
-      return :completed if result&.completed?
+      return :completed if object.users_result&.completed?
 
       return :declined if object.evaluator_nomination_declined?
 

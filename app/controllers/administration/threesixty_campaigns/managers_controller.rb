@@ -30,7 +30,7 @@ module Administration
           each_serializer: ::Threesixty::EvaluatorSerializer,
           context: {
             option: option,
-            nomination_requirement: nomination_requirement_by_user_id[paginated_managers.user_ids],
+            nomination_requirement: nomination_requirement_by_user_id[paginated_managers.pluck(:user_id)],
             counters: counters,
             subject_evaluator_counters: subject_evaluator_counters,
             current_user: current_user,
