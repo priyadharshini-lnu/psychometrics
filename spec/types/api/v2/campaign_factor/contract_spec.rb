@@ -68,7 +68,7 @@ RSpec.describe Api::V2::CampaignFactor::Contract do
 
     expect(contract.failure?).to eq(true)
     expect(contract).to have_jsonapi_attr_error(
-      name: ['should be unique']
+      name: ['A factor with the same name already exists.']
     )
   end
 
@@ -83,7 +83,7 @@ RSpec.describe Api::V2::CampaignFactor::Contract do
 
     expect(contract.failure?).to eq(true)
     expect(contract).to have_jsonapi_attr_error(
-      name: ['should be unique']
+      name: ['A factor with the same name already exists.']
     )
   end
 

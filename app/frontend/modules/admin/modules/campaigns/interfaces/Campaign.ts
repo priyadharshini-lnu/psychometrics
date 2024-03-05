@@ -29,10 +29,12 @@ export default interface Campaign {
     viewAssessors: boolean
     viewWorkshops: boolean
     viewWorkshopInvites: boolean
+    viewCampiagnScoring: boolean
     stats: boolean
     pdfPassword: boolean
     viewCampaignScoring: boolean
     manageCampaignScoring: boolean
+    viewCampaignScoringSetting: boolean
   }
 }
 

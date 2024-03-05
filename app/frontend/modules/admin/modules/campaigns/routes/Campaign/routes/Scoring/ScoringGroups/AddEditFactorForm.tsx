@@ -63,8 +63,6 @@ export const AddEditFactorForm: FC<Props> = ({
   open, onClose, addFactor, factorData, editFactor,
 }) => {
   const { campaignId } = useParams<{campaignId: string}>()
-  // this is required to trigger re-render when fields changed through form.setFieldsValue
-  const [, setFields] = useState({})
   const [isEditing, setIsEditing] = useState(false)
   const [codeValueEditedByUser, setCodeValueEditedByUser] = useState(false)
   const [form] = Form.useForm()
@@ -324,9 +322,6 @@ export const AddEditFactorForm: FC<Props> = ({
           labelAlign: 'left',
           preserve: false,
           initialValues,
-          onFieldsChange: (_, allFields) => {
-            setFields(allFields)
-          },
           validateMessages: {
             required: I18n.t('administration.scoring.required_error'),
             pattern: { mismatch: I18n.t('administration.scoring.pattern_error') },
@@ -392,6 +387,9 @@ export const AddEditFactorForm: FC<Props> = ({
             </Form.Item>
             {formFieldBasedOnFactorType}
             <Form.Item label={I18n.t('administration.scoring.public')} name="publicVisibility" valuePropName="checked">
+              <Switch />
+            </Form.Item>
+            <Form.Item label={I18n.t('administration.scoring.ranked')} name="ranked" valuePropName="checked">
               <Switch />
             </Form.Item>
             <Form.Item>

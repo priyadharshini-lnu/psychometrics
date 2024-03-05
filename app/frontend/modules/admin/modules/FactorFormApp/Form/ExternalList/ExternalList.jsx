@@ -10,6 +10,9 @@ const EXTERNAL_SCORING = 'external_scoring'
 const TYPES = [
   'score',
   'norm_score',
+  'zscore',
+  'percentage',
+  'percentile',
 ]
 export default function ExternalList ({
   factor, factors, onChange,
@@ -25,7 +28,7 @@ export default function ExternalList ({
   }
 
   const onAdd = () => {
-    const value = [{ type: 'score', jsonpath: '' }, ...factor[EXTERNAL_SCORING]]
+    const value = [{ type: TYPES[0], jsonpath: '' }, ...factor[EXTERNAL_SCORING]]
     onChange({ currentTarget: { name: EXTERNAL_SCORING, value } })
   }
 

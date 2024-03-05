@@ -11,7 +11,7 @@ module Administration::Threesixty
     end
 
     def factors?
-      has_permissions?(:campaigns, :view)
+      has_permission?(:campaigns, :view)
     end
 
     def manage_admins?

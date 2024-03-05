@@ -23,6 +23,16 @@ module Administration
       def resource_class
         Campaign
       end
+
+      def pundit_authorize
+        authorize(
+          resource || resource_class,
+          nil,
+          project_id: project.id,
+          campaign_id: campaign.id,
+          policy_class: Administration::CampaignPolicy
+        )
+      end
     end
   end
 end

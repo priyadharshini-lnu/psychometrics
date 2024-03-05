@@ -297,6 +297,7 @@ en:
               cant_overwrite_password: You do not have permission to overwrite password.
               duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
               invalid_header: Invalid header, take header from export
+              invalid_reports_header: Invalid header, take header from sample file
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
@@ -708,6 +709,7 @@ en:
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Raw Results Export
         assessment_scoring_export: Scoring Results Export
+        assign_reports_and_assessments: Assign Reports and Assessments
         bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
         bulk_download_reports: Bulk Download Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
@@ -718,7 +720,9 @@ en:
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
+        export_campaign_scorings: Export Campaign Scorings
         export_report_data: Export report data
+        export_reports_and_assessments: Export Reports and Assessments
         export_users: Campaign Users Export
         external_assessment_export: External Results Export
         import_accesssheet: Import Accessheet
@@ -1025,6 +1029,14 @@ en:
         evaluation_status: Evaluation Status
         moderation_count: Moderation Count
         moderation_status: Moderation Status
+  assign_reports:
+    assessment_not_in_report: Assessment with id %{assessment_id} is not part of report with id %{report_id}
+    errors:
+      not_enought_licenses: Bundle with id %{bundle_id} doesn't have licenses
+      user_not_found: 'Row %{row}: User with email ''%{email}'' not found'
+    report_bundle_not_found: Report Bundle with id %{bundle_id} is not found
+    report_not_found: Report with id %{report_id} is not found
+    report_not_in_bundle: Report with id %{report_id} is not part of report bundle with id %{bundle_id}
   assigns:
     assign:
       accept_privacy_modal:
@@ -1304,6 +1316,7 @@ en:
       assessment_center_activity: Assessment Center Activity
       assessment_name: Assessment name
       assessor_form: Assessor Form
+      auto_assign: Auto Assign
       locales: Locales
       norm: Norm
       prework: Prework
@@ -1311,6 +1324,7 @@ en:
       universal_link: Universal link
     messages:
       export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
+      export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job scheduled successfully
       external_results_export_scheduled: External Assessment export job scheduled successfully
       norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
@@ -1393,6 +1407,7 @@ en:
       export_data: Export Data
     column:
       assessor_access: Assessor Access
+      auto_assign: Auto Assign
       main_report: Main Report
       report_bundle: Report Bundle
       report_name: Report name
@@ -1875,13 +1890,17 @@ en:
       assessor_assessment:
         already_added: Assessor Assessment already added to campaign.
         lead_already_added: Only one Lead Assessor Assessment can be added to campaign.
+      campaign_factor:
+        code_already_exists: A factor with the same code already exists.
+        invalid_lua_name: should be valid lua variable name
+        name_already_exists: A factor with the same name already exists.
       campaign_factor_group:
+        group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.
       create_superadmin:
         uniq_email: Email should be uniq.
       exceeded_subjects_count: You can only add %{count} subjects per invite
       filled?: can't be blank
-      invalid_lua_name: should be valid lua variable name
       invalid_name: only alphabet, number, spaces, dash and dot are allowed as valid character
       invalid_value: invalid statement '%{value}' on line number %{row}
       json?: Should be valid JSON
@@ -2076,6 +2095,8 @@ en:
           export:
             details: Campaign Users
             scheduled: User export scheduled successfully.
+          export_reports_and_assessments:
+            details: Reports and Assessments
         completion_statuses:
           completed: Completed
           in_progress: In Progress
@@ -3415,15 +3436,21 @@ en:
         title: Export Users
       import:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
+        imported_reports: The reports and assessments were imported
         imported_users: 'The number of imported users: %{number}'
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications
         title: Import Users
         user_with_unchanged_passwords: The list of users whose passwords were not changed
+      import_reports:
+        body: Refer to the sample file to extract a template that can be used to Import here.
+        title: Assign Reports and Assessments
     toolbar:
       export: Export Users
       export_compact_completion_status: Compact
       export_detailed_completion_status: Detailed
+      export_reports_and_assessments: Export Reports and Assessments
       import: Import Users
+      import_reports: Import Reports and Assessments
   user_assessments:
     modals:
       actions:

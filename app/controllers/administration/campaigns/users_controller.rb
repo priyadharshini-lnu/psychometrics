@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class UsersController < Administration::Campaigns::BaseController
+    class UsersController < Administration::Campaigns::BaseController # rubocop:disable Metrics/ClassLength
       before_action :set_resource, only: %i[update spoof show destroy toggle_status reset_password extend_time]
       skip_before_action :pundit_authorize, only: %i[spoof]
 
@@ -96,6 +96,31 @@ module Administration
         end
       end
 
+      def assign_reports_and_assessments
+        import_data = ::CampaignUsers::AssignReportsAndAssessments::ParseImportData.call!(
+          params[:import_data], campaign
+        )
+        form = ::CampaignUsers::AssignReportsAndAssessments::ImportForm.new(import_data: import_data).
+               with_context(campaign: campaign, current_user: current_user)
+        if form.valid?
+          audit! :assign_reports_and_assessments, campaign, campaign: campaign
+          AdminJob.call(:assign_reports_and_assessments, {
+            campaign_id: params[:new_campaign_id]
+          }, current_user, params[:import_data])
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages.map { |_k, v| v }.flatten }, status: 422
+        end
+      end
+
+      def export_reports_and_assessments
+        audit! :export_reports_and_assessments, campaign, campaign: campaign
+        AdminJob.call(:export_reports_and_assessments, {
+          campaign_id: params[:new_campaign_id]
+        }, current_user, params[:import_data])
+        render json: :ok
+      end
+
       def export
         audit! :export_users, campaign, campaign: campaign
         AdminJob.call(
@@ -144,7 +169,8 @@ module Administration
       end
 
       def update
-        form = ::Campaigns::Users::EditForm.from_params(resource_params).with_context(campaign: campaign)
+        form = ::Campaigns::Users::EditForm.from_params(resource_params).
+               with_context(campaign: campaign, current_campaign_user_id: resource.id)
         if form.valid?
           audit! :update_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
           resource.update(form.attributes)

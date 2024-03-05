@@ -14,7 +14,7 @@ module Api
 
         class Scope < BasePolicy::Scope
           def resolve(assessment_ids = [])
-            if @user.has_permission?(:campaign_factors, :manage)
+            if @user.has_permission?(:campaign_factors, :manage, campaign_id: campaign_id)
               scope.joins(:assessments).where(
                 assessments: { id: assessment_ids }
               )

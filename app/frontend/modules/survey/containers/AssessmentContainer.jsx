@@ -64,7 +64,7 @@ class AssessmentContainer extends Component {
 
   render () {
     const {
-      disabled, selectedLocale, type, showAsSinglePage, renderedByEnduser,
+      disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser,
     } = this.props
     return (
       <ThemeWrapper
@@ -83,6 +83,7 @@ class AssessmentContainer extends Component {
                 <AssessmentPreview
                   showAsSinglePage={showAsSinglePage}
                   type={type}
+                  defaultLanguage={data.default_language}
                 />
               </div>
             </DndProvider>

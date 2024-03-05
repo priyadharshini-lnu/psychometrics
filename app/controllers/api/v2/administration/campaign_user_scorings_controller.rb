@@ -4,6 +4,55 @@ module Api
   class V2::Administration::CampaignUserScoringsController < Api::V2::Administration::BaseController
     before_action :find_user, only: %i[change_finalized_campaign_score rescore]
 
+    def index
+      sort = @request.parse_sort_criteria(params[:sort])&.first || { field: 'email', direction: :asc }
+      limit = limit_and_offset[:limit]
+
+      query_object = CampaignUsers::CampaignUserScoresQuery.new(
+        campaign_id: campaign.id,
+        sort: sort,
+        limit: limit,
+        offset: limit_and_offset[:offset]
+      )
+
+      total_records = CampaignUser.where(campaign_id: campaign.id).count
+      total_pages = (total_records.to_f / limit).ceil
+
+      campaign_factor_ids = campaign.campaign_factors.pluck(:id).map(&:to_s)
+      campaign_user_scores = query_object.query
+      modified_scores = campaign_user_scores.map do |score|
+        campaign_factor_values = score.select { |key, _value| campaign_factor_ids.include?(key) }.
+                                 map do |key, value|
+          { campaign_factor_id: key.to_i, value: value }
+        end
+        errors = score['campaign_scores_errors']
+        {
+          id: score['id'].to_s,
+          type: 'campaign_users',
+          attributes: {
+            user: { id: score['user_id'].to_s, email: score['email'],
+                    first_name: score['first_name'],
+                    last_name: score['last_name'] },
+            campaign_scores_calculated_date: score['campaign_scores_calculated_date'],
+            campaign_scores_errors: errors ? JSON.parse(errors) : nil,
+            campaign_scores_finalized: score['campaign_scores_finalized'],
+            campaign_scores_finalized_date: score['campaign_scores_finalized_date'],
+            campaign_id: score['campaign_id'],
+            stack_rank: score['stack_rank'],
+            campaign_factor_values: campaign_factor_values
+          }
+        }
+      end
+
+      render json: {
+        data: modified_scores,
+        meta: {
+          record_count: total_records,
+          page_count: total_pages
+        }
+      }
+    end
+
     def change_finalized_campaign_score
       campaign_user = ::CampaignUser.find_by(campaign_id: campaign.id, user_id: @user.id)
       audit! :change_finalized_campaign_score, campaign_user, payload: params[:data][:attributes], campaign: campaign
@@ -48,6 +97,17 @@ module Api
       )
 
       render json: {}
+    end
+
+    def export_scorings
+      audit! :export_campaign_scorings, nil, record_type: CampaignUser, payload: nil, campaign: campaign
+
+      AdminJob.call(
+        :export_campaign_scorings,
+        { campaign_id: campaign.id },
+        current_user
+      )
+      render json: :ok
     end
 
     def find_user

@@ -73,5 +73,11 @@ module Administration
     def toggle_require_scheduling?
       has_permission?(:campaigns, :manage_users)
     end
+
+    def toggle_auto_assign?
+      has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
   end
 end

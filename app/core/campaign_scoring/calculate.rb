@@ -26,7 +26,8 @@ module CampaignScoring
       rescue StandardError => e
         @factor_values[cf] = CampaignScoring::FactorValue.new(nil, e)
         Rails.logger.error(e.message)
-        if e.is_a?(Rufus::Lua::LuaError) || e.is_a?(CampaignScoring::Exceptions::Base)
+        if e.is_a?(Rufus::Lua::LuaError) || e.is_a?(CampaignScoring::Exceptions::Base) ||
+           e.is_a?(CampaignFactors::Exceptions::DependentFactorNotFound)
           errors = campaign_user.campaign_scores_errors || []
           errors << { factor_id: cf.id.to_s, message: e.message }
           campaign_user.update(campaign_scores_errors: errors)

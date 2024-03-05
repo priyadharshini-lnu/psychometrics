@@ -57,7 +57,10 @@ class AdminJobRecord < ApplicationRecord
     super_admin_assessment_raw_factor_export: 29,
     workshop_status_export: 30,
     bulk_rescore_campaign_factors: 31,
-    import_assessment_questions: 32
+    import_assessment_questions: 32,
+    assign_reports_and_assessments: 33,
+    export_campaign_scorings: 34,
+    export_reports_and_assessments: 35
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

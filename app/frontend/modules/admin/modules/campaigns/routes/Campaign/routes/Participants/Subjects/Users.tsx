@@ -20,6 +20,7 @@ import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import styles from './styles.less'
 import UserFormModal from './UserFormModal'
 import ImportUsersModal from './ImportUsersModal'
+import ImportReportsAndAssessmentsModal from './ImportReportsAndAssessmentsModal'
 import { ExportUsersModal } from './ExportUsersModal'
 import ToolsDropdown from './ToolsDropdown'
 
@@ -28,6 +29,7 @@ const MODALS = {
   ImportUsersModal,
   ResetPasswordModal,
   ExportUsersModal,
+  ImportReportsAndAssessmentsModal,
 }
 export const FILTER_PREDICATES = {
   campaignUsersCompletionStatus: 'In',
@@ -60,6 +62,7 @@ interface Props {
   openModal(name: string, data?: object): void
   exportCompletionStatuses(campaignId: number): Promise<void>
   exportCompactCompletionStatuses(campaignId: number): Promise<void>
+  exportReportsAndAssessments(campaignId: number): Promise<void>
   exportUsers(campaignId: number): Promise<void>
 }
 
@@ -96,6 +99,7 @@ const UserList: React.FC<Props> = ({
   toggleActive,
   exportCompletionStatuses,
   exportCompactCompletionStatuses,
+  exportReportsAndAssessments,
   exportUsers,
 }) => {
   const { modal, message } = App.useApp()
@@ -121,6 +125,7 @@ const UserList: React.FC<Props> = ({
             campaignId={parseInt(campaignId, 10)}
             exportCompletionStatuses={exportCompletionStatuses}
             exportCompactCompletionStatuses={exportCompactCompletionStatuses}
+            exportReportsAndAssessments={exportReportsAndAssessments}
             exportUsers={exportUsers}
             openModal={openModal}
             permissions={permissions}

@@ -173,7 +173,7 @@ class Membership < ApplicationRecord
 
   def has_grants_through_role?(scope, grant)
     admin_roles.any? do |admin_role|
-      admin_role = admin_role.user_role_specific_permissions(role)
+      admin_role = admin_role.user_role_specific_permissions(self)
       admin_role.key?(scope.to_s) && admin_role[scope.to_s]&.include?(grant.to_s)
     end
   end

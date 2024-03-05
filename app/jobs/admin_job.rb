@@ -41,7 +41,10 @@ class AdminJob < ApplicationJob
     super_admin_assessment_raw_factor_export: AdminJobs::SuperAdmin::AssessmentRawFactorExport,
     workshop_status_export: AdminJobs::WorkshopStatusExport,
     bulk_rescore_campaign_factors: AdminJobs::BulkRescoreCampaignFactors,
-    import_assessment_questions: AdminJobs::ImportAssessmentQuestions
+    import_assessment_questions: AdminJobs::ImportAssessmentQuestions,
+    assign_reports_and_assessments: AdminJobs::AssignReportsAndAssessments,
+    export_reports_and_assessments: AdminJobs::ExportReportsAndAssessments,
+    export_campaign_scorings: AdminJobs::ExportCampaignScorings
   }.freeze
 
   def perform(record)

@@ -287,6 +287,10 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     mindmill? || hogan? || saville? || pearson? || iiht?
   end
 
+  def internal?
+    !external?
+  end
+
   def agile?
     category == AGILE
   end

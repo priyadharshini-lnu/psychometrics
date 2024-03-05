@@ -18,7 +18,9 @@ module Administration
         required(:norm_id).maybe(:int?)
         required(:enable_universal_links).filled(:bool?)
         required(:universal_link).maybe(:str?)
-        required(:norms).array(NormSchema.schema(_, _))
+        required(:norms).maybe do
+          array(NormSchema.schema(_, _))
+        end
         required(:is_external).filled(:bool?)
         required(:assessor_form_name).maybe(:str?)
         required(:permissions).hash do
@@ -32,6 +34,7 @@ module Administration
           required(:update_external_config).filled(:bool?)
           required(:remove).filled(:bool?)
           required(:schedule_assessment).filled(:bool?)
+          required(:toggle_auto_assign).filled(:bool?)
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)
@@ -43,6 +46,7 @@ module Administration
         required(:workshop_activity_duration).maybe(:int?)
         required(:allow_multiple_responses).filled(:bool?)
         required(:require_scheduling).filled(:bool?)
+        required(:auto_assign).filled(:bool?)
       end
     end
   end

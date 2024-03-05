@@ -33,6 +33,7 @@ const ReportList: React.FC<Props> = ({
   selectRecords,
   toggleAssessorAccess,
   exportData,
+  toggleAutoAssign,
   toggleUserDashboard,
   toggleMainReport,
 }) => {
@@ -69,6 +70,17 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('campaign_report.column.report_bundle')}
             key="reportFamilyName"
             dataIndex="reportFamilyName"
+          />
+          <Column
+            title={I18n.t('campaign_report.column.auto_assign')}
+            key="autoAssign"
+            render={({ autoAssign, id }) => (
+              <Switch
+                checked={autoAssign}
+                disabled={!reportPermissions.toggleAutoAssign}
+                onChange={() => toggleAutoAssign(parsedCampaignId, id)}
+              />
+            )}
           />
           <Column
             title={I18n.t('campaign_report.column.user_access')}
