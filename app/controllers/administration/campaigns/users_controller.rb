@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class UsersController < Administration::Campaigns::BaseController
+    class UsersController < Administration::Campaigns::BaseController # rubocop:disable Metrics/ClassLength
       before_action :set_resource, only: %i[update spoof show destroy toggle_status reset_password extend_time]
       skip_before_action :pundit_authorize, only: %i[spoof]
 
@@ -89,6 +89,23 @@ module Administration
           audit! :import_users, campaign, campaign: campaign
           AdminJob.call(:import_users, {
             operation: params[:operation], campaign_id: params[:new_campaign_id]
+          }, current_user, params[:import_data])
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages.map { |_k, v| v }.flatten }, status: 422
+        end
+      end
+
+      def assign_reports_and_assessments
+        import_data = ::CampaignUsers::AssignReportsAndAssessments::ParseImportData.call!(
+          params[:import_data], campaign
+        )
+        form = ::CampaignUsers::AssignReportsAndAssessments::ImportForm.new(import_data: import_data).
+               with_context(campaign: campaign, current_user: current_user)
+        if form.valid?
+          audit! :assign_reports_and_assessments, campaign, campaign: campaign
+          AdminJob.call(:assign_reports_and_assessments, {
+            campaign_id: params[:new_campaign_id]
           }, current_user, params[:import_data])
           render json: :ok
         else

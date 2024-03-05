@@ -20,6 +20,7 @@ import User from '~/modules/admin/modules/campaigns/interfaces/User'
 import styles from './styles.less'
 import UserFormModal from './UserFormModal'
 import ImportUsersModal from './ImportUsersModal'
+import ImportReportsAndAssessmentsModal from './ImportReportsAndAssessmentsModal'
 import { ExportUsersModal } from './ExportUsersModal'
 import ToolsDropdown from './ToolsDropdown'
 
@@ -28,6 +29,7 @@ const MODALS = {
   ImportUsersModal,
   ResetPasswordModal,
   ExportUsersModal,
+  ImportReportsAndAssessmentsModal,
 }
 export const FILTER_PREDICATES = {
   campaignUsersCompletionStatus: 'In',

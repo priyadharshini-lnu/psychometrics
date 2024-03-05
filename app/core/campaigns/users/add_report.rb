@@ -21,7 +21,7 @@ module Campaigns
             campaign: campaign,
             report: report,
             user: user,
-            user_access: options[:user_access],
+            user_access: options[:user_access].nil? ? get_user_access(report) : options[:user_access],
             report_family_id: options[:report_family_id]
           )
           AuditLogModule.audit!(
@@ -45,6 +45,10 @@ module Campaigns
       end
 
       private
+
+      def get_user_access(report)
+        campaign.campaign_reports.find_by(report_id: report.id)&.user_access || false
+      end
 
       def assessments
         options[:assessments].reject { |a| Assessment::NON_USER_ASSESSMENT_CATEGORY.include?(a.category) }

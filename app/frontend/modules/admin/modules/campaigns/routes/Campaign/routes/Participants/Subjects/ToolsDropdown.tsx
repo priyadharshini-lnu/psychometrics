@@ -39,6 +39,12 @@ const getMenuProps = ({
     label: I18n.t('user.toolbar.import'),
   })
 
+  permissions.import && menuItems.push({
+    key: 'import_reports',
+    label: I18n.t('user.toolbar.import_reports'),
+  })
+
+
   const handleMenuClick = ({ key }) => {
     if (key === 'export_completion') {
       return onExport()
@@ -48,6 +54,9 @@ const getMenuProps = ({
     }
     if (key === 'export') {
       return onUserExport()
+    }
+    if (key === 'import_reports') {
+      return openModal('ImportReportsAndAssessmentsModal', { campaignId })
     }
     if (key === 'import') {
       return openModal('ImportUsersModal', { campaignId })
