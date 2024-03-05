@@ -111,7 +111,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
         label={I18n.t('common.column.name')}
         rules={[{ required: true }]}
       >
-        <Input />
+        <Input name="report_name" />
       </Form.Item>
       <Form.Item name="provider" className="hidden"><Input /></Form.Item>
       <Form.Item

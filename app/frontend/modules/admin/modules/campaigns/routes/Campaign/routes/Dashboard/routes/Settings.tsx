@@ -122,7 +122,7 @@ export const SettingsComponent: React.FC<Props> = ({
                 label={I18n.t('common.column.name')}
                 rules={[{ required: true }]}
               >
-                <Input />
+                <Input name="dashboard_tab_name" />
               </Form.Item>
               <Form.Item
                 name="datasetId"

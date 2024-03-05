@@ -397,7 +397,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                     },
                   ]}
                 >
-                  <Input />
+                  <Input name="admin_first_name" />
                 </Form.Item>
                 <Form.Item
                   label={I18n.t(
@@ -413,7 +413,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                     },
                   ]}
                 >
-                  <Input />
+                  <Input name="admin_last_name" />
                 </Form.Item>
               </>
             )}

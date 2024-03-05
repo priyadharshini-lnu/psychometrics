@@ -355,7 +355,7 @@ export const AddEditFactorForm: FC<Props> = ({
                 pattern: /^[a-zA-Z0-9\- ]+$/,
               }]}
             >
-              <Input maxLength={64} />
+              <Input maxLength={64} name="campaign_factor_name" />
             </Form.Item>
             <Form.Item name="code" label={I18n.t('administration.scoring.code')}>
               <Input

@@ -77,7 +77,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
             label={I18n.t('administration.campaigns.form.name')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="common_campaign_name" />
           </Form.Item>
           <Form.Item
             name="status"

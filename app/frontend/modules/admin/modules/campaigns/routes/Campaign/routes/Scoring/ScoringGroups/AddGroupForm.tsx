@@ -83,7 +83,7 @@ export const GroupForm:FC<GroupFormProps> = ({
         label={nameLabel}
         noStyle={noStyle}
       >
-        <Input autoFocus maxLength={64} autoCapitalize="false" />
+        <Input autoFocus maxLength={64} autoCapitalize="false" name="campaign_factor_group_name" />
       </Form.Item>
       {children}
     </Form>

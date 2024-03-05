@@ -33,7 +33,7 @@ export const ReportBundleFormModal: React.FC<Props> = ({ currentReportBundle, cl
             label={I18n.t('common.column.name')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="report_bundle_name" />
           </Form.Item>
         </>
       )}

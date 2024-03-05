@@ -110,7 +110,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
               label={I18n.t('common.column.name')}
               rules={[{ required: true }]}
             >
-              <Input />
+              <Input name="assessment_name" />
             </Form.Item>
             <Form.Item
               name="description"

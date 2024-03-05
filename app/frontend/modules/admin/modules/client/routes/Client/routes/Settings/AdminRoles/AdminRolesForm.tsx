@@ -44,7 +44,7 @@ export const AdminRolesForm: React.FC<Props> = ({
             label={I18n.t('administration.settings.admin_roles.name')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="admin_role_name" />
           </Form.Item>
           <Form.Item
             name="description"

@@ -109,17 +109,17 @@ export const General: React.FC = () => {
           {() => (
             <>
               <Form.Item name="name" label={I18n.t('administration.projects.general_settings.name_label')} required>
-                <Input />
+                <Input name="general_settings_name" />
               </Form.Item>
               <Form.Item name="subdomain" label={I18n.t('administration.projects.general_settings.sub_domain_label')}>
-                <Input />
+                <Input name="general_settings_subdomain" />
               </Form.Item>
               <Form.Item
                 name="number"
                 label={I18n.t('administration.projects.general_settings.project_number_label')}
                 required
               >
-                <Input />
+                <Input name="general_settings_number" />
               </Form.Item>
 
               <Form.Item name="locales" label={I18n.t('administration.projects.general_settings.locales_label')}>

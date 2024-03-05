@@ -62,7 +62,7 @@ export const DashboardFormModal: React.FC<Props> = ({
             label={I18n.t('common.column.name')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="dashboard_name" />
           </Form.Item>
 
           <Form.Item

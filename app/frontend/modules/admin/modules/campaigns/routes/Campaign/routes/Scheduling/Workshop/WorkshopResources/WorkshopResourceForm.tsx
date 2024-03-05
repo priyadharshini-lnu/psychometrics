@@ -42,7 +42,7 @@ export const WorkshopResourceForm: React.FC<Props> = ({
             label={I18n.t('administration.scheduling.columns.resource_name')}
             rules={[{ required: true }]}
           >
-            <Input.TextArea />
+            <Input.TextArea name="workshop_resource_name" />
           </Form.Item>
           <Form.Item
             name="url"

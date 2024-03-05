@@ -57,7 +57,7 @@ export const ClientFormModal: React.FC<Props> = ({
             label={I18n.t('administration.campaigns.form.name')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="client_name" />
           </Form.Item>
           <Form.Item
             name="type"
