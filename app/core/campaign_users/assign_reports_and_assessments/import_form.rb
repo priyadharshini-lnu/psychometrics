@@ -30,8 +30,11 @@ module CampaignUsers
           form = ::CampaignUsers::AssignReportsAndAssessments::Import::CreateForm.new(attrs).
                  with_context(campaign: context.campaign, reports_data: reports_data,
                               report_bundles_data: report_bundles_data)
-
-          errors.add(:import_data, "Row #{index + 1}: #{form.errors.full_messages.join(', ')}") if form.invalid?
+          if form.invalid?
+            form.errors.each do |error|
+              errors.add(:import_data, "Row #{index + 1}: #{error.message}")
+            end
+          end
         end
       end
 

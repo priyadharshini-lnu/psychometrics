@@ -1030,13 +1030,13 @@ en:
         moderation_count: Moderation Count
         moderation_status: Moderation Status
   assign_reports:
-    assessment_not_in_report: with id %{assessment_id} is not part of report with id %{report_id}
+    assessment_not_in_report: Assessment with id %{assessment_id} is not part of report with id %{report_id}
     errors:
       not_enought_licenses: Bundle with id %{bundle_id} doesn't have licenses
       user_not_found: 'Row %{row}: User with email ''%{email}'' not found'
     report_bundle_not_found: Report Bundle with id %{bundle_id} is not found
     report_not_found: Report with id %{report_id} is not found
-    report_not_in_bundle: with id %{report_id} is not part of report bundle with id %{bundle_id}
+    report_not_in_bundle: Report with id %{report_id} is not part of report bundle with id %{bundle_id}
   assigns:
     assign:
       accept_privacy_modal:

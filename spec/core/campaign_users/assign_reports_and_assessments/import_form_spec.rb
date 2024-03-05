@@ -42,7 +42,8 @@ describe CampaignUsers::AssignReportsAndAssessments::ImportForm do
     form = described_class.new(import_data: import_data).with_context(campaign: campaign, current_user: user)
 
     expect(form.valid?).to eq(false)
-    expect(form.errors[:import_data]).to include("Row 1: Assessment with id #{assessment.id} is not part of report with id #{extra_report.id}, Report with id #{extra_report.id} is not part of report bundle with id #{report.report_families.first.id}") # rubocop:disable Layout/LineLength
+    expect(form.errors[:import_data]).to include("Row 1: Assessment with id #{assessment.id} is not part of report with id #{extra_report.id}") # rubocop:disable Layout/LineLength
+    expect(form.errors[:import_data]).to include("Row 1: Report with id #{extra_report.id} is not part of report bundle with id #{report.report_families.first.id}") # rubocop:disable Layout/LineLength
   end
 
   it 'invalid assessment_id' do
