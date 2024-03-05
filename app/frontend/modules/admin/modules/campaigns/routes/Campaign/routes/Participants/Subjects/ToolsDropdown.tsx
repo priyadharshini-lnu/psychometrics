@@ -39,7 +39,7 @@ const getMenuProps = ({
     key: 'import',
     label: I18n.t('user.toolbar.import'),
   })
-
+  menuItems.push({ type: 'divider' })
   permissions.import && menuItems.push({
     key: 'import_reports',
     label: I18n.t('user.toolbar.import_reports'),
