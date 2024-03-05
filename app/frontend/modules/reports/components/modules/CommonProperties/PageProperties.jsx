@@ -2,6 +2,7 @@ import { Component } from 'react'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import Module from '~/modules/reports/models/Module'
 import connect from './connect'
+import { escapeSpecialChars } from '~/utils/string'
 
 class PageProperties extends Component {
   removePage = () => {
@@ -10,26 +11,37 @@ class PageProperties extends Component {
   }
 
   copyPage = () => {
-    const { page, copyPage } = this.props
-    copyPage(page.id)
+    if (!navigator.clipboard) { return }
+
+    const { page } = this.props
+    const data = {
+      type: 'Page',
+      data: { page },
+    }
+    navigator.clipboard.writeText(escapeSpecialChars(JSON.stringify(data)))
   }
 
   pastePage = () => {
-    const { page, pastePage, bufferPage } = this.props
-    if (!bufferPage) {
-      // eslint-disable-next-line no-alert
-      return alert('Nothing to paste')
-    }
-    const modules = bufferPage.modules.map((m) => {
-      const data = JSON.parse(JSON.stringify(m))
-      data.id = null
-      return new Module(data, page)
+    if (!navigator.clipboard) { return }
+
+    const { page, pastePage } = this.props
+    navigator.clipboard.readText().then((text) => {
+      try {
+        const data = JSON.parse(text)
+        if (data.type !== 'Page') { return }
+        const modules = data.data.page.modules.map((m) => {
+          const data = JSON.parse(JSON.stringify(m))
+          data.id = null
+          return new Module(data, page)
+        })
+
+        // eslint-disable-next-line no-alert
+        if (page.modules.length && !confirm('Are u sure? This action will replace modules on page.')) {
+          return
+        }
+        pastePage(page.id, modules)
+      } catch (e) { /* empty */ }
     })
-    // eslint-disable-next-line no-alert
-    if (page.modules.length && !confirm('Are u sure? This action will replace modules on page.')) {
-      return
-    }
-    pastePage(page.id, modules)
   }
 
   render () {

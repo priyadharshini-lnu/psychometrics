@@ -39,7 +39,7 @@ export class FixedHeader extends Component {
 
   onCopy = ({ originalEvent }) => {
     const {
-      richEditorOpened, selected, module,
+      richEditorOpened, selected, module, currentPage,
     } = this.props
 
     if (selected?.type !== 'Module') { return }
@@ -54,7 +54,7 @@ export class FixedHeader extends Component {
 
     const data = {
       type: 'Module',
-      data: module,
+      data: { ...module, pageId: currentPage.id },
     }
 
     originalEvent.preventDefault()
@@ -79,7 +79,9 @@ export class FixedHeader extends Component {
       const { type, data: moduleData } = JSON.parse(data)
       if (type === 'Module') {
         const module = new Module({ ..._.cloneDeep(moduleData), id: null }, currentPage)
-        module.shift()
+        if (currentPage.id === moduleData.pageId) {
+          module.shift()
+        }
         pasteModule(currentPage.id, module)
         selectModule('Module', module.id)
       }
