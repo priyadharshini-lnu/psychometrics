@@ -223,6 +223,10 @@ module Administration
     end
 
     def view_campaign_scoring?
+      has_permission?(:results, :scores)
+    end
+
+    def view_campaign_scoring_setting?
       has_permission?(:campaign_factors, :view)
     end
 

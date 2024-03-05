@@ -34,6 +34,7 @@ export default interface Campaign {
     pdfPassword: boolean
     viewCampaignScoring: boolean
     manageCampaignScoring: boolean
+    viewCampaignScoringSetting: boolean
   }
 }
 
