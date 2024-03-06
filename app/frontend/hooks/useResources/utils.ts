@@ -4,6 +4,7 @@ import { devtools } from 'zustand/middleware'
 import create from 'zustand'
 import { BaseMeta, ResourceState, StateManager } from './interfaces'
 
+const { I18n } = window
 interface Error {
   [key: string]: string[] | string
 }
@@ -59,6 +60,7 @@ export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = n
 
 export const formatErrors = (errors: StringMap | undefined, schema: Schema) => {
   if (errors === undefined) return null
+  if (errors.status === '500') return { base: I18n.t('errors.error_500') }
 
   errors = [errors].flat().map((error) => {
     const pointer = error.source?.pointer ? humps.camelize(error.source.pointer) : null
