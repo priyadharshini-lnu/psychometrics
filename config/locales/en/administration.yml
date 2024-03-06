@@ -537,10 +537,10 @@ en:
         assessment_name: Assessment Name
         bulk_delete_confirmation: Are you sure you wan to delete selected records?
         bulk_delete_successful: Assessor assessments deleted successfully
-        reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
-        reset_progress_confirmation: Are you sure you want to reset progress for subject with email %{subjectEmail}?
-        reset_progress_successfully: Reset progress for the subject with the email %{subjectEmail} was successful.
-        reset_successfully: Reset evaluation for the subject with the email %{subjectEmail} was successful.
+        reset_confirmation: Are you sure you want to reset evaluation for subject with email "%{subjectEmail}"?
+        reset_progress_confirmation: Are you sure you want to reset progress for subject with email "%{subjectEmail}"?
+        reset_progress_successfully: Reset progress for the subject with the email "%{subjectEmail}" was successful.
+        reset_successfully: Reset evaluation for the subject with the email "%{subjectEmail}" was successful.
         subject_email: Subject Email
         subject_name: Subject Name
       completed_at: Completed At
