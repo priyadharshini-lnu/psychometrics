@@ -48,6 +48,12 @@ module Administration
       )
     end
 
+    def toggle_auto_assign?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     def toggle_user_dashboard?
       @user.has_permission?(:campaigns, :manage_users)
     end

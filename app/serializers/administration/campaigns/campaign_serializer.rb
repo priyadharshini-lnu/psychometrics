@@ -52,6 +52,7 @@ module Administration
             'stats',
             'pdf_password',
             'view_campaign_scoring',
+            'view_campaign_scoring_setting',
             'manage_campaign_scoring'
           ],
           {

@@ -12,7 +12,6 @@ import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { perform } from '~/modules/survey/core/temp/socket'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
-import SerializeAssessment from '~/modules/survey/core/builder/assessment/SerializeAssessment'
 import styles from './Header.less'
 import { Tabs } from './Tabs'
 
@@ -100,13 +99,15 @@ export class Header extends Component {
 
   updateTimer = (time) => {
     const { assessment: { extra }, updateExtra } = this.props
-    const timer = time && dayjs.duration(time.format('HH:mm:ss')).asSeconds()
+    const timer = time && dayjs.duration({
+      hours: time.hour(),
+      minutes: time.minute(),
+      seconds: time.second(),
+    }).asSeconds()
     updateExtra({ ...extra, timer })
   }
 
   openPreview = () => {
-    const { builder } = this.props
-    this.previewData.value = JSON.stringify(SerializeAssessment.run(builder))
     this.previewForm.submit()
   }
 

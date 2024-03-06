@@ -1,11 +1,17 @@
 import React, {
   FC, CSSProperties, LegacyRef, RefObject,
 } from 'react'
-import { Space, Row, Col } from 'antd'
+import {
+  Space, Row, Col, Tooltip,
+} from 'antd'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
-import { MenuOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import {
+  MenuOutlined, EditOutlined, DeleteOutlined, StarOutlined,
+} from '@ant-design/icons'
+
+const { I18n } = window
 
 export type CampaignFactor = {
   position: number,
@@ -16,6 +22,7 @@ export type CampaignFactor = {
   dimensionId?: string,
   assessmentId?: string,
   factorId?: string,
+  ranked: boolean,
 }
 
 type Props = {
@@ -45,6 +52,13 @@ export const Factor = React.forwardRef(
               <Space className="w-100">
                 <MenuOutlined {...attributes} {...listeners} />
                 {factor.name}
+                {factor.ranked
+                  ? (
+                    <Tooltip title={I18n.t('administration.scoring.ranked')}>
+                      <StarOutlined />
+                    </Tooltip>
+                  )
+                  : null}
               </Space>
             </Col>
             <Col span={6}>

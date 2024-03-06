@@ -83,6 +83,14 @@ module Administration
         can_mange_campaign_users?
       end
 
+      def assign_reports_and_assessments?
+        can_mange_campaign_users?
+      end
+
+      def export_reports_and_assessments?
+        can_mange_campaign_users?
+      end
+
       def export?
         @user.is?(:superadmin) || @user.has_permission?(
           :campaigns, :view, project_id: project_id, campaign_id: campaign_id

@@ -130,7 +130,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
   def check_campaign_reports_and_assesment_response(parsed_response)
     report_response = parsed_response['reports'].first
     expect(report_response.keys).to contain_exactly(
-      *%w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report]
+      *%w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report
+          auto_assign]
     )
     expect(report_response).to include({
       'name' => report.name,
@@ -164,6 +165,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         workshop_activity_duration
         allow_multiple_responses
         require_scheduling
+        auto_assign
       ]
     )
     expect(assessment_response).to include({

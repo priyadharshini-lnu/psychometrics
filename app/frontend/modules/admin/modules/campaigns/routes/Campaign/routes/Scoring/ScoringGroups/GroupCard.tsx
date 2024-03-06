@@ -44,11 +44,7 @@ export const GroupCard = React.forwardRef(
     }: Props, ref:RefObject<HTMLDivElement>,
   ) => {
     const [editName, setEditName] = React.useState(false)
-    const handleFormFinish = (data: { name: string }) => {
-      const { name } = data
-      if (name !== group.name) {
-        onGroupNameChange?.(name, group)
-      }
+    const handleFormFinish = () => {
       setEditName(false)
     }
     const handleBlur = (form) => {
@@ -66,6 +62,8 @@ export const GroupCard = React.forwardRef(
               onFormFinish={handleFormFinish}
               noStyle
               nameLabel=""
+              group={group}
+              editGroup={onGroupNameChange}
             />
           ) : (
             <>

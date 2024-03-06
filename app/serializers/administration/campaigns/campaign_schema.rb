@@ -40,6 +40,7 @@ module Administration
             required(:stats).filled(:bool?)
             required(:pdf_password).filled(:bool?)
             required(:view_campaign_scoring).filled(:bool?)
+            required(:view_campaign_scoring_setting).filled(:bool?)
             required(:manage_campaign_scoring).filled(:bool?)
           end
           required(:assessments).array(Administration::Campaigns::AssessmentSchema.schema(_, _))

@@ -21,6 +21,7 @@ const defaultState = {
   reportPermissions: {
     toggleUserAccess: false,
     toggleAssessorAccess: false,
+    toggleAutoAssign: false,
     toggleUserDashboard: false,
     addReport: false,
     bulkDownload: false,
@@ -37,7 +38,9 @@ export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 export const TOGGLE_USER_DASHBOARD = 'resource/campaigns/report/TOGGLE_USER_DASHBOARD'
 export const TOGGLE_MAIN_REPORT = 'resource/campaigns/report/TOGGLE_MAIN_REPORT'
 export const TOGGLE_ASSESSOR_ACCESS = 'campaigns/report/TOGGLE_ASSESSOR_ACCESS'
+export const TOGGLE_AUTO_ASSIGN = 'campaigns/report/TOGGLE_AUTO_ASSIGN'
 export const TOGGLE_ASSESSOR_ACCESS_REQUEST = 'campaigns/report/TOGGLE_ASSESSOR_ACCESS_REQUEST'
+export const TOGGLE_AUTO_ASSIGN_REQUEST = 'campaigns/report/TOGGLE_AUTO_ASSIGN_REQUEST'
 export const SELECT_RECORDS = 'campaigns/reports/SELECT_RECORDS'
 export const REGENERATE_REPORTS = 'campaigns/reports/REGENERATE_REPORTS'
 export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_IDS'
@@ -95,6 +98,15 @@ export const toggleAssessorAccess = (campaignId: number, id: number) => ({
   },
 })
 
+export const toggleAutoAssign = (campaignId: number, id: number) => ({
+  type: TOGGLE_AUTO_ASSIGN,
+  id,
+  request: {
+    method: 'patch',
+    url: `/administration/new_campaigns/${campaignId}/reports/${id}/toggle_auto_assign`,
+  },
+})
+
 export const selectRecords = (ids: number[]) => ({
   type: SELECT_RECORDS,
   payload: { ids },
@@ -143,6 +155,9 @@ type RemoveType = ApiActionResponse<RemoveResponse>
 interface ToggleAssessorAccessType extends Action {
   id: number
 }
+interface ToggleAutoAssignType extends Action {
+  id: number
+}
 
 export interface State {
   list: Report[],
@@ -151,6 +166,7 @@ export interface State {
   reportPermissions: {
     toggleUserAccess: boolean
     toggleAssessorAccess: boolean
+    toggleAutoAssign: boolean
     toggleUserDashboard: boolean
     toggleMainReport: boolean
     addReport: boolean
@@ -217,6 +233,13 @@ const HANDLERS = {
       if (report.id !== id) return report
 
       return { ...report, assessorAccess: !report.assessorAccess }
+    }))
+  ),
+  [TOGGLE_AUTO_ASSIGN_REQUEST]: (state: State, { id }: ToggleAutoAssignType) => (
+    updateIn(state, ['list'], (reports: Report[]) => _.map(reports, (report: Report) => {
+      if (report.id !== id) return report
+
+      return { ...report, autoAssign: !report.autoAssign }
     }))
   ),
   [SELECT_RECORDS]: (state: State, { payload: { ids } }: SelectRecordsType) => ({ ...state, selectedIds: ids }),

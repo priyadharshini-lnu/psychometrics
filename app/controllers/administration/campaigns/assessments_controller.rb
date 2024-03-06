@@ -174,6 +174,20 @@ module Administration
         ).serialize(campaign_assessment)
       end
 
+      def toggle_auto_assign
+        campaign_assessment.update!(auto_assign: params[:auto_assign])
+        audit! :toggle_auto_assign, campaign_assessment, payload: { auto_assign: campaign_assessment.auto_assign },
+        campaign: campaign
+
+        render json: Administration::CampaignAssessmentSerializer.new(
+          context: {
+            current_user: current_user,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          }
+        ).serialize(campaign_assessment)
+      end
+
       def schedule_assessment
         CampaignAssessment.transaction do
           scope = UserAssessment.where(assessment_id: assessment.id, campaign_id: campaign.id, status: :not_started)

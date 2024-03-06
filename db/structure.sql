@@ -927,7 +927,8 @@ CREATE TABLE public.campaign_assessments (
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
     allow_multiple_responses boolean DEFAULT false,
-    require_scheduling boolean DEFAULT false
+    require_scheduling boolean DEFAULT false,
+    auto_assign boolean DEFAULT true
 );
 
 
@@ -1103,7 +1104,8 @@ CREATE TABLE public.campaign_factors (
     updated_at timestamp(6) without time zone NOT NULL,
     assessment_score_type integer DEFAULT 0,
     formula text,
-    factor_type integer DEFAULT 0
+    factor_type integer DEFAULT 0,
+    ranked boolean DEFAULT false NOT NULL
 );
 
 
@@ -1218,7 +1220,8 @@ CREATE TABLE public.campaign_reports (
     updated_at timestamp without time zone NOT NULL,
     assessor_access boolean DEFAULT false,
     user_dashboard boolean DEFAULT false,
-    main_report boolean DEFAULT false
+    main_report boolean DEFAULT false,
+    auto_assign boolean DEFAULT true
 );
 
 
@@ -11726,6 +11729,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240221091507'),
+('20240229091603'),
 ('20240213142024'),
 ('20240213123231'),
 ('20240206082940'),

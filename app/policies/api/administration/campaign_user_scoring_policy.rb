@@ -4,7 +4,7 @@ module Api
   module Administration
     class CampaignUserScoringPolicy < ::Api::Administration::BasePolicy
       def index?
-        has_permission?(:campaign_factors, :view)
+        has_permission?(:results, :scores)
       end
 
       def change_finalized_campaign_score?
@@ -23,9 +23,13 @@ module Api
         has_permission?(:results, :rescore_responses)
       end
 
+      def export_scorings?
+        has_permission?(:campaign_factors, :view)
+      end
+
       class Scope < ::Api::Administration::BasePolicy::Scope
         def resolve
-          if @user.has_permission?(:campaign_factors, :view)
+          if @user.has_permission?(:results, :scores)
             scope.includes(:user, :campaign_factor_values).where(campaign_id: campaign_id)
           else
             scope.none

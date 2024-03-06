@@ -94,7 +94,10 @@ module Administration
           recipient_criteria: params[:recipient_criteria]
         )
 
-        render json: users, each_serializer: UserSerializer
+        render json: Panko::ArraySerializer.new(
+          users,
+          each_serializer: UserSerializer
+        ).to_a
       end
 
       private

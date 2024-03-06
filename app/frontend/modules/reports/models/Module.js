@@ -109,16 +109,21 @@ _.extend(Module.prototype, {
 
   getSourceType () {
     const assessment = AppStore.getAssessmentById(this.assessment_id)
-    if (_.result(this.props, 'source.type') === 'AssessmentData') {
+    const source = _.result(this.props, 'source.type')
+    if (source === 'AssessmentData') {
       return null
     }
-    if (_.result(this.props, 'source.type') === 'DataSheet') {
+    if (source === 'DataSheet') {
       return 'DataSheet'
     }
     if (assessment.category === HOGAN || assessment.category === MINDMILL) {
+      if (source === 'Factor') return 'Factor'
+
       return 'ExternalFactor'
     }
     if (assessment.category === SAVILLE) {
+      if (source === 'Factor') return 'Factor'
+
       return 'SavilleFactor'
     }
     switch (_.result(this.props, 'source.type')) {

@@ -1,5 +1,6 @@
 import { FC, useState, useRef } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
+import { isRtl } from '~/utils/locales'
 import { updateInstructionsContent } from '~/modules/survey/core/builder/assessment/actions'
 import Editor from '~/components/Editor'
 import styles from './Instructions.less'
@@ -11,6 +12,7 @@ type Props = ConnectedProps<typeof connector>
 const Instructions: FC<Props> = (props) => {
   const {
     instructions,
+    defaultLanguage,
     updateInstructionsContent,
   } = props
 
@@ -33,6 +35,9 @@ const Instructions: FC<Props> = (props) => {
             content={instructions.content}
             handleContentChange={updateInstructionsContent}
             className={styles.editor}
+            configOverrides={{
+              direction: isRtl(defaultLanguage) ? 'rtl' : 'ltr',
+            }}
             withPipedText
           />
         </div>
@@ -43,8 +48,9 @@ const Instructions: FC<Props> = (props) => {
 
 const connector = connect(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ({ survey: { builder: { assessment: { instructions } } } }: any) => ({
+  ({ survey: { builder: { assessment: { instructions, defaultLanguage } } } }: any) => ({
     instructions,
+    defaultLanguage,
   }),
   { updateInstructionsContent },
 )

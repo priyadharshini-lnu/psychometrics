@@ -9,7 +9,18 @@ module AdminJobs
     private
 
     def headers
-      UsersResultDecorator.export_headers
+      [
+        'Result ID',
+        'Subject Name',
+        'Subject Email',
+        'Evaluator Name',
+        'Evaluator Email',
+        'Assessment Type',
+        'Assessment Name',
+        'Started At',
+        'Completed At',
+        'Status'
+      ]
     end
 
     def records_for_export
@@ -21,8 +32,10 @@ module AdminJobs
       user_result = user_assessment.users_result
       [
         user_result.encoded_id,
-        user_assessment.user.decorate.full_name,
-        user_assessment.user.email,
+        user_assessment.subject.decorate.full_name,
+        user_assessment.subject.email,
+        user_assessment.evaluator.decorate.full_name,
+        user_assessment.evaluator.email,
         user_assessment.assessment.decorate.category,
         user_assessment.assessment.name,
         user_result.decorate.started_at_with_time,

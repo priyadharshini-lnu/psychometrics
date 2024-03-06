@@ -8,14 +8,18 @@ import { CheckOutlined, AppstoreOutlined, WarningFilled } from '@ant-design/icon
 import _ from 'lodash'
 import * as t from 'io-ts'
 import cs from 'classnames'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import { CampaignFactorGroup } from '../ScoringGroups/GroupCard'
 import { CampaignFactor } from '../ScoringGroups/Factor'
 import { ToolsDropdown } from './ToolsDropdown'
+import { Tools } from './Tools'
 import styles from './styles.less'
 import { CampaignScores, CampaignScoresTR, type Error } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 import { formatedDate } from '~/utils/time'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
+import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
 
 const { I18n } = window
 
@@ -23,16 +27,27 @@ type CampaignFactorGroupType = CampaignFactorGroup & {campaignFactors: CampaignF
 
 type DataType = {
   key: React.Key;
-  userId: string;
+  id: string;
   email: string;
   campaignScoresFinalized: boolean | null;
   campaignScoresFinalizedDate: string | null;
   campaignScoresCalculatedDate: string | null;
   errors: Error[] | null;
+  stackRank: number | null ;
   [key: string]: string | number | boolean | null | Error[];
 }
 
-export function SubjectScoresList () {
+const connector = connect(
+  (state: RootState) => ({
+    campaignPermissions: getCurrentCampaign(state).permissions,
+  }),
+  {
+    fetch,
+  },
+)
+type Props = ConnectedProps<typeof connector>
+
+const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const { modal, message } = App.useApp()
   const { campaignId } = useParams<{ campaignId: string }>()
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
@@ -47,7 +62,7 @@ export function SubjectScoresList () {
     apiConfig: {
       fields: {
         campaign_factor_groups: ['id', 'name', 'position', 'campaign_factors'],
-        campaign_factors: ['name', 'position', 'id'],
+        campaign_factors: ['name', 'position', 'id', 'ranked'],
       },
       include: ['campaign_factors'],
     },
@@ -103,7 +118,7 @@ export function SubjectScoresList () {
   const handleIndividualAction = (action: string, subject: DataType) => {
     if (action === 'mark_finalized') {
       memberAction({
-        id: subject?.userId,
+        id: subject?.id,
         action: 'change_finalized_campaign_score',
         method: 'post',
         updateStore: true,
@@ -113,7 +128,7 @@ export function SubjectScoresList () {
       })
     } else if (action === 'mark_not_finalized') {
       memberAction({
-        id: subject?.userId,
+        id: subject?.id,
         action: 'change_finalized_campaign_score',
         method: 'post',
         updateStore: true,
@@ -123,7 +138,7 @@ export function SubjectScoresList () {
       })
     } else if (action === 'rescore') {
       memberAction({
-        id: subject?.userId,
+        id: subject?.id,
         action: 'rescore',
         method: 'post',
         updateStore: true,
@@ -131,6 +146,18 @@ export function SubjectScoresList () {
         responseType: {},
       }).then(() => {
         message.success(I18n.t('frontend.resource.update_success', { readableResourceName: subject.email }))
+      })
+    }
+  }
+
+  const handleToolAction = (action: string) => {
+    if (action === 'export') {
+      collectionAction({
+        action: 'export_scorings',
+        method: 'get',
+        responseType: t.literal('ok'),
+      }).then(() => {
+        message.success(I18n.t('administration.scoring.subject_list.export_success'))
       })
     }
   }
@@ -209,6 +236,10 @@ export function SubjectScoresList () {
           </span>
         </Col>
         <div>
+          <Tools
+            persmission={{ export: campaignPermissions.viewCampaignScoring }}
+            onClick={action => handleToolAction(action)}
+          />
           <ToolsDropdown
             isBulk
             onClick={action => handleBulkConfirmAction(action)}
@@ -258,12 +289,14 @@ export function SubjectScoresList () {
   )
 }
 
+export const SubjectScoresList = connector(SubjectScoresListComponent)
 
 function createSortedTableColumns (
   campaignFactorData: CampaignFactorGroupType[],
   handleAction: (actions: string, subject)=> void,
   getSortOrder,
 ): ColumnsType<DataType> {
+  let stackRankColumn: string | null = null
   const sortedGroupColumns: ColumnsType<DataType> = campaignFactorData?.map(group => ({
     ...group,
     campaignFactors: group.campaignFactors.sort((a, b) => a.position - b.position),
@@ -271,16 +304,19 @@ function createSortedTableColumns (
     const even = index % 2 === 0
     return ({
       title: group.name,
-      children: group.campaignFactors.sort((a, b) => a.position - b.position).map((factor, factorIndex) => ({
-        title: factor.name,
-        dataIndex: `${factor.id}`,
-        key: `${factor.id}`,
-        sorter: true,
-        sortOrder: getSortOrder(`${factor.id}`),
-        className: cs(factorIndex === 0 ? styles.columnBorderStart : null,
-          factorIndex === group.campaignFactors.length - 1 ? styles.columnBorderEnd : null,
-          even ? styles.evenGroup : styles.oddGroup),
-      })),
+      children: group.campaignFactors.sort((a, b) => a.position - b.position).map((factor, factorIndex) => {
+        stackRankColumn = factor.ranked ? `${factor.name}` : stackRankColumn
+        return ({
+          title: factor.name,
+          dataIndex: `${factor.id}`,
+          key: `${factor.id}`,
+          sorter: true,
+          sortOrder: getSortOrder(`${factor.id}`),
+          className: cs(factorIndex === 0 ? styles.columnBorderStart : null,
+            factorIndex === group.campaignFactors.length - 1 ? styles.columnBorderEnd : null,
+            even ? styles.evenGroup : styles.oddGroup),
+        })
+      }),
       className: cs(styles.columnBorderEnd, styles.columnBorderStart, even ? styles.evenGroup : styles.oddGroup),
     })
   }) || []
@@ -288,12 +324,12 @@ function createSortedTableColumns (
   const staticBeforeColumns: ColumnsType<DataType> = [
     {
       title: I18n.t('administration.scoring.id'),
-      dataIndex: 'userId',
-      key: 'userId',
+      dataIndex: 'id',
+      key: 'id',
       width: 80,
       fixed: 'left',
       sorter: true,
-      sortOrder: getSortOrder('userId'),
+      sortOrder: getSortOrder('id'),
     },
     {
       title: I18n.t('administration.scoring.subject'),
@@ -366,10 +402,10 @@ function createSortedTableColumns (
       },
     },
     {
-      title: I18n.t('common.column.action'),
+      title: I18n.t('administration.scoring.subject_list.actions'),
       key: 'actions',
-      width: 80,
       fixed: 'right',
+      width: 100,
       render: subject => (
         <ToolsDropdown
           onClick={action => handleAction(action, subject)}
@@ -385,6 +421,16 @@ function createSortedTableColumns (
     },
   ]
 
+  if (stackRankColumn !== null) {
+    sortedGroupColumns.push({
+      title: I18n.t('administration.scoring.subject_list.rank'),
+      dataIndex: 'stackRank',
+      key: 'stackRank',
+      sorter: true,
+      sortOrder: getSortOrder('stackRank'),
+    })
+  }
+
   return [...staticBeforeColumns, ...sortedGroupColumns, ...staticAfterColumns]
 }
 
@@ -395,11 +441,12 @@ const processData = (
   const userId = valueData?.user.id
   const userData = {
     key: userId,
-    userId,
+    id: userId,
     email: valueData?.user.email,
     campaignScoresFinalizedDate: valueData?.campaignScoresFinalizedDate,
     campaignScoresCalculatedDate: valueData?.campaignScoresCalculatedDate,
     campaignScoresFinalized: valueData?.campaignScoresFinalized,
+    stackRank: valueData?.stackRank || null,
     errors: valueData?.campaignScoresErrors,
   }
 

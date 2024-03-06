@@ -10,6 +10,7 @@ import Previews from '~/modules/survey/components/modules/Previews'
 import { SafeHTML } from '~/components/SafeHTML'
 import styles from './Question.less'
 import { addListener, removeListener, sendMessage } from '~/utils/messageBus'
+import { isRtl } from '~/utils/locales'
 
 class Question extends Component {
   static propTypes = {
@@ -17,6 +18,7 @@ class Question extends Component {
     page: PropTypes.object.isRequired,
     readOnly: PropTypes.bool,
     randomseed: PropTypes.string,
+    defaultLanguage: PropTypes.string,
   }
 
   state = {
@@ -89,7 +91,7 @@ class Question extends Component {
 
   render () {
     const {
-      model, moduleConfig, hideHiddenQuestions, linkedQuestions,
+      model, moduleConfig, hideHiddenQuestions, linkedQuestions, defaultLanguage,
     } = this.props
 
     const { selected } = this.state
@@ -113,7 +115,7 @@ class Question extends Component {
         data-allow-content-copy={allowContentCopy ? 1 : 0}
         onClick={this.onClick}
       >
-        <div className={styles.content}>
+        <div className={`${styles.content} ${isRtl(defaultLanguage) ? 'rtl' : ''}`}>
           {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
           <div className={styles.contentOuter}>
             <div className={styles.previewContainer}>

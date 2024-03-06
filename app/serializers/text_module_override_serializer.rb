@@ -3,5 +3,5 @@
 class TextModuleOverrideSerializer < Panko::Serializer
   attributes :id, :content, :module_id, :user_report_id, :updated_at, :approved
 
-  has_one :editor, serializer: UserSerializer
+  has_one :editor, serializer: ::Reports::UserSerializer
 end

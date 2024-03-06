@@ -58,6 +58,11 @@ function App () {
             borderRadius: DEFAULT_BORDER_RADIUS,
             colorLink: primaryColor,
           },
+          components: {
+            Progress: {
+              defaultColor: primaryColor,
+            },
+          },
         }}
       >
         <GlintProvider>

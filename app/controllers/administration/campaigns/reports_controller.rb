@@ -6,7 +6,7 @@ module Administration
   module Campaigns
     class ReportsController < Administration::Campaigns::BaseController
       before_action :set_resource, only: %i[destroy toggle_user_access toggle_assessor_access toggle_user_dashboard
-                                            toggle_main_report]
+                                            toggle_main_report toggle_auto_assign]
 
       def create
         form = ::Campaigns::Reports::Form.from_params(resource_params)
@@ -48,6 +48,13 @@ module Administration
       def toggle_assessor_access
         resource.toggle!(:assessor_access)
         audit! :toggle_assessor_access, resource, payload: { assessor_access: resource.assessor_access },
+          campaign: campaign
+        head :ok
+      end
+
+      def toggle_auto_assign
+        resource.toggle!(:auto_assign)
+        audit! :toggle_auto_assign, resource, payload: { auto_assign: resource.auto_assign },
           campaign: campaign
         head :ok
       end
@@ -226,6 +233,7 @@ module Administration
             'regenerate',
             'toggle_user_access',
             'toggle_assessor_access',
+            'toggle_auto_assign',
             'toggle_user_dashboard',
             'toggle_main_report'
           ],

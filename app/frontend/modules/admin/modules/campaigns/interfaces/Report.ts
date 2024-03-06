@@ -7,4 +7,5 @@ export default interface Report {
   assessorAccess: boolean
   userDashboard: boolean
   reportFamilyName: string
+  autoAssign: boolean
 }

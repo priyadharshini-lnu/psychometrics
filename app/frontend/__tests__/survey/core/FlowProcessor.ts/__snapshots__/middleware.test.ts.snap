@@ -381,6 +381,7 @@ exports[`initializing base assessment init action should init assessment data: i
       "assessment": {
         "blocks": [],
         "category": "",
+        "defaultLanguage": null,
         "default_norm_id": null,
         "disabled": false,
         "factors": [],
@@ -435,6 +436,9 @@ exports[`initializing base assessment init action should init assessment data: i
       "modals": {
         "current": [],
         "data": {},
+      },
+      "propertyPanel": {
+        "firstBlockContentOffset": 0,
       },
       "socket": {
         "initialized": false,
@@ -513,6 +517,7 @@ exports[`initializing base assessment middleware should call next if is not NEXT
       "assessment": {
         "blocks": [],
         "category": "",
+        "defaultLanguage": null,
         "default_norm_id": null,
         "disabled": false,
         "factors": [],
@@ -567,6 +572,9 @@ exports[`initializing base assessment middleware should call next if is not NEXT
       "modals": {
         "current": [],
         "data": {},
+      },
+      "propertyPanel": {
+        "firstBlockContentOffset": 0,
       },
       "socket": {
         "initialized": false,

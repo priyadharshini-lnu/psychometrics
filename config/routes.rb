@@ -214,6 +214,7 @@ Rails.application.routes.draw do
             post :export
             patch :toggle_user_access
             patch :toggle_assessor_access
+            patch :toggle_auto_assign
             patch :toggle_user_dashboard
             patch :toggle_main_report
           end
@@ -253,6 +254,8 @@ Rails.application.routes.draw do
           end
           collection do
             post :import
+            post :assign_reports_and_assessments
+            get :export_reports_and_assessments
             get :export
             get :export_completion_status
             get :export_compact_completion_status
@@ -307,6 +310,7 @@ Rails.application.routes.draw do
             put :update_prework
             put :update_workshop_activity
             put :toggle_require_scheduling
+            put :toggle_auto_assign
             put :schedule_assessment
           end
           collection do
@@ -1298,6 +1302,7 @@ Rails.application.routes.draw do
               end
               collection do
                 get :campaign_scores
+                get :export_scorings
                 post :rescore_bulk
                 post :change_finalized_campaign_score_bulk
               end

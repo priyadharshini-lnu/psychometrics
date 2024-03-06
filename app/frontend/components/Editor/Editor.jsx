@@ -11,9 +11,9 @@ import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 
 function Editor ({
-  content, handleContentChange, type, details, className, withPipedText = false,
+  content, handleContentChange, type, details, className, withPipedText = false, configOverrides = {},
 }) {
-  const config = {
+  let config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
     codeMirror: CodeMirror,
@@ -100,7 +100,10 @@ function Editor ({
         events.video_link_error(this, link)
       },
     },
+    direction: 'ltr',
   }
+
+  config = { ...config, ...configOverrides }
 
   withPipedText && config.toolbarButtons.unshift('pipedText')
 

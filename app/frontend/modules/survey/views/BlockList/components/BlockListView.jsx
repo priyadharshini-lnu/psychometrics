@@ -27,7 +27,14 @@ export class BlockListView extends Component {
 
     return (
       <div className={styles.main}>
-        {blocks.map((block, i) => <Block model={block} key={block.id} last={i === (blocks.length - 1)} />)}
+        {blocks.map((block, i) => (
+          <Block
+            model={block}
+            key={block.id}
+            last={i === (blocks.length - 1)}
+            first={i === 0}
+          />
+        ))}
       </div>
     )
   }

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Select, SelectProps } from 'antd'
-import dayjs from '~/utils/dayjs'
+import { useTimezones } from '~/hooks/useTimezones'
 
-const timeZones = Intl.supportedValuesOf('timeZone')
 const { Option } = Select
-
 interface Props extends SelectProps {
   value: string
   label?: string
@@ -17,6 +15,7 @@ const TimeZoneSelect: React.FC<Props> = ({
   ...props
 }) => {
   const [selectedTimeZone, setSelectedTimeZone] = useState(value)
+  const timezoneOptions = useTimezones()
 
   useEffect(() => {
     setSelectedTimeZone(value)
@@ -25,20 +24,6 @@ const TimeZoneSelect: React.FC<Props> = ({
   const handleChange = (tz) => {
     setSelectedTimeZone(tz)
     onChange && onChange(tz)
-  }
-
-  let timezoneNames = timeZones.map(zone => ({ zone, label: `(GMT${dayjs().tz(zone).format('Z')}) ${zone}` }))
-    .sort((a, b) => Number(dayjs().tz(a.zone).format('ZZ')) - Number(dayjs().tz(b.zone).format('ZZ')))
-  const timezoneGuess = dayjs.tz.guess()
-
-  if (timezoneGuess) {
-    timezoneNames = [
-      {
-        zone: timezoneGuess,
-        label: `(GMT${dayjs().tz(timezoneGuess).format('Z')}) ${timezoneGuess}`,
-      },
-      ...timezoneNames.filter(z => z.zone !== timezoneGuess),
-    ]
   }
 
   return (
@@ -50,7 +35,7 @@ const TimeZoneSelect: React.FC<Props> = ({
       filterOption={(input, option) => (option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0)}
       {...props}
     >
-      {timezoneNames.map(option => <Option key={option.zone} value={option.zone}>{option.label}</Option>)}
+      {timezoneOptions.map(option => <Option key={option.value} value={option.value}>{option.label}</Option>)}
     </Select>
   )
 }

@@ -525,6 +525,7 @@ en:
     assessor:
       add_subject_modal:
         assessment: Assessment
+        mark_as_lead_assessor: Mark as lead assesor for above subject
         subject: Subject
         subject_placeholder: Search subject..
         title: Add subject
@@ -2821,7 +2822,7 @@ en:
                 norm_score: Normed Score
                 percentage: Percentage
                 percentile: Percentile Score
-                score: Raw
+                score: Score
                 zscore: Z Score
             title: JSON Paths for Scores
         no_icon: No Logo yet
@@ -4063,10 +4064,10 @@ en:
       description: Description
       dimension: Dimension
       edit_factor: Edit Factor
+      export:
+        details: Campaign scorings
       factor: Factor
-      factor_group_added_successfully: Campaign Factor group added successfully
       factor_group_removed_successfully: Campaign Factor group removed successfully
-      factor_group_update_successfully: Campaign Factor group updated successfully
       factor_removed_successfully: Campaign Factor removed successfully
       final: Final
       final_score_updated_successfully: Final score updated successfully
@@ -4080,6 +4081,7 @@ en:
       profile:
         years: Years
       public: Public
+      ranked: Ranked
       remove_factor_confirmation_content: Are you sure you want to remove the factor '%{factor_name}'?
       remove_factor_confirmation_title: Remove Factor
       remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
@@ -4110,14 +4112,18 @@ en:
         bulk_rescore_confirm: Rescoring the selected users. Are you sure you want to proceed?
         calculated_date: Calculated Date
         calculation_errors: Calculation Errors
+        export: Export Scorings
+        export_success: Export scores job scheduled successfull
         finalized: Finalized
         finalized_date: Finalized Date
         mark_finalized: Mark Finalized
         mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?”
         mark_not_finalized: Mark Not Finalized
         mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
+        rank: Rank
         rescore: Rescore
         rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
+        tools: Tools
       subjects: Subjects
       tabs:
         settings: Settings

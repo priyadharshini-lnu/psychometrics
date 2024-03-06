@@ -3,13 +3,11 @@
 module Administration
   class CampaignPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin) || @user.has_permission?(
-        :campaigns, :view, project_id: project_id, campaign_id: campaign_id
-      )
+      has_permission?(:campaigns, :view)
     end
 
     def timeseries?
-      @user.is?(:superadmin) || @user.has_permission?(:campaigns, :stats, project_id: project_id)
+      has_permission?(:campaigns, :view_stats)
     end
 
     def show?
@@ -69,6 +67,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage, project_id: project_id
       )
+    end
+
+    def update?
+      has_permission?(:campaigns, :manage)
     end
 
     def projects?
@@ -156,7 +158,7 @@ module Administration
     end
 
     def stats?
-      @user.is?(:superadmin) || has_permission?(:campaigns, :stats)
+      has_permission?(:campaigns, :view_stats)
     end
 
     def view_dashboard?
@@ -221,6 +223,10 @@ module Administration
     end
 
     def view_campaign_scoring?
+      has_permission?(:results, :scores)
+    end
+
+    def view_campaign_scoring_setting?
       has_permission?(:campaign_factors, :view)
     end
 
