@@ -11,7 +11,7 @@ import cs from 'classnames'
 import { CopyOutlined } from '@ant-design/icons'
 import dayjs from '~/utils/dayjs'
 import { ScheduleDay } from '~/glint/components/ScheduleAvailability/ScheduleDay'
-import { Panel } from '~/glint'
+import { Panel } from '~/glint/components/Panel/Panel'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
 import { getAvailableDays } from '~/utils/time'
 

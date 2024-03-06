@@ -2,7 +2,7 @@ import React from 'react'
 import { Button as AntButton, ButtonProps } from 'antd'
 import cs from 'classnames'
 import styles from './styles.less'
-import { DirectionalArrowIcon } from '~/glint'
+import { DirectionalArrowIcon } from '~/glint/components/DirectionAwareIcon'
 
 interface Props extends ButtonProps {
   label: string | React.ReactNode
