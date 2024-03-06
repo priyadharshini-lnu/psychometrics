@@ -739,6 +739,7 @@ en:
         super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
+        threesixty_campaign_export_scores: Threesixty Campaign Scores Export
         workshop_status_export: Assessment Center Status Export
       statuses:
         completed: Completed
@@ -1299,6 +1300,7 @@ en:
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Raw (without labels)
       export_result: Export Result
+      export_scores: Export Scores
       export_scoring: Scoring
       import_raw: Raw
       import_scoring: Scoring
@@ -1629,6 +1631,7 @@ en:
       reports: Reports
       scoring: Scoring
       sms_invite: SMS Invite
+      threesixty_campaign: Threesixty Campaign Scores
     status:
       completed: Completed
       dropped_out: Dropped Out
@@ -2187,6 +2190,7 @@ en:
     threesixty:
       export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
       export_raw_results_scheduled: Raw Results export job scheduled successfully
+      export_scores_scheduled: Scores export job scheduled successfully
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'

@@ -131,6 +131,7 @@ module Administration
           nil,
           %w[
             rescore_assessment
+            export_threesixty_scores
             bulk_regenerate_reports
           ],
           {

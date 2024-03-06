@@ -26,6 +26,16 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
     head :ok
   end
 
+  def export_threesixty_scores
+    audit! :export_threesixty_scores, resource, campaign: resource.campaign
+    AdminJob.call(
+      :threesixty_campaign_export_scores,
+      { campaign_id: resource.campaign_id, export_with_labels: false },
+      current_user
+    )
+    head :ok
+  end
+
   def export_results
     audit! :export_results, resource, campaign: resource.campaign
 

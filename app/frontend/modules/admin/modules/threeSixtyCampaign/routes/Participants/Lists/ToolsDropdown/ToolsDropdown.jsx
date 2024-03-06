@@ -7,6 +7,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const getCustomMenuProps = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
+  handleExportThreeSixtyScores,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_completion_status') {
@@ -27,6 +28,9 @@ const getCustomMenuProps = ({
     if (key === 'export_result') {
       return handleExportRawResults(campaignId)
     }
+    if (key === 'export_360_scores') {
+      return handleExportThreeSixtyScores(campaignId)
+    }
   }
 
   const menuItems = [
@@ -37,6 +41,10 @@ const getCustomMenuProps = ({
     permissions.exportCompletionStatus && {
       key: 'export_completion_status',
       label: I18n.t('campaign_assessment.actions.export_completion_status'),
+    },
+    permissions.exportThreesixtyScores && {
+      key: 'export_360_scores',
+      label: I18n.t('campaign_assessment.actions.export_scores'),
     },
     { type: 'divider' },
     permissions.resetAllParticipants && {
@@ -62,7 +70,7 @@ const getCustomMenuProps = ({
 export default function ToolsDropdown ({
   resetCampaign, resetAllNominations, openModal, rescoreAssessment,
   match: { params: { campaignId, projectId } }, permissions,
-  exportCompletionStatuses, regenerateReports, exportRawResults,
+  exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores,
 }) {
   const resetCampaignWithConfirmation = (campaignId) => {
     openModal('ResetCampaignModal', {
@@ -131,6 +139,12 @@ export default function ToolsDropdown ({
     })
   }
 
+  const handleExportThreeSixtyScores = () => {
+    exportThreeSixtyScores(campaignId).then(() => {
+      message.success(I18n.t('jobs.threesixty.export_scores_scheduled'))
+    })
+  }
+
   return (
     <ConditionalDropdown
       menu={
@@ -145,6 +159,7 @@ export default function ToolsDropdown ({
           permissions,
           onExport,
           handleExportRawResults,
+          handleExportThreeSixtyScores,
         })
       }
       className="mrm"

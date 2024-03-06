@@ -602,6 +602,7 @@ Rails.application.routes.draw do
         end
       end
       member do
+        get :export_threesixty_scores
         get :export_results
         get :export_completion_status
         delete :reset
