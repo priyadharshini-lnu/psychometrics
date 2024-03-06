@@ -30,18 +30,10 @@
   color: gray;
 }
 
-.diff,
-textarea {
+.diff {
   font-family: monospace;
   white-space: pre;
   padding: 10px 10px 10px 20px;
-}
-
-textarea {
-  background: white;
-  color: black;
-  padding: 10px;
-  margin: 0;
 }
 
 .json-inputs {

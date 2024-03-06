@@ -6,7 +6,7 @@ module AdminJobs
     include ActionView::Context
 
     def call
-      import_data = CSV.parse(URI(record.file.url).open)
+      import_data = CSV.parse(URI(record.file.url).open, encoding: 'bom|utf-8')
       import_data = ::Campaigns::Users::ParseImportData.call!(import_data, campaign)
       users_those_pwd_not_changed, imported_users = ::Campaigns::Users::ProcessImport.call!(
         campaign, record.owner, import_data[1..], record.data['operation'], record

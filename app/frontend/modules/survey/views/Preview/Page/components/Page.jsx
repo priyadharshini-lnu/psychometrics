@@ -13,6 +13,7 @@ const { I18n } = window
 class Page extends Component {
   static propTypes = {
     page: PropTypes.object.isRequired,
+    defaultLanguage: PropTypes.string,
   }
 
   componentDidMount () {
@@ -91,7 +92,7 @@ class Page extends Component {
 
   render () {
     const {
-      page, questions, errors, nextPage, preview, prevPage, hasPrevPage,
+      page, questions, errors, nextPage, preview, prevPage, hasPrevPage, defaultLanguage,
       block: {
         props: { staticContent },
         id: blockId,
@@ -124,6 +125,7 @@ class Page extends Component {
               questions={questions}
               backButtonPressed={backButtonPressed}
               nextPage={nextPage}
+              defaultLanguage={defaultLanguage}
             />
           </div>
         </div>

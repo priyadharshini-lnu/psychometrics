@@ -4,7 +4,7 @@ module Api
   module Administration
     class CampaignAssessmentPolicy < BasePolicy
       def index?
-        has_permission?(:workshops, :manage) || has_permissions?(:campaign_factor, :manage)
+        has_permission?(:workshops, :manage) || has_permission?(:campaign_factors, :manage)
       end
 
       def get_related_resources?

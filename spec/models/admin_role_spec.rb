@@ -11,7 +11,8 @@ RSpec.describe AdminRole, type: :model do
         'projects' => %w[view manage manage_admins manage_users]
       }
     )
-    expect(admin_role.user_role_specific_permissions('project_admin')).to eq({
+    membership = create(:membership, role: 'project_admin')
+    expect(admin_role.user_role_specific_permissions(membership)).to eq({
       'clients' => ['view'], 'projects' => %w[view manage_users]
     })
   end
@@ -22,10 +23,29 @@ RSpec.describe AdminRole, type: :model do
       permissions: {
         'clients' => %w[view view_licenses],
         'projects' => %w[view manage manage_admins manage_users],
-        'campaigns' => %w[view manage manage_admins manage_users]
+        'campaigns' => %w[view manage manage_admins manage_users],
+        'workshops' => %w[view manage]
       }
     )
-    expect(admin_role.user_role_specific_permissions('campaign_admin')).to eq({
+    membership = create(:membership, role: 'campaign_admin', campaign: create(:campaign))
+    expect(admin_role.user_role_specific_permissions(membership)).to eq({
+      'campaigns' => %w[view manage manage_users],
+      'workshops' => %w[view manage]
+    })
+  end
+
+  it 'provides only grantable permission for threesixty campaign_admin' do
+    admin_role = create(
+      :admin_role,
+      permissions: {
+        'clients' => %w[view view_licenses],
+        'projects' => %w[view manage manage_admins manage_users],
+        'campaigns' => %w[view manage manage_admins manage_users],
+        'workshops' => %w[view manage]
+      }
+    )
+    membership = create(:membership, role: 'campaign_admin', campaign: create(:campaign, type: :threesixty))
+    expect(admin_role.user_role_specific_permissions(membership)).to eq({
       'campaigns' => %w[view manage manage_users]
     })
   end
@@ -39,7 +59,8 @@ RSpec.describe AdminRole, type: :model do
         'campaigns' => %w[view manage manage_admins manage_users]
       }
     )
-    expect(admin_role.user_role_specific_permissions('client_admin')).to eq({
+    membership = create(:membership, role: 'client_admin', client: create(:tenancy))
+    expect(admin_role.user_role_specific_permissions(membership)).to eq({
       'clients' => %w[view view_licenses],
       'projects' => %w[view manage manage_admins manage_users],
       'campaigns' => %w[view manage manage_admins manage_users]

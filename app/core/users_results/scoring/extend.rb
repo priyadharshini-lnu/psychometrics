@@ -14,8 +14,6 @@ module UsersResults
       end
 
       def call
-        return broadcast :ok, scoring if scoring.blank?
-
         factor_hash = dimension.all_factors.index_by(&:id)
 
         sub_factor_hash = FactorsSubFactor.

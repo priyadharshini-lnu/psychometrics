@@ -225,6 +225,7 @@ const EvaluationComponent = ({
               selectedLocale={selectedLanguage && selectedLanguage.code}
               notAnEndPage={approve_evaluation || edit === 'true'}
               rstore={store}
+              renderedByEnduser
             />
           </ResourcesTabs>
         </ConfigProvider>

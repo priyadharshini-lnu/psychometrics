@@ -4,12 +4,13 @@ module Api
   module V2
     module CampaignFactor
       class Contract < Api::Base::Contract
+        config.messages.namespace = :campaign_factor
         schema Api::V2::CampaignFactor::Schema.create_request
         rule(data: { attributes: :code }) do
           same_code_factors = ::CampaignFactor.where(campaign_id: _context[:params][:campaign_id], code: value)
           same_code_factors = same_code_factors.where.not(id: _context[:params][:id]) if _context[:params][:id]
           if same_code_factors.exists?
-            key.failure(:uniq?)
+            key.failure(:code_already_exists)
           end
           unless value.match?(::RegexConstants::LUA_VARIABLE)
             key.failure(:invalid_lua_name)
@@ -21,7 +22,7 @@ module Api
           same_name_factors = ::CampaignFactor.where(campaign_id: _context[:params][:campaign_id], name: value)
           same_name_factors = same_name_factors.where.not(id: _context[:params][:id]) if _context[:params][:id]
           if same_name_factors.exists?
-            key.failure(:uniq?)
+            key.failure(:name_already_exists)
           end
           unless value.match?(::RegexConstants::SHEET_COLUMN_REGEX)
             key.failure(:match_regexp?)

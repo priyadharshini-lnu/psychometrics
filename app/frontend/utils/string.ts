@@ -24,3 +24,12 @@ export const slugify = (str: string) => String(str)
   .replace(/[^a-z0-9 \-_]/g, '') // remove non-alphanumeric characters expect hyphens, spaces and underscores
   .replace(/\s+/g, '_') // replace spaces with underscores
   .replace(/-+/g, '_')
+
+export const escapeSpecialChars = str => str.replace(/\\n/g, '\\n')
+  .replace(/\\'/g, "\\'")
+  .replace(/\\"/g, '\\"')
+  .replace(/\\&/g, '\\&')
+  .replace(/\\r/g, '\\r')
+  .replace(/\\t/g, '\\t')
+  .replace(/\\b/g, '\\b')
+  .replace(/\\f/g, '\\f')

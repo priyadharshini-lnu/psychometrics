@@ -25,10 +25,11 @@ _.extend(TextEntry.prototype, {
   // Force Response
   requiredValidation () {
     if (this.result.question.props.type === 'Form') {
-      return _.compact(_.map(this.result.answers, 'value')).length === this.result.question.props.choices
+      return _.countBy(
+        _.map(this.result.answers, 'value'), val => !_.isEmpty(val),
+      )?.true === this.result.question.props.choices
     }
     if (this.result.question.props.type === 'Email') { return false }
-
     return _.compact(_.map(this.result.answers, 'value')).length
   },
 

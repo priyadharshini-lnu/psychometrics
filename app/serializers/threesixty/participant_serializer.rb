@@ -2,11 +2,18 @@
 
 module Threesixty
   class ParticipantSerializer < Panko::Serializer
-    attributes :id, :manager_nomination_status, :evaluation_status, :manager_evaluation_status, :result
+    attributes :id, :manager_nomination_status, :evaluation_status, :manager_evaluation_status, :result, :subject,
+               :evaluator
 
-    has_one :subject, serializer: UserSerializer
-    has_one :evaluator, serializer: UserSerializer
     has_one :relationship, serializer: RelationshipSerializer
+
+    def subject
+      UserSerializer.new.serialize(object.subject)
+    end
+
+    def evaluator
+      UserSerializer.new.serialize(object.evaluator)
+    end
 
     def evaluation_status
       return :completed if object.users_result&.completed?

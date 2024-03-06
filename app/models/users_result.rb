@@ -38,6 +38,13 @@ class UsersResult < ApplicationRecord
            to: :user_assessment, allow_nil: true)
 
   before_create :generate_randomseed
+  after_commit :compute_external_scores, if: -> { external_results_previously_changed? }
+
+  def compute_external_scores
+    return if !completed? || external_results.blank? || assessment.internal?
+
+    update!(scoring: ::UsersResults::CalculateScoring.call!(self))
+  end
 
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)

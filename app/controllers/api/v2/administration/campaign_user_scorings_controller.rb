@@ -25,6 +25,7 @@ module Api
                                  map do |key, value|
           { campaign_factor_id: key.to_i, value: value }
         end
+        errors = score['campaign_scores_errors']
         {
           id: score['id'].to_s,
           type: 'campaign_users',
@@ -33,10 +34,11 @@ module Api
                     first_name: score['first_name'],
                     last_name: score['last_name'] },
             campaign_scores_calculated_date: score['campaign_scores_calculated_date'],
-            campaign_scores_errors: score['campaign_scores_errors'],
+            campaign_scores_errors: errors ? JSON.parse(errors) : nil,
             campaign_scores_finalized: score['campaign_scores_finalized'],
             campaign_scores_finalized_date: score['campaign_scores_finalized_date'],
             campaign_id: score['campaign_id'],
+            stack_rank: score['stack_rank'],
             campaign_factor_values: campaign_factor_values
           }
         }
@@ -95,6 +97,17 @@ module Api
       )
 
       render json: {}
+    end
+
+    def export_scorings
+      audit! :export_campaign_scorings, nil, record_type: CampaignUser, payload: nil, campaign: campaign
+
+      AdminJob.call(
+        :export_campaign_scorings,
+        { campaign_id: campaign.id },
+        current_user
+      )
+      render json: :ok
     end
 
     def find_user

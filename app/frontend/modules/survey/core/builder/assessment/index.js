@@ -40,6 +40,7 @@ export const defaultState = {
   ownerId: null,
   linkedAssessment: null,
   linkedQuestions: {},
+  defaultLanguage: null,
 }
 
 const HANDLERS = {
@@ -62,6 +63,7 @@ const HANDLERS = {
       linkedAssessment: assessment.linked_assessment,
       linkedQuestions: assessment.linked_questions || {},
       loaded: true,
+      defaultLanguage: assessment.default_language,
     })
   },
   [CREATE]: (state, { block }) => {

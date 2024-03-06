@@ -15,7 +15,10 @@ class Api::V2::Administration::CampaignUserScoringResource < Api::V2::Administra
   end
 
   def self.sortable_fields(context)
-    campaign_factor_ids = context[:campaign].campaign_factors.pluck(:id).map { |id| :"#{id}" }
-    super(context) + %i[email user_id] + campaign_factor_ids
+    campaign = context[:campaign]
+    campaign_factor_ids = campaign.campaign_factors.pluck(:id).map { |id| :"#{id}" }
+    ranked_exists = campaign.campaign_factors.exists?(ranked: true)
+    stack_rank = ranked_exists ? %i[stack_rank] : []
+    super(context) + %i[email] + campaign_factor_ids + stack_rank
   end
 end

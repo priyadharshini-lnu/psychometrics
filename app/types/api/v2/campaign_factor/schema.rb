@@ -38,6 +38,7 @@ module Api
             optional(:assessment_id).maybe(:string)
             optional(:factor_id).maybe(:string)
             optional(:description).maybe(:string)
+            optional(:ranked).maybe(:bool)
           end
         end
 
@@ -54,6 +55,7 @@ module Api
             optional(:assessment_id).maybe(:string)
             optional(:factor_id).maybe(:string)
             optional(:description).maybe(:string)
+            optional(:ranked).maybe(:bool)
           end
         end
 

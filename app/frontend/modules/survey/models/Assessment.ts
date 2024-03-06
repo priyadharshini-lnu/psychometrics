@@ -16,4 +16,5 @@ export default interface AssessmentInterface {
     content: string
   }
   linked_questions: {[key:number]: number[]}
+  default_language: string
 }

@@ -54,6 +54,8 @@ export const REMOVE_REPORT = 'resource/campaigns/report/REMOVE'
 export const EXPORT_COMPLETION_STATUSES = 'resource/campaigns/users/EXPORT_COMPLETION_STATUSES'
 export const EXPORT_COMPACT_COMPLETION_STATUSES = 'resource/campaigns/users/EXPORT_COMPACT_COMPLETION_STATUSES'
 export const EXPORT_USERS = 'resource/campaigns/users/EXPORT_USERS'
+export const ASSIGN_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/ASSIGN_REPORTS_AND_ASSESSMENTS'
+export const EXPORT_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/EXPORT_REPORTS_AND_ASSESSMENTS'
 
 export interface ShortUser {
   firstName: string
@@ -90,6 +92,26 @@ export const importUsers = (campaignId: number, body: any): ApiAction<ShortUser[
     body,
     loader: true,
     contentType: 'multipart/form-data;',
+  },
+})
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const assignReportsAndAssessments = (campaignId: number, body: any): ApiAction<ShortUser[]> => ({
+  type: ASSIGN_REPORTS_AND_ASSESSMENTS,
+  campaignId,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/users/assign_reports_and_assessments`,
+    body,
+    loader: true,
+    contentType: 'multipart/form-data;',
+  },
+})
+
+export const exportReportsAndAssessments = (campaignId: number): ApiAction<{}> => ({
+  type: EXPORT_REPORTS_AND_ASSESSMENTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/users/export_reports_and_assessments`,
   },
 })
 

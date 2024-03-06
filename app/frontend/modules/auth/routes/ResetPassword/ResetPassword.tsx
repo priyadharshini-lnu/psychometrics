@@ -8,6 +8,7 @@ import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from '../Registration/styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
+import { Flash } from '~/components/Flash'
 
 const { I18n } = window
 
@@ -15,7 +16,7 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const ResetPasswordComponent: React.FC<Props> = ({
-  projectConfig, csrfToken, user, errors,
+  projectConfig, csrfToken, user, errors, flash,
 }) => {
   if (user.reset_password_token) { return null }
   return (
@@ -29,6 +30,7 @@ const ResetPasswordComponent: React.FC<Props> = ({
           {errors.base.map(message => <Alert message={message} type="error" />)}
         </div>
       )}
+      <Flash flash={flash} />
       <Form
         id="form-reset"
         layout="vertical"

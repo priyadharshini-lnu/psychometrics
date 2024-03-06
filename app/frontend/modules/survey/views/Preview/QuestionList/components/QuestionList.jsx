@@ -5,17 +5,26 @@ import styles from './QuestionList.less'
 
 
 const QuestionList = ({
-  page, questions, readOnly, backButtonPressed = false,
+  page, questions, readOnly, backButtonPressed = false, defaultLanguage = 'en',
 }) => {
   const transition = useTransition(questions, {
     from: { opacity: 0, transform: `translate(0px, ${backButtonPressed ? -100 : 100}px)` },
     enter: [
       {
-        opacity: 1, position: 'relative', transform: 'translate(0px, 0px)', delay: 300,
+        opacity: 1,
+        position: 'relative',
+        transform: 'translate(0px, 0px)',
+        delay: 300,
+        pointerEvents: 'auto',
       },
       { transform: 'none', delay: 1 },
     ],
-    leave: { opacity: 0, position: 'absolute', transform: `translate(0px, ${backButtonPressed ? 100 : -100}px)` },
+    leave: {
+      opacity: 0,
+      position: 'absolute',
+      transform: `translate(0px, ${backButtonPressed ? 100 : -100}px)`,
+      pointerEvents: 'none',
+    },
     config: (item, state) => {
       switch (state) {
         case 'enter': return { delay: 200, duration: 500 }
@@ -31,7 +40,7 @@ const QuestionList = ({
 
     return (
       <a.div className={styles.main} style={{ ...style }} key={q.key}>
-        <Question readOnly={readOnly} page={page} model={q} key={question.id} />
+        <Question readOnly={readOnly} page={page} model={q} key={question.id} defaultLanguage={defaultLanguage} />
       </a.div>
     )
   })

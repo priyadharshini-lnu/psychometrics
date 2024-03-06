@@ -23,5 +23,9 @@ module Api
 
       jsonapi_render json: factors.to_a, options: { resource: Api::V2::Administration::FactorResource }
     end
+
+    # Policy for this controller is quit complex and depends on lot of things.
+    # So we can't use model from base controller. If we don't define this it send 403 response
+    def model; end
   end
 end

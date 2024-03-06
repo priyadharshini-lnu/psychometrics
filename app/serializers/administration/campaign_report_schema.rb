@@ -10,6 +10,7 @@ module Administration
         required(:report_id).filled(:int?)
         required(:name).filled(:str?)
         required(:user_access).filled(:bool?)
+        required(:auto_assign).filled(:bool?)
         required(:assessor_access).filled(:bool?)
         required(:report_family_name).filled(:str?)
         required(:permissions).hash do

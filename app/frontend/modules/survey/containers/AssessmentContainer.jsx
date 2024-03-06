@@ -64,10 +64,12 @@ class AssessmentContainer extends Component {
 
   render () {
     const {
-      disabled, selectedLocale, type, showAsSinglePage,
+      disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser,
     } = this.props
     return (
-      <DefaultAntThemeWrapper>
+      <ThemeWrapper
+        renderedByEnduser={renderedByEnduser}
+      >
         <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
           <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
             {/* <ConnectionCheck
@@ -78,14 +80,23 @@ class AssessmentContainer extends Component {
             <DndProvider backend={HTML5Backend}>
               <div className={containerStyles.previewConainer}>
                 {disabled && this.overlay()}
-                <AssessmentPreview showAsSinglePage={showAsSinglePage} type={type} />
+                <AssessmentPreview
+                  showAsSinglePage={showAsSinglePage}
+                  type={type}
+                  defaultLanguage={data.default_language}
+                />
               </div>
             </DndProvider>
           </ConfigProvider>
         </ErrorBoundary>
-      </DefaultAntThemeWrapper>
+      </ThemeWrapper>
     )
   }
 }
+
+const ThemeWrapper = ({ renderedByEnduser, children }) => (
+  renderedByEnduser
+    ? <>{children}</> : <DefaultAntThemeWrapper>{children}</DefaultAntThemeWrapper>
+)
 
 export default connect(state => ({ disabled: state.preview.disabled }), {})(AssessmentContainer)

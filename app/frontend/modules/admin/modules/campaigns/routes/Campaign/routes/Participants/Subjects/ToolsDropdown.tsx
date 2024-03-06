@@ -17,6 +17,7 @@ const getMenuProps = ({
   onExport,
   onUserExport,
   onCompactExport,
+  onExportReportsAndAssessments,
 }): MenuProps => {
   const menuItems: ItemType[] = []
   const exportMenuItems = [
@@ -38,6 +39,17 @@ const getMenuProps = ({
     key: 'import',
     label: I18n.t('user.toolbar.import'),
   })
+  menuItems.push({ type: 'divider' })
+  permissions.import && menuItems.push({
+    key: 'import_reports',
+    label: I18n.t('user.toolbar.import_reports'),
+  })
+
+  permissions.import && menuItems.push({
+    key: 'export_reports_and_assessments',
+    label: I18n.t('user.toolbar.export_reports_and_assessments'),
+  })
+
 
   const handleMenuClick = ({ key }) => {
     if (key === 'export_completion') {
@@ -52,6 +64,12 @@ const getMenuProps = ({
     if (key === 'import') {
       return openModal('ImportUsersModal', { campaignId })
     }
+    if (key === 'import_reports') {
+      return openModal('ImportReportsAndAssessmentsModal', { campaignId })
+    }
+    if (key === 'export_reports_and_assessments') {
+      return onExportReportsAndAssessments(campaignId)
+    }
   }
 
   return ({ items: menuItems, onClick: handleMenuClick })
@@ -63,6 +81,7 @@ interface Props {
   exportCompletionStatuses(campaignId: number): Promise<void>
   exportUsers: ExportUsers
   exportCompactCompletionStatuses(campaignId: number): Promise<void>
+  exportReportsAndAssessments(campaignId: number): Promise<void>
   permissions: {
     exportUsers: boolean,
     exportCompletionStatus: boolean,
@@ -73,6 +92,7 @@ interface Props {
 
 const ToolsDropdown: React.FC<Props> = ({
   campaignId, openModal, permissions, exportCompletionStatuses, exportCompactCompletionStatuses, exportUsers,
+  exportReportsAndAssessments,
 }) => {
   const onExport = () => {
     exportCompletionStatuses(campaignId).then(() => {
@@ -100,6 +120,12 @@ const ToolsDropdown: React.FC<Props> = ({
     })
   }
 
+  const onExportReportsAndAssessments = (campaignId) => {
+    exportReportsAndAssessments(campaignId).then(() => {
+      message.success(I18n.t('campaign_assessment.messages.export_reports_and_assessments_statuses_scheduled'))
+    })
+  }
+
   return (
     <ConditionalDropdown
       menu={getMenuProps({
@@ -109,6 +135,7 @@ const ToolsDropdown: React.FC<Props> = ({
         onExport,
         onUserExport,
         onCompactExport,
+        onExportReportsAndAssessments,
       })}
       innerElement={(
         <Button>

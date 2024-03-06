@@ -1,6 +1,7 @@
 import { Component, lazy, Suspense } from 'react'
 import { Spin } from 'antd'
 import PropTypes from 'prop-types'
+import { isRtl } from '~/utils/locales'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { Modules } from '~/modules/survey/components/modules'
 import styles from './Question.less'
@@ -22,13 +23,14 @@ class QuestionRenderer extends Component {
   render () {
     const {
       model,
+      assessmentDefaultLanguage,
       model: { type },
     } = this.props
 
     const notLazyLoadedYet = type !== 'TextEntry' && type !== 'SideBySide'
 
     return (
-      <div className={styles.contentOuter}>
+      <div className={`${styles.contentOuter} ${isRtl(assessmentDefaultLanguage) ? 'rtl' : ''}`}>
         <Suspense fallback={<Spin />}>
           {type === 'TextEntry' && (
             <TextEntryBuilder {...this.props} model={QuestionSerializer.wrap(model)} />

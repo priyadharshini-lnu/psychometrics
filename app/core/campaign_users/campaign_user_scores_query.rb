@@ -20,6 +20,12 @@ module CampaignUsers
     def sql
       sanitized_sort_column = ActiveRecord::Base.connection.quote_column_name(sort[:field])
       factor_columns = dynamic_factor_columns
+      rank_column = find_rank_by_column
+      ranking_sql = if rank_column
+                      "RANK() OVER (ORDER BY NULLIF(ct.\"#{rank_column}\"::text, 'null')::float DESC) as stack_rank,"
+                    else
+                      ''
+                    end
       base_query = <<~SQL.squish
         SELECT
           cu.id,
@@ -28,9 +34,11 @@ module CampaignUsers
           cu.campaign_scores_finalized,
           cu.campaign_scores_finalized_date,
           cu.campaign_id,
+          u.id as user_id,
           u.email,
           u.first_name,
           u.last_name,
+          #{ranking_sql}
       SQL
       base_query += "#{factor_columns.empty? ? '' : 'ct.*,'} cu.user_id FROM campaign_users cu
       JOIN users u ON cu.user_id = u.id "
@@ -86,6 +94,11 @@ module CampaignUsers
         campaign_id: campaign_id,
         sort: sort
       }
+    end
+
+    def find_rank_by_column
+      rank_by_factor = CampaignFactor.find_by(campaign_id: campaign_id, ranked: true)
+      rank_by_factor&.id&.to_s
     end
   end
 end
