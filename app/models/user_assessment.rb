@@ -157,13 +157,13 @@ class UserAssessment < ApplicationRecord
     end['supportedLanguage']
   end
 
-  def external_user_reports(type)
-    external_reports = assessment.reports.select(&:"provider_#{type}?")
+  def user_reports(type = nil)
+    report_ids = type ? assessment.reports.select(&:"provider_#{type}?").map(&:id) : assessment.report_ids
 
-    return UserReport.none if external_reports.blank?
+    return UserReport.none if report_ids.blank?
 
     UserReport.where(
-      report_id: external_reports.pluck(:id),
+      report_id: report_ids,
       user_id: subject_id,
       campaign_id: campaign_id
     )
@@ -229,10 +229,6 @@ class UserAssessment < ApplicationRecord
 
   def applicable_external_norm_id
     campaign_assessment&.external_norm_id || assessment.external_settings[:norm_id]
-  end
-
-  def user_reports
-    UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: campaign_id)
   end
 
   def norm_name

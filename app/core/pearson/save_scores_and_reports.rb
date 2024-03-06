@@ -22,7 +22,7 @@ module Pearson
       user_assessment.update!(status: :completed, completed_at: Time.current) unless user_assessment.completed?
       generate_internal_reports
 
-      user_report = user_assessment.external_user_reports(:pearson).first
+      user_report = user_assessment.user_reports(:pearson).first
       return broadcast :ok unless user_report
 
       report_item = report_items.find do |item|
@@ -40,7 +40,7 @@ module Pearson
       ::UsersResults::GenerateReports.call(
         user_assessment.users_result,
         user_assessment.user,
-        exceptUserReportIds: user_assessment.external_user_reports(:pearson).pluck(:id)
+        exceptUserReportIds: user_assessment.user_reports(:pearson).pluck(:id)
       )
     end
   end

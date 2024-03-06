@@ -11,21 +11,21 @@ RSpec.describe UserAssessment, type: :model do
       with_values(not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5)
   }
 
-  describe '#external_user_reports' do
+  describe '#user_reports' do
     it 'returns saville user_reports' do
       assessment = create(:assessment, :saville)
       report = create(:report, :saville, assessments: [assessment])
       user_assessment = create(:user_assessment, assessment: assessment)
       user_report = create(:user_report, user_id: user_assessment.subject_id,
         report_id: report.id, campaign_id: user_assessment.campaign_id)
-      saville_user_reports = user_assessment.external_user_reports(:saville)
+      saville_user_reports = user_assessment.user_reports(:saville)
 
       expect(saville_user_reports).to include(user_report)
     end
 
     it 'returns chainable empty ActiveRecord::Relation object if there are no saville user_report' do
       user_assessment = create(:user_assessment)
-      saville_user_reports = user_assessment.external_user_reports(:saville)
+      saville_user_reports = user_assessment.user_reports(:saville)
 
       expect(saville_user_reports.is_a?(ActiveRecord::Relation)).to eq(true)
       expect(saville_user_reports.count).to eq(0)
