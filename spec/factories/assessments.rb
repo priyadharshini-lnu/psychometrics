@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :assessment, class: '::Assessments::Common' do
+  factory :assessment, class: ::Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }
     description { Faker::Lorem.characters(number: 5) }
     dimension
     extra { { icon_color: '#845EC2' } }
+    type { ::Assessments::Common }
 
     trait :with_report do
       after(:create) do |assessment, _evaluator|
