@@ -20,10 +20,26 @@ FactoryBot.define do
     factory :client_admin, traits: [:with_membership_client_admin], class: 'Users::Admin' do
       role { User::ADMIN_ROLE }
     end
-    factory :project_admin, traits: [:with_membership_project_admin], class: 'Users::Admin' do
+    factory :project_admin, traits: [:with_membership_campaign_admin], class: 'Users::Admin' do
       role { User::ADMIN_ROLE }
     end
+
+    factory :campaign_admin, traits: [:with_membership_project_admin], class: 'Users::Admin' do
+      role { User::ADMIN_ROLE }
+
+      memberships { [association(:campaign_admin_membership, campaign: campaign, permissions: permissions)] }
+
+      transient do
+        campaign { create(:campaign) }
+        permissions { nil }
+      end
+    end
+
     factory :manager, traits: [:with_membership_manager]
+
+    trait :with_membership_campaign_admin do
+      memberships { memberships_options.map { |opts| association(:campaign_admin_membership, opts) } }
+    end
 
     trait :with_membership_client_admin do
       memberships { memberships_options.map { |opts| association(:client_admin_membership, opts) } }

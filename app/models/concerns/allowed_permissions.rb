@@ -30,6 +30,7 @@ module AllowedPermissions
       manage_report_approvals
       view_stats
     ],
+    'campaign_factors' => %w[view manage],
     'messages' => %w[email instructions options],
     'norms' => %w[view manage],
     'dimensions' => %w[view manage],
@@ -83,6 +84,7 @@ module AllowedPermissions
       report_options
       manage_report_approvals
     ],
+    'campaign_factors' => %w[view manage],
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'messages' => %w[email instructions options],
     'sms_invites' => %w[view manage],
@@ -119,6 +121,7 @@ module AllowedPermissions
       manage_options
       manage_report_approvals
     ],
+    'campaign_factors' => %w[view manage],
     'sms_invites' => %w[view manage],
     'communications' => %w[view manage],
     'datasheets' => %w[view manage],

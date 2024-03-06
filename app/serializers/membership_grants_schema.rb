@@ -12,6 +12,7 @@ class MembershipGrantsSchema < BaseSchema
         optional(:results).maybe(:array).each(:str?)
         optional(:assessors).maybe(:array).each(:str?)
         optional(:campaigns).maybe(:array).each(:str?)
+        optional(:campaign_factors).maybe(:array).each(:str?)
         optional(:clients).maybe(:array).each(:str?)
         optional(:projects).maybe(:array).each(:str?)
         optional(:workshops).maybe(:array).each(:str?)

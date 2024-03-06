@@ -4,8 +4,8 @@ require 'rails_helper'
 require 'swagger_helper'
 
 describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: 'v2/swagger.json', type: :request do
-  let!(:superadmin) { create(:superadmin) }
   let!(:campaign) { create(:campaign) }
+  let!(:campaign_admin) { create(:campaign_admin, campaign: campaign) }
   let(:campaign_id) { campaign.id }
   let(:user) { create(:user) }
   let(:user_id) { user.id }
@@ -21,7 +21,7 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
   let(:factor_id) { campaign_factor.id.to_s }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
-  before { sign_in(superadmin) }
+  before { sign_in(campaign_admin) }
 
   path '/campaigns/{campaign_id}/campaign_user_scorings' do
     let!(:campaign_factor) do
