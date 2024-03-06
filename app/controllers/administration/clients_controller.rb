@@ -97,7 +97,7 @@ module Administration
     def export
       @_resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :project_admins)
 
-      audit! :export, nil
+      audit! :export, resource, client: resource
       respond_to do |format|
         filename = "#{resource_class.model_name.plural}-#{Time.zone.today}"
         format.csv do

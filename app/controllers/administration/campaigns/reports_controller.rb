@@ -168,14 +168,14 @@ module Administration
 
       def regenerate
         AdminJob.call(:bulk_regenerate_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
-        audit! :regenerate, nil, payload: { ids: params[:ids] }, campaign: campaign
+        audit! :regenerate, nil, record_type: 'CampaignReport', payload: { ids: params[:ids] }, campaign: campaign
 
         head :ok
       end
 
       def bulk_download
         AdminJob.call(:bulk_download_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
-        audit! :bulk_download, nil, payload: { ids: params[:ids] }, campaign: campaign
+        audit! :bulk_download, nil, record_type: 'CampaignReport', payload: { ids: params[:ids] }, campaign: campaign
 
         head :ok
       end

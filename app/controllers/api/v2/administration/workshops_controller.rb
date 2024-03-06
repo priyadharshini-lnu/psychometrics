@@ -28,7 +28,7 @@ module Api
       if response && response[:error]
         render json: { error: response[:error] }, status: 422
       else
-        audit! :create_bulk_workshops, nil, payload: workshop_params, campaign: campaign
+        audit! :create_bulk_workshops, nil, record_type: 'Workshop', payload: workshop_params, campaign: campaign
         jsonapi_render json: response[:workshops]
       end
     end
