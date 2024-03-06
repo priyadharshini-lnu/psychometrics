@@ -5,20 +5,20 @@
 class FactorSchema < BaseSchema
   def self.schema(_, _)
     Dry::Schema.JSON do
-      config.validate_keys = true
+      config.validate_keys = false
 
-      required(:id).filled(:int?)
-      required(:name).filled(:bool?)
-      required(:code).filled(:str?)
-      required(:description).filled(:int?)
-      required(:icon).filled(:str?)
-      required(:scoring_strategy).filled(:float?)
-      required(:use_percentage).maybe(:int?)
-      required(:use_sub_factor_norm_score).filled(:int?)
-      required(:external_scoring).filled(:str?)
-      required(:scale_min).filled(:float?)
-      required(:scale_max).maybe(:int?)
-      required(:custom_formula).maybe(:int?)
+      required(:id).maybe(:int?)
+      required(:name).maybe(:str?)
+      required(:code).maybe(:str?)
+      required(:description).maybe(:str?)
+      required(:icon).maybe(:str?)
+      required(:scoring_strategy).filled(:str?)
+      required(:use_percentage).filled(:bool?)
+      required(:use_sub_factor_norm_score).maybe(:bool?)
+      required(:external_scoring).value { hash? | array? | nil? }
+      required(:scale_min).maybe(:float?)
+      required(:scale_max).maybe(:float?)
+      required(:custom_formula).maybe(:str?)
       required(:factors_sub_factors).array(FactorsSubFactorSchema.schema(_, _))
     end
   end

@@ -20,7 +20,7 @@ class ReportSchema < BaseSchema
       required(:dimension_ids).filled(:array?).each(:int?)
       required(:completed_assessments).filled(:array?)
       required(:data_configuration).maybe(:hash?)
-      required(:data_sheet_columns).maybe(:array?)
+      required(:data_sheet_columns).value { hash? | array? }
       required(:relationships).array(RelationshipSchema.schema(_, _))
       required(:category).filled(:str?)
       required(:pages).array(Reports::PageSchema.schema(_, _))

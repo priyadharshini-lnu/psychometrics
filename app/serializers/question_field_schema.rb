@@ -5,9 +5,14 @@ class QuestionFieldSchema < BaseSchema
     Dry::Schema.JSON do
       config.validate_keys = true
 
-      required(:id).filled(:str?)
+      required(:id).filled(:int?)
       required(:name).filled(:str?)
-      required(:required_validation).filled(:bool?)
+      required(:required_validation).maybe do
+        hash do
+          required(:enabled).filled(:bool?)
+          optional(:type).maybe(:str?)
+        end
+      end
     end
   end
 end
