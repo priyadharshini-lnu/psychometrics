@@ -8,14 +8,18 @@ module UsersResults
           factor = factor_data[:factor]
           results = extended_scoring.dig(factor.id.to_s, 'results')&.
                     select { |r| !r.key?('max_value') || r['max_value'].present? }
-          return  broadcast :ok, extended_scoring unless results
 
-          score = calc_score(results)
-          percentage = if factors_question_count[factor.id].present?
-                         { 'percentage' => calc_percentage(results, factors_question_count[factor.id]) }
-                       else
-                         {}
-                       end
+          if results.present?
+            score = calc_score(results)
+            percentage = if factors_question_count[factor.id].present?
+                           { 'percentage' => calc_percentage(results, factors_question_count[factor.id]) }
+                         else
+                           {}
+                         end
+          else
+            score = nil
+            percentage = {}
+          end
 
           broadcast(:ok, extended_scoring.
             deep_merge(factor.id.to_s => { 'score' => score }).

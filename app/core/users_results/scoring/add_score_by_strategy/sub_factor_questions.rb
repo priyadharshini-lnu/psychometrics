@@ -9,9 +9,8 @@ module UsersResults
 
           results = SubFactorQuestions.get_results(factor_data, extended_scoring, factor_hash)&.
                     select { |r| !r.key?('max_value') || r['max_value'].present? }
-          return  broadcast :ok, extended_scoring unless results
 
-          score = calc_score(results)
+          score = results.present? ? calc_score(results) : nil
 
           broadcast :ok, extended_scoring.deep_merge(factor.id.to_s => { 'score' => score })
         end

@@ -74,7 +74,7 @@ RSpec.describe Scoring::MatrixTable do
           template_data
         )
         expect(result[:value]).to be_nil
-        expect(result[:max_value]).to eq(0)
+        expect(result[:max_value]).to be_nil
       end
       it 'returns nil' do
         result = matrix_table.calculate(
