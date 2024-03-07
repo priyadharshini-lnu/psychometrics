@@ -1,9 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import '../../app/frontend/styles/ant.less'
-
-import { LanguageIcon } from '../../app/frontend/glint/icons/LanguageIcon'
+import { LanguageIcon } from '~/glint/icons/LanguageIcon'
 
 export default {
   title: 'Icons/LanguageIcon',

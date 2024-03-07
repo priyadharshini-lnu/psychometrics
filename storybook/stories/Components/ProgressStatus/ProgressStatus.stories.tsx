@@ -2,8 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Col, Row } from 'antd'
 import { CheckCircleOutlined, ClockCircleOutlined, PlayCircleOutlined } from '@ant-design/icons'
-import '../../../app/frontend/styles/ant.less'
-import { ProgressStatus } from '../../../app/frontend/glint/components/ProgressStatus'
+import { ProgressStatus } from '~/glint/components/ProgressStatus'
 
 const ICON_CMPONENTS = {
   CheckIcon: CheckCircleOutlined,

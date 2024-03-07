@@ -1,8 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ViewsContainer } from '../../../app/frontend/glint/components/ViewsContainer'
-import '../../../app/frontend/styles/ant.less'
+import { ViewsContainer } from '~/glint/components/ViewsContainer'
 
 export default {
   title: 'Components/ViewsContainer',

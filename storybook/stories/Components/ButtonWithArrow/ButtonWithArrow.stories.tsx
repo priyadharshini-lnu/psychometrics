@@ -1,10 +1,9 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import '../../../app/frontend/styles/ant.less'
-import { ButtonWithArrow } from '../../../app/frontend/glint/components/ButtonWithArrow'
+import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 
-import '../../../app/frontend/styles/utils.less'
+import '~/styles/utils.less'
 
 export default {
   title: 'Components/ButtonWithArrow',

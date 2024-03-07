@@ -1,8 +1,7 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import '../../../app/frontend/styles/ant.less'
-import { ViewMoreText } from '../../../app/frontend/glint/components/ViewMoreText'
+import { ViewMoreText } from '~/glint/components/ViewMoreText'
 
 export default {
   title: 'Components/ViewMoreText',
