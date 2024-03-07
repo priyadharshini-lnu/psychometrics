@@ -160,7 +160,7 @@ class Foundation extends Component {
 
   render () {
     const {
-      module, outerStyle: frameStyle, children, shadow, selected,
+      module, outerStyle: frameStyle, children, shadow, selected, error,
     } = this.props
     const mprops = module.props
     if (module.meta.hidden) { return null }
@@ -189,6 +189,7 @@ class Foundation extends Component {
         [styles.shadow]: shadow && !preview,
         [styles.selected]: isSelected,
         [styles.locked]: module.meta.locked,
+        [styles.error]: error,
       }, 'fe-module-container')
     return (
       <div

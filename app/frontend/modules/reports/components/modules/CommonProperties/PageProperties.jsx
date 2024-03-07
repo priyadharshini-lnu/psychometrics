@@ -24,7 +24,7 @@ class PageProperties extends Component {
   pastePage = () => {
     if (!navigator.clipboard) { return }
 
-    const { page, pastePage } = this.props
+    const { page, pastePage, report } = this.props
     navigator.clipboard.readText().then((text) => {
       try {
         const data = JSON.parse(text)
@@ -32,6 +32,7 @@ class PageProperties extends Component {
         const modules = data.data.page.modules.map((m) => {
           const data = JSON.parse(JSON.stringify(m))
           data.id = null
+          data.assessment_id = report.assessments[m.assessment_id] ? m.assessment_id : null
           return new Module(data, page)
         })
 

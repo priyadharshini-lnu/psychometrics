@@ -3,6 +3,7 @@ import { Component } from 'react'
 import {
   Slider, InputNumber, Row, Col, Collapse, Input,
 } from 'antd'
+import { ErrorBoundary } from 'react-error-boundary'
 import { Properties } from '~/modules/reports/components/modules'
 import ModuleModel from '~/modules/reports/models/Module'
 import LayoutManager from '~/modules/reports/models/LayoutManager'
@@ -82,7 +83,16 @@ class PropertyPanel extends Component {
     if (!View) { return }
 
     const model = new ModuleModel(module, { id: module.page_id })
-    return (<View model={model || page} />)
+    return (
+      <ErrorBoundary
+        key={module.id}
+        fallbackRender={() => (
+          <p style={{ color: '#f00' }}>{I18n.t('errors.module_props_error')}</p>
+        )}
+      >
+        <View model={model || page} />
+      </ErrorBoundary>
+    )
   }
 
   renderSlider (props, label) {

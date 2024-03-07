@@ -1995,6 +1995,9 @@ en:
       not_saved:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
+    module_error: Something went wrong with this module, please contact administration.
+    module_error_editor: Something went wrong with this module, please check module settings.
+    module_props_error: Something went wrong with this module.
     try_again: Please try again
     webhooks:
       multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
