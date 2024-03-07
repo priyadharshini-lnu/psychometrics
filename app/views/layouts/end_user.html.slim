@@ -38,6 +38,7 @@ html dir=dir
         var user = state.currentUser;
         var BASE_URL = config.url;  // Settings/ENV CHATWOOT_BASE_URL
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        window.chatwootSettings = {position: #{I18n.locale == :ar} ? 'left' : 'right'};
         g.src= BASE_URL + "/packs/js/sdk.js";
         s.parentNode.insertBefore(g,s);
         g.onload=function(){
@@ -55,6 +56,7 @@ html dir=dir
               email: user.email,
               name: user.fullName
             })
+            window.$chatwoot.setLocale('#{I18n.locale}')
           });
         }
       })(document,"script");
