@@ -18,13 +18,13 @@ describe('CommentItem', () => {
     },
   }
 
-  const mockCommentRemove = jest.fn()
-  const mockCommentEditSave = jest.fn(() => Promise.resolve())
-  const mockCommentResolve = jest.fn()
-  const mockCommentRead = jest.fn()
+  const mockCommentRemove = vi.fn()
+  const mockCommentEditSave = vi.fn(() => Promise.resolve())
+  const mockCommentResolve = vi.fn()
+  const mockCommentRead = vi.fn()
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('renders comment text correctly', () => {
@@ -133,7 +133,6 @@ describe('CommentItem', () => {
         onRead={mockCommentRead}
       />,
     )
-
     expect(screen.getByTestId(/comment-item/i)).toHaveClass('new')
 
     await user.hover(screen.getByTestId(/comment-item/i))

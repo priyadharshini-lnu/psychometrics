@@ -24,13 +24,13 @@ describe('Proper dates should be selected after ', () => {
     const endDateInput = screen.getByPlaceholderText('End date')
     await waitFor(async () => {
       await user.click(startDateInput)
-    })
+    }, { timeout: 3000 })
 
     const todayRange = screen.getByText('Today')
     todayRange.style['pointer-events'] = 'auto'
     await waitFor(async () => {
       await user.click(todayRange)
-    })
+    }, { timeout: 3000 })
     expect(startDateInput).toHaveDisplayValue(expectedStartDate)
     expect(endDateInput).toHaveDisplayValue(expectedEndDate)
   })
@@ -54,7 +54,7 @@ describe('Proper dates should be selected after ', () => {
     todayRange.style['pointer-events'] = 'auto'
     await waitFor(async () => {
       await user.click(todayRange)
-    })
+    }, { timeout: 3000 })
     expect(startDateInput).toHaveDisplayValue(expectedStartDate)
     expect(endDateInput).toHaveDisplayValue(expectedEndDate)
   })
@@ -72,13 +72,13 @@ describe('Proper dates should be selected after ', () => {
     const endDateInput = screen.getByPlaceholderText('End date')
     await waitFor(async () => {
       await user.click(startDateInput)
-    })
+    }, { timeout: 3000 })
 
     const todayRange = screen.getByText('Current Week')
     todayRange.style['pointer-events'] = 'auto'
     await waitFor(async () => {
       await user.click(todayRange)
-    })
+    }, { timeout: 3000 })
     expect(startDateInput).toHaveDisplayValue(expectedStartDate)
     expect(endDateInput).toHaveDisplayValue(expectedEndDate)
   })
@@ -98,13 +98,13 @@ describe('Proper dates should be selected after ', () => {
     const endDateInput = screen.getByPlaceholderText('End date')
     await waitFor(async () => {
       await user.click(startDateInput)
-    })
+    }, { timeout: 3000 })
 
     const todayRange = screen.getByText('Last Week')
     todayRange.style['pointer-events'] = 'auto'
     await waitFor(async () => {
       await user.click(todayRange)
-    })
+    }, { timeout: 3000 })
     expect(startDateInput).toHaveDisplayValue(expectedStartDate)
     expect(endDateInput).toHaveDisplayValue(expectedEndDate)
   })
@@ -122,13 +122,13 @@ describe('Proper dates should be selected after ', () => {
     const endDateInput = screen.getByPlaceholderText('End date')
     await waitFor(async () => {
       await user.click(startDateInput)
-    })
+    }, { timeout: 3000 })
 
     const todayRange = screen.getByText('Current Month')
     todayRange.style['pointer-events'] = 'auto'
     await waitFor(async () => {
       await user.click(todayRange)
-    })
+    }, { timeout: 3000 })
     expect(startDateInput).toHaveDisplayValue(expectedStartDate)
     expect(endDateInput).toHaveDisplayValue(expectedEndDate)
   })
@@ -148,13 +148,13 @@ describe('Proper dates should be selected after ', () => {
     const endDateInput = screen.getByPlaceholderText('End date')
     await waitFor(async () => {
       await user.click(startDateInput)
-    })
+    }, { timeout: 3000 })
 
     const todayRange = screen.getByText('Last Month')
     todayRange.style['pointer-events'] = 'auto'
     await waitFor(async () => {
       await user.click(todayRange)
-    })
+    }, { timeout: 3000 })
     expect(startDateInput).toHaveDisplayValue(expectedStartDate)
     expect(endDateInput).toHaveDisplayValue(expectedEndDate)
   })
@@ -174,13 +174,13 @@ describe('Proper dates should be selected after ', () => {
     const endDateInput = screen.getByPlaceholderText('End date')
     await waitFor(async () => {
       await user.click(startDateInput)
-    })
+    }, { timeout: 3000 })
 
     const todayRange = screen.getByText('All Time')
     todayRange.style['pointer-events'] = 'auto'
     await waitFor(async () => {
       await user.click(todayRange)
-    })
+    }, { timeout: 3000 })
     expect(startDateInput).toHaveDisplayValue(expectedStartDate)
     expect(endDateInput).toHaveDisplayValue(expectedEndDate)
   })

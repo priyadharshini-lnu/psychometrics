@@ -17,7 +17,7 @@ describe('initializing base assessment', () => {
 
   test('middleware should call next if is not NEXT_PAGE', () => {
     const flow = middleware(store)
-    const next = jest.fn()
+    const next = vi.fn()
     flow(next)({})
     expect(next.mock.calls.length).toBe(1)
     expect(store.getState()).toMatchSnapshot('default_store')
@@ -31,7 +31,7 @@ describe('initializing base assessment', () => {
 
   test('trigger next page up to end', () => {
     const flow = middleware(store)
-    const next = jest.fn()
+    const next = vi.fn()
     flow(next)({ type: NEXT_PAGE }) // initial from saga
     flow(next)({ type: NEXT_PAGE })
     expect(store.getState().preview.currentElement).toBe('2/0')
@@ -50,7 +50,7 @@ describe('initializing base assessment from not the first step', () => {
 
   test('init action should init assessment from element 2', () => {
     const flow = middleware(store)
-    const next = jest.fn()
+    const next = vi.fn()
     store.dispatch({ type: INIT, data: assessment, result: { current_element: '2/0', current_page: 0, results: { 1: { answers: [{ index: 0, value: true }] }}, seedrandom: 1 } })
     expect(store.getState().preview.currentElement).toBe('2/0')
     expect(store.getState().preview.currentPage).toBe(0)
@@ -69,7 +69,7 @@ describe('initializing base assessment from question with display logic', () => 
 
   test('init action should init assessment from element 2/0 page 2 and skip it to next as it does not have questions', () => {
     const flow = middleware(store)
-    const next = jest.fn()
+    const next = vi.fn()
     store.dispatch({ type: INIT, data: assessment, result: { current_element: '2/0', current_page: 1, seedrandom: 1 } })
     flow(next)({ type: NEXT_PAGE, testDisplayLogic: true })
     expect(store.getState().preview.currentElement).toBe('2/1')
@@ -84,7 +84,7 @@ describe('initializing base assessment from question with display logic', () => 
 
   test('init action should init assessment from element 2/0 page 2 and show only second quesion', () => {
     const flow = middleware(store)
-    const next = jest.fn()
+    const next = vi.fn()
     const data = _.cloneDeep(assessment)
     data.blocks[0].questions.push({ ...data.blocks[0].questions[0], id: 4 })
 
@@ -102,7 +102,7 @@ describe('initializing base assessment from question with display logic', () => 
 
 describe('assessment with invalid display logic should skip page without question', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   const data = _.cloneDeep(assessmentWithDisplayLogic)
   _.remove(data.blocks[0].questions, { id: 3 })
@@ -129,7 +129,7 @@ describe('assessment with invalid display logic should skip page without questio
 
 describe('assessment with invalid display logic condition', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithDisplayLogic, result: {} })
   flow(next)({ type: NEXT_PAGE }) // initial from saga
@@ -155,7 +155,7 @@ describe('assessment with invalid display logic condition', () => {
 
 describe('assessment with valid display logic condition', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithDisplayLogic, result: {} })
   flow(next)({ type: NEXT_PAGE }) // initial from saga
@@ -176,7 +176,7 @@ describe('assessment with valid display logic condition', () => {
 
 describe('assessment with valid invalid skip logic condition', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithSkipLogic, result: {} })
   flow(next)({ type: NEXT_PAGE }) // initial from saga
@@ -191,7 +191,7 @@ describe('assessment with valid invalid skip logic condition', () => {
 
 describe('assessment with valid valid skip logic condition', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithSkipLogic, result: {} })
   flow(next)({ type: NEXT_PAGE }) // initial from saga
@@ -207,7 +207,7 @@ describe('assessment with valid valid skip logic condition', () => {
 
 describe('assessment with valid valid skip logic condition', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithSkipLogic, result: {} })
   flow(next)({ type: NEXT_PAGE }) // initial from saga
@@ -224,7 +224,7 @@ describe('assessment with valid valid skip logic condition', () => {
 
 describe('assessment with valid valid skip logic to end of assessment condition ', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   const data: any = _.cloneDeep(assessmentWithSkipLogic)
   data.blocks[0].questions[0].skip_logic[0].destination = 'EndOfAssessment'
@@ -242,7 +242,7 @@ describe('assessment with valid valid skip logic to end of assessment condition 
 
 describe('assessment with valid valid skip to specific block', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   const data: any = _.cloneDeep(assessmentWithSkipLogic)
   data.blocks[0].questions[0].skip_logic[0].destination = 'SpecificBlock'
@@ -262,7 +262,7 @@ describe('assessment with valid valid skip to specific block', () => {
 
 describe('assessment with valid valid skip to specific block not in linear should be ignored', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   const data: any = _.cloneDeep(assessmentWithSkipLogic)
   data.flow.elements = [
@@ -287,7 +287,7 @@ describe('assessment with valid valid skip to specific block not in linear shoul
 
 describe('assessment with submit page', () => {
   const store: any = createStore(reducers)
-  const next = jest.fn()
+  const next = vi.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithSubmit, result: {} })
   flow(next)({ type: NEXT_PAGE }) // initial from saga

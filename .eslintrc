@@ -23,8 +23,7 @@
     "react",
     "import",
     "@typescript-eslint",
-    "testing-library",
-    "jest-dom"
+    "testing-library"
   ],
   "rules": {
     "import/no-named-as-default-member": 0,
