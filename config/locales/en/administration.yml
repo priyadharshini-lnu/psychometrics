@@ -939,6 +939,9 @@ en:
           integration_types:
             iframe: IFrame
             ldb: Lockdown Browser
+          proctoring_types:
+            offline: Offline
+            online: Online
           rule_types:
             allow_absence_in_frame: Allow absense in frame
             allow_to_use_books: Allow to use Books
@@ -952,6 +955,7 @@ en:
             allow_wrong_gaze_direction: Allow wrong gaze direction
           rules: Rules
           trial: Proctoring Trial
+          type: Type
       pdf_password: PDF Password
       users:
         completion_status: Completion Status

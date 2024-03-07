@@ -45,6 +45,7 @@ module Administration
               end
               required(:description).maybe(:str?)
               required(:integration_type).filled(:str?)
+              required(:proctoring_type).filled(:str?)
               required(:proctoring_trial).filled(:bool?)
               required(:workshop_booking_requires_prework_completion).filled(:bool?)
               required(:campaign_scoring_variables).maybe(:str?)
