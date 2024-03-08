@@ -1,5 +1,5 @@
 import FroalaEditor from 'froala-editor'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import EmbedMediaComponent from './EmbedMediaComponent'
 
 Object.assign(FroalaEditor.POPUP_TEMPLATES, {
@@ -40,7 +40,8 @@ export default function (editor) {
   }
 
   function renderPopupContent () {
-    ReactDOM.render(<EmbedMediaComponent editor={editor} />, document.getElementById('fr-embeded-media-container'))
+    const root = createRoot(document.getElementById('fr-embeded-media-container'))
+    root.render(<EmbedMediaComponent editor={editor} />)
   }
 
   return {

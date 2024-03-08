@@ -2,7 +2,7 @@
 import { Component } from 'react'
 import _ from 'lodash'
 import { Provider } from 'react-redux'
-import ReactDOM from 'react-dom'
+import { findDOMNode } from 'react-dom'
 import { normalize } from 'normalizr'
 import humps from 'humps'
 import Preview from '~/modules/reports/views/Preview'
@@ -19,7 +19,7 @@ class PreviewContainer extends Component {
   }
 
   componentDidMount () {
-    const parent = ReactDOM.findDOMNode(this).parentNode
+    const parent = findDOMNode(this).parentNode
     const {
       data, results, locales, pdfExport, skipLogic,
     } = parent.dataset

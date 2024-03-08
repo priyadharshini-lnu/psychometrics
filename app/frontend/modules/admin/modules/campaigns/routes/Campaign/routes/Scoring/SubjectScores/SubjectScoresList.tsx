@@ -26,7 +26,6 @@ const { I18n } = window
 type CampaignFactorGroupType = CampaignFactorGroup & {campaignFactors: CampaignFactor[]}
 
 type DataType = {
-  key: React.Key;
   id: string;
   email: string;
   campaignScoresFinalized: boolean | null;

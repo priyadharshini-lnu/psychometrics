@@ -1,4 +1,4 @@
-import React, { useState, ReactElement } from 'react'
+import React, { useState } from 'react'
 import {
   Modal, Button, Spin, Form,
 } from 'antd'
@@ -22,7 +22,7 @@ interface Props {
   requestScope?: string
   children({
     form, status, isEdit, fieldsUtil,
-  }: ChildrenProps): ReactElement | React.FC
+  }: ChildrenProps): React.ReactNode
   close(): void
   title?: string
   readableResourceName?: string

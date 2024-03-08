@@ -15,7 +15,7 @@ export const initTable = (tableName: string, maintainHistory = false, pageSize: 
 })
 
 export const changeFilter = (
-  tableName: string, filterName: string, filterValue: string | boolean | number | FilterValue,
+  tableName: string, filterName: string, filterValue: React.Key | boolean | FilterValue,
 ) => ({
   type: CHANGE_FILTER,
   payload: { tableName, filterName, filterValue },

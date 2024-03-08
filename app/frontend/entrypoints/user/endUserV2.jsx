@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import '~/modules/endUser/styles/global.less'
 import '~/styles/utils.less'
 import '~/utils/axiosInterceptException'
@@ -7,4 +7,5 @@ import Campaigns from '~/modules/endUser/modules/campaigns/App'
 
 initSentry()
 
-ReactDOM.render(<Campaigns />, document.getElementById('endUserContainer'))
+const root = createRoot(document.getElementById('endUserContainer'))
+root.render(<Campaigns />)

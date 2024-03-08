@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import '~/modules/admin/styles/common.less'
 import '~/styles/utils.less'
@@ -7,4 +7,5 @@ import { App as ReportApprovalsApp } from '~/modules/admin/modules/ReportApprova
 import initSentry from '~/libs/initSentry'
 
 initSentry()
-ReactDOM.render(<ReportApprovalsApp />, document.getElementById('report-approvals-container'))
+const root = createRoot(document.getElementById('report-approvals-container'))
+root.render(<ReportApprovalsApp />)

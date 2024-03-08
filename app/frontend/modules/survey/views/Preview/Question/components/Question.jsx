@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import ReactDOM from 'react-dom'
+import { findDOMNode } from 'react-dom'
 import PropTypes from 'prop-types'
 import mediumZoom from 'medium-zoom'
 import cs from 'classnames'
@@ -48,7 +48,7 @@ class Question extends Component {
 
   initImageZoom () {
     // eslint-disable-next-line react/no-find-dom-node
-    const node = ReactDOM.findDOMNode(this.question)
+    const node = findDOMNode(this.question)
     const images = node.querySelectorAll('img.zoom-image')
     this.zoom = mediumZoom(images)
   }

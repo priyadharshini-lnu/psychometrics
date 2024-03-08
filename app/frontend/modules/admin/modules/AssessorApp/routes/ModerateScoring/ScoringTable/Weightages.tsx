@@ -26,7 +26,6 @@ type FactorsMap = Record<string, Factor>;
 type WeightagesMap = Record<string, Record<string, number>>;
 
 type DataType = {
-  key: React.Key;
   assessmentName: string;
   [key: string]: string | number | null;
 }

@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import AssessorApp from '~/modules/admin/modules/AssessorApp/App'
 import initSentry from '~/libs/initSentry'
@@ -7,4 +7,5 @@ import '~/modules/admin/styles/common.less'
 import '~/styles/utils.less'
 
 initSentry()
-ReactDOM.render(<AssessorApp />, document.getElementById('assessor-app-container'))
+const root = createRoot(document.getElementById('assessor-app-container'))
+root.render(<AssessorApp />)
