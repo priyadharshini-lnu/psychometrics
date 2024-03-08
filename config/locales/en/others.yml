@@ -1925,10 +1925,10 @@ en:
         already_exists: Subject already exists in the invite.
       workshop_subject_create:
         already_exists: Subject already exists in this Assessment Center.
+        part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
       workshops:
         no_available_assessor_slots: No available slots for assessor %{assessor}
         no_available_manager_slots: No available slots for manager %{manager}
-        part_of_other_workshop: Subject is already a participant of '%{workshop_name}'.
     users:
       registrations:
         new:
@@ -1995,6 +1995,9 @@ en:
       not_saved:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
+    module_error: Something went wrong with this module, please contact administration.
+    module_error_editor: Something went wrong with this module, please check module settings.
+    module_props_error: Something went wrong with this module.
     try_again: Please try again
     webhooks:
       multiple_webhook_error: url can't be updated as there are multiple webhook for this project.

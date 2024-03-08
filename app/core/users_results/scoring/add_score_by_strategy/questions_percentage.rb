@@ -8,9 +8,8 @@ module UsersResults
           factor = factor_data[:factor]
           results = extended_scoring.dig(factor.id.to_s, 'results')&.
                     select { |r| !r.key?('max_value') || r['max_value'].present? }
-          return  broadcast :ok, extended_scoring unless results
 
-          score = scale_score(calc_score(results))
+          score = results.present? ? scale_score(calc_score(results)) : nil
 
           broadcast(:ok, extended_scoring.
             deep_merge(factor.id.to_s => { 'score' => score }))

@@ -2,6 +2,7 @@ import { Component } from 'react'
 import _ from 'lodash'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
+import { ErrorBoundary } from 'react-error-boundary'
 import { Modules } from '~/modules/reports/components/modules/Previews'
 import store from '~/modules/reports/store/PageList'
 import AppStore from '~/modules/reports/store/AppStore'
@@ -21,18 +22,25 @@ class Page extends Component {
     if (dashboard && module.props.hideOnDashboard) { return null }
     if (!module.type) { return }
     const View = Modules[module.type]
+
     return (
-      <View
+      <ErrorBoundary
         key={i}
-        module={module}
-        page={model}
-        preview
-        pageNumber={pageNumber}
-        totalPages={totalPages}
-        rstore={rstore}
-        moduleOverrides={moduleOverrides}
-        animation={!pdfExport}
-      />
+        fallbackRender={() => (
+          <Modules.Error module={module} page={model} preview />
+        )}
+      >
+        <View
+          module={module}
+          page={model}
+          preview
+          pageNumber={pageNumber}
+          totalPages={totalPages}
+          rstore={rstore}
+          moduleOverrides={moduleOverrides}
+          animation={!pdfExport}
+        />
+      </ErrorBoundary>
     )
   }
 
@@ -44,15 +52,21 @@ class Page extends Component {
     if (module.onPage(model)) { return }
     const View = Modules[module.type]
     return (
-      <View
+      <ErrorBoundary
         key={i}
-        module={module}
-        page={model}
-        preview
-        pageNumber={pageNumber}
-        totalPages={totalPages}
-        animation={!pdfExport}
-      />
+        fallbackRender={() => (
+          <Modules.Error module={module} page={model} preview />
+        )}
+      >
+        <View
+          module={module}
+          page={model}
+          preview
+          pageNumber={pageNumber}
+          totalPages={totalPages}
+          animation={!pdfExport}
+        />
+      </ErrorBoundary>
     )
   }
 

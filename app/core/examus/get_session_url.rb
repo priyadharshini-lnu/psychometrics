@@ -41,7 +41,7 @@ module Examus
         examName: campaign.name,
         duration: duration,
         schedule: false,
-        proctoring: 'offline',
+        proctoring: campaign.proctoring_type,
         identification: campaign.identification,
         rules: campaign.rules,
         # The user can start the test only after startDate

@@ -60,6 +60,7 @@ export interface CampaignOptions {
   proctoringEnabled: boolean
   rules: object
   identification: string
+  proctoringType: string
   availableInstructionLocales: string[]
   descriptionsWithLocales: DescriptionWithLocale[]
   availableDescriptionLocales: string[]
