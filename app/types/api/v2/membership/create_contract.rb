@@ -10,16 +10,12 @@ module Api
         rule(data: { attributes: :email }).validate(email_format: { allow_blank: true })
 
         rule(data: { attributes: :user_id }) do
-          current_client_id = values.dig(:data, :attributes, :client_id) || values.dig(:data, :attributes, :project_id)
-          key.failure(:already_added) if ::Membership.exists?(user_id: value, client_id: current_client_id)
-        end
-
-        rule(data: { attributes: :project_id }) do
-          current_client_id = value || values.dig(:data, :attributes, :client_id)
-          key.failure(:already_added) if ::Membership.exists?(
-            user_id: values.dig(:data, :attributes, :user_id),
-            client_id: current_client_id
-          )
+          client_id = values.dig(:data, :attributes, :client_id) || values.dig(:data, :attributes, :project_id)
+          campaign_id = values.dig(:data, :attributes, :campaign_id)
+          role = values.dig(:data, :attributes, :role)
+          if ::Membership.exists?(user_id: value, client_id: client_id, campaign_id: campaign_id, role: role)
+            key.failure(:already_added)
+          end
         end
       end
     end
