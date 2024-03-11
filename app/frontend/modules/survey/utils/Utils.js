@@ -53,4 +53,16 @@ export default {
     if (typeof str !== 'string') return false
     return !isNaN(str) && !isNaN(parseFloat(str))
   },
+
+  findName (prefix, arr) {
+    let i = 1
+    let name = ''
+    let item = null
+    do {
+      name = `${prefix} ${i}`
+      item = _.find(arr, { name })
+      i += 1
+    } while (item)
+    return name
+  },
 }

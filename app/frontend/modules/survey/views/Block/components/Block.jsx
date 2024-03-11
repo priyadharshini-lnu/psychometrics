@@ -93,6 +93,11 @@ class Block extends Component {
     openRandomization({ id: model.id, entityName: 'question' })
   }
 
+  blockSettings = () => {
+    const { model, openSettings } = this.props
+    openSettings({ id: model.id, entityName: 'question' })
+  }
+
   confirm = (name) => {
     const { cloneBlock, model } = this.props
     this.setState({ showPrompt: false })
@@ -147,6 +152,10 @@ class Block extends Component {
         )}
         id={`block_menu_${model.id}`}
       >
+        <MenuItem onSelect={this.blockSettings}>
+          <span className={`icon fa fa-picture-o ${styles.menuicon}`} />
+          Background Settings...
+        </MenuItem>
         <MenuItem onSelect={this.questionRandomization}>
           <span className={`icon fa fa-random ${styles.menuicon}`} />
           Question Randomization...
