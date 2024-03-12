@@ -5,9 +5,9 @@ class RelationshipWithUsageSchema < BaseSchema
     Dry::Schema.JSON do
       config.validate_keys = true
 
-      required(:id).filled(:str?)
+      required(:id).filled(:int?)
       required(:type).filled(:str?)
-      required(:name).filled(:str?)
+      required(:name).maybe(:str?)
       required(:assign_type).filled(:str?)
       required(:usage).value { int? | float? | nil? }
     end
