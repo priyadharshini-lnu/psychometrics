@@ -64,6 +64,7 @@ en:
         create_all:
           attributes:
             assessors:
+              blank: Select at least one assessor
               email_duplicated: The subject and assessor emails are duplicated
               multiple_leads_for_subject: Multiple Lead Assessors assigned to subject
             evaluators:
