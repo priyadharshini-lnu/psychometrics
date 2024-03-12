@@ -5,7 +5,7 @@ module UserReports
     queue_as :reports
 
     def perform(user_report_ids)
-      UserReport.where(id: user_report_ids).find_each(&:remove_pdf!)
+      UserReport.where(id: user_report_ids).find_each(&:remove_pdf_and_update_status!)
     end
   end
 end
