@@ -5,7 +5,7 @@ import {
 import { createPortal } from 'react-dom'
 import cs from 'classnames'
 import {
-  Row, Col, Space, Button, Typography, Empty, Flex, App,
+  Row, Col, Space, Button, Typography, Empty, Flex, App, Tooltip,
 } from 'antd'
 import {
   DndContext, useSensor, useSensors, MouseSensor, TouchSensor, DragEndEvent, DragOverlay, DragStartEvent,
@@ -17,6 +17,8 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 
+import { ConnectedProps, connect } from 'react-redux'
+import { RootState } from 'modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import { AddGroupForm } from './AddGroupForm'
 import { AddEditFactorForm } from './AddEditFactorForm'
@@ -25,6 +27,7 @@ import { Factor, FactorSortable, type CampaignFactor } from './Factor'
 import { getGroupById, updateArrayItemsPositionOnIndices, getItemIdFromSortingId } from '~/utils/dnd'
 import { ToolsDropdown } from './ToolsDropdown'
 import { ManageVariablesForm } from './ManageVariablesForm'
+import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 
 const getFactorsByGroupId = (factors: CampaignFactor[], groupId: string) => factors
   .filter(factor => factor.campaignFactorGroupId === parseInt(groupId, 10))
@@ -36,7 +39,15 @@ const getPrefixFactorIds = (factors: CampaignFactor[]) => factors.map(
 
 const { I18n } = window
 
-export const ScoringGroups = () => {
+const connector = connect(
+  (state: RootState) => ({
+    campaignPermissions: getCurrentCampaign(state).permissions,
+  }),
+)
+
+type Props = ConnectedProps<typeof connector>;
+
+const ScoringGroupsComponent = (props: Props) => {
   const [addGroup, setAddGroup] = useState(false)
   const [openAddEditFactor, setOpenAddEditFactor] = useState(false)
   const [currentGroupId, setCurrentGroupId] = useState<string>('')
@@ -49,6 +60,7 @@ export const ScoringGroups = () => {
   const [activeId, setActiveId] = useState<string | null>(null)
   const recentlyMovedToNewContainer = useRef(false)
   const { modal, message } = App.useApp()
+  const { campaignPermissions } = props
 
   const {
     createResource: initializeScoring,
@@ -462,14 +474,19 @@ export const ScoringGroups = () => {
         </Col>
         <Col>
           <Space>
-            <ToolsDropdown onClick={handleToolsDropdown} />
-            <Button
-              type="primary"
-              onClick={() => setAddGroup(true)}
+            {campaignPermissions.manageCampaignScoring ? <ToolsDropdown onClick={handleToolsDropdown} /> : null}
+            <Tooltip title={campaignPermissions.manageCampaignScoring ? ''
+              : I18n.t('administration.campaigns.users.no_permission_message')}
             >
-              <PlusOutlined />
-              {I18n.t('administration.scoring.add_group')}
-            </Button>
+              <Button
+                type="primary"
+                disabled={!campaignPermissions.manageCampaignScoring}
+                onClick={() => setAddGroup(true)}
+              >
+                <PlusOutlined />
+                {I18n.t('administration.scoring.add_group')}
+              </Button>
+            </Tooltip>
           </Space>
         </Col>
       </Row>
@@ -518,6 +535,7 @@ export const ScoringGroups = () => {
                       hasFactors={!!factors.length}
                       onGroupNameChange={handleGroupNameChange}
                       groupsCount={sortedGroups.length}
+                      permissions={campaignPermissions}
                     >
                       <SortableContext
                         items={getPrefixFactorIds(factors)}
@@ -532,6 +550,7 @@ export const ScoringGroups = () => {
                               factor={factor}
                               removeFactor={handleConfirmRemoveFactor}
                               onEditFactor={handleOpenEditFactor}
+                              permissions={campaignPermissions}
                             />
                           ))}
                         </Space>
@@ -555,6 +574,7 @@ export const ScoringGroups = () => {
                       getItemIdFromSortingId(activeId).toString()).length > 0}
                     addFactor={() => {}}
                     groupsCount={sortedGroups.length}
+                    permissions={campaignPermissions}
                   >
                     {getFactorsByGroupId(
                       campaignFactorsLocalState, getItemIdFromSortingId(activeId).toString(),
@@ -564,6 +584,7 @@ export const ScoringGroups = () => {
                         factor={factor}
                         removeFactor={() => {}}
                         onEditFactor={() => {}}
+                        permissions={campaignPermissions}
                       />
                     ))}
                   </GroupCard>
@@ -574,6 +595,7 @@ export const ScoringGroups = () => {
                       || {} as CampaignFactor}
                     removeFactor={() => {}}
                     onEditFactor={() => {}}
+                    permissions={campaignPermissions}
                   />
                 )
               ) : null
@@ -601,3 +623,5 @@ export const ScoringGroups = () => {
     </Flex>
   )
 }
+
+export const ScoringGroups = connector(ScoringGroupsComponent)

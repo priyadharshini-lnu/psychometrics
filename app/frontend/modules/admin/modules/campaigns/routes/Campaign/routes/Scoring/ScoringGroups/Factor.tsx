@@ -25,6 +25,10 @@ export type CampaignFactor = {
   ranked: boolean,
 }
 
+type Permissions = {
+  manageCampaignScoring: boolean
+}
+
 type Props = {
   factor: CampaignFactor
   dragStyle?: CSSProperties
@@ -34,11 +38,12 @@ type Props = {
   style?: CSSProperties
   removeFactor: (factor: CampaignFactor) => void
   onEditFactor: (factor: CampaignFactor) => Promise<void> | void
+  permissions: Permissions
 }
 
 export const Factor = React.forwardRef(
   ({
-    factor, attributes, listeners, dragStyle, style, removeFactor, onEditFactor,
+    factor, attributes, listeners, dragStyle, style, removeFactor, onEditFactor, permissions,
   }: Props, ref:RefObject<HTMLDivElement>) => {
     const handleDeleteFactor = () => {
       removeFactor(factor)
@@ -63,8 +68,8 @@ export const Factor = React.forwardRef(
             </Col>
             <Col span={6}>
               <Space className="w-100 justify-end">
-                <EditOutlined onClick={() => onEditFactor(factor)} />
-                <DeleteOutlined onClick={handleDeleteFactor} />
+                {permissions.manageCampaignScoring ? <EditOutlined onClick={() => onEditFactor(factor)} /> : null}
+                {permissions.manageCampaignScoring ? <DeleteOutlined onClick={handleDeleteFactor} /> : null}
               </Space>
             </Col>
           </Row>
@@ -79,10 +84,11 @@ type FactorSortableProps = {
   factor: CampaignFactor
   removeFactor: (factor: CampaignFactor) => void
   onEditFactor: (factor: CampaignFactor) => Promise<void> | void
+  permissions: Permissions
 }
 
 export const FactorSortable:FC<FactorSortableProps> = ({
-  factor, sortId, removeFactor, onEditFactor,
+  factor, sortId, removeFactor, onEditFactor, permissions,
 }) => {
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging,
@@ -111,6 +117,7 @@ export const FactorSortable:FC<FactorSortableProps> = ({
       style={containerStyle}
       removeFactor={removeFactor}
       onEditFactor={onEditFactor}
+      permissions={permissions}
     />
   )
 }

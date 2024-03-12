@@ -48,7 +48,8 @@ module Api
         data: modified_scores,
         meta: {
           record_count: total_records,
-          page_count: total_pages
+          page_count: total_pages,
+          permissions: permissions
         }
       }
     end
@@ -116,6 +117,21 @@ module Api
 
     def policy_class
       @policy_class ||= Api::Administration::CampaignUserScoringPolicy
+    end
+
+    private
+
+    def permissions
+      GetPermissionsHash.call!(
+        Api::Administration::CampaignUserScoringPolicy,
+        context[:user],
+        campaign,
+        %w[change_finalized_campaign_score rescore
+           change_finalized_campaign_score_bulk
+           rescore_bulk
+           export_scorings],
+        { campaign_id: campaign.id }
+      )
     end
   end
 end

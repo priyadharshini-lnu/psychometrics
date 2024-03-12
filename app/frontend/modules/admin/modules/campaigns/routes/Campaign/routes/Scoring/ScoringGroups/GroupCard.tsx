@@ -18,6 +18,10 @@ export type CampaignFactorGroup = {
   position: number
 }
 
+type Permissions = {
+  manageCampaignScoring: boolean
+}
+
 type Props = {
   group: CampaignFactorGroup
   removeGroup: (group: CampaignFactorGroup) => void
@@ -32,6 +36,7 @@ type Props = {
   style?: CSSProperties
   children?: React.ReactNode
   groupsCount: number
+  permissions: Permissions
 }
 
 const { I18n } = window
@@ -40,7 +45,7 @@ export const GroupCard = React.forwardRef(
   (
     {
       group, attributes, listeners, dragStyle, style, removeGroup, children, hasFactors, addFactor, onGroupNameChange,
-      groupsCount,
+      groupsCount, permissions,
     }: Props, ref:RefObject<HTMLDivElement>,
   ) => {
     const [editName, setEditName] = React.useState(false)
@@ -73,7 +78,7 @@ export const GroupCard = React.forwardRef(
               >
                 {group.name}
               </Typography.Text>
-              <EditOutlined onClick={() => setEditName(true)} />
+              {permissions.manageCampaignScoring ? <EditOutlined onClick={() => setEditName(true)} /> : null}
             </>
           )}
         </Space>
@@ -87,15 +92,17 @@ export const GroupCard = React.forwardRef(
         <Card bodyStyle={{ background: '#f2f2f2', minWidth: '300px', padding: '12px' }} title={titleElement}>
           <Space className="w-100" direction="vertical">
             {children}
-            <Button
-              className="ps-3 pe-3"
-              icon={<PlusOutlined />}
-              onClick={() => addFactor(group.id)}
-              type="link"
-              ghost
-            >
-              {I18n.t('administration.scoring.add_factor')}
-            </Button>
+            {permissions.manageCampaignScoring ? (
+              <Button
+                className="ps-3 pe-3"
+                icon={<PlusOutlined />}
+                onClick={() => addFactor(group.id)}
+                type="link"
+                ghost
+              >
+                {I18n.t('administration.scoring.add_factor')}
+              </Button>
+            ) : null}
           </Space>
         </Card>
       </div>
@@ -114,10 +121,11 @@ type GroupCardSortableProps = {
   children?: React.ReactNode
   onGroupNameChange?: (value: string, group: CampaignFactorGroup) => void
   groupsCount: number
+  permissions: Permissions
 }
 
 export const GroupCardSortable:FC<GroupCardSortableProps> = ({
-  group, children, sortId, items, removeGroup, hasFactors, addFactor, onGroupNameChange, groupsCount,
+  group, children, sortId, items, removeGroup, hasFactors, addFactor, onGroupNameChange, groupsCount, permissions,
 }) => {
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging,
@@ -150,6 +158,7 @@ export const GroupCardSortable:FC<GroupCardSortableProps> = ({
       addFactor={addFactor}
       onGroupNameChange={onGroupNameChange}
       groupsCount={groupsCount}
+      permissions={permissions}
     >
       {children}
     </GroupCard>
