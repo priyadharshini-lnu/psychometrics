@@ -29,7 +29,7 @@ interface OwnProps {
 
 type Props = PropsFromRedux & OwnProps
 
-const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions }) => {
+const Campaign: React.FC<Props> = ({ fetch, campaignPermissions }) => {
   const { campaignId } = useParams<{ campaignId: string }>()
   const { projectId } = useParams<{ projectId: string }>()
 
@@ -80,4 +80,4 @@ const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions }) => {
   )
 }
 
-export const Campaign = connector(CampaignComponent)
+export default connector(Campaign)

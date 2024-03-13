@@ -14,7 +14,7 @@ import illustration from '../../assets/images/ChangePassword.png'
 
 const { I18n } = window
 
-export const ChangePassword: React.FC = () => {
+const ChangePassword: React.FC = () => {
   const { collectionAction } = useResources<UserDetails>('users')
 
   const updateResource = (body: Record<string, string | undefined | null>) => collectionAction({
@@ -102,3 +102,5 @@ export const ChangePassword: React.FC = () => {
     </>
   )
 }
+
+export default ChangePassword

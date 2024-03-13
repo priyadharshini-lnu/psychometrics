@@ -1,5 +1,8 @@
-import { UserList } from './UserList'
-import { APIKeysList } from './APIKeysList'
+import { lazy } from 'react'
+
+const UserList = lazy(() => import('./UserList'))
+const APIKeysList = lazy(() => import('./APIKeysList'))
+
 
 const routes = [
   { redirect: true, from: '/users', to: '/users/users' },

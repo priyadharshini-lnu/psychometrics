@@ -1,7 +1,7 @@
-import { Project } from '~/modules/admin/modules/client/routes/Client/routes/Project'
-import { Campaign } from '~/modules/admin/modules/campaigns/routes/Campaign'
+import Project from '~/modules/admin/modules/client/routes/Client/routes/Project'
+import Campaign from '~/modules/admin/modules/campaigns/routes/Campaign'
 import ReportPreview from '~/modules/admin/modules/campaigns/routes/ReportPreview'
-import { ExternalReportPreview } from '~/modules/admin/modules/campaigns/routes/ExternalReportPreview'
+import ExternalReportPreview from '~/modules/admin/modules/campaigns/routes/ExternalReportPreview'
 
 export const routes = [
   {

@@ -6,8 +6,7 @@ import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { EditForm } from './EditForm'
 
 const { I18n } = window
-
-export const EditReport: React.FC = () => {
+const EditReport: React.FC = () => {
   const { id } = useParams<{id: string}>()
   useEffect(() => {
     fetchSingle({ id })
@@ -49,3 +48,5 @@ export const EditReport: React.FC = () => {
     </>
   )
 }
+
+export default EditReport

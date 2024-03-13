@@ -18,7 +18,7 @@ const { I18n } = window
 
 type ErrorMessageList = Record<string, ErrorMessage | undefined>
 
-export const AvailabilityListing = () => {
+const AvailabilityListing = () => {
   const {
     data: userAvailabilityDates, fetch, meta, isLoading, isRequestSuccessful, removeResource,
     createResource, updateResource,
@@ -153,3 +153,5 @@ export const AvailabilityListing = () => {
     </>
   )
 }
+
+export default AvailabilityListing

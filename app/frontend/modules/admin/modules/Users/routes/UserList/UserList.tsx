@@ -78,4 +78,4 @@ const UserListComponent: React.FC<Props> = ({
   )
 }
 
-export const UserList = connecter(UserListComponent)
+export default connecter(UserListComponent)

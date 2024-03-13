@@ -1,33 +1,30 @@
-import { ReportList } from './ReportList/routes/ReportList'
-import { ReportBundleList } from './ReportBundleList'
-import { ReportBundleReportList } from './ReportBundleReportList'
-import { EditReport } from './ReportList/routes/EditReport'
+import { lazy } from 'react'
 
 const routes = [
   { redirect: true, from: '/reports', to: '/reports/active' },
   {
     path: '/reports/active',
-    component: () => <ReportList reportTab="active" />,
+    component: lazy(() => import('./ReportList/routes/ReportList')),
   },
   {
     path: '/reports/archived',
-    component: () => <ReportList reportTab="archived" />,
+    component: lazy(() => import('./ReportList/routes/ReportList')),
   },
   {
     path: '/reports/trash',
-    component: () => <ReportList reportTab="deleted" />,
+    component: lazy(() => import('./ReportList/routes/ReportList')),
   },
   {
     path: '/reports/:id/edit',
-    component: () => <EditReport />,
+    component: lazy(() => import('./ReportList/routes/EditReport')),
   },
   {
     path: '/report_families',
-    component: () => <ReportBundleList />,
+    component: lazy(() => import('./ReportBundleList')),
   },
   {
     path: '/report_families/:id/reports',
-    component: () => <ReportBundleReportList />,
+    component: lazy(() => import('./ReportBundleReportList')),
   },
 ]
 
