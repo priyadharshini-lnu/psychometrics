@@ -55,7 +55,7 @@ unless Rails.env.test?
 
     policy.default_src :self
     policy.font_src(*font_src)
-    policy.img_src     '*', :data
+    policy.img_src     '*', :data, :blob
     policy.media_src   '*'
     policy.object_src  '*'
     policy.frame_src   '*'
