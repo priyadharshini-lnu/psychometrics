@@ -12,7 +12,7 @@ module Reports
         required(:name).filled(:str?)
         required(:position).filled(:int?)
         required(:props).maybe(:hash?)
-        required(:display_logic).maybe(:int?)
+        required(:display_logic).value { hash? | nil? }
         required(:modules).array(Reports::ModuleSchema.schema(_, _))
       end
     end
