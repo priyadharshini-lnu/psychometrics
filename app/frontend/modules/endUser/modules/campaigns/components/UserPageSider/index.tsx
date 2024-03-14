@@ -7,6 +7,7 @@ import {
   HomeOutlined,
   UserOutlined,
   CalendarOutlined,
+  ReadOutlined,
 } from '@ant-design/icons'
 
 
@@ -45,7 +46,8 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookin
   key: 'dashboard',
   label: I18n.t('campaign.dashboard_menu.home'),
   icon: <HomeOutlined className={styles.siderIcon} />,
-}, ...showCampaign ? [{
+},
+...showCampaign ? [{
   key: 'campaign',
   label: I18n.t('campaign.dashboard_menu.campaign'),
   icon: <CampaignIcon className={styles.siderIcon} />,
@@ -53,7 +55,19 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookin
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
   ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
-}] : [], ...showBookings ? [{
+}] : [],
+// eslint-disable-next-line no-constant-condition
+...true ? [{
+  key: 'idp',
+  label: I18n.t('campaign.dashboard_menu.development'),
+  icon: <ReadOutlined className={styles.siderIcon} />,
+  children: [
+    { label: 'temp steps', key: 'steps' }, // TODO: remove after implementation
+    { label: I18n.t('campaign.dashboard_menu.my_plan'), key: 'my_plan' },
+    { label: I18n.t('campaign.dashboard_menu.my_direct_reports'), key: 'my_direct_reports' },
+  ],
+}] : [],
+...showBookings ? [{
   key: 'invites',
   label: I18n.t('campaign.dashboard_menu.bookings'),
   icon: <CalendarOutlined className={styles.siderIcon} />,
@@ -88,8 +102,20 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     if (pathname.includes('/profile_details' || '/change_password')) {
       setOpenKey([...openKey, 'profile'])
     }
+    if (pathname.includes('/idp/')) {
+      setOpenKey([...openKey, 'idp'])
+    }
   }, [pathname])
   const handleMenuSelect = (menu) => {
+    if (menu.key === 'steps') { // TODO: remove after implementation
+      return history.push('/idp/steps/getting_start')
+    }
+    if (menu.key === 'my_plan') {
+      return history.push('/idp/my_plan')
+    }
+    if (menu.key === 'my_direct_reports') {
+      return history.push('/idp/direct_reports')
+    }
     if (menu.key === 'tasks') {
       const routePrefix = isThreesixty ? 'threesixty_campaigns' : 'campaigns'
       return history.push(`/${routePrefix}/${campaignIdRef.current}`)

@@ -1209,9 +1209,12 @@ en:
       bookings: Bookings
       campaign: Campaign
       change_password: Change Password
+      development: Development
       home: Home
       insights: Insights
       livechat: Live Support
+      my_direct_reports: My Direct Reports
+      my_plan: My Plan
       profile: Profile
       profile_details: Details
       tasks: Tasks
@@ -2197,6 +2200,20 @@ en:
         not_completed: Hogan Report isn't ready yet
         successfully: Hogan Report was successfully saved
   id: Id
+  idp:
+    board: Board
+    details: Details
+    initial_steps:
+      add_skills: Add Skills
+      getting_start: Getting Start
+      rate_skills: Rate Skills
+      skill_gap_report: Skill Gap Report
+    list: List
+    my_direct_reports: My Direct Reports
+    my_plan:
+      development_plan: Development Plan
+    plan: Plan
+    skill_gap_report: Skill Gap Report
   invites:
     create:
       successfully: Your invitations was successfully sent

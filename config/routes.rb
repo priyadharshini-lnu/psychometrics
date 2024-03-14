@@ -1079,6 +1079,7 @@ Rails.application.routes.draw do
     get 'invites/:id/booking', to: 'end_user/users#dashboard'
     get 'invites/:id/success', to: 'end_user/users#dashboard'
     get 'invites/:id/details', to: 'end_user/users#dashboard'
+    get 'idp/*path', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 

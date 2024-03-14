@@ -13,6 +13,10 @@ import { Report } from './Report'
 import { Anonym } from './Anonym'
 import { Bookings } from './Bookings'
 import MeetingRoom from './MeetingRoom'
+import { MyPlan } from './idp/MyPlan'
+import { InitialSteps } from './idp/InitialSteps'
+import { DirectReportsList } from './idp/DirectReports/List'
+import { DirectReportDetails } from './idp/DirectReports/Details'
 
 const routes = [
   {
@@ -96,6 +100,36 @@ const routes = [
   {
     path: '/meet/:roomId',
     main: MeetingRoom,
+    exact: true,
+  },
+  {
+    path: '/idp/steps/:step',
+    main: InitialSteps,
+    exact: true,
+  },
+  {
+    path: '/idp/my_plan',
+    main: MyPlan,
+    exact: true,
+  },
+  {
+    path: '/idp/my_plan/:tab',
+    main: MyPlan,
+    exact: true,
+  },
+  {
+    path: '/idp/direct_reports',
+    main: DirectReportsList,
+    exact: true,
+  },
+  {
+    path: '/idp/direct_reports/:id',
+    main: DirectReportDetails,
+    exact: true,
+  },
+  {
+    path: '/idp/direct_reports/:id/:tab',
+    main: DirectReportDetails,
     exact: true,
   },
 ]
