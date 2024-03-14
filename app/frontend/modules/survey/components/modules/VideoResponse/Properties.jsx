@@ -13,6 +13,7 @@ export class Properties extends Component {
     { value: 10, display: '10s' },
     { value: 30, display: '30s' },
     { value: 60, display: '1min' },
+    { value: 90, display: '1min 30sec' },
     { value: 120, display: '2min' },
     { value: 180, display: '3min' },
     { value: 300, display: '5min' },
