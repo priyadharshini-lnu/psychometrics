@@ -6,8 +6,10 @@ import {
 } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { ParallaxBackground } from './ParallaxBackground'
 
-const ParallaxWrapperComponent = ({ initialized, block, ...props }) => {
-  if (!initialized) { return null }
+const ParallaxWrapperComponent = ({
+  initialized, block, end, ...props
+}) => {
+  if (!initialized || end) { return null }
 
   useEffect(() => {
     if (!block?.props?.background?.enabled) {
@@ -33,7 +35,8 @@ export const ParallaxWrapper = connect((state: RootState) => {
   } = state
   return {
     initialized,
-    block: initialized && getCurrentBlock(preview),
+    block: initialized && !preview.end && getCurrentBlock(preview),
     blcoks: preview.blocks,
+    end: preview.end,
   }
 })(ParallaxWrapperComponent)
