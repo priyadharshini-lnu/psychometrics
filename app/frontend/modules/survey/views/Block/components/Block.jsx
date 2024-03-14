@@ -89,8 +89,12 @@ class Block extends Component {
   }
 
   questionRandomization = () => {
-    const { model, openRandomization } = this.props
-    openRandomization({ id: model.id, entityName: 'question' })
+    const {
+      model, openRandomization, enableSingleQuestionPage, toggleSingleQuestionPage,
+    } = this.props
+    openRandomization({
+      id: model.id, entityName: 'question', enableSingleQuestionPage, toggleSingleQuestionPage,
+    })
   }
 
   confirm = (name) => {
