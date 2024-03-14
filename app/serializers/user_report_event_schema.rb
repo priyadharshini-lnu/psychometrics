@@ -5,11 +5,11 @@
 class UserReportEventSchema < BaseSchema
   def self.schema(_, _)
     Dry::Schema.JSON do
-      config.validate_keys = true
+      config.validate_keys = false
 
-      required(:id).filled(:str?)
+      required(:id).filled(:int?)
       required(:event_type).filled(:str?)
-      required(:details).filled(:str?)
+      required(:details).filled(:hash?)
       required(:created_at).filled(:str?)
       required(:initiator).hash(ShortUserSchema.schema(_, _))
     end

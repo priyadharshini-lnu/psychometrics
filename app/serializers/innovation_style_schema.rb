@@ -9,8 +9,8 @@ class InnovationStyleSchema < BaseSchema
 
       optional(:id).filled(:int?)
       optional(:name).filled(:str?)
-      optional(:description).filled(:str?)
-      optional(:full_description).filled(:str?)
+      optional(:description).maybe(:str?)
+      optional(:full_description).maybe(:str?)
       optional(:icon).maybe(:str?)
       optional(:factors).array(InnovationStylesFactorSchema.schema(_, _))
       optional(:position).maybe(:int?)

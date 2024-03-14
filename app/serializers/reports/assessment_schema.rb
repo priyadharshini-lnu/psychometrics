@@ -17,7 +17,7 @@ module Reports
         required(:norm_rules).value { hash? | array? | nil? }
         required(:factors).maybe(:array?)
         required(:factor_scoring_counters).maybe(:hash?)
-        required(:dimension_id).filled(:int?)
+        required(:dimension_id).maybe(:int?)
         required(:blocks).array(BlockSchema.schema(_, _))
       end
     end

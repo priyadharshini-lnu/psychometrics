@@ -23,7 +23,6 @@ class UserReportSerializer < Panko::Serializer
   end
 
   def comments
-    object.user_report_comments.not_deleted
     Panko::ArraySerializer.new(
       object.user_report_comments.not_deleted,
       each_serializer: UserReportCommentSerializer
@@ -108,9 +107,9 @@ class UserReportSerializer < Panko::Serializer
   def report
     ReportSerializer.new(
       context: {
-        module_overrides: module_overrides,
+        module_overrides: TextModuleOverride.where(user_report_id: object.id),
         user_results: results,
-        piped_text_context: options
+        piped_text_context: context[:options]
       }
     ).serialize(context[:report])
   end

@@ -42,7 +42,7 @@ module EndUser
 
             results = user_dashboard_report.user_results.map do |result|
               ::Reports::ResultSerializer.new(context: { campaign: @campaign }).serialize(result)
-            end.group_by { |result| result[:assessment_id] }
+            end.group_by { |result| result['assessment_id'] }
 
             user_dashboard = ::UserDashboardSerializer.new(
               context: { scope: current_user, report: user_dashboard_report.report, results: results,

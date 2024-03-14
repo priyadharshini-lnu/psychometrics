@@ -73,7 +73,6 @@ module Reports
     end
 
     def media_responses
-      object.media_responses.order(:created_at)
       Panko::ArraySerializer.new(
         object.media_responses.order(:created_at),
         each_serializer: MediaResponseSerializer

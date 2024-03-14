@@ -9,7 +9,7 @@ class UserReportCommentSchema < BaseSchema
 
       required(:id).filled(:str?)
       required(:text).filled(:str?)
-      required(:parent_id).filled(:str?)
+      required(:parent_id).maybe(:str?)
       required(:module_id).filled(:str?)
       required(:created_at).filled(:str?)
       required(:resolved).filled(:bool?)

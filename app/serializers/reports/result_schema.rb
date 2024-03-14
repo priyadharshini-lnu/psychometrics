@@ -27,14 +27,14 @@ module Reports
         required(:occupations).array do
           hash do
             required(:id).filled(:int?)
-            required(:name).filled(:str?)
+            required(:value).filled(:float?)
             required(:stars).filled(:int?)
           end
         end
         required(:innovation_styles).array do
           hash do
             required(:id).filled(:int?)
-            required(:value).filled(:str?)
+            required(:value).filled(:float?)
           end
         end
         required(:user).hash(UserSchema.schema(_, _))

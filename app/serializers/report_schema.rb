@@ -17,8 +17,8 @@ class ReportSchema < BaseSchema
       required(:factor_norms).maybe(:hash?)
       required(:occupations).hash(OccupationSchema.schema(_, _))
       required(:props).maybe(:hash?)
-      required(:dimension_ids).filled(:array?).each(:int?)
-      required(:completed_assessments).filled(:array?)
+      required(:dimension_ids).maybe(:array?).each(:int?)
+      required(:completed_assessments).maybe(:array?)
       required(:data_configuration).maybe(:hash?)
       required(:data_sheet_columns).value { hash? | array? }
       required(:relationships).array(RelationshipSchema.schema(_, _))
