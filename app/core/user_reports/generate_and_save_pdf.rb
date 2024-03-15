@@ -49,11 +49,7 @@ module UserReports
     end
 
     def generate_hogan_report(user_report)
-      Hogan::FetchResultsJob.perform_later(
-        user_report.user_results.first,
-        user_report.user.hogan_credential,
-        user_report.project
-      )
+      Hogan::SaveReportsAndScoresJob.perform_later(user_report)
     end
 
     def generate_saville_report(user_report)

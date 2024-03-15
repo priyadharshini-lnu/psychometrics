@@ -2,78 +2,38 @@
 
 module Hogan
   class AddReports < BaseCommand
-    private_attr_reader :group, :credentials, :assessment, :add_participant_reports, :user_id, :reports
+    private_attr_reader :user_reports, :reports
 
-    def initialize(params)
-      @group = params[:group]
-      @credentials = params[:credentials]
-      @assessment = params[:assessment]
-      @user_id = params[:user_id]
-      @reports = params[:reports]
+    def initialize(user_reports)
+      @user_reports = Array.wrap(user_reports)
     end
 
     def call
-      create_group
-      add_participant_to_group
-      add_participant_assessment
+      return broadcast(:ok) if user_reports.empty?
+
       add_participant_reports
+
       broadcast(:ok)
     end
 
     private
 
-    def create_group
-      Services::Hogan::Api::Json::GroupDetails.call(group: group, provider: credentials&.provider) do
-        on(:error) do
-          Services::Hogan::Api::Json::CreateGroup.call!(group: group, provider: credentials&.provider)
-        end
-      end
-    end
-
-    def add_participant_to_group
-      return if credentials.present?
-
-      lock_key = "locks/hogan_credential/#{user_id}"
-      lock_manager.lock!(lock_key, 2.minutes.in_milliseconds) do
-        password = Devise.friendly_token.first(10)
-        participant_id = Services::Hogan::Api::Json::AddParticipantToGroup.call!(
-          group: group, password: password, provider: credentials&.provider
-        )
-        @credentials = HoganCredential.create!(
-          password: password,
-          participant_id: participant_id,
-          user_id: user_id,
-          provider: Rails.application.secrets.hogan[:default_provider]
-        )
-      end
-    end
-
-    def add_participant_assessment
-      Services::Hogan::Api::Json::AddParticipantAssessment.call!(
-        participant_id: credentials.participant_id,
-        group: group,
-        assessment_id: assessment.external_settings[:assessment_id],
-        form_id: assessment.external_settings[:form_id],
-        provider: credentials&.provider
-      )
-    end
-
     def add_participant_reports
-      report_by_package_id_map = reports.filter { |r| r.report.hogan? }.
+      report_by_package_id_map = user_reports.filter { |r| r.report.hogan? }.
                                  group_by { |r| r.report_families_report&.external_package_id }
 
-      report_by_package_id_map.each do |package_id, user_reports|
+      report_by_package_id_map.each do |package_id, urs|
         if package_id.present?
-          call_hogan_api(user_reports.first, package_id) do
+          call_hogan_api(urs.first, package_id) do
             on(:ok) do
               UserReport.where(id: user_reports.pluck(:id)).update_all(external_added: true)
             end
           end
         else
-          user_reports.each do |user_report|
-            call_hogan_api(user_report) do
+          urs.each do |ur|
+            call_hogan_api(ur) do
               on(:ok) do
-                user_report.update!(external_added: true)
+                ur.update!(external_added: true)
               end
             end
           end
@@ -85,7 +45,7 @@ module Hogan
       report = user_report.report
 
       Services::Hogan::Api::Json::AddParticipantReport.call({
-        group: group,
+        group: hogan_group_name,
         norm_id: report.external_settings[:norm_id],
         language_id: report.external_settings[:language_id],
         assessment_id: assessment_id_for_report(user_report.external_report_id, package_id),
@@ -104,8 +64,12 @@ module Hogan
       end
     end
 
-    def lock_manager
-      @lock_manager ||= Redlock::Client.new([$redis])
+    def credentials
+      @credentials ||= user_reports.first.user.hogan_credential
+    end
+
+    def hogan_group_name
+      @hogan_group_name ||= user_reports.first.project.hogan_group_name
     end
   end
 end

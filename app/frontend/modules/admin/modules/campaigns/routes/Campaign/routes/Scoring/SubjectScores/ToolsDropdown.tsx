@@ -9,9 +9,8 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const { I18n } = window
 
 type Persmission = {
-  markFinalized: boolean,
-  markNotFinalized: boolean,
-  rescore: boolean,
+  changeFinalizedCampaignScore?: boolean,
+  rescore?: boolean,
 }
 
 type Props = {
@@ -43,20 +42,19 @@ export const ToolsDropdown: React.FC<Props> = ({
         </a>
       )}
       className="mrm"
-      hideForEmptyMenu
     />
   )
 }
 
 const getMenuProps = ({ onClick, persmission }: Props): MenuProps => {
   const menuItems:ItemType[] = []
-  if (persmission?.markFinalized) {
+  if (persmission?.changeFinalizedCampaignScore) {
     menuItems.push({
       key: 'mark_finalized',
       label: I18n.t('administration.scoring.subject_list.mark_finalized'),
     })
   }
-  if (persmission?.markNotFinalized) {
+  if (persmission?.changeFinalizedCampaignScore) {
     menuItems.push({
       key: 'mark_not_finalized',
       label: I18n.t('administration.scoring.subject_list.mark_not_finalized'),

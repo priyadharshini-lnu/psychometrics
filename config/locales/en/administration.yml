@@ -660,6 +660,21 @@ en:
         sign_out_message:
           body: "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>"
           title: Log <strong>Out</strong> ?
+    block_settings:
+      modal:
+        add_layer: Add Layer
+        background_color: Background Color
+        background_image: Background Image
+        base_offse_speed: Base Offset Speed
+        color: Color
+        confirm_msg: Are you sure to delete this layer?
+        confirm_title: Delete the layer
+        layers: Layers
+        main_background_color: Main Background Color
+        name: Name
+        select_from_lib: Select From Library
+        speed: Speed
+        title: Block Settings
     blocks:
       copy:
         successfully: Block %{name} was successfully copied.

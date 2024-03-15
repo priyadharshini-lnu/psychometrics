@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # rubocop:disable Lint/UnderscorePrefixedVariableName
+# rubocop:disable Metrics/BlockLength
 
 module Administration
   class UserAssessmentSchema < BaseSchema
@@ -23,7 +24,9 @@ module Administration
         required(:category).filled(:str?)
         required(:norm_name).maybe(:str?)
         required(:status).filled(:str?)
-        required(:norms).array(NormSchema.schema(_, _))
+        required(:norms).maybe do
+          array(NormSchema.schema(_, _))
+        end
         required(:norm_id).maybe(:int?)
         required(:additional_time).maybe(:int?)
         required(:is_expired).filled(:bool?)
@@ -37,3 +40,4 @@ module Administration
 end
 
 # rubocop:enable Lint/UnderscorePrefixedVariableName
+# rubocop:enable Metrics/BlockLength

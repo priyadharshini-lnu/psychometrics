@@ -24,7 +24,7 @@ module Api
       end
 
       def export_scorings?
-        has_permission?(:campaign_factors, :view)
+        has_permission?(:results, :scores)
       end
 
       class Scope < ::Api::Administration::BasePolicy::Scope

@@ -9,7 +9,7 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const { I18n } = window
 
 type Persmission = {
-  export: boolean,
+  export?: boolean,
 }
 
 type Props = {
