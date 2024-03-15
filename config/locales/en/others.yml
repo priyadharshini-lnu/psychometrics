@@ -785,7 +785,7 @@ en:
   assessments:
     actions:
       archived:
-        success_message: Asessment %{name} archived successfully
+        success_message: Asessment %{name} was archived successfully
       back_to_campaign: Back to Campaign
       copy:
         success_message: Asessment %{name} was copied successfully
@@ -812,14 +812,14 @@ en:
         success_message: Asessment %{name} has been removed
       rescore: Rescore
       restore:
-        success_message: Assessment %{name} restored successfully
+        success_message: Assessment %{name} was restored successfully
       show_usage: Show Usage
       submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
       translations:
         success_message: The asessment translations updated
       unarchived:
-        success_message: Asessment %{name} unarchived successfully
+        success_message: Asessment %{name} was unarchived successfully
     active: Active
     archived: Archived
     assessment: Assessment
@@ -924,9 +924,9 @@ en:
       title: Instructions
     messages:
       finish: "Thank you for your time. \nYour responses have now been recorded."
-      norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
-      raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
-      raw_results_export_scheduled: Assessment Raw Results export job scheduled successfully
+      norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
+      raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
+      raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
     page:
       back: Back
       confirm_message: |-
@@ -1336,22 +1336,22 @@ en:
       status: Status
       universal_link: Universal link
     messages:
-      export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
-      export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job scheduled successfully
-      external_results_export_scheduled: External Assessment export job scheduled successfully
-      norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
-      raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
-      raw_results_export_scheduled: Assessment Raw Results export job scheduled successfully
-      scoring_results_export_scheduled: Assessment Scoring Results export job scheduled successfully
+      export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
+      export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
+      external_results_export_scheduled: External Assessment export job was scheduled successfully
+      norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
+      raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
+      raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
+      scoring_results_export_scheduled: Assessment Scoring Results export job was scheduled successfully
     modals:
       import_raw:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
-        success_msg: Import successfully uploaded
+        success_msg: Import was uploaded successfully
         title: Import Raw Results data
         upload: Upload
       import_scoring:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
-        success_msg: Import successfully uploaded
+        success_msg: Import was uploaded successfully
         title: Import Scoring Results data
         upload: Upload
       regenerate:
@@ -1361,22 +1361,22 @@ en:
       remove:
         helper_text: 'DANGER: Selecting this will remove all users'' responses to this assessment in this campaign.'
         msg_text: You are trying to delete <strong>"%{name}"</strong> Assessment
-        successfully: "%{name} assessment removed successfully."
+        successfully: "%{name} assessment was removed successfully."
         title: Remove assessment?
       rescore:
         content: Are you sure you want to rescore assessment?
-        successfully: Assessment was successfully rescored.
+        successfully: Assessment was rescored successfully.
         title: Rescore Assessment?
       rescore_response:
         message: Rescoring scheduled for assessment %{name}
         title: Rescore Responses
       reset:
         content: Are you sure you want to reset result?
-        successfully: The result data was successfully reset.
+        successfully: The result data was reset successfully.
         title: Reset Result for assessment %{name}?
       update_assessor_form:
         select_assessor: Select Assessor Form
-        success_msg: Assessor Form successfully uploaded
+        success_msg: Assessor Form was uploaded successfully
         title: Update Assessor Form
         update: Update
       update_external_config:
@@ -1384,13 +1384,13 @@ en:
         title: Update External Config
       update_locales:
         select_locales: Select Locales
-        success_msg: Locales successfully updated
+        success_msg: Locales were updated successfully
         title: Update Available Locales
       update_norm:
         apply: Apply this change to existing users in this campaign
         cannot_remove_norm: Cannot remove norm for completed assessment.
         select_norm: Select Norm
-        success_msg: Norms successfully updated
+        success_msg: Norms were updated successfully
         title: Update Norm
         update: Update
       update_time:
@@ -1400,7 +1400,7 @@ en:
         form:
           duration: Duration in minutes
         title: Duration for the workshop activity
-    scheduled_successfully: Assessment scheduled successfully
+    scheduled_successfully: Assessment was scheduled successfully
     scheduling:
       update_exists: Override existing schedule
     scheduling_time: Schedule assessment time
@@ -1435,8 +1435,8 @@ en:
       report: Report
       report_bundle_placeholder: Select a report bundle
     messages:
-      bulk_download_successful: Bulk report download job scheduled successfully
-      export_report_data_scheduled: Report data export job scheduled successfully
+      bulk_download_successful: Bulk report download job was scheduled successfully
+      export_report_data_scheduled: Report data export job was scheduled successfully
     modals:
       remove:
         apply: Apply this changes to existing users in this campaign.
@@ -1463,7 +1463,7 @@ en:
       last_login: Last login
       modals:
         remove:
-          successfully: User with email %{email} removed successfully.
+          successfully: User with email %{email} was removed successfully.
           title: Are you sure you want to remove this user from campaign %{campaignName}?
       not_completed_yet: Not completed yet
       not_logged_in_yet: Not logged in yet
@@ -2022,16 +2022,16 @@ en:
     are_you_sure: Are you sure?
     assessment: Assessment
     assessment_groups:
-      create_success: The group is successfully created
-      update_success: The group is successfully updated
+      create_success: The group was created successfully
+      update_success: The group was updated successfully
     availability:
       add_new_availability: Add new availability
-      create_success: Availability created successfully.
+      create_success: Availability was created successfully.
       remove_confirm:
         content: Are you sure you want to remove the availability?
-        success: Availability removed successfully.
+        success: Availability was removed successfully.
         title: Remove availability
-      update_success: Availability updated successfully.
+      update_success: Availability was updated successfully.
     background_reading: Background Reading
     bookings:
       accept_invite_msg: You have received an invite. Please reserve your slot.
@@ -2103,12 +2103,12 @@ en:
       actions:
         remove:
           confirmation: Enter current campaign name given below in text box to remove campaign
-          success: "%{campaignName} removed successfully."
+          success: "%{campaignName} was removed successfully."
       users:
         actions:
           export:
             details: Campaign Users
-            scheduled: User export scheduled successfully.
+            scheduled: User export was scheduled successfully.
           export_reports_and_assessments:
             details: Reports and Assessments
         completion_statuses:
@@ -2125,12 +2125,12 @@ en:
           view_licenses: View Licenses
         remove:
           confirmation: Enter current client name given below in text box to remove client
-          success: Client with name '%{clientName}' removed successfully
+          success: Client with name '%{clientName}' was removed successfully
       projects:
         actions:
           remove:
             confirmation: Enter current project name given below in text box to remove project
-            success: Project with name '%{projectName}' removed successfully
+            success: Project with name '%{projectName}' was removed successfully
     delete: Delete
     edit: Edit
     error_warning: Oops, something went wrong with your assessment. Please contact the support.
@@ -2142,21 +2142,21 @@ en:
     manage: Manage
     'no': 'No'
     passwordSetting:
-      update_success: Security settings successfully updated
+      update_success: Security settings was updated successfully
     report_error: Oops, something went wrong with your report. Please contact the support.
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
       refresh: Refresh
     resource:
-      create_success: "%{readableResourceName} added successfully"
-      update_success: "%{readableResourceName} updated successfully"
+      create_success: "%{readableResourceName} was added successfully"
+      update_success: "%{readableResourceName} was updated successfully"
     restart: Restart
     restart_progress: There were some changes in the assessment. Please refresh the page to see the changes. Refreshing the page will begin the assessment from the start. Questions that you have already answered will be auto filled.
     smsInvites:
-      create_success: SMS Invite added successfully
-      update_success: SMS Invite updated successfully
+      create_success: SMS Invite was added successfully
+      update_success: SMS Invite was updated successfully
     sms_records:
-      create_success: SMS job scheduled successfully
+      create_success: SMS job was scheduled successfully
     test_webhook:
       create_success: Webhook test successful.
       success: Success
@@ -2198,7 +2198,7 @@ en:
     assigns:
       results:
         not_completed: Hogan Report isn't ready yet
-        successfully: Hogan Report was successfully saved
+        successfully: Hogan Report was saved successfully
   id: Id
   idp:
     board: Board
@@ -2216,7 +2216,7 @@ en:
     skill_gap_report: Skill Gap Report
   invites:
     create:
-      successfully: Your invitations was successfully sent
+      successfully: Your invitations was sent successfully
     form:
       emails_hint: Set each email in new line
       send_invites: Send Invites
@@ -2228,9 +2228,9 @@ en:
         description: Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>
         message: Report is ready
     threesixty:
-      export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
-      export_raw_results_scheduled: Raw Results export job scheduled successfully
-      export_scores_scheduled: Scores export job scheduled successfully
+      export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
+      export_raw_results_scheduled: Raw Results export job was scheduled successfully
+      export_scores_scheduled: Scores export job was scheduled successfully
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
@@ -2554,7 +2554,7 @@ en:
         standard_deviation: Standard Deviation
       messages:
         failure: 'Error: %{error}.'
-        success: Norm for Factor '%{factorName}' updated successfully.
+        success: Norm for Factor '%{factorName}' was updated successfully.
       values:
         empty: Empty
         required: "%{title} is required"
@@ -2588,13 +2588,13 @@ en:
     form:
       username: Username
     update:
-      successfully: Profile updated
+      successfully: Profile was updated successfully
   registration_code:
     allowed_domains: Allowed domains
     modals:
       remove:
         content: Are you sure you want to remove Registration code <strong>"%{code}"</strong>?
-        successfully: Registration code '%{code}' removed successfully.
+        successfully: Registration code '%{code}' was removed successfully.
       title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
@@ -2636,7 +2636,7 @@ en:
     actions:
       add: Add Report
       archived:
-        success_message: Report %{name} archived successfully
+        success_message: Report %{name} was archived successfully
       back_to_campaign: Back to Campaign
       copy:
         success_message: Report %{name} was copied successfully
@@ -2847,7 +2847,7 @@ en:
       send_password_email: Send password via Email
       username: Username
     messages:
-      reset_password_success: User %{email} password reseted successfully.
+      reset_password_success: User %{email} password was reseted successfully.
       send_password_email_success: Email sent to user %{email} with the password.
     title: Reset Password
   select: Select
@@ -2866,7 +2866,7 @@ en:
   sheet:
     import_modal:
       alert_access_sheet_removal: Uploading new Accesssheet with delete all existing record and upload new one from the sheet. Please make sure you have all Accesssheet records in spreadsheet.
-      success_message: File successfully upload. Import of datasheet record in progress
+      success_message: File was uploaded successfully. Import of datasheet record in progress
       title: Import Sheet Records
     menu:
       export: Export Sheet
@@ -3288,7 +3288,7 @@ en:
     edit_user: Edit User
     email_approve_request: Email Approval Request
     email_schedules:
-      delete_successful: Email schedule deleted successfully
+      delete_successful: Email schedule was deleted successfully
     evaluate: Evaluate
     evaluation: Evaluation
     evaluation_all_closed_message: Currently all the nominations are awaiting approval
@@ -3431,14 +3431,14 @@ en:
     png: PNG
     regenerate_link: Regenerate Link
     save: Save
-    successfully_generated: Successfully generated
-    successfully_updated: Successfully updated
+    successfully_generated: Generated successfully
+    successfully_updated: Updated successfully
     svg: SVG
   update_profile:
     cancel: Cancel
     title: Update Profile
     update: Update
-    updated_successfully: Profile updated successfully
+    updated_successfully: Profile was updated successfully
   user:
     datasheet:
       attribute: Attribute
@@ -3500,7 +3500,7 @@ en:
         title: Push Webhook
       remove:
         content: Are you sure you want to remove assessment '%{name}'?
-        successfully: "%{name} assessment removed successfully."
+        successfully: "%{name} assessment was removed successfully."
       reset:
         content: Are you sure you want to reset progress '%{name}'?
       test_webhook:
@@ -3545,11 +3545,11 @@ en:
       qc_in_progress: QC in Progress
     messages:
       async_generation: Report generation in progress. You would be notified once report is generated.
-      regenerate_successful: Report regeneration job scheduled successfully
+      regenerate_successful: Report regeneration job was scheduled successfully
     modals:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
-        successfully: "%{userReportName} report removed successfully"
+        successfully: "%{userReportName} report was removed successfully"
     preview_report: Preview Report
     readable_statuses:
       generating: Report is being generated
@@ -3585,7 +3585,7 @@ en:
       role: Role
       title: User details
     global_assessors: Global Assessors
-    password_change_success: Password changed successfully. Please login with your new password.
+    password_change_success: Password was changed successfully. Please login with your new password.
     remove_message: Are you sure?
     roles:
       campaign_admin: Campaign Admin

@@ -172,7 +172,7 @@ RSpec.describe Administration::ProfilesController, type: :controller do
       }
 
       expect(client_admin.reload.first_name).to eq(first_name)
-      expect(flash[:notice]).to eq('Profile was successfully updated.')
+      expect(flash[:notice]).to eq('Profile was updated successfully.')
     end
 
     it 'logs out after password changed successfully' do
