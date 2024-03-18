@@ -1,19 +1,17 @@
 import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Tabs, Table,
+  Col, Row, Tabs,
 } from 'antd'
 import { useParams, useLocation, useHistory } from 'react-router-dom'
-import _ from 'lodash'
-import ReactMarkdown from 'react-markdown'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import store from '~/modules/admin/store'
-import { SafeHTML } from '~/components/SafeHTML'
 import { setStore, getStore } from '~/modules/survey/store/StoreWatchman'
 import styles from './styles.less'
 import AssessorAssessment from './AssessorAssessment'
 import UserAssessment from './UserAssessment'
+import Overview from './Overview'
 import { fetchAssessorAssessments, changeAssessorForm, changeSubjectAssessment } from '../../core/evaluation'
 
 const { TabPane } = Tabs
@@ -105,45 +103,7 @@ const Evaluation = ({
             className={styles.assessorTabs}
           >
             <TabPane tab="Overview" key="overview">
-              <div className={styles.nameContainer}>
-                <div>
-                  {I18n.t('user.fields.first_name')}
-                  {': '}
-                  {userInfo.user && userInfo.user.first_name}
-                </div>
-                <div>
-                  {I18n.t('user.fields.last_name')}
-                  {': '}
-                  {userInfo.user && userInfo.user.last_name}
-                </div>
-              </div>
-              <div className={styles.table}>
-                <Table
-                  columns={[{
-                    title: I18n.t('user.datasheet.attribute'),
-                    dataIndex: 'key',
-                    key: 'key',
-                  }, {
-                    title: I18n.t('user.datasheet.value'),
-                    dataIndex: 'value',
-                    key: 'value',
-                    render (value, row) {
-                      const type = userInfo.datasheet_columns.find(({ name }) => name === row.key)?.type
-                      switch (type) {
-                        case 'Markdown':
-                          return <ReactMarkdown>{value}</ReactMarkdown>
-                        case 'HTML':
-                          return <SafeHTML as="div" html={`${value}`} />
-                        default:
-                          return value
-                      }
-                    },
-                  }]}
-                  dataSource={_.map(userInfo.datasheet, (v, k) => ({ key: k, value: v }))}
-                  pagination={false}
-                  rowKey={row => row.key}
-                />
-              </div>
+              <Overview userInfo={userInfo} />
             </TabPane>
             {assessorAssessments.map(assessment => (
               <TabPane tab={assessment.name} key={assessment.id}>
