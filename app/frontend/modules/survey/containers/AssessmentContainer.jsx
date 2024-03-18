@@ -20,7 +20,7 @@ import { ParallaxWrapper } from '../components/ParallaxBackground/ParallaxWrappe
 
 class AssessmentContainer extends Component {
   state = {
-    loading: false,
+    loading: true,
   }
 
   componentDidMount () {
