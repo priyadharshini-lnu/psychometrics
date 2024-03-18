@@ -11,6 +11,7 @@ import filterAndPaginationWatcher from '~/modules/admin/core/filterAndPagination
 import api from '~/middleware/api'
 import tables from '~/modules/admin/core/filterAndPagination/reducers'
 import menu from '~/modules/admin/core/ui/menu'
+import request from '~/core/request'
 
 import currentUser from '~/core/currentUser'
 import auditLogs from '../../modules/AuditLog/core'
@@ -31,6 +32,7 @@ const createRootReducer = history => combineReducers({
   tables,
   auditLogs,
   currentUser,
+  request,
   ui: combineReducers({ menu }),
 })
 
