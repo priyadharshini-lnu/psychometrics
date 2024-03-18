@@ -3,7 +3,7 @@ import {
   Row, Col, Button, Space, App,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { RouteComponentProps } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import Modals from '~/modules/admin/components/Modals'
 import ReportList from './ReportList'
@@ -53,17 +53,12 @@ const MODALS = {
 
 const { I18n } = window
 
-interface Params {
-  campaignId: string
-}
-
-type Props = PropsFromRedux & RouteComponentProps<Params>
+type Props = PropsFromRedux
 
 const Manage: React.FC<Props> = ({
   fetchAssessmentAndReports,
   fetchOtherReports,
   fetchOtherAssessments,
-  match: { params: { campaignId } },
   reports: {
     reportPermissions,
   },
@@ -83,6 +78,8 @@ const Manage: React.FC<Props> = ({
     fetchOtherAssessments(campaignId)
     fetchAssessmentAndReports(campaignId)
   }, [])
+
+  const { campaignId } = useParams<{campaignId:string}>()
   const parsedCampaignId = parseInt(campaignId, 10)
 
   const stateManager = useCampaignAssessorAssessmentsStore()
@@ -113,7 +110,7 @@ const Manage: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between" className="pm">
+      <Row justify="space-between">
         <Col span={4} className="pls">
           <h3>Reports</h3>
         </Col>
@@ -157,7 +154,7 @@ const Manage: React.FC<Props> = ({
           </div>
         </div>
       </Row>
-      <div className="pm">
+      <div>
         <ReportList />
         <div className={styles.tableDivider} />
         <h3>Assessments</h3>

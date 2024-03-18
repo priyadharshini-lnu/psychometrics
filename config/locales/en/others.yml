@@ -1007,6 +1007,9 @@ en:
       previous_group_required: Previous group completion required
       title: Assessment group
     menu:
+      assessment_center: Assessment Center
+      assessments_and_reports: Assessments & Reports
+      idp: IDP
       manage: Manage
       report_approval: Report Approval Settings
       sequencing: Sequencing
