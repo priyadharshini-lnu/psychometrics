@@ -14,6 +14,7 @@ class Campaign < ApplicationRecord
   after_create :set_uniq_code
 
   belongs_to :project, class_name: 'Client'
+  belongs_to :default_idp_template, class_name: 'IdpTemplate', optional: true
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option

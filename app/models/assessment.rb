@@ -128,6 +128,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     class_name: 'CampaignAssessment', foreign_key: :assessor_form_id
   has_many :memberships, through: :assigns
   has_many :campaign_factors, dependent: :restrict_with_error
+  has_many :idp_template_skills, dependent: :restrict_with_error
 
   # HABTM Clients
   has_many :clients, through: :reports
@@ -190,8 +191,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :with_category, lambda { |category|
     where(category: category)
   }
-
-  after_commit :sync_translated_columns, on: %i[update create]
 
   def has_external_norm?
     saville? || pearson?
@@ -316,16 +315,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def log_attribute_for_delete
     slice(:name)
-  end
-
-  def sync_translated_columns
-    Mobility.with_locale(I18n.default_locale) do
-      if name_before_type_cast != name ||
-         description_before_type_cast != description ||
-         timing_before_type_cast != timing
-        update_columns(name:, description:, timing:)
-      end
-    end
   end
 
   def init_defaults

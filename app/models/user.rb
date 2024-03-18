@@ -131,6 +131,9 @@ class User < ApplicationRecord
 
   has_one :security_setting, through: :project
   has_one :user_profile
+  has_one :user_idp_plan, dependent: :destroy
+  has_many :user_idp_development_actions, through: :user_idp_plan, dependent: :destroy
+  has_many :user_idp_skills, through: :user_idp_plan, dependent: :destroy
 
   accepts_nested_attributes_for :memberships
 
