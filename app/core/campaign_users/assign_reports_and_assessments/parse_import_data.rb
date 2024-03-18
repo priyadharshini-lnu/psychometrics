@@ -28,10 +28,10 @@ module CampaignUsers
         rows = records.map do |record|
           {
             email: record[0],
-            report_bundle_id: record[1].to_i,
-            report_id: record[2].to_i,
-            assessment_id: record[3].to_i,
-            norm_id: record[4].to_i
+            report_bundle_id: record[1],
+            report_id: record[2],
+            assessment_id: record[3],
+            norm_id: record[4]
           }
         end
         broadcast :ok, [header] + rows

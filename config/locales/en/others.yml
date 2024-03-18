@@ -57,6 +57,14 @@ en:
               reports_disabled: You selected disabled Report(s)
             removing_report_ids:
               not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: Assessment ID can't be blank
+            bundle_report_id:
+              blank: Report Bundle ID can't be blank
+            report_id:
+              blank: Report ID can't be blank
         column:
           attributes:
             name:
