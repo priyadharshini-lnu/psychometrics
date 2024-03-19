@@ -8,20 +8,20 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 
 const { I18n } = window
 
-type Persmission = {
-  export?: boolean,
+type Permissions = {
+  exportScorings?: boolean,
 }
 
 type Props = {
   onClick: (action: string) => void,
-  persmission: Persmission,
+  permissions: Permissions,
 }
 
 export const Tools: React.FC<Props> = ({
-  onClick, persmission,
+  onClick, permissions,
 }: Props) => (
   <ConditionalDropdown
-    menu={getMenuProps({ onClick, persmission })}
+    menu={getMenuProps({ onClick, permissions })}
     innerElement={(
       <Button>
         <ToolOutlined />
@@ -34,9 +34,9 @@ export const Tools: React.FC<Props> = ({
   />
 )
 
-const getMenuProps = ({ onClick, persmission }: Props): MenuProps => {
+const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   const menuItems:ItemType[] = []
-  if (persmission?.export) {
+  if (permissions?.exportScorings) {
     menuItems.push({
       key: 'export',
       label: I18n.t('administration.scoring.subject_list.export'),
