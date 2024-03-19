@@ -15,9 +15,10 @@ module UserReports
       translations = Translation.to_hash_for_report(report.id, report.assessment_ids, options[:locale])
 
       broadcast :ok,
-                user: Reports::UserSerializer.new.serialize(user_report.user),
+                user: Reports::UserSerializer.new.serialize(user_report.user).to_json,
                 results: UserReports::GroupedResultsByAssessment.call!(user_report, view_report_as).to_json,
                 user_report_data: UserReports::PrepareUserReportData.call!(user_report).to_json,
+                campaign_factor_results: campaign_factor_results.to_json,
                 data: ReportSerializer.new(
                   context: {
                     user_results: user_report.user_results,
@@ -25,8 +26,21 @@ module UserReports
                     piped_text_context: user_report.piped_text_context,
                     include: '**'
                   }
-                ).serialize(report),
+                ).serialize(report).to_json,
                 locales: translations.to_json
+    end
+
+    private
+
+    def campaign_factor_results
+      user_report.campaign.campaign_factor_values.where(
+        user_id: user_report.user_id, campaign_factors: { public_visibility: true }
+      ).includes(:campaign_factor).map do |cfv|
+        {
+          code: cfv.campaign_factor.code,
+          value: cfv.value
+        }
+      end
     end
   end
 end
