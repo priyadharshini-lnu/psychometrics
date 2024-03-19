@@ -2,6 +2,7 @@
 
 class DevelopmentAction < ApplicationRecord
   extend Mobility
+  include ActiveStorageSync
 
   translates :name, :description
 
@@ -12,4 +13,6 @@ class DevelopmentAction < ApplicationRecord
 
   enum category: { development_actions: 0, online_course: 1, offline_course: 2 }
   enum learning_style: { structured_learning: 0, learning_from_others: 1, on_the_job: 2 }
+
+  mount_uploader :image, Public::ImageUploader
 end

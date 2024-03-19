@@ -1938,7 +1938,8 @@ CREATE TABLE public.development_actions (
     course_url character varying,
     course_provider character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    image character varying
 );
 
 
@@ -2382,7 +2383,9 @@ CREATE TABLE public.idp_template_skills (
     min_rating integer DEFAULT 0,
     max_rating integer DEFAULT 5,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    factor_id bigint,
+    assessment_score_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -9379,6 +9382,13 @@ CREATE INDEX index_idp_template_skills_on_assessment_id ON public.idp_template_s
 
 
 --
+-- Name: index_idp_template_skills_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_idp_template_skills_on_factor_id ON public.idp_template_skills USING btree (factor_id);
+
+
+--
 -- Name: index_idp_template_skills_on_idp_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10959,6 +10969,14 @@ ALTER TABLE ONLY public.threesixty_email_template_translations
 
 ALTER TABLE ONLY public.campaign_users
     ADD CONSTRAINT fk_rails_056e63be0f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: idp_template_skills fk_rails_05becee7c5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.idp_template_skills
+    ADD CONSTRAINT fk_rails_05becee7c5 FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE RESTRICT;
 
 
 --
@@ -12928,6 +12946,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240319091619'),
 ('20240314080041'),
 ('20240307081523'),
 ('20240229091603'),
