@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::LicenseResource < Api::V2::Administration::BaseResource
   attributes :number, :overuse_number, :used_number, :client_id, :start_date, :end_date,
-             :report_family_id, :disabled, :type
+             :report_family_id, :disabled, :type, :enabled
 
   has_one :client
   has_one :report_family
@@ -15,5 +15,13 @@ class Api::V2::Administration::LicenseResource < Api::V2::Administration::BaseRe
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, License]).where(
       client_id: opts[:context][:client].id
     )
+  end
+
+  def enabled
+    !@model.disabled
+  end
+
+  def enabled=(value)
+    @model.disabled = !value
   end
 end

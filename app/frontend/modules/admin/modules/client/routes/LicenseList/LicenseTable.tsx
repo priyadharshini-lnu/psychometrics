@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { MenuProps } from 'antd'
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
+import { MenuProps, Switch } from 'antd'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { License } from '~/modules/admin/modules/client/core/licenses'
@@ -44,8 +43,8 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         id="disabledStatus"
         dataIndex="disabled"
         width={30}
-        render={disabled => (
-          disabled ? <CloseOutlined style={{ color: 'red' }} /> : <CheckOutlined style={{ color: 'green' }} />
+        render={(_, { id, enabled }) => (
+          <Switch checked={enabled} onChange={value => resource.updateResource({ id, enabled: value })} />
         )
         }
       />

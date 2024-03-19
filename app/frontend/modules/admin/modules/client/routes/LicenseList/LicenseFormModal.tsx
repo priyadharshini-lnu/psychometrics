@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Form, DatePicker, InputNumber, Select, Spin,
+  Switch,
 } from 'antd'
 import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
@@ -138,6 +139,15 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
             rules={[{ required: true }]}
           >
             <DatePicker style={{ width: '25%' }} format={datePicketDateFormat} />
+          </Form.Item>
+
+          <Form.Item
+            name="enabled"
+            label={I18n.t('licenses.enabled')}
+            initialValue
+            valuePropName="checked"
+          >
+            <Switch />
           </Form.Item>
         </>
       )}
