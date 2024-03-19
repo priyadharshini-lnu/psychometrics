@@ -19,8 +19,11 @@ import '~/modules/survey/utils/i18n'
 import { ParallaxWrapper } from '../components/ParallaxBackground/ParallaxWrapper'
 
 class AssessmentContainer extends Component {
-  state = {
-    loading: true,
+  constructor (props) {
+    super()
+    this.state = {
+      loading: !props.isAssessor || !props.showAsSinglePage,
+    }
   }
 
   componentDidMount () {
