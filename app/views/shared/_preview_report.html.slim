@@ -5,7 +5,8 @@
   data-pdf-export="#{@pdf_export}"
   data-skip-logic=params[:skip_logic]
   data-campaign="#{@data[:campaign] || {}}"
-  data-user-report-data="#{@data[:user_report_data] || []}"]
+  data-user-report-data="#{@data[:user_report_data] || []}"
+  data-campaign-factor-results="#{@data[:campaign_factor_results] || []}"]
 
 = vite_javascript_tag 'entrypoints/report/preview.jsx'
 = stylesheet_link_tag 'icomoon'

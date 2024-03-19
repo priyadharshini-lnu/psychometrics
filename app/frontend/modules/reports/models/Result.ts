@@ -22,7 +22,7 @@ import {
   QuestionScoringWithoutFactorsObject,
   TopFactorType,
   UserReportData,
-  CampaignFactorResultsData,
+  CampaignFactorResults,
 } from './Results/interfaces'
 
 import {
@@ -73,7 +73,7 @@ export default class Result<ExternalScoring = unknown> {
 
   dataSheet: object
 
-  campaignFactorResults: CampaignFactorResultsData
+  campaignFactorResults: CampaignFactorResults
 
   reportData: object
 
@@ -112,7 +112,7 @@ export default class Result<ExternalScoring = unknown> {
     filters: Filter[] | null,
     notFilteredResults: RawResult[] = [],
     userReportData: UserReportData | null = null,
-    campaignFactorResults: CampaignFactorResultsData = [],
+    campaignFactorResults: CampaignFactorResults = [],
   ): Result => {
     filters = this.addIndividualFilter(filters)
     _.each(filters, (filter: Filter) => {
