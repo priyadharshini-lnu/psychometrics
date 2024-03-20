@@ -162,13 +162,9 @@ module Administration
       end
 
       def report_families
-        report_families = campaign.client.
-                          report_families.
-                          eager_load(:reports).
-                          merge(Report.assignable).
-                          references(:reports).
-                          distinct.
-                          sort_by { |r| r[:name] }
+        report_families = License.where(id: client.usable_license_id).includes(:report_family).
+                          map(&:report_family).uniq.sort_by { |r| r[:name] }
+
         render json: Panko::ArraySerializer.new(report_families,
                                                 each_serializer: Administration::ReportFamilySerializer).to_a
       end
