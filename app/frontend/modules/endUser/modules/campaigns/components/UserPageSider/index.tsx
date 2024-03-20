@@ -62,7 +62,6 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookin
   label: I18n.t('campaign.dashboard_menu.development'),
   icon: <ReadOutlined className={styles.siderIcon} />,
   children: [
-    { label: 'temp steps', key: 'steps' }, // TODO: remove after implementation
     { label: I18n.t('campaign.dashboard_menu.my_plan'), key: 'my_plan' },
     { label: I18n.t('campaign.dashboard_menu.my_direct_reports'), key: 'my_direct_reports' },
   ],
