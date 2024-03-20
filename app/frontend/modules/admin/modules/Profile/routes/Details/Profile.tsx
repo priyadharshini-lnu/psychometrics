@@ -74,6 +74,8 @@ function Profile ({
           form.append('photo', blob, 'file.jpg')
           uploadPhoto(currentUser.id, form).then(() => {
             setShowCropper(false)
+          }).then(() => {
+            fetchSingle({ id: currentUser.id })
           })
         }
       }, 'image/jpg')
