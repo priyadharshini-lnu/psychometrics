@@ -163,7 +163,7 @@ module Administration
 
       def report_families
         report_families = License.where(id: client.usable_license_id).includes(:report_family).
-                          map(&:report_family).uniq.sort_by { |r| r[:name] }
+                          filter_map(&:report_family).uniq.sort_by { |r| r[:name] }
 
         render json: Panko::ArraySerializer.new(report_families,
                                                 each_serializer: Administration::ReportFamilySerializer).to_a
