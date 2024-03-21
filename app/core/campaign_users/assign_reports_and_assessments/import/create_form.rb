@@ -4,16 +4,20 @@ module CampaignUsers
   module AssignReportsAndAssessments
     module Import
       class CreateForm < Rectify::Form
+        mimic :assign_reports_and_assessments
+
         attribute :email, String
         attribute :report_bundle_id, Integer
         attribute :report_id, Integer
         attribute :assessment_id, Integer
 
-        validate :report_presence
-        validate :bundle_presence
+        validates :report_id, :assessment_id, :report_bundle_id, presence: true
 
-        validate :validate_assessment_in_report
-        validate :validate_report_in_bundle
+        validate :report_presence, if: -> { report_id }
+        validate :bundle_presence, if: -> { report_bundle_id }
+
+        validate :validate_assessment_in_report, if: -> { report_id && assessment_id }
+        validate :validate_report_in_bundle, if: -> { report_bundle_id && report_id }
 
         def report_presence
           report = context.reports_data[report_id]

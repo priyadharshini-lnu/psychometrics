@@ -13,14 +13,13 @@ const ResultStore = function () {
 ResultStore.prototype = new EventEmitter()
 
 _.extend(ResultStore.prototype, {
-  setResults (resultGroups, user, assessmentIds, campaign = {}, userReportData = [], campaignFactorResultsData = []) {
+  setResults (resultGroups, user, assessmentIds, campaign = {}, userReportData = [], campaignFactorResults = []) {
     _.each(assessmentIds, (id) => {
       this.results[id] = new Result(id)
     })
-
     this.user = JSON.parse(user)
     this.userReportData = userReportData
-    this.campaignFactorResultsData = campaignFactorResultsData
+    this.campaignFactorResults = campaignFactorResults
     this.campaignDetails = JSON.parse(campaign)
     _.each(resultGroups, (results, assessmentId) => {
       this.results[assessmentId].init(results,
@@ -28,7 +27,7 @@ _.extend(ResultStore.prototype, {
         AppStore.report.filters,
         [],
         this.userReportData,
-        this.campaignFactorResultsData)
+        this.campaignFactorResults)
     })
     this.realResults = true
   },

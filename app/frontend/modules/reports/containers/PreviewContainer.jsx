@@ -21,12 +21,11 @@ class PreviewContainer extends Component {
   componentDidMount () {
     const parent = ReactDOM.findDOMNode(this).parentNode
     const {
-      data, results, locales, pdfExport, skipLogic,
+      data, results, locales, pdfExport, skipLogic, campaignFactorResults,
     } = parent.dataset
     if (locales) {
       I18nStore.locales = JSON.parse(locales)
     }
-
     const { user, campaign } = parent.dataset
     const parsedData = JSON.parse(data)
     const userReportData = humps.camelizeKeys(JSON.parse(parent.dataset.userReportData))
@@ -47,7 +46,13 @@ class PreviewContainer extends Component {
     }
 
     const normalizedData = normalize(parsedData, schema)
-    store.init(parsedData, results ? JSON.parse(results) : null, user, campaign, userReportData)
+    store.init(
+      parsedData,
+      results ? JSON.parse(results) : null,
+      user,
+      campaign,
+      userReportData, JSON.parse(campaignFactorResults),
+    )
     rstore.dispatch(init(normalizedData, userReportData))
   }
 
