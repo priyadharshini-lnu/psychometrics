@@ -745,7 +745,7 @@ ar:
       delete_successful: تم حذف جدول البريد الإلكتروني بنجاح
     evaluate: تقييم
     evaluation: التقييم
-    evaluation_all_closed_message: حالياً، جميع الترشيحات في انتظار الموافقة ar.threesixty.evaluation_all_closed_message
+    evaluation_all_closed_message: حالياً، جميع الترشيحات في انتظار الموافقة
     evaluation_closed_nomination_message: لا يمكنك الترشيح لهذا الموضوع حيث قد تم إغلاق التقييم لهذا الموضوع
     evaluation_help_modal:
       title: مساعدة التقييم
