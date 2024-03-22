@@ -52,7 +52,7 @@ describe('CommentItem', () => {
     await user.click(screen.getByTestId(/more-options/i))
 
     // click remove menu item
-    await user.click(screen.getByText(/remove/i))
+    await user.click(screen.getByText(/Remove/i))
 
     // click modal delete button
     await user.click(screen.getByRole('button', { name: /delete/i }))

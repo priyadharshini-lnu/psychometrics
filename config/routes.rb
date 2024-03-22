@@ -1066,6 +1066,8 @@ Rails.application.routes.draw do
     end
     resource :profiles, only: %i[update edit]
 
+    resources :skill_gap_reports, only: %i[show], controller: 'end_user/skill_gap_reports'
+
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify', as: :identify

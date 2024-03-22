@@ -2,6 +2,7 @@
 
 class UserIdpPlan < ApplicationRecord
   belongs_to :user
+  belongs_to :campaign
   belongs_to :idp_template
   belongs_to :creator, class_name: 'User'
   has_many :user_idp_skills, dependent: :destroy

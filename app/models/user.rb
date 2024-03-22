@@ -79,6 +79,7 @@ class User < ApplicationRecord
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
   belongs_to :project, class_name: 'Client'
+  belongs_to :manager, class_name: 'User'
 
   has_many :profile_fields, through: :project
   has_many :memberships, inverse_of: :user # on delete cascade
