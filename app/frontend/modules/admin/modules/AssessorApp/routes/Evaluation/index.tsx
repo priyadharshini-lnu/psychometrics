@@ -4,6 +4,7 @@ import {
   Col, Row, Tabs,
 } from 'antd'
 import { useParams, useLocation, useHistory } from 'react-router-dom'
+import _ from 'lodash'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import store from '~/modules/admin/store'
@@ -54,6 +55,14 @@ const Evaluation = ({
     const tabId = params.get('tab')
     if (tabId) {
       changeForm(tabId)
+
+      const assessorForm = _.find(assessorAssessments, { id: +tabId })
+      if (assessorForm?.linked_assessment_id) {
+        const userAssessment = _.find(subjectAssessments, { assessment_id: assessorForm.linked_assessment_id })
+        if (userAssessment) {
+          changeSubjectAssessment(`${userAssessment.id}`)
+        }
+      }
     }
   }, [assessorAssessments])
 
@@ -69,6 +78,14 @@ const Evaluation = ({
     params.set('tab', id)
     history.replace(`${location.pathname}?${params.toString()}`)
     changeForm(id)
+
+    const assessorForm = _.find(assessorAssessments, { id: +id })
+    if (assessorForm?.linked_assessment_id) {
+      const userAssessment = _.find(subjectAssessments, { assessment_id: assessorForm.linked_assessment_id })
+      if (userAssessment) {
+        changeSubjectAssessment(`${userAssessment.id}`)
+      }
+    }
   }
 
   const changeSubjectForm = (id) => {
@@ -114,7 +131,7 @@ const Evaluation = ({
         </Col>
         <Col span={12}>
           {subjectAssessments.length > 0 && (
-            <Tabs defaultActiveKey="1" onChange={changeSubjectForm} tabBarStyle={{ margin: 0 }}>
+            <Tabs activeKey={currentAssessmentId} onChange={changeSubjectForm} tabBarStyle={{ margin: 0 }}>
               {subjectAssessments.map(assessment => (
                 <TabPane tab={assessment.name} key={assessment.id}>
                   {+currentAssessmentId === +assessment.id && <UserAssessment subjectAssessmentId={+assessment.id} />}
