@@ -54,8 +54,12 @@ describe('CommentItem', () => {
     // click remove menu item
     await user.click(screen.getByText(/Remove/i))
 
+    // wait for modal to appear
+    await screen.findByText(/Are you sure you want to delete this comment?/i)
+
     // click modal delete button
     await user.click(screen.getByRole('button', { name: /delete/i }))
+
     expect(mockCommentRemove).toHaveBeenCalledWith('1')
   })
 
