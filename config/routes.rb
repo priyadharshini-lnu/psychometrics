@@ -1066,6 +1066,9 @@ Rails.application.routes.draw do
     end
     resource :profiles, only: %i[update edit]
 
+    resources :job_roles, only: %i[index], controller: 'end_user/job_roles'
+    resources :skills, only: %i[index], controller: 'end_user/skills'
+    resources :idp_template_skills, only: %i[index], controller: 'end_user/idp_template_skills'
     resources :skill_gap_reports, only: %i[show], controller: 'end_user/skill_gap_reports'
 
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?

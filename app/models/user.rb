@@ -135,7 +135,8 @@ class User < ApplicationRecord
   has_one :active_user_idp_plan, -> { active }, class_name: 'UserIdpPlan'
   has_many :user_idp_plans, dependent: :destroy
   has_many :user_idp_development_actions, through: :active_user_idp_plan, dependent: :destroy
-  has_many :user_idp_skills, through: :active_idp_plan, dependent: :destroy
+  has_many :user_idp_skills, through: :active_user_idp_plan, dependent: :destroy
+  has_many :idp_template_skills, through: :active_user_idp_plan
 
   accepts_nested_attributes_for :memberships
 

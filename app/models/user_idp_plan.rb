@@ -9,6 +9,7 @@ class UserIdpPlan < ApplicationRecord
   has_many :skills, through: :user_idp_skills
   has_many :user_idp_development_actions, dependent: :destroy
   has_many :development_actions, through: :user_idp_development_actions
+  has_many :idp_template_skills, through: :idp_template
 
   enum status: { draft: 0, pending_approval: 1, approved: 2 }
 
