@@ -15,6 +15,17 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
   let!(:manager) { workshop.workshop_managers.first }
   let!(:assessor) { workshop.workshop_assessors.first }
+  let!(:campaign_admin) { create(:user, role: User::ADMIN_ROLE) }
+  let!(:workshop_view_membership_grant) do
+    create(:membership_grants, data: { workshops: %w[view manage],
+                                       campaigns: %w[view] })
+  end
+
+  let!(:membership) do
+    create(:campaign_admin_membership, grants: workshop_view_membership_grant, user: campaign_admin, campaign: campaign)
+  end
+  let!(:workshop_without_subject) { create(:workshop, campaign: campaign) }
+  let!(:workshop_without_subject_id) { workshop_without_subject.id }
 
   before { sign_in(superadmin) }
 
@@ -65,6 +76,52 @@ describe Api::V2::Administration::WorkshopsController, swagger_doc: 'v2/swagger.
           expect(workshop_response).to have_relationship(:workshop_managers)
           expect(workshop_response).to have_relationship(:workshop_assessors)
         end
+      end
+    end
+  end
+
+  path '/campaigns/{campaign_id}/workshops/{workshop_without_subject_id}/remove_workshop' do
+    before do
+      sign_in(campaign_admin)
+    end
+
+    after do
+      sign_out(campaign_admin)
+    end
+
+    delete 'Remove Workshop' do
+      operationId 'RemoveWorkshop'
+      description 'Remove Workshop'
+      tags 'Workshops'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :workshop_without_subject_id, in: :path, type: :string
+
+      response '200', 'Remove Workshop' do
+        run_test! do |response|
+          expect(response.status).to be(200)
+          expect { Workshop.find(workshop_without_subject_id) }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+    end
+  end
+
+  describe '/campaigns/{campaign_id}/workshops/{workshop_id}/remove_workshop' do
+    before do
+      sign_in(campaign_admin)
+    end
+
+    after do
+      sign_out(campaign_admin)
+    end
+
+    context 'When workshop has subject' do
+      it 'gets does not get deleted and returns error' do
+        delete "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop.id}/remove_workshop"
+        data = JSON.parse(response.body)['errors']
+        expect(response.status).to be(422)
+        expect(data[0]['code']).to include('error')
       end
     end
   end

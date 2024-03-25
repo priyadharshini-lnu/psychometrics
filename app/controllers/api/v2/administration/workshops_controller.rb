@@ -9,7 +9,7 @@ module Api
                              Api::V2::Workshop::Schema.bulk_update_subjects
     validates_request_schema :change_status, Api::V2::Workshop::Schema.change_status_request
 
-    prepend_before_action :set_workshop, only: %i[bulk_update_subjects update change_status]
+    prepend_before_action :set_workshop, only: %i[bulk_update_subjects update change_status remove_workshop]
 
     def bulk_update_subjects
       WorkshopSubjects::BulkUpdateSubjects.call!(@workshop, bulk_subject_params)
@@ -45,6 +45,17 @@ module Api
       audit! :update, @workshop, payload: workshop_update_params, campaign: campaign
 
       jsonapi_render json: @workshop
+    end
+
+    def remove_workshop
+      if @workshop.removeable?
+        audit! :remove_workshop, @workshop, payload: @workshop.attributes, campaign: campaign
+        @workshop.destroy!
+
+        render json: :ok
+      else
+        jsonapi_render_errors [{ code: :error }], status: :unprocessable_entity
+      end
     end
 
     def workshop_params

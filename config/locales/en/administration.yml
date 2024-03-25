@@ -4786,6 +4786,10 @@ en:
       request_failure: Request failed with status code %{http_status_code}.
       test_success: Webhook test successful.
     workshop:
+      actions:
+        remove_workshop: Workshop Removed Successfully
+      errors:
+        remove_workshop_failure: Workshop you are trying to delete has scheduled subjects. You can delete workshop by marking all subject as cancelled
       statuses:
         closed: Closed
         open: Open

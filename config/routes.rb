@@ -1226,6 +1226,7 @@ Rails.application.routes.draw do
               member do
                 post :change_status
                 post :bulk_update_subjects
+                delete :remove_workshop
               end
               collection do
                 post :create_bulk_workshops
