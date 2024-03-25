@@ -4,6 +4,7 @@ import { Row, Col } from 'antd'
 import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 
 import Editor from './Editor'
+import { characterAndWordLimit } from './characterAndWordLimit'
 
 interface Props {
   model: PreviewModel
@@ -19,6 +20,7 @@ const RichTextPreview: FC<Props> = ({
       predefinedRichText,
       usePredefinedRichText,
     },
+    validation,
   } = model
 
   const text = (result.answers[0] && result.answers[0].value) || (usePredefinedRichText && predefinedRichText) || ''
@@ -31,7 +33,12 @@ const RichTextPreview: FC<Props> = ({
     <div>
       <Row>
         <Col>
-          <Editor content={text} handleContentChange={value => saveContent(value)} readOnly={readOnly} />
+          <Editor
+            content={text}
+            handleContentChange={value => saveContent(value)}
+            readOnly={readOnly}
+            {...characterAndWordLimit(validation)}
+          />
         </Col>
       </Row>
     </div>
