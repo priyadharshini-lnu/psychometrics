@@ -11,7 +11,7 @@ module Idp
     def call
       broadcast :ok, ::SkillGapReportSerializer.new({
         context: {
-          campaign: user.user_idp_plan.campaign
+          campaign: user.active_user_idp_plan.campaign
         }
       }).serialize(user)
     end

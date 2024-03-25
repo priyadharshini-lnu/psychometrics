@@ -4,13 +4,14 @@ require 'faker'
 
 # bundle exec CAMPAIGN_ID=100 be rails db:seed:idp
 
-campaign_id = ENV['CAMPAIGN_ID']
+campaign_id = ENV.fetch('CAMPAIGN_ID', nil)
 
 ApplicationRecord.transaction do
   campaign = Campaign.find(campaign_id)
   project = campaign.project
   client = project.parent
-  development_action1 = DevelopmentAction.create!(name: 'Development Action 1', description: 'Development Action 1 Description')
+  development_action1 = DevelopmentAction.create!(name: 'Development Action 1',
+                                                  description: 'Development Action 1 Description')
   development_action2 = DevelopmentAction.create!(
     owner: client,
     name: 'Development Action 2',
@@ -27,7 +28,7 @@ ApplicationRecord.transaction do
     code: 'skill_1_score',
     factor_type: 'formula',
     output_type: 'numeric',
-    formula: "return 2"
+    formula: 'return 2'
   )
   campaign_factor1 = campaign.campaign_factors.create!(
     campaign_factor_group: campaign_factor_group,
@@ -35,12 +36,13 @@ ApplicationRecord.transaction do
     code: 'skill_2_score',
     factor_type: 'formula',
     output_type: 'numeric',
-    formula: "return 4"
+    formula: 'return 4'
   )
 
   skill1 = Skill.create!(name: "Skill #{Faker::Lorem.characters(number: 5)}", description: 'Skill 1 Description')
   skill2 = Skill.create!(name: "Skill #{Faker::Lorem.characters(number: 5)}", description: 'Skill 2 Description')
-  skill1.job_roles.create!(name: "Job Role  #{Faker::Lorem.characters(number: 5)}", description: 'Job Role 1 Description')
+  skill1.job_roles.create!(name: "Job Role  #{Faker::Lorem.characters(number: 5)}",
+                           description: 'Job Role 1 Description')
 
   idp_template = client.idp_templates.create!(
     name: Faker::Lorem.characters(number: 8),
@@ -89,7 +91,9 @@ ApplicationRecord.transaction do
 
   CampaignUser.create!(campaign: campaign, user: subject_user)
 
-  user_idp_plan = subject_user.create_user_idp_plan(idp_template: idp_template, status: :approved)
+  user_idp_plan = subject_user.create_active_user_idp_plan(
+    idp_template: idp_template, status: :approved, campaign: campaign
+  )
   user_idp_skill1 = user_idp_plan.user_idp_skills.create!(skill: skill1, initial_rating: 2)
   user_idp_skill2 = user_idp_plan.user_idp_skills.create!(skill: skill2, initial_rating: 3)
   user_idp_skill1.user_idp_development_actions.create!(
@@ -99,6 +103,6 @@ ApplicationRecord.transaction do
     user_idp_plan: user_idp_plan,
     development_action: development_action2,
     start_date_time: 1.day.ago,
-    end_date_time: 2.days.from_now,
+    end_date_time: 2.days.from_now
   )
 end

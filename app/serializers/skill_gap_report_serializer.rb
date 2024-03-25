@@ -3,18 +3,18 @@
 class SkillGapReportSerializer < Panko::Serializer
   attributes :id, :datasheet_fields, :profile_fields, :idp_template_skills
 
-  delegate :user_idp_plan, to: :object
+  delegate :active_user_idp_plan, to: :object
 
   def datasheet_fields
-    user_idp_plan.idp_template.skill_gap_datasheet_columns # datsheet data
+    active_user_idp_plan.idp_template.skill_gap_datasheet_columns # datsheet data
     data = campaign.datasheet_data(object.email)
-    data.slice(*user_idp_plan.idp_template.skill_gap_datasheet_columns).map do |field, value|
+    data.slice(*active_user_idp_plan.idp_template.skill_gap_datasheet_columns).map do |field, value|
       { field: field, value: value }
     end
   end
 
   def profile_fields
-    user_idp_plan.idp_template.skill_gap_profile_field_names.filter_map do |field|
+    active_user_idp_plan.idp_template.skill_gap_profile_field_names.filter_map do |field|
       if object.respond_to?(field)
         next {
           field: field,
@@ -31,7 +31,7 @@ class SkillGapReportSerializer < Panko::Serializer
   end
 
   def idp_template_skills
-    skill_templates = user_idp_plan.idp_template.idp_template_skills.where(category: :required)
+    skill_templates = active_user_idp_plan.idp_template.idp_template_skills.where(category: :required)
     codes = skill_templates.pluck(:campaign_factor_code)
 
     score_source = skill_templates.where(scoring_source: :assessment).

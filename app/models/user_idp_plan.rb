@@ -11,4 +11,6 @@ class UserIdpPlan < ApplicationRecord
   has_many :development_actions, through: :user_idp_development_actions
 
   enum status: { draft: 0, pending_approval: 1, approved: 2 }
+
+  scope :active, -> { where(active: true) }
 end
