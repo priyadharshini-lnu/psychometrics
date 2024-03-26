@@ -33,6 +33,7 @@ const factorTypes = [
   { label: 'Assessment', value: 'assessment' },
   { label: 'Assessor Scoring', value: 'assessor_scoring' },
   { label: 'Formula', value: 'formula' },
+  { label: 'External Score', value: 'external_score' },
 ]
 
 const assessmentScoreTypes = [
