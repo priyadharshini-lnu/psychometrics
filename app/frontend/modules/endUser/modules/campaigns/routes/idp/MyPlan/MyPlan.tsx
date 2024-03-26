@@ -27,7 +27,7 @@ export const MyPlan = () => {
     //   setDevelopmentPlan(data)
     // })
     // if (!developmentPlan) {
-    history.push('/idp/steps/getting_start')
+    // history.push('/idp/steps/getting_start')
     // }
   }, [])
 

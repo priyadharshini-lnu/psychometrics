@@ -2212,6 +2212,27 @@ en:
   idp:
     board: Board
     details: Details
+    development_actions:
+      action_private: false
+      action_public: true
+      add_development_action: Add Development Action
+      all: All
+      board_view:
+        completed: Completed
+        in_progress: In Progress
+        not_started: Not Started
+      completion: Completion
+      create_my_own: Create My Own
+      date_range: Start Date - End Date
+      development_actions: Development Actions
+      generate_by_ai: Generate by AI
+      learning_from_the_others: Learning from the Others
+      no_development_actions: No development actions
+      on_the_job: On the Job
+      private: Private
+      skills: Skills
+      structured_learning: Structured Learning
+      write_here: Write here...
     initial_steps:
       add_skills: Add Skills
       getting_start: Getting Start

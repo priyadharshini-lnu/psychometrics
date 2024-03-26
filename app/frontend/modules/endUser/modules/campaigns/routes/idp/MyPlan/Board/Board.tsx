@@ -1,9 +1,8 @@
-import { BoxWithShadow } from '~/glint'
+import { DevelopmentActionBoardView } from '~/components/IdpShared/DevelopmentActions'
+import { IdpData } from '../List'
 
 export const Board = () => (
   <>
-    <BoxWithShadow style={{ padding: '16px', marginTop: 16, minHeight: 500 }}>
-      Board Placeholder
-    </BoxWithShadow>
+    <DevelopmentActionBoardView categories={IdpData} />
   </>
 )
