@@ -48,6 +48,12 @@ export default {
     return _.trim(dirtyString)
   },
 
+  removeTags (html) {
+    const div = document.createElement('div')
+    div.innerHTML = html.replace(/<br>|(<\/(?:p|li|div|ul|ol)>)/g, '$1 ')
+    return div.innerText
+  },
+
   isNumeric (str) {
     if (typeof str === 'number') return true
     if (typeof str !== 'string') return false
