@@ -1183,8 +1183,7 @@ CREATE TABLE public.campaign_options (
     integration_type integer DEFAULT 0 NOT NULL,
     proctoring_trial boolean DEFAULT false,
     workshop_booking_requires_prework_completion boolean DEFAULT false,
-    campaign_scoring_variables text,
-    proctoring_type integer DEFAULT 0 NOT NULL
+    campaign_scoring_variables text
 );
 
 
@@ -13178,7 +13177,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240314103433'),
 ('20240314103432'),
 ('20240314080041'),
-('20240307081523'),
 ('20240229091603'),
 ('20240221091507'),
 ('20240213142024'),

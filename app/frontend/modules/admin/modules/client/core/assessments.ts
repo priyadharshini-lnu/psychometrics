@@ -34,6 +34,7 @@ export const AssessmentTR = t.type({
   enableNetworkCheck: t.union([t.boolean, t.null]),
   externalSettings: ExternalSettingsTR,
   icon: t.union([t.string, t.null]),
+  tagList: t.array(t.union([t.string, t.null])),
   poster: t.union([t.string, t.null]),
   dimension: t.union([
     t.type({

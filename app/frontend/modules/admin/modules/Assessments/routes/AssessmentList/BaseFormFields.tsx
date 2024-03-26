@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import cs from 'classnames'
 import { FormInstance } from 'antd/lib/form'
+import { Tag } from 'modules/admin/core/tags'
 import { useResources } from '~/hooks/useResources'
 import {
   Assessment, LinkedAssessment, UPDATABLE_CATEGORIES, CREATABLE_CATEGORIES,
@@ -32,6 +33,9 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
   const {
     data: dimensions, fetch: fetchDimensions, isLoading: isDimensionsLoading,
   } = useResources<Dimension>('dimensions')
+  const {
+    data: tags, fetch: fetchTags, isLoading: isTagsLoading,
+  } = useResources<Tag>('tags')
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
@@ -196,6 +200,31 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
           </Select>
         </Form.Item>
       )}
+      <Form.Item
+        name="tagList"
+        label={I18n.t('common.column.tags')}
+      >
+        <Select
+          mode="tags"
+          style={{ width: '100%' }}
+          placeholder={I18n.t('common.column.tags')}
+          showSearch
+          onSearch={(value) => {
+            fetchTags({
+              apiConfig: {
+                filter: { name_cont: value },
+                fields: { tags: ['name'] },
+              },
+            })
+          }}
+          notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : null}
+          filterOption={false}
+        >
+          {tags.map(({ name }) => (
+            <Select.Option key={name} value={name}>{name}</Select.Option>
+          ))}
+        </Select>
+      </Form.Item>
     </>
   )
 }

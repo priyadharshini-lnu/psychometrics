@@ -8,6 +8,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TagList } from '~/modules/admin/components/Resource/TagList'
 import settings from '../../settings'
 import { history } from '~/modules/admin/store'
 import styles from './AssessmentList.less'
@@ -28,6 +29,7 @@ export const AssessmentTable: React.FC<Props> = ({
 }) => {
   const { resource } = useResourceContext<Assessment>()
   const collectionFilteredValue = resource.getFilteredValue('category_in') as string[] | undefined
+
   return (
     <Resource.Table pagination>
       <Resource.Column<Assessment>
@@ -60,6 +62,17 @@ export const AssessmentTable: React.FC<Props> = ({
         id="name"
         width={400}
         sorter
+        render={(_, assessment) => (
+          <>
+            <div>{assessment.name}</div>
+            <TagList
+              initialTags={(assessment.tagList || []).filter(tag => tag !== null) as string[]}
+              config={{
+                editable: false,
+              }}
+            />
+          </>
+        )}
       />
       <Resource.Column<Assessment>
         title={I18n.t('common.column.dimension')}

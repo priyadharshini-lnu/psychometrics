@@ -15,7 +15,7 @@ export const AssessmentFilter: React.FC<{ openModal: () => void }> = ({
   const tableLoading = resource.isLoading('fetch')
 
   return (
-    <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields">
+    <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields" showTagFilter>
 
       <Button type="primary" disabled={tableLoading} onClick={openModal}>
         <PlusOutlined />

@@ -16,7 +16,7 @@
     "termsOfService": "https://thetalententerprise.com/privacy-statement/",
     "description": "**Warning:** Version 2.0 API is unstable and subject to change without notice. Do not use this for integration.\n\n## Introduction\nLighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.\n\nTo access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact The Talent Enterprise for more information about getting started.\n\n## Base URL\nAll URLs referenced in this documentation have the following base component.\n\n`https://%<host>s%<basePath>s`\n\nTo ensure data privacy and security, all requests should be made over `https`. `http` is not supported.\n\n## Authentication\nBasic Auth is used to make API calls. Use the **API Key** as the Username and **Token** as the password.\n\n## Workflow\nThere is no particular workflow you need to follow. A typical workflow is shown below.\n\n<img src=\"https://static.tte-lighthouse.com/lighthouse/Lighthouse-Typical-Integration.svg\" style=\"width: 100%%;\"/>\n\n## Terminology\n\n### Assessments\nAssessments are pre-configured for a campaign. Any user added to the campaign gets assigned the configured assessments.\n\n### Campaigns\nCampaigns can be pre-configured with default assessments and reports. This is a way to group users by specific use case. For recruitment, a Campaign could mean a position.\n\n### Results\nAfter the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.\n\n### Data Schema\nWhile designing the parsers for the API responses and webhook results, the possibility of new properties being introduced to objects at any level should be considered with the ongoing updates of the Lighthouse APIs.\n\nNew attributes could also be added to the request schema but would be optional.\n"
   },
-  "securityDefinitions": {
+  "securitySchemes": {
     "basic": {
       "type": "basic"
     }
@@ -607,7 +607,10 @@
                           },
                           "extra": {
                             "icon_color": "color"
-                          }
+                          },
+                          "tag_list": [
+                            "psychometric"
+                          ]
                         },
                         "relationships": {
                           "dimension": {
@@ -762,6 +765,84 @@
           "204": {
             "description": "Assessment Deleted"
           }
+        }
+      }
+    },
+    "/assessments/{assessment_id}/add_tag": {
+      "post": {
+        "summary": "Add tag to a assessment",
+        "operationId": "AddTagToAssessment",
+        "description": "Add a tag to an assessment",
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag added successfully"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddTagRequest"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/assessments/{assessment_id}/remove_tag": {
+      "post": {
+        "summary": "Remove tag from a assessment",
+        "operationId": "RemoveTagFromAssessment",
+        "description": "Remove a tag from an assessment",
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "assessment_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag removed successfully"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/vnd.api+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveTagRequest"
+              }
+            }
+          },
+          "required": true
         }
       }
     },
@@ -1122,6 +1203,7 @@
                             "user_assessment_id": 1,
                             "status": "pending",
                             "schedule_time": "2020-10-10T10:10:10.000Z",
+                            "meeting_type": "internal",
                             "meeting_link": "https://meet.google.com/abc-xyz",
                             "linked_activity": "Assessment 1",
                             "assessor": {
@@ -2096,6 +2178,45 @@
             }
           },
           "required": true
+        }
+      }
+    },
+    "/campaigns/{campaign_id}/campaign_user_scorings": {
+      "get": {
+        "summary": "Get campaign user scorings",
+        "operationId": "GetCampaignUserScorings",
+        "description": "Get campaign user scorings",
+        "tags": [
+          "CampaignUserScorings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignUserScorings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignUserListResponse"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -7560,10 +7681,9 @@
   },
   "security": {
   },
-  "basePath": "/api/v2/administration",
   "servers": [
     {
-      "url": "https://ttedev.me:3030"
+      "url": "https://ttedev.me:3030/api/v2/administration"
     }
   ],
   "schemes": [
@@ -8533,6 +8653,14 @@
 
                       ],
                       "nullable": true
+                    },
+                    "tag_list": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -9153,6 +9281,14 @@
                     "required": [
 
                     ],
+                    "nullable": true
+                  },
+                  "tag_list": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "nullable": true
+                    },
                     "nullable": true
                   }
                 },
@@ -16705,6 +16841,10 @@
                   "description": {
                     "type": "string",
                     "nullable": true
+                  },
+                  "ranked": {
+                    "type": "boolean",
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -19720,7 +19860,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   },
@@ -19757,7 +19897,7 @@
                   }
                 },
                 "required": [
-                  "user"
+
                 ],
                 "nullable": false
               },
@@ -19788,7 +19928,6 @@
             "required": [
               "id",
               "type",
-              "relationships",
               "attributes"
             ],
             "nullable": false
@@ -19842,7 +19981,7 @@
                         }
                       },
                       "required": [
-                        "data"
+
                       ],
                       "nullable": false
                     },
@@ -19879,7 +20018,7 @@
                     }
                   },
                   "required": [
-                    "user"
+
                   ],
                   "nullable": false
                 },
@@ -19910,7 +20049,6 @@
               "required": [
                 "id",
                 "type",
-                "relationships",
                 "attributes"
               ],
               "nullable": false

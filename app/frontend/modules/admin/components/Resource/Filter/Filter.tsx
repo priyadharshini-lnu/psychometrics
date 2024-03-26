@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { CountDisplay } from '~/components/CountDisplay'
 import { useResourceContext } from '../ResourceContext'
+import { TagFilter } from '~/modules/admin/components/Resource/TagFilter'
 
 const { I18n } = window
 
@@ -14,6 +15,7 @@ type Props = {
   placeholder?: string
   name: string
   hideSearch?: boolean
+  showTagFilter?: boolean
 }
 
 export const Filter: FC<Props> = ({
@@ -21,6 +23,7 @@ export const Filter: FC<Props> = ({
   placeholder,
   name,
   hideSearch,
+  showTagFilter,
 }) => {
   const { resource } = useResourceContext()
   const loading = resource.isLoading('fetch')
@@ -44,20 +47,17 @@ export const Filter: FC<Props> = ({
       </Col>
 
       <Col>
-        { hideSearch ? (
-          <Space>
-            { children }
-          </Space>
-        ) : (
-          <Space>
+        <Space>
+          {showTagFilter && <TagFilter tag="tagged_with" />}
+          {!hideSearch && (
             <Search
               placeholder={placeholder || defaultPlaceholder}
               value={resource.getFilteredValue(name)}
               onChange={({ target: { value } }) => { resource.changeFilter(name, value) }}
             />
-            {children}
-          </Space>
-        )}
+          )}
+          {children}
+        </Space>
       </Col>
     </Row>
   )

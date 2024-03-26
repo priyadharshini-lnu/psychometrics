@@ -60,4 +60,19 @@ RSpec.describe User, type: :model do
       expect(user.valid?).to eq(true)
     end
   end
+
+  describe '#owner_ids' do
+    let(:user) { create(:user) }
+
+    it 'returns unique owner ids' do
+      client_membership = create(:client_admin_membership, user: user)
+      project_membership = create(:project_admin_membership, user: user)
+      campaign_membership = create(:campaign_admin_membership, user: user)
+
+      expected_owner_ids = [client_membership.client_id, project_membership.client_id,
+                            campaign_membership.client_id].uniq
+
+      expect(user.owner_ids).to match_array(expected_owner_ids)
+    end
+  end
 end

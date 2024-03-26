@@ -155,6 +155,8 @@ class User < ApplicationRecord
 
   has_one_time_password(encrypted: true)
 
+  acts_as_tagger
+
   delegate :subdomain, to: :project, allow_nil: true
   delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
 
@@ -255,6 +257,10 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     super && !disabled?
+  end
+
+  def owner_ids
+    [client_admin_client_ids, project_admin_client_ids, campaign_admin_client_ids].flatten.uniq
   end
 
   private

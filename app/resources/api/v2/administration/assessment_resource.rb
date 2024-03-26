@@ -3,9 +3,13 @@
 class Api::V2::Administration::AssessmentResource < Api::V2::Administration::BaseResource
   attributes :name, :disabled, :icon_url, :type, :category, :created_at, :updated_at, :created_by,
              :modified_by, :icon_color, :description, :timing, :status, :enable_video_check, :enable_audio_check,
-             :enable_network_check, :poster, :icon, :external_settings, :archived, :deleted, :extra, :default_language
+             :enable_network_check, :poster, :icon, :external_settings, :archived, :deleted, :extra, :default_language,
+             :tag_list
 
   ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq]
+
+  add_tag_filter
+
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
   audit_log_for :destroy, payload: ->(_, client) { client.attributes.slice('id', 'name', 'category', 'type') }
@@ -123,5 +127,13 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
         )
       }
     }
+  end
+
+  def tag_list
+    @model.all_tags_list
+  end
+
+  def tag_list=(tags)
+    @model.save_tag_with_ownership(tags)
   end
 end

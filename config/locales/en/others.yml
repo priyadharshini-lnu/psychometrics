@@ -784,6 +784,8 @@ en:
     restart: Restart
   assessments:
     actions:
+      add_tag:
+        success_message: Tag was added successfully
       archived:
         success_message: Asessment %{name} was archived successfully
       back_to_campaign: Back to Campaign
@@ -810,6 +812,8 @@ en:
         confirm_message: Are you sure you want to delete the assessment '%{name}'?
         confirm_title: Confirmation Required
         success_message: Asessment %{name} has been removed
+      remove_tag:
+        success_message: Tag was removed successfully
       rescore: Rescore
       restore:
         success_message: Assessment %{name} was restored successfully
@@ -1571,6 +1575,7 @@ en:
       delete: Delete
       edit: Edit
       export: Export
+      filter_by_tags: Filter by tags
       import: Import
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
@@ -1633,6 +1638,7 @@ en:
       schedule_time: Schedule Time
       scheduling: Scheduling
       status: Status
+      tags: Tags
       timing: Timing
       token: Token
       type: Type

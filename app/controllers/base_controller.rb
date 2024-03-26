@@ -9,6 +9,7 @@ class BaseController < ActionController::Base
   add_flash_types :notice, :error, :success
 
   prepend_before_action :authenticate_user!, unless: -> { try(:skip_authentication?) }
+  before_action :set_current_attributes
   before_action :detect_mobile
   before_action :set_sentry_context
   before_action :enforce_password_change
@@ -102,6 +103,10 @@ class BaseController < ActionController::Base
   def feature_flags
     # Some values can be null
     Settings.features.to_h.transform_values { |v| v == true }
+  end
+
+  def set_current_attributes
+    Current.user = @current_user
   end
 
   def detect_mobile

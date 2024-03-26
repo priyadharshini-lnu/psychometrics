@@ -20,7 +20,7 @@ FactoryBot.define do
     factory :client_admin, traits: [:with_membership_client_admin], class: 'Users::Admin' do
       role { User::ADMIN_ROLE }
     end
-    factory :project_admin, traits: [:with_membership_campaign_admin], class: 'Users::Admin' do
+    factory :project_admin, traits: [:with_membership_project_admin], class: 'Users::Admin' do
       role { User::ADMIN_ROLE }
     end
 

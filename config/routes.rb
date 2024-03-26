@@ -43,6 +43,11 @@ Rails.application.routes.draw do
     end
   end
 
+  concern :taggable do
+    post :add_tag
+    post :remove_tag
+  end
+
   concern :sheet_management do
     collection do
       get :get_columns
@@ -1187,7 +1192,7 @@ Rails.application.routes.draw do
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end
-          jsonapi_resources :assessments do
+          jsonapi_resources :assessments, concerns: :taggable do
             post :toggle_archive
             post :copy
             post :restore
@@ -1201,6 +1206,7 @@ Rails.application.routes.draw do
             get :export_normed_results
           end
           jsonapi_resources :dimensions
+          jsonapi_resources :tags
           jsonapi_resources :external_assessments
           jsonapi_resources :external_reports
           jsonapi_resources :external_norms

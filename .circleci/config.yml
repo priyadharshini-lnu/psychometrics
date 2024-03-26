@@ -353,7 +353,11 @@ jobs:
       - run:
           name: RSpec
           command: |
-            EAGER_LOAD=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log
+            EAGER_LOAD=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--failure-exit-code=0'
+      - run:
+          name: RSpec re-run failed tests
+          command: |
+            EAGER_LOAD=1 DISABLE_COVERAGE=1 PARALLEL_TEST_PROCESSORS=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log --test-options '--only-failures'
       - store_artifacts:
           path: /home/circleci/project/tmp/capybara
   coveralls:

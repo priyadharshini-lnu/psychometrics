@@ -12,6 +12,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
   # TODO: remove after migration to ActiveStorage
   include ActiveStorageSync
+  include Taggable
 
   PSYCHOMETRIC = 'psychometric'
   ORGANISATIONAL = 'organisational'
@@ -170,6 +171,9 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   def attachment_storage_path(attribute_name, filename)
     "public/assessment/#{id}/#{attribute_name}/#{filename}"
   end
+
+  acts_as_taggable_on :tags
+  acts_as_taggable_tenant :owner_id
 
   delegate :config, :translations, to: :agile, prefix: true
 

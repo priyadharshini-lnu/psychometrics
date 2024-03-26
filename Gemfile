@@ -120,6 +120,9 @@ gem 'roo', '~> 2.9'
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
 gem 'acts_as_list', '~> 1.0.2'
 
+# Gem for implementing tagging functionality in Rails models
+gem 'acts-as-taggable-on', '~> 10.0'
+
 ### add fake destroying logic for models
 
 # Error tracking
