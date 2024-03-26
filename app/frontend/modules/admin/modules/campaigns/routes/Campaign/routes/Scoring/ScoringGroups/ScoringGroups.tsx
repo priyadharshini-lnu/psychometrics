@@ -294,6 +294,7 @@ export const ScoringGroups = () => {
   const initializeGroup = () => {
     initializeScoring('').then(() => {
       fetchAndUpdateFactorGroups()
+      fetchAndUpdateFactors()
     })
   }
 
