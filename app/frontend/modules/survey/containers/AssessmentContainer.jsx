@@ -90,7 +90,8 @@ class AssessmentContainer extends Component {
             <DndProvider backend={HTML5Backend}>
               <div className={containerStyles.previewConainer}>
                 {disabled && this.overlay()}
-                <ParallaxWrapper loading={loading} onLoaded={() => { this.setState({ loading: false }) }} />
+                {!showAsSinglePage
+                  && <ParallaxWrapper loading={loading} onLoaded={() => { this.setState({ loading: false }) }} />}
                 {!loading
                   ? (
                     <AssessmentPreview
