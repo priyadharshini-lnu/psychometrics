@@ -57,7 +57,7 @@ module AllowedPermissions
     'registration_codes' => %w[view manage],
     'datasheets' => %w[view manage],
     'auditLogs' => ['view'],
-    'workshops' => %w[view manage]
+    'workshops' => %w[view manage export_status]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -109,7 +109,7 @@ module AllowedPermissions
     'assessors' => %w[view manage],
     'reports' => ['manage'],
     'datasheets' => %w[view manage],
-    'workshops' => %w[view manage]
+    'workshops' => %w[view manage export_status]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {
@@ -121,8 +121,10 @@ module AllowedPermissions
       manage_users
       manage_options
       manage_report_approvals
+      view_stats
     ],
     'campaign_factors' => %w[view manage],
+    'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'sms_invites' => %w[view manage],
     'communications' => %w[view manage],
     'datasheets' => %w[view manage],
@@ -138,7 +140,6 @@ module AllowedPermissions
       regenerate_report
       bulk_regenerate_reports
       finalize_scores
-      view_stats
     ],
     'workshops' => %w[view manage]
   }.freeze

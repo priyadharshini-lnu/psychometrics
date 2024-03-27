@@ -44,6 +44,10 @@ module Api
       def spoof?
         @user.is?(:superadmin)
       end
+
+      def available_permissions?
+        @user.admin?
+      end
     end
   end
 end

@@ -1187,6 +1187,9 @@ Rails.application.routes.draw do
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
             get :reset_password
+            collection do
+              get :available_permissions
+            end
           end
           jsonapi_resources :users do
             post :reset_password
