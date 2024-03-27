@@ -999,6 +999,14 @@ Rails.application.routes.draw do
           patch :change_password
         end
       end
+
+      resources :user_idp_development_actions, only: %i[index] do
+        collection do
+          get :user_idp_skills
+          get :available_development_actions
+          post :save_plan
+        end
+      end
     end
 
     scope module: :threesixty do

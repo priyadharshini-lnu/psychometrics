@@ -5,4 +5,6 @@ class UserIdpSkill < ApplicationRecord
   belongs_to :skill
   has_one :user, through: :user_idp_plan
   has_many :user_idp_development_actions, dependent: :destroy
+
+  accepts_nested_attributes_for :user_idp_development_actions, allow_destroy: true
 end

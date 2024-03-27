@@ -308,6 +308,14 @@ en:
               invalid_datetime: is invalid
         user_assessment:
           subject_and_assessment_exists: Assessment and subject pair already exists
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: is invalid
+            private:
+              inclusion: must be a boolean
+            start_date_time:
+              invalid_datetime: is invalid
     models:
       assign_report: Assign report Form
       datasheet: Datasheet Form
@@ -2018,6 +2026,7 @@ en:
       not_saved:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
+      skill_not_exist_in_user_idp_plan: User idp skill doesn't exist in user idp plan
     try_again: Please try again
     webhooks:
       multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
