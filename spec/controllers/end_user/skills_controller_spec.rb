@@ -5,7 +5,7 @@ require 'rails_helper'
 describe EndUser::SkillsController, type: :controller do
   let(:current_password) { 'Current@Password129' }
   let!(:user) { create(:user, :with_project_membership, password: current_password) }
-
+  let!(:user_idp_plan) { create(:user_idp_plan, user: user, active: true) }
   let!(:skill) { create(:skill, name: 'abc') }
   let!(:skill2) { create(:skill, name: 'cde') }
   let!(:job_role) { create(:job_role, name: 'developer', skills: [skill, skill2]) }

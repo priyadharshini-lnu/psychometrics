@@ -50,4 +50,20 @@ describe EndUser::UserIdpSkillsController, type: :controller do
       expect(parsed_response['errors']).to eq(['Initial rating must be less than or equal to 5'])
     end
   end
+
+  describe 'POST create' do
+    it 'creates user idp skills' do
+      post :create, params: { skills: [{ skill_id: skill.id }, { skill_id: skill2.id }] }
+
+      expect(response.status).to eq(200)
+      expect(user.user_idp_skills.count).to eq(2)
+    end
+
+    it 'returns error if skill is invalid' do
+      post :create, params: { skills: [{ skill_id: nil }] }
+
+      expect(response.status).to eq(422)
+      expect(JSON.parse(response.body)).to include({ 'skill_id' => ["can't be blank"] })
+    end
+  end
 end

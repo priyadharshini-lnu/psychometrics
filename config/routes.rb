@@ -1083,7 +1083,7 @@ Rails.application.routes.draw do
     resources :skills, only: %i[index], controller: 'end_user/skills'
     resources :idp_template_skills, only: %i[index], controller: 'end_user/idp_template_skills'
     resources :skill_gap_reports, only: %i[show], controller: 'end_user/skill_gap_reports'
-    resources :user_idp_skills, only: %i[index update], controller: 'end_user/user_idp_skills'
+    resources :user_idp_skills, only: %i[index create update], controller: 'end_user/user_idp_skills'
 
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'

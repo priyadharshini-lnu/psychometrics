@@ -9,6 +9,23 @@ class EndUser::UserIdpSkillsController < ApplicationController
     ).to_a
   end
 
+  def create
+    form = ::Idp::CreateSkillsForm.new(skills_params).with_context(user: current_user)
+
+    if form.valid?
+      UserIdpSkill.transaction do
+        form.skills.each do |skill|
+          UserIdpSkill.find_or_create_by!(
+            user_idp_plan_id: current_user.active_user_idp_plan.id, skill_id: skill['skill_id']
+          )
+        end
+      end
+      render json: { ok: true }
+    else
+      render json: form.errors.messages, status: 422
+    end
+  end
+
   def update
     user_idp_skill = current_user.user_idp_skills.find(params[:id])
 
@@ -17,5 +34,11 @@ class EndUser::UserIdpSkillsController < ApplicationController
     else
       render json: { errors: user_idp_skill.errors.full_messages }, status: 422
     end
+  end
+
+  private
+
+  def skills_params
+    params.permit(skills: %i[skill_id])
   end
 end
