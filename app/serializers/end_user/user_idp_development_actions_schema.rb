@@ -8,6 +8,7 @@ module EndUser
 
         required(:id).filled(:int?)
         required(:user_idp_skill_id).filled(:int?)
+        required(:development_action_id).maybe(:int?)
         required(:name).maybe(:str?)
         required(:description).maybe(:str?)
         required(:custom_action).maybe(:str?)

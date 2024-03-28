@@ -2,8 +2,12 @@
 
 module EndUser
   class UserIdpDevelopmentActionsSerializer < Panko::Serializer
-    attributes :id, :name, :description, :user_idp_skill_id, :custom_action, :progress, :start_date_time,
-               :end_date_time, :private
+    attributes :id, :development_action_id, :name, :description, :user_idp_skill_id, :custom_action, :progress,
+               :start_date_time, :end_date_time, :private
+
+    def development_action_id
+      development_action&.id
+    end
 
     def name
       development_action&.name
@@ -13,10 +17,22 @@ module EndUser
       development_action&.description
     end
 
+    def start_date_time
+      format_datetime(object.start_date_time)
+    end
+
+    def end_date_time
+      format_datetime(object.end_date_time)
+    end
+
     private
 
     def development_action
       object.development_action
+    end
+
+    def format_datetime(datetime)
+      datetime.strftime('%Y-%m-%d %H:%M')
     end
   end
 end

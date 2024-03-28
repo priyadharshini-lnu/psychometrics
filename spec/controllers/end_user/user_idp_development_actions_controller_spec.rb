@@ -39,7 +39,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       get :available_development_actions
       parsed_result = JSON.parse(response.body)
       expect(parsed_result.class).to be(Hash)
-      expect(parsed_result.keys).to include('learning_style', 'available_development_actions')
+      expect(parsed_result.keys).to include('available_development_actions')
     end
   end
 

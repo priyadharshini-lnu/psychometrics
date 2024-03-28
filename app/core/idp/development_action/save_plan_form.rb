@@ -3,24 +3,21 @@
 module Idp::DevelopmentAction
   class SavePlanForm < Rectify::Form
     attribute :user_idp_skill_id, Integer
-    attribute :user_idp_development_actions_attributes, Array
+    attribute :custom_action, String
+    attribute :start_date_time, String
+    attribute :end_date_time, String
+    attribute :private, Boolean
+    attribute :progress, Integer
 
+    DATE_TIME_FORMAT = /\A\d{4}-\d{2}-\d{2} \d{2}:\d{2}\z/
+
+    validates :start_date_time, format: { with: DATE_TIME_FORMAT }, allow_blank: true
+    validates :end_date_time, format: { with: DATE_TIME_FORMAT }, allow_blank: true
+    validates :progress, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100 },
+    allow_blank: true
+    validates :private, inclusion: [true, false], allow_blank: true
     validates :user_idp_skill_id, presence: true
-    validates :user_idp_development_actions_attributes, presence: true
-
-    validate :validate_development_actions
     validate :skill_not_exist_in_user_idp_plan
-
-    def validate_development_actions
-      user_idp_development_actions_attributes.each do |action_params|
-        form = Idp::DevelopmentAction::UserIdpDevelopmentActionForm.new(action_params)
-        next unless form.invalid?
-
-        form.errors.each do |error|
-          errors.add(:user_idp_development_action, "#{error.attribute}: #{error.message}")
-        end
-      end
-    end
 
     def skill_not_exist_in_user_idp_plan
       return if user_idp_plan.user_idp_skills.exists?(id: user_idp_skill_id)

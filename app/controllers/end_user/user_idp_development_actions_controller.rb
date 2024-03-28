@@ -30,7 +30,6 @@ module EndUser
       available_development_actions = user_idp_plan.idp_template.development_actions
 
       render json: {
-        learning_style: DevelopmentAction.learning_styles.keys.prepend('All'),
         available_development_actions: Panko::ArraySerializer.new(
           available_development_actions,
           each_serializer: EndUser::AvailableDevelopmentActionSerializer
@@ -68,19 +67,16 @@ module EndUser
     end
 
     def user_idp_development_actions_params
-      params.require(:user_idp_development_action).map do |param|
-        param.permit(
+      params.require(:user_idp_development_action).map do |params|
+        params.permit(
+          :id,
           :user_idp_skill_id,
-          user_idp_development_actions_attributes: %i[
-            id
-            custom_action
-            development_action_id
-            end_date_time
-            private
-            progress
-            start_date_time
-            _destroy
-          ]
+          :development_action_id,
+          :custom_action,
+          :start_date_time,
+          :end_date_time,
+          :private,
+          :progress
         )
       end
     end
