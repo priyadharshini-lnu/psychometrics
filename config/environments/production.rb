@@ -105,7 +105,7 @@ Rails.application.configure do
     domain: ENV.fetch('MAIL_DOMAIN', nil),
     address: ENV.fetch('MAIL_ADDRESS', nil),
     port: ENV.fetch('MAIL_PORT', 587),
-    authentication: :plain,
+    authentication: ENV.fetch('MAIL_AUTH_TYPE', :plain),
     enable_starttls_auto: true
   }
 

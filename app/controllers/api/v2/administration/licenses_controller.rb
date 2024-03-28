@@ -2,8 +2,8 @@
 
 module Api
   class V2::Administration::LicensesController < Api::V2::Administration::BaseController
-    validates_request_schema :create, Api::V2::License::Contract.new
-    validates_request_schema :update, Api::V2::License::Contract.new
+    validates_request_schema :create, Api::V2::License::Contract.new(schema: Api::V2::License::Schema.create_request)
+    validates_request_schema :update, Api::V2::License::Contract.new(schema: Api::V2::License::Schema.update_request)
 
     validate_crud_requests Api::V2::License::Schema
 

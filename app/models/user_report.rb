@@ -186,7 +186,7 @@ class UserReport < ApplicationRecord
     pdf.url(query: { 'response-content-disposition' => "attachment;filename=#{file_name}" })
   end
 
-  def remove_pdf!
+  def remove_pdf_and_update_status!
     return unless prepared?
 
     update!(remove_pdf: true, status: :not_prepared, approval_status: :not_ready)

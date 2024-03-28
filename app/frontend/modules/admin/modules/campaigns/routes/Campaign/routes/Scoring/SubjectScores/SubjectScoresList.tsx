@@ -237,7 +237,7 @@ const SubjectScoresListComponent: React.FC<Props> = () => {
         </Col>
         <div>
           <Tools
-            persmission={{ export: meta.permissions?.exportScoring }}
+            permissions={{ exportScorings: meta.permissions?.exportScorings }}
             onClick={action => handleToolAction(action)}
           />
           <ToolsDropdown

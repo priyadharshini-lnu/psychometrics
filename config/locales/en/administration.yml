@@ -4796,3 +4796,7 @@ en:
     workshop_subjects:
       errors:
         update_assessor_for_failure: Meeting details cannot be added as there is no linked subject activity.
+    years:
+      one: 1 Year
+      other: "%{count} Years"
+      zero: 0 Years

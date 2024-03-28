@@ -303,6 +303,10 @@ class Client < ApplicationRecord
     slice(:name, :subdomain)
   end
 
+  def usable_license_id
+    active_licenses.select(&:enough_licenses?).pluck(:id)
+  end
+
   private
 
   def generate_hogan_group_name

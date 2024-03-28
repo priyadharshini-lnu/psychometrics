@@ -34,8 +34,12 @@ class Assessors::EvaluationsController < Assessors::BaseController
         datasheet_columns: datasheet_columns || [],
         datasheet: datasheet&.slice(*datasheet_columns.map { |col| col['name'] }) || {}
       },
-      assessor_assessments: @assessor_assessments.map { |a| { id: a.id, name: a.assessment.name } },
-      subject_assessments: @subject_user_assessment.map { |a| { id: a.id, name: a.assessment.name } }
+      assessor_assessments: @assessor_assessments.map do |a|
+        { id: a.id, name: a.assessment.name, linked_assessment_id: a.assessment.linked_assessment_id }
+      end,
+      subject_assessments: @subject_user_assessment.map do |a|
+        { id: a.id, name: a.assessment.name, assessment_id: a.assessment.id }
+      end
     }
   end
 
