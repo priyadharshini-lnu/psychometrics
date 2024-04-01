@@ -184,9 +184,9 @@ gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils'
 gem 'js-routes', '~> 1.4.4'
+gem 'rlua', git: 'https://github.com/TheTalentEnterprise/rlua', branch: 'tte-master'
 gem 'rswag-api', '~> 2.11.0'
 gem 'rswag-ui', '~> 2.11.0'
-gem 'rufus-lua', '~> 1.1.5'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.5.0'
