@@ -16,7 +16,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # This example installs the PostgreSQL and SQLite libraries (two commonly used databases in Rails apps).
 #
 # We're also installing the latest nodejs and lua
-RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python liblua5.1-0 \
+RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python liblua5.3 \
     && curl -sL https://deb.nodesource.com/setup_18.x | bash \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
