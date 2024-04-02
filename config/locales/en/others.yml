@@ -2243,10 +2243,19 @@ en:
       structured_learning: Structured Learning
       write_here: Write here...
     initial_steps:
-      add_skills: Add Skills
+      add_skills: Add
+      continue_to_rate_skills: Continue to rate skills
       getting_start: Getting Start
       getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
+      less_skills: Show less skills
+      more_skills: Explore more skills
+      no_skills_selected: No skills selected.
       rate_skills: Rate Skills
+      role: Role
+      select_role_placeholder: Select a role
+      select_skills: Select your skills
+      select_skills_placeholder: Select skills
+      selected_skills: Selected Skills
       skill_gap_report: Skill Gap Report
     list: List
     my_direct_reports: My Direct Reports
