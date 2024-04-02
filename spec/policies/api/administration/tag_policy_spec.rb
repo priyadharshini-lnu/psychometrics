@@ -51,14 +51,15 @@ RSpec.describe Api::Administration::TagPolicy do
 
     context 'for non-superadmin user' do
       it 'returns tags for specific tenants and common' do
-        set_current_user(project_admin)
+        set_current_user(client_admin)
         assessment.add_tag('psychometric')
+        assessment.add_tag('non-superadmin')
         assessment.save
 
         assessment_another_owner.add_tag('new_tag')
         assessment_another_owner.save
 
-        expect(project_admin_scope.resolve.count).to eq 1
+        expect(project_admin_scope.resolve.count).to eq 2
         expect(project_admin_scope.resolve.pluck(:name)).to include('psychometric')
         expect(project_admin_scope.resolve.pluck(:name)).not_to include('new_tag')
       end
