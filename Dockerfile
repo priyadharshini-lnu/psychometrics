@@ -157,7 +157,7 @@ RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg
     && curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
     && apt-get update -qq &&  apt-get install -yq --no-install-recommends build-essential libpq-dev \
-    postgresql-client-11 shared-mime-info imagemagick liblua5.1-0 \
+    postgresql-client-11 shared-mime-info imagemagick liblua5.3 \
     && gem update --system && gem install bundler -v $BUNDLER_VERSION \
     && apt-get --purge remove build-essential libpq-dev -y -qq \
     && apt-get clean \
