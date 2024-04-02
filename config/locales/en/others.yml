@@ -2262,6 +2262,7 @@ en:
     my_plan:
       development_plan: Development Plan
     plan: Plan
+    profile_details: Profile Details
     skill_gap_report: Skill Gap Report
   invites:
     create:

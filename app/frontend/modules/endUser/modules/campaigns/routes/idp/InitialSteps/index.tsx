@@ -22,7 +22,7 @@ enum STEPS {
 export const InitialSteps = () => {
   const { step: paramStep } = useParams<{step: string}>()
   const history = useHistory()
-  const [step, setStep] = useState<number>(STEPS[paramStep] || STEPS.getting_start) // TODO: add url switching on change
+  const [step, setStep] = useState<number>(STEPS[paramStep] || STEPS.getting_start)
 
   const next = (step) => {
     setStep(step)

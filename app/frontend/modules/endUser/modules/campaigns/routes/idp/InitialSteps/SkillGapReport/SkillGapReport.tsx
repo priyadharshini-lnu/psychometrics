@@ -1,20 +1,49 @@
-import { Typography } from 'antd'
-import { ButtonWithArrow, BoxWithShadow } from '~/glint'
-import styles from './SkillGapReport.less'
+import _ from 'lodash'
+import {
+  FC, useState, useEffect,
+} from 'react'
 
-const { I18n } = window
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from '~/modules/endUser/core/rootReducers'
+import { fetchSkillGaps, FetchSkillGapsResponse } from '~/modules/endUser/modules/campaigns/core/idp/idpForm'
+import { SkillGapReportStep } from '~/components/IdpShared/InitialSteps/SkillGapReportStep'
 
-export const SkillGapReport = ({ next }) => (
-  <>
-    <Typography.Title className={styles.title} level={3}>{I18n.t('idp.skill_gap_report')}</Typography.Title>
-    <BoxWithShadow style={{ padding: '24px', marginTop: 16, minHeight: 200 }}>
-      Profile Details Placeholder
-    </BoxWithShadow>
-    <BoxWithShadow style={{ padding: '24px', marginTop: 16, minHeight: 200 }}>
-      Gap Report placegolder
-    </BoxWithShadow>
-    <div className={styles.footer}>
-      <ButtonWithArrow label="Continue to add skills" size="small" type="primary" onClick={() => next()} />
-    </div>
-  </>
+const connector = connect(
+  (state: RootState) => ({
+    currentUser: state.currentUser,
+  }),
+  {
+    fetchSkillGaps,
+  },
 )
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+type SkillGapReportProps = {
+  next: () => void
+} & PropsFromRedux
+
+
+const SkillGapReportComponent: FC<SkillGapReportProps> = ({ next, currentUser, fetchSkillGaps }) => {
+  const [skillGapData, setSkillGapData] = useState<FetchSkillGapsResponse|null>(null)
+
+  // group by category
+  const groupedSkillGaps = _.groupBy(skillGapData?.idpTemplateSkills, 'category')
+  const allFields = skillGapData?.datasheetFields.concat(skillGapData?.profileFields)
+
+  useEffect(() => {
+    fetchSkillGaps(currentUser.id).then((data) => {
+      setSkillGapData(data.response)
+    })
+  }, [])
+
+  return (
+    <SkillGapReportStep
+      next={next}
+      currentUser={currentUser}
+      skillGapData={groupedSkillGaps}
+      fields={allFields || []}
+    />
+  )
+}
+
+export const SkillGapReport = connector(SkillGapReportComponent)
