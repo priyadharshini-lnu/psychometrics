@@ -232,6 +232,8 @@ Rails.application.routes.draw do
             patch :toggle_user_access
             get :webhook_payload
             get :possible_webhook_events
+            put :upload_file
+            delete :remove_file
           end
           collection do
             post :regenerate

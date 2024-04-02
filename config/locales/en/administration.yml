@@ -245,6 +245,7 @@ en:
             raw_responses: Raw Responses
             regenerate_report: Regenerate Report
             report_data: Report Data
+            report_file_upload: Report File Upload
             rescore_responses: Rescore Responses
             reset_progress: Reset Progress
             reset_responses: Reset Responses

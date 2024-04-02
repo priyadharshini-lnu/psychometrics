@@ -1,8 +1,7 @@
 import { FC } from 'react'
 import {
-  Drawer, Row, Descriptions, Avatar,
+  Drawer, Row, Descriptions, Avatar, ColorPicker, Typography, Space,
 } from 'antd'
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import { Report } from '~/modules/admin/modules/client/core/reports'
 import { ResourceAvatar } from '~/glint'
 
@@ -47,7 +46,13 @@ export const DetailsDrawer: FC<Props> = ({
             {report.id}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.active')} key="active" className="va-t">
-            {!report.disabled ? <CheckOutlined /> : <CloseOutlined />}
+            {report.disabled ? I18n.t('administration.common.disabled') : I18n.t('administration.common.enabled')}
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('common.column.name')} key="name" className="va-t">
+            {report.name}
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('common.column.description')} key="name" className="va-t">
+            {report.description || '-'}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.icon')} key="icon" className="va-t">
             <ResourceAvatar
@@ -56,11 +61,18 @@ export const DetailsDrawer: FC<Props> = ({
               name={report.name}
             />
           </Descriptions.Item>
+          {report.iconColor
+            ? (
+              <Descriptions.Item label={I18n.t('common.column.icon_color')} key="description" className="va-t">
+                <Space>
+                  <ColorPicker defaultValue={report.iconColor} disabled />
+                  <Typography.Text type="secondary" copyable>{report.iconColor}</Typography.Text>
+                </Space>
+              </Descriptions.Item>
+            ) : null
+          }
           <Descriptions.Item label={I18n.t('common.column.poster')} key="poster" className="va-t">
             {report.poster && <Avatar shape="square" src={report.poster} />}
-          </Descriptions.Item>
-          <Descriptions.Item label={I18n.t('common.column.name')} key="name" className="va-t">
-            {report.name}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.assessments')} key="assessments" className="va-t">
             <Avatar.Group maxCount={2}>
@@ -88,7 +100,17 @@ export const DetailsDrawer: FC<Props> = ({
             {report.modifiedBy}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('reports.columns.data_only')} key="data_only" className="va-t">
-            {report.dataOnly ? <CheckOutlined /> : <CloseOutlined />}
+            {report.dataOnly ? I18n.t('administration.common.enabled') : I18n.t('administration.common.disabled')}
+          </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('reports.fields.provider.custom_upload')}
+            key="custom_upload"
+            className="va-t"
+          >
+            {
+              report.provider === 'custom_upload'
+                ? I18n.t('administration.common.enabled') : I18n.t('administration.common.disabled')
+            }
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('reports.columns.default_language')} key="default_language" className="va-t">
             {I18n.t(`languages.${report.defaultLanguage}`)}

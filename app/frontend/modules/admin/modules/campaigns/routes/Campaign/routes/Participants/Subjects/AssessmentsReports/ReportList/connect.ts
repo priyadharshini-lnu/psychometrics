@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  get as getReports, remove, toggleUserAccess, selectRecords,
+  get as getReports, remove, toggleUserAccess, selectRecords, removeFile,
 } from '~/modules/admin/modules/campaigns/core/userReports'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -14,6 +14,7 @@ const connecter = connect(
     remove,
     toggleUserAccess,
     openModal,
+    removeFile,
   },
 )
 

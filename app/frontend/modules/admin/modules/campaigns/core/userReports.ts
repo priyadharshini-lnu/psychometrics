@@ -204,8 +204,28 @@ export const NEW_COMMENT = 'campaigns/userReports/NEW_COMMENT'
 export const UPDATE_COMMENT = 'campaigns/userReports/UPDATE_COMMENT'
 export const READ_COMMENT = 'campaigns/userReports/READ_COMMENT'
 export const FETCH_POSSIBLE_WEBHOOK_EVENTS = 'campaigns/userReports/FETCH_POSSIBLE_WEBHOOK_EVENTS'
+export const UPLOAD_FILE = 'campaigns/userReports/UPLOAD_FILE'
+export const REMOVE_FILE = 'campaigns/userReports/REMOVE_FILE'
 
 export const selectModule = (id: number) => ({ type: SELECT_MODULE, id })
+
+export const uploadFile = (campaignId: number, id: number, file: FormData) => ({
+  type: UPLOAD_FILE,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/upload_file`,
+    body: file,
+    contentType: 'multipart/form-data;' as const,
+  },
+})
+
+export const removeFile = (campaignId: number, id: number) => ({
+  type: REMOVE_FILE,
+  request: {
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/remove_file`,
+  },
+})
 
 export const fetchSingle = (campaignId: number, id: number, params = {}) => ({
   type: FETCH_SINGLE,
