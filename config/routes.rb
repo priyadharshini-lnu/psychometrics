@@ -894,6 +894,10 @@ Rails.application.routes.draw do
 
     scope module: :end_user do
       resources :campaigns, only: %i[show] do
+        collection do
+          get :join_with_code
+        end
+
         get :insights
       end
       get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
