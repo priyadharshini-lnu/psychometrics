@@ -28,9 +28,10 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
     it 'get user idp development action' do
       get :index
       parsed_result = JSON.parse(response.body)
-      expect(parsed_result.count).to eq(1)
-      expect(parsed_result[0]['id']).to eq(user_idp_development_action.id)
-      expect(parsed_result[0]['name']).to eq(user_idp_development_action.development_action.name)
+      expect(parsed_result.keys).to include('meta')
+      expect(parsed_result['meta']['record_count']).to eq(1)
+      expect(parsed_result['data'][0]['id']).to eq(user_idp_development_action.id)
+      expect(parsed_result['data'][0]['name']).to eq(user_idp_development_action.development_action.name)
     end
   end
 
@@ -38,8 +39,9 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
     it 'get development actions available in the idp template' do
       get :available_development_actions
       parsed_result = JSON.parse(response.body)
-      expect(parsed_result.class).to be(Hash)
-      expect(parsed_result.keys).to include('available_development_actions')
+      expect(parsed_result['meta']['record_count']).to eq(1)
+      expect(parsed_result['data'][0]['id']).to eq(idp_template_development_action.id)
+      expect(parsed_result['data'][0]['name']).to eq(idp_template_development_action.development_action.name)
     end
   end
 
@@ -47,8 +49,7 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
     it 'get user idp skills' do
       get :user_idp_skills
       parsed_result = JSON.parse(response.body)
-      expect(parsed_result.count).to eq(3)
-      expect(parsed_result.class).to be(Array)
+      expect(parsed_result['meta']['record_count']).to eq(3)
     end
   end
 end

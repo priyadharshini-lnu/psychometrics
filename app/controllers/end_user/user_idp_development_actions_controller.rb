@@ -5,35 +5,53 @@ module EndUser
     def index
       user_idp_development_action = user_idp_plan.user_idp_development_actions.includes(:development_action)
 
-      render json: Panko::ArraySerializer.new(
+      serialized_user_idp_development_actions = Panko::ArraySerializer.new(
         user_idp_development_action,
         each_serializer: EndUser::UserIdpDevelopmentActionsSerializer,
         context: {
           user_idp_plan: user_idp_plan
         }
       ).to_a
+
+      render json: {
+        data: serialized_user_idp_development_actions,
+        meta: {
+          record_count: serialized_user_idp_development_actions.count
+        }
+      }
     end
 
     def user_idp_skills
       user_idp_skills = user_idp_plan.user_idp_skills.includes(:skill)
 
-      render json: Panko::ArraySerializer.new(
+      serialized_user_idp_skills = Panko::ArraySerializer.new(
         user_idp_skills,
         each_serializer: EndUser::UserIdpSkillsSerializer,
         context: {
           user_idp_plan: user_idp_plan
         }
       ).to_a
+
+      render json: {
+        data: serialized_user_idp_skills,
+        meta: {
+          record_count: serialized_user_idp_skills.count
+        }
+      }
     end
 
     def available_development_actions
       available_development_actions = user_idp_plan.idp_template.development_actions
+      serialized_avaialable_development_actions = Panko::ArraySerializer.new(
+        available_development_actions,
+        each_serializer: EndUser::AvailableDevelopmentActionSerializer
+      ).to_a
 
       render json: {
-        available_development_actions: Panko::ArraySerializer.new(
-          available_development_actions,
-          each_serializer: EndUser::AvailableDevelopmentActionSerializer
-        ).to_a
+        data: serialized_avaialable_development_actions,
+        meta: {
+          record_count: serialized_avaialable_development_actions.count
+        }
       }
     end
 

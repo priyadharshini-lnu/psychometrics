@@ -11,6 +11,8 @@ module EndUser
         required(:development_action_id).maybe(:int?)
         required(:name).maybe(:str?)
         required(:description).maybe(:str?)
+        required(:learning_style).maybe(:str?)
+        required(:image).maybe(:str?)
         required(:custom_action).maybe(:str?)
         required(:private).filled(:bool?)
         required(:progress).value { int? | float? }
