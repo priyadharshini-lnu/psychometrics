@@ -2251,11 +2251,15 @@ en:
       more_skills: Explore more skills
       no_skills_selected: No skills selected.
       rate_skills: Rate Skills
+      rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
+      rate_skills_title: Rating Your Skills
+      rating_column_header: Your self rating
       role: Role
       select_role_placeholder: Select a role
       select_skills: Select your skills
       select_skills_placeholder: Select skills
       selected_skills: Selected Skills
+      skill_column_header: Skill
       skill_gap_report: Skill Gap Report
     list: List
     my_direct_reports: My Direct Reports
