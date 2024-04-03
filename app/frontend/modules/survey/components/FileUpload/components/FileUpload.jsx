@@ -25,6 +25,7 @@ export default function FileUpload ({
   markQuestionInProgress,
   removeQuestionInProgress,
   mediaResponse,
+  onBeforeRemove,
 }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -83,6 +84,7 @@ export default function FileUpload ({
   }
 
   const removeFile = () => {
+    onBeforeRemove && onBeforeRemove()
     dispatch({ type: REMOVE_FILE })
     if (mediaResponse) {
       const { id } = mediaResponse
@@ -140,5 +142,6 @@ FileUpload.propTypes = {
   model: PropTypes.object.isRequired,
   onSuccessUpload: PropTypes.func,
   onRemoveFile: PropTypes.func,
+  onBeforeRemove: PropTypes.func,
   fakeUpload: PropTypes.bool.isRequired,
 }

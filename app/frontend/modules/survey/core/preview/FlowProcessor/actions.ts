@@ -29,6 +29,7 @@ import {
   ACTIVE_DICTATION_ON_QUESTION,
   BACK_BUTTON_PRESSED, NEXT_BUTTON_PRESSED,
   SHOW_ERROR_WARNING,
+  SET_SUBMISSION_IN_PROGRESS,
 } from './consts'
 import {
   Highlight, QuestionError, MediaResponse, EndOfAssessmentElementProps,
@@ -64,6 +65,7 @@ export const prevPage = (preview) => {
 
 export const backButtonPressed = () => ({ type: BACK_BUTTON_PRESSED })
 export const nextButtonPressed = () => ({ type: NEXT_BUTTON_PRESSED })
+export const setSubmissionInProgress = value => ({ type: SET_SUBMISSION_IN_PROGRESS, value })
 
 export const addPrevPage = page => ({ type: ADD_PREV_PAGE, page })
 
