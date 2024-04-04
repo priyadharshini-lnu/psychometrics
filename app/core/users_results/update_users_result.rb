@@ -91,7 +91,7 @@ module UsersResults
     end
 
     def user_assessment_attribute_names
-      %i[norm_id status completion_reason last_activity_at progress_reseted]
+      %i[norm_id status completion_reason last_activity_at progress_reseted completion_status_code]
     end
   end
 end

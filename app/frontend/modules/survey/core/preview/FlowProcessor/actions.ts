@@ -33,7 +33,9 @@ import {
 import {
   Highlight, QuestionError, MediaResponse, EndOfAssessmentElementProps,
 } from './interfaces'
-import { getCurrentBlock, getProgress, getStatus } from './selectors'
+import {
+  getCompletionStatusCode, getCurrentBlock, getProgress, getStatus,
+} from './selectors'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
@@ -115,11 +117,13 @@ export const showErrorWarning = () => ({ type: SHOW_ERROR_WARNING })
 export const saveResults = (preview, questionIds, currentBlockId?) => {
   const answerKey = !preview.resultsUrl || preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers'
   const status = getStatus(preview)
+  const completionStatusCode = getCompletionStatusCode(preview)
   const data = {
     resource: {
       [answerKey]: preview.results,
       embedded_data: preview.embeddedData,
       status,
+      completion_status_code: completionStatusCode,
       prev_pages: preview.prevPages,
       progress: ['completed', 'ineligible'].includes(status) ? 100 : getProgress(preview),
     },

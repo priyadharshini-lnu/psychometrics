@@ -194,7 +194,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def send_completion_email
-    ::Communications::CompletionTypeJob.perform_later(users_result)
+    ::Communications::CompletionTypeJob.perform_later(self)
   end
 
   def user
