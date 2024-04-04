@@ -1,37 +1,39 @@
 import React, { useState } from 'react'
 import {
-  Rate, Progress, Tag, Popover, Button, Slider, Flex, Typography, DatePicker,
+  Rate, Progress, Popover, Button, Slider, Flex, Typography, DatePicker,
+  Switch,
 } from 'antd'
 import { EditOutlined, PlusOutlined } from '@ant-design/icons'
+import useMedia from 'use-media'
+import cs from 'classnames'
 import dayjs from '~/utils/dayjs'
-import { Skill } from './DevelopmentActionListView'
 
 import styles from './DevelopmentActionLandscapeCard.less'
+import { DevelopmentAction, SkillWithDevelopmentActions } from '.'
+import { Tags } from './Tags'
 
 const { RangePicker } = DatePicker
 
 const { I18n } = window
-interface SkillCardProps extends Skill {
-  isEditable?: boolean;
+type SkillCardProps = SkillWithDevelopmentActions & {
+  editMode?: boolean;
   handleAddDevelopmentAction?: () => void;
 }
 
 export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
   name,
-  rating,
-  description,
-  durationType,
-  durationNumber,
-  progress: originalProgress,
-  startDate,
-  endDate,
-  isPrivate,
-  isEditable,
+  initialRating,
+  finalRating,
+  development_actions,
+  editMode,
   handleAddDevelopmentAction,
 }) => {
-  const [editableProgress, setEditableProgress] = useState(originalProgress)
+  const [editableProgress, setEditableProgress] = useState(0)
   const [editing, setEditing] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
+  const isTablet = useMedia({
+    maxWidth: 768,
+  })
 
   const handleEditClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.stopPropagation()
@@ -48,7 +50,6 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
 
   const cancelEditing = () => {
     setEditing(false)
-    setEditableProgress(originalProgress)
   }
 
   const popoverContent = (
@@ -69,20 +70,10 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
     </Flex>
   )
 
-  const dateRange = isEditable ? (
-    <div>
-      <RangePicker />
-    </div>
-  ) : (
-    <Typography.Text>
-      {`${dayjs(startDate).format('DD MMM')} - ${dayjs(endDate).format('DD MMM')}`}
-    </Typography.Text>
-  )
-
   const header = (
     <>
       <h4 className={styles.m_none}>{name}</h4>
-      <Rate disabled defaultValue={rating} />
+      <Rate disabled defaultValue={finalRating || initialRating} />
     </>
   )
 
@@ -95,38 +86,128 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
       onOpenChange={setEditing}
     >
       <Flex
-        vertical
         flex={6}
-        gap={4}
-        justify="flex-start"
-        align="flex-end"
-        className={styles.p_12}
+        className={cs(
+          {
+            [styles.p_12]: !isTablet,
+            [styles.pb_8]: isTablet,
+          },
+        )}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-        <Progress percent={editableProgress} className={styles.m_none} />
-        {isHovering ? (
-          <Button
-            type="default"
-            icon={<EditOutlined />}
-            onClick={handleEditClick}
-          />
+        {isTablet ? (
+          <Flex flex={1} className={styles.label}>
+            {I18n.t('idp.development_actions.completion')}
+          </Flex>
         ) : null}
+        <Flex
+          vertical
+          flex={1}
+          gap={4}
+          justify="flex-start"
+          align="flex-end"
+        >
+          <Progress percent={editableProgress} className={styles.m_none} />
+          {isHovering || isTablet ? (
+            <Button
+              type="default"
+              shape="circle"
+              icon={<EditOutlined />}
+              onClick={handleEditClick}
+            />
+          ) : null}
+        </Flex>
       </Flex>
     </Popover>
   )
 
-  if (isEditable) {
-    return (
-      <Flex vertical gap={4}>
+  const developmentActionCards = development_actions.map(developmentAction => (
+    <Flex vertical key={developmentAction.id}>
+      <Flex
+        align="stretch"
+        justify="space-between"
+        className={styles.border_b_1}
+        vertical={isTablet}
+      >
         <Flex
-          justify="space-between"
-          className={`${styles.border_b_1} ${styles.py_12}`}
+          vertical
+          flex={5}
+          className={cs(
+            {
+              [styles.border_r_1]: !isTablet,
+              [styles.p_12]: !isTablet,
+              [styles.pl_none]: !isTablet,
+              [styles.pb_8]: isTablet,
+            },
+          )}
         >
-          <Flex gap={12}>
-            {header}
+          <Typography.Title
+            level={5}
+            ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+          >
+            {developmentAction.name}
+          </Typography.Title>
+          <Typography.Paragraph
+            ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+          >
+            {developmentAction.description}
+          </Typography.Paragraph>
+          <Flex className={styles.mb_8}>
+            <Tags type={developmentAction.learningStyle} />
           </Flex>
         </Flex>
+        <Flex flex={5} vertical={isTablet}>
+          <Flex
+            flex={9}
+            justify="flex-start"
+            className={cs(
+              {
+                [styles.border_r_1]: !isTablet,
+                [styles.p_12]: !isTablet,
+                [styles.pb_8]: isTablet,
+              },
+            )}
+          >
+            {isTablet ? (
+              <Flex flex={1} className={styles.label}>
+                {I18n.t('idp.development_actions.date_range')}
+              </Flex>
+            ) : null}
+            {dateRange(developmentAction, editMode)}
+          </Flex>
+          <Flex
+            flex={3}
+            className={cs(
+              {
+                [styles.border_r_1]: !isTablet,
+                [styles.p_12]: !isTablet,
+                [styles.pb_8]: isTablet,
+              },
+            )}
+          >
+            {isTablet ? (
+              <Flex flex={1} className={styles.label}>
+                {I18n.t('idp.development_actions.private')}
+              </Flex>
+            ) : null}
+            <Flex flex={1}>
+              {!editMode && (developmentAction.private
+                ? (<Typography.Text>{I18n.t('idp.development_actions.action_private')}</Typography.Text>)
+                : (<Typography.Text>{I18n.t('idp.development_actions.action_public')}</Typography.Text>)
+              )}
+            </Flex>
+            {editMode ? (
+              <Switch
+                defaultChecked={developmentAction.private}
+                size="small"
+              />
+            ) : null}
+          </Flex>
+          {progress}
+        </Flex>
+      </Flex>
+      {editMode ? (
         <Flex>
           <Button
             type="link"
@@ -137,9 +218,9 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
             {I18n.t('idp.development_actions.add_development_action')}
           </Button>
         </Flex>
-      </Flex>
-    )
-  }
+      ) : null}
+    </Flex>
+  ))
 
   return (
     <Flex vertical>
@@ -151,55 +232,35 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
           {header}
         </Flex>
       </Flex>
-      <Flex
-        align="stretch"
-        justify="space-between"
-        className={styles.border_b_1}
-      >
-        <Flex
-          vertical
-          flex={5}
-          className={`${styles.border_r_1} ${styles.p_12} ${styles.pl_none}`}
-        >
-          <Typography.Paragraph
-            ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
-          >
-            {description}
-          </Typography.Paragraph>
-          <Flex gap={8} className={styles.mb_8}>
-            <Tag color="geekblue">{durationType}</Tag>
-            <Tag>{durationNumber}</Tag>
-          </Flex>
-        </Flex>
-        <Flex flex={5}>
-          <Flex
-            flex={4}
-            justify="flex-start"
-            className={`${styles.border_r_1} ${styles.p_12}`}
-          >
-            {dateRange}
-          </Flex>
-          <Flex
-            flex={3}
-            className={`${styles.border_r_1} ${styles.p_12}`}
-          >
-            {isPrivate
-              ? <Typography.Text>{I18n.t('idp.development_actions.action_private')}</Typography.Text>
-              : <Typography.Text>{I18n.t('idp.development_actions.action_public')}</Typography.Text>}
-          </Flex>
-          {progress}
-        </Flex>
-      </Flex>
-      <Flex>
-        <Button
-          type="link"
-          icon={<PlusOutlined />}
-          onClick={handleAddDevelopmentAction}
-          className={styles.p_none}
-        >
-          {I18n.t('idp.development_actions.add_development_action')}
-        </Button>
-      </Flex>
+      {developmentActionCards}
     </Flex>
   )
+}
+
+const dateRange = (developmentAction: DevelopmentAction, editMode?: boolean) => {
+  const format = 'DD MMM YYYY'
+  if (editMode) {
+    return (
+      <Flex flex={1} vertical>
+        <RangePicker
+          defaultValue={[
+            developmentAction.startDateTime ? dayjs(developmentAction.startDateTime) : null,
+            developmentAction.endDateTime ? dayjs(developmentAction.endDateTime) : null,
+          ]}
+          format={format}
+        />
+      </Flex>
+    )
+  }
+  if (developmentAction.startDateTime && developmentAction.endDateTime) {
+    return (
+      <Flex flex={1}>
+        <Typography.Text>
+          {`${dayjs(developmentAction.startDateTime).format('DD MMM YYYY')} - 
+      ${dayjs(developmentAction.endDateTime).format('DD MMM YYYY')}`}
+        </Typography.Text>
+      </Flex>
+    )
+  }
+  return (<Flex flex={1}>-</Flex>)
 }

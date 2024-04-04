@@ -2222,8 +2222,8 @@ en:
     board: Board
     details: Details
     development_actions:
-      action_private: false
-      action_public: true
+      action_private: 'Yes'
+      action_public: 'No'
       add_development_action: Add Development Action
       all: All
       board_view:
@@ -2236,11 +2236,15 @@ en:
       development_actions: Development Actions
       generate_by_ai: Generate by AI
       learning_from_the_others: Learning from the Others
+      marathon: Marathon
       no_development_actions: No development actions
       on_the_job: On the Job
+      other: Other
       private: Private
       skills: Skills
+      sprint: Sprint
       structured_learning: Structured Learning
+      submit_plan: Submit Plan
       write_here: Write here...
     initial_steps:
       add_skills: Add

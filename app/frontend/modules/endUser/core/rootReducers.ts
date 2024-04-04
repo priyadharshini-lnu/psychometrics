@@ -15,6 +15,7 @@ import report from '../modules/campaigns/core/report'
 import checkingWizard from '../modules/campaigns/core/checkingWizard'
 import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
+import idp from '../modules/campaigns/core/idp/developmentAction'
 import anonym from '../modules/campaigns/core/anonym'
 import workshop from '~/modules/endUser/modules/campaigns/core/workshops'
 import config from './config'
@@ -25,6 +26,7 @@ const rootReducer = history => combineReducers({
     nomination,
     evaluation,
     report,
+    idp,
     campaigns,
     assign,
     project,

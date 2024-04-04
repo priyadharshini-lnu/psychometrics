@@ -40,7 +40,7 @@ module EndUser
     end
 
     def format_datetime(datetime)
-      datetime.strftime('%Y-%m-%d %H:%M')
+      datetime&.strftime('%Y-%m-%d %H:%M')
     end
   end
 end

@@ -1,23 +1,23 @@
 import React from 'react'
 import {
-  Rate, Progress, Tag, Flex, Typography,
+  Rate, Progress, Flex, Typography,
 } from 'antd'
 import { BoxWithShadow } from '~/glint'
 import dayjs from '~/utils/dayjs'
-import { Skill } from './DevelopmentActionListView'
 import styles from './DevelopmentActionPortraitCard.less'
+import { DevelopmentActionWithSkill } from '.'
+import { Tags } from './Tags'
 
 const { I18n } = window
 
-export const DevelopmentActionPortraitCard: React.FC<Skill> = ({
+export const DevelopmentActionPortraitCard: React.FC<DevelopmentActionWithSkill> = ({
   name,
-  rating,
   description,
-  durationType,
-  durationNumber,
   progress,
-  startDate,
-  endDate,
+  startDateTime,
+  endDateTime,
+  learningStyle,
+  skill,
 }) => (
   <BoxWithShadow className={styles.p_16}>
     <Flex vertical gap={8}>
@@ -36,10 +36,9 @@ export const DevelopmentActionPortraitCard: React.FC<Skill> = ({
           <span>{`${I18n.t('idp.development_actions.skills')}:`}</span>
           <p className={styles.m_none}>{name}</p>
         </Flex>
-        <Rate disabled defaultValue={rating} />
-        <Flex gap={8} className={styles.mb_8}>
-          <Tag color="geekblue">{durationType}</Tag>
-          <Tag>{durationNumber}</Tag>
+        <Rate disabled defaultValue={skill.finalRating || skill.initialRating} />
+        <Flex className={styles.mb_8}>
+          <Tags type={learningStyle} />
         </Flex>
       </Flex>
       <Flex justify="space-between" align="flex-end" gap={4}>
@@ -48,9 +47,11 @@ export const DevelopmentActionPortraitCard: React.FC<Skill> = ({
           justify="flex-start"
           className={styles.py_12}
         >
-          <Typography.Text>
-            {`${dayjs(startDate).format('DD MMM')} - ${dayjs(endDate).format('DD MMM')}`}
-          </Typography.Text>
+          {startDateTime && endDateTime ? (
+            <Typography.Text>
+              {`${dayjs(startDateTime).format('DD MMM')} - ${dayjs(endDateTime).format('DD MMM')}`}
+            </Typography.Text>
+          ) : null}
         </Flex>
         <Flex
           vertical

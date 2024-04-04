@@ -1,43 +1,28 @@
 import React, { useMemo } from 'react'
-import { Avatar, Collapse, Flex } from 'antd'
+import {
+  Avatar, Collapse, Empty, Flex,
+} from 'antd'
 import { DevelopmentActionPortraitCard } from './DevelopmentActionPortraitCard'
 import styles from './DevelopmentActionBoardView.less'
+import { CategoryWithDevelopmentActions, DevelopmentActionWithSkill } from '.'
 
 const { I18n } = window
-export interface Skill {
-  id: number;
-  name: string;
-  rating: number;
-  description: string;
-  durationType: string;
-  durationNumber: number;
-  progress: number;
-  startDate: Date | string;
-  endDate: Date | string;
-  isPrivate?: boolean;
-}
-interface Category {
-  id: number;
-  category: string;
-  skills: Skill[];
-}
-
 interface SkillsContainerProps {
-  categories: Category[];
+  categories: CategoryWithDevelopmentActions[];
 }
 
 export const DevelopmentActionBoardView: React.FC<SkillsContainerProps> = ({ categories }) => {
-  const renderPortraitSkillCards = (skills: Skill[]) => {
+  const renderPortraitSkillCards = (skills: DevelopmentActionWithSkill[]) => {
     if (skills.length === 0) return <span>{I18n.t('idp.development_actions.no_development_actions')}</span>
     return skills.map(skill => (
       <DevelopmentActionPortraitCard key={skill.id} {...skill} />
     ))
   }
 
-  const renderSkillBoards = (skills: Skill[]) => {
-    const notStarted: Skill[] = []
-    const inProgress: Skill[] = []
-    const completed: Skill[] = []
+  const renderSkillBoards = (skills: DevelopmentActionWithSkill[]) => {
+    const notStarted: DevelopmentActionWithSkill[] = []
+    const inProgress: DevelopmentActionWithSkill[] = []
+    const completed: DevelopmentActionWithSkill[] = []
 
     skills.forEach((skill) => {
       if (skill.progress === 0) {
@@ -74,19 +59,21 @@ export const DevelopmentActionBoardView: React.FC<SkillsContainerProps> = ({ cat
   }
 
   const items = useMemo(() => categories.map(category => ({
-    key: category.id.toString(),
+    key: category.category,
     label: (
       <Flex align="center" gap={12}>
         <Avatar size={24} />
         <h3 className={styles.h3}>{category.category}</h3>
       </Flex>),
-    children: renderSkillBoards(category.skills),
+    children: renderSkillBoards(category.developmentActions),
   })), [categories])
 
+  const activeKeys = useMemo(() => categories.map(category => category.category), [categories])
 
   return (
     <Flex gap={12}>
-      <Collapse defaultActiveKey={['1']} ghost items={items} accordion />
+      {items && items.length > 0
+        ? (<Collapse defaultActiveKey={activeKeys} ghost items={items} accordion />) : <Empty />}
     </Flex>
   )
 }
