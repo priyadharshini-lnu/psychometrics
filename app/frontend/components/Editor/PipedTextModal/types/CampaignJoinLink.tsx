@@ -5,7 +5,7 @@ import {
 
 const { I18n } = window
 
-const JoinLink = ({
+const CampaignJoinLink = ({
   field: { getValue }, insert,
 }) => {
   const [open, setOpen] = useState(false)
@@ -26,10 +26,10 @@ const JoinLink = ({
       initialValues={{ expire: 120 }}
     >
       <Space direction="vertical">
-        <Form.Item name="campaign" label="Campaign ID" rules={[{ required: true }]}>
+        <Form.Item name="campaign" label={I18n.t('campaign_join_token.campaign_id')} rules={[{ required: true }]}>
           <InputNumber style={{ width: 200 }} />
         </Form.Item>
-        <Form.Item name="expire" label="Expire In (sec)" rules={[{ required: true }]}>
+        <Form.Item name="expire" label={I18n.t('campaign_join_token.expire_in')} rules={[{ required: true }]}>
           <InputNumber style={{ width: 200 }} />
         </Form.Item>
         <Space>
@@ -50,4 +50,4 @@ const JoinLink = ({
   )
 }
 
-export default JoinLink
+export default CampaignJoinLink

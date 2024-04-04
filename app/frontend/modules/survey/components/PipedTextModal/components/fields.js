@@ -232,7 +232,7 @@ const FIELDS = [
     fields: [
       {
         name: 'Join Link',
-        type: 'join_link',
+        type: 'campaign_join_link',
         getValue: (campaignId, expire) => `{{c://Campaign/JoinLink?campaign_id=${campaignId}&expiry=${expire}}}`,
       },
     ],

@@ -2,20 +2,21 @@
 
 module Campaigns
   module Users
-    class JoinCampaignWithToken < BaseCommand
+    class JoinCampaignByToken < BaseCommand
       private_attr_reader :user, :project, :campaign, :token, :campaign_user
 
-      def initialize(user, project, token)
+      def initialize(user, token)
         @user = user
-        @project = project
+        @project = user.project
         @token = token
       end
 
       def call
-        return broadcast(:error, I18n.t('registration_code.token_expired')) unless token
+        data = ::Campaigns::JwtTokenizer.decode(token)
+        return broadcast(:error, I18n.t('registration_code.token_expired')) unless data
 
-        campaign = project.project_campaigns.find_by(id: token['campaign_id'])
-        if !campaign || user.id != token['subject_id']
+        campaign = project.project_campaigns.find_by(id: data['campaign_id'])
+        if !campaign || user.id != data['subject_id']
           return broadcast(:error, I18n.t('registration_code.invalid_token'))
         end
         return broadcast(:error, I18n.t('campaign.already_joined')) if campaign.campaign_users.exists?(user_id: user.id)

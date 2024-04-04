@@ -1,9 +1,9 @@
 import Link from './Link'
 import Dropdown from './Dropdown'
-import JoinLink from './JoinLink'
+import CampaignJoinLink from './CampaignJoinLink'
 
 export default {
   link: Link,
   dropdown: Dropdown,
-  join_link: JoinLink,
+  campaign_join_link: CampaignJoinLink,
 }

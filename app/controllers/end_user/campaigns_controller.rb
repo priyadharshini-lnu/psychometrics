@@ -68,7 +68,7 @@ module EndUser
 
       campaign = registration_code.campaign
 
-      Campaigns::Users::JoinCampaign.call(current_user, campaign, registration_code) do
+      Campaigns::Users::JoinCampaignByRegistrationCode.call(current_user, campaign, registration_code) do
         on(:ok) { redirect_to campaign_path(campaign) }
         on(:error) do |message|
           flash[:alert] = message
@@ -78,9 +78,7 @@ module EndUser
     end
 
     def join_with_token
-      data = ::Campaigns::JwtTokenizer.decode(params[:token])
-
-      Campaigns::Users::JoinCampaignWithToken.call(current_user, @current_project, data) do
+      Campaigns::Users::JoinCampaignByToken.call(current_user, params[:token]) do
         on(:ok) { redirect_to campaign_path(campaign) }
         on(:error) do |message|
           flash[:alert] = message

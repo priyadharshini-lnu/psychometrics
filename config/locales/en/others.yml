@@ -1411,6 +1411,10 @@ en:
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
     update_exists: Update all exists assessments
+  campaign_join_token:
+    campaign_id: Campaign ID
+    expire_in: Expire in (sec)
+    invalid_token: Invalid token
   campaign_report:
     actions:
       bulk_download: Bulk Download
@@ -2578,7 +2582,6 @@ en:
   registration_code:
     allowed_domains: Allowed domains
     invalid_code: Invalid campaign code
-    invalid_token: Invalid token
     modals:
       remove:
         content: Are you sure you want to remove Registration code <strong>"%{code}"</strong>?

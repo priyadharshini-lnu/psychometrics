@@ -6,9 +6,11 @@ module Communications
       module CampaignFields
         class JoinLink < ::PipedText::BaseField
           def call
+            return broadcast(:ok, '') unless user
+
             exp = Time.current.to_i + params['expire'].to_i
             token = ::Campaigns::JwtTokenizer.encode(
-              { subject_id: user&.id, campaign_id: params['campaign_id'], exp: exp }
+              { subject_id: user.id, campaign_id: params['campaign_id'], exp: exp }
             )
 
             broadcast :ok, "<a href='/campaigns/join_with_token?token=#{token}'>link</a>"
