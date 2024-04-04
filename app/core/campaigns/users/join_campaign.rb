@@ -5,7 +5,7 @@ module Campaigns
     class JoinCampaign < BaseCommand
       private_attr_reader :user, :campaign, :registration_code, :project, :client, :user, :campaign_user
 
-      def initialize(user, campaign, registration_code)
+      def initialize(user, campaign, registration_code = nil)
         @user = user
         @campaign = campaign
         @project = campaign.project

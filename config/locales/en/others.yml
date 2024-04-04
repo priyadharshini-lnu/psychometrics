@@ -1566,6 +1566,7 @@ en:
       edit: Edit
       export: Export
       import: Import
+      insert: Insert
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
       ok: OK
@@ -2577,6 +2578,7 @@ en:
   registration_code:
     allowed_domains: Allowed domains
     invalid_code: Invalid campaign code
+    invalid_token: Invalid token
     modals:
       remove:
         content: Are you sure you want to remove Registration code <strong>"%{code}"</strong>?
@@ -2584,6 +2586,7 @@ en:
       title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
+    token_expired: The token expired
   report_approvals:
     events:
       approved_text: approved text

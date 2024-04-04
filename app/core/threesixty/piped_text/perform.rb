@@ -6,10 +6,17 @@ module Threesixty
       def self.branches
         [
           {
+            key: 'c',
+            name: 'campaign',
+            class_name: 'Threesixty::PipedText::Branches::Campaign',
+            required_context: %i[subject],
+            allow_html: true
+          },
+          {
             key: 'u',
             name: 'user',
             class_name: 'Threesixty::PipedText::Branches::User',
-            required_context: %i[user]
+            required_context: %i[subject]
           },
           {
             key: 'p',

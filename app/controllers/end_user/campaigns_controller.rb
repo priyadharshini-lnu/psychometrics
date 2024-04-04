@@ -7,7 +7,7 @@ module EndUser
     layout 'layouts/end_user'
 
     prepend_before_action :authenticate_anonymous_user!
-    before_action :set_campaign, except: %i[join_with_code]
+    before_action :set_campaign, except: %i[join_with_code join_with_token]
     initial_state_for %i[show insights]
 
     def show
@@ -69,6 +69,18 @@ module EndUser
       campaign = registration_code.campaign
 
       Campaigns::Users::JoinCampaign.call(current_user, campaign, registration_code) do
+        on(:ok) { redirect_to campaign_path(campaign) }
+        on(:error) do |message|
+          flash[:alert] = message
+          redirect_to('/')
+        end
+      end
+    end
+
+    def join_with_token
+      data = ::Campaigns::JwtTokenizer.decode(params[:token])
+
+      Campaigns::Users::JoinCampaignWithToken.call(current_user, @current_project, data) do
         on(:ok) { redirect_to campaign_path(campaign) }
         on(:error) do |message|
           flash[:alert] = message
