@@ -1276,6 +1276,10 @@ en:
       last_updated_text: 'Profile was last updated on:'
       sub_heading: Complete your full profile information
       welcome_text: Welcome,
+    reset_warning: You can only restart the campaign marked as practice campaign.
+    restart_practice: Restart Practice
+    restart_practice_confirmation: Are you sure you want to restart the practice?
+    restart_practice_success: Practice restarted successfully
     thank_you_for_time: Thank you for your time
     time_left:
       cancel: Cancel

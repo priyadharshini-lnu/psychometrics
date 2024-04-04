@@ -899,6 +899,7 @@ Rails.application.routes.draw do
         end
 
         get :insights
+        put :reset_practice_campaign
       end
       get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'

@@ -6,7 +6,7 @@ module Administration
       include Rails.application.routes.url_helpers
 
       attributes :id, :name, :start_date, :end_date, :type, :status, :campaign_url, :is_threesixty,
-                 :is_fixed_time, :project_id, :permissions
+                 :is_fixed_time, :project_id, :permissions, :practice_campaign
 
       has_many :assessments, each_serializer: Administration::Campaigns::AssessmentSerializer
       has_many :reports, each_serializer: Administration::Campaigns::ReportSerializer

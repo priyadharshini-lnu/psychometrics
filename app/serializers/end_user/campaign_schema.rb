@@ -22,6 +22,7 @@ module EndUser
         required(:privacy_consent_required).maybe(:bool?)
         required(:campaign_time).maybe(:int?)
         required(:fixed_timed).maybe(:bool?)
+        required(:practice_campaign).maybe(:bool?)
         required(:campaign_options).hash(EndUser::CampaignOptionsSchema.schema(_, _))
         required(:user_assessments).array(EndUser::UserAssessmentSchema.schema(_, _))
         required(:workshop_invite).maybe(:hash, EndUser::WorkshopInviteSchema.schema(_, _))

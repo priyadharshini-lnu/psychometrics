@@ -20,11 +20,28 @@ module EndUser
         format.html { render 'campaigns/show' }
         format.json do
           render json: ::EndUser::CampaignSerializer.new(
-            context: { current_user: current_user,
-                       include: '**' }
+            context: {
+              current_user: current_user,
+              include: '**'
+            }
           ).serialize(@campaign)
         end
       end
+    end
+
+    def reset_practice_campaign
+      unless @campaign.practice_campaign?
+        return render json: { error: I18n.t('campaign.reset_warning') }, status: 400
+      end
+
+      CampaignUsers::ResetCampaign.call!(@campaign, current_user)
+
+      render json: ::EndUser::CampaignSerializer.new(
+        context: {
+          current_user: current_user,
+          include: '**'
+        }
+      ).serialize(@campaign)
     end
 
     def insights

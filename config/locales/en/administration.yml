@@ -923,6 +923,7 @@ en:
       extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name
+        practice_campaign: Practice Campaign
         status: Status
       listing:
         assessments: Assessments
