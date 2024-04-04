@@ -1,4 +1,4 @@
-import JoinLink from 'components/Editor/PipedTextModal/types/CampaignJoinLink'
+import JoinLink from '~/components/Editor/PipedTextModal/types/CampaignJoinLink'
 import Link from './Link'
 import Autocomplete from './Autocomplete'
 import Select from './Select'
