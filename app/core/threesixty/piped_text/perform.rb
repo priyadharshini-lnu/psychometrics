@@ -16,7 +16,7 @@ module Threesixty
             key: 'u',
             name: 'user',
             class_name: 'Threesixty::PipedText::Branches::User',
-            required_context: %i[subject]
+            required_context: %i[user]
           },
           {
             key: 'p',
