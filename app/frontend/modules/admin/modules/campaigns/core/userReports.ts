@@ -207,6 +207,14 @@ export const FETCH_POSSIBLE_WEBHOOK_EVENTS = 'campaigns/userReports/FETCH_POSSIB
 export const UPLOAD_FILE = 'campaigns/userReports/UPLOAD_FILE'
 export const REMOVE_FILE = 'campaigns/userReports/REMOVE_FILE'
 
+const updateIndividualReport = (state: State, response: UserReportDetails) => (
+  updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
+    if (userReport.id !== response.id) return userReport
+
+    return response
+  }))
+)
+
 export const selectModule = (id: number) => ({ type: SELECT_MODULE, id })
 
 export const uploadFile = (campaignId: number, id: number, file: FormData) => ({
@@ -413,7 +421,6 @@ export const readComment = (id: string) => ({
   id,
 })
 
-
 export const CLEAR_USER_REPORT_DETAILS = 'campaigns/userReports/CLEAR_USER_REPORT_DETAILS'
 export const clearUseReportDetails = () => ({ type: CLEAR_USER_REPORT_DETAILS })
 
@@ -435,7 +442,6 @@ type RequestChanges = ApiActionResponse<{status: string}>
 type SendToApprove = ApiActionResponse<{status: string}>
 type RemoveApproval = ApiActionResponse<{status: string}>
 
-
 const ExternalReportDetailsTR = t.type({
   id: t.number,
   userId: t.number,
@@ -455,7 +461,6 @@ export const fetchExternalReportDetails = (campaignId: number, id: number) => ({
     typedResponse: ExternalReportDetailsTR,
   },
 })
-
 
 const HANDLERS = {
   [FETCH_SINGLE]: (state: State, action: FetchSingleType) => ({
@@ -489,20 +494,13 @@ const HANDLERS = {
       }))
   ),
   [UPLOAD_FILE]: (state: State, { response }: UploadFileType) => (
-    updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
-      if (userReport.id !== response.id) return userReport
-
-      return response
-    }))
+    updateIndividualReport(state, response)
   ),
 
   [REMOVE_FILE]: (state: State, { response }: RemoveFileType) => (
-    updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
-      if (userReport.id !== response.id) return userReport
-
-      return response
-    }))
+    updateIndividualReport(state, response)
   ),
+
   [TOGGLE_USER_ACCESS_REQUEST]: (state: State, { id }: ToggleUserAccessType) => (
     updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
       if (userReport.id !== id) return userReport

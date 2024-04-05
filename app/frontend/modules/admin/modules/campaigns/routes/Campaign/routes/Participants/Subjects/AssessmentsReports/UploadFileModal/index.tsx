@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Upload, Modal, Button, message } from 'antd'
+import {
+  Upload, Modal, Button, message,
+} from 'antd'
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { uploadFile } from '~/modules/admin/modules/campaigns/core/userReports'
@@ -26,7 +28,7 @@ const UploadFileModal: React.FC<Props> = ({
 
   const handleFileChange = (info) => {
     if (info.fileList.length) {
-      setFile(info.fileList[0].originFileObj);
+      setFile(info.fileList[0].originFileObj)
     } else {
       setFile(null)
     }

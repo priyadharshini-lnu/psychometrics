@@ -2681,16 +2681,12 @@ en:
           positionTopRight: Top Right
           showLegend: Show Legend
     columns:
+      data_only: Data Only
       default_language: Default Language
       external_settings:
         hogan_report_id: Hogan Report ID
         pearson_provider: Pearson Provider
         saville_report_id: Saville Report ID
-      sub_type:
-        custom_upload: Custom Upload
-        data_only: Data Only
-        standard: Standard
-        title: Sub Type
     create: Create
     dashboard: Dashboard
     drawer:
@@ -3550,6 +3546,7 @@ en:
         successfully: File was removed successfully.
       upload_file:
         choose_file: Choose File
+        success: File uploaded successfully.
         upload: Upload
     preview_report: Preview Report
     readable_statuses:
