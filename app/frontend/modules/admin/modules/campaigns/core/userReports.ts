@@ -419,6 +419,8 @@ export const clearUseReportDetails = () => ({ type: CLEAR_USER_REPORT_DETAILS })
 
 type FetchType = ApiActionResponse<{userReports: UserReport[]}>
 type FetchSingleType = ApiActionResponse<UserReportDetails>
+type UploadFileType = ApiActionResponse<UserReportDetails>
+type RemoveFileType = ApiActionResponse<UserReportDetails>
 type RegenerateReports = ApiActionResponse<{}>
 type SelectRecordsType = ReturnType<typeof selectRecords>
 type ToggleUserAccessType = ApiActionResponse<{id: number}>
@@ -485,6 +487,21 @@ const HANDLERS = {
 
         return userReport
       }))
+  ),
+  [UPLOAD_FILE]: (state: State, { response }: UploadFileType) => (
+    updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
+      if (userReport.id !== response.id) return userReport
+
+      return response
+    }))
+  ),
+
+  [REMOVE_FILE]: (state: State, { response }: RemoveFileType) => (
+    updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
+      if (userReport.id !== response.id) return userReport
+
+      return response
+    }))
   ),
   [TOGGLE_USER_ACCESS_REQUEST]: (state: State, { id }: ToggleUserAccessType) => (
     updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {

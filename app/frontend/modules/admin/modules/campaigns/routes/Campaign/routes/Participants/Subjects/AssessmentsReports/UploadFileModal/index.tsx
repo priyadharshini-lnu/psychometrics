@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Upload, Modal, Button } from 'antd'
+import { Upload, Modal, Button, message } from 'antd'
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { uploadFile } from '~/modules/admin/modules/campaigns/core/userReports'
@@ -21,11 +21,32 @@ export type Props = OwnProps & PropsFromRedux
 const UploadFileModal: React.FC<Props> = ({
   close, parentId, campaignId, uploadFile,
 }) => {
-  const formData = new FormData()
+  const [file, setFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const setFormData = (file) => {
-    formData.append('file', file as File, file.name)
+  const handleFileChange = (info) => {
+    if (info.fileList.length) {
+      setFile(info.fileList[0].originFileObj);
+    } else {
+      setFile(null)
+    }
+  }
+
+  const handleSubmit = () => {
+    if (!file) return
+
+    setLoading(true)
+    const formData = new FormData()
+    formData.append('file', file)
+
+    uploadFile(campaignId, parentId, formData)
+      .then(() => {
+        message.success(I18n.t('user_reports.modals.upload_file.success'))
+      })
+      .finally(() => {
+        setLoading(false)
+        close()
+      })
   }
 
   return (
@@ -37,15 +58,10 @@ const UploadFileModal: React.FC<Props> = ({
       footer={[
         <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,
         <Button
+          type="primary"
           key="submit"
-          disabled={loading}
-          onClick={() => {
-            setLoading(true)
-            uploadFile(campaignId, parentId, formData).finally(() => {
-              setLoading(false)
-              close()
-            })
-          }}
+          disabled={!file || loading}
+          onClick={handleSubmit}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
           {I18n.t('user_reports.modals.upload_file.upload')}
@@ -55,9 +71,7 @@ const UploadFileModal: React.FC<Props> = ({
       <Upload
         accept=".pdf"
         beforeUpload={() => false}
-        onChange={(info) => {
-          setFormData(info.file)
-        }}
+        onChange={handleFileChange}
         maxCount={1}
       >
         <button type="button">
