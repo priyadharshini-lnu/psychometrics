@@ -153,7 +153,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
       </Form.Item>
       <Form.Item
         valuePropName="checked"
-        label={I18n.t('reports.fields.custom_upload')}
+        label={I18n.t('reports.fields.provider.custom_upload')}
       >
         <Switch onChange={(value) => { setIsCustomUpload(value) }} checked={isCustomUpload} />
       </Form.Item>

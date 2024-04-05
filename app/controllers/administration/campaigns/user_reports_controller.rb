@@ -32,12 +32,22 @@ module Administration
 
       def upload_file
         resource.update!(pdf: params[:file], status: :prepared)
-        render json: :ok
+        render json: Administration::UserReportSerializer.new(
+          context: {
+            current_user: current_user,
+            campaign: campaign
+          }
+        ).serialize(resource)
       end
 
       def remove_file
         resource.remove_pdf_and_update_status!
-        render json: :ok
+        render json: Administration::UserReportSerializer.new(
+          context: {
+            current_user: current_user,
+            campaign: campaign
+          }
+        ).serialize(resource)
       end
 
       def possible_webhook_events
