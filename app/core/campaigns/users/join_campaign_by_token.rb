@@ -15,9 +15,9 @@ module Campaigns
         data = ::Campaigns::JwtTokenizer.decode(token)
         return broadcast(:error, I18n.t('registration_code.token_expired')) unless data
 
-        campaign = project.project_campaigns.find_by(id: data['campaign_id'])
+        @campaign = project.project_campaigns.find_by(id: data['campaign_id'])
         if !campaign || user.id != data['subject_id']
-          return broadcast(:error, I18n.t('registration_code.invalid_token'))
+          return broadcast(:error, I18n.t('campaign_join_token.invalid_token'))
         end
         return broadcast(:error, I18n.t('campaign.already_joined')) if campaign.campaign_users.exists?(user_id: user.id)
 

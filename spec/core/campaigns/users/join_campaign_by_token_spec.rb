@@ -2,24 +2,24 @@
 
 require 'rails_helper'
 
-describe Campaigns::Users::JoinCampaign do
-  let!(:campaign) { create(:campaign) }
-  let!(:current_user) { create(:user) }
-  let!(:registration_code) { create(:registration_code, project: campaign.project, campaign: campaign, use_count: 0) }
+describe Campaigns::Users::JoinCampaignByToken do
+  let!(:current_user) { create(:user, :with_project_membership) }
+  let!(:campaign) { create(:campaign, project: current_user.project) }
+  let!(:token) { ::Campaigns::JwtTokenizer.encode({ campaign_id: campaign.id, subject_id: current_user.id }) }
+
   before(:each) do
     allow(Licenses::Use).to receive(:call!)
   end
 
   it "creates campaign user record if user doesn't exists in the project" do
-    described_class.call!(current_user, campaign, registration_code)
+    described_class.call!(current_user, token)
     expect(campaign.campaign_users.exists?(user_id: current_user.id)).to be_truthy
-    expect(registration_code.use_count).to eq(1)
   end
 
   it "doesn't create campaign user record if campaign user already exists in the project" do
     create(:campaign_user, campaign: campaign, user: current_user)
     expect do
-      described_class.call!(current_user, campaign, registration_code)
+      described_class.call!(current_user, token)
     end.to_not(change { CampaignUser.count })
   end
 
@@ -40,7 +40,7 @@ describe Campaigns::Users::JoinCampaign do
     it 'call Campaigns::Users::AddReport for each campaign_report' do
       expect(Campaigns::Users::AddReport).to receive(:call!).twice
 
-      described_class.call!(current_user, campaign, registration_code)
+      described_class.call!(current_user, token)
     end
   end
 end
