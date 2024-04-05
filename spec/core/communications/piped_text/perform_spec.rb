@@ -32,6 +32,15 @@ describe Communications::PipedText::Perform do
 
       expect(result).to eq('Duration: 1 hour and 30 minutes.')
     end
+
+    it do
+      user = create(:user)
+      response = described_class.call!('${c://Campaign/JoinLink?campaign_id=1&expire=60}', user: user)
+      token = ::Campaigns::JwtTokenizer.encode(
+        { subject_id: user.id, campaign_id: '1', exp: Time.current.to_i + 60 }
+      )
+      expect(response).to eq("<a href='/campaigns/join_with_token?token=#{token}'>link</a>")
+    end
   end
 
   describe 'WorkshopInvite pipetext' do

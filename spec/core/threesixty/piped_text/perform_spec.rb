@@ -100,5 +100,14 @@ describe Threesixty::PipedText::Perform do
       time = 1.day.from_now
       expect(response).to eq(time.strftime('%-d/%-m/%Y'))
     end
+
+    it do
+      token = ::Campaigns::JwtTokenizer.encode(
+        { subject_id: user.id, campaign_id: '1', exp: Time.current.to_i + 60 }
+      )
+
+      response = described_class.call!('{{c://Campaign/JoinLink?campaign_id=1&expire=60}}', subject: user)
+      expect(response).to eq("<a href='/campaigns/join_with_token?token=#{token}'>link</a>")
+    end
   end
 end
