@@ -5,6 +5,8 @@ module Communications
     module Branches
       module CampaignFields
         class JoinLink < ::PipedText::BaseField
+          include Rails.application.routes.url_helpers
+
           def call
             return broadcast(:ok, '') unless user
 
@@ -13,7 +15,8 @@ module Communications
               { subject_id: user.id, campaign_id: params['campaign_id'], exp: exp }
             )
 
-            broadcast :ok, "<a href='/campaigns/join_with_token?token=#{token}'>link</a>"
+            root = root_url(Utility::Url.get_params(subdomain: user.project.try(:subdomain)))
+            broadcast :ok, "<a href='#{root}campaigns/join_with_token?token=#{token}'>link</a>"
           end
 
           def user

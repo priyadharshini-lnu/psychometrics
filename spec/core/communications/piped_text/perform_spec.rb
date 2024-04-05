@@ -34,12 +34,14 @@ describe Communications::PipedText::Perform do
     end
 
     it do
-      user = create(:user)
+      allow(Settings).to receive(:port).and_return(8181)
+      allow(Settings).to receive(:domain).and_return('tte.test')
+      user = create(:user, project: create(:project, subdomain: 'test'))
       response = described_class.call!('${c://Campaign/JoinLink?campaign_id=1&expire=60}', user: user)
       token = ::Campaigns::JwtTokenizer.encode(
         { subject_id: user.id, campaign_id: '1', exp: Time.current.to_i + 60 }
       )
-      expect(response).to eq("<a href='/campaigns/join_with_token?token=#{token}'>link</a>")
+      expect(response).to eq("<a href='http://#{user.project.try(:subdomain)}.tte.test:8181/campaigns/join_with_token?token=#{token}'>link</a>")
     end
   end
 
