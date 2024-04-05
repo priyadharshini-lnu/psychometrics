@@ -1415,7 +1415,6 @@ en:
     campaign_id: Campaign ID
     expire_in: Expire in (sec)
     invalid_token: Invalid token
-    not_enough_license:
   campaign_report:
     actions:
       bulk_download: Bulk Download
