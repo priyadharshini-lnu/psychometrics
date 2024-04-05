@@ -3448,6 +3448,7 @@ en:
         sms_invites: SMS Invites
         subjects: Subjects
     piped_text_modal:
+      join_link: Join Link
       title: Add Piped Text
     proctoring_sessions:
       columns:

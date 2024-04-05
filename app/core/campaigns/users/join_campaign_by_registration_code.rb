@@ -2,7 +2,7 @@
 
 module Campaigns
   module Users
-    class JoinCampaign < BaseCommand
+    class JoinCampaignByRegistrationCode < BaseCommand
       private_attr_reader :user, :campaign, :registration_code, :project, :client, :user, :campaign_user
 
       def initialize(user, campaign, registration_code)
@@ -29,8 +29,8 @@ module Campaigns
           )
         end
         broadcast :ok, user
-      rescue Licenses::NotEnoughError => e
-        broadcast :error, e.message
+      rescue Licenses::NotEnoughError
+        broadcast :error, I18n.t('licenses.not_enough_license_count')
       end
 
       private

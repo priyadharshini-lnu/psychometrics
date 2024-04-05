@@ -896,6 +896,7 @@ Rails.application.routes.draw do
       resources :campaigns, only: %i[show] do
         collection do
           get :join_with_code
+          get :join_with_token
         end
 
         get :insights

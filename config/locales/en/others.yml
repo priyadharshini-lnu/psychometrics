@@ -1415,6 +1415,10 @@ en:
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
     update_exists: Update all exists assessments
+  campaign_join_token:
+    campaign_id: Campaign ID
+    expire_in: Expire in (sec)
+    invalid_token: Invalid token
   campaign_report:
     actions:
       bulk_download: Bulk Download
@@ -1570,6 +1574,7 @@ en:
       edit: Edit
       export: Export
       import: Import
+      insert: Insert
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
       ok: OK
@@ -2387,6 +2392,7 @@ en:
     end_date: End date
     id: License ID
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
+    not_enough_license_count: Not enough licenses, please contact administrator
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
     overuse_number: Over use allowance
@@ -2588,6 +2594,7 @@ en:
       title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
+    token_expired: The token expired
   report_approvals:
     events:
       approved_text: approved text
