@@ -16,8 +16,16 @@ export class Preview extends Component {
   }
 
   removeFile = () => {
-    const { model, removeMediaResponse } = this.props
+    const { setSubmissionInProgress } = this.props
+    setSubmissionInProgress(true)
+  }
+
+  removeFileSuccess = () => {
+    const {
+      model, removeMediaResponse, setSubmissionInProgress,
+    } = this.props
     removeMediaResponse(model.id)
+    setSubmissionInProgress(false)
   }
 
   renderFileUploadBlock () {
@@ -34,7 +42,8 @@ export class Preview extends Component {
         readOnly={readOnly}
         fakeUpload={preview}
         onSuccessUpload={this.successUpload}
-        onRemoveFile={this.removeFile}
+        onBeforeRemove={this.removeFile}
+        onRemoveFile={this.removeFileSuccess}
         markQuestionInProgress={markQuestionInProgress}
         removeQuestionInProgress={removeQuestionInProgress}
       />

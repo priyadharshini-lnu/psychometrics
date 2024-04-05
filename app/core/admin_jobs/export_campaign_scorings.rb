@@ -22,7 +22,9 @@ module AdminJobs
     end
 
     def campaign_factors
-      @campaign.campaign_factors.order(:name)
+      @campaign.campaign_factor_groups.order(:position).includes(:campaign_factors).map do |group|
+        group.campaign_factors.sort_by(&:position)
+      end.flatten
     end
 
     def write_csv
