@@ -27,6 +27,7 @@ module CampaignUsers
         started_at: nil,
         expiry_date: nil,
         completion_status: 'not_started',
+        status: 'not_started',
         campaign_scores_finalized: false,
         campaign_scores_calculated_date: nil,
         campaign_scores_finalized_date: nil,

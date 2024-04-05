@@ -48,6 +48,7 @@ describe CampaignUsers::ResetCampaign do
       campaign: campaign,
       user: user,
       completion_status: :in_progress,
+      status: :in_progress,
       started_at: Time.zone.now,
       completed_at: Time.zone.now,
       expiry_date: Time.zone.now,
@@ -79,6 +80,7 @@ describe CampaignUsers::ResetCampaign do
 
   it 'resets campaign user' do
     expect { subject }.to change { campaign_user.reload.completion_status }.from('in_progress').to('not_started').
+      and change { campaign_user.reload.status }.from('in_progress').to('not_started').
       and change { campaign_user.reload.started_at }.from(Time.zone.now).to(nil).
       and change { campaign_user.reload.completed_at }.from(Time.zone.now).to(nil).
       and change { campaign_user.reload.expiry_date }.from(Time.zone.now).to(nil).
