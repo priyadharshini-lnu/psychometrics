@@ -64,6 +64,11 @@ module Administration
           required(:toggle_status).filled(:bool?)
           required(:remove).filled(:bool?)
         end
+        required(:manager_details).hash do
+          required(:manager_id).maybe(:int?)
+          required(:manager_name).maybe(:str?)
+          required(:manager_email).maybe(:str?)
+        end
         required(:completed_at).maybe(:str?)
         required(:user_assessments).array(Administration::UserAssessmentSchema.schema(_, _))
         required(:user_reports).array(Administration::UserReportSchema.schema(_, _))

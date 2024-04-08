@@ -159,6 +159,7 @@ class User < ApplicationRecord
 
   delegate :subdomain, to: :project, allow_nil: true
   delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
+  delegate :email, to: :manager, prefix: true, allow_nil: true
 
   def authenticated_sign_in_url
     Utility::Url.generate(

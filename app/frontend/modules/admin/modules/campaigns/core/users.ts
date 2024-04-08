@@ -193,6 +193,11 @@ export interface UserDetails {
     toggleStatus: boolean
     remove: boolean
   }
+  managerDetails: {
+    managerId: number
+    managerName: string
+    managerEmail: string
+  }
   hoganId: string | null
 }
 

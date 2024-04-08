@@ -199,6 +199,15 @@ export const UserDetails: React.FC<Props> = ({
             <Descriptions.Item label={I18n.t('common.column.created_at')}>
               {user.createdAt}
             </Descriptions.Item>
+            {user.managerDetails && (
+              <Descriptions.Item label={I18n.t('campaign_users.details.manager')}>
+                {user.managerDetails.managerName}
+                {' '}
+                (
+                {user.managerDetails.managerEmail}
+                )
+              </Descriptions.Item>
+            )}
             {canExtendTime && (
               <>
                 <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>

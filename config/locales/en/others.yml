@@ -1476,6 +1476,7 @@ en:
       completion_status: Completion status
       hogan_id: Hogan Id
       last_login: Last login
+      manager: Manager
       modals:
         remove:
           successfully: User with email %{email} was removed successfully.

@@ -17,8 +17,8 @@ describe Campaigns::Users::ParseImportData do
 
     expect(data).to eq([
       ['Active', 'First Name', 'Last Name', 'Email Address', 'Locale', 'Password', 'Overwrite password',
-       'Schedule start date', 'Schedule end date', 'Created Date', 'Age', 'Gender', 'ProfileLocale', 'Custom Field1',
-       'Custom Field2'],
+       'Schedule start date', 'Schedule end date', 'Created Date', 'Manager email',
+       'Age', 'Gender', 'ProfileLocale', 'Custom Field1', 'Custom Field2'],
       {
         active: true,
         first_name: 'Fedor',
@@ -33,6 +33,7 @@ describe Campaigns::Users::ParseImportData do
         gender: nil,
         profile_locale: nil,
         created_at: '11 Jul 2020 / 16:39',
+        manager_email: nil,
         custom_field: 'c1'
       },
       {
@@ -46,6 +47,7 @@ describe Campaigns::Users::ParseImportData do
         schedule_start_date: nil,
         schedule_end_date: nil,
         created_at: '11 Jul 2020 / 17:25',
+        manager_email: nil,
         age: '10',
         gender: nil,
         profile_locale: nil,
@@ -62,6 +64,7 @@ describe Campaigns::Users::ParseImportData do
         schedule_start_date: nil,
         schedule_end_date: nil,
         created_at: '22 Jul 2020 / 18:40',
+        manager_email: nil,
         age: '20',
         gender: nil,
         profile_locale: nil,
@@ -78,6 +81,7 @@ describe Campaigns::Users::ParseImportData do
         schedule_start_date: nil,
         schedule_end_date: nil,
         created_at: '22 Jul 2020 / 19:03',
+        manager_email: nil,
         age: '30',
         gender: nil,
         profile_locale: nil,

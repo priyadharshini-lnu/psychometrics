@@ -16,6 +16,7 @@ module Campaigns
         schedule_start_date
         schedule_end_date
         created_at
+        manager_email
       ].freeze
 
       def initialize(import_data, campaign)
