@@ -22,8 +22,8 @@ interface OwnProps {
     }
   }
   openModal(name: string, data?: {
-    projectId: number
-    campaignId: number
+    projectId?: number
+    campaignId?: number
     parentId?: number
     parentType?: ParentResourceType
     testMode?: boolean
@@ -41,6 +41,7 @@ const ReportList: React.FC<Props> = ({
   remove,
   openModal,
   toggleUserAccess,
+  removeFile,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedProjectId = parseInt(projectId, 10)
@@ -54,7 +55,13 @@ const ReportList: React.FC<Props> = ({
           rowKey="id"
           dataSource={list}
           pagination={false}
-          rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
+          rowSelection={{
+            type: 'checkbox',
+            onChange: (ids: number[]) => { selectRecords(ids) },
+            getCheckboxProps: record => ({
+              disabled: record.reportProvider === 'custom_upload',
+            }),
+          }}
         >
           <Column
             title={I18n.t('common.column.id')}
@@ -101,7 +108,9 @@ const ReportList: React.FC<Props> = ({
                     userReportId: userReport.id,
                     userReportName: userReport.name,
                     remove: () => remove(parsedCampaignId, userReport.id),
+                    removeFile: () => removeFile(parsedCampaignId, userReport.id),
                     internal: userReport.internal,
+                    customUpload: userReport.customUpload,
                     reportUrl: userReport.reportUrl,
                     permissions: userReport.permissions,
                     openModal,
@@ -129,16 +138,20 @@ interface ActionMenuData {
   userReportId: number
   userReportName: string
   internal: boolean
+  customUpload: boolean
   reportUrl: string
   remove(): void
+  removeFile(): void
   permissions: {
     downloadReport: boolean
     remove: boolean
     viewReport: boolean
     pushWebhook: boolean
+    uploadFile: boolean
+    removeFile: boolean
   }
   openModal(string, data?: {
-    campaignId: number,
+    campaignId?: number,
     parentId?: number,
     projectId?: number
     parentType?: ParentResourceType
@@ -150,7 +163,7 @@ interface ActionMenuData {
 
 const getActionsMenuProps = ({
   campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl,
-  permissions, openModal, modal, message,
+  permissions, openModal, modal, message, removeFile, customUpload,
 }:ActionMenuData):MenuProps => {
   const previewUrl = () => {
     if (internal) {
@@ -175,6 +188,22 @@ const getActionsMenuProps = ({
     })
   }
 
+  const handleRemoveFile = () => {
+    modal.confirm({
+      title: I18n.t('common.text.confirm'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('user_reports.modals.remove_file.content', { userReportName }),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        removeFile()
+        message.success(I18n.t('user_reports.modals.remove_file.successfully', { userReportName }))
+      },
+    })
+  }
+
   const menuItems: ItemType[] = []
   permissions.viewReport && (internal || reportUrl) && menuItems.push({
     key: 'viewReport',
@@ -186,6 +215,14 @@ const getActionsMenuProps = ({
   reportUrl && permissions.downloadReport && menuItems.push({
     key: 'downloadReport',
     label: <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>,
+  })
+  permissions.uploadFile && customUpload && menuItems.push({
+    key: 'uploadFile',
+    label: 'Upload File',
+  })
+  permissions.removeFile && customUpload && reportUrl?.length > 0 && menuItems.push({
+    key: 'removeFile',
+    label: 'Remove File',
   })
   permissions.remove && menuItems.push({
     key: 'remove',
@@ -208,6 +245,15 @@ const getActionsMenuProps = ({
         parentType: ParentResourceType.UserReport,
         testMode: false,
       })
+    }
+    if (key === 'uploadFile') {
+      return openModal('UploadFileModal', {
+        campaignId,
+        parentId: userReportId,
+      })
+    }
+    if (key === 'removeFile') {
+      handleRemoveFile()
     }
   }
 

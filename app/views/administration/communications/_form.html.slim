@@ -41,6 +41,8 @@
         = f.association :assessment,
             collection: @communication_facade.assessments,
             input_html: { data: { live_search: true } }
+        = f.input :delivery_delay_hours, label: t('.delivery_delay_hours')
+        = f.input :assessment_completion_status_code, label: t('.assessment_completion_status_code'), hint: t('.assessment_completion_status_code_hint')
       - if @communication_facade.show_recipients?
         = f.input :recipients,
           as: :select,

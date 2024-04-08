@@ -1194,11 +1194,13 @@ en:
   campaign:
     all_activities_are_completed: All activities are now complete.
     all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
+    already_joined: You already joined this campaign
     begin: Begin your tasks
     begin_btn_msg_before_prework: You have to complete the below tasks before starting the timed campaign
     begin_campaign_msg: Start campaign before taking assessments
     campaigns: Campaigns
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
+    code_usage_limit_reached: Code usage limit reached, please contact administrator
     complete_all: Complete all related assessments
     complete_prev: Complete all previous assessments
     complete_tasks: Please complete tasks below before taking this action.
@@ -1275,6 +1277,10 @@ en:
       last_updated_text: 'Profile was last updated on:'
       sub_heading: Complete your full profile information
       welcome_text: Welcome,
+    reset_warning: You can only restart the campaign marked as practice campaign.
+    restart_practice: Restart Practice
+    restart_practice_confirmation: Are you sure you want to restart the practice?
+    restart_practice_success: Practice restarted successfully
     thank_you_for_time: Thank you for your time
     time_left:
       cancel: Cancel
@@ -1410,6 +1416,10 @@ en:
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
     update_exists: Update all exists assessments
+  campaign_join_token:
+    campaign_id: Campaign ID
+    expire_in: Expire in (sec)
+    invalid_token: Invalid token
   campaign_report:
     actions:
       bulk_download: Bulk Download
@@ -1565,6 +1575,7 @@ en:
       edit: Edit
       export: Export
       import: Import
+      insert: Insert
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
       ok: OK
@@ -1582,6 +1593,7 @@ en:
       unschedule: Unschedule
       update: Update
       upload: Upload
+      upload_file: Upload File
       view: View
     column:
       action: Action
@@ -2381,6 +2393,7 @@ en:
     end_date: End date
     id: License ID
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
+    not_enough_license_count: Not enough licenses, please contact administrator
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
     overuse_number: Over use allowance
@@ -2574,6 +2587,7 @@ en:
       successfully: Profile updated
   registration_code:
     allowed_domains: Allowed domains
+    invalid_code: Invalid campaign code
     modals:
       remove:
         content: Are you sure you want to remove Registration code <strong>"%{code}"</strong>?
@@ -2581,6 +2595,7 @@ en:
       title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
+    token_expired: The token expired
   report_approvals:
     events:
       approved_text: approved text
@@ -2686,6 +2701,7 @@ en:
       title: Report Details
     fields:
       provider:
+        custom_upload: Custom Upload
         hogan: Hogan
         internal: Internal
         mindmill: Mindmill
@@ -3533,6 +3549,13 @@ en:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
         successfully: "%{userReportName} report removed successfully"
+      remove_file:
+        content: Are you sure you want to remove file?
+        successfully: File was removed successfully.
+      upload_file:
+        choose_file: Choose File
+        success: File uploaded successfully.
+        upload: Upload
     preview_report: Preview Report
     readable_statuses:
       generating: Report is being generated

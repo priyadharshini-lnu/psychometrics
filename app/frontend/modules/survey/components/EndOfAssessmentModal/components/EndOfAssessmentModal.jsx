@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import { Checkbox, Input, Radio } from 'antd'
+import {
+  Checkbox, Input, Radio, Form,
+} from 'antd'
 
 import styles from './EndOfAssessmentModal.less'
 
@@ -15,6 +17,7 @@ export class EndOfAssessmentModal extends Component {
     markAsInEligible: false,
     messageType: 'Default',
     message: '',
+    completionStatusCode: null,
   }
 
   componentDidMount () {
@@ -38,6 +41,7 @@ export class EndOfAssessmentModal extends Component {
       markAsInEligible,
       messageType,
       message,
+      completionStatusCode,
     } = this.state
     return (
       <Modal show keyboard={false}>
@@ -60,6 +64,15 @@ export class EndOfAssessmentModal extends Component {
             >
               {I18n.t('assessments.flow.end_assessment_modal.mark_as_ineligible')}
             </Checkbox>
+          </div>
+          <div className="mtm">
+            <Form.Item label="Completion Status Code" labelCol={{ span: 24 }}>
+              <Input
+                value={completionStatusCode}
+                className={styles.messageTextArea}
+                onChange={e => this.setState({ completionStatusCode: e.currentTarget.value })}
+              />
+            </Form.Item>
           </div>
           <hr />
           <div>

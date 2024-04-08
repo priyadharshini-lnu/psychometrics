@@ -16,6 +16,7 @@ import UpdateTimeModal from './UpdateTimeModal'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import UpdateCampaignTimeModal from './UpdateCampaignTimeModal'
 import { Strategies } from '../../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
+import UploadFileModal from './UploadFileModal'
 import { ProctoringSessionList } from './ProctoringSessionList'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
@@ -32,6 +33,7 @@ const MODALS = {
   PushWebhookModal,
   UpdateCampaignTimeModal,
   SchedulingAssessmentModal,
+  UploadFileModal,
 }
 
 interface OwnProps {

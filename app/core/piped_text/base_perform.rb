@@ -22,7 +22,9 @@ module PipedText
             path, params = match.scan(%r{//(.*)}).first&.first&.split('?')
             value = branch[:class_name].constantize.call!(
               path&.split('/'),
-              Rack::Utils.parse_nested_query(params ? CGI.escape(params).gsub('%3D', ?=).gsub('%26', ?&) : ''),
+              Rack::Utils.parse_nested_query(
+                params ? CGI.escape(params).gsub('%3D', ?=).gsub('%26', ?&).gsub('&amp%3B', ?&) : ''
+              ),
               context
             )
             value = if branch[:allow_html]

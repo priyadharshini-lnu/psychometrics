@@ -12,7 +12,7 @@ module Forms
       properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :sub_campaign, :end_level,
                  :membership_ids, :kind, :delivery_rule, :delivery_at,
                  :assessment, :delivery_interval, :delivery_interval_number, :delivery_interval_period,
-                 :user_ids, :stop_reminder_datetime
+                 :user_ids, :stop_reminder_datetime, :assessment_completion_status_code, :delivery_delay_hours
 
       property :assessment_id
       property :owner_id, type: Types::Params::Integer | Types::Params::Nil

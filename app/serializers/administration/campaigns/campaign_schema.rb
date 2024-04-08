@@ -21,6 +21,7 @@ module Administration
           required(:is_threesixty).maybe(:bool?)
           required(:is_fixed_time).filled(:bool?)
           required(:project_id).maybe(:int?)
+          required(:practice_campaign).filled(:bool?)
           required(:permissions).hash do
             required(:edit).filled(:bool?)
             required(:copy).maybe(:bool?)

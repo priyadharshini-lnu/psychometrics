@@ -49,6 +49,7 @@ export const ThreeSixtyCampaignAdminGrants = {
     'rescore_responses',
     'regenerate_report',
     'bulk_regenerate_reports',
+    'report_file_upload',
   ],
 }
 
@@ -101,6 +102,7 @@ export const ClientAdminGrants = {
     'regenerate_report',
     'bulk_regenerate_reports',
     'finalize_scores',
+    'report_file_upload',
   ],
   assessors: ['view', 'manage'],
   registrationCodes: ['view', 'manage'],
@@ -152,6 +154,7 @@ export const ProjectAdminGrants = {
     'regenerate_report',
     'bulk_regenerate_reports',
     'finalize_scores',
+    'report_file_upload',
   ],
   registrationCodes: ['view', 'manage'],
   communications: ['view', 'manage'],
@@ -189,6 +192,7 @@ export const CampaignAdminGrants = {
     'regenerate_report',
     'bulk_regenerate_reports',
     'finalize_scores',
+    'report_file_upload',
   ],
   workshops: ['view', 'manage'],
 }

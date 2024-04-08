@@ -12,6 +12,10 @@ FactoryBot.define do
       relationship
     end
 
+    trait :with_hogan_assessment do
+      association :assessment, factory: :assessment_hogan
+    end
+
     trait :with_result do
       transient do
         answers { {} }

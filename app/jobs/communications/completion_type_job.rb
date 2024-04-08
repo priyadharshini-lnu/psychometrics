@@ -4,32 +4,25 @@ module Communications
   class CompletionTypeJob < ApplicationJob
     queue_as :communication
 
-    def perform(assign)
-      communications = Communication.completion.where(assessment_id: assign.assessment_id).includes(:project)
-
-      return perform_migrated(assign, communications) if assign.is_a?(UsersResult)
-
-      ::Services::Communications::CheckByLevelStack.call(
-        membership: assign.membership,
-        communications: communications.select { |c| !c.project || !c.project&.migrated? }
-      )
-    end
-
-    private
-
-    def perform_migrated(user_result, communications)
-      campaign_id = user_result.user_assessment&.campaign_id
-      return unless campaign_id
-
-      communications = communications.select { |c| c.project&.migrated? }
+    def perform(user_assessment)
+      communications = Communication.completion.where(assessment_id: user_assessment.assessment_id).includes(:project)
       campaign_user = CampaignUser.find_by(
-        campaign_id: campaign_id,
-        user_id: user_result.user_id
+        campaign_id: user_assessment.campaign_id,
+        user_id: user_assessment.user_id
       )
       communications.each do |communication|
-        if communication.selected_campaign_users.include?(campaign_user)
-          communication.emails.create(campaign_user_id: campaign_user.id)
+        if communication.assessment_completion_status_code.present? &&
+           communication.assessment_completion_status_code != user_assessment.completion_status_code
+          next
         end
+        next if communication.selected_recipients? && communication.user_ids.exclude?(user_assessment.user_id)
+
+        communication_email_attrs = { campaign_user_id: campaign_user.id }
+        next communication.emails.create(communication_email_attrs) if communication.delivery_delay_hours.blank?
+
+        ScheduleDelayedCommunication.set(wait: communication.delivery_delay_hours.hours).perform_later(
+          communication, communication_email_attrs
+        )
       end
     end
   end

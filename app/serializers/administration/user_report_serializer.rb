@@ -2,13 +2,20 @@
 
 module Administration
   class UserReportSerializer < Panko::Serializer
-    attributes :id, :permissions, :report_id, :name, :user_access, :report_family_name, :status, :internal, :report_url
+    attributes :id, :permissions, :report_id, :name, :user_access,
+               :report_family_name, :status, :internal, :report_url,
+               :report_provider, :custom_upload
 
     delegate :name, :mindmill, to: :report
+    delegate :provider, to: :report, prefix: true
     delegate :name, to: :report_family, prefix: true, allow_nil: true
 
     def internal
       report.provider_internal?
+    end
+
+    def custom_upload
+      report.provider_custom_upload?
     end
 
     def report_url
@@ -37,7 +44,9 @@ module Administration
           %w[download_report download],
           %w[remove destroy],
           %w[toggle_access toggle_user_access],
-          'push_webhook'
+          'push_webhook',
+          'upload_file',
+          'remove_file'
         ],
         {
           project_id: campaign.project_id,

@@ -5,6 +5,7 @@ FactoryBot.define do
     sequence(:name) { |i| "assessment #{i}" }
     description { Faker::Lorem.characters(number: 5) }
     dimension
+    type { ::Assessments::Common }
     extra { { icon_color: '#845EC2' } }
 
     trait :with_report do

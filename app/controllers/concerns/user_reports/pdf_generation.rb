@@ -19,7 +19,7 @@ module UserReports::PdfGeneration
           payload: params.merge(resource.details_to_log)
       end
       format.json do
-        if resource.external_report?
+        if resource.external_report? || resource.provider_custom_upload?
           return render(
             json: Administration::ExternalUserReportSerializer.new(
               context: { current_user: current_user }

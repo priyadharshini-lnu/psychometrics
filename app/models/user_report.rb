@@ -27,7 +27,7 @@ class UserReport < ApplicationRecord
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
-  delegate :external_report?, to: :report
+  delegate :external_report?, :provider_custom_upload?, to: :report
 
   mount_base64_uploader :pdf, Private::PdfUploader, file_name: proc { 'report' }
 

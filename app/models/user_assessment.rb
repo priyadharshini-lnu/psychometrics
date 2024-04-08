@@ -86,7 +86,7 @@ class UserAssessment < ApplicationRecord
   after_save -> { create_meeting_room! }, if: -> { meeting_internal? && meeting_room.blank? }
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
   after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
-  after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
+  after_commit :send_completion_email, if: proc { status_previously_changed? && (completed? || ineligible?) }
 
   after_commit -> { set_campaign_user_started_at }, unless: :not_started?, on: %i[create]
   after_commit -> { set_campaign_user_started_at }, if: proc {
@@ -194,7 +194,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def send_completion_email
-    ::Communications::CompletionTypeJob.perform_later(users_result)
+    ::Communications::CompletionTypeJob.perform_later(self)
   end
 
   def user

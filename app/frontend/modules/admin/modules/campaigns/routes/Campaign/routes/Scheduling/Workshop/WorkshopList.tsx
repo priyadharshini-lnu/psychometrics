@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Row, Avatar, Button, Space, Dropdown,
+  Row, Avatar, Button, Space, Dropdown, message,
 } from 'antd'
 import {
   useLocation, useHistory, Link, useParams,
@@ -119,20 +119,46 @@ const MenuComponent = ({ workshop, setData }) => {
     setData(workshop)
     history.push(`${location.pathname}/new`)
   }
+  const { resource } = useResourceContext<Workshop>()
+
+  const removeWorkshop = () => {
+    resource.memberAction({
+      id: workshop.id,
+      action: 'remove_workshop',
+      method: 'delete',
+      responseType: WorkshopTR,
+    }).then(() => {
+      resource.fetch()
+      message.success(I18n.t('administration.workshop.actions.remove_workshop'))
+    }).catch(() => {
+      message.error(I18n.t('administration.workshop.errors.remove_workshop_failure'))
+    })
+  }
+
+  const handleMenuClick = ({ key }) => {
+    if (key === 'copy') {
+      return copy()
+    }
+    if (key === 'remove') {
+      return removeWorkshop()
+    }
+  }
 
   return (
     <>
       <Dropdown
         trigger={['click']}
         menu={{
-          onClick () {
-            copy()
-          },
+          onClick: handleMenuClick,
           items: [
             {
               label: I18n.t('common.actions.copy'),
               key: 'copy',
             },
+            resource.meta.permissions?.create ? {
+              label: I18n.t('common.actions.remove'),
+              key: 'remove',
+            } : null,
           ],
         }}
       >

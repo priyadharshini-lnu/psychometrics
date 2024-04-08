@@ -8,6 +8,14 @@ module Administration
       )
     end
 
+    def upload_file?
+      has_permission?(:results, :report_file_upload)
+    end
+
+    def remove_file?
+      has_permission?(:results, :report_file_upload)
+    end
+
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
         :results, :view_report, project_id: project_id, campaign_id: campaign_id

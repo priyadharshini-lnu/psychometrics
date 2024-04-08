@@ -232,6 +232,8 @@ Rails.application.routes.draw do
             patch :toggle_user_access
             get :webhook_payload
             get :possible_webhook_events
+            put :upload_file
+            delete :remove_file
           end
           collection do
             post :regenerate
@@ -892,7 +894,13 @@ Rails.application.routes.draw do
 
     scope module: :end_user do
       resources :campaigns, only: %i[show] do
+        collection do
+          get :join_with_code
+          get :join_with_token
+        end
+
         get :insights
+        put :reset_practice_campaign
       end
       get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'
@@ -1226,6 +1234,7 @@ Rails.application.routes.draw do
               member do
                 post :change_status
                 post :bulk_update_subjects
+                delete :remove_workshop
               end
               collection do
                 post :create_bulk_workshops

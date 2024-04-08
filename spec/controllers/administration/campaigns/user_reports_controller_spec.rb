@@ -222,15 +222,18 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
   def check_report_response(report_response)
     expect(report_response.keys).to contain_exactly(
-      *%w[id permissions report_id name user_access report_family_name status internal report_url]
+      *%w[id permissions report_id name user_access report_family_name
+          status internal report_url custom_upload report_provider]
     )
     expect(report_response).to include({
       'report_id' => report.id,
       'name' => report.name,
       'user_access' => false,
       'report_family_name' => report_family.name,
+      'report_provider' => 'internal',
       'status' => 'not_prepared',
       'internal' => true,
+      'custom_upload' => false,
       'report_url' => nil
     })
   end

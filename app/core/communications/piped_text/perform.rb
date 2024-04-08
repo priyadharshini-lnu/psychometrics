@@ -6,6 +6,13 @@ module Communications
       def self.branches
         [
           {
+            key: 'c',
+            name: 'campaign',
+            class_name: 'Communications::PipedText::Branches::Campaign',
+            required_context: %i[user],
+            allow_html: true
+          },
+          {
             key: 'w',
             name: 'workshop',
             class_name: 'Communications::PipedText::Branches::Workshop',

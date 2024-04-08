@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Form, Input, Select, DatePicker, Alert, Space,
+  Form, Input, Select, DatePicker, Alert, Space, Switch, Tooltip,
 } from 'antd'
 import _ from 'lodash'
 import dayjs from '~/utils/dayjs'
@@ -41,6 +41,8 @@ const CommonCampaignFormModal: React.FC<Props> = ({
   useEffect(() => {
     if (campaign && campaign.isFixedTime) setNotice(notices[campaign.status])
   }, [])
+
+  const isEdit = !!campaign?.id
 
   const transformValues = values => ({
     ...values,
@@ -100,6 +102,17 @@ const CommonCampaignFormModal: React.FC<Props> = ({
             label={I18n.t('administration.dates.end')}
           >
             <DatePicker showTime format={format} disabledDate={disabledDate} />
+          </Form.Item>
+          <Form.Item
+            name="practiceCampaign"
+            valuePropName="checked"
+            label={I18n.t('administration.campaigns.form.practice_campaign')}
+          >
+            {isEdit ? (
+              <Tooltip title="This can be only enabled while creating campaign.">
+                <Switch disabled={isEdit} />
+              </Tooltip>
+            ) : <Switch />}
           </Form.Item>
           <Space>
             {notice && <Alert message="Note" description={notice} type="warning" showIcon />}
