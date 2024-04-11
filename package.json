@@ -34,6 +34,7 @@
   },
   "homepage": "https://gitlab.com/tte-lighthouse/psychometrics#readme",
   "dependencies": {
+    "@rails/activestorage": "^7.1.2",
     "@ant-design/pro-layout": "^7.17.7",
     "@aws-sdk/eventstream-marshaller": "^0.1.0-preview.2",
     "@aws-sdk/util-utf8-node": "^0.1.0-preview.1",

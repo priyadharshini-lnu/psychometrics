@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Queries::Assigns::SubProjectLevel::ByClient, pending: true do
+describe Queries::Assigns::SubProjectLevel::ByClient, skip: true do
   let(:query) { Queries::Assigns::SubProjectLevel::ByClient }
 
   let(:sub_campaign1) { create(:sub_campaign, :with_reports) }

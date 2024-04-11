@@ -62,7 +62,7 @@ module UsersResults
         report_id: users_result.assessment.report_ids,
         user_id: user_assessment.subject_id,
         campaign_id: user_assessment.campaign_id
-      ).update(remove_pdf: true, status: :not_prepared, approval_status: :not_ready)
+      ).each(&:remove_report_pdf!)
     end
   end
 end

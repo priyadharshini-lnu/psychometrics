@@ -2,6 +2,7 @@
 
 class ApplicationController < ::BaseController
   include AuthenticateAnonymousUser
+  include ActiveStorage::SetCurrent
   layout :layout_by_resource
 
   # Authentication user/manager

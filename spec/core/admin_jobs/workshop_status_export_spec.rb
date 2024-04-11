@@ -17,8 +17,12 @@ describe AdminJobs::WorkshopStatusExport do
   it 'export correct headers' do
     described_class.call!(job_record)
 
-    csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-    expect(csv.row(1)).to eq([
+    actual_first_row = job_record.file.open do |f|
+      csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
+      csv.row(1)
+    end
+
+    expect(actual_first_row).to eq([
       'Id',
       'First name',
       'Last name',
@@ -48,8 +52,12 @@ describe AdminJobs::WorkshopStatusExport do
     )
     described_class.call!(job_record)
 
-    csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-    expect(csv.row(2)).to eq([
+    actual_second_row = job_record.file.open do |f|
+      csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
+      csv.row(2)
+    end
+
+    expect(actual_second_row).to eq([
       user.id,
       user.first_name,
       user.last_name,
@@ -74,8 +82,12 @@ describe AdminJobs::WorkshopStatusExport do
     create(:workshop_invited_subject, user: user, workshop_invite: create(:workshop_invite, campaign: campaign))
     described_class.call!(job_record)
 
-    csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-    expect(csv.row(2)).to eq([
+    actual_second_row = job_record.file.open do |f|
+      csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
+      csv.row(2)
+    end
+
+    expect(actual_second_row).to eq([
       user.id,
       user.first_name,
       user.last_name,
@@ -119,8 +131,12 @@ describe AdminJobs::WorkshopStatusExport do
 
     described_class.call!(job_record)
 
-    csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-    expect(csv.row(2)).to eq([
+    actual_second_row = job_record.file.open do |f|
+      csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
+      csv.row(2)
+    end
+
+    expect(actual_second_row).to eq([
       user.id,
       user.first_name,
       user.last_name,
@@ -156,8 +172,12 @@ describe AdminJobs::WorkshopStatusExport do
 
     described_class.call!(job_record)
 
-    csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-    expect(csv.row(2)).to eq([
+    actual_second_row = job_record.file.open do |f|
+      csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
+      csv.row(2)
+    end
+
+    expect(actual_second_row).to eq([
       user.id,
       user.first_name,
       user.last_name,

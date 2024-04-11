@@ -95,7 +95,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def resource_params
     params.require(:resource).permit(
       :type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
-      :status, :icon, :icon_color, :remove_icon, :poster, :remove_poster,
+      :status, :icon, :icon_color, :purge_icon, :poster, :purge_poster,
       :enable_video_check, :enable_audio_check, :enable_network_check,
       :owner_id, :project_id, :linked_questions,
       external_settings: %i[assessment_id norm_id schedule_config],

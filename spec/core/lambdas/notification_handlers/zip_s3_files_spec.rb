@@ -3,31 +3,57 @@
 require 'rails_helper'
 
 describe Lambdas::NotificationHandlers::ZipS3Files do
-  let(:bulk_report) { create(:bulk_report) }
+  include Rails.application.routes.url_helpers
+
+  let(:bulk_report) { create(:bulk_report, :with_attached_file) }
   let(:admin_job_record) { create(:admin_job_record) }
 
   context 'status is completed' do
-    it 'updates file_name' do
-      described_class.call!({ 'bulk_report_id' => bulk_report.id, 'file_name' => 'abc.pdf', 'status' => 'completed' })
+    it 'archives file' do
+      described_class.call!({
+        'bulk_report_id' => bulk_report.id,
+        'file_name' => 'abc.pdf',
+        'file_path' => 'spec/fixtures/files/reports/test.pdf',
+        'status' => 'completed',
+        'checksum' => '0',
+        'file_size' => 0
+      })
 
-      expect(bulk_report.reload.read_attribute(:files)[0]).to eq('abc.pdf')
+      expect(bulk_report.reload.files.first.filename).to eq('archive.zip')
     end
 
     it 'sends bulk report email' do
       expect(BulkReportMailer).to receive_message_chain(:notify, :deliver_later)
 
-      described_class.call!({ 'bulk_report_id' => bulk_report.id, 'file_name' => 'abc.pdf', 'status' => 'completed' })
+      described_class.call!({
+        'bulk_report_id' => bulk_report.id,
+        'file_name' => 'abc.pdf',
+        'file_path' => 'spec/fixtures/files/reports/test.pdf',
+        'status' => 'completed',
+        'checksum' => '0',
+        'file_size' => 0
+      })
     end
 
     it 'marks admin_job completed' do
+      url = 'https://presigned_url.cc'
+      allow_any_instance_of(ActiveStorage::Blob).to receive(:url).and_return(url)
+
       described_class.call!({
-        'bulk_report_id' => bulk_report.id, 'file_name' => 'abc.pdf', 'admin_job_record_id' => admin_job_record.id,
-        'status' => 'completed'
+        'bulk_report_id' => bulk_report.id,
+        'file_name' => 'abc.pdf',
+        'file_path' => 'spec/fixtures/files/reports/test.pdf',
+        'admin_job_record_id' => admin_job_record.id,
+        'status' => 'completed',
+        'checksum' => '0',
+        'file_size' => 0
       })
       admin_job_record.reload
 
       expect(admin_job_record.completed?).to eq(true)
-      expect(admin_job_record.content).to eq("<a href=\"#{bulk_report.reload.files[0].url}\">abc.pdf</a>")
+      expect(admin_job_record.content).to eq(
+        "<a href=\"#{bulk_report.reload.files[0].url}\">abc.pdf</a>"
+      )
     end
   end
 

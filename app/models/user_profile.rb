@@ -4,9 +4,6 @@ class UserProfile < ApplicationRecord
   audited
 
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
   PROFILE_FIELDS = %i[age photo gender locale custom_fields].freeze
 
@@ -19,12 +16,11 @@ class UserProfile < ApplicationRecord
 
   belongs_to :user
 
-  mount_uploader :photo, Public::ImageUploader
+  has_one_image_attachment :photo, variants: [:icon]
 
-  has_one_image_attachment :as_photo, variants: [:icon]
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :photo
+  def photo_url
+    photo.processed&.url
+  end
 
   def attachment_storage_path(attribute_name, filename)
     "public/user_profile/#{user_id}/#{attribute_name}/#{filename}"

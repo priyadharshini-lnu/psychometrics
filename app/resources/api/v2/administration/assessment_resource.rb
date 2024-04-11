@@ -45,7 +45,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   end
 
   def icon_url
-    @model.icon&.url(:thumb)
+    @model.icon_url(:thumb)
   end
 
   def deleted

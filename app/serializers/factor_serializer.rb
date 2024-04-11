@@ -7,6 +7,6 @@ class FactorSerializer < Panko::Serializer
   has_many :factors_sub_factors, each_serializer: FactorsSubFactorSerializer, key: :factors_sub_factors
 
   def icon
-    object.icon.url(:middle)
+    object.icon_url(:medium) if object.icon.attached?
   end
 end

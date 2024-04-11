@@ -51,7 +51,7 @@ module Hogan
         return broadcast(:not_completed) if participant_report.blank?
 
         user_report.update!(status: :generating)
-        user_report.update!(pdf: "data:application/pdf;base64,#{participant_report}", status: :prepared)
+        user_report.attach_pdf!(participant_report)
       end
 
       broadcast(:ok)

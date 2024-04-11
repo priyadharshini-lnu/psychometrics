@@ -38,7 +38,7 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   end
 
   def icon_url
-    @model.icon&.url(:thumb)
+    @model.icon_url(:thumb)
   end
 
   def deleted

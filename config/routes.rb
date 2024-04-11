@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   concern :media_uploades do
     member do
-      get :upload_media_url
+      match :upload_media_url, via: %i[post get]
       put :upload_callback
       delete :remove_media
       put :complete_multipart_upload

@@ -18,6 +18,12 @@ class UserReportSerializer < Panko::Serializer
     ).to_a
   end
 
+  def pdf
+    {
+      url: object.pdf_file.url
+    }
+  end
+
   def require_approval
     object.has_approval_workflow?
   end

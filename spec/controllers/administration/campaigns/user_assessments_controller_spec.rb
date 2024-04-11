@@ -70,7 +70,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     expect(parsed_response.dig('user_assessments', 0, 'id')).to eq(user_assessment.id)
     expect(parsed_response['id']).to eq(user.id)
     expect(parsed_response['user_reports'].class).to be(Array)
-    expect(user_report.reload.status).to eq('generating')
+    expect(user_report.reload.status).to eq('not_prepared')
   end
 
   it '[POST] rescore_responses' do

@@ -41,7 +41,9 @@ module UserReports
       )
       return unless data[:file_path]
 
-      File.open(data[:file_path]) { |file| user_report.update!(status: :prepared, pdf: file) }
+      File.open(data[:file_path]) do |file|
+        user_report.attach_pdf!(file)
+      end
     end
 
     def generate_mindminl_report(user_report)

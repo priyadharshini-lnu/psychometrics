@@ -20,7 +20,7 @@ describe ActiveStorageAttachable do
       subject_records = [
         @assessment = create(:assessment),
         @dashboard = create(:dashboard),
-        @design_setting = create(:design_setting, project: Project.last),
+        @design_setting = create(:design_setting, project: Project.first),
         @factor = create(:factor),
         @innovation_style = create(:innovation_style),
         @occupation = create(:occupation),
@@ -32,11 +32,11 @@ describe ActiveStorageAttachable do
         )
       ]
       subject_records.each do |r|
-        r.as_icon.attach(image) if r.respond_to?(:as_icon)
-        r.as_logo.attach(image) if r.respond_to?(:as_logo)
-        r.as_image.attach(image) if r.respond_to?(:as_image)
-        r.as_photo.attach(image) if r.respond_to?(:as_photo)
-        r.as_asset.attach(image) if r.respond_to?(:as_asset)
+        r.icon.attach(image) if r.respond_to?(:icon)
+        r.logo.attach(image) if r.respond_to?(:logo)
+        r.image.attach(image) if r.respond_to?(:image)
+        r.photo.attach(image) if r.respond_to?(:photo)
+        r.asset.attach(image) if r.respond_to?(:asset)
       end
 
       perform_enqueued_jobs
@@ -45,23 +45,24 @@ describe ActiveStorageAttachable do
     end
 
     it 'stores correct attachment key' do
-      expect(@assessment.as_icon.key).
+      # debugger
+      expect(@assessment.icon.key).
         to match(%r{public/assessment/#{@assessment.id}/icon/\w+_test_image.jpeg})
-      expect(@dashboard.as_image.key).
+      expect(@dashboard.image.key).
         to match(%r{private/projects/#{@dashboard.project.id}/dashboard/#{@dashboard.id}/image/\w+_test_image.jpeg})
-      expect(@design_setting.as_logo.key).
+      expect(@design_setting.logo.key).
         to match(%r{public/projects/#{@design_setting.project.id}/design_setting/logo/\w+_test_image.jpeg})
-      expect(@factor.as_icon.key).
+      expect(@factor.icon.key).
         to match(%r{public/factor/#{@factor.id}/icon/\w+_test_image.jpeg})
-      expect(@innovation_style.as_icon.key).
+      expect(@innovation_style.icon.key).
         to match(%r{public/innovation_style/#{@innovation_style.id}/icon/\w+_test_image.jpeg})
-      expect(@occupation.as_icon.key).
+      expect(@occupation.icon.key).
         to match(%r{public/occupation/#{@occupation.id}/icon/\w+_test_image.jpeg})
-      expect(@report.as_icon.key).
+      expect(@report.icon.key).
         to match(%r{public/report/#{@report.id}/icon/\w+_test_image.jpeg})
-      expect(@user_profile.as_photo.key).
+      expect(@user_profile.photo.key).
         to match(%r{public/user_profile/#{@user_profile.user_id}/photo/\w+_})
-      expect(@media_resp.as_asset.key).to match(
+      expect(@media_resp.asset.key).to match(
         %r{private/projects/#{@media_resp.users_result.campaign.project.id}/media_response/#{@media_resp.users_result_id}/#{@media_resp.question_id}/#{@media_resp.id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
       )
     end
@@ -79,11 +80,11 @@ describe ActiveStorageAttachable do
           assign: @assign
         )
 
-        @media_response.as_asset.attach(image)
+        @media_response.asset.attach(image)
       end
 
       it 'stores correct attachment key' do
-        expect(@media_response.as_asset.key).to match(
+        expect(@media_response.asset.key).to match(
           %r{private/projects/#{@media_response.assign.membership.project_membership.client_id}/media_response/#{@media_response.assign_id}/#{@media_response.question_id}/#{@media_response.id}/asset/\w+_test_image.jpeg} # rubocop:disable Layout/LineLength
         )
       end
@@ -95,12 +96,12 @@ describe ActiveStorageAttachable do
       allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)
 
       @invalid_assessment = create(:assessment)
-      @invalid_assessment.as_poster.attach(pdf)
+      @invalid_assessment.poster.attach(pdf)
     end
 
     it 'fails to attach' do
       expect { @invalid_assessment.save! }.
-        to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: As poster has an invalid content type')
+        to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Poster has an invalid content type')
     end
   end
 
@@ -112,8 +113,8 @@ describe ActiveStorageAttachable do
         @user_report = create(:user_report)
       ]
       subject_records.each do |r|
-        r.as_file.attach(image) if r.respond_to?(:as_file)
-        r.as_pdf_file.attach(pdf) if r.respond_to?(:as_pdf_file)
+        r.file.attach(image) if r.respond_to?(:file)
+        r.pdf_file.attach(pdf) if r.respond_to?(:pdf_file)
       end
 
       perform_enqueued_jobs
@@ -122,9 +123,9 @@ describe ActiveStorageAttachable do
     end
 
     it 'stores correct attachment key' do
-      expect(@library.as_file.key).
+      expect(@library.file.key).
         to match(%r{public/library/#{@library.id}/file/\w+_test_image.jpeg})
-      expect(@user_report.as_pdf_file.key).
+      expect(@user_report.pdf_file.key).
         to match(%r{private/projects/#{@user_report.project.id}/user_report/#{@user_report.id}/pdf_file/\w+_test.pdf})
     end
   end
@@ -134,14 +135,14 @@ describe ActiveStorageAttachable do
       allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)
 
       @bulk_report = create(:bulk_report)
-      @bulk_report.as_files.attach(zip, zip)
+      @bulk_report.files.attach(zip, zip)
       perform_enqueued_jobs
       clear_enqueued_jobs
       @bulk_report.reload
     end
 
     it 'stores correct attachment key' do
-      expect(@bulk_report.as_files.first.key).to match(%r{private/bulk_report/files/\w+_archive.zip})
+      expect(@bulk_report.files.first.key).to match(%r{private/bulk_report/files/\w+_archive.zip})
     end
   end
 end

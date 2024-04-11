@@ -14,7 +14,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
       relationship: Relationship.assessor_relationship
     ).order(:id)
 
-    assessment_ids = @assessor_assessments.map(&:assessment).map(&:linked_assessment_id)
+    assessment_ids = @assessor_assessments.map(&:assessment).map(&:linked_assessment_id) # rubocop:disable Performance/MapMethodChain
 
     @subject_user_assessment ||= UserAssessment.joins(:assessment).where(
       campaign_id: campaign.id,

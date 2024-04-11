@@ -10,7 +10,7 @@ export const getFormDataForFiles = <T extends FileData>(values: T, names: string
     _.each(files, (img, name) => {
       if (img?.file) {
         (img.file as UploadFile).status === 'removed'
-          ? formData.append(`remove_${name}`, '1')
+          ? formData.append(`purge_${name}`, '1')
           : formData.append(name, img.file as File, img.file.name)
       }
     })

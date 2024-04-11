@@ -60,7 +60,7 @@ describe UserAssessments::ResetProgress do
     user_assessment.completed!
     described_class.call!(user_assessment)
 
-    expect(user_report.reload.pdf_identifier).to eq(nil)
+    expect(user_report.reload.pdf_file.attached?).to be_falsey
     expect(user_report.status).to eq('not_prepared')
   end
 end

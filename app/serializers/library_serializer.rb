@@ -10,7 +10,7 @@ class LibrarySerializer < Panko::Serializer
   end
 
   def file
-    object.file.url
+    object.file&.url
   end
 
   def icon

@@ -7,7 +7,10 @@ module AdminJobs
 
     def call
       write_csv
-      record.update!(file: File.open(file_path))
+      record.file.attach(
+        io: File.open(file_path),
+        filename: File.basename(file_path)
+      )
       FileUtils.rm_f(file_path)
 
       broadcast :ok

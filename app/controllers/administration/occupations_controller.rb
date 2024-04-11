@@ -83,11 +83,11 @@ module Administration
                                        :key_career_tracks,
                                        :high_school_entry_roles, :diploma_qualification,
                                        :bachelors_or_masters_qualification,
-                                       :icon, :remove_icon, :work_environment, :alternative_icon,
-                                       :remove_alternative_icon,
-                                       :indicative_roles_image, :remove_indicative_roles_image,
+                                       :icon, :purge_icon, :work_environment, :alternative_icon,
+                                       :purge_alternative_icon,
+                                       :indicative_roles_image, :purge_indicative_roles_image,
                                        :key_career_tracks_image,
-                                       :remove_key_career_tracks_image, :color)
+                                       :purge_key_career_tracks_image, :color)
     end
   end
 end

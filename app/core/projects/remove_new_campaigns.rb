@@ -44,12 +44,7 @@ module Projects
 
     def delete_user_reports(campaign)
       user_reports = UserReport.where(campaign_id: campaign.id)
-      path = UserReport.new.pdf.store_dir
-      user_reports.pluck(:id, :pdf).each do |id, pdf_file|
-        ObjectStorage::RemoveFileJob.perform_later(
-          "#{path}/#{id}/#{pdf_file}", Settings.secrets.s3_compatible_storage[:private_bucket]
-        )
-      end
+      user_reports.each { |user_report| user_report.pdf_file&.purge_later }
       user_reports.delete_all
     end
 
@@ -65,11 +60,9 @@ module Projects
       media_responses = MediaResponse.joins(users_result: :user_assessment).where(
         user_assessment: { campaign_id: campaign.id }
       )
-      path = MediaResponse.new.asset.store_dir
-      media_responses.pluck(:asset).each do |asset_file|
-        ObjectStorage::RemoveFileJob.perform_later(
-          "#{path}/#{asset_file}", Settings.secrets.s3_compatible_storage[:private_bucket]
-        )
+
+      media_responses.each do |media_response|
+        media_response.asset&.purge_later
       end
       media_responses.delete_all
       MindmillCredential.joins(users_result: :user_assessment).

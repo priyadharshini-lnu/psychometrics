@@ -73,8 +73,13 @@ FactoryBot.define do
           age: 1,
           gender: 1,
           timezone: 'MyString',
-          locale: 'MyString',
-          photo: Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/profile.png'))
+          locale: 'MyString'
+        )
+
+        user.user_profile.photo.attach(
+          io: File.open(Rails.root.join('spec/fixtures/files/profile.png')),
+          filename: 'profile.png',
+          content_type: 'image/png'
         )
       end
     end

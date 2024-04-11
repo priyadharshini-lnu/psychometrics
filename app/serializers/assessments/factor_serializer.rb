@@ -5,7 +5,7 @@ module Assessments
     attributes :id, :name, :parent_id, :scoring, :description, :icon
 
     def icon
-      object.icon.url(:middle)
+      object.icon_url(:medium)
     end
 
     def scoring

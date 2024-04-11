@@ -40,9 +40,9 @@ describe CampaignReports::BulkDownload do
     user_reports_with_pdf = create_list(
       :user_report,
       2,
+      :with_pdf,
       campaign: campaign,
-      report: report,
-      pdf: File.open('spec/fixtures/files/reports/test.pdf')
+      report: report
     )
     user_report_without_pdf = create(:user_report, campaign: campaign, report: report)
 

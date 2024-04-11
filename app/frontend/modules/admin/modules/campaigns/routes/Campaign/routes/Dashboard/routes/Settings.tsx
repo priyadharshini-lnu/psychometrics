@@ -68,7 +68,7 @@ export const SettingsComponent: React.FC<Props> = ({
 
     const formData = new FormData()
     if (image.file.status === 'removed') {
-      formData.append('remove_image', '1')
+      formData.append('purge_image', '1')
     } else {
       formData.append('image', image.file as unknown as File, image.file.name)
     }

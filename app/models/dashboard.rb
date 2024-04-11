@@ -4,16 +4,8 @@ class Dashboard < ApplicationRecord
   audited
 
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
-  mount_base64_uploader :image, Private::ImageUploader
-
-  has_one_image_attachment :as_image, variants: [:thumb], service: Settings.storage.private_storage_service
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :image
+  has_one_image_attachment :image, variants: [:thumb], service: Settings.storage.private_storage_service
 
   def attachment_storage_path(attribute_name, filename)
     "private/projects/#{project.id}/dashboard/#{id}/#{attribute_name}/#{filename}"

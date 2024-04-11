@@ -13,6 +13,7 @@ import {
   DEFAULT_MAX_DURATION,
 } from '~/modules/survey/constants/media'
 
+
 import api from '~/middleware/api'
 import useAudioMetrics from '~/hooks/useAudioMetrics'
 
@@ -129,7 +130,7 @@ export const AudioRecorder: React.FC<Props> = ({
   const uploadFile = (id: number): void => {
     const { file } = state
     const urls = {
-      mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}&file_name=audio.wav`,
+      mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}&filename=audio.wav`,
       callbackUrl: `${mediaUrl}/upload_callback`,
     }
     markQuestionInProgress(id, UPLOAD_STATES.SAVING)

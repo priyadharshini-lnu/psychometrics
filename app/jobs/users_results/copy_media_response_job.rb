@@ -3,16 +3,18 @@
 module UsersResults
   class CopyMediaResponseJob < ApplicationJob
     def perform(media_response, to_user_result)
-      filename = "#{SecureRandom.uuid}/#{media_response.filename}"
-
       begin
-        bucket = Settings.secrets.s3_compatible_storage[:private_bucket]
-        Aws::S3::Client.new.copy_object(
-          bucket: bucket,
-          copy_source: "#{bucket}/#{media_response.asset.path}",
-          key: "uploads/media_response/asset/#{filename}",
-          acl: media_response.asset.acl
+        blob_data = media_response.asset.blob.download
+
+        new_blob = ActiveStorage::Blob.create_and_upload(
+          io: StringIO.new(blob_data),
+          filename: filename,
+          key: new_media_response.attachment_storage_path('asset', media_response.filename),
+          service_name: Settings.storage.private_storage_service,
+          content_type: media_response.asset.content_type
         )
+
+        new_media_response.asset.attach(new_blob)
       rescue StandardError => e
         Rails.logger.error("Unable to copy media_response with id #{media_response.id}. #{e.message}")
         return
@@ -21,7 +23,8 @@ module UsersResults
       new_media_response = media_response.dup
       new_media_response.users_result_id = to_user_result.id
       new_media_response.save!
-      new_media_response.update_column(:asset, filename)
+      new_blob.update!(key: new_media_response.attachment_storage_path('asset', filename))
+      new_media_response.asset.attach(new_blob)
     end
   end
 end

@@ -104,7 +104,7 @@ class AssessmentDecorator < BaseDecorator
   # Returns a round image or circle with the specified color and two letters of the name
   #
   def icon
-    return h.image_tag(object.icon.url(:thumb), class: 'img-circle icon-circle') if object.icon?
+    return h.image_tag(object.icon_url(:thumb), class: 'img-circle icon-circle') if object.icon?
 
     h.content_tag(:div, object.name.first(2), class: 'icon-circle', style: "background-color: #{object.icon_color}")
   end

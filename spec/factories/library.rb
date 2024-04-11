@@ -6,6 +6,7 @@ FactoryBot.define do
 
     trait :image do
       type { 'image' }
+
       file { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/images/test_image.jpeg'), 'image/jpeg') }
     end
   end

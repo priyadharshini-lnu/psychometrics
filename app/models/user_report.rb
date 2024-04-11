@@ -5,9 +5,6 @@ class UserReport < ApplicationRecord
 
   include WorkflowActiverecord
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
   belongs_to :user, inverse_of: :user_reports
   belongs_to :report
@@ -29,16 +26,11 @@ class UserReport < ApplicationRecord
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, to: :report
 
-  mount_base64_uploader :pdf, Private::PdfUploader, file_name: proc { 'report' }
-
   # NOTE: renaming attribute to :pdf_file to not to have `stack level too deep` conflicts
   # when serializing user_reports; :pdf attribute already exists in schema
-  has_one_attachment :as_pdf_file,
+  has_one_attachment :pdf_file,
                      service: Settings.storage.private_storage_service,
                      content_type: %w[application/pdf]
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :pdf
 
   def attachment_storage_path(attribute_name, filename)
     "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
@@ -108,8 +100,35 @@ class UserReport < ApplicationRecord
     where(campaign_id: campaign_id, report_id: accessible_report_ids)
   end
 
+  def attach_pdf!(data)
+    case data
+      when String
+        pdf_file.attach(
+          ActiveStorageSupport::Base64Attach.attachment_from_data({ data: "data:application/pdf;base64,[#{data}]" })
+        )
+      when File
+        pdf_file.attach(
+          io: data,
+          filename: File.basename(data),
+          content_type: File.extname(data)
+        )
+      else
+        return false
+    end
+
+    self.status = :prepared
+    save!
+  end
+
   def pdf_exists?
-    pdf.file.present?
+    pdf_file.attached?
+  end
+
+  def remove_report_pdf!
+    pdf_file.purge_later
+    self.status = :not_prepared
+    self.approval_status = :not_ready if has_approval_workflow?
+    save!
   end
 
   def user_results(view_report_as = nil)
@@ -181,9 +200,9 @@ class UserReport < ApplicationRecord
   end
 
   def pdf_download_url
-    report_name = Utility::String.remove_non_ascii_chars(report.name).strip.presence || 'report'
-    file_name = "#{user.email}-#{report_name}.pdf"
-    pdf.url(query: { 'response-content-disposition' => "attachment;filename=#{file_name}" })
+    return unless pdf_exists?
+
+    pdf_file.url(disposition: 'attachment')
   end
 
   def remove_pdf!

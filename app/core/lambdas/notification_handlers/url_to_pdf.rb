@@ -11,10 +11,16 @@ module Lambdas
         end
 
         if data['update_record']
-          # user_report.update(pdf: data['file_name']) doesnt work with carrierwave.Refer below link.
-          # https://github.com/carrierwaveuploader/carrierwave/issues/2468
-          # This code will be changed with the active storage implementation.
-          user_report.write_attribute(:pdf, data['file_name']) # dont change this line.
+          blob = ActiveStorage::Blob.create_before_direct_upload!(
+            key: data['file_path'],
+            filename: data['file_name'],
+            byte_size: data['file_size'],
+            checksum: data['checksum'],
+            content_type: 'application/pdf',
+            service_name: Settings.secrets.s3_compatible_storage[:private_bucket]
+          )
+
+          user_report.pdf_file = blob.signed_id
           user_report.status = :prepared
           user_report.save!
         end
@@ -27,14 +33,15 @@ module Lambdas
       private
 
       def notify_user(data)
-        content_disposition = "attachment; filename=\"#{data['file_name']}\""
-        file_url = Aws::S3::Presigner.new.presigned_url(
-          :get_object,
-          bucket: Settings.secrets.s3_compatible_storage[:private_bucket],
+        blob = ActiveStorage::Blob.new(
           key: data['file_path'],
-          expires_in: 10.minutes.to_i,
-          response_content_disposition: content_disposition
-        ).to_s
+          filename: data['file_name'],
+          byte_size: data['file_size'],
+          checksum: data['checksum'],
+          content_type: 'application/pdf',
+          service_name: Settings.secrets.s3_compatible_storage[:private_bucket]
+        )
+
         ActionCable.server.broadcast \
           "notification_channel_for_#{data['notify_user_id']}",
           {
@@ -42,7 +49,7 @@ module Lambdas
             message: I18n.t('jobs.threesixty.reports.download.message'),
             description: I18n.t(
               'jobs.threesixty.reports.download.description',
-              url: file_url
+              url: blob.url(expires_in: 10.minutes.to_i, disposition: 'attachment', file_name: data['file_name'])
             )
           }
       end

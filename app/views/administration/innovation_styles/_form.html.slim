@@ -7,7 +7,7 @@
       = f.input :description, as: :text
       = f.input :full_description, as: :text
       = f.input :position, as: :integer
-      = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:factors_icon), class: 'thumb') : content_tag(:span, t('.no_icon'))
+      = f.input :icon, hint: f.object.icon.attached? ? image_tag(f.object.icon_url(:icon), class: 'thumb') : content_tag(:span, t('.no_icon'))
   .modal-footer
     .btn-group
       = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

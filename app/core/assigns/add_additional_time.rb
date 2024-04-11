@@ -31,7 +31,11 @@ module Assigns
     end
 
     def remove_reports
-      original_or_self.assigns_reports.update(remove_pdf: true, generating: false)
+      original_or_self.assigns_reports.each do |ar|
+        ar.pdf.purge
+        ar.generating = false
+        ar.save
+      end
     end
   end
 end

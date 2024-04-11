@@ -49,9 +49,9 @@ module UsersResults::ControllerConcern
 
   def upload_callback
     media = MediaResponse.find(params[:media_id])
-    media.asset_key = params[:asset_key]
+    media.asset = params[:asset_key]
     if media.save
-      render json: MediaResponseSerializer.new.serialize(media.reload)
+      render json: MediaResponseSerializer.new.serialize(media.reload), status: :ok
     else
       error_message = media.errors.messages.values.join(',')
       media.destroy
@@ -71,7 +71,15 @@ module UsersResults::ControllerConcern
 
   def complete_multipart_upload
     media = @users_result.media_responses.find(params[:media_id])
-    MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
+    MediaResponses::CompleteMultipartUpload.call!(
+      media, {
+        asset_key: params[:asset_key],
+        upload_id: params[:upload_id],
+        parts: params[:parts],
+        file_size: params[:file_size],
+        content_type: params[:content_type]
+      }
+    )
 
     render json: MediaResponseSerializer.new.serialize(media.reload)
   end
