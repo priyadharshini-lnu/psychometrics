@@ -65,9 +65,9 @@ module Administration
           required(:remove).filled(:bool?)
         end
         required(:manager_details).hash do
-          required(:manager_id).maybe(:int?)
-          required(:manager_name).maybe(:str?)
-          required(:manager_email).maybe(:str?)
+          optional(:manager_id).maybe(:str?)
+          optional(:manager_name).maybe(:str?)
+          optional(:manager_email).maybe(:str?)
         end
         required(:completed_at).maybe(:str?)
         required(:user_assessments).array(Administration::UserAssessmentSchema.schema(_, _))
