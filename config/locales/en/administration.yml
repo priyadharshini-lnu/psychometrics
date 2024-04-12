@@ -393,13 +393,13 @@ en:
           not_selected_users: Not Selected Users
           selected_users: Selected Users
       copy:
-        error: 'Assessment #%{name} was not copied.'
-        successfully: Assessment %{name} was copied successfully.
+        error: Assessment '%{name}' was not copied.
+        successfully: Assessment '%{name}' was copied successfully.
       create:
-        successfully: Assessment %{name} was created successfully.
+        successfully: Assessment '%{name}' was created successfully.
       dashboard: Assessment Dashboard
       destroy:
-        successfully: Assessment %{name} was deleted successfully.
+        successfully: Assessment '%{name}' was deleted successfully.
       edit:
         header: Assessment Settings
       errors:
@@ -1003,13 +1003,13 @@ en:
           form:
             empty_client_ids: Select clients to continue
         copy:
-          error: 'Assessment #%{name} was not copied.'
-          successfully: Assessment %{name} was copied successfully.
+          error: Assessment '%{name}' was not copied.
+          successfully: Assessment '%{name}' was copied successfully.
         create:
-          successfully: Assessment %{name} was created successfully.
+          successfully: Assessment '%{name}' was created successfully.
         dashboard: Assessment Dashboard
         destroy:
-          successfully: Assessment %{name} was deleted successfully.
+          successfully: Assessment '%{name}' was deleted successfully.
         edit:
           header: Assessment Settings
         form:
@@ -1342,10 +1342,10 @@ en:
         type: Type
         year: Year
       copy:
-        error: Client Tenancy %{name} was not copied.
-        successfully: Client Tenancy %{name} was copied successfully.
+        error: Client Tenancy '%{name}' was not copied.
+        successfully: Client Tenancy '%{name}' was copied successfully.
       create:
-        successfully: Client Tenancy %{name} was created successfully.
+        successfully: Client Tenancy '%{name}' was created successfully.
       datasheet_rows:
         create:
           successfully: New Datasheet was successfully uploaded.
@@ -1598,14 +1598,14 @@ en:
           add_report: Add Report
         campaigns:
           archive:
-            successfully: Campaign %{name} was archived successfully.
+            successfully: Campaign '%{name}' was archived successfully.
           copy:
-            error: Campaign %{name} was not copied.
-            successfully: Campaign %{name} was copied successfully.
+            error: Campaign '%{name}' was not copied.
+            successfully: Campaign '%{name}' was copied successfully.
           create:
-            successfully: Campaign %{name} was created successfully.
+            successfully: Campaign '%{name}' was created successfully.
           destroy:
-            successfully: Campaign %{name} was deleted successfully.
+            successfully: Campaign '%{name}' was deleted successfully.
           edit:
             header: Edit Campaign
           export:
@@ -1870,17 +1870,17 @@ en:
             in_progress: In Progress
             not_started: Not Started
           copy:
-            error: Client Tenancy %{name} was not copied.
-            successfully: Client Tenancy %{name} was copied successfully.
+            error: Client Tenancy '%{name}' was not copied.
+            successfully: Client Tenancy '%{name}' was copied successfully.
           create:
-            successfully: Client Tenancy %{name} was created successfully.
+            successfully: Client Tenancy '%{name}' was created successfully.
           designs:
             form:
               no_background: No Background yet
               no_logo: No Logo yet
           destroy:
-            error: Can't delete %{name} because some dependent associations of subjects or evaluators exist.
-            successfully: Client Tenancy %{name} was deleted successfully.
+            error: Can't delete '%{name}' because some dependent associations of subjects or evaluators exist.
+            successfully: Client Tenancy '%{name}' was deleted successfully.
           edit:
             header: Edit 360 Campaign
           export:
@@ -2170,14 +2170,14 @@ en:
           title: Statistics
       sub_campaigns:
         archive:
-          successfully: Sub-Campaign %{name} was archived successfully.
+          successfully: Sub-Campaign '%{name}' was archived successfully.
         copy:
-          error: Sub-Campaign %{name} was not copied.
-          successfully: Sub-Campaign %{name} was copied successfully.
+          error: Sub-Campaign '%{name}' was not copied.
+          successfully: Sub-Campaign '%{name}' was copied successfully.
         create:
-          successfully: Sub-Campaign %{name} was created successfully.
+          successfully: Sub-Campaign '%{name}' was created successfully.
         destroy:
-          successfully: Sub-Campaign %{name} was deleted successfully.
+          successfully: Sub-Campaign '%{name}' was deleted successfully.
         edit:
           header: Edit Sub-Campaign
         export:
@@ -2805,13 +2805,13 @@ en:
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     factors:
       copy:
-        error: "%{name} factor was not copied"
-        successfully: Factor %{name} was copied successfully
+        error: "'%{name}' factor was not copied"
+        successfully: Factor '%{name}' was copied successfully.
       create:
-        error: "%{name} factor was not created"
-        successfully: "%{name} factor was created successfully"
+        error: "'%{name}' factor was not created"
+        successfully: "%'{name}' factor was created successfully."
       destroy:
-        successfully: Factor %{name} was deleted successfully.
+        successfully: Factor '%{name}' was deleted successfully.
       edit:
         header: Edit Factor Name
       form:
@@ -3272,11 +3272,11 @@ en:
     norms:
       copy:
         error: 'Norm #%{id} was not copied.'
-        successfully: 'Norm #%{name} was copied successfully'
+        successfully: Norm '%{name}' was copied successfully.
       create:
-        successfully: Norm %{name} was created successfully.
+        successfully: Norm '%{name}' was created successfully.
       destroy:
-        successfully: Norm %{name} was deleted successfully.
+        successfully: Norm '%{name}' was deleted successfully.
       edit:
         header: Rename Norm
       editor:
@@ -3632,11 +3632,11 @@ en:
     psychometrics: Psychometrics
     questions:
       copy:
-        successfully: Question %{name} was copied successfully
+        successfully: Question '%{name}' was copied successfully.
       create:
-        successfully: Question %{name} was created successfully
+        successfully: Question '%{name}' was created successfully.
       destroy:
-        successfully: Question %{name} was deleted successfully.
+        successfully: Question '%{name}' was deleted successfully.
       edit:
         header: Edit Question
       index:
@@ -3748,12 +3748,12 @@ en:
         qc_in_progress: QC in Progress
     reports:
       copy:
-        error: 'Report #%{id} was not copied.'
-        successfully: Report %{name} was copied successfully.
+        error: Report %{id} was not copied.
+        successfully: Report '%{name}' was copied successfully.
       create:
-        successfully: Report %{name} was created successfully.
+        successfully: Report '%{name}' was created successfully.
       destroy:
-        successfully: Report %{name} was deleted successfully.
+        successfully: Report '%{name}' was deleted successfully.
       edit:
         header: Edit Report Name
       form:

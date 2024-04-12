@@ -795,10 +795,10 @@ en:
       add_tag:
         success_message: Tag was added successfully
       archived:
-        success_message: Asessment %{name} was archived successfully
+        success_message: Asessment '%{name}' was archived successfully.
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Asessment %{name} was copied successfully
+        success_message: Asessment '%{name}' was copied successfully.
       details: Details
       download_csv: Download CSV
       edit: Edit
@@ -2695,10 +2695,10 @@ en:
     actions:
       add: Add Report
       archived:
-        success_message: Report %{name} was archived successfully
+        success_message: Report '%{name}' was archived successfully.
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Report %{name} was copied successfully
+        success_message: Report '%{name}' was copied successfully.
       details: Details
       download: Download report
       download_csv: Download CSV
