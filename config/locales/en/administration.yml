@@ -393,13 +393,13 @@ en:
           not_selected_users: Not Selected Users
           selected_users: Selected Users
       copy:
-        error: Assessment '%{name}' was not copied.
-        successfully: Assessment '%{name}' was copied successfully.
+        error: Assessment "%{name}" was not copied.
+        successfully: Assessment "%{name}" was copied successfully.
       create:
-        successfully: Assessment '%{name}' was created successfully.
+        successfully: Assessment "%{name}" was created successfully.
       dashboard: Assessment Dashboard
       destroy:
-        successfully: Assessment '%{name}' was deleted successfully.
+        successfully: Assessment "%{name}" was deleted successfully.
       edit:
         header: Assessment Settings
       errors:
@@ -2822,7 +2822,7 @@ en:
         error: "'%{name}' factor was not created"
         successfully: "%'{name}' factor was created successfully."
       destroy:
-        successfully: Factor '%{name}' was deleted successfully.
+        successfully: Factor "%{name}" was deleted successfully.
       edit:
         header: Edit Factor Name
       form:
@@ -3283,11 +3283,11 @@ en:
     norms:
       copy:
         error: 'Norm #%{id} was not copied.'
-        successfully: Norm '%{name}' was copied successfully.
+        successfully: Norm "%{name}" was copied successfully.
       create:
-        successfully: Norm '%{name}' was created successfully.
+        successfully: Norm "%{name}" was created successfully.
       destroy:
-        successfully: Norm '%{name}' was deleted successfully.
+        successfully: Norm "%{name}" was deleted successfully.
       edit:
         header: Rename Norm
       editor:
@@ -3643,11 +3643,11 @@ en:
     psychometrics: Psychometrics
     questions:
       copy:
-        successfully: Question '%{name}' was copied successfully.
+        successfully: Question "%{name}" was copied successfully.
       create:
-        successfully: Question '%{name}' was created successfully.
+        successfully: Question "%{name}" was created successfully.
       destroy:
-        successfully: Question '%{name}' was deleted successfully.
+        successfully: Question "%{name}" was deleted successfully.
       edit:
         header: Edit Question
       index:

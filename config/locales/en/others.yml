@@ -800,10 +800,10 @@ en:
       add_tag:
         success_message: Tag was added successfully
       archived:
-        success_message: Asessment '%{name}' was archived successfully.
+        success_message: Assessment "%{name}" was archived successfully.
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Asessment '%{name}' was copied successfully.
+        success_message: Assessment "%{name}" was copied successfully.
       details: Details
       download_csv: Download CSV
       edit: Edit
@@ -822,21 +822,21 @@ en:
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
-        confirm_message: Are you sure you want to delete the assessment '%{name}'?
+        confirm_message: Are you sure you want to delete the assessment "%{name}"?
         confirm_title: Confirmation Required
-        success_message: Asessment %{name} has been removed
+        success_message: Assessment "%{name}" has been removed
       remove_tag:
         success_message: Tag was removed successfully
       rescore: Rescore
       restore:
-        success_message: Assessment %{name} was restored successfully
+        success_message: Assessment "%{name}" was restored successfully
       show_usage: Show Usage
       submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
       translations:
-        success_message: The asessment translations updated
+        success_message: The assessment translations updated
       unarchived:
-        success_message: Asessment %{name} was unarchived successfully
+        success_message: Assessment "%{name}" was unarchived successfully
     active: Active
     archived: Archived
     assessment: Assessment
@@ -1388,7 +1388,7 @@ en:
         successfully: Assessment was rescored successfully.
         title: Rescore Assessment?
       rescore_response:
-        message: Rescoring scheduled for assessment %{name}
+        message: Rescoring scheduled for assessment "%{name}"
         title: Rescore Responses
       reset:
         content: Are you sure you want to reset result?
@@ -2682,7 +2682,7 @@ en:
   report_bundles:
     actions:
       remove:
-        confirm_message: Are you sure you want to delete the report bundle '%{name}'?
+        confirm_message: Are you sure you want to delete the report bundle "%{name}"?
         confirm_title: Confirmation Required
         success_message: Report Bundle %{name} has been deleted
     create: Create
@@ -2692,7 +2692,7 @@ en:
       actions:
         add: Add New Report
         remove:
-          confirm_message: Are you sure you want to delete the report '%{name}' from '%{report_bundle_name}'?
+          confirm_message: Are you sure you want to delete the report "%{name}" from '%{report_bundle_name}'?
           confirm_title: Confirmation Required
           success_message: Report %{name} has been deleted
       select: Select Report
@@ -2700,10 +2700,10 @@ en:
     actions:
       add: Add Report
       archived:
-        success_message: Report '%{name}' was archived successfully.
+        success_message: Report "%{name}" was archived successfully.
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Report '%{name}' was copied successfully.
+        success_message: Report "%{name}" was copied successfully.
       details: Details
       download: Download report
       download_csv: Download CSV
@@ -2717,7 +2717,7 @@ en:
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
-        confirm_message: Are you sure you want to delete the report '%{name}'?
+        confirm_message: Are you sure you want to delete the report "%{name}"?
         confirm_title: Confirmation Required
         success_message: Report %{name} has been removed
       rescore: Rescore
@@ -3563,10 +3563,10 @@ en:
         submit_button_name: Push Webhook
         title: Push Webhook
       remove:
-        content: Are you sure you want to remove assessment '%{name}'?
+        content: Are you sure you want to remove assessment "%{name}"?
         successfully: "%{name} assessment was removed successfully."
       reset:
-        content: Are you sure you want to reset progress '%{name}'?
+        content: Are you sure you want to reset progress "%{name}"?
       test_webhook:
         submit_button_name: Send Test
         title: Send Webhook Event Test
