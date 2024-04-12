@@ -10,6 +10,7 @@ const { I18n } = window
 
 type Persmission = {
   export: boolean,
+  import: boolean
 }
 
 type Props = {
@@ -40,6 +41,13 @@ const getMenuProps = ({ onClick, persmission }: Props): MenuProps => {
     menuItems.push({
       key: 'export',
       label: I18n.t('administration.scoring.subject_list.export'),
+    })
+  }
+
+  if (persmission?.import) {
+    menuItems.push({
+      key: 'import_external_scores',
+      label: I18n.t('administration.scoring.subject_list.import_external_scores'),
     })
   }
 

@@ -247,4 +247,36 @@ describe Api::V2::Administration::CampaignUserScoringsController, swagger_doc: '
       end
     end
   end
+
+  path '/campaigns/{campaign_id}/campaign_user_scorings/import_external_campaign_scorings' do
+    post 'Import external campaign scorings' do
+      operationId 'ImportExternalCampaignScorings'
+      description 'Import external campaign scorings for a campaign'
+      tags 'CampaignUserScorings'
+      consumes 'multipart/form-data'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :file, in: :formData, type: :file, description: 'CSV file containing campaign scorings'
+
+      let(:file_path) { Rails.root.join('spec/fixtures/files/import_external_campaign_scoring/valid_file.csv') }
+      let!(:campaign_id) { campaign.id }
+      let!(:user) { create(:user, email: 'user@example.com', project: campaign.project) }
+      let!(:campaign_factor) do
+        create(:campaign_factor, factor_type: :external_score, code: 'ext_code1', campaign: campaign)
+      end
+
+      let!(:campaign_factor2) do
+        create(:campaign_factor, factor_type: :external_score, code: 'ext_code2', campaign: campaign)
+      end
+
+      let(:file) { Rack::Test::UploadedFile.new(file_path, 'text/csv') }
+
+      response '200', 'Campaign user scorings imported successfully' do
+        run_test! do |_response|
+          expect(AdminJobRecord.last.operation).to eq('import_external_campaign_scoring')
+          expect(AdminJobRecord.last.data).to eq({ 'campaign_id' => campaign.id })
+        end
+      end
+    end
+  end
 end

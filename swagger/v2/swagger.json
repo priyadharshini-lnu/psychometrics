@@ -2441,6 +2441,48 @@
         }
       }
     },
+    "/campaigns/{campaign_id}/campaign_user_scorings/import_external_campaign_scorings": {
+      "post": {
+        "summary": "Import external campaign scorings",
+        "operationId": "ImportExternalCampaignScorings",
+        "description": "Import external campaign scorings for a campaign",
+        "tags": [
+          "CampaignUserScorings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign user scorings imported successfully"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "file"
+              }
+            }
+          },
+          "description": "CSV file containing campaign scorings"
+        }
+      }
+    },
     "/campaigns/{campaign_id}/dimensions/assessor_dimensions": {
       "get": {
         "summary": "Dimensions List",
@@ -5161,6 +5203,47 @@
         "responses": {
           "200": {
             "description": "Report Restored"
+          }
+        }
+      }
+    },
+    "/tags/": {
+      "get": {
+        "summary": "Tag List",
+        "operationId": "TagList",
+        "description": "Fetch Tag List",
+        "tags": [
+          "Tag"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tag list",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "tags",
+                          "attributes": {
+                            "name": "psychometric"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -16811,7 +16894,8 @@
                     "enum": [
                       "assessment",
                       "assessor_scoring",
-                      "formula"
+                      "formula",
+                      "external_score"
                     ],
                     "nullable": false
                   },

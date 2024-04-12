@@ -57,6 +57,10 @@ en:
               reports_disabled: You selected disabled Report(s)
             removing_report_ids:
               not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: Please upload xlsx file
         column:
           attributes:
             name:
@@ -645,7 +649,7 @@ en:
           ineligible: Ineligible
           interrupted: Interrupted
           not_started: New
-          timed_out: Timed Out
+          timed_out: Timed import_raw
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte
@@ -738,6 +742,7 @@ en:
         import_assessment_questions: Import Assessment Questions
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
+        import_external_campaign_scoring: Import External Campaign Scoring
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data

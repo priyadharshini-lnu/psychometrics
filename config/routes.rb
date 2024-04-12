@@ -1329,6 +1329,8 @@ Rails.application.routes.draw do
                 get :export_scorings
                 post :rescore_bulk
                 post :change_finalized_campaign_score_bulk
+                post :import_external_campaign_scorings
+                get :import_external_scorings_sample_file
               end
             end
             jsonapi_resources :campaign_factor_values, only: %i[index] do

@@ -20,6 +20,7 @@ import { CampaignScores, CampaignScoresTR, type Error } from '~/modules/admin/mo
 import { formatedDate } from '~/utils/time'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
+import { ImportExternalScoringModal } from './ImportExternalScoringModal'
 
 const { I18n } = window
 
@@ -52,6 +53,7 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)
+  const [openImportExternalScoringModal, setopenImportExternalScoringModal] = useState(false)
 
   const {
     data: campaignFactorData,
@@ -158,6 +160,8 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
       }).then(() => {
         message.success(I18n.t('administration.scoring.subject_list.export_success'))
       })
+    } else if (action === 'import_external_scores') {
+      setopenImportExternalScoringModal(true)
     }
   }
 
@@ -236,8 +240,15 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
         </Col>
         <div>
           <Tools
-            persmission={{ export: campaignPermissions.viewCampaignScoring }}
+            persmission={{
+              export: campaignPermissions.viewCampaignScoring,
+              import: campaignPermissions.manageCampaignScoring,
+            }}
             onClick={action => handleToolAction(action)}
+          />
+          <ImportExternalScoringModal
+            open={openImportExternalScoringModal}
+            close={() => setopenImportExternalScoringModal(false)}
           />
           <ToolsDropdown
             isBulk

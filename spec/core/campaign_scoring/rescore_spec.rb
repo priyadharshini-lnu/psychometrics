@@ -79,4 +79,20 @@ describe CampaignScoring::Rescore do
     expect(cfv).to_not eq(nil)
     expect(cfv.numeric_value).to eq(100)
   end
+
+  it "doesn't remove factor with type external_score" do
+    cf_factor = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: 'external_score'
+    )
+    campaign_factor_value = create(
+      :campaign_factor_value, campaign_factor: cf_factor, user: user, campaign: campaign, numeric_value: 100
+    )
+
+    described_class.call!(campaign, user)
+
+    cfv = CampaignFactorValue.find_by(id: campaign_factor_value.id)
+    expect(cfv).to_not eq(nil)
+    expect(cfv.numeric_value).to eq(100)
+  end
 end

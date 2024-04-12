@@ -156,7 +156,7 @@ module CampaignScoring
     end
 
     def campaign_factors_sorted_by_formula_factors_at_end
-      campaign.campaign_factors.partition { |cf| cf.factor_type != 'formula' }.flatten
+      campaign.campaign_factors.not_external_score.partition { |cf| cf.factor_type != 'formula' }.flatten
     end
   end
 end

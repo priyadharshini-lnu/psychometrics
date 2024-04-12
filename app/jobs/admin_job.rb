@@ -46,7 +46,8 @@ class AdminJob < ApplicationJob
     export_campaign_scorings: AdminJobs::ExportCampaignScorings,
     export_reports_and_assessments: AdminJobs::ExportReportsAndAssessments,
     super_admin_assessment_norm_export: AdminJobs::SuperAdmin::AssessmentNormExport,
-    threesixty_campaign_export_scores: AdminJobs::ThreesixtyCampaignExportScores
+    threesixty_campaign_export_scores: AdminJobs::ThreesixtyCampaignExportScores,
+    import_external_campaign_scoring: AdminJobs::ImportExternalCampaignScoring
   }.freeze
 
   def perform(record)
