@@ -124,8 +124,8 @@ module Api
 
     def import_external_scorings_sample_file
       send_file(
-        Rails.public_path.join('example_csv/import_external_campaign_scorings_sample_file.xlsx'),
-        type: 'application/xlsx'
+        Rails.public_path.join('example_csv/import_external_campaign_scorings_sample_file.csv'),
+        type: 'text/csv'
       )
     end
 

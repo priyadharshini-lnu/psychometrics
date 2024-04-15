@@ -36,6 +36,6 @@ describe AdminJobs::ImportExternalCampaignScoring do
 
     numeric_values = campaign_factor_values.map(&:numeric_value)
 
-    expect(numeric_values).to contain_exactly(60, 71)
+    expect(numeric_values).to contain_exactly(60, 71.8)
   end
 end
