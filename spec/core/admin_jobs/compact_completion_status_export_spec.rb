@@ -42,23 +42,28 @@ describe AdminJobs::CompactCompletionStatusExport do
   it 'first row in csv contains headers' do
     described_class.call!(job_record)
 
-    csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-    actual_first_row = csv.row(1)
+    job_record.file.open do |f|
+      csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
+      actual_first_row = csv.row(1)
 
-    expected_first_row = ['Email', 'First Name', 'Last Name', 'Assessment', 'Minor Assessment', 'Super Assessment']
+      expected_first_row = ['Email', 'First Name', 'Last Name', 'Assessment', 'Minor Assessment', 'Super Assessment']
 
-    expect(actual_first_row).to eq(expected_first_row)
+      expect(actual_first_row).to eq(expected_first_row)
+    end
   end
 
   it 'csv contains each result as separate row' do
     described_class.call!(job_record)
-    csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-    expect(csv.last_row).to eq(4)
 
-    expected_last_row = [user_one.email, user_one.first_name, user_one.last_name,
-                         user_one_user_assessment.status.titleize, nil, nil]
+    job_record.file.open do |f|
+      csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
+      expect(csv.last_row).to eq(4)
 
-    expect(csv.row(4)).to eql(expected_last_row)
+      expected_last_row = [user_one.email, user_one.first_name, user_one.last_name,
+                           user_one_user_assessment.status.titleize, nil, nil]
+
+      expect(csv.row(4)).to eql(expected_last_row)
+    end
   end
 
   it 'update job record count and status' do
