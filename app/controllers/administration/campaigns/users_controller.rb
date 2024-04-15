@@ -9,8 +9,9 @@ module Administration
       def index
         users = campaign.
                 users.
-                includes(:creator, :modifier, campaign_users: [:campaign], user_assessments: :users_result).
-                ransack(params[:filters]).result
+                includes(
+                  :creator, :modifier, :user_profile, campaign_users: [:campaign], user_assessments: :users_result
+                ).ransack(params[:filters]).result.distinct
 
         respond_to do |format|
           format.json do
