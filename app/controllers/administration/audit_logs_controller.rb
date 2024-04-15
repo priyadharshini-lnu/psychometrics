@@ -8,30 +8,27 @@ module Administration
     render_entrypoint %i[index show], element: 'audit-logs', entry: 'admin/audit_logs'
 
     def index
-      @q = policy_scope(::AuditLog).eager_load(:user).ransack(params[:filters])
-      @logs = @q.result.order('audit_logs.id desc')
-      respond_to do |format|
-        format.json do
-          serialized_logs = Panko::ArraySerializer.new(
-            @logs.page(params[:page]).includes(:client, :project, :campaign).
-            per(params[:size] || 25),
-            each_serializer: AuditLogSerializer
-          ).to_a
-          render json: {
-            list: serialized_logs,
-            total: @logs.count,
-            types: policy_scope(::AuditLog).distinct(:record_type).pluck(:record_type).compact.sort,
-            actions: policy_scope(::AuditLog).distinct(:action).pluck(:action).compact.sort
-          }
-        end
-      end
+      @q = policy_scope(::AuditLog).ransack(params[:filters])
+
+      @logs = @q.result.includes(:user, :active_record_audits, :client, :project, :campaign).
+              order(id: :desc).page(params[:page]).per(params[:size] || 25)
+
+      serialized_logs = Panko::ArraySerializer.new(
+        @logs,
+        each_serializer: AuditLogSerializer
+      ).to_a
+
+      render json: {
+        list: serialized_logs,
+        total: @q.result.count,
+        types: policy_scope(::AuditLog).distinct(:record_type).pluck(:record_type).compact.sort,
+        actions: policy_scope(::AuditLog).distinct(:action).pluck(:action).compact.sort
+      }
     end
 
     def show
       authorize @log
-      respond_to do |format|
-        format.json { render json: AuditLogSerializer.new.serialize(@log) }
-      end
+      render json: AuditLogSerializer.new.serialize(@log)
     end
 
     def actions
@@ -43,7 +40,8 @@ module Administration
     private
 
     def set_log
-      @log = policy_scope(::AuditLog).find(params[:id])
+      @log = policy_scope(::AuditLog).includes(:user, :active_record_audits, :client, :project,
+                                               :campaign).find(params[:id])
     end
   end
 end

@@ -78,6 +78,7 @@ export const fetch = (tableConfig: TableConfig): ApiAction<State> => ({
     method: 'get',
     url: '/administration/audit_logs',
     debounce: 500,
+    loader: true,
     tableConfig,
     typedResponse: AuditLogsListResponseTR,
   },
