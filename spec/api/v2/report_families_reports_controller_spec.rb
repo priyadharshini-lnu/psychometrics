@@ -81,7 +81,14 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
             data: {
               type: 'report_families_reports',
               attributes: {
-                report_id: create(:report).id.to_s
+              },
+              relationships: {
+                report: {
+                  data: {
+                    type: 'reports',
+                    id: create(:report).id.to_s
+                  }
+                }
               }
             }
           }

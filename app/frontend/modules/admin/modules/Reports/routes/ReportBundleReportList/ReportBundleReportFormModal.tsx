@@ -38,6 +38,7 @@ export const ReportBundleReportFormModal: React.FC<Props> = ({ close }) => {
           <Form.Item
             name="reportId"
             label={I18n.t('common.column.report')}
+            rules={[{ required: true }]}
           >
             <Select
               showSearch
