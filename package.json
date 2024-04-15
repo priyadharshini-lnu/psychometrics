@@ -160,7 +160,7 @@
     "use-debounce": "^9.0.4",
     "use-eye-dropper": "^1.4.4",
     "use-media": "^1.5.0",
-    "uuid": "^9.0.0",
+    "uuid": "^9.0.1",
     "videojs-record": "^3.6.0",
     "vite": "^5.0.0",
     "vite-plugin-checker": "^0.5.6",
