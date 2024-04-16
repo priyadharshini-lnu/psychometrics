@@ -218,16 +218,6 @@ const FIELDS = [
       },
     ],
   },
-  {
-    branch: 'Campaigns',
-    fields: [
-      {
-        name: 'Join Link',
-        type: 'link',
-        value: '{{c://Campaigns/Join}}',
-      },
-    ],
-  },
 ]
 
 export default FIELDS
