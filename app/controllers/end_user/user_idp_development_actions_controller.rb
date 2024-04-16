@@ -3,6 +3,8 @@
 module EndUser
   class UserIdpDevelopmentActionsController < ApplicationController
     def index
+      authorize(user, nil, policy_class: ::EndUser::UserIdpDevelopmentActionPolicy)
+
       user_idp_development_action = user_idp_plan.user_idp_development_actions.includes(:development_action)
 
       serialized_user_idp_development_actions = Panko::ArraySerializer.new(
@@ -81,7 +83,11 @@ module EndUser
     end
 
     def user_idp_plan
-      @user_idp_plan ||= current_user.active_user_idp_plan
+      @user_idp_plan ||= user.active_user_idp_plan
+    end
+
+    def user
+      User.find(params[:user_id])
     end
 
     def user_idp_development_actions_params
