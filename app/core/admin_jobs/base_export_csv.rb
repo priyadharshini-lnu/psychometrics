@@ -67,7 +67,7 @@ module AdminJobs
     end
 
     def file_link
-      content_tag(:a, record.file.real_filename, href: record.file.url) if record.file.present?
+      content_tag(:a, record.file.filename.to_s, href: record.file.url) if record.file.present?
     end
 
     def file_name
