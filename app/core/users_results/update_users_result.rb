@@ -64,6 +64,10 @@ module UsersResults
           user_assessment.update!(user_assessment_attrs)
         end
       end
+      if user_assessment.deemed_completed?
+        user_assessment.update!(completed_at: Time.zone.now)
+        users_result.progress = 100
+      end
 
       users_result.save!
     end
