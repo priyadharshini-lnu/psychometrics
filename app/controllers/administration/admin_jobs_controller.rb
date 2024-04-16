@@ -24,7 +24,7 @@ module Administration
     def read
       record = policy_scope(AdminJobRecord).find(params[:id])
       record.update(read: true)
-      render json: record
+      render json: AdminJobRecordSerializer.new.serialize(record)
     end
   end
 end
