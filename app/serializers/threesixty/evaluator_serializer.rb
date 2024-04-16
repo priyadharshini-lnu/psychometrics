@@ -54,7 +54,8 @@ module Threesixty
           'allow_results_delete'
         ],
         {
-          project_id: context[:project_id]
+          project_id: context[:project_id],
+          campaign_id: context[:campaign_id]
         }
       )
     end

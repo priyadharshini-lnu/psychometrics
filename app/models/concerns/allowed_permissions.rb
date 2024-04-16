@@ -167,6 +167,7 @@ module AllowedPermissions
       rescore_responses
       regenerate_report
       bulk_regenerate_reports
+      scores
     ]
   }.freeze
 

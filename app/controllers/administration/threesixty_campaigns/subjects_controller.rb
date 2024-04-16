@@ -135,7 +135,8 @@ module Administration
             bulk_regenerate_reports
           ],
           {
-            project_id: threesixty_campaign.campaign.project_id
+            project_id: threesixty_campaign.campaign.project_id,
+            campaign_id: threesixty_campaign.campaign_id
           }
         )
       end
