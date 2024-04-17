@@ -13,8 +13,24 @@ module ActiveStorageAttachable
   # rubocop:disable Metrics/BlockLength
   # rubocop:disable Naming/PredicateName
   class_methods do
-    def has_one_attachment(attribute, content_type: nil, service: Settings.storage.public_storage_service)
-      has_one_attached attribute, service: service
+    def has_one_attachment(
+      attribute,
+      content_type: nil,
+      service: Settings.storage.public_storage_service,
+      variants: nil
+    )
+      has_one_attached attribute, service: service do |attachable|
+        attach_variants(attachable, variants)
+      end
+
+      define_method "#{attribute}_url" do |variant = nil|
+        data = send(attribute)
+
+        return data&.url unless variant
+        return data.variant(variant)&.processed&.url if variant && data.image?
+
+        nil
+      end
 
       # validating allowed content_types
       validates attribute, content_type: content_type if content_type
