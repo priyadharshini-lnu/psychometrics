@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::CampaignAssessorAssessmentResource < Api::V2::Administration::BaseResource
-  attributes :assessment_name, :assessment_id, :campaign_id, :linked_assessment_name
+  attributes :assessment_name, :assessment_id, :campaign_id, :linked_assessment_name, :allow_multiple_responses
 
   has_one :assessment
   has_many :factors
@@ -13,6 +13,10 @@ class Api::V2::Administration::CampaignAssessorAssessmentResource < Api::V2::Adm
   ransack_filters %i[name_cont]
 
   before_create -> { @model.campaign_id = context[:params]['campaign_id'] }
+
+  def self.updatable_fields(_)
+    %i[allow_multiple_responses]
+  end
 
   def assessment_id
     assessment.id.to_s

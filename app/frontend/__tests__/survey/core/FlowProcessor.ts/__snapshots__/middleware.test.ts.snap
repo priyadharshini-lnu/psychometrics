@@ -161,6 +161,7 @@ exports[`initializing base assessment init action should init assessment data: i
     "hideHiddenQuestions": true,
     "highlights": {},
     "hrisData": {},
+    "id": 1,
     "ignoreValidations": false,
     "inProgressQuestions": [],
     "initialized": true,

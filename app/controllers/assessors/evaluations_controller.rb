@@ -2,19 +2,19 @@
 
 class Assessors::EvaluationsController < Assessors::BaseController
   include ::Threesixty::SetAssessmentLocale
-  before_action :set_assessor_assessment, only: %i[show]
+  before_action :set_assessor_assessment, only: %i[show new_response]
   before_action :set_subject_user_assessment, only: %i[subject_assessment]
 
-  def evaluate # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def evaluate
     authorize(UserAssessment)
     campaign = Campaign.find(params[:campaign_id])
     user = User.find(params[:id])
     @assessor_assessments = policy_scope(UserAssessment).joins(:assessment).where(
       campaign_id: campaign.id, subject_id: user.id, assessments: { category: :assessor_form },
       relationship: Relationship.assessor_relationship
-    ).order(:id)
+    ).order('completed_at DESC NULLS LAST').order(:id)
 
-    assessment_ids = @assessor_assessments.map(&:assessment).map(&:linked_assessment_id)
+    assessment_ids = @assessor_assessments.pluck('assessments.linked_assessment_id')
 
     @subject_user_assessment ||= UserAssessment.joins(:assessment).where(
       campaign_id: campaign.id,
@@ -34,9 +34,14 @@ class Assessors::EvaluationsController < Assessors::BaseController
         datasheet_columns: datasheet_columns || [],
         datasheet: datasheet&.slice(*datasheet_columns.map { |col| col['name'] }) || {}
       },
-      assessor_assessments: @assessor_assessments.map do |a|
-        { id: a.id, name: a.assessment.name, linked_assessment_id: a.assessment.linked_assessment_id }
-      end,
+      assessor_assessments: Panko::ArraySerializer.new(
+        @assessor_assessments,
+        each_serializer: Administration::ShortAssessorAssessmentSerializer,
+        context: {
+          campaign_assessor_assessments: campaign.campaign_assessor_assessments.index_by(&:assessment_id)
+        }
+      ).to_a.group_by { |a| a['assessment_id'] },
+
       subject_assessments: @subject_user_assessment.map do |a|
         { id: a.id, name: a.assessment.name, assessment_id: a.assessment.id }
       end
@@ -61,6 +66,24 @@ class Assessors::EvaluationsController < Assessors::BaseController
     render json: serialize_data(@assessor_assessment, user_result)
   end
 
+  def new_response
+    unless @assessor_assessment.completed?
+      return redirect_to assessors_campaign_evaluation_url(
+        @assessor_assessment.campaign_id, @assessor_assessment.subject_id, tab: @assessor_assessment.assessment_id,
+        assessment: @assessor_assessment.id
+      )
+    end
+
+    new_user_assessment = UserAssessment.create(
+      @assessor_assessment.slice(:campaign_id, :assessment_id, :subject_id, :evaluator_id, :relationship_id)
+    )
+    new_user_assessment.create_users_result
+
+    redirect_to assessors_campaign_evaluation_url(
+      @assessor_assessment.campaign_id, new_user_assessment.subject_id, tab: new_user_assessment.assessment_id
+    )
+  end
+
   def subject_assessment
     user_result = @subject_user_assessment.users_result
     @subject_user_assessment.update(last_activity_at: DateTime.current)
@@ -69,6 +92,8 @@ class Assessors::EvaluationsController < Assessors::BaseController
   end
 
   private
+
+  def resource; end
 
   def serialize_data(user_assessment, user_result)
     selected_locale = user_assessment.selected_locale || user_locale

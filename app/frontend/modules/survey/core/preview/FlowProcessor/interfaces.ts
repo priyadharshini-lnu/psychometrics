@@ -114,6 +114,7 @@ export interface Highlight {
 }
 
 export interface DefaultState {
+  id?: number
   type: string
   resultsUrl?: string
   randomseed?: string
@@ -215,6 +216,7 @@ declare global {
 }
 
 export interface InitData {
+  id: number
   name: string
   resultsUrl: string
   type: string
