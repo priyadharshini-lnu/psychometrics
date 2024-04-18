@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Pagination, Input, Space, Button, DatePicker,
+  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Spin,
 } from 'antd'
 import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
@@ -15,7 +15,6 @@ import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
-import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { isRequestInProgress } from '~/core/request'
 
 export const FILTER_PREDICATES = {
@@ -111,7 +110,7 @@ const AuditLogList: React.FC<Props> = (
     filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
   })
 
-  return isLoading ? <PageContentSkeleton /> : (
+  return (
     <>
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
@@ -121,7 +120,17 @@ const AuditLogList: React.FC<Props> = (
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+            loading={{
+              spinning: isLoading,
+              indicator: <Spin size="large" />,
+            }}
+          >
             <Column
               title={I18n.t('administration.audit_log.record_id')}
               key="recordId"
