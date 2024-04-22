@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import {
   Table, Row, Col, message, MenuProps, App,
+  Switch,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -29,7 +30,7 @@ const AssessmentList: React.FC<Props> = () => {
   const stateManager = useCampaignAssessorAssessmentsStore()
 
   const {
-    data, fetch, removeResource,
+    data, fetch, removeResource, updateResource,
   } = useResources<CampaignAssessorAssessments>(
     'campaign_assessor_assessments',
     {
@@ -41,6 +42,10 @@ const AssessmentList: React.FC<Props> = () => {
   useEffect(() => {
     fetch()
   }, [])
+
+  const chagneAllowMultipleResponses = (resource, value) => {
+    updateResource({ id: resource.id, allowMultipleResponses: value })
+  }
 
   const removeAssessorAssessment = (assessorAssessment) => {
     modal.confirm({
@@ -86,7 +91,18 @@ const AssessmentList: React.FC<Props> = () => {
               key="linkedAssessment"
               render={({ linkedAssessmentName }) => linkedAssessmentName || I18n.t('common.text.na')}
             />
-
+            <Column
+              title={I18n.t('common.column.allow_multiple_responses')}
+              key="allowMultipleResponses"
+              render={resource => (
+                <Switch
+                  checked={resource.allowMultipleResponses}
+                  onChange={(value) => {
+                    chagneAllowMultipleResponses(resource, value)
+                  }}
+                />
+              )}
+            />
             <Column
               key="manage"
               title={I18n.t('administration.projects.webhook_settings.column_manage')}

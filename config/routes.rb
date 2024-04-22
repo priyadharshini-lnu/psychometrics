@@ -74,18 +74,21 @@ Rails.application.routes.draw do
       end
     end
 
-    constraints(proc { |request| request.format.html? }) do
-      get '/', to: 'users#dashboard', as: :dashboard, constraints: { format: :html }
-      get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
-    end
-
     resources :evaluations, only: %i[show] do
       get :subject_assessment
+      member do
+        get :new_response
+      end
       resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades do
         member do
           post :scoring
         end
       end
+    end
+
+    constraints(proc { |request| request.format.html? }) do
+      get '/', to: 'users#dashboard', as: :dashboard, constraints: { format: :html }
+      get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
     end
 
     resources :campaigns, only: [:index] do
@@ -95,7 +98,7 @@ Rails.application.routes.draw do
         end
       end
       resources :users, only: %i[index show]
-      resources :evaluations, only: %i[] do
+      resources :evaluations, only: %i[show] do
         member do
           get :evaluate
         end
@@ -1229,7 +1232,7 @@ Rails.application.routes.draw do
 
           resources :campaigns, only: [] do
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
-            jsonapi_resources :campaign_assessor_assessments, only: %i[index create destroy]
+            jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
             jsonapi_resources :workshops, only: %i[index show update] do
               member do
                 post :change_status

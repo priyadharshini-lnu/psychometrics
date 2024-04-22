@@ -15,7 +15,7 @@ export const useMessageBus = (channel: string, callback) => {
     return () => {
       messageBus.removeListener(channel, callback)
     }
-  }, [])
+  }, [callback])
 
   return {
     sendMessage, remove,

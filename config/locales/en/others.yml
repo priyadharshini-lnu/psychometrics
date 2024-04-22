@@ -804,6 +804,7 @@ en:
       extend_time: Extend time
       goto_dashboard: Click here to continue
       moderate: Moderate Scores
+      new_response: New Response
       next_assessment: Pass To Next Assessment
       pending_tasks:
         one: You have one 1 pending task
@@ -824,6 +825,7 @@ en:
         success_message: The asessment translations updated
       unarchived:
         success_message: Asessment %{name} unarchived successfully
+      view: View
     active: Active
     archived: Archived
     assessment: Assessment
@@ -1222,6 +1224,7 @@ en:
     edit_evaluation:
       body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
       edit: Re-evaluate
+      prev_results: Previous Results
       title: Confirm
       view: View Assessment
     errors:
@@ -1566,6 +1569,7 @@ en:
     actions:
       add: Add
       archive: Archive
+      back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
       close: Close
@@ -1599,6 +1603,7 @@ en:
     column:
       action: Action
       active: Active
+      allow_multiple_responses: Allow multiple responses
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List
       assessment: Assessment

@@ -123,6 +123,7 @@ const HANDLERS = {
     return {
       ...defaultState,
       initialized: true,
+      id: data.id,
       name: data.name,
       assessmentCategory: data.category,
       type: data.type || 'preview_assessment',

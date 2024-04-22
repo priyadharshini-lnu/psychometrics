@@ -18,13 +18,19 @@ module Users
           break email unless User.exists?(email: email)
         end
         # Build anonym user with membership
-        @user = User.create(
+        @user = User.new(
           role: User::REGULAR_ROLE, is_anonym: true,
           first_name: 'Anonymous', last_name: 'User',
           email: uniq_anonym_email,
-          password: uniq_anonym_email, password_confirmation: uniq_anonym_email,
           project: campaign.project
         )
+
+        strong_password = user.generate_strong_password
+
+        user.password = strong_password
+        user.password_confirmation = strong_password
+        user.save!
+
         user.campaign_users.create(campaign: campaign)
       else
         user.campaign_users.create(campaign: campaign) unless user.campaign_users.exists?(campaign: campaign)
