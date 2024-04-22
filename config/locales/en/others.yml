@@ -2275,6 +2275,15 @@ en:
     my_direct_reports: My Direct Reports
     my_plan:
       development_plan: Development Plan
+      graphs:
+        area_of_development: Area of Development
+        behavioural: Behavioural
+        categories: Categories
+        learning_on_job: On the Job (%{count})
+        learning_others: Learning from the Others (%{count})
+        learning_structured: Structured Learning (%{count})
+        other: Other
+        technical: Technical
     plan: Plan
     profile_details: Profile Details
     skill_gap_report: Skill Gap Report
