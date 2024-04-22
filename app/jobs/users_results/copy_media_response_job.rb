@@ -21,7 +21,7 @@ module UsersResults
       new_media_response = media_response.dup
       new_media_response.users_result_id = to_user_result.id
       new_media_response.save!
-      new_media_response.update_column(:asset, filename)
+      new_media_response.update_columns(asset: filename, user_selected: media_response.user_selected)
     end
   end
 end
