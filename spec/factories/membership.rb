@@ -8,14 +8,14 @@ FactoryBot.define do
 
     factory :client_admin_membership do
       association :user, factory: :user
-      association :grants, factory: :membership_grants, data: User::DEFAULT_ADMIN_GRANTS
+      association :grants, factory: :membership_grants, data: AllowedPermissions::CLIENT_ADMIN_PERMISSIONS
       client factory: :tenancy
       role { Membership::CLIENT_ADMIN_ROLE }
     end
 
     factory :project_admin_membership do
       association :user, factory: :user
-      association :grants, factory: :membership_grants, data: User::DEFAULT_PROJECT_ADMIN_GRANTS
+      association :grants, factory: :membership_grants, data: AllowedPermissions::PROJECT_ADMIN_PERMISSIONS
       client factory: %i[project sub_campaign_level]
       role { Membership::PROJECT_ADMIN_ROLE }
     end
