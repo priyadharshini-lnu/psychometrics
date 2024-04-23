@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import {
   Layout, Col, Typography, Button, Space,
 } from 'antd'
@@ -18,7 +18,9 @@ interface Props {
 }
 
 export const ExternalAssessment: FC<Props> = ({ userAssessmentUrl, onCancel }) => {
+  const [loading, setLoading] = useState(false)
   const process = () => {
+    setLoading(true)
     location.href = userAssessmentUrl
   }
 
@@ -44,7 +46,7 @@ export const ExternalAssessment: FC<Props> = ({ userAssessmentUrl, onCancel }) =
             <Button onClick={onCancel}>
               {I18n.t('campaign.time_left.cancel')}
             </Button>
-            <Button type="primary" onClick={() => process()}>
+            <Button type="primary" loading={loading} disabled={loading} onClick={() => process()}>
               {I18n.t('campaign.time_left.continue')}
             </Button>
           </Space>
