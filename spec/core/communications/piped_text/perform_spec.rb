@@ -37,7 +37,7 @@ describe Communications::PipedText::Perform do
       allow(Settings).to receive(:port).and_return(8181)
       allow(Settings).to receive(:domain).and_return('tte.test')
       user = create(:user, project: create(:project, subdomain: 'test'))
-      response = described_class.call!('${c://Campaign/JoinLink?campaign_id=1&expire=60}', user: user)
+      response = described_class.call!('${c://Campaign/JoinLink?campaign_id=1&expiry=60}', user: user)
       token = ::Campaigns::JwtTokenizer.encode(
         { subject_id: user.id, campaign_id: '1', exp: Time.current.to_i + 60 }
       )

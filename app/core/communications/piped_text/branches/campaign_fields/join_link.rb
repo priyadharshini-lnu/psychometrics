@@ -10,7 +10,7 @@ module Communications
           def call
             return broadcast(:ok, '') unless user
 
-            exp = Time.current.to_i + params['expire'].to_i
+            exp = Time.current.to_i + params['expiry'].to_i
             token = ::Campaigns::JwtTokenizer.encode(
               { subject_id: user.id, campaign_id: params['campaign_id'], exp: exp }
             )
