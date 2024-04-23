@@ -1007,6 +1007,12 @@ Rails.application.routes.draw do
           post :save_plan
         end
       end
+
+      resources :user_idp_plans, only: [] do
+        collection do
+          get :summary
+        end
+      end
     end
 
     scope module: :threesixty do
