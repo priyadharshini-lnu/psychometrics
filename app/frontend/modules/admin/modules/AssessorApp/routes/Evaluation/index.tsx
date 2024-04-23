@@ -17,6 +17,7 @@ import {
   fetchAssessorAssessments, changeAssessorForm, changeSubjectAssessment,
   UserAssessment as UserAssessmentType, AssessorAssessment as AssessorAssessmentType,
 } from '../../core/evaluation'
+import { useUnloadCallback } from '~/hooks/useUnloadCallback'
 
 const { TabPane } = Tabs
 const { I18n, x_navigation_minimize } = window
@@ -46,6 +47,8 @@ const Evaluation: FC<Props> = ({
   const location = useLocation()
   const history = useHistory()
   const params = new URLSearchParams(location.search)
+
+  useUnloadCallback(I18n.t('common.messages.leave_message'))
 
   useEffect(() => {
     if (!getStore()) {

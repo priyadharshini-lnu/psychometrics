@@ -1649,6 +1649,8 @@ en:
       updated_at: Last Updated
     errors:
       something_wrong: Something went wrong. Contact your administrator.
+    messages:
+      leave_message: Are you sure you want to leave this page? Any unsaved answers that you have will be lost.
     model:
       admins: Admins
       assessment: Assessment
