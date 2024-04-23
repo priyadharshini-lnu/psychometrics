@@ -44,6 +44,9 @@ module EndUser
 
     def available_development_actions
       available_development_actions = user_idp_plan.idp_template.development_actions
+      selected_action_ids = user_idp_plan.user_idp_development_actions.pluck(:development_action_id)
+      available_development_actions = available_development_actions.where.not(id: selected_action_ids)
+
       serialized_avaialable_development_actions = Panko::ArraySerializer.new(
         available_development_actions,
         each_serializer: EndUser::AvailableDevelopmentActionSerializer
