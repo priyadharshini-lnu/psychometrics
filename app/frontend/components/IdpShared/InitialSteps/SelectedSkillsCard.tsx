@@ -26,7 +26,14 @@ export const SelectedSkillsCard: FC<Props> = ({ selectedSkills, OnRemoveSkill })
         <Space direction="vertical">
           {
           selectedSkills.map(skill => (
-            <Tag color={token.colorPrimaryActive} closable onClose={() => OnRemoveSkill(skill.id)}>{skill.name}</Tag>
+            <Tag
+              key={skill.id}
+              color={token.colorPrimaryActive}
+              closable
+              onClose={() => OnRemoveSkill(skill.id)}
+            >
+              {skill.name}
+            </Tag>
           ))
         }
         </Space>

@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import {
-  Avatar, Flex, Typography,
+  Avatar, Button, Flex, Typography, Divider,
 } from 'antd'
+import { PlusOutlined } from '@ant-design/icons'
 import { useMedia } from 'use-media'
 import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard'
 import { BoxWithShadow } from '~/glint'
 
-import styles from './DevelopmentActionListView.less'
 import { AvailableDevelopmentActions, CategoryWithSkills, SkillWithDevelopmentActions } from '.'
 import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentActionModal'
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
+
+import styles from './DevelopmentActionListView.less'
 
 const { I18n } = window
 
@@ -18,6 +20,7 @@ type SkillsContainerProps = {
   categories: CategoryWithSkills[];
   availableDevelopmentActions: AvailableDevelopmentActions[];
   onAddDevelopmentAction?: () => void;
+  onAddMoreSkills: (category: CategoryWithSkills) => void;
 }
 
 export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
@@ -25,6 +28,7 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   editMode,
   availableDevelopmentActions,
   onAddDevelopmentAction,
+  onAddMoreSkills,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
   const [isCreateCustomDevelopmentActionModalOpen, setIsCreateCustomDevelopmentActionModalOpen] = useState(false)
@@ -115,6 +119,16 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
                 {renderCards(category.skills)}
               </Flex>
             </Flex>
+            {editMode ? (
+              <>
+                <Divider className="mt-4" />
+                <Button onClick={() => onAddMoreSkills(category)} className="ps-0" type="link">
+                  <PlusOutlined />
+                  {' '}
+                  {I18n.t('idp.development_actions.add_skill')}
+                </Button>
+              </>
+            ) : null}
           </BoxWithShadow>
         ))}
       </Flex>

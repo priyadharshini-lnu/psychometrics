@@ -5,18 +5,18 @@ const FETCH_USER_IDP_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_USER_IDP_DEVELOPME
 const FETCH_USER_IDP_SKILLS = 'IDP/MY_PLAN/FETCH_USER_IDP_SKILLS'
 const FETCH_AVAILABLE_DEVELOPMENT_ACTIONS = 'IDP/MY_PLAN/FETCH_AVAILABLE_DEVELOPMENT_ACTIONS'
 
-export const fetchUserIdpDevelopmentActions = () => ({
+export const fetchUserIdpDevelopmentActions = (userId:string) => ({
   type: FETCH_USER_IDP_DEVELOPMENT_ACTIONS,
   request: {
-    url: '/user_idp_development_actions',
+    url: `/user_idp_development_actions?user_id=${userId}`,
     camelize: false,
   },
 })
 
-export const fetchUserIdpSkills = () => ({
+export const fetchUserIdpSkills = (userId:string) => ({
   type: FETCH_USER_IDP_SKILLS,
   request: {
-    url: '/user_idp_development_actions/user_idp_skills',
+    url: `/user_idp_development_actions/user_idp_skills?user_id=${userId}`,
     camelize: false,
   },
 })

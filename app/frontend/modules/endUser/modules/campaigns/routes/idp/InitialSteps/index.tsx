@@ -51,7 +51,7 @@ export const InitialSteps = () => {
                 title: I18n.t('idp.initial_steps.skill_gap_report'),
               },
               {
-                title: I18n.t('idp.initial_steps.add_skills'),
+                title: I18n.t('idp.initial_steps.add_skills_step'),
               },
               {
                 title: I18n.t('idp.initial_steps.rate_skills'),

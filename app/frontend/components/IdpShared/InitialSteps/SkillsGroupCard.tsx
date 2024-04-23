@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons'
 import { BoxWithShadow, ButtonWithArrow, MediaQueryContext } from '~/glint'
+import { type CategoryWithSkills } from '../DevelopmentActions'
 
 import styles from './SkillsGroupCard.less'
 
@@ -21,21 +22,14 @@ const skillOptions = [
 ]
 
 type Props = {
-  skillGroup: {
-    id: number
-    iconUrl: string
-    name: string
-    description: string
-    skills: { id: number; name: string }[]
-  }
-  onSkillClick: (skill: { id: number; name: string }) => void
+  skillCategory: CategoryWithSkills
   onAddSkill: (skills: { id: number; name: string }[]) => void
 }
 
 const { I18n } = window
 const { Title, Paragraph } = Typography
 
-export const SkillsGroupCard: FC<Props> = ({ skillGroup, onSkillClick, onAddSkill }) => {
+export const SkillsGroupCard: FC<Props> = ({ skillCategory, onAddSkill }) => {
   const [skillType, setSkillType] = useState('role')
   const { isMobile } = useContext(MediaQueryContext)
   const [selectedSkills, setSelectedSkills] = useState<{ id: number; name: string }[]>([])
@@ -46,17 +40,24 @@ export const SkillsGroupCard: FC<Props> = ({ skillGroup, onSkillClick, onAddSkil
   return (
     <BoxWithShadow style={{ padding: '24px 24px' }}>
       <Space className={`${styles.heading} w-100`}>
-        <Avatar size={64} src={skillGroup.iconUrl} />
+        <Avatar
+          size={64}
+          // API changes not available yet
+          // src={skillCategory.iconUrl}
+        />
         <div>
-          <Title className="mb-0" level={4}>{skillGroup.name}</Title>
-          <Paragraph>{skillGroup.description}</Paragraph>
+          <Title className="mb-0" level={4}>{skillCategory.category}</Title>
+          <Paragraph>
+            {/* API changes not available yet */}
+            {/* {skillCategory.description} */}
+          </Paragraph>
         </div>
       </Space>
       <Title level={5}>{I18n.t('idp.initial_steps.select_skills')}</Title>
       <Space className="w-100" size="large" direction="vertical">
         <Space>
-          {skillGroup.skills.map(skill => (
-            <Button onClick={() => onSkillClick(skill)} size="small" type="primary" key={skill.id} ghost>
+          {skillCategory.skills.map(skill => (
+            <Button onClick={() => onAddSkill([skill])} size="small" type="primary" key={skill.id} ghost>
               {skill.name}
             </Button>
           ))}

@@ -7,64 +7,46 @@ import {
 import { ButtonWithArrow, BoxWithShadow, MediaQueryContext } from '~/glint'
 import { SelectedSkillsCard } from '~/components/IdpShared/InitialSteps/SelectedSkillsCard'
 import { SkillsGroupCard } from '~/components/IdpShared/InitialSteps/SkillsGroupCard'
-
-// sample data
-const selectedSkills = [
-  { id: 1, name: 'Skill 1' },
-  { id: 2, name: 'Skill 2' },
-  { id: 3, name: 'Skill 3' },
-]
-
-const skillsGroups = [
-  {
-    id: 1,
-    iconUrl: '',
-    name: 'Skill Group 1',
-    description: 'Skill Group 1 description',
-    skills: [
-      { id: 1, name: 'Skill 1' },
-      { id: 2, name: 'Skill 2' },
-      { id: 3, name: 'Skill 3' },
-    ],
-  },
-  {
-    id: 2,
-    iconUrl: '',
-    name: 'Skill Group 2',
-    description: 'Skill Group 2 description',
-    skills: [
-      { id: 4, name: 'Skill 4' },
-      { id: 5, name: 'Skill 5' },
-      { id: 6, name: 'Skill 6' },
-    ],
-  },
-]
+import { type Skill, type CategoryWithSkills } from '../DevelopmentActions'
 
 type AddSkillsStepProps = {
-  next: () => void
+  onFinishAddSkill: () => void
+  addSkillButtonText: string
+  selectedSkills: Skill[]
+  skillCategories: CategoryWithSkills[]
+  onDeselectSkill: (id: number) => void
+  onAddSkill: (skills: { id: number; name: string }[]) => void
 }
 
 const { I18n } = window
 
 
-export const AddSkillsStep: FC<AddSkillsStepProps> = ({ next }) => {
+export const AddSkillsStep: FC<AddSkillsStepProps> = ({
+  onFinishAddSkill, addSkillButtonText, skillCategories, selectedSkills, onDeselectSkill, onAddSkill,
+}) => {
   const { isMobile } = useContext(MediaQueryContext)
   const [openSelectedSkillsModal, setOpenSelectedSkillsModal] = useState(false)
 
+  const selectedSkillsIds = selectedSkills.map(({ id }) => id)
+
   return (
     <>
-      <Row gutter={[24, 24]} className="mt-6">
+      <Row gutter={[24, 24]}>
         <Col xs={{ span: 24 }} sm={{ span: 18 }}>
           <Space size={24} className="w-100" direction="vertical">
             {
-            skillsGroups.map(skillGroup => (
-              <SkillsGroupCard
-                key={skillGroup.id}
-                skillGroup={skillGroup}
-                onAddSkill={() => null}
-                onSkillClick={() => null}
-              />
-            ))
+            skillCategories.map((skillCategory) => {
+              const skillsAvailableForSelection = skillCategory.skills.filter(
+                skill => !selectedSkillsIds.includes(skill.id),
+              )
+              return (
+                <SkillsGroupCard
+                  key={skillCategory.category}
+                  skillCategory={{ category: skillCategory.category, skills: skillsAvailableForSelection }}
+                  onAddSkill={onAddSkill}
+                />
+              )
+            })
           }
           </Space>
         </Col>
@@ -72,7 +54,7 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({ next }) => {
           onClose={() => setOpenSelectedSkillsModal(false)}
           openSelectedSkillsModal={openSelectedSkillsModal}
         >
-          <SelectedSkillsCard OnRemoveSkill={() => null} selectedSkills={selectedSkills} />
+          <SelectedSkillsCard OnRemoveSkill={onDeselectSkill} selectedSkills={selectedSkills} />
         </SelectedSkillsCardResponsiveWrapper>
       </Row>
       <Row justify="space-between" className="mt-6">
@@ -91,10 +73,10 @@ export const AddSkillsStep: FC<AddSkillsStepProps> = ({ next }) => {
         </Col>
         <Col>
           <ButtonWithArrow
-            label={I18n.t('idp.initial_steps.continue_to_rate_skills')}
+            label={addSkillButtonText}
             size="small"
             type="primary"
-            onClick={() => next()}
+            onClick={() => onFinishAddSkill()}
           />
         </Col>
       </Row>

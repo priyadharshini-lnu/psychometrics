@@ -7,6 +7,7 @@ import {
 } from 'antd'
 import { useHistory, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { CloseOutlined } from '@ant-design/icons'
 import { generate } from '@ant-design/colors'
 
 import { BoxWithShadow, MediaQueryContext } from '~/glint'
@@ -23,7 +24,9 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   DevelopmentActionListView,
   DevelopmentActionBoardView,
+  type CategoryWithSkills,
 } from '~/components/IdpShared/DevelopmentActions'
+import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
 import { groupDevelopmentActionsByCategory, groupSkillsByCategory } from './utils'
 
 import styles from './MyPlan.less'
@@ -49,10 +52,44 @@ const kpiChartData = {
   other: { label: I18n.t('idp.my_plan.graphs.other'), value: 40 },
 }
 
+const skillCategorySample: CategoryWithSkills = {
+  category: 'behavioural',
+  skills: [
+    {
+      id: 423,
+      category: 'test',
+      description: 'test',
+      name: 'Sample one',
+      initialRating: 2.0,
+      finalRating: 3.0,
+      development_actions: [],
+    },
+    {
+      id: 425,
+      category: 'test two',
+      description: 'test',
+      name: 'Sample two',
+      initialRating: 2.0,
+      finalRating: 3.0,
+      development_actions: [],
+    },
+    {
+      id: 2,
+      category: 'test',
+      description: 'test',
+      name: 'Sample three',
+      initialRating: 2.0,
+      finalRating: 3.0,
+      development_actions: [],
+    },
+  ],
+}
+
 const connector = connect((state: RootState) => ({
   idpDevelopmentActions: state.campaigns.idp.userIdpDevelopmentActions,
   idpSkills: state.campaigns.idp.userIdpSkills,
   availableDevelopmentActions: state.campaigns.idp.availableDevelopmentActions,
+  currentUser: state.currentUser,
 }),
 {
   fetchUserIdpDevelopmentActions,
@@ -63,6 +100,11 @@ const connector = connect((state: RootState) => ({
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
+const emptySkillCategory = {
+  category: '',
+  skills: [],
+}
+
 const MyPlanComponent = ({
   fetchUserIdpDevelopmentActions,
   fetchUserIdpSkills,
@@ -70,10 +112,15 @@ const MyPlanComponent = ({
   idpDevelopmentActions,
   idpSkills,
   availableDevelopmentActions,
+  currentUser,
 }: Props) => {
   const { tab: paramTab } = useParams<{tab: string}>()
   const [tab, setTab] = useState(paramTab || 'list')
   const [editMode, setEditMode] = useState(false)
+  const [showAddSkill, setShowAddSkill] = useState(false)
+  const [pickedCategoryToAddMoreSkills, setPickedCategoryToAddMoreSkills] = useState<CategoryWithSkills>(
+    emptySkillCategory,
+  )
 
   const listData = useMemo(() => groupSkillsByCategory(idpSkills, idpDevelopmentActions),
     [idpDevelopmentActions, idpSkills])
@@ -97,8 +144,8 @@ const MyPlanComponent = ({
   const colorPalette = generate(colorPrimary)
 
   useEffect(() => {
-    fetchUserIdpDevelopmentActions()
-    fetchUserIdpSkills()
+    fetchUserIdpDevelopmentActions(currentUser.id)
+    fetchUserIdpSkills(currentUser.id)
   }, [])
 
   useEffect(() => {
@@ -109,6 +156,27 @@ const MyPlanComponent = ({
 
   const handleAddDevelopmentAction = () => {
     fetchAvailableDevelopmentActions()
+  }
+
+  const handleSelectSkill = (selectedSkills) => {
+    setPickedCategoryToAddMoreSkills({
+      category: pickedCategoryToAddMoreSkills?.category || '',
+      skills: [...pickedCategoryToAddMoreSkills?.skills, ...selectedSkills],
+    })
+  }
+
+  const handleFinishAddSkill = () => {
+    setShowAddSkill(false)
+    // post data to backend
+  }
+
+  const handleDeselectSkill = (deselectedSkillId) => {
+    setPickedCategoryToAddMoreSkills({
+      category: pickedCategoryToAddMoreSkills?.category || '',
+      skills: pickedCategoryToAddMoreSkills?.skills.filter(
+        skill => skill.id !== deselectedSkillId,
+      ),
+    })
   }
 
   const operations = (
@@ -135,43 +203,67 @@ const MyPlanComponent = ({
   return (
     <IdpPageLayoutWrapper>
       <Layout.Content className={styles.pageContent}>
-        <Typography.Title level={4}>{I18n.t('idp.my_plan.development_plan')}</Typography.Title>
-        <Space direction={isMobile ? 'vertical' : 'horizontal'}>
-          <BoxWithShadow className={styles.chart}>
-            <PieChart
-              chartSeriesData={categoryChartData}
-              title={I18n.t('idp.my_plan.graphs.categories')}
-              colors={[colorPrimary, '#CB4525', '#232323']}
+        {showAddSkill ? (
+          <div>
+            <Button
+              type="text"
+              icon={<CloseOutlined />}
+              onClick={() => setShowAddSkill(false)}
             />
-          </BoxWithShadow>
-          <BoxWithShadow className={styles.chart}>
-            <PieChart
-              title=""
-              chartSeriesData={learningChartData}
-              colors={[colorPalette[1], colorPalette[3], colorPalette[5]]}
+            <AddSkillsStep
+              addSkillButtonText={I18n.t('idp.my_plan.add_skill')}
+              skillCategories={[skillCategorySample]}
+              onFinishAddSkill={handleFinishAddSkill}
+              selectedSkills={pickedCategoryToAddMoreSkills?.skills || []}
+              onDeselectSkill={handleDeselectSkill}
+              onAddSkill={handleSelectSkill}
             />
-          </BoxWithShadow>
-          <BoxWithShadow className={styles.chart}>
-            <KpiChart
-              chartSeriesData={kpiChartData}
-              title={I18n.t('idp.my_plan.graphs.area_of_development')}
-              colors={[colorPrimary, '#CB4525', '#232323']}
-            />
-          </BoxWithShadow>
-        </Space>
-        <Tabs tabBarExtraContent={operations} activeKey={tab} onChange={tab => changeTab(tab)}>
-          <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
-            <DevelopmentActionListView
-              editMode={editMode}
-              categories={listData}
-              availableDevelopmentActions={availableDevelopmentActionsData}
-              onAddDevelopmentAction={handleAddDevelopmentAction}
-            />
-          </Tabs.TabPane>
-          <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
-            <DevelopmentActionBoardView categories={boardData} />
-          </Tabs.TabPane>
-        </Tabs>
+          </div>
+        ) : (
+          <>
+            <Typography.Title level={4}>{I18n.t('idp.my_plan.development_plan')}</Typography.Title>
+            <Space direction={isMobile ? 'vertical' : 'horizontal'}>
+              <BoxWithShadow className={styles.chart}>
+                <PieChart
+                  chartSeriesData={categoryChartData}
+                  title={I18n.t('idp.my_plan.graphs.categories')}
+                  colors={[colorPrimary, '#CB4525', '#232323']}
+                />
+              </BoxWithShadow>
+              <BoxWithShadow className={styles.chart}>
+                <PieChart
+                  title=""
+                  chartSeriesData={learningChartData}
+                  colors={[colorPalette[1], colorPalette[3], colorPalette[5]]}
+                />
+              </BoxWithShadow>
+              <BoxWithShadow className={styles.chart}>
+                <KpiChart
+                  chartSeriesData={kpiChartData}
+                  title={I18n.t('idp.my_plan.graphs.area_of_development')}
+                  colors={[colorPrimary, '#CB4525', '#232323']}
+                />
+              </BoxWithShadow>
+            </Space>
+            <Tabs tabBarExtraContent={operations} activeKey={tab} onChange={tab => changeTab(tab)}>
+              <Tabs.TabPane tab={I18n.t('idp.list')} key="list">
+                <DevelopmentActionListView
+                  editMode={editMode}
+                  categories={listData}
+                  availableDevelopmentActions={availableDevelopmentActionsData}
+                  onAddDevelopmentAction={handleAddDevelopmentAction}
+                  onAddMoreSkills={(category) => {
+                    setShowAddSkill(true)
+                    setPickedCategoryToAddMoreSkills(category)
+                  }}
+                />
+              </Tabs.TabPane>
+              <Tabs.TabPane tab={I18n.t('idp.board')} key="board">
+                <DevelopmentActionBoardView categories={boardData} />
+              </Tabs.TabPane>
+            </Tabs>
+          </>
+        )}
       </Layout.Content>
     </IdpPageLayoutWrapper>
   )
