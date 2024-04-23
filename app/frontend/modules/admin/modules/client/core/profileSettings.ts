@@ -30,6 +30,7 @@ export const ProfileSettingsTR = t.intersection([
       t.undefined]),
     requiredDefaultFields: t.type({}),
     lockedDefaultFields: t.type({}),
+    enabledDefaultFields: t.type({}),
   }),
 ])
 

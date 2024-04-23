@@ -37,7 +37,8 @@ module Threesixty::InitialState
             ProfileFieldSerializer.new(q, selected_locale: I18n.locale).to_h
           end,
           requiredFields: @current_project.profile_setting&.required_default_fields || {},
-          lockedFields: @current_project.profile_setting&.locked_default_fields || {}
+          lockedFields: @current_project.profile_setting&.locked_default_fields || {},
+          enabledFields: @current_project.profile_setting&.enabled_default_fields || {}
         },
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags,

@@ -3598,7 +3598,8 @@ CREATE TABLE public.profile_settings (
     updated_at timestamp(6) without time zone NOT NULL,
     project_id bigint NOT NULL,
     required_default_fields json DEFAULT '{}'::json,
-    locked_default_fields json DEFAULT '{}'::json
+    locked_default_fields json DEFAULT '{}'::json,
+    enabled_default_fields json DEFAULT '{"age":true,"gender":true,"photo":true}'::json
 );
 
 
@@ -13352,6 +13353,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240416093121'),
 ('20240403123008'),
 ('20240401134614'),
 ('20240401112155'),
