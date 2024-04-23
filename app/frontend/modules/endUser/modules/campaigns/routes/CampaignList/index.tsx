@@ -58,7 +58,6 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   const [error, setError] = useState(false)
   const history = useHistory()
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
-  const [flashMessage, setFlashMessage] = useState(window.PsyGlobalState.flashMessage)
 
   useEffect(() => {
     fetchCampaigns().catch(() => {
@@ -66,9 +65,6 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     })
   }, [])
 
-  useEffect(() => {
-    setFlashMessage(window.PsyGlobalState.flashMessage)
-  }, [])
 
   const handleProfileCompletion = () => {
     history.push('/profile_details')
@@ -91,7 +87,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
         <div className={styles['container-campaign']}>
           <Row gutter={[32, 32]}>
             <Col span={24}>
-              <Flash flash={flashMessage} className="mb-5" />
+              <Flash className="mb-5" />
               <Card
                 title={(<ProfileCardTitle />)}
                 className={styles.profileCard}

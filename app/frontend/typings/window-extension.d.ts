@@ -18,11 +18,7 @@ declare global {
       },
       features: {
         [key: string]: boolean
-      },
-      flashMessage: {
-        type: string
-        value: string
-      }[]
+      }
     },
     Utils: {
       isElementInViewport: (HTMLElement) => boolean
@@ -34,5 +30,5 @@ declare global {
   interface WindowEventMap {
     'local-storage': CustomEvent
   }
-  const htmldiff: (s1?:string | null, s2:string) => string
+  const htmldiff: (s1?: string | null, s2: string) => string
 }

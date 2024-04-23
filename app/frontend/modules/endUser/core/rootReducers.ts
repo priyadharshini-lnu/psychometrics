@@ -19,6 +19,7 @@ import idp from '../modules/campaigns/core/idp/developmentAction'
 import anonym from '../modules/campaigns/core/anonym'
 import workshop from '~/modules/endUser/modules/campaigns/core/workshops'
 import config from './config'
+import flash from '~/core/flash'
 
 const rootReducer = history => combineReducers({
   campaigns: combineReducers({
@@ -40,6 +41,7 @@ const rootReducer = history => combineReducers({
   anonym,
   project,
   currentUser,
+  flash,
   config,
   preview,
   report: combineReducers({ builder: reportBuilder }),

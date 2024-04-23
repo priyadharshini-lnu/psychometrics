@@ -2,5 +2,6 @@ div#endUserContainer
 
 javascript:
   window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
+  window.__INITIAL_STATE__['flash'] = #{flash_json_messages.to_json.html_safe}
 
 = vite_javascript_tag 'entrypoints/user/endUserV2.jsx'

@@ -15,14 +15,14 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const TwoFactorAuthComponent: React.FC<Props> = ({
-  csrfToken, user, errors, flash, projectConfig,
+  csrfToken, user, errors, projectConfig,
 }) => (
   <div className={styles.container}>
     <Typography.Title level={3}>{I18n.t('auth.otp.title')}</Typography.Title>
     <Typography.Paragraph className={styles.description}>
       {I18n.t('auth.otp.description')}
     </Typography.Paragraph>
-    <Flash flash={flash} />
+    <Flash />
     <Form
       id="form-login"
       layout="vertical"

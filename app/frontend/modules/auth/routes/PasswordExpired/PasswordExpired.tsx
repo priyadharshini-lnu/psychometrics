@@ -15,14 +15,14 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const PasswordExpiredComponent: React.FC<Props> = ({
-  projectConfig, csrfToken, errors, flash,
+  projectConfig, csrfToken, errors,
 }) => (
   <div className={styles.container}>
     <Typography.Title level={3}>{I18n.t('auth.expired_password.title')}</Typography.Title>
     <Typography.Paragraph className={styles.description}>
       {I18n.t('auth.expired_password.description')}
     </Typography.Paragraph>
-    <Flash flash={flash} />
+    <Flash />
     <Form
       id="form-login"
       layout="vertical"
