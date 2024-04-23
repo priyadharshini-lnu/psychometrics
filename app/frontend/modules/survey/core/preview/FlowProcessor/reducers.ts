@@ -302,7 +302,13 @@ const HANDLERS = {
   [CLEAR_IN_PROGRESS_QUESTION]: (state: State) => ({ ...state, inProgressQuestions: [] }),
   [MARK_ASSESSMENT_TIMED_OUT]: (state: State) => ({ ...state, assessmentTimedOut: true }),
   [ADD_MEDIA_RESPONSE]: (state: State, { payload: { mediaResponse } }: AddMediaResponse) => (
-    { ...state, mediaResponses: [...state.mediaResponses, mediaResponse] }),
+    {
+      ...state,
+      mediaResponses: state.mediaResponses.find((mr:MediaResponse) => mr.questionId === mediaResponse.questionId)
+        ? state.mediaResponses.map(mr => (mr.id === mediaResponse.id ? mediaResponse : mr))
+        : [...state.mediaResponses, mediaResponse],
+    }
+  ),
   [REMOVE_MEDIA_RESPONSE]: (state: State, { payload: { questionId } }: RemoveMediaResponse) => (
     updateIn(state, ['mediaResponses'], (mediaResponses: MediaResponse[]) => (
       _.filter(mediaResponses, ({ questionId: qid }) => qid !== questionId)))

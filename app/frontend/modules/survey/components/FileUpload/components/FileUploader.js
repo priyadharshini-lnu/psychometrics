@@ -7,17 +7,21 @@ const { $ } = window
 
 const FileUploader = {
   run: (context) => {
-    $.get(context.urls.mediaUploadUrl,
-      (data) => {
-        uploadFile(data, context)
-      }, 'json')
+    $.get(context.urls.mediaUploadUrl).done((data) => {
+      uploadFile(data, context)
+    }).fail(() => {
+      context.dispatch({ type: SET_ERRORS, payload: { errorCodes: ['BadRequest'] } })
+      context.onFail && context.onFail()
+    })
   },
 }
 
 export default FileUploader
 
 const uploadFile = (data, context) => {
-  const { file, fileName, dispatch } = context
+  const {
+    file, fileName, dispatch, onFail,
+  } = context
 
   $.ajax({
     method: 'PUT',
@@ -33,7 +37,12 @@ const uploadFile = (data, context) => {
   }).done((media) => {
     onUploadDone(media, data, context)
   }).fail((e) => {
-    dispatch({ type: SET_ERRORS, payload: { errorCodes: [e.responseXML.querySelector('Error Code').innerHTML] } })
+    if (e.responseXML) {
+      dispatch({ type: SET_ERRORS, payload: { errorCodes: [e.responseXML.querySelector('Error Code').innerHTML] } })
+    } else {
+      dispatch({ type: SET_ERRORS, payload: { errorCodes: ['BadRequest'] } })
+    }
+    onFail && onFail(data)
   })
 }
 
