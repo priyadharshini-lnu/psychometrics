@@ -9,6 +9,7 @@ describe Pearson::CreateSchedule do
     user_assessment = pearson_user_assessment.user_assessment
     allow(Pearson::GetAuthToken).to receive(:call!)
     allow(user_assessment).to receive(:pearson_assessment_language).and_return('en-Gb')
+    allow_any_instance_of(Assessment).to receive(:external_assessment_id).and_return('123')
     url = Faker::Internet.url
     schedule_id = Faker::Lorem.characters(number: 5)
     stub_request(:post, "#{config[:base_api_url]}/v1/schedules").

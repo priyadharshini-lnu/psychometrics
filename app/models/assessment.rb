@@ -193,6 +193,18 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   after_commit :sync_translated_columns, on: %i[update create]
 
+  def v2_pearson_assessment?
+    v2_pearson_assessment_details.present?
+  end
+
+  def pearson_report_id
+    v2_pearson_assessment_details&.report_id
+  end
+
+  def v2_pearson_assessment_details
+    Settings.providers.pearson.v2_assessments.find { |a| external_assessment_id.end_with?(a.id) }
+  end
+
   def has_external_norm?
     saville? || pearson?
   end

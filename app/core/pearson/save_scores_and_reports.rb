@@ -10,17 +10,18 @@ module Pearson
 
     def call # rubocop:disable  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       schedule_id = user_assessment.pearson_user_assessment.schedule_id
-      response = client.get("v1/results/#{schedule_id}")
+      response = client.get("v1/results/#{schedule_id}", query_params)
       scores_and_report = ::JSON.parse(response.body).dig('data', 'candidates', 0, 'products', 0, 'results')
-
       scores = scores_and_report.dig('scores', 'items')
-      report_items = scores_and_report.dig('reports', 'items').select { |item| item['type'] == 'pdf' }
-      raise StandardError, 'Pearson assessment scores not available' if scores.blank? || report_items.blank?
+      report_items = scores_and_report.dig('reports', 'items').select { |item| item['type'].casecmp('pdf').zero? }
+      raise StandardError, 'Pearson assessment scores not available' if scores.blank?
 
       user_result = user_assessment.users_result
       user_result.update(external_results: scores)
       user_assessment.update!(status: :completed, completed_at: Time.current) unless user_assessment.completed?
       generate_internal_reports
+
+      return broadcast :ok if report_items.blank? || user_assessment.assessment.v2_pearson_assessment?
 
       user_report = user_assessment.user_reports(:pearson).first
       return broadcast :ok unless user_report
@@ -35,6 +36,22 @@ module Pearson
     end
 
     private
+
+    def query_params
+      params = {}
+      if user_assessment.assessment.v2_pearson_assessment?
+        params = {
+          products: [
+            {
+              productId: user_assessment.assessment.external_assessment_id,
+              normId: user_assessment.pearson_norm_id,
+              reportId: [user_assessment.assessment.pearson_report_id]
+            }
+          ]
+        }
+      end
+      params
+    end
 
     def generate_internal_reports
       ::UsersResults::GenerateReports.call(
