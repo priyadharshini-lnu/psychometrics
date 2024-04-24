@@ -78,5 +78,13 @@ module AdminJobs
       FileUtils.mkdir_p(directory)
       @file_path ||= directory.join(file_name)
     end
+
+    def campaign_ids
+      return record.data['campaign_ids'] if record.data['campaign_ids'].present?
+
+      if record.data['project_ids'].present?
+        @campaign_ids ||= Campaign.where(project_id: record.data['project_ids']).pluck(:id)
+      end
+    end
   end
 end

@@ -5,7 +5,10 @@ module Communications
     queue_as :communication
 
     def perform(user_assessment)
-      communications = Communication.completion.where(assessment_id: user_assessment.assessment_id).includes(:project)
+      communications = Communication.completion.where(
+        campaign_id: user_assessment.campaign_id,
+        assessment_id: user_assessment.assessment_id
+      ).includes(:project)
       campaign_user = CampaignUser.find_by(
         campaign_id: user_assessment.campaign_id,
         user_id: user_assessment.user_id

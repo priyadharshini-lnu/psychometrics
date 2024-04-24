@@ -2,7 +2,7 @@
 
 module AdminJobs
   module SuperAdmin
-    class AssessmentRawFactorExport < BaseExportAssessment
+    class AssessmentNormExport < BaseExportAssessment
       private
 
       def headers
@@ -10,14 +10,14 @@ module AdminJobs
         [
           'Result ID', 'Project ID', 'Project Name', 'Campaign ID', 'Campaign Name',
           'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-          'Relationship', 'Started At', 'Completed At', 'Status', *factor_names
+          'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', *factor_names
         ]
       end
 
       def data_row(user_result)
-        raw_scores = []
+        norm_scores = []
         factors.each do |factor|
-          raw_scores << user_result.scoring&.dig(factor.id.to_s, 'score')
+          norm_scores << user_result.scoring&.dig(factor.id.to_s, 'norm_score')
         end
         [
           user_result.encoded_id,
@@ -32,8 +32,9 @@ module AdminJobs
           user_result.user_assessment.relationship.name,
           user_result.created_at.to_s,
           user_result.completed_at.to_s,
+          user_result.norm ? user_result.norm.name : '',
           I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
-          *raw_scores
+          *norm_scores
         ]
       end
 
@@ -54,7 +55,7 @@ module AdminJobs
       end
 
       def file_name
-        "assessment-#{assessment.id}-raw-factor-scores-#{record.id}.csv"
+        "assessment-#{assessment.id}-normed-results-#{record.id}.csv"
       end
     end
   end

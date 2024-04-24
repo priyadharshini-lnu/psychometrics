@@ -748,8 +748,10 @@ en:
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
+        super_admin_assessment_norm_export: Super Admin Norm Results Export
         super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
+        super_admin_datasheet_export: Super Admin Datasheet Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
         workshop_status_export: Assessment Center Status Export
       statuses:

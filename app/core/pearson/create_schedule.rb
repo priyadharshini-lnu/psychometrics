@@ -24,15 +24,17 @@ module Pearson
     private
 
     def request_data
+      product = {
+        productId: user_assessment.assessment.external_assessment_id,
+        canOverrideLanguage: true
+      }
+      unless user_assessment.assessment.v2_pearson_assessment?
+        product = product.merge(norms: [user_assessment.pearson_norm_id])
+      end
+      pearson_assessment_language = user_assessment.pearson_assessment_language
+      product = product.merge(languageCode: pearson_assessment_language) if pearson_assessment_language
       {
-        products: [
-          {
-            productId: user_assessment.assessment.external_settings[:assessment_id],
-            norms: [user_assessment.pearson_norm_id],
-            languageCode: user_assessment.pearson_assessment_language,
-            canOverrideLanguage: true
-          }
-        ],
+        products: [product],
         candidates: [
           {
             candidateId: user_assessment.subject.id.to_s,

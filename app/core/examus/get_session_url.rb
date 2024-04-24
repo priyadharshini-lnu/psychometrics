@@ -57,7 +57,7 @@ module Examus
     end
 
     def session_url
-      token = campaign_user.user.generate_sso_token if campaign.campaign_options.ldb?
+      token = campaign_user.user.generate_sso_token
       Utility::Url.generate(:proctoring_redirect_campaign_user_url, subdomain: project.subdomain, id: campaign_user.id,
 sso_token: token, user_id: campaign_user.user.id)
     end
