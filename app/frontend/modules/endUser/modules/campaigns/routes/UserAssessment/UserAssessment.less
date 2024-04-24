@@ -39,4 +39,10 @@
   max-width: 1200px;
   margin: auto;
   padding-inline: @space-2;
+  &:global(.fr-fullscreen-wrapper), &:global(.fr-fullscreen-wrapper) :global(.ant-tabs-nav) {
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
