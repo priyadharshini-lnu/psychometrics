@@ -78,6 +78,14 @@ export class FlowElement extends Component {
     )
   }
 
+  allowAdd (element) {
+    const { parent } = this.props
+    const settings = Settings[parent.module?.type] || null
+    if (!settings || !settings.allowedChildren) { return true }
+
+    return settings.allowedChildren.includes(element)
+  }
+
   renderVariants () {
     return (
       <div className={styles.elementSelect}>
@@ -86,26 +94,42 @@ export class FlowElement extends Component {
           <a className="btn" onClick={this.remove}>Cancel</a>
         </div>
         <div className={styles.btns}>
-          <button onClick={() => this.selectType('Block')} className={`btn btn-default ${styles.btn}`}>
-            <span className="fa fa-square" />
-            Block
-          </button>
-          <button onClick={() => this.selectType('Branch')} className={`btn btn-default ${styles.btn}`}>
-            <span className="fa fa-code-fork fa-rotate-90" />
-            Branch
-          </button>
-          <button onClick={() => this.selectType('EmbeddedData')} className={`btn btn-default ${styles.btn}`}>
-            <span className="fa fa-database" />
-            Embedded Data
-          </button>
+          {this.allowAdd('Block') && (
+            <button onClick={() => this.selectType('Block')} className={`btn btn-default ${styles.btn}`}>
+              <span className="fa fa-square" />
+              Block
+            </button>
+          )}
+          {this.allowAdd('Group') && (
+            <button onClick={() => this.selectType('Group')} className={`btn btn-default ${styles.btn}`}>
+              <span className="fa fa-object-group" />
+              Group
+            </button>
+          )}
+          {this.allowAdd('Branch') && (
+            <button onClick={() => this.selectType('Branch')} className={`btn btn-default ${styles.btn}`}>
+              <span className="fa fa-code-fork fa-rotate-90" />
+              Branch
+            </button>
+          )}
+          {this.allowAdd('EmbeddedData') && (
+            <button onClick={() => this.selectType('EmbeddedData')} className={`btn btn-default ${styles.btn}`}>
+              <span className="fa fa-database" />
+              Embedded Data
+            </button>
+          )}
+          {this.allowAdd('Randomizer') && (
           <button onClick={() => this.selectType('Randomizer')} className={`btn btn-default ${styles.btn}`}>
             <span className="fa fa-random" />
             Randomizer
           </button>
-          <button onClick={() => this.selectType('EndOfAssessment')} className={`btn btn-default ${styles.btn}`}>
-            <span className="fa fa-exclamation-triangle" />
-            End of Assessment
-          </button>
+          )}
+          {this.allowAdd('EndOfAssessment') && (
+            <button onClick={() => this.selectType('EndOfAssessment')} className={`btn btn-default ${styles.btn}`}>
+              <span className="fa fa-exclamation-triangle" />
+              End of Assessment
+            </button>
+          )}
         </div>
       </div>
     )
