@@ -2099,6 +2099,45 @@
         }
       }
     },
+    "/campaigns/{campaign_id}/campaign_user_scorings": {
+      "get": {
+        "summary": "Get campaign user scorings",
+        "operationId": "GetCampaignUserScorings",
+        "description": "Get campaign user scorings",
+        "tags": [
+          "CampaignUserScorings"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "CampaignUserScorings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampaignUserListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/campaigns/{campaign_id}/campaign_user_scorings/{user_id}/change_finalized_campaign_score": {
       "post": {
         "summary": "Change campaign user finalized",
@@ -3916,6 +3955,58 @@
             }
           },
           "required": true
+        }
+      }
+    },
+    "/projects/{project_id}/privacy_settings": {
+      "get": {
+        "summary": "Privacy Setting",
+        "operationId": "PrivacySetting",
+        "description": "Fetch PrivacySetting",
+        "tags": [
+          "PrivacySetting"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[project_id_eq]",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PrivacySetting",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": [
+                      {
+                      }
+                    ]
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/PrivacySettingResponse"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -7399,6 +7490,46 @@
         }
       }
     },
+    "/campaigns/{campaign_id}/workshops/{workshop_without_subject_id}/remove_workshop": {
+      "delete": {
+        "summary": "Remove Workshop",
+        "operationId": "RemoveWorkshop",
+        "description": "Remove Workshop",
+        "tags": [
+          "Workshops"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "workshop_without_subject_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Remove Workshop"
+          }
+        }
+      }
+    },
     "/campaigns/{campaign_id}/workshops/{workshop_id}/bulk_update_subjects": {
       "post": {
         "summary": "Bulk update workshop subjects",
@@ -10539,6 +10670,10 @@
                     "disabled": {
                       "type": "boolean",
                       "nullable": false
+                    },
+                    "enabled": {
+                      "type": "boolean",
+                      "nullable": false
                     }
                   },
                   "required": [
@@ -10698,6 +10833,10 @@
                   "disabled": {
                     "type": "boolean",
                     "nullable": false
+                  },
+                  "enabled": {
+                    "type": "boolean",
+                    "nullable": false
                   }
                 },
                 "required": [
@@ -10759,6 +10898,10 @@
                     "nullable": false
                   },
                   "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "enabled": {
                     "type": "boolean",
                     "nullable": false
                   }
@@ -10860,6 +11003,10 @@
                     "nullable": false
                   },
                   "disabled": {
+                    "type": "boolean",
+                    "nullable": false
+                  },
+                  "enabled": {
                     "type": "boolean",
                     "nullable": false
                   }
@@ -15390,6 +15537,217 @@
           "meta"
         ]
       },
+      "PrivacySettingListRespose": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "nullable": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Must be equal to privacy_settings",
+                  "nullable": false
+                },
+                "links": {
+                  "type": "object",
+                  "properties": {
+                    "self": {
+                      "type": "string",
+                      "nullable": false
+                    }
+                  },
+                  "required": [
+                    "self"
+                  ],
+                  "nullable": false
+                },
+                "attributes": {
+                  "type": "object",
+                  "properties": {
+                    "mask_data_for_third_party_assessment": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "privacy_consent": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "custom_privacy_consent": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "custom_privacy_policy_version": {
+                      "type": "integer",
+                      "nullable": true
+                    },
+                    "custom_privacy_consent_texts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "locale": {
+                            "type": "string",
+                            "nullable": false
+                          },
+                          "text": {
+                            "type": "string",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "locale",
+                          "text"
+                        ],
+                        "nullable": false
+                      },
+                      "nullable": false
+                    },
+                    "enable_privacy_link": {
+                      "type": "boolean",
+                      "nullable": true
+                    },
+                    "privacy_link_text": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "privacy_link_url": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+
+                  ],
+                  "nullable": false
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "links",
+                "attributes"
+              ],
+              "nullable": false
+            },
+            "nullable": false
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "record_count": {
+                "type": "integer",
+                "nullable": false
+              },
+              "page_count": {
+                "type": "integer",
+                "nullable": false
+              }
+            },
+            "required": [
+              "record_count",
+              "page_count"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "PrivacySettingUpdateRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "nullable": false
+              },
+              "type": {
+                "type": "string",
+                "description": "Must be equal to privacy_settings",
+                "nullable": false
+              },
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "mask_data_for_third_party_assessment": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "privacy_consent": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "custom_privacy_consent": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "custom_privacy_policy_version": {
+                    "type": "integer",
+                    "nullable": true
+                  },
+                  "custom_privacy_consent_texts": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "locale": {
+                          "type": "string",
+                          "nullable": false
+                        },
+                        "text": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "locale",
+                        "text"
+                      ],
+                      "nullable": false
+                    },
+                    "nullable": false
+                  },
+                  "enable_privacy_link": {
+                    "type": "boolean",
+                    "nullable": true
+                  },
+                  "privacy_link_text": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "privacy_link_url": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+
+                ],
+                "nullable": false
+              }
+            },
+            "required": [
+              "id",
+              "type",
+              "attributes"
+            ],
+            "nullable": false
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
       "WebhookResponse": {
         "type": "object",
         "properties": {
@@ -16704,6 +17062,10 @@
                   },
                   "description": {
                     "type": "string",
+                    "nullable": true
+                  },
+                  "ranked": {
+                    "type": "boolean",
                     "nullable": true
                   }
                 },
@@ -19720,7 +20082,7 @@
                       }
                     },
                     "required": [
-                      "data"
+
                     ],
                     "nullable": false
                   },
@@ -19757,7 +20119,7 @@
                   }
                 },
                 "required": [
-                  "user"
+
                 ],
                 "nullable": false
               },
@@ -19788,7 +20150,6 @@
             "required": [
               "id",
               "type",
-              "relationships",
               "attributes"
             ],
             "nullable": false
@@ -19842,7 +20203,7 @@
                         }
                       },
                       "required": [
-                        "data"
+
                       ],
                       "nullable": false
                     },
@@ -19879,7 +20240,7 @@
                     }
                   },
                   "required": [
-                    "user"
+
                   ],
                   "nullable": false
                 },
@@ -19910,7 +20271,6 @@
               "required": [
                 "id",
                 "type",
-                "relationships",
                 "attributes"
               ],
               "nullable": false

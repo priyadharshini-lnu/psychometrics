@@ -3497,6 +3497,7 @@ en:
     project_tabs:
       design: Design
       general: General
+      privacy: Privacy
       profile: Profile
       webhooks:
         actions:
@@ -3612,19 +3613,25 @@ en:
         warning_color: Warning Color
       general_settings:
         2fa: Enable Two factor authentication
+        live_chat: Enable Live Chat
+        locales_label: Locales
+        name_label: Name
+        password: Enable Strong password
+        project_number_label: Project Number
+        save_changes: Save Changes
+        sub_domain_label: Sub Domain
+      privacy_settings:
         dp_consent: Enable Data Processing consent
         dp_consent_custom: Customise Data Processing consent
         dp_consent_version: Policy Version
         errors:
           policy_version_format: Only whole numbers are allowed
-        live_chat: Enable Live Chat
-        locales_label: Locales
-        name_label: Name
-        password: Enable Strong password
+        mask_third_party_assessment_label: Mask third party assessment
         privacy_link: Enable Privacy Link
-        project_number_label: Project Number
-        save_changes: Save Changes
-        sub_domain_label: Sub Domain
+        privacy_link_label: Privacy Link
+        privacy_link_placeholder: Enter Privacy Link
+        privacy_text: Privacy Text
+        privacy_text_placeholder: Enter Privacy Text
       profile_settings:
         age: Age
         locked: Locked

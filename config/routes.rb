@@ -1170,6 +1170,7 @@ Rails.application.routes.draw do
             jsonapi_resources :report_families_reports
           end
           jsonapi_resources :projects, only: :show do
+            jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export
             end

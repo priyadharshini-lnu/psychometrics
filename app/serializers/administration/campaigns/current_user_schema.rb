@@ -49,6 +49,7 @@ module Administration
             required(:manageProjectIntegrations).filled(:bool?)
             required(:manageProjectSecuritySettings).filled(:bool?)
             required(:manageProjectIntegrations).filled(:bool?)
+            required(:manageProjectPrivacySetting).filled(:bool?)
             required(:manageProfileSettings).filled(:bool?)
             required(:manageDesignSettings).filled(:bool?)
             required(:workshopStatusExport).filled(:bool?)

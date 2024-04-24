@@ -10,34 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -118,103 +90,6 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
---
-
-CREATE VIEW c_10313.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
---
-
-CREATE VIEW c_10463.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.accesssheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'full name'::text) AS "full name",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'roll number'::text) AS "roll number",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'sample'::text) AS sample
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 61)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
---
-
-CREATE VIEW c_10542.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -991,82 +866,6 @@ ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
 
 
 --
--- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10313_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10463_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10501_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10542_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10543_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 72)
-  ORDER BY sheet_rows.id;
-
-
---
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1126,7 +925,6 @@ CREATE TABLE public.campaign_assessments (
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    schedule_time timestamp(6) without time zone,
     allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true
@@ -1194,7 +992,7 @@ CREATE TABLE public.campaign_assessor_assessments (
     assessment_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    allow_multiple_responses boolean
+    allow_multiple_responses boolean DEFAULT false
 );
 
 
@@ -3514,6 +3312,76 @@ ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
 
 
 --
+-- Name: privacy_setting_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.privacy_setting_translations (
+    id bigint NOT NULL,
+    custom_privacy_consent_text text,
+    locale character varying NOT NULL,
+    privacy_setting_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: privacy_setting_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.privacy_setting_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: privacy_setting_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.privacy_setting_translations_id_seq OWNED BY public.privacy_setting_translations.id;
+
+
+--
+-- Name: privacy_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.privacy_settings (
+    id bigint NOT NULL,
+    mask_data_for_third_party_assessment boolean DEFAULT false,
+    privacy_consent boolean DEFAULT false,
+    custom_privacy_policy_version integer,
+    custom_privacy_consent_text text,
+    privacy_link_text character varying,
+    privacy_link_url text,
+    project_id bigint,
+    enable_privacy_link boolean DEFAULT false,
+    custom_privacy_consent boolean DEFAULT false
+);
+
+
+--
+-- Name: privacy_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.privacy_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: privacy_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.privacy_settings_id_seq OWNED BY public.privacy_settings.id;
+
+
+--
 -- Name: proctoring_sessions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4258,6 +4126,20 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -5672,13 +5554,11 @@ CREATE TABLE public.users (
     totp_timestamp timestamp without time zone,
     settings jsonb DEFAULT '{}'::jsonb,
     already_invited boolean DEFAULT false,
-    locale character varying,
     enable_2fa boolean DEFAULT true NOT NULL,
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
     locked_at timestamp without time zone,
     password_changed_at timestamp without time zone,
-    photo character varying,
     timezone character varying,
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
@@ -6802,6 +6682,20 @@ ALTER TABLE ONLY public.privacy_consents ALTER COLUMN id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('public.privacy_links_id_seq'::regclass);
+
+
+--
+-- Name: privacy_setting_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_setting_translations ALTER COLUMN id SET DEFAULT nextval('public.privacy_setting_translations_id_seq'::regclass);
+
+
+--
+-- Name: privacy_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_settings ALTER COLUMN id SET DEFAULT nextval('public.privacy_settings_id_seq'::regclass);
 
 
 --
@@ -8017,6 +7911,22 @@ ALTER TABLE ONLY public.privacy_consents
 
 ALTER TABLE ONLY public.privacy_links
     ADD CONSTRAINT privacy_links_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: privacy_setting_translations privacy_setting_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_setting_translations
+    ADD CONSTRAINT privacy_setting_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: privacy_settings privacy_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_settings
+    ADD CONSTRAINT privacy_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -10047,6 +9957,27 @@ CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btre
 
 
 --
+-- Name: index_privacy_setting_t18n_on_privacy_setting_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_privacy_setting_t18n_on_privacy_setting_id_and_locale ON public.privacy_setting_translations USING btree (privacy_setting_id, locale);
+
+
+--
+-- Name: index_privacy_setting_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_setting_translations_on_locale ON public.privacy_setting_translations USING btree (locale);
+
+
+--
+-- Name: index_privacy_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_settings_on_project_id ON public.privacy_settings USING btree (project_id);
+
+
+--
 -- Name: index_proctoring_sessions_on_campaign_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11539,6 +11470,14 @@ ALTER TABLE ONLY public.admin_jobs
 
 
 --
+-- Name: privacy_settings fk_rails_1756fc8ca2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_settings
+    ADD CONSTRAINT fk_rails_1756fc8ca2 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports fk_rails_1805bc3762; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11960,6 +11899,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 ALTER TABLE ONLY public.dashboards
     ADD CONSTRAINT fk_rails_4d4d1beb84 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: privacy_setting_translations fk_rails_4f38fd7ce2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_setting_translations
+    ADD CONSTRAINT fk_rails_4f38fd7ce2 FOREIGN KEY (privacy_setting_id) REFERENCES public.privacy_settings(id);
 
 
 --
@@ -13353,7 +13300,12 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240419160359'),
+('20240419121317'),
+('20240419110536'),
+('20240417083055'),
 ('20240416093121'),
+('20240415123000'),
 ('20240403123008'),
 ('20240401134614'),
 ('20240401112155'),
@@ -13419,7 +13371,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230905113355'),
 ('20230829143631'),
 ('20230829124517'),
-('20230828122637'),
 ('20230824083112'),
 ('20230823110647'),
 ('20230822081633'),
