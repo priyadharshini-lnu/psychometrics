@@ -24,6 +24,15 @@ export const ExternalSettingsTR = t.type({
 
 export type ExternalSettings = t.TypeOf<typeof ExternalSettingsTR>
 
+const HoganReportPackage = t.type({
+  id: t.string,
+  name: t.string,
+})
+
+const HoganReportPackagesTR = t.array(HoganReportPackage)
+
+export type HoganReportPackages = t.TypeOf<typeof HoganReportPackagesTR>;
+
 export const ReportTR = t.type({
   id: t.string,
   name: t.string,
@@ -44,6 +53,7 @@ export const ReportTR = t.type({
   icon: t.union([t.string, t.null]),
   poster: t.union([t.string, t.null]),
   externalSettings: ExternalSettingsTR,
+  hoganReportPackages: HoganReportPackagesTR,
   owner: t.union([
     t.type({
       id: t.string,

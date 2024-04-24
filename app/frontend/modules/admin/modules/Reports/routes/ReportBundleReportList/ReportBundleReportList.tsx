@@ -14,7 +14,7 @@ import { useResources } from '~/hooks/useResources'
 const { I18n } = window
 
 export const ReportBundleReportList: React.FC = () => {
-  const { id } = useParams<{id: string}>()
+  const { id } = useParams<{ id: string }>()
   useEffect(() => {
     fetchSingle({ id })
   }, [id])

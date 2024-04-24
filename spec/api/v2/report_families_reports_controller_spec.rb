@@ -75,13 +75,15 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
         }
 
         let(:report_family_id) { report_family.id }
+        let(:report) { create(:report) }
 
         let(:body) do
           {
             data: {
               type: 'report_families_reports',
               attributes: {
-                report_id: create(:report).id.to_s
+                report_id: report.id.to_s,
+                external_package_id: 'RPInsightFlashPkg'
               }
             }
           }
@@ -91,6 +93,9 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
           parsed_response = JSON.parse(response.body)['data']
           expect(parsed_response).to have_key('id')
           expect(parsed_response).to have_attribute(:bundle_name).with_value('bundle name')
+
+          report_families_report = report.report_families_reports.last
+          expect(report_families_report.external_package_id).to eq('RPInsightFlashPkg')
         end
       end
     end
