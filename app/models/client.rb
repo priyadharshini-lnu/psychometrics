@@ -105,11 +105,9 @@ class Client < ApplicationRecord
 
   has_many :sheets, foreign_key: :project_id, dependent: :destroy
   has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
-  has_one :privacy_link, dependent: :destroy
   has_one :client_auditlog_export_setting, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
-  accepts_nested_attributes_for :privacy_link, allow_destroy: true
 
   before_validation -> { self.subdomain = subdomain.downcase }, if: :subdomain?
 
@@ -186,8 +184,6 @@ class Client < ApplicationRecord
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
   }
-
-  translates :custom_privacy_consent_text
 
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields projects_of resource_disabled search_query has_integration]

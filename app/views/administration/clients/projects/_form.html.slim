@@ -26,14 +26,6 @@
           include_blank: false,
           include_hidden: false,
           input_html: { multiple: true }
-        = f.input :privacy_consent
-        = f.simple_fields_for :privacy_link do |p|
-          = p.input :_destroy, as: :boolean, label: t('.enable_privacy_links'),
-            checked_value: false, unchecked_value: true,
-            input_html: { checked: @privacy_link_enabled, id: 'privacy_link_checkbox' }
-          #privacy_link_details.mbm class="#{@privacy_link_enabled ? '' : 'hidden'}"
-            = p.input :text, label: t('.privacy_text')
-            = p.input :link, as: :string, label: t('.privacy_link')
         = f.input :enable_live_chat, label: t('.enable_live_chat')
         #live_chat_token.mbm.pl class="#{resource.enable_live_chat ? '' : 'hidden'}"
           = f.input :live_chat_token, label: t('.live_chat_token'), placeholder: t('.optional')
