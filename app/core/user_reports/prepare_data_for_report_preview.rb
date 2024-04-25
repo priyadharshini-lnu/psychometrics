@@ -27,7 +27,6 @@ module UserReports
                     include: '**'
                   }
                 ).serialize(report).to_json,
-                campaign_factor_results: campaign_factor_results.to_json,
                 locales: translations.to_json
     end
 
