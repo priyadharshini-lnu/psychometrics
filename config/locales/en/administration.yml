@@ -4381,6 +4381,7 @@ en:
           today: Today
           yesterday: Yesterday
         started: Started
+        timezone: Timezone
         y_title: Number of Users
     sub_factors:
       copy:

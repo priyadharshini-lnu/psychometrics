@@ -7,6 +7,7 @@ import type { RangePickerProps } from 'antd/es/date-picker'
 import {
   Row, Col, Card, DatePicker,
 } from 'antd'
+import { getTimezone } from '~/core/config'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getTimeseries, fetchTimeseries } from '~/modules/admin/modules/campaigns/core/stats'
 import { buildHighchartOptions } from './options'
@@ -23,20 +24,31 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 interface OwnProps { campaignId: string }
 type Props = PropsFromRedux & OwnProps
 
-const disabledDate: RangePickerProps['disabledDate'] = current => current && current > dayjs().endOf('day')
+const connector = connect((state: RootState) => ({
+  timeseries: getTimeseries(state),
+  timezone: getTimezone(state),
+}), { fetchTimeseries })
 
-const connector = connect((state: RootState) => ({ timeseries: getTimeseries(state) }), { fetchTimeseries })
 
 const DEFAULT_RANGE: [dayjs.Dayjs, dayjs.Dayjs] = [
   dayjs().subtract(1, 'week').startOf('week'),
   dayjs().subtract(1, 'week').endOf('week'),
 ]
 
-const TimeseriesComponent: React.FC<Props> = ({ timeseries, fetchTimeseries, campaignId }) => {
+const TimeseriesComponent: React.FC<Props> = ({
+  timeseries, fetchTimeseries, campaignId, timezone,
+}) => {
   const [range, setRange] = useState<[dayjs.Dayjs, dayjs.Dayjs]>(DEFAULT_RANGE)
   const containerRef = useRef<HTMLDivElement>(null)
   const chartRef = useRef<Chart>()
-  useEffect(() => { fetchTimeseries(campaignId, range) }, [range])
+  useEffect(() => {
+    if (range[0] && range[1]) fetchTimeseries(campaignId, range as [dayjs.Dayjs, dayjs.Dayjs])
+  }, [range, timezone])
+  useEffect(() => {
+    const start = dayjs().tz(timezone).subtract(1, 'week').startOf('week') as unknown as dayjs.Dayjs
+    const end = dayjs().tz(timezone).subtract(1, 'week').endOf('week') as unknown as dayjs.Dayjs
+    setRange([start, end])
+  }, [timezone])
 
   useEffect(() => { renderChart() }, [timeseries.length])
 
@@ -46,60 +58,66 @@ const TimeseriesComponent: React.FC<Props> = ({ timeseries, fetchTimeseries, cam
       chartRef.current = undefined
     }
     if (!timeseries.length) return
+    if (!range[0] || !range[1]) return
 
-    const chartOptions: Options = buildHighchartOptions(timeseries)
+    const chartOptions: Options = buildHighchartOptions(timeseries, range[0], range[1])
 
     containerRef.current ? Highcharts.chart(containerRef.current, chartOptions) : undefined
   }
 
   useEffect(() => () => { chartRef.current && chartRef.current.destroy() }, [])
 
+  const updateRange = (range: [dayjs.Dayjs, dayjs.Dayjs]): void => {
+    if (range[0] !== range[1]) {
+      setRange(range)
+    }
+
+    setRange([range[0].startOf('day'), range[1].endOf('day')])
+  }
+
+  const disabledDate: RangePickerProps['disabledDate'] = (current) => {
+    const endOfDay = dayjs().tz(timezone).endOf('day') as unknown as dayjs.Dayjs
+    return current && current > endOfDay
+  }
+
   return (
     <>
       <Col span={24}>
         <Row justify="end" gutter={[0, 16]}>
-          <Col span={4}>
+          <Col>
             <RangePicker
               clearIcon={false}
               disabledDate={disabledDate}
-              onChange={(val: [dayjs.Dayjs, dayjs.Dayjs]) => setRange(val)}
+              onChange={(val: [dayjs.Dayjs, dayjs.Dayjs]) => updateRange(val)}
               value={range}
-              renderExtraFooter={() => (
-                <Row justify="space-between">
-                  <Col>
-                    <a
-                      href="#"
-                      onClick={() => setRange([
-                        dayjs().subtract(1, 'week').startOf('week'),
-                        dayjs().subtract(1, 'week').endOf('week'),
-                      ])}
-                    >
-                      {I18n.t('administration.stats.users.date_presets.last_week')}
-                    </a>
-                  </Col>
-                  <Col>
-                    <a
-                      href="#"
-                      onClick={() => setRange([
-                        dayjs().subtract(1, 'month').startOf('month'),
-                        dayjs().subtract(1, 'month').endOf('month'),
-                      ])}
-                    >
-                      {I18n.t('administration.stats.users.date_presets.last_month')}
-                    </a>
-                  </Col>
-                  <Col>
-                    <a href="#" onClick={() => setRange([dayjs().subtract(7, 'd'), dayjs()])}>
-                      {I18n.t('administration.stats.users.date_presets.last_7_days')}
-                    </a>
-                  </Col>
-                  <Col>
-                    <a href="#" onClick={() => setRange([dayjs().subtract(30, 'd'), dayjs()])}>
-                      {I18n.t('administration.stats.users.date_presets.last_30_days')}
-                    </a>
-                  </Col>
-                </Row>
-              )}
+              ranges={
+                {
+                  [I18n.t('administration.stats.users.date_presets.today')]: [
+                    dayjs().tz(timezone).startOf('day') as unknown as dayjs.Dayjs,
+                    dayjs().tz(timezone).endOf('day') as unknown as dayjs.Dayjs,
+                  ],
+                  [I18n.t('administration.stats.users.date_presets.yesterday')]: [
+                    dayjs().tz(timezone).subtract(1, 'day').startOf('day') as unknown as dayjs.Dayjs,
+                    dayjs().tz(timezone).subtract(1, 'day').endOf('day') as unknown as dayjs.Dayjs,
+                  ],
+                  [I18n.t('administration.stats.users.date_presets.last_week')]: [
+                    dayjs().tz(timezone).subtract(1, 'week').startOf('week') as unknown as dayjs.Dayjs,
+                    dayjs().tz(timezone).subtract(1, 'week').endOf('week') as unknown as dayjs.Dayjs,
+                  ],
+                  [I18n.t('administration.stats.users.date_presets.last_month')]: [
+                    dayjs().tz(timezone).subtract(1, 'month').startOf('month') as unknown as dayjs.Dayjs,
+                    dayjs().tz(timezone).subtract(1, 'month').endOf('month') as unknown as dayjs.Dayjs,
+                  ],
+                  [I18n.t('administration.stats.users.date_presets.last_7_days')]: [
+                    dayjs().tz(timezone).subtract(7, 'd') as unknown as dayjs.Dayjs,
+                    dayjs().tz(timezone) as unknown as dayjs.Dayjs,
+                  ],
+                  [I18n.t('administration.stats.users.date_presets.last_30_days')]: [
+                    dayjs().tz(timezone).subtract(30, 'd') as unknown as dayjs.Dayjs,
+                    dayjs().tz(timezone) as unknown as dayjs.Dayjs,
+                  ],
+                }
+              }
             />
           </Col>
         </Row>
