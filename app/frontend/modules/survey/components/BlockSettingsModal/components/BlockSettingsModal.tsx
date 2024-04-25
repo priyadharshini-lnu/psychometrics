@@ -22,11 +22,11 @@ const { I18n } = window
 
 const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />)
 
-type SortableItemType = React.ComponentClass<PropsWithChildren<SortableElementProps & { className: string }>, any>
+type SortableItemType = React.ComponentClass<PropsWithChildren<SortableElementProps & { className: string }>>
 const SortableItem: SortableItemType = SortableElement(props => (
   <div {...props} />
 ))
-const SortableBody: React.ComponentClass<PropsWithChildren<SortableContainerProps>, any> = SortableContainer(props => (
+const SortableBody: React.ComponentClass<PropsWithChildren<SortableContainerProps>> = SortableContainer(props => (
   <div {...props} />
 ))
 
