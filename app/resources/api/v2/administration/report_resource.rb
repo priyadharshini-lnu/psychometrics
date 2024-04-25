@@ -3,7 +3,7 @@
 class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :created_at, :updated_at, :created_by, :modified_by, :archived, :deleted,
              :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon, :active,
-             :external_settings, :provider, :hogan_report_packages
+             :external_settings, :external_report, :provider, :hogan_report_packages
 
   ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in]
   audit_log_for :create, payload: '*'
@@ -51,6 +51,10 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
 
   def external_settings
     @model.external_settings
+  end
+
+  def external_report
+    @model.external_report?
   end
 
   def hogan_report_packages

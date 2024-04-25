@@ -1621,6 +1621,7 @@ en:
       details: Details
       dimension: Dimension
       email: Email
+      external_report_id: Exteral Report ID
       first_name: First Name
       icon: Icon
       icon_color: Icon color

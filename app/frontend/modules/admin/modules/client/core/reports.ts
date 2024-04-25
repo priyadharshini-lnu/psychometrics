@@ -53,6 +53,7 @@ export const ReportTR = t.type({
   icon: t.union([t.string, t.null]),
   poster: t.union([t.string, t.null]),
   externalSettings: ExternalSettingsTR,
+  externalReport: t.boolean,
   hoganReportPackages: HoganReportPackagesTR,
   owner: t.union([
     t.type({

@@ -48,6 +48,7 @@ describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.js
           report_response = data.find { |d| d['id'] == report.id.to_s }
           expect(report_response).to have_key('id')
           expect(report_response).to have_attribute(:name).with_value(report.name)
+          expect(report_response).to have_attribute(:external_report).with_value(true)
           expect(report_response).to have_attribute(:hogan_report_packages).with_value(
             [{ 'id' => 'RPtFlashLeadSummary', 'name' => 'LEAD Series + Summary + Flash' }]
           )
