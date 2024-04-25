@@ -1,9 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, {
+  useState, useEffect, useRef, PropsWithChildren,
+} from 'react'
 import _ from 'lodash'
 import {
   Button, Modal, Space, Input, InputNumber, Popconfirm, Switch,
 } from 'antd'
-import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc'
+import {
+  SortableContainer, SortableContainerProps, SortableElement, SortableElementProps, SortableHandle,
+} from 'react-sortable-hoc'
 import { arrayMove } from '@dnd-kit/sortable'
 import { MenuOutlined, DeleteOutlined } from '@ant-design/icons'
 import { ColorPicker } from '~/glint'
@@ -18,10 +22,11 @@ const { I18n } = window
 
 const DragHandle = SortableHandle(() => <MenuOutlined style={{ cursor: 'grab', color: '#999' }} />)
 
-const SortableItem = SortableElement((props: React.HTMLAttributes<HTMLDivElement>) => (
+type SortableItemType = React.ComponentClass<PropsWithChildren<SortableElementProps & { className: string }>, any>
+const SortableItem: SortableItemType = SortableElement(props => (
   <div {...props} />
 ))
-const SortableBody = SortableContainer((props: React.HTMLAttributes<HTMLDivElement>) => (
+const SortableBody: React.ComponentClass<PropsWithChildren<SortableContainerProps>, any> = SortableContainer(props => (
   <div {...props} />
 ))
 

@@ -4,7 +4,7 @@ module Campaigns
   class JwtTokenizer
     class << self
       def encode(payload, alg = 'HS256')
-        JWT.encode payload, Settings.secrets.campaign_join_secret_token Settings.secrets.campaign_join_secret_token, alg
+        JWT.encode payload, Settings.secrets.campaign_join_secret_token, alg
       end
 
       def decode(token)
