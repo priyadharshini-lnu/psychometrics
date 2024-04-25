@@ -7,7 +7,11 @@ class UsersResultUpdateSchema < BaseSchema
       config.validate_keys = false
 
       required(:expired).maybe(:bool?)
-      required(:current_block).hash(BlockSchema.schema(_, _))
+      required(:current_block).maybe do
+        hash do
+          hash(BlockSchema.schema(_, _))
+        end
+      end
       required(:translations).maybe(:hash?)
       required(:progress_was_reseted).maybe(:bool?)
       required(:factors).maybe do
