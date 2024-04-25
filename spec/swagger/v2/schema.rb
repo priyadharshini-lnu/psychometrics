@@ -369,6 +369,9 @@ module Swagger
           WorkshopInvitedSubjectCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopInvitedSubject::Schema.create_request
           ),
+          CampaignUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Campaign::Schema.update_request
+          ),
           CampaignAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessment::Schema.multiple_resource_response
           ),
@@ -413,6 +416,9 @@ module Swagger
           ),
           CampaignScoringVariableUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignScoringVariable::Schema.update_request
+          ),
+          IdpTemplateListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::IdpTemplate::Schema.multiple_resource_response
           )
         }
       }

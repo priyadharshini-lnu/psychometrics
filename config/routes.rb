@@ -334,6 +334,7 @@ Rails.application.routes.draw do
             put :toggle_require_scheduling
           end
         end
+
         resources :campaign_assessment_groups, only: %i[index create update destroy] do
           collection do
             post :update_positions
@@ -1181,6 +1182,7 @@ Rails.application.routes.draw do
                 end
               end
             end
+            jsonapi_resources :idp_templates, only: %i[index], controller: 'clients/idp_templates'
           end
           jsonapi_resources :report_families do
             jsonapi_resources :report_families_reports
@@ -1253,7 +1255,7 @@ Rails.application.routes.draw do
             end
           end
 
-          resources :campaigns, only: [] do
+          resources :campaigns, only: [:update] do
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create destroy]
             jsonapi_resources :workshops, only: %i[index show update] do
