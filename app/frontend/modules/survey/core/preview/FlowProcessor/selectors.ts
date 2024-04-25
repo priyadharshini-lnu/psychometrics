@@ -313,8 +313,18 @@ export const getQuestionScoring = (
 
 export const getQuestionWithActiveDictation = state => state.activeDictationOnQuestion
 
+export const endOfAssessmentReached = (preview): boolean => (
+  !preview.showSubmitPage && (preview.end || preview.dbResult.status === 'completed')
+)
+
+export const getCompletionStatusCode = (preview): string | null => {
+  if (!endOfAssessmentReached(preview)) return null
+
+  return preview.endOfAssessmentElementProps?.completionStatusCode
+}
+
 export const getStatus = (preview): string => {
-  if (!preview.showSubmitPage && (preview.end || preview.dbResult.status === 'completed')) {
+  if (endOfAssessmentReached(preview)) {
     if (preview.endOfAssessmentElementProps?.markAsInEligible) { return 'ineligible' }
 
     return 'completed'

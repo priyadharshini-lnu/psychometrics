@@ -21,6 +21,12 @@ class WorkshopSubject < ApplicationRecord
       where.not(scheduling_status: %i[rescheduled cancelled late_rescheduled late_cancelled])
   }
 
+  scope :removeable_subjects, lambda {
+    where(scheduling_status: %i[rescheduled cancelled late_rescheduled late_cancelled]).or(
+      where(attendance_status: %i[no_show dropped_out])
+    )
+  }
+
   def campaign_user
     CampaignUser.find_by(user_id: user_id, campaign_id: workshop.campaign_id)
   end

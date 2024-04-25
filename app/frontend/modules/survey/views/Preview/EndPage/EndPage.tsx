@@ -62,7 +62,6 @@ const EndPage: FC<Props> = ({
   }
 
   const getViewPath = () => `?tab=${user_assessment_id}&read=true`
-
   return (
     <div className={styles.page}>
       <div className={styles.logo}>{/* <img src={Logo} /> */}</div>
@@ -120,7 +119,6 @@ const EndPage: FC<Props> = ({
       {showScoringOnEndPage && (
         <>
           <div className={styles.links}>
-
             <a href={getViewPath()}>
               {I18n.t('campaign.edit_evaluation.view', { locale: I18n.uiLocale })}
             </a>

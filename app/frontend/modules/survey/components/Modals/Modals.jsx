@@ -14,6 +14,7 @@ import DataSheetModal from '../DataSheetModal'
 import { SettingsModal } from '../SettingsModal/SettingsModal'
 import { LinkedAssessmentModal } from '../LinkedAssessmentModal/LinkedAssessmentModal'
 import { ImportQuestionsModal } from '../ImportQuestionsModal'
+import BlockSettingsModal from '../BlockSettingsModal'
 
 const MODALS = {
   dataSheetModal: DataSheetModal,
@@ -31,6 +32,7 @@ const MODALS = {
   settings: SettingsModal,
   linkedAssessment: LinkedAssessmentModal,
   importQuestionsModal: ImportQuestionsModal,
+  blockSettings: BlockSettingsModal,
 }
 
 

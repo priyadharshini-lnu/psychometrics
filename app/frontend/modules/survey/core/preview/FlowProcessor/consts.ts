@@ -25,6 +25,7 @@ export const SET_DIRTY_RESULTS = 'flow_processor/SET_DIRTY_RESULTS'
 export const SET_NOT_DIRTY_RESULTS = 'flow_processor/SET_NOT_DIRTY_RESULTS'
 export const BACK_BUTTON_PRESSED = 'flow_processor/BACK_BUTTON_PRESSED'
 export const NEXT_BUTTON_PRESSED = 'flow_processor/NEXT_BUTTON_PRESSED'
+export const SET_SUBMISSION_IN_PROGRESS = 'flow_processor/SET_SUBMISSION_IN_PROGRESS'
 
 export const TOGGLE_HIDDEN_QUESTIONS = 'preview/TOGGLE_HIDDEN_QUESTIONS'
 export const TOGGLE_IGNORE_VALIDATION = 'preview/TOGGLE_IGNORE_VALIDATION'

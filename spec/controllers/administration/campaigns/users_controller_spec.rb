@@ -135,13 +135,17 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'report_family_name' => report_family.name,
       'status' => 'not_prepared',
       'internal' => true,
+      'custom_upload' => false,
       'report_url' => nil,
+      'report_provider' => 'internal',
       'permissions' => {
         'download_report' => true,
         'remove' => true,
         'toggle_access' => true,
         'view_report' => true,
-        'push_webhook' => false
+        'push_webhook' => false,
+        'remove_file' => true,
+        'upload_file' => true
       }
     })
   end

@@ -7,6 +7,7 @@ Warden::Manager.after_authentication do |user, env, _opts|
                           user,
                           user: user,
                           payload: { email: user.email },
+                          project: user.project,
                           outcome: 'successful',
                           request_details: { ip: request.ip, request_id: request.env['action_dispatch.request_id'] },
                           interface_details: { user_agent: request.user_agent }

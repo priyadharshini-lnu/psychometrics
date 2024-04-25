@@ -23,7 +23,7 @@ const client = new ApiClient({
 
 
 const App: React.FC<void> = () => (
-  <div className="ms" style={{ background: 'white' }}>
+  <div style={{ background: 'white' }}>
     <DefaultAntThemeWrapper>
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <Provider store={store as any}>
@@ -32,9 +32,7 @@ const App: React.FC<void> = () => (
             <Router>
               <ConnectedRouter history={history}>
                 <PortalMenu />
-                <div className="ms">
-                  <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-                </div>
+                <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
               </ConnectedRouter>
             </Router>
           </DndProvider>

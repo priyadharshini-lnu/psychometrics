@@ -1,33 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Layout, Card, Progress, Space,
+  Button,
 } from 'antd'
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
 import cs from 'classnames'
+import { useMessageBus } from '~/hooks/useMessageBus'
 import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import styles from './styles.less'
-import { fetchAssessorAssessment, getAssessorForm, getCurrentAssessorForm } from '../../core/evaluation'
+import {
+  fetchAssessorAssessment, getAssessorForms, getCurrentAssessorForm,
+  AssessorAssessment as AssessorAssessmentType, updateAssessorAssessmentStatus,
+} from '../../core/evaluation'
+import { MultipleResponseTable } from './MultipleResponseTable'
 
 const { I18n } = window
 const { Content } = Layout
 
-const connecter = connect((state: RootState, props: {userAssessmentId: number}) => ({
+const connecter = connect((state: RootState) => ({
   loaded: state.assessors.evaluation.loaded,
   currentAssessorFormId: getCurrentAssessorForm(state.assessors),
-  assessorForm: getAssessorForm(state.assessors.evaluation, props.userAssessmentId),
+  assessorForms: getAssessorForms(state.assessors.evaluation),
   preview: state.preview,
   progress: state.preview.initialized && getProgress(state.preview),
 }), {
   fetch: fetchAssessorAssessment,
+  updateAssessorAssessmentStatus,
 })
 
 interface Props extends ConnectedProps<typeof connecter> {
   userAssessmentId: number
+  assessorAssessments: AssessorAssessmentType[]
+  allowMultipleResponses: boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   store: any
 }
@@ -35,27 +44,57 @@ interface Props extends ConnectedProps<typeof connecter> {
 const AssessorAssessment: React.FC<Props> = ({
   fetch,
   store,
-  userAssessmentId,
+  userAssessmentId: userAssessmentIdProp,
   progress,
-  assessorForm,
+  assessorForms,
   currentAssessorFormId,
+  assessorAssessments,
   preview: {
     enableProgress,
   },
+  allowMultipleResponses,
+  updateAssessorAssessmentStatus,
 }) => {
   const { search } = useLocation()
   const params = new URLSearchParams(search)
   const edit = params.get('edit')
   const read = params.get('read')
   const lang = params.get('lang')
+  const assessment = params.get('assessment')
+
+  const [isRead, setRead] = useState(read === 'true')
+  const [userAssessmentId, setUserAssessmentId] = useState(
+    (allowMultipleResponses && assessorAssessments.length > 1) ? assessment : userAssessmentIdProp,
+  )
+
+  const viewAssessment = (id) => {
+    const url = new URL(location.href)
+    url.searchParams.set('assessment', id)
+    history.replaceState(null, '', url.href)
+    const assessorAssessment = _.find(assessorAssessments, { id })
+    setRead(!!assessorAssessment?.completed_at)
+    setUserAssessmentId(id)
+  }
+
+  useMessageBus('assessment:finished', (_status, assessmentId) => {
+    if (userAssessmentId) {
+      updateAssessorAssessmentStatus(assessmentId, +userAssessmentId)
+    }
+  })
+
   useEffect(() => {
-    if (+currentAssessorFormId === userAssessmentId) {
-      fetch(userAssessmentId, { edit: edit === 'true', read: read === 'true', lang })
+    if (!userAssessmentId) { return }
+
+    const assessorAssessment = _.find(assessorAssessments, { id: +userAssessmentId })
+    if (assessorAssessment && assessorAssessment.assessment_id === +currentAssessorFormId) {
+      fetch(+userAssessmentId, { edit: edit === 'true', read: isRead, lang })
     }
     if (edit === 'true') {
       history.replaceState(null, '', location.href.replace('edit=true', 'edit=false'))
     }
-  }, [currentAssessorFormId])
+  }, [userAssessmentId, currentAssessorFormId])
+
+  const assessorForm = assessorForms[userAssessmentId || 0]
 
   const bodyStyles = {
     padding: 0,
@@ -70,8 +109,8 @@ const AssessorAssessment: React.FC<Props> = ({
   return (
     <Card
       key={userAssessmentId}
-      loading={!loaded}
-      title={_.get(assessorForm, ['assessment', 'name'], 'Loading...')}
+      loading={userAssessmentId ? !loaded : false}
+      title={_.get(assessorForm, ['assessment', 'name'], userAssessmentId ? 'Loading...' : 'Select an assessment')}
       bordered={false}
       bodyStyle={bodyStyles}
       className={styles.card}
@@ -89,11 +128,20 @@ const AssessorAssessment: React.FC<Props> = ({
       )}
     >
       <Content className={cs('fluid-container', assessorForm?.result?.selected_locale?.code === 'ar' ? 'rtl' : 'ltr')}>
-        {loaded && (
+        {allowMultipleResponses && (
+          !userAssessmentId
+            ? <MultipleResponseTable assessorAssessments={assessorAssessments} onView={viewAssessment} />
+            : (
+              <Button type="link" onClick={() => setUserAssessmentId(null)}>
+                {I18n.t('common.actions.back_to_responses')}
+              </Button>
+            )
+        )}
+        {(!allowMultipleResponses || (allowMultipleResponses && userAssessmentId)) && loaded && (
           <AssessmentContainer
             id="pass_assessment"
             initialized={false}
-            type={read === 'true' ? 'view_results' : 'pass_assessment'}
+            type={isRead ? 'view_results' : 'pass_assessment'}
             data={assessorForm.assessment}
             result={assessorForm.result}
             dashboardUrl={`/assessors/campaigns/${_.get(assessorForm, ['result', 'campaign_id'])}/users`}

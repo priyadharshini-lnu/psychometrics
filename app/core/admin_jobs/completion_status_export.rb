@@ -25,7 +25,8 @@ module AdminJobs
 
     def records_for_export
       UserAssessment.where(campaign_id: record.data['campaign_id']).
-        includes(:users_result, :evaluator, :assessment)
+        includes(:users_result, :evaluator, :assessment).
+        find_each(batch_size: 1000)
     end
 
     def data_row(user_assessment)

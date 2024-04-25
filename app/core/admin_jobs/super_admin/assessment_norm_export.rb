@@ -8,7 +8,8 @@ module AdminJobs
       def headers
         factor_names = factors.map(&:name)
         [
-          'Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+          'Result ID', 'Project ID', 'Project Name', 'Campaign ID', 'Campaign Name',
+          'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
           'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', *factor_names
         ]
       end
@@ -20,6 +21,10 @@ module AdminJobs
         end
         [
           user_result.encoded_id,
+          user_result.campaign.project.id,
+          user_result.campaign.project.name,
+          user_result.campaign.id,
+          user_result.campaign.name,
           user_name(user_result.subject.first_name, user_result.subject.last_name),
           user_result.subject.email,
           user_name(user_result.evaluator.first_name, user_result.evaluator.last_name),
@@ -34,11 +39,14 @@ module AdminJobs
       end
 
       def records_for_export
-        UsersResult.joins(:user_assessment).
-          where(
-            user_assessments: { assessment_id: assessment.id, status: :completed }
-          ).
-          includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
+        query = UsersResult.joins(:user_assessment).
+                where(
+                  user_assessments: { assessment_id: assessment.id, status: :completed }
+                )
+        if campaign_ids.present?
+          query = query.where(user_assessments: { campaign_id: campaign_ids })
+        end
+        query.includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
           find_each(batch_size: 100)
       end
 
@@ -47,7 +55,7 @@ module AdminJobs
       end
 
       def file_name
-        "assessment-#{assessment.id}-normed-results.csv"
+        "assessment-#{assessment.id}-normed-results-#{record.id}.csv"
       end
     end
   end

@@ -24,7 +24,7 @@ class UserReport < ApplicationRecord
 
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
-  delegate :external_report?, to: :report
+  delegate :external_report?, :provider_custom_upload?, to: :report
 
   # NOTE: renaming attribute to :pdf_file to not to have `stack level too deep` conflicts
   # when serializing user_reports; :pdf attribute already exists in schema
@@ -205,7 +205,7 @@ class UserReport < ApplicationRecord
     pdf_file.url(disposition: 'attachment')
   end
 
-  def remove_pdf!
+  def remove_pdf_and_update_status!
     return unless prepared?
 
     update!(remove_pdf: true, status: :not_prepared, approval_status: :not_ready)

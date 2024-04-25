@@ -5,6 +5,7 @@ import {
   removeQuestionInProgress,
   addMediaResponse,
   removeMediaResponse,
+  setSubmissionInProgress,
 } from '~/modules/survey/core/preview/FlowProcessor/actions'
 
 export default connect(
@@ -19,5 +20,6 @@ export default connect(
     removeQuestionInProgress,
     addMediaResponse,
     removeMediaResponse,
+    setSubmissionInProgress,
   },
 )

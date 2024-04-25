@@ -15,7 +15,8 @@ class Report < ApplicationRecord
     mindmill: 1,
     hogan: 2,
     saville: 3,
-    pearson: 4
+    pearson: 4,
+    custom_upload: 5
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10
@@ -77,19 +78,19 @@ class Report < ApplicationRecord
 
   #   VALIDATIONS
   #
-  validates :assessment, presence: true, unless: :data_only
+  validates :assessment, presence: true, unless: :assessment_not_applicable?
   validates :owner, presence: true, allow_nil: true
   validate :max_assessments_count
-  validate :min_assessments_count, unless: :data_only?
+  validate :min_assessments_count, unless: :assessment_not_applicable?
   validates :external_settings, presence: true, if: :provider_hogan? || :provider_saville?
   validate :all_assessments_hogan, if: :provider_hogan?
   validate :all_assessments_saville, if: :provider_saville?
 
   #   CALLBACKS
   #
-  before_validation :set_assessment, unless: :data_only?
+  before_validation :set_assessment, unless: :assessment_not_applicable?
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
-  after_save :delete_assessments_reports, if: :data_only?
+  after_save :delete_assessments_reports, if: :assessment_not_applicable?
 
   enum category: { common: 0, threesixty: 1 }, _prefix: :category
   enum provider: PROVIDERS, _prefix: :provider
@@ -141,6 +142,10 @@ class Report < ApplicationRecord
   scope :not_external, -> { where(provider: :internal) }
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
+
+  def assessment_not_applicable?
+    data_only? || provider_custom_upload?
+  end
 
   def modules_empty?
     !modules.exists?

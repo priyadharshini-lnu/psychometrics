@@ -8,7 +8,7 @@ module Administration
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access
                                             start_qc abort_qc send_for_approval request_changes
-                                            remove_approval webhook_payload]
+                                            remove_approval webhook_payload upload_file remove_file]
       before_action :pundit_authorize
 
       def create
@@ -28,6 +28,26 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 422
         end
+      end
+
+      def upload_file
+        resource.update!(pdf: params[:file], status: :prepared)
+        render json: Administration::UserReportSerializer.new(
+          context: {
+            current_user: current_user,
+            campaign: campaign
+          }
+        ).serialize(resource)
+      end
+
+      def remove_file
+        resource.remove_pdf_and_update_status!
+        render json: Administration::UserReportSerializer.new(
+          context: {
+            current_user: current_user,
+            campaign: campaign
+          }
+        ).serialize(resource)
       end
 
       def possible_webhook_events

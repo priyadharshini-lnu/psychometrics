@@ -7,7 +7,7 @@ module EndUser
     layout 'layouts/end_user'
 
     prepend_before_action :authenticate_anonymous_user!
-    before_action :set_campaign
+    before_action :set_campaign, except: %i[join_with_code join_with_token]
     initial_state_for %i[show insights]
 
     def show
@@ -20,11 +20,28 @@ module EndUser
         format.html { render 'campaigns/show' }
         format.json do
           render json: ::EndUser::CampaignSerializer.new(
-            context: { current_user: current_user,
-                       include: '**' }
+            context: {
+              current_user: current_user,
+              include: '**'
+            }
           ).serialize(@campaign)
         end
       end
+    end
+
+    def reset_practice_campaign
+      unless @campaign.practice_campaign?
+        return render json: { error: I18n.t('campaign.reset_warning') }, status: 400
+      end
+
+      CampaignUsers::ResetCampaign.call!(@campaign, current_user)
+
+      render json: ::EndUser::CampaignSerializer.new(
+        context: {
+          current_user: current_user,
+          include: '**'
+        }
+      ).serialize(@campaign)
     end
 
     def insights
@@ -56,6 +73,34 @@ module EndUser
           end
 
           render json: { user_dashboard: user_dashboard, user_reports: user_reports }
+        end
+      end
+    end
+
+    def join_with_code
+      registration_code = @current_project.project_registration_codes.find_by(code: params[:code])
+      unless registration_code
+        flash[:alert] = I18n.t('registration_code.invalid_code')
+        redirect_to('/') and return
+      end
+
+      campaign = registration_code.campaign
+
+      Campaigns::Users::JoinCampaignByRegistrationCode.call(current_user, campaign, registration_code) do
+        on(:ok) { redirect_to campaign_path(campaign) }
+        on(:error) do |message|
+          flash[:alert] = message
+          redirect_to('/')
+        end
+      end
+    end
+
+    def join_with_token
+      Campaigns::Users::JoinCampaignByToken.call(current_user, params[:token]) do
+        on(:ok) { redirect_to campaign_path(campaign) }
+        on(:error) do |message|
+          flash[:alert] = message
+          redirect_to('/')
         end
       end
     end

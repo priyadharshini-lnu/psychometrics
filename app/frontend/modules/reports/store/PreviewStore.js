@@ -30,6 +30,10 @@ _.extend(PreviewStore.prototype, {
     this.emit('change')
   },
 
+  reinit () {
+    AppStore.loaded = false
+  },
+
   reset () {
     ResultStore.reset()
   },

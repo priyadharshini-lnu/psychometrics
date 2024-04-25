@@ -82,6 +82,12 @@ export default function ChartOptions (
         animation,
         borderWidth: 0,
         dataLabels: {
+          style: {
+            fontWeight: 'normal',
+            fontSize: fontSize || '11px',
+            color: color || '#000',
+            fontFamily,
+          },
           enabled: !!model.propsshowValues,
           format,
         },

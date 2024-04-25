@@ -29,7 +29,7 @@ describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.js
       security [basic: []]
 
       response '200', 'Report list' do
-        let!(:report) { create(:report) }
+        let!(:report) { create(:report, :hogan, assessments: [assessment]) }
 
         schema '$ref' => '#/components/schemas/ReportListResponse'
 
@@ -48,6 +48,9 @@ describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.js
           report_response = data.find { |d| d['id'] == report.id.to_s }
           expect(report_response).to have_key('id')
           expect(report_response).to have_attribute(:name).with_value(report.name)
+          expect(report_response).to have_attribute(:hogan_report_packages).with_value(
+            [{ 'id' => 'RPtFlashLeadSummary', 'name' => 'LEAD Series + Summary + Flash' }]
+          )
         end
       end
     end

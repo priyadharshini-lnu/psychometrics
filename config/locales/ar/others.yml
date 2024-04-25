@@ -188,7 +188,7 @@ ar:
     complete_prev: " أكمل جميع التقييمات السابقة"
     completed: تم إكماله
     continue: الإستمرار في التقييم
-    dashboard_instructions: لقد تم تكليفك بالعديد من الأنشطة التي تحتاج إلى إكمالها. يرجى التأكد من التحقق من اكتمال جميع الأنشطة المخصصة عبر جميع الحملات.
+    dashboard_instructions: لقد تم تكليفك بعدد من الانشطة التي عليك انجازها. يرجى التأكد من اكمالها جميعا ضمن الاطر الزمنية المحددة لها عبر جميع الحملات.
     dashboard_menu:
       bookings: الحجوزات
       campaign: الحملة
@@ -206,7 +206,7 @@ ar:
       title: يتأكد
       view: عرض الإجابات
     goto_dashboard: الذهاب الى لوحة التعليمات
-    in_progress: على قيد التقدم
+    in_progress: قيد التنفيذ
     inactive_campaign_message: حاليًا ، لم يتم تعيين أي أنشطة لك.
     insights_reports: رؤى وتقارير
     instruction_modal:
@@ -268,7 +268,7 @@ ar:
     assessments_heading: مهامك
     statuses:
       completed: تم اكماله
-      in_progress: " على قيد التقدم"
+      in_progress: قيد التنفيذ
       not_started: لم يبدأ بعد
   change_password_page:
     old_password: كلمة المرور القديمة
@@ -705,7 +705,7 @@ ar:
       reject: ارفض
       text: قبل المتابعة لإكمال المهام أدناه ، أؤكد أنني قد قرأت وأوافق على سياسة الخصوصية لـ The Talent Enterprise والمبادئ التوجيهية ذات الصلة فيما يتعلق باستخدام معلوماتي الشخصية.
       title: موافقة معالجة البيانات
-    add: أو
+    add: اضافة
     and: و
     approve_all: الموافقة على جميع ما سبق
     approve_all_successful: الموافقة على جميع الترشيحات
@@ -745,6 +745,7 @@ ar:
       delete_successful: تم حذف جدول البريد الإلكتروني بنجاح
     evaluate: تقييم
     evaluation: التقييم
+    evaluation_all_closed_message: حالياً، جميع الترشيحات في انتظار الموافقة
     evaluation_closed_nomination_message: لا يمكنك الترشيح لهذا الموضوع حيث قد تم إغلاق التقييم لهذا الموضوع
     evaluation_help_modal:
       title: مساعدة التقييم
@@ -922,6 +923,6 @@ ar:
     required: يرجى الإجابة على هذا السؤال
     text: يجب ألا يحتوي ردك على أرقام
     title:
-      one: هناك خطأ واحد ، يرجى التحقق من ردودك
-      other: هناك %{count} أخطاء ، يرجى التحقق من إجاباتك
-      two: هناك خطأان ، يرجى التحقق من إجاباتك
+      one: هناك إجابة مفقودة، يرجى التحقق من إجابتك
+      other: هناك %{count} إجابات مفقودة، يرجى التحقق من إجاباتك
+      two: هناك إجابتان مفقودتان، يرجى التحقق من إجاباتك

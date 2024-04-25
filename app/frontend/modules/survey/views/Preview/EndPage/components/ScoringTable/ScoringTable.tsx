@@ -4,8 +4,8 @@ import { CSVLink } from 'react-csv/lib/index'
 import { LabelKeyObject } from 'react-csv/components/CommonPropTypes'
 import map from 'lodash/map'
 import find from 'lodash/find'
+import _ from 'lodash'
 import { I18nInterface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
-
 
 interface ScoringTableProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,7 +24,7 @@ export const ScoringTable: FC<ScoringTableProps> = ({
   I18n,
   userAssessmentId,
 }) => {
-  if (!scoring || !showScoringOnEndPage) {
+  if (!scoring || !showScoringOnEndPage || _.isEmpty(scoring)) {
     return null
   }
 

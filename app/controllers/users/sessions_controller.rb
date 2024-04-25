@@ -44,7 +44,7 @@ module Users
     def after_sign_in_path_for(resource)
       flash.delete(:notice)
       resource.memberships.join_user.find_by(client_id: @current_project)&.set_user_invited_for_current_project
-      '/'
+      stored_location_for(:user) || '/'
     end
 
     def perform_browser_check

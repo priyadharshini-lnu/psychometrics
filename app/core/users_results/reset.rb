@@ -36,7 +36,8 @@ module UsersResults
         started_at: nil,
         last_activity_at: nil,
         manager_evaluation_status: :waiting,
-        evaluator_nomination_status: :waiting
+        evaluator_nomination_status: :waiting,
+        completion_status_code: nil
       )
       users_result.generate_randomseed
       users_result.update!(

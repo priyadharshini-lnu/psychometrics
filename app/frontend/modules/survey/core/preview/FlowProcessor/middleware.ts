@@ -59,10 +59,10 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     const canNotEdit = _.get(
       state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
     )
-    if (showScoringOnEndPage) {
+    if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
       return true
     }
-    if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
+    if (showScoringOnEndPage && !_.isEmpty(preview.scoring)) {
       return true
     }
     return false

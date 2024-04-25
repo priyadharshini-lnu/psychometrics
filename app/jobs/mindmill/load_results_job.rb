@@ -14,11 +14,11 @@ module Mindmill
                           process(data[:results], user_result)
       report = "data:application/pdf;base64,#{data[:report]}"
 
-      user_result.external_user_reports(:mindmill).map { |ur| ur.update(pdf: report, status: :prepared) }
+      user_result.user_reports(:mindmill).map { |ur| ur.update(pdf: report, status: :prepared) }
       user_result.update(external_results: normalised_scores)
       user_result.user_assessment.update(status: :completed, completed_at: Time.current)
 
-      mindmill_user_report_ids = user_result.external_user_reports(:mindmill).pluck(:id)
+      mindmill_user_report_ids = user_result.user_reports(:mindmill).pluck(:id)
       UsersResults::GenerateReports.call!(user_result, current_user, exceptUserReportIds: mindmill_user_report_ids)
     end
   end

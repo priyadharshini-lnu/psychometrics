@@ -86,7 +86,7 @@ class UserAssessment < ApplicationRecord
   after_save -> { create_meeting_room! }, if: -> { meeting_internal? && meeting_room.blank? }
   after_commit -> { set_campaign_user_completion_status }, on: %i[create destroy]
   after_commit -> { set_campaign_user_completion_status }, if: proc { status_previously_changed? }, on: %i[update]
-  after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
+  after_commit :send_completion_email, if: proc { status_previously_changed? && (completed? || ineligible?) }
 
   after_commit -> { set_campaign_user_started_at }, unless: :not_started?, on: %i[create]
   after_commit -> { set_campaign_user_started_at }, if: proc {
@@ -157,13 +157,13 @@ class UserAssessment < ApplicationRecord
     end['supportedLanguage']
   end
 
-  def external_user_reports(type)
-    external_reports = assessment.reports.select(&:"provider_#{type}?")
+  def user_reports(type = nil)
+    report_ids = type ? assessment.reports.select(&:"provider_#{type}?").map(&:id) : assessment.report_ids
 
-    return UserReport.none if external_reports.blank?
+    return UserReport.none if report_ids.blank?
 
     UserReport.where(
-      report_id: external_reports.pluck(:id),
+      report_id: report_ids,
       user_id: subject_id,
       campaign_id: campaign_id
     )
@@ -194,7 +194,7 @@ class UserAssessment < ApplicationRecord
   end
 
   def send_completion_email
-    ::Communications::CompletionTypeJob.perform_later(users_result)
+    ::Communications::CompletionTypeJob.perform_later(self)
   end
 
   def user
@@ -229,10 +229,6 @@ class UserAssessment < ApplicationRecord
 
   def applicable_external_norm_id
     campaign_assessment&.external_norm_id || assessment.external_settings[:norm_id]
-  end
-
-  def user_reports
-    UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: campaign_id)
   end
 
   def norm_name

@@ -8,6 +8,7 @@ import Image from './Image'
 import Shape, { ShapeProperties } from './Shape'
 import Graph, { GraphProperties } from './Graph'
 import Table, { TableProperties } from './Table'
+import Error from './Error'
 
 const Modules = {
   Text,
@@ -15,6 +16,7 @@ const Modules = {
   Shape,
   Graph,
   Table,
+  Error,
 }
 
 const Properties = {

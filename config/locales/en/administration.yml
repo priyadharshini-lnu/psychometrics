@@ -245,6 +245,7 @@ en:
             raw_responses: Raw Responses
             regenerate_report: Regenerate Report
             report_data: Report Data
+            report_file_upload: Report File Upload
             rescore_responses: Rescore Responses
             reset_progress: Reset Progress
             reset_responses: Reset Responses
@@ -664,6 +665,21 @@ en:
         sign_out_message:
           body: "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>"
           title: Log <strong>Out</strong> ?
+    block_settings:
+      modal:
+        add_layer: Add Layer
+        background_color: Background Color
+        background_image: Background Image
+        base_offse_speed: Base Offset Speed
+        color: Color
+        confirm_msg: Are you sure to delete this layer?
+        confirm_title: Delete the layer
+        layers: Layers
+        main_background_color: Main Background Color
+        name: Name
+        select_from_lib: Select From Library
+        speed: Speed
+        title: Block Settings
     blocks:
       copy:
         successfully: Block %{name} was successfully copied.
@@ -911,6 +927,7 @@ en:
       extend_time_success_message: Campaign timer extended to %{minutes} minutes
       form:
         name: Name
+        practice_campaign: Practice Campaign
         status: Status
       listing:
         assessments: Assessments
@@ -943,6 +960,9 @@ en:
           integration_types:
             iframe: IFrame
             ldb: Lockdown Browser
+          proctoring_types:
+            offline: Offline
+            online: Online
           rule_types:
             allow_absence_in_frame: Allow absense in frame
             allow_to_use_books: Allow to use Books
@@ -956,6 +976,7 @@ en:
             allow_wrong_gaze_direction: Allow wrong gaze direction
           rules: Rules
           trial: Proctoring Trial
+          type: Type
       pdf_password: PDF Password
       users:
         completion_status: Completion Status
@@ -2597,6 +2618,8 @@ en:
         header: Edit Communication
       form:
         all: All
+        assessment_completion_status_code: Assessment Completion Status Code
+        assessment_completion_status_code_hint: If a completion code is specified, it will only be sent if the user's assessment has this completion status code.
         body_mustache: |
           {{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users
           {{{user_url}}} - Same as user_link but only the URL instead of a hyperlink
@@ -2608,6 +2631,7 @@ en:
           {{schedule_end_date}} - Schedule End Date
         completion: Completion
         delivery_at: Delivery at (GST)
+        delivery_delay_hours: Delivery delay (hours)
         delivery_rules:
           in_progress: If assessment is in progress
           not_competed: If assessment is not completed
@@ -3441,6 +3465,7 @@ en:
         sms_invites: SMS Invites
         subjects: Subjects
     piped_text_modal:
+      join_link: Join Link
       title: Add Piped Text
     proctoring_sessions:
       columns:
@@ -4785,9 +4810,17 @@ en:
       request_failure: Request failed with status code %{http_status_code}.
       test_success: Webhook test successful.
     workshop:
+      actions:
+        remove_workshop: Workshop Removed Successfully
+      errors:
+        remove_workshop_failure: Workshop you are trying to delete has scheduled subjects. You can delete workshop by marking all subject as cancelled
       statuses:
         closed: Closed
         open: Open
     workshop_subjects:
       errors:
         update_assessor_for_failure: Meeting details cannot be added as there is no linked subject activity.
+    years:
+      one: 1 Year
+      other: "%{count} Years"
+      zero: 0 Years

@@ -25,6 +25,7 @@ module UsersResults
       new_media_response.save!
       new_blob.update!(key: new_media_response.attachment_storage_path('asset', filename))
       new_media_response.asset.attach(new_blob)
+      new_media_response.update_columns(user_selected: media_response.user_selected)
     end
   end
 end

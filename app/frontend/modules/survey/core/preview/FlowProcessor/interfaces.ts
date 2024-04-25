@@ -8,7 +8,8 @@ import {
   setDirtyResults, setNotDirtyResults, toggleHiddenQuestions,
   toggleIgnoreValidation, reset, markQuestionInProgress, removeQuestionInProgress,
   clearInProgressQuestion, markAssessmentTimedOut, updateHighlight,
-  addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation, showErrorWarning,
+  addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation,
+  showErrorWarning, setSubmissionInProgress,
 } from './actions'
 
 export interface Question {
@@ -113,6 +114,7 @@ export interface Highlight {
 }
 
 export interface DefaultState {
+  id?: number
   type: string
   resultsUrl?: string
   randomseed?: string
@@ -214,6 +216,7 @@ declare global {
 }
 
 export interface InitData {
+  id: number
   name: string
   resultsUrl: string
   type: string
@@ -295,6 +298,7 @@ export interface AnswerType { type: string, result: any }
 export type NextPage = ReturnType<typeof nextPage>
 export type PrevPage = ApiActionResponse<{}>
 export type AddPrevPage = ReturnType<typeof addPrevPage>
+export type SetSubmissionInProgress = ReturnType<typeof setSubmissionInProgress>
 export type RemovePrevPage = ReturnType<typeof removePrevPage>
 export type ShowErrors = ReturnType<typeof showErrors>
 export type EmptyErrors = ReturnType<typeof emptyErrors>

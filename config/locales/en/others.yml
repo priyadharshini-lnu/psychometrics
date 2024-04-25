@@ -61,6 +61,14 @@ en:
           attributes:
             file:
               invalid_format: Please upload xlsx file
+        assign_reports_and_assessments:
+          attributes:
+            assessment_id:
+              blank: Assessment ID can't be blank
+            bundle_report_id:
+              blank: Report Bundle ID can't be blank
+            report_id:
+              blank: Report ID can't be blank
         column:
           attributes:
             name:
@@ -754,8 +762,10 @@ en:
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
+        super_admin_assessment_norm_export: Super Admin Norm Results Export
         super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
+        super_admin_datasheet_export: Super Admin Datasheet Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
         threesixty_campaign_export_scores: Threesixty Campaign Scores Export
         workshop_status_export: Assessment Center Status Export
@@ -815,6 +825,7 @@ en:
       extend_time: Extend time
       goto_dashboard: Click here to continue
       moderate: Moderate Scores
+      new_response: New Response
       next_assessment: Pass To Next Assessment
       pending_tasks:
         one: You have one 1 pending task
@@ -837,6 +848,7 @@ en:
         success_message: The assessment translations updated
       unarchived:
         success_message: Assessment "%{name}" was unarchived successfully
+      view: View
     active: Active
     archived: Archived
     assessment: Assessment
@@ -1214,11 +1226,13 @@ en:
   campaign:
     all_activities_are_completed: All activities are now complete.
     all_activities_are_completed_multiple: All activities for this campaign are now complete. Please proceed to the Dashboard and check if you have any other activities assigned.
+    already_joined: You already joined this campaign
     begin: Begin your tasks
     begin_btn_msg_before_prework: You have to complete the below tasks before starting the timed campaign
     begin_campaign_msg: Start campaign before taking assessments
     campaigns: Campaigns
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
+    code_usage_limit_reached: Code usage limit reached, please contact administrator
     complete_all: Complete all related assessments
     complete_prev: Complete all previous assessments
     complete_tasks: Please complete tasks below before taking this action.
@@ -1242,6 +1256,7 @@ en:
     edit_evaluation:
       body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
       edit: Re-evaluate
+      prev_results: Previous Results
       title: Confirm
       view: View Assessment
     errors:
@@ -1298,6 +1313,10 @@ en:
       last_updated_text: 'Profile was last updated on:'
       sub_heading: Complete your full profile information
       welcome_text: Welcome,
+    reset_warning: You can only restart the campaign marked as practice campaign.
+    restart_practice: Restart Practice
+    restart_practice_confirmation: Are you sure you want to restart the practice?
+    restart_practice_success: Practice restarted successfully
     thank_you_for_time: Thank you for your time
     time_left:
       cancel: Cancel
@@ -1434,6 +1453,10 @@ en:
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
     update_exists: Update all exists assessments
+  campaign_join_token:
+    campaign_id: Campaign ID
+    expire_in: Expire in (sec)
+    invalid_token: Invalid token
   campaign_report:
     actions:
       bulk_download: Bulk Download
@@ -1580,6 +1603,7 @@ en:
     actions:
       add: Add
       archive: Archive
+      back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
       close: Close
@@ -1591,6 +1615,7 @@ en:
       export: Export
       filter_by_tags: Filter by tags
       import: Import
+      insert: Insert
       mark_complete: Mark Complete
       mark_not_started: Mark Not Started
       ok: OK
@@ -1608,10 +1633,12 @@ en:
       unschedule: Unschedule
       update: Update
       upload: Upload
+      upload_file: Upload File
       view: View
     column:
       action: Action
       active: Active
+      allow_multiple_responses: Allow multiple responses
       approval_notification_list: Approval Notification Users List
       approvers_list: Approvers List
       assessment: Assessment
@@ -1642,6 +1669,7 @@ en:
       modified_date: Modified Date
       name: Name
       owner: Owner
+      package_id: Package Id
       poster: Poster
       project: Project
       provider: Provider
@@ -2033,6 +2061,9 @@ en:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
       skill_not_exist_in_user_idp_plan: User idp skill doesn't exist in user idp plan
+    module_error: Something went wrong with this module, please contact administration.
+    module_error_editor: Something went wrong with this module, please check module settings.
+    module_props_error: Something went wrong with this module.
     try_again: Please try again
     webhooks:
       multiple_webhook_error: url can't be updated as there are multiple webhook for this project.
@@ -2474,6 +2505,7 @@ en:
     end_date: End date
     id: License ID
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
+    not_enough_license_count: Not enough licenses, please contact administrator
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
     number: Number
     overuse_number: Over use allowance
@@ -2667,6 +2699,7 @@ en:
       successfully: Profile was updated successfully
   registration_code:
     allowed_domains: Allowed domains
+    invalid_code: Invalid campaign code
     modals:
       remove:
         content: Are you sure you want to remove Registration code <strong>"%{code}"</strong>?
@@ -2674,6 +2707,7 @@ en:
       title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
+    token_expired: The token expired
   report_approvals:
     events:
       approved_text: approved text
@@ -2779,6 +2813,7 @@ en:
       title: Report Details
     fields:
       provider:
+        custom_upload: Custom Upload
         hogan: Hogan
         internal: Internal
         mindmill: Mindmill
@@ -3626,6 +3661,13 @@ en:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
         successfully: "%{userReportName} report was removed successfully"
+      remove_file:
+        content: Are you sure you want to remove file?
+        successfully: File was removed successfully.
+      upload_file:
+        choose_file: Choose File
+        success: File uploaded successfully.
+        upload: Upload
     preview_report: Preview Report
     readable_statuses:
       generating: Report is being generated

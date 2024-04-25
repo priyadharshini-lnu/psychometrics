@@ -1149,6 +1149,10 @@ providers:
             - id: '04'
               name: Completion_Time
               type: Percentile Scale
+  pearson:
+    v2_assessments:
+      - id: prd:bmct-ii:c916dfd8-d922-4fe3-b08f-6fead3c787c4
+        report_id: rep:7c02d463-5885-404d-8375-29619655d5b8
   saville:
     assessments:
       - id: A830E4AB-BC66-4238-92E0-6E6FD3FD1EDF

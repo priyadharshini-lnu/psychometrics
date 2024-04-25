@@ -13,6 +13,8 @@ module Administration
           required(:remove).filled(:bool?)
           required(:toggle_access).filled(:bool?)
           required(:push_webhook).filled(:bool?)
+          required(:upload_file).filled(:bool?)
+          required(:remove_file).filled(:bool?)
         end
         required(:report_id).filled(:int?)
         required(:name).filled(:str?)
@@ -20,7 +22,9 @@ module Administration
         required(:report_family_name).maybe(:str?)
         required(:status).filled(:str?)
         required(:internal).filled(:bool?)
+        required(:custom_upload).filled(:bool?)
         required(:report_url).maybe(:str?)
+        required(:report_provider).maybe(:str?)
       end
     end
   end

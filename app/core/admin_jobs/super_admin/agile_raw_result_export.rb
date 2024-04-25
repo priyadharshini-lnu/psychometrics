@@ -74,8 +74,14 @@ module AdminJobs
       end
 
       def records_for_export
-        UsersResult.includes(:user_assessment, :subject).
-          where(user_assessments: { assessment_id: assessment.id, status: :completed }).
+        query = UsersResult.joins(:user_assessment).
+                where(
+                  user_assessments: { assessment_id: assessment.id, status: :completed }
+                )
+        if campaign_ids.present?
+          query = query.where(user_assessments: { campaign_id: campaign_ids })
+        end
+        query.includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
           find_each(batch_size: 100)
       end
 
@@ -102,7 +108,7 @@ module AdminJobs
       end
 
       def file_name
-        "assessment-#{assessment.id}-raw-results.csv"
+        "assessment-#{assessment.id}-raw-results-#{record.id}.csv"
       end
     end
   end

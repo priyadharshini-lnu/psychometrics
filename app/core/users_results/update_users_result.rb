@@ -64,6 +64,10 @@ module UsersResults
           user_assessment.update!(user_assessment_attrs)
         end
       end
+      if user_assessment.deemed_completed?
+        user_assessment.update!(completed_at: Time.zone.now)
+        users_result.progress = 100
+      end
 
       users_result.save!
     end
@@ -91,7 +95,7 @@ module UsersResults
     end
 
     def user_assessment_attribute_names
-      %i[norm_id status completion_reason last_activity_at progress_reseted]
+      %i[norm_id status completion_reason last_activity_at progress_reseted completion_status_code]
     end
   end
 end

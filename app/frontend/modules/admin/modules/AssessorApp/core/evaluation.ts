@@ -2,10 +2,12 @@ import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
 import _ from 'lodash'
 import { createReducer } from '~/utils/redux'
-import { setIn } from '~/utils/immutable'
+import { setIn, updateIn } from '~/utils/immutable'
 
 export const UserAssessmentTR = t.type({
   id: t.number,
+  name: t.string,
+  assessment_id: t.number,
 })
 
 export type UserAssessment = t.TypeOf<typeof UserAssessmentTR>
@@ -16,11 +18,30 @@ export const ResultTR = t.type({
 
 export type Result = t.TypeOf<typeof ResultTR>
 
+interface UserInfo {
+  user?: {
+    id: number
+    name: string
+    email: string
+  }
+}
+
+export interface AssessorAssessment {
+  id: number
+  assessment_id: number
+  linked_assessment_id: number
+  name: string
+  status: string
+  allow_multiple_responses: boolean
+  completed_at: string
+}
 export interface State {
-  userInfo: {},
+  userInfo: UserInfo,
   currentAssessorFormId: null | number
-  currentAssessmentId: null | number
-  assessorAssessments: UserAssessment[]
+  currentAssessmentId?: null | number
+  assessorAssessments: {
+    [assesment_id:string | number]: AssessorAssessment[]
+  }
   subjectAssessments: UserAssessment[]
   loaded: boolean
   assessorForms: {},
@@ -31,7 +52,7 @@ const defaultState: State = {
   userInfo: {},
   currentAssessorFormId: null,
   currentAssessmentId: null,
-  assessorAssessments: [],
+  assessorAssessments: {},
   subjectAssessments: [],
   loaded: false,
   assessorForms: {},
@@ -43,22 +64,26 @@ const FETCH_ASSESSOR_ASSESSMENT = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSMEN
 const FETCH_SUBJECT_ASSESSMENT = 'assessors/evaluating/FETCH_SUBJECT_ASSESSMENT'
 const CHANGE_ASSESSOR_FORM = 'assessors/evaluating/CHANGE_ASSESSOR_FORM'
 const CHANGE_SUBJECT_ASSESSMENT = 'assessors/evaluating/CHANGE_SUBJECT_ASSESSMENT'
+const UPDATE_ASSESSOR_ASSESSMENT_STATUS = 'assessors/evaluating/UPDATE_ASSESSOR_ASSESSMENT_STATUS'
 
 type FetchAssessorAssessmentsType = ApiActionResponse<{
   user_info: {}
-  assessor_assessments: UserAssessment[]
+  assessor_assessments: {
+    [assessment_id:number]:AssessorAssessment[]
+  }
   subject_assessments: UserAssessment[]
 }>
 
 // TODO: @fedor implement typedResponse and assessment/result type
 type FetchType = ApiActionResponse<{
-  assessment: UserAssessment,
+  assessment: AssessorAssessment,
   result: Result,
 }>
 
 type ChangeFormType = ReturnType<typeof changeAssessorForm>
+type UpdateAssessorStatus = ReturnType<typeof updateAssessorAssessmentStatus>
 
-export const changeAssessorForm = (id: number) => ({
+export const changeAssessorForm = (id: number | null) => ({
   type: CHANGE_ASSESSOR_FORM,
   id,
 })
@@ -99,6 +124,12 @@ export const fetchSubjectAssessment = (evaluationId: number) => ({
   evaluationId,
 })
 
+export const updateAssessorAssessmentStatus = (assessmentId: number, userAssessmentId: number) => ({
+  type: UPDATE_ASSESSOR_ASSESSMENT_STATUS,
+  assessmentId,
+  userAssessmentId,
+})
+
 const HANDLERS = {
   [FETCH_ASSESSOR_ASSESSMENTS]: (state: State, { response }: FetchAssessorAssessmentsType) => ({
     ...state,
@@ -120,8 +151,17 @@ const HANDLERS = {
   [CHANGE_SUBJECT_ASSESSMENT]: (state: State, { id }: ChangeFormType) => ({
     ...state, currentAssessmentId: id,
   }),
+  [UPDATE_ASSESSOR_ASSESSMENT_STATUS]: (state: State, { assessmentId, userAssessmentId }:
+    UpdateAssessorStatus) => updateIn(
+    state,
+    ['assessorAssessments', assessmentId],
+    assessments => assessments.map(
+      assessment => (assessment.id === userAssessmentId ? { ...assessment, status: 'completed' } : assessment),
+    ),
+  ),
 }
 
+export const getAssessorForms = state => state.assessorForms
 export const getAssessorForm = (state, id) => state.assessorForms[id]
 export const getSubjectForm = (state, id) => state.subjectForms[id]
 export const getCurrentAssessorForm = state => state.evaluation.currentAssessorFormId

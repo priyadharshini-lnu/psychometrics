@@ -13,6 +13,7 @@ module Campaigns
       attribute :integration_type, String
       attribute :proctoring_enabled, { String => Boolean }
       attribute :proctoring_trial, { String => Boolean }
+      attribute :proctoring_type, String
       attribute :rules, Hash
       attribute :description, String
 

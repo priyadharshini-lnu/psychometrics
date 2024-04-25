@@ -5,6 +5,7 @@ import _ from 'lodash'
 import { Provider } from 'react-redux'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
+import { ErrorBoundary } from 'react-error-boundary'
 import Dashboard from '~/modules/reports/views/layouts/Dashboard'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import UndoRedoDispatcher from '~/modules/reports/dispatchers/UndoRedoDispatcher'
@@ -13,6 +14,7 @@ import Result from '~/modules/reports/models/Result'
 import '~/modules/reports/styles/globals.less'
 import store from '../store'
 import { DefaultAntThemeWrapper } from '~/glint'
+import ErrorWarning from '~/modules/reports/views/Preview/ErrorWarning'
 
 class AppContainer extends Component {
   undoListener = null
@@ -42,13 +44,15 @@ class AppContainer extends Component {
   render () {
     return (
       <DefaultAntThemeWrapper>
-        <Provider store={store}>
-          <div className="row">
-            <DndProvider backend={HTML5Backend}>
-              <Dashboard />
-            </DndProvider>
-          </div>
-        </Provider>
+        <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
+          <Provider store={store}>
+            <div className="row">
+              <DndProvider backend={HTML5Backend}>
+                <Dashboard />
+              </DndProvider>
+            </div>
+          </Provider>
+        </ErrorBoundary>
       </DefaultAntThemeWrapper>
     )
   }

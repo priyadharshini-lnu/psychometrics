@@ -4,9 +4,11 @@ module EndUser
   class UsersResultsController < ApplicationController
     # append_before_action :pundit_authorize
     include UsersResults::ControllerConcern
-    prepend_before_action :authenticate_anonymous_user!, only: %i[update upload_media_url
-                                                                  remove_media update_meta_data
-                                                                  complete_multipart_upload]
+    prepend_before_action :authenticate_anonymous_user!,
+                          only: %i[
+                            update upload_media_url remove_media update_meta_data complete_multipart_upload
+                            upload_callback mark_as_user_selected_take
+                          ]
     before_action :can_start_based_on_sequencing,
                   only: %i[update upload_media_url remove_media complete_multipart_upload]
 

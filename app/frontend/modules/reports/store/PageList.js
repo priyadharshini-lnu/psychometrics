@@ -18,6 +18,7 @@ PageList.prototype = new EventEmitter()
 _.extend(PageList.prototype, {
   load (data, completedAssessments) {
     this.list = []
+    this.showOnAllPages = new ShowOnAllPagesStore([])
     _.each(data, (page) => {
       this.list.push(new Page(page, completedAssessments))
     })

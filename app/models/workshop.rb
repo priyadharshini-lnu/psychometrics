@@ -79,6 +79,10 @@ class Workshop < ApplicationRecord
     end
   end
 
+  def removeable?
+    workshop_subjects.empty? || workshop_subjects.removeable_subjects.count == workshop_subjects.count
+  end
+
   def increment_booked_seats
     update_query = <<-SQL.squish
       UPDATE workshops

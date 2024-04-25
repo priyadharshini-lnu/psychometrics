@@ -99,6 +99,16 @@ const FIELDS = [
       },
     ],
   },
+  {
+    branch: 'Campaigns',
+    fields: [
+      {
+        name: 'Join Link',
+        type: 'campaign_join_link',
+        getValue: (campaignId, expire) => `\${c://Campaign/JoinLink?campaign_id=${campaignId}&expiry=${expire}}`,
+      },
+    ],
+  },
 ]
 
 export default FIELDS

@@ -12,9 +12,17 @@
   }
 }
 
-.table {
-  td img {
-    max-width: 100%;
+.datasheet {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+  border-radius: 8px;
+  .table {
+    border: 1px solid #D3D3D3;
+    border-radius: 8px;
+    overflow: hidden;
+    td img {
+      max-width: 100%;
+    }
   }
 }
 
@@ -26,8 +34,42 @@
   max-width: calc(100vw - 60px);
 }
 
+.overviewContent {
+  min-height: 90vh;
+  padding: 20px;
+  background: #F5F4F7;
+}
+
 .nameContainer {
-  padding: 12px;
+  padding: 24px;
+  background: linear-gradient(91deg, #009EA7 0%, #4FDBE3 100%);
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+
+  .name {
+    font-weight: bold;
+  }
+
+  .additional {
+    margin-top: 16px;
+  }
+
+  .photo {
+    margin-right: 24px;
+    .avatar {
+      border-radius: 8px;
+      font-size: 115px;
+      width: 117px;
+      height: 117px;
+    }
+    img {
+      max-width: 117px;
+      max-height: 117px;
+    }
+  }
 }
 
 .assessorTabs :global(.ant-tabs-nav) {

@@ -9,6 +9,7 @@ export const LicenseTR = t.type({
   startDate: t.string,
   endDate: t.string,
   disabled: t.boolean,
+  enabled: t.boolean,
   type: t.string,
   reportFamily: t.union([
     t.type({
