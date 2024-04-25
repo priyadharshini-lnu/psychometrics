@@ -18,8 +18,8 @@ module Threesixty::InitialState
           name: @current_project.name,
           logo: @current_project.design_setting.logo&.url,
           secondaryLogo: @current_project.design_setting.secondary_logo&.url,
-          privacyText: @current_project.privacy_link&.text,
-          privacyPageLink: @current_project.privacy_link&.link
+          privacyText: @current_project.privacy_setting.privacy_link_text,
+          privacyPageLink: @current_project.privacy_setting.privacy_link_url
         }
       }.merge(campaign_intial_state),
       config: {
@@ -46,7 +46,7 @@ module Threesixty::InitialState
           remainingTime: remaining_maintenance_time
         },
         lighthousePrivacyUrl: Settings.privacy_url,
-        privacyPolicyVersion: @current_project.current_privacy_policy_version,
+        privacyPolicyVersion: @current_project.privacy_setting.custom_privacy_policy_version,
         customPrivacyConsentText: custom_privacy_consent_text,
         showBookings: show_bookings?
       },
@@ -64,9 +64,9 @@ module Threesixty::InitialState
   end
 
   def custom_privacy_consent_text
-    return unless @current_project.custom_privacy_consent
+    return unless @current_project.privacy_setting.custom_privacy_consent
 
-    @current_project.custom_privacy_consent_text
+    @current_project.privacy_setting.custom_privacy_consent_text
   end
 
   def live_chat_token

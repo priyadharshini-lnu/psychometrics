@@ -61,7 +61,7 @@ describe 'Projects' do
           project = JSON.parse(response.body)
 
           expect(project).to have_key('id')
-          expect(project['data_processing_consent']).to eq true
+          expect(project['data_processing_consent']).to eq false
           expect(project['name']).to eq 'project1'
           expect(project['client_id']).to eq membership.client.id
           expect(project['webhook']).to eq 'https://my.site.com'

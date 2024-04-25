@@ -190,9 +190,9 @@ class Client < ApplicationRecord
   end
 
   def current_privacy_policy_version
-    return Settings.privacy_policy_version unless custom_privacy_consent?
+    return Settings.privacy_policy_version unless privacy_setting.custom_privacy_consent?
 
-    custom_privacy_policy_version
+    privacy_setting.custom_privacy_policy_version
   end
 
   def iiht_config

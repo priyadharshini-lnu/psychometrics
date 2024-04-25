@@ -185,7 +185,9 @@ class User < ApplicationRecord
   def privacy_consent_required?
     return false if admin?
 
-    project.privacy_consent && !privacy_consents.exists?(version: project.current_privacy_policy_version)
+    project.privacy_setting.privacy_consent && !privacy_consents.exists?(
+      version: project.current_privacy_policy_version
+    )
   end
 
   def accessible_records(resource_class, permissions)

@@ -34,7 +34,7 @@ module Api
       end
 
       def data_processing_consent
-        object.privacy_consent
+        object.privacy_setting.privacy_consent
       end
 
       def client_id
