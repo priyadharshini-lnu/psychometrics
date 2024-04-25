@@ -59,7 +59,8 @@ module AllowedPermissions
     'registration_codes' => %w[view manage],
     'datasheets' => %w[view manage],
     'auditLogs' => ['view'],
-    'workshops' => %w[view manage export_status]
+    'workshops' => %w[view manage],
+    'idp_templates' => %w[view manage]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -113,7 +114,8 @@ module AllowedPermissions
     'assessors' => %w[view manage],
     'reports' => ['manage'],
     'datasheets' => %w[view manage],
-    'workshops' => %w[view manage export_status]
+    'workshops' => %w[view manage],
+    'idp_templates' => %w[view manage]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {
@@ -148,7 +150,8 @@ module AllowedPermissions
       external_score_import
       report_file_upload
     ],
-    'workshops' => %w[view manage]
+    'workshops' => %w[view manage],
+    'idp_templates' => %w[view manage]
   }.freeze
 
   THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS = {

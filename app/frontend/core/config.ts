@@ -11,13 +11,15 @@ interface FeaturesFlags {
 
 export interface ConfigState {
   availableLocales: string[]
-  features: FeaturesFlags
+  features: FeaturesFlags,
+  timezone: string,
   isProjectMigrated: boolean
 }
 
 export const defaultState: ConfigState = {
   availableLocales: [],
   features: {},
+  timezone: '',
   isProjectMigrated: false,
 }
 
@@ -26,6 +28,7 @@ type FetchType = ApiActionResponse<{
 }>
 
 export const getFeatures = (state): FeaturesFlags => _.get(state, ['config', 'features'], {})
+export const getTimezone = (state): string => _.get(state, ['config', 'timezone'])
 export const isProjectMigrated = (state: RootState): boolean => _.get(state, ['config', 'isProjectMigrated'])
 export const availableLocales = (state: RootState): string[] => _.get(state, ['config', 'availableLocales'], [])
 

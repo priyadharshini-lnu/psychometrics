@@ -11,18 +11,19 @@ module Campaigns
     end
 
     def sql
+      timezone = ActiveSupport::TimeZone::MAPPING[Time.zone.name]
       <<-SQL.squish
       WITH date_series AS (
         SELECT
-          date_trunc('day',
-            dd)::date dt
+          date_trunc('#{period}',
+            dd, '#{timezone}')::timestamp dt
         FROM
-          generate_series(:date_from, :date_to, '1 day'::interval) dd
+          generate_series(:date_from, :date_to, '1 #{period}'::interval) dd
       ),
       started_series AS (
         SELECT
-          date_trunc('day',
-            started_at)::date dt,
+          date_trunc('#{period}',
+            started_at, '#{timezone}')::timestamp dt,
           count(id) started
         FROM
           campaign_users
@@ -33,8 +34,8 @@ module Campaigns
       ),
       completed_series AS (
         SELECT
-          date_trunc('day',
-            completed_at)::date dt,
+          date_trunc('#{period}',
+            completed_at, '#{timezone}')::timestamp dt,
           count(id) completed
         FROM
           campaign_users
@@ -60,6 +61,11 @@ module Campaigns
 
     def params
       { id: campaign.id, date_from: date_from, date_to: date_to }
+    end
+
+    def period
+      days = (date_to.to_datetime - date_from.to_datetime).to_i
+      @period ||= days >= 1 ? 'days' : 'hours'
     end
   end
 end

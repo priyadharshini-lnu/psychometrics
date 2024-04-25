@@ -9,7 +9,7 @@ features:
   smtp_enabled: true
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
-timezone: Asia/Dubai
+timezone: Abu Dhabi
 iiht:
   token_api_url: https://iiht_token_api_url.cc
   base_api_url: https://iiht_base_api_url.cc

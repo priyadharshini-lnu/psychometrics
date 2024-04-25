@@ -205,6 +205,9 @@ en:
           dimensions:
             manage: Manage
             view: View
+          idpTemplates:
+            manage: Manage
+            view: View
           mediaLibraries:
             manage: Manage
             view: View
@@ -4403,6 +4406,7 @@ en:
           today: Today
           yesterday: Yesterday
         started: Started
+        timezone: Timezone
         y_title: Number of Users
     sub_factors:
       copy:

@@ -1,3 +1,4 @@
+import { Dayjs } from 'dayjs'
 import { Options } from 'highcharts'
 import { Stats } from '~/modules/admin/modules/campaigns/core/stats'
 
@@ -12,75 +13,80 @@ export const COLORS = {
   timed_out: 'red',
 }
 
-export const buildHighchartOptions = (timeseries: Stats['timeseries']): Options => ({
-  title: {
-    text: '',
-  },
-  credits: { enabled: false },
-  chart: {
-    zooming: {
-      type: 'x',
-    },
-  },
-  tooltip: {
-    enabled: false,
-  },
-  xAxis: {
-    type: 'datetime',
-    // https://api.highcharts.com/highcharts/xAxis.dateTimeLabelFormats
-    dateTimeLabelFormats: {
-      day: '%Y, %b %e',
-    },
-  },
-  yAxis: {
+export const buildHighchartOptions = (
+  timeseries: Stats['timeseries'], pointStart: Dayjs, pointEnd: Dayjs,
+): Options => {
+  const pointInterval = pointEnd.diff(pointStart, 'days') >= 1 ? 3600 * 1000 * 24 : 3600 * 1000
+
+  return {
     title: {
-      text: I18n.t('administration.stats.users.y_title'),
+      text: '',
     },
-    minTickInterval: 1,
-  },
-
-  legend: {
-    layout: 'horizontal',
-    align: 'left',
-    verticalAlign: 'top',
-  },
-
-  plotOptions: {
-    series: {
-      label: {
-        connectorAllowed: false,
+    credits: { enabled: false },
+    chart: {
+      zooming: {
+        type: 'x',
       },
-      animation: false,
-      pointStart: new Date(timeseries[0].dt).getTime(),
-      pointInterval: 3600 * 1000 * 24,
     },
-  },
-
-  series: [{
-    name: 'In Progress',
-    color: COLORS.in_progress,
-    type: 'line',
-    data: timeseries.map(t => t.started),
-  }, {
-    name: 'Completed',
-    color: COLORS.completed,
-    type: 'line',
-    data: timeseries.map(t => t.completed),
-  }],
-
-  responsive: {
-    rules: [{
-      condition: {
-        maxWidth: 500,
+    tooltip: {
+      enabled: false,
+    },
+    xAxis: {
+      type: 'datetime',
+      // https://api.highcharts.com/highcharts/xAxis.dateTimeLabelFormats
+      dateTimeLabelFormats: {
+        day: '%Y, %b %e',
       },
-      chartOptions: {
-        legend: {
-          layout: 'horizontal',
-          align: 'center',
-          verticalAlign: 'bottom',
+    },
+    yAxis: {
+      title: {
+        text: I18n.t('administration.stats.users.y_title'),
+      },
+      minTickInterval: 1,
+    },
+
+    legend: {
+      layout: 'horizontal',
+      align: 'left',
+      verticalAlign: 'top',
+    },
+
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false,
         },
+        animation: false,
+        pointStart: pointStart.unix() * 1000,
+        pointInterval,
       },
-    }],
-  },
+    },
 
-})
+    series: [{
+      name: 'In Progress',
+      color: COLORS.in_progress,
+      type: 'line',
+      data: timeseries.map(t => t.started),
+    }, {
+      name: 'Completed',
+      color: COLORS.completed,
+      type: 'line',
+      data: timeseries.map(t => t.completed),
+    }],
+
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500,
+        },
+        chartOptions: {
+          legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+          },
+        },
+      }],
+    },
+  }
+}
