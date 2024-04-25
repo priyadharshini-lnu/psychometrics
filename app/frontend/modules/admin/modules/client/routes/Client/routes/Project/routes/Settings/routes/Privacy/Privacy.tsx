@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Row, Col, Form, Checkbox, Input, Select, Button, InputNumber, Switch,
+  Row, Col, Form, Checkbox, Input, Select, Button, InputNumber,
+  Skeleton,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
@@ -8,7 +9,7 @@ import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 import Editor from '~/components/Editor'
 import {
-  ProjectPrivacySettings as PrivacySettingsType,
+  ProjectPrivacySettings as PrivacySettingsType, ProjectPrivacySettingsTR,
 } from '~/modules/admin/modules/client/projectPrivacySettings'
 
 const { I18n } = window
@@ -26,7 +27,7 @@ export const Privacy: React.FC = () => {
   const enableCustomPolicy = Form.useWatch('customPrivacyConsent', form)
 
   const {
-    data, fetch, updateResource,
+    data, fetch, updateResource, isLoading,
   } = useResources<PrivacySettingsType>(
     'privacy_settings',
     {
@@ -35,6 +36,7 @@ export const Privacy: React.FC = () => {
       apiConfig: {
         filter: { project_id_eq: projectId },
       },
+      responseType: ProjectPrivacySettingsTR,
     },
   )
 
@@ -78,6 +80,7 @@ export const Privacy: React.FC = () => {
   const selectedLocaleConsentText = _.find(customPrivacyConsentTexts, { locale: selectedLocale })
   const localesForConsent = locales?.length ? locales : ['en']
 
+  if (!privacySetting) return <Skeleton active />
 
   return (
     <Row justify="space-between" className="pl">
@@ -92,6 +95,7 @@ export const Privacy: React.FC = () => {
             labelAlign: 'left',
             id: 'privacy-settings-form',
             preserve: false,
+            layout: 'horizontal',
           }}
           request={{
             updateResource,
@@ -180,17 +184,40 @@ export const Privacy: React.FC = () => {
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
-                name="maskDataForThirdPartyAssessment"
-                label={
-                  I18n.t('administration.projects.privacy_settings.mask_third_party_assessment_label')
-                }
+                name="maskIdentityForPearson"
+                labelAlign="left"
               >
-                <Switch />
+                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_pearson')}</Checkbox>
+              </Form.Item>
+              <Form.Item
+                valuePropName="checked"
+                name="maskIdentityForSaville"
+              >
+                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_saville')}</Checkbox>
+              </Form.Item>
+              <Form.Item
+                valuePropName="checked"
+                name="maskIdentityForHogan"
+              >
+                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_hogan')}</Checkbox>
+              </Form.Item>
+              <Form.Item
+                valuePropName="checked"
+                name="maskIdentityForIiht"
+              >
+                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_iiht')}</Checkbox>
+              </Form.Item>
+              <Form.Item
+                valuePropName="checked"
+                name="maskIdentityForExamus"
+              >
+                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_examus')}</Checkbox>
               </Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
                 className="mb-16"
+                loading={isLoading(`update@${privacySetting.id}`)}
               >
                 {I18n.t('administration.save')}
               </Button>

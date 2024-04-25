@@ -24,10 +24,12 @@ module Iiht
       )
       result = ::JSON.parse(response.body)['result']
       unless result['isSuccess']
-        raise "IIHT::GetScores failed for UserAssessment: #{user_assessment.id}. Error: #{result['errorMessage']}"
+        raise "IIHT::AddAssessment failed for UserAssessment: #{user_assessment.id}. Error: #{result['errorMessage']}"
       end
 
-      user_assessment.iiht_user_assessment.update!(url: result['scheduleLink'], schedule_id: result['scheduleId'])
+      user_assessment.iiht_user_assessment.update!(
+        url: result['scheduleLink'], schedule_id: result['scheduleId'], email: maskable_identity.email
+      )
       ::Iiht::AllowAttempts.call!(user_assessment)
 
       broadcast :ok
@@ -36,13 +38,12 @@ module Iiht
     private
 
     def request_body
-      user = user_assessment.user
       {
         tenantId: config['tenant_id'],
         assessmentIdNumber: user_assessment.assessment.external_settings[:assessment_id],
-        userEmailAddress: user.email,
-        firstName: user.first_name,
-        lastName: user.last_name,
+        userEmailAddress: maskable_identity.email,
+        firstName: maskable_identity.first_name,
+        lastName: maskable_identity.last_name,
         resultShareMode: [3],
         scheduleConfig: schedule_config
       }
@@ -70,6 +71,12 @@ module Iiht
             assessment_id: user_assessment.assessment_id
           )
         }
+      )
+    end
+
+    def maskable_identity
+      @maskable_identity ||= user_assessment.subject.maskable_identity(
+        mask: user_assessment.project.mask_identity_for_iiht?
       )
     end
   end

@@ -5,9 +5,9 @@ require 'rails_helper'
 describe Iiht::AddAssessment do
   include Rails.application.routes.url_helpers
 
-  let(:iiht_user_assessment) { create(:iiht_user_assessment, url: nil) }
+  let(:iiht_user_assessment) { create(:iiht_user_assessment, url: nil, email: 'some_email@cc.com') }
   let(:user_assessment) { iiht_user_assessment.user_assessment }
-  let(:user) { user_assessment.user }
+  let(:user) { user_assessment.subject }
   let(:config) { { 'tenant_id' => '123' } }
   let(:schedule_link) { Faker::Internet.url }
   let(:schedule_id) { 123 }

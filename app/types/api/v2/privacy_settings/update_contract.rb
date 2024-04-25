@@ -9,10 +9,12 @@ module Api
         rule(data: { attributes: :privacy_link_text }) do
           key.failure(:filled?) if values.dig(:data, :attributes, :enable_privacy_link) && value.blank?
         end
+
         rule(data: { attributes: :privacy_link_url }) do
-          key.failure(:filled?) if values.dig(:data, :attributes, :privacy_link_url) && value.blank?
+          key.failure(:filled?) if values.dig(:data, :attributes, :enable_privacy_link) && value.blank?
         end
-        rule(data: { attributes: :privacy_link_url }).validate(http_url_format: { allow_blank: false })
+
+        rule(data: { attributes: :privacy_link_url }).validate(http_url_format: { allow_blank: true })
       end
     end
   end

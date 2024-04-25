@@ -2,7 +2,11 @@ import * as t from 'io-ts'
 
 export const ProjectPrivacySettingsTR = t.type({
   id: t.string,
-  maskDataForThirdPartyAssessment: t.boolean,
+  maskIdentityForPearson: t.boolean,
+  maskIdentityForSaville: t.boolean,
+  maskIdentityForHogan: t.boolean,
+  maskIdentityForIiht: t.boolean,
+  maskIdentityForExamus: t.boolean,
   privacyConsent: t.boolean,
   customPrivacyConsent: t.boolean,
   customPrivacyConsentTexts: t.array(t.type({

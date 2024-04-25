@@ -56,8 +56,28 @@ describe Api::V2::Administration::PrivacySettingsController, swagger_doc: 'v2/sw
           expect(
             privacy_setting_response
           ).to have_attribute(
-            :mask_data_for_third_party_assessment
-          ).with_value(privacy_setting_recotrd.mask_data_for_third_party_assessment)
+            :mask_identity_for_pearson
+          ).with_value(privacy_setting_recotrd.mask_identity_for_pearson)
+          expect(
+            privacy_setting_response
+          ).to have_attribute(
+            :mask_identity_for_saville
+          ).with_value(privacy_setting_recotrd.mask_identity_for_saville)
+          expect(
+            privacy_setting_response
+          ).to have_attribute(
+            :mask_identity_for_hogan
+          ).with_value(privacy_setting_recotrd.mask_identity_for_hogan)
+          expect(
+            privacy_setting_response
+          ).to have_attribute(
+            :mask_identity_for_iiht
+          ).with_value(privacy_setting_recotrd.mask_identity_for_iiht)
+          expect(
+            privacy_setting_response
+          ).to have_attribute(
+            :mask_identity_for_examus
+          ).with_value(privacy_setting_recotrd.mask_identity_for_examus)
         end
       end
     end

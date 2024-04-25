@@ -7,7 +7,11 @@ class Api::V2::PrivacySettings::Schema < Api::Base::Schema
 
   def self.attributes(_attribute, _)
     proc do
-      optional(:mask_data_for_third_party_assessment).maybe(:bool)
+      optional(:mask_identity_for_pearson).maybe(:bool)
+      optional(:mask_identity_for_saville).maybe(:bool)
+      optional(:mask_identity_for_hogan).maybe(:bool)
+      optional(:mask_identity_for_iiht).maybe(:bool)
+      optional(:mask_identity_for_examus).maybe(:bool)
       optional(:privacy_consent).maybe(:bool)
       optional(:custom_privacy_consent).maybe(:bool)
       optional(:custom_privacy_policy_version).maybe(:integer)

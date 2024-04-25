@@ -152,6 +152,10 @@ class User < ApplicationRecord
   delegate :subdomain, to: :project, allow_nil: true
   delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
 
+  def maskable_identity(mask: false)
+    @maskable_identity ||= Users::MaskableIdentity.new(self, mask: mask)
+  end
+
   def authenticated_sign_in_url
     Utility::Url.generate(
       :users_sign_in_link_url,
