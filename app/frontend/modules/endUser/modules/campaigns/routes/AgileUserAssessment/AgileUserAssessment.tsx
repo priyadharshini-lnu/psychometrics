@@ -16,7 +16,6 @@ import { get as getCampaign, getUserAssessmentData } from '~/modules/endUser/mod
 import { fetchAssessment, getCampaignRemainingTime } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import styles from './styles.less'
 import { CountdownTimer, PageHeader as GlintPageHeader } from '~/glint'
-import { useUnloadCallback } from '~/hooks/useUnloadCallback'
 
 const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
@@ -61,7 +60,6 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
 }) => {
   const campaignId = agileCampaign || userAssessment.campaignId
   const history = useHistory()
-  useUnloadCallback(I18n.t('common.messages.leave_message'))
 
   const initializeAgile = () => {
     const { lang } = qs.parse(location.search.substr(1))

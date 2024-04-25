@@ -28,7 +28,6 @@ import {
 } from '~/glint'
 
 import styles from './UserAssessment.less'
-import { useUnloadCallback } from '~/hooks/useUnloadCallback'
 
 const connector = connect((state: RootState) => ({
   userAssessment: state.campaigns.userAssessment,
@@ -77,8 +76,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   markAssessmentTimedOut,
   progress,
 }) => {
-  useUnloadCallback(I18n.t('common.messages.leave_message'))
-
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)
