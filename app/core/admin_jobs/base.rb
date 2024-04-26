@@ -53,5 +53,9 @@ module AdminJobs
     def project
       @project ||= Project.find_by(id: record.data['project_id'])
     end
+
+    def client
+      @client ||= Client.find_by(id: record.data['client_id'])
+    end
   end
 end
