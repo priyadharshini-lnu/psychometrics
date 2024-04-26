@@ -19,6 +19,7 @@ import {
   SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING,
   ACTIVE_DICTATION_ON_QUESTION, NEXT_BUTTON_PRESSED, BACK_BUTTON_PRESSED,
   SHOW_ERROR_WARNING, PREV_PAGE_REQUEST, PREV_PAGE_FAILURE,
+  SET_SUBMISSION_IN_PROGRESS,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -29,7 +30,7 @@ import {
   InitType, AddQuestionError, RemoveQuestionError,
   SaveResults, UpdateHightlight, AddMediaResponse, RemoveMediaResponse,
   MarkMediaResponseAsSelected, FetchQuestionScoring,
-  ShowEnd,
+  ShowEnd, SetSubmissionInProgress,
 } from './interfaces'
 import { SetDictationActiveOnQuestion } from './actions'
 
@@ -122,6 +123,7 @@ const HANDLERS = {
     return {
       ...defaultState,
       initialized: true,
+      id: data.id,
       name: data.name,
       assessmentCategory: data.category,
       type: data.type || 'preview_assessment',
@@ -322,6 +324,9 @@ const HANDLERS = {
   [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, submitRequired: true, showSubmitPage: true }),
   [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, submitRequired: false, showSubmitPage: false }),
   [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
+  [SET_SUBMISSION_IN_PROGRESS]: (state: State, { value }: SetSubmissionInProgress) => ({
+    ...state, submissionInProgress: value,
+  }),
   [NEXT_BUTTON_PRESSED]: (state: State) => ({
     ...state, backButtonPressed: false, nextButtonPressed: true, submissionInProgress: state.type === 'pass_assessment',
   }),

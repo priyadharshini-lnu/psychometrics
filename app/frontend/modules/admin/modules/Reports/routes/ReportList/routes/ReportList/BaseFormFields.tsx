@@ -15,6 +15,7 @@ const { TextArea } = Input
 const { I18n } = window
 
 const INTERNAL = 'internal'
+const CUSTOM_UPLOAD = 'custom_upload'
 
 interface Props {
   report?: Report
@@ -47,6 +48,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
   const externalReportId = Form.useWatch(['externalSettings', 'reportId'], form)
 
   const [assessmentCache, setAssessmentCache] = React.useState<Assessment[]>([])
+  const [isCustomUpload, setIsCustomUpload] = React.useState(false || report?.provider === CUSTOM_UPLOAD)
 
   useEffect(() => {
     setAssessmentCache([...assessmentCache, ...assessments.filter(a => assessmentIds.includes(a.id))])
@@ -56,7 +58,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
     setTimeout(() => {
       form.setFieldsValue({ provider: getCurrentProvider() })
     })
-  }, [assessmentIds, externalReportId])
+  }, [assessmentIds, externalReportId, isCustomUpload])
 
 
   const getClients = (): OptionsType[] => {
@@ -81,6 +83,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
   const dataOnly = Form.useWatch('dataOnly', form)
 
   const getAssessmentType = () => {
+    if (!assessmentIds?.length && isCustomUpload) return CUSTOM_UPLOAD
     if (!assessmentIds?.length) return INTERNAL
 
     const types = _.uniq([...assessmentCache, ...assessments, ...(report?.assessments || [])]
@@ -96,7 +99,7 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
     const assessmentType = getAssessmentType()
     if (assessmentType === 'hogan' && !externalReportId) return INTERNAL
     if (assessmentType === 'saville' && !externalReportId) return INTERNAL
-    if (provider === INTERNAL && !externalReportId) return INTERNAL
+    if (provider === INTERNAL && !isCustomUpload && !externalReportId) return INTERNAL
 
     return assessmentType
   }
@@ -148,8 +151,14 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
       >
         <Switch />
       </Form.Item>
+      <Form.Item
+        valuePropName="checked"
+        label={I18n.t('reports.fields.provider.custom_upload')}
+      >
+        <Switch onChange={(value) => { setIsCustomUpload(value) }} checked={isCustomUpload} />
+      </Form.Item>
 
-      {!dataOnly && (
+      {!(isCustomUpload || dataOnly) && (
         <>
           <Form.Item
             name="assessmentIds"

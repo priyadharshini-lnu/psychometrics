@@ -14,6 +14,7 @@ module UsersResults
     attribute :completion_reason, String, default: 'user_completed'
     attribute :prev_pages, Array, default: []
     attribute :progress, Integer
+    attribute :completion_status_code, String, default: nil
 
     def norm_id
       norm_data[:id]&.to_i

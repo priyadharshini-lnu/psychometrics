@@ -46,6 +46,7 @@ class AdminJob < ApplicationJob
     export_campaign_scorings: AdminJobs::ExportCampaignScorings,
     export_reports_and_assessments: AdminJobs::ExportReportsAndAssessments,
     super_admin_assessment_norm_export: AdminJobs::SuperAdmin::AssessmentNormExport,
+    super_admin_datasheet_export: AdminJobs::SuperAdmin::DatasheetExport,
     threesixty_campaign_export_scores: AdminJobs::ThreesixtyCampaignExportScores,
     import_external_campaign_scoring: AdminJobs::ImportExternalCampaignScoring
   }.freeze

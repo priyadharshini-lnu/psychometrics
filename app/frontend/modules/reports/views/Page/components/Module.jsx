@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { ErrorBoundary } from 'react-error-boundary'
 import { Modules } from '~/modules/reports/components/modules'
 import ModuleModel from '~/modules/reports/models/Module'
 import { getModule } from '~/modules/reports/core/builder/selectors'
@@ -8,9 +9,15 @@ import { getModule } from '~/modules/reports/core/builder/selectors'
 class Module extends Component {
   storeListener = null
 
+  ref = null
+
   static propTypes = {
     page: PropTypes.object.isRequired,
     module: PropTypes.object.isRequired,
+  }
+
+  componentDidUpdate () {
+    this.ref?.resetErrorBoundary()
   }
 
   render () {
@@ -21,7 +28,17 @@ class Module extends Component {
     const View = Modules[module.type]
 
     // NOTE: @fedor temporary kept update for connects
-    return !model.removed && <View module={model} page={page} update={{}} animation />
+    return !model.removed && (
+      <ErrorBoundary
+        ref={(r) => { this.ref = r }}
+        key={model.id}
+        fallbackRender={() => (
+          <Modules.Error module={model} page={page} update={{}} animation />
+        )}
+      >
+        <View module={model} page={page} update={{}} animation />
+      </ErrorBoundary>
+    )
   }
 }
 

@@ -39,4 +39,13 @@ describe CampaignUsers::SetCompletionStatus do
 
     expect(campaign_user.reload.completion_status).to eq('in_progress')
   end
+
+  it 'set completion status to completed if some use_assessment is ineligible' do
+    create(:user_assessment, :with_result, subject_id: subject_id, evaluator_id: subject_id, campaign_id: campaign_id,
+           status: :ineligible)
+
+    described_class.call!(campaign_user)
+
+    expect(campaign_user.reload.completion_status).to eq('completed')
+  end
 end

@@ -24,7 +24,7 @@ module Api
       end
 
       def export_scorings?
-        has_permission?(:campaign_factors, :view)
+        has_permission?(:results, :scores)
       end
 
       def import_external_campaign_scorings?

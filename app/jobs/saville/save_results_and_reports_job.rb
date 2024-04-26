@@ -23,7 +23,7 @@ module Saville
         base64_report = result.dig('SupportingMaterials', 'EmbeddedData', 'EncodedContent', 'content')
         next if report_id.nil? || base64_report.nil?
 
-        user_report = saville_user_assessment.external_user_reports(:saville).joins(:report).
+        user_report = saville_user_assessment.user_reports(:saville).joins(:report).
                       find_by('reports.external_settings @> ?', { report_id: report_id }.to_json)
 
         next unless user_report
@@ -45,7 +45,7 @@ module Saville
       ::UsersResults::GenerateReports.call(
         user_assessment.users_result,
         user_assessment.user,
-        exceptUserReportIds: user_assessment.external_user_reports(:saville).pluck(:id)
+        exceptUserReportIds: user_assessment.user_reports(:saville).pluck(:id)
       )
     end
 

@@ -14,10 +14,10 @@ export const removeListener = (channel, callback) => {
   channels[channel] = channels[channel].filter(c => c !== callback)
 }
 
-export const sendMessage = (channel: string, message) => {
+export const sendMessage = (channel: string, message, ...args) => {
   if (!channels[channel]) { return }
 
   channels[channel].forEach((cb) => {
-    cb(message)
+    cb(message, ...args)
   })
 }

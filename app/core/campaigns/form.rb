@@ -8,6 +8,7 @@ module Campaigns
     attribute :type, String, default: :common
     attribute :start_date, DateTime
     attribute :end_date, DateTime
+    attribute :practice_campaign, Boolean, default: false
 
     validates :name, :status, presence: true
     validate :end_date_after_start_date

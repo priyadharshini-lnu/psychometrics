@@ -9,6 +9,7 @@ const FETCH_OPTIONS = 'campaign/FETCH_OPTIONS'
 const CONTINUE = 'campaign/CONTINUE'
 const DECLINE_EVALUATION = 'campaign/DECLINE_EVALUATION'
 const RESET = 'campaign/RESET_DATA'
+const RESET_PRACTICE_CAMPAIGN = 'campaign/RESET_PRACTICE_CAMPAIGN'
 
 export const fetchCampaign = url => ({
   type: FETCH,
@@ -58,6 +59,15 @@ export const continueCampaign = campaignUserId => ({
   },
 })
 
+export const resetPracticeCampaign = campaignId => ({
+  type: RESET_PRACTICE_CAMPAIGN,
+  request: {
+    url: `/campaigns/${campaignId}/reset_practice_campaign`,
+    method: 'put',
+  },
+})
+
+
 export const reset = () => ({ type: RESET })
 
 export const defaultState = {
@@ -105,6 +115,7 @@ const HANDLERS = {
     const evaluations = _.filter(state.evaluations, ({ id }) => id !== evaluationId)
     return setIn(state, 'evaluations', evaluations)
   },
+  [RESET_PRACTICE_CAMPAIGN]: (state, action) => ({ ...state, ...action.response, loaded: true }),
 }
 
 export default function reducer (state = defaultState, action) {

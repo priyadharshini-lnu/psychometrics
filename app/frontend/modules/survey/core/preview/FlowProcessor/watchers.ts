@@ -175,8 +175,9 @@ function* genRestart ({ response }: AnyAction) {
   }
 }
 
-function genFinishedEvent () {
-  sendMessage('assessment:finished', 'completed')
+function* genFinishedEvent () {
+  const state = yield select()
+  sendMessage('assessment:finished', 'completed', state.preview.id)
 }
 
 export const watchers = [

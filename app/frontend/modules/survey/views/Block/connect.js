@@ -11,6 +11,7 @@ export default connect(
   () => ({}),
   {
     openRandomization: data => openModal('randomization', data),
+    openSettings: data => openModal('blockSettings', data),
     openCreateByTemplate: data => openModal('createByTemplate', data),
     unselectQuestion,
     createBlock,

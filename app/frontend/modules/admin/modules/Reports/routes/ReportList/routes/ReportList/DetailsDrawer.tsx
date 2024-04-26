@@ -102,6 +102,16 @@ export const DetailsDrawer: FC<Props> = ({
           <Descriptions.Item label={I18n.t('reports.columns.data_only')} key="data_only" className="va-t">
             {report.dataOnly ? I18n.t('administration.common.enabled') : I18n.t('administration.common.disabled')}
           </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('reports.fields.provider.custom_upload')}
+            key="custom_upload"
+            className="va-t"
+          >
+            {
+              report.provider === 'custom_upload'
+                ? I18n.t('administration.common.enabled') : I18n.t('administration.common.disabled')
+            }
+          </Descriptions.Item>
           <Descriptions.Item label={I18n.t('reports.columns.default_language')} key="default_language" className="va-t">
             {I18n.t(`languages.${report.defaultLanguage}`)}
           </Descriptions.Item>

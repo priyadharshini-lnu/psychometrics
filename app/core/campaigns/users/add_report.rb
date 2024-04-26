@@ -34,7 +34,7 @@ module Campaigns
         return broadcast :ok, user_report: user_report if report.data_only?
 
         user_assessments = assessments.map do |assessment|
-          find_or_create_assessment_to_user(assessment, user_report)
+          find_or_create_assessment_to_user(assessment)
         end
         set_approval_status_for_user_report(user_report)
         generate_report_pdf(user_report) unless user_report.report.hogan?
@@ -60,7 +60,7 @@ module Campaigns
         return user_report.start_approval! if user_report.all_assessments_are_completed?
       end
 
-      def find_or_create_assessment_to_user(assessment, user_report)
+      def find_or_create_assessment_to_user(assessment)
         user_assessment = UserAssessment.find_by(
           campaign: campaign,
           assessment_id: assessment.id,
@@ -77,10 +77,8 @@ module Campaigns
             campaign: campaign
           )
         end
-        if assessment.hogan? && user.hogan_credential && !user_assessment.not_started?
-          Hogan::AddReportsJob.set(wait: 2.seconds).perform_later(
-            user_assessment, [user_report], user.hogan_credential, user.project
-          )
+        if assessment.hogan? && user.hogan_credential && user_assessment.completed?
+          Hogan::HandleAssessmentCompletion.call!(user_assessment)
         end
         user_assessment
       end

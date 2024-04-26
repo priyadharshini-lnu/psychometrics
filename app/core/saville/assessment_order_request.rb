@@ -30,7 +30,7 @@ module Saville
     def attributes
       {
         assessment_guid: user_assessment.assessment.external_settings[:assessment_id],
-        report_guids: user_assessment.external_user_reports(:saville).includes(:report).map(&:external_report_id),
+        report_guids: user_assessment.user_reports(:saville).includes(:report).map(&:external_report_id),
         norm_id: user_assessment.saville_norm_id,
         data_seprator: saville_user_assessment.data_seprator,
         return_url: campaign_url,

@@ -22,6 +22,7 @@ module Api
             end
 
             optional(:disabled).filled(:bool)
+            optional(:enabled).filled(:bool)
           end
         end
 

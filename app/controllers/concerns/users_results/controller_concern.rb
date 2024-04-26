@@ -109,7 +109,7 @@ module UsersResults::ControllerConcern
 
   def resource_params
     params[:resource].permit(
-      :current_element, :current_page, :status, :step, :progress, norm_data: {},
+      :current_element, :current_page, :status, :step, :progress, :completion_status_code, norm_data: {},
       prev_pages: [:element, :page, { questionIds: [] }], embedded_data: {}, answers: {}
     )
   end

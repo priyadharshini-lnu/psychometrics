@@ -11,6 +11,10 @@ module Api
         has_permission?(:assessors, :manage)
       end
 
+      def update?
+        has_permission?(:assessors, :manage)
+      end
+
       def destroy?
         has_permission?(:assessors, :manage)
       end

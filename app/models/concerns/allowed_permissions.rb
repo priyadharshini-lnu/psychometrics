@@ -53,6 +53,7 @@ module AllowedPermissions
       bulk_regenerate_reports
       finalize_scores
       external_score_import
+      report_file_upload
     ],
     'assessors' => %w[view manage],
     'registration_codes' => %w[view manage],
@@ -106,6 +107,7 @@ module AllowedPermissions
       bulk_regenerate_reports
       finalize_scores
       external_score_import
+      report_file_upload
     ],
     'registration_codes' => %w[view manage],
     'communications' => %w[view manage],
@@ -146,6 +148,7 @@ module AllowedPermissions
       finalize_scores
       view_stats
       external_score_import
+      report_file_upload
     ],
     'workshops' => %w[view manage],
     'idp_templates' => %w[view manage]
@@ -171,6 +174,7 @@ module AllowedPermissions
       regenerate_report
       bulk_regenerate_reports
       scores
+      report_file_upload
     ]
   }.freeze
 

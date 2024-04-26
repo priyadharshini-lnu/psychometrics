@@ -25,7 +25,7 @@ module Scoring
       }
     end
 
-    def calculate_max_score(question, scoring_template, result) # rubocop:disable Metrics/PerceivedComplexity
+    def calculate_max_score(question, scoring_template, result) # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
       scoring_template_by_choice = scoring_template.group_by { |template| template['choice'] }
       answered_choices = result['answers'].map { |answer| answer['choice'] }.uniq
 
@@ -45,6 +45,8 @@ module Scoring
           choice_values.max
         end
       end
+      return nil if max_values.compact.empty?
+
       max_values.compact.sum
     end
 

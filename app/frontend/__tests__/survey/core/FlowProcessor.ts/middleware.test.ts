@@ -289,7 +289,7 @@ describe('assessment with submit page', () => {
   const store: any = createStore(reducers)
   const next = vi.fn()
   const flow = middleware(store)
-  store.dispatch({ type: INIT, data: assessmentWithSubmit, result: {} })
+  store.dispatch({ type: INIT, data: assessmentWithSubmit, result: {scoring: {a: 1}} })
   flow(next)({ type: NEXT_PAGE }) // initial from saga
 
   test('next page should trigger display logic with valid condition and show question', () => {

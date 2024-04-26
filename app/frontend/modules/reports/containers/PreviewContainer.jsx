@@ -51,8 +51,7 @@ class PreviewContainer extends Component {
       results ? JSON.parse(results) : null,
       user,
       campaign,
-      userReportData,
-      JSON.parse(campaignFactorResults),
+      userReportData, JSON.parse(campaignFactorResults),
     )
     rstore.dispatch(init(normalizedData, userReportData))
   }

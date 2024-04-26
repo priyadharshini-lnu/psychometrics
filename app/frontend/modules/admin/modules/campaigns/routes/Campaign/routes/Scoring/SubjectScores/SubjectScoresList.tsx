@@ -34,7 +34,7 @@ type DataType = {
   campaignScoresCalculatedDate: string | null;
   errors: Error[] | null;
   stackRank: number | null ;
-  [key: string]: string | number | boolean | null | Error[];
+  [key: string]: string | number | boolean | null | Error[] | {[key: string]: boolean};
 }
 
 const connector = connect(
@@ -220,7 +220,7 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
   const tableColumns: ColumnsType<DataType> = useMemo(() => createSortedTableColumns(
     campaignFactorData,
     handleConfirmAction,
-    getSortOrder,
+    getSortOrder, meta,
   ), [campaignFactorData, getSortOrder])
 
   const dataSource = useMemo(() => processData(CampaignFactorValuesData), [CampaignFactorValuesData])
@@ -240,7 +240,7 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
         </Col>
         <div>
           <Tools
-            persmission={{
+            permissions={{
               export: campaignPermissions.viewCampaignScoring,
               import: campaignPermissions.manageCampaignScoring,
             }}
@@ -255,12 +255,11 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
             onClick={action => handleBulkConfirmAction(action)}
             isDisabled={selectedRowKeys.length === 0}
             persmission={
-            {
-              markFinalized: true,
-              markNotFinalized: true,
-              rescore: true,
+              {
+                changeFinalizedCampaignScore: meta.permissions?.changeFinalizedCampaignScoreBulk,
+                rescore: meta.permissions?.rescoreBulk,
+              }
             }
-          }
           />
         </div>
       </Row>
@@ -304,7 +303,7 @@ export const SubjectScoresList = connector(SubjectScoresListComponent)
 function createSortedTableColumns (
   campaignFactorData: CampaignFactorGroupType[],
   handleAction: (actions: string, subject)=> void,
-  getSortOrder,
+  getSortOrder, meta,
 ): ColumnsType<DataType> {
   let stackRankColumn: string | null = null
   const sortedGroupColumns: ColumnsType<DataType> = campaignFactorData?.map(group => ({
@@ -417,16 +416,17 @@ function createSortedTableColumns (
       fixed: 'right',
       width: 100,
       render: subject => (
-        <ToolsDropdown
-          onClick={action => handleAction(action, subject)}
-          persmission={
-          {
-            markFinalized: subject.campaignScoresFinalized === false && subject.errors === null,
-            markNotFinalized: subject.campaignScoresFinalized === true,
-            rescore: true,
-          }
-        }
-        />
+        <div>
+          <ToolsDropdown
+            onClick={action => handleAction(action, subject)}
+            persmission={
+                {
+                  changeFinalizedCampaignScore: meta.permissions?.changeFinalizedCampaignScore,
+                  rescore: meta.permissions?.rescore,
+                }
+              }
+          />
+        </div>
       ),
     },
   ]

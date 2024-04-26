@@ -14,6 +14,12 @@ module Assessors
       @user.is?(:assessor)
     end
 
+    def new_response?
+      @user.is?(:assessor) && !@record.campaign.user_assessments.
+        where(evaluator_id: @user.id, subject_id: @record.subject_id, assessment_id: @record.assessment_id).
+        where.not(status: :completed).exists?
+    end
+
     def subject_assessment?
       @user.is?(:assessor)
     end

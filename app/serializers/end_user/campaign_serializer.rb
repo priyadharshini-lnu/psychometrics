@@ -6,7 +6,8 @@ module EndUser
     attributes :id, :name, :type, :status, :start_date, :end_date,
                :groups, :ungrouped_assessments_ids, :campaign_user, :status,
                :is_timed_campaign, :campaigns_count, :user_reports_available,
-               :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invite, :workshop, :user_assessments
+               :privacy_consent_required, :campaign_time, :fixed_timed, :workshop_invite, :workshop, :user_assessments,
+               :practice_campaign
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
 

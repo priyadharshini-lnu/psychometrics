@@ -5,8 +5,8 @@ FactoryBot.define do
     sequence(:name) { |i| "assessment #{i}" }
     description { Faker::Lorem.characters(number: 5) }
     dimension
-    extra { { icon_color: '#845EC2' } }
     type { ::Assessments::Common }
+    extra { { icon_color: '#845EC2' } }
 
     trait :with_report do
       after(:create) do |assessment, _evaluator|
@@ -17,28 +17,24 @@ FactoryBot.define do
     factory :hogan_assessment, class: '::Assessments::Hogan' do
       category { Assessment::CATEGORIES[:hogan] }
       type { ::Assessments::Hogan }
-      dimension { nil }
       external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :iiht do
       category { Assessment::CATEGORIES[:iiht] }
       type { ::Assessments::Iiht }
-      dimension { nil }
       external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :saville do
       category { Assessment::CATEGORIES[:saville] }
       type { ::Assessments::Saville }
-      dimension { nil }
       external_settings { { assessment_id: 'assessmentId' } }
     end
 
     trait :pearson do
       category { Assessment::CATEGORIES[:pearson] }
       type { ::Assessments::Pearson }
-      dimension { nil }
       external_settings { { assessment_id: 'assessmentId' } }
     end
   end

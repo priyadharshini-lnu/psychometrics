@@ -13,11 +13,19 @@ import { INIT } from '~/modules/survey/core/preview/FlowProcessor/consts'
 // import { connected, disconnected } from '~/core/connection'
 import containerStyles from './AssessmentContainer.less'
 import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
-import { DefaultAntThemeWrapper } from '~/glint'
+import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
 import '~/modules/survey/styles/globals.less'
 import '~/modules/survey/utils/i18n'
+import { ParallaxWrapper } from '../components/ParallaxBackground/ParallaxWrapper'
 
 class AssessmentContainer extends Component {
+  constructor (props) {
+    super()
+    this.state = {
+      loading: !props.isAssessor && !props.showAsSinglePage,
+    }
+  }
+
   componentDidMount () {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
@@ -66,6 +74,8 @@ class AssessmentContainer extends Component {
     const {
       disabled, selectedLocale, type, showAsSinglePage, data, renderedByEnduser,
     } = this.props
+
+    const { loading } = this.state
     return (
       <ThemeWrapper
         renderedByEnduser={renderedByEnduser}
@@ -80,11 +90,17 @@ class AssessmentContainer extends Component {
             <DndProvider backend={HTML5Backend}>
               <div className={containerStyles.previewConainer}>
                 {disabled && this.overlay()}
-                <AssessmentPreview
-                  showAsSinglePage={showAsSinglePage}
-                  type={type}
-                  defaultLanguage={data.default_language}
-                />
+                {!showAsSinglePage
+                  && <ParallaxWrapper loading={loading} onLoaded={() => { this.setState({ loading: false }) }} />}
+                {!loading
+                  ? (
+                    <AssessmentPreview
+                      showAsSinglePage={showAsSinglePage}
+                      type={type}
+                      defaultLanguage={data.default_language}
+                    />
+                  )
+                  : <div className={containerStyles.loading}><PageLoadSpinner /></div>}
               </div>
             </DndProvider>
           </ConfigProvider>

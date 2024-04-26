@@ -57,6 +57,7 @@ const CampaignOptions: React.FC<Props> = ({
 
   const identifications = I18n.t('administration.campaigns.options.proctoring.identifications')
   const integrationTypes = I18n.t('administration.campaigns.options.proctoring.integration_types')
+  const proctoringTypes = I18n.t('administration.campaigns.options.proctoring.proctoring_types')
 
   useEffect(() => {
     fetch(parsedProjectId, parsedCampaignId)
@@ -110,6 +111,11 @@ const CampaignOptions: React.FC<Props> = ({
   const saveIdentificationType = (e) => {
     const { value } = e.target
     update(parsedProjectId, parsedCampaignId, { ...options, identification: value })
+  }
+
+  const saveProctoringType = (e) => {
+    const { value } = e.target
+    update(parsedProjectId, parsedCampaignId, { ...options, proctoringType: value })
   }
 
   const saveIntegrationType = (e) => {
@@ -240,6 +246,28 @@ const CampaignOptions: React.FC<Props> = ({
                                   ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
                                 )}
                               </Radio.Group>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col span={24}>
+                              <Row>
+                                <Col span={2}>
+                                  <label>
+                                    {I18n.t('administration.campaigns.options.proctoring.type')}
+                                  </label>
+                                </Col>
+                                <Col span={22}>
+                                  <Radio.Group
+                                    defaultValue="offline"
+                                    onChange={saveProctoringType}
+                                    value={options.proctoringType}
+                                  >
+                                    {Object.entries(proctoringTypes).map(
+                                      ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
+                                    )}
+                                  </Radio.Group>
+                                </Col>
+                              </Row>
                             </Col>
                           </Row>
                         </Col>

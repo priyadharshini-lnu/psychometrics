@@ -55,7 +55,7 @@ module EndUser
 
     def completion_percent
       result = object.users_result
-      return 100 if result.completed?
+      return 100 if result.deemed_completed?
 
       return result.progress == 100 ? 99 : result.progress if result.progress.present?
 

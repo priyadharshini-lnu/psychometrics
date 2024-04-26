@@ -31,6 +31,7 @@ import UpdateCampaignTimeModal from './AssessmentsReports/UpdateCampaignTimeModa
 import { SchedulingAssessmentModal } from './AssessmentsReports/AssessmentList/SchedulingAssessmentModal'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import UploadFileModal from './AssessmentsReports/UploadFileModal'
 
 const { I18n } = window
 
@@ -41,6 +42,7 @@ const MODALS = {
   UpdateCampaignTimeModal,
   SchedulingAssessmentModal,
   UpdateTimeModal,
+  UploadFileModal,
 }
 
 export const connecter = connect(

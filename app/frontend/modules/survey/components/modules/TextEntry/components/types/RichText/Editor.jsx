@@ -7,7 +7,7 @@ import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 
 function Editor ({
-  content, handleContentChange, readOnly = false, maxCharLimit = Infinity,
+  content, handleContentChange, readOnly = false, maxCharacterLimit = null, maxWordLimit = null,
 }) {
   const config = {
     iconsTemplate: 'font_awesome',
@@ -16,6 +16,7 @@ function Editor ({
       'paragraphFormat',
       'fullscreen',
       'charCounter',
+      'wordCounter',
     ],
     toolbarButtons: [
       'bold',
@@ -47,14 +48,20 @@ function Editor ({
     heightMin: 50,
     heightMax: 500,
     charCounterCount: true,
+    wordCounterCount: true,
     key: 'DUA2yE2C2F1A6A3A2A3qYFd1UQRFQIVb1MSMc2IWPNe1IFg1yD4C3D2C1C4C1H1H4B1D2==',
     attribution: false,
     toolbarSticky: false,
     pasteDeniedAttrs: ['style'],
   }
 
-  if (maxCharLimit && maxCharLimit !== Infinity) {
-    config.charCounterMax = maxCharLimit
+  if (maxCharacterLimit) {
+    config.charCounterMax = maxCharacterLimit
+  }
+  if (maxWordLimit) {
+    // Froala editor have some issue with wordCounterMax https://github.com/froala/wysiwyg-editor/issues/4767
+    // Will be uncommented when this is fixed
+    // config.wordCounterMax = maxWordLimit
   }
 
   const ref = createRef()

@@ -79,18 +79,21 @@ Rails.application.routes.draw do
       end
     end
 
-    constraints(proc { |request| request.format.html? }) do
-      get '/', to: 'users#dashboard', as: :dashboard, constraints: { format: :html }
-      get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
-    end
-
     resources :evaluations, only: %i[show] do
       get :subject_assessment
+      member do
+        get :new_response
+      end
       resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades do
         member do
           post :scoring
         end
       end
+    end
+
+    constraints(proc { |request| request.format.html? }) do
+      get '/', to: 'users#dashboard', as: :dashboard, constraints: { format: :html }
+      get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
     end
 
     resources :campaigns, only: [:index] do
@@ -100,7 +103,7 @@ Rails.application.routes.draw do
         end
       end
       resources :users, only: %i[index show]
-      resources :evaluations, only: %i[] do
+      resources :evaluations, only: %i[show] do
         member do
           get :evaluate
         end
@@ -237,6 +240,8 @@ Rails.application.routes.draw do
             patch :toggle_user_access
             get :webhook_payload
             get :possible_webhook_events
+            put :upload_file
+            delete :remove_file
           end
           collection do
             post :regenerate
@@ -899,7 +904,13 @@ Rails.application.routes.draw do
 
     scope module: :end_user do
       resources :campaigns, only: %i[show] do
+        collection do
+          get :join_with_code
+          get :join_with_token
+        end
+
         get :insights
+        put :reset_practice_campaign
       end
       get 'assessment_centers/:id', to: 'workshops#show', as: :workshop_page
       get :dashboard, to: 'users#dashboard'
@@ -1257,11 +1268,12 @@ Rails.application.routes.draw do
 
           resources :campaigns, only: [:update] do
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
-            jsonapi_resources :campaign_assessor_assessments, only: %i[index create destroy]
+            jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
             jsonapi_resources :workshops, only: %i[index show update] do
               member do
                 post :change_status
                 post :bulk_update_subjects
+                delete :remove_workshop
               end
               collection do
                 post :create_bulk_workshops

@@ -26,14 +26,14 @@ const ValidationProcessor = {
         err = MediaResponseValidator.run(question, mediaResponses)
       } else {
         // eslint-disable-next-line arrow-body-style, @typescript-eslint/no-explicit-any
-        const stripHTML = (answers: any[]) => answers.map((answer) => {
+        const removeTags = (answers: any[]) => answers.map((answer) => {
           return {
             ...answer,
-            value: Utils.stripHTML(answer.value),
+            value: Utils.removeTags(answer.value),
           }
         })
         const answers = isRichTextTextEntryQuestion(question) && result.answers
-          ? stripHTML(result.answers) : result.answers
+          ? removeTags(result.answers) : result.answers
         const resultModel = new Result(qwrap, answers, result.not_applicable, results, answeredQuestions)
         err = resultModel.validate()
       }

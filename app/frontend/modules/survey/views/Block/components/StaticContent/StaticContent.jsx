@@ -3,6 +3,8 @@ import Editor from '~/components/Editor'
 import styles from './StaticContent.less'
 import PropertyPanel from './PropertyPanel'
 import GetBackgroundStyles from './getBackgroundStyles'
+import pipedText from '~/libs/Editor/commands/pipedText'
+import store from '~/modules/survey/store'
 
 export default function StaticContent (props) {
   const {
@@ -21,6 +23,10 @@ export default function StaticContent (props) {
 
   const [opened, setOpened] = useState(true)
   const editorRef = useRef(null)
+
+  useEffect(() => {
+    pipedText(store)
+  }, [])
 
   useEffect(() => {
     const editorView = getEditorView()

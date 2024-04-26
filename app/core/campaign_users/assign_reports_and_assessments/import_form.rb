@@ -60,7 +60,7 @@ module CampaignUsers
         bundle_ids = report_bundles_ids.uniq
         licenses = Licenses::FetchQuery.new(context.campaign.client, bundle_ids).query
         bundle_ids.each do |bundle_id|
-          license = licenses.find { |l| l.report_family_id == bundle_id }
+          license = licenses.find { |l| l.report_family_id == bundle_id.to_i }
           unless license
             errors.add(:import_data, I18n.t('assign_reports.errors.not_enought_licenses', bundle_id: bundle_id))
           end

@@ -39,6 +39,10 @@ module Api
         has_permission?(:workshops, :manage)
       end
 
+      def remove_workshop?
+        has_permission?(:workshops, :manage) || @user.superadmin?
+      end
+
       def get_related_resources?
         true
       end

@@ -474,8 +474,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -634,10 +634,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
@@ -842,7 +842,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -919,8 +920,8 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
@@ -991,7 +992,8 @@ CREATE TABLE public.campaign_assessor_assessments (
     campaign_id bigint,
     assessment_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    allow_multiple_responses boolean
 );
 
 
@@ -1182,7 +1184,8 @@ CREATE TABLE public.campaign_options (
     integration_type integer DEFAULT 0 NOT NULL,
     proctoring_trial boolean DEFAULT false,
     workshop_booking_requires_prework_completion boolean DEFAULT false,
-    campaign_scoring_variables text
+    campaign_scoring_variables text,
+    proctoring_type integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1339,7 +1342,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    default_idp_template_id bigint
+    default_idp_template_id bigint,
+    practice_campaign boolean DEFAULT false
 );
 
 
@@ -1633,7 +1637,9 @@ CREATE TABLE public.communications (
     stop_reminder_datetime timestamp without time zone,
     stop_reminder boolean DEFAULT false NOT NULL,
     last_ran_at timestamp without time zone,
-    updated_by_id bigint
+    updated_by_id bigint,
+    assessment_completion_status_code character varying,
+    delivery_delay_hours integer
 );
 
 
@@ -2456,7 +2462,8 @@ CREATE TABLE public.iiht_user_assessments (
     url character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    schedule_id integer
+    schedule_id integer,
+    email character varying
 );
 
 
@@ -2811,7 +2818,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -3307,6 +3314,80 @@ ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
 
 
 --
+-- Name: privacy_setting_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.privacy_setting_translations (
+    id bigint NOT NULL,
+    custom_privacy_consent_text text,
+    locale character varying NOT NULL,
+    privacy_setting_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: privacy_setting_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.privacy_setting_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: privacy_setting_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.privacy_setting_translations_id_seq OWNED BY public.privacy_setting_translations.id;
+
+
+--
+-- Name: privacy_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.privacy_settings (
+    id bigint NOT NULL,
+    privacy_consent boolean DEFAULT false,
+    custom_privacy_policy_version integer,
+    custom_privacy_consent_text text,
+    privacy_link_text character varying,
+    privacy_link_url text,
+    project_id bigint,
+    enable_privacy_link boolean DEFAULT false,
+    custom_privacy_consent boolean DEFAULT false,
+    mask_data_for_pearson boolean DEFAULT false,
+    mask_data_for_saville boolean DEFAULT false,
+    mask_data_for_hogan boolean DEFAULT false,
+    mask_data_for_iiht boolean DEFAULT false,
+    mask_data_for_examus boolean DEFAULT false
+);
+
+
+--
+-- Name: privacy_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.privacy_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: privacy_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.privacy_settings_id_seq OWNED BY public.privacy_settings.id;
+
+
+--
 -- Name: proctoring_sessions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3391,7 +3472,8 @@ CREATE TABLE public.profile_settings (
     updated_at timestamp(6) without time zone NOT NULL,
     project_id bigint NOT NULL,
     required_default_fields json DEFAULT '{}'::json,
-    locked_default_fields json DEFAULT '{}'::json
+    locked_default_fields json DEFAULT '{}'::json,
+    enabled_default_fields json DEFAULT '{"age":true,"gender":true,"photo":true}'::json
 );
 
 
@@ -3681,12 +3763,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -5045,7 +5127,8 @@ CREATE TABLE public.user_assessments (
     schedule_updated boolean DEFAULT false,
     meeting_type integer DEFAULT 0,
     meeting_link character varying,
-    require_scheduling boolean DEFAULT false
+    require_scheduling boolean DEFAULT false,
+    completion_status_code character varying
 );
 
 
@@ -6608,6 +6691,20 @@ ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: privacy_setting_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_setting_translations ALTER COLUMN id SET DEFAULT nextval('public.privacy_setting_translations_id_seq'::regclass);
+
+
+--
+-- Name: privacy_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_settings ALTER COLUMN id SET DEFAULT nextval('public.privacy_settings_id_seq'::regclass);
+
+
+--
 -- Name: proctoring_sessions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7820,6 +7917,22 @@ ALTER TABLE ONLY public.privacy_consents
 
 ALTER TABLE ONLY public.privacy_links
     ADD CONSTRAINT privacy_links_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: privacy_setting_translations privacy_setting_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_setting_translations
+    ADD CONSTRAINT privacy_setting_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: privacy_settings privacy_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_settings
+    ADD CONSTRAINT privacy_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -9850,6 +9963,27 @@ CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btre
 
 
 --
+-- Name: index_privacy_setting_t18n_on_privacy_setting_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_privacy_setting_t18n_on_privacy_setting_id_and_locale ON public.privacy_setting_translations USING btree (privacy_setting_id, locale);
+
+
+--
+-- Name: index_privacy_setting_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_setting_translations_on_locale ON public.privacy_setting_translations USING btree (locale);
+
+
+--
+-- Name: index_privacy_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_settings_on_project_id ON public.privacy_settings USING btree (project_id);
+
+
+--
 -- Name: index_proctoring_sessions_on_campaign_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11040,13 +11174,6 @@ CREATE UNIQUE INDEX membership_columns_uniq_index ON public.memberships USING bt
 
 
 --
--- Name: sub_eval_campaign_assessment; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX sub_eval_campaign_assessment ON public.user_assessments USING btree (subject_id, evaluator_id, campaign_id, assessment_id);
-
-
---
 -- Name: taggings_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11346,6 +11473,14 @@ ALTER TABLE ONLY public.dimensions
 
 ALTER TABLE ONLY public.admin_jobs
     ADD CONSTRAINT fk_rails_16c3530f54 FOREIGN KEY (owner_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: privacy_settings fk_rails_1756fc8ca2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_settings
+    ADD CONSTRAINT fk_rails_1756fc8ca2 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -11770,6 +11905,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 ALTER TABLE ONLY public.dashboards
     ADD CONSTRAINT fk_rails_4d4d1beb84 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: privacy_setting_translations fk_rails_4f38fd7ce2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_setting_translations
+    ADD CONSTRAINT fk_rails_4f38fd7ce2 FOREIGN KEY (privacy_setting_id) REFERENCES public.privacy_settings(id);
 
 
 --
@@ -12633,7 +12776,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -13163,7 +13306,20 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240424120254'),
+('20240424072007'),
+('20240419160359'),
+('20240419121317'),
+('20240419110536'),
 ('20240417083055'),
+('20240416093121'),
+('20240415123000'),
+('20240403123008'),
+('20240401134614'),
+('20240401112155'),
+('20240401110550'),
+('20240328111136'),
+('20240327093347'),
 ('20240325103207'),
 ('20240321100551'),
 ('20240319091619'),
@@ -13175,6 +13331,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240314103433'),
 ('20240314103432'),
 ('20240314080041'),
+('20240307081523'),
 ('20240229091603'),
 ('20240221091507'),
 ('20240213142024'),

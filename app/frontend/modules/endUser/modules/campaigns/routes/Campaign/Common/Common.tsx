@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import {
   InfoCircleOutlined,
-  PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined,
+  PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined, ReloadOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
@@ -18,6 +18,7 @@ import {
   continueCampaign,
   beginCampaign,
   reset as resetCampaign,
+  resetPracticeCampaign,
 } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { loginHogan } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
@@ -45,6 +46,7 @@ const connector = connect(
     resetCampaign,
     loginHogan,
     acceptPolicy,
+    resetPracticeCampaign,
   },
 )
 
@@ -64,6 +66,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   },
   beginCampaign,
   continueCampaign,
+  resetPracticeCampaign,
 }) => {
   const { modal, message } = App.useApp()
   const {
@@ -161,6 +164,20 @@ const CommonComponent: FC<CommonComponentProps> = ({
     })
   }
 
+  const handleResetPracticeCampaign = (campaignId) => {
+    modal.confirm({
+      title: I18n.t('campaign.restart_practice'),
+      content: I18n.t('campaign.restart_practice_confirmation'),
+      onOk () {
+        resetPracticeCampaign(campaignId).then(() => {
+          message.success(I18n.t('campaign.restart_practice_success'))
+        }).catch((error) => {
+          message.error(error)
+        })
+      },
+    })
+  }
+
   const statusElement = (
     <Row gutter={[64, 0]}>
       <Col span={8}>
@@ -252,6 +269,21 @@ const CommonComponent: FC<CommonComponentProps> = ({
                           {I18n.t('campaign.begin')}
                           {' '}
                           <DirectionalArrowIcon />
+                        </Button>
+                      </>
+                    )}
+                    {campaign.practiceCampaign && hasStartedCampaign && !isProctored() && (
+                      <>
+                        <Title className={styles.beginText} level={4}>
+                          {I18n.t('campaign.restart_practice')}
+                        </Title>
+                        <Button
+                          size="small"
+                          type="primary"
+                          onClick={() => handleResetPracticeCampaign(campaign.id)}
+                          icon={<ReloadOutlined />}
+                        >
+                          {I18n.t('campaign.restart_practice')}
                         </Button>
                       </>
                     )}

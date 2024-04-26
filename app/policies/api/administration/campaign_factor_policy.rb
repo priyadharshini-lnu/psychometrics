@@ -4,7 +4,7 @@ module Api
   module Administration
     class CampaignFactorPolicy < ::Api::Administration::BasePolicy
       def index?
-        @user.is?(:assessor) || has_permission?(:campaign_factors, :view)
+        @user.is?(:assessor) || has_permission?(:campaign_factors, :view) || has_permission?(:results, :scores)
       end
 
       def create?

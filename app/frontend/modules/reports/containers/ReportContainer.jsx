@@ -29,10 +29,12 @@ class ReportContainer extends Component {
       I18nStore.setLocale(_.get(selectedLocale, 'code', document.body.dataset.locale))
       I18nStore.locales = locales
     }
+
     data.skipLogic = skipLogic
     const normalizedData = normalize(data, schema)
     store.init(data, results, user, campaign, userReport.reportData || [], userReport.campaignFactorResults || [])
     rstore.dispatch(init(normalizedData, userReport))
+
     this.setState({ selectedLocale })
     const visiblePages = _.filter(PageList.list, page => LogicResolver.run(page.displayLogic))
     setPages && setPages(visiblePages)
@@ -45,16 +47,21 @@ class ReportContainer extends Component {
     }
   }
 
+  componentWillUnmount () {
+    store.reinit()
+  }
+
   render () {
     const {
-      userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove,
+      userReport, userReport: { moduleOverrides }, dashboard, allowEdit, allowApprove,
     } = this.props
-    return (
-      <Provider store={rstore}>
-        <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
 
+    return (
+      <Provider store={rstore} key={userReport.id}>
+        <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
           <div className="row">
             <Preview
+              key={userReport.id}
               rstore={globalStore}
               localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')}
               allowEdit={allowEdit}

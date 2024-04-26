@@ -204,8 +204,36 @@ export const NEW_COMMENT = 'campaigns/userReports/NEW_COMMENT'
 export const UPDATE_COMMENT = 'campaigns/userReports/UPDATE_COMMENT'
 export const READ_COMMENT = 'campaigns/userReports/READ_COMMENT'
 export const FETCH_POSSIBLE_WEBHOOK_EVENTS = 'campaigns/userReports/FETCH_POSSIBLE_WEBHOOK_EVENTS'
+export const UPLOAD_FILE = 'campaigns/userReports/UPLOAD_FILE'
+export const REMOVE_FILE = 'campaigns/userReports/REMOVE_FILE'
+
+const updateIndividualReport = (state: State, response: UserReportDetails) => (
+  updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
+    if (userReport.id !== response.id) return userReport
+
+    return response
+  }))
+)
 
 export const selectModule = (id: number) => ({ type: SELECT_MODULE, id })
+
+export const uploadFile = (campaignId: number, id: number, file: FormData) => ({
+  type: UPLOAD_FILE,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/upload_file`,
+    body: file,
+    contentType: 'multipart/form-data;' as const,
+  },
+})
+
+export const removeFile = (campaignId: number, id: number) => ({
+  type: REMOVE_FILE,
+  request: {
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/remove_file`,
+  },
+})
 
 export const fetchSingle = (campaignId: number, id: number, params = {}) => ({
   type: FETCH_SINGLE,
@@ -393,12 +421,13 @@ export const readComment = (id: string) => ({
   id,
 })
 
-
 export const CLEAR_USER_REPORT_DETAILS = 'campaigns/userReports/CLEAR_USER_REPORT_DETAILS'
 export const clearUseReportDetails = () => ({ type: CLEAR_USER_REPORT_DETAILS })
 
 type FetchType = ApiActionResponse<{userReports: UserReport[]}>
 type FetchSingleType = ApiActionResponse<UserReportDetails>
+type UploadFileType = ApiActionResponse<UserReportDetails>
+type RemoveFileType = ApiActionResponse<UserReportDetails>
 type RegenerateReports = ApiActionResponse<{}>
 type SelectRecordsType = ReturnType<typeof selectRecords>
 type ToggleUserAccessType = ApiActionResponse<{id: number}>
@@ -412,7 +441,6 @@ type ApproveReport = ApiActionResponse<{status: string}>
 type RequestChanges = ApiActionResponse<{status: string}>
 type SendToApprove = ApiActionResponse<{status: string}>
 type RemoveApproval = ApiActionResponse<{status: string}>
-
 
 const ExternalReportDetailsTR = t.type({
   id: t.number,
@@ -433,7 +461,6 @@ export const fetchExternalReportDetails = (campaignId: number, id: number) => ({
     typedResponse: ExternalReportDetailsTR,
   },
 })
-
 
 const HANDLERS = {
   [FETCH_SINGLE]: (state: State, action: FetchSingleType) => ({
@@ -466,6 +493,14 @@ const HANDLERS = {
         return userReport
       }))
   ),
+  [UPLOAD_FILE]: (state: State, { response }: UploadFileType) => (
+    updateIndividualReport(state, response)
+  ),
+
+  [REMOVE_FILE]: (state: State, { response }: RemoveFileType) => (
+    updateIndividualReport(state, response)
+  ),
+
   [TOGGLE_USER_ACCESS_REQUEST]: (state: State, { id }: ToggleUserAccessType) => (
     updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
       if (userReport.id !== id) return userReport
