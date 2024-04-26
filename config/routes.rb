@@ -1017,6 +1017,7 @@ Rails.application.routes.draw do
           get :user_idp_skills
           get :available_development_actions
           post :save_plan
+          put :update_progress
         end
       end
 

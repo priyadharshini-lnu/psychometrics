@@ -71,6 +71,16 @@ module EndUser
       end
     end
 
+    def update_progress
+      user_idp_development_action = current_user.user_idp_development_actions.find(progress_params[:id])
+
+      if user_idp_development_action.update!(progress: progress_params[:progress])
+        render json: user_idp_development_action, status: :ok
+      else
+        render json: { errors: user_idp_development_action.errors }, status: 422
+      end
+    end
+
     private
 
     def validate_user_idp_development_action(user_idp_development_actions_params)
@@ -106,6 +116,10 @@ module EndUser
           :progress
         )
       end
+    end
+
+    def progress_params
+      params.require(:user_idp_development_action).permit(:id, :progress)
     end
   end
 end

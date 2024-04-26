@@ -59,4 +59,14 @@ RSpec.describe EndUser::UserIdpDevelopmentActionsController, type: :controller d
       expect(parsed_result['meta']['record_count']).to eq(3)
     end
   end
+
+  describe 'PUT update_progress' do
+    it 'updates progress of user idp development action' do
+      put :update_progress,
+          params: { user_idp_development_action: { id: user_idp_development_action.id, progress: 50 } }
+      expect(response).to have_http_status(:ok)
+      user_idp_development_action.reload
+      expect(user_idp_development_action.progress).to eq(50)
+    end
+  end
 end
