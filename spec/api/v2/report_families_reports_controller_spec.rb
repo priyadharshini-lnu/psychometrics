@@ -88,7 +88,7 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
                 report: {
                   data: {
                     type: 'reports',
-                    id: create(:report).id.to_s
+                    id: report.id.to_s
                   }
                 }
               }
