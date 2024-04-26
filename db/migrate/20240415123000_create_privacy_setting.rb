@@ -1,7 +1,7 @@
 class CreatePrivacySetting < ActiveRecord::Migration[7.1]
   def change
     create_table :privacy_settings do |t|
-      t.boolean :mask_identity_for_third_party_assessment, default: false
+      t.boolean :mask_data_for_third_party_assessment, default: false
       t.boolean :privacy_consent, default: false
       t.integer :custom_privacy_policy_version, default: nil
       t.text :custom_privacy_consent_text
