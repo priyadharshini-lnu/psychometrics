@@ -57,10 +57,6 @@ en:
               reports_disabled: You selected disabled Report(s)
             removing_report_ids:
               not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
-        campaigns_external_scores_import_form:
-          attributes:
-            file:
-              invalid_format: Please upload xlsx file
         assign_reports_and_assessments:
           attributes:
             assessment_id:
@@ -69,6 +65,10 @@ en:
               blank: Report Bundle ID can't be blank
             report_id:
               blank: Report ID can't be blank
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: Please upload xlsx file
         column:
           attributes:
             name:

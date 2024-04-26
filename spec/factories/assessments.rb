@@ -7,7 +7,6 @@ FactoryBot.define do
     dimension
     type { ::Assessments::Common }
     extra { { icon_color: '#845EC2' } }
-    type { ::Assessments::Common }
 
     trait :with_report do
       after(:create) do |assessment, _evaluator|
