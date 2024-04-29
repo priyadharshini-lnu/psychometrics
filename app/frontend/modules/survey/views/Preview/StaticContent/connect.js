@@ -3,9 +3,9 @@ import { updateHighlight } from '~/modules/survey/core/preview/FlowProcessor/act
 import { getCurrentBlock, getI18n, getHighlightByType } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 
 export default connect(
-  ({ preview, preview: { initialized } }) => {
+  ({ preview, preview: { initialized } }, props) => {
     if (!initialized) return
-    const block = getCurrentBlock(preview)
+    const block = props.block || getCurrentBlock(preview)
     return {
       preview,
       block,

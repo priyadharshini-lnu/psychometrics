@@ -2,11 +2,13 @@ import React, { useState, useRef } from 'react'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import { Button, Alert } from 'antd'
+import _ from 'lodash'
 import { useMessageBus } from '~/hooks/useMessageBus'
 import { RootState } from '~/modules/survey/core/rootReducers'
 import { getAllAnsweredQuestions } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import QuestionList from '../QuestionList'
 import styles from './styles.less'
+import StaticContent from '~/modules/survey/views/Preview/StaticContent'
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
@@ -17,7 +19,7 @@ interface Props extends PropsFromRedux {
 let divScrollTop = 0
 
 const SinglePage: React.FC<Props> = ({
-  questions,
+  questions, blocks,
 }) => {
   const [visibleQuestions, setVisibleQuestions] = useState<number[]>([])
   const ref = useRef<HTMLDivElement>(null)
@@ -53,6 +55,8 @@ const SinglePage: React.FC<Props> = ({
     ? questions.filter((q:{id:number}) => visibleQuestions.includes(q.id))
     : questions
 
+  const visibleBlocks = _.groupBy(filteredQuestions, (q:{block_id:number}) => q.block_id)
+
   if (!questions.length) {
     return (
       <div ref={ref} className={styles.page}>
@@ -69,13 +73,22 @@ const SinglePage: React.FC<Props> = ({
           <Button type="link" onClick={() => updateVisibility([])}>Show All</Button>
         </div>
       )}
-      <div className={cs(styles.block)}>
-        <div>
-          <div className={cs(styles.questionsBlock)}>
-            <QuestionList page={null} readOnly questions={filteredQuestions} backButtonPressed={false} />
+      {_.map(visibleBlocks, (questions, blockId) => {
+        const block = blocks[blockId]
+        const { staticContent } = block.props
+
+        return (
+          <div className={cs(styles.block)} key={blockId}>
+            <div>
+              {staticContent && <StaticContent {...{ block }} key={blockId} />}
+              <div className={cs(styles.questionsBlock)}>
+                <QuestionList page={null} readOnly questions={questions} backButtonPressed={false} />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )
+      })}
+
     </div>
   )
 }
@@ -87,6 +100,7 @@ export const connecter = connect(
     return {
       preview,
       questions: initialized && getAllAnsweredQuestions(preview),
+      blocks: preview.blocks,
       results: preview.results,
     }
   },
