@@ -4,6 +4,7 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
   attributes :name, :email, :first_name, :last_name, :full_name, :updated_at, :disabled, :enable_2fa,
              :created_by, :modified_by, :role, :project_id, :photo_url, :user_profile_data
   has_one :user_profile, foreign_key_on: :related
+
   delegate :photo_url, to: :user_profile, allow_nil: true
 
   after_save lambda {

@@ -1492,8 +1492,10 @@ en:
           enable: Enable User Access
   campaign_users:
     actions:
+      add_manager: Add manager
       add_report: Add report
       extend_time: Extend Time
+      search_user: Search user
     assessments:
       progress: Progress
     details:
@@ -1948,6 +1950,9 @@ en:
         invalid_subdomain_format: Wrong subdomain format.
         reserved_subdomain: Subdomain %{value} is reserved
         uniq_subdomain: Subdomain should be unique.
+      add_manager:
+        manager_not_found: Manager not found or not part of the same project
+        user_not_found: User not found or not part of the same project
       admin:
         already_added: Admin with email already added.
       already_assigned?: Already assigned

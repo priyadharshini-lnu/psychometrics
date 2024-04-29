@@ -3,7 +3,7 @@ import {
   Row, Button, Descriptions, Switch, Tag, App, Tabs, Skeleton,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
-import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { PlusOutlined, ExclamationCircleOutlined, EditOutlined } from '@ant-design/icons'
 import { useParams, useHistory } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
@@ -31,6 +31,7 @@ import UpdateCampaignTimeModal from './AssessmentsReports/UpdateCampaignTimeModa
 import { SchedulingAssessmentModal } from './AssessmentsReports/AssessmentList/SchedulingAssessmentModal'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { AssignManagerFormModal } from './AssignManagerFormModal'
 import UploadFileModal from './AssessmentsReports/UploadFileModal'
 
 const { I18n } = window
@@ -42,6 +43,7 @@ const MODALS = {
   UpdateCampaignTimeModal,
   SchedulingAssessmentModal,
   UpdateTimeModal,
+  AssignManagerFormModal,
   UploadFileModal,
 }
 
@@ -75,7 +77,7 @@ export const UserDetails: React.FC<Props> = ({
   const {
     projectId, campaignId, tab: paramTab, id: userId,
   } = useParams<{
-    projectId:string, campaignId:string, tab:string, id: string
+    projectId: string, campaignId: string, tab: string, id: string
   }>()
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(userId, 10)
@@ -153,7 +155,7 @@ export const UserDetails: React.FC<Props> = ({
           subTitle={user.email}
           extra={user.permissions.remove && [
             <Button key="3" onClick={() => handleDelete()}>
-              {I18n.t('common.actions.remove') }
+              {I18n.t('common.actions.remove')}
             </Button>,
           ]}
         >
@@ -166,7 +168,7 @@ export const UserDetails: React.FC<Props> = ({
                   () => {
                     toggleActive(campaignId, parsedUserId, { updateInListing: false })
                   }
-              }
+                }
               />
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('common.model.campaigns')}>
@@ -187,9 +189,9 @@ export const UserDetails: React.FC<Props> = ({
             <Descriptions.Item label={I18n.t('common.column.status')}>
               {user.additionalTime && user.status === 'interrupted'
                 && (
-                <span className="prs">
-                  {`+ ${Math.round(user.additionalTime / 60)} ${I18n.t('common.text.minutes')}`}
-                </span>
+                  <span className="prs">
+                    {`+ ${Math.round(user.additionalTime / 60)} ${I18n.t('common.text.minutes')}`}
+                  </span>
                 )}
               <Tag key={status} color={statusToColor[user.status]}>
                 {I18n.t(`campaign_users.details.statuses.${user.status}`)}
@@ -201,21 +203,27 @@ export const UserDetails: React.FC<Props> = ({
             <Descriptions.Item label={I18n.t('common.column.created_at')}>
               {user.createdAt}
             </Descriptions.Item>
-
             <Descriptions.Item label={I18n.t('campaign_users.details.manager')}>
-              {user.managerDetails.managerId && (
+              {user.manager.name && (
                 <>
-                  {user.managerDetails.managerName}
+                  {user.manager.name}
                   {' '}
                   (
-                  {
-                    user.managerDetails.managerEmail
-                  }
+                  {user.manager.email}
                   )
                 </>
               )}
+              <Button size="small">
+                <EditOutlined
+                  onClick={() => openModal('AssignManagerFormModal', {
+                    projectId,
+                    userId,
+                    manager: user.manager,
+                  })
+                  }
+                />
+              </Button>
             </Descriptions.Item>
-
             {canExtendTime && (
               <>
                 <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>

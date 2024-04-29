@@ -4,13 +4,15 @@ require 'rails_helper'
 require 'swagger_helper'
 
 describe Api::V2::Administration::ProjectsController, swagger_doc: 'v2/swagger.json', type: :request do
-  let!(:client) { create(:tenancy) }
-  let!(:client_id) { client.id }
-  let!(:project) { create(:project, parent: client, subdomain: 'project-subdomain') }
   let!(:superadmin) { create(:superadmin) }
+  let!(:project_admin) { create(:user, project: project, role: 'Users::Admin') }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
-
-  before { sign_in(superadmin) }
+  let!(:campaign) { create(:campaign) }
+  let!(:project) { campaign.project }
+  let!(:client) { project.client }
+  let!(:client_id) { client.id }
+  let!(:project_membership) { create(:project_admin_membership, user: project_admin, client: project) }
+  before { sign_in(project_admin) }
 
   path '/clients/{client_id}/projects/' do
     get 'Project List' do
@@ -90,6 +92,8 @@ describe Api::V2::Administration::ProjectsController, swagger_doc: 'v2/swagger.j
           }
         end
 
+        before { sign_in(superadmin) }
+
         run_test! do |response|
           client_response = JSON.parse(response.body)['data']
           expect(client_response).to have_key('id')
@@ -134,6 +138,78 @@ describe Api::V2::Administration::ProjectsController, swagger_doc: 'v2/swagger.j
               }
             }
           }
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/seach_user' do
+    get 'Project Users list' do
+      operationId 'ProjectUserslist'
+      description 'Fetch Projects users list'
+
+      tags 'ProjectUsers'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string, required: true
+      parameter name: :'filter[search_query]', in: :query
+
+      response '200', 'Projects users list' do
+        let!(:project_id) { project.id }
+        let!(:user) { create(:user, project: project) }
+        let(:'filter[search_query]') { 'test' }
+
+        run_test! do |response|
+          users = JSON.parse(response.body)
+
+          users_response = users['data'].find { |u| u['id'] == user.id.to_s }
+          expect(users_response).to have_key('id')
+          expect(users_response).to have_attribute(:name).with_value(user.name)
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/add_manager' do
+    put 'Add manager to User' do
+      operationId 'AddManager'
+      description 'Add manager to user'
+
+      tags 'AddManager'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string, required: true
+      parameter name: :user_id, in: :query, type: :string, required: true
+      parameter name: :manager_id, in: :query, type: :string, required: true
+
+      response '200', 'Add manager to user' do
+        let!(:user) { create(:user, project: project) }
+        let!(:manager) { create(:user, project: project) }
+
+        let!(:project_id) { project.id }
+        let!(:user_id) { user.id }
+        let!(:manager_id) { manager.id }
+
+        run_test! do |response|
+          manager_response = JSON.parse(response.body)['data']
+          expect(manager_response).to have_key('id')
+          expect(manager_response).to have_attribute(:email).with_value(manager.email)
+          expect(manager_response).to have_attribute(:name).with_value(manager.decorate.full_name)
+        end
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let!(:other_project) { create(:project) }
+        let!(:manager) { create(:user, project: other_project) }
+        let!(:project_id) { project.id }
+        let!(:user_id) { 9999 }
+        let!(:manager_id) { manager.id }
+
+        run_test! do |response|
+          errors = JSON.parse(response.body)['errors']
+
+          expect(errors.first['title']).to eq('Manager not found or not part of the same project')
+          expect(errors.second['title']).to eq('User not found or not part of the same project')
         end
       end
     end

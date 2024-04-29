@@ -65,10 +65,10 @@ module Administration
           required(:toggle_status).filled(:bool?)
           required(:remove).filled(:bool?)
         end
-        required(:manager_details).hash do
-          optional(:manager_id).maybe(:str?)
-          optional(:manager_name).maybe(:str?)
-          optional(:manager_email).maybe(:str?)
+        required(:manager).hash do
+          optional(:id).maybe(:int?)
+          optional(:name).maybe(:str?)
+          optional(:email).maybe(:str?)
         end
         required(:completed_at).maybe(:str?)
         required(:user_assessments).array(Administration::UserAssessmentSchema.schema(_, _))

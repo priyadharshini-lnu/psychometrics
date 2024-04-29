@@ -15,6 +15,14 @@ module Api
         has_permission?(:projects, :manage, project_id: project_id)
       end
 
+      def seach_user?
+        has_permission?(:projects, :manage_users, project_id: project_id)
+      end
+
+      def add_manager?
+        has_permission?(:projects, :manage_users, project_id: project_id)
+      end
+
       def workshop_status_export?
         has_permission?(:workshops, :export_status, project_id: project_id)
       end

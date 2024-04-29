@@ -10,7 +10,6 @@ module Campaigns
         first_name
         last_name
         email
-        locale
         password
         overwrite_password
         schedule_start_date

@@ -1202,6 +1202,8 @@ Rails.application.routes.draw do
           jsonapi_resources :projects, only: :show do
             member do
               get :workshop_status_export
+              get :seach_user
+              put :add_manager
             end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do

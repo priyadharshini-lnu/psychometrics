@@ -22,7 +22,6 @@ module AdminJobs
         user.first_name,
         user.last_name,
         user.email,
-        user.locale,
         nil,
         nil,
         campaign_user.schedule_start_date,

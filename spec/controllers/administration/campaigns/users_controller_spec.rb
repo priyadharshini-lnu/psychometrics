@@ -102,11 +102,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'remove' => true,
         'toggle_status' => true
       },
-      'manager_details' => {
-        'manager_id' => nil,
-        'manager_email' => nil,
-        'manager_name' => nil
-      },
+      'manager' => {},
       'hogan_id' => nil
     })
   end
