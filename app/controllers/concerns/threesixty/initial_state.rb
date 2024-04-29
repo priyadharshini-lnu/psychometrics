@@ -46,7 +46,7 @@ module Threesixty::InitialState
           remainingTime: remaining_maintenance_time
         },
         lighthousePrivacyUrl: Settings.privacy_url,
-        privacyPolicyVersion: @current_project.privacy_setting.custom_privacy_policy_version,
+        privacyPolicyVersion: @current_project.current_privacy_policy_version,
         customPrivacyConsentText: custom_privacy_consent_text,
         showBookings: show_bookings?
       },
