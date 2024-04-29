@@ -1,0 +1,34 @@
+@import "~/styles/spacing.less";
+
+.main {
+  padding: 80px;
+  flex: 1;
+}
+
+.box {
+  padding: @space-4;
+  margin-top: 16px;
+}
+
+.pageContent {
+  overflow-x: hidden;
+  margin: 0 auto;
+  padding: @space-4;
+  display: flex;
+  flex-direction: column;
+  gap: @space-4;
+}
+
+.avatar {
+  width: 63px;
+  height: 63px;
+  margin-right: @space-4;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  .name {
+    font-weight: 700;
+  }
+}
