@@ -44,6 +44,7 @@ class UsersResult < ApplicationRecord
     return if !completed? || external_results.blank? || assessment.internal?
 
     update!(scoring: ::UsersResults::CalculateScoring.call!(self))
+    user_assessment.calculate_and_save_campaign_scoring
   end
 
   def threesixty_subject
