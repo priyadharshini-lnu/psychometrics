@@ -46,7 +46,7 @@ module CampaignUsers
           users = context.campaign.users.where(email: batch_rows.pluck(:email))
 
           batch_rows.each.with_index do |attrs, index|
-            user = users.find { |u| u.email == attrs[:email] }
+            user = users.find { |u| u.email == attrs[:email].downcase }
             unless user
               errors.add(:import_data,
                          I18n.t('assign_reports.errors.user_not_found',

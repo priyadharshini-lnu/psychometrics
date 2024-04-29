@@ -29,14 +29,14 @@ describe CampaignUsers::AssignReportsAndAssessments::ProcessImport do
         norm_id: norm.id
       },
       {
-        email: 'john@cc.com',
+        email: 'John@cc.com',
         report_bundle_id: report2.report_families.first.id,
         report_id: report2.id,
         assessment_id: assessment2.id,
         norm_id: norm.id
       },
       {
-        email: 'smith@cc.com',
+        email: 'SMITH@cc.com',
         report_bundle_id: report.report_families.first.id,
         report_id: report.id,
         assessment_id: assessment.id,

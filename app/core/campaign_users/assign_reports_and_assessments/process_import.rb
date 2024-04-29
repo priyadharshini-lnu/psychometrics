@@ -28,7 +28,7 @@ module CampaignUsers
             campaign_users = campaign.campaign_users.where(user_id: users.pluck(:id))
 
             batch_rows.each do |attrs|
-              user = users.find { |u| u.email == attrs[:email] }
+              user = users.find { |u| u.email == attrs[:email].downcase }
               campaign_user = campaign_users.find { |cu| cu.user_id == user.id }
 
               next unless user && campaign_user
