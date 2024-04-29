@@ -7,11 +7,11 @@ module Administration
       skip_before_action :pundit_authorize, only: %i[spoof]
 
       def index
-        users = campaign.
-                users.
+        users = User.joins(:campaign_users).
+                where(campaign_users: { campaign_id: campaign.id }).
                 includes(
                   :creator, :modifier, :user_profile, campaign_users: [:campaign], user_assessments: :users_result
-                ).ransack(params[:filters]).result.distinct
+                ).ransack(params[:filters]).result
 
         respond_to do |format|
           format.json do
