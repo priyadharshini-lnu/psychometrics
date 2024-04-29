@@ -1991,6 +1991,8 @@ en:
         overlaps_time: Overlaps interval %{interval}
         start_date_should_be_less: Start date should be less than end date
         start_time_should_be_less: Start time should be less than end time
+      user_idp_plan:
+        idp_template_already_assigned_to_user: This Idp Template is already assiged to this user and is active
       workshop_invited_subject_create:
         already_exists: Subject already exists in the invite.
       workshop_subject_create:

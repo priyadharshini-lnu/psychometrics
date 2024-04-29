@@ -1396,6 +1396,7 @@ Rails.application.routes.draw do
               get :search_managers
             end
           end
+          resources :user_idp_plans, only: %i[create]
         end
       end
     end
