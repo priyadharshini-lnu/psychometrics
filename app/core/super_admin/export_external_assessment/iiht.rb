@@ -61,7 +61,7 @@ module SuperAdmin
 
       def users_results
         UsersResult.joins(:user_assessment).
-          where(user_assessments: { campaign_id: campaign_ids, assessment_id: assessment.id }).
+          where(user_assessments: { campaign_id: campaign_ids, assessment_id: assessment.id, status: :completed }).
           includes(campaign: :project, user_assessment: :evaluator)
       end
     end
