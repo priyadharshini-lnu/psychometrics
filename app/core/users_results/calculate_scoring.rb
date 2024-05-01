@@ -32,6 +32,8 @@ module UsersResults
 
     # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def call
+      return broadcast :ok, {} unless users_result.assessment.dimension
+
       factors_scoring = FactorsScoring.where(assessment_id: users_result.assessment_id).joins(:factor).all
       factors_scoring_map = factors_scoring.group_by(&:factor_id)
       questions_ids = factors_scoring.map(&:question_id).uniq
