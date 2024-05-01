@@ -20,13 +20,6 @@ class PageFooter extends Component {
     saveButtonPressed: false,
   }
 
-  componentDidMount () {
-    window.onbeforeunload = () => {
-      if (this.areQuestionsInProgress()) { return true }
-      return null
-    }
-  }
-
   areQuestionsInProgress = () => {
     const { preview: { inProgressQuestions } } = this.props
     return inProgressQuestions.length

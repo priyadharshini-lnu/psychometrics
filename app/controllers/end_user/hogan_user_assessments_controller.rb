@@ -17,7 +17,6 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
       on(:ok) do
         hogan_credential = HoganCredential.find_by(user_id: current_user.id)
         render json: ::EndUser::HoganCredentialSerializer.new(context: {
-          current_user: current_user,
           hogan_credential: hogan_credential, include: '**'
         }).
           serialize(user_assessment)

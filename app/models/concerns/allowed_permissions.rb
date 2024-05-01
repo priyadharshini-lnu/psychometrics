@@ -71,6 +71,7 @@ module AllowedPermissions
       integrations
       security
       webhooks
+      privacy_settings
     ],
     'campaigns' => %w[
       view

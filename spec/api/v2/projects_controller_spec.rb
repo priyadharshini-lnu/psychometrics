@@ -36,7 +36,6 @@ describe Api::V2::Administration::ProjectsController, swagger_doc: 'v2/swagger.j
               locales: ['en'],
               logo: 'https://dummy_bucket.s3.amazonaws.com/uploads/client/logo/1005/8845148b-2404-48b7-9cbc-9f90e088341c.png',
               number: 'TTE-2022',
-              privacy_consent: false,
               subdomain: 'project-subdomain'
             }
           }

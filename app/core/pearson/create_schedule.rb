@@ -24,6 +24,10 @@ module Pearson
     private
 
     def request_data
+      subject = user_assessment.subject
+      maskable_identity = subject.maskable_identity(
+        mask: user_assessment.project.mask_identity_for_pearson?
+      )
       product = {
         productId: user_assessment.assessment.external_assessment_id,
         canOverrideLanguage: true
@@ -37,15 +41,15 @@ module Pearson
         products: [product],
         candidates: [
           {
-            candidateId: user_assessment.subject.id.to_s,
+            candidateId: subject.id.to_s,
             tags: [
               {
                 key: 'GivenName',
-                value: user_assessment.subject.first_name
+                value: maskable_identity.first_name
               },
               {
                 key: 'FamilyName',
-                value: user_assessment.subject.last_name
+                value: maskable_identity.last_name
               }
             ]
           }

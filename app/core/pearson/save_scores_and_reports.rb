@@ -21,7 +21,7 @@ module Pearson
       user_assessment.update!(status: :completed, completed_at: Time.current) unless user_assessment.completed?
       generate_internal_reports
 
-      return broadcast :ok if report_items.blank? || user_assessment.assessment.v2_pearson_assessment?
+      return broadcast :ok if report_items.blank?
 
       user_report = user_assessment.user_reports(:pearson).first
       return broadcast :ok unless user_report

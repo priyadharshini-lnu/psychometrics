@@ -6,6 +6,7 @@ import { Webhooks } from './Webhooks'
 import { Design } from './Design'
 import { Profile } from './Profile'
 import { SecuritySettings } from './Security'
+import { Privacy } from './Privacy'
 
 export const routes = [
   {
@@ -39,5 +40,9 @@ export const routes = [
   {
     path: '/profile',
     component: Profile,
+  },
+  {
+    path: '/privacy',
+    component: Privacy,
   },
 ]

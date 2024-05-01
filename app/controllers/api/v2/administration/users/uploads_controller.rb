@@ -7,7 +7,7 @@ module Api
     before_action :set_resource
 
     def update
-      @user.update!(photo: params[:photo])
+      @user.user_profile.update!(photo: params[:photo])
       head :no_content
     end
 

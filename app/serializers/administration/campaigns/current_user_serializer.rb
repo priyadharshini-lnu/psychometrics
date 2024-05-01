@@ -23,8 +23,8 @@ module Administration
             'manage_project_admins',
             'manage_project_smtp_settings',
             'manage_project_webhooks',
-            %w[manage_project_general_settings update]
-
+            %w[manage_project_general_settings update],
+            'manage_project_privacy_setting'
           ],
           {
             project_id: context[:project_id],

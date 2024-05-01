@@ -28,6 +28,9 @@ module Saville
     end
 
     def attributes
+      maskable_identity = subject.maskable_identity(
+        mask: user_assessment.project.mask_identity_for_saville?
+      )
       {
         assessment_guid: user_assessment.assessment.external_settings[:assessment_id],
         report_guids: user_assessment.user_reports(:saville).includes(:report).map(&:external_report_id),
@@ -36,10 +39,10 @@ module Saville
         return_url: campaign_url,
         webhook_url: webhook_url,
         subject_id: subject.id,
-        subject_email: subject.email,
-        subject_first_name: subject.first_name,
-        subject_last_name: subject.last_name,
-        subject_full_name: subject.decorate.full_name
+        subject_email: maskable_identity.email,
+        subject_first_name: maskable_identity.first_name,
+        subject_last_name: maskable_identity.last_name,
+        subject_full_name: maskable_identity.full_name
       }
     end
 

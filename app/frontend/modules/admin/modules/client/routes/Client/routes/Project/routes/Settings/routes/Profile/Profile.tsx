@@ -64,6 +64,13 @@ export const Profile: React.FC<{}> = () => {
     }])
   }
 
+  const updateEnabledSettings = (data) => {
+    setData([{
+      ...profileSettings,
+      enabledDefaultFields: data,
+    }])
+  }
+
   const onFinish = (values) => {
     updateResource({
       id: profileSettings.id,
@@ -71,6 +78,7 @@ export const Profile: React.FC<{}> = () => {
       profileFields: profileSettings.profileFields,
       requiredDefaultFields: profileSettings.requiredDefaultFields,
       lockedDefaultFields: profileSettings.lockedDefaultFields,
+      enabledDefaultFields: profileSettings.enabledDefaultFields,
     }).then(() => {
       message.success(I18n.t('profile.success_update'))
     })
@@ -151,8 +159,10 @@ export const Profile: React.FC<{}> = () => {
           <DefaultFields
             requiredFields={humps.decamelizeKeys(profileSettings.requiredDefaultFields)}
             lockedFields={humps.decamelizeKeys(profileSettings.lockedDefaultFields)}
+            enabledFields={humps.decamelizeKeys(profileSettings.enabledDefaultFields)}
             onChangeRequired={updateRequiredSettings}
             onChangeLocked={updateLockedSettings}
+            onChangeEnabled={updateEnabledSettings}
           />
           <Fields
             profileFields={profileSettings.profileFields}

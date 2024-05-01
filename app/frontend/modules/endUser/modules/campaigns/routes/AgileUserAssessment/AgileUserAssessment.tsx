@@ -60,6 +60,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
 }) => {
   const campaignId = agileCampaign || userAssessment.campaignId
   const history = useHistory()
+
   const initializeAgile = () => {
     const { lang } = qs.parse(location.search.substr(1))
     const appOptions = {

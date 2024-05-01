@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class QuestionSerializer < ActiveModel::Serializer
-  attributes :id, :name, :type, :position, :props, :deleted, :created_at,
+  attributes :id, :name, :type, :position, :props, :deleted, :created_at, :block_id,
              :validation, :required_validation, :display_logic, :skip_logic, :template_id, :assessment_id
 
   has_many :comments, serializer: CommentSerializer

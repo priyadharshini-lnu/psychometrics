@@ -15,17 +15,7 @@ class Api::V2::Projects::Schema < Api::Base::Schema
       optional(:client_id).filled(:string)
       optional(:logo).maybe(:string)
       optional(:locales).array(:string)
-      optional(:privacy_consent).maybe(:bool)
-      optional(:custom_privacy_consent).maybe(:bool)
-      optional(:custom_privacy_policy_version).maybe(:integer)
-      optional(:custom_privacy_consent_texts).array(:hash) do
-        required(:locale).filled(:string)
-        required(:text).maybe(:string)
-      end
       optional(:enable_live_chat).maybe(:bool)
-      optional(:text).maybe(:string)
-      optional(:link).maybe(:string)
-      optional(:enable_privacy_link).maybe(:bool)
     end
   end
 end

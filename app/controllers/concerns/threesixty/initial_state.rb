@@ -18,8 +18,8 @@ module Threesixty::InitialState
           name: @current_project.name,
           logo: @current_project.design_setting.logo&.url,
           secondaryLogo: @current_project.design_setting.secondary_logo&.url,
-          privacyText: @current_project.privacy_link&.text,
-          privacyPageLink: @current_project.privacy_link&.link
+          privacyText: @current_project.privacy_setting.privacy_link_text,
+          privacyPageLink: @current_project.privacy_setting.privacy_link_url
         }
       }.merge(campaign_intial_state),
       config: {
@@ -37,7 +37,8 @@ module Threesixty::InitialState
             ProfileFieldSerializer.new(q, selected_locale: I18n.locale).to_h
           end,
           requiredFields: @current_project.profile_setting&.required_default_fields || {},
-          lockedFields: @current_project.profile_setting&.locked_default_fields || {}
+          lockedFields: @current_project.profile_setting&.locked_default_fields || {},
+          enabledFields: @current_project.profile_setting&.enabled_default_fields || {}
         },
         agileAssetsUrl: Settings.agile_config.asset_url,
         features: feature_flags,
@@ -63,9 +64,9 @@ module Threesixty::InitialState
   end
 
   def custom_privacy_consent_text
-    return unless @current_project.custom_privacy_consent
+    return unless @current_project.privacy_setting.custom_privacy_consent
 
-    @current_project.custom_privacy_consent_text
+    @current_project.privacy_setting.custom_privacy_consent_text
   end
 
   def live_chat_token

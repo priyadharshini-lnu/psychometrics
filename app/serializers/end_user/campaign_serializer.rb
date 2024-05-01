@@ -35,7 +35,7 @@ module EndUser
     end
 
     def privacy_consent_required
-      object.project.privacy_consent &&
+      object.project.privacy_setting.privacy_consent &&
         !current_user.privacy_consents.exists?(version: Settings.privacy_policy_version)
     end
 

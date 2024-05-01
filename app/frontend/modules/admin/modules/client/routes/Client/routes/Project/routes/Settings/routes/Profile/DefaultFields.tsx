@@ -12,23 +12,30 @@ interface Field {
   required: boolean
   locked: boolean
   default: boolean
+  showEnabled: boolean
 }
 
 interface Props {
   requiredFields: {}
   lockedFields: {}
+  enabledFields: {}
   onChangeRequired: (data: {}) => void
   onChangeLocked: (data: {}) => void
+  onChangeEnabled: (data: {}) => void
 }
 
 export const DefaultFields: React.FC<Props> = ({
-  requiredFields, lockedFields, onChangeRequired, onChangeLocked,
+  requiredFields, lockedFields, enabledFields, onChangeRequired, onChangeLocked, onChangeEnabled,
 }) => {
   const changeRequired = (row) => {
     onChangeRequired({ ...requiredFields, [row.index]: !requiredFields[row.index] })
   }
   const changeLocked = (row) => {
     onChangeLocked({ ...lockedFields, [row.index]: !lockedFields[row.index] })
+  }
+
+  const changeEnabled = (row) => {
+    onChangeEnabled({ ...enabledFields, [row.index]: !enabledFields[row.index] })
   }
 
   const defaultFields = [{
@@ -42,9 +49,11 @@ export const DefaultFields: React.FC<Props> = ({
   }, {
     name: I18n.t('profile.age'),
     index: 'age',
+    showEnabled: true,
   }, {
     name: I18n.t('profile.gender'),
     index: 'gender',
+    showEnabled: true,
   }, {
     name: I18n.t('profile.locale'),
     index: 'locale',
@@ -52,6 +61,7 @@ export const DefaultFields: React.FC<Props> = ({
   {
     name: I18n.t('profile.photo'),
     index: 'photo',
+    showEnabled: true,
   }]
 
   const fields = defaultFields.map(f => ({ ...f, required: requiredFields[f.index], locked: lockedFields[f.index] }))
@@ -63,6 +73,17 @@ export const DefaultFields: React.FC<Props> = ({
       rowKey="position"
     >
       <Column title="Name" dataIndex="name" />
+      <Column
+        title="Enabled"
+        dataIndex="enabled"
+        render={(_, row: Field) => (row.showEnabled ? (
+          <Checkbox
+            onChange={() => changeEnabled(row)}
+            checked={requiredFields[row.index] ? true : enabledFields[row.index]}
+          />
+        ) : null)
+        }
+      />
       <Column
         title="Required"
         dataIndex="required"

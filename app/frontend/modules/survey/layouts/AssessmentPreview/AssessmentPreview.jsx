@@ -6,6 +6,7 @@ import SubmitPage from '~/modules/survey/views/Preview/SubmitPage'
 import SinglePage from '~/modules/survey/views/Preview/SinglePage'
 import Instructions from '~/modules/survey/views/Preview/Instructions'
 import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
+import { useUnloadCallback } from '~/hooks/useUnloadCallback'
 
 const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
@@ -19,6 +20,8 @@ const AssessmentPreview = ({
   useEffect(() => {
     isAgile() && initializeAgile()
   }, [])
+
+  useUnloadCallback(I18n.t('common.messages.leave_message'), !end)
 
   const { lang } = qs.parse(location.search.substr(1))
   const initializeAgile = () => {

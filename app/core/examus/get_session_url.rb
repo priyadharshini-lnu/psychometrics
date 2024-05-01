@@ -28,10 +28,13 @@ module Examus
 
     def payload(proctoring_session)
       duration = ((campaign_user.compute_expiry_date.to_i - Time.now.to_i) / 60.0).ceil
+      maskable_identity = campaign_user.user.maskable_identity(
+        mask: project.mask_identity_for_examus?
+      )
       {
         userId: campaign_user.id.to_s,
-        lastName: campaign_user.user.first_name,
-        firstName: campaign_user.user.last_name,
+        lastName: maskable_identity.first_name,
+        firstName: maskable_identity.last_name,
         thirdName: '',
         language: 'en',
         accountId: project.project.id,
