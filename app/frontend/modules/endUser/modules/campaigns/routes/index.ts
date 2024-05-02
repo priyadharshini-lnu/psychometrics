@@ -123,12 +123,12 @@ const routes = [
     exact: true,
   },
   {
-    path: '/idp/direct_reports/:id',
+    path: '/idp/direct_reports/:userId',
     main: DirectReportDetails,
     exact: true,
   },
   {
-    path: '/idp/direct_reports/:id/:tab',
+    path: '/idp/direct_reports/:userId/:tab',
     main: DirectReportDetails,
     exact: true,
   },

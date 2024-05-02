@@ -1604,6 +1604,7 @@ en:
   common:
     actions:
       add: Add
+      approve: Approve
       archive: Archive
       back_to_responses: Back To Responses
       cancel: Cancel
@@ -2293,6 +2294,7 @@ en:
       structured_learning: Structured Learning
       submit_plan: Submit Plan
       write_here: Write here...
+    direct_report_details: Direct Report Details
     initial_steps:
       add_skills: Add
       add_skills_step: Add Skills
