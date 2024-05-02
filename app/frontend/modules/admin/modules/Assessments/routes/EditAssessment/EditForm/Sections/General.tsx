@@ -39,7 +39,7 @@ export const General: React.FC<Props> = ({ assessment }) => {
     if (values.linkedAssessment === undefined && category === 'assessor_form') {
       newValues = { ...values, linkedAssessment: null }
     }
-    return updateResource(newValues).then(() => setIsLoading(false)).catch(() => setIsLoading(false))
+    return updateResource(newValues)
   }
 
   return (
@@ -52,6 +52,8 @@ export const General: React.FC<Props> = ({ assessment }) => {
       formProps={{ labelAlign: 'left', id: 'edit_assessment', preserve: false }}
       request={{ updateResource: handleUpdate }}
       scrollToFirstError
+      onSuccessfulSubmission={() => setIsLoading(false)}
+      onFailedSubmission={() => setIsLoading(false)}
     >
       {() => (
         <>
