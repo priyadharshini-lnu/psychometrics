@@ -225,7 +225,8 @@ const ResourceForm: React.FC<Props> = ({
       validateMessages={validateMessages}
       onFinish={handleSave}
       onFieldsChange={(_, allFields) => {
-        store.setFields(allFields)
+        // Remove setTimeout when we are on react 18. It works without setTimeout on react 18
+        setTimeout(() => store.setFields(allFields), 100)
       }}
       scrollToFirstError={scrollToFirstError}
       layout="vertical"
