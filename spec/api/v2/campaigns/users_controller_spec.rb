@@ -15,6 +15,7 @@ describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/s
   let(:lead_assessment) { create(:assessment, category: :lead_assessor_form) }
   let!(:campaign_factor_group) { create(:campaign_factor_group, campaign_id: campaign_id) }
   let(:campaign_factor_group_id) { campaign_factor_group.id.to_s }
+  let!(:idp_template) { create(:idp_template) }
   let!(:campaign_factor) do
     factor = create(
       :campaign_factor, name: 'Factor', campaign_factor_group_id: campaign_factor_group_id,
@@ -81,6 +82,33 @@ describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/s
           cf = JSON.parse(response.body)['data'].first
           expect(cf).to have_attribute(:evaluator)
           expect(cf).to have_attribute(:assessment)
+        end
+      end
+    end
+  end
+
+  path '/campaigns/{campaign_id}/users/{user_id}/active_idp_template' do
+    get 'Active Idp Template ' do
+      operationId 'ActiveIdpTemplate'
+      tags 'IdpTemplate'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :user_id, in: :path, required: true
+
+      let!(:plan) do
+        create(:user_idp_plan, user: user, idp_template: idp_template, campaign: campaign, creator: superadmin)
+      end
+
+      response '200', 'Active Idp Template' do
+        before { sign_in(superadmin) }
+
+        run_test! do |response|
+          active_idp_template = JSON.parse(response.body)['data']
+
+          expect(active_idp_template).to have_key('id')
+          expect(active_idp_template).to have_attribute(:name).with_value(idp_template.name)
+          expect(active_idp_template).to have_attribute(:description).with_value(idp_template.description)
         end
       end
     end

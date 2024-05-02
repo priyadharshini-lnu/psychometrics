@@ -22,6 +22,10 @@ module Api
           @user.is?(:superadmin) || @user.id == lead_assessor&.id
         end
 
+        def active_idp_template?
+          has_permission?(:campaigns, :view)
+        end
+
         class Scope < Administration::BasePolicy::Scope
           def resolve
             scope.with_campaign_user(campaign_id)

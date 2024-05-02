@@ -1322,6 +1322,7 @@ Rails.application.routes.draw do
             jsonapi_resources :users, only: %i[index show], controller: 'campaigns/users' do
               member do
                 get :assessors_scores
+                get :active_idp_template
               end
             end
 

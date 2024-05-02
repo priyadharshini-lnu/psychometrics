@@ -1698,6 +1698,7 @@ en:
       campaigns: Campaigns
       completion_statuses: Completion Statuses
       datasheet: Datasheet
+      idp_templates: Idp Templates
       projects: Projects
       report: Report
       reports: Reports
@@ -2335,6 +2336,14 @@ en:
       draft: Draft
       pending_approval: Pending
     users: Users
+  idp_templates:
+    actions:
+      save: Save
+    assign: Assign
+    assign_idp_template: Assign Idp Template
+    errors:
+      idp_template_not_found: IDP template not found
+    placeholder: Select a Idp Template
   invites:
     create:
       successfully: Your invitations was sent successfully

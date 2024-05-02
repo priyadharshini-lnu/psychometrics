@@ -8,6 +8,9 @@ describe Api::V2::Administration::Clients::IdpTemplatesController, swagger_doc: 
   let!(:client) { create(:tenancy) }
   let(:client_id) { client.id }
   let!(:superadmin) { create(:superadmin) }
+  let!(:user) { create(:user) }
+  let!(:user_id) { user.id }
+  let!(:campaign) { create(:campaign) }
 
   before(:each) do
     sign_in(superadmin)
