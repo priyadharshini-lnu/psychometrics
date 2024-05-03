@@ -21,9 +21,9 @@ module Threesixty
           required(:download).maybe(:bool?)
         end
         required(:report).hash(ReportSchema.schema(_, _))
-        # required(:module_overrides).maybe do
-        #   array(TextModuleOverrideSchema.schema(_, _))
-        # end
+        required(:module_overrides).maybe do
+          array(TextModuleOverrideSchema.schema(_, _))
+        end
         required(:options).hash(Threesixty::CampaignOptionsSchema.schema(_, _))
         required(:campaign).maybe do
           hash(Threesixty::CampaignDetailsSchema.schema(_, _))

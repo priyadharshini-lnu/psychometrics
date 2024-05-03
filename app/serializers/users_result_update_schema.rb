@@ -8,9 +8,7 @@ class UsersResultUpdateSchema < BaseSchema
 
       required(:expired).maybe(:bool?)
       required(:current_block).maybe do
-        hash do
-          hash(BlockSchema.schema(_, _))
-        end
+        hash(BlockSchema.schema(_, _))
       end
       required(:translations).maybe(:hash?)
       required(:progress_was_reseted).maybe(:bool?)
