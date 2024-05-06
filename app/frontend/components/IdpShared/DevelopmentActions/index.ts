@@ -23,6 +23,7 @@ export type DevelopmentAction = {
   private: boolean;
   learningStyle: 'on_the_job' | 'structured_learning' | 'learning_from_the_others',
   image: string | null,
+  localData?: boolean,
 }
 
 export type DevelopmentActionWithSkill = DevelopmentAction & {
@@ -39,7 +40,7 @@ export type Skill = {
 }
 
 export type SkillWithDevelopmentActions = Skill & {
-  development_actions: DevelopmentAction[];
+  developmentActions: DevelopmentAction[];
 }
 
 export type CategoryWithSkills = {

@@ -3,11 +3,13 @@ import {
   Avatar, Button, Flex, Typography, Divider,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+import { v4 as uuidv4 } from 'uuid'
 import { useMedia } from 'use-media'
 import { DevelopmentActionLandscapeCard } from './DevelopmentActionLandscapeCard'
 import { BoxWithShadow } from '~/glint'
-
-import { AvailableDevelopmentActions, CategoryWithSkills, SkillWithDevelopmentActions } from '.'
+import {
+  AvailableDevelopmentActions, CategoryWithSkills, DevelopmentAction, Skill, SkillWithDevelopmentActions,
+} from '.'
 import { CreateCustomDevelopmentActionModal } from './CreateCustomDevelopmentActionModal'
 import { AddDevelopmentActionModal } from './AddDevelopmentActionModal'
 
@@ -16,10 +18,13 @@ import styles from './DevelopmentActionListView.less'
 const { I18n } = window
 
 type SkillsContainerProps = {
-  editMode?: boolean;
-  categories: CategoryWithSkills[];
-  availableDevelopmentActions: AvailableDevelopmentActions[];
-  onAddDevelopmentAction?: () => void;
+  editMode?: boolean
+  categories: CategoryWithSkills[]
+  availableDevelopmentActions: AvailableDevelopmentActions[]
+  onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
+  onShowAvailableDevelopmentAction?: () => void
+  onUpdateDevelopmentActionProgress: (developmentAction: Partial<DevelopmentAction>) => void
+  onUpdateDevelopmentAction: (developmentAction: Partial<DevelopmentAction>) => void
   onAddMoreSkills: (category: CategoryWithSkills) => void;
 }
 
@@ -29,8 +34,12 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
   availableDevelopmentActions,
   onAddDevelopmentAction,
   onAddMoreSkills,
+  onShowAvailableDevelopmentAction,
+  onUpdateDevelopmentAction,
+  onUpdateDevelopmentActionProgress,
 }) => {
   const [isAddDevelopmentActionModalOpen, setIsAddDevelopmentActionModalOpen] = useState(false)
+  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null)
   const [isCreateCustomDevelopmentActionModalOpen, setIsCreateCustomDevelopmentActionModalOpen] = useState(false)
   const isTablet = useMedia({
     maxWidth: 768,
@@ -41,11 +50,48 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
     setIsCreateCustomDevelopmentActionModalOpen(false)
   }
 
-  const handleAddDevelopmentAction = () => {
+  const handleShowAvailableDevelopmentAction = (skill: Skill) => {
     setIsAddDevelopmentActionModalOpen(true)
-    onAddDevelopmentAction?.()
+    onShowAvailableDevelopmentAction?.()
+    setSelectedSkill(skill)
   }
-  const handleCreateCustomDevelopmentAction = () => {
+
+  const handleAddDevelopmentAction = (developmentAction: Partial<DevelopmentAction>) => {
+    if (selectedSkill) {
+      const uniqueId = uuidv4()
+      const action = {
+        ...developmentAction,
+        id: uniqueId,
+        developmentActionId: developmentAction.id,
+        userIdpSkillId: selectedSkill.id,
+        progress: 0,
+        private: false,
+        localData: true, // Flag to add data in redux store with ID and remove ID when we send data to backend
+      }
+      onAddDevelopmentAction?.(action)
+    }
+    setIsAddDevelopmentActionModalOpen(false)
+    setSelectedSkill(null)
+  }
+
+  const handleCreateCustomDevelopmentAction = (customAction: string) => {
+    if (selectedSkill) {
+      const uniqueId = uuidv4()
+      const action = {
+        customAction,
+        id: uniqueId,
+        userIdpSkillId: selectedSkill.id,
+        progress: 0,
+        private: false,
+        localData: true, // Flag to add data in redux store with ID and remove ID when we send data to backend
+      }
+      onAddDevelopmentAction?.(action)
+    }
+    setIsCreateCustomDevelopmentActionModalOpen(false)
+    setSelectedSkill(null)
+  }
+
+  const handleShowCustomDevelopmentAction = () => {
     setIsCreateCustomDevelopmentActionModalOpen(true)
     setIsAddDevelopmentActionModalOpen(false)
   }
@@ -56,7 +102,9 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
       <DevelopmentActionLandscapeCard
         key={skill.id}
         editMode={editMode}
-        handleAddDevelopmentAction={handleAddDevelopmentAction}
+        onAddDevelopmentAction={() => handleShowAvailableDevelopmentAction(skill)}
+        onUpdateDevelopmentAction={onUpdateDevelopmentAction}
+        onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
         {...skill}
       />
     ))
@@ -135,12 +183,13 @@ export const DevelopmentActionListView: React.FC<SkillsContainerProps> = ({
       <AddDevelopmentActionModal
         data={availableDevelopmentActions}
         onAddAction={handleAddDevelopmentAction}
-        onCreateCustomDevelopmentAction={handleCreateCustomDevelopmentAction}
+        onShowCustomDevelopmentAction={handleShowCustomDevelopmentAction}
         onCancel={handleCancel}
         open={isAddDevelopmentActionModalOpen}
       />
       <CreateCustomDevelopmentActionModal
         open={isCreateCustomDevelopmentActionModalOpen}
+        onCreateCustomDevelopmentAction={handleCreateCustomDevelopmentAction}
         onCancel={handleCancel}
       />
     </>

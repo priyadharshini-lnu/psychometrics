@@ -5,15 +5,15 @@ import {
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { BoxWithShadow } from '~/glint'
-import { AvailableDevelopmentActions } from '.'
+import { AvailableDevelopmentActions, DevelopmentAction } from '.'
 import { Tags } from './Tags'
 import styles from './AddDevelopmentActionModal.less'
 
 const { I18n } = window
 type Props = {
   data: AvailableDevelopmentActions[]
-  onAddAction: () => void,
-  onCreateCustomDevelopmentAction: () => void,
+  onAddAction: (developmentAction: Partial<DevelopmentAction>) => void,
+  onShowCustomDevelopmentAction: () => void,
   onCancel: () => void,
   open: boolean,
 }
@@ -28,14 +28,14 @@ const tabs = [
 export const AddDevelopmentActionModal: React.FC<Props> = ({
   data,
   onAddAction,
-  onCreateCustomDevelopmentAction,
+  onShowCustomDevelopmentAction,
   onCancel,
   open,
 }) => {
   const [selectedTab, setSelectedTab] = useState('all')
   const [availableActions, setAvailableActions] = useState(data)
-  const handleAddAction = () => {
-    onAddAction()
+  const handleAddAction = (developmentAction: Partial<DevelopmentAction>) => {
+    onAddAction(developmentAction)
   }
 
   useEffect(() => {
@@ -47,8 +47,8 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
     setSelectedTab(e.target.value)
   }
 
-  const handleCreateCustomDevelopmentAction = () => {
-    onCreateCustomDevelopmentAction()
+  const handleShowCustomDevelopmentAction = () => {
+    onShowCustomDevelopmentAction()
   }
 
   const handleCancel = () => {
@@ -57,7 +57,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
 
   const cards = availableActions.length > 0 ? (availableActions.map(developmentAction => (
     <Flex
-      onClick={handleAddAction}
+      onClick={() => handleAddAction(developmentAction)}
       className={styles.card}
       gap={16}
       key={developmentAction.id}
@@ -105,7 +105,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
           <Button icon={<PlusOutlined />}>
             {I18n.t('idp.development_actions.generate_by_ai')}
           </Button>
-          <Button icon={<PlusOutlined />} onClick={handleCreateCustomDevelopmentAction}>
+          <Button icon={<PlusOutlined />} onClick={handleShowCustomDevelopmentAction}>
             {I18n.t('idp.development_actions.create_my_own')}
           </Button>
         </Flex>

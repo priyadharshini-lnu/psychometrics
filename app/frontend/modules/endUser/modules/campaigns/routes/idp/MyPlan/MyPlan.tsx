@@ -19,15 +19,19 @@ import {
   fetchUserIdpDevelopmentActions,
   fetchUserIdpSkills,
   fetchAvailableDevelopmentActions,
+  addDevelopmentActionInPlan,
+  saveUserIdpDevelopmentActions,
+  updateDevelopmentActionInPlan,
 } from '~/modules/endUser/modules/campaigns/core/idp/developmentAction'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   DevelopmentActionListView,
   DevelopmentActionBoardView,
   type CategoryWithSkills,
+  DevelopmentAction,
 } from '~/components/IdpShared/DevelopmentActions'
 import { AddSkillsStep } from '~/components/IdpShared/InitialSteps/AddSkillsStep'
-import { groupDevelopmentActionsByCategory, groupSkillsByCategory } from './utils'
+import { filteredDevelopmentActions, groupDevelopmentActionsByCategory, groupSkillsByCategory } from './utils'
 
 import styles from './MyPlan.less'
 
@@ -62,7 +66,7 @@ const skillCategorySample: CategoryWithSkills = {
       name: 'Sample one',
       initialRating: 2.0,
       finalRating: 3.0,
-      development_actions: [],
+      developmentActions: [],
     },
     {
       id: 425,
@@ -71,7 +75,7 @@ const skillCategorySample: CategoryWithSkills = {
       name: 'Sample two',
       initialRating: 2.0,
       finalRating: 3.0,
-      development_actions: [],
+      developmentActions: [],
     },
     {
       id: 2,
@@ -80,7 +84,7 @@ const skillCategorySample: CategoryWithSkills = {
       name: 'Sample three',
       initialRating: 2.0,
       finalRating: 3.0,
-      development_actions: [],
+      developmentActions: [],
     },
   ],
 }
@@ -95,6 +99,9 @@ const connector = connect((state: RootState) => ({
   fetchUserIdpDevelopmentActions,
   fetchUserIdpSkills,
   fetchAvailableDevelopmentActions,
+  addDevelopmentActionInPlan,
+  saveUserIdpDevelopmentActions,
+  updateDevelopmentActionInPlan,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -109,6 +116,9 @@ const MyPlanComponent = ({
   fetchUserIdpDevelopmentActions,
   fetchUserIdpSkills,
   fetchAvailableDevelopmentActions,
+  addDevelopmentActionInPlan,
+  saveUserIdpDevelopmentActions,
+  updateDevelopmentActionInPlan,
   idpDevelopmentActions,
   idpSkills,
   availableDevelopmentActions,
@@ -154,8 +164,12 @@ const MyPlanComponent = ({
     }
   }, [paramTab])
 
-  const handleAddDevelopmentAction = () => {
-    fetchAvailableDevelopmentActions()
+  const handleAddDevelopmentAction = (developmentAction: DevelopmentAction) => {
+    addDevelopmentActionInPlan(developmentAction)
+  }
+
+  const handleShowAvailableDevelopmentAction = () => {
+    fetchAvailableDevelopmentActions(currentUser.id)
   }
 
   const handleSelectSkill = (selectedSkills) => {
@@ -179,12 +193,20 @@ const MyPlanComponent = ({
     })
   }
 
+  const handleSave = () => {
+    setEditMode(false)
+    const actionsArray = _.values(filteredDevelopmentActions(idpDevelopmentActions))
+    saveUserIdpDevelopmentActions(currentUser.id, actionsArray).then(() => (
+      fetchUserIdpDevelopmentActions(currentUser.id)
+    ))
+  }
+
   const operations = (
     <Flex gap={8}>
       {editMode ? (
         <Button
           type="primary"
-          onClick={() => setEditMode(false)}
+          onClick={handleSave}
         >
           {I18n.t('common.actions.save')}
         </Button>
@@ -252,6 +274,9 @@ const MyPlanComponent = ({
                   categories={listData}
                   availableDevelopmentActions={availableDevelopmentActionsData}
                   onAddDevelopmentAction={handleAddDevelopmentAction}
+                  onUpdateDevelopmentActionProgress={updateDevelopmentActionInPlan}
+                  onUpdateDevelopmentAction={updateDevelopmentActionInPlan}
+                  onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
                   onAddMoreSkills={(category) => {
                     setShowAddSkill(true)
                     setPickedCategoryToAddMoreSkills(category)

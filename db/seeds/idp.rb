@@ -2,7 +2,7 @@
 
 require 'faker'
 
-# bundle exec CAMPAIGN_ID=100 be rails db:seed:idp
+# CAMPAIGN_ID=10592 bundle exec rails db:seed:idp
 
 campaign_id = ENV.fetch('CAMPAIGN_ID', nil)
 
@@ -10,6 +10,10 @@ ApplicationRecord.transaction do
   campaign = Campaign.find(campaign_id)
   project = campaign.project
   client = project.parent
+  skill_1_score = Faker::Code.asin
+  skill_2_score = Faker::Code.asin
+  skill_3_score = Faker::Code.asin
+  skill_4_score = Faker::Code.asin
   development_action1 = DevelopmentAction.create!(name: 'Development Action 1',
                                                   description: 'Development Action 1 Description')
   development_action2 = DevelopmentAction.create!(
@@ -20,12 +24,22 @@ ApplicationRecord.transaction do
     course_provider: 'Coursera',
     course_url: 'https://www.coursera.org/professional-certificates/ibm-data-analyst'
   )
+  development_action3 = DevelopmentAction.create!(name: 'Development Action 3',
+  description: 'Development Action 3 Description')
+  development_action4 = DevelopmentAction.create!(
+    owner: client,
+    name: 'Development Action 4',
+    description: 'Development Action 4 Description',
+    category: :online_course,
+    course_provider: 'Coursera',
+    course_url: 'https://www.coursera.org/professional-certificates/ibm-data-analyst'
+  )
 
   campaign_factor_group = campaign.campaign_factor_groups.create!(name: 'Group 1', position: 1)
   campaign_factor1 = campaign.campaign_factors.create!(
     campaign_factor_group: campaign_factor_group,
     name: 'Skill1 Factor',
-    code: 'skill_1_score',
+    code: skill_1_score,
     factor_type: 'formula',
     output_type: 'numeric',
     formula: 'return 2'
@@ -33,7 +47,23 @@ ApplicationRecord.transaction do
   campaign_factor1 = campaign.campaign_factors.create!(
     campaign_factor_group: campaign_factor_group,
     name: 'Skill2 Factor',
-    code: 'skill_2_score',
+    code: skill_2_score,
+    factor_type: 'formula',
+    output_type: 'numeric',
+    formula: 'return 4'
+  )
+  campaign_factor3 = campaign.campaign_factors.create!(
+    campaign_factor_group: campaign_factor_group,
+    name: 'Skill3 Factor',
+    code: skill_3_score,
+    factor_type: 'formula',
+    output_type: 'numeric',
+    formula: 'return 2'
+  )
+  campaign_factor4 = campaign.campaign_factors.create!(
+    campaign_factor_group: campaign_factor_group,
+    name: 'Skill4 Factor',
+    code: skill_4_score,
     factor_type: 'formula',
     output_type: 'numeric',
     formula: 'return 4'
@@ -57,7 +87,7 @@ ApplicationRecord.transaction do
     skill: skill1,
     category: :required,
     scoring_source: :campaign_factor,
-    campaign_factor_code: 'skill_1_score',
+    campaign_factor_code: skill_1_score,
     desired_rating: 4.5,
     min_rating: 0,
     max_rating: 5
@@ -66,7 +96,7 @@ ApplicationRecord.transaction do
     skill: skill2,
     category: :required,
     scoring_source: :campaign_factor,
-    campaign_factor_code: 'skill_2_score',
+    campaign_factor_code: skill_2_score,
     desired_rating: 3,
     min_rating: 0,
     max_rating: 5
@@ -77,6 +107,14 @@ ApplicationRecord.transaction do
   )
   idp_template.idp_template_development_actions.create!(
     development_action: development_action2,
+    category: :suggested
+  )
+  idp_template.idp_template_development_actions.create!(
+    development_action: development_action3,
+    category: :suggested
+  )
+  idp_template.idp_template_development_actions.create!(
+    development_action: development_action4,
     category: :suggested
   )
   campaign.update!(default_idp_template: idp_template)

@@ -16,24 +16,126 @@ const { RangePicker } = DatePicker
 
 const { I18n } = window
 type SkillCardProps = SkillWithDevelopmentActions & {
-  editMode?: boolean;
-  handleAddDevelopmentAction?: () => void;
+  editMode?: boolean
+  onAddDevelopmentAction?: () => void
+  onUpdateDevelopmentAction: (developmentAction: Partial<DevelopmentAction>) => void
+  onUpdateDevelopmentActionProgress: (developmentAction: Partial<DevelopmentAction>) => void
 }
 
 export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
   name,
   initialRating,
   finalRating,
-  development_actions,
+  developmentActions,
   editMode,
-  handleAddDevelopmentAction,
+  onAddDevelopmentAction,
+  onUpdateDevelopmentAction,
+  onUpdateDevelopmentActionProgress,
 }) => {
-  const [editableProgress, setEditableProgress] = useState(0)
+  const header = (
+    <>
+      <h4 className={styles.m_none}>{name}</h4>
+      <Rate disabled defaultValue={finalRating || initialRating} />
+    </>
+  )
+
+  const developmentActionCards = developmentActions.map(developmentAction => (
+    <Card
+      key={developmentAction.id}
+      editMode={editMode}
+      developmentAction={developmentAction}
+      onUpdateDevelopmentAction={onUpdateDevelopmentAction}
+      onUpdateDevelopmentActionProgress={onUpdateDevelopmentActionProgress}
+    />
+  ))
+
+  return (
+    <Flex vertical>
+      <Flex
+        justify="space-between"
+        className={`${styles.border_b_1} ${styles.py_12}`}
+      >
+        <Flex gap={12}>
+          {header}
+        </Flex>
+      </Flex>
+      {developmentActionCards}
+      {editMode ? (
+        <Flex>
+          <Button
+            type="link"
+            icon={<PlusOutlined />}
+            onClick={onAddDevelopmentAction}
+            className={styles.p_none}
+          >
+            {I18n.t('idp.development_actions.add_development_action')}
+          </Button>
+        </Flex>
+      ) : null}
+    </Flex>
+  )
+}
+
+const DateRange = ({ developmentAction, editMode, onDateRangeChange }) => {
+  const { startDateTime, endDateTime } = developmentAction
+  const format = 'DD MMM YYYY'
+  if (editMode) {
+    return (
+      <Flex flex={1} vertical>
+        <RangePicker
+          defaultValue={[
+            startDateTime ? dayjs(startDateTime) : null,
+            endDateTime ? dayjs(endDateTime) : null,
+          ]}
+          format={format}
+          onChange={onDateRangeChange}
+        />
+      </Flex>
+    )
+  }
+  if (startDateTime && endDateTime) {
+    return (
+      <Flex flex={1}>
+        <Typography.Text>
+          {`${dayjs(startDateTime).format('DD MMM YYYY')} - 
+      ${dayjs(endDateTime).format('DD MMM YYYY')}`}
+        </Typography.Text>
+      </Flex>
+    )
+  }
+  return (<Flex flex={1}>-</Flex>)
+}
+
+
+const Card = ({
+  developmentAction,
+  onUpdateDevelopmentAction,
+  onUpdateDevelopmentActionProgress,
+  editMode,
+}) => {
+  const [editableProgress, setEditableProgress] = useState(developmentAction.progress)
   const [editing, setEditing] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const isTablet = useMedia({
     maxWidth: 768,
   })
+
+  const handleDateRangeChange = (dates: [dayjs.Dayjs, dayjs.Dayjs] | undefined) => {
+    const [start, end] = dates || []
+    onUpdateDevelopmentAction({
+      ...developmentAction,
+      startDateTime: start ? dayjs(start).format('YYYY-MM-DD HH:mm') : null,
+      endDateTime: end ? dayjs(end).format('YYYY-MM-DD HH:mm') : null,
+    })
+  }
+
+  const handlePrivacyChange = (checked: boolean) => {
+    onUpdateDevelopmentAction({
+      ...developmentAction,
+      private: checked,
+    })
+  }
+
 
   const handleEditClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.stopPropagation()
@@ -46,10 +148,19 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
 
   const saveProgress = () => {
     setEditing(false)
+    if (editMode) {
+      onUpdateDevelopmentAction({
+        ...developmentAction,
+        progress: editableProgress,
+      })
+    } else {
+      onUpdateDevelopmentActionProgress({ ...developmentAction, progress: editableProgress })
+    }
   }
 
   const cancelEditing = () => {
     setEditing(false)
+    setEditableProgress(developmentAction.progress)
   }
 
   const popoverContent = (
@@ -68,13 +179,6 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
         <Button type="primary" size="small" onClick={saveProgress}>Save</Button>
       </Flex>
     </Flex>
-  )
-
-  const header = (
-    <>
-      <h4 className={styles.m_none}>{name}</h4>
-      <Rate disabled defaultValue={finalRating || initialRating} />
-    </>
   )
 
   const progress = (
@@ -122,8 +226,8 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
     </Popover>
   )
 
-  const developmentActionCards = development_actions.map(developmentAction => (
-    <Flex vertical key={developmentAction.id}>
+  return (
+    <Flex vertical>
       <Flex
         align="stretch"
         justify="space-between"
@@ -151,10 +255,10 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
           <Typography.Paragraph
             ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
           >
-            {developmentAction.description}
+            {developmentAction.description || developmentAction.customAction}
           </Typography.Paragraph>
           <Flex className={styles.mb_8}>
-            <Tags type={developmentAction.learningStyle} />
+            {developmentAction.learningStyle ? <Tags type={developmentAction.learningStyle} /> : null}
           </Flex>
         </Flex>
         <Flex flex={5} vertical={isTablet}>
@@ -174,7 +278,11 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
                 {I18n.t('idp.development_actions.date_range')}
               </Flex>
             ) : null}
-            {dateRange(developmentAction, editMode)}
+            <DateRange
+              onDateRangeChange={handleDateRangeChange}
+              developmentAction={developmentAction}
+              editMode={editMode}
+            />
           </Flex>
           <Flex
             flex={3}
@@ -201,66 +309,13 @@ export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
               <Switch
                 defaultChecked={developmentAction.private}
                 size="small"
+                onChange={handlePrivacyChange}
               />
             ) : null}
           </Flex>
           {progress}
         </Flex>
       </Flex>
-      {editMode ? (
-        <Flex>
-          <Button
-            type="link"
-            icon={<PlusOutlined />}
-            onClick={handleAddDevelopmentAction}
-            className={styles.p_none}
-          >
-            {I18n.t('idp.development_actions.add_development_action')}
-          </Button>
-        </Flex>
-      ) : null}
-    </Flex>
-  ))
-
-  return (
-    <Flex vertical>
-      <Flex
-        justify="space-between"
-        className={`${styles.border_b_1} ${styles.py_12}`}
-      >
-        <Flex gap={12}>
-          {header}
-        </Flex>
-      </Flex>
-      {developmentActionCards}
     </Flex>
   )
-}
-
-const dateRange = (developmentAction: DevelopmentAction, editMode?: boolean) => {
-  const format = 'DD MMM YYYY'
-  if (editMode) {
-    return (
-      <Flex flex={1} vertical>
-        <RangePicker
-          defaultValue={[
-            developmentAction.startDateTime ? dayjs(developmentAction.startDateTime) : null,
-            developmentAction.endDateTime ? dayjs(developmentAction.endDateTime) : null,
-          ]}
-          format={format}
-        />
-      </Flex>
-    )
-  }
-  if (developmentAction.startDateTime && developmentAction.endDateTime) {
-    return (
-      <Flex flex={1}>
-        <Typography.Text>
-          {`${dayjs(developmentAction.startDateTime).format('DD MMM YYYY')} - 
-      ${dayjs(developmentAction.endDateTime).format('DD MMM YYYY')}`}
-        </Typography.Text>
-      </Flex>
-    )
-  }
-  return (<Flex flex={1}>-</Flex>)
 }

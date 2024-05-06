@@ -15,7 +15,7 @@ function addDevelopmentActionsToSkills (
   const groupedSkills = _.groupBy(developmentActions, 'userIdpSkillId')
   return _.map(skills, skill => ({
     ...skill,
-    development_actions: groupedSkills[skill.id] || [],
+    developmentActions: groupedSkills[skill.id] || [],
   }))
 }
 
@@ -53,4 +53,16 @@ export function groupSkillsByCategory (
     category,
     skills,
   }))
+}
+
+export const filteredDevelopmentActions = (idpDevelopmentActions: Record<string, DevelopmentAction>) => {
+  const filteredValue = _.mapValues(idpDevelopmentActions, (action) => {
+    if (action.localData) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { id, localData, ...restOfAction } = action
+      return restOfAction
+    }
+    return { ...action }
+  })
+  return filteredValue
 }
