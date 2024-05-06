@@ -212,7 +212,7 @@ const PushWebhookModal: React.FC<Props> = ({
                         key={topic}
                         value={topic}
                       >
-                        {topic}
+                        {_.startCase(topic)}
                       </Option>
                     ))}
                   </Select>
