@@ -23,8 +23,8 @@ type SkillsContainerProps = {
   availableDevelopmentActions: AvailableDevelopmentActions[]
   onAddDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onShowAvailableDevelopmentAction?: () => void
-  onUpdateDevelopmentActionProgress: (developmentAction: Partial<DevelopmentAction>) => void
-  onUpdateDevelopmentAction: (developmentAction: Partial<DevelopmentAction>) => void
+  onUpdateDevelopmentActionProgress?: (developmentAction: Partial<DevelopmentAction>) => void
+  onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
   onAddMoreSkills: (category: CategoryWithSkills) => void;
 }
 

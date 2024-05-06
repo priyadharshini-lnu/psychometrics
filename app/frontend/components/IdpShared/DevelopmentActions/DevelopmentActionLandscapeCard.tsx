@@ -18,8 +18,8 @@ const { I18n } = window
 type SkillCardProps = SkillWithDevelopmentActions & {
   editMode?: boolean
   onAddDevelopmentAction?: () => void
-  onUpdateDevelopmentAction: (developmentAction: Partial<DevelopmentAction>) => void
-  onUpdateDevelopmentActionProgress: (developmentAction: Partial<DevelopmentAction>) => void
+  onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
+  onUpdateDevelopmentActionProgress?: (developmentAction: Partial<DevelopmentAction>) => void
 }
 
 export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
@@ -122,7 +122,7 @@ const Card = ({
 
   const handleDateRangeChange = (dates: [dayjs.Dayjs, dayjs.Dayjs] | undefined) => {
     const [start, end] = dates || []
-    onUpdateDevelopmentAction({
+    onUpdateDevelopmentAction?.({
       ...developmentAction,
       startDateTime: start ? dayjs(start).format('YYYY-MM-DD HH:mm') : null,
       endDateTime: end ? dayjs(end).format('YYYY-MM-DD HH:mm') : null,
@@ -130,7 +130,7 @@ const Card = ({
   }
 
   const handlePrivacyChange = (checked: boolean) => {
-    onUpdateDevelopmentAction({
+    onUpdateDevelopmentAction?.({
       ...developmentAction,
       private: checked,
     })

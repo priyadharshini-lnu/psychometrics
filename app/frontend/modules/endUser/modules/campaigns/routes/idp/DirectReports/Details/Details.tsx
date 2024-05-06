@@ -88,7 +88,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
   }, [paramTab])
 
   const handleAddDevelopmentAction = () => {
-    fetchAvailableDevelopmentActions()
+    fetchAvailableDevelopmentActions(userId)
   }
 
   const operations = (
