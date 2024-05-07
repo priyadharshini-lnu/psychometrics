@@ -20,7 +20,7 @@ export const GettingStart = ({ next }) => (
         <div className="flex justify-center">
           <LaunchIcon />
         </div>
-        <Typography.Title level={4}>Getting Start</Typography.Title>
+        <Typography.Title level={4}>{I18n.t('idp.initial_steps.getting_start')}</Typography.Title>
         <Typography.Text>
           {I18n.t('idp.initial_steps.getting_started_info')}
         </Typography.Text>
