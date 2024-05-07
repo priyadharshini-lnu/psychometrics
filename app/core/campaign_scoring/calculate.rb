@@ -23,10 +23,10 @@ module CampaignScoring
       campaign_user.update(campaign_scores_errors: nil) if campaign_user.campaign_scores_errors.present?
       campaign_factors_sorted_by_formula_factors_at_end.each do |cf, _acc|
         calculate_campaign_factor_value(cf)
-      rescue StandardError => e
+      rescue StandardError, SyntaxError => e
         @factor_values[cf] = CampaignScoring::FactorValue.new(nil, e)
         Rails.logger.error(e.message)
-        if e.is_a?(Rufus::Lua::LuaError) || e.is_a?(CampaignScoring::Exceptions::Base) ||
+        if e.is_a?(Lua::Exceptions::Base) || e.is_a?(CampaignScoring::Exceptions::Base) ||
            e.is_a?(CampaignFactors::Exceptions::DependentFactorNotFound)
           errors = campaign_user.campaign_scores_errors || []
           errors << { factor_id: cf.id.to_s, message: e.message }
@@ -73,28 +73,20 @@ module CampaignScoring
     def compute_formula(campaign_factor)
       calculate_dependent_campaign_factors(campaign_factor)
 
-      lua = Rufus::Lua::State.new
-      lua.eval('assessment, datasheet, user = {}, {}, {}')
-
-      lua.function 'assessment.norm_score' do |assessment_id, factor_id|
-        assessment_factor_score(assessment_id, factor_id, 'norm_score')
-      end
-
-      lua.function 'assessment.raw_score' do |assessment_id, factor_id|
-        assessment_factor_score(assessment_id, factor_id, 'score')
-      end
-
-      lua.function 'assessment.zscore' do |assessment_id, factor_id|
-        assessment_factor_score(assessment_id, factor_id, 'zscore')
-      end
-
-      lua.function 'assessment.percentage_answered' do |assessment_id, factor_id|
-        assessment_factor_score(assessment_id, factor_id, 'percentage')
-      end
-
-      lua.function 'datasheet.value' do |column_name|
-        campaign.datasheet_data(user.email)&.fetch(column_name, nil)
-      end
+      lua = Lua::State.new
+      lua.assessment = {
+        'norm_score' => proc { |assessment_id, factor_id|
+          assessment_factor_score(assessment_id, factor_id, 'norm_score')
+        },
+        'raw_score' => proc { |assessment_id, factor_id| assessment_factor_score(assessment_id, factor_id, 'score') },
+        'zscore' => proc { |assessment_id, factor_id| assessment_factor_score(assessment_id, factor_id, 'zscore') },
+        'percentage_answered' => proc { |assessment_id, factor_id|
+          assessment_factor_score(assessment_id, factor_id, 'percentage')
+        }
+      }
+      lua.datasheet = {
+        'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
+      }
       lua_code = %(
         #{campaign_scoring_variables_as_lua_table}
         #{dependencies_as_lua_variable(campaign_factor)}

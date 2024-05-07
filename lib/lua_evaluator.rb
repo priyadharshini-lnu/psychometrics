@@ -1,21 +1,17 @@
 # frozen_string_literal: true
 
 class LuaEvaluator
-  def self.eval(code, lua)
-    lua.eval(%(
+  def self.eval(code, lua = Lua::State.new)
+    lua.__load_stdlib :base, :math, :string
+    lua.__eval(%(
       arg=nil
-      debug.debug=nil
-      debug.getfenv=getfenv
-      debug.getregistry=nil
+      debug=nil
       dofile=nil
-      io={write=io.write}
       loadfile=nil
-      os = {time = os.time}
-      package.loaded.io=io
-      package.loaded.package=nil
+      io=nil
       package=nil
       require=nil
     ))
-    lua.eval(code)
+    lua.__eval(code)
   end
 end

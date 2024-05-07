@@ -8,7 +8,6 @@ module UsersResults
           factor = factor_data[:factor]
           lua = define_lua_context
           score = eval_lua(lua, factor.custom_formula)
-          lua.close
 
           broadcast(:ok, extended_scoring.deep_merge(factor.id.to_s => { 'score' => score.nil? ? nil : score.to_i }))
         end
@@ -16,25 +15,13 @@ module UsersResults
         private
 
         def define_lua_context
-          lua = Rufus::Lua::State.new
-          lua.eval('assessment, datasheet, user = {}, {}, {}')
-
-          lua.function 'assessment.norm_score' do |factor_id|
-            get_score(factor_id, 'norm_score')
-          end
-
-          lua.function 'assessment.raw_score' do |factor_id|
-            get_score(factor_id, 'score')
-          end
-
-          lua.function 'assessment.zscore' do |factor_id|
-            get_score(factor_id, 'zscore')
-          end
-
-          lua.function 'assessment.percentage_answered' do |factor_id|
-            get_score(factor_id, 'percentage')
-          end
-
+          lua = Lua::State.new
+          lua.assessment = {
+            'norm_score' => proc { |factor_id| get_score(factor_id, 'norm_score') },
+            'raw_score' => proc { |factor_id| get_score(factor_id, 'score') },
+            'zscore' => proc { |factor_id| get_score(factor_id, 'zscore') },
+            'percentage_answered' => proc { |factor_id| get_score(factor_id, 'percentage') }
+          }
           lua
         end
 
@@ -61,7 +48,7 @@ module UsersResults
 
         def eval_lua(lua, script)
           LuaEvaluator.eval(script, lua)
-        rescue Rufus::Lua::LuaError
+        rescue Lua::Exceptions::Base
           nil
         end
       end
