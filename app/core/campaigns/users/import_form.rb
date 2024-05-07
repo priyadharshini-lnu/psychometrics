@@ -13,6 +13,7 @@ module Campaigns
       validate :validate_header
       validate :validate_body
       validate :validate_duplicated_emails
+      validate :validate_manager_emails
       validate :validate_overwrite_permission
 
       private
@@ -43,6 +44,28 @@ module Campaigns
           emails << email if group.size > 1
         end
         errors.add(:import_data, :duplicated_emails, emails: emails.join(', ')) if emails.present?
+      end
+
+      def validate_manager_emails
+        manager_emails = import_data[1..].pluck(:manager_email)
+        existing_emails = campaign.users.where(email: manager_emails).pluck(:email)
+        import_emails = import_data[1..].pluck(:email)
+
+        manager_emails.each.with_index do |manager_email, index|
+          next if manager_email.blank?
+
+          if manager_email&.match?(Devise.email_regexp)
+            unless existing_emails.include?(manager_email) || import_emails.include?(manager_email)
+              errors.add(:import_data, :manager_not_found, row_number: (index + 1), email: manager_email)
+            end
+          else
+            errors.add(:import_data, :invalid_email, row_number: (index + 1), email: manager_email)
+          end
+        end
+      end
+
+      def campaign
+        context.campaign
       end
     end
   end

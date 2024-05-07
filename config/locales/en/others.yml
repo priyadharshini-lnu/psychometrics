@@ -309,8 +309,10 @@ en:
             import_data:
               cant_overwrite_password: You do not have permission to overwrite password.
               duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
+              invalid_email: 'Row %{row_number}: Invalid email %{email}'
               invalid_header: Invalid header, take header from export
               invalid_reports_header: Invalid header, take header from sample file
+              manager_not_found: 'Row %{row_number}: Manager with email %{email} is not present in the campaign or in CSV'
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale

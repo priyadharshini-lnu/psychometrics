@@ -32,7 +32,7 @@ describe Campaigns::Users::ParseImportData do
         gender: nil,
         profile_locale: nil,
         created_at: '11 Jul 2020 / 16:39',
-        manager_email: nil,
+        manager_email: 'shuja@gmail.com',
         custom_field: 'c1'
       },
       {
@@ -45,7 +45,7 @@ describe Campaigns::Users::ParseImportData do
         schedule_start_date: nil,
         schedule_end_date: nil,
         created_at: '11 Jul 2020 / 17:25',
-        manager_email: nil,
+        manager_email: 'shuja@gmail.com',
         age: '10',
         gender: nil,
         profile_locale: nil,
@@ -61,7 +61,7 @@ describe Campaigns::Users::ParseImportData do
         schedule_start_date: nil,
         schedule_end_date: nil,
         created_at: '22 Jul 2020 / 18:40',
-        manager_email: nil,
+        manager_email: 'shuja@gmail.com',
         age: '20',
         gender: nil,
         profile_locale: nil,
