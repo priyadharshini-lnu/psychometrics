@@ -47,6 +47,10 @@ prevent bundle secure warnings with
 
 7. `$> yarn install`
 
+    in case of `error Error: unable to get local issuer certificate` run below command
+
+    ```yarn config set "strict-ssl" false -g```
+
 8. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
 9. To generate report pdf locally clone [this repository](https://github.com/TheTalentEnterprise/serverless-url-to-pdf).
@@ -76,12 +80,21 @@ After installation, it will prompt you to add some variables to .zshrc or .bashr
 
 Once that is done, you will need to create symlinks for all the necessary components before running bundle install. You might need to open a new terminal and run bundle install. If bundle install doesn't work, you will need to create a symlink:
 
+you may create directories `/usr/local/include` and `/usr/local/lib/` if it's not present
 ```
 sudo ln -s /opt/homebrew/opt/lua@5.3/include/lua5.3 /usr/local/include/lua5.3
 sudo ln -s /opt/homebrew/opt/lua@5.3/lib/liblua5.3.dylib /usr/local/lib/liblua5.3.dylib
 sudo ln -s /opt/homebrew/opt/lua@5.3/bin/lua5.3 /usr/local/bin/lua5.3
 ```
 Please note that the path where Lua is installed might be different, so replace the above path (/opt/homebrew/opt/lua@5.3/..) with the path where Lua is installed on your machine. To check where Lua is installed, you can run `which lua`
+
+
+
+### Installing rlua with bundler
+in case of error `error: incompatible function pointer types passing 'VALUE (VALUE)' ` run below command
+```
+bundle config set --global build.rlua "--with-cflags=-Wno-error=incompatible-function-pointer-types"
+```
 
 # Run the application locally
 
