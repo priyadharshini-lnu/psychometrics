@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  Button, Space, InputNumber, Form,
+  Button, Space, Input, InputNumber, Form,
 } from 'antd'
 
 const { I18n } = window
@@ -13,8 +13,8 @@ const CampaignJoinLink = ({
 
   const onOk = () => {
     form.validateFields().then(() => {
-      const { campaign, expire } = form.getFieldsValue()
-      if (campaign && expire) insert(getValue(campaign, expire))
+      const { campaign, expire, text } = form.getFieldsValue()
+      if (campaign && expire && text) insert(getValue(campaign, expire, text))
     })
   }
 
@@ -23,7 +23,7 @@ const CampaignJoinLink = ({
       form={form}
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
-      initialValues={{ expire: 120 }}
+      initialValues={{ expire: 120, text: 'Join Campaign' }}
     >
       <Space direction="vertical">
         <Form.Item name="campaign" label={I18n.t('campaign_join_token.campaign_id')} rules={[{ required: true }]}>
@@ -31,6 +31,9 @@ const CampaignJoinLink = ({
         </Form.Item>
         <Form.Item name="expire" label={I18n.t('campaign_join_token.expire_in')} rules={[{ required: true }]}>
           <InputNumber style={{ width: 200 }} />
+        </Form.Item>
+        <Form.Item name="text" label={I18n.t('campaign_join_token.text')} rules={[{ required: true }]}>
+          <Input style={{ width: 200 }} />
         </Form.Item>
         <Space>
           <Button onClick={onOk} type="primary">{I18n.t('common.actions.insert')}</Button>
