@@ -24,7 +24,7 @@ module Administration
 
     class Scope < Administration::BasePolicy::Scope
       def resolve(client_id = nil)
-        return scope.all if @user.is?(:superadmin)
+        return scope.all if !client_id && @user.is?(:superadmin)
 
         scope.where(owner_id: [client_id, nil])
       end
