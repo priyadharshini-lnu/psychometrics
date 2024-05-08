@@ -1,19 +1,27 @@
 # frozen_string_literal: true
 
 module Reports
-  class AssessmentSerializer < ActiveModel::Serializer
+  class AssessmentSerializer < Panko::Serializer
     attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules,
-               :dimension_id, :factors, :factor_scoring_counters
+               :dimension_id, :factors, :factor_scoring_counters, :blocks
 
-    has_many :blocks, serializer: BlockSerializer do
-      object.blocks.
-        selecting do
-        ['blocks.*', coalesce(template.props, props).
-          as('props'), coalesce(template.name, name).as('name')]
-      end.
-        joining { template.outer }.
-        includes(questions_ams: :comments).
-        where.has { (template.disabled == false) | (template.id == nil) }
+    def blocks
+      blocks = object.blocks.
+               selecting do
+                 ['blocks.*', coalesce(template.props, props).
+                   as('props'), coalesce(template.name, name).as('name')]
+               end.
+               joining { template.outer }.
+               includes(questions_ams: :comments).
+               where.has { (template.disabled == false) | (template.id == nil) }
+
+      Panko::ArraySerializer.new(
+        blocks,
+        each_serializer: BlockSerializer,
+        context: {
+          piped_text_context: context[:piped_text_context]
+        }
+      ).to_a
     end
 
     def factor_scoring_counters

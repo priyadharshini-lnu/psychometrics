@@ -5,9 +5,11 @@ module Assessments
     module Scoring
       extend Actions::Action
       action :fetch do |data, _current_user, assessment|
-        FactorsScoring.where(assessment_id: assessment.id, factor_id: data['factor_id']).map do |scoring|
-          FactorsScoringSerializer.new(scoring)
-        end
+        factors = FactorsScoring.where(assessment_id: assessment.id, factor_id: data['factor_id'])
+        Panko::ArraySerializer.new(
+          factors,
+          each_serializer: FactorsScoringSerializer
+        ).to_a
       end
     end
   end

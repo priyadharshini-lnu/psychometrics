@@ -132,9 +132,11 @@ class UsersResultSerializer < Panko::Serializer
   def highlights
     ids = [object.assessment_id]
     ids += object.assessment.resources.map { |r| r['assessmentId'] } if object.assessment.resources
-    Highlight.where(assessment_id: ids, user_id: user_id).map do |h|
-      HighlightSerializer.new(h)
-    end
+    highlights = Highlight.where(assessment_id: ids, user_id: user_id)
+    Panko::ArraySerializer.new(
+      highlights,
+      each_serializer: HighlightSerializer
+    ).to_a
   end
 
   def media_responses

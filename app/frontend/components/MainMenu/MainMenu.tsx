@@ -9,7 +9,7 @@ import {
   MonitorOutlined, ArrowRightOutlined, MenuUnfoldOutlined,
   MenuFoldOutlined, UserOutlined, CalendarOutlined,
 } from '@ant-design/icons'
-import { useMedia } from 'react-use-media'
+import { useMedia } from 'use-media'
 import cs from 'classnames'
 import styles from './MainMenu.less'
 import { RootState } from '~/modules/admin/core/rootReducers'

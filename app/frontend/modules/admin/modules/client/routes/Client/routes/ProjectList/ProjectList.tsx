@@ -135,7 +135,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
             id, logo, name, url,
           }) => (
             <div>
-              <Row gutter={40}>
+              <Row gutter={40} wrap={false}>
                 <Col span="4">
                   {
                     logo ? (

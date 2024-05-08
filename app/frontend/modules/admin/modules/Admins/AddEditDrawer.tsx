@@ -27,13 +27,11 @@ import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/c
 import styles from './styles.less'
 import {
   AdminTypes,
-  ClientAdminGrants,
-  CampaignAdminGrants,
-  ProjectAdminGrants,
-  ThreeSixtyCampaignAdminGrants,
   CampaignTypes,
   ThreeSixtySpecificGrants,
 } from './constants'
+import { AvailablePermissions } from './core'
+
 
 const { I18n } = window
 const { Option } = Select
@@ -95,6 +93,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   const [notFromList, setNotFromList] = useState(true)
   const [adminRolesOpen, setAdminRolesOpen] = useState(false)
   const [open, setUserSelectOpen] = useState(true)
+  const [availablePermissions, setAvailablePermissions] = useState<AvailablePermissions>({})
   const [selectedUser, setSelectedUser] = useState<Omit<UserDetails, 'enable_2fa'> | null>(
     {
       firstName: '', lastName: '', name: '', email: '', id: '',
@@ -102,19 +101,6 @@ const AddEditDrawerComponent: FC<Props> = ({
   )
 
   const { message } = App.useApp()
-
-  const grantsHash = (): {} => {
-    switch (adminType) {
-      case AdminTypes.ProjectAdmin:
-        return ProjectAdminGrants
-      case AdminTypes.ClientAdmin:
-        return ClientAdminGrants
-      case AdminTypes.CampaignAdmin:
-        return (campaignType === CampaignTypes.common ? CampaignAdminGrants : ThreeSixtyCampaignAdminGrants)
-      default:
-        return {}
-    }
-  }
   const params = useParams<{ projectId: string, campaignId: string, clientId: string }>()
   const { projectId } = params
   const { clientId } = params
@@ -153,7 +139,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   )
 
   const {
-    fetchSingle, getResource,
+    fetchSingle, getResource, collectionAction: membershipCollectionAction,
   } = useResources<Admin>(
     'memberships',
     {
@@ -172,6 +158,18 @@ const AddEditDrawerComponent: FC<Props> = ({
 
 
   const admin = getResource(adminId)
+
+  useEffect(() => {
+    let role = adminType
+    if (adminType === AdminTypes.CampaignAdmin) {
+      role = campaignType === CampaignTypes.common ? AdminTypes.CampaignAdmin : 'threesixty_campaign_admin'
+    }
+    membershipCollectionAction(
+      { action: 'available_permissions', method: 'get', body: { role } },
+    ).then((response: AvailablePermissions) => {
+      setAvailablePermissions(response)
+    })
+  }, [])
 
   useEffect(() => {
     if (isEditMode) {
@@ -397,7 +395,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                     },
                   ]}
                 >
-                  <Input />
+                  <Input name="admin_first_name" />
                 </Form.Item>
                 <Form.Item
                   label={I18n.t(
@@ -413,7 +411,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                     },
                   ]}
                 >
-                  <Input />
+                  <Input name="admin_last_name" />
                 </Form.Item>
               </>
             )}
@@ -432,7 +430,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                 notFoundContent={isAdminRolesLoading('fetch') ? <Spin size="small" /> : null}
               />
             </Form.Item>
-            {_.map(grantsHash(), (grants, grantFor) => (
+            {_.map(availablePermissions, (grants, grantFor) => (
               <Fragment key={grantFor}>
                 <Form.Item
                   name={['grantNames', `${grantFor}`]}

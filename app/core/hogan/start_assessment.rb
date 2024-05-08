@@ -51,7 +51,7 @@ module Hogan
           password: password,
           participant_id: participant_id,
           user_id: user.id,
-          provider: Rails.application.secrets.hogan[:default_provider]
+          provider: Settings.secrets.hogan[:default_provider]
         )
       end
     end

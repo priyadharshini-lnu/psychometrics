@@ -6,7 +6,7 @@ module Webhooks
 
     def status
       response = URI.decode_www_form(request.raw_post).to_h
-      sms_history_id, = JWT.decode(params[:token], Rails.application.secrets.webhook_jwt_secret).dig(0, 'data')
+      sms_history_id, = JWT.decode(params[:token], Settings.secrets.webhook_jwt_secret).dig(0, 'data')
       sms_history = SmsHistory.find_by(id: sms_history_id)
       return head :ok unless sms_history
 

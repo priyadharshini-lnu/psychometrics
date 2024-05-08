@@ -32,7 +32,7 @@ type Props = PropsFromRedux
 const { Content } = Layout
 const { I18n } = window
 
-const ExternalReportPreviewComponent: FC<Props> = ({
+const ExternalReportPreview: FC<Props> = ({
   fetchExternalReportDetails, userReport, reportLoadingInProgress,
 }) => {
   const [pdfLoadingComplete, setPdfLoadingComplete] = useState(false)
@@ -122,4 +122,4 @@ const ExternalReportPreviewComponent: FC<Props> = ({
   )
 }
 
-export const ExternalReportPreview = connecter(ExternalReportPreviewComponent)
+export default connecter(ExternalReportPreview)

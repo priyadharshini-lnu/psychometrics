@@ -9,7 +9,7 @@ module Pearson
     end
 
     def config
-      Rails.application.secrets.pearson
+      Settings.secrets.pearson
     end
 
     def client

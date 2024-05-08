@@ -6,7 +6,14 @@ FactoryBot.define do
     age_updated_at { '2022-08-22 23:25:12' }
     gender { 1 }
     timezone { 'MyString' }
-    photo { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/profile.png')) }
     locale { 'MyString' }
+
+    after(:create) do |user_profile|
+      user_profile.photo.attach(
+        io: File.open(Rails.root.join('spec/fixtures/files/profile.png')),
+        filename: 'profile.png',
+        content_type: 'image/png'
+      )
+    end
   end
 end

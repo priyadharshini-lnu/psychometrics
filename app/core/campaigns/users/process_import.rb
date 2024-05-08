@@ -33,6 +33,9 @@ module Campaigns
               [field.question_id.to_s, value]
             end
 
+            manager = find_manager(attrs[:manager_email])
+            user_data[:manager_id] = manager&.id
+
             if user
               user = update_user(user, user_data)
               unless user.valid?
@@ -71,9 +74,11 @@ module Campaigns
         broadcast :ok, users_those_pwd_not_changed, imported_users
       end
 
+      private
+
       def update_user(user, attrs)
         pwd_to_be_not_changed = pwd_to_be_not_changed?(user, attrs)
-        strong_attrs = attrs.except(:created_at, :active, :schedule_start_date, :schedule_end_date)
+        strong_attrs = attrs.except(:created_at, :active, :schedule_start_date, :schedule_end_date, :manager_email)
         strong_attrs = strong_attrs.except(:password) if pwd_to_be_not_changed
 
         attrs_to_update = strong_attrs.merge(modified_by_id: current_user.id).except(:overwrite_password)
@@ -103,6 +108,32 @@ module Campaigns
 
       def pwd_to_be_not_changed?(user, attrs)
         attrs[:password].present? && user.encrypted_password.present? && attrs[:overwrite_password] != 'Yes'
+      end
+
+      def find_manager(email)
+        return if email.blank?
+
+        manager = campaign.users.find_by(email: email)
+        return manager if manager
+
+        manager_row = @rows.find { |row| row[:email] == email }
+        create_manager(manager_row) if manager_row
+      end
+
+      def create_manager(manager_row)
+        return unless manager_row
+
+        user_data = manager_row.slice(*Users::ParseImportData::HEADER_IMPORT_KEYS)
+        form = ::Campaigns::Users::Import::CreateForm.new(user_data.merge(operation: operation))
+
+        ::Campaigns::Users::Create.call(form, campaign, current_user) do |result|
+          result.on(:error) do |error|
+            raise Licenses::NotEnoughError, error
+          end
+          result.on(:ok) do |manager|
+            return manager
+          end
+        end
       end
     end
   end

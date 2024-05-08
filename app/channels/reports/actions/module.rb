@@ -8,7 +8,7 @@ module Reports
       action :create do |data, _current_user, report|
         page = report.pages.find(data.delete('page_id'))
         mod = page.modules.create!(data)
-        Reports::ModuleSerializer.new(mod).to_hash
+        Reports::ModuleSerializer.new.serialize(mod)
       end
 
       action :update do |data|
@@ -30,13 +30,13 @@ module Reports
       action :move_up do |data|
         mod = ::Reports::Module.find(data['id'])
         mod.move_higher
-        Reports::ModuleSerializer.new(mod).to_hash
+        Reports::ModuleSerializer.new.serialize(mod)
       end
 
       action :move_down do |data|
         mod = ::Reports::Module.find(data['id'])
         mod.move_lower
-        Reports::ModuleSerializer.new(mod).to_hash
+        Reports::ModuleSerializer.new.serialize(mod)
       end
     end
   end

@@ -212,7 +212,7 @@ const PushWebhookModal: React.FC<Props> = ({
                         key={topic}
                         value={topic}
                       >
-                        {topic}
+                        {_.startCase(topic)}
                       </Option>
                     ))}
                   </Select>
@@ -270,7 +270,7 @@ const PushWebhookModal: React.FC<Props> = ({
                     />
                   </div>
                   <CopyToClipboard
-                    text={responseHeaders}
+                    text={JSON.stringify(responseHeaders, null, 2)}
                     onCopy={() => message.info(
                       I18n.t('user_assessments.modals.push_test_webhook.copy_response_headers_success'),
                     )}

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative './../concerns/filter_by_tags_shared_examples'
 
 describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment) }
@@ -26,7 +27,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
             external_settings: {
               assessment_id: '4c1665e2-eee3-4e92-8f31-70a6b0e55e93'
             },
-            extra: { icon_color: 'color' }
+            extra: { icon_color: 'color' },
+            tag_list: ['saville']
           },
           relationships: {
             dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
@@ -44,6 +46,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
         to eq('CE546973-763C-4DCD-A283-11A36EF31F1D')
       expect(parsed_response.dig('data', 'attributes', 'external_settings',
                                  'assessment_id')).to eq('4c1665e2-eee3-4e92-8f31-70a6b0e55e93')
+
+      expect(parsed_response.dig('data', 'attributes', 'tag_list')).to eq(['saville'])
     end
 
     context 'if assessment_id is invalid' do
@@ -172,5 +176,9 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_id')).
         to eq('df3fe097-4394-4bef-8abc-eaf36b0fbe0e')
     end
+  end
+
+  describe 'Filter by tags' do
+    include_examples 'Filter by tags', Assessment
   end
 end

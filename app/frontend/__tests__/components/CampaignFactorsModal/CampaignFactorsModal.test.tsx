@@ -10,8 +10,8 @@ describe('CampaignFactors', () => {
     { name: 'Field2', code: 'field2', outputType: 'numeric' },
   ]
 
-  const saveCampaignFactorsMock = jest.fn()
-  const closeMock = jest.fn()
+  const saveCampaignFactorsMock = vi.fn()
+  const closeMock = vi.fn()
 
   it('should render the CampaignFactors component', () => {
     render(

@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { createBrowserHistory } from 'history'
@@ -25,9 +25,10 @@ const store = createStore(
 const element = document.getElementById('devise')
 
 if (element) {
-  ReactDOM.render(
+  const root = createRoot(element)
+  root.render(
     <Provider store={store}>
       <App history={history} />
-    </Provider>, element,
+    </Provider>,
   )
 }

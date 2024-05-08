@@ -28,7 +28,11 @@ module Assessments
         transmit(
           {
             action: 'assessment_data',
-            data: Assessments::AssessmentSerializer.new(assessment).to_hash(include: '**')
+            data: Assessments::AssessmentSerializer.new(
+              context: {
+                include: '**'
+              }
+            ).serialize(assessment)
           }
         )
       else

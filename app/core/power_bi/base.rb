@@ -5,7 +5,7 @@ module PowerBi
     BASE_API_URL = 'https://api.powerbi.com/v1.0/myorg'
 
     def config
-      @config ||= Rails.application.secrets.power_bi
+      @config ||= Settings.secrets.power_bi
     end
 
     def get_access_token

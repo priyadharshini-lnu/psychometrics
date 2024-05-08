@@ -7,6 +7,7 @@ import BranchProcessor from './BranchProcessor'
 import { ElementInterface, EndOfAssessmentElementProps } from '../interfaces'
 
 const BLOCK = 'Block'
+const GROUP = 'Group'
 const BRANCH = 'Branch'
 const EMBEDDED_DATA = 'EmbeddedData'
 const END = 'EndOfAssessment'
@@ -45,6 +46,9 @@ const ElementProcessor = {
             }
           }
           break
+        case GROUP:
+          result = setIn(result, 'element', `${result.element}/0`)
+          continue
         case RANDOMIZATION:
           result = setIn(result, 'element', `${result.element}/0`)
           continue

@@ -1,30 +1,37 @@
 # frozen_string_literal: true
 
-class AssessmentSerializer < ActiveModel::Serializer
+class AssessmentSerializer < Panko::Serializer
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
              :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration,
              :resources_content, :resources_translations, :instructions, :fixed_timed, :options, :default_norm_id,
              :extra, :linked_questions, :allow_multiple_responses, :default_language
 
   def blocks
-    object.blocks.
-      selecting do
+    blocks = object.blocks.selecting do
       ['blocks.*',
        coalesce(template.props, props).as('props'),
        coalesce(template.name, name).as('name')]
-    end.
-      joining { template.outer }.
-      includes(questions_ams: :comments).
-      where.has { (template.disabled == false) | (template.id == nil) }.map do |block|
-      BlockSerializer.new(block, piped_text_context: piped_text_context)
-    end
+    end.joining { template.outer }.
+             includes(questions_ams: :comments).where.has { (template.disabled == false) | (template.id == nil) }
+    Panko::ArraySerializer.new(
+      blocks,
+      each_serializer: BlockSerializer,
+      context: {
+        piped_text_context: piped_text_context
+      }
+    ).to_a
   end
 
   def factors
     return [] unless object.dimension
 
-    object.dimension.all_factors.includes(:sub_factors).
-      map { |factor| Factors::WithSubFactorsSerializer.new(factor, assessment_id: object.id).to_hash }
+    Panko::ArraySerializer.new(
+      object.dimension.all_factors.includes(:sub_factors),
+      each_serializer: Factors::WithSubFactorsSerializer,
+      context: {
+        assessment_id: object.id
+      }
+    ).to_a
   end
 
   def resources_content
@@ -33,14 +40,20 @@ class AssessmentSerializer < ActiveModel::Serializer
 
     # Brakmen:ignore
     questions = Question.where(id: ids).order(Arel.sql("position(id::text in '#{ids.join(',')}')"))
-    questions.map { |q| QuestionSerializer.new(q, piped_text_context: piped_text_context) }
+    Panko::ArraySerializer.new(
+      questions,
+      each_serializer: QuestionSerializer,
+      context: {
+        piped_text_context: piped_text_context
+      }
+    ).to_a
   end
 
   def resources_translations
     ids = object.resources&.map { |r| r['questionId'] }
     return {} unless ids
 
-    Translation.to_hash_for_questions(ids, @instance_options[:selected_locale])
+    Translation.to_hash_for_questions(ids, context[:selected_locale])
   end
 
   def data_sheet_columns
@@ -57,7 +70,11 @@ class AssessmentSerializer < ActiveModel::Serializer
   def relationships
     return [] unless object.threesixty?
 
-    Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
+    relationships = Relationships::ByCampaign.new(connected_campaign)
+    Panko::ArraySerializer.new(
+      relationships,
+      each_serializer: RelationshipSerializer
+    )
   end
 
   def connected_campaign
@@ -75,10 +92,10 @@ class AssessmentSerializer < ActiveModel::Serializer
   private
 
   def campaign_assessment
-    instance_options[:campaign_assessment]
+    context[:campaign_assessment]
   end
 
   def piped_text_context
-    instance_options[:piped_text_context] || {}
+    context[:piped_text_context] || {}
   end
 end

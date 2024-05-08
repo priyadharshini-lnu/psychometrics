@@ -1,1 +1,3 @@
-export { ClientList } from './ClientList'
+import ClientList from './ClientList'
+
+export default ClientList

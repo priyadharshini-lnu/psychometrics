@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 module Assessments
-  class Hogan < Assessment
+  class Hogan < ::Assessment
     validates :name, presence: true, length: { maximum: 150, allow_blank: true }
 
     before_create :init_default_state
 
     # Need for create right urls
     def self.model_name
-      Assessment.model_name
+      ::Assessment.model_name
     end
 
     private

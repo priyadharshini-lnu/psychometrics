@@ -1,1 +1,3 @@
-export { EditReport } from './EditReport'
+import EditReport from './EditReport'
+
+export default EditReport

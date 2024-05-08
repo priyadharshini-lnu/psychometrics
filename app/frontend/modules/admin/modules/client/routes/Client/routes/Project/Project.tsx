@@ -5,7 +5,6 @@ import {
   SettingOutlined,
   ShopOutlined,
   DatabaseOutlined,
-  // UserOutlined,
   SolutionOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
@@ -34,7 +33,7 @@ const connecter = connect(
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-export const ProjectComponent: FC<Props> = ({
+const Project: FC<Props> = ({
   currentUser, fetchProject,
 }) => {
   const { projectId } = useParams<{ projectId: string }>()
@@ -167,4 +166,4 @@ export const ProjectComponent: FC<Props> = ({
   )
 }
 
-export const Project = connecter(ProjectComponent)
+export default connecter(Project)

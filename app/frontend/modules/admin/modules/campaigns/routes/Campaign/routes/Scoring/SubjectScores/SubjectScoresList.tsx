@@ -20,13 +20,13 @@ import { CampaignScores, CampaignScoresTR, type Error } from '~/modules/admin/mo
 import { formatedDate } from '~/utils/time'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
+import { ImportExternalScoringModal } from './ImportExternalScoringModal'
 
 const { I18n } = window
 
 type CampaignFactorGroupType = CampaignFactorGroup & {campaignFactors: CampaignFactor[]}
 
 type DataType = {
-  key: React.Key;
   id: string;
   email: string;
   campaignScoresFinalized: boolean | null;
@@ -47,12 +47,13 @@ const connector = connect(
 )
 type Props = ConnectedProps<typeof connector>
 
-const SubjectScoresListComponent: React.FC<Props> = () => {
+const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const { modal, message } = App.useApp()
   const { campaignId } = useParams<{ campaignId: string }>()
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)
+  const [openImportExternalScoringModal, setopenImportExternalScoringModal] = useState(false)
 
   const {
     data: campaignFactorData,
@@ -159,6 +160,8 @@ const SubjectScoresListComponent: React.FC<Props> = () => {
       }).then(() => {
         message.success(I18n.t('administration.scoring.subject_list.export_success'))
       })
+    } else if (action === 'import_external_scores') {
+      setopenImportExternalScoringModal(true)
     }
   }
 
@@ -237,8 +240,15 @@ const SubjectScoresListComponent: React.FC<Props> = () => {
         </Col>
         <div>
           <Tools
-            permissions={{ exportScorings: meta.permissions?.exportScorings }}
+            permissions={{
+              export: campaignPermissions.viewCampaignScoring,
+              import: campaignPermissions.manageCampaignScoring,
+            }}
             onClick={action => handleToolAction(action)}
+          />
+          <ImportExternalScoringModal
+            open={openImportExternalScoringModal}
+            close={() => setopenImportExternalScoringModal(false)}
           />
           <ToolsDropdown
             isBulk

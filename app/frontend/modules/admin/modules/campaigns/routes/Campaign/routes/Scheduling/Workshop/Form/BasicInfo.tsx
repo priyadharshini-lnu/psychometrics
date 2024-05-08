@@ -43,6 +43,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
 
   const [selectedDates, setSelectedDates] = useState<dayjs.Dayjs[]>(initialValues.dates || [])
   const [videoCallType, setVideoCallType] = useState<number>(initialValues.video_call_type)
+  const [dateFieldStatus, setDateFieldStatus] = useState<'success' | 'error'>('success')
 
   const sortDates = (dates: dayjs.Dayjs[]) => dates.sort((a, b) => a.valueOf() - b.valueOf())
 
@@ -53,17 +54,20 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
     const existingIndex = selectedDates.map(d => d.format('YYYY MM DD')).indexOf(date.format('YYYY MM DD'))
     if (existingIndex >= 0) {
       const newDates = selectedDates.filter(d => d.format('YYYY MM DD') !== date.format('YYYY MM DD'))
+      setDateFieldStatus(newDates.length ? 'success' : 'error')
       setSelectedDates(sortDates(newDates))
     }
     if (existingIndex < 0 && date && selectedDates.length < 5) {
+      setDateFieldStatus('success')
       setSelectedDates(sortDates([...selectedDates, date]))
     }
   }
 
   const handleNext = () => {
-    form.setFieldValue('dates', selectedDates)
     form.validateFields().then((values) => {
-      onNext(values)
+      selectedDates.length ? onNext({ ...values, dates: selectedDates }) : setDateFieldStatus('error')
+    }).catch(() => {
+      !selectedDates.length && setDateFieldStatus('error')
     })
   }
 
@@ -73,6 +77,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
 
   const handleTagClose = (closedDate: dayjs.Dayjs) => {
     const updatedDates = selectedDates.filter(date => date !== closedDate)
+    setDateFieldStatus(updatedDates.length ? 'success' : 'error')
     setSelectedDates(updatedDates)
   }
 
@@ -106,13 +111,10 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
           initialValues={{ ...initialValues, dates: initialValues.dates?.length ? initialValues.dates : null }}
         >
           <Form.Item
-            name="dates"
             label={I18n.t('administration.scheduling.assessment_center_form.dates_label')}
             {...fieldLayout}
-            rules={[{
-              required: true,
-              message: I18n.t('administration.scheduling.errors.date_required'),
-            }]}
+            validateStatus={dateFieldStatus}
+            help={dateFieldStatus === 'success' ? '' : I18n.t('administration.scheduling.errors.date_required')}
           >
             <DatePicker
               format="DD/MM/YYYY"

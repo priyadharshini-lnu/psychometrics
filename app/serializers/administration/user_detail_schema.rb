@@ -49,7 +49,7 @@ module Administration
               required(:proctoring_trial).filled(:bool?)
               required(:workshop_booking_requires_prework_completion).filled(:bool?)
               required(:campaign_scoring_variables).maybe(:str?)
-              optional(:proctoring_type).maybe(:str?)
+              optional(:proctoring_type).value { str? | int? }
             end
           end
         end
@@ -64,6 +64,11 @@ module Administration
           required(:regenerate_report).filled(:bool?)
           required(:toggle_status).filled(:bool?)
           required(:remove).filled(:bool?)
+        end
+        required(:manager).hash do
+          optional(:id).maybe(:int?)
+          optional(:name).maybe(:str?)
+          optional(:email).maybe(:str?)
         end
         required(:completed_at).maybe(:str?)
         required(:user_assessments).array(Administration::UserAssessmentSchema.schema(_, _))

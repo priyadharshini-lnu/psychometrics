@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import modules from '../modules'
 
 const reactRails = {
@@ -7,7 +7,8 @@ const reactRails = {
       const props = JSON.parse(e.dataset.reactProps)
       const ReactComponent = modules[domain][e.dataset.reactClass]
       if ((!components || components.includes(e.dataset.reactClass)) && ReactComponent) {
-        ReactDOM.render(<ReactComponent {...props} />, e)
+        const root = createRoot(e)
+        root.render(<ReactComponent {...props} />)
       }
     })
   },

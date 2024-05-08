@@ -143,12 +143,16 @@ module Administration
               payload: params.merge(user_dashboard.details_to_log)
           end
           format.json do
-            render json: user_dashboard, report: user_dashboard.report,
-                   results: UserReports::GroupedResultsByAssessment.call!(user_dashboard, view_report_as),
-                   piped_text_context: {},
-                   user_results: user_dashboard.user_results(view_report_as),
-                   serializer: Administration::IndividualDashboardSerializer,
-                   include: '**'
+            render json: Administration::IndividualDashboardSerializer.new(
+              context: {
+                report: user_dashboard.report,
+                results: UserReports::GroupedResultsByAssessment.call!(user_dashboard, view_report_as),
+                piped_text_context: {},
+                user_results: user_dashboard.user_results(view_report_as),
+                current_user: current_user,
+                include: '**'
+              }
+            ).serialize(user_dashboard)
           end
         end
       end

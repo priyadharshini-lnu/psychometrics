@@ -6,7 +6,7 @@ import {
 const mapStateToProps = () => ({})
 
 const mapDispatchToProps = {
-  changeLocale,
+  onChange: changeLocale,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

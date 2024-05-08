@@ -25,7 +25,7 @@ const connecter = connect(
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-export const ClientComponent: FC<Props> = ({ currentUser }) => {
+export const Client: FC<Props> = ({ currentUser }) => {
   const { clientId } = useParams<{ clientId: string }>()
   const history = useHistory()
   const { pathname } = useLocation()
@@ -118,4 +118,4 @@ export const ClientComponent: FC<Props> = ({ currentUser }) => {
   )
 }
 
-export const Client = connecter(ClientComponent)
+export default connecter(Client)

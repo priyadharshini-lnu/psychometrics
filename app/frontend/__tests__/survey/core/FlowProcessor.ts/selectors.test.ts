@@ -204,7 +204,7 @@ describe('getPossibleBlocks', () => {
     expect(getPossibleBlocks({ ...state, currentElement: '2/0' })).toStrictEqual(['4'])
   })
 
-  describe('getPossibleQuestionsCount top end', () => {
+  test('getPossibleQuestionsCount top end', () => {
     expect(getPossibleQuestionsCount({ normalizedTree: {}, allPages: {} })).toStrictEqual(0)
     expect(getPossibleQuestionsCount({ ...state, currentElement: '0' })).toStrictEqual(13)
     expect(getPossibleQuestionsCount({ ...state, currentElement: '0' })).toStrictEqual(13)
@@ -217,7 +217,7 @@ describe('getPossibleBlocks', () => {
   })
 
 
-  describe('getPossibleQuestionsCount top end with pages', () => {
+  test('getPossibleQuestionsCount top end with pages', () => {
     expect(getPrevQuestionsCount({ ...state, currentElement: '0', currentPage: 1 })).toStrictEqual(3)
     expect(getPrevQuestionsCount({ ...state, currentElement: '1/1', currentPage: 0 })).toStrictEqual(7)
     expect(getPrevQuestionsCount({ ...state, currentElement: '1/1', currentPage: 1 })).toStrictEqual(9)
@@ -230,9 +230,7 @@ describe('getPossibleBlocks', () => {
     expect(getPossibleQuestionsCount({ ...state, currentElement: '2', currentPage: 0 })).toStrictEqual(2)
   })
 
-
-
-  describe('getPossibleQuestionsCount with branch end', () => {
+  test('getPossibleQuestionsCount with branch end', () => {
     expect(getPrevQuestionsCount({ ...state, currentElement: '0/1/1' })).toStrictEqual(5)
     expect(getPossibleQuestionsCount({ ...state, currentElement: '0/1/1' })).toStrictEqual(2)
 
@@ -243,7 +241,7 @@ describe('getPossibleBlocks', () => {
     expect(getPossibleQuestionsCount({ ...state, currentElement: '2' })).toStrictEqual(2)
   })
 
-  describe('getProgress with ends', () => {
+  test('getProgress with ends', () => {
     expect(getProgress({ ...state, currentElement: '0' })).toStrictEqual(0)
     expect(getProgress({ ...state, currentElement: '0/1/0' })).toStrictEqual(71)
     expect(getProgress({ ...state, currentElement: '1/1' })).toStrictEqual(64)

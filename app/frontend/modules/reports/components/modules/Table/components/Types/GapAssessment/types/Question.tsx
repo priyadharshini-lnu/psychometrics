@@ -73,7 +73,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 interface OwnProps {
   filters: typeof AppStore.report.filters
   gapType: PropertiesModel['props']['gapType']
-  assessment_id: PropertiesModel['assessment_id']
+  assessment_id: number
   questionsChoices: PropertiesModel['props']['questionsChoices']
   hideValues: boolean
   noOfItems: number | null

@@ -23,7 +23,23 @@ FactoryBot.define do
     factory :project_admin, traits: [:with_membership_project_admin], class: 'Users::Admin' do
       role { User::ADMIN_ROLE }
     end
+
+    factory :campaign_admin, traits: [:with_membership_project_admin], class: 'Users::Admin' do
+      role { User::ADMIN_ROLE }
+
+      memberships { [association(:campaign_admin_membership, campaign: campaign, permissions: permissions)] }
+
+      transient do
+        campaign { create(:campaign) }
+        permissions { nil }
+      end
+    end
+
     factory :manager, traits: [:with_membership_manager]
+
+    trait :with_membership_campaign_admin do
+      memberships { memberships_options.map { |opts| association(:campaign_admin_membership, opts) } }
+    end
 
     trait :with_membership_client_admin do
       memberships { memberships_options.map { |opts| association(:client_admin_membership, opts) } }
@@ -57,8 +73,13 @@ FactoryBot.define do
           age: 1,
           gender: 1,
           timezone: 'MyString',
-          locale: 'MyString',
-          photo: Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/profile.png'))
+          locale: 'MyString'
+        )
+
+        user.user_profile.photo.attach(
+          io: File.open(Rails.root.join('spec/fixtures/files/profile.png')),
+          filename: 'profile.png',
+          content_type: 'image/png'
         )
       end
     end

@@ -16,7 +16,7 @@ import {
 import Report from '~/modules/reports/report'
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { isRequestInProgress } from '~/core/request'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { MediaQueryContext, PageHeader } from '~/glint'
 import { ReportList } from './ReportList'
 
@@ -56,7 +56,7 @@ const InsightsComponent: FC<Props> = ({
     <>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown />
+          <LangDropdownWithChangeLocale />
         </Col>
       </PageHeader>
       <Content className={styles.pageContent}>

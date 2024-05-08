@@ -34,13 +34,18 @@ Rails.application.routes.draw do
 
   concern :media_uploades do
     member do
-      get :upload_media_url
+      match :upload_media_url, via: %i[post get]
       put :upload_callback
       delete :remove_media
       put :complete_multipart_upload
       put :mark_as_user_selected_take
       put :update_meta_data
     end
+  end
+
+  concern :taggable do
+    post :add_tag
+    post :remove_tag
   end
 
   concern :sheet_management do
@@ -334,6 +339,7 @@ Rails.application.routes.draw do
             put :toggle_require_scheduling
           end
         end
+
         resources :campaign_assessment_groups, only: %i[index create update destroy] do
           collection do
             post :update_positions
@@ -611,6 +617,7 @@ Rails.application.routes.draw do
         end
       end
       member do
+        get :export_threesixty_scores
         get :export_results
         get :export_completion_status
         delete :reset
@@ -1004,6 +1011,21 @@ Rails.application.routes.draw do
           patch :change_password
         end
       end
+
+      resources :user_idp_development_actions, only: %i[index] do
+        collection do
+          get :user_idp_skills
+          get :available_development_actions
+          post :save_plan
+          put :update_progress
+        end
+      end
+
+      resources :user_idp_plans, only: [] do
+        collection do
+          get :summary
+        end
+      end
     end
 
     scope module: :threesixty do
@@ -1076,6 +1098,15 @@ Rails.application.routes.draw do
     end
     resource :profiles, only: %i[update edit]
 
+    resources :job_roles, only: %i[index], controller: 'end_user/job_roles'
+    resources :skills, only: %i[index], controller: 'end_user/skills'
+    resources :idp_template_skills, only: %i[index], controller: 'end_user/idp_template_skills'
+    resources :skill_gap_reports, only: %i[show], controller: 'end_user/skill_gap_reports'
+    resources :user_idp_skills, only: %i[index create update], controller: 'end_user/user_idp_skills'
+    resources :direct_reports, only: %i[index], controller: 'end_user/direct_reports' do
+      put :update_status, on: :member
+    end
+
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify', as: :identify
@@ -1089,6 +1120,7 @@ Rails.application.routes.draw do
     get 'invites/:id/booking', to: 'end_user/users#dashboard'
     get 'invites/:id/success', to: 'end_user/users#dashboard'
     get 'invites/:id/details', to: 'end_user/users#dashboard'
+    get 'idp/*path', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 
@@ -1165,6 +1197,7 @@ Rails.application.routes.draw do
                 end
               end
             end
+            jsonapi_resources :idp_templates, only: %i[index], controller: 'clients/idp_templates'
           end
           jsonapi_resources :report_families do
             jsonapi_resources :report_families_reports
@@ -1173,11 +1206,16 @@ Rails.application.routes.draw do
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export
+              get :seach_user
+              put :add_manager
             end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
             get :reset_password
+            collection do
+              get :available_permissions
+            end
           end
           jsonapi_resources :users do
             post :reset_password
@@ -1192,7 +1230,7 @@ Rails.application.routes.draw do
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end
-          jsonapi_resources :assessments do
+          jsonapi_resources :assessments, concerns: :taggable do
             post :toggle_archive
             post :copy
             post :restore
@@ -1201,8 +1239,12 @@ Rails.application.routes.draw do
             scope module: :assessments do
               resource :uploads, only: %i[update]
             end
+            get :export_raw_factor_scores
+            get :export_raw_results
+            get :export_normed_results
           end
           jsonapi_resources :dimensions
+          jsonapi_resources :tags
           jsonapi_resources :external_assessments
           jsonapi_resources :external_reports
           jsonapi_resources :external_norms
@@ -1231,7 +1273,7 @@ Rails.application.routes.draw do
             end
           end
 
-          resources :campaigns, only: [] do
+          resources :campaigns, only: [:update] do
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
             jsonapi_resources :workshops, only: %i[index show update] do
@@ -1281,6 +1323,7 @@ Rails.application.routes.draw do
             jsonapi_resources :users, only: %i[index show], controller: 'campaigns/users' do
               member do
                 get :assessors_scores
+                get :active_idp_template
               end
             end
 
@@ -1314,6 +1357,8 @@ Rails.application.routes.draw do
                 get :export_scorings
                 post :rescore_bulk
                 post :change_finalized_campaign_score_bulk
+                post :import_external_campaign_scorings
+                get :import_external_scorings_sample_file
               end
             end
             jsonapi_resources :campaign_factor_values, only: %i[index] do
@@ -1356,6 +1401,7 @@ Rails.application.routes.draw do
               get :search_managers
             end
           end
+          resources :user_idp_plans, only: %i[create]
         end
       end
     end

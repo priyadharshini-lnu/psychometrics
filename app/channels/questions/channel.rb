@@ -13,7 +13,11 @@ module Questions
         transmit(
           {
             action: 'question_data',
-            data: QuestionSerializer.new(question).to_hash(include: '**')
+            data: QuestionSerializer.new(
+              context: {
+                include: '**'
+              }
+            ).serialize(question)
           }
         )
       else

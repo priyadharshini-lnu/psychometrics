@@ -9,7 +9,7 @@ describe PowerBi::GetEmbedToken do
   let(:embed_token) { 'pb_embed_token' }
 
   it do
-    config = Rails.application.secrets.power_bi
+    config = Settings.secrets.power_bi
     identities = { username: Faker::Internet.email }
     stub_request(:post, "https://login.microsoftonline.com/#{config[:tenant_id]}/oauth2/token").
       with(body: {

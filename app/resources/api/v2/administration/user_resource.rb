@@ -4,6 +4,7 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
   attributes :name, :email, :first_name, :last_name, :full_name, :updated_at, :disabled, :enable_2fa,
              :created_by, :modified_by, :role, :project_id, :photo_url, :user_profile_data
   has_one :user_profile, foreign_key_on: :related
+
   delegate :photo_url, to: :user_profile, allow_nil: true
 
   after_save lambda {
@@ -55,7 +56,8 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
           [
             %w[remove destroy],
             'reset_password',
-            'toggle_enable_2fa'
+            'toggle_enable_2fa',
+            %w[login_as spoof]
           ],
           {
             project_id: @model.project_id

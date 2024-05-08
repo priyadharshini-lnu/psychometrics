@@ -172,13 +172,15 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
   return (
     <div>
       <Row justify="space-between" className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
-          <Button type="primary" danger={sort} onClick={() => updateOrder()}>
-            {sort
-              ? I18n.t('administration.sheets.column.save_order')
-              : I18n.t('administration.sheets.column.reorder')}
-          </Button>
-        </Col>
+        {permissions.update && (
+          <Col>
+            <Button type="primary" danger={sort} onClick={() => updateOrder()}>
+              {sort
+                ? I18n.t('administration.sheets.column.save_order')
+                : I18n.t('administration.sheets.column.reorder')}
+            </Button>
+          </Col>
+        )}
         <Col>
           <Space>
             <RemoveColumns
@@ -190,13 +192,15 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
               sheetType={sheetType}
             />
             <Divider type="vertical" />
-            <Button
-              type="primary"
-              onClick={() => setDrawer(true)}
-            >
-              <PlusOutlined />
-              {I18n.t('administration.sheets.column.add_column')}
-            </Button>
+            {permissions.update && (
+              <Button
+                type="primary"
+                onClick={() => setDrawer(true)}
+              >
+                <PlusOutlined />
+                {I18n.t('administration.sheets.column.add_column')}
+              </Button>
+            )}
           </Space>
         </Col>
       </Row>

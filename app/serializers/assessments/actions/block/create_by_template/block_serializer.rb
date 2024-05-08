@@ -5,7 +5,7 @@ module Assessments
     module Block
       module CreateByTemplate
         # Class serialize template for create block by template
-        class BlockSerializer < ActiveModel::Serializer
+        class BlockSerializer < Panko::Serializer
           attributes :name, :position, :props, :created_at, :template_id, :deleted, :questions
 
           def template_id
@@ -13,9 +13,10 @@ module Assessments
           end
 
           def questions
-            object.questions_ams.map do |q|
-              Assessments::Actions::Block::CreateByTemplate::QuestionSerializer.new(q)
-            end
+            Panko::ArraySerializer.new(
+              object.questions_ams,
+              each_serializer: Assessments::Actions::Block::CreateByTemplate::QuestionSerializer
+            ).to_a
           end
 
           def deleted

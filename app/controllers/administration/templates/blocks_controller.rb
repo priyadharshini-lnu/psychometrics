@@ -49,7 +49,11 @@ module Administration
 
         if builder.save
           audit! :update, builder.block, payload: params.require(:block)
-          render json: { data: BlockSerializer.new(resource).to_hash(include: '**') }
+          render json: { data: BlockSerializer.new(
+            context: {
+              include: '**'
+            }
+          ).serialize(resource) }
         else
           render json: { error: true }, status: 400
         end
@@ -100,7 +104,11 @@ module Administration
       def preview
         add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
         @data = {
-          blocks: [BlockSerializer.new(resource).to_hash(include: '**')]
+          blocks: [BlockSerializer.new(
+            context: {
+              include: '**'
+            }
+          ).serialize(resource)]
         }.to_json
       end
 

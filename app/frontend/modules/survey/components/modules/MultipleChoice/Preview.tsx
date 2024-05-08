@@ -34,6 +34,7 @@ interface OwnProps {
   model: PreviewModel
   readOnly: boolean
   nextPage: () => {}
+  questionCount: number
 }
 
 const connector = connect(
@@ -42,7 +43,7 @@ const connector = connect(
     factors: preview.factors,
     scores: getQuestionScoring(preview, id),
     I18n: getI18n(preview),
-    singleQuestionFlow: preview.enableSingleQuestionPage,
+    enableSingleQuestionPage: preview.enableSingleQuestionPage,
   }),
 )
 
@@ -58,7 +59,8 @@ export const PreviewComponent: FC<Props> = ({
   model,
   readOnly,
   nextPage,
-  singleQuestionFlow,
+  enableSingleQuestionPage,
+  questionCount,
 }) => {
   const {
     props: { type },
@@ -70,7 +72,7 @@ export const PreviewComponent: FC<Props> = ({
     readOnly,
     I18n,
     nextPage,
-    singleQuestionFlow,
+    singleQuestionFlow: enableSingleQuestionPage && questionCount === 1,
   }
 
   return (

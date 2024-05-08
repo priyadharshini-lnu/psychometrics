@@ -34,7 +34,6 @@ type factorWeightage = {
 }
 
 type DataType = {
-  key: React.Key;
   assessmentName: string;
   [key: string]: factorWeightage | string | number ;
 }
@@ -194,7 +193,7 @@ const createColumns = (factors: FactorsMap): ColumnProps<DataType>[] => {
     render: (_, record) => {
       const inputProps = record[factorId] as factorWeightage
       return (
-        <Form.Item
+        <Form.Item<{}> // TODO: I don't know why is getting wrong type
           name={[record.key, factorId]}
           initialValue={inputProps?.value}
           noStyle

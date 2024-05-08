@@ -9,7 +9,7 @@ module EndUser
     delegate :first_name, :last_name, to: :maskable_identity
 
     def url
-      Rails.application.secrets.hogan[:login_url]
+      Settings.secrets.hogan[:login_url]
     end
 
     def user_id

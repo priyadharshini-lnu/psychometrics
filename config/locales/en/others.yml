@@ -65,6 +65,10 @@ en:
               blank: Report Bundle ID can't be blank
             report_id:
               blank: Report ID can't be blank
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: Please upload xlsx file
         column:
           attributes:
             name:
@@ -72,6 +76,7 @@ en:
         create_all:
           attributes:
             assessors:
+              blank: Select at least one assessor
               email_duplicated: The subject and assessor emails are duplicated
               multiple_leads_for_subject: Multiple Lead Assessors assigned to subject
             evaluators:
@@ -304,8 +309,10 @@ en:
             import_data:
               cant_overwrite_password: You do not have permission to overwrite password.
               duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
+              invalid_email: 'Row %{row_number}: Invalid email %{email}'
               invalid_header: Invalid header, take header from export
               invalid_reports_header: Invalid header, take header from sample file
+              manager_not_found: 'Row %{row_number}: Manager with email %{email} is not present in the campaign or in CSV'
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
@@ -315,6 +322,14 @@ en:
               invalid_datetime: is invalid
         user_assessment:
           subject_and_assessment_exists: Assessment and subject pair already exists
+        user_idp_development_action:
+          attributes:
+            end_date_time:
+              invalid_datetime: is invalid
+            private:
+              inclusion: must be a boolean
+            start_date_time:
+              invalid_datetime: is invalid
     models:
       assign_report: Assign report Form
       datasheet: Datasheet Form
@@ -644,7 +659,7 @@ en:
           ineligible: Ineligible
           interrupted: Interrupted
           not_started: New
-          timed_out: Timed Out
+          timed_out: Timed import_raw
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte
@@ -737,6 +752,7 @@ en:
         import_assessment_questions: Import Assessment Questions
         import_assessors: Import Assessors
         import_datasheet: Import Datasheet
+        import_external_campaign_scoring: Import External Campaign Scoring
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
@@ -753,6 +769,7 @@ en:
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         super_admin_datasheet_export: Super Admin Datasheet Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
+        threesixty_campaign_export_scores: Threesixty Campaign Scores Export
         workshop_status_export: Assessment Center Status Export
       statuses:
         completed: Completed
@@ -792,15 +809,21 @@ en:
     restart: Restart
   assessments:
     actions:
+      add_tag:
+        success_message: Tag was added successfully
       archived:
-        success_message: Asessment %{name} archived successfully
+        success_message: Assessment "%{name}" was archived successfully.
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Asessment %{name} was copied successfully
+        success_message: Assessment "%{name}" was copied successfully.
       details: Details
       download_csv: Download CSV
       edit: Edit
       evaluate: Evaluate
+      export_normed: Normed Factor Scores
+      export_raw_labels: Raw (with labels)
+      export_raw_scores: Raw Factor Scores
+      export_raw_without_labels: Raw (without labels)
       extend_time: Extend time
       goto_dashboard: Click here to continue
       moderate: Moderate Scores
@@ -812,19 +835,21 @@ en:
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
-        confirm_message: Are you sure you want to delete the assessment '%{name}'?
+        confirm_message: Are you sure you want to delete the assessment "%{name}"?
         confirm_title: Confirmation Required
-        success_message: Asessment %{name} has been removed
+        success_message: Assessment "%{name}" has been removed
+      remove_tag:
+        success_message: Tag was removed successfully
       rescore: Rescore
       restore:
-        success_message: Assessment %{name} restored successfully
+        success_message: Assessment "%{name}" was restored successfully
       show_usage: Show Usage
       submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
       translations:
-        success_message: The asessment translations updated
+        success_message: The assessment translations updated
       unarchived:
-        success_message: Asessment %{name} unarchived successfully
+        success_message: Assessment "%{name}" was unarchived successfully
       view: View
     active: Active
     archived: Archived
@@ -930,6 +955,9 @@ en:
       title: Instructions
     messages:
       finish: "Thank you for your time. \nYour responses have now been recorded."
+      norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
+      raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
+      raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
     page:
       back: Back
       confirm_message: |-
@@ -1010,6 +1038,9 @@ en:
       previous_group_required: Previous group completion required
       title: Assessment group
     menu:
+      assessment_center: Assessment Center
+      assessments_and_reports: Assessments & Reports
+      idp: IDP
       manage: Manage
       report_approval: Report Approval Settings
       sequencing: Sequencing
@@ -1214,9 +1245,12 @@ en:
       bookings: Bookings
       campaign: Campaign
       change_password: Change Password
+      development: Development
       home: Home
       insights: Insights
       livechat: Live Support
+      my_direct_reports: My Direct Reports
+      my_plan: My Plan
       profile: Profile
       profile_details: Details
       tasks: Tasks
@@ -1323,6 +1357,7 @@ en:
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Raw (without labels)
       export_result: Export Result
+      export_scores: Export Scores
       export_scoring: Scoring
       import_raw: Raw
       import_scoring: Scoring
@@ -1342,22 +1377,22 @@ en:
       status: Status
       universal_link: Universal link
     messages:
-      export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
-      export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job scheduled successfully
-      external_results_export_scheduled: External Assessment export job scheduled successfully
-      norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
-      raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
-      raw_results_export_scheduled: Assessment Raw Results export job scheduled successfully
-      scoring_results_export_scheduled: Assessment Scoring Results export job scheduled successfully
+      export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
+      export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
+      external_results_export_scheduled: External Assessment export job was scheduled successfully
+      norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
+      raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
+      raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
+      scoring_results_export_scheduled: Assessment Scoring Results export job was scheduled successfully
     modals:
       import_raw:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
-        success_msg: Import successfully uploaded
+        success_msg: Import was uploaded successfully
         title: Import Raw Results data
         upload: Upload
       import_scoring:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
-        success_msg: Import successfully uploaded
+        success_msg: Import was uploaded successfully
         title: Import Scoring Results data
         upload: Upload
       regenerate:
@@ -1367,22 +1402,22 @@ en:
       remove:
         helper_text: 'DANGER: Selecting this will remove all users'' responses to this assessment in this campaign.'
         msg_text: You are trying to delete <strong>"%{name}"</strong> Assessment
-        successfully: "%{name} assessment removed successfully."
+        successfully: "%{name} assessment was removed successfully."
         title: Remove assessment?
       rescore:
         content: Are you sure you want to rescore assessment?
-        successfully: Assessment was successfully rescored.
+        successfully: Assessment was rescored successfully.
         title: Rescore Assessment?
       rescore_response:
-        message: Rescoring scheduled for assessment %{name}
+        message: Rescoring scheduled for assessment "%{name}"
         title: Rescore Responses
       reset:
         content: Are you sure you want to reset result?
-        successfully: The result data was successfully reset.
+        successfully: The result data was reset successfully.
         title: Reset Result for assessment %{name}?
       update_assessor_form:
         select_assessor: Select Assessor Form
-        success_msg: Assessor Form successfully uploaded
+        success_msg: Assessor Form was uploaded successfully
         title: Update Assessor Form
         update: Update
       update_external_config:
@@ -1390,13 +1425,13 @@ en:
         title: Update External Config
       update_locales:
         select_locales: Select Locales
-        success_msg: Locales successfully updated
+        success_msg: Locales were updated successfully
         title: Update Available Locales
       update_norm:
         apply: Apply this change to existing users in this campaign
         cannot_remove_norm: Cannot remove norm for completed assessment.
         select_norm: Select Norm
-        success_msg: Norms successfully updated
+        success_msg: Norms were updated successfully
         title: Update Norm
         update: Update
       update_time:
@@ -1406,7 +1441,7 @@ en:
         form:
           duration: Duration in minutes
         title: Duration for the workshop activity
-    scheduled_successfully: Assessment scheduled successfully
+    scheduled_successfully: Assessment was scheduled successfully
     scheduling:
       update_exists: Override existing schedule
     scheduling_time: Schedule assessment time
@@ -1445,8 +1480,8 @@ en:
       report: Report
       report_bundle_placeholder: Select a report bundle
     messages:
-      bulk_download_successful: Bulk report download job scheduled successfully
-      export_report_data_scheduled: Report data export job scheduled successfully
+      bulk_download_successful: Bulk report download job was scheduled successfully
+      export_report_data_scheduled: Report data export job was scheduled successfully
     modals:
       remove:
         apply: Apply this changes to existing users in this campaign.
@@ -1459,8 +1494,10 @@ en:
           enable: Enable User Access
   campaign_users:
     actions:
+      add_manager: Add manager
       add_report: Add report
       extend_time: Extend Time
+      search_user: Search user
     assessments:
       progress: Progress
     details:
@@ -1471,9 +1508,10 @@ en:
       completion_status: Completion status
       hogan_id: Hogan Id
       last_login: Last login
+      manager: Manager
       modals:
         remove:
-          successfully: User with email %{email} removed successfully.
+          successfully: User with email %{email} was removed successfully.
           title: Are you sure you want to remove this user from campaign %{campaignName}?
       not_completed_yet: Not completed yet
       not_logged_in_yet: Not logged in yet
@@ -1568,6 +1606,7 @@ en:
   common:
     actions:
       add: Add
+      approve: Approve
       archive: Archive
       back_to_responses: Back To Responses
       cancel: Cancel
@@ -1579,6 +1618,7 @@ en:
       delete: Delete
       edit: Edit
       export: Export
+      filter_by_tags: Filter by tags
       import: Import
       insert: Insert
       mark_complete: Mark Complete
@@ -1634,6 +1674,7 @@ en:
       modified_date: Modified Date
       name: Name
       owner: Owner
+      package_id: Package Id
       poster: Poster
       project: Project
       provider: Provider
@@ -1644,6 +1685,7 @@ en:
       schedule_time: Schedule Time
       scheduling: Scheduling
       status: Status
+      tags: Tags
       timing: Timing
       token: Token
       type: Type
@@ -1661,11 +1703,13 @@ en:
       campaigns: Campaigns
       completion_statuses: Completion Statuses
       datasheet: Datasheet
+      idp_templates: Idp Templates
       projects: Projects
       report: Report
       reports: Reports
       scoring: Scoring
       sms_invite: SMS Invite
+      threesixty_campaign: Threesixty Campaign Scores
     status:
       completed: Completed
       dropped_out: Dropped Out
@@ -1912,9 +1956,12 @@ en:
         invalid_subdomain_format: Wrong subdomain format.
         reserved_subdomain: Subdomain %{value} is reserved
         uniq_subdomain: Subdomain should be unique.
+      add_manager:
+        manager_not_found: Manager not found or not part of the same project
+        user_not_found: User not found or not part of the same project
       admin:
         already_added: Admin with email already added.
-      already_assigned?: Already assigned
+      already_assigned?: Cannot link this assessment - it is already assigned to '%{linked_assessor_form_name}'.
       already_invited: This user already exists in the assessment centre you are attempting to add.
       assessor_assessment:
         already_added: Assessor Assessment already added to campaign.
@@ -1950,6 +1997,8 @@ en:
         overlaps_time: Overlaps interval %{interval}
         start_date_should_be_less: Start date should be less than end date
         start_time_should_be_less: Start time should be less than end time
+      user_idp_plan:
+        idp_template_already_assigned_to_user: This Idp Template is already assiged to this user and is active
       workshop_invited_subject_create:
         already_exists: Subject already exists in the invite.
       workshop_subject_create:
@@ -2024,6 +2073,7 @@ en:
       not_saved:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
+      skill_not_exist_in_user_idp_plan: User idp skill doesn't exist in user idp plan
     module_error: Something went wrong with this module, please contact administration.
     module_error_editor: Something went wrong with this module, please check module settings.
     module_props_error: Something went wrong with this module.
@@ -2040,16 +2090,16 @@ en:
     are_you_sure: Are you sure?
     assessment: Assessment
     assessment_groups:
-      create_success: The group is successfully created
-      update_success: The group is successfully updated
+      create_success: The group was created successfully
+      update_success: The group was updated successfully
     availability:
       add_new_availability: Add new availability
-      create_success: Availability created successfully.
+      create_success: Availability was created successfully.
       remove_confirm:
         content: Are you sure you want to remove the availability?
-        success: Availability removed successfully.
+        success: Availability was removed successfully.
         title: Remove availability
-      update_success: Availability updated successfully.
+      update_success: Availability was updated successfully.
     background_reading: Background Reading
     bookings:
       accept_invite_msg: You have received an invite. Please reserve your slot.
@@ -2121,12 +2171,12 @@ en:
       actions:
         remove:
           confirmation: Enter current campaign name given below in text box to remove campaign
-          success: "%{campaignName} removed successfully."
+          success: "%{campaignName} was removed successfully."
       users:
         actions:
           export:
             details: Campaign Users
-            scheduled: User export scheduled successfully.
+            scheduled: User export was scheduled successfully.
           export_reports_and_assessments:
             details: Reports and Assessments
         completion_statuses:
@@ -2143,12 +2193,12 @@ en:
           view_licenses: View Licenses
         remove:
           confirmation: Enter current client name given below in text box to remove client
-          success: Client with name '%{clientName}' removed successfully
+          success: Client with name '%{clientName}' was removed successfully
       projects:
         actions:
           remove:
             confirmation: Enter current project name given below in text box to remove project
-            success: Project with name '%{projectName}' removed successfully
+            success: Project with name '%{projectName}' was removed successfully
     delete: Delete
     edit: Edit
     error_warning: Oops, something went wrong with your assessment. Please contact the support.
@@ -2160,21 +2210,21 @@ en:
     manage: Manage
     'no': 'No'
     passwordSetting:
-      update_success: Security settings successfully updated
+      update_success: Security settings was updated successfully
     report_error: Oops, something went wrong with your report. Please contact the support.
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
       refresh: Refresh
     resource:
-      create_success: "%{readableResourceName} added successfully"
-      update_success: "%{readableResourceName} updated successfully"
+      create_success: "%{readableResourceName} was added successfully"
+      update_success: "%{readableResourceName} was updated successfully"
     restart: Restart
     restart_progress: There were some changes in the assessment. Please refresh the page to see the changes. Refreshing the page will begin the assessment from the start. Questions that you have already answered will be auto filled.
     smsInvites:
-      create_success: SMS Invite added successfully
-      update_success: SMS Invite updated successfully
+      create_success: SMS Invite was added successfully
+      update_success: SMS Invite was updated successfully
     sms_records:
-      create_success: SMS job scheduled successfully
+      create_success: SMS job was scheduled successfully
     test_webhook:
       create_success: Webhook test successful.
       success: Success
@@ -2216,11 +2266,93 @@ en:
     assigns:
       results:
         not_completed: Hogan Report isn't ready yet
-        successfully: Hogan Report was successfully saved
+        successfully: Hogan Report was saved successfully
   id: Id
+  idp:
+    actions: Actions
+    board: Board
+    details: Details
+    development_actions:
+      action_private: 'Yes'
+      action_public: 'No'
+      add_development_action: Add Development Action
+      add_skill: Add Skill
+      all: All
+      board_view:
+        completed: Completed
+        in_progress: In Progress
+        not_started: Not Started
+      completion: Completion
+      create_my_own: Create My Own
+      date_range: Start Date - End Date
+      development_actions: Development Actions
+      generate_by_ai: Generate by AI
+      learning_from_the_others: Learning from the Others
+      marathon: Marathon
+      no_development_actions: No development actions
+      on_the_job: On the Job
+      other: Other
+      private: Private
+      skills: Skills
+      sprint: Sprint
+      structured_learning: Structured Learning
+      submit_plan: Submit Plan
+      write_here: Write here...
+    direct_report_details: Direct Report Details
+    initial_steps:
+      add_skills: Add
+      add_skills_step: Add Skills
+      continue_to_rate_skills: Continue to rate skills
+      getting_start: Getting Started
+      getting_started_info: Welcome to your Individual Development Plan (IDP) creator. This plan will help you identify, manage and track your professional and personal goals as well as the steps they need to take to achieve those goals. Your professional goals may include behavioral, leadership as well as technical areas of development. Your IDP is an essential tool to support your career development and skill enhancement.
+      less_skills: Show less skills
+      more_skills: Explore more skills
+      no_skills_selected: No skills selected.
+      rate_skills: Rate Skills
+      rate_skills_description: Now that you have selected your developmental priorities, please rate yourself on each of the following. Remember to rate yourself based on your current level and not on your past or desired level.
+      rate_skills_title: Rating Your Skills
+      rating_column_header: Your self rating
+      role: Role
+      select_role_placeholder: Select a role
+      select_skills: Select your skills
+      select_skills_placeholder: Select skills
+      selected_skills: Selected Skills
+      skill_column_header: Skill
+      skill_gap_report: Skill Gap Report
+    list: List
+    my_direct_reports: My Direct Reports
+    my_plan:
+      add_skill: Add Skill
+      development_plan: Development Plan
+      graphs:
+        area_of_development: Area of Development
+        behavioural: Behavioural
+        categories: Categories
+        learning_on_job: On the Job (%{count})
+        learning_others: Learning from the Others (%{count})
+        learning_structured: Structured Learning (%{count})
+        other: Other
+        technical: Technical
+    plan: Plan
+    profile_details: Profile Details
+    skill_gap_report: Skill Gap Report
+    status: Status
+    user_idp_status:
+      approved: Approved
+      draft: Draft
+      pending_approval: Pending
+    users: Users
+  idp_templates:
+    actions:
+      save: Save
+    assign: Assign
+    assign_idp_template: Assign Idp Template
+    errors:
+      idp_template_not_found: IDP template not found
+    placeholder: Select a Idp Template
   invites:
     create:
-      successfully: Your invitations was successfully sent
+      successfully: Your invitations was sent successfully
     form:
       emails_hint: Set each email in new line
       send_invites: Send Invites
@@ -2232,8 +2364,9 @@ en:
         description: Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>
         message: Report is ready
     threesixty:
-      export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
-      export_raw_results_scheduled: Raw Results export job scheduled successfully
+      export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
+      export_raw_results_scheduled: Raw Results export job was scheduled successfully
+      export_scores_scheduled: Scores export job was scheduled successfully
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
@@ -2558,7 +2691,7 @@ en:
         standard_deviation: Standard Deviation
       messages:
         failure: 'Error: %{error}.'
-        success: Norm for Factor '%{factorName}' updated successfully.
+        success: Norm for Factor '%{factorName}' was updated successfully.
       values:
         empty: Empty
         required: "%{title} is required"
@@ -2592,14 +2725,14 @@ en:
     form:
       username: Username
     update:
-      successfully: Profile updated
+      successfully: Profile was updated successfully
   registration_code:
     allowed_domains: Allowed domains
     invalid_code: Invalid campaign code
     modals:
       remove:
         content: Are you sure you want to remove Registration code <strong>"%{code}"</strong>?
-        successfully: Registration code '%{code}' removed successfully.
+        successfully: Registration code '%{code}' was removed successfully.
       title: Registration Code
     one_domain_per_line: One domain name per line
     restricted_domains: Restricted domains
@@ -2624,7 +2757,7 @@ en:
   report_bundles:
     actions:
       remove:
-        confirm_message: Are you sure you want to delete the report bundle '%{name}'?
+        confirm_message: Are you sure you want to delete the report bundle "%{name}"?
         confirm_title: Confirmation Required
         success_message: Report Bundle %{name} has been deleted
     create: Create
@@ -2634,7 +2767,7 @@ en:
       actions:
         add: Add New Report
         remove:
-          confirm_message: Are you sure you want to delete the report '%{name}' from '%{report_bundle_name}'?
+          confirm_message: Are you sure you want to delete the report "%{name}" from '%{report_bundle_name}'?
           confirm_title: Confirmation Required
           success_message: Report %{name} has been deleted
       select: Select Report
@@ -2642,10 +2775,10 @@ en:
     actions:
       add: Add Report
       archived:
-        success_message: Report %{name} archived successfully
+        success_message: Report "%{name}" was archived successfully.
       back_to_campaign: Back to Campaign
       copy:
-        success_message: Report %{name} was copied successfully
+        success_message: Report "%{name}" was copied successfully.
       details: Details
       download: Download report
       download_csv: Download CSV
@@ -2659,7 +2792,7 @@ en:
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
-        confirm_message: Are you sure you want to delete the report '%{name}'?
+        confirm_message: Are you sure you want to delete the report "%{name}"?
         confirm_title: Confirmation Required
         success_message: Report %{name} has been removed
       rescore: Rescore
@@ -2854,7 +2987,7 @@ en:
       send_password_email: Send password via Email
       username: Username
     messages:
-      reset_password_success: User %{email} password reseted successfully.
+      reset_password_success: User %{email} password was reseted successfully.
       send_password_email_success: Email sent to user %{email} with the password.
     title: Reset Password
   select: Select
@@ -2873,7 +3006,7 @@ en:
   sheet:
     import_modal:
       alert_access_sheet_removal: Uploading new Accesssheet with delete all existing record and upload new one from the sheet. Please make sure you have all Accesssheet records in spreadsheet.
-      success_message: File successfully upload. Import of datasheet record in progress
+      success_message: File was uploaded successfully. Import of datasheet record in progress
       title: Import Sheet Records
     menu:
       export: Export Sheet
@@ -3295,7 +3428,7 @@ en:
     edit_user: Edit User
     email_approve_request: Email Approval Request
     email_schedules:
-      delete_successful: Email schedule deleted successfully
+      delete_successful: Email schedule was deleted successfully
     evaluate: Evaluate
     evaluation: Evaluation
     evaluation_all_closed_message: Currently all the nominations are awaiting approval
@@ -3438,14 +3571,14 @@ en:
     png: PNG
     regenerate_link: Regenerate Link
     save: Save
-    successfully_generated: Successfully generated
-    successfully_updated: Successfully updated
+    successfully_generated: Generated successfully
+    successfully_updated: Updated successfully
     svg: SVG
   update_profile:
     cancel: Cancel
     title: Update Profile
     update: Update
-    updated_successfully: Profile updated successfully
+    updated_successfully: Profile was updated successfully
   user:
     datasheet:
       attribute: Attribute
@@ -3506,10 +3639,10 @@ en:
         submit_button_name: Push Webhook
         title: Push Webhook
       remove:
-        content: Are you sure you want to remove assessment '%{name}'?
-        successfully: "%{name} assessment removed successfully."
+        content: Are you sure you want to remove assessment "%{name}"?
+        successfully: "%{name} assessment was removed successfully."
       reset:
-        content: Are you sure you want to reset progress '%{name}'?
+        content: Are you sure you want to reset progress "%{name}"?
       test_webhook:
         submit_button_name: Send Test
         title: Send Webhook Event Test
@@ -3552,11 +3685,11 @@ en:
       qc_in_progress: QC in Progress
     messages:
       async_generation: Report generation in progress. You would be notified once report is generated.
-      regenerate_successful: Report regeneration job scheduled successfully
+      regenerate_successful: Report regeneration job was scheduled successfully
     modals:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
-        successfully: "%{userReportName} report removed successfully"
+        successfully: "%{userReportName} report was removed successfully"
       remove_file:
         content: Are you sure you want to remove file?
         successfully: File was removed successfully.
@@ -3599,7 +3732,7 @@ en:
       role: Role
       title: User details
     global_assessors: Global Assessors
-    password_change_success: Password changed successfully. Please login with your new password.
+    password_change_success: Password was changed successfully. Please login with your new password.
     remove_message: Are you sure?
     roles:
       campaign_admin: Campaign Admin

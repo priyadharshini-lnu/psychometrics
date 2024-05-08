@@ -10,13 +10,14 @@ module Administration
       def index
         @_filter_form = campaign.registration_codes.ransack(params[:filters])
         @_resources = filter_form.result.page(params[:page])
-
         render json: {
-          list: @_resources.map do |r|
-            RegistrationCodeSerializer.new(
-              r, current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
-            )
-          end,
+          list: Panko::ArraySerializer.new(
+            resources,
+            each_serializer: RegistrationCodeSerializer,
+            context: {
+              current_user: current_user, project_id: campaign.project_id, campaign_id: campaign.id
+            }
+          ).to_a,
           total: @_resources.count,
           permissions: permissions
         }
@@ -28,8 +29,11 @@ module Administration
         if form.valid?
           code = ::Campaigns::RegistrationCodes::Create.call!(form, campaign)
           audit! :create, code, payload: params, campaign: campaign
-          render json: code, serializer: RegistrationCodeSerializer,
-                 project_id: campaign.project_id, campaign_id: campaign.id
+          render json: RegistrationCodeSerializer.new(
+            context: {
+              project_id: campaign.project_id, campaign_id: campaign.id, current_user: current_user
+            }
+          ).serialize(code)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -45,8 +49,11 @@ module Administration
         if form.valid?
           code = ::Campaigns::RegistrationCodes::Update.call!(form, resource)
           audit! :update, code, payload: params, campaign: campaign
-          render json: code, serializer: RegistrationCodeSerializer,
-                 project_id: campaign.project_id, campaign_id: campaign.id
+          render json: RegistrationCodeSerializer.new(
+            context: {
+              project_id: campaign.project_id, campaign_id: campaign.id, current_user: current_user
+            }
+          ).serialize(code)
         else
           render json: { errors: form.errors.messages }, status: 422
         end

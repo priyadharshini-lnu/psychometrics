@@ -1,4 +1,6 @@
-import { Component } from 'react'
+import {
+  Component, useRef, useLayoutEffect,
+} from 'react'
 import ContentEditable from 'react-contenteditable'
 
 import { SafeHTML } from '~/components/SafeHTML'
@@ -15,6 +17,7 @@ export class TextEditor extends Component {
       normal: true,
       value: props.value,
     }
+    this.editor = null
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -26,6 +29,7 @@ export class TextEditor extends Component {
 
   onRichChange = (data) => {
     const { onChange } = this.props
+    this.setState({ value: data })
     onChange && onChange(data)
   }
 
@@ -33,19 +37,11 @@ export class TextEditor extends Component {
     const { value } = this.props
     this.hover = true
     this.setState({ edit: true, value })
-    setTimeout(() => {
-      if (this.editor) {
-        this.selectElementContents(this.editor.htmlEl)
-      }
-    }, 100)
   }
 
   selectElementContents = (el) => {
-    const range = document.createRange()
-    range.selectNodeContents(el)
-    const sel = window.getSelection()
-    sel.removeAllRanges()
-    sel.addRange(range)
+    document.activeElement.blur()
+    el.focus()
   }
 
 
@@ -59,11 +55,15 @@ export class TextEditor extends Component {
 
 
   keyup = (e) => {
+    const { value } = this.state
+    const { value: initialValue, onChange } = this.props
     if (e.keyCode === 27) {
-      this.setState({ edit: false, value: e.currentTarget.innerHTML })
+      this.setState({ edit: false, value: initialValue })
     }
-    const value = e.currentTarget.innerHTML
-    this.setState({ value })
+    if (e.keyCode === 9) {
+      this.setState({ edit: false })
+      onChange && onChange(value)
+    }
   }
 
   change = (e) => {
@@ -98,57 +98,43 @@ export class TextEditor extends Component {
     this.setState({ value: e.target.value })
   }
 
-  contentEdit () {
-    const { value } = this.state
-    return (
-      <ContentEditable
-        ref={(ref) => { this.editor = ref }}
-        className={styles.editor}
-        onBlur={this.blur}
-        onChange={this.changeText}
-        html={value}
-      />
-    )
-  }
-
-  htmlEdit () {
-    const { value } = this.state
-    return (
-      <textarea
-        ref={(ref) => { this.editor = ref }}
-        className={styles.editor}
-        onChange={this.change}
-        onBlur={this.blur}
-        type="text"
-        autoComplete="off"
-        value={value}
-      />
-    )
-  }
-
-  renderValue () {
-    const { value } = this.props
-    const { value: svalue, edit } = this.state
-    return edit ? svalue : value
-  }
 
   renderText () {
     const { styles: css } = this.props
+    const { value } = this.state
     return (
       <div
         className={`${styles.editable} ${css}`}
         onClick={this.edit}
       >
-        <SafeHTML html={this.renderValue()} config="adminRichText" />
+        <SafeHTML html={value} config="adminRichText" />
       </div>
     )
   }
 
   renderEdit () {
-    const { normal } = this.state
+    const { normal, value } = this.state
     return (
       <div style={{ position: 'relative' }} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}>
-        {normal ? this.contentEdit() : this.htmlEdit()}
+        {normal ? (
+          <ContentEdit
+            onBlur={this.blur}
+            onChange={this.changeText}
+            onKeyDown={this.keyup}
+            onk
+            html={value}
+            selectElementContents={this.selectElementContents}
+          />
+        )
+          : (
+            <HtmlEdit
+              value={value}
+              onChange={this.change}
+              onBlur={this.blur}
+              selectElementContents={this.selectElementContents}
+              onKeyDown={this.keyup}
+            />
+          )}
         <a onClick={this.openRichEditor} className={`${styles.richEditBtn} ${styles.richEditBtnFloat}`}>
           <span className={`fa fa-font ${styles.icon}`} />
           Rich Content Editor...
@@ -176,5 +162,50 @@ export class TextEditor extends Component {
     return (edit ? this.renderEdit() : this.renderText())
   }
 }
+
+const HtmlEdit = ({
+  value, onChange, onBlur, selectElementContents, onKeyDown,
+}) => {
+  const editor = useRef()
+  useLayoutEffect(() => {
+    if (editor.current) {
+      selectElementContents(editor.current)
+    }
+  }, [])
+  return (
+    <textarea
+      ref={editor}
+      className={styles.editor}
+      onChange={onChange}
+      onBlur={onBlur}
+      onKeyDown={onKeyDown}
+      type="text"
+      autoComplete="off"
+      value={value}
+    />
+  )
+}
+
+const ContentEdit = ({
+  html, onChange, onBlur, selectElementContents, onKeyDown,
+}) => {
+  const editor = useRef()
+  useLayoutEffect(() => {
+    if (editor.current) {
+      selectElementContents(editor.current)
+    }
+  }, [])
+  return (
+    <ContentEditable
+      innerRef={editor}
+      className={styles.editor}
+      onBlur={onBlur}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      html={html}
+    />
+  )
+}
+
 
 export default TextEditor

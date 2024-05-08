@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assessments
-  class Common < Assessment
+  class Common < ::Assessment
     validates :name, presence: true
     validates :name, length: { maximum: 150 }, allow_blank: true
     validates :owner, presence: true, allow_nil: true
@@ -11,7 +11,7 @@ module Assessments
 
     # Need for create right urls
     def self.model_name
-      Assessment.model_name
+      ::Assessment.model_name
     end
 
     private

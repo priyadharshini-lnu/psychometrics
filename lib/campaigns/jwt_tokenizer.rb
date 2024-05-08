@@ -4,11 +4,11 @@ module Campaigns
   class JwtTokenizer
     class << self
       def encode(payload, alg = 'HS256')
-        JWT.encode payload, Rails.application.secrets.campaign_join_secret_token, alg
+        JWT.encode payload, Settings.secrets.campaign_join_secret_token, alg
       end
 
       def decode(token)
-        body = JWT.decode(token, Rails.application.secrets.campaign_join_secret_token)
+        body = JWT.decode(token, Settings.secrets.campaign_join_secret_token)
         HashWithIndifferentAccess.new body.first
       rescue JWT::ExpiredSignature
         nil

@@ -407,4 +407,15 @@ describe CampaignScoring::Calculate do
     expect(values[zscore].value).to eq(3.3)
     expect(values[percentage].value).to eq(40)
   end
+
+  it 'skip calculation of external score factor type' do
+    create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'external_score'
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values).to be_empty
+  end
 end

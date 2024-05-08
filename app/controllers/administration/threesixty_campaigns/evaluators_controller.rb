@@ -30,17 +30,20 @@ module Administration
         )
         total = query.count
 
-        evaluators = evaluators.map do |e|
-          ::Threesixty::EvaluatorSerializer.new(
-            e,
+        evaluators = Panko::ArraySerializer.new(
+          evaluators,
+          each_serializer: ::Threesixty::EvaluatorSerializer,
+          context: {
             option: option,
-            nomination_requirement: nomination_requirement_by_user_id[e.user_id],
+            nomination_requirement: nomination_requirement_by_user_id[evaluators.pluck(:user_id)],
             counters: counters,
             subject_evaluator_counters: subject_evaluator_counters,
             current_user: current_user,
-            project_id: threesixty_campaign.campaign.project_id
-          ).to_h
-        end
+            project_id: threesixty_campaign.campaign.project_id,
+            campaign_id: threesixty_campaign.campaign_id
+          }
+        ).to_a
+
         render json: { evaluators: evaluators, total: total, permissions: permissions }
       end
 

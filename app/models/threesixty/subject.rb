@@ -23,11 +23,7 @@ module Threesixty
     # Removing report here to generate a new report on completion because
     # it's possible that a report was generated previously by admin and few evaluations are done after that.
     def remove_report_pdf
-      report = user.user_reports.find_by!(campaign_id: campaign_id)
-      if report.pdf_exists?
-        report.remove_pdf!
-        report.save
-      end
+      user.user_reports.find_by!(campaign_id: campaign_id).remove_report_pdf!
     end
   end
 end

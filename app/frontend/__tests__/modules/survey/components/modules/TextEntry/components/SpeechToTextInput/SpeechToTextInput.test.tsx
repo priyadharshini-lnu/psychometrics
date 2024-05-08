@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
 import {
@@ -8,9 +9,9 @@ import {
 test('Should render a button for start dictation', () => {
   const props: Props = {
     value: '',
-    onValueChange: jest.fn(),
+    onValueChange: vi.fn(),
     isDisabled: false,
-    fetchPresignUrl: jest.fn(),
+    fetchPresignUrl: vi.fn(),
     children: <div />,
   }
 
@@ -27,9 +28,9 @@ test('Should render a button for start dictation', () => {
 test('Should disable the start dictation button when its passed to be disabled', () => {
   const props: Props = {
     value: '',
-    onValueChange: jest.fn(),
+    onValueChange: vi.fn(),
     isDisabled: true,
-    fetchPresignUrl: jest.fn(),
+    fetchPresignUrl: vi.fn(),
     children: <div />,
   }
 
@@ -44,13 +45,13 @@ test('Should disable the start dictation button when its passed to be disabled',
 
 test('Should disable the start dictation button when speech is not supported in the browser', () => {
   // Make browser incompatible to speech API
-  const navigatorSpy = jest.spyOn(window, 'navigator', 'get').mockImplementation(() => undefined as any)
+  const navigatorSpy = vi.spyOn(window, 'navigator', 'get').mockImplementation(() => undefined as any)
 
   const props: Props = {
     value: '',
-    onValueChange: jest.fn(),
+    onValueChange: vi.fn(),
     isDisabled: false,
-    fetchPresignUrl: jest.fn(),
+    fetchPresignUrl: vi.fn(),
     children: <div />,
   }
 

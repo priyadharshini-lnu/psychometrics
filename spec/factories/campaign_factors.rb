@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :campaign_factor do
     position { 1 }
     name { Faker::Lorem.word }
-    code { Faker::Lorem.word.underscore }
+    code { Faker::Lorem.words(number: 3).join('_').underscore }
     description { Faker::Lorem.sentence }
     factor_type { 'formula' }
     output_type { :numeric }

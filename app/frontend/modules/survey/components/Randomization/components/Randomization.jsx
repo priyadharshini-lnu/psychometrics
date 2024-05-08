@@ -1,12 +1,15 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
+import { Alert } from 'antd'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import styles from './Randomization.less'
 
 const {
   Header, Body, Footer, Title,
 } = Modal
+
+const { I18n } = window
 
 export class Randomization extends Component {
   state = {}
@@ -36,9 +39,12 @@ export class Randomization extends Component {
 
   save = () => {
     const {
-      entityName, model, close, updateBlockProps,
+      entityName, model, close, updateBlockProps, enableSingleQuestionPage, toggleSingleQuestionPage,
     } = this.props
-    const { type, questions } = this.state
+    const { type, questions, perPage } = this.state
+    if (enableSingleQuestionPage && type === 'ByFactors' && perPage && perPage > 1) {
+      toggleSingleQuestionPage()
+    }
     if (type === 'Some' && !questions) {
       NotificationDispatcher.notify({ level: 'error', message: 'You must enter a value' })
     } else {
@@ -53,7 +59,9 @@ export class Randomization extends Component {
   }
 
   render () {
-    const { close, entityName } = this.props
+    const {
+      close, entityName, enableSingleQuestionPage,
+    } = this.props
     const { type, questions, perPage } = this.state
     return (
       <Modal show keyboard={false}>
@@ -65,6 +73,14 @@ export class Randomization extends Component {
           </Title>
         </Header>
         <Body>
+          {enableSingleQuestionPage && (
+          <Alert
+            className="mb-2"
+            message={I18n.t('administration.assessments.randomization.single_question_page_warning')}
+            type="warning"
+            banner
+          />
+          )}
           <label className={styles.inputLabel}>
             <input
               checked={type === 'No'}

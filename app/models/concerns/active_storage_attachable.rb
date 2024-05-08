@@ -13,8 +13,24 @@ module ActiveStorageAttachable
   # rubocop:disable Metrics/BlockLength
   # rubocop:disable Naming/PredicateName
   class_methods do
-    def has_one_attachment(attribute, content_type: nil, service: Settings.storage.public_storage_service)
-      has_one_attached attribute, service: service
+    def has_one_attachment(
+      attribute,
+      content_type: nil,
+      service: Settings.storage.public_storage_service,
+      variants: nil
+    )
+      has_one_attached attribute, service: service do |attachable|
+        attach_variants(attachable, variants)
+      end
+
+      define_method "#{attribute}_url" do |variant = nil|
+        data = send(attribute)
+
+        return data&.url unless variant
+        return data.variant(variant)&.processed&.url if variant && data.image?
+
+        nil
+      end
 
       # validating allowed content_types
       validates attribute, content_type: content_type if content_type
@@ -38,8 +54,22 @@ module ActiveStorageAttachable
       # setting folder to store attachment on the storage
       generate_attachment_key_for attribute
 
-      define_method "#{attribute}_url" do |variant|
-        send(attribute).variant(variant)&.processed&.url
+      define_method "#{attribute}_url" do |variant = nil|
+        variant ? send(attribute).variant(variant)&.processed&.url : send(attribute)&.url
+      end
+
+      define_method "purge_#{attribute}=" do |value|
+        instance_variable_set("@purge_#{attribute}", value)
+      end
+
+      define_method "purge_#{attribute}?" do
+        instance_variable_get("@purge_#{attribute}")
+      end
+
+      after_commit do
+        if send("purge_#{attribute}?")
+          send(attribute).purge_later
+        end
       end
     end
 
@@ -89,16 +119,20 @@ module ActiveStorageAttachable
         return action unless action.is_a? ActiveStorage::Attached::Changes::CreateOne
         return action if disk_service?(action.blob)
 
-        # TODO: remove after ActiveStorage migration
-        attribute = action.name.remove('as_')
-        attribute_name = attribute == 'pdf' ? 'pdf_file' : attribute
-        # end of to-do
-
         # By-pass as base64'ed attachments are treated as a Hash
-        filename = attachable.is_a?(Hash) ? attachable.fetch(:filename) : attachable.original_filename
+
+        filename = if attachable.is_a?(Hash)
+                     attachable.fetch(:filename)
+                   elsif send(attribute).attached? && send(attribute).blob.filename.present?
+                     send(attribute).blob['filename']
+                   else
+                     attachable&.original_filename
+                   end
+
+        return action.blob.key if action.blob.key.present? && action.blob.key.end_with?(filename)
 
         action.blob.key = attachment_storage_path(
-          attribute_name,
+          attribute,
           "#{action.blob.class.generate_unique_secure_token}_#{filename}"
         )
       end
@@ -111,12 +145,11 @@ module ActiveStorageAttachable
         return action unless action.is_a? ActiveStorage::Attached::Changes::CreateMany
         return action if action.blobs.any? { |blob| disk_service?(blob) }
 
-        # TODO: remove after ActiveStorage migration
-        attribute_name = action.name.remove('as_')
-
         action.blobs.each do |blob|
+          next if blob.key.present? && !blob.key =~ /#{blob.filename}$/
+
           blob.key = attachment_storage_path(
-            attribute_name,
+            attribute,
             "#{blob.class.generate_unique_secure_token}_#{blob.filename}"
           )
         end

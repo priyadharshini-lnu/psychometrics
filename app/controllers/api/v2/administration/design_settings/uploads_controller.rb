@@ -17,7 +17,7 @@ module Api
     end
 
     def design_params
-      params.permit(%i[logo background secondary_logo remove_logo remove_background remove_secondary_logo])
+      params.permit(%i[logo background secondary_logo purge_logo purge_background purge_secondary_logo])
     end
   end
 end

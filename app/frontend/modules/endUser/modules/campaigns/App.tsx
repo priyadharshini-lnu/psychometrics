@@ -13,7 +13,6 @@ import { GlintProvider, withLoadingSpinner, DefaultAntThemeWrapper } from '~/gli
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 import routes from './routes'
 import './styles.less'
-import { useClearFlash } from '~/hooks/useClearFlash'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import '~/styles/common.less'
 
@@ -26,8 +25,6 @@ function App () {
   const { token } = useToken()
   useWindowInnerSize(document.documentElement)
   const primaryColor = design.primary_color || DEFAULT_PRIMARY_COLOR
-
-  useClearFlash(history)
 
   useEffect(() => {
     if (remainingTime && remainingTime > 0) {

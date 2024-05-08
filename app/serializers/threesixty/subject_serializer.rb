@@ -1,29 +1,25 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class SubjectSerializer < ActiveModel::Serializer
+  class SubjectSerializer < Panko::Serializer
     attributes :id, :status, :report_status, :evaluators, :evaluations, :permissions
 
-    has_one :user, method: :user
-
-    def user
-      UserSerializer.new.serialize(object.user)
-    end
+    has_one :user, serializer: UserSerializer
 
     def status
       Threesixty::Participants::GetStatus.call!(
         object,
-        @instance_options[:nomination_requirement],
+        context[:nomination_requirement],
         counters,
-        @instance_options[:subject_evaluator_counters]&.dig(object.user_id, :all) || {}
+        context[:subject_evaluator_counters]&.dig(object.user_id, :all) || {}
       )
     end
 
     def report_status
       Threesixty::Participants::GetReportStatus.call!(
         object,
-        @instance_options[:option],
-        @instance_options[:subject_evaluator_counters]&.dig(object.user_id, :completed) || {}
+        context[:option],
+        context[:subject_evaluator_counters]&.dig(object.user_id, :completed) || {}
       )
     end
 
@@ -36,7 +32,7 @@ module Threesixty
     end
 
     def counters
-      @instance_options[:counters][object.user_id]
+      context[:counters][object.user_id]
     end
 
     def permissions
@@ -71,15 +67,15 @@ module Threesixty
     private
 
     def current_user
-      @instance_options[:current_user]
+      context[:current_user]
     end
 
     def current_project_id
-      @instance_options[:project_id]
+      context[:project_id]
     end
 
     def campaign_id
-      @instance_options[:campaign_id]
+      context[:campaign_id]
     end
   end
 end

@@ -20,7 +20,7 @@ import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import { statusMenuItems } from '~/modules/endUser/modules/campaigns/common/menuItems'
-import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import store from '~/modules/endUser/store'
 
 import {
@@ -162,9 +162,9 @@ const EvaluationComponent = ({
           {availableTranslations
               && availableTranslations.length > 1
               && (
-              <Language
-                selectedLanguage={selectedLanguage}
-                availableTranslations={availableTranslations || []}
+              <LangDropdownWithChangeUrl
+                currentLocale={selectedLanguage.code}
+                locales={availableTranslations || []}
               />
               )
             }

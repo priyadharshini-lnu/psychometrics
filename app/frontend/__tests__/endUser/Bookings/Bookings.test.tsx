@@ -55,8 +55,8 @@ const invitesMockResponse = {
 
 test('should display list of invites and bookings', async () => {
   const user = userEvent.setup()
-  const fetchBookings = jest.fn(() => Promise.resolve(bookingsMockResponse))
-  const fetchInvites = jest.fn(() => Promise.resolve(Promise.resolve(invitesMockResponse)))
+  const fetchBookings = vi.fn(() => Promise.resolve(bookingsMockResponse))
+  const fetchInvites = vi.fn(() => Promise.resolve(Promise.resolve(invitesMockResponse)))
 
   const { findAllByRole, findByTestId } = render(
     <div data-testid="container">
@@ -87,8 +87,8 @@ test('should display list of invites and bookings', async () => {
 
 test('should display invites count and booking count', async () => {
   const user = userEvent.setup()
-  const fetchBookings = jest.fn(() => Promise.resolve(bookingsMockResponse))
-  const fetchInvites = jest.fn(() => Promise.resolve(Promise.resolve(invitesMockResponse)))
+  const fetchBookings = vi.fn(() => Promise.resolve(bookingsMockResponse))
+  const fetchInvites = vi.fn(() => Promise.resolve(Promise.resolve(invitesMockResponse)))
 
   const { findAllByRole, findByTestId } = render(
     <div data-testid="container">
@@ -119,8 +119,8 @@ test('should display invites count and booking count', async () => {
 
 test('should display skeleton for both count & list of Invites and Bookings when request is in progress', async () => {
   const user = userEvent.setup()
-  const fetchBookings = jest.fn(() => Promise.resolve(bookingsMockResponse))
-  const fetchInvites = jest.fn(() => Promise.resolve(Promise.resolve(invitesMockResponse)))
+  const fetchBookings = vi.fn(() => Promise.resolve(bookingsMockResponse))
+  const fetchInvites = vi.fn(() => Promise.resolve(Promise.resolve(invitesMockResponse)))
 
   const { findAllByRole, findByTestId } = render(
     <div data-testid="container">

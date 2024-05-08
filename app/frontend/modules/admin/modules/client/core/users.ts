@@ -31,6 +31,7 @@ export const UserTR = t.type({
       remove: t.boolean,
       resetPassword: t.boolean,
       toggleEnable2fa: t.boolean,
+      loginAs: t.boolean,
     }),
   }),
 })

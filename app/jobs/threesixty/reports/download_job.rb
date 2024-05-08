@@ -32,7 +32,7 @@ module Threesixty
             options.merge(async: true, notify_user: true)
           )
           if data[:file_path]
-            user_report.update!(pdf: File.open(data[:file_path]), status: :prepared)
+            user_report.attach_pdf!(File.open(data[:file_path]))
             notify_user
           end
         else

@@ -35,6 +35,7 @@ module Administration
               optional(:dimensions).maybe(:array).each(:str?)
               optional(:assessments).maybe(:array).each(:str?)
               optional(:media_libraries).maybe(:array).each(:str?)
+              optional(:idp_templates).maybe(:array).each(:str?)
             end
           end
           required(:role).filled(:str?)

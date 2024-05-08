@@ -23,7 +23,6 @@ import { useMessageBus } from '~/hooks/useMessageBus'
 const { I18n } = window
 
 type DataType = {
-  key: React.Key;
   [key: string]: string | number | boolean | null;
 }
 const sortEvaluatorsByEmail = (

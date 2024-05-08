@@ -21,3 +21,5 @@ const AdminInfoTR = {
 const AdminTR = t.type({
   ...AdminInfoTR,
 })
+
+export type AvailablePermissions = Record<string, string[]>

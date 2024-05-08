@@ -33,9 +33,13 @@ module Threesixty::InitialState
           info_color: @current_project.design_setting.info_color
         },
         profile: {
-          fields: @current_project.profile_setting&.profile_fields&.includes(:question)&.map do |q|
-            ProfileFieldSerializer.new(q, selected_locale: I18n.locale).to_h
-          end,
+          fields: Panko::ArraySerializer.new(
+            @current_project.profile_setting&.profile_fields&.includes(:question),
+            each_serializer: ProfileFieldSerializer,
+            context: {
+              selected_locale: I18n.locale
+            }
+          ).to_a,
           requiredFields: @current_project.profile_setting&.required_default_fields || {},
           lockedFields: @current_project.profile_setting&.locked_default_fields || {},
           enabledFields: @current_project.profile_setting&.enabled_default_fields || {}

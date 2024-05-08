@@ -8,7 +8,7 @@ module Blocks
       action :create do |data|
         block = ::Block.find(data.delete('block_id'))
         question = block.questions.create!(data)
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :update do |data|
@@ -39,13 +39,13 @@ module Blocks
 
       action :create do |data, _, block|
         question = block.questions.create!(data)
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :restore do |data|
         question = ::Question.find(data['id'])
         question.update(deleted_at: nil)
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :permanent_destroy do |data|
@@ -57,14 +57,14 @@ module Blocks
         parent = ::Question.find(data['parent_id'])
         question = ::Question.create!(data['question'])
         question.insert_at(parent.position + 1)
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :insert_before do |data|
         parent = ::Question.find(data['parent_id'])
         question = ::Question.create!(data['question'])
         question.insert_at(parent.position)
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
 
       action :clone do |data|
@@ -72,7 +72,7 @@ module Blocks
         question = parent.clone
         question.insert_at(parent.position + 1)
         question.save
-        QuestionSerializer.new(question).to_hash
+        QuestionSerializer.new.serialize(question)
       end
     end
   end

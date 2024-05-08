@@ -10,8 +10,7 @@ export default class UITreeNode extends Component {
 
   renderCollapse = () => {
     const { index } = this.props
-
-    if (index.children && index.children.length) {
+    if (index.parent && index.children && index.children.length) {
       const { collapsed } = index.node
 
       return (
@@ -43,6 +42,7 @@ export default class UITreeNode extends Component {
               <UITreeNode
                 tree={tree}
                 index={childIndex}
+                parent={index.node}
                 key={childIndex.id}
                 order={i}
                 dragging={dragging}
@@ -60,10 +60,9 @@ export default class UITreeNode extends Component {
   };
 
   render () {
-    const { tree, index, dragging, order } = this.props
+    const { tree, index, dragging, order, parent } = this.props
     const { node } = index
     const styles = {}
-
     return (
       <div
         className={cx('m-node', {
@@ -77,7 +76,7 @@ export default class UITreeNode extends Component {
           onMouseDown={this.handleMouseDown}
         >
           {this.renderCollapse()}
-          {tree.renderNode(node, order)}
+          {tree.renderNode(node, order, parent)}
         </div>
         {node.collapsed ? null : this.renderChildren()}
       </div>

@@ -44,13 +44,14 @@ export class Flow extends Component {
     updateTree(tree)
   }
 
-  renderElement = (element, i) => {
+  renderElement = (element, i, parent = null) => {
     if (element.module === null) return null
     return (
       <div key={i} className={styles.node} draggable={false}>
         <FlowElement
           model={element.module}
           index={i}
+          parent={parent}
           {...this.props}
         />
       </div>

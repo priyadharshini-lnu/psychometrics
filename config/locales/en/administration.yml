@@ -67,7 +67,7 @@ en:
           can_view_report_data: View report data
           can_view_scores: View scores
           create_failed: Unable to create Admin '%{name}', please contact your administrator
-          create_success: Admin '%{name}' created successfully
+          create_success: Admin '%{name}' was created successfully
           email: Email
           first_name: First name
           first_name_required: First name is required
@@ -203,6 +203,9 @@ en:
             manage: Manage
             view: View
           dimensions:
+            manage: Manage
+            view: View
+          idpTemplates:
             manage: Manage
             view: View
           mediaLibraries:
@@ -341,7 +344,7 @@ en:
           name: Name
           remove_confirm:
             content: Are you sure you want to remove Assessment Center with name '%{name}'?
-            success: Assessment Center was successfully removed.
+            success: Assessment Center was removed successfully.
             title: Confirm
       invite_request:
         accept: Accept
@@ -349,7 +352,7 @@ en:
         reject: Reject
         remove_confirm:
           content: Are you sure you want to %{action} %{status} from %{subjectName}?
-          success: "%{status} from %{subjectName} was successfully %{action}."
+          success: "%{status} from %{subjectName} was %{action} successfully."
           title: "%{action} %{status}"
         status: Status
         subject_name: Subject Name
@@ -376,7 +379,7 @@ en:
         scores_not_allowed: Scores can only be added for MultiChoice and Matrix type question
       modal:
         title: Import Questions
-      successfully_scheduled: Question Import scheduled successfully.
+      successfully_scheduled: Question Import was scheduled successfully.
     assessments:
       assessment: Assessment
       assigns:
@@ -394,13 +397,13 @@ en:
           not_selected_users: Not Selected Users
           selected_users: Selected Users
       copy:
-        error: 'Assessment #%{name} was not copied.'
-        successfully: Assessment %{name} was copied successfully.
+        error: Assessment "%{name}" was not copied.
+        successfully: Assessment "%{name}" was copied successfully.
       create:
-        successfully: Assessment %{name} was Created Successfully.
+        successfully: Assessment "%{name}" was created successfully.
       dashboard: Assessment Dashboard
       destroy:
-        successfully: Assessment %{name} was Deleted Successfully.
+        successfully: Assessment "%{name}" was deleted successfully.
       edit:
         header: Assessment Settings
       errors:
@@ -470,6 +473,8 @@ en:
       new:
         header: New assessment
       preview: Assessment Preview
+      randomization:
+        single_question_page_warning: Current Assessment is configured to show one question per page. Setting more than one question per page here will automatically disable Single Question Per Page setting.
       reports: Reports
       resource:
         confirmations:
@@ -494,12 +499,14 @@ en:
           restore: Restore
           soft_delete: Soft Delete Assessment
       restore:
-        successfully: Assessment %{name} was Restored Successfully.
+        successfully: Assessment %{name} was restored successfully.
       settings:
         enable_back: Enable back button
         enable_progress: Enable progress bar
         enable_single_question_page: Show one question per page
+        enable_single_question_page_confirm: This will update block randomization per page to 1. Are you sure?
         enable_timer: Enable timer
+        has_randomized_block_warning: Current Assessment has randomized blocks with more than one question per page. Enabling "Show one question per page" will overwrite all randomization configuration to have only one question per page.
         instructions: Enable Instructions
         timer: Timer
         title: Assessment Settings
@@ -516,13 +523,13 @@ en:
         preview: Preview Assessment
         title: Assessment's options
       soft_delete:
-        successfully: Assessment %{name} was moved to Trash Successfully.
+        successfully: Assessment %{name} was moved to trash successfully.
       toggle_archive:
         successfully: Assessment %{name} was %{status} successfully.
       toggle_status:
-        successfully: Assessment %{name} was Updated Successfully.
+        successfully: Assessment %{name} was updated successfully.
       update:
-        successfully: Assessment %{name} was Updated Successfully.
+        successfully: Assessment %{name} was updated successfully.
     assessor:
       add_subject_modal:
         assessment: Assessment
@@ -538,11 +545,11 @@ en:
           reset_progress: Reset Progress
         assessment_name: Assessment Name
         bulk_delete_confirmation: Are you sure you wan to delete selected records?
-        bulk_delete_successful: Assessor assessments deleted successfully
-        reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
-        reset_progress_confirmation: Are you sure you want to reset progress for subject with email %{subjectEmail}?
-        reset_progress_successfully: Reset progress for the subject with the email %{subjectEmail} was successful.
-        reset_successfully: Reset evaluation for the subject with the email %{subjectEmail} was successful.
+        bulk_delete_successful: Assessor assessments was deleted successfully
+        reset_confirmation: Are you sure you want to reset evaluation for subject with email "%{subjectEmail}"?
+        reset_progress_confirmation: Are you sure you want to reset progress for subject with email "%{subjectEmail}"?
+        reset_progress_successfully: Reset progress for the subject with the email "%{subjectEmail}" was successful.
+        reset_successfully: Reset evaluation for the subject with the email "%{subjectEmail}" was successful.
         subject_email: Subject Email
         subject_name: Subject Name
       completed_at: Completed At
@@ -586,7 +593,7 @@ en:
         reports_count: "%{count} Reports"
         user_exec_test: User Executive Test
       remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
-      saved_results: Answers successfully saved.
+      saved_results: Answers were saved successfully.
       status: Status
       statuses:
         completed: Completed
@@ -613,9 +620,9 @@ en:
         not_started: Not started
     assigns:
       create:
-        successfully: New assign to assessment was successfully created
+        successfully: New assign to assessment was created successfully
       destroy:
-        successfully: Assign to assessment was successfully deleted
+        successfully: Assign to assessment was deleted successfully
       index:
         title: Reports
       new:
@@ -680,9 +687,9 @@ en:
       copy:
         successfully: Block %{name} was successfully copied.
       create:
-        successfully: Block %{name} was successfully created.
+        successfully: Block %{name} was created successfully.
       destroy:
-        successfully: Block %{name} was successfully deleted.
+        successfully: Block %{name} was deleted successfully.
       edit:
         header: Edit Block
       new:
@@ -817,7 +824,7 @@ en:
         question_unlink_template: Question was unlinked
         question_update: Question is updated
         report_change_aliases: Aliases are updated
-        report_change_data_configuration: Data Report Configuration was successfully updated
+        report_change_data_configuration: Data Report Configuration was updated successfully
         report_change_filters: Filters are updated
         report_update: Report is updated
         scoring_update: Scoring is updated
@@ -832,13 +839,13 @@ en:
         error: Client Tenancy %{name} was not copied.
         successfully: Client Tenancy %{name} was successfully copied.
       create:
-        successfully: Client Tenancy %{name} was successfully created.
+        successfully: Client Tenancy %{name} was created successfully.
       designs:
         form:
           no_background: No Background yet
           no_logo: No Logo yet
       destroy:
-        successfully: Client Tenancy %{name} was successfully deleted.
+        successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         header: Edit Client
       export:
@@ -857,7 +864,7 @@ en:
       licenses:
         update:
           duplicate_licenses: You have duplicate licenses
-          successfully: Licenses successfully updated
+          successfully: Licenses were updated successfully
       list:
         admin: Client admin
         client_admins: Client admins
@@ -906,16 +913,16 @@ en:
         new: New Client
         title: Campaign options
       toggle_status:
-        successfully: Client Tenancy %{name} was successfully updated.
+        successfully: Client Tenancy %{name} was updated successfully.
       update:
-        successfully: Client Tenancy %{name} was successfully updated.
+        successfully: Client Tenancy %{name} was updated successfully.
       url: Url
     campaigns:
       actions: Manage
       assessment_reports:
         report_approval:
           modal_title: Report Approval Settings
-          remove_modal_success: 'Successfully deleted approval setting for report id: %{reportId}'
+          remove_modal_success: 'Approval setting for report id: %{reportId} was deleted successfully '
           remove_modal_text: 'Are you sure you want to delete this setting for report id: %{reportId}?'
       assessors:
         spoof:
@@ -986,12 +993,23 @@ en:
       validations:
         dates:
           end: must be after the start date
+    campaigns_external_scores_import:
+      errors:
+        invalid_campaign_factor_codes: 'Following campaign factor_codes are invalid: %{codes}'
+        invalid_headers: 'Following headers are invalid: %{headers}'
+        missing_users: 'Following emails are not existing: %{emails}'
+        missing_valid_external_score_header: At least one valid campaign factor_code needed
+      import:
+        example_csv: Download Example csv
+        success_msg: Import was uploaded successfully
+      modal:
+        title: Import External Campaign Scores
     choose: " - Choose - "
     clear: Clear
     clients:
       api_keys:
         create:
-          successfully: New API key was successfully created.
+          successfully: New API key was created successfully.
         index:
           breadcrumb: "%{name}'s API keys"
           new: Create new API key
@@ -1013,20 +1031,20 @@ en:
           copy: Copy
           show_and_copy: Show and Copy
         toggle_status:
-          successfully: API key was successfully updated.
+          successfully: API key was updated successfully.
       assessments:
         assessment: Assessment
         assigns:
           form:
             empty_client_ids: Select clients to continue
         copy:
-          error: 'Assessment #%{name} was not copied.'
-          successfully: Assessment %{name} was copied successfully.
+          error: Assessment '%{name}' was not copied.
+          successfully: Assessment '%{name}' was copied successfully.
         create:
-          successfully: Assessment %{name} was Created Successfully.
+          successfully: Assessment '%{name}' was created successfully.
         dashboard: Assessment Dashboard
         destroy:
-          successfully: Assessment %{name} was Deleted Successfully.
+          successfully: Assessment '%{name}' was deleted successfully.
         edit:
           header: Assessment Settings
         form:
@@ -1126,7 +1144,7 @@ en:
             restore: Restore
             soft_delete: Soft Delete Assessment
         restore:
-          successfully: Assessment %{name} was Restored Successfully.
+          successfully: Assessment %{name} was restored successfully.
         select_raw_export_type:
           export_with_labels: Export raw result with labels
           export_without_labels: Export raw result without labels
@@ -1144,13 +1162,13 @@ en:
           preview: Preview Assessment
           title: Assessment's options
         soft_delete:
-          successfully: Assessment %{name} was moved to Trash Successfully.
+          successfully: Assessment %{name} was moved to trash successfully.
         toggle_archive:
           successfully: Assessment %{name} was %{status} successfully.
         toggle_status:
-          successfully: Assessment %{name} was Updated Successfully.
+          successfully: Assessment %{name} was updated successfully.
         update:
-          successfully: Assessment %{name} was Updated Successfully.
+          successfully: Assessment %{name} was updated successfully.
       assign_assessments:
         confirm_remove_dependent_reports:
           body: 'Removing assessment(s) will also remove the following reports: %{report_names}'
@@ -1200,9 +1218,9 @@ en:
           error: Campaign %{name} was not copied.
           successfully: Campaign %{name} was successfully copied.
         create:
-          successfully: Campaign %{name} was successfully created.
+          successfully: Campaign %{name} was created successfully.
         destroy:
-          successfully: Campaign %{name} was successfully deleted.
+          successfully: Campaign %{name} was deleted successfully.
         edit:
           header: Edit Campaign
         export:
@@ -1270,14 +1288,14 @@ en:
           title: Campaign's options
           view_licenses: View licenses
         toggle_status:
-          successfully: Campaign %{name} was successfully updated.
+          successfully: Campaign %{name} was updated successfully.
         update:
-          successfully: Campaign %{name} was successfully updated.
+          successfully: Campaign %{name} was updated successfully.
       client_admins:
         create:
-          successfully: User %{name} was successfully created.
+          successfully: User %{name} was created successfully.
         destroy:
-          successfully: User %{name} was successfully deleted.
+          successfully: User %{name} was deleted successfully.
         edit:
           add: Add
           grants: Privileges
@@ -1349,9 +1367,9 @@ en:
         spoof:
           successfully: You was successfully login as %{name}
         toggle_status:
-          successfully: User %{name} was successfully updated.
+          successfully: User %{name} was updated successfully.
         update:
-          successfully: User %{name} was successfully updated.
+          successfully: User %{name} was updated successfully.
         user: User
       columns:
         country: Country
@@ -1359,15 +1377,15 @@ en:
         type: Type
         year: Year
       copy:
-        error: Client Tenancy %{name} was not copied.
-        successfully: Client Tenancy %{name} was successfully copied.
+        error: Client Tenancy '%{name}' was not copied.
+        successfully: Client Tenancy '%{name}' was copied successfully.
       create:
-        successfully: Client Tenancy %{name} was successfully created.
+        successfully: Client Tenancy '%{name}' was created successfully.
       datasheet_rows:
         create:
           successfully: New Datasheet was successfully uploaded.
         destroy:
-          successfully: Datasheet Row %{name} was successfully deleted.
+          successfully: Datasheet Row %{name} was deleted successfully.
         index:
           new: Upload datasheet
           title: "%{name} Datasheet"
@@ -1388,7 +1406,7 @@ en:
           no_background: No Background yet
           no_logo: No Logo yet
       destroy:
-        successfully: Client Tenancy %{name} was successfully deleted.
+        successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         enable_2fa: Enable Two Factor Authentication
         header: Edit Client
@@ -1434,7 +1452,7 @@ en:
           successfully: The license was %{status} successfully
       licenses:
         create:
-          successfully: License was successfully created.
+          successfully: License was created successfully.
         edit:
           header: Edit License
         form:
@@ -1495,10 +1513,10 @@ en:
           used_license_overuse_number: Over Use Allowance
           used_out_of: "%{used_number} out of %{number}"
         toggle_status:
-          successfully: Status of License was successfully updated.
+          successfully: Status of License was updated successfully.
         update:
           duplicate_licenses: You have duplicate licenses
-          successfully: Licenses successfully updated
+          successfully: Licenses were updated successfully
       list:
         admin: Client Admin
         client_admins: Client admins
@@ -1519,9 +1537,9 @@ en:
         header: New Client
       project_admins:
         create:
-          successfully: User %{name} was successfully created.
+          successfully: User %{name} was created successfully.
         destroy:
-          successfully: User %{name} was successfully deleted.
+          successfully: User %{name} was deleted successfully.
         edit:
           add: Add
           grants: Privileges
@@ -1596,9 +1614,9 @@ en:
         spoof:
           successfully: You was successfully login as %{name}
         toggle_status:
-          successfully: User %{name} was successfully updated.
+          successfully: User %{name} was updated successfully.
         update:
-          successfully: User %{name} was successfully updated.
+          successfully: User %{name} was updated successfully.
         user: User
       projects:
         actions:
@@ -1606,7 +1624,7 @@ en:
           unarchive: Unarchive
         archive:
           content: Are you sure you want to archive '%{project_name}'?
-          success: Project '%{project_name}' was successfully archived.
+          success: Project '%{project_name}' was archived successfully.
           title: Archive Project
         assign_assessments:
           add_assessment: Add Assessment
@@ -1615,14 +1633,14 @@ en:
           add_report: Add Report
         campaigns:
           archive:
-            successfully: Campaign %{name} was successfully archived.
+            successfully: Campaign '%{name}' was archived successfully.
           copy:
-            error: Campaign %{name} was not copied.
-            successfully: Campaign %{name} was successfully copied.
+            error: Campaign '%{name}' was not copied.
+            successfully: Campaign '%{name}' was copied successfully.
           create:
-            successfully: Campaign %{name} was successfully created.
+            successfully: Campaign '%{name}' was created successfully.
           destroy:
-            successfully: Campaign %{name} was successfully deleted.
+            successfully: Campaign '%{name}' was deleted successfully.
           edit:
             header: Edit Campaign
           export:
@@ -1691,14 +1709,14 @@ en:
             view_licenses: View licenses
           sub_campaigns:
             archive:
-              successfully: Sub-Campaign %{name} was successfully archived.
+              successfully: Sub-Campaign %{name} was archived successfully.
             copy:
               error: Sub-Campaign %{name} was not copied.
               successfully: Sub-Campaign %{name} was successfully copied.
             create:
-              successfully: Sub-Campaign %{name} was successfully created.
+              successfully: Sub-Campaign %{name} was created successfully.
             destroy:
-              successfully: Sub-Campaign %{name} was successfully deleted.
+              successfully: Sub-Campaign %{name} was deleted successfully.
             edit:
               header: Edit Sub-Campaign
             export:
@@ -1761,20 +1779,20 @@ en:
               title: Sub-Campaign's options
               view_licenses: View licenses
             toggle_status:
-              successfully: Sub-Campaign %{name} was successfully updated.
+              successfully: Sub-Campaign %{name} was updated successfully.
             update:
-              successfully: Sub-Campaign %{name} was successfully updated.
+              successfully: Sub-Campaign %{name} was updated successfully.
           toggle_status:
-            successfully: Campaign %{name} was successfully updated.
+            successfully: Campaign %{name} was updated successfully.
           update:
-            successfully: Campaign %{name} was successfully updated.
+            successfully: Campaign %{name} was updated successfully.
         copy:
           error: Project %{name} was not copied.
           successfully: Project %{name} was successfully copied.
         create:
-          successfully: Project %{name} was successfully created.
+          successfully: Project %{name} was created successfully.
         destroy:
-          successfully: Project %{name} was successfully deleted.
+          successfully: Project %{name} was deleted successfully.
         edit:
           header: Edit Project
         export:
@@ -1887,17 +1905,17 @@ en:
             in_progress: In Progress
             not_started: Not Started
           copy:
-            error: Client Tenancy %{name} was not copied.
-            successfully: Client Tenancy %{name} was successfully copied.
+            error: Client Tenancy '%{name}' was not copied.
+            successfully: Client Tenancy '%{name}' was copied successfully.
           create:
-            successfully: Client Tenancy %{name} was successfully created.
+            successfully: Client Tenancy '%{name}' was created successfully.
           designs:
             form:
               no_background: No Background yet
               no_logo: No Logo yet
           destroy:
-            error: Can't delete %{name} because some dependent associations of subjects or evaluators exist.
-            successfully: Client Tenancy %{name} was successfully deleted.
+            error: Can't delete '%{name}' because some dependent associations of subjects or evaluators exist.
+            successfully: Client Tenancy '%{name}' was deleted successfully.
           edit:
             header: Edit 360 Campaign
           export:
@@ -1919,7 +1937,7 @@ en:
           licenses:
             update:
               duplicate_licenses: You have duplicate licenses
-              successfully: Licenses successfully updated
+              successfully: Licenses were updated successfully
           list:
             admin: Client Admin
             assessment: Assement
@@ -1969,23 +1987,23 @@ en:
               assessment_type: Assessment type
               title: Statistics
           toggle_status:
-            successfully: Client Tenancy %{name} was successfully updated.
+            successfully: Client Tenancy %{name} was updated successfully.
           update:
-            successfully: Client Tenancy %{name} was successfully updated.
+            successfully: Client Tenancy %{name} was updated successfully.
           url: Url
         toggle_status:
-          successfully: Project %{name} was successfully updated.
+          successfully: Project %{name} was updated successfully.
         unarchive:
           content: Are you sure you want to unarchive '%{project_name}'?
           success: Project '%{project_name}'' was successfully unarchived.
           title: Unarchive Project
         update:
-          successfully: Project %{name} was successfully updated.
+          successfully: Project %{name} was updated successfully.
       registration_codes:
         create:
-          successfully: Registration code %{name} was successfully created.
+          successfully: Registration code %{name} was created successfully.
         destroy:
-          successfully: Registration code %{name} was successfully deleted.
+          successfully: Registration code %{name} was deleted successfully.
         edit:
           header: Edit Registration code
         errors:
@@ -2032,14 +2050,14 @@ en:
             edit: Edit
           url: URL
         update:
-          successfully: Registration code %{name} was successfully updated.
+          successfully: Registration code %{name} was updated successfully.
       reports:
         copy:
           error: 'Report #%{id} was not copied.'
         create:
-          successfully: Report %{name} was successfully created for Client.
+          successfully: Report %{name} was created successfully for Client.
         destroy:
-          successfully: Report %{name} was successfully deleted from Client.
+          successfully: Report %{name} was deleted successfully from Client.
         edit:
           header: Edit Report Name
         form:
@@ -2117,7 +2135,7 @@ en:
             restore: Restore
             soft_delete: Soft Delete Assessment
         restore:
-          successfully: Report %{name} was Restored Successfully.
+          successfully: Report %{name} was restored successfully.
         sidebar:
           copy: Copy Report
           destroy: Delete Report
@@ -2126,17 +2144,17 @@ en:
           title: Report's options
           view: View Report
         soft_delete:
-          successfully: Report %{name} was moved to Trash Successfully.
+          successfully: Report %{name} was moved to trash successfully.
         toggle_archive:
           successfully: Assessment %{name} was %{status} successfully.
         toggle_status:
-          successfully: Report was successfully updated.
+          successfully: Report was updated successfully.
         types:
           common: Any
           eti: ETI
           yti: YTI
         update:
-          successfully: Report %{name} was successfully updated.
+          successfully: Report %{name} was updated successfully.
       resource:
         confirmations:
           delete:
@@ -2187,14 +2205,14 @@ en:
           title: Statistics
       sub_campaigns:
         archive:
-          successfully: Sub-Campaign %{name} was successfully archived.
+          successfully: Sub-Campaign '%{name}' was archived successfully.
         copy:
-          error: Sub-Campaign %{name} was not copied.
-          successfully: Sub-Campaign %{name} was successfully copied.
+          error: Sub-Campaign '%{name}' was not copied.
+          successfully: Sub-Campaign '%{name}' was copied successfully.
         create:
-          successfully: Sub-Campaign %{name} was successfully created.
+          successfully: Sub-Campaign '%{name}' was created successfully.
         destroy:
-          successfully: Sub-Campaign %{name} was successfully deleted.
+          successfully: Sub-Campaign '%{name}' was deleted successfully.
         edit:
           header: Edit Sub-Campaign
         export:
@@ -2257,22 +2275,22 @@ en:
           title: Sub-Campaign's options
           view_licenses: View licenses
         toggle_status:
-          successfully: Sub-Campaign %{name} was successfully updated.
+          successfully: Sub-Campaign %{name} was updated successfully.
         update:
-          successfully: Sub-Campaign %{name} was successfully updated.
+          successfully: Sub-Campaign %{name} was updated successfully.
       tenancies: Client Tenancies
       threesixty_campaign: Threesixty Campaign
       threesixty_campaigns:
         create:
-          successfully: Campaign %{name} was successfully created.
+          successfully: Campaign %{name} was created successfully.
         destroy:
           successfully: Campaign '%{name}' was deleted successfully.
         new:
           header: New 360 Campaign
         update:
-          successfully: Campaign '%{name}' was successfully updated.
+          successfully: Campaign '%{name}' was updated successfully.
       toggle_status:
-        successfully: Client Tenancy %{name} was successfully updated.
+        successfully: Client Tenancy %{name} was updated successfully.
       tooltips:
         copy: Copy Campaign
         create_report: Add New Report
@@ -2281,7 +2299,7 @@ en:
         edit: Edit Campaign
         export: Export
       update:
-        successfully: Client Tenancy %{name} was successfully updated.
+        successfully: Client Tenancy %{name} was updated successfully.
       url: Url
       users:
         admins:
@@ -2292,7 +2310,7 @@ en:
             detach_assessment: Assessment %{name} was successfully detached.
             detach_report: Report %{name} was successfully detached.
           create:
-            successfully: Successfully Updated
+            successfully: Updated successfully
           destroy:
             successfully: "%{name} was successfully detached"
           edit:
@@ -2322,7 +2340,7 @@ en:
           new:
             header: Assign Assessment and Reports
           reset:
-            successfully: Result data was successfully reseted
+            successfully: Result data was reseted successfully
           resource:
             confirms:
               assessment:
@@ -2359,7 +2377,7 @@ en:
               delete: Detach Assessment
               reset: Reset result
           update_additional_time:
-            successfully: Additional time was successfully added
+            successfully: Additional time was added successfully
         assigns_reports:
           edit:
             header: Add Reports
@@ -2378,11 +2396,11 @@ en:
             failure: Report can't be generated. These assessments are not completed '%{assessment_names}'.
             successfully: Successfully sent to regenerate
           update:
-            successfully: Successfully Updated
+            successfully: Updated successfully
         create:
-          successfully: User %{name} was successfully created.
+          successfully: User %{name} was created successfully.
         destroy:
-          successfully: User %{name} was successfully deleted.
+          successfully: User %{name} was deleted successfully.
         edit:
           add: Add
           grants: Privileges
@@ -2441,9 +2459,9 @@ en:
           copy:
             error: 'Report #%{id} was not copied.'
           create:
-            successfully: Report %{name} was successfully created.
+            successfully: Report %{name} was created successfully.
           destroy:
-            successfully: Report %{name} was successfully deleted.
+            successfully: Report %{name} was deleted successfully.
           edit:
             header: Edit Report Name
           form:
@@ -2517,7 +2535,7 @@ en:
               restore: Restore
               soft_delete: Soft Delete Assessment
           restore:
-            successfully: Report %{name} was Restored Successfully.
+            successfully: Report %{name} was restored successfully.
           sidebar:
             copy: Copy Report
             destroy: Delete Report
@@ -2526,17 +2544,17 @@ en:
             title: Report's options
             view: View Report
           soft_delete:
-            successfully: Report %{name} was moved to Trash Successfully.
+            successfully: Report %{name} was moved to trash successfully.
           toggle_archive:
             successfully: Assessment %{name} was %{status} successfully.
           toggle_status:
-            successfully: Report was successfully updated.
+            successfully: Report was updated successfully.
           types:
             common: Any
             eti: ETI
             yti: YTI
           update:
-            successfully: Report %{name} was successfully updated.
+            successfully: Report %{name} was updated successfully.
         reset_password:
           successfully: User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
         resource:
@@ -2581,22 +2599,24 @@ en:
         spoof:
           successfully: You was successfully login as %{name}
         toggle_status:
-          successfully: User %{name} was successfully updated.
+          successfully: User %{name} was updated successfully.
         update:
-          successfully: User %{name} was successfully updated.
+          successfully: User %{name} was updated successfully.
         user: User
     clients_hierarchy: Project > Campaign > Sub Campaign
     close: Close
     common:
+      disabled: Diasbled
+      enabled: Enabled
       reset: Reset
       save: Save
     communications:
       copy:
         error: 'Communication #%{id} was not copied.'
       create:
-        successfully: Communication created successfully.
+        successfully: Communication was created successfully.
       destroy:
-        successfully: Communication %{name} was successfully deleted.
+        successfully: Communication %{name} was deleted successfully.
       edit:
         header: Edit Communication
       form:
@@ -2710,13 +2730,13 @@ en:
         title: Communication's options
         view: View Communication
       toggle_status:
-        successfully: Communication was successfully updated.
+        successfully: Communication was updated successfully.
     components:
       input_duration:
         placeholder: Enter as '1d 2h 3m'
     copy: Copy
     create: Create
-    created: Successfully created
+    created: Created successfully
     created_by: Created By
     dashboard:
       capacity_name: Capacity Name
@@ -2748,7 +2768,7 @@ en:
         report_id: Report Id
       image_upload_failed: Image upload failed.
       none: None
-      refresh_success: Refresh of dataset scheduled successfully.
+      refresh_success: Refresh of dataset was scheduled successfully.
     dates:
       completed: Completed At
       created: Created At
@@ -2763,7 +2783,7 @@ en:
       create:
         successfully: "%{name} dimension was created successfully"
       destroy:
-        successfully: Dimension %{name} was successfully deleted.
+        successfully: Dimension %{name} was deleted successfully.
       edit:
         header: Edit Dimension Name
       form:
@@ -2809,7 +2829,7 @@ en:
         title: Dimension's options
         view: View Dimension
       toggle_status:
-        successfully: Dimension was successfully updated.
+        successfully: Dimension was updated successfully.
       update:
         successfully: "%{name} dimension was updated successfully"
     disable: Disable
@@ -2823,13 +2843,13 @@ en:
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     factors:
       copy:
-        error: "%{name} factor was not copied"
-        successfully: Factor %{name} was copied successfully
+        error: "'%{name}' factor was not copied"
+        successfully: Factor '%{name}' was copied successfully.
       create:
-        error: "%{name} factor was not created"
-        successfully: "%{name} factor was created successfully"
+        error: "'%{name}' factor was not created"
+        successfully: "%'{name}' factor was created successfully."
       destroy:
-        successfully: Factor %{name} was successfully deleted.
+        successfully: Factor "%{name}" was deleted successfully.
       edit:
         header: Edit Factor Name
       form:
@@ -2922,7 +2942,7 @@ en:
         title: Factor's options
         view: View Factor
       toggle_status:
-        successfully: Factor was successfully updated.
+        successfully: Factor was updated successfully.
       update:
         error: "%{name} factor was not updated"
         successfully: "%{name} factor was updated successfully"
@@ -3026,9 +3046,9 @@ en:
       copy:
         error: 'Innovation Style #%{id} was not copied.'
       create:
-        successfully: Innovation Style %{name} was successfully created.
+        successfully: Innovation Style %{name} was created successfully.
       destroy:
-        successfully: Innovation Style %{name} was successfully deleted.
+        successfully: Innovation Style %{name} was deleted successfully.
       edit:
         header: Edit Innovation Style
       form:
@@ -3065,12 +3085,12 @@ en:
         new: New Innovation Style
         title: Innovation Style's options
       toggle_status:
-        successfully: Innovation Style was successfully updated.
+        successfully: Innovation Style was updated successfully.
     innovation_styles_factors:
       copy:
         error: 'Factor #%{id} was not copied.'
       create:
-        successfully: Factor %{name} was successfully created.
+        successfully: Factor %{name} was created successfully.
       destroy:
         successfully: Factor %{name} was successfully detached.
       edit:
@@ -3106,7 +3126,7 @@ en:
         new: Attach Factor
         title: Factor's options
       toggle_status:
-        successfully: Factor was successfully updated.
+        successfully: Factor was updated successfully.
     integrations:
       actions:
         add: Integrations
@@ -3151,9 +3171,9 @@ en:
       subject: Subject
     libraries:
       create:
-        successfully: Item %{name} was successfully created.
+        successfully: Item %{name} was created successfully.
       destroy:
-        successfully: Item %{name} was successfully deleted.
+        successfully: Item %{name} was deleted successfully.
       edit:
         header: Edit
       index:
@@ -3180,18 +3200,18 @@ en:
           delete: Delete
           edit: Edit
       update:
-        successfully: Item %{name} was successfully updated.
+        successfully: Item %{name} was updated successfully.
     membership: Membership
     memberships:
       admin:
         new:
           header: New admin
       admin_chosen:
-        successfully: Admin users was successfully updated.
+        successfully: Admin users was updated successfully.
       create:
-        successfully: User %{name} was successfully created.
+        successfully: User %{name} was created successfully.
       destroy:
-        successfully: User %{name} was successfully deleted.
+        successfully: User %{name} was deleted successfully.
       edit:
         add: Add
         hris_data: HRIS Data
@@ -3223,11 +3243,11 @@ en:
       spoof:
         successfully: You was successfully login as %{name}
       toggle_membership_status:
-        successfully: Membership of %{name} was successfully updated.
+        successfully: Membership of %{name} was updated successfully.
       toggle_status:
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
       update:
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
     meta_title: Administration panel
     modified_by: Modified By
     navigation:
@@ -3290,11 +3310,11 @@ en:
     norms:
       copy:
         error: 'Norm #%{id} was not copied.'
-        successfully: 'Norm #%{name} was copied successfully'
+        successfully: Norm "%{name}" was copied successfully.
       create:
-        successfully: Norm %{name} was successfully created.
+        successfully: Norm "%{name}" was created successfully.
       destroy:
-        successfully: Norm %{name} was successfully deleted.
+        successfully: Norm "%{name}" was deleted successfully.
       edit:
         header: Rename Norm
       editor:
@@ -3350,9 +3370,9 @@ en:
         title: Norm's options
         view: View Norm
       toggle_status:
-        successfully: Norm was successfully updated.
+        successfully: Norm was updated successfully.
       update:
-        successfully: Norm %{name} was successfully updated.
+        successfully: Norm %{name} was updated successfully.
     noty:
       error_408: This action takes too long. Please try to reload the page.
       error_500: Something went wrong. Contact your administrator.
@@ -3360,9 +3380,9 @@ en:
       copy:
         error: 'Occupation #%{id} was not copied.'
       create:
-        successfully: Occupation %{name} was successfully created.
+        successfully: Occupation %{name} was created successfully.
       destroy:
-        successfully: Occupation %{name} was successfully deleted.
+        successfully: Occupation %{name} was deleted successfully.
       edit:
         header: Edit occupation
       form:
@@ -3398,14 +3418,14 @@ en:
         new: New Occupation
         title: Occupation's options
       toggle_status:
-        successfully: Occupation was successfully updated.
+        successfully: Occupation was updated successfully.
     occupations_factors:
       copy:
         error: 'Factor #%{id} was not copied.'
       create:
-        successfully: Factor %{name} was successfully created.
+        successfully: Factor %{name} was created successfully.
       destroy:
-        successfully: Factor %{name} was successfully detached.
+        successfully: Factor %{name} was detached successfully.
       edit:
         header: Edit Factor
       index:
@@ -3439,9 +3459,9 @@ en:
         new: Attach Factor
         title: Factor's options
       toggle_status:
-        successfully: Factor was successfully updated.
+        successfully: Factor was updated successfully.
       update:
-        successfully: Factor %{name} was successfully updated.
+        successfully: Factor %{name} was updated successfully.
     participants:
       tabs:
         assessors: Assessors
@@ -3469,12 +3489,12 @@ en:
       profile: Profile
     profiles:
       edit:
-        success: Profile was successfully updated.
+        success: Profile was updated successfully.
         title: Profile Editor
     project:
       tools:
         workshop_status_export: Workshop Status Export
-        workshop_status_export_success: Workshop Status Export scheduled successfully.
+        workshop_status_export_success: Workshop Status Export was scheduled successfully.
     project_participants:
       cancel: Cancel
       column_actions: Actions
@@ -3567,7 +3587,7 @@ en:
       confirm_send: Yes, send
       delete: Delete
       delete_error: Could not delete assessor '%{name}'. Please contact your administrator.
-      delete_success: Assessor '%{name}' was successfully deleted.
+      delete_success: Assessor '%{name}' was deleted successfully.
       edit: Edit
       edit_assessor: Edit assessor
       filter_campaigns: With no campaigns
@@ -3662,11 +3682,11 @@ en:
     psychometrics: Psychometrics
     questions:
       copy:
-        successfully: Question %{name} was copied successfully
+        successfully: Question "%{name}" was copied successfully.
       create:
-        successfully: Question %{name} was created successfully
+        successfully: Question "%{name}" was created successfully.
       destroy:
-        successfully: Question %{name} was successfully deleted.
+        successfully: Question "%{name}" was deleted successfully.
       edit:
         header: Edit Question
       index:
@@ -3682,7 +3702,7 @@ en:
             body: "<p>Are you sure you want to %{status} this Question?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
-        successfully: Successfully updated.
+        successfully: Updated successfully.
     report_approval:
       campagin_search: Campaign search
       columns:
@@ -3702,9 +3722,9 @@ en:
       copy:
         error: 'Report Bundle #%{id} was not copied.'
       create:
-        successfully: Report Bundle %{name} was successfully created.
+        successfully: Report Bundle %{name} was created successfully.
       destroy:
-        successfully: Report Bundle %{name} was successfully deleted.
+        successfully: Report Bundle %{name} was deleted successfully.
       edit:
         header: Edit Report Bundle Name
       index:
@@ -3722,7 +3742,7 @@ en:
         header: New Report Bundle
       reports:
         destroy:
-          successfully: Report successfully deleted from the report bundle
+          successfully: Report was deleted successfully from the report bundle
         index:
           add: Add new Report
           title: Reports in the Bundle
@@ -3761,7 +3781,7 @@ en:
         title: Report Bundle's options
         view: View Report Bundle
       update:
-        successfully: Report Bundle %{name} was successfully updated.
+        successfully: Report Bundle %{name} was updated successfully.
     report_review:
       abort_qc: Abort QC
       approve: Approve
@@ -3778,12 +3798,12 @@ en:
         qc_in_progress: QC in Progress
     reports:
       copy:
-        error: 'Report #%{id} was not copied.'
-        successfully: Report %{name} was successfully copied.
+        error: Report %{id} was not copied.
+        successfully: Report '%{name}' was copied successfully.
       create:
-        successfully: Report %{name} was successfully created.
+        successfully: Report '%{name}' was created successfully.
       destroy:
-        successfully: Report %{name} was successfully deleted.
+        successfully: Report '%{name}' was deleted successfully.
       edit:
         header: Edit Report Name
       form:
@@ -3860,7 +3880,7 @@ en:
           restore: Restore
           soft_delete: Soft Delete Assessment
       restore:
-        successfully: Report %{name} was Restored Successfully.
+        successfully: Report %{name} was restored successfully.
       sidebar:
         copy: Copy Report
         destroy: Delete Report
@@ -3869,17 +3889,17 @@ en:
         title: Report's options
         view: View Report
       soft_delete:
-        successfully: Report %{name} was moved to Trash Successfully.
+        successfully: Report %{name} was moved to trash Successfully.
       toggle_archive:
         successfully: Assessment %{name} was %{status} successfully.
       toggle_status:
-        successfully: Report was successfully updated.
+        successfully: Report was updated successfully.
       types:
         common: Any
         eti: ETI
         yti: YTI
       update:
-        successfully: Report %{name} was successfully updated.
+        successfully: Report %{name} was updated successfully.
     resource:
       remove_confirm:
         message: Are you sure you want to remove this resource?
@@ -3902,7 +3922,7 @@ en:
       saml: SAML
       saml_setting: SAML Setting
       sso_service_url: SSO Service Url
-      successfully_saved_msg: SAML Setting saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
+      successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
       verify_and_save: Verify & Save Setting
       webhooks: Webhooks
     save: Save
@@ -4029,7 +4049,7 @@ en:
         confirm_title: Confirmation Required
         create: Create Resource
         resource: Resource
-        successful_remove: Assessment Center resource %{resource_name} successfully deleted.
+        successful_remove: Assessment Center resource %{resource_name} was deleted successfully.
         update: Update Resource
       schedule_assessments: Schedule Assessments
       scheduling_statuses:
@@ -4076,7 +4096,7 @@ en:
         preworks: Prework
         schedule: Schedule
         status_changed: Status successfully changed to %{status}
-        success_message: Subject with email %{subject_email} removed successfully.
+        success_message: Subject with email %{subject_email} was removed successfully.
         unschedule: Unschedule
       tabs:
         activities: Activities
@@ -4101,10 +4121,10 @@ en:
       export:
         details: Campaign scorings
       factor: Factor
-      factor_group_removed_successfully: Campaign Factor group removed successfully
-      factor_removed_successfully: Campaign Factor removed successfully
+      factor_group_removed_successfully: Campaign Factor group was removed successfully
+      factor_removed_successfully: Campaign Factor was removed successfully
       final: Final
-      final_score_updated_successfully: Final score updated successfully
+      final_score_updated_successfully: Final score was updated successfully
       formula: Formula
       get_started: Get Started
       id: Id
@@ -4150,6 +4170,7 @@ en:
         export_success: Export scores job scheduled successfull
         finalized: Finalized
         finalized_date: Finalized Date
+        import_external_scores: Import External Scorings
         mark_finalized: Mark Finalized
         mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?”
         mark_not_finalized: Mark Not Finalized
@@ -4166,7 +4187,7 @@ en:
       variables: Variables
       weightages:
         assessorForms: Assessor Forms
-        successful_update: Weightages successfully updated
+        successful_update: Weightages were updated successfully
         tools: Tools
         weightages: Weightages
       weighted_average: Weighted Average
@@ -4201,7 +4222,7 @@ en:
         create: Add Admin Role
         description: Description
         name: Name
-        successful_remove: Admin role '%{role_name}' was successfully deleted.
+        successful_remove: Admin role '%{role_name}' was deleted successfully.
       siem:
         description: Description
         destination_type: Destination Type
@@ -4306,7 +4327,7 @@ en:
         title: SMS Invite import
       messages:
         delete_confirm_text: Are you sure you want to remove SMS Invite with mobile number %{mobile_no}?
-        delete_success: SMS Invite deleted successfully
+        delete_success: SMS Invite was deleted successfully
         failed_to_sent_invite: Failed to sent invite to mobile no %{mobile_no}
       send_sms:
         fields:
@@ -4363,7 +4384,7 @@ en:
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
-      update_success_msg: SMTP setting updated successfully.
+      update_success_msg: SMTP setting was updated successfully.
       user_name: User Name
     stats:
       assessments:
@@ -4396,12 +4417,13 @@ en:
           today: Today
           yesterday: Yesterday
         started: Started
+        timezone: Timezone
         y_title: Number of Users
     sub_factors:
       copy:
         error: 'Sub-Factor #%{id} was not copied.'
       destroy:
-        successfully: Sub-Factor %{name} was successfully deleted.
+        successfully: Sub-Factor %{name} was deleted successfully.
       edit:
         header: Edit Sub-Factor Name
       index:
@@ -4425,7 +4447,7 @@ en:
         edit: Edit Sub-Factor
         title: Sub-Factor's options
       toggle_status:
-        successfully: Sub-Factor was successfully updated.
+        successfully: Sub-Factor was updated successfully.
     survey_builder:
       builder_area:
         options: Options
@@ -4488,7 +4510,7 @@ en:
         copy:
           error: Block \#%{name} was not copied.
         destroy:
-          successfully: Block %{name} was successfully deleted.
+          successfully: Block %{name} was deleted successfully.
         edit:
           header: Edit Block
         index:
@@ -4529,7 +4551,7 @@ en:
         copy:
           error: Question
         destroy:
-          successfully: Question %{name} was successfully deleted.
+          successfully: Question %{name} was deleted successfully.
         edit:
           header: Edit Question
         index:
@@ -4680,7 +4702,7 @@ en:
         new:
           header: Import Translations
       import:
-        successfully: Translations was successfully imported
+        successfully: Translations were imported successfully
       questions:
         new:
           header: Import Translations
@@ -4690,12 +4712,12 @@ en:
     tte: TTE
     uniq_id: Uniq ID
     update: Update
-    updated: Successfully updated
+    updated: Update successfully
     users:
       create:
-        successfully: User %{name} was successfully created.
+        successfully: User %{name} was created successfully.
       destroy:
-        successfully: User %{name} was successfully deleted.
+        successfully: User %{name} was deleted successfully.
       edit:
         add: Add
         grants: Privileges
@@ -4791,15 +4813,15 @@ en:
       toggle_enable_2fa:
         disable: Disable 2FA
         enable: Enable 2FA
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
       toggle_status:
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
       update:
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
       user: User
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
-      delete_success: Webhook settings deleted successfully
+      delete_success: Webhook settings was deleted successfully
       request_failure: Request failed with status code %{http_status_code}.
       test_success: Webhook test successful.
     workshop:

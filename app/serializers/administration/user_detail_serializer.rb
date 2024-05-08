@@ -4,7 +4,7 @@ module Administration
   class UserDetailSerializer < Panko::Serializer
     attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :campaigns, :started_at,
                :completion_status, :status, :additional_time, :active, :hogan_id, :permissions, :completed_at,
-               :proctoring_sessions, :user_assessments, :user_reports
+               :proctoring_sessions, :user_assessments, :user_reports, :manager
 
     delegate :active, :completion_status, :additional_time, to: :campaign_user
 
@@ -102,6 +102,12 @@ module Administration
           campaign_id: campaign.id
         }
       )
+    end
+
+    def manager
+      return {} unless object.manager
+
+      ::Administration::ManagerSerializer.new.serialize(object.manager)
     end
 
     def hogan_id

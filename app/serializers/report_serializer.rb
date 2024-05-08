@@ -1,20 +1,32 @@
 # frozen_string_literal: true
 
-class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :name, :disabled, :created_at, :filters, :factors, :factor_norms, :occupations, :props,
+class ReportSerializer < Panko::Serializer
+  attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
              :category, :pages, :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language,
-             :locales, :campaign_factors
+             :locales, :campaign_factors, :module_overrides, :assessments
 
-  has_many :filters, serializer: Reports::FilterSerializer
-  has_many :assessments, serializer: Reports::AssessmentSerializer
-  has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
+  has_many :filters, each_serializer: Reports::FilterSerializer
+
+  def assessments
+    Panko::ArraySerializer.new(
+      object.assessments,
+      each_serializer: Reports::AssessmentSerializer,
+      context: {
+        piped_text_context: context[:piped_text_context]
+      }
+    ).to_a
+  end
 
   def pages
-    object.pages.map do |page|
-      Reports::PageSerializer.new(page, piped_text_context: @instance_options[:piped_text_context],
-                                        builder: @instance_options[:builder])
-    end
+    Panko::ArraySerializer.new(
+      object.pages,
+      each_serializer: Reports::PageSerializer,
+      context: {
+        piped_text_context: context[:piped_text_context],
+        builder: context[:builder]
+      }
+    ).to_a
   end
 
   def default_language
@@ -52,11 +64,15 @@ class ReportSerializer < ActiveModel::Serializer
               order(name: :asc)
     aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
     factors.group_by(&:dimension_id).transform_values do |group|
-      group.map do |obj|
-        ::Factors::WithSubFactorsSerializer.new(obj, assessment_id: object_assessment_ids,
-                                                        report_id: object.id,
-                                                        alias: aliases[obj.id]&.first)
-      end
+      Panko::ArraySerializer.new(
+        group,
+        each_serializer: ::Factors::WithSubFactorsSerializer,
+        context: {
+          assessment_id: object_assessment_ids,
+          report_id: object.id,
+          alias: aliases
+        }
+      ).to_a
     end
   end
 
@@ -65,7 +81,10 @@ class ReportSerializer < ActiveModel::Serializer
                   where(dimension_id: object.assessments.pluck(:dimension_id)).
                   order(name: :asc)
     occupations.group_by(&:dimension_id).transform_values do |group|
-      group.map { |occupation| OccupationSerializer.new(occupation) }
+      Panko::ArraySerializer.new(
+        group,
+        each_serializer: OccupationSerializer
+      ).to_a
     end
   end
 
@@ -74,7 +93,10 @@ class ReportSerializer < ActiveModel::Serializer
                         where(dimension_id: object.assessments.pluck(:dimension_id)).
                         order(name: :asc)
     innovation_styles.group_by(&:dimension_id).transform_values do |group|
-      group.map { |innovation_style| InnovationStyleSerializer.new(innovation_style) }
+      Panko::ArraySerializer.new(
+        group,
+        each_serializer: InnovationStyleSerializer
+      ).to_a
     end
   end
 
@@ -118,13 +140,13 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def assigns
-    return [] unless @instance_options[:membership]
+    return [] unless context[:membership]
 
     Assign.includes(:membership).joins(:membership).
       where(assessment_id: object.assessment_ids,
             memberships: {
-              client_id: @instance_options[:membership].client_id,
-              user_id: @instance_options[:membership].user_id
+              client_id: context[:membership].client_id,
+              user_id: context[:membership].user_id
             })
   end
 
@@ -154,7 +176,10 @@ class ReportSerializer < ActiveModel::Serializer
 
   def relationships
     if connected_campaign && object.category_threesixty?
-      Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
+      Panko::ArraySerializer.new(
+        Relationships::ByCampaign.new(connected_campaign),
+        each_serializer: RelationshipSerializer
+      ).to_a
     else
       non_threesixty_relationships
     end
@@ -174,7 +199,10 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def module_overrides
-    @instance_options[:module_overrides]
+    Panko::ArraySerializer.new(
+      context[:module_overrides],
+      each_serializer: TextModuleOverrideSerializer
+    ).to_a
   end
 
   private
@@ -184,6 +212,6 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def user_results
-    @instance_options[:user_results]
+    context[:user_results]
   end
 end

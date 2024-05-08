@@ -135,6 +135,7 @@ export default class UITree extends Component {
     const { paddingLeft } = this.props
     let newIndex = null
     let index = tree.getIndex(dragging.id)
+    if (!index) return
     const { collapsed } = index.node
 
     const { _startX } = this

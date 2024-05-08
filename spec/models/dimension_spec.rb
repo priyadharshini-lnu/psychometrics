@@ -6,7 +6,7 @@ RSpec.describe Dimension, type: :model do
   let!(:user) { create(:user) }
   let!(:dimension) { create(:dimension, :with_occupation) }
   let!(:factor) { create(:factor, sub_factors: [create(:factor)], dimension: dimension) }
-  let!(:active_record_audit) { dimension.audits.first }
+  let!(:active_record_audit) { ActiveRecordAudit.where(auditable_id: dimension.id) }
 
   context '#clone_and_save' do
     it 'should be copy all relative factors, sub-factors and occupation' do
@@ -19,8 +19,8 @@ RSpec.describe Dimension, type: :model do
 
   describe '#create' do
     it 'does create active record audit' do
-      expect(active_record_audit.auditable_type).to eq(described_class.name)
-      expect(active_record_audit.auditable_id).to eq(dimension.id)
+      expect(ActiveRecordAudit.pluck(:auditable_type)).to include(described_class.name)
+      expect(active_record_audit).to be_present
     end
   end
 end

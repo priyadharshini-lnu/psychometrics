@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {
   Avatar,
-  Button, MenuProps, App,
+  Button, MenuProps, App, Switch,
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MessageInstance } from 'antd/es/message/interface'
@@ -41,6 +41,11 @@ export const ReportTable: React.FC<Props> = ({
           )
             : <span className={styles.id}>{report.id}</span>
         )}
+      />
+      <Resource.Column<Report>
+        id="disabled"
+        title={I18n.t('common.column.active')}
+        render={report => <ActiveSwitch report={report} />}
       />
       <Resource.Column<Report>
         title={I18n.t('common.column.icon')}
@@ -114,6 +119,19 @@ export const ReportTable: React.FC<Props> = ({
         )}
       />
     </Resource.Table>
+  )
+}
+
+
+const ActiveSwitch: React.FC<{ report: Report }> = ({ report }) => {
+  const { resource } = useResourceContext<Report>()
+  return (
+    <Switch
+      checked={!report.disabled}
+      onChange={() => {
+        resource.updateResource({ id: report.id, disabled: !report.disabled })
+      }}
+    />
   )
 }
 

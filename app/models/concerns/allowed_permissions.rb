@@ -30,6 +30,7 @@ module AllowedPermissions
       manage_report_approvals
       view_stats
     ],
+    'campaign_factors' => %w[view manage],
     'messages' => %w[email instructions options],
     'norms' => %w[view manage],
     'dimensions' => %w[view manage],
@@ -51,13 +52,15 @@ module AllowedPermissions
       regenerate_report
       bulk_regenerate_reports
       finalize_scores
+      external_score_import
       report_file_upload
     ],
     'assessors' => %w[view manage],
     'registration_codes' => %w[view manage],
     'datasheets' => %w[view manage],
     'auditLogs' => ['view'],
-    'workshops' => %w[view manage]
+    'workshops' => %w[view manage],
+    'idp_templates' => %w[view manage]
   }.freeze
 
   PROJECT_ADMIN_PERMISSIONS = {
@@ -86,6 +89,7 @@ module AllowedPermissions
       manage_report_approvals
       view_stats
     ],
+    'campaign_factors' => %w[view manage],
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'messages' => %w[email instructions options],
     'sms_invites' => %w[view manage],
@@ -103,6 +107,7 @@ module AllowedPermissions
       regenerate_report
       bulk_regenerate_reports
       finalize_scores
+      external_score_import
       report_file_upload
     ],
     'registration_codes' => %w[view manage],
@@ -110,7 +115,8 @@ module AllowedPermissions
     'assessors' => %w[view manage],
     'reports' => ['manage'],
     'datasheets' => %w[view manage],
-    'workshops' => %w[view manage]
+    'workshops' => %w[view manage],
+    'idp_templates' => %w[view manage]
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {
@@ -122,7 +128,10 @@ module AllowedPermissions
       manage_users
       manage_options
       manage_report_approvals
+      view_stats
     ],
+    'campaign_factors' => %w[view manage],
+    'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'sms_invites' => %w[view manage],
     'communications' => %w[view manage],
     'datasheets' => %w[view manage],
@@ -139,9 +148,11 @@ module AllowedPermissions
       bulk_regenerate_reports
       finalize_scores
       view_stats
+      external_score_import
       report_file_upload
     ],
-    'workshops' => %w[view manage]
+    'workshops' => %w[view manage],
+    'idp_templates' => %w[view manage]
   }.freeze
 
   THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS = {
@@ -163,6 +174,7 @@ module AllowedPermissions
       rescore_responses
       regenerate_report
       bulk_regenerate_reports
+      scores
       report_file_upload
     ]
   }.freeze

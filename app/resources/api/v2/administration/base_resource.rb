@@ -33,6 +33,12 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, _model_class])
   end
 
+  def self.add_tag_filter
+    filter :tagged_with, apply: lambda { |records, tags, _options|
+      records.tagged_with(tags)
+    }
+  end
+
   def meta(_options)
     return {} if context[:params][:include_resource_meta].blank?
 

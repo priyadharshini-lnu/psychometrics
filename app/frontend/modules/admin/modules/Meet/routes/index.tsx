@@ -1,4 +1,4 @@
-import MeetingRoom from './MeetingRoom'
+import { lazy } from 'react'
 
 const routes = [
   { redirect: true, from: '/meet', to: '/meet/create' },
@@ -8,7 +8,7 @@ const routes = [
   },
   {
     path: '/meet/:roomId',
-    component: () => <MeetingRoom />,
+    component: lazy(() => import('./MeetingRoom')),
   },
 ]
 

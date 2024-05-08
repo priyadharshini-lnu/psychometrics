@@ -7,10 +7,11 @@ module Administration
       skip_before_action :pundit_authorize, only: %i[spoof]
 
       def index
-        users = campaign.
-                users.
-                includes(:creator, :modifier, campaign_users: [:campaign], user_assessments: :users_result).
-                ransack(params[:filters]).result
+        users = User.joins(:campaign_users).
+                where(campaign_users: { campaign_id: campaign.id }).
+                includes(
+                  :creator, :modifier, :user_profile, campaign_users: [:campaign], user_assessments: :users_result
+                ).ransack(params[:filters]).result
 
         respond_to do |format|
           format.json do
@@ -55,9 +56,10 @@ module Administration
       end
 
       def search
-        users = ::Users::SearchQuery.new(campaign, params[:q]).query.map do |user|
-          ::Projects::SearchUserSerializer.new(user).to_h
-        end
+        users = Panko::ArraySerializer.new(
+          ::Users::SearchQuery.new(campaign, params[:q]).query,
+          each_serializer: ::Projects::SearchUserSerializer
+        ).to_a
         render json: users
       end
 

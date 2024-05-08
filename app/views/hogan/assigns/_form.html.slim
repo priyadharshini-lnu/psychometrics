@@ -1,4 +1,4 @@
-= form_tag Rails.application.secrets.hogan[:login_url], id: "hogan-form-#{assign.id}" do
+= form_tag Settings.secrets.hogan[:login_url], id: "hogan-form-#{assign.id}" do
   = hidden_field_tag :UserID, @current_membership.hogan_credential&.participant_id
   = hidden_field_tag :Password, @current_membership.hogan_credential&.password
   = hidden_field_tag :UniqueID, current_user.email

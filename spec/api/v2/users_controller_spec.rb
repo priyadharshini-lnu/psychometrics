@@ -48,7 +48,8 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
               permissions: {
                 remove: false,
                 reset_password: true,
-                toggle_enable_2fa: true
+                toggle_enable_2fa: true,
+                login_as: true
               }
             }
           }
@@ -63,7 +64,8 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
               'permissions' => {
                 'reset_password' => true,
                 'remove' => true,
-                'toggle_enable_2fa' => true
+                'toggle_enable_2fa' => true,
+                'login_as' => true
               }
             }
           )

@@ -29,7 +29,7 @@ export const CreateProjectModal: React.FC<Props> = ({
     {() => (
       <>
         <Form.Item name="name" label="Name" rules={[{ required: true }]}>
-          <Input />
+          <Input name="project_name" />
         </Form.Item>
         <Form.Item name="subdomain" label="Subdomain" rules={[{ required: true }]}>
           <Input />

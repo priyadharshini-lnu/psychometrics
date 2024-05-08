@@ -112,6 +112,7 @@ subject_assessor_assessments" do
               user_assessment_id: 1,
               status: 'pending',
               schedule_time: '2020-10-10T10:10:10.000Z',
+              meeting_type: 'internal',
               meeting_link: 'https://meet.google.com/abc-xyz',
               linked_activity: 'Assessment 1',
               assessor: {
@@ -122,10 +123,11 @@ subject_assessor_assessments" do
             }
           }
         }]
-        let(:workshop_subject) { create(:workshop_subject) }
-        let(:campaign) { create(:campaign) }
-        let(:assessment) { create(:assessment) }
-        let(:campaign_assessor_assessment) do
+        let!(:workshop_subject) { create(:workshop_subject) }
+        let!(:campaign) { create(:campaign) }
+        let!(:subject_assessment) { create(:assessment) }
+        let!(:assessment) { create(:assessment, linked_assessment_id: subject_assessment.id) }
+        let!(:campaign_assessor_assessment) do
           create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment)
         end
         let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign, assessor_form_id: assessment.id) }
@@ -135,13 +137,16 @@ subject_assessor_assessments" do
           create(:user_assessment, relationship: relationship,
                                    subject: workshop_subject.user,
                                    campaign: campaign,
-                                   assessment: assessment)
+                                   assessment: assessment,
+                                   meeting_type: :not_available)
         end
         let!(:subject_user_assessment) do
           create(:user_assessment, relationship: Relationship.self_relationship,
                                     subject: workshop_subject.user,
                                     evaluator: workshop_subject.user,
-                                    campaign: campaign)
+                                    campaign: campaign,
+                                    assessment: subject_assessment,
+                                    meeting_type: :not_available)
         end
         let(:workshop_subject_id) { workshop_subject.id.to_s }
         let(:campaign_id) { campaign.id.to_s }
@@ -155,15 +160,15 @@ subject_assessor_assessments" do
             'assessor_user_assessment_id' => user_assessment.id,
             'status' => user_assessment.status,
             'schedule_time' => user_assessment.schedule_time,
-            'meeting_type' => user_assessment.meeting_type,
             'meeting_link' => user_assessment.meeting_link,
-            'linked_activity' => campaign_assessment.assessment.linked_assessment&.name,
+            'linked_activity' => assessment.linked_assessment&.name,
             'subject_linked_activity_present' => true,
             'assessor' => {
               'id' => user_assessment.evaluator.id.to_s,
               'name' => user_assessment.evaluator.name,
               'photo_url' => user_assessment.evaluator.photo_url
-            }
+            },
+            'meeting_type' => 'not_available'
           }])
         end
       end

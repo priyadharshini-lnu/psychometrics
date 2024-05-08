@@ -48,7 +48,7 @@ module Administration
     # rubocop:enable Metrics/BlockLength
 
     def policy(name)
-      klass = "#{Array.wrap(name).map(&:to_s).map(&:camelize).join('::')}Policy".constantize
+      klass = "#{Array.wrap(name).map(&:to_s).map(&:camelize).join('::')}Policy".constantize # rubocop:disable Performance/MapMethodChain
       klass.new(object, nil, project_id: context[:project_id])
     end
 

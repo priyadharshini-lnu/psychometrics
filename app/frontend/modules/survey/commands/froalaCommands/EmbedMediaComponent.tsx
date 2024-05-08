@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import ReactDOMServer from 'react-dom/server'
+import { renderToStaticMarkup } from 'react-dom/server'
 import { Button, Tabs } from 'antd'
 import { AudioOutlined, VideoCameraOutlined } from '@ant-design/icons'
 
@@ -34,10 +34,10 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
 
   const getPlayerTemplate = (url: string): string => {
     if (currentTab === URL_TYPE.AUDIO) {
-      return ReactDOMServer.renderToStaticMarkup(<AudioPlayer url={url} />)
+      return renderToStaticMarkup(<AudioPlayer url={url} />)
     }
 
-    return ReactDOMServer.renderToStaticMarkup(<VideoPlayer url={url} />)
+    return renderToStaticMarkup(<VideoPlayer url={url} />)
   }
 
   const onUrlChange = (url: string): void => {

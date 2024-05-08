@@ -16,7 +16,7 @@ module MediaResponses
         data = if question.type == 'VideoResponse'
                  MediaResponses::GetMultipartUploadUrls.call!(result, question_id, file_name)
                else
-                 MediaResponses::GetSinglePresignedUploadUrl.call!(result, question_id, file_name)
+                 ::MediaResponses::DirectUpload.call!(result, question_id, file_name, blob)
                end
         broadcast(:ok, data)
       rescue StandardError => e

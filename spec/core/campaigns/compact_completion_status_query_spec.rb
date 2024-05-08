@@ -155,4 +155,40 @@ describe Campaigns::CompactCompletionStatusQuery do
       ]
     end
   end
+
+  context 'pagination' do
+    let!(:user_assessment) do
+      create(
+        :user_assessment, subject: user, evaluator: user, campaign: campaign,
+        assessment: minor_assessment, status: 'interrupted'
+      )
+    end
+    let!(:user_one_user_assessment) do
+      create(
+        :user_assessment, subject: user_one, evaluator: user_one, campaign: campaign,
+        assessment: assessment, status: 'completed'
+      )
+    end
+    let!(:user_two_user_assessment) do
+      create(
+        :user_assessment, subject: user_two, evaluator: user_two, campaign: campaign,
+        assessment: super_assessment, status: 'timed_out'
+      )
+    end
+
+    it 'accepts limit and offset' do
+      result = described_class.new(campaign.id, limit: 1, offset: 1).query.to_a
+      expect(result.size).to eq 1
+      expect(result).to eq [
+        {
+          'Email' => 'bob@email.com',
+          'First Name' => 'Bob',
+          'Last Name' => 'Jobs',
+          'Assessment' => nil,
+          'Minor Assessment' => nil,
+          'Super Assessment' => 'Timed Out'
+        }
+      ]
+    end
+  end
 end

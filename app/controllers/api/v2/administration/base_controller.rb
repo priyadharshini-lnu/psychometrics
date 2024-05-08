@@ -19,6 +19,7 @@ module Api
 
     skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
+    before_action :set_current_attributes
     before_action :ensure_project
     before_action :ensure_campaign
     # Setting up additional fields for custom actions in json_api response
@@ -186,6 +187,10 @@ module Api
         current_user,
         Client
       ).resolve.find(params[:project_id])
+    end
+
+    def set_current_attributes
+      Current.user = @current_user
     end
 
     def ensure_project

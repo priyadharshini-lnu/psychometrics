@@ -11,7 +11,7 @@ module Examus
     end
 
     def base_api_url
-      config = Rails.application.secrets.examus
+      config = Settings.secrets.examus
       "#{config[:url]}/api/v2/integration/simple/#{config[:integration_name]}"
     end
   end

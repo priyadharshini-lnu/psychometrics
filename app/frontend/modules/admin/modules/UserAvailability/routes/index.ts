@@ -1,5 +1,6 @@
-import { AvailabilityListing } from '~/modules/admin/modules/UserAvailability/routes/AvailabilityListing'
+import { lazy } from 'react'
 
+const AvailabilityListing = lazy(() => import('~/modules/admin/modules/UserAvailability/routes/AvailabilityListing'))
 const routes = [
   {
     path: '/user_availabilities',

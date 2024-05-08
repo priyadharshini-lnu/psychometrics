@@ -14,7 +14,13 @@ class Api::V2::Administration::ProfileSettingResource < Api::V2::Administration:
   end
 
   def profile_fields
-    @model.profile_fields.map { |q| ProfileFieldSerializer.new(q).to_h }
+    Panko::ArraySerializer.new(
+      @model.profile_fields,
+      each_serializer: ProfileFieldSerializer,
+      context: {
+        selected_locale: I18n.locale
+      }
+    ).to_a
   end
 
   def profile_fields=(new_fields)

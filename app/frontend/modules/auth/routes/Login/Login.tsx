@@ -16,7 +16,7 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const LoginComponent: React.FC<Props> = ({
-  projectConfig, csrfToken, flash, user,
+  projectConfig, csrfToken, user,
 }) => (
   <div className={styles.container}>
     <Typography.Title level={3}>{I18n.t('auth.login.title')}</Typography.Title>
@@ -43,7 +43,7 @@ const LoginComponent: React.FC<Props> = ({
     )}
     {!projectConfig.saml_enforced && (
       <>
-        <Flash flash={flash} />
+        <Flash />
         <Form
           id="form-login"
           layout="vertical"

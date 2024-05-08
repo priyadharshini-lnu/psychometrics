@@ -28,8 +28,7 @@ module Saville
 
         next unless user_report
 
-        pdf = "data:application/pdf;base64,#{base64_report}"
-        user_report.update(pdf: pdf, status: :prepared)
+        user_report.attach_pdf!(base64_report)
       end
     end
 

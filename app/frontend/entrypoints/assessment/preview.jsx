@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
@@ -10,13 +10,13 @@ import '~/styles/utils.less'
 initSentry()
 
 const ID = window.assessmentPreviewDomElementId || 'psychometrics_preview'
-const root = document.getElementById(ID)
+const rootElement = document.getElementById(ID)
 
 const {
   data, type, locales, isThreesixty, dashboardUrl, selectedLocale, isAnonymousAssessment,
   langPartial, result, agileAssetsUrl, agileAssignUrl, notAnEndPage, resultsUrl, showAsSinglePage,
   readOnly,
-} = root.dataset
+} = rootElement.dataset
 
 const props = {
   data: JSON.parse(data),
@@ -37,10 +37,11 @@ const props = {
   readOnly,
 }
 
-ReactDOM.render(
+const root = createRoot(rootElement)
+root.render(
   <Provider store={rstore}>
     <Router>
       <AssessmentContainer {...props} />
     </Router>
-  </Provider>, root,
+  </Provider>,
 )

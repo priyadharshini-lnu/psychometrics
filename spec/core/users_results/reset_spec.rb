@@ -25,7 +25,7 @@ describe UsersResults::Reset do
     )
     users_result
   end
-  let(:user_report) do
+  let!(:user_report) do
     create(:user_report, :with_pdf, report: report, user: user, campaign: campaign, status: :prepared)
   end
   let(:user_assessment) do
@@ -96,8 +96,9 @@ describe UsersResults::Reset do
 
   it 'reset user_report data if assessment is completed' do
     allow(user_assessment).to receive(:completed?).and_return(true)
-    expect { subject }.to(change { user_report.reload.pdf_identifier }.from('test.pdf').to(nil).
-      and(change { user_report.status }.from('prepared').to('not_prepared')))
+    subject
+    expect(user_report.reload.pdf_file.attached?).to be_falsey
+    expect(user_report.reload.status).to eq('not_prepared')
   end
 
   it 'dont reset user_report data if assessment is NOT completed' do

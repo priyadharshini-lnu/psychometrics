@@ -8,7 +8,7 @@ import { fetchCampaign, reset as resetCampaign } from '~/modules/endUser/modules
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { PageHeader, CountdownTimer } from '~/glint'
 import { Common } from './Common'
 import { Threesixty } from './Threesixty'
@@ -93,7 +93,7 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
         </Space>
       </Col>
       <Col flex="auto" span={24} className="ta-e">
-        <LangDropdown />
+        <LangDropdownWithChangeLocale />
       </Col>
     </>
 

@@ -12,10 +12,12 @@ module Api
       return {} if params[:action] != 'index'
 
       {
-        field_questions: Question.where(view: 'templates').
+        field_questions: Panko::ArraySerializer.new(
+          Question.where(view: 'templates').
           where(owner_id: [nil, Client.find(params['filter']['project_id_eq']).parent.id]).
-          where(type: AWAILABLE_TYPES).
-          map { |q| QuestionFieldSerializer.new(q).to_h }
+          where(type: AWAILABLE_TYPES),
+          each_serializer: QuestionFieldSerializer
+        )
       }
     end
   end

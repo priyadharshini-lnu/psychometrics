@@ -11,7 +11,7 @@ import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
 
 const { I18n } = window
 
-export const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
+const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
   const [drawerReport, setDrawerReport] = useState<Report | undefined>()
   const [closed, closeModal] = useState(true)
   const config = {
@@ -54,3 +54,5 @@ export const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
     </>
   )
 }
+
+export default ReportList

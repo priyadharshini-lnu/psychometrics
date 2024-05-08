@@ -5,9 +5,6 @@ class Library < ApplicationRecord
 
   include OwnerValidations
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
   belongs_to :owner, class_name: 'Client'
   belongs_to :created_by, class_name: 'User'
@@ -16,12 +13,7 @@ class Library < ApplicationRecord
 
   enum type: { folder: 0, image: 1, audio: 2, video: 3, other: 4 }
 
-  mount_uploader :file, Public::FileUploader
-
-  has_one_attachment :as_file, content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls]
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :file
+  has_one_attachment :file, content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls], variants: [:icon]
 
   def attachment_storage_path(attribute_name, filename)
     "public/library/#{id}/#{attribute_name}/#{filename}"
@@ -36,6 +28,7 @@ class Library < ApplicationRecord
   # folder, image, audio, video, other
   before_save :detected_type
   before_create :set_name, unless: proc { folder? }
+  after_create :customize_attachment_path
 
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -69,15 +62,25 @@ class Library < ApplicationRecord
   protected
 
   def detected_type
-    return self.type = :folder if file.file.nil?
-    return self.type = :image if !!file.file && file.content_type.start_with?('image')
-    return self.type = :audio if !!file.file && file.content_type.start_with?('audio')
-    return self.type = :video if !!file.file && file.content_type.start_with?('video')
+    return self.type = :image if file.image?
+    return self.type = :audio if file.audio?
+    return self.type = :video if file.video?
+    return self.type = :folder unless file.attached?
 
     self.type = :other
   end
 
   def set_name
     self.name = file.filename if name.blank?
+  end
+
+  private
+
+  def customize_attachment_path
+    if file.attached?
+      new_blob_key = "public/library/#{id}/file/#{file.blob.filename}"
+
+      file.blob.update!(key: new_blob_key)
+    end
   end
 end

@@ -1,11 +1,13 @@
-import { Project } from '~/modules/admin/modules/client/routes/Client/routes/Project'
-import { Campaign } from '~/modules/admin/modules/campaigns/routes/Campaign'
-import ReportPreview from '~/modules/admin/modules/campaigns/routes/ReportPreview'
-import { ExternalReportPreview } from '~/modules/admin/modules/campaigns/routes/ExternalReportPreview'
-import { Client } from './Client'
-import { ClientList } from './ClientList'
-import { LicenseList } from './LicenseList'
-import { LicenseUsageList } from './LicenseList/LicenseUsage'
+import { lazy } from 'react'
+
+const Project = lazy(() => import('~/modules/admin/modules/client/routes/Client/routes/Project'))
+const Campaign = lazy(() => import('~/modules/admin/modules/campaigns/routes/Campaign'))
+const ReportPreview = lazy(() => import('~/modules/admin/modules/campaigns/routes/ReportPreview'))
+const ExternalReportPreview = lazy(() => import('~/modules/admin/modules/campaigns/routes/ExternalReportPreview'))
+const Client = lazy(() => import('./Client'))
+const ClientList = lazy(() => import('./ClientList'))
+const LicenseList = lazy(() => import('./LicenseList'))
+const LicenseUsageList = lazy(() => import('./LicenseList/LicenseUsage'))
 
 export const routes = [
   { redirect: true, from: '/', to: '/clients' },

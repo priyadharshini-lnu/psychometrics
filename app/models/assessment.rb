@@ -9,9 +9,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include SoftDelete
   include OwnerValidations
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
+  include Taggable
 
   PSYCHOMETRIC = 'psychometric'
   ORGANISATIONAL = 'organisational'
@@ -128,6 +126,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     class_name: 'CampaignAssessment', foreign_key: :assessor_form_id
   has_many :memberships, through: :assigns
   has_many :campaign_factors, dependent: :restrict_with_error
+  has_many :idp_template_skills, dependent: :restrict_with_error
 
   # HABTM Clients
   has_many :clients, through: :reports
@@ -155,20 +154,17 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   store_accessor :extra, %i[timer icon_color enable_video_check enable_audio_check enable_network_check]
 
-  mount_uploader :icon, Public::ImageUploader
-  mount_uploader :poster, Public::ImageUploader
-
-  has_one_image_attachment :as_icon, variants: [:thumb]
-  has_one_image_attachment :as_poster, variants: [:thumb]
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :icon, :poster
+  has_one_image_attachment :icon, variants: [:thumb]
+  has_one_image_attachment :poster, variants: [:thumb]
 
   translates :name, :description, :timing
 
   def attachment_storage_path(attribute_name, filename)
     "public/assessment/#{id}/#{attribute_name}/#{filename}"
   end
+
+  acts_as_taggable_on :tags
+  acts_as_taggable_tenant :owner_id
 
   delegate :config, :translations, to: :agile, prefix: true
 
@@ -254,8 +250,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   def clone
     @cloned_item = dup
     @cloned_item.gen_uniq_name
-    @cloned_item.icon = icon
-    @cloned_item.poster = poster
+    @cloned_item.icon = icon if icon.attached?
+    @cloned_item.poster = poster if poster.attached?
     @cloned_item
   end
 
@@ -328,16 +324,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def log_attribute_for_delete
     slice(:name)
-  end
-
-  def sync_translated_columns
-    Mobility.with_locale(I18n.default_locale) do
-      if name_before_type_cast != name ||
-         description_before_type_cast != description ||
-         timing_before_type_cast != timing
-        update_columns(name:, description:, timing:)
-      end
-    end
   end
 
   def init_defaults

@@ -40,7 +40,7 @@ interface AdminUser extends User{
   userProfile: UserProfile,
 }
 
-function ProfileComponent ({
+function Profile ({
   currentUser, uploadPhoto, locales,
 }) {
   useEffect(() => {
@@ -278,4 +278,4 @@ const connector = connect((state: RootState) => ({
   uploadPhoto: uploadAdminUserPhoto,
 })
 
-export const Profile = connector(ProfileComponent)
+export default connector(Profile)

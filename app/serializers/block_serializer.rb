@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-class BlockSerializer < ActiveModel::Serializer
+class BlockSerializer < Panko::Serializer
   attributes :id, :name, :position, :deleted, :props, :created_at, :template_id, :questions
 
   def questions
-    object.questions_ams.map do |q|
-      QuestionSerializer.new(q, piped_text_context: @instance_options[:piped_text_context])
-    end
+    Panko::ArraySerializer.new(
+      object.questions_ams.includes(:comments),
+      each_serializer: QuestionSerializer,
+      context: {
+        piped_text_context: context[:piped_text_context]
+      }
+    ).to_a
   end
 
   def deleted
@@ -23,7 +27,7 @@ class BlockSerializer < ActiveModel::Serializer
     static_content =
       object.props['staticContent'].merge(
         'value' => Threesixty::PipedText::Perform.
-          call!(object.props['staticContent']['value'], @instance_options[:piped_text_context])
+          call!(object.props['staticContent']['value'], context[:piped_text_context])
       )
     object.props.merge('staticContent' => static_content)
   end

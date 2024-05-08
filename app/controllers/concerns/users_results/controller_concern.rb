@@ -19,14 +19,16 @@ module UsersResults::ControllerConcern
     progress_was_reseted = user_assessment.progress_reseted
     ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
-    render json: @users_result,
-           serializer: UsersResultUpdateSerializer,
-           current_block_id: params[:current_block_id],
-           current_user: current_user,
-           threesixty_campaign: @users_result.campaign.threesixty_campaign,
-           campaign: @users_result.campaign,
-           locale: current_user.locale,
-           progress_was_reseted: progress_was_reseted
+    render json: UsersResultUpdateSerializer.new(
+      context: {
+        current_block_id: params[:current_block_id],
+        current_user: current_user,
+        threesixty_campaign: @users_result.campaign.threesixty_campaign,
+        campaign: @users_result.campaign,
+        locale: current_user.locale,
+        progress_was_reseted: progress_was_reseted
+      }
+    ).serialize(@users_result)
   end
 
   def update_meta_data
@@ -47,9 +49,9 @@ module UsersResults::ControllerConcern
 
   def upload_callback
     media = MediaResponse.find(params[:media_id])
-    media.asset_key = params[:asset_key]
+    media.asset = params[:asset_key]
     if media.save
-      render json: MediaResponseSerializer.new.serialize(media.reload)
+      render json: MediaResponseSerializer.new.serialize(media.reload), status: :ok
     else
       error_message = media.errors.messages.values.join(',')
       media.destroy
@@ -69,7 +71,15 @@ module UsersResults::ControllerConcern
 
   def complete_multipart_upload
     media = @users_result.media_responses.find(params[:media_id])
-    MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
+    MediaResponses::CompleteMultipartUpload.call!(
+      media, {
+        asset_key: params[:asset_key],
+        upload_id: params[:upload_id],
+        parts: params[:parts],
+        file_size: params[:file_size],
+        content_type: params[:content_type]
+      }
+    )
 
     render json: MediaResponseSerializer.new.serialize(media.reload)
   end

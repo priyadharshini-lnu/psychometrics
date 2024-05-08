@@ -8,7 +8,7 @@ import { ClockCircleOutlined } from '@ant-design/icons'
 
 import { ProgressProps } from 'antd/lib/progress'
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
-import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -99,7 +99,12 @@ const CommonComponent: React.FC<Props> = ({
         <Col span={4} className="ta-e">
           {availableTranslations
               && availableTranslations.length > 1
-              && <Language selectedLanguage={selectedLanguage} availableTranslations={availableTranslations || []} />
+              && (
+              <LangDropdownWithChangeUrl
+                currentLocale={selectedLanguage.code}
+                locales={availableTranslations || []}
+              />
+              )
             }
         </Col>
       </GlintPageHeader>

@@ -6,19 +6,11 @@ class AdminJobRecord < ApplicationRecord
   self.table_name = 'admin_jobs'
 
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
   belongs_to :owner, class_name: 'User'
 
-  mount_uploader :file, Private::FileUploader
-
-  has_one_attachment :as_file, service: Settings.storage.private_storage_service
-  validates :as_file, content_type: %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg csv xlsx xls]
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :file
+  has_one_attachment :file, service: Settings.storage.private_storage_service
+  validates :file, content_type: %w[csv xlsx xls]
 
   def attachment_storage_path(attribute_name, filename)
     "private/admin_job/#{id}/#{attribute_name}/#{filename}"
@@ -62,7 +54,9 @@ class AdminJobRecord < ApplicationRecord
     export_campaign_scorings: 34,
     export_reports_and_assessments: 35,
     super_admin_assessment_norm_export: 36,
-    super_admin_datasheet_export: 37
+    super_admin_datasheet_export: 37,
+    threesixty_campaign_export_scores: 38,
+    import_external_campaign_scoring: 39
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }
@@ -92,6 +86,6 @@ class AdminJobRecord < ApplicationRecord
   end
 
   def broadcast(action)
-    AdminJobChannel.broadcast_to(owner, action: action, job: AdminJobRecordSerializer.new(self))
+    AdminJobChannel.broadcast_to(owner, action: action, job: AdminJobRecordSerializer.new.serialize(self))
   end
 end

@@ -12,7 +12,7 @@ import {
 export type State = Column[]
 
 export const ColumnTR = t.type({
-  name: t.string,
+  name: t.union([t.string, t.null]),
   type: ColumnTypeTR,
   dashboardUse: t.union([t.boolean, t.undefined]),
   accessorAccess: t.union([t.boolean, t.undefined]),

@@ -6,7 +6,7 @@ import {
   ArrowLeftOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
-import { useMedia } from 'react-use-media'
+import { useMedia } from 'use-media'
 import { UserAvatar } from '~/components/UserAvatar'
 import styles from './Subnavigation.less'
 import { RootState } from '~/modules/admin/core/rootReducers'

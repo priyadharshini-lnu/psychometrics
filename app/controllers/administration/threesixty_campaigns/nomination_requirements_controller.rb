@@ -8,10 +8,12 @@ module Administration
 
       def index
         render(
-          json: policy_scope(::Threesixty::NominationRequirement).
-                where(threesixty_campaign_id: threesixty_campaign.id).
-                order(:position),
-          each_serializer: NominationRequirementSerializer
+          json: Panko::ArraySerializer.new(
+            policy_scope(::Threesixty::NominationRequirement).
+            where(threesixty_campaign_id: threesixty_campaign.id).
+            order(:position),
+            each_serializer: Threesixty::EndUser::NominationRequirementSerializer
+          ).to_a
         )
       end
 

@@ -78,7 +78,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
             label="Name"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="threesixty_campaign_name" />
           </Form.Item>
 
           <Form.Item

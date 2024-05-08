@@ -22,6 +22,7 @@ interface FactorData extends Store {
 type Props = {
   open: boolean
   onClose: () => void
+  title: string
   addFactor?: (values) => Promise<void> | void
   editFactor?: (values) => Promise<void> | void
   factorData?: FactorData
@@ -33,6 +34,7 @@ const factorTypes = [
   { label: 'Assessment', value: 'assessment' },
   { label: 'Assessor Scoring', value: 'assessor_scoring' },
   { label: 'Formula', value: 'formula' },
+  { label: 'External Score', value: 'external_score' },
 ]
 
 const assessmentScoreTypes = [
@@ -60,10 +62,9 @@ interface Dimension {
 }
 
 export const AddEditFactorForm: FC<Props> = ({
-  open, onClose, addFactor, factorData, editFactor,
+  open, onClose, addFactor, factorData, editFactor, title,
 }) => {
   const { campaignId } = useParams<{campaignId: string}>()
-  const [isEditing, setIsEditing] = useState(false)
   const [codeValueEditedByUser, setCodeValueEditedByUser] = useState(false)
   const [form] = Form.useForm()
   const nameValue = Form.useWatch('name', form)
@@ -92,10 +93,6 @@ export const AddEditFactorForm: FC<Props> = ({
       setCodeValueEditedByUser(false)
     }
   }, [factorData, open])
-
-  useEffect(() => {
-    setIsEditing(!!factorData)
-  }, [factorData])
 
   const {
     data: dimensions, setData: setDimensions, isLoading: isDimensionsLoading,
@@ -306,7 +303,7 @@ export const AddEditFactorForm: FC<Props> = ({
   return (
     <Drawer
       closeIcon={<DirectionalNavigateBackIcon />}
-      title={isEditing ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
+      title={title}
       open={open}
       width="70%"
       onClose={handleClose}
@@ -350,7 +347,7 @@ export const AddEditFactorForm: FC<Props> = ({
                 pattern: /^[a-zA-Z0-9\- ]+$/,
               }]}
             >
-              <Input maxLength={64} />
+              <Input maxLength={64} name="campaign_factor_name" />
             </Form.Item>
             <Form.Item name="code" label={I18n.t('administration.scoring.code')}>
               <Input

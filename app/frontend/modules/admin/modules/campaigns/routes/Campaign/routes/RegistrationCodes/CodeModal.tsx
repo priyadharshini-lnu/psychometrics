@@ -50,7 +50,7 @@ const CodeFormModal: React.FC<Props> = ({
             label="Name"
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="registraion_code_name" />
           </Form.Item>
           <Form.Item
             name="code"

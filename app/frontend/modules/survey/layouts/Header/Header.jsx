@@ -150,7 +150,7 @@ export class Header extends Component {
             <li>
               <div>
                 <Button
-                  href={`/administration/reports?q[assessment_id_in][]=${assessment.id}`}
+                  href={`/admin/reports/active?q[filter][assessments_id_in][]=${assessment.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

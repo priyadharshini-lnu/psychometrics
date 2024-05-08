@@ -61,14 +61,14 @@ export const AddEditWebhookModal: React.FC<Props> = ({
               label={I18n.t('administration.project_tabs.webhooks.form.description.label')}
               rules={[{ required: true }]}
             >
-              <Input />
+              <Input name="webhook_description" />
             </Form.Item>
             <Form.Item
               name={I18n.t('administration.project_tabs.webhooks.form.url.name')}
               label={I18n.t('administration.project_tabs.webhooks.form.url.label')}
               rules={[{ required: true }]}
             >
-              <Input />
+              <Input name="webhook_url" />
             </Form.Item>
             <Form.Item
               name={I18n.t('administration.project_tabs.webhooks.form.topics.name')}

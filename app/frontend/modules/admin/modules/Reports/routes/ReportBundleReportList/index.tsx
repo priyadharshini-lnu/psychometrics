@@ -1,1 +1,3 @@
-export { ReportBundleReportList } from './ReportBundleReportList'
+import ReportBundleReportList from './ReportBundleReportList'
+
+export default ReportBundleReportList

@@ -8,11 +8,17 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TagList } from '~/modules/admin/components/Resource/TagList'
 import settings from '../../settings'
 import { history } from '~/modules/admin/store'
 import styles from './AssessmentList.less'
 
 const { I18n } = window
+
+interface JSONApiError {
+  title: string
+  detail?: string
+}
 
 type Props = {
   openDrawer: (assessment: Assessment) => void
@@ -23,6 +29,7 @@ export const AssessmentTable: React.FC<Props> = ({
 }) => {
   const { resource } = useResourceContext<Assessment>()
   const collectionFilteredValue = resource.getFilteredValue('category_in') as string[] | undefined
+
   return (
     <Resource.Table pagination>
       <Resource.Column<Assessment>
@@ -55,6 +62,17 @@ export const AssessmentTable: React.FC<Props> = ({
         id="name"
         width={400}
         sorter
+        render={(_, assessment) => (
+          <>
+            <div>{assessment.name}</div>
+            <TagList
+              initialTags={(assessment.tagList || []).filter(tag => tag !== null) as string[]}
+              config={{
+                editable: false,
+              }}
+            />
+          </>
+        )}
       />
       <Resource.Column<Assessment>
         title={I18n.t('common.column.dimension')}
@@ -151,8 +169,8 @@ const Dropdown: React.FC<DropDownProps> = (
 
   const handleOnConfirm = () => resource.removeResource(assessment.id).then(() => {
     message.info(I18n.t('assessments.actions.remove.success_message', { name: assessment.name }))
-  }).catch(() => {
-    message.error(I18n.t('common.errors.something_wrong'))
+  }).catch((errors: {base: JSONApiError[]}) => {
+    message.error(errors.base[0].title)
   })
   return (
     <>
@@ -222,6 +240,31 @@ const getActionsMenuProps = ({
     message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
   })
 
+  const exportRawFactorScore = () => resource.memberAction({
+    id: assessment.id,
+    action: 'export_raw_factor_scores',
+    method: 'get',
+  }).then(() => {
+    message.success(I18n.t('assessments.messages.raw_factor_export_scheduled'))
+  })
+
+  const exportNormedResults = () => resource.memberAction({
+    id: assessment.id,
+    action: 'export_normed_results',
+    method: 'get',
+  }).then(() => {
+    message.success(I18n.t('assessments.messages.norm_results_export_scheduled'))
+  })
+
+  const exportRawResult = (with_labels: boolean) => resource.memberAction({
+    id: assessment.id,
+    action: 'export_raw_results',
+    method: 'get',
+    body: { with_lables: with_labels },
+  }).then(() => {
+    message.success(I18n.t('assessments.messages.raw_results_export_scheduled'))
+  })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'details') {
       return openDrawer(assessment)
@@ -241,8 +284,19 @@ const getActionsMenuProps = ({
     if (key === 'remove') {
       return setConfirmation(true)
     }
+    if (key === 'export_with_label') {
+      return exportRawResult(true)
+    }
+    if (key === 'export_without_label') {
+      return exportRawResult(false)
+    }
+    if (key === 'export_raw_factor_score') {
+      return exportRawFactorScore()
+    }
+    if (key === 'export_normed_results') {
+      return exportNormedResults()
+    }
   }
-
   const menuItems = [
     {
       key: 'details',
@@ -308,6 +362,40 @@ const getActionsMenuProps = ({
             {I18n.t('common.actions.remove')}
           </Button>
         </>
+      ),
+    },
+    assessment.meta.permissions.exportRawResults && { type: 'divider' },
+    assessment.meta.permissions.exportRawResults && { key: 'export', label: 'Export' },
+    assessment.meta.permissions.exportRawResults && {
+      key: 'export_with_label',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.export_raw_labels')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.exportRawResults && {
+      key: 'export_without_label',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.export_raw_without_labels')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.exportRawFactorScores && {
+      key: 'export_raw_factor_score',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.export_raw_scores')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.exportNormedResults && {
+      key: 'export_normed_results',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.export_normed')}
+        </Button>
       ),
     },
   ].filter(m => m) as ItemType[]

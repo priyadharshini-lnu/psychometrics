@@ -2,7 +2,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DragLayer } from 'react-dnd'
-import ReactDOM from 'react-dom'
+import { findDOMNode } from 'react-dom'
 import _ from 'lodash'
 import styles from './DragAndDrop.less'
 import DescriptionPreview from '../../DescriptionPreview'
@@ -75,7 +75,7 @@ class ItemPreview extends Component {
 
   updateParentOffset () {
     const { parentOffset } = this.state
-    const newOffset = getParentOffsets(ReactDOM.findDOMNode(this))
+    const newOffset = getParentOffsets(findDOMNode(this))
     if (!_.isEqual(parentOffset, newOffset)) {
       this.setState({ parentOffset: newOffset })
     }

@@ -22,12 +22,12 @@ module AdminJobs
         user.first_name,
         user.last_name,
         user.email,
-        user.locale,
         nil,
         nil,
         campaign_user.schedule_start_date,
         campaign_user.schedule_end_date,
-        user.decorate.created_at
+        user.decorate.created_at,
+        user.manager_email
       ]
 
       profile_fields.each do |field|

@@ -12,6 +12,7 @@ export default connect(
       ...getData(survey).defaultValue,
       question: QuestionSerializer.wrap(data ? selectQuestion(builder, question.id) : null,
         preview.results[question.id]?.answers || question.props.defaultValues || []),
+      preview,
     })
   },
   {

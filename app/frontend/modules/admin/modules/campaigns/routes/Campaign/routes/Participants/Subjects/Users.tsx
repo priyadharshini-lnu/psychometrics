@@ -263,8 +263,9 @@ const UserList: React.FC<Props> = ({
               filters={[
                 { text: 'Not Started', value: '0' },
                 { text: 'In Progress', value: '1' },
-                { text: 'Interrupted', value: '2' },
-                { text: 'Timed Out', value: '3' },
+                { text: 'Completed', value: '2' },
+                { text: 'Interrupted', value: '3' },
+                { text: 'Timed Out', value: '4' },
               ]}
               filteredValue={getFilteredValue('campaignUsersStatus')}
               render={status => (

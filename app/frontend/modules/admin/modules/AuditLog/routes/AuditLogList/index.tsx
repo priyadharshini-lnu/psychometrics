@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Pagination, Input, Space, Button, DatePicker,
+  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Spin,
 } from 'antd'
 import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
@@ -121,7 +121,17 @@ const AuditLogList: React.FC<Props> = (
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+            loading={{
+              spinning: isLoading,
+              indicator: <Spin size="large" />,
+            }}
+          >
             <Column
               title={I18n.t('administration.audit_log.record_id')}
               key="recordId"

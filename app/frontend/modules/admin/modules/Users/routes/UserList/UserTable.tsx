@@ -192,7 +192,7 @@ const getActionsMenuProps = ({
         </Button>
       ),
     },
-    (isSuperAdmin(currentUser) && userTab !== 'Users::SuperAdmin') && {
+    user.meta.permissions.loginAs && {
       key: 'loginAs',
       label: (
         <Button

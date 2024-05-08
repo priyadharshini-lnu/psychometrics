@@ -2,8 +2,8 @@
 
 class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :created_at, :updated_at, :created_by, :modified_by, :archived, :deleted,
-             :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon, :active,
-             :external_settings, :provider, :provider
+             :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon,
+             :external_settings, :provider, :hogan_report_packages
 
   ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in]
   audit_log_for :create, payload: '*'
@@ -38,19 +38,23 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   end
 
   def icon_url
-    @model.icon&.url(:thumb)
+    @model.icon_url(:thumb)
   end
 
   def deleted
     @model.deleted?
   end
 
-  def active
-    !@model.disabled
-  end
-
   def external_settings
     @model.external_settings
+  end
+
+  def hogan_report_packages
+    return [] unless @model.hogan?
+
+    Settings.providers.hogan.report_packages.
+      select { |package| package.report_ids.include?(external_report_id) }.
+      map { |package| { id: package.id, name: package.name } }
   end
 
   def external_settings=(value)
@@ -95,5 +99,11 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
         )
       }
     }
+  end
+
+  private
+
+  def external_report_id
+    @external_report_id ||= @model.external_report_id
   end
 end

@@ -2,6 +2,8 @@
 
 module CampaignReports
   class BulkDownload < BaseCommand
+    include Rails.application.routes.url_helpers
+
     private_attr_reader :campaign_reports, :current_user, :bulk_report, :job_record
 
     def initialize(campaign_reports, current_user, job_record)
@@ -26,17 +28,16 @@ module CampaignReports
     def bulk_download_with_lambda
       file_details = user_reports_with_pdf.each_with_object([]) do |ur, acc|
         acc << {
-          s3FilePath: ur.pdf.path,
+          s3FilePath: ur.pdf_file.key,
           zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize(preserve_case: true)}-#{ur.campaign_id}.pdf" # rubocop:disable Layout/LineLength
         }
       end
       file_name = "bulk-report-#{Time.zone.today.strftime('%F')}"
-      zip_file_key = "#{bulk_report.store_dir}/#{file_name}"
       webhook_message = { bulk_report_id: bulk_report.id, file_name: file_name, admin_job_record_id: job_record.id }
       job_record.update!(total_tasks: file_details.length)
       Lambdas::ZipS3Files.call!(
         file_details: file_details,
-        zip_file_key: zip_file_key,
+        zip_file_key: file_name,
         webhook_message: webhook_message
       )
     end
@@ -88,10 +89,13 @@ module CampaignReports
     end
 
     def user_reports_with_pdf
-      UserReport.where(
-        report_id: campaign_reports.pluck(:report_id),
-        campaign_id: campaign_reports.first.campaign_id
-      ).where.not(pdf: nil).includes(:user, :report)
+      UserReport.
+        joins(:pdf_file_attachment).
+        includes(:user, :report).
+        where(
+          report_id: campaign_reports.pluck(:report_id),
+          campaign_id: campaign_reports.first.campaign_id
+        )
     end
   end
 end

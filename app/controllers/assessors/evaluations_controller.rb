@@ -13,7 +13,6 @@ class Assessors::EvaluationsController < Assessors::BaseController
       campaign_id: campaign.id, subject_id: user.id, assessments: { category: :assessor_form },
       relationship: Relationship.assessor_relationship
     ).order('completed_at DESC NULLS LAST').order(:id)
-
     assessment_ids = @assessor_assessments.pluck('assessments.linked_assessment_id')
 
     @subject_user_assessment ||= UserAssessment.joins(:assessment).where(
@@ -110,10 +109,13 @@ class Assessors::EvaluationsController < Assessors::BaseController
         }
       ).serialize(user_result),
 
-      assessment: AssessmentSerializer.new(user_assessment.assessment,
-                                           selected_locale: selected_locale,
-                                           piped_text_context: build_piped_context(user_assessment)).
-        to_hash(include: '**')
+      assessment: AssessmentSerializer.new(
+        context: {
+          selected_locale: selected_locale,
+          piped_text_context: build_piped_context(user_assessment),
+          include: '**'
+        }
+      ).serialize(user_assessment.assessment)
     }
   end
 

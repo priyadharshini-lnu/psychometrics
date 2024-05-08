@@ -205,12 +205,12 @@ class UserDecorator < BaseDecorator
         User.human_attribute_name('first_name'),
         User.human_attribute_name('last_name'),
         User.human_attribute_name('email'),
-        User.human_attribute_name('locale'),
         User.human_attribute_name('password'),
         User.human_attribute_name('overwrite_password'),
         User.human_attribute_name('schedule_start_date'),
         User.human_attribute_name('schedule_end_date'),
-        User.human_attribute_name('created_at')
+        User.human_attribute_name('created_at'),
+        User.human_attribute_name('manager_email')
       ]
     end
   end

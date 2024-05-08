@@ -18,16 +18,16 @@ import {
 } from './Scoring'
 import { WorkshopPage } from './Scheduling/Workshop/WorkshopPage'
 import { IndividualInvite } from './Scheduling/Invites/IndividualInvite'
-import UsersAssessmentsReports
-  from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Subjects/AssessmentsReports'
 import AssessorsDetails
   from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorDetails'
 import { Weightages } from './Scoring/Weigthages'
+import UserDetails from './Participants/Subjects/UserDetails'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
   { redirect: true, from: '/participants', to: '/participants/subjects' },
   { redirect: true, from: '/scheduling', to: '/scheduling/assessment_center' },
+  { redirect: true, from: '/participants/users/:id', to: '/participants/users/:id/assessments' },
   {
     path: '/participants',
     component: Participants,
@@ -71,7 +71,7 @@ const routes = [
   { path: '/datasheet', component: Datasheet },
   { path: '/admins', component: Admins },
   { path: '/options', component: CampaignOptions },
-  { path: '/participants/users/:id', component: UsersAssessmentsReports },
+  { path: '/participants/users/:id/:tab', component: UserDetails },
   { path: '/participants/assessors/:id', component: AssessorsDetails },
 ]
 

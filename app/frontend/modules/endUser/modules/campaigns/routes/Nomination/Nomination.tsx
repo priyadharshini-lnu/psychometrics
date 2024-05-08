@@ -24,7 +24,7 @@ import {
   allowedRelationshipsForNewNominations,
 } from '~/modules/endUser/modules/campaigns/core/nomination/selectors'
 import { SafeHTML } from '~/components/SafeHTML'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { PageHeader as GlintHeader } from '~/glint'
 import { NominationForm } from './NominationForm/NominationForm'
 import { NominationTable } from './NominationTable/NominationTable'
@@ -104,7 +104,7 @@ const NominationComponent = (props) => {
     <>
       <GlintHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown />
+          <LangDropdownWithChangeLocale />
         </Col>
       </GlintHeader>
       <Content className={styles.pageContent}>

@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :sheet, aliases: [:datasheet] do
+  factory :sheet, class: ::Datasheet do
     project { nil }
     columns { [{ name: 'Email', type: 'String' }] }
-    type { 'Datasheet' }
+
+    factory :datasheet, class: ::Datasheet do
+      type { ::Datasheet }
+    end
   end
 end

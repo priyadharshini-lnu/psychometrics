@@ -22,7 +22,7 @@ describe 'PankoOverride::Serializer' do
   it 'raises KeyValidationMissing if validate_keys is false' do
     expect { Dummy::AuthorWithoutValidatesKeysSerializer.new.serialize(author) }.to raise_error(
       PankoOverride::Exceptions::KeyValidationMissing,
-      "Schema class 'Dummy::AuthorWithoutValidatesKeysSchema' does not have 'config.validate_keys' set to true"
+      "Schema class 'Dummy::AuthorWithoutValidatesKeysSchema' does not have 'config.validate_keys' set to true. Please set it to true or whitelist the schema in whitelisted_schemas method" # rubocop:disable Layout/LineLength
     )
   end
 

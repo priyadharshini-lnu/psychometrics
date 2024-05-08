@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assessments
-  class CommentSerializer < ActiveModel::Serializer
+  class CommentSerializer < Panko::Serializer
     attributes :id, :text, :created_by, :created_at, :author
 
     def author

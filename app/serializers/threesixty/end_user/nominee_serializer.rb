@@ -3,15 +3,11 @@
 # Participant serializer
 
 module Threesixty::EndUser
-  class NomineeSerializer < ActiveModel::Serializer
+  class NomineeSerializer < Panko::Serializer
     attributes :id, :approval_status, :evaluator_nomination_status, :can_remove
 
-    has_one :evaluator, method: :evaluator
+    has_one :evaluator, serializer: UserSerializer
     has_one :relationship, serializer: RelationshipSerializer
-
-    def evaluator
-      UserSerializer.new.serialize(object.evaluator)
-    end
 
     def approval_status
       object.manager_nomination_status
