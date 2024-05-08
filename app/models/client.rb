@@ -40,6 +40,7 @@ class Client < ApplicationRecord
   has_one :design_setting, dependent: :destroy, foreign_key: :project_id
   has_one :profile_setting, dependent: :destroy, foreign_key: :project_id
   has_one :power_bi_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :privacy_setting, dependent: :destroy, foreign_key: :project_id
   has_many :profile_fields, through: :profile_setting
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
@@ -106,11 +107,9 @@ class Client < ApplicationRecord
   has_many :development_actions, dependent: :destroy, foreign_key: :owner_id
   has_many :idp_templates, dependent: :destroy, foreign_key: :owner_id
   has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
-  has_one :privacy_link, dependent: :destroy
   has_one :client_auditlog_export_setting, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
-  accepts_nested_attributes_for :privacy_link, allow_destroy: true
 
   before_validation -> { self.subdomain = subdomain.downcase }, if: :subdomain?
 
@@ -142,6 +141,7 @@ class Client < ApplicationRecord
   after_create :create_security_setting, if: :project?
   after_create :create_design_setting, if: :project?
   after_create :create_profile_setting, if: :project?
+  after_create :create_privacy_setting, if: :project?
   after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
   after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
@@ -153,6 +153,8 @@ class Client < ApplicationRecord
   delegate :details, to: :saml_setting, prefix: true
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
   delegate :tfa_enabled?, to: :security_setting
+  delegate :mask_identity_for_pearson?, :mask_identity_for_saville?, :mask_identity_for_hogan?,
+           :mask_identity_for_iiht?, :mask_identity_for_examus?, to: :privacy_setting
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
@@ -187,16 +189,14 @@ class Client < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
-  translates :custom_privacy_consent_text
-
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields projects_of resource_disabled search_query has_integration]
   end
 
   def current_privacy_policy_version
-    return Settings.privacy_policy_version unless custom_privacy_consent?
+    return Settings.privacy_policy_version unless privacy_setting.custom_privacy_consent?
 
-    custom_privacy_policy_version
+    privacy_setting.custom_privacy_policy_version
   end
 
   def iiht_config

@@ -18,7 +18,7 @@ describe UserAssessments::CanStart do
   it 'returns true if privacy contest required' do
     user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
       assessment, campaign: campaign)
-    user.project.privacy_consent = true
+    user.project.privacy_setting.privacy_consent = true
 
     expect(described_class.call!(user_assessment, user, {})).to eq(true)
   end

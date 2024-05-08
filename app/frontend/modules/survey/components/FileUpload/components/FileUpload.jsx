@@ -30,7 +30,7 @@ export default function FileUpload ({
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    if (mediaResponse) {
+    if (mediaResponse && mediaResponse.url) {
       dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
     }
   }, [])
@@ -67,6 +67,11 @@ export default function FileUpload ({
     onSuccessUpload && onSuccessUpload(media)
   }
 
+  const handleFail = () => {
+    dispatch({ type: SET_FILE, payload: { file: null } })
+    removeQuestionInProgress(model.id)
+  }
+
   const uploadFile = (id, file) => {
     const urls = {
       mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}&file_name=${file.name}`,
@@ -74,7 +79,7 @@ export default function FileUpload ({
     }
     markQuestionInProgress(id, UPLOAD_STATES.SAVING)
     FileUploader.run({
-      urls, file, dispatch, onSuccessUpload: handleSuccessfulUpload,
+      urls, file, dispatch, onSuccessUpload: handleSuccessfulUpload, onFail: handleFail,
     })
   }
 

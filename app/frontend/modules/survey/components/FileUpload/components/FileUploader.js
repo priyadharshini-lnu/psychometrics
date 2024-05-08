@@ -21,6 +21,7 @@ const FileUploader = {
     upload.create((error, blob) => {
       if (error) {
         dispatch({ type: SET_ERRORS, payload: { errorMessages: [error.errorMessages] } })
+        context.onFail && context.onFail()
       } else {
         onUploadDone(blob, context)
       }
@@ -44,6 +45,7 @@ const onUploadDone = (blob, context) => {
     onSuccessUpload(humps.camelizeKeys(data))
   }).fail((data) => {
     dispatch({ type: SET_ERRORS, payload: { errorMessages: [data.responseJSON.error_message] } })
+    context.onFail && context.onFail()
   })
 }
 

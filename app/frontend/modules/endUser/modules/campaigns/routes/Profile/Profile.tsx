@@ -50,7 +50,7 @@ const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]
   && AVAILABLE_QUESTIONS[question.type].includes(question.props.type)
 
 function ProfileComponent ({
-  user, uploadPhoto, sync, fields, lockedFields, requiredFields,
+  user, uploadPhoto, sync, fields, lockedFields, requiredFields, enabledFields,
 }) {
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
@@ -132,35 +132,37 @@ function ProfileComponent ({
             <Col span={24}>
               <Title level={3}>{I18n.t('profile.title')}</Title>
               <Row gutter={64}>
-                <Col xs={24} sm={24} md={12} lg={8}>
-                  <Form.Item
-                    help={errors?.photo}
-                    validateStatus={errors?.photo ? 'error' : ''}
-                    required={requiredFields.photo}
-                  >
-                    <Upload
-                      listType="picture-card"
-                      accept=".jpg, .jpeg, |image/*"
-                      showUploadList={false}
-                      maxCount={1}
-                      className={cs(styles.upload, { [styles.error]: errors?.photo })}
-                      onChange={onChangeFile}
-                      beforeUpload={() => false}
+                {enabledFields.photo && (
+                  <Col xs={24} sm={24} md={12} lg={8}>
+                    <Form.Item
+                      help={errors?.photo}
+                      validateStatus={errors?.photo ? 'error' : ''}
+                      required={requiredFields.photo}
                     >
-                      <div className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}>
-                        {user.photo && <img src={user.photo} className={styles.photo} />}
-                        <div className={styles.controls}>
-                          {user.photo ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
-                          <div className={styles.photoLabel}>
-                            {user.photo
-                              ? I18n.t('profile.change_photo')
-                              : I18n.t('profile.add_photo')}
+                      <Upload
+                        listType="picture-card"
+                        accept=".jpg, .jpeg, |image/*"
+                        showUploadList={false}
+                        maxCount={1}
+                        className={cs(styles.upload, { [styles.error]: errors?.photo })}
+                        onChange={onChangeFile}
+                        beforeUpload={() => false}
+                      >
+                        <div className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photo })}>
+                          {user.photo && <img src={user.photo} className={styles.photo} />}
+                          <div className={styles.controls}>
+                            {user.photo ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
+                            <div className={styles.photoLabel}>
+                              {user.photo
+                                ? I18n.t('profile.change_photo')
+                                : I18n.t('profile.add_photo')}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </Upload>
-                  </Form.Item>
-                </Col>
+                      </Upload>
+                    </Form.Item>
+                  </Col>
+                )}
                 <Col xs={24} sm={24} md={12} lg={16}>
                   <Form
                     layout="vertical"
@@ -198,36 +200,40 @@ function ProfileComponent ({
                       <Input size="large" disabled />
                     </Form.Item>
                     <Row gutter={24}>
-                      <Col xs={24} sm={24} md={12}>
-                        <Form.Item
-                          name="age"
-                          label={I18n.t('profile.age')}
-                          help={errors?.age}
-                          required={requiredFields.age}
-                          validateStatus={errors?.age ? 'error' : ''}
-                          rules={[{ pattern: /^\d*$/, message: I18n.t('common.validations.should_be_whole_number') }]}
-                        >
-                          <InputNumber
-                            className={styles.numberInput}
-                            size="large"
-                            disabled={lockedFields.age}
-                          />
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} sm={24} md={12}>
-                        <Form.Item
-                          name="gender"
-                          label={I18n.t('profile.gender')}
-                          hasFeedback
-                          required={requiredFields.gender}
-                        >
-                          <Select size="large" disabled={lockedFields.gender}>
-                            <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
-                            <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
-                            <Select.Option value="not_disclosed">{I18n.t('profile.not_disclosed')}</Select.Option>
-                          </Select>
-                        </Form.Item>
-                      </Col>
+                      {enabledFields.age && (
+                        <Col xs={24} sm={24} md={12}>
+                          <Form.Item
+                            name="age"
+                            label={I18n.t('profile.age')}
+                            help={errors?.age}
+                            required={requiredFields.age}
+                            validateStatus={errors?.age ? 'error' : ''}
+                            rules={[{ pattern: /^\d*$/, message: I18n.t('common.validations.should_be_whole_number') }]}
+                          >
+                            <InputNumber
+                              className={styles.numberInput}
+                              size="large"
+                              disabled={lockedFields.age}
+                            />
+                          </Form.Item>
+                        </Col>
+                      )}
+                      {enabledFields.gender && (
+                        <Col xs={24} sm={24} md={12}>
+                          <Form.Item
+                            name="gender"
+                            label={I18n.t('profile.gender')}
+                            hasFeedback
+                            required={requiredFields.gender}
+                          >
+                            <Select size="large" disabled={lockedFields.gender}>
+                              <Select.Option value="male">{I18n.t('profile.male')}</Select.Option>
+                              <Select.Option value="female">{I18n.t('profile.female')}</Select.Option>
+                              <Select.Option value="not_disclosed">{I18n.t('profile.not_disclosed')}</Select.Option>
+                            </Select>
+                          </Form.Item>
+                        </Col>
+                      )}
                     </Row>
 
                     <Form.Item
@@ -299,6 +305,7 @@ const connector = connect((state: RootState) => ({
   fields: state.config.profile.fields,
   lockedFields: state.config.profile.lockedFields,
   requiredFields: state.config.profile.requiredFields,
+  enabledFields: state.config.profile.enabledFields,
 }), {
   sync,
   uploadPhoto,

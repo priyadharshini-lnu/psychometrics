@@ -12,8 +12,6 @@ module Projects
       ::Projects::RemoveOldCampaigns.call!(project)
       ::Projects::RemoveNewCampaigns.call!(project)
       project.end_users.destroy_all
-      # Destroying project doesn't destroy has_one for some reasons, even if dependent destroy is there
-      project.privacy_link&.destroy!
       project.destroy
       project.delete
 

@@ -1693,6 +1693,8 @@ en:
       updated_at: Last Updated
     errors:
       something_wrong: Something went wrong. Contact your administrator.
+    messages:
+      leave_message: Are you sure you want to leave this page? Any unsaved answers that you have will be lost.
     model:
       admins: Admins
       assessment: Assessment
@@ -3776,6 +3778,7 @@ en:
     email: Your response must be a valid email
     exact: Please select exactly %{count} choice(s)
     file_upload:
+      BadRequest: File was not uploaded as last request failed. This might be due to your internet is not working. If your internet is working please contact administrator
       EntityTooLarge: File size should be less than %{maxFileSize} MB
       WrongFileType: File type should be one of the following %{allowedFileTypes}
     issue: Issue

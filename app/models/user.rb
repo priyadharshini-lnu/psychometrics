@@ -161,6 +161,10 @@ class User < ApplicationRecord
   delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
   delegate :email, to: :manager, prefix: true, allow_nil: true
 
+  def maskable_identity(mask: false)
+    @maskable_identity ||= Users::MaskableIdentity.new(self, mask: mask)
+  end
+
   def authenticated_sign_in_url
     Utility::Url.generate(
       :users_sign_in_link_url,
@@ -194,7 +198,9 @@ class User < ApplicationRecord
   def privacy_consent_required?
     return false if admin?
 
-    project.privacy_consent && !privacy_consents.exists?(version: project.current_privacy_policy_version)
+    project.privacy_setting.privacy_consent && !privacy_consents.exists?(
+      version: project.current_privacy_policy_version
+    )
   end
 
   def accessible_records(resource_class, permissions)

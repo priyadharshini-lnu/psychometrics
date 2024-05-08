@@ -35,6 +35,7 @@ export const HoganStepComponent: FC<Props> = ({
 }) => {
   const [hoganData, setHoganData] = useState<HoganData| null>(null)
   const [timedOut, setTimedOut] = useState(false)
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     loginHogan(userAssessmentUrl).then((data) => {
       setHoganData(data.response)
@@ -52,6 +53,7 @@ export const HoganStepComponent: FC<Props> = ({
     const form = formRef.current
     if (!form) { return }
     if (hoganData && form !== null) {
+      setLoading(true)
       form.submit()
     }
   }
@@ -91,7 +93,7 @@ export const HoganStepComponent: FC<Props> = ({
                 <Button onClick={onCancel} danger>
                   {I18n.t('campaign.time_left.cancel')}
                 </Button>
-                <Button disabled={!timedOut} type="primary" onClick={() => process()}>
+                <Button loading={loading} disabled={loading || !timedOut} type="primary" onClick={() => process()}>
                   {I18n.t('campaign.time_left.continue')}
                 </Button>
               </Space>

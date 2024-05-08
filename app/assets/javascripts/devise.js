@@ -18,7 +18,7 @@
 //= require bootstrap-select
 //= require bootstrap-colorpicker
 //= require administration/plugins/bootstrap/bootstrap-datepicker
-//= require bootstrap-file-input/bootstrap.file-input.js
+//= require bootstrap.file-input.js
 //= require multiselect
 //= require noty
 //= require ecommerce/base

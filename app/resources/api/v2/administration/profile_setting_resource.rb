@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::ProfileSettingResource < Api::V2::Administration::BaseResource
-  attributes :update_in, :profile_fields, :required_default_fields, :locked_default_fields
+  attributes :update_in, :profile_fields, :required_default_fields, :locked_default_fields, :enabled_default_fields
 
   has_one :project
 

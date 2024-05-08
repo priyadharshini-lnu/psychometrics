@@ -9,7 +9,7 @@ module Administration
 
           required(:id).filled(:int?)
           required(:name).filled(:str?)
-          required(:assessment_id).filled(:int?)
+          required(:assessment_id).maybe(:int?)
         end
       end
     end

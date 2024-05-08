@@ -6,6 +6,8 @@ module EndUser
     attributes :url, :user_id, :password, :unique_id, :first_name, :last_name, :language_id,
                :direct_assessment_id, :display_informed_consent, :return_url
 
+    delegate :first_name, :last_name, to: :maskable_identity
+
     def url
       Settings.secrets.hogan[:login_url]
     end
@@ -19,12 +21,8 @@ module EndUser
     end
 
     def unique_id
-      current_user.email
+      maskable_identity.email
     end
-
-    delegate :first_name, to: :current_user
-
-    delegate :last_name, to: :current_user
 
     def language_id
       'en'
@@ -48,8 +46,8 @@ module EndUser
 
     private
 
-    def current_user
-      context[:current_user]
+    def maskable_identity
+      object.subject.maskable_identity(mask: object.project.mask_identity_for_hogan?)
     end
 
     def hogan_credential

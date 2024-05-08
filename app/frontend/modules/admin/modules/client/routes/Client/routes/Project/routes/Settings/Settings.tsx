@@ -40,6 +40,8 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
       firstRoute = '/security'
     } else if (permissions.manageProjectWebhooks) {
       firstRoute = '/webhooks'
+    } else if (permissions.manageProjectPrivacySetting) {
+      firstRoute = '/privacy'
     }
     return [{ redirect: true, from: '', to: firstRoute }, ...routes]
   }
@@ -80,6 +82,10 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
   permissions.manageProjectWebhooks && menuItems.push({
     key: '/webhooks',
     label: I18n.t('administration.project_tabs.webhooks.title'),
+  })
+  permissions.manageProjectPrivacySetting && menuItems.push({
+    key: '/privacy',
+    label: I18n.t('administration.project_tabs.privacy'),
   })
 
   return (

@@ -17,6 +17,7 @@ export const defaultState = {
     fields: [],
     requiredFields: {},
     lockedFields: {},
+    enabledFields: {},
   },
 }
 

@@ -22,9 +22,7 @@ FactoryBot.define do
 
     factory :campaign_admin_membership do
       association :user, factory: :user
-      grants do
-        association :membership_grants, data: (permissions || AllowedPermissions::CAMPAIGN_ADMIN_PERMISSIONS)
-      end
+      association :grants, factory: :membership_grants, data: AllowedPermissions::CAMPAIGN_ADMIN_PERMISSIONS
       campaign factory: :campaign
       role { Membership::CAMPAIGN_ADMIN_ROLE }
 

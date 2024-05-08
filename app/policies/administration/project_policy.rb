@@ -34,6 +34,10 @@ module Administration
       )
     end
 
+    def manage_project_privacy_setting?
+      has_permission?(:project_settings, :privacy_settings, project_id: project_id)
+    end
+
     private
 
     def can_manage_project?
