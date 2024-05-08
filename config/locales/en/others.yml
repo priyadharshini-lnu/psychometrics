@@ -1959,7 +1959,7 @@ en:
         user_not_found: User not found or not part of the same project
       admin:
         already_added: Admin with email already added.
-      already_assigned?: Already assigned
+      already_assigned?: Cannot link this assessment - it is already assigned to '%{linked_assessor_form_name}'.
       already_invited: This user already exists in the assessment centre you are attempting to add.
       assessor_assessment:
         already_added: Assessor Assessment already added to campaign.
