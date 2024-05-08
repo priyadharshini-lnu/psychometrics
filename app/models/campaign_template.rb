@@ -5,4 +5,5 @@ class CampaignTemplate < ApplicationRecord
 
   belongs_to :assessment
   belongs_to :report
+  belongs_to :owner, class_name: 'Client'
 end
