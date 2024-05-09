@@ -425,6 +425,18 @@ module Swagger
           ),
           IdpTemplateListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::IdpTemplate::Schema.multiple_resource_response
+          ),
+          SkillAliasListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::SkillAlias::Schema.multiple_resource_response
+          ),
+          SkillAliasResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::SkillAlias::Schema.single_resource_response
+          ),
+          SkillAliasCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::SkillAlias::Schema.create_request
+          ),
+          SkillAliasUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::SkillAlias::Schema.update_request
           )
         }
       }

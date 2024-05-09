@@ -4426,6 +4426,39 @@ ALTER SEQUENCE public.shortened_urls_id_seq OWNED BY public.shortened_urls.id;
 
 
 --
+-- Name: skill_aliases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.skill_aliases (
+    id bigint NOT NULL,
+    client_id bigint NOT NULL,
+    skill_id bigint NOT NULL,
+    name character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: skill_aliases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.skill_aliases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: skill_aliases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.skill_aliases_id_seq OWNED BY public.skill_aliases.id;
+
+
+--
 -- Name: skill_translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7052,6 +7085,13 @@ ALTER TABLE ONLY public.shortened_urls ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: skill_aliases id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_aliases ALTER COLUMN id SET DEFAULT nextval('public.skill_aliases_id_seq'::regclass);
+
+
+--
 -- Name: skill_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8311,6 +8351,14 @@ ALTER TABLE ONLY public.sheets
 
 ALTER TABLE ONLY public.shortened_urls
     ADD CONSTRAINT shortened_urls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: skill_aliases skill_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_aliases
+    ADD CONSTRAINT skill_aliases_pkey PRIMARY KEY (id);
 
 
 --
@@ -10464,6 +10512,20 @@ CREATE INDEX index_shortened_urls_on_url ON public.shortened_urls USING btree (u
 
 
 --
+-- Name: index_skill_aliases_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skill_aliases_on_client_id ON public.skill_aliases USING btree (client_id);
+
+
+--
+-- Name: index_skill_aliases_on_skill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_skill_aliases_on_skill_id ON public.skill_aliases USING btree (skill_id);
+
+
+--
 -- Name: index_skill_translations_on_description_and_locale; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11734,6 +11796,14 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 
 --
+-- Name: skill_aliases fk_rails_21523805f1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_aliases
+    ADD CONSTRAINT fk_rails_21523805f1 FOREIGN KEY (skill_id) REFERENCES public.skills(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12203,6 +12273,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 ALTER TABLE ONLY public.user_reports
     ADD CONSTRAINT fk_rails_6280270170 FOREIGN KEY (approver_user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: skill_aliases fk_rails_62ecda0058; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.skill_aliases
+    ADD CONSTRAINT fk_rails_62ecda0058 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -13492,6 +13570,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240429145945'),
 ('20240424120254'),
 ('20240424100332'),
 ('20240424072007'),

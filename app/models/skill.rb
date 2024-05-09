@@ -11,4 +11,13 @@ class Skill < ApplicationRecord
   has_many :development_actions, through: :skills_development_actions
 
   enum category: { behavioral: 0, technical: 1, other: 2 }
+
+  # Search entity by word
+  scope :search_query, lambda { |query|
+    where('name ILIKE ?', "%#{query}%")
+  }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[search_query]
+  end
 end

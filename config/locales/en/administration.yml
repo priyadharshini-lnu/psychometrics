@@ -4240,10 +4240,22 @@ en:
         send_test_log: Send Test Log
         send_test_log_error_message: Test log has not been sent to your bucket, check your settings
         send_test_log_success_message: Test log has been successfully sent to your bucket
+      skill_aliases:
+        alias: Alias
+        confirm_message: Are you sure you want to delete skill alias '%{skill_alias}'?
+        confirm_title: Confirmation Required
+        create: Add Skill Alias
+        description: Description
+        name: Name
+        select_skill: Select Skill
+        skill: Skill
+        skill_alias: Skill Alias
+        successful_remove: Skill alias '%{skill_alias}' was deleted successfully.
       tabs:
         admin_roles: Admin Roles
         permissions: Permissions
         siem: SIEM
+        skill_aliases: Skill Aliases
     sheets:
       column:
         add_column: Add Column

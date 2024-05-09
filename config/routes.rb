@@ -1189,6 +1189,7 @@ Rails.application.routes.draw do
               end
             end
             jsonapi_resources :admin_roles
+            jsonapi_resources :skill_aliases
             jsonapi_resources :projects, only: %i[index create update]
             jsonapi_resources :licenses, only: %i[index create update] do
               jsonapi_resources :license_usages, only: %i[index] do
@@ -1402,6 +1403,7 @@ Rails.application.routes.draw do
             end
           end
           resources :user_idp_plans, only: %i[create]
+          jsonapi_resources :skills, only: %i[index]
         end
       end
     end

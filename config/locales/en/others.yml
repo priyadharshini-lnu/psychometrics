@@ -1989,6 +1989,9 @@ en:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
       size?: size should be less %{size}
+      skill_alias:
+        unique_alias: Alias should be unique
+        unique_skill: Skill should be unique
       uniq?: should be unique
       update_workshop:
         less_than_booked: The total seats must be greater than booked
