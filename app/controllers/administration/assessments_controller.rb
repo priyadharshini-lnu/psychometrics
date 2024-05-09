@@ -4,7 +4,7 @@ class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy import_questions
-                                        preview export toggle_archive questions factors soft_delete restore]
+                                        preview export toggle_archive questions soft_delete restore]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :pundit_authorize, except: [:sidebar]
   # we need this line to override a behviour from BaseController
@@ -53,7 +53,9 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def factors
-    render json: resource.dimension.all_factors.as_json(only: %i[id name])
+    assessment = Assessment.where(owner_id: [nil, current_user.client_ids]).find(params[:id])
+
+    render json: assessment.dimension.all_factors.as_json(only: %i[id name])
   end
 
   def upload_data_sheet
