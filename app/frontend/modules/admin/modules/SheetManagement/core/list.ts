@@ -43,7 +43,7 @@ export const ColumnTR = t.type({
 })
 
 export interface Column {
-  name: string
+  name: string | null
   type: ColumnType
   dashboardUse?: boolean
   accessorAccess?: boolean

@@ -198,8 +198,8 @@ const AddEditDrawerComponent: FC<Props> = ({
             .filter(column => column.name !== COLUMN_ID_EMAIL)
             .map(field => (
               <Form.Item
-                label={toReadableString(field.name)}
-                name={field.name}
+                label={toReadableString(field.name || '')}
+                name={field.name || ''}
                 key={field.name}
               >
                 <InputField type={field.type} />

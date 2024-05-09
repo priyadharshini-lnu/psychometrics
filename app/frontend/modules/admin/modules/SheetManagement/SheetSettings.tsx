@@ -96,7 +96,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
     {
       title: 'Action',
       render: (title, data) => {
-        const notAllowedForDashboardUse = data.name.length > MAX_LENGTH_FOR_DASHBOARD_USE
+        const notAllowedForDashboardUse = (data.name?.length || 0) > MAX_LENGTH_FOR_DASHBOARD_USE
         return (
           <Space>
             {sheetType === SheetType.Datasheet
@@ -209,7 +209,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
           <Table
             columns={columns}
             dataSource={dataSource}
-            rowKey={row => row.name}
+            rowKey={row => row.name || ''}
             pagination={false}
             rowSelection={sort ? undefined : {
               selectedRowKeys,
@@ -217,7 +217,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
               getCheckboxProps: (record: Column) => ({
                 disabled: record.name === EMAIL,
                 style: record.name === EMAIL ? { visibility: 'hidden' } : {},
-                name: record.name,
+                name: record.name || '',
               }),
             }}
             components={!sort ? undefined : {
