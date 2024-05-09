@@ -1988,6 +1988,8 @@ en:
       report_approval_settings:
         report_exists: Report approval setting for this report already exists.
         validates_admins: Admins don't have access to the campaign.
+      report_families_reports:
+        report_exists: This Report is already a part of Report Bundle
       size?: size should be less %{size}
       skill_alias:
         unique_alias: Alias should be unique
