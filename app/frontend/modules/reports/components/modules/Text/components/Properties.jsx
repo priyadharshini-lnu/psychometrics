@@ -306,7 +306,7 @@ class Properties extends Component {
             />
             Italics
           </label>
-          {model.props.sourceType === 'ResultText' && model.props.source.type === 'DataSheet' && (
+          {model.props.sourceType === 'ResultText' && model.props.source?.type === 'DataSheet' && (
           <div className={styles.block} style={{ position: 'relative' }}>
             <div className="margin-top-10">Number Precision</div>
             <label className={styles.inputLabel}>
