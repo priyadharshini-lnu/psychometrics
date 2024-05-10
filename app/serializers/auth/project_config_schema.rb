@@ -19,6 +19,7 @@ module Auth
         required(:warning_color).maybe(:str?)
         required(:success_color).maybe(:str?)
         required(:info_color).maybe(:str?)
+        required(:background_size).maybe(:str?)
       end
     end
   end
