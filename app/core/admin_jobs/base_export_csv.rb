@@ -18,7 +18,10 @@ module AdminJobs
       CSV.open(file_path, 'wb') do |csv|
         write_csv_headers(csv)
         records_for_export.each_with_index do |record, index|
-          rows = data_row(record).first.is_a?(Array) ? data_row(record) : [data_row(record)]
+          row_data = data_row(record)
+          next if row_data.blank?
+
+          rows = row_data.first.is_a?(Array) ? row_data : [row_data]
           rows.each do |row|
             csv << row
           end
