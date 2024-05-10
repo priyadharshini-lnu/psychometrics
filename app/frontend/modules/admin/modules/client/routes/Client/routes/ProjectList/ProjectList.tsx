@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams, Link, useHistory } from 'react-router-dom'
@@ -20,7 +21,6 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import _ from 'lodash'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 
@@ -285,6 +285,10 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     </Space>
   )
 
+  const errors = requests.fetch?.errors
+  const errorTitle = _.get(errors, '[0].base[0].title') || ''
+  const errorDescription = _.get(errors, '[0].base[0].detail') || ''
+
   return (
     <>
       <TableLayout
@@ -293,6 +297,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         recordCount={meta.recordCount}
         loading={tableLoading}
         requestStatus={requests.fetch?.status}
+        failureMsg={errorTitle + errorDescription}
       />
       <Modals modals={MODALS} />
     </>
