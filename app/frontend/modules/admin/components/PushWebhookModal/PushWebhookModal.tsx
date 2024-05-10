@@ -148,6 +148,11 @@ const PushWebhookModal: React.FC<Props> = ({
     }
   }
 
+  const transformValues = values => ({
+    ...values,
+    payload: JSON.stringify(values.payloadData),
+  })
+
   return (
     <>
       <ResourceFormModal
@@ -169,6 +174,7 @@ const PushWebhookModal: React.FC<Props> = ({
         request={{
           submit: pushWebhookTest,
         }}
+        transformValues={transformValues}
         onSuccessfulSubmission={setSuccessReponse}
         hideOkButton={responseVisible}
       >

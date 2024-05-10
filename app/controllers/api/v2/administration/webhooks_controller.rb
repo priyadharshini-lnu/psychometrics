@@ -27,7 +27,7 @@ module Api
       event = params[:data][:attributes][:payload_data]
 
       response = ::Administration::Webhooks::PushWebhook.call(
-        @webhook, event
+        @webhook, JSON.parse(event)
       )
 
       audit_payload = {
