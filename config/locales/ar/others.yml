@@ -420,6 +420,28 @@ ar:
     two_factor_authentication:
       attempt: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       code_has_been_sent: تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل
+  errors:
+    error: الخطأ
+    error_500: هناك خطأ ما. تواصل مع مديرك.
+    forbidden: لم يكن لديك الوصول إلى هذه الصفحة
+    forbidden_action: ليس لديك أذونات لهذا الإجراء
+    invalid_token: هناك خطأ ما. يرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
+    messages:
+      already_confirmed: تم تأكيده بالفعل، يرجى محاولة تسجيل الدخول
+      carrierwave_direct_allowed_extensions: تم تحميل نوع ملف خاطئ. الامتدادات المسموح بها هي %{extensions}
+      carrierwave_direct_filename_invalid: ''
+      confirmation_period_expired: يجب التأكيد خلال %{period}، يرجى طلب تأكيد جديد
+      expired: انتهت صلاحيته، يرجى طلب واحدة جديدة
+      iiht_cannot_reset: لا يمكن إعادة تعيين هذا التقييم لأنه تم الوصول إلى الحد الأقصى لعدد مرات إعادة التعيين.
+      not_found: غير معثور عليه
+      not_locked: لم يكن مقفلا
+      not_saved:
+        one: 'خطأ واحد أدى إلى منع حفظ %{resource} هذا:'
+        other: "%{count} أخطاء منعت حفظ %{resource} هذا:"
+    module_error: حدث خطأ ما في هذه الوحدة، يرجى الاتصال بالإدارة.
+    module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
+    module_props_error: حدث خطأ ما في هذه الوحدة.
+    try_again: حاول مرة اخرى
   frontend:
     activate: تنشيط
     are_you_sure: هل أنت متأكد؟
