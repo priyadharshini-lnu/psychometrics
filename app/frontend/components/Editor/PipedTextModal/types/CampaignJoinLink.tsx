@@ -14,7 +14,7 @@ const CampaignJoinLink = ({
   const onOk = () => {
     form.validateFields().then(() => {
       const { campaign, expire, text } = form.getFieldsValue()
-      if (campaign && expire && text) insert(getValue(campaign, expire, text))
+      if (campaign && expire && text.trim()) insert(getValue(campaign, expire, text.trim()))
     })
   }
 
@@ -30,9 +30,13 @@ const CampaignJoinLink = ({
           <InputNumber style={{ width: 200 }} />
         </Form.Item>
         <Form.Item name="expire" label={I18n.t('campaign_join_token.expire_in')} rules={[{ required: true }]}>
-          <InputNumber style={{ width: 200 }} />
+          <InputNumber style={{ width: 200 }} min={0} />
         </Form.Item>
-        <Form.Item name="text" label={I18n.t('campaign_join_token.text')} rules={[{ required: true }]}>
+        <Form.Item
+          name="text"
+          label={I18n.t('campaign_join_token.text')}
+          rules={[{ required: true, max: 60, transform: value => value.trim() }]}
+        >
           <Input style={{ width: 200 }} />
         </Form.Item>
         <Space>
