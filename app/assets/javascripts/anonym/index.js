@@ -1,3 +1,3 @@
 //= require cable
-//= require mustache.js.js
+//= require mustache.js
 //= require ./confirm

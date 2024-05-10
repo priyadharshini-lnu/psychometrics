@@ -276,7 +276,7 @@ describe CampaignScoring::Calculate do
 
       values = described_class.call!(campaign, user)
       expect(values[formula_cf].error_message).to eq(
-        "Expected factor value for '#{formula_cf.code}' to be a string. Got Float"
+        "Expected factor value for '#{formula_cf.code}' to be a string. Got Integer"
       )
       expect(values[formula_cf].value).to eq(nil)
     end

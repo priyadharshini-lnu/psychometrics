@@ -8,9 +8,9 @@
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require bootstrap-colorpicker
-//= require bootstrap-file-input/bootstrap.file-input.js
+//= require bootstrap.file-input.js
 //= require multiselect
-//= require quicksearch
+//= require jquery.quicksearch
 //= require bootstrap-add-clear
 //= require jquery-serialize-object
 //= require Sortable.js
@@ -59,7 +59,7 @@
 //= require x-editable/dist/bootstrap3-editable/js/bootstrap-editable
 
 // /// Use mustache for js template
-//= require mustache.js.js
+//= require mustache.js
 
 //= require file_downloader
 //= require moment
