@@ -13,7 +13,7 @@ class TextModuleOverrideSchema < BaseSchema
       required(:user_report_id).filled(:int?)
       required(:updated_at).filled(:str?)
       required(:approved).filled(:bool?)
-      required(:editor).hash(UserSchema.schema(_, _))
+      required(:editor).hash(::Reports::UserSchema.schema(_, _))
     end
   end
 end
