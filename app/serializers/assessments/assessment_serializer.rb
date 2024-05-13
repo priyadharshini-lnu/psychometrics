@@ -28,7 +28,8 @@ module Assessments
 
     def factors
       factors_scoring = object.factors_scoring.group_by(&:factor_id)
-      object.dimension.all_factors.map do |factor|
+
+      object.dimension.all_factors.with_attached_icon.map do |factor|
         Assessments::FactorSerializer.new(
           context: {
             assessment_id: object.id, factors_scoring: factors_scoring[factor.id] || []
