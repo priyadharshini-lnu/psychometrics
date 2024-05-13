@@ -1911,6 +1911,7 @@ en:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please login to continue.
+      unprocessable_entity: Your account could not be unlocked with this link. Please contact support.
   dry_errors:
     errors:
       add_edit_project:
