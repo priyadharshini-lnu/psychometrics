@@ -29,7 +29,9 @@ module Api
 
       class Scope < BasePolicy::Scope
         def resolve
-          ::Administration::ClientPolicy::Scope.new(user, Client).resolve
+          ::Administration::ClientPolicy::Scope.new(
+            user, Client
+          ).resolve.includes(design_setting: { logo_attachment: :blob })
         end
       end
     end

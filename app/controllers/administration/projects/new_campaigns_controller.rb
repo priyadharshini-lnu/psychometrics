@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
+
 module Administration
   module Projects
     class NewCampaignsController < Administration::Projects::BaseController
@@ -25,7 +27,11 @@ module Administration
             campaigns = policy_scope(resource_class).where(project_id: project.id).
                         ransack(params[:filters]).
                         result.
-                        includes(:reports, :assessments, :project, :threesixty_campaign)
+                        includes(
+                          :project, :threesixty_campaign,
+                          assessments: { icon_attachment: :blob },
+                          reports: { icon_attachment: :blob }
+                        )
 
             serialized_campaigns = Panko::ArraySerializer.new(
               campaigns.page(params[:page]).per(params[:size] || 25),
@@ -233,3 +239,4 @@ module Administration
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
