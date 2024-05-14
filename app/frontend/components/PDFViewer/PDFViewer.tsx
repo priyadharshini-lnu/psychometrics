@@ -1,7 +1,7 @@
 import { Button, InputNumber, Skeleton } from 'antd'
 import { useState, FC } from 'react'
 import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.js?url'
-import { Document, Page, pdfjs } from 'react-pdf/dist/esm/entry'
+import { Document, Page, pdfjs } from 'react-pdf'
 import styles from './styles.less'
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker
@@ -48,7 +48,12 @@ export const PDFViewer: FC<Props> = ({ fileUrl, onLoadingComplete }) => {
         addonAfter={<Button type="text" size="small" disabled={percentage >= 180} onClick={incrementScale}>+</Button>}
       />
 
-      <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess} onLoadProgress={handleLoading} loading="">
+      <Document
+        file={fileUrl}
+        onLoadSuccess={onDocumentLoadSuccess}
+        onLoadProgress={handleLoading}
+        loading=""
+      >
         {Array.from(new Array(numPages), (_, index) => (
           <Page key={`page_${index + 1}`} pageNumber={index + 1} loading="" className={styles.page} scale={scale} />
         ))}
