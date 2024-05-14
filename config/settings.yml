@@ -1172,6 +1172,8 @@ providers:
           - 8C0EB84C-2DCA-421B-A39B-C0BF6214BC37
           - 648DAC14-B511-43D1-ACBC-D0421D913D91
           - CFFDD90D-AFA7-4139-A1A0-016D5B075B22
+          - 35DD5253-3CD7-415B-97F3-1CDB06CF06C1
+          - 12DCED83-0237-4A07-8B1F-B252C19137FD
       - id: 62827908-1916-4E58-8F03-6B9DF8C7C6A5
         name: Swift Analysis Aptitude-Rx (IA)
         default_norm_id: 7432E71D-AF60-4628-A7B8-6711B396D81E
@@ -1890,6 +1892,10 @@ providers:
         name: EG11 Leadership Behaviours Professional Styles Score Extraction Report
       - id: E10E68CF-9B20-4C35-8867-81E2D767718F
         name: Numerical Analysis Aptitude & Pace (Rx) Report
+      - id: 35DD5253-3CD7-415B-97F3-1CDB06CF06C1
+        name: Emirates Group Corporate Focus Styles Interview Guide
+      - id: 12DCED83-0237-4A07-8B1F-B252C19137FD
+        name: Emirates Group Grade 10 Focus Styles Line Manager Report
 
 checking_wizard:
   speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>
