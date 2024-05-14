@@ -29,12 +29,17 @@ module Administration
     def new
       @_resource = resource_class.new
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
+      # rubocop:disable Naming/MemoizedInstanceVariableName
+      @copying_communication ||= false
+      # rubocop:enable Naming/MemoizedInstanceVariableName
     end
 
     def create
       @_resource = resource_class.new(resource_params)
       @_resource.created_by = current_user
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
+      set_copying_communication_flag
+
       respond_to do |format|
         if validated_and_saved_resource?
           audit! :create, resource, payload: resource_params
@@ -68,6 +73,8 @@ module Administration
     def copy
       clone_resource(resource)
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
+
+      @copying_communication = true
       render :new
     end
 
@@ -80,6 +87,8 @@ module Administration
     def new_form
       @_resource = resource_class.preload(:assessment, :client).new(resource_params)
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
+      set_copying_communication_flag
+
       respond_to do |format|
         format.js { render :new }
       end
@@ -124,6 +133,10 @@ module Administration
         :kind, :delivery_at, :stop_reminder, :stop_reminder_datetime,
         user_ids: []
       )
+    end
+
+    def set_copying_communication_flag
+      @copying_communication = params.dig(:resource, :copying_communication) == 'true'
     end
   end
 end
