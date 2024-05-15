@@ -177,6 +177,8 @@ export interface DefaultState {
   nextAssessmentUrl?: string | null
   submitRequired: boolean
   otherPendingAssessmentCount: number
+  evaluationSessionId: string | null
+  invalidSession: boolean
 }
 
 export interface MediaResponse {
@@ -249,6 +251,7 @@ export interface InitData {
   default_norm_id: number
   isAssessor: boolean
   linked_questions: {[key:string]: number[]}
+  evaluationSessionId: string
 }
 export interface Result {
   id: number
@@ -275,6 +278,7 @@ export interface Result {
   seedrandom: string
   campaign_options: { fixed_time: boolean }
   campaign_user: { expiry_date: string }
+  evaluation_session_id: string
 }
 
 interface SaveResponse {
@@ -284,6 +288,7 @@ interface SaveResponse {
   factors?: [],
   translations: object
   next_assessment_url?: string
+  evaluation_session_id: string
 }
 
 interface FetchQuestionScoringResponse {

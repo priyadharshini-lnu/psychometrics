@@ -30,6 +30,7 @@ module UserAssessments
 
       params[:started_at] = Time.zone.now unless user_assessment.started_at
       params[:expiry_date] = time.second.from_now if time
+      params[:evaluation_session_id] = Devise.friendly_token
 
       params
     end

@@ -936,6 +936,9 @@ en:
         #### Your responses will be submitted and cannot be changed after this.
 
         Click **Back** to review your responses one final time or click **Submit** if you are finished.
+      invalid_session:
+        description: This evaluation session has been invalidated. This can happen if you continued the evaluation in a separate tab, browser or device.
+        title: Last Request Failed
       next: Next
       read_only: Is read only mode, you can not change any results.
       save: Save
@@ -1569,6 +1572,7 @@ en:
     actions:
       add: Add
       archive: Archive
+      back_to_dashboard: Back To Dashboard
       back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
@@ -2011,7 +2015,9 @@ en:
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
-    invalid_token: Something went wrong. Plese reload the page and try again.
+    getting_start: Something went wrong. Plese reload the page and try again.
+    invalid_session_title: Invalid Session
+    invalidate_session_info: Your evaluation was in progress and session has expired or another active evaluation being detected. Please continue to invalidate another session.
     messages:
       already_confirmed: was already confirmed, please try signing in
       carrierwave_direct_allowed_extensions: Wrong file type uploaded. Allowed extensions are %{extensions}

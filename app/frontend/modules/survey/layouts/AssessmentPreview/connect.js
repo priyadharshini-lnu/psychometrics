@@ -16,6 +16,7 @@ export default connect(
     submissionInProgress: preview.submissionInProgress,
     submissionFailed: preview.submissionFailed,
     submitRequired: preview.submitRequired,
+    invalidSession: preview.invalidSession,
   }),
   {
   },

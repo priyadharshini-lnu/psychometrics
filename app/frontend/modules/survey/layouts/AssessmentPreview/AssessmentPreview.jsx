@@ -13,7 +13,7 @@ const InteractiveAssessmentsModule = () => import('@thetalententerprise/interact
 const AssessmentPreview = ({
   end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage, showAsSinglePage,
   started, type, isAnonymousAssessment, showErrorWarning, fixedTimed, instructions, submissionInProgress,
-  submissionFailed, submitRequired, defaultLanguage,
+  submissionFailed, submitRequired, defaultLanguage, invalidSession,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
 
@@ -21,7 +21,9 @@ const AssessmentPreview = ({
     isAgile() && initializeAgile()
   }, [])
 
-  useUnloadCallback(I18n.t('common.messages.leave_message'), !end)
+  const showUnloadCallback = !end && started && !invalidSession
+
+  useUnloadCallback(I18n.t('common.messages.leave_message'), showUnloadCallback)
 
   const { lang } = qs.parse(location.search.substr(1))
   const initializeAgile = () => {

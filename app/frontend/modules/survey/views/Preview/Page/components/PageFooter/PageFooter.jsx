@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import cs from 'classnames'
-import { Popconfirm, Alert, message } from 'antd'
+import {
+  Popconfirm, Alert, message,
+} from 'antd'
 import { FixedWidthButton } from '~/glint'
 import { isRtl } from '~/utils/locales'
 import { getQuestion } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -85,7 +87,7 @@ class PageFooter extends Component {
         enableBack, submissionInProgress, submissionFailed,
         isAssessor, type,
       },
-      hasPrevPage, isDisconnected, showSubmit,
+      hasPrevPage, isDisconnected, showSubmit, invalidSession,
     } = this.props
 
     const showSave = type === 'pass_assessment' && isAssessor
@@ -109,6 +111,16 @@ class PageFooter extends Component {
         </div>
         )
       }
+        {invalidSession && (
+          <div>
+            <Alert
+              message={I18n.t('assessments.page.invalid_session.title')}
+              description={I18n.t('assessments.page.invalid_session.description')}
+              type="error"
+              showIcon
+            />
+          </div>
+        )}
         <div className={cs(styles.footer, rtl ? 'rtl' : 'ltr')}>
           {enableBack && hasPrevPage && (
           <QuestionInProgressPopConfirm

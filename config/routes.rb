@@ -985,6 +985,7 @@ Rails.application.routes.draw do
           get :assessment
           get :pass
           get :begin
+          get :validate_session
         end
       end
 

@@ -8,6 +8,7 @@ import { AnyAction } from 'redux'
 import { getItem, setItem } from '~/utils/storage'
 import {
   nextPage,
+  prevPage,
   setDirtyResults,
   changeElement,
   removePrevPage,
@@ -68,6 +69,7 @@ function* genPrevPage () {
   }
   const questions = pageQuestions(state.preview)
   const prev = getPrevPage(state.preview)
+
   if (prev) {
     yield put(hideSubmitPage())
     yield put(backButtonPressed())
@@ -88,6 +90,8 @@ function* genUpdateResultsAsNotDirty () {
 function* genSaveResults () {
   yield put(clearInProgressQuestion())
   const state = yield select()
+  if (state.preview.invalidSession) { return }
+
   if (state.preview.type === 'pass_assessment') {
     const prevPage = getPrevPage(state.preview)
     const currentBlock = getCurrentBlock(state.preview)
@@ -172,6 +176,9 @@ function* genRestart ({ response }: AnyAction) {
         window.location.reload()
       },
     })
+  }
+  if (state.preview.invalidSession) {
+    yield put(prevPage({}))
   }
 }
 

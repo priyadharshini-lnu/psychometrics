@@ -92,6 +92,8 @@ const defaultState: State = {
   nextAssessmentUrl: null,
   submitRequired: false,
   otherPendingAssessmentCount: 0,
+  evaluationSessionId: null,
+  invalidSession: false,
 }
 
 const HANDLERS = {
@@ -181,6 +183,7 @@ const HANDLERS = {
       nextAssessmentUrl: result.next_assessment_url,
       otherPendingAssessmentCount: result.other_pending_assessments_count,
       linkedQuestions: data.linked_questions,
+      evaluationSessionId: data.evaluationSessionId || result.evaluation_session_id,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {
@@ -247,6 +250,7 @@ const HANDLERS = {
   [SAVE_RESULTS]: ({ ...state }: State, {
     response: {
       expired, current_block: currentBlock, factors, scoring, translations, next_assessment_url: nextAssessmentUrl,
+      evaluation_session_id: evaluationSessionId,
     },
   }: SaveResults) => {
     const blocks = currentBlock
@@ -259,6 +263,8 @@ const HANDLERS = {
       [key]: { ...state.questions[q.id], ...q },
     }), state.questions)
 
+    const invalidSession = state.evaluationSessionId !== evaluationSessionId
+
     return end && !state.showSubmitPage ? {
       ...state,
       end,
@@ -269,6 +275,7 @@ const HANDLERS = {
       scoring,
       submissionInProgress: false,
       nextAssessmentUrl,
+      invalidSession,
     } : {
       ...state,
       end,
@@ -277,6 +284,7 @@ const HANDLERS = {
       questions: newQuestions,
       submissionInProgress: false,
       nextAssessmentUrl,
+      invalidSession,
     }
   },
   [SAVE_RESULTS_FAILURE]: state => ({ ...state, submissionFailed: true, submissionInProgress: false }),

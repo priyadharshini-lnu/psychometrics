@@ -131,6 +131,7 @@ export const saveResults = (preview, questionIds, currentBlockId?) => {
     },
     question_ids: questionIds,
     current_block_id: currentBlockId,
+    evaluation_session_id: preview.evaluationSessionId,
   }
   if (!preview.isSimulation) {
     data.resource.current_element = preview.currentElement

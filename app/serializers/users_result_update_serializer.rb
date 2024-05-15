@@ -2,12 +2,18 @@
 
 class UsersResultUpdateSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :expired, :current_block, :translations, :progress_was_reseted
+
+  attributes :expired, :current_block, :translations, :progress_was_reseted, :factors, :next_assessment_url, :scoring,
+             :evaluation_session_id
   attribute :scoring, if: -> { @instance_options[:current_user]&.assessor? && object.completed? }
 
   attribute :next_assessment_url, if: -> { object.completed? }
 
   has_many :factors, method: :factors
+
+  def evaluation_session_id
+    object.user_assessment.evaluation_session_id
+  end
 
   def next_assessment_url
     next_assessment = UserAssessments::GetNext.call!(object.user_assessment)

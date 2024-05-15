@@ -1,14 +1,15 @@
-import { useEffect, FC, useContext } from 'react'
+import {
+  useEffect, FC, useContext, useState,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Redirect, RouteComponentProps } from 'react-router-dom'
 import { push } from 'connected-react-router'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Col, Progress, Space, ProgressProps,
+  Layout, Col, Progress, Space, ProgressProps, Modal,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
-
 import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import store from '~/modules/endUser/store'
@@ -16,7 +17,7 @@ import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/Re
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 
 import {
-  fetchAssessment,
+  fetchAssessment, validateSession, setInvalidated,
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -37,8 +38,10 @@ const connector = connect((state: RootState) => ({
 }),
 {
   fetchAssessment,
+  validateSession,
   markAssessmentTimedOut,
   push,
+  setInvalidated,
 })
 
 type Params = {
@@ -63,8 +66,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       remaining_assessment_time: remainingAssessmentTime,
       proctoring_enabled: proctoringEnabled,
       prework,
+      evaluation_session_id: evaluationSessionId,
     },
-  }, fetchAssessment,
+  }, fetchAssessment, validateSession,
   match: { params },
   preview: {
     initialized,
@@ -76,10 +80,29 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   markAssessmentTimedOut,
   progress,
 }) => {
+  const [showInvalidSession, setShowInvalidSession] = useState(false)
+
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)
   }, [])
+
+  useEffect(() => {
+    let interval
+    if (results.id && evaluationSessionId) {
+      interval = setInterval(() => {
+        validateSession(params.userAssessmentId, evaluationSessionId)
+          .then(({ response }: {response: { sessionId: string }}) => {
+            if (response.sessionId !== evaluationSessionId) {
+              setShowInvalidSession(true)
+              clearInterval(interval)
+            }
+          })
+      }, 10000)
+    }
+    return () => interval && clearInterval(interval)
+  }, [results.id])
+
   const { isMobile } = useContext(MediaQueryContext)
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
@@ -96,7 +119,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const notificationMessage = (minutes: number, seconds: number) => (
     I18n.t('campaign.timer.notification', { minutes, seconds })
   )
-
   return (
     <>
       <GlintPageHeader>
@@ -172,6 +194,23 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               )}
             />
             <div className={styles.assessmentContainer}>
+              {showInvalidSession && (
+                <Modal
+                  title={I18n.t('errors.invalid_session_title')}
+                  open={showInvalidSession}
+                  cancelText={I18n.t('common.actions.close')}
+                  okText={I18n.t('common.actions.back_to_dashboard')}
+                  closable={false}
+                  maskClosable={false}
+                  onCancel={() => {
+                    setShowInvalidSession(false)
+                  }}
+                  onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
+                  centered
+                >
+                  {I18n.t('assessments.page.invalid_session.description')}
+                </Modal>
+              )}
               {loaded && !error && (
               <ResourcesTabs assessmentStarted={started} assessment={assessment}>
                 <PassAssessment
@@ -185,6 +224,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
                   rstore={store}
+                  evaluationSessionId={evaluationSessionId}
                   renderedByEnduser
                 />
               </ResourcesTabs>
