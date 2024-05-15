@@ -89,6 +89,7 @@ class Report < ApplicationRecord
   #   CALLBACKS
   #
   before_validation :set_assessment, unless: :assessment_not_applicable?
+  before_create :create_default_styles
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
   after_save :delete_assessments_reports, if: :assessment_not_applicable?
 
@@ -251,6 +252,12 @@ class Report < ApplicationRecord
   end
 
   private
+
+  def create_default_styles
+    Settings.default_styles.each do |style|
+      styles[style.id] = style.to_h
+    end
+  end
 
   def max_assessments_count
     return if assessments.size <= MAX_ASSESSMENT_COUNT

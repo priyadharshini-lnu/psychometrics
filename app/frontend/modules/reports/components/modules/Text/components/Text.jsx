@@ -21,6 +21,19 @@ import GetText from './GetText'
 import LookupResultTextValue from './LookupResultTextValue'
 import GetStyles from './GetStyles'
 import PipedText from './PipedText'
+import DefaultProps from '~/modules/reports/consts/DefaultProps'
+
+export const isDefault = (style, val) => _.isEqual(
+  DefaultProps.Text.style[style], val,
+)
+
+const assignStyle = (style, styleName, value) => {
+  if (isDefault(styleName, value)) {
+    return style[styleName] || value
+  }
+
+  return value
+}
 
 class Text extends Component {
   editor = null
@@ -260,30 +273,37 @@ class Text extends Component {
 
   render () {
     const {
-      module: model, preview,
+      module: model, preview, styles: reportStyles,
     } = this.props
+    const { styleIds } = model.props
     const {
       backgroundColor, fontColor, fontFamily, borderColor, borderRadius,
       fontSize, fontWeight, fontStyle, verticalAlign,
     } = model.props.style
     let { horizontalAlign } = model.props.style
 
+    const textStyles = _.compact((styleIds || []).map(id => reportStyles[id]))
+    let style = textStyles.reduce((styles, style) => ({ ...styles, ...style.styles }), {})
+
+    horizontalAlign = assignStyle(style, 'textAlign', horizontalAlign)
+
     if (window.I18n.locale === 'ar' && horizontalAlign === 'left' && I18nStore.isExistTModule(model, 'text')) {
       horizontalAlign = 'right'
     }
 
-    const style = {
+    style = {
+      ...style,
       border: '1px solid',
       borderRadius,
-      color: fontColor,
-      fontSize,
-      fontFamily,
-      fontWeight,
-      fontStyle,
-      textAlign: horizontalAlign,
-      alignItems: verticalAlign,
-      WebkitAlignItems: verticalAlign,
     }
+    style.color = assignStyle(style, 'color', fontColor)
+    style.fontSize = assignStyle(style, 'fontSize', fontSize)
+    style.fontFamily = assignStyle(style, 'fontFamily', fontFamily)
+    style.fontWeight = assignStyle(style, 'fontWeight', fontWeight)
+    style.fontStyle = assignStyle(style, 'fontStyle', fontStyle)
+    style.textAlign = horizontalAlign || assignStyle(style, 'textAlign', '')
+    style.alignItems = verticalAlign || assignStyle(style, 'alignItems', '')
+
     if (backgroundColor) {
       style.backgroundColor = `rgba(
         ${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`

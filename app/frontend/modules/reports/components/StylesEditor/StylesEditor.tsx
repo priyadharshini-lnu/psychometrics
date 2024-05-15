@@ -1,0 +1,228 @@
+import { useState } from 'react'
+import {
+  Space, Button, Select,
+  InputNumber,
+} from 'antd'
+import { CopyOutlined, SnippetsOutlined } from '@ant-design/icons'
+import _ from 'lodash'
+import styles from './StylesEditor.less'
+import LabelEditor from '../LabelEditor'
+import { ColorPicker } from '~/glint'
+
+export const FONTS = {
+  Arial: 'arial, helvetica, sans-serif',
+  Comic: '"comic sans ms", cursive',
+  Courier: '"courier new", courier, monospace',
+  Gergia: 'georgia, serif',
+  Impact: 'impact, charcoal, sans-serif',
+  Lucida: '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+  Monospace: 'monospace',
+  'Sans Serif': '"ms sans-serif", geneva, sans-serif',
+  'MS Serif': '"ms serif", "new york", sans-serif',
+  Tahoma: 'tahoma, geneva, sans-serif',
+  'Times New Roman': '"times new roman", times, serif',
+  Trebuchet: '"trebuchet ms", helvetica, sans-serif',
+  Verdana: 'verdana, geneva, sans-serif',
+  Unifont: 'unifont, sans-serif',
+}
+
+export const FONT_WEIGHTS = {
+  100: '100 - Thin',
+  200: '200 - Extra Light (Ultra Light)',
+  300: '300 - Light',
+  400: '400 - Normal',
+  500: '500 - Medium',
+  600: '600 - Semi Bold (Demi Bold)',
+  700: '700 - Bold',
+  800: '800 - Extra Bold (Ultra Bold)',
+  900: '900 - Black (Heavy)',
+}
+
+export const TEXT_DECORATIONS = {
+  underline: 'Underline',
+  'line-through': 'Line Through',
+  overline: 'Overline',
+  'underline overline': 'Underline Overline',
+}
+
+export const StylesEditor = ({ style, onSave, onCancel }) => {
+  const [data, setData] = useState(style)
+  const [, fontSize, size] = (data.styles.fontSize || '').match(/(\d+)([\w%]+)/) || []
+
+  const [points, setPoints] = useState(size || 'px')
+
+  const changeName = (name) => {
+    setData({ ...data, name })
+  }
+
+  const changeStyle = (styleName, value) => {
+    if (value) {
+      setData({ ...data, styles: { ...data.styles, [styleName]: value } })
+    } else {
+      setData({ ...data, styles: { ..._.omit(data.styles, 'styleName') } })
+    }
+  }
+
+  const changeFontSize = (value) => {
+    setData({ ...data, styles: { ...data.styles, fontSize: `${value}${points}` } })
+  }
+
+  const changePoints = (value) => {
+    setPoints(value)
+    setData({ ...data, styles: { ...data.styles, fontSize: `${fontSize}${value}` } })
+  }
+
+  const get = styleName => data.styles[styleName]
+
+  const copy = (e) => {
+    e.preventDefault()
+    navigator.clipboard.writeText(JSON.stringify(data.styles))
+  }
+
+  const paste = (e) => {
+    e.preventDefault()
+
+    navigator.clipboard.readText().then((text) => {
+      try {
+        const styles = JSON.parse(text)
+        validateStyles(styles)
+        setData({ ...data, styles })
+      } catch (e) { /* empty */ }
+    })
+  }
+
+
+  return (
+    <div className={styles.editor}>
+      <div className={styles.nameField}>
+        <div className={styles.label}>Style name:</div>
+        <LabelEditor
+          styles={styles.name}
+          value={data.name || 'New Style'}
+          onChange={val => changeName(val)}
+          minWidth="100%"
+          maxWidth="100%"
+        />
+      </div>
+      <hr className={styles.divider} />
+      <div style={data.styles}>Sample Text</div>
+      <hr className={styles.divider} />
+      <Select
+        value={get('fontFamily')}
+        onChange={val => changeStyle('fontFamily', val)}
+        placeholder="Font Family"
+        className="w-100"
+        size="small"
+        allowClear
+      >
+        {_.map(FONTS, (value, key) => <Select.Option value={value} key={key}>{key}</Select.Option>)}
+      </Select>
+      <Select
+        value={get('fontStyle')}
+        onChange={val => changeStyle('fontStyle', val)}
+        placeholder="Font Style"
+        className="w-100"
+        size="small"
+        allowClear
+      >
+        <Select.Option value="italic">Italic</Select.Option>
+        <Select.Option value="oblique">oblique</Select.Option>
+      </Select>
+      <Select
+        value={get('fontWeight')}
+        onChange={val => changeStyle('fontWeight', val)}
+        placeholder="Font Weight"
+        className="w-100"
+        size="small"
+        allowClear
+      >
+        {_.map(FONT_WEIGHTS, (value, key) => <Select.Option value={key} key={key}>{value}</Select.Option>)}
+      </Select>
+      <Select
+        value={get('textDecoration')}
+        onChange={val => changeStyle('textDecoration', val)}
+        placeholder="Text Decoration"
+        className="w-100"
+        size="small"
+        allowClear
+      >
+        {_.map(TEXT_DECORATIONS, (value, key) => <Select.Option value={key} key={key}>{value}</Select.Option>)}
+      </Select>
+      <hr className={styles.divider} />
+      <div className={styles.colorRow}>
+        <ColorPicker
+          defaultColor="#333333"
+          getValueInHexFormat
+          value={get('color')}
+          onChange={val => changeStyle('color', val)}
+        />
+        <span>Color</span>
+      </div>
+      <hr className={styles.divider} />
+      <div className={styles.fontSize}>
+        <InputNumber
+          value={fontSize}
+          onChange={changeFontSize}
+          size="small"
+          className={styles.input}
+          min={1}
+          max={500}
+        />
+        <Select value={points} onChange={changePoints} size="small" className={styles.select}>
+          <Select.Option value="px">px</Select.Option>
+          <Select.Option value="em">em</Select.Option>
+          <Select.Option value="%">%</Select.Option>
+        </Select>
+      </div>
+      <hr className={styles.divider} />
+
+      <div className={styles.containersBox}>
+        <div className={styles.horizontalContainer}>
+          {_.map(['left', 'center', 'right', 'justify'], (type, i) => (
+            <div
+              key={i}
+              onClick={() => changeStyle('textAlign', type)}
+              className={`
+                ${get('textAlign') === type && styles.active} ${styles.alignedBlock} ${styles[type]}
+              `}
+            />
+          ))}
+        </div>
+        <div className={styles.verticalContainer}>
+          {_.map(['flex-start', 'center', 'flex-end'], (type, i) => (
+            <div
+              key={i}
+              onClick={() => changeStyle('alignItems', type)}
+              className={
+                `${get('alignItems') === type && styles.active} ${styles.alignedBlock} ${styles[type]}`
+              }
+            />
+          ))}
+        </div>
+      </div>
+
+      <hr className={styles.divider} />
+      <Space>
+        <Button type="link" icon={<CopyOutlined />} onClick={copy}>Copy</Button>
+        <Button type="link" icon={<SnippetsOutlined />} onClick={paste}>Paste</Button>
+      </Space>
+      <hr className={styles.divider} />
+      <Space>
+        <Button type="primary" onClick={() => onSave(data)}>Update</Button>
+        <Button onClick={onCancel}>Cancel</Button>
+      </Space>
+    </div>
+  )
+}
+
+const VALID_FIELDS = [
+  'fontFamily', 'fontStyle', 'fontWeight', 'textDecoration', 'color', 'fontSize', 'textAlign', 'alignItems',
+]
+
+const validateStyles = (data) => {
+  if (!data) { return false }
+  const keys = _.keys(data)
+  return _.every(keys, key => _.includes(VALID_FIELDS, key))
+}
+
+export default StylesEditor

@@ -41,6 +41,7 @@ const SerializeReport = {
       data_sheet_columns: string[],
       campaign_factors: string[],
       filters: object[],
+      styles: {[id: string]: object}
       pages?: object[]
     } = {
       id: state.builder.id,
@@ -49,6 +50,7 @@ const SerializeReport = {
       data_sheet_columns: state.builder.data_sheet_columns,
       campaign_factors: state.builder.campaign_factors,
       filters: state.builder.filters,
+      styles: state.builder.styles,
     }
     report.pages = _.map<PageInterface, object>(getPages(state, state.builder.pages), (page) => {
       const data = serializePage(page)

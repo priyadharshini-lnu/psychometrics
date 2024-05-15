@@ -2,12 +2,14 @@ import _ from 'lodash'
 import { Component } from 'react'
 import {
   Slider, InputNumber, Row, Col, Collapse, Input,
+  Tabs,
 } from 'antd'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Properties } from '~/modules/reports/components/modules'
 import ModuleModel from '~/modules/reports/models/Module'
 import LayoutManager from '~/modules/reports/models/LayoutManager'
 import styles from './PropertyPanel.less'
+import StylesEditor from '~/modules/reports/components/StylesEditor'
 
 const { $ } = window
 const { Panel } = Collapse
@@ -244,25 +246,39 @@ class PropertyPanel extends Component {
       }
     }
     return (
-      <>
-        <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
-          <div className={styles.main}>
-            {selected.type === 'Module' && module && (
-              <>
-                <div>
-                  <div className={styles.title}>Module Name:</div>
-                  <div>
-                    <Input key={module.id} value={module.name} onChange={this.onChangeName} />
-                  </div>
-                </div>
-                <hr className={styles.divider} />
-              </>
-            )}
-            {this.renderCustomProperties()}
-            {selected.type === 'Module' && this.renderLayout()}
-          </div>
-        </div>
-      </>
+      <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
+        <Tabs
+          tabBarStyle={{ padding: '0 10px', margin: 0, borderBottom: '1px solid #ccc' }}
+          items={[{
+            label: 'Properties',
+            key: 'properties',
+            children: (
+              <div className={styles.main}>
+                {selected.type === 'Module' && module && (
+                  <>
+                    <div>
+                      <div className={styles.title}>Module Name:</div>
+                      <div>
+                        <Input key={module.id} value={module.name} onChange={this.onChangeName} />
+                      </div>
+                    </div>
+                    <hr className={styles.divider} />
+                  </>
+                )}
+                {this.renderCustomProperties()}
+                {selected.type === 'Module' && this.renderLayout()}
+              </div>
+            ),
+          }, {
+            label: 'Styles',
+            key: 'styles',
+            children: (
+              <StylesEditor />
+            ),
+          }]}
+        />
+
+      </div>
     )
   }
 }

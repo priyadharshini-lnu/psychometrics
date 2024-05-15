@@ -27,6 +27,9 @@ export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 export const SAVE_CAMPAIGN_FACTORS = 'report/SAVE_CAMPAIGN_FACTORS'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
+export const ADD_STYLE = 'report/ADD_STYLE'
+export const UPDATE_STYLE = 'report/UPDATE_STYLE'
+export const REMOVE_STYLE = 'report/REMOVE_STYLE'
 
 export enum SelectedTypes {
   'Module'= 'Module',
@@ -96,7 +99,13 @@ export const save = (report: any) => {
   }
 }
 
+export const addStyle = style => ({ type: ADD_STYLE, style })
+export const updateStyle = style => ({ type: UPDATE_STYLE, style })
+export const removeStyle = style => ({ type: REMOVE_STYLE, style })
 
+export type AddStyleType = ReturnType<typeof addStyle>
+export type UpdateStyleType = ReturnType<typeof updateStyle>
+export type RemoveStleType = ReturnType<typeof removeStyle>
 export type CopyPageType = ReturnType<typeof copyPage>
 export type CopyModuleType = ReturnType<typeof copyModule>
 export type PastePageType = ReturnType<typeof pastePage>

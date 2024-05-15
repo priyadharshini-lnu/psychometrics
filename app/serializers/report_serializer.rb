@@ -4,7 +4,7 @@ class ReportSerializer < Panko::Serializer
   attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
              :category, :pages, :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language,
-             :locales, :campaign_factors, :module_overrides, :assessments
+             :locales, :campaign_factors, :module_overrides, :assessments, :styles
 
   has_many :filters, each_serializer: Reports::FilterSerializer
 

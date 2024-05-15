@@ -1456,7 +1456,8 @@ CREATE TABLE public.campaign_templates (
     assessment_id integer,
     report_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    owner_id integer
 );
 
 
@@ -3978,7 +3979,8 @@ CREATE TABLE public.reports (
     updated_by_id bigint,
     data_only boolean DEFAULT false,
     external_settings jsonb DEFAULT '{}'::jsonb,
-    campaign_factors jsonb DEFAULT '[]'::jsonb NOT NULL
+    campaign_factors jsonb DEFAULT '[]'::jsonb NOT NULL,
+    styles jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -13570,6 +13572,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240514065558'),
+('20240508075421'),
 ('20240429145945'),
 ('20240424120254'),
 ('20240424100332'),

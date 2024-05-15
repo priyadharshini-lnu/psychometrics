@@ -1,10 +1,13 @@
 import _ from 'lodash'
 import { Component } from 'react'
+import { Select as AntSelect, Tag, Button } from 'antd'
+import { ClearOutlined } from '@ant-design/icons'
 import Select from 'react-select'
+import cs from 'classnames'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import Action from '~/modules/reports/undo'
 import { ColorPicker } from '~/glint'
-import PropertyFonts from '~/modules/reports/components/PropertyFonts'
+import PropertyFonts, { styleClassess, getStyle } from '~/modules/reports/components/PropertyFonts'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 import AssessmentProperties from '~/modules/reports/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from '~/modules/reports/components/modules/CommonMethods/clearAfterAssessmentChange'
@@ -14,7 +17,7 @@ import ResponseText from './SourceTypeForms/ResponseText'
 import ResultText from './SourceTypeForms/ResultText'
 import connect from '../connect'
 import { rgba2hex } from '~/utils/color'
-
+import DefaultProps from '~/modules/reports/consts/DefaultProps'
 
 const SELECT_OPTIONS = [
   { label: 'Text', value: 'Text' },
@@ -63,7 +66,12 @@ class Properties extends Component {
 
   changeVerticalAlign = (type) => {
     const { model } = this.props
-    model.props.style.verticalAlign = type
+    if (model.props.style.verticalAlign === type) {
+      model.props.style.verticalAlign = ''
+    } else {
+      model.props.style.verticalAlign = type
+    }
+
     this.update()
   }
 
@@ -91,6 +99,15 @@ class Properties extends Component {
     if (window.confirm('Are you sure?')) {
       model.reset()
       this.forceUpdate()
+    }
+  }
+
+  resetStyles = () => {
+    const { model } = this.props
+    // eslint-disable-next-line no-alert
+    if (window.confirm('Are you sure?')) {
+      model.props.style = _.cloneDeep(DefaultProps.Text.style)
+      this.update()
     }
   }
 
@@ -138,11 +155,22 @@ class Properties extends Component {
     this.update()
   }
 
+  changeStyles = (val) => {
+    const { model } = this.props
+    model.props.styleIds = val
+    this.update()
+  }
 
   renderPosition () {
-    const { model } = this.props
+    const { model, styles: reportStyles } = this.props
     const { verticalAlign } = model.props.style
     const { horizontalAlign } = model.props.style
+
+    const textStyles = _.compact((model.props.styleIds || []).map(id => reportStyles[id]))
+
+    const textAlign = getStyle(textStyles, 'textAlign')
+    const alignItems = getStyle(textStyles, 'alignItems')
+
     return (
       <div className={localStyles.containersBox}>
         <div className={localStyles.horizontalContainer}>
@@ -150,9 +178,12 @@ class Properties extends Component {
             <div
               key={i}
               onClick={e => this.changeHorizontalAlign(type, e)}
-              className={`
-                ${horizontalAlign === type && localStyles.active} ${localStyles.alignedBlock} ${localStyles[type]}
-              `}
+              className={
+                cs(localStyles.alignedBlock, localStyles[type], {
+                  [localStyles.active]: horizontalAlign === type,
+                }, (horizontalAlign ? horizontalAlign === type : textAlign === type)
+                && styleClassess(textStyles, 'textAlign', horizontalAlign))
+              }
             />
           ))}
         </div>
@@ -162,7 +193,10 @@ class Properties extends Component {
               key={i}
               onClick={e => this.changeVerticalAlign(type, e)}
               className={
-                `${verticalAlign === type && localStyles.active} ${localStyles.alignedBlock} ${localStyles[type]}`
+                cs(localStyles.alignedBlock, localStyles[type], {
+                  [localStyles.active]: verticalAlign === type,
+                }, (verticalAlign ? verticalAlign === type : alignItems === type)
+                && styleClassess(textStyles, 'alignItems', verticalAlign))
               }
             />
           ))}
@@ -201,9 +235,11 @@ class Properties extends Component {
     )
   }
 
+
   render () {
-    const { model } = this.props
+    const { model, styles: reportStyles } = this.props
     const { backgroundColor, borderColor, borderRadius } = model.props.style
+
     return (
       <div>
         <div className={styles.title}>Text Options</div>
@@ -277,14 +313,37 @@ class Properties extends Component {
         }
         </div>
         <hr className={styles.divider} />
+        <div className="margin-top-10">Styles</div>
+        <AntSelect
+          mode="tags"
+          size="small"
+          style={{ width: '100%' }}
+          value={model.props.styleIds}
+          options={_.map(reportStyles, style => ({ value: style.id, label: style.name }))}
+          tagRender={({ label, value, onClose }) => {
+            const deleted = !_.find(reportStyles, { id: value })
+            return (
+              <Tag
+                color={deleted ? 'red' : 'green'}
+                closable
+                onClose={onClose}
+              >
+                {deleted ? 'DELETED' : label}
+              </Tag>
+            )
+          }}
+          onChange={this.changeStyles}
+        />
+        <hr className={styles.divider} />
         <div className="margin-top-10">Font</div>
-        <PropertyFonts model={model} />
+        <PropertyFonts model={model} reportStyles={reportStyles} />
         <div className="margin-top-10">Paragraph</div>
         {this.renderPosition()}
         <div className="margin-top-10">
           <label className={styles.inputLabel}>
             <input
               style={{ marginRight: '5px' }}
+              className={cs(styleClassess(reportStyles, 'fontWeight', model.props.style.fontWeight))}
               type="checkbox"
               checked={model.props.style.fontWeight === 'bold'}
               onChange={this.changeFontWeight}
@@ -294,6 +353,7 @@ class Properties extends Component {
           <label className={styles.inputLabel}>
             <input
               style={{ marginRight: '5px' }}
+              className={cs(styleClassess(reportStyles, 'fontStyle', model.props.style.fontStyle))}
               type="checkbox"
               checked={model.props.style.fontStyle === 'italic'}
               onChange={this.changeFontStyle}
@@ -301,6 +361,7 @@ class Properties extends Component {
             Italics
           </label>
         </div>
+        <Button size="small" danger onClick={this.resetStyles} icon={<ClearOutlined />}>Reset Font Styles</Button>
         <hr className={styles.divider} />
         <div className={styles.block} style={{ position: 'relative' }}>
           <div className="margin-top-10">Content overriding</div>
