@@ -120,7 +120,6 @@ module AllowedPermissions
   }.freeze
 
   CAMPAIGN_ADMIN_PERMISSIONS = {
-    'users' => ['reset_password'],
     'assessors' => %w[view manage],
     'campaigns' => %w[
       view
