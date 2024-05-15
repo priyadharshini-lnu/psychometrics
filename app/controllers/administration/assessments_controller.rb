@@ -3,8 +3,10 @@
 class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy import_questions
-                                        preview export toggle_archive questions soft_delete restore]
+  before_action :set_resource, only: %i[
+    show edit update destroy toggle_status sidebar copy import_questions
+    import_questions_sample_file preview export toggle_archive questions soft_delete restore
+  ]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :pundit_authorize, except: [:sidebar]
   # we need this line to override a behviour from BaseController
