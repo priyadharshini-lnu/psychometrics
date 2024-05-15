@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { notification, theme } from 'antd'
+import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
 import { Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
@@ -19,6 +20,9 @@ import '~/styles/common.less'
 const { antdLocale, I18n } = window
 const { useToken } = theme
 const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS } = constants
+const px2rem = px2remTransformer({
+  rootValue: 16,
+})
 
 function App () {
   const { config: { maintenance: { remainingTime }, design } } = store.getState()
@@ -64,11 +68,13 @@ function App () {
       >
         <GlintProvider>
           <ConnectedRouter history={history}>
-            <UserPageLayout>
-              {routes.map((route, i) => (
-                <Route key={i} path={route.path} exact={route.exact} component={route.main} />
-              ))}
-            </UserPageLayout>
+            <StyleProvider transformers={[px2rem]}>
+              <UserPageLayout>
+                {routes.map((route, i) => (
+                  <Route key={i} path={route.path} exact={route.exact} component={route.main} />
+                ))}
+              </UserPageLayout>
+            </StyleProvider>
             <DisplayExceptionModal />
           </ConnectedRouter>
           <IncorrectResponseErrorModal />
