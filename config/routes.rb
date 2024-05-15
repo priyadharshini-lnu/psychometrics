@@ -961,7 +961,7 @@ Rails.application.routes.draw do
 
       resources :saville_user_assessments, only: [] do
         member do
-          get :pass
+          post :pass
           get :redirect
         end
       end
@@ -992,6 +992,12 @@ Rails.application.routes.draw do
           get :assessment
           get :pass
           get :begin
+        end
+      end
+
+      resource :async_requests, only: [] do
+        collection do
+          get :status
         end
       end
 

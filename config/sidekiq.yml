@@ -7,6 +7,7 @@ production:
   :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 2 %>
 :queues:
   - ["two_factor_codes", 10]
+  - ["async_request_handler", 9]
   - ["external_results", 6]
   - ["mailers", 6]
   - ["webhooks", 5]
