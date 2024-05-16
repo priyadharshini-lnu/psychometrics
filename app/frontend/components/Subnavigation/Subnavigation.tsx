@@ -12,9 +12,10 @@ import styles from './Subnavigation.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
 import {
-  addSubmenu, closeSubmenu, removeSubmenu, triggerCollapse,
+  addSubmenu, closeSubmenu, removeSubmenu, triggerCollapse, openSubmenu,
 } from '~/modules/admin/core/ui/menu'
 import { camelizeKeys } from '~/utils/object'
+import { BACKQUOTE } from '~/utils/keyCodes'
 import { SIDEBAR_WIDTH } from '~/constants/sidebar'
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -26,9 +27,10 @@ const connecter = connect(
     currentUser: camelizeKeys(getCurrentUser(state)),
     showSubmenu: state.ui.menu.showSubmenu,
     collapsed: state.ui.menu.collapsed,
+
   }),
   {
-    addSubmenu, closeSubmenu, removeSubmenu, triggerCollapse,
+    addSubmenu, closeSubmenu, removeSubmenu, triggerCollapse, openSubmenu,
   },
 )
 
@@ -41,16 +43,30 @@ export type PropsFromRedux = ConnectedProps<typeof connecter> & {
 
 export const SubnavigationComponent:FC<PropsFromRedux> = ({
   currentUser, items, selectedKeys, onSelect, showBack = true,
-  showSubmenu, addSubmenu, closeSubmenu, removeSubmenu, collapsed, triggerCollapse,
+  showSubmenu, addSubmenu, closeSubmenu, removeSubmenu, collapsed, triggerCollapse, openSubmenu,
 }) => {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
     addSubmenu()
+
     return () => {
       removeSubmenu()
     }
   }, [])
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') { return }
+
+      if (e.keyCode === BACKQUOTE) {
+        showSubmenu ? closeSubmenu() : openSubmenu()
+      }
+    }
+
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [showSubmenu])
 
   useEffect(() => {
     if (!show && collapsed) {
