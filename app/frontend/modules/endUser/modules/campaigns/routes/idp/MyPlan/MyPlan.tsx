@@ -22,6 +22,7 @@ import {
   addDevelopmentActionInPlan,
   saveUserIdpDevelopmentActions,
   updateDevelopmentActionInPlan,
+  updateDevelopmentActionProgressInPlan,
 } from '~/modules/endUser/modules/campaigns/core/idp/developmentAction'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
@@ -102,6 +103,7 @@ const connector = connect((state: RootState) => ({
   addDevelopmentActionInPlan,
   saveUserIdpDevelopmentActions,
   updateDevelopmentActionInPlan,
+  updateDevelopmentActionProgressInPlan,
 })
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -119,6 +121,7 @@ const MyPlanComponent = ({
   addDevelopmentActionInPlan,
   saveUserIdpDevelopmentActions,
   updateDevelopmentActionInPlan,
+  updateDevelopmentActionProgressInPlan,
   idpDevelopmentActions,
   idpSkills,
   availableDevelopmentActions,
@@ -201,6 +204,10 @@ const MyPlanComponent = ({
     ))
   }
 
+  const handleUpdateDevelopmentActionProgress = (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => {
+    updateDevelopmentActionProgressInPlan(developmentAction)
+  }
+
   const operations = (
     <Flex gap={8}>
       {editMode ? (
@@ -274,7 +281,7 @@ const MyPlanComponent = ({
                   categories={listData}
                   availableDevelopmentActions={availableDevelopmentActionsData}
                   onAddDevelopmentAction={handleAddDevelopmentAction}
-                  onUpdateDevelopmentActionProgress={updateDevelopmentActionInPlan}
+                  onUpdateDevelopmentActionProgress={handleUpdateDevelopmentActionProgress}
                   onUpdateDevelopmentAction={updateDevelopmentActionInPlan}
                   onShowAvailableDevelopmentAction={handleShowAvailableDevelopmentAction}
                   onAddMoreSkills={(category) => {

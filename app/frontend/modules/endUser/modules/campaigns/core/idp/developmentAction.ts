@@ -9,6 +9,7 @@ const ADD_DEVELOPMENT_ACTION = 'IPD/MY_PLAN/ADD_DEVELOPMENT_ACTION'
 const UPDATE_DEVELOPMENT_ACTION = 'IPD/MY_PLAN/UPDATE_DEVELOPMENT_ACTION'
 const SAVE_DEVELOPMENT_ACTIONS = 'IPD/MY_PLAN/SAVE_DEVELOPMENT_ACTIONS'
 const FETCH_DIRECT_REPORTS = 'IDP/MY_PLAN/FETCH_DIRECT_REPORTS'
+const UPDATE_DEVELOPMENT_ACTION_PROGRESS = 'IPD/MY_PLAN/UPDATE_DEVELOPMENT_ACTION_PROGRESS'
 
 export const fetchDirectReports = () => ({
   type: FETCH_DIRECT_REPORTS,
@@ -43,6 +44,18 @@ export const addDevelopmentActionInPlan = (developmentAction: Partial<Developmen
 export const updateDevelopmentActionInPlan = (developmentAction: Partial<DevelopmentAction>) => ({
   type: UPDATE_DEVELOPMENT_ACTION,
   data: developmentAction,
+})
+
+export const updateDevelopmentActionProgressInPlan = (
+  developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>,
+) => ({
+  type: UPDATE_DEVELOPMENT_ACTION_PROGRESS,
+  request: {
+    url: '/user_idp_development_actions/update_progress',
+    camelize: false,
+    method: 'put',
+    body: developmentAction,
+  },
 })
 
 export const fetchUserIdpSkills = (userId: string) => ({
@@ -86,6 +99,19 @@ const HANDLERS = {
   }),
   [UPDATE_DEVELOPMENT_ACTION]: (state, action) => {
     const newDevelopmentAction = action.data
+    return {
+      ...state,
+      userIdpDevelopmentActions: {
+        ...state.userIdpDevelopmentActions,
+        [newDevelopmentAction.id]: {
+          ...state.userIdpDevelopmentActions[newDevelopmentAction.id],
+          ...newDevelopmentAction,
+        },
+      },
+    }
+  },
+  [UPDATE_DEVELOPMENT_ACTION_PROGRESS]: (state, action) => {
+    const newDevelopmentAction = action.response
     return {
       ...state,
       userIdpDevelopmentActions: {

@@ -19,7 +19,7 @@ type SkillCardProps = SkillWithDevelopmentActions & {
   editMode?: boolean
   onAddDevelopmentAction?: () => void
   onUpdateDevelopmentAction?: (developmentAction: Partial<DevelopmentAction>) => void
-  onUpdateDevelopmentActionProgress?: (developmentAction: Partial<DevelopmentAction>) => void
+  onUpdateDevelopmentActionProgress?: (developmentAction: Pick<DevelopmentAction, 'id' | 'progress'>) => void
 }
 
 export const DevelopmentActionLandscapeCard: React.FC<SkillCardProps> = ({
@@ -154,7 +154,7 @@ const Card = ({
         progress: editableProgress,
       })
     } else {
-      onUpdateDevelopmentActionProgress({ ...developmentAction, progress: editableProgress })
+      onUpdateDevelopmentActionProgress({ id: developmentAction.id, progress: editableProgress })
     }
   }
 
