@@ -14,7 +14,9 @@ module Users
       else
         set_flash_message! :notice, :unprocessable_entity
       end
-      respond_with_navigational(resource) { redirect_to after_unlock_path_for(resource) }
+      url = @current_project ? new_session_path(resource) : root_url
+
+      respond_with_navigational(resource) { redirect_to url }
     end
   end
 end
