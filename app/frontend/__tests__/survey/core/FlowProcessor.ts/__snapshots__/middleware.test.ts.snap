@@ -34,6 +34,7 @@ exports[`initializing base assessment init action should init assessment data: i
       ],
     },
     "allowMultipleResponses": undefined,
+    "answersSaved": false,
     "assessmentCategory": undefined,
     "assessmentTimedOut": false,
     "backButtonPressed": false,
@@ -459,6 +460,7 @@ exports[`initializing base assessment middleware should call next if is not NEXT
   "preview": {
     "activeDictationOnQuestion": 0,
     "allPages": {},
+    "answersSaved": false,
     "assessmentTimedOut": false,
     "backButtonPressed": false,
     "blocks": {},

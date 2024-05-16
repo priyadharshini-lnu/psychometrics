@@ -19,7 +19,7 @@ import {
   SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION, FETCH_QUESTION_SCORING,
   ACTIVE_DICTATION_ON_QUESTION, NEXT_BUTTON_PRESSED, BACK_BUTTON_PRESSED,
   SHOW_ERROR_WARNING, PREV_PAGE_REQUEST, PREV_PAGE_FAILURE,
-  SET_SUBMISSION_IN_PROGRESS,
+  SET_SUBMISSION_IN_PROGRESS, SET_ANSWERS_SAVED,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -30,7 +30,7 @@ import {
   InitType, AddQuestionError, RemoveQuestionError,
   SaveResults, UpdateHightlight, AddMediaResponse, RemoveMediaResponse,
   MarkMediaResponseAsSelected, FetchQuestionScoring,
-  ShowEnd, SetSubmissionInProgress,
+  ShowEnd, SetSubmissionInProgress, SetAnsersSaved,
 } from './interfaces'
 import { SetDictationActiveOnQuestion } from './actions'
 
@@ -94,6 +94,7 @@ const defaultState: State = {
   otherPendingAssessmentCount: 0,
   evaluationSessionId: null,
   invalidSession: false,
+  answersSaved: false,
 }
 
 const HANDLERS = {
@@ -193,6 +194,7 @@ const HANDLERS = {
     return setIn(state, 'results', results)
   },
   [ANSWER]: (state: State, { result }: AnswerType) => setIn(state, ['results', result.question_id], result),
+  [SET_ANSWERS_SAVED]: (state: State, { value }: SetAnsersSaved) => ({ ...state, answersSaved: value }),
   [SHOW_ERRORS]: (state: State, { errors }: ShowErrors) => setIn(state, ['errors'], errors),
   [EMPTY_ERRORS]: (state: State) => setIn(state, ['errors'], defaultState.errors),
   [CHANGE_ELEMENT]: (state: State, { id, page }: ChangeElement) => ({
@@ -276,6 +278,7 @@ const HANDLERS = {
       submissionInProgress: false,
       nextAssessmentUrl,
       invalidSession,
+      answersSaved: true,
     } : {
       ...state,
       end,
@@ -285,6 +288,7 @@ const HANDLERS = {
       submissionInProgress: false,
       nextAssessmentUrl,
       invalidSession,
+      answersSaved: true,
     }
   },
   [SAVE_RESULTS_FAILURE]: state => ({ ...state, submissionFailed: true, submissionInProgress: false }),

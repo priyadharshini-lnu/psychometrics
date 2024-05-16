@@ -2176,6 +2176,7 @@ en:
       update_success: "%{readableResourceName} updated successfully"
     restart: Restart
     restart_progress: There were some changes in the assessment. Please refresh the page to see the changes. Refreshing the page will begin the assessment from the start. Questions that you have already answered will be auto filled.
+    saved_results: Answers successfully saved.
     smsInvites:
       create_success: SMS Invite added successfully
       update_success: SMS Invite updated successfully

@@ -72,7 +72,7 @@ class PageFooter extends Component {
       ...prevState, nextButtonPressed: false, backButtonPressed: false, saveButtonPressed: true,
     }))
     saveCurrentPage().then(() => {
-      message.success(I18n.t('administration.assessor.saved_results'))
+      message.success(I18n.t('frontend.saved_results'))
     })
   }
 
@@ -90,7 +90,8 @@ class PageFooter extends Component {
       hasPrevPage, isDisconnected, showSubmit, invalidSession,
     } = this.props
 
-    const showSave = type === 'pass_assessment' && isAssessor
+    const showSave = type === 'pass_assessment' && (isAssessor || preview.options?.enable_save)
+
     const {
       popConfirmVisibleFor, nextButtonPressed, backButtonPressed, submitButtonPressed, saveButtonPressed,
     } = this.state

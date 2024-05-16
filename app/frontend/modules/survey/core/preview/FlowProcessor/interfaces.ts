@@ -9,7 +9,7 @@ import {
   toggleIgnoreValidation, reset, markQuestionInProgress, removeQuestionInProgress,
   clearInProgressQuestion, markAssessmentTimedOut, updateHighlight,
   addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation,
-  showErrorWarning, setSubmissionInProgress,
+  showErrorWarning, setSubmissionInProgress, setAnswersSaved,
 } from './actions'
 
 export interface Question {
@@ -179,6 +179,7 @@ export interface DefaultState {
   otherPendingAssessmentCount: number
   evaluationSessionId: string | null
   invalidSession: boolean
+  answersSaved: boolean
 }
 
 export interface MediaResponse {
@@ -342,3 +343,4 @@ export type SetLocalResults = ReturnType<typeof setLocalResults>
 export type SetIsSimulation = ReturnType<typeof setIsSimulation>
 export type FetchQuestionScoring = ApiActionResponse<FetchQuestionScoringResponse>
 export type showErrorWarning = ReturnType<typeof showErrorWarning>
+export type SetAnsersSaved = ReturnType<typeof setAnswersSaved>

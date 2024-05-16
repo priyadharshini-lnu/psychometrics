@@ -498,6 +498,7 @@ en:
       settings:
         enable_back: Enable back button
         enable_progress: Enable progress bar
+        enable_save: Enable save button
         enable_single_question_page: Show one question per page
         enable_timer: Enable timer
         instructions: Enable Instructions

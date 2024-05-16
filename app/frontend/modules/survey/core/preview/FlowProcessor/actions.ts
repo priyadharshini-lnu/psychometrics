@@ -30,6 +30,7 @@ import {
   BACK_BUTTON_PRESSED, NEXT_BUTTON_PRESSED,
   SHOW_ERROR_WARNING,
   SET_SUBMISSION_IN_PROGRESS,
+  SET_ANSWERS_SAVED,
 } from './consts'
 import {
   Highlight, QuestionError, MediaResponse, EndOfAssessmentElementProps,
@@ -76,6 +77,8 @@ export const removePrevPage = () => ({ type: REMOVE_PREV_PAGE })
 export const showErrors = errors => ({ type: SHOW_ERRORS, errors })
 
 export const emptyErrors = () => ({ type: EMPTY_ERRORS })
+
+export const setAnswersSaved = value => ({ type: SET_ANSWERS_SAVED, value })
 
 export const showPage = page => ({ type: SHOW_PAGE, page })
 export const addQuestionError = (questionId: number, errors: QuestionError[]) => (

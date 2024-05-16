@@ -22,6 +22,7 @@ import {
   fetchQuestionScoring,
   backButtonPressed,
   showErrorWarning,
+  setAnswersSaved,
 } from './actions'
 import {
   getPrevPage,
@@ -187,10 +188,15 @@ function* genFinishedEvent () {
   sendMessage('assessment:finished', 'completed', state.preview.id)
 }
 
+function* genSetAnserNotSaved () {
+  yield put(setAnswersSaved(false))
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(INIT, genFetchLocalResults),
   debounce(200, ANSWER, genSaveResultsLocal),
+  debounce(200, ANSWER, genSetAnserNotSaved),
   debounce(200, ANSWER, genFetchQuestionScoring),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
