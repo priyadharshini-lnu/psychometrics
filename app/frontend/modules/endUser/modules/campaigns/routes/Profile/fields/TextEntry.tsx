@@ -1,6 +1,6 @@
-
 import { FC } from 'react'
-import { Input } from 'antd'
+import { Input, DatePicker } from 'antd'
+import dayjs from '~/utils/dayjs'
 
 interface Props {
   field: {
@@ -9,6 +9,7 @@ interface Props {
       type: string
       choices: number
       choicesTexts: string[]
+      dateFormat?: string
     }
   }
   locked: boolean
@@ -24,10 +25,26 @@ export const TextEntry: FC<Props> = ({
     onChange(e.currentTarget.value)
   }
 
+  const onDateChange = (date) => {
+    onChange(date)
+  }
+
   if (field.props.type === 'SingleLine') {
     return (
       <div>
         <Input value={value ?? defaultValue} onChange={change} disabled={locked} />
+      </div>
+    )
+  }
+
+  if (field.props.type === 'DateEntry') {
+    return (
+      <div>
+        <DatePicker
+          format={field.props.dateFormat || 'MMMM Do YYYY'}
+          value={defaultValue ? dayjs(defaultValue) : undefined}
+          onChange={date => onDateChange(date && date.format())}
+        />
       </div>
     )
   }
