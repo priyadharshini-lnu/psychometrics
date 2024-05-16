@@ -18,8 +18,8 @@ const LookupResultTextValue = {
           if (!field) break
           const text = _.get(ResultStore, ['results', model.assessment_id, 'dataSheet', columnName])
 
-          if (field.type === 'Number') {
-            return parseFloat(text).toFixed(model.props.precision || 0)
+          if (field.type === 'Number' && model.props.precision) {
+            return parseFloat(text).toFixed(model.props.precision)
           }
           if (field.type === 'Markdown') {
             return <ReactMarkdown>{text}</ReactMarkdown>
