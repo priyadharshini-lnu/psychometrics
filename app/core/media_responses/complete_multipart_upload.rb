@@ -31,7 +31,7 @@ module MediaResponses
         byte_size: file_size,
         checksum: response.etag,
         content_type: content_type,
-        service_name: 's3_private_bucket'
+        service_name: Settings.storage.private_storage_service
       )
 
       media_response.asset = blob.signed_id

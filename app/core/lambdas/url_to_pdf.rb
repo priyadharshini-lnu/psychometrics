@@ -43,7 +43,7 @@ module Lambdas
 
     def get_presigned_url
       ActiveStorage::Blob.new(
-        key: options[:output_file_path], service_name: Settings.secrets.s3_compatible_storage[:private_bucket]
+        key: options[:output_file_path], service_name: Settings.storage.private_storage_service
       ).service_url_for_direct_upload(expires_in: expiry_time.to_i)
     end
   end

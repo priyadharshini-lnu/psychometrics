@@ -17,7 +17,7 @@ module Lambdas
             byte_size: data['file_size'],
             checksum: data['checksum'],
             content_type: 'application/pdf',
-            service_name: Settings.secrets.s3_compatible_storage[:private_bucket]
+            service_name: Settings.storage.private_storage_service
           )
 
           user_report.pdf_file = blob.signed_id
@@ -39,7 +39,7 @@ module Lambdas
           byte_size: data['file_size'],
           checksum: data['checksum'],
           content_type: 'application/pdf',
-          service_name: Settings.secrets.s3_compatible_storage[:private_bucket]
+          service_name: Settings.storage.private_storage_service
         )
 
         ActionCable.server.broadcast \

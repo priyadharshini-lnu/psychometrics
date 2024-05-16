@@ -25,7 +25,7 @@ module Lambdas
             byte_size: data['file_size'],
             checksum: data['checksum'],
             content_type: 'application/zip',
-            service_name: 's3_private_bucket'
+            service_name: Settings.storage.private_storage_service
           )
 
           bulk_report.files.attach(blob)
