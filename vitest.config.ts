@@ -32,7 +32,7 @@ export default defineConfig({
     environment: 'jsdom',
     // TODO: remove include prop after complete Vitest migration
     // include: ['app/frontend/**/*.{test,spec}.?(c|m)[jt]s?(x)'],
-    exclude: ['public/**/*', 'config/**/*', 'node_modules/**/*'],
+    exclude: ['public/**/*', 'config/**/*', 'node_modules/**/*', 'e2e-tests/**/*'],
     coverage: {
       all: false,
       reporter: ['lcov', 'text'],
