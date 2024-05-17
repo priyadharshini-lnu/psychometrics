@@ -4719,8 +4719,9 @@ en:
         new:
           header: Import Translations
       reports:
-        new:
-          header: Import Translations
+        export: Export Translations
+        import: Import Translations
+        import_descr: Refer to the Export functionality to extract a template that can be used to Import here.
     tte: TTE
     uniq_id: Uniq ID
     update: Update

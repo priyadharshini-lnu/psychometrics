@@ -18,12 +18,11 @@ module Administration
 
       def import
         @_resource = ::Imports::Translations::ReportImport.new(import_params)
-        respond_to do |format|
-          if resource.process!
-            format.js
-          else
-            format.js { render :new }
-          end
+
+        if resource.process!
+          render json: { success: true }
+        else
+          render json: { errors: resource.errors.messages }, status: 422
         end
       end
 
@@ -34,7 +33,7 @@ module Administration
       end
 
       def import_params
-        params.require(:import).permit(:file, :report_id)
+        params.permit(:file, :report_id)
       end
 
       # Authorisation user

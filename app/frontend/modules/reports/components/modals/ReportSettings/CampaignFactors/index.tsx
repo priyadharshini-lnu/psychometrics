@@ -1,10 +1,24 @@
 import {
-  Button, Flex, Form, Input, Modal, Select,
+  Button, Flex, Form, Input, Select,
+  Typography,
+  message,
 } from 'antd'
 import {
   CloseOutlined,
 } from '@ant-design/icons'
+import { connect } from 'react-redux'
 import styles from './styles.less'
+import { saveCampaignFactors } from '~/modules/reports/core/builder/actions'
+import { RootState } from '~/modules/reports/core/rootReducers'
+
+const connecter = connect(
+  ({ report: { builder } }: RootState) => ({
+    columns: builder.campaign_factors, id: builder.id,
+  }),
+  {
+    saveCampaignFactors,
+  },
+)
 
 const CAMPAIGN_FACTORS_TYPES = ['numeric', 'string']
 
@@ -15,7 +29,6 @@ type Column = {
 }
 
 type Props = {
-  close: () => void
   saveCampaignFactors: (columns: Column[]) => void
   columns: Column[]
 }
@@ -29,7 +42,7 @@ const isFieldUnique = (
   columns: Column[],
 ) => (columns.every((column, i) => i === index || column[fieldName] !== value))
 
-export default function CampaignFactors ({ columns, close, saveCampaignFactors }: Props) {
+export const CampaignFactorsComponent = ({ columns, saveCampaignFactors }: Props) => {
   const [form] = Form.useForm()
 
   const onFinish = (values: { items: Column[] }) => {
@@ -44,11 +57,10 @@ export default function CampaignFactors ({ columns, close, saveCampaignFactors }
 
     const nameErrors: FieldError[] = validateFields(values.items.map(column => column.name), 'name')
     const codeErrors: FieldError[] = validateFields(values.items.map(column => column.code), 'code')
-
     const setFields = (errors: FieldError[], fieldName: keyof Column) => form.setFields(
       errors.map((error, index) => ({
         name: ['items', index, fieldName],
-        errors: [error[fieldName]],
+        errors: error[fieldName] ? [error[fieldName]] : undefined,
       })),
     )
 
@@ -56,22 +68,18 @@ export default function CampaignFactors ({ columns, close, saveCampaignFactors }
     setFields(codeErrors, 'code')
 
     const hasNoErrors = (errors: FieldError[], key: string) => errors.every(error => error[key] === '')
-
     if (hasNoErrors(nameErrors, 'name') && hasNoErrors(codeErrors, 'code')) {
       saveCampaignFactors(values.items)
-      close()
+      message.config({
+        getContainer: () => document.getElementById('fixed_header') || document.body,
+      })
+      message.success('Campaign factors updated successfully')
     }
   }
 
   return (
-    <Modal
-      width="70%"
-      zIndex={9999}
-      title="Campaign factors"
-      open
-      onCancel={close}
-      footer=""
-    >
+    <>
+      <Typography.Title level={4}>Campaign Factors</Typography.Title>
       <Form
         form={form}
         name="campaign_factors"
@@ -151,11 +159,8 @@ export default function CampaignFactors ({ columns, close, saveCampaignFactors }
                   Add Field
                 </Button>
                 <Flex gap="4px">
-                  <Button key="back" onClick={close}>
-                    Cancel
-                  </Button>
                   <Button key="submit" type="primary" htmlType="submit">
-                    Save
+                    Update
                   </Button>
                 </Flex>
               </div>
@@ -163,6 +168,9 @@ export default function CampaignFactors ({ columns, close, saveCampaignFactors }
           )}
         </Form.List>
       </Form>
-    </Modal>
+    </>
   )
 }
+
+
+export const CampaignFactors = connecter(CampaignFactorsComponent)

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { removePage } from '~/modules/reports/core/builder/page/actions'
-import { changeSize, copyPage, pastePage } from '~/modules/reports/core/builder/actions'
+import { copyPage, pastePage } from '~/modules/reports/core/builder/actions'
 import { getModule, getPage, getSelected } from '~/modules/reports/core/builder/selectors'
 
 export default connect(
@@ -13,7 +13,6 @@ export default connect(
   }),
   {
     removePage,
-    changeSize,
     copyPage,
     pastePage,
   },

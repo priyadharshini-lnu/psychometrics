@@ -11,12 +11,11 @@ import ConditionalTextModal from './ConditionalTextModal'
 import ConditionalImageModal from './ConditionalImageModal'
 import DisplayLogic from './DisplayLogic'
 import PipedTextModal from './PipedTextModal'
-import CampaignFactorsModal from './CampaignFactorsModal'
+import { ReportSettings } from './ReportSettings'
 
 const MODALS = {
   filter: FilterModal,
   dataSheetModal: DataSheetModal,
-  campaignFactorsModal: CampaignFactorsModal,
   alias: AliasModal,
   savePopUp: SavePopUp,
   dataConfiguration: DataConfigurationModal,
@@ -27,6 +26,7 @@ const MODALS = {
   conditionalImage: ConditionalImageModal,
   displayLogic: DisplayLogic,
   pipedText: PipedTextModal,
+  reportSettings: ReportSettings,
 }
 
 

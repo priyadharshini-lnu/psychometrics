@@ -3,7 +3,6 @@ import _ from 'lodash'
 import { normalize } from 'normalizr'
 import headerStore from '~/modules/reports/store/HeaderStore'
 import AppStore from '~/modules/reports/store/AppStore'
-import I18nStore from '~/modules/reports/store/I18nStore'
 import NotificationDispatcher from '~/modules/reports/dispatchers/NotificationDispatcher'
 import Module from '~/modules/reports/models/Module'
 import { getModule } from '~/modules/reports/core/builder/selectors'
@@ -158,12 +157,6 @@ export class FixedHeader extends Component {
     this.addModule('Table')
   }
 
-
-  export = () => {
-    this.data.value = JSON.stringify(I18nStore.exportReport())
-    this.form.submit()
-  }
-
   save = (e) => {
     const { save, report } = this.props
     const target = e.currentTarget
@@ -181,6 +174,11 @@ export class FixedHeader extends Component {
     })
   }
 
+  openSettingsModal = () => {
+    const { openSettings } = this.props
+    openSettings()
+  }
+
   openFilterModal = () => {
     const { openFilter } = this.props
     openFilter({ filters: AppStore.report.filters })
@@ -189,11 +187,6 @@ export class FixedHeader extends Component {
   openDataSheetModal = () => {
     const { openDataSheet, report: { builder } } = this.props
     openDataSheet({ columns: AppStore.report.dataSheetColumns, id: builder.id })
-  }
-
-  openCampaignFactorsModal = () => {
-    const { openCampaignFactors, report: { builder } } = this.props
-    openCampaignFactors({ columns: builder.campaign_factors, id: builder.id })
   }
 
   openAliasModal = () => {
@@ -217,7 +210,7 @@ export class FixedHeader extends Component {
     }
 
     return (
-      <div ref={(ref) => { this.menu = ref }} className={styles.header} style={style}>
+      <div ref={(ref) => { this.menu = ref }} id="fixed_header" className={styles.header} style={style}>
         {richEditorOpened ? <div key="editor" id="froala-editor-toolbar" /> : (
           <div key="menu" className={styles.components}>
             <div
@@ -270,33 +263,13 @@ export class FixedHeader extends Component {
                   <span className="caret" />
                 </button>
                 <ul className="dropdown-menu">
+                  <li><a onClick={this.openSettingsModal}>Settings...</a></li>
                   <li><a onClick={this.openFilterModal}>Manage Filters</a></li>
                   <li><a onClick={this.openDataSheetModal}>Manage DataSheets</a></li>
-                  <li><a onClick={this.openCampaignFactorsModal}>Manage Campagin Factors</a></li>
-                  <li><a onClick={this.export}>Export Translations</a></li>
-                  <li>
-                    <a
-                      className={styles.linkExport}
-                      data-remote="true"
-                      href={`/administration/translations/reports/${_.result(AppStore.report, 'id')}/new`}
-                    >
-                      Import Translations
-                    </a>
-
-                  </li>
                   <li><a href={`/administration/reports/${_.result(AppStore.report, 'id')}/preview`}>Preview</a></li>
                   <li><a onClick={this.openAliasModal}>Aliases</a></li>
                   <li><a onClick={this.openDataConfigurationModal}>Data Report Configuration</a></li>
                 </ul>
-                <form
-                  style={{ display: 'none' }}
-                  ref={(ref) => { this.form = ref }}
-                  action={`/administration/translations/reports/${_.result(AppStore.report, 'id')}/export`}
-                  method="POST"
-                >
-                  <input name="authenticity_token" type="hidden" value={$('meta[name=csrf-token]').attr('content')} />
-                  <input ref={(ref) => { this.data = ref }} name="data" />
-                </form>
               </div>
               <div>
                 <a href="/admin/reports" className={`btn btn-default ${styles.back}`}>Back</a>

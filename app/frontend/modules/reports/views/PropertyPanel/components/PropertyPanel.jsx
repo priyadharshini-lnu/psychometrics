@@ -88,8 +88,7 @@ class PropertyPanel extends Component {
     const { selected, module, page } = this.props
 
     if ((!module && !page) || !selected) {
-      const View = Properties.ReportProperties
-      return (<View model={page} />)
+      return
     }
 
     const type = selected.type === 'Module' ? module.type : selected.type

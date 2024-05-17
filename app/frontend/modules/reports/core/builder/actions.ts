@@ -27,6 +27,7 @@ export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 export const SAVE_CAMPAIGN_FACTORS = 'report/SAVE_CAMPAIGN_FACTORS'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
+export const IMPORT_TRANSLATIONS = 'report/IMPORT_TRANSLATIONS'
 export const ADD_STYLE = 'report/ADD_STYLE'
 export const UPDATE_STYLE = 'report/UPDATE_STYLE'
 export const REMOVE_STYLE = 'report/REMOVE_STYLE'
@@ -55,12 +56,23 @@ export const pasteModule = (pageId: number, module: ModuleInterface) => ({
 
 export const saveDataSheet = (data: object[]) => ({ type: SAVE_DATA_SHEET, data })
 export const saveCampaignFactors = (data: object[]) => ({ type: SAVE_CAMPAIGN_FACTORS, data })
+
 export const uploadDataSheet = (id: number, body: { file: File }) => ({
   type: UPLOAD_DATA_SHEET,
   request: {
     method: 'post',
     url: `/administration/reports/${id}/upload_data_sheet`,
     body,
+    contentType: 'multipart/form-data;' as const,
+  },
+})
+
+export const importTranslations = (reportId, formdata) => ({
+  type: IMPORT_TRANSLATIONS,
+  request: {
+    method: 'post',
+    url: `/administration/translations/reports/${reportId}/import`,
+    body: formdata,
     contentType: 'multipart/form-data;' as const,
   },
 })
