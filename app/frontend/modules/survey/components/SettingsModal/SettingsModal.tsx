@@ -78,7 +78,7 @@ const SettingsModalComponent = ({
         </Col>
         <Col span={24}>
           <Space>
-            <Switch checked={assessment.enable_save} onChange={toggleEnableSave} />
+            <Switch checked={assessment.options?.enable_save} onChange={toggleEnableSave} />
             {I18n.t('administration.assessments.settings.enable_save')}
           </Space>
         </Col>
