@@ -284,7 +284,7 @@ class PropertyPanel extends Component {
                       showSearch
                       filterOption={(input, option) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                       style={{ width: '100%' }}
-                      value={module.props.styleIds.filter(s => reportStyles[s])}
+                      value={module.props.styleIds?.filter(s => reportStyles[s])}
                       options={_.map(reportStyles, style => ({ value: style.id, label: style.name }))}
                       tagRender={({ label, value, onClose }) => {
                         const deleted = !_.find(reportStyles, { id: value })
