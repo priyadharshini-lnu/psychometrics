@@ -1,7 +1,8 @@
 .main {
   min-height: 350px;
-  padding: 15px;
   overflow: hidden;
+  background: #fafbfc;
+  min-height: 90vh;
 }
 
 
@@ -9,11 +10,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 6px 12px;
+  &:nth-child(odd) {
+    background-color: #f5f5f5;
+  }
   .name {
+    flex: 1;
+    padding: 4px;
     max-width: 120px;
     font-size: 0.9em;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
   }
 
   .icons {

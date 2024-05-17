@@ -21,19 +21,9 @@ import GetText from './GetText'
 import LookupResultTextValue from './LookupResultTextValue'
 import GetStyles from './GetStyles'
 import PipedText from './PipedText'
-import DefaultProps from '~/modules/reports/consts/DefaultProps'
+import { convertColor, useAssignStyle, joinStyles } from '../../CommonMethods/styles'
 
-export const isDefault = (style, val) => _.isEqual(
-  DefaultProps.Text.style[style], val,
-)
-
-const assignStyle = (style, styleName, value) => {
-  if (isDefault(styleName, value)) {
-    return style[styleName] || value
-  }
-
-  return value
-}
+const assignStyle = useAssignStyle('Text')
 
 class Text extends Component {
   editor = null
@@ -273,7 +263,7 @@ class Text extends Component {
 
   render () {
     const {
-      module: model, preview, styles: reportStyles,
+      module: model, preview, reportStyles,
     } = this.props
     const { styleIds } = model.props
     const {
@@ -282,21 +272,19 @@ class Text extends Component {
     } = model.props.style
     let { horizontalAlign } = model.props.style
 
-    const textStyles = _.compact((styleIds || []).map(id => reportStyles[id]))
-    let style = textStyles.reduce((styles, style) => ({ ...styles, ...style.styles }), {})
-
+    let style = joinStyles(reportStyles, styleIds)
+    const outerStyle = {}
     horizontalAlign = assignStyle(style, 'textAlign', horizontalAlign)
 
     if (window.I18n.locale === 'ar' && horizontalAlign === 'left' && I18nStore.isExistTModule(model, 'text')) {
       horizontalAlign = 'right'
     }
 
-    style = {
-      ...style,
-      border: '1px solid',
-      borderRadius,
+    if (!style.border && !model.props.style.borderColor) {
+      style = _.omit(style, ['border', 'borderColor', 'borderWidth', 'borderStyle'])
     }
-    style.color = assignStyle(style, 'color', fontColor)
+
+    style.color = assignStyle(style, 'color', convertColor(fontColor))
     style.fontSize = assignStyle(style, 'fontSize', fontSize)
     style.fontFamily = assignStyle(style, 'fontFamily', fontFamily)
     style.fontWeight = assignStyle(style, 'fontWeight', fontWeight)
@@ -304,13 +292,27 @@ class Text extends Component {
     style.textAlign = horizontalAlign || assignStyle(style, 'textAlign', '')
     style.alignItems = verticalAlign || assignStyle(style, 'alignItems', '')
 
-    if (backgroundColor) {
-      style.backgroundColor = `rgba(
-        ${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
+    style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
+    style.borderWidth = assignStyle(style, 'borderWidth')
+    style.borderStyle = assignStyle(style, 'borderStyle')
+    style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
+
+    style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor))
+    outerStyle.borderRadius = style.borderRadius || borderRadius
+
+    if (style.boxShadow?.enabled) {
+      const {
+        x, y, blur, spread, color,
+      } = style.boxShadow
+      outerStyle.boxShadow = `${x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
     }
-    if (borderColor) {
-      style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
+
+    style = _.omit(style, ['boxShadow'])
+
+    if (borderColor && !style.borderWidth) {
+      style.border = `1px solid ${convertColor(borderColor)}`
     }
+
     if (model.props.sourceType === 'ConditionalText'
       || (model.props.sourceType === 'ConditionalFactorOccupationText' && model.props.basedOn === 'factor')) {
       let styles = {}
@@ -323,11 +325,10 @@ class Text extends Component {
         backgroundColor, fontColor, fontFamily, borderColor, fontSize,
       } = styles
       if (backgroundColor) {
-        style.backgroundColor = `rgba(
-          ${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
+        style.backgroundColor = convertColor(backgroundColor)
       }
       if (borderColor) {
-        style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
+        style.borderColor = convertColor(borderColor)
       }
       if (fontColor) style.color = fontColor
       if (fontSize) style.fontSize = fontSize
@@ -335,7 +336,7 @@ class Text extends Component {
     }
 
     return (
-      <Foundation {...this.props} preview={preview || this.edit}>
+      <Foundation {...this.props} preview={preview || this.edit} outerStyle={outerStyle}>
         <div style={style} onClick={this.click} className={styles.text} onDoubleClick={this.openEditor}>
           {this.renderText()}
         </div>

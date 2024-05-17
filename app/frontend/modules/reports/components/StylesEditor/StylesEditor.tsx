@@ -2,8 +2,11 @@ import { useState } from 'react'
 import {
   Space, Button, Select,
   InputNumber,
+  Checkbox,
 } from 'antd'
-import { CopyOutlined, SnippetsOutlined } from '@ant-design/icons'
+import {
+  CopyOutlined, SnippetsOutlined,
+} from '@ant-design/icons'
 import _ from 'lodash'
 import styles from './StylesEditor.less'
 import LabelEditor from '../LabelEditor'
@@ -56,11 +59,17 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
   }
 
   const changeStyle = (styleName, value) => {
-    if (value) {
+    if ((value === false || value === 0) ? true : value) {
       setData({ ...data, styles: { ...data.styles, [styleName]: value } })
     } else {
-      setData({ ...data, styles: { ..._.omit(data.styles, 'styleName') } })
+      setData({ ...data, styles: { ..._.omit(data.styles, styleName) } })
     }
+  }
+
+  const changeBoxShadow = (updates) => {
+    const styles = { ...data.styles, boxShadow: { ...(data.styles.boxShadow || {}), ...updates } }
+
+    setData({ ...data, styles })
   }
 
   const changeFontSize = (value) => {
@@ -90,7 +99,10 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
       } catch (e) { /* empty */ }
     })
   }
-
+  const bs = get('boxShadow')
+  const boxShadow = bs?.enabled
+    ? `${bs.x || 0}px ${bs.y || 0}px ${bs.blur || 0}px ${bs.spread || 0}px ${bs.color}`
+    : undefined
 
   return (
     <div className={styles.editor}>
@@ -105,7 +117,7 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         />
       </div>
       <hr className={styles.divider} />
-      <div style={data.styles}>Sample Text</div>
+      <div style={{ ...data.styles, boxShadow }}>Sample Text</div>
       <hr className={styles.divider} />
       <Select
         value={get('fontFamily')}
@@ -149,8 +161,9 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         {_.map(TEXT_DECORATIONS, (value, key) => <Select.Option value={key} key={key}>{value}</Select.Option>)}
       </Select>
       <hr className={styles.divider} />
-      <div className={styles.colorRow}>
+      <div className={styles.flexLabel}>
         <ColorPicker
+          swatchClassName={styles.swatch}
           defaultColor="#333333"
           getValueInHexFormat
           value={get('color')}
@@ -159,21 +172,24 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         <span>Color</span>
       </div>
       <hr className={styles.divider} />
-      <div className={styles.fontSize}>
-        <InputNumber
-          value={fontSize}
-          onChange={changeFontSize}
-          size="small"
-          className={styles.input}
-          min={1}
-          max={500}
-        />
-        <Select value={points} onChange={changePoints} size="small" className={styles.select}>
-          <Select.Option value="px">px</Select.Option>
-          <Select.Option value="em">em</Select.Option>
-          <Select.Option value="%">%</Select.Option>
-        </Select>
-      </div>
+      <Space direction="vertical">
+        <span>Font Size</span>
+        <div className={styles.fontSize}>
+          <InputNumber
+            value={fontSize}
+            onChange={changeFontSize}
+            size="small"
+            className={styles.input}
+            min={1}
+            max={500}
+          />
+          <Select value={points} onChange={changePoints} size="small" className={styles.select}>
+            <Select.Option value="px">px</Select.Option>
+            <Select.Option value="em">em</Select.Option>
+            <Select.Option value="%">%</Select.Option>
+          </Select>
+        </div>
+      </Space>
       <hr className={styles.divider} />
 
       <div className={styles.containersBox}>
@@ -200,7 +216,161 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
           ))}
         </div>
       </div>
+      <hr className={styles.divider} />
+      <div>
+        <Checkbox
+          style={{ marginRight: '5px' }}
+          type="checkbox"
+          checked={get('border')}
+          onChange={e => changeStyle('border', e.target.checked)}
+        />
+        Border
+      </div>
+      {get('border') && (
+        <Space direction="vertical">
+          <Space.Compact block>
+            <div className={styles.inline}>
+              <label>Width</label>
+              <InputNumber
+                size="small"
+                value={get('borderWidth') || 0}
+                min={0}
+                max={100}
+                onChange={val => changeStyle('borderWidth', val)}
+              />
+            </div>
+            <div className={styles.inline}>
+              <label>Style</label>
+              <Select
+                size="small"
+                className={styles.borderStyleSelect}
+                onChange={val => changeStyle('borderStyle', val)}
+                value={get('borderStyle')}
+                options={[
+                  { value: 'solid' },
+                  { value: 'dashed' },
+                  { value: 'dotted' },
+                  { value: 'double' },
+                  { value: 'groove' },
+                  { value: 'ridge' },
+                  { value: 'inset' },
+                  { value: 'outset' },
+                ]}
+              />
+            </div>
+          </Space.Compact>
+          <div className={styles.flexLabel}>
+            <ColorPicker
+              swatchClassName={styles.swatch}
+              defaultColor="#333333"
+              getValueInHexFormat
+              value={get('borderColor')}
+              onChange={val => changeStyle('borderColor', val)}
+            />
+            <span>Border Color</span>
+          </div>
+        </Space>
+      )}
+      <hr className={styles.divider} />
+      <Space direction="vertical">
+        Border Radius
+        <Space>
+          <InputNumber
+            value={get('borderRadius')}
+            onChange={val => changeStyle('borderRadius', val)}
+            size="small"
+            min={0}
+            max={1000}
+            className="w-100"
+          />
+          px
+        </Space>
+      </Space>
+      <hr className={styles.divider} />
+      <Space direction="vertical">
+        Background Color
 
+        <div className={styles.flexLabel}>
+          <ColorPicker
+            swatchClassName={styles.swatch}
+            defaultColor="#333333"
+            getValueInHexFormat
+            value={get('backgroundColor')}
+            onChange={val => changeStyle('backgroundColor', val)}
+          />
+          <span>Color</span>
+        </div>
+      </Space>
+      <hr className={styles.divider} />
+      <div>
+        <Checkbox
+          style={{ marginRight: '5px' }}
+          type="checkbox"
+          checked={get('boxShadow')?.enabled}
+          onChange={e => changeBoxShadow({ enabled: e.target.checked })}
+        />
+        Box Shadow
+      </div>
+      {get('boxShadow')?.enabled && (
+        <Space direction="vertical">
+          <Space.Compact block>
+            <div className={styles.inline}>
+              <label>X</label>
+              <InputNumber
+                className={styles.smallInput}
+                size="small"
+                value={get('boxShadow')?.x || 0}
+                min={0}
+                max={100}
+                onChange={val => changeBoxShadow({ x: val })}
+              />
+            </div>
+            <div className={styles.inline}>
+              <label>y</label>
+              <InputNumber
+                className={styles.smallInput}
+                size="small"
+                value={get('boxShadow')?.y || 0}
+                min={0}
+                max={100}
+                onChange={val => changeBoxShadow({ y: val })}
+              />
+            </div>
+            <div className={styles.inline}>
+              <label>Blur</label>
+              <InputNumber
+                className={styles.smallInput}
+                size="small"
+                value={get('boxShadow')?.blur || 0}
+                min={0}
+                max={100}
+                onChange={val => changeBoxShadow({ blur: val })}
+              />
+            </div>
+            <div className={styles.inline}>
+              <label>Spread</label>
+              <InputNumber
+                className={styles.smallInput}
+                size="small"
+                value={get('boxShadow')?.spread || 0}
+                min={0}
+                max={100}
+                onChange={val => changeBoxShadow({ spread: val })}
+              />
+            </div>
+          </Space.Compact>
+          <div className={styles.flexLabel}>
+            <ColorPicker
+              swatchClassName={styles.swatch}
+              defaultColor="#000000"
+              getValueInHexFormat
+              value={get('boxShadow')?.color}
+              onChange={val => changeBoxShadow({ color: val })}
+            />
+            <span>Shadow Color</span>
+          </div>
+        </Space>
+      )}
       <hr className={styles.divider} />
       <Space>
         <Button type="link" icon={<CopyOutlined />} onClick={copy}>Copy</Button>

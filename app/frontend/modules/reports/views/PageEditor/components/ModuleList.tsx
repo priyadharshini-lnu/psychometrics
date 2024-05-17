@@ -18,6 +18,7 @@ import utils from '~/modules/reports/utils/Utils'
 import iconStyles from '~/modules/reports/components/modules/Graph/components/ChartsMenu.less'
 
 import styles from './ModuleList.less'
+import { convertColor } from '~/modules/reports/components/modules/CommonMethods/styles'
 
 const connector = connect((state: RootState, props: OwnProps) => ({
   modules: getModules(state.report, props.page.modules),
@@ -89,10 +90,11 @@ const ModuleLabel = ({
     const width = position.width / 20
     const height = position.height / 20
     const radius = borderRadius / 20
+
     const style = {
-      backgroundColor: `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`,
+      backgroundColor: convertColor(backgroundColor),
       border: '0.2px solid',
-      borderColor: `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`,
+      borderColor: convertColor(borderColor),
       borderRadius: radius,
       width,
       height,

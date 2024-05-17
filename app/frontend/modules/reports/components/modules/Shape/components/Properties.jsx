@@ -1,4 +1,7 @@
+import _ from 'lodash'
 import { Component } from 'react'
+import { Button, Space } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 import panelStyles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { ColorPicker } from '~/glint'
 import { rgba2hex } from '~/utils/color'
@@ -68,6 +71,12 @@ class Properties extends Component {
     model.update()
   }
 
+  removeStyle = (name) => {
+    const { model } = this.props
+    model.props.style = _.omit(model.props.style, name)
+    model.update()
+  }
+
   render () {
     const { model } = this.props
     const {
@@ -92,11 +101,40 @@ class Properties extends Component {
         <hr className={styles.divider} />
         <div className={styles.block} style={{ position: 'relative' }}>
           Background Color
-          <ColorPicker value={rgba2hex(backgroundColor)} onChange={this.changeBg} />
+          <Space.Compact block className={styles.flexCenter}>
+            <ColorPicker
+              defaultColor="#cccccc"
+              value={_.isObject(backgroundColor) ? rgba2hex(backgroundColor) : backgroundColor}
+              onChange={this.changeBg}
+            />
+            {backgroundColor && (
+              <Button
+                onClick={() => this.removeStyle('backgroundColor')}
+                size="small"
+                type="link"
+                danger
+                icon={<DeleteOutlined />}
+              />
+            )}
+          </Space.Compact>
         </div>
         <div className={styles.block} style={{ position: 'relative' }}>
           Border Color
-          <ColorPicker value={rgba2hex(borderColor)} onChange={this.changeBorder} />
+          <Space.Compact block className={styles.flexCenter}>
+            <ColorPicker
+              value={_.isObject(borderColor) ? rgba2hex(borderColor) : borderColor}
+              onChange={this.changeBorder}
+            />
+            {borderColor && (
+              <Button
+                onClick={() => this.removeStyle('borderColor')}
+                size="small"
+                type="link"
+                danger
+                icon={<DeleteOutlined />}
+              />
+            )}
+          </Space.Compact>
         </div>
         <hr className={panelStyles.divider} />
         <div className={styles.block}>

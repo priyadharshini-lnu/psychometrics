@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { Component } from 'react'
-import { Select as AntSelect, Tag, Button } from 'antd'
-import { ClearOutlined } from '@ant-design/icons'
+import { Button, Space } from 'antd'
+import { DeleteOutlined, ClearOutlined } from '@ant-design/icons'
 import Select from 'react-select'
 import cs from 'classnames'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
@@ -102,6 +102,12 @@ class Properties extends Component {
     }
   }
 
+  removeStyle = (name) => {
+    const { model } = this.props
+    model.props.style = _.omit(model.props.style, name)
+    this.update()
+  }
+
   resetStyles = () => {
     const { model } = this.props
     // eslint-disable-next-line no-alert
@@ -162,7 +168,7 @@ class Properties extends Component {
   }
 
   renderPosition () {
-    const { model, styles: reportStyles } = this.props
+    const { model, reportStyles } = this.props
     const { verticalAlign } = model.props.style
     const { horizontalAlign } = model.props.style
 
@@ -237,7 +243,7 @@ class Properties extends Component {
 
 
   render () {
-    const { model, styles: reportStyles } = this.props
+    const { model, reportStyles } = this.props
     const { backgroundColor, borderColor, borderRadius } = model.props.style
 
     return (
@@ -313,28 +319,6 @@ class Properties extends Component {
         }
         </div>
         <hr className={styles.divider} />
-        <div className="margin-top-10">Styles</div>
-        <AntSelect
-          mode="tags"
-          size="small"
-          style={{ width: '100%' }}
-          value={model.props.styleIds}
-          options={_.map(reportStyles, style => ({ value: style.id, label: style.name }))}
-          tagRender={({ label, value, onClose }) => {
-            const deleted = !_.find(reportStyles, { id: value })
-            return (
-              <Tag
-                color={deleted ? 'red' : 'green'}
-                closable
-                onClose={onClose}
-              >
-                {deleted ? 'DELETED' : label}
-              </Tag>
-            )
-          }}
-          onChange={this.changeStyles}
-        />
-        <hr className={styles.divider} />
         <div className="margin-top-10">Font</div>
         <PropertyFonts model={model} reportStyles={reportStyles} />
         <div className="margin-top-10">Paragraph</div>
@@ -378,22 +362,61 @@ class Properties extends Component {
         <hr className={styles.divider} />
         <div className={styles.block} style={{ position: 'relative' }}>
           Background Color
-          <ColorPicker
-            value={rgba2hex(backgroundColor)}
-            onChange={this.changeBg}
-          />
+          <Space.Compact block className={localStyles.flexCenter}>
+            <ColorPicker
+              swatchClassName={localStyles.swatch}
+              defaultColor="#ffffff"
+              value={_.isObject(backgroundColor) ? rgba2hex(backgroundColor) : backgroundColor}
+              onChange={this.changeBg}
+            />
+            {backgroundColor && (
+              <Button
+                onClick={() => this.removeStyle('backgroundColor')}
+                size="small"
+                type="link"
+                danger
+                icon={<DeleteOutlined />}
+              />
+            )}
+          </Space.Compact>
+
         </div>
         <div className={styles.block} style={{ position: 'relative' }}>
           Border Color
-          <ColorPicker
-            value={rgba2hex(borderColor)}
-            onChange={this.changeBorder}
-          />
+          <Space.Compact block className={localStyles.flexCenter}>
+            <ColorPicker
+              swatchClassName={localStyles.swatch}
+              defaultColor="#cccccc"
+              value={_.isObject(borderColor) ? rgba2hex(borderColor) : borderColor}
+              onChange={this.changeBorder}
+            />
+            {borderColor && (
+              <Button
+                onClick={() => this.removeStyle('borderColor')}
+                size="small"
+                type="link"
+                danger
+                icon={<DeleteOutlined />}
+              />
+            )}
+          </Space.Compact>
+
         </div>
         <hr className={styles.divider} />
         <div className={styles.block}>
           Rounded Corners
-          <ChoicesInput value={borderRadius} onChange={this.changeBorderRadius} maxValue={1000} />
+          <Space>
+            <ChoicesInput value={borderRadius || 0} onChange={this.changeBorderRadius} maxValue={1000} />
+            {borderRadius !== undefined && (
+              <Button
+                onClick={() => this.removeStyle('borderRadius')}
+                size="small"
+                type="link"
+                danger
+                icon={<DeleteOutlined />}
+              />
+            )}
+          </Space>
         </div>
         <hr className={styles.divider} />
         <div className={`${styles.block} ${styles.reset}`} onClick={this.reset}>

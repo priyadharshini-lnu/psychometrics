@@ -1,28 +1,44 @@
+import _ from 'lodash'
 import Foundation from '~/modules/reports/components/Foundation'
 import styles from './Shape.less'
+import { joinStyles, useAssignStyle, convertColor } from '../../CommonMethods/styles'
 
-const Text = (props) => {
-  const { module } = props
+const assignStyle = useAssignStyle('Shape')
+
+const Shape = (props) => {
+  const { module, reportStyles } = props
   const {
     backgroundColor, borderColor, borderRadius, shadow, offsetX, offsetY,
   } = module.props.style
 
-  const style = {
-    border: '1px solid',
-    borderRadius,
-  }
-  if (backgroundColor) {
-    style.backgroundColor = `rgba(
-      ${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
-  }
-  if (borderColor) {
-    style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
+  let style = joinStyles(reportStyles, module.props.styleIds)
+  const outerStyle = {}
+
+  style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
+
+  if (!style.border && !module.props.style.borderColor) {
+    style = _.omit(style, ['border', 'borderColor', 'borderWidth', 'borderStyle'])
   }
 
-  const outerStyle = {
-    borderRadius,
-    boxShadow: `${offsetX}px ${offsetY}px ${shadow}px`,
+  style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
+  style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor)) || '#cccccc'
+  style = _.omit(style, 'border')
+
+  if (borderColor && !style.borderWidth) {
+    style.border = `1px solid ${convertColor(borderColor)}`
   }
+
+  outerStyle.borderRadius = style.borderRadius || borderRadius
+
+  if (style.boxShadow?.enabled) {
+    const {
+      x = offsetX, y = offsetY, blur = shadow, spread = 0, color = '#000000',
+    } = style.boxShadow
+    // eslint-disable-next-line max-len
+    outerStyle.boxShadow = `${offsetX || x || 0}px ${offsetY || y || 0}px ${shadow || blur || 0}px ${spread || 0}px ${color}`
+  }
+
+  style = _.omit(style, ['boxShadow'])
 
   if (module.textConditions.length > 0) {
     const {
@@ -30,9 +46,9 @@ const Text = (props) => {
     } = module.getStylesByCondition()
     if (backgroundColor) {
       // eslint-disable-next-line max-len
-      style.backgroundColor = `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, ${backgroundColor.a})`
+      style.backgroundColor = convertColor(backgroundColor)
     }
-    if (borderColor) style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
+    if (borderColor) style.borderColor = convertColor(borderColor)
   }
 
   return (
@@ -42,4 +58,4 @@ const Text = (props) => {
   )
 }
 
-export default Text
+export default Shape

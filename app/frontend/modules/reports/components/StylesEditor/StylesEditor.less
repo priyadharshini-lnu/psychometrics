@@ -1,5 +1,6 @@
 .editor {
   width: 100%;
+  padding: 15px;
 }
 
 .id {
@@ -20,7 +21,7 @@
 }
 
 .divider {
-  margin: 5px -15px;
+  margin: 12px -15px;
   border-color: #ccc;
 }
 
@@ -40,12 +41,9 @@
   }
 }
 
-.colorRow {
-  display: flex;
-  align-items: center;
-  span {
-    margin-left: 5px
-  }
+.borderStyleSelect {
+  width: 100%;
+  min-width: 100px;
 }
 
 .alignedBlock {
@@ -76,4 +74,35 @@
   .flex-start { background-position-x: -69px; }
   .center { background-position-x: -92px; }
   .flex-end { background-position-x: -115px; }
+}
+
+.inline {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  label {
+    font-size: 0.9em;
+  }
+}
+
+.flex1 {
+  flex: 1
+}
+
+
+.flexLabel {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 5px
+  }
+}
+
+.swatch {
+  height: 20px;
+}
+
+.smallInput {
+  width: 50px
 }

@@ -82,7 +82,7 @@ class PropertyFilter extends Component {
 
 
   renderFontFamily () {
-    const { model, reportStyles } = this.props
+    const { model, reportStyles = {} } = this.props
     const textStyles = _.compact((model.props.styleIds || []).map(id => reportStyles[id]))
     const hasStyle = isHasStyle(textStyles, 'fontFamily')
     return (
@@ -98,7 +98,7 @@ class PropertyFilter extends Component {
   }
 
   renderFontSize () {
-    const { model, reportStyles } = this.props
+    const { model, reportStyles = {} } = this.props
     const textStyles = _.compact((model.props.styleIds || []).map(id => reportStyles[id]))
 
     return (
@@ -118,7 +118,7 @@ class PropertyFilter extends Component {
   }
 
   renderFontColor () {
-    const { model, reportStyles } = this.props
+    const { model, reportStyles = {} } = this.props
     const { fontColor } = model.props.style
     const notNullfontColor = fontColor || '#000000'
     const fontColorHex = typeof notNullfontColor === 'object'

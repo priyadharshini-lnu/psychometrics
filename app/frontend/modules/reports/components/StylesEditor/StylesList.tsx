@@ -45,6 +45,13 @@ export const StylesList = ({
     removeStyle(style)
   }
 
+  const boxShadow = (style) => {
+    const bs = style.boxShadow
+    return bs?.enabled
+      ? `${bs.x || 0}px ${bs.y || 0}px ${bs.blur || 0}px ${bs.spread || 0}px ${bs.color}`
+      : undefined
+  }
+
   return (
     <div className={styles.main}>
       {style
@@ -56,13 +63,14 @@ export const StylesList = ({
                 <Popover
                   placement="left"
                   trigger={['hover']}
-                  content={<div style={{ ...item.styles }}>Sample Text</div>}
+                  content={<div style={{ ...item.styles, boxShadow: boxShadow(item.styles) }}>Sample Text</div>}
                 >
-                  <div className={styles.name}>{item.name}</div>
+                  <div onClick={() => showEditor(item)} className={styles.name}>{item.name}</div>
                 </Popover>
                 <div className={styles.icons}>
-                  <Button type="link" icon={<EditOutlined />} onClick={() => showEditor(item)} />
+                  <Button size="small" type="link" icon={<EditOutlined />} onClick={() => showEditor(item)} />
                   <Popconfirm
+                    align={{ offset: [-10, -2] }}
                     zIndex={9999}
                     title="Delete the style"
                     description="Are you sure to delete this style?"
@@ -70,7 +78,7 @@ export const StylesList = ({
                     okText="Yes"
                     cancelText="No"
                   >
-                    <Button type="link" icon={<DeleteOutlined />} />
+                    <Button size="small" type="link" icon={<DeleteOutlined />} />
                   </Popconfirm>
                 </div>
               </div>

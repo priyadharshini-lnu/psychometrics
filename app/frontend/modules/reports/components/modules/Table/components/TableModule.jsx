@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Foundation from '~/modules/reports/components/Foundation'
 import styles from './TableModule.less'
 import Types from './Types'
+import { joinStyles } from '../../CommonMethods/styles'
 
 class TableModule extends Component {
   static propTypes = {
@@ -18,9 +19,21 @@ class TableModule extends Component {
   }
 
   render () {
-    const { preview } = this.props
+    const { preview, module, reportStyles } = this.props
+    const style = joinStyles(reportStyles, module.props.styleIds)
+
+    const outerStyle = {}
+    outerStyle.borderRadius = style.borderRadius
+
+    if (style.boxShadow?.enabled) {
+      const {
+        x, y, blur, spread = 0, color = '#000000',
+      } = style.boxShadow
+      outerStyle.boxShadow = `${x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
+    }
+
     return (
-      <Foundation {...this.props} preview={preview}>
+      <Foundation {...this.props} preview={preview} outerStyle={outerStyle}>
         <div className={styles.table}>
           {this.renderTableType()}
         </div>

@@ -1,5 +1,6 @@
 import Shape from './components/Shape'
 import ShapeProperties from './components/Properties'
+import connect from './connect'
 
 export { ShapeProperties }
-export default Shape
+export default connect(Shape)

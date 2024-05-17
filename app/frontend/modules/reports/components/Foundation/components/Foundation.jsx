@@ -199,6 +199,12 @@ class Foundation extends Component {
         style={style}
         onClick={this.select}
       >
+        <div className={styles.crop}>
+          <div className={cs(styles.corner, styles.topleftcorner)} />
+          <div className={cs(styles.corner, styles.toprightcorner)} />
+          <div className={cs(styles.corner, styles.bottomrightcorner)} />
+          <div className={cs(styles.corner, styles.bottomleftcorner)} />
+        </div>
         <div className={styles.sizeBox} ref={(ref) => { this.mover = ref }}>
           <i
             className={`fa fa-arrows ${styles.mover}`}
