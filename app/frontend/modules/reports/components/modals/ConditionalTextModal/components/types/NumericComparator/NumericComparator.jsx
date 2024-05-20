@@ -42,7 +42,7 @@ export default class NumericComparator extends Component {
           className={`form-control ${comparatorStyles.keyInput}`}
           onChange={this.changeKey}
         >
-          {!condition.props.key && <option />}
+          <option />
           {_.map(data, item => (
             <option key={item.value} value={item.value}>{item.label || item.value}</option>
           ))}
