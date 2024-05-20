@@ -23,3 +23,33 @@ export const AsyncExternalAssessmentTR = t.type({
 })
 
 export type AsyncExternalAssessment = t.TypeOf<typeof AsyncExternalAssessmentTR>
+
+const HoganDataTR = t.type({
+  url: t.string,
+  userId: t.string,
+  password: t.string,
+  uniqueId: t.string,
+  firstName: t.string,
+  lastName: t.string,
+  directAssessmentId: t.string,
+  displayInformedConsent: t.string,
+  returnUrl: t.string,
+  languageId: t.string,
+})
+
+export type HoganData = t.TypeOf<typeof HoganDataTR>
+
+export const AsyncHoganAssessmentTR = t.type({
+  status: t.string,
+  response: t.type({
+    asyncRequestUuid: t.string,
+    processingStatus: t.string,
+    responseType: t.string,
+    responseData: t.union([
+      t.null,
+      HoganDataTR,
+    ]),
+  }),
+})
+
+export type AsyncHoganAssessment = t.TypeOf<typeof AsyncHoganAssessmentTR>

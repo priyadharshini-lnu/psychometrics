@@ -15,7 +15,6 @@ import { ProfileCardTitle } from '~/modules/endUser/modules/campaigns/components
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   fetchCampaigns,
-  loginHogan,
   acceptPolicy,
   FETCH,
 } from '~/modules/endUser/modules/campaigns/core/campaigns'
@@ -39,7 +38,6 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   fetchCampaigns,
-  loginHogan,
   acceptPolicy,
 }
 
@@ -49,7 +47,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 const CampaignListComponent: FC<PropsFromRedux> = ({
   campaigns,
   fetchCampaigns,
-  loginHogan,
   acceptPolicy,
   profileCompletionPercentage,
   profileLastUpdatedAt,
@@ -139,7 +136,6 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                 <Component
                   key={campaign.id}
                   campaign={campaign}
-                  loginHogan={loginHogan}
                   acceptPolicy={acceptPolicy}
                   history={history}
                   fetchCampaigns={fetchCampaigns}

@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
+RSpec.describe EndUser::HoganUserAssessmentsController, type: :controller do
   let(:user) { create(:user, :with_project_membership, :with_photo) }
-  let(:user_assessment) do
-    create(:user_assessment, evaluator: user, pearson_user_assessment: build(:pearson_user_assessment))
-  end
+  let(:assessment) { create(:hogan_assessment) }
+  let(:user_assessment) { create(:user_assessment, assessment: assessment, evaluator: user, subject: user) }
+
   let(:campaign) { user_assessment.campaign }
   let(:async_request_uuid) { "#{uuid}|#{user.id}" }
-  let(:request_params) { { id: user_assessment.id, pearson_user_assessment: { id: user_assessment.id } } }
+  let(:request_params) { { id: user_assessment.id, hogan_user_assessment: { id: user_assessment.id } } }
 
   before(:each) { login_user(user) }
   after(:each) { sign_out(user) }
@@ -18,10 +18,6 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
     before do
       allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(true)
       allow(AsyncRequestHandlerJob).to receive(:perform_later)
-    end
-
-    after(:each) do
-      $redis.flushdb # rubocop:disable Style/GlobalVars
     end
 
     it 'queues the request and sets status to in progress' do
@@ -47,23 +43,6 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
 
         expect(response).to redirect_to(campaign_path(user_assessment.campaign_id))
       end
-    end
-  end
-
-  describe 'GET redirect' do
-    it 'mark user_assessment as completed if saville assessment is completed and redirect to campaign' do
-      allow(Pearson::GetScheduleStatus).to receive(:call!).and_return('Completed')
-      get :redirect, params: { id: user_assessment.id }
-
-      expect(user_assessment.reload.completed?).to eq(true)
-      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
-    end
-
-    it "doesn't mark user_assessment as completed if saville assessment is not completed" do
-      allow(Pearson::GetScheduleStatus).to receive(:call!).and_return('InProgress')
-      get :redirect, params: { id: user_assessment.id }
-
-      expect(user_assessment.reload.completed?).to eq(false)
     end
   end
 end

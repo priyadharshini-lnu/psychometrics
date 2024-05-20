@@ -20,7 +20,6 @@ import {
   reset as resetCampaign,
   resetPracticeCampaign,
 } from '~/modules/endUser/modules/campaigns/core/campaign'
-import { loginHogan } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 
 import { SafeHTML } from '~/components/SafeHTML'
@@ -44,7 +43,6 @@ const connector = connect(
     beginCampaign,
     continueCampaign,
     resetCampaign,
-    loginHogan,
     acceptPolicy,
     resetPracticeCampaign,
   },

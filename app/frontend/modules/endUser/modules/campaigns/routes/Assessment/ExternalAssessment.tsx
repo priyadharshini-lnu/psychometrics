@@ -42,7 +42,11 @@ export const ExternalAssessment: FC<Props> = ({
   })
 
   const process = async () => {
-    if (userAssessmentType === 'Assessments::Saville') {
+    if (
+      userAssessmentType === 'Assessments::Saville'
+      || userAssessmentType === 'Assessments::Pearson'
+      || userAssessmentType === 'Assessments::Iiht'
+    ) {
       makeAsyncRequest()
     } else {
       setLoading(true)

@@ -4,7 +4,6 @@ import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import ApiAction from 'interfaces/ApiAction'
 
 export const FETCH = 'campaignList/FETCH'
-const LOGIN_HOGAN = 'campaignList/LOGIN_HOGAN'
 const ACCEPT_POLICY = 'campaignList/ACCEPT_POLICY'
 
 const CommonCampaignTR = t.type({
@@ -47,28 +46,6 @@ export const fetchCampaigns = (): ApiAction<Campaigns> => ({
     url: '/dashboard',
     typedResponse: CampaignsTR,
     loader: true,
-  },
-})
-
-const HoganDataTR = t.type({
-  url: t.string,
-  userId: t.string,
-  password: t.string,
-  uniqueId: t.string,
-  firstName: t.string,
-  lastName: t.string,
-  directAssessmentId: t.string,
-  displayInformedConsent: t.string,
-  returnUrl: t.string,
-  languageId: t.string,
-})
-export type HoganData = t.TypeOf<typeof HoganDataTR>
-export const loginHogan = (url: string) => ({
-  type: LOGIN_HOGAN,
-  request: {
-    method: 'PUT',
-    url,
-    typedResponse: HoganDataTR,
   },
 })
 

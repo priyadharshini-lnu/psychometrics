@@ -97,16 +97,31 @@ const useAsyncRequestResponse = <T>({
     }
   }
 
-  const makeAsyncRequest = async () => {
+  const makeAsyncRequest = (): Promise<ApiAction<T>> => {
     setAsyncLoading(true)
-    try {
-      const { response } = await postQueueRequest(data)
-      const { asyncRequestUuid } = response
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { response } = await postQueueRequest(data)
+        const { asyncRequestUuid } = response
 
-      intervalIdRef.current = setInterval(() => startPollingForStatus(asyncRequestUuid), pollingInterval * 1000)
-    } catch (error) {
-      message.error(I18n.t('common.errors.something_wrong'))
-    }
+        intervalIdRef.current = setInterval(() => {
+          startPollingForStatus(asyncRequestUuid)
+            .then((pollingResult) => {
+              if (pollingResult) {
+                clearInterval(intervalIdRef.current)
+                resolve(pollingResult)
+              }
+            })
+            .catch((error) => {
+              clearInterval(intervalIdRef.current)
+              reject(error)
+            })
+        }, pollingInterval * 1000)
+      } catch (error) {
+        message.error(I18n.t('common.errors.something_wrong'))
+        reject(error)
+      }
+    })
   }
 
   useEffect(() => () => {

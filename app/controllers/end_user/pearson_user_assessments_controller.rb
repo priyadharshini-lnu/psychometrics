@@ -1,24 +1,13 @@
 # frozen_string_literal: true
 
 class EndUser::PearsonUserAssessmentsController < ApplicationController
+  include AsyncRequestHandler
+
   before_action :set_user_assessment, only: %i[pass redirect]
   before_action :can_start_based_on_sequencing, only: %i[pass]
 
-  def pass
-    campaign = @user_assessment.campaign
-    if @user_assessment.completed?
-      return redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
-    end
-
-    @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
-    @user_assessment.in_progress!
-    pearson_user_assessment = @user_assessment.pearson_user_assessment
-    return redirect_to(pearson_user_assessment.url, allow_other_host: true) if pearson_user_assessment&.url
-
-    ::Pearson::CreateSchedule.call!(@user_assessment)
-
-    redirect_to(pearson_user_assessment.url, allow_other_host: true)
-  end
+  async_request :pass, handler: ::Pearson::StartAssessment,
+    permit_params: ->(params) { params.require(:pearson_user_assessment).permit(:id) }
 
   def redirect
     campaign = @user_assessment.campaign

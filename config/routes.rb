@@ -942,7 +942,7 @@ Rails.application.routes.draw do
       resources :hogan_user_assessments, only: [] do
         member do
           get :redirect
-          put :pass
+          post :pass
         end
       end
 
@@ -968,14 +968,14 @@ Rails.application.routes.draw do
 
       resources :pearson_user_assessments, only: [] do
         member do
-          get :pass
+          post :pass
           get :redirect
         end
       end
 
       resources :iiht_user_assessments, only: [] do
         member do
-          get :pass
+          post :pass
         end
       end
 
