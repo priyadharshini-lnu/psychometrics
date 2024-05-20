@@ -17,6 +17,7 @@ module AllowedPermissions
     ],
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'sms_invites' => %w[view manage],
+    'sms_histories' => %w[view],
     'campaigns' => %w[
       view
       manage
@@ -93,6 +94,7 @@ module AllowedPermissions
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'messages' => %w[email instructions options],
     'sms_invites' => %w[view manage],
+    'sms_histories' => %w[view],
     'results' => %w[
       view_report
       download_report
@@ -132,6 +134,7 @@ module AllowedPermissions
     'campaign_factors' => %w[view manage],
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'sms_invites' => %w[view manage],
+    'sms_histories' => %w[view],
     'communications' => %w[view manage],
     'datasheets' => %w[view manage],
     'registration_codes' => %w[view manage],

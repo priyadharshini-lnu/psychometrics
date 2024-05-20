@@ -260,6 +260,6 @@ const getActionsMenuProps = ({ onEdit, onRemove, permissions }): MenuProps => {
 
   return ({ items: menuItems, onClick: handleMenuClick })
 }
-export const SmsInvites = connecter(
+export const SmsInvitesTable = connecter(
   withEnhancedTable<{}>(SmsInvitesComponent, 'smsInvites', { maintainHistory: true }),
 )

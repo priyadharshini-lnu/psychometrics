@@ -1708,6 +1708,7 @@ en:
       report: Report
       reports: Reports
       scoring: Scoring
+      sms_history: SMS History
       sms_invite: SMS Invite
       threesixty_campaign: Threesixty Campaign Scores
     status:

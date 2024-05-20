@@ -1,1 +1,1 @@
-export { SmsInvites } from './SmsInvite'
+export { SmsInvites } from './SmsInvites'

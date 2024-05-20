@@ -4317,6 +4317,26 @@ en:
         rows: Rows
         settings: Settings
     show: Show
+    sms_histories:
+      columns:
+        created_at: Created At
+        first_name: First Name
+        last_name: Last Name
+        mobile_no: Mobile No
+        price: Price
+        segment_length: Segment Length
+        sent_at: Sent At
+      drawer:
+        title: SMS Details
+      history: History
+      statuses:
+        accepted: Accepted
+        delivered: Delivered
+        failed: Failed
+        queued: Queued
+        scheduled: Scheduled
+        sent: Sent
+        undelivered: Undelivered
     sms_invites:
       actions:
         add: Add SMS Invite
@@ -4337,6 +4357,8 @@ en:
         download_example_csv: Download Example csv
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
         title: SMS Invite import
+      invite:
+        invites: Invites
       messages:
         delete_confirm_text: Are you sure you want to remove SMS Invite with mobile number %{mobile_no}?
         delete_success: SMS Invite was deleted successfully
@@ -4370,6 +4392,10 @@ en:
         export: Export SMS Invites
         import: Import SMS Invites
         send_sms: Send SMS
+    sms_records:
+      columns:
+        id: Id
+        message: Message
     smtp_settings:
       authentication: Authentication
       authentication_type: Authentication Type

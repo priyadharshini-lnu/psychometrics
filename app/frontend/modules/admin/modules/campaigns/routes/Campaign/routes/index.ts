@@ -34,7 +34,7 @@ const routes = [
     routes: [
       { path: '/participants/subjects', component: Subjects },
       { path: '/participants/assessors', component: Assessors },
-      { path: '/participants/sms_invites', component: SmsInvites },
+      { path: '/participants/sms/:tab', component: SmsInvites },
     ],
   },
   {

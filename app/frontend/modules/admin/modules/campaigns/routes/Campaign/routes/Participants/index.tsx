@@ -41,7 +41,7 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions, history, r
     label: I18n.t('administration.participants.tabs.assessors'),
   })
   campaignPermissions.viewSmsInvites && menuItems.push({
-    key: '/participants/sms_invites',
+    key: '/participants/sms/invites',
     label: I18n.t('administration.participants.tabs.sms_invites'),
   })
 
@@ -50,12 +50,25 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions, history, r
       <Menu
         items={menuItems}
         onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        selectedKeys={getActiveLocationPath()}
         mode="horizontal"
       />
       <RouteList routes={routes} urlPrefix={prefix} />
     </div>
   )
+}
+
+const getActiveLocationPath = (): Array<string> => {
+  if (location.href.match(/participants\/subjects/)) {
+    return ['/participants/subjects']
+  }
+  if (location.href.match(/participants\/assessors/)) {
+    return ['/participants/assessors']
+  }
+  if (location.href.match(/participants\/(sms\/invites|sms\/history)/)) {
+    return ['/participants/sms/invites']
+  }
+  return ['']
 }
 
 export const Participants = connector(ParticipantComponent)

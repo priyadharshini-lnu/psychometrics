@@ -1281,6 +1281,10 @@ Rails.application.routes.draw do
           end
 
           resources :campaigns, only: [:update] do
+            scope module: :campaigns do
+              jsonapi_resources :sms_histories, only: %i[index]
+            end
+
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
             jsonapi_resources :workshops, only: %i[index show update] do
