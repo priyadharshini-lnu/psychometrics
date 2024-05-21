@@ -10,6 +10,7 @@ import {
   message,
   Pagination,
   App,
+  Typography,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import {
@@ -251,6 +252,11 @@ const AdminsComponent: React.FC<Props> = ({
               title={I18n.t('administration.administrators.list.columns.email')}
               sorter
               sortOrder={getSortOrder('user.email')}
+              render={(_, { email }) => (
+                <Typography.Paragraph copyable>
+                  {email}
+                </Typography.Paragraph>
+              )}
             />
             <Table.Column
               dataIndex="createdAt"
