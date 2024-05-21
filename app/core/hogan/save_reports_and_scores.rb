@@ -15,7 +15,7 @@ module Hogan
     def call
       Hogan::AddReports.call!(user_reports.reject(&:external_added?))
       user_reports.each do |user_report|
-        next unless user_report.external_added?
+        next unless user_report.reload.external_added?
 
         unless user_report.pdf?
           participant_report = get_participant_report(user_report)
