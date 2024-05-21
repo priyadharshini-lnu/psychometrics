@@ -216,13 +216,17 @@ const UserList: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('administration.dates.started')}
-              key="startedAt"
+              key="campaignUsersStartedAt"
               dataIndex="startedAt"
+              sorter
+              sortOrder={getSortOrder('campaignUsersStartedAt')}
             />
             <Column
               title={I18n.t('administration.dates.completed')}
-              key="completedAt"
+              key="campaignUsersCompletedAt"
               dataIndex="completedAt"
+              sorter
+              sortOrder={getSortOrder('campaignUsersCompletedAt')}
             />
             <Column
               title={I18n.t('administration.campaigns.users.created_by')}
