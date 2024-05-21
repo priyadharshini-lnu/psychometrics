@@ -71,7 +71,7 @@ module CampaignReports
     end
 
     def download_report(user_report)
-      url = URI(user_report.pdf.url)
+      url = URI(user_report.pdf_file.url)
       IO.copy_stream(URI(url.to_s).open, download_path(user_report))
     rescue OpenURI::HTTPError
       Rails.logger.error "Download failed for UserReport with id #{user_report.id}"

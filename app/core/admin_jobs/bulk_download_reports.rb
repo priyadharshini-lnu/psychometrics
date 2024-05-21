@@ -14,7 +14,7 @@ module AdminJobs
           content_tag(:ul) do
             bulk_report.files.map do |file|
               content_tag(:li) do
-                content_tag(:a, file.store_dir, href: file.url)
+                content_tag(:a, file.filename.to_s, href: file.url)
               end
             end.join.html_safe
           end
