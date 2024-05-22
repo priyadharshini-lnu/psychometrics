@@ -1,6 +1,7 @@
 import { FC, MouseEventHandler } from 'react'
 import cs from 'classnames'
 import { RgbaColor } from 'react-colorful'
+import { CloseOutlined } from '@ant-design/icons'
 import { hexToRgba } from '~/utils/color'
 import styles from './colorSwatch.less'
 
@@ -53,7 +54,8 @@ export const ColorSwatchItem:FC<ColorSwatchItemProps> = ({
 }) => {
   let colorObj: RgbaColor
   let backgroundColor = color
-  if (typeof color === 'string') {
+
+  if (color && typeof color === 'string') {
     colorObj = hexToRgba(color)
     backgroundColor = `rgba(${colorObj.r},${colorObj.g},${colorObj.b},${colorObj.a})`
   }
@@ -66,6 +68,8 @@ export const ColorSwatchItem:FC<ColorSwatchItemProps> = ({
       style={{ background: backgroundColor }}
       className={cs([styles.swatchItem, className])}
       type="button"
-    />
+    >
+      {!color && <CloseOutlined />}
+    </button>
   )
 }

@@ -12,6 +12,7 @@ import { addStyle, updateStyle, removeStyle } from '~/modules/reports/core/build
 import { RootState } from '~/modules/reports/core/rootReducers'
 import { Style } from '~/modules/reports/core/interfaces/Report'
 import StylesEditor from './StylesEditor'
+import { stylesPreview } from '../modules/CommonMethods/styles'
 
 const DEFAULT_STYLES = {}
 
@@ -45,13 +46,6 @@ export const StylesList = ({
     removeStyle(style)
   }
 
-  const boxShadow = (style) => {
-    const bs = style.boxShadow
-    return bs?.enabled
-      ? `${bs.x || 0}px ${bs.y || 0}px ${bs.blur || 0}px ${bs.spread || 0}px ${bs.color}`
-      : undefined
-  }
-
   return (
     <div className={styles.main}>
       {style
@@ -63,7 +57,17 @@ export const StylesList = ({
                 <Popover
                   placement="left"
                   trigger={['hover']}
-                  content={<div style={{ ...item.styles, boxShadow: boxShadow(item.styles) }}>Sample Text</div>}
+                  zIndex={9999}
+                  content={(
+                    <div
+                      className={styles.sample}
+                      style={stylesPreview(item.styles)}
+                    >
+                      <div className="w-100">
+                        Sample Text
+                      </div>
+                    </div>
+                  )}
                 >
                   <div onClick={() => showEditor(item)} className={styles.name}>{item.name}</div>
                 </Popover>

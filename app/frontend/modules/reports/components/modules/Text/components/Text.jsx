@@ -21,7 +21,9 @@ import GetText from './GetText'
 import LookupResultTextValue from './LookupResultTextValue'
 import GetStyles from './GetStyles'
 import PipedText from './PipedText'
-import { convertColor, useAssignStyle, joinStyles } from '../../CommonMethods/styles'
+import {
+  convertColor, useAssignStyle, joinStyles, gradientStyle,
+} from '../../CommonMethods/styles'
 
 const assignStyle = useAssignStyle('Text')
 
@@ -134,6 +136,66 @@ class Text extends Component {
   pipedText () {
     const { module, pageNumber, totalPages } = this.props
     return PipedText.run(module, { page_number: pageNumber, total_pages: totalPages })
+  }
+
+  buildStyles (styles, overrides) {
+    const { module } = this.props
+
+    let style = styles
+    const outerStyle = {}
+
+    const {
+      backgroundColor, fontColor, fontFamily, borderColor, borderRadius,
+      fontSize, fontWeight, fontStyle, verticalAlign,
+    } = overrides
+    let { horizontalAlign } = overrides
+
+    horizontalAlign = assignStyle(style, 'textAlign', horizontalAlign)
+
+    if (window.I18n.locale === 'ar' && horizontalAlign === 'left' && I18nStore.isExistTModule(module, 'text')) {
+      horizontalAlign = 'right'
+    }
+
+    if (!style.border && !overrides.borderColor) {
+      style = _.omit(style, ['border', 'borderColor', 'borderWidth', 'borderStyle'])
+    }
+
+    style.color = assignStyle(style, 'color', convertColor(fontColor))
+    style.fontSize = assignStyle(style, 'fontSize', fontSize)
+    style.fontFamily = assignStyle(style, 'fontFamily', fontFamily)
+    style.fontWeight = assignStyle(style, 'fontWeight', fontWeight)
+    style.fontStyle = assignStyle(style, 'fontStyle', fontStyle)
+    style.textAlign = horizontalAlign || assignStyle(style, 'textAlign', '')
+    style.alignItems = verticalAlign || assignStyle(style, 'alignItems', '')
+
+    style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
+    style.borderWidth = assignStyle(style, 'borderWidth')
+    style.borderStyle = assignStyle(style, 'borderStyle')
+    style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
+
+    style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor))
+
+    outerStyle.borderRadius = style.borderRadius || borderRadius
+
+    if (style.boxShadow?.enabled) {
+      const {
+        x, y, blur, spread, color,
+      } = style.boxShadow
+      outerStyle.boxShadow = `${x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
+    }
+
+    if (!backgroundColor && style.gradient?.enabled) {
+      const gradient = gradientStyle(style.gradient)
+      if (gradient) { style.backgroundImage = gradient }
+    }
+
+    style = _.omit(style, ['boxShadow'])
+
+    if (borderColor && !style.borderWidth) {
+      style.border = `1px solid ${convertColor(borderColor)}`
+    }
+
+    return [style, outerStyle]
   }
 
   renderText () {
@@ -266,73 +328,19 @@ class Text extends Component {
       module: model, preview, reportStyles,
     } = this.props
     const { styleIds } = model.props
-    const {
-      backgroundColor, fontColor, fontFamily, borderColor, borderRadius,
-      fontSize, fontWeight, fontStyle, verticalAlign,
-    } = model.props.style
-    let { horizontalAlign } = model.props.style
-
-    let style = joinStyles(reportStyles, styleIds)
-    const outerStyle = {}
-    horizontalAlign = assignStyle(style, 'textAlign', horizontalAlign)
-
-    if (window.I18n.locale === 'ar' && horizontalAlign === 'left' && I18nStore.isExistTModule(model, 'text')) {
-      horizontalAlign = 'right'
-    }
-
-    if (!style.border && !model.props.style.borderColor) {
-      style = _.omit(style, ['border', 'borderColor', 'borderWidth', 'borderStyle'])
-    }
-
-    style.color = assignStyle(style, 'color', convertColor(fontColor))
-    style.fontSize = assignStyle(style, 'fontSize', fontSize)
-    style.fontFamily = assignStyle(style, 'fontFamily', fontFamily)
-    style.fontWeight = assignStyle(style, 'fontWeight', fontWeight)
-    style.fontStyle = assignStyle(style, 'fontStyle', fontStyle)
-    style.textAlign = horizontalAlign || assignStyle(style, 'textAlign', '')
-    style.alignItems = verticalAlign || assignStyle(style, 'alignItems', '')
-
-    style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
-    style.borderWidth = assignStyle(style, 'borderWidth')
-    style.borderStyle = assignStyle(style, 'borderStyle')
-    style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
-
-    style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor))
-    outerStyle.borderRadius = style.borderRadius || borderRadius
-
-    if (style.boxShadow?.enabled) {
-      const {
-        x, y, blur, spread, color,
-      } = style.boxShadow
-      outerStyle.boxShadow = `${x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
-    }
-
-    style = _.omit(style, ['boxShadow'])
-
-    if (borderColor && !style.borderWidth) {
-      style.border = `1px solid ${convertColor(borderColor)}`
-    }
+    let [style, outerStyle] = this.buildStyles(joinStyles(reportStyles, styleIds), model.props.style)
 
     if (model.props.sourceType === 'ConditionalText'
       || (model.props.sourceType === 'ConditionalFactorOccupationText' && model.props.basedOn === 'factor')) {
-      let styles = {}
+      let styles = null
       if (model.props.sourceType === 'ConditionalFactorOccupationText') {
         styles = GetStyles.run(model)
       } else {
         styles = model.getStylesByCondition()
       }
-      const {
-        backgroundColor, fontColor, fontFamily, borderColor, fontSize,
-      } = styles
-      if (backgroundColor) {
-        style.backgroundColor = convertColor(backgroundColor)
+      if (styles) {
+        [style, outerStyle] = this.buildStyles(joinStyles(reportStyles, styles.styleIds), styles)
       }
-      if (borderColor) {
-        style.borderColor = convertColor(borderColor)
-      }
-      if (fontColor) style.color = fontColor
-      if (fontSize) style.fontSize = fontSize
-      if (fontFamily) style.fontFamily = fontFamily
     }
 
     return (

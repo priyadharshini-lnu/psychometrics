@@ -11,6 +11,17 @@ enum Types {
   Graph = 'Graph',
 }
 
+interface Point {
+  position: number,
+  color: string
+}
+interface Gradient {
+  enabled: boolean
+  type: 'linear' | 'radial'
+  degree: number
+  points: Point[]
+}
+
 export const isDefault = (moduleType = 'Text', style, val) => _.isEqual(
   DefaultProps[moduleType].style[style], val,
 )
@@ -38,7 +49,34 @@ const assignStyle = (moduleType, style, styleName, value) => {
 }
 
 export const joinStyles = (reportStyles, styleIds) => {
-  const textStyles: Style[] = _.compact((styleIds || []).map(id => reportStyles[id]))
+  const moduleStyles: Style[] = _.compact((styleIds || []).map(id => reportStyles[id]))
 
-  return textStyles.reduce((styles, style) => ({ ...styles, ...style.styles }), {})
+  return moduleStyles.reduce((styles, style) => ({ ...styles, ...style.styles }), {})
+}
+
+
+export const gradientStyle = (gradient: Gradient) => {
+  if (!gradient?.enabled) { return }
+
+  if (gradient.type === 'linear') {
+    // eslint-disable-next-line max-len
+    return `linear-gradient(${gradient.degree}deg, ${_.map(gradient.points, p => `${p.color} ${p.position}%`).join(', ')})`
+  }
+
+  if (gradient.type === 'radial') {
+    return `radial-gradient(circle, ${_.map(gradient.points, p => `${p.color} ${p.position}%`).join(', ')})`
+  }
+
+  return undefined
+}
+
+
+export const stylesPreview = (styles) => {
+  const bs = styles.boxShadow
+  const boxShadow = bs?.enabled
+    ? `${bs.x || 0}px ${bs.y || 0}px ${bs.blur || 0}px ${bs.spread || 0}px ${bs.color}`
+    : undefined
+  const gradient = gradientStyle(styles.gradient)
+
+  return { ...styles, boxShadow, ...(gradient ? { backgroundImage: gradient } : {}) }
 }

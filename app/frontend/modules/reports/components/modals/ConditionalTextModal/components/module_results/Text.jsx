@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Select, Tag } from 'antd'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { ColorPicker } from '~/glint'
@@ -7,6 +8,7 @@ import {
   FONTS, FONT_MIN_SIZE, FONT_MAX_SIZE,
 } from '~/modules/reports/components/PropertyFonts/components/PropertyFonts'
 import styles from '../ConditionalTextModal.less'
+import { joinStyles, stylesPreview } from '~/modules/reports/components/modules/CommonMethods/styles'
 
 export class ConditionCollection extends Component {
   static propTypes = {
@@ -49,6 +51,18 @@ export class ConditionCollection extends Component {
     this.forceUpdate()
   }
 
+  changeStyles = (ids) => {
+    const { model } = this.props
+    model.styles.styleIds = ids
+    this.forceUpdate()
+  }
+
+  removeStyle = (style) => {
+    const { model } = this.props
+    model.styles = _.omit(model.styles, style)
+    this.forceUpdate()
+  }
+
   renderFontFamily () {
     const { model } = this.props
     const { fontFamily } = model.styles
@@ -82,7 +96,7 @@ export class ConditionCollection extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, reportStyles } = this.props
     const { fontColor, fontSize, fontFamily } = model.styles
     let { backgroundColor, borderColor } = model.styles
     backgroundColor = backgroundColor || {
@@ -107,8 +121,9 @@ export class ConditionCollection extends Component {
       fontFamily,
     }
 
+
     return (
-      <div>
+      <div ref={(ref) => { this.div = ref }}>
         Then show the following text:
         <textarea
           ref={(ref) => { this.textarea = ref }}
@@ -117,24 +132,49 @@ export class ConditionCollection extends Component {
           onChange={this.changeText}
           style={{ width: '100%', display: 'inline-block', ...style }}
         />
-        <div className={styles.stylesBlock}>
-          and apply the following styles:
-          <div>
-            {this.renderFontFamily()}
-            <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-              {this.renderFontSize()}
-              {this.renderFontColor()}
+        <div className={styles.row}>
+          <div className={styles.stylesBlock}>
+            and apply the following styles:
+            <div>
+              {this.renderFontFamily()}
+              <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+                {this.renderFontSize()}
+                {this.renderFontColor()}
+              </div>
+            </div>
+            <div className={styles.row}>
+              <div className={styles.block} style={{ position: 'relative' }}>
+                Background Color
+                <ColorPicker value={rgba2hex(backgroundColor)} onChange={this.changeBg} />
+              </div>
+              <div className={styles.block} style={{ position: 'relative' }}>
+                Border Color
+                <ColorPicker value={rgba2hex(borderColor)} onChange={this.changeBorder} />
+              </div>
             </div>
           </div>
-          <div className={styles.row}>
-            <div className={styles.block} style={{ position: 'relative' }}>
-              Background Color
-              <ColorPicker value={rgba2hex(backgroundColor)} onChange={this.changeBg} />
-            </div>
-            <div className={styles.block} style={{ position: 'relative' }}>
-              Border Color
-              <ColorPicker value={rgba2hex(borderColor)} onChange={this.changeBorder} />
-            </div>
+          <div className={styles.stylesBlock} style={{ position: 'relative' }}>
+            or following style sets
+            <div style={{
+              unset: 'all', width: 200, height: 50, ...stylesPreview(joinStyles(reportStyles, model.styles.styleIds)),
+            }}
+            />
+            <Select
+              mode="tags"
+              size="small"
+              showSearch
+              getPopupContainer={() => this.div}
+              filterOption={(input, option) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              style={{ width: '100%', zIndex: 9999 }}
+              value={model.styles.styleIds?.filter(s => reportStyles[s])}
+              options={_.map(reportStyles, style => ({ value: style.id, label: style.name }))}
+              tagRender={({ label, onClose }) => (
+                <Tag color="green" closable onClose={onClose}>
+                  {label}
+                </Tag>
+              )}
+              onChange={this.changeStyles}
+            />
           </div>
         </div>
       </div>

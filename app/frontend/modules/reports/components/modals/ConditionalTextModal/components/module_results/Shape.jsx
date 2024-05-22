@@ -1,8 +1,11 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Select, Tag } from 'antd'
+import _ from 'lodash'
 import { ColorPicker } from '~/glint'
 import { rgba2hex } from '~/utils/color'
 import styles from '../ConditionalTextModal.less'
+import { joinStyles, stylesPreview } from '~/modules/reports/components/modules/CommonMethods/styles'
 
 export class ConditionCollection extends Component {
   static propTypes = {
@@ -21,8 +24,15 @@ export class ConditionCollection extends Component {
     this.forceUpdate()
   }
 
-  render () {
+  changeStyles = (ids) => {
     const { model } = this.props
+    model.styles.styleIds = ids
+    this.forceUpdate()
+  }
+
+
+  render () {
+    const { model, reportStyles } = this.props
     let { backgroundColor, borderColor } = model.styles
     backgroundColor = backgroundColor || {
       r: '238',
@@ -47,7 +57,7 @@ export class ConditionCollection extends Component {
     }
 
     return (
-      <div>
+      <div ref={(ref) => { this.div = ref }} className={styles.row}>
         <div className={styles.stylesBlock}>
           and apply the following styles:
           <div style={style} />
@@ -61,6 +71,26 @@ export class ConditionCollection extends Component {
               <ColorPicker value={rgba2hex(borderColor)} colorPickerPosition="bottom" onChange={this.changeBorder} />
             </div>
           </div>
+        </div>
+        <div className={styles.stylesBlock} style={{ position: 'relative' }}>
+          or following style sets
+          <div style={{ width: 200, height: 50, ...stylesPreview(joinStyles(reportStyles, model.styles.styleIds)) }} />
+          <Select
+            mode="tags"
+            size="small"
+            showSearch
+            getPopupContainer={() => this.div}
+            filterOption={(input, option) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            style={{ width: '100%', zIndex: 9999 }}
+            value={model.styles.styleIds?.filter(s => reportStyles[s])}
+            options={_.map(reportStyles, style => ({ value: style.id, label: style.name }))}
+            tagRender={({ label, onClose }) => (
+              <Tag color="green" closable onClose={onClose}>
+                {label}
+              </Tag>
+            )}
+            onChange={this.changeStyles}
+          />
         </div>
       </div>
     )

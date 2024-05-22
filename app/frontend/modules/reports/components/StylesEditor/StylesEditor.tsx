@@ -2,15 +2,17 @@ import { useState } from 'react'
 import {
   Space, Button, Select,
   InputNumber,
-  Checkbox,
+  Checkbox, Radio,
+  Slider,
 } from 'antd'
 import {
-  CopyOutlined, SnippetsOutlined,
+  CopyOutlined, SnippetsOutlined, DeleteOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
 import styles from './StylesEditor.less'
 import LabelEditor from '../LabelEditor'
 import { ColorPicker } from '~/glint'
+import { gradientStyle, stylesPreview } from '../modules/CommonMethods/styles'
 
 export const FONTS = {
   Arial: 'arial, helvetica, sans-serif',
@@ -48,6 +50,14 @@ export const TEXT_DECORATIONS = {
   'underline overline': 'Underline Overline',
 }
 
+const DEFAULT_GRADIENT = {
+  enabled: true,
+  type: 'linear',
+  degree: 90,
+  points: [{ color: '#000000', position: 0 }, { color: '#ffffff', position: 100 }],
+}
+
+
 export const StylesEditor = ({ style, onSave, onCancel }) => {
   const [data, setData] = useState(style)
   const [, fontSize, size] = (data.styles.fontSize || '').match(/(\d+)([\w%]+)/) || []
@@ -62,13 +72,26 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
     if ((value === false || value === 0) ? true : value) {
       setData({ ...data, styles: { ...data.styles, [styleName]: value } })
     } else {
-      setData({ ...data, styles: { ..._.omit(data.styles, styleName) } })
+      removeStyle(styleName)
     }
+  }
+
+  const removeStyle = (styleName) => {
+    setData({ ...data, styles: { ..._.omit(data.styles, styleName) } })
   }
 
   const changeBoxShadow = (updates) => {
     const styles = { ...data.styles, boxShadow: { ...(data.styles.boxShadow || {}), ...updates } }
 
+    setData({ ...data, styles })
+  }
+
+  const changeGradient = (updates) => {
+    if (!data.styles.gradient) {
+      return setData({ ...data, styles: { ...data.styles, gradient: { ...DEFAULT_GRADIENT } } })
+    }
+
+    const styles = { ...data.styles, gradient: { ...(data.styles.gradient || {}), ...updates } }
     setData({ ...data, styles })
   }
 
@@ -99,10 +122,6 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
       } catch (e) { /* empty */ }
     })
   }
-  const bs = get('boxShadow')
-  const boxShadow = bs?.enabled
-    ? `${bs.x || 0}px ${bs.y || 0}px ${bs.blur || 0}px ${bs.spread || 0}px ${bs.color}`
-    : undefined
 
   return (
     <div className={styles.editor}>
@@ -117,7 +136,14 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         />
       </div>
       <hr className={styles.divider} />
-      <div style={{ ...data.styles, boxShadow }}>Sample Text</div>
+      <div
+        className={styles.preview}
+        style={stylesPreview(data.styles)}
+      >
+        <div className="w-100">
+          Sample Text
+        </div>
+      </div>
       <hr className={styles.divider} />
       <Select
         value={get('fontFamily')}
@@ -160,35 +186,35 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
       >
         {_.map(TEXT_DECORATIONS, (value, key) => <Select.Option value={key} key={key}>{value}</Select.Option>)}
       </Select>
-      <hr className={styles.divider} />
-      <div className={styles.flexLabel}>
-        <ColorPicker
-          swatchClassName={styles.swatch}
-          defaultColor="#333333"
-          getValueInHexFormat
-          value={get('color')}
-          onChange={val => changeStyle('color', val)}
-        />
-        <span>Color</span>
-      </div>
-      <hr className={styles.divider} />
-      <Space direction="vertical">
-        <span>Font Size</span>
-        <div className={styles.fontSize}>
-          <InputNumber
-            value={fontSize}
-            onChange={changeFontSize}
-            size="small"
-            className={styles.input}
-            min={1}
-            max={500}
+      <Space direction="vertical" style={{ marginTop: 5 }}>
+        <div className={styles.flexLabel}>
+          <ColorPicker
+            swatchClassName={styles.swatch}
+            getValueInHexFormat
+            value={get('color')}
+            onChange={val => changeStyle('color', val)}
+            onClear={() => removeStyle('color')}
           />
-          <Select value={points} onChange={changePoints} size="small" className={styles.select}>
-            <Select.Option value="px">px</Select.Option>
-            <Select.Option value="em">em</Select.Option>
-            <Select.Option value="%">%</Select.Option>
-          </Select>
+          <span>Font Color</span>
         </div>
+        <Space direction="vertical">
+          <span>Font Size</span>
+          <div className={styles.fontSize}>
+            <InputNumber
+              value={fontSize}
+              onChange={changeFontSize}
+              size="small"
+              className={styles.input}
+              min={1}
+              max={500}
+            />
+            <Select value={points} onChange={changePoints} size="small" className={styles.select}>
+              <Select.Option value="px">px</Select.Option>
+              <Select.Option value="em">em</Select.Option>
+              <Select.Option value="%">%</Select.Option>
+            </Select>
+          </div>
+        </Space>
       </Space>
       <hr className={styles.divider} />
 
@@ -262,16 +288,15 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
           <div className={styles.flexLabel}>
             <ColorPicker
               swatchClassName={styles.swatch}
-              defaultColor="#333333"
               getValueInHexFormat
               value={get('borderColor')}
               onChange={val => changeStyle('borderColor', val)}
+              onClear={() => removeStyle('borderColor')}
             />
             <span>Border Color</span>
           </div>
         </Space>
       )}
-      <hr className={styles.divider} />
       <Space direction="vertical">
         Border Radius
         <Space>
@@ -287,19 +312,97 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
         </Space>
       </Space>
       <hr className={styles.divider} />
-      <Space direction="vertical">
-        Background Color
+      <Space direction="vertical" className="w-100">
+        Background
 
         <div className={styles.flexLabel}>
           <ColorPicker
             swatchClassName={styles.swatch}
-            defaultColor="#333333"
             getValueInHexFormat
             value={get('backgroundColor')}
             onChange={val => changeStyle('backgroundColor', val)}
+            onClear={() => removeStyle('backgroundColor')}
           />
-          <span>Color</span>
+          <span>Background Color</span>
         </div>
+
+        <Space>
+          <Checkbox
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={get('gradient')?.enabled}
+            onChange={e => changeGradient({ enabled: e.target.checked })}
+          />
+          Gradient
+        </Space>
+
+        {get('gradient')?.enabled && (
+          <>
+            <div className={styles.gradientPreview} style={{ background: gradientStyle(get('gradient')) }} />
+            <Radio.Group
+              size="small"
+              options={[{ label: 'Linear', value: 'linear' }, { label: 'Radial', value: 'radial' }]}
+              onChange={({ target: { value } }) => changeGradient({ type: value })}
+              value={get('gradient')?.type || 'linear'}
+              optionType="button"
+            />
+              {get('gradient').type === 'linear' && (
+              <Space direction="vertical">
+                Gradient Degree
+                <Slider
+                  value={get('gradient').degree}
+                  min={0}
+                  max={360}
+                  defaultValue={0}
+                  onChange={val => changeGradient({ degree: val })}
+                />
+              </Space>
+              )}
+              {get('gradient').points.map((point, index) => (
+                <div key={index}>
+                  <div className={styles.point}>
+                    <ColorPicker
+                      swatchClassName={styles.swatch}
+                      getValueInHexFormat
+                      value={point.color}
+                      onChange={val => changeGradient({
+                        points: _.map(get('gradient').points, (p, i) => (i === index ? { ...p, color: val } : p)),
+                      })}
+                    />
+                    <Slider
+                      className="w-100"
+                      value={point.position}
+                      min={0}
+                      max={100}
+                      onChange={val => changeGradient({
+                        points: _.map(get('gradient').points, (p, i) => (i === index ? { ...p, position: val } : p)),
+                      })}
+                    />
+                    <Button
+                      onClick={() => changeGradient({
+                        points: _.filter(get('gradient').points, (p, i) => i !== index),
+                      })}
+                      disabled={index < 2}
+                      type="link"
+                      className="ms-5"
+                      size="small"
+                      icon={<DeleteOutlined />}
+                    />
+                  </div>
+                </div>
+              ))}
+            <Button
+              size="small"
+              onClick={() => {
+                changeGradient({
+                  points: [...get('gradient').points, { color: '#000000', position: 100 }],
+                })
+              }}
+            >
+              Add Point
+            </Button>
+          </>
+        )}
       </Space>
       <hr className={styles.divider} />
       <div>
@@ -362,7 +465,6 @@ export const StylesEditor = ({ style, onSave, onCancel }) => {
           <div className={styles.flexLabel}>
             <ColorPicker
               swatchClassName={styles.swatch}
-              defaultColor="#000000"
               getValueInHexFormat
               value={get('boxShadow')?.color}
               onChange={val => changeBoxShadow({ color: val })}

@@ -1,33 +1,32 @@
 import _ from 'lodash'
 import Foundation from '~/modules/reports/components/Foundation'
 import styles from './Shape.less'
-import { joinStyles, useAssignStyle, convertColor } from '../../CommonMethods/styles'
+import {
+  joinStyles, useAssignStyle, convertColor, gradientStyle,
+} from '../../CommonMethods/styles'
 
 const assignStyle = useAssignStyle('Shape')
 
-const Shape = (props) => {
-  const { module, reportStyles } = props
+const buildeStyles = (styles, overrides) => {
+  let style = styles
+  const outerStyle = {}
   const {
     backgroundColor, borderColor, borderRadius, shadow, offsetX, offsetY,
-  } = module.props.style
-
-  let style = joinStyles(reportStyles, module.props.styleIds)
-  const outerStyle = {}
+  } = overrides
 
   style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
 
-  if (!style.border && !module.props.style.borderColor) {
+  if (!style.border && !borderColor) {
     style = _.omit(style, ['border', 'borderColor', 'borderWidth', 'borderStyle'])
   }
 
   style.borderColor = assignStyle(style, 'borderColor', convertColor(borderColor))
-  style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor)) || '#cccccc'
+  style.backgroundColor = assignStyle(style, 'backgroundColor', convertColor(backgroundColor))
   style = _.omit(style, 'border')
 
   if (borderColor && !style.borderWidth) {
     style.border = `1px solid ${convertColor(borderColor)}`
   }
-
   outerStyle.borderRadius = style.borderRadius || borderRadius
 
   if (style.boxShadow?.enabled) {
@@ -38,17 +37,25 @@ const Shape = (props) => {
     outerStyle.boxShadow = `${offsetX || x || 0}px ${offsetY || y || 0}px ${shadow || blur || 0}px ${spread || 0}px ${color}`
   }
 
-  style = _.omit(style, ['boxShadow'])
+  if (!backgroundColor && style.gradient?.enabled) {
+    const gradient = gradientStyle(style.gradient)
+    if (gradient) { style.backgroundImage = gradient }
+  }
+  style = _.omit(style, ['boxShadow', 'gradient'])
+
+  return [style, outerStyle]
+}
+
+const Shape = (props) => {
+  const { module, reportStyles } = props
+
+  let [style, outerStyle] = buildeStyles(joinStyles(reportStyles, module.props.styleIds), module.props.style)
 
   if (module.textConditions.length > 0) {
-    const {
-      backgroundColor, borderColor,
-    } = module.getStylesByCondition()
-    if (backgroundColor) {
-      // eslint-disable-next-line max-len
-      style.backgroundColor = convertColor(backgroundColor)
+    const styles = module.getStylesByCondition()
+    if (styles) {
+      [style, outerStyle] = buildeStyles(joinStyles(reportStyles, styles.styleIds), styles)
     }
-    if (borderColor) style.borderColor = convertColor(borderColor)
   }
 
   return (
