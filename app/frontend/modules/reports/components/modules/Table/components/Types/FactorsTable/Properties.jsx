@@ -336,10 +336,10 @@ class Properties extends Component {
           <div className="margin-top-10">Number Precision</div>
           <label className={styles.inputLabel}>
             <ChoicesInput
-              value={model.props.precision || 0}
+              value={model.props.precision}
               onChange={this.changePrecision}
               minValue={0}
-              maxValue={10}
+              maxValue={9}
             />
           </label>
         </div>

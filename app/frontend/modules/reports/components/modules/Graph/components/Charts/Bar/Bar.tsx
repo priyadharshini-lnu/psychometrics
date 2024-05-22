@@ -97,7 +97,7 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
     const series = checkAndFilterValues(
       data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors),
     )
-    series[0].data[0].y = 90.5
+
     const format = data.format
       ? data.format(model.props.dataFormat)
       : Formats[model.props.dataFormat](model.props.precision)
