@@ -12,6 +12,7 @@ type PageFooterProps = {
 
 export const PageFooter: FC<PageFooterProps> = ({ footerLeft, footerMiddle, footerRight }) => {
   const colSpan = footerLeft ? 8 : 12
+  const colSpanMid = footerLeft ? colSpan + 4 : colSpan + 2
   return (
     <Layout.Footer className={styles['page-footer']}>
       <Row align="middle" justify="space-between">
@@ -23,7 +24,7 @@ export const PageFooter: FC<PageFooterProps> = ({ footerLeft, footerMiddle, foot
         <Col
           className={cs({ [styles['footer-middle']]: footerLeft, [styles['footer-left']]: !footerLeft })}
           span={colSpan}
-          xs={colSpan + 4}
+          xs={colSpanMid}
         >
           {footerMiddle}
         </Col>
