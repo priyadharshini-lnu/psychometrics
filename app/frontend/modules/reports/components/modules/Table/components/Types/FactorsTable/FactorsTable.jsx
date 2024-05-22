@@ -245,8 +245,9 @@ class FactorsTable extends Component {
           tableStyle = 'default', minPosition, maxPosition, reverseOrder, source: { factors },
           showDescription, showIcons, showStrengthsBlindspots, showScore, showName, showLabel,
           scoreProgressColor, scoreBackgroundColor, maxScoreValue,
-          scoreDisplay = 'circular', scoreRanges = [],
+          scoreDisplay = 'circular', scoreRanges = [], precision,
         } = model.props
+
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
 
         const score = _.round(normedOrRawMeanScore, 1)
@@ -306,7 +307,7 @@ class FactorsTable extends Component {
                   tableStyle === 'default' && scoreDisplay === 'circular' && (
                     <PieGraph
                       strokeWidth="10"
-                      text={score}
+                      text={_.isNil(precision) ? score : _.round(score, precision)}
                       percent={Math.min(percent, 100)}
                       progressColor={scoreProgressColor}
                       backgroundColor={scoreBackgroundColor}

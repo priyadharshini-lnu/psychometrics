@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import Highcharts, { Chart, AxisLabelsFormatterContextObject } from 'highcharts'
 import Highcharts3D from 'highcharts/highcharts-3d'
 import CustomEvents from 'highcharts-custom-events'
+import _ from 'lodash'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 import { Factor } from '~/modules/reports/interfaces/Base'
 import { SourceModel } from '~/modules/reports/interfaces/graphs/Base'
@@ -11,16 +12,15 @@ import { changeLabel } from '../LabelChanger'
 import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
 import Series from './Series'
-
 import styles from './styles.less'
 
 Highcharts3D(Highcharts)
 CustomEvents(Highcharts)
 
 const Formats = {
-  Count: '{point.y}',
-  Mean: '{point.y:.1f}',
-  Percentile: '{point.y:.1f}%',
+  Count: precision => (_.isNil(precision) ? '{point.y}' : `{point.y:.${precision}f}`),
+  Mean: precision => (_.isNil(precision) ? '{point.y:.1f}' : `{point.y:.${precision}f}`),
+  Percentile: precision => (_.isNil(precision) ? '{point.y:.1f}%' : `{point.y:.${precision}f}%`),
 }
 
 interface Props {
@@ -97,7 +97,11 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
     const series = checkAndFilterValues(
       data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors),
     )
-    const format = data.format ? data.format(model.props.dataFormat) : Formats[model.props.dataFormat]
+    series[0].data[0].y = 90.5
+    const format = data.format
+      ? data.format(model.props.dataFormat)
+      : Formats[model.props.dataFormat](model.props.precision)
+
     if (!series.length) {
       return null
     }

@@ -12,6 +12,7 @@ import { ColorPicker } from '~/glint'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
+import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
 
 const ALL_FACTORS = 'All Factors'
@@ -99,6 +100,12 @@ class Properties extends Component {
     const { model } = this.props
     model.props[propName] = e.currentTarget.value
     model.update()
+  }
+
+  changePrecision = (val) => {
+    const { model } = this.props
+    model.props.precision = val
+    this.update()
   }
 
   update = () => {
@@ -324,6 +331,17 @@ class Properties extends Component {
             onBlur={e => this.changeProp('maxScoreValue', e)}
             size="small"
           />
+        </div>
+        <div className={styles.block} style={{ position: 'relative' }}>
+          <div className="margin-top-10">Number Precision</div>
+          <label className={styles.inputLabel}>
+            <ChoicesInput
+              value={model.props.precision || 0}
+              onChange={this.changePrecision}
+              minValue={0}
+              maxValue={10}
+            />
+          </label>
         </div>
         <hr className={styles.divider} />
         <div className="margin-top-10">
