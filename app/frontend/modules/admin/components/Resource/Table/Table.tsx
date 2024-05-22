@@ -5,6 +5,7 @@ import { ExpandableConfig } from 'antd/lib/table/interface'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useResourceContext } from '../ResourceContext'
 import { Column } from '../Column'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 
 const { Column: AntColumn } = AntTable
 
@@ -47,6 +48,7 @@ export const Table: FC<Props> = ({
       })}
     </AntTable>
   )
+
   return (
     <>
       <TableLayout
@@ -55,6 +57,7 @@ export const Table: FC<Props> = ({
         recordCount={resource.meta.recordCount}
         loading={tableLoading}
         requestStatus={resource.requests.fetch?.status}
+        failureMsg={getErrorMsgFromJsonApiRequests(resource.requests)}
       />
       {pagination && (
         <Pagination

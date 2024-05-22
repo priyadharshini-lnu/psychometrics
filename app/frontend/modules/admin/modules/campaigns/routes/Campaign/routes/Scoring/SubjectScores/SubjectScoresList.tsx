@@ -11,6 +11,7 @@ import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { CampaignFactorGroup } from '../ScoringGroups/GroupCard'
 import { CampaignFactor } from '../ScoringGroups/Factor'
 import { ToolsDropdown } from './ToolsDropdown'
@@ -284,6 +285,7 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
             recordCount={meta.recordCount}
             loading={false}
             requestStatus={requests.fetch?.status}
+            failureMsg={getErrorMsgFromJsonApiRequests(requests)}
           />
           <Pagination
             current={currentPage}

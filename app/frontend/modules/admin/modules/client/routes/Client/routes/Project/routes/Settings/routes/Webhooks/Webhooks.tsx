@@ -8,6 +8,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useResources } from '~/hooks/useResources'
 import { UpdateResource, BaseMeta } from '~/hooks/useResources/interfaces'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
@@ -212,6 +213,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
         recordCount={meta.recordCount}
         loading={tableLoading}
         requestStatus={requests.fetch?.status}
+        failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />
       <Modals modals={MODALS} />
     </>

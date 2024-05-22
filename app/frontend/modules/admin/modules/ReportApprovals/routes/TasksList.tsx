@@ -9,6 +9,7 @@ import dayjs from '~/utils/dayjs'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { Campaign, User } from '../core'
 
@@ -119,7 +120,6 @@ const TasksListComponent: React.FC<Props> = ({
       filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
     }
   }
-
 
   const TasksTable = (
     <>
@@ -240,6 +240,7 @@ const TasksListComponent: React.FC<Props> = ({
         recordCount={meta.recordCount}
         loading={tableLoading}
         requestStatus={requests.fetch?.status}
+        failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />
     </>
   )

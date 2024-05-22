@@ -6,6 +6,7 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import {
   ReportApprovalSettings,
   ReportApprovalSettingsTR,
@@ -181,6 +182,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
         recordCount={meta.recordCount}
         loading={tableLoading}
         requestStatus={requests.fetch?.status}
+        failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />
       <Modals modals={MODALS} />
     </>

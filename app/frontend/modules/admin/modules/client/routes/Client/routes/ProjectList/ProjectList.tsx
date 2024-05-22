@@ -27,6 +27,7 @@ import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import Modals from '~/modules/admin/components/Modals/'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { Project, ProjectTR } from '~/modules/admin/modules/client/core/projects'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
@@ -285,10 +286,6 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
     </Space>
   )
 
-  const errors = requests.fetch?.errors
-  const errorTitle = _.get(errors, '[0].base[0].title') || ''
-  const errorDescription = _.get(errors, '[0].base[0].detail') || ''
-
   return (
     <>
       <TableLayout
@@ -297,7 +294,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         recordCount={meta.recordCount}
         loading={tableLoading}
         requestStatus={requests.fetch?.status}
-        failureMsg={errorTitle + errorDescription}
+        failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />
       <Modals modals={MODALS} />
     </>
