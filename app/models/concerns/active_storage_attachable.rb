@@ -10,6 +10,28 @@ module ActiveStorageAttachable
     icon: { resize_to_fit: [50, 50] }
   }.freeze
 
+  included do
+    after_create do
+      customize_attachment_path
+    end
+  end
+
+  def customize_attachment_path
+    self.class.attachment_reflections.each_key do |attribute|
+      next unless send(attribute).attached?
+
+      attachment = send(attribute)
+
+      if attachment.is_a?(ActiveStorage::Attached::One)
+        attachment.blob.key = attachment_storage_path(attribute, attachment.blob.filename)
+      else
+        attachment.blobs.each do |blob|
+          blob.key = attachment_storage_path(attribute, blob.filename)
+        end
+      end
+    end
+  end
+
   # rubocop:disable Metrics/BlockLength
   # rubocop:disable Naming/PredicateName
   class_methods do

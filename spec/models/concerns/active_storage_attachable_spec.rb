@@ -142,7 +142,7 @@ describe ActiveStorageAttachable do
     end
 
     it 'stores correct attachment key' do
-      expect(@bulk_report.files.first.key).to match(%r{private/bulk_report/files/\w+_archive.zip})
+      expect(@bulk_report.files.first.key).to match(%r{private/bulk_report/#{@bulk_report.id}/files/\w+_archive.zip})
     end
   end
 end

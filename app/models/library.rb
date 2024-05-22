@@ -28,7 +28,6 @@ class Library < ApplicationRecord
   # folder, image, audio, video, other
   before_save :detected_type
   before_create :set_name, unless: proc { folder? }
-  after_create :customize_attachment_path
 
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -72,15 +71,5 @@ class Library < ApplicationRecord
 
   def set_name
     self.name = file.filename if name.blank?
-  end
-
-  private
-
-  def customize_attachment_path
-    if file.attached?
-      new_blob_key = "public/library/#{id}/file/#{file.blob.filename}"
-
-      file.blob.update!(key: new_blob_key)
-    end
   end
 end

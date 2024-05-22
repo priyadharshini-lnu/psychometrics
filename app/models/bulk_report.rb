@@ -10,7 +10,7 @@ class BulkReport < ApplicationRecord
   validates :files, content_type: %w[zip]
 
   def attachment_storage_path(attribute_name, filename)
-    "private/bulk_report/#{attribute_name}/#{filename}"
+    "private/bulk_report/#{id}/#{attribute_name}/#{filename}"
   end
 
   def input_dir
