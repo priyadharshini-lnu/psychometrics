@@ -1158,6 +1158,8 @@ providers:
           - 430A9596-D773-4C24-9B83-2A96E7168679
           - 8D285935-9DF4-4D1B-B66A-CCB4C823DD6B
           - 53750F89-D185-4A0A-B6F4-C4676F50AC48
+          - 11409F66-8129-4451-BD3F-909E4D66F779
+          - F23AB95C-492A-44C9-A601-39C1B2B1E1E8
         report_ids:
           - 0FB7FC8B-9E26-4FB7-AAA3-27CB1CFC5C10
           - 65789477-C495-4AFE-9087-1A9402E8BF5C
@@ -1769,6 +1771,10 @@ providers:
         name: Professionals & Managers (Asia, IA, 2015)
       - id:  6E8AC6F1-B8DB-43B2-862C-FC87AC045951
         name: Professionals & Managers (ME, IA, 2015)
+      - id: 11409F66-8129-4451-BD3F-909E4D66F779
+        name: Emirates Corporate FS V4 - Graduates - Recent (INT, IA, 2017)
+      - id: F23AB95C-492A-44C9-A601-39C1B2B1E1E8
+        name: Emirates Corporate FS V4 - Professionals & Managers (INT, IA, 2017)
     reports:
       - id: 2D96B504-98BD-4872-BD03-F93493CEFA21
         name: Abstract Reasoning Aptitude-Rx (IA)
