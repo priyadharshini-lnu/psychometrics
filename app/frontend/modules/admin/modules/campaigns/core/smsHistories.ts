@@ -6,7 +6,8 @@ export const SmsHistoryTR = t.type({
   lastName: t.string,
   mobileNo: t.string,
   status: t.string,
-  segmentLength: t.number,
+  segmentLength: t.union([t.number, t.null]),
+  price: t.union([t.string, t.null]),
   createdAt: t.string,
   smsRecord: t.type({
     id: t.string,
