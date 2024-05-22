@@ -942,7 +942,7 @@ en:
       read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
-        description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or surveys@thetalententerprise.com
+        description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or mte.surveys@mercer.com
         title: Last Request Failed
       submit: Submit
     pages:

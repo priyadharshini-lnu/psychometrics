@@ -16,17 +16,18 @@ export const PageFooter: FC<PageFooterProps> = ({ footerLeft, footerMiddle, foot
     <Layout.Footer className={styles['page-footer']}>
       <Row align="middle" justify="space-between">
         {footerLeft && (
-          <Col className={styles['footer-left']} span={8}>
+          <Col className={styles['footer-left']} span={8} xs={6}>
             {footerLeft}
           </Col>
         )}
         <Col
           className={cs({ [styles['footer-middle']]: footerLeft, [styles['footer-left']]: !footerLeft })}
           span={colSpan}
+          xs={colSpan + 4}
         >
           {footerMiddle}
         </Col>
-        <Col className={styles['footer-right']} span={colSpan}>
+        <Col className={styles['footer-right']} span={colSpan} xs={colSpan - 2}>
           {footerRight}
         </Col>
       </Row>

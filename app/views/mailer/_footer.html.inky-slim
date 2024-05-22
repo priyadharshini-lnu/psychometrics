@@ -3,6 +3,6 @@ row
     p Regards,
     p
       | Lighthouse Team
-      spacer[size="16"] 
+      spacer[size="16"]
     p
-      | For any technical issues, please write to us at #{mail_to('surveys@thetalententerprise.com')} and we will respond within 24 hours.
+      | For any technical issues, please write to us at #{mail_to('mte.surveys@mercer.com')} and we will respond within 24 hours.

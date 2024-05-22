@@ -8,15 +8,6 @@ GIT
       ransack (~> 4.1.1)
 
 GIT
-  remote: https://github.com/TheTalentEnterprise/rails_panel
-  revision: 12ff1065f898d800686f1f060b5b2eb55a527f77
-  branch: tte-master
-  specs:
-    meta_request (0.7.3)
-      rack-contrib (>= 1.1, < 3)
-      railties (>= 3.0.0, < 7.2)
-
-GIT
   remote: https://github.com/TheTalentEnterprise/rlua
   revision: 407053732a5febf69a6a37a365e8b6b28434d39e
   branch: tte-master
@@ -598,6 +589,9 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     memory_profiler (0.9.14)
+    meta_request (0.8.2)
+      rack-contrib (>= 1.1, < 3)
+      railties (>= 3.0.0, < 8)
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
@@ -1126,7 +1120,7 @@ DEPENDENCIES
   jwt (~> 2.2.2)
   kaminari!
   listen (~> 3.7.1)
-  meta_request!
+  meta_request (~> 0.8.2)
   mimemagic
   mini_magick (~> 4.11.0)
   mobility (~> 1.2.9)

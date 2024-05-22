@@ -67,7 +67,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
         'infoColor',
       ])
       updateResource({ id: designSettings.id, ...jsonData } as DesignSettingsType).then(() => {
-        message.success(I18n.t('profile.success_update'))
+        message.success(I18n.t('administration.projects.design_settings.success_update'))
       })
     }
     const files: Files = {
