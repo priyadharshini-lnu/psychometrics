@@ -28,6 +28,7 @@ class UserReport < ApplicationRecord
   delegate :client, to: :campaign
   delegate :modules_empty?, to: :report, prefix: true
   delegate :external_report?, :provider_custom_upload?, to: :report
+  delegate :external_package_id, to: :report_families_report, allow_nil: true
 
   mount_base64_uploader :pdf, Private::PdfUploader, file_name: proc { 'report' }
 
@@ -81,6 +82,14 @@ class UserReport < ApplicationRecord
 
       update(approver_user_id: nil, approved_at: nil) if to == :change_requested
     end
+  end
+
+  def other_reports_in_same_package
+    return UserReport.none unless external_package_id
+
+    report_ids = report_family.report_families_reports.where(external_package_id: external_package_id).pluck(:report_id)
+
+    UserReport.where(report_id: report_ids, campaign_id: campaign_id, user_id: user_id).where.not(id: id)
   end
 
   def campaign_user
