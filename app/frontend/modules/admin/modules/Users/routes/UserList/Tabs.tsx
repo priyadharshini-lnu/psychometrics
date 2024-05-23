@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   ShopOutlined,
@@ -9,7 +9,6 @@ import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import settings from '../../settings'
-import { history } from '~/modules/admin/store'
 
 const { I18n } = window
 
@@ -22,6 +21,7 @@ const connecter = connect(
 type Props = ConnectedProps<typeof connecter>
 const TabsComponent: React.FC<Props> = ({ currentUser }) => {
   const { pathname } = useLocation()
+  const history = useHistory()
   const handleOnSelect = ({ key }) => {
     history.push(`${settings.urlPrefix}/${key}`)
   }

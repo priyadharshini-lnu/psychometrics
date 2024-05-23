@@ -1,18 +1,19 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
 import humps from 'humps'
+import { Flex } from 'antd'
 import { Layout as AdminLayout } from '~/modules/admin/Layout'
-import store, { history } from '~/modules/admin/store'
+import store from '~/modules/admin/store'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { Schema } from '~/libs/jsonApi/schema'
-import { PortalMenu } from '~/components/MainMenu'
+import { MainMenu } from '~/components/MainMenu'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import { DefaultAntThemeWrapper } from '~/glint'
+import styles from './styles.less'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
@@ -27,12 +28,16 @@ const App: React.FC<void> = () => (
         <ApiProvider client={client}>
           <DndProvider backend={HTML5Backend}>
             <Router>
-              <ConnectedRouter history={history}>
-                <PortalMenu />
-                <AdminLayout />
-                <IncorrectResponseErrorModal />
-                <DisplayExceptionModal />
-              </ConnectedRouter>
+              <Flex className={styles.ctr}>
+                <Flex vertical className={styles.aside}>
+                  <MainMenu />
+                </Flex>
+                <Flex vertical className={styles.main}>
+                  <AdminLayout />
+                </Flex>
+              </Flex>
+              <IncorrectResponseErrorModal />
+              <DisplayExceptionModal />
             </Router>
           </DndProvider>
         </ApiProvider>

@@ -5,12 +5,12 @@ import {
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MessageInstance } from 'antd/es/message/interface'
+import { useHistory } from 'react-router-dom'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import settings from '../../../../settings'
-import { history } from '~/modules/admin/store'
 import styles from './ReportTable.less'
 import { AssessmentsFilterDropdown } from './AssessmentsFilterDropdown'
 
@@ -182,6 +182,7 @@ const getActionsMenuProps = ({
   setConfirmation, report, openDrawer, message,
 }: ActionMenuProps): MenuProps => {
   const { resource } = useResourceContext<Report>()
+  const history = useHistory()
 
   const toggleArchive = () => resource.updateResource({
     id: report.id,

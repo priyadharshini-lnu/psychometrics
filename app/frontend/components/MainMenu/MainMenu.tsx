@@ -1,26 +1,25 @@
-import { useState, FC, useEffect } from 'react'
-import { createPortal } from 'react-dom'
-import { Link as RouterLink } from 'react-router-dom'
+import { FC, useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Layout, Menu, Drawer,
 } from 'antd'
 import {
-  MonitorOutlined, ArrowRightOutlined, MenuUnfoldOutlined,
-  MenuFoldOutlined, UserOutlined, CalendarOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
 } from '@ant-design/icons'
 import { useMedia } from 'use-media'
 import cs from 'classnames'
+import { useLocation } from 'react-router-dom'
+import { DefaultAntThemeWrapper } from '~/glint'
+import { Portal } from './PortalMenu'
 import styles from './MainMenu.less'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { camelizeKeys } from '~/utils/object'
 import { openSubmenu, triggerCollapse } from '~/modules/admin/core/ui/menu'
-import { DefaultAntThemeWrapper } from '~/glint'
 import { UserAvatar } from '~/components/UserAvatar'
 import { SIDEBAR_WIDTH } from '~/constants/sidebar'
-
-const { I18n } = window
+import { getSelected, menuItems } from './MenuItems'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -34,258 +33,20 @@ const connecter = connect(
     openSubmenu, triggerCollapse,
   },
 )
+
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 
-
-interface Permissions {
-  dashboards?: string
-  assessorDashboard?: string
-  assessorWorkshops?: string
-  clients?: string
-  users?: string
-  norms?: string
-  dimensions?: string
-  assessments?: string
-  questionCenter?: string
-  libraries?: string
-  communicationCenter?: string
-  reports?: string
-  reportApprovals?: string
-  campaignTemplates?: string
-  auditLogs?: string
-  userAvailability?: string
+type Props = PropsFromRedux & {
+    selected?: string[]
 }
 
-// TODO: When all pages are implemented in single react, use this component instead of anchor tag
-const Link = ({ href, children }) => {
-  const isThreesixty = location.href.match(/\/(threesixty_campaigns)/)
-  const selected = getSelected()
-  const isAllowed = () => {
-    const allowedPages = ['profileDetails', 'changePassword', 'clients', 'users', 'userAvailability', 'reports']
-    return !allowedPages.includes(selected)
-  }
-  if (isThreesixty || isAllowed()) {
-    return <a href={href}>{children}</a>
-  }
-  return <RouterLink to={href}>{children}</RouterLink>
-}
-
-const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
-  hasSubmenu ? {
-    key: 'showSubmenu',
-    label: I18n.t('administration.navigation.show_submenu'),
-    icon: <ArrowRightOutlined />,
-  } : null,
-  permissions.dashboards ? {
-    key: 'dashboards',
-    label: <a href={permissions.dashboards}>{I18n.t('administration.navigation.dashboard')}</a>,
-    icon: <i className="fa fa-dashboard" />,
-  } : null,
-  permissions.assessorDashboard ? {
-    key: 'assessorDashboard',
-    label:
-    <a href={permissions.assessorDashboard}>
-      {I18n.t('administration.navigation.assessor_dashboard')}
-    </a>,
-    icon: <i className="fa fa-dashboard" />,
-  } : null,
-  permissions.assessorWorkshops ? {
-    key: 'assessorWorkshops',
-    label:
-    <a href={permissions.assessorWorkshops}>
-      {I18n.t('administration.navigation.assessor_workshops')}
-    </a>,
-    icon: <CalendarOutlined />,
-  } : null,
-  permissions.clients ? {
-    key: 'clients',
-    label:
-    <Link href={permissions.clients}>
-      {I18n.t('administration.navigation.clients')}
-    </Link>,
-    icon: <i className="fa fa-briefcase" />,
-  } : null,
-  permissions.users ? {
-    key: 'users',
-    label:
-    <Link href={permissions.users}>
-      {I18n.t('administration.navigation.users')}
-    </Link>,
-    icon: <i className="fa fa-users" />,
-  } : null,
-  permissions.norms ? {
-    key: 'norms',
-    label:
-    <a href={permissions.norms}>
-      {I18n.t('administration.navigation.norms')}
-    </a>,
-    icon: <MonitorOutlined />,
-  } : null,
-  permissions.dimensions ? {
-    key: 'dimensions',
-    label:
-    <a href={permissions.dimensions}>
-      {I18n.t('administration.navigation.dimensions')}
-    </a>,
-    icon: <i className="fa fa-file-text-o" />,
-  } : null,
-  permissions.assessments ? {
-    key: 'assessments',
-    label:
-    <a href={permissions.assessments}>
-      {I18n.t('administration.navigation.assessments')}
-    </a>,
-    icon: <i className="fa fa-universal-access" />,
-  } : null,
-  permissions.questionCenter ? {
-    key: 'questionCenter',
-    label:
-    <a href={permissions.questionCenter}>
-      {I18n.t('administration.navigation.question_center')}
-    </a>,
-    icon: <i className="fa fa-question-circle-o" />,
-  } : null,
-  permissions.libraries ? {
-    key: 'libraries',
-    label:
-    <a href={permissions.libraries}>
-      {I18n.t('administration.navigation.libraries')}
-    </a>,
-    icon: <i className="fa fa-file-image-o" />,
-  } : null,
-  permissions.communicationCenter ? {
-    key: 'communicationCenter',
-    label:
-    <a href={permissions.communicationCenter}>
-      {I18n.t('administration.navigation.communication_center')}
-    </a>,
-    icon: <i className="fa fa-envelope-o" />,
-  } : null,
-  permissions.reports ? {
-    key: 'reports',
-    label: <Link href={permissions.reports}>{I18n.t('administration.navigation.reports')}</Link>,
-    icon: <i className="fa fa-pie-chart" />,
-  } : null,
-  permissions.reportApprovals ? {
-    key: 'reportApprovals',
-    label: <a href={permissions.reportApprovals}>{I18n.t('administration.navigation.report_approvals')}</a>,
-    icon: <i className="fa fa-check" />,
-  } : null,
-  permissions.campaignTemplates ? {
-    key: 'campaignTemplates',
-    label: <a href={permissions.campaignTemplates}>{I18n.t('administration.navigation.campaign_templates')}</a>,
-    icon: <i className="fa fa-gear" />,
-  } : null,
-  {
-    key: 'userAvailability',
-    label: <Link href={permissions.userAvailability}>{I18n.t('administration.navigation.availability')}</Link>,
-    icon: <i className="fa fa-calendar" />,
-  },
-  permissions.auditLogs ? {
-    key: 'auditLogs',
-    label: <a href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</a>,
-    icon: <i className="fa fa-clipboard" />,
-  } : null,
-  {
-    key: 'profile',
-    label: I18n.t('administration.navigation.profile'),
-    icon: <UserOutlined className={styles.siderIcon} />,
-    children: [
-      {
-        label: (
-          <Link href="/admin/profile/details">
-            {I18n.t('administration.navigation.profile_details')}
-          </Link>),
-        key: 'profileDetails',
-      },
-      {
-        label: (
-          <Link href="/admin/profile/change_password">
-            {I18n.t('administration.navigation.change_password')}
-          </Link>),
-        key: 'changePassword',
-      },
-    ],
-  },
-].filter(Boolean)
-
-const getSelected = (): string => {
-  if (location.href.match(/\/admin(\/)(profile)(\/)(details)/)) {
-    return 'profileDetails'
-  }
-  if (location.href.match(/\/admin(\/)(profile)(\/)(change_password)/)) {
-    return 'changePassword'
-  }
-  if (location.href.match(/\/administration(\/)(norms)/)) {
-    return 'norms'
-  }
-
-  if (location.href.match(/\/administration(\/)(dashboards)/)) {
-    return 'dashboards'
-  }
-
-  if (location.href.match(/\/administration(\/)(dimensions)/)) {
-    return 'dimensions'
-  }
-
-  if (location.href.match(/\/admin(\/)(users)/)) {
-    return 'users'
-  }
-
-  if (location.href.match(/\/administration(\/)(assessments)/)) {
-    return 'assessments'
-  }
-
-  if (location.href.match(/\/administration(\/)(libraries)/)) {
-    return 'libraries'
-  }
-  if (location.href.match(/\/administration(\/)(communications)/)) {
-    return 'communicationCenter'
-  }
-  if (location.href.match(/\/admin\/(reports|report_families)/)) {
-    return 'reports'
-  }
-
-  if (location.href.match(/\/administration(\/)(report_approvals)/)) {
-    return 'reportApprovals'
-  }
-
-  if (location.href.match(/\/administration(\/)(campaign_templates)/)) {
-    return 'campaignTemplates'
-  }
-
-  if (location.href.match(/\/administration(\/)(audit_logs)/)) {
-    return 'auditLogs'
-  }
-
-  if (location.href.match(/\/administration(\/)templates\/(questions|blocks)/)) {
-    return 'questionCenter'
-  }
-
-  if (location.href.match(/\/(assessors)(\/)(assessment_centers)/)) {
-    return 'assessorWorkshops'
-  }
-
-  if (location.href.match(/\/(assessors)/)) {
-    return 'assessorDashboard'
-  }
-
-  if (location.href.match(/\/admin(\/)(user_availabilities)/)) {
-    return 'userAvailability'
-  }
-
-  return 'clients'
-}
-
-
-export const MainMenuComponent:FC<PropsFromRedux> = ({
+const MainMenuComponent:FC<Props> = ({
   currentUser, hasSubmenu, openSubmenu, collapsed, triggerCollapse, links,
-  showSubmenu,
+  showSubmenu, selected,
 }) => {
   const isMobile = useMedia({
     maxWidth: 1024,
   })
-
   const onSelect = ({ key }): ReturnType<typeof openSubmenu> | void => {
     if (key === 'showSubmenu') {
       return openSubmenu()
@@ -297,7 +58,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
       <UserAvatar currentUser={currentUser} collapsed={collapsed} />
       <Menu
         theme="light"
-        selectedKeys={[getSelected()]}
+        selectedKeys={selected || [getSelected()]}
         mode="inline"
         items={menuItems(links, hasSubmenu)}
         onClick={onSelect}
@@ -310,6 +71,7 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     triggerCollapse()
     if (hasSubmenu) openSubmenu()
   }
+
   const isMeet = location.href.match(/\/(meet)/)
   if (isMeet) return null
 
@@ -354,26 +116,34 @@ export const MainMenuComponent:FC<PropsFromRedux> = ({
     )
 }
 
-// TODO: remove portals after implementing all pages in react
-export const Portal = ({ Component, container, ...props }) => {
-  const [innerHtmlEmptied, setInnerHtmlEmptied] = useState(false)
+// This is for external use outside react app, once everything is moved to react
+// we should remove portal and associated code
+export const MainMenuInternal = connecter(MainMenuComponent)
+
+// This is for internal use inside react app
+export const Main = () => {
+  const { pathname } = useLocation()
+  const [selected, setSelected] = useState<string[]>([])
+
   useEffect(() => {
-    if (!innerHtmlEmptied) {
-      container.innerHTML = ''
-      setInnerHtmlEmptied(true)
-    }
-  }, [innerHtmlEmptied])
-  if (!innerHtmlEmptied) return null
-  return createPortal(<Component {...props} />, container)
+    setSelected([getSelected()])
+  }, [pathname])
+
+  return (
+    <MainMenuInternal selected={selected} />
+  )
 }
 
-export const MainMenu = connecter(MainMenuComponent)
+// Current blocker for not being able to use menu without portal are
+// notification banners like "you are already signed in"
+// so we need to use portal for now, create a plan to move logout and notification to react app.
 
-export const PortalMenu = () => {
+export const MainMenu = () => {
   const node = document.getElementById('main_menu')
+
   return (
     <DefaultAntThemeWrapper>
-      <Portal Component={MainMenu} container={node} />
+      <Portal Component={Main} container={node} />
     </DefaultAntThemeWrapper>
   )
 }

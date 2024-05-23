@@ -4,13 +4,13 @@ import {
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MessageInstance } from 'antd/es/message/interface'
+import { useHistory } from 'react-router-dom'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
 import settings from '../../settings'
-import { history } from '~/modules/admin/store'
 import styles from './AssessmentList.less'
 
 const { I18n } = window
@@ -205,6 +205,7 @@ const getActionsMenuProps = ({
   setConfirmation, assessment, openDrawer, message,
 }: ActionMenuData): MenuProps => {
   const { resource } = useResourceContext<Assessment>()
+  const history = useHistory()
 
   const toggleArchive = () => resource.memberAction({
     id: assessment.id,
