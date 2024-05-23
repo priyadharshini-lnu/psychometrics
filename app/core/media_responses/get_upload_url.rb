@@ -2,12 +2,13 @@
 
 module MediaResponses
   class GetUploadUrl < BaseCommand
-    private_attr_reader :question_id, :result, :file_name
+    private_attr_reader :question_id, :result, :file_name, :blob
 
-    def initialize(result, question_id, file_name = nil)
+    def initialize(result, question_id, file_name = nil, blob = nil)
       @question_id = question_id
       @result = result
       @file_name = file_name
+      @blob = blob
     end
 
     def call
@@ -16,7 +17,7 @@ module MediaResponses
         data = if question.type == 'VideoResponse'
                  MediaResponses::GetMultipartUploadUrls.call!(result, question_id, file_name)
                else
-                 ::MediaResponses::DirectUpload.call!(result, question_id, file_name, blob)
+                 ::MediaResponses::DirectUpload.call!(question_id, blob, result, file_name)
                end
         broadcast(:ok, data)
       rescue StandardError => e
