@@ -75,6 +75,7 @@ const RegistrationComponent: React.FC<Props> = ({ csrfToken, user, errors }) => 
         )
         : (
           <InputField
+            hidden={!!user.registration_code && !errors.registration_code}
             label={I18n.t('auth.registration.registration_code')}
             name="user[registration_code]"
             placeholder={I18n.t('auth.registration.registration_code_placeholder')}
