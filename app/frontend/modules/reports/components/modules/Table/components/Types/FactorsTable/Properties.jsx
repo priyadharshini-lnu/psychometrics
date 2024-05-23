@@ -408,9 +408,9 @@ class Properties extends Component {
             </>
           )
         )}
+        <hr className={styles.divider} />
         <div>Font</div>
         <PropertyFonts model={model} colors={false} />
-        <hr className={styles.divider} />
       </div>
     )
   }

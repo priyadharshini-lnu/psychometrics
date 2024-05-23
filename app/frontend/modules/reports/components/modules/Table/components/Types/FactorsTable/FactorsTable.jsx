@@ -245,7 +245,7 @@ class FactorsTable extends Component {
           tableStyle = 'default', minPosition, maxPosition, reverseOrder, source: { factors },
           showDescription, showIcons, showStrengthsBlindspots, showScore, showName, showLabel,
           scoreProgressColor, scoreBackgroundColor, maxScoreValue,
-          scoreDisplay = 'circular', scoreRanges = [], precision,
+          scoreDisplay = 'circular', scoreRanges = [], scoreLineColor, scoreBulletColor, precision,
         } = model.props
 
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
@@ -321,6 +321,8 @@ class FactorsTable extends Component {
                         scoreRanges={scoreRanges}
                         baselineScore={conditionBaselineScore}
                         score={percent}
+                        lineColor={scoreLineColor}
+                        bulletColor={scoreBulletColor}
                       />
                       {showLabel && <div className={styles.bulletLabel}>{conditionLabel}</div>}
                     </>
