@@ -1,12 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import humps from 'humps'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
-import store, { history } from '~/modules/admin/store'
+import store from '~/modules/admin/store'
 import RouteList from '~/components/RouteList'
 import { DefaultAntThemeWrapper } from '~/glint'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
@@ -30,10 +29,8 @@ const App: React.FC<void> = () => (
         <ApiProvider client={client}>
           <DndProvider backend={HTML5Backend}>
             <Router>
-              <ConnectedRouter history={history}>
-                <PortalMenu />
-                <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-              </ConnectedRouter>
+              <PortalMenu />
+              <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
             </Router>
           </DndProvider>
           <IncorrectResponseErrorModal />

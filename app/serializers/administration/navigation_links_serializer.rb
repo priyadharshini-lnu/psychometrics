@@ -23,7 +23,7 @@ module Administration
         links['users'] = "#{admin_path}/users" if policy(%i[administration user]).index?
         links['norms'] = administration_norms_path if policy(%i[administration norm]).index?
         links['dimensions'] = administration_dimensions_path if policy(%i[administration dimension]).index?
-        links['assessments'] = administration_assessments_path if policy(%i[administration assessment]).index?
+        links['assessments'] = "#{admin_path}/assessments" if policy(%i[administration assessment]).index?
         links['user_availability'] = "#{admin_path}/user_availabilities"
         if policy(%i[administration question]).index?
           links['question_center'] = administration_templates_questions_path
@@ -34,12 +34,12 @@ module Administration
         end
         links['reports'] = "#{admin_path}/reports" if policy(%i[administration report]).index?
         if policy(%i[administration report_approval]).index?
-          links['report_approvals'] = "#{administration_report_approvals_path}/my_tasks"
+          links['report_approvals'] = "#{admin_path}/report_approvals/my_tasks"
         end
         if policy(%i[administration campaign_template]).index?
           links['campaign_templates'] = administration_campaign_templates_path
         end
-        links['audit_logs'] = administration_audit_logs_path if policy(%i[administration audit_log]).index?
+        links['audit_logs'] = "#{admin_path}/audit_logs" if policy(%i[administration audit_log]).index?
       end.transform_keys! { |k| k.camelcase(:lower) }
     end
     # rubocop:enable Metrics/PerceivedComplexity

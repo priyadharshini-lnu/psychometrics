@@ -3714,7 +3714,9 @@ en:
         report_name: Report Name
         user_email: User Email
         user_name: User Name
+      dashboard: Dashboard
       download: Download
+      report_approvals: Report Approvals
       report_search: Report search
       review: Review
       user_search: User search

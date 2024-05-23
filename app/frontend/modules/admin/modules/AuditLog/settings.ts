@@ -1,5 +1,5 @@
 const settings = {
-  urlPrefix: '/administration/audit_logs',
+  urlPrefix: '/admin/audit_logs',
   pageLimit: 25,
 }
 

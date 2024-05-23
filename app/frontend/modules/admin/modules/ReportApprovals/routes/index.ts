@@ -1,16 +1,15 @@
-import { ReportApprovals } from './ReportApprovals'
-import { MyTasks } from './MyTasks'
-import { Approved } from './Approved'
-import { All } from './All'
+import { lazy } from 'react'
 
-export const routes = [
-  {
-    path: '/',
-    component: ReportApprovals,
-    routes: [
-      { path: '/my_tasks', component: MyTasks },
-      { path: '/approved', component: Approved },
-      { path: '/all', component: All },
-    ],
-  },
+const MyTasks = lazy(() => import('./MyTasks'))
+const Approved = lazy(() => import('./Approved'))
+const All = lazy(() => import('./All'))
+
+
+const routes = [
+  { redirect: true, from: '/', to: '/report_approvals' },
+  { path: '/report_approvals/my_tasks', component: MyTasks },
+  { path: '/report_approvals/approved', component: Approved },
+  { path: '/report_approvals/all', component: All },
 ]
+
+export default routes

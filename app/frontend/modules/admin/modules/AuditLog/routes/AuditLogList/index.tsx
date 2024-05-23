@@ -17,6 +17,7 @@ import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { isRequestInProgress } from '~/core/request'
+import settings from '../../settings'
 
 export const FILTER_PREDICATES = {
   recordType: 'In',
@@ -151,7 +152,7 @@ const AuditLogList: React.FC<Props> = (
               filters={actions && actions.map((t: string) => ({ text: t, value: t }))}
               filteredValue={getFilteredValue('action')}
               render={({ id, action }) => (
-                <Link to={`/administration/audit_logs/${id}`}>{action}</Link>
+                <Link to={`${settings.urlPrefix}/${id}`}>{action}</Link>
               )}
             />
             <Column

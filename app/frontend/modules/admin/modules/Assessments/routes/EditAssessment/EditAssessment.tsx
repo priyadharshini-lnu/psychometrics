@@ -35,7 +35,7 @@ export const EditAssessment: React.FC = () => {
           },
           {
             label: () => I18n.t('assessments.assessments'),
-            link: () => '/administration/assessments',
+            link: () => '/admin/assessments',
           },
           {
             label: () => assessment.name,

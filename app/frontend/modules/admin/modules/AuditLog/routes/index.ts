@@ -1,13 +1,16 @@
-import AuditLogList from './AuditLogList'
-import AuditLogInfo from './AuditLogInfo'
+import { lazy } from 'react'
+
+const AuditLogList = lazy(() => import('./AuditLogList'))
+const AuditLogInfo = lazy(() => import('./AuditLogInfo'))
 
 const routes = [
+  { redirect: true, from: '/', to: '/audit_logs' },
   {
-    path: '/',
+    path: '/audit_logs',
     component: AuditLogList,
   },
   {
-    path: '/:id',
+    path: '/audit_logs/:id',
     component: AuditLogInfo,
   },
 ]

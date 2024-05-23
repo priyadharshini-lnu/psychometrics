@@ -2,16 +2,11 @@ import { Menu } from 'antd'
 import React from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import routeUtils from '~/utils/route'
-import RouteList from '~/components/RouteList'
 import { settings } from '../settings'
 
 const { I18n } = window
 
-interface OwnProps {
-  routes: Array<{ path: string, components: JSX.Element }>,
-}
-
-export const ReportApprovals: React.FC<OwnProps> = ({ routes }) => {
+export const Tabs: React.FC = () => {
   const history = useHistory()
   const { pathname } = useLocation()
 
@@ -24,19 +19,11 @@ export const ReportApprovals: React.FC<OwnProps> = ({ routes }) => {
   ]
 
   return (
-    <div className="p4">
-      <Menu
-        items={menuItems}
-        onSelect={onSelect}
-        selectedKeys={activeMenu ? [activeMenu] : undefined}
-        mode="horizontal"
-      />
-      <div>
-        <RouteList
-          routes={routes}
-          urlPrefix={`${settings.urlPrefix}`}
-        />
-      </div>
-    </div>
+    <Menu
+      items={menuItems}
+      onSelect={onSelect}
+      selectedKeys={activeMenu ? [activeMenu] : undefined}
+      mode="horizontal"
+    />
   )
 }

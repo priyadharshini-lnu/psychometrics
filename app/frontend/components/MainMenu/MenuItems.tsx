@@ -47,7 +47,7 @@ export const getSelected = (): string => {
     return 'users'
   }
 
-  if (location.href.match(/\/administration(\/)(assessments)/)) {
+  if (location.href.match(/\/admin(\/)(assessments)/)) {
     return 'assessments'
   }
 
@@ -61,7 +61,7 @@ export const getSelected = (): string => {
     return 'reports'
   }
 
-  if (location.href.match(/\/administration(\/)(report_approvals)/)) {
+  if (location.href.match(/\/admin(\/)(report_approvals)/)) {
     return 'reportApprovals'
   }
 
@@ -69,7 +69,7 @@ export const getSelected = (): string => {
     return 'campaignTemplates'
   }
 
-  if (location.href.match(/\/administration(\/)(audit_logs)/)) {
+  if (location.href.match(/\/admin(\/)(audit_logs)/)) {
     return 'auditLogs'
   }
 
@@ -97,7 +97,11 @@ const Link = ({ href, children }) => {
   const isThreesixty = location.href.match(/\/(threesixty_campaigns)/)
   const selected = getSelected()
   const isAllowed = () => {
-    const allowedPages = ['profileDetails', 'changePassword', 'clients', 'users', 'userAvailability', 'reports']
+    const allowedPages = [
+      'profileDetails', 'auditLogs',
+      'changePassword', 'clients',
+      'users', 'userAvailability',
+      'reports', 'assessments', 'reportApprovals']
     return !allowedPages.includes(selected)
   }
   if (isThreesixty || isAllowed()) {
@@ -168,9 +172,9 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   permissions.assessments ? {
     key: 'assessments',
     label:
-    <a href={permissions.assessments}>
+    <Link href={permissions.assessments}>
       {I18n.t('administration.navigation.assessments')}
-    </a>,
+    </Link>,
     icon: <i className="fa fa-universal-access" />,
   } : null,
   permissions.questionCenter ? {
@@ -204,7 +208,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   } : null,
   permissions.reportApprovals ? {
     key: 'reportApprovals',
-    label: <a href={permissions.reportApprovals}>{I18n.t('administration.navigation.report_approvals')}</a>,
+    label: <Link href={permissions.reportApprovals}>{I18n.t('administration.navigation.report_approvals')}</Link>,
     icon: <i className="fa fa-check" />,
   } : null,
   permissions.campaignTemplates ? {
@@ -219,7 +223,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   },
   permissions.auditLogs ? {
     key: 'auditLogs',
-    label: <a href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</a>,
+    label: <Link href={permissions.auditLogs}>{I18n.t('administration.navigation.audit_logs')}</Link>,
     icon: <i className="fa fa-clipboard" />,
   } : null,
   {
