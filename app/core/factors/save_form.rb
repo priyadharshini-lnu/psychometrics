@@ -15,12 +15,14 @@ module Factors
     attribute :external_scoring, Array
     attribute :scale_min, Float
     attribute :scale_max, Float
+    attribute :precision, Numeric
 
     validates :name, presence: true
     validates :name, length: { maximum: 100 }, allow_blank: true
     validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
     validate :avoid_cyclic_references
     validate :scale_min_max
+    validates :precision, numericality: { only_integer: true }, allow_blank: true
 
     def avoid_cyclic_references
       return true unless id
