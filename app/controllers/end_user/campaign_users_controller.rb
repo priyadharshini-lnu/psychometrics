@@ -12,7 +12,7 @@ class EndUser::CampaignUsersController < ApplicationController
     end
 
     if @campaign_user.proctoring_enabled?
-      result = Examus::GetSessionUrl.call(@campaign_user)
+      result = Examus::GetSessionUrl.call(@campaign_user, I18n.locale)
       if result[:error]
         return render json: { errors: result[:error] }, status: 422
       end
@@ -46,7 +46,7 @@ class EndUser::CampaignUsersController < ApplicationController
 
     data = {}
     if @campaign_user.proctoring_enabled?
-      result = Examus::GetSessionUrl.call(@campaign_user)
+      result = Examus::GetSessionUrl.call(@campaign_user, I18n.locale)
       if result[:error]
         return render json: { errors: result[:error] }, status: 422
       end
