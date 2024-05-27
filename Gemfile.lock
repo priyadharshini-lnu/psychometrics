@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/TheTalentEnterprise/active_storage_svg_sanitizer
+  revision: f17c131da2332caf55970831bd8de57087df7e6a
+  specs:
+    active_storage_svg_sanitizer (0.1.0)
+      rails (>= 5.2)
+
+GIT
   remote: https://github.com/TheTalentEnterprise/baby_squeel
   revision: e9fe43e7a26dcd7df6537e953afb400e49f2e78d
   branch: tte-master
@@ -1047,6 +1054,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to (~> 1.0.5)
   active_storage_base64 (~> 2.0)
+  active_storage_svg_sanitizer!
   active_storage_validations (~> 1.0.3)
   activerecord-import (~> 1.5.0)
   acts-as-taggable-on (~> 10.0)

@@ -11,6 +11,16 @@ module ActiveStorageAttachable
   }.freeze
 
   included do
+    def attachment_url(attribute, variant = nil)
+      attachment = send(attribute)
+
+      return unless attachment.attached?
+
+      return attachment.variant(variant)&.processed&.url if variant && attachment.variable?
+
+      attachment&.url
+    end
+
     after_create do
       customize_attachment_path
     end
@@ -46,12 +56,7 @@ module ActiveStorageAttachable
       end
 
       define_method "#{attribute}_url" do |variant = nil|
-        data = send(attribute)
-
-        return data&.url unless variant
-        return data.variant(variant)&.processed&.url if variant && data.image?
-
-        nil
+        attachment_url(attribute, variant)
       end
 
       # validating allowed content_types
@@ -77,7 +82,7 @@ module ActiveStorageAttachable
       generate_attachment_key_for attribute
 
       define_method "#{attribute}_url" do |variant = nil|
-        variant ? send(attribute).variant(variant)&.processed&.url : send(attribute)&.url
+        attachment_url(attribute, variant)
       end
 
       define_method "purge_#{attribute}=" do |value|
