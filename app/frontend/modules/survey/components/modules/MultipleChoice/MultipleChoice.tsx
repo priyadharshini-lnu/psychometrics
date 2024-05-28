@@ -9,8 +9,6 @@ import TextEditor from '~/modules/survey/components/TextEditor'
 const SingleAnswer = lazy(() => import('./components/types/SingleAnswer'))
 const MultipleAnswer = lazy(() => import('./components/types/MultipleAnswer'))
 const Dropdown = lazy(() => import('./components/types/Dropdown'))
-const SelectBox = lazy(() => import('./components/types/SelectBox'))
-const MultiSelectBox = lazy(() => import('./components/types/MultiSelectBox'))
 
 interface Props {
   model: BuilderModel
@@ -44,10 +42,6 @@ export const MultipleChoice: FC<Props> = ({ model }) => {
           <MultipleAnswer {...builderAnswerTypeProps} />
         )}
         {type === 'Dropdown' && <Dropdown {...builderAnswerTypeProps} />}
-        {type === 'SelectBox' && <SelectBox {...builderAnswerTypeProps} />}
-        {type === 'MultiSelectBox' && (
-          <MultiSelectBox {...builderAnswerTypeProps} />
-        )}
       </Suspense>
     </div>
   )

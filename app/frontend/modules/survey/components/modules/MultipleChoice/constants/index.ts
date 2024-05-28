@@ -19,16 +19,4 @@ export const ANSWER_TYPE_OPTIONS = [
     ),
     value: 'Dropdown',
   },
-  {
-    label: I18n.t(
-      'administration.survey_builder.property_panel.multiple_choice_types.select_box',
-    ),
-    value: 'SelectBox',
-  },
-  {
-    label: I18n.t(
-      'administration.survey_builder.property_panel.multiple_choice_types.multi_select_box',
-    ),
-    value: 'MultiSelectBox',
-  },
 ]
