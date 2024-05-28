@@ -1431,6 +1431,8 @@ en:
     actions:
       bulk_download: Bulk Download
       export_data: Export Data
+    bulk_download:
+      error: Bulk download is limited to 1000 report files. Current selection has %{count} report files. Please adjust the start and end dates to reduce number of report files to download
     column:
       assessor_access: Assessor Access
       auto_assign: Auto Assign
