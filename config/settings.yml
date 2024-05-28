@@ -500,6 +500,7 @@ providers:
         name: Hogan EQ report
         norm_id: Global
         language_id: en
+        default_assessment_id: HPI
         assessment_ids:
           - HDS
           - HPI
