@@ -20,7 +20,12 @@ module Lambdas
             service_name: Settings.storage.private_storage_service
           )
 
-          user_report.pdf_file = blob.signed_id
+          ActiveStorage::Attachment.create!(
+            record: user_report,
+            blob: blob,
+            name: 'pdf_file'
+          )
+
           user_report.status = :prepared
           user_report.save!
         end

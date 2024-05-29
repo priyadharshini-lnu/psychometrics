@@ -37,7 +37,7 @@ module CampaignReports
       job_record.update!(total_tasks: file_details.length)
       Lambdas::ZipS3Files.call!(
         file_details: file_details,
-        zip_file_key: file_name,
+        zip_file_key: bulk_report.attachment_storage_path('files', "#{file_name}.zip"),
         webhook_message: webhook_message
       )
     end

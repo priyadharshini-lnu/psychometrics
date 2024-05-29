@@ -20,7 +20,7 @@ module Lambdas
 
         if data['status'] == 'completed'
           blob = ActiveStorage::Blob.create_before_direct_upload!(
-            key: data['file_name'],
+            key: bulk_report.attachment_storage_path('files', "#{data['file_name']}.zip"),
             filename: "#{data['file_name']}.zip",
             byte_size: data['file_size'],
             checksum: data['checksum'],
@@ -28,7 +28,12 @@ module Lambdas
             service_name: Settings.storage.private_storage_service
           )
 
-          bulk_report.files.attach(blob)
+          ActiveStorage::Attachment.create!(
+            record: bulk_report,
+            blob: blob,
+            name: 'files'
+          )
+
           BulkReportMailer.notify(bulk_report).deliver_later
           if admin_job
             content = content_tag(

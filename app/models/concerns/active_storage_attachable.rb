@@ -147,7 +147,6 @@ module ActiveStorageAttachable
         return action if disk_service?(action.blob)
 
         # By-pass as base64'ed attachments are treated as a Hash
-
         filename = if attachable.is_a?(Hash)
                      attachable.fetch(:filename)
                    elsif send(attribute).attached? && send(attribute).blob.filename.present?
@@ -155,8 +154,6 @@ module ActiveStorageAttachable
                    else
                      attachable&.original_filename
                    end
-
-        return action.blob.key if action.blob.key.present? && action.blob.key.end_with?(filename)
 
         action.blob.key = attachment_storage_path(
           attribute,
@@ -173,8 +170,6 @@ module ActiveStorageAttachable
         return action if action.blobs.any? { |blob| disk_service?(blob) }
 
         action.blobs.each do |blob|
-          next if blob.key.present? && !blob.key =~ /#{blob.filename}$/
-
           blob.key = attachment_storage_path(
             attribute,
             "#{blob.class.generate_unique_secure_token}_#{blob.filename}"
