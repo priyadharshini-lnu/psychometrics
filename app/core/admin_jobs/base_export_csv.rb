@@ -15,7 +15,7 @@ module AdminJobs
 
     def write_csv
       job_record.update(total_tasks: record_count)
-      CSV.open(file_path, 'wb') do |csv|
+      CsvUtf8.write(file_path) do |csv|
         write_csv_headers(csv)
         records_for_export.each_with_index do |record, index|
           row_data = data_row(record)

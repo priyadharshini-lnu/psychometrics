@@ -20,8 +20,8 @@ describe AdminJobs::AssessmentRawExport do
     it 'first row in csv contains result_details_header along with question ids' do
       described_class.call!(job_record)
 
-      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-      actual_first_row = csv.row(1)
+      csv = CsvUtf8.to_array(job_record.file.path)
+      actual_first_row = csv[0]
 
       expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
                             'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
@@ -96,8 +96,8 @@ describe AdminJobs::AssessmentRawExport do
 
     it 'first row in csv contains result_details_header along with question ids' do
       described_class.call!(job_record)
-      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-      actual_first_row = csv.first
+      csv = CsvUtf8.to_array(job_record.file.path)
+      actual_first_row = csv[0]
 
       expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
                             'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
@@ -183,8 +183,8 @@ describe AdminJobs::AssessmentRawExport do
 
     it 'first row in csv contains result_details_header along with question ids' do
       described_class.call!(job_record)
-      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
-      actual_first_row = csv.row(1)
+      csv = CsvUtf8.to_array(job_record.file.path)
+      actual_first_row = csv[0]
 
       expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
                             'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
