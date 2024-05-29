@@ -98,7 +98,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               clearInterval(interval)
             }
           })
-      }, 10000)
+      }, 30000)
     }
     return () => interval && clearInterval(interval)
   }, [results.id])

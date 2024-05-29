@@ -9,7 +9,7 @@ module UsersResults::ControllerConcern
   end
 
   def update
-    if @user_assessment.evaluation_session_id == params[:evaluation_session_id]
+    if user_assessment.evaluation_session_id == params[:evaluation_session_id]
       result_params = ::UsersResults::ExtendResourceParams.call!(
         resource_params.to_h,
         params[:question_ids],
