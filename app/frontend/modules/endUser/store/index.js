@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import createSagaMiddleware from 'redux-saga'
 import api from '~/middleware/api'
@@ -14,7 +13,7 @@ const sagaMiddleware = createSagaMiddleware()
 let composeEnhancers = compose
 /* eslint no-underscore-dangle: 0 */
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
-const middleware = [api, sagaMiddleware, flowMiddleware, thunk, routerMiddleware(history)]
+const middleware = [api, sagaMiddleware, flowMiddleware, thunk]
 
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {

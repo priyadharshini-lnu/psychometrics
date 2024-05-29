@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
 import { notification, theme } from 'antd'
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
-import { Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
-import store, { history } from '~/modules/endUser/store'
+import store from '~/modules/endUser/store'
 
 import { UserPageLayout } from '~/modules/endUser/modules/campaigns/components/UserPageLayout'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
@@ -67,7 +66,7 @@ function App () {
         }}
       >
         <GlintProvider>
-          <ConnectedRouter history={history}>
+          <Router>
             <StyleProvider transformers={[px2rem]}>
               <UserPageLayout>
                 {routes.map((route, i) => (
@@ -76,7 +75,7 @@ function App () {
               </UserPageLayout>
             </StyleProvider>
             <DisplayExceptionModal />
-          </ConnectedRouter>
+          </Router>
           <IncorrectResponseErrorModal />
         </GlintProvider>
       </DefaultAntThemeWrapper>

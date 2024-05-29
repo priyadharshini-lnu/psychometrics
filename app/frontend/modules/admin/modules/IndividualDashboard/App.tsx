@@ -1,10 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { ConnectedRouter } from 'connected-react-router'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
 import humps from 'humps'
 import { Provider } from 'react-redux'
-import store, { history } from '~/modules/admin/store'
+import store from '~/modules/admin/store'
 import RouteList from '~/components/RouteList'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { Schema } from '~/libs/jsonApi/schema'
@@ -22,10 +21,8 @@ export const App: React.FC = () => (
     <Provider store={store as any}>
       <ApiProvider client={client}>
         <Router>
-          <ConnectedRouter history={history}>
-            <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-            <IncorrectResponseErrorModal />
-          </ConnectedRouter>
+          <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+          <IncorrectResponseErrorModal />
         </Router>
       </ApiProvider>
     </Provider>

@@ -63,6 +63,7 @@ const MainMenuComponent:FC<Props> = ({
         items={menuItems(links, hasSubmenu)}
         onClick={onSelect}
         className={styles.menu}
+        style={{ border: 0 }}
       />
     </>
   )

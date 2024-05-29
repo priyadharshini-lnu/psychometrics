@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { connectRouter } from 'connected-react-router'
 import preview from '~/modules/survey/core/preview'
 import reportBuilder from '~/modules/reports/core/builder'
 import currentUser from '~/core/currentUser'
@@ -21,7 +20,7 @@ import workshop from '~/modules/endUser/modules/campaigns/core/workshops'
 import config from './config'
 import flash from '~/core/flash'
 
-const rootReducer = history => combineReducers({
+const rootReducer = () => combineReducers({
   campaigns: combineReducers({
     campaign,
     nomination,
@@ -47,7 +46,6 @@ const rootReducer = history => combineReducers({
   report: combineReducers({ builder: reportBuilder }),
   checkingWizard,
   connection,
-  router: connectRouter(history),
 })
 
 export type RootState = ReturnType<ReturnType<typeof rootReducer>>

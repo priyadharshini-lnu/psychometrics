@@ -101,6 +101,7 @@ export const SubnavigationComponent:FC<PropsFromRedux> = ({
         mode="inline"
         items={itemsWithBack}
         className={styles.menu}
+        style={{ border: 0 }}
       />
     </>
   )

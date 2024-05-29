@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { connectRouter } from 'connected-react-router'
 
 import current from '~/modules/admin/modules/campaigns/core/current'
 import tables from '~/modules/admin/core/filterAndPagination/reducers'
@@ -45,8 +44,7 @@ import sheetReducers from '../modules/SheetManagement/core'
 import { reducer as integrationsReducer } from '../modules/client/core/integrations'
 import auditLogs from '../modules/AuditLog/core'
 
-const createRootReducer = history => combineReducers({
-  router: connectRouter(history),
+const createRootReducer = () => combineReducers({
   socket,
   threeSixtyCampaign: combineReducers({
     subjects,

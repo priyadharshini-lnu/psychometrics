@@ -1,7 +1,6 @@
 import { useEffect, FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Redirect, RouteComponentProps } from 'react-router-dom'
-import { push } from 'connected-react-router'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
   Layout, Col, Progress, Space, ProgressProps,
@@ -38,7 +37,6 @@ const connector = connect((state: RootState) => ({
 {
   fetchAssessment,
   markAssessmentTimedOut,
-  push,
 })
 
 type Params = {
