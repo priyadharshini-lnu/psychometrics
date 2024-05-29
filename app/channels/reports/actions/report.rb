@@ -49,7 +49,7 @@ module Reports
       action :change_aliases do |data, _current_user, report|
         ActiveRecord::Base.transaction do
           data['aliases'].each do |factor_data|
-            factors_alias = FactorsAlias.find_by(factor_id: factor_data['id'].to_i, report: report)
+            factors_alias = FactorsAlias.find_or_create_by(factor_id: factor_data['id'].to_i, report: report)
             factors_alias&.update(name: factor_data['alias'])
           end
         end
