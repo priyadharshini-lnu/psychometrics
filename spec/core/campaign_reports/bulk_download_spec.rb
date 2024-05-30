@@ -45,7 +45,8 @@ describe CampaignReports::BulkDownload do
       2,
       campaign: campaign,
       report: report,
-      pdf: File.open('spec/fixtures/files/reports/test.pdf')
+      pdf: File.open('spec/fixtures/files/reports/test.pdf'),
+      status: 'prepared'
     )
 
     user_report_without_pdf = create(:user_report, campaign: campaign, report: report)

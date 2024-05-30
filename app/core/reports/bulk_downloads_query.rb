@@ -23,7 +23,8 @@ module Reports
           user_assessments.subject_id = user_reports.user_id AND
           user_assessments.campaign_id = user_reports.campaign_id').
                      where(report_id: @campaign_reports.pluck(:report_id),
-                           campaign_id: @campaign_reports.first.campaign_id).
+                           campaign_id: @campaign_reports.first.campaign_id,
+                           status: 'prepared').
                      group('user_reports.id')
 
       if start_date && end_date
