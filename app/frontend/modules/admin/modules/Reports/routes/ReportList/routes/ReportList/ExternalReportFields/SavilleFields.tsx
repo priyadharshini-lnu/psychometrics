@@ -23,10 +23,13 @@ export const SavilleFields: React.FC<{ form: FormInstance }> = ({ form }) => {
       >
         <Select
           notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
+          showSearch
+          filterOption={(input, option) => (option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0)}
         >
-          {externalReports.map(({ id, name }) => (
-            <Select.Option key={id} value={id}>{`${name} - ${id}`}</Select.Option>
-          ))}
+          {externalReports.map(({ id, name }) => {
+            const label = `${name} - ${id}`
+            return <Select.Option key={label} value={id}>{label}</Select.Option>
+          })}
         </Select>
       </Form.Item>
     </>
