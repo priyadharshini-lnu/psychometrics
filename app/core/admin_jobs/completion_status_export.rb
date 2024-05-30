@@ -19,6 +19,7 @@ module AdminJobs
         'Assessment Name',
         'Started At',
         'Completed At',
+        'Completion Code',
         'Status'
       ]
     end
@@ -41,6 +42,7 @@ module AdminJobs
         user_assessment.assessment.name,
         user_result.decorate.started_at_with_time,
         user_result.decorate.completed_at_with_time,
+        user_result.completion_status_code,
         user_result.decorate.status
       ]
     end

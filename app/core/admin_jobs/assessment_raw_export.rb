@@ -16,7 +16,7 @@ module AdminJobs
     def headers
       result_details_header = [
         'Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-        'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
+        'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm', 'Status', 'Completion Reason'
       ]
       question_name_header = [''] * result_details_header.count
       question_text_header = question_name_header.clone
@@ -64,6 +64,7 @@ module AdminJobs
         user_result.user_assessment.relationship.name,
         user_result.user_assessment.started_at.to_s,
         user_result.completed_at.to_s,
+        user_result.completion_status_code,
         user_result.norm ? user_result.norm.name : nil,
         I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
         completion_reason,
