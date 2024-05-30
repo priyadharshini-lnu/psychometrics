@@ -13,7 +13,7 @@ module UsersResults
           factor_scoring = extended_scoring.fetch(factor.id.to_s, {})
           factor.external_scoring.each do |row|
             value = JsonPath.new(row['jsonpath']).first(external_results)
-            factor_scoring[row['type']] = value&.to_f
+            factor_scoring[row['type']] = round_score(value&.to_f)
           end
 
           broadcast(:ok, extended_scoring.merge(factor.id.to_s => factor_scoring))

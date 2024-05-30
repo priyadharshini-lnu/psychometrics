@@ -44,7 +44,7 @@ export const PrivacyConsentComponent: FC<Props> = ({
   const [accepted, setAccepted] = useState(false)
 
   useEffect(() => {
-    fetchPolicy(privacyPolicyVersion)
+    !customPrivacyConsentText && fetchPolicy(privacyPolicyVersion)
   }, [])
 
   const accept = () => {
@@ -65,7 +65,7 @@ export const PrivacyConsentComponent: FC<Props> = ({
       </GlintPageHeader>
       <Content className={styles.container}>
         <Content className={cs(styles.pageContent)}>
-          {policy?.content
+          {policy?.content || customPrivacyConsentText
             ? (
               <div className={styles.policyContent}>
                 <Paragraph>

@@ -21,7 +21,9 @@ const AssessmentPreview = ({
     isAgile() && initializeAgile()
   }, [])
 
-  useUnloadCallback(I18n.t('common.messages.leave_message'), !end)
+  const showUnloadCallback = !end && started
+
+  useUnloadCallback(I18n.t('common.messages.leave_message'), showUnloadCallback)
 
   const { lang } = qs.parse(location.search.substr(1))
   const initializeAgile = () => {

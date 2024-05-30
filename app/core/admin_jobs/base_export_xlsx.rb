@@ -30,5 +30,13 @@ module AdminJobs
     def file_name
       raise NoMethodError, 'Define file_name in subclass'
     end
+
+    def campaign_ids
+      return record.data['campaign_ids'] if record.data['campaign_ids'].present?
+
+      if record.data['project_ids'].present?
+        @campaign_ids ||= Campaign.where(project_id: record.data['project_ids']).pluck(:id)
+      end
+    end
   end
 end

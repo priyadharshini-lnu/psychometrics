@@ -87,6 +87,15 @@ export const DetailsDrawer: FC<Props> = ({
           <Descriptions.Item label={I18n.t('common.column.owner')} key="owner" className="va-t">
             {report.owner?.name}
           </Descriptions.Item>
+          {report.externalReport && (
+            <Descriptions.Item
+              label={I18n.t('common.column.external_report_id')}
+              key="external_report_id"
+              className="va-t"
+            >
+              {report.externalSettings?.reportId}
+            </Descriptions.Item>
+          )}
           <Descriptions.Item label={I18n.t('common.column.updated_at')} key="updated_at" className="va-t">
             {report.updatedAt}
           </Descriptions.Item>

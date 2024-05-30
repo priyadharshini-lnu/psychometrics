@@ -23,4 +23,5 @@ interface Props {
   yAxisLinesHide: boolean
   xAxisLabelHide: boolean
   transparentBackground: boolean
+  precision?: number
 }

@@ -84,6 +84,10 @@ const ScoringTable: React.FC = () => {
       apiConfig: {
         filter: {
           user_id_eq: userId,
+          campaign_factor_factor_type_eq: 'assessor_scoring',
+        },
+        page: {
+          size: 50,
         },
       },
     },
@@ -247,7 +251,7 @@ const ScoringTable: React.FC = () => {
   }
 
 
-  const finalRow = {
+  const finalRow = useMemo(() => ({
     assessors: `${I18n.t('administration.scoring.final')}`,
     key: 'final',
     scores: columnsData.reduce((acc, factor) => ({
@@ -260,7 +264,7 @@ const ScoringTable: React.FC = () => {
         />
       ),
     }), {}),
-  }
+  }), [finalScores, columnsData])
 
   const rowClassName = (record, index): string => {
     if (record.key === 'final') {

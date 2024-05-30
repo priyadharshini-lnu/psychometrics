@@ -101,6 +101,7 @@ class Consultant extends Component {
                   color: color || '#000',
                   fontFamily,
                 },
+                allowOverlap: true,
               },
             },
             column: {

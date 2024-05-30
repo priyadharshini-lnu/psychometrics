@@ -3,6 +3,7 @@
 module Administration
   class BulkReportsController < Administration::BaseController
     prepend_before_action :set_resource_class
+    prepend_before_action :set_resource, only: %i[download]
     append_before_action :pundit_authorize
 
     def new
@@ -29,19 +30,22 @@ module Administration
     end
 
     def download
-      report = BulkReport.find(params[:id])
       index = params[:index].to_i || 0
 
-      report_blob = report.files[index]&.blob
+      report_blob = resource.files[index]&.blob
 
       if report_blob&.service&.exist?(report_blob.key)
-        redirect_to report.private_download_url(index)
+        redirect_to resource.private_download_url(index)
       else
         redirect_to(admin_path, error: t('.removed'))
       end
     end
 
     private
+
+    def set_resource
+      @_resource = current_user.bulk_reports.find(params[:id])
+    end
 
     def query(client)
       if client.project?

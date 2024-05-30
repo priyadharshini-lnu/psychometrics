@@ -15,9 +15,13 @@ interface Props {
   scoreRanges: ScoreRange[]
   baselineScore: number
   score: number
+  lineColor?: string
+  bulletColor?: string
 }
 
-const BulletGraph: React.FC<Props> = ({ scoreRanges, baselineScore, score }) => {
+const BulletGraph: React.FC<Props> = ({
+  scoreRanges, baselineScore, score, lineColor, bulletColor,
+}) => {
   const max = _.maxBy(scoreRanges, x => x.value)
   const min = _.minBy(scoreRanges, x => x.value)
 
@@ -44,12 +48,14 @@ const BulletGraph: React.FC<Props> = ({ scoreRanges, baselineScore, score }) => 
         style={{
           width: `${score}%`,
           maxWidth: '100%',
+          backgroundColor: lineColor,
         }}
       />
       <div
         className={styles.baselineScore}
         style={{
           left: `${baselineScorePercentage}%`,
+          backgroundColor: bulletColor,
         }}
       />
     </div>

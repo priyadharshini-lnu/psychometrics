@@ -20,7 +20,7 @@ describe CampaignUsers::AssignReportsAndAssessments::ImportForm do
     [
       ['Email', 'Report Bundle Id', 'Report Id', 'Assessment Id', 'Norm Id'],
       {
-        email: 'john@cc.com',
+        email: 'John@cc.com',
         report_bundle_id: bundle.id,
         report_id: report.id,
         assessment_id: assessment.id,

@@ -1,8 +1,8 @@
 import { Avatar } from 'antd'
 import { Link as RouterLink } from 'react-router-dom'
 import cs from 'classnames'
-import logo from './assets/lighthouseLogoTall.png'
-import logoSmall from './assets/TTE_Logo_Color_Monogram.png'
+import logo from '~/assets/lighthouseLogoTall.png'
+import logoSmall from '~/assets/TTE_Logo_Color_Monogram.png'
 import { shortify } from '~/utils/string'
 import styles from './UserAvatar.less'
 

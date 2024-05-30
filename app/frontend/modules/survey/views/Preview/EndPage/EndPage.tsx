@@ -24,6 +24,7 @@ const connector = connect(({ preview }: RootState) => ({
   endOfAssessmentElementProps: preview.endOfAssessmentElementProps as EndOfAssessmentElementProps | undefined,
   nextAssessmentUrl: preview.nextAssessmentUrl,
   otherPendingAssessmentCount: preview.otherPendingAssessmentCount,
+  assessmentId: preview.id,
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -42,6 +43,7 @@ const EndPage: FC<Props> = ({
   // nextAssessmentUrl,
   otherPendingAssessmentCount,
   allowMultipleResponses,
+  assessmentId,
 }) => {
   const location = useLocation()
   const history = useHistory()
@@ -60,8 +62,7 @@ const EndPage: FC<Props> = ({
   if (endOfAssessmentElementProps?.messageType === 'Custom' && endOfAssessmentElementProps?.message) {
     message = endOfAssessmentElementProps?.message
   }
-
-  const getViewPath = () => `?tab=${user_assessment_id}&read=true`
+  const getViewPath = () => `?tab=${assessmentId}&read=true`
   return (
     <div className={styles.page}>
       <div className={styles.logo}>{/* <img src={Logo} /> */}</div>

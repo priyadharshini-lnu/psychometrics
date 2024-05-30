@@ -13,7 +13,7 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
 
   path '/report_families/{report_family_id}/report_families_reports/' do
     before do
-      report_families_report
+      report_families_report.update(external_package_id: 'RPInsightFlashPkg')
     end
 
     get 'Report Family Report List' do
@@ -42,6 +42,7 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
           parsed_response = data.find { |d| d['id'] == report_families_report.id.to_s }
           expect(parsed_response).to have_key('id')
           expect(parsed_response).to have_attribute(:bundle_name).with_value('bundle name')
+          expect(parsed_response).to have_attribute(:external_package_id).with_value('RPInsightFlashPkg')
         end
       end
     end

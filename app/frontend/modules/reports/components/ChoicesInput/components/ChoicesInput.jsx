@@ -47,14 +47,14 @@ class ChoicesInput extends Component {
   }
 
   inc = () => {
-    let { value } = this.props
+    let { value = 0 } = this.props
     value += 1
     value = value < this.getMaxValue() ? value : this.getMaxValue()
     this.updateModel(value)
   }
 
   dec = () => {
-    let { value } = this.props
+    let { value = 0 } = this.props
     value -= 1
     value = value < this.getMinValue() ? this.getMinValue() : value
     this.updateModel(value)

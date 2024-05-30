@@ -129,6 +129,7 @@ class User < ApplicationRecord
   has_many :user_availability_days, through: :user_availability_dates
   has_many :user_bookings
   has_many :campaign_factor_values, dependent: :destroy
+  has_many :bulk_reports
 
   has_one :security_setting, through: :project
   has_one :user_profile

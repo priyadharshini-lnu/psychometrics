@@ -55,8 +55,10 @@ class AdminJobRecord < ApplicationRecord
     export_reports_and_assessments: 35,
     super_admin_assessment_norm_export: 36,
     super_admin_datasheet_export: 37,
-    threesixty_campaign_export_scores: 38,
-    import_external_campaign_scoring: 39
+    super_admin_external_assessment_export: 38,
+    super_admin_export_admin_with_permissions: 39,
+    threesixty_campaign_export_scores: 40,
+    import_external_campaign_scoring: 41
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

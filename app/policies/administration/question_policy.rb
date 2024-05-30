@@ -52,7 +52,7 @@ module Administration
           @user.has_permission?(:questions, :view, project_id: owner_id)
         end
 
-        scope.where(owner_id: permitted_owner_ids)
+        scope.where(owner_id: permitted_owner_ids.push(nil))
       end
     end
   end

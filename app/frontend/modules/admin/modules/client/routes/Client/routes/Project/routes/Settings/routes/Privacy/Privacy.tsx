@@ -22,7 +22,6 @@ export const Privacy: React.FC = () => {
   }[]>([])
   const [selectedLocale, setSelectedLocale] = useState('en')
 
-  const locales = Form.useWatch('locales', form)
   const enablePrivacyLink = Form.useWatch('enablePrivacyLink', form)
   const enableCustomPolicy = Form.useWatch('customPrivacyConsent', form)
 
@@ -78,7 +77,8 @@ export const Privacy: React.FC = () => {
   }
 
   const selectedLocaleConsentText = _.find(customPrivacyConsentTexts, { locale: selectedLocale })
-  const localesForConsent = locales?.length ? locales : ['en']
+
+  const localesForConsent = customPrivacyConsentTexts?.length ? customPrivacyConsentTexts : [{ locale: 'en' }]
 
   if (!privacySetting) return <Skeleton active />
 
@@ -122,7 +122,7 @@ export const Privacy: React.FC = () => {
                       className="mb8 width150px"
                       onChange={value => updateSelectedLocale(value)}
                     >
-                      {localesForConsent.map(locale => (
+                      {localesForConsent.map(({ locale }) => (
                         <Select.Option key={locale} value={locale}>
                           {I18n.t(`languages.${locale}`)}
                         </Select.Option>
@@ -131,6 +131,7 @@ export const Privacy: React.FC = () => {
                   </Col>
                   <Col span={24} className="mbl">
                     <Editor
+                      key={selectedLocaleConsentText?.locale}
                       type={null}
                       details={null}
                       className="flex1"

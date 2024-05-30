@@ -10,6 +10,7 @@ import ChartProps from './Charts/Properties'
 import iconsStyles from './Graph.less'
 import Menu from './ChartsMenu'
 import connect from '../connect'
+import ChoicesInput from '~/modules/reports/components/ChoicesInput'
 
 class Properties extends Component {
   static propTypes = {
@@ -66,6 +67,12 @@ class Properties extends Component {
   openConditionModal = () => {
     const { model, openConditionalText } = this.props
     openConditionalText({ module: model })
+  }
+
+  changePrecision = (val) => {
+    const { model } = this.props
+    model.props.precision = val
+    this.update()
   }
 
   renderCustomProperties () {
@@ -126,6 +133,18 @@ class Properties extends Component {
           <PropertyFilter model={model} />
         </div>
         <hr className={styles.divider} />
+        <div className={styles.block} style={{ position: 'relative' }}>
+          <div className="margin-top-10">Number Precision</div>
+          <label className={styles.inputLabel}>
+            <ChoicesInput
+              value={model.props.precision}
+              onChange={this.changePrecision}
+              minValue={0}
+              maxValue={9}
+            />
+          </label>
+        </div>
+        <hr className={styles.divider} />
         <div className="margin-top-10">Font</div>
         <PropertyFonts model={model} reportStlyes={reportStlyes} />
         <div style={{ position: 'relative' }}>
@@ -142,6 +161,7 @@ class Properties extends Component {
             Show Values
           </label>
         </div>
+
       </div>
     )
   }

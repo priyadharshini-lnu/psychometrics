@@ -57,9 +57,8 @@ export const BaseFormFields: React.FC<Props> = ({ report, form }) => {
     // more details are here https://github.com/TheTalentEnterprise/psychometrics/pull/3635#discussion_r1354763753
     setTimeout(() => {
       form.setFieldsValue({ provider: getCurrentProvider() })
-    })
+    }, 50)
   }, [assessmentIds, externalReportId, isCustomUpload])
-
 
   const getClients = (): OptionsType[] => {
     if (!report || !report.owner || clients.find(d => report?.owner?.id === d.id)) {

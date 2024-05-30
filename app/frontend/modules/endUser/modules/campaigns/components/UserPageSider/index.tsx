@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons'
 
 
-import lighthouseLogo from '~/modules/endUser/assets/images/lighthouseLogoWide.png'
+import lighthouseLogo from '~/assets/lighthouseLogoTall.png'
 import { history } from '~/modules/endUser/store'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
