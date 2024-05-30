@@ -2,18 +2,11 @@
 
 module SuperAdmin
   module ExportExternalAssessment
-    class Pearson < BaseCommand
-      private_attr_accessor :assessment, :campaign_ids
-
+    class Pearson < Base
       DEFAULT_HEADERS = [
         'Result ID',  'Project ID', 'Project Name', 'Campaign ID', 'Campaign Name', 'Subject Name', 'Subject Email',
-        'Evaluator Name', 'Evaluator Email', 'Relationship', 'Started At', 'Completed At', 'Status'
+        'Started At', 'Completed At', 'Status'
       ].freeze
-
-      def initialize(assessment, campaign_ids)
-        @assessment = assessment
-        @campaign_ids = campaign_ids
-      end
 
       def call
         results =
@@ -52,20 +45,10 @@ module SuperAdmin
           res.campaign.name,
           subject_name,
           subject_email,
-          subject_name,
-          subject_email,
-          'Self',
           res.user_assessment.started_at.try(:strftime, '%D %r'),
           res.user_assessment.completed_at.try(:strftime, '%D %r'),
           I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}")
         ]
-      end
-
-      def users_results
-        UsersResult.joins(:user_assessment).
-          where(
-            user_assessments: { campaign_id: campaign_ids, assessment_id: assessment.id, status: :completed }
-          ).includes(campaign: :project, user_assessment: :subject)
       end
     end
   end

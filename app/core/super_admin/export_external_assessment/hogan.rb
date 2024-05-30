@@ -2,14 +2,7 @@
 
 module SuperAdmin
   module ExportExternalAssessment
-    class Hogan < BaseCommand
-      private_attr_accessor :assessment, :campaign_ids
-
-      def initialize(assessment, campaign_ids)
-        @assessment = assessment
-        @campaign_ids = campaign_ids
-      end
-
+    class Hogan < Base
       def call
         results =
           Axlsx::Package.new do |package|
@@ -85,7 +78,7 @@ module SuperAdmin
           res.campaign.id,
           res.campaign.name,
           user_name(res),
-          res.evaluator.email,
+          res.subject.email,
           I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}"),
           res.evaluator.hogan_credential&.participant_id,
           res.created_at&.strftime('%D %r'),
@@ -93,21 +86,15 @@ module SuperAdmin
         ]
       end
 
-      def users_results
-        UsersResult.joins(:user_assessment).
-          where(user_assessments: { campaign_id: campaign_ids, assessment_id: assessment.id, status: :completed }).
-          includes(campaign: :project, user_assessment: :evaluator)
-      end
-
       def default_headers
         [
-          'Result ID', 'Project ID', 'Project Name', 'Campaign ID', 'Campaign Name', 'Full Name',
-          'User email', 'Status', 'Participant ID', 'Started At', 'Completed at'
+          'Result ID', 'Project ID', 'Project Name', 'Campaign ID', 'Campaign Name', 'Subject Name',
+          'Subject Email', 'Status', 'Participant ID', 'Started At', 'Completed at'
         ]
       end
 
       def user_name(res)
-        [res.user.first_name, res.user.last_name].compact_blank.join(', ')
+        [res.subject.first_name, res.subject.last_name].compact_blank.join(', ')
       end
     end
   end

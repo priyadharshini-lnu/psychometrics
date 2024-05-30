@@ -2,12 +2,10 @@
 
 module SuperAdmin
   module ExportExternalAssessment
-    class Iiht < BaseCommand
-      private_attr_accessor :assessment, :campaign_ids
-
+    class Iiht < Base
       DEFAULT_HEADERS = [
         'Result ID', 'Project ID', 'Project Name', 'Campaign ID', 'Campaign Name', 'Subject Name', 'Subject Email',
-        'Evaluator Name', 'Evaluator Email', 'Relationship', 'Started At', 'Completed At', 'Status'
+        'Started At', 'Completed At', 'Status'
       ].freeze
       RESULT_HEADERS_DATA = {
         'status' => 'Result',
@@ -16,11 +14,6 @@ module SuperAdmin
         'answeredQuestions' => 'AnsweredQuestions',
         'scorePercentage' => 'ScorePercentage'
       }.freeze
-
-      def initialize(assessment, campaign_ids)
-        @assessment = assessment
-        @campaign_ids = campaign_ids
-      end
 
       def call
         results =
@@ -50,19 +43,10 @@ module SuperAdmin
           res.campaign.name,
           res.subject.decorate.full_name(seprator: ', '),
           res.subject.email,
-          res.evaluator.decorate.full_name(seprator: ', '),
-          res.evaluator.email,
-          res.user_assessment.relationship.name,
           res.user_assessment.started_at.try(:strftime, '%D %r'),
           res.completed_at.try(:strftime, '%D %r'),
           I18n.t("activerecord.attributes.users_result.statuses.#{res.real_status}")
         ]
-      end
-
-      def users_results
-        UsersResult.joins(:user_assessment).
-          where(user_assessments: { campaign_id: campaign_ids, assessment_id: assessment.id, status: :completed }).
-          includes(campaign: :project, user_assessment: :evaluator)
       end
     end
   end

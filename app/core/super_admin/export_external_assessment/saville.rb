@@ -2,14 +2,7 @@
 
 module SuperAdmin
   module ExportExternalAssessment
-    class Saville < BaseCommand
-      private_attr_accessor :assessment, :campaign_ids
-
-      def initialize(assessment, campaign_ids)
-        @assessment = assessment
-        @campaign_ids = campaign_ids
-      end
-
+    class Saville < Base
       def call
         xlsx =
           Axlsx::Package.new do |package|
@@ -50,7 +43,7 @@ module SuperAdmin
           result.campaign.id,
           result.campaign.name,
           user_name(result),
-          result.evaluator.email,
+          result.subject.email,
           I18n.t("activerecord.attributes.users_result.statuses.#{result.real_status}"),
           result.user_assessment.started_at&.strftime('%D %r'),
           result.completed_at&.strftime('%D %r')
@@ -60,12 +53,12 @@ module SuperAdmin
       def default_headers
         [
           'Result ID', 'Project ID', 'Project Name', 'Campaign ID', 'Campaign Name',
-          'Full Name', 'Email', 'Status', 'Started at', 'Completed at'
+          'Subject Name', 'Subject Email', 'Status', 'Started at', 'Completed at'
         ]
       end
 
       def user_name(result)
-        [result.evaluator.first_name, result.evaluator.last_name].compact_blank.join(', ')
+        [result.subject.first_name, result.subject.last_name].compact_blank.join(', ')
       end
 
       def add_headers_and_sub_headers(factors_hash, sheet)
@@ -82,12 +75,6 @@ module SuperAdmin
         sheet.add_row(factor_id_headers, style: header_style)
         sheet.add_row(factor_name_headers, style: header_style)
         sheet.add_row(factor_value_type_headers, style: header_style)
-      end
-
-      def users_results
-        UsersResult.
-          where(user_assessments: { campaign_id: campaign_ids, assessment_id: assessment.id, status: :completed }).
-          includes(:user_assessment, :evaluator, campaign: :project)
       end
 
       def savile_factors
