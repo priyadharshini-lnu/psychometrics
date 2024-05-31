@@ -3,6 +3,7 @@
 class DevelopmentAction < ApplicationRecord
   extend Mobility
   include ActiveStorageSync
+  include ActiveStorageAttachable
 
   translates :name, :description
 
@@ -14,5 +15,9 @@ class DevelopmentAction < ApplicationRecord
   enum category: { development_actions: 0, online_course: 1, offline_course: 2 }
   enum learning_style: { structured_learning: 0, learning_from_others: 1, on_the_job: 2 }
 
-  mount_uploader :image, Public::ImageUploader
+  has_one_image_attachment :image, variants: %i[thumb]
+
+  def attachment_storage_path(attribute_name, filename)
+    "public/development_action/#{id}/#{attribute_name}/#{filename}"
+  end
 end
