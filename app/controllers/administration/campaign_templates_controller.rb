@@ -8,7 +8,7 @@ module Administration
     append_before_action :pundit_authorize
 
     def index
-      @_filter_form = policy_scope(resource_class).includes(:assessment, :report).ransack(params[:q])
+      @_filter_form = policy_scope(resource_class).includes(:assessment, :report, :owner).ransack(params[:q])
       @_resources = filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -61,7 +61,7 @@ module Administration
     private
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :report_id)
+      params.require(:resource).permit(:name, :assessment_id, :report_id, :owner_id)
     end
 
     def set_resource_class

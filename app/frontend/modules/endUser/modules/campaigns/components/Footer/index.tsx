@@ -10,7 +10,7 @@ import {
   getSecondaryLogo,
   getName,
 } from '~/modules/endUser/modules/campaigns/core/project'
-import lighthouseLogo from '~/modules/endUser/assets/images/lighthouseLogoTall.png'
+import lighthouseLogo from '~/assets/lighthouseLogoTall.png'
 import { isProctored } from '~/utils/isProctored'
 
 import { PageFooter } from '~/glint'

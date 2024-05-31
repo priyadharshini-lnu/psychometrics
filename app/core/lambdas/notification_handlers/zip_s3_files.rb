@@ -21,7 +21,8 @@ module Lambdas
           bulk_report.update_columns(files: [data['file_name']])
           BulkReportMailer.notify(bulk_report).deliver_later
           if admin_job
-            content = content_tag(:a, data['file_name'], href: bulk_report.files[0].url)
+            url = Utility::Url.generate(:download_administration_bulk_report_url, id: bulk_report.id)
+            content = content_tag(:a, data['file_name'], href: url)
             admin_job.update!(content: content)
             admin_job.complete!
           end

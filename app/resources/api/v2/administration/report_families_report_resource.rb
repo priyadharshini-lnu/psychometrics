@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::ReportFamiliesReportResource < Api::V2::Administration::BaseResource
-  attributes :name, :created_at, :updated_at, :report_id, :bundle_name
+  attributes :name, :created_at, :updated_at, :report_id, :external_package_id, :bundle_name
 
   ransack_filters %i[filterable_fields]
 

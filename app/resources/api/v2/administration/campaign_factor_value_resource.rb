@@ -7,7 +7,7 @@ class Api::V2::Administration::CampaignFactorValueResource < Api::V2::Administra
   has_one :user
   has_one :campaign_factor
 
-  ransack_filters %i[user_id_eq]
+  ransack_filters %i[user_id_eq campaign_factor_factor_type_eq]
 
   def self.records(opts = {})
     ::Api::Administration::CampaignFactorValuePolicy::Scope.new(

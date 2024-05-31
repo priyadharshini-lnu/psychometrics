@@ -68,6 +68,21 @@ export default function Form (props) {
         resourceName="resource"
       />
       <BaseForm fields={FIELDS} errors={errors} context={props} onChange={onChange} resource={resource} />
+      <AntForm
+        initialValues={{ precision: resource.precision }}
+        onValuesChange={onValuesChange}
+        layout="vertical"
+        colon={false}
+      >
+        <AntForm.Item
+          label="Precision"
+          name="precision"
+          validateStatus={errors.precision?.length && 'error'}
+          help={errors.precision?.join(', ')}
+        >
+          <InputNumber parser={value => value?.replace(/\D.*$/g, '')} min={0} max={6} />
+        </AntForm.Item>
+      </AntForm>
       {resource.scoring_strategy === 'questions_percentage' && (
         <AntForm
           initialValues={{

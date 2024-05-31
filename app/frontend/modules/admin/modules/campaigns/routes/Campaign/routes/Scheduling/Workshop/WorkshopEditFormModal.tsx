@@ -52,9 +52,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
       method: 'get',
       body: {
         startDateTime: workshop.startTime,
-        endDateTime: dayjs.tz(
-          workshop.startTime, workshop.timezone,
-        ).add(workshop.duration, 's').format(),
+        endDateTime: dayjs(workshop.startTime).add(workshop.duration, 's').tz(workshop.timezone).format(),
         campaignId,
         projectId,
         searchTerm: searchKey,

@@ -2,12 +2,15 @@
 
 module Examus
   class GetSessionUrl < BaseCommand
-    private_attr_reader :campaign_user, :campaign, :project
+    AVAILABLE_LOCALES = %i[en ar].freeze
 
-    def initialize(campaign_user)
+    private_attr_reader :campaign_user, :campaign, :project, :locale
+
+    def initialize(campaign_user, locale)
       @campaign_user = campaign_user
       @campaign = campaign_user.campaign
       @project = campaign.project
+      @locale = AVAILABLE_LOCALES.include?(locale) ? locale : 'en'
     end
 
     def call
@@ -26,7 +29,7 @@ module Examus
 
     private
 
-    def payload(proctoring_session)
+    def payload(proctoring_session) # rubocop:disable Metrics/AbcSize
       duration = ((campaign_user.compute_expiry_date.to_i - Time.now.to_i) / 60.0).ceil
       maskable_identity = campaign_user.user.maskable_identity(
         mask: project.mask_identity_for_examus?
@@ -36,7 +39,7 @@ module Examus
         lastName: maskable_identity.first_name,
         firstName: maskable_identity.last_name,
         thirdName: '',
-        language: 'en',
+        language: locale,
         accountId: project.project.id,
         accountName: project.name,
         examId: campaign.id.to_s,

@@ -51,7 +51,10 @@ export class Scoring extends Component {
 
   render () {
     const { scoring, model: { props, moduleConfig } } = this.props
-    const multilineValue = _.times(props.choices, (index => scoring.props.find(s => s.index === index)?.value || ''))
+    const multilineValue = _.times(props.choices, (index) => {
+      const val = scoring.props.find(s => s.index === index)?.value
+      return _.isNil(val) ? '' : val
+    })
 
     return (
       <div>

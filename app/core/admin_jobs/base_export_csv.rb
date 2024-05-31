@@ -8,6 +8,7 @@ module AdminJobs
     def call
       write_csv
       record.update!(file: File.open(file_path))
+      job_record.complete!
       FileUtils.rm_f(file_path)
 
       broadcast :ok
@@ -32,7 +33,6 @@ module AdminJobs
             job_record.update!(completed_tasks: record_count)
           end
         end
-        job_record.complete!
       end
     end
 

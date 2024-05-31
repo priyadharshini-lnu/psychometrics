@@ -201,7 +201,11 @@ const AddEditDrawerComponent: FC<Props> = ({
   }, [admin])
 
   useEffect(() => {
-    form.setFieldsValue(({ firstName: selectedUser?.firstName, lastName: selectedUser?.lastName }))
+    form.setFieldsValue(({
+      userId: selectedUser?.id ? [selectedUser?.id] : undefined,
+      firstName: selectedUser?.firstName,
+      lastName: selectedUser?.lastName,
+    }))
     return () => form.resetFields()
   }, [selectedUser])
 

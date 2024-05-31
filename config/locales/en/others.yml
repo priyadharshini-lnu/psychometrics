@@ -752,6 +752,8 @@ en:
         super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         super_admin_datasheet_export: Super Admin Datasheet Export
+        super_admin_export_admin_with_permissions: Super Admin Export Admin With Permissions
+        super_admin_external_assessment_export: Super Admin External Assessment Export
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
         workshop_status_export: Assessment Center Status Export
       statuses:
@@ -943,7 +945,7 @@ en:
       read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
-        description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or surveys@thetalententerprise.com
+        description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or mte.surveys@mercer.com
         title: Last Request Failed
       submit: Submit
     pages:
@@ -1427,6 +1429,7 @@ en:
     campaign_id: Campaign ID
     expire_in: Expire in (sec)
     invalid_token: Invalid token
+    text: Text
   campaign_report:
     actions:
       bulk_download: Bulk Download
@@ -1627,6 +1630,7 @@ en:
       details: Details
       dimension: Dimension
       email: Email
+      external_report_id: Exteral Report ID
       first_name: First Name
       icon: Icon
       icon_color: Icon color
@@ -1640,6 +1644,7 @@ en:
       modified_date: Modified Date
       name: Name
       owner: Owner
+      package_id: Package Id
       poster: Poster
       project: Project
       provider: Provider
@@ -1912,6 +1917,7 @@ en:
       send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
       send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
       unlocked: Your account has been unlocked successfully. Please login to continue.
+      unprocessable_entity: Your account could not be unlocked with this link. Please contact support.
   dry_errors:
     errors:
       add_edit_project:

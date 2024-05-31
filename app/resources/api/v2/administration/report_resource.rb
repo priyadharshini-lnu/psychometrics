@@ -3,7 +3,7 @@
 class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :created_at, :updated_at, :created_by, :modified_by, :archived, :deleted,
              :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon, :active,
-             :external_settings, :provider, :provider
+             :external_settings, :external_report, :provider, :hogan_report_packages
 
   ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in]
   audit_log_for :create, payload: '*'
@@ -53,6 +53,18 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
     @model.external_settings
   end
 
+  def external_report
+    @model.external_report?
+  end
+
+  def hogan_report_packages
+    return [] unless @model.hogan?
+
+    Settings.providers.hogan.report_packages.
+      select { |package| package.report_ids.include?(external_report_id) }.
+      map { |package| { id: package.id, name: package.name } }
+  end
+
   def external_settings=(value)
     provider = context.dig(:params, :data, :attributes, :provider)
     @model.external_settings = Administration::Reports::BuildExternalSettings.call!(@model, value, provider)
@@ -95,5 +107,11 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
         )
       }
     }
+  end
+
+  private
+
+  def external_report_id
+    @external_report_id ||= @model.external_report_id
   end
 end

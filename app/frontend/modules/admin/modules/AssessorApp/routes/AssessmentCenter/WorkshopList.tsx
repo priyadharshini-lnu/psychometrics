@@ -1,8 +1,7 @@
 import React from 'react'
-import {
-  Radio,
-} from 'antd'
+import { Radio } from 'antd'
 import { useParams } from 'react-router-dom'
+import { DateTimeWithZone } from '~/glint'
 import dayjs from '~/utils/dayjs'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/assessors/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -68,7 +67,7 @@ export const WorkshopList: React.FC = () => {
             title={I18n.t('administration.scheduling.columns.start_time')}
             id="startTime"
             width="15%"
-            render={(_, { startTime }) => dayjs(startTime).format('lll')}
+            render={(_, { startTime }) => <DateTimeWithZone dateString={startTime} format="lll" />}
           />
           <Resource.Column<Workshop>
             title={I18n.t('administration.scheduling.columns.duration')}

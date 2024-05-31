@@ -23,6 +23,12 @@ module UsersResults
           @visited_factor_ids = visited_factor_ids
         end
         # rubocop:enable Metrics/ParameterLists
+
+        def round_score(score)
+          return score if score.nil? || !score.is_a?(Numeric)
+
+          factor_data[:factor].precision ? score.round(factor_data[:factor].precision) : score
+        end
       end
     end
   end

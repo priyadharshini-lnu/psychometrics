@@ -5,6 +5,7 @@ export const ReportBundleReportTR = t.type({
   reportId: t.string,
   bundleName: t.string,
   name: t.string,
+  externalPackageId: t.union([t.string, t.null]),
   createdAt: t.union([t.string, t.null]),
   updatedAt: t.union([t.string, t.null]),
   meta: t.type({
