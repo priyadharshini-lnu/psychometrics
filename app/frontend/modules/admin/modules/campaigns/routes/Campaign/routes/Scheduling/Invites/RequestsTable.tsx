@@ -20,7 +20,7 @@ const STATUSES_TO_COLOR = {
 }
 
 export const RequestsTable = () => {
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as { campaignId: string }
 
   const config = {
     responseType: WorkshopInvitedSubjectTR,

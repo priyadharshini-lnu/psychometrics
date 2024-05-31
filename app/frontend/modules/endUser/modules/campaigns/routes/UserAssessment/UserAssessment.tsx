@@ -1,6 +1,6 @@
 import { useEffect, FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Redirect, RouteComponentProps } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
   Layout, Col, Progress, Space, ProgressProps,
@@ -43,7 +43,7 @@ type Params = {
   userAssessmentId: string
 }
 type PropsFromRedux = ConnectedProps<typeof connector>
-type UserAssessmentProps = PropsFromRedux & RouteComponentProps<Params>
+type UserAssessmentProps = PropsFromRedux
 
 const { Content } = Layout
 const { I18n } = window
@@ -63,7 +63,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       prework,
     },
   }, fetchAssessment,
-  match: { params },
   preview: {
     initialized,
     enableProgress,
@@ -74,16 +73,20 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   markAssessmentTimedOut,
   progress,
 }) => {
+  const params = useParams() as Params
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)
   }, [])
   const { isMobile } = useContext(MediaQueryContext)
+  const navigate = useNavigate()
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
 
   const needsProctoring = proctoringEnabled && !prework && !isProctored()
-  if (needsProctoring) return <Redirect to={`/campaigns/${campaignId}`} />
+  if (needsProctoring) {
+    navigate(`/campaigns/${campaignId}`)
+  }
 
   const enableBackButton = !isProctored() || proctoringEnabled
   const notificationDurations: Notification[] = [

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Tabs,
 } from 'antd'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import AssessmentsReports from './AssessmentsReports'
 import { Idp } from './Idp'
 import styles from './Manage.less'
@@ -10,12 +10,12 @@ import styles from './Manage.less'
 const { I18n } = window
 
 const Manage: React.FC<{}> = () => {
-  const { projectId, campaignId, tab: paramTab } = useParams<{projectId:string, campaignId:string, tab:string}>()
-  const history = useHistory()
+  const { projectId, campaignId, tab: paramTab } = useParams() as {projectId:string, campaignId:string, tab:string}
+  const navigate = useNavigate()
   const [tab, setTab] = useState(paramTab || 'assessments')
 
   const changeTab = (tab) => {
-    history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/assessments_reports/manage/${tab}`)
+    navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/assessments_reports/manage/${tab}`)
 
     setTab(tab)
   }

@@ -68,7 +68,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
     fetchOtherAssessments(campaignId, tableConfig)
   }, [tableConfig.page])
 
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const { message } = App.useApp()
 
   const parsedCampaignId = parseInt(campaignId, 10)

@@ -64,7 +64,7 @@ interface Dimension {
 export const AddEditFactorForm: FC<Props> = ({
   open, onClose, addFactor, factorData, editFactor, title,
 }) => {
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [codeValueEditedByUser, setCodeValueEditedByUser] = useState(false)
   const [form] = Form.useForm()
   const nameValue = Form.useWatch('name', form)

@@ -47,7 +47,7 @@ const IntegrationsComponent: React.FC<Props> = ({
   openModal,
   isDeleteRequestInProgress,
 }) => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
 
   useEffect(() => {
     fetch(projectId)

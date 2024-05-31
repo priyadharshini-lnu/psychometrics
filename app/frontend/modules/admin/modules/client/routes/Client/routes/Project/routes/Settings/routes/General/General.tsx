@@ -13,7 +13,7 @@ const { Option } = Select
 const { I18n } = window
 
 export const General: React.FC = () => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const [form] = Form.useForm()
   // eslint-disable-next-line max-len
   const [enableLiveChatChecked, setEnableLiveChatChecked] = useState(false)

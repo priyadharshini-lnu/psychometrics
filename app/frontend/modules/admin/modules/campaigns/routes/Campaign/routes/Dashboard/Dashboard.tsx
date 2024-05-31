@@ -1,13 +1,12 @@
 import { Skeleton } from 'antd'
 import React, { useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
 import { useResources } from '~/hooks/useResources'
 import {
   Dashboard as DashboardType, DashboardTR, useDashboardStore,
 } from '~/modules/admin/modules/campaigns/core/dashboard'
-import settings from '~/modules/admin/modules/campaigns/settings'
 import RouteList from '~/components/RouteList'
 import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from '~/modules/admin/modules/campaigns/core/current'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -28,8 +27,9 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props =PropsFromRedux
 
 const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser, campaignLoading }) => {
-  const history = useHistory()
-  const { campaignId, projectId } = useParams<{ campaignId: string, projectId: string }>()
+  const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
+  const navigate = useNavigate()
+  const location = useLocation()
   const stateManager = useDashboardStore()
   const {
     fetch, isRequestSuccessful, data,
@@ -69,8 +69,8 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
       accessiblePaths = [...accessiblePaths, `${basePath}/accesssheet_settings`]
     }
 
-    if (accessiblePaths.includes(history.location.pathname)) { return }
-    if (accessiblePaths[0]) history.push(accessiblePaths[0])
+    if (accessiblePaths.includes(location.pathname)) { return }
+    if (accessiblePaths[0]) navigate(accessiblePaths[0])
   }, [data, fetchSuccessful, campaignPermissions, campaignLoading])
 
   if (loadingInProgress) return <Skeleton active />
@@ -83,7 +83,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
         canManageDashboard={canManageDashboard}
         campaignPermissions={campaignPermissions}
       />
-      <RouteList routes={routes} urlPrefix={`${settings.urlPrefix}/:campaignId/dashboard`} />
+      <RouteList routes={routes} urlPrefix="" />
     </>
   )
 }

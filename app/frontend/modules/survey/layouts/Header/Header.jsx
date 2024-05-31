@@ -45,12 +45,12 @@ export class Header extends Component {
 
   showScoring = () => {
     const { history, match: { params: { id } } } = this.props
-    history.push(`/administration/assessments/${id}/scoring`)
+    history(`/administration/assessments/${id}/scoring`)
   }
 
   showResourceManager = () => {
     const { history, match: { params: { id } } } = this.props
-    history.push(`/administration/assessments/${id}/resources`)
+    history(`/administration/assessments/${id}/resources`)
   }
 
   openSearchPopup = () => {

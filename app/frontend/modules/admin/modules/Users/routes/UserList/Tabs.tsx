@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   ShopOutlined,
@@ -21,9 +21,9 @@ const connecter = connect(
 type Props = ConnectedProps<typeof connecter>
 const TabsComponent: React.FC<Props> = ({ currentUser }) => {
   const { pathname } = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/${key}`)
+    navigate(`${settings.urlPrefix}/${key}`)
   }
 
   const menuItems: ItemType[] = [

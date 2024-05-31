@@ -1,15 +1,16 @@
-import { withRouter } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Pagination as AntPagination } from 'antd'
 import routeUtils from '~/utils/route'
 import styles from './styles.less'
 import settings from '../../settings'
 
 function Pagination ({
-  history, total, path, onChange,
+  total, path, onChange,
 }) {
+  const navigate = useNavigate()
   const handleOnChange = (page) => {
     onChange && onChange(page)
-    routeUtils.moveTo(history, settings.urlPrefix, `${path}?page=${page}`)
+    routeUtils.moveTo(navigate, settings.urlPrefix, `${path}?page=${page}`)
   }
 
   return (
@@ -26,4 +27,4 @@ function Pagination ({
   )
 }
 
-export default withRouter(Pagination)
+export default Pagination

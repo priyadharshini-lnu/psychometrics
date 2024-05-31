@@ -1,31 +1,50 @@
 import { lazy } from 'react'
+import RouteList from '~/components/RouteList'
+
+const ReportList = lazy(() => import('./ReportList/routes/ReportList'))
+const EditReport = lazy(() => import('./ReportList/routes/EditReport'))
+const ReportBundleList = lazy(() => import('./ReportBundleList'))
+const ReportBundleReportList = lazy(() => import('./ReportBundleReportList'))
+
+const ActiveReportList = () => <ReportList reportTab="Active" />
+const ArchivedReportList = () => <ReportList reportTab="Archived" />
+const TrashReportList = () => <ReportList reportTab="Trash" />
 
 const routes = [
-  { redirect: true, from: '/reports', to: '/reports/active' },
+  { redirect: true, from: '', to: 'active' },
   {
-    path: '/reports/active',
-    component: lazy(() => import('./ReportList/routes/ReportList')),
+    path: '/active',
+    component: <ActiveReportList />,
   },
   {
-    path: '/reports/archived',
-    component: lazy(() => import('./ReportList/routes/ReportList')),
+    path: '/archived',
+    component: <ArchivedReportList />,
   },
   {
-    path: '/reports/trash',
-    component: lazy(() => import('./ReportList/routes/ReportList')),
+    path: '/trash',
+    component: <TrashReportList />,
   },
   {
-    path: '/reports/:id/edit',
-    component: lazy(() => import('./ReportList/routes/EditReport')),
-  },
-  {
-    path: '/report_families',
-    component: lazy(() => import('./ReportBundleList')),
-  },
-  {
-    path: '/report_families/:id/reports',
-    component: lazy(() => import('./ReportBundleReportList')),
+    path: '/:id/edit',
+    component: <EditReport />,
   },
 ]
 
-export default routes
+const Layout = () => <RouteList routes={routes} urlPrefix="" />
+
+const ReportRoutes = [
+  {
+    path: '/reports/*',
+    component: <Layout />,
+  },
+  {
+    path: '/report_families/:id/reports',
+    component: <ReportBundleReportList />,
+  },
+  {
+    path: '/report_families',
+    component: <ReportBundleList />,
+  },
+]
+
+export default ReportRoutes

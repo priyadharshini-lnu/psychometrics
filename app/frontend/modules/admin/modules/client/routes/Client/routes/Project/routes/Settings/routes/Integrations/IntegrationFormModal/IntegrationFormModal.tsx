@@ -25,7 +25,7 @@ export const IntegrationFormModal: React.FC<Props> = ({
 }) => {
   const [form] = Form.useForm()
   const [fields, setFields] = useState<FieldData[]>([])
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const integrationName = integration?.name || form.getFieldValue('name')
   const IntegrationComponent = integrationComponents[integrationName]
 

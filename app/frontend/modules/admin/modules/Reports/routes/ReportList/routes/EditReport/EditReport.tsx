@@ -7,7 +7,7 @@ import { EditForm } from './EditForm'
 
 const { I18n } = window
 const EditReport: React.FC = () => {
-  const { id } = useParams<{id: string}>()
+  const { id } = useParams() as {id: string}
   useEffect(() => {
     fetchSingle({ id })
   }, [id])

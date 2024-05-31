@@ -3,15 +3,14 @@ import {
   Modal, Button, Input, Alert, App,
 } from 'antd'
 import { CheckOutlined, MailOutlined } from '@ant-design/icons'
+import { useParams } from 'react-router-dom'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 
 export default function SendTestEmailModal ({
   closeModal,
   sendTestEmail,
-  match: {
-    params: { campaignId, id },
-  },
 }) {
+  const { campaignId, id } = useParams()
   const [email, setEmail] = useState(null)
   const [errors, setErrors] = useState(null)
   const { message } = App.useApp()

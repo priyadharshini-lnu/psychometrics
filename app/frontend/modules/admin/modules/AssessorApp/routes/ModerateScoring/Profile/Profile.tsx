@@ -64,7 +64,7 @@ const ProfileCard = ({
 export default ProfileCard
 
 export const Profile = ({ header, onClose }) => {
-  const { campaignId, userId } = useParams<{ campaignId: string, userId: string }>()
+  const { campaignId, userId } = useParams() as { campaignId: string, userId: string }
   const [datasheetRowsData, setDatasheetRowsData] = useState<Record<string, string>>()
 
   const {

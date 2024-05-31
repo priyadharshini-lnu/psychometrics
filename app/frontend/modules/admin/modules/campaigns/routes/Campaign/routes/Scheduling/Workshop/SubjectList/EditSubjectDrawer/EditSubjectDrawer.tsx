@@ -79,8 +79,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   const [errors, setErrors] = useState<Errors>()
   const [statusFormInstance] = Form.useForm()
 
-  const { campaignId } = useParams<{ campaignId: string }>()
-  const { id } = useParams<{ id: string }>()
+  const { campaignId, id } = useParams() as { campaignId: string, id: string }
   const { fetchSingle, getResource, isLoading } = useResources<EditableWorkshopSubject>(
     'workshop_subjects',
     {

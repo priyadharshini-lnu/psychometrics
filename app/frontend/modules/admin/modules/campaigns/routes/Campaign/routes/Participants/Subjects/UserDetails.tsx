@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
 import { PlusOutlined, ExclamationCircleOutlined, EditOutlined } from '@ant-design/icons'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
 import { isRequestInProgress } from '~/core/request'
@@ -76,14 +76,14 @@ export const UserDetails: React.FC<Props> = ({
 }) => {
   const {
     projectId, campaignId, tab: paramTab, id: userId,
-  } = useParams<{
+  } = useParams() as {
     projectId: string, campaignId: string, tab: string, id: string
-  }>()
+  }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(userId, 10)
 
   const { modal, message } = App.useApp()
-  const history = useHistory()
+  const navigate = useNavigate()
   const [tab, setTab] = useState(paramTab || 'assessments')
 
   useEffect(() => {
@@ -106,8 +106,7 @@ export const UserDetails: React.FC<Props> = ({
   }
 
   const changeTab = (tab) => {
-    history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${userId}/${tab}`)
-
+    navigate(`${tab}`)
     setTab(tab)
   }
 
@@ -137,7 +136,7 @@ export const UserDetails: React.FC<Props> = ({
       cancelText: I18n.t('common.text.cancel'),
       onOk: () => {
         remove(campaignId, parsedUserId)
-        history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/subjects`)
+        navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/subjects`)
         message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email: user.email }))
       },
     })

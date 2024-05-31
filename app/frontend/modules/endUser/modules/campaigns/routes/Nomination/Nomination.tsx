@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 
+import { useNavigate, useParams } from 'react-router-dom'
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import {
   fetchNomination,
@@ -59,9 +60,11 @@ const connector = connect((state: any) => ({
 const { Content } = Layout
 
 const NominationComponent = (props) => {
-  const { fetchNomination, match, history } = props
+  const { fetchNomination } = props
+  const params = useParams()
+  const navigate = useNavigate()
   useEffect(() => {
-    fetchNomination(match.params)
+    fetchNomination(params)
   }, [])
 
   const [showPrompt, setShowPrompt] = useState(false)
@@ -110,7 +113,7 @@ const NominationComponent = (props) => {
       <Content className={styles.pageContent}>
         <SubHeader
           title={I18n.t('threesixty.nomination')}
-          onBack={() => history.push(`/threesixty_campaigns/${match.params.campaignId}`)}
+          onBack={() => navigate(`/threesixty_campaigns/${params.campaignId}`)}
         />
         <Row justify="center">
           <Col xs={24} lg={22} xl={20} xxl={14}>

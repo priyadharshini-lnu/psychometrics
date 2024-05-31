@@ -24,7 +24,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const MeetingRoom = ({ fetchMeeting }: Props) => {
-  const { roomId } = useParams<{roomId: string}>()
+  const { roomId } = useParams() as {roomId: string}
   const [token, setToken] = useState<string | null>(null)
   const [url, setUrl] = useState<string | null>(null)
   useEffect(() => {

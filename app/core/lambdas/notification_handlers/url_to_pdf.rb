@@ -54,7 +54,7 @@ module Lambdas
             message: I18n.t('jobs.threesixty.reports.download.message'),
             description: I18n.t(
               'jobs.threesixty.reports.download.description',
-              url: blob.url(expires_in: 10.minutes.to_i, disposition: 'attachment', file_name: data['file_name'])
+              url: blob.url(expires_in: 10.minutes.to_i, disposition: 'attachment', filename: data['file_name'])
             )
           }
       end

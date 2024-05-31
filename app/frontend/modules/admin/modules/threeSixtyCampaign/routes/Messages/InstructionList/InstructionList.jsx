@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
+import { useNavigate, useParams } from 'react-router-dom'
 import Editor from '~/components/Editor'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import { SafeHTML } from '~/components/SafeHTML'
@@ -23,17 +24,15 @@ export default function InstructionList ({
   fetchByLocales,
   update,
   save,
-  history,
-  match: {
-    params: { campaignId, id: selectedId },
-  },
 }) {
   const { message } = App.useApp()
+  const { campaignId, id: selectedId } = useParams()
+  const navigate = useNavigate()
   useEffect(() => {
     fetch(campaignId)
       .then(({ response }) => {
         if (!selectedId) {
-          routeUtils.moveTo(history, settings.urlPrefix, `/messages/instructions/${response[0].id}`)
+          routeUtils.moveTo(navigate, settings.urlPrefix, `/messages/instructions/${response[0].id}`)
         }
       })
   }, [])

@@ -16,7 +16,7 @@ module EndUser
     def pdf_url
       return nil if require_approval && !object.approved?
 
-      object.pdf&.url
+      object.pdf_file&.url
     end
 
     def report_name

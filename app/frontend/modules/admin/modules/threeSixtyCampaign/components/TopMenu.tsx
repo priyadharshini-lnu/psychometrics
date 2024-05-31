@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   UserOutlined,
@@ -30,11 +30,11 @@ const TopMenuComponent: FC<PropsFromRedux> = ({
 }) => {
   const { pathname } = useLocation()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const handleOnSelect = ({ key }) => {
     const basePath = routeUtils.getBasePath(settings.urlPrefix)
-    history.push(`${basePath}/${key}`)
+    navigate(`${basePath}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {

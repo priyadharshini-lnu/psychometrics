@@ -244,6 +244,7 @@ en:
             bulk_regenerate_reports: Bulk Regenerate Reports
             download_report: Download Report
             edit_report: Edit Report
+            external_score_import: External Score Import
             finalize_scores: Finalize Scores
             raw_responses: Raw Responses
             regenerate_report: Regenerate Report
@@ -254,6 +255,10 @@ en:
             reset_responses: Reset Responses
             scores: Scores
             view_report: View Report
+            view_stats: View Stats
+          smsHistories:
+            manage: Manage
+            view: View
           smsInvites:
             manage: Manage
             view: View

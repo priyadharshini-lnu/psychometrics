@@ -11,6 +11,7 @@ import {
 
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
@@ -36,12 +37,6 @@ interface Props {
     create: boolean
   },
   total: number,
-  match: {
-    params: {
-      projectId: string
-      campaignId: string
-    }
-  }
   tableConfig: TableConfig
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
@@ -54,7 +49,6 @@ const RegistrationCodes: React.FC<Props> = ({
   list,
   total,
   permissions,
-  match: { params: { campaignId } },
   tableConfig: {
     page,
   },
@@ -65,6 +59,7 @@ const RegistrationCodes: React.FC<Props> = ({
   openModal,
   destroy,
 }) => {
+  const { campaignId } = useParams() as { campaignId: string }
   const { modal, message } = App.useApp()
   useEffect(() => {
     fetch(campaignId, tableConfig)
@@ -286,4 +281,4 @@ const getActionsMenuProps = ({
   return ({ items: menuItems, onClick: handleMenuClick })
 }
 
-export default withEnhancedTable(RegistrationCodes, 'RegistrationCodes', { maintainHistory: true })
+export default withEnhancedTable<{}>(RegistrationCodes, 'RegistrationCodes', { maintainHistory: true })

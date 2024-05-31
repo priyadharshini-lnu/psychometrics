@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { useParams } from 'react-router-dom'
 import { NAME, CONSOLIDATED_EMAIL_NAMES } from '~/modules/admin/constants/emailTemplate'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import EmailEditor from '~/components/EmailEditor'
@@ -26,10 +27,8 @@ export default function EmailScheduleModal ({
   closeModal,
   data,
   onSave,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const { campaignId } = useParams()
   const [errors, setErrors] = useState(null)
   const { message } = App.useApp()
   const emailSchedule = _.find(list, ({ id }) => id === selectedId)

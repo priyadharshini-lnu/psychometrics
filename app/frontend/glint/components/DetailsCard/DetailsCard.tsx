@@ -13,7 +13,9 @@ type DetailsCardProps = {
   title: string | React.ReactElement
   description?: string | React.ReactElement
   buttonText?: string
+  buttonAriaDescription?: string
   secondaryBtnText?: string
+  secondaryBtnAriaDescription?: string
   onButtonClick?: () => void
   onSecondaryBtnClick?: () => void
   progressPercentage?: number
@@ -31,7 +33,9 @@ type DetailsCardProps = {
 export const DetailsCard: FC<DetailsCardProps> = ({
   title,
   buttonText,
+  buttonAriaDescription,
   secondaryBtnText,
+  secondaryBtnAriaDescription,
   onButtonClick,
   onSecondaryBtnClick,
   progressPercentage,
@@ -108,9 +112,10 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                   ghost
                   onClick={onSecondaryBtnClick}
                   className={styles.actionButton}
+                  aria-description={secondaryBtnAriaDescription || ''}
                 >
                   {secondaryBtnText}
-                  <DirectionalArrowIcon className={styles.buttonIcon} />
+                  <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
                 </Button>
               </ButtonWrapper>
               )}
@@ -122,9 +127,10 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                   size="small"
                   onClick={handleClick}
                   className={styles.actionButton}
+                  aria-description={buttonAriaDescription || ''}
                 >
                   {buttonText}
-                  <DirectionalArrowIcon className={styles.buttonIcon} />
+                  <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
                 </Button>
               </ButtonWrapper>
             </Space>

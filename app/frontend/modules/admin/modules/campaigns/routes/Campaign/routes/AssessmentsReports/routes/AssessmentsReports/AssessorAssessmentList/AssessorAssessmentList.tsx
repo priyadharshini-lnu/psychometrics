@@ -24,7 +24,7 @@ const { I18n } = window
 type Props = PropsFromRedux
 
 const AssessmentList: React.FC<Props> = () => {
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const { modal } = App.useApp()
 
   const stateManager = useCampaignAssessorAssessmentsStore()

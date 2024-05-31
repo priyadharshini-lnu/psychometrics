@@ -1,6 +1,6 @@
 import { FC, ChangeEvent, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useParams, useHistory, useLocation } from 'react-router'
+import { useParams, useNavigate, useLocation } from 'react-router'
 import {
   Col, Input, Row, Space, Table, App, Modal, Pagination,
 } from 'antd'
@@ -71,12 +71,12 @@ const ParticipantsComponent: FC<Props> = ({
   totalParticipants,
   participantsList,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { search, pathname } = useLocation()
   const searchParams = new URLSearchParams(search)
   const drawerMode = searchParams.get(DRAWER_SEARCH_PARAMS.MODE) as DrawerMode
 
-  const params = useParams<{ projectId: string }>()
+  const params = useParams() as { projectId: string }
   const projectId = parseInt(params.projectId, 10)
   const { message, modal } = App.useApp()
 
@@ -118,7 +118,7 @@ const ParticipantsComponent: FC<Props> = ({
 
   const handleEditAdminClick = (id: Participant['id']) => {
     const editUrl = getIndividualParticipantUrl(DrawerMode.Edit, id)
-    history.push(editUrl)
+    navigate(editUrl)
   }
 
   const handleDeleteAdminClick = (id: Participant['id']) => {
@@ -197,7 +197,7 @@ const ParticipantsComponent: FC<Props> = ({
     searchParams.delete(DRAWER_SEARCH_PARAMS.MODE)
     searchParams.delete(DRAWER_SEARCH_PARAMS.PARTICIPANT_ID)
 
-    history.push(`${pathname}?${searchParams.toString()}`)
+    navigate(`${pathname}?${searchParams.toString()}`)
     clearCurrentParticipant()
   }
 
@@ -333,7 +333,7 @@ const ParticipantsComponent: FC<Props> = ({
   )
 }
 
-export const Participants = withEnhancedTable(
+export const Participants = withEnhancedTable<{}>(
   connector(ParticipantsComponent),
   'projectParticipants',
   {

@@ -1,6 +1,5 @@
-import { Route, Redirect, Switch } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import _ from 'lodash'
-import routeUtils from '~/utils/route'
 
 const flattenRoutes = routes => _.flatten(
   routes.map((route) => {
@@ -14,29 +13,22 @@ const flattenRoutes = routes => _.flatten(
 )
 
 export default function RouteList ({ routes, urlPrefix }) {
-  return (
-    <Switch>
-      {flattenRoutes(routes).map((route, i) => {
-        if (route.redirect) {
-          return (
-            <Redirect
-              key={i}
-              from={`${urlPrefix}${route.from}`}
-              exact
-              to={`${routeUtils.getBasePath(urlPrefix)}${route.to}`}
-            />
-          )
-        }
+  const setRoutes = (_routes, _urlPrefix) => (flattenRoutes(_routes).map((route, i) => {
+    if (route.redirect) {
+      return (<Route key={i} path={route.from} element={<Navigate to={route.to} replace />} />)
+    }
+    return (
+      <Route
+        path={`${_urlPrefix}${route.path}`}
+        element={route.component}
+        key={i}
+      />
+    )
+  }))
 
-        return (
-          <Route
-            path={`${urlPrefix}${route.path}`}
-            key={i}
-            render={props => <route.component {...props} routes={route.routes || route.childRoutes} />}
-            exact
-          />
-        )
-      })}
-    </Switch>
+  return (
+    <Routes>
+      {setRoutes(routes, urlPrefix)}
+    </Routes>
   )
 }

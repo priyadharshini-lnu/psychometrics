@@ -4,7 +4,7 @@ import { SheetSettings } from '~/modules/admin/modules/SheetManagement/SheetSett
 import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/interfaces'
 
 export const AccesssheetSettings = () => {
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
 
   return (

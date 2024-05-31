@@ -42,7 +42,7 @@ const processData = (dataWithAverages, averageRow, scoreRange, weightedAverageRo
 }
 
 const ScoringTable: React.FC = () => {
-  const { campaignId, userId } = useParams<{ campaignId: string, userId: string }>()
+  const { campaignId, userId } = useParams() as { campaignId: string, userId: string }
   const { message } = App.useApp()
 
   const {

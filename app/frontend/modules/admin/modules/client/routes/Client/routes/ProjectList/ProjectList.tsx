@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import {
   Table,
   Input,
@@ -59,10 +59,10 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & TableProps
 
 const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
-  const { clientId } = useParams<{ clientId: string }>()
+  const { clientId } = useParams() as { clientId: string }
   const { modal, message } = App.useApp()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
@@ -147,7 +147,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                           className={styles.logoImageStyles}
                           placeholder={<Skeleton.Avatar className={styles.imageSkeleton} shape="square" active />}
                           onClick={() => {
-                            history.push(`/admin/projects/${id}/new_campaigns?filters[statusEq]=active`)
+                            navigate(`/admin/projects/${id}/new_campaigns?filters[statusEq]=active`)
                           }}
                         />
                       </>
@@ -334,7 +334,7 @@ const getActionsMenuProps = ({
   return ({ items: menuItems, onClick: handleMenuClick })
 }
 
-export const ProjectList = withEnhancedTable(
+export const ProjectList = withEnhancedTable<{}>(
   connector(ProjectListComponent),
   'projectList',
   {

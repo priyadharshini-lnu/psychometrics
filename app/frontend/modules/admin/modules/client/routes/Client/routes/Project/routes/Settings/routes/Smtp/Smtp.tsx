@@ -57,7 +57,7 @@ const SmtpComponent: React.FC<Props> = ({
   smtpSetting, isUpdating, isValidating, saveSettings, validateSettings, openModal, isProjectLoading,
 }) => {
   const [form] = Form.useForm()
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const parsedProjectId = parseInt(projectId, 10)
   const { message } = App.useApp()
 

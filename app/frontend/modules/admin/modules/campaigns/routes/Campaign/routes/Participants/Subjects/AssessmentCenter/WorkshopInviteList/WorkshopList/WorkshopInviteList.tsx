@@ -30,7 +30,7 @@ const ResponseTR = t.type({
 type Response = t.TypeOf<typeof ResponseTR>
 
 const WorkshopList: React.FC = () => {
-  const { campaignId, id, projectId } = useParams<{ projectId: string, campaignId: string, id: string }>()
+  const { campaignId, id, projectId } = useParams() as { projectId: string, campaignId: string, id: string }
 
   const config = {
     trackUrl: true,

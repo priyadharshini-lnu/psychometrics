@@ -3,8 +3,8 @@ import {
   Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { useParams } from 'react-router-dom'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 
@@ -12,23 +12,16 @@ const { Column } = Table
 const { I18n } = window
 
 interface OwnProps {
-  match: {
-    params: {
-      projectId: string
-      campaignId: string
-    }
-  }
   openModal(name: string, data?: { campaignId: number, campaignReportId: number }): void
 }
 
-type Props = RouteComponentProps & OwnProps & PropsFromRedux
+type Props = OwnProps & PropsFromRedux
 
 const ReportList: React.FC<Props> = ({
   reports: {
     list,
     reportPermissions,
   },
-  match: { params: { campaignId } },
   openModal,
   selectRecords,
   toggleAssessorAccess,
@@ -37,6 +30,7 @@ const ReportList: React.FC<Props> = ({
   toggleUserDashboard,
   toggleMainReport,
 }) => {
+  const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
 
@@ -195,4 +189,4 @@ const getActionsMenuProps = ({
   return ({ items: menuItems, onClick: handleMenuClick })
 }
 
-export default withRouter(ReportList)
+export default ReportList

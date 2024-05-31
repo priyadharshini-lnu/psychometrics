@@ -50,7 +50,7 @@ type Props = ConnectedProps<typeof connector>
 
 const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const { modal, message } = App.useApp()
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)

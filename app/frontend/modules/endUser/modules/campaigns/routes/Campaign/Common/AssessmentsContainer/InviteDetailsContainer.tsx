@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   Button, Space, Typography,
 } from 'antd'
@@ -18,7 +18,7 @@ const { Title } = Typography
 const { I18n } = window
 
 export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const currentTime = dayjs.tz()
   const bookingStartTimeMomentObj = dayjs(bookingDetails?.startTime)
   const [canJoinMeeting, setCanJoinMeeting] = useState(currentTime.isAfter(bookingStartTimeMomentObj))
@@ -73,12 +73,12 @@ export const InviteDeatilsContainer = ({ inviteDetails, bookingDetails }) => {
             buttonText={I18n.t('frontend.bookings.buttons.reserve_spot')}
             className={styles.inviteCard}
             hideTitleHighlighter
-            onButtonClick={() => history.push(`/invites/${inviteDetails.id}/details?type=invite`)}
+            onButtonClick={() => navigate(`/invites/${inviteDetails.id}/details?type=invite`)}
           />
           {totalInvites > 1 ? (
             <Button
               type="link"
-              onClick={() => history.push('/invites')}
+              onClick={() => navigate('/invites')}
               className="ps-0 pt-0"
             >
               {otherInvitesCount > 1

@@ -4,15 +4,15 @@ import { Settings } from './Settings'
 
 export const routes = [
   {
-    path: '/clients/:clientId/projects',
-    component: ProjectList,
+    path: '/projects',
+    component: <ProjectList />,
   },
   {
-    path: '/clients/:clientId/admins',
-    component: Admins,
+    path: '/admins',
+    component: <Admins />,
   },
   {
-    path: '/clients/:clientId/settings',
-    component: Settings,
+    path: '/settings',
+    component: <Settings />,
   },
 ]

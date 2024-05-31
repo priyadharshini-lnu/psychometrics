@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   Modal, Progress, Tooltip, Typography, Row, Checkbox,
 } from 'antd'
@@ -36,10 +36,10 @@ const ReportListComponent = ({
   const reportHelp = _.find(instructions, { name: 'report_help' })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [reportToShow, setReportToShow] = useState<Record<string, any> | null>(null)
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const redirectToReport = (report) => {
-    history.push(`/threesixty_campaigns/${report.campaignId}/reports/${report.id}`)
+    navigate(`/threesixty_campaigns/${report.campaignId}/reports/${report.id}`)
   }
 
   const showReport = (report) => {

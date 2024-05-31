@@ -5,6 +5,7 @@ import {
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
+import { useNavigate, useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import { CONSOLIDATED_EMAIL_NAMES, DAILY_DIGEST_EMAILS } from '~/modules/admin/constants/emailTemplate'
 import EmailEditor from '~/components/EmailEditor'
@@ -30,18 +31,15 @@ export default function Emails ({
   fetchByLocales,
   save,
   openModal,
-  history,
-  match,
-  match: {
-    params: { campaignId, id: selectedId },
-  },
 }) {
   const { message } = App.useApp()
+  const { campaignId, id: selectedId } = useParams()
+  const navigate = useNavigate()
   useEffect(() => {
     fetch(campaignId)
       .then(({ response }) => {
         if (!selectedId) {
-          routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${response[0].id}`)
+          routeUtils.moveTo(navigate, settings.urlPrefix, `/messages/email/${response[0].id}`)
         }
       })
   }, [])
@@ -174,8 +172,8 @@ export default function Emails ({
           Save
         </Button>
       </Col>
-      <SentTestEmailModal match={match} />
-      <EmailScheduleModal match={match} />
+      <SentTestEmailModal />
+      <EmailScheduleModal />
     </Row>
   )
 }

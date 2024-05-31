@@ -5,10 +5,10 @@ import {
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MenuItemType } from 'rc-menu/lib/interface'
 import _ from 'lodash'
+import { useParams } from 'react-router-dom'
 import { State as UserAssessmentState } from '~/modules/admin/modules/campaigns/core/userAssessments'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
@@ -21,13 +21,6 @@ const { I18n } = window
 
 interface OwnProps {
   assessments: UserAssessmentState
-  match: {
-    params: {
-      projectId: string
-      campaignId: string
-      id: string
-    }
-  }
   openModal(name: string, data?: {
      projectId: number
      userId?: number
@@ -39,14 +32,12 @@ interface OwnProps {
   }): void
 }
 
-type Props = RouteComponentProps & OwnProps & PropsFromRedux
+type Props = OwnProps & PropsFromRedux
 
-const AssessmentList: React.FC<RouteComponentProps & Props> = ({
+const AssessmentList: React.FC<Props> = ({
   assessments: {
     list,
   },
-
-  match: { params: { projectId, campaignId, id } },
   openModal,
   rescoreResponse,
   reset,
@@ -54,6 +45,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   resetProgress,
   toggleRequireScheduling,
 }) => {
+  const { projectId, campaignId, id } = useParams() as { projectId: string, campaignId: string, id: string }
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
@@ -324,4 +316,4 @@ const getActionsMenuProps = ({
   return ({ items: menuItems, onClick: handleMenuClick })
 }
 
-export default withRouter(AssessmentList)
+export default AssessmentList

@@ -12,6 +12,7 @@ class UserWithAllFieldsSchema < BaseSchema
       required(:age).maybe(:int?)
       required(:gender).maybe(:str?)
       required(:locale).maybe(:str?)
+      required(:photo).maybe(:str?)
       required(:custom_fields).array do
         hash do
           required(:name).filled(:str?)

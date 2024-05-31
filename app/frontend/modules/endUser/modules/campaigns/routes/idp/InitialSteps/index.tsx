@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Steps, Layout } from 'antd'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { GettingStart } from './GettingStart'
 import { SkillGapReport } from './SkillGapReport'
 import { AddSkills } from './AddSkills'
@@ -20,17 +20,17 @@ enum STEPS {
 }
 
 export const InitialSteps = () => {
-  const { step: paramStep } = useParams<{step: string}>()
-  const history = useHistory()
+  const { step: paramStep } = useParams() as {step: string}
+  const navigate = useNavigate()
   const [step, setStep] = useState<number>(STEPS[paramStep] || STEPS.getting_start)
 
   const next = (step) => {
     setStep(step)
-    history.push(`/idp/steps/${STEPS[step]}`)
+    navigate(`/idp/steps/${STEPS[step]}`)
   }
 
   const submit = () => {
-    history.push('/idp/my_plan')
+    navigate('/idp/my_plan')
   }
 
   useEffect(() => {

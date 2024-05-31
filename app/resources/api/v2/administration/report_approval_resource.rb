@@ -22,7 +22,7 @@ class Api::V2::Administration::ReportApprovalResource < Api::V2::Administration:
   }
 
   def pdf_url
-    @model.as_user_report.pdf&.url if Administration::UserReportPolicy.new(context[:user], @model).download?
+    @model.as_user_report.pdf_file&.url if Administration::UserReportPolicy.new(context[:user], @model).download?
   end
 
   def project_id

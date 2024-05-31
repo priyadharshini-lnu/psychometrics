@@ -1,8 +1,8 @@
 import { FC, useRef, useState } from 'react'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { Button } from 'antd'
 import cs from 'classnames'
+import { useLocation, useParams } from 'react-router-dom'
 import { getI18n } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { useAudioPlayer } from '~/modules/survey/hooks/useAudioPlayer'
 import { useImageZoom } from '~/modules/survey/hooks/useImageZoom'
@@ -15,15 +15,13 @@ import styles from './Instructions.less'
 import { TimingModal } from './TimingModal'
 
 const { I18n: { uiLocale } } = window
-interface Params {
-  userAssessmentId: string
-}
-type Props = ConnectedProps<typeof connector> & RouteComponentProps<Params>
+type Props = ConnectedProps<typeof connector>
 
 const Instructions: FC<Props> = ({
-  isDisconnected, timerDuration, I18n, campaignUser,
-  match: { params: { userAssessmentId } }, location, assessmentName, initialized,
+  isDisconnected, timerDuration, I18n, campaignUser, assessmentName, initialized,
 }) => {
+  const { userAssessmentId } = useParams() as { userAssessmentId: string }
+  const location = useLocation()
   const containerRef = useRef<HTMLDivElement>(null)
   useImageZoom(containerRef)
   const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
@@ -120,4 +118,4 @@ const connector = connect((state: RootState) => ({
 }),
 {})
 
-export default connector(withRouter(Instructions))
+export default connector(Instructions)

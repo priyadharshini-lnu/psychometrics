@@ -49,7 +49,7 @@ const AssessmentList: React.FC<Props> = ({
   exportRawFactorScores,
   exportExternalResults,
 }) => {
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
 

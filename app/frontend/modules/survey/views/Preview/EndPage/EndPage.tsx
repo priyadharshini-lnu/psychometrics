@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
-import { useLocation, useHistory, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Space, Typography } from 'antd'
 import { RootState } from '~/modules/survey/core/rootReducers'
 
@@ -46,14 +46,14 @@ const EndPage: FC<Props> = ({
   assessmentId,
 }) => {
   const location = useLocation()
-  const history = useHistory()
-  const { userAssessmentId } = useParams<{ userAssessmentId: string }>()
+  const navigate = useNavigate()
+  const { userAssessmentId } = useParams() as { userAssessmentId: string }
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     params.delete('read')
     params.delete('edit')
-    history.replace(`${location.pathname}?${params.toString()}`)
+    navigate(`${location.pathname}?${params.toString()}`, { replace: true })
   }, [])
 
   const { user_assessment_id } = dbResult

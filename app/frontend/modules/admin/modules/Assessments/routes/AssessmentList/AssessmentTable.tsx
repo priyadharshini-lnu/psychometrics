@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MessageInstance } from 'antd/es/message/interface'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
@@ -205,7 +205,7 @@ const getActionsMenuProps = ({
   setConfirmation, assessment, openDrawer, message,
 }: ActionMenuData): MenuProps => {
   const { resource } = useResourceContext<Assessment>()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const toggleArchive = () => resource.memberAction({
     id: assessment.id,
@@ -271,7 +271,7 @@ const getActionsMenuProps = ({
       return openDrawer(assessment)
     }
     if (key === 'edit') {
-      return history.push(`${settings.urlPrefix}/${assessment.id}/edit`)
+      return navigate(`${settings.urlPrefix}/${assessment.id}/edit`)
     }
     if (key === 'copy') {
       return copy()

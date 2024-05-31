@@ -12,7 +12,7 @@ import { DetailsDrawer } from './DetailsDrawer'
 const { I18n } = window
 
 export const SmsHistoriesList = () => {
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [smsDetails, setSmsDetails] = useState<SmsHistory | undefined>()
 
   const config = {

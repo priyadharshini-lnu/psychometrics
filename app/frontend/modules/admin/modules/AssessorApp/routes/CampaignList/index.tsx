@@ -167,4 +167,4 @@ const CampaignList: React.FC<Props> = (
   )
 }
 
-export default withEnhancedTable(connecter(CampaignList), 'assessorsCampaignList', { maintainHistory: true })
+export default withEnhancedTable<{}>(connecter(CampaignList), 'assessorsCampaignList', { maintainHistory: true })

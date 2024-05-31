@@ -6,7 +6,7 @@ import {
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined,
 } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import {
   fetch,
   remove,
@@ -49,12 +49,6 @@ const { Search } = Input
 const { I18n } = window
 
 interface Props extends ConnectedProps<typeof connecter> {
-  match: {
-    params: {
-      projectId: string
-      campaignId: string
-    }
-  }
   tableConfig: TableConfig
   changeFilter(filterName: string, filterValue: string): void
   onTableChange(): void
@@ -69,7 +63,6 @@ const AssessorList: React.FC<Props> = ({
     total,
     permissions,
   },
-  match: { params: { projectId, campaignId } },
   tableConfig: {
     filters,
     page,
@@ -82,6 +75,7 @@ const AssessorList: React.FC<Props> = ({
   openModal,
   remove,
 }) => {
+  const { campaignId, projectId } = useParams() as { projectId: string, campaignId: string }
   useEffect(() => {
     fetch(campaignId, tableConfig)
   }, [tableConfig])
@@ -187,4 +181,4 @@ const AssessorList: React.FC<Props> = ({
   )
 }
 
-export default connecter(withEnhancedTable(AssessorList, 'assessorsList', { maintainHistory: true }))
+export default connecter(withEnhancedTable<{}>(AssessorList, 'assessorsList', { maintainHistory: true }))

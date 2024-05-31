@@ -32,7 +32,7 @@ const getMenuProps = (onClick): MenuProps => {
   const menuItems:ItemType[] = [
     {
       key: 'weightages',
-      label: <Link to="settings/weightages">{I18n.t('administration.scoring.weightages.weightages')}</Link>,
+      label: <Link to="weightages">{I18n.t('administration.scoring.weightages.weightages')}</Link>,
     },
     {
       key: 'variables',

@@ -24,7 +24,7 @@ const { Column } = Table
 const { I18n } = window
 
 const UserReports: React.FC<Props> = ({ userReports }) => {
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as {campaignId: string}
   const parsedCampaignId = parseInt(campaignId, 10)
 
   return (

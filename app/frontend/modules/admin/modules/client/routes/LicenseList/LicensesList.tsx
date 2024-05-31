@@ -37,7 +37,7 @@ type Props = PropsFromRedux
 const LicenseList: React.FC<Props> = ({
   currentUser, openModal,
 }) => {
-  const { clientId } = useParams<{ clientId: string }>()
+  const { clientId } = useParams() as { clientId: string }
   const config = {
     trackUrl: true,
     responseType: LicenseTR,

@@ -5,7 +5,7 @@ import {
 import {
   Tabs, Typography, Flex, Button, Layout, Space,
 } from 'antd'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -58,13 +58,13 @@ const DirectReportDetailsComponent: FC<Props> = ({
   idpSkills,
   availableDevelopmentActions,
 }) => {
-  const { tab: paramTab, userId } = useParams<{tab: string, userId: string}>()
+  const { tab: paramTab, userId } = useParams() as {tab: string, userId: string}
   const [tab, setTab] = useState(paramTab || 'list')
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const changeTab = (tab: string) => {
     setTab(tab)
-    history.push(`/idp/direct_reports/${userId}/${tab}`)
+    navigate(`/idp/direct_reports/${userId}/${tab}`)
   }
 
   const listData = useMemo(() => groupSkillsByCategory(idpSkills, idpDevelopmentActions),
@@ -100,7 +100,7 @@ const DirectReportDetailsComponent: FC<Props> = ({
     <IdpPageLayoutWrapper>
       <Layout.Content className={styles.pageContent}>
         <Space>
-          <DirectionalNavigateBackIcon onClick={() => history.push('/idp/direct_reports')} />
+          <DirectionalNavigateBackIcon onClick={() => navigate('/idp/direct_reports')} />
           <Typography.Title level={4}>
             {I18n.t('idp.direct_report_details')}
           </Typography.Title>

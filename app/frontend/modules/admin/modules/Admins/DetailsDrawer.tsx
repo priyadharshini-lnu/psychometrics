@@ -31,8 +31,7 @@ const DetailsDrawerComponent: FC<Props> = ({
   handleClose,
   handleEdit,
 }) => {
-  const { projectId } = useParams<{ projectId: string }>()
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
 
   const {
     fetchSingle, getResource, isLoading: isAdminLoading,

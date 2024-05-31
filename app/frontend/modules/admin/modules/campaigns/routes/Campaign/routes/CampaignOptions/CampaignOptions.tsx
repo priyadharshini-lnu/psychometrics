@@ -50,7 +50,7 @@ const CampaignOptions: React.FC<Props> = ({
   update,
   features,
 }) => {
-  const { projectId, campaignId } = useParams<{ projectId: string, campaignId: string }>()
+  const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
 
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)

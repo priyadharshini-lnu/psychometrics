@@ -7,7 +7,7 @@ import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { FilterValue } from 'antd/lib/table/interface'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
@@ -46,12 +46,6 @@ interface Props {
   remove(campaignId: string, id: number): void
   toggleActive(campaignId: string, id: number, options: { updateInListing: boolean }): void
   users: UserState
-  match: {
-    params: {
-      projectId: string
-      campaignId: string
-    }
-  }
   tableConfig: TableConfig
   changeFilter(filterName: string, filterValue: string): void
   getFilteredValue(filterName: string): FilterValue
@@ -81,7 +75,6 @@ const UserList: React.FC<Props> = ({
     total,
     permissions,
   },
-  match: { params: { projectId, campaignId } },
   tableConfig: {
     filters,
     page,
@@ -102,6 +95,7 @@ const UserList: React.FC<Props> = ({
   exportReportsAndAssessments,
   exportUsers,
 }) => {
+  const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const { modal, message } = App.useApp()
   useEffect(() => {
     fetch(campaignId, tableConfig)
@@ -172,7 +166,7 @@ const UserList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                <Link to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
+                <Link to={`${id}`}>
                   {id}
                 </Link>
               )}

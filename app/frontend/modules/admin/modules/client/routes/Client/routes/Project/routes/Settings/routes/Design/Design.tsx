@@ -24,7 +24,7 @@ const connecter = connect(() => ({}), { uploadFiles })
 type Props = ConnectedProps<typeof connecter>
 
 export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const [isLoading, setIsLoading] = useState(false)
   const {
     data, updateResource, fetch,

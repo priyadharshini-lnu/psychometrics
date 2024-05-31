@@ -1,18 +1,28 @@
 import { lazy } from 'react'
+import RouteList from '~/components/RouteList'
 
 const Profile = lazy(() => import('./Details'))
 const ChangePassword = lazy(() => import('./ChangePassword'))
 
 const routes = [
-  { redirect: true, from: '/profile', to: '/profile/details' },
+  { redirect: true, from: '/', to: 'details' },
   {
-    path: '/profile/details',
-    component: Profile,
+    path: '/details',
+    component: <Profile />,
   },
   {
-    path: '/profile/change_password',
-    component: ChangePassword,
+    path: '/change_password',
+    component: <ChangePassword />,
   },
 ]
 
-export default routes
+const Layout = () => <RouteList routes={routes} urlPrefix="" />
+
+const ProfileRoutes = [
+  {
+    path: '/profile/*',
+    component: <Layout />,
+  },
+]
+
+export default ProfileRoutes

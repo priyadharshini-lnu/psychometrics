@@ -1,6 +1,6 @@
 import { useEffect, FC, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { RouteComponentProps, useHistory } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import WizardIsRequired from '~/modules/endUser/core/WizardIsRequired'
 import { PrivacyConsent } from './PrivacyConsent'
 import { LanguageSelection } from './LanguageSelection'
@@ -28,7 +28,7 @@ type Params = {
   userAssessmentId: string
 }
 type PropsFromRedux = ConnectedProps<typeof connector>
-type UserAssessmentProps = PropsFromRedux & RouteComponentProps<Params>
+type UserAssessmentProps = PropsFromRedux
 
 const { I18n } = window
 
@@ -44,10 +44,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     },
   },
   fetchUserAssessment,
-  match: { params },
 }) => {
-  const history = useHistory()
-
+  const navigate = useNavigate()
+  const params = useParams() as Params
   useEffect(() => {
     fetchUserAssessment(params.userAssessmentId)
   }, [])
@@ -58,7 +57,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   if (!assessmentId) { return <PageContentSkeleton /> }
 
   const backToCampaign = () => {
-    history.push(`/campaigns/${userAssessmentData.campaignId}`)
+    navigate(`/campaigns/${userAssessmentData.campaignId}`)
   }
 
   const assessmentUrl = ({ url }, lang) => {

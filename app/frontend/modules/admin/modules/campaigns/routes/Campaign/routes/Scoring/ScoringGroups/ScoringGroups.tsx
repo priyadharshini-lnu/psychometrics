@@ -53,7 +53,7 @@ const ScoringGroupsComponent = (props: Props) => {
   const [currentGroupId, setCurrentGroupId] = useState<string>('')
   const [currentFactor, setCurrentFactor] = useState<CampaignFactor | undefined>(undefined)
   const [openVariablesForm, setOpenVariablesForm] = useState(false)
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [factorGroupsLocalState, setFactorGroupsLocalState] = useState<CampaignFactorGroup[]>([])
   const [campaignFactorsLocalState, setCampaignFactorsLocalState] = useState<CampaignFactor[]>([])
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))

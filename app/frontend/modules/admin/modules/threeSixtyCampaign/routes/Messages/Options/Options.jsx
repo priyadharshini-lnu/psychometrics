@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import OptionSection from '~/modules/admin/components/Options/Section'
 import Option from '~/modules/admin/components/Options/Expandable'
 
@@ -8,10 +9,8 @@ function Options ({
   options,
   fetch,
   update,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const { campaignId } = useParams()
   useEffect(() => {
     fetch(campaignId)
   }, [])

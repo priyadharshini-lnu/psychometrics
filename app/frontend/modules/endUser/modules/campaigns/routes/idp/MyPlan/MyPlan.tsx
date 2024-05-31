@@ -5,7 +5,7 @@ import {
 import {
   Tabs, Typography, Layout, Button, Flex, Space, theme,
 } from 'antd'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { CloseOutlined } from '@ant-design/icons'
 import { generate } from '@ant-design/colors'
@@ -127,7 +127,7 @@ const MyPlanComponent = ({
   availableDevelopmentActions,
   currentUser,
 }: Props) => {
-  const { tab: paramTab } = useParams<{tab: string}>()
+  const { tab: paramTab } = useParams() as {tab: string}
   const [tab, setTab] = useState(paramTab || 'list')
   const [editMode, setEditMode] = useState(false)
   const [showAddSkill, setShowAddSkill] = useState(false)
@@ -144,12 +144,12 @@ const MyPlanComponent = ({
   const availableDevelopmentActionsData = useMemo(() => _.values(availableDevelopmentActions),
     [availableDevelopmentActions])
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const { isMobile } = useContext(MediaQueryContext)
 
   const changeTab = (tab: string) => {
     setTab(tab)
-    history.push(`/idp/my_plan/${tab}`)
+    navigate(`/idp/my_plan/${tab}`)
   }
   const { token } = useToken()
   const { colorPrimary } = token

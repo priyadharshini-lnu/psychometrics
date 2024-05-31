@@ -152,4 +152,4 @@ const UserList: React.FC<Props> = (
   )
 }
 
-export default withEnhancedTable(connecter(UserList), 'assessorsUserList', { maintainHistory: true })
+export default withEnhancedTable<{}>(connecter(UserList), 'assessorsUserList', { maintainHistory: true })
