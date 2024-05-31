@@ -29,7 +29,7 @@ module UsersResults
               calc_score(filtered_scoring)&.round(2)
             end
 
-          broadcast :ok, sub_extended_scoring.deep_merge(factor.id.to_s => { 'score' => score })
+          broadcast :ok, sub_extended_scoring.deep_merge(factor.id.to_s => { 'score' => round_score(score) })
         end
 
         def calc_score(scoring)

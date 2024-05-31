@@ -31,6 +31,7 @@ export const InputField: React.FC<Props> = ({
 
   return (
     <Form.Item
+      hidden={props.hidden}
       colon={false}
       className={styles.input}
       label={label}

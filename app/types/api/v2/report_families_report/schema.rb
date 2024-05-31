@@ -10,6 +10,7 @@ module Api
 
         def self.attributes(_attribute, _)
           proc do
+            optional(:external_package_id).maybe(:string)
           end
         end
 

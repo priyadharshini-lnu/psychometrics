@@ -9,7 +9,7 @@ module UsersResults
           lua = define_lua_context
           score = eval_lua(lua, factor.custom_formula)
 
-          broadcast(:ok, extended_scoring.deep_merge(factor.id.to_s => { 'score' => score.nil? ? nil : score.to_i }))
+          broadcast(:ok, extended_scoring.deep_merge(factor.id.to_s => { 'score' => round_score(score) }))
         end
 
         private

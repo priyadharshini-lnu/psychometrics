@@ -185,6 +185,29 @@
       "note": ""
     },
     {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "4bfd4c2f76d30684271b3633cff98b9edf8b003fa0ed623a94c82cd313fba977",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/core/admin_jobs/super_admin/export_admins_with_permissions.rb",
+      "line": 72,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Membership.where(\"\\n            (\\n              memberships.client_id IN (:client_ids) AND\\n              memberships.role IN (#{Membership.roles[\"project_admin\"]}, #{Membership.roles[\"client_admin\"]})\\n            )\\n            OR (memberships.campaign_id IN (:campaign_ids) AND memberships.role = #{Membership.roles[\"campaign_admin\"]})\\n          \", :client_ids => ([client.id, *client.projects.pluck(:id)]), :campaign_ids => Campaign.where(:project_id => client.projects.pluck(:id)).pluck(:id))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AdminJobs::SuperAdmin::ExportAdminsWithPermissions",
+        "method": "records_for_export"
+      },
+      "user_input": "Membership.roles[\"project_admin\"]",
+      "confidence": "High",
+      "cwe_id": [
+        89
+      ],
+      "note": ""
+    },
+    {
       "warning_type": "Redirect",
       "warning_code": 18,
       "fingerprint": "6a35aaa1f2077d04af6acd3f1e4cbc127067451bf0db58b19a99bb4da2d2d173",
@@ -513,7 +536,7 @@
       "check_name": "Send",
       "message": "User controlled method execution",
       "file": "app/controllers/api/v2/administration/base_controller.rb",
-      "line": 197,
+      "line": 209,
       "link": "https://brakemanscanner.org/docs/warning_types/dangerous_send/",
       "code": "send(\"authorize_#{params[:action]}\")",
       "render_path": null,
@@ -628,7 +651,7 @@
       "check_name": "MassAssignment",
       "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
       "file": "app/controllers/concerns/administration/sheet_row_management.rb",
-      "line": 51,
+      "line": 50,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit!",
       "render_path": null,
@@ -912,7 +935,7 @@
           "type": "controller",
           "class": "Administration::CommunicationsController",
           "method": "show",
-          "line": 91,
+          "line": 90,
           "file": "app/controllers/administration/communications_controller.rb",
           "rendered": {
             "name": "administration/communications/show",
@@ -932,6 +955,6 @@
       "note": ""
     }
   ],
-  "updated": "2023-12-11 12:49:28 +0300",
+  "updated": "2024-04-26 18:25:24 +0400",
   "brakeman_version": "6.0.0"
 }

@@ -1,9 +1,13 @@
 # frozen_string_literal: true
 
 class UserWithAllFieldsSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :age, :gender, :locale, :custom_fields
+  attributes :id, :first_name, :last_name, :email, :age, :gender, :locale, :custom_fields, :photo
 
   delegate :age, :gender, :locale, to: :user_profile
+
+  def photo
+    object.user_profile.photo&.url
+  end
 
   def custom_fields
     Users::GetCustomProfileFields.call!(object)

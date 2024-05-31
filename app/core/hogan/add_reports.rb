@@ -60,7 +60,8 @@ module Hogan
       if package_id.present?
         Settings.providers.hogan.report_packages.find { |p| p['id'] == package_id }&.default_assessment_id
       else
-        Settings.providers.hogan.reports.find { |r| r['id'] == report_id }&.assessment_ids&.first
+        report_setting = Settings.providers.hogan.reports.find { |r| r['id'] == report_id }
+        report_setting&.default_assessment_id || report_setting&.assessment_ids&.first
       end
     end
 

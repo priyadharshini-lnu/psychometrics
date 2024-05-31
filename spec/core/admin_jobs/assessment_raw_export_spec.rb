@@ -24,7 +24,8 @@ describe AdminJobs::AssessmentRawExport do
       actual_first_row = csv[0]
 
       expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-                            'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
+                            'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm',
+                            'Status', 'Completion Reason']
       questions.each do |q|
         expected_first_row << "QID#{q.id}"
         expected_first_row << "QID#{q.id}_#{ImportExportConst::DURATION}"
@@ -36,7 +37,7 @@ describe AdminJobs::AssessmentRawExport do
       described_class.call!(job_record)
       csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
       actual_second_row = csv.row(2)
-      expected_second_row = [''] * 11
+      expected_second_row = [''] * 12
       questions.each { |q| expected_second_row << ([q.name] * 2) }
 
       expect(actual_second_row).to eq(expected_second_row.flatten)
@@ -46,7 +47,7 @@ describe AdminJobs::AssessmentRawExport do
       described_class.call!(job_record)
       csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
       actual_third_row = csv.row(3)
-      expected_third_row = [''] * 11
+      expected_third_row = [''] * 12
       questions.each { |q| expected_third_row << ([q.props['questionText']] * 2) }
 
       expect(actual_third_row).to eq(expected_third_row.flatten)
@@ -79,6 +80,7 @@ describe AdminJobs::AssessmentRawExport do
         res.user_assessment.started_at.to_s,
         res.completed_at.to_s,
         nil,
+        nil,
         I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
         nil,
         2,
@@ -100,7 +102,8 @@ describe AdminJobs::AssessmentRawExport do
       actual_first_row = csv[0]
 
       expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-                            'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
+                            'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm',
+                            'Status', 'Completion Reason']
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.each do |email_field|
         expected_first_row << "QID#{question.id}_#{email_field}"
@@ -115,7 +118,7 @@ describe AdminJobs::AssessmentRawExport do
       described_class.call!(job_record)
       csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
       actual_second_row = csv.row(2)
-      expected_second_row = [''] * 11
+      expected_second_row = [''] * 12
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_second_row << question.name }
 
@@ -129,7 +132,7 @@ describe AdminJobs::AssessmentRawExport do
       described_class.call!(job_record)
       csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
       actual_third_row = csv.row(3)
-      expected_third_row = [''] * 11
+      expected_third_row = [''] * 12
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.count.times do |_i|
         expected_third_row << question.props['questionText']
@@ -164,6 +167,7 @@ describe AdminJobs::AssessmentRawExport do
         res.user_assessment.started_at.to_s,
         res.completed_at.to_s,
         nil,
+        nil,
         I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
         nil,
         'Rupert Smith',
@@ -187,7 +191,8 @@ describe AdminJobs::AssessmentRawExport do
       actual_first_row = csv[0]
 
       expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-                            'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
+                            'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm',
+                            'Status', 'Completion Reason']
       expected_first_row << "QID#{question.id}"
       expected_first_row << "QID#{question.id}_#{ImportExportConst::DURATION}"
 
@@ -198,7 +203,7 @@ describe AdminJobs::AssessmentRawExport do
       described_class.call!(job_record)
       csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
       actual_second_row = csv.row(2)
-      expected_second_row = [''] * 11
+      expected_second_row = [''] * 12
       expected_second_row << ([question.name] * 2)
 
       expect(actual_second_row).to eq(expected_second_row.flatten)
@@ -208,7 +213,7 @@ describe AdminJobs::AssessmentRawExport do
       described_class.call!(job_record)
       csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
       actual_third_row = csv.row(3)
-      expected_third_row = [''] * 11
+      expected_third_row = [''] * 12
 
       expected_third_row << ([question.props['questionText']] * 2)
 
@@ -238,6 +243,7 @@ describe AdminJobs::AssessmentRawExport do
         'Self',
         res.user_assessment.started_at.to_s,
         res.completed_at.to_s,
+        nil,
         nil,
         I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
         nil,

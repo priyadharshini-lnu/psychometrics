@@ -14,8 +14,8 @@ module Hogan
 
     def call
       Hogan::AddReports.call!(user_reports.reject(&:external_added?))
-      user_reports.each do |user_report|
-        next unless user_report.external_added?
+      all_reports_to_generate.each do |user_report|
+        next unless user_report.reload.external_added?
 
         unless user_report.pdf?
           participant_report = get_participant_report(user_report)
@@ -29,6 +29,14 @@ module Hogan
           add_external_results(user_result, user_report)
         end
       end
+    end
+
+    def all_reports_to_generate
+      other_package_reports = user_reports.flat_map do |user_report|
+        user_report.other_reports_in_same_package.select { |ur| ur.generatable? && !ur.prepared? }
+      end
+
+      [*user_reports, *other_package_reports].uniq
     end
 
     def add_external_results(user_result, user_report)

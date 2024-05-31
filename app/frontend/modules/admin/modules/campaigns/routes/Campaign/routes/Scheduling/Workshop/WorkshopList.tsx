@@ -13,8 +13,7 @@ import { connect } from 'react-redux'
 import dayjs from '~/utils/dayjs'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import { ResourceAvatar, DatePickerWithRanges } from '~/glint'
-import { formatWorkshopDate } from '~/utils/workshop'
+import { ResourceAvatar, DatePickerWithRanges, DateTimeWithZone } from '~/glint'
 import { setData } from '~/modules/admin/core/ui/temp'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
@@ -72,7 +71,7 @@ export const WorkshopList: React.FC = () => {
             title={I18n.t('administration.scheduling.columns.start_time')}
             id="startTime"
             width="15%"
-            render={(_, { startTime }) => formatWorkshopDate(startTime)}
+            render={(_, { startTime }) => <DateTimeWithZone dateString={startTime} />}
             sorter
           />
           <Resource.Column<Workshop>

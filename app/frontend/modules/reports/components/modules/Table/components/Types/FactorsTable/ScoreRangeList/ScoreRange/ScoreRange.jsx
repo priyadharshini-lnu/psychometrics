@@ -1,4 +1,5 @@
-import cs from 'classnames'
+import { DeleteOutlined } from '@ant-design/icons'
+import { Button } from 'antd'
 import { rgba2hex } from '~/utils/color'
 import { ColorPicker } from '~/glint'
 import styles from './styles.less'
@@ -25,11 +26,17 @@ export default function ScoreRange ({
         />
         {showColorPicker && (
           <ColorPicker
+            swatchClassName={styles.swatch}
             value={scoreRange.color ? rgba2hex(scoreRange.color) : '#cccccc'}
             onChange={color => onUpdate(scoreRange.id, { color })}
           />
         )}
-        <i className={cs('fa', 'fa-minus', 'mls', styles.remove)} onClick={removeScoreRange} />
+        <Button
+          size="small"
+          type="link"
+          danger
+          icon={<DeleteOutlined className={styles.remove} onClick={removeScoreRange} />}
+        />
       </div>
     </div>
   )

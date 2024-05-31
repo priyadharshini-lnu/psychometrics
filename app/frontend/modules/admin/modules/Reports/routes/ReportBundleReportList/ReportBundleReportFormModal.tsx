@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Select, Spin } from 'antd'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
-import { Report } from '~/modules/admin/modules/client/core/reports'
+import { Report, HoganReportPackages } from '~/modules/admin/modules/client/core/reports'
 import { useResources } from '~/hooks/useResources'
 
 interface Props {
@@ -14,11 +14,17 @@ const { I18n } = window
 export const ReportBundleReportFormModal: React.FC<Props> = ({ close }) => {
   const { resource } = useResourceContext()
   const [form] = Form.useForm()
+  const [hoganPackages, setHoganPackages] = useState<HoganReportPackages | []>([])
 
   const {
     data: reports, fetch: fetchReports, isLoading: isReportLoading,
   } = useResources<Report>('reports')
 
+  const handleReportSelect = (reportId: string) => {
+    const selectedReport = reports.find(report => report.id === reportId)
+
+    setHoganPackages(selectedReport?.hoganReportPackages || [])
+  }
 
   return (
     <ResourceFormModal
@@ -43,17 +49,33 @@ export const ReportBundleReportFormModal: React.FC<Props> = ({ close }) => {
               showSearch
               onSearch={(value) => {
                 fetchReports({
-                  apiConfig: { filter: { filterable_fields: value }, fields: { reports: ['name'] } },
+                  apiConfig: {
+                    filter: { filterable_fields: value },
+                    fields: { reports: ['name', 'hogan_report_packages'] },
+                  },
                 })
               }}
               notFoundContent={isReportLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
+              onChange={handleReportSelect}
             >
               {reports.map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}
             </Select>
           </Form.Item>
+          {hoganPackages.length > 0 && (
+            <Form.Item
+              name="externalPackageId"
+              label={I18n.t('common.column.package_id')}
+            >
+              <Select>
+                {hoganPackages.map(({ id, name }) => (
+                  <Select.Option key={id} value={id}>{name}</Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+          )}
         </>
       )}
     </ResourceFormModal>
