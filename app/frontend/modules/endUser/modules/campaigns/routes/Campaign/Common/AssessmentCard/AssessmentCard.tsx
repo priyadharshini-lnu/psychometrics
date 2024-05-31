@@ -131,6 +131,7 @@ export const AssessmentCard: React.FC<Props> = ({
         title={titleElement}
         progressPercentage={assessmentCategory === 'meeting' ? undefined : completionPercent || 0}
         buttonText={assessmentCategory === 'meeting' ? null : buttonTextData[status]}
+        buttonAriaDescription={I18n.t('frontend.aria.task_btn_description', { assessmentName })}
         actionDisabled={disableActionButton}
         actionLoading={loading}
         actionDisabledText={actionDisabledText}

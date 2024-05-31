@@ -2094,6 +2094,9 @@ en:
   frontend:
     activate: Activate
     are_you_sure: Are you sure?
+    aria:
+      campaign_name_description: ', for campaign "%{campaignName}"'
+      task_btn_description: task %{assessmentName}
     assessment: Assessment
     assessment_groups:
       create_success: The group was created successfully
@@ -2268,6 +2271,9 @@ en:
       start_date: Start Date
       timezone_label: TimeZone
       to: To
+    views_container:
+      aria_grid_view: Grid view
+      aria_list_view: List view
   hogan:
     assigns:
       results:

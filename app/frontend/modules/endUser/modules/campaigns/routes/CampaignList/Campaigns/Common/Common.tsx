@@ -31,9 +31,11 @@ export const Common = ({
         }
         description={campaign.description && <ViewMoreText maxTextLen={200} text={campaign.description} />}
         buttonText={I18n.t('campaign.dashboard_menu.tasks')}
+        buttonAriaDescription={I18n.t('frontend.aria.campaign_name_description', { campaignName: campaign.name })}
         onButtonClick={handleClick}
         actionDisabled={campaignDisabled}
         secondaryBtnText={campaign.userReportsAvailable && I18n.t('campaign.insights_reports')}
+        secondaryBtnAriaDescription={I18n.t('frontend.aria.campaign_name_description', { campaignName: campaign.name })}
         onSecondaryBtnClick={handleSecondaryBtnClick}
       />
     </Col>

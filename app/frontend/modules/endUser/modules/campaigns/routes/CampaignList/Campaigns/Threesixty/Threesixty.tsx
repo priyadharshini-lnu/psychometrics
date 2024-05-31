@@ -28,6 +28,7 @@ export const Threesixty = ({
         }
         progressPercentage={totalProgress}
         buttonText={I18n.t('campaign.details')}
+        buttonAriaDescription={I18n.t('frontend.aria.campaign_name_description', { campaignName: campaign.name })}
         onButtonClick={handleClick}
         actionDisabled={campaignDisabled}
       />
