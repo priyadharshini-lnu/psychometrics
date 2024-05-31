@@ -1,13 +1,15 @@
 import _ from 'lodash'
 import { Menu } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import settings from '~/modules/admin/modules/threeSixtyCampaign/settings'
 import routeUtils from '~/utils/route'
 
-export default function TemplateMenu ({ history, instructionTemplates, selectedId }) {
+export default function TemplateMenu ({ instructionTemplates, selectedId }) {
+  const navigate = useNavigate()
   return (
     <Menu
       selectedKeys={[selectedId.toString()]}
-      onClick={({ key }) => routeUtils.moveTo(history, settings.urlPrefix, `/messages/instructions/${key}`)}
+      onClick={({ key }) => routeUtils.moveTo(navigate, settings.urlPrefix, `/messages/instructions/${key}`)}
       style={{ height: 700 }}
       mode="inline"
       items={_.map(instructionTemplates, instructionTemplate => ({

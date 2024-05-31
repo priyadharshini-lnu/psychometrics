@@ -37,7 +37,7 @@ export const AddSubjectsComponent: FC<Props> = ({
   const [importErrors, setImportErrors] = useState<{title: string}[]>([])
   const [csvErrors, setCSVErrors] = useState<{index: number, email:string}[]>([])
   const ref = useRef<InputRef>(null)
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as { campaignId: string }
   const {
     data: users, fetch: fetchUsers, isLoading: isUsersLoading,
   } = useResources<User>('users', { basePath: `campaigns/${campaignId}`, responseType: UserTR })

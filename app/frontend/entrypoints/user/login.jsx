@@ -1,13 +1,11 @@
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
-import { createBrowserHistory } from 'history'
 import api from '~/middleware/api'
 import App from '~/modules/auth/App'
 import reducers from '~/modules/auth/core/reducers'
 
 let composeEnhancers = compose
-const history = createBrowserHistory()
 
 /* eslint no-underscore-dangle: 0 */
 if (__DEV__) {
@@ -17,7 +15,7 @@ if (__DEV__) {
 }
 
 const store = createStore(
-  reducers(history),
+  reducers(),
   window.__INITIAL_STATE__ || {},
   composeEnhancers(applyMiddleware(api)),
 )
@@ -28,7 +26,7 @@ if (element) {
   const root = createRoot(element)
   root.render(
     <Provider store={store}>
-      <App history={history} />
+      <App />
     </Provider>,
   )
 }

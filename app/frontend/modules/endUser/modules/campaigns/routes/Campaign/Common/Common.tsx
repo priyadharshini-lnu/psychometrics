@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import {
   Layout, Row, Col, Alert, Button, Result, Typography, Space, App,
@@ -49,7 +48,7 @@ const connector = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>
-type CommonComponentProps = RouteComponentProps & PropsFromRedux
+type CommonComponentProps = PropsFromRedux
 
 const { Title } = Typography
 const { Content } = Layout

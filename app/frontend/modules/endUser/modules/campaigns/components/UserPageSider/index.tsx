@@ -2,7 +2,7 @@ import React, {
   useRef, FC, useState, useEffect,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   HomeOutlined,
   UserOutlined,
@@ -12,7 +12,6 @@ import {
 
 
 import lighthouseLogo from '~/modules/endUser/assets/images/lighthouseLogoWide.png'
-import { history } from '~/modules/endUser/store'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   getProjectLogo,
@@ -85,6 +84,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings,
 }) => {
   const location = useLocation()
+  const navigate = useNavigate()
   const { pathname } = location
   let menuItems = getMenuItems(false, false, showBookings)
   let activeItem:string
@@ -107,22 +107,22 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   }, [pathname])
   const handleMenuSelect = (menu) => {
     if (menu.key === 'steps') { // TODO: remove after implementation
-      return history.push('/idp/steps/getting_start')
+      return navigate('/idp/steps/getting_start')
     }
     if (menu.key === 'my_plan') {
-      return history.push('/idp/my_plan')
+      return navigate('/idp/my_plan')
     }
     if (menu.key === 'my_direct_reports') {
-      return history.push('/idp/direct_reports')
+      return navigate('/idp/direct_reports')
     }
     if (menu.key === 'tasks') {
       const routePrefix = isThreesixty ? 'threesixty_campaigns' : 'campaigns'
-      return history.push(`/${routePrefix}/${campaignIdRef.current}`)
+      return navigate(`/${routePrefix}/${campaignIdRef.current}`)
     }
     if (menu.key === 'insights') {
-      return history.push(`/campaigns/${campaignIdRef.current}/${menu.key}`)
+      return navigate(`/campaigns/${campaignIdRef.current}/${menu.key}`)
     }
-    history.push(`/${menu.key}`)
+    navigate(`/${menu.key}`)
   }
 
   const handleOpenChange = (openKeys: string[]) => {

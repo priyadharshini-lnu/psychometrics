@@ -15,7 +15,7 @@ import {
 const { I18n } = window
 
 export const Privacy: React.FC = () => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const [form] = Form.useForm()
   const [customPrivacyConsentTexts, setCustomPrivacyConsentTexts] = useState<{
     locale: string, text: string | null

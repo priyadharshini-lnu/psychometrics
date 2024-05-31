@@ -16,7 +16,7 @@ const connecter = connect((state:RootState) => ({
 })
 
 export const DashboardComponent = ({ collapsed, triggerCollapse }) => {
-  const { dashboardId } = useParams<{ dashboardId: string }>()
+  const { dashboardId } = useParams() as { dashboardId: string }
   const {
     fetchSingle, getResource,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR })

@@ -47,6 +47,10 @@ export const getSelected = (): string => {
     return 'users'
   }
 
+  if (location.href.match(/\/administration(\/)(assessments)/)) {
+    return 'assessments'
+  }
+
   if (location.href.match(/\/admin(\/)(assessments)/)) {
     return 'assessments'
   }
@@ -95,6 +99,7 @@ export const getSelected = (): string => {
 // TODO: When all pages are implemented in single react, use this component instead of anchor tag
 const Link = ({ href, children }) => {
   const isThreesixty = location.href.match(/\/(threesixty_campaigns)/)
+  const isAssessmentBuilder = (location.href.match(/\/administration(\/)(assessments)/))
   const selected = getSelected()
   const isAllowed = () => {
     const allowedPages = [
@@ -104,7 +109,7 @@ const Link = ({ href, children }) => {
       'reports', 'assessments', 'reportApprovals']
     return !allowedPages.includes(selected)
   }
-  if (isThreesixty || isAllowed()) {
+  if (isThreesixty || isAssessmentBuilder || isAllowed()) {
     return <a href={href}>{children}</a>
   }
   return <RouterLink to={href}>{children}</RouterLink>

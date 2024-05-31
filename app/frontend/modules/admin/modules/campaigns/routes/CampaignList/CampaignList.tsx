@@ -96,7 +96,7 @@ const CampaignListComponent: React.FC<Props> = ({
   changePage,
   openModal,
 }) => {
-  const params = useParams<{ projectId: string }>()
+  const params = useParams() as { projectId: string }
   const projectId = parseInt(params.projectId, 10)
 
   useEffect(() => {
@@ -163,8 +163,7 @@ const CampaignListComponent: React.FC<Props> = ({
                 <a href={campaignUrl}>{name}</a>
               ) : (
                 <Link to={campaignUrl}>{name}</Link>
-              ))
-              }
+              ))}
             />
             <Column
               title={I18n.t('administration.dates.start')}
@@ -343,7 +342,7 @@ const getActionsMenuProps = ({
   return ({ items: menuItems, onClick: handleMenuClick })
 }
 
-export const CampaignList = withEnhancedTable(
+export const CampaignList = withEnhancedTable<{}>(
   connector(CampaignListComponent),
   'campaignList',
   {

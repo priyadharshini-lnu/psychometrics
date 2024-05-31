@@ -41,7 +41,7 @@ type Props = PropsFromRedux
 export const SettingsComponent: React.FC<Props> = ({
   uploadImage, uploadInProgress, refresh, refreshRequestInProgress,
 }) => {
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [form] = Form.useForm()
   const stateManager = useDashboardStore()
   const {

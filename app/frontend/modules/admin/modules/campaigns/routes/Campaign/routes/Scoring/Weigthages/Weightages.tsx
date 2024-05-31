@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
   Button, Flex, Form, Input, Space, Table, App,
 } from 'antd'
@@ -39,8 +39,8 @@ type DataType = {
 }
 
 export function Weightages () {
-  const { projectId, campaignId } = useParams<{ projectId: string, campaignId: string }>()
-  const history = useHistory()
+  const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
+  const navigate = useNavigate()
   const { message } = App.useApp()
 
   const [form] = Form.useForm()
@@ -108,7 +108,7 @@ export function Weightages () {
     <>
       <PageHeader
         className={styles.pageHeader}
-        onBack={() => history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/scoring/settings`)}
+        onBack={() => navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/scoring/settings`)}
         title={<Space>{I18n.t('administration.scoring.weightages.weightages')}</Space>}
       />
       <Form form={form} onFinish={handleSubmit}>

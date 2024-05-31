@@ -58,7 +58,7 @@ const connector = connect(state => ({
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) => {
-  const { id, campaignId, projectId } = useParams<{ id: string, campaignId: string, projectId: string }>()
+  const { id, campaignId, projectId } = useParams() as { id: string, campaignId: string, projectId: string }
   const [showForm, setShowForm] = useState(false)
 
   const config = {

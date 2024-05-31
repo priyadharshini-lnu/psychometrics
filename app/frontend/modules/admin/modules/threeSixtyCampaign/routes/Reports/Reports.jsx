@@ -1,25 +1,19 @@
 import { Menu } from 'antd'
-
 import RouteList from '~/components/RouteList'
-import routeUtils from '~/utils/route'
-
-import settings from '../../settings'
 import { PageHeader } from '../../PageHeader'
+import Options from './Options'
 
-export default function Reports ({
-  history, routes,
-}) {
-  const onSelect = ({ key }) => {
-    routeUtils.moveTo(history, settings.urlPrefix, key)
-  }
-
+const routes = [
+  { redirect: true, from: '', to: 'options' },
+  { path: '/options', component: <Options /> },
+]
+export default function Reports () {
   return (
     <>
       <PageHeader />
       <div>
         <Menu
-          onSelect={onSelect}
-          selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+          selectedKeys={['/reports/options']}
           mode="horizontal"
           items={[
             {
@@ -27,7 +21,7 @@ export default function Reports ({
               label: I18n.t('administration.threesixty_campaigns.menu.report.menu.report_options.title'),
             }]}
         />
-        <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+        <RouteList routes={routes} urlPrefix="" />
       </div>
     </>
   )

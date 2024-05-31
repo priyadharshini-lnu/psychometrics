@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { notification, theme } from 'antd'
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '~/modules/endUser/store'
 
@@ -15,6 +15,7 @@ import routes from './routes'
 import './styles.less'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import '~/styles/common.less'
+import RouteList from '~/components/RouteList'
 
 const { antdLocale, I18n } = window
 const { useToken } = theme
@@ -69,14 +70,12 @@ function App () {
           <Router>
             <StyleProvider transformers={[px2rem]}>
               <UserPageLayout>
-                {routes.map((route, i) => (
-                  <Route key={i} path={route.path} exact={route.exact} component={route.main} />
-                ))}
+                <RouteList routes={routes} urlPrefix="/" />
               </UserPageLayout>
             </StyleProvider>
             <DisplayExceptionModal />
+            <IncorrectResponseErrorModal />
           </Router>
-          <IncorrectResponseErrorModal />
         </GlintProvider>
       </DefaultAntThemeWrapper>
     </Provider>

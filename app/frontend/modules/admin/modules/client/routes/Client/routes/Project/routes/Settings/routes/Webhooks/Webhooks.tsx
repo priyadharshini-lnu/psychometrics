@@ -41,7 +41,7 @@ const { I18n } = window
 const { Column } = Table
 
 const WebhooksListComponent: React.FC<Props> = ({ openModal }) => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
 
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,

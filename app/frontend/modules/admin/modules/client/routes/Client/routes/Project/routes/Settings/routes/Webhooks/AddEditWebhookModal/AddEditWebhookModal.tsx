@@ -24,7 +24,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
   webhook,
   close,
 }) => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const [authType, setAuthType] = useState(webhook?.authType || 'no_auth')
 
   const handleAuthTypeChange = (e) => {

@@ -21,7 +21,7 @@ interface Props {
 
 export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
   const { resource } = useResourceContext<Workshop>()
-  const { inviteId, campaignId } = useParams<{ campaignId: string, inviteId: string }>()
+  const { inviteId, campaignId } = useParams() as { campaignId: string, inviteId: string }
 
   const { addRelationships } = useResources<WorkshopInvite>('workshop_invites', {
     basePath: `/campaigns/${campaignId}/workshop_invites/${inviteId}`,

@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react'
 import {
-  useHistory, useParams,
+  useLocation,
+  useNavigate, useParams,
 } from 'react-router-dom'
 import {
   Space, Descriptions, Avatar, Skeleton, Divider, Radio, message, Button, Tag,
@@ -28,24 +29,20 @@ const STATUS_TAG_COLOR = {
   open: 'success',
   closed: 'error',
 }
-interface LocationState {
-  state?: {
-    search?: string
-  }
-}
 
-export const WorkshopPage: FC<{location: LocationState}> = ({ location }) => {
+export const WorkshopPage: FC = () => {
   const {
     id, campaignId, tab,
-  } = useParams<{ id: string, campaignId: string, tab: string | undefined }>()
+  } = useParams() as { id: string, campaignId: string, tab?: string }
+  const location = useLocation()
   const [currentTab, setCurrentTab] = useState(tab || 'subjects')
   const [showForm, setShowForm] = useState(false)
   const [openChangeStatusModal, setOpenChangeStatusModal] = useState(false)
-  const history = useHistory()
+  const navigate = useNavigate()
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
 
   const handleTabChange = (currentTab) => {
-    routeUtils.moveTo(history, prefixPath, `/assessment_center/${id}/${currentTab}`, false, location.state)
+    routeUtils.moveTo(navigate, prefixPath, `/assessment_center/${id}/${currentTab}`, false, location.state)
     setCurrentTab(currentTab)
   }
 
@@ -86,7 +83,7 @@ export const WorkshopPage: FC<{location: LocationState}> = ({ location }) => {
           title={(
             <>
               <Space>
-                <ArrowLeftOutlined onClick={() => routeUtils.moveTo(history, prefixPath, backUrl)} />
+                <ArrowLeftOutlined onClick={() => routeUtils.moveTo(navigate, prefixPath, backUrl)} />
                 {workshop.name}
               </Space>
             </>

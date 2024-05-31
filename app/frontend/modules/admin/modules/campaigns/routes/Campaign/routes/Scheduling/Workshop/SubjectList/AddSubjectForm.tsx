@@ -18,7 +18,7 @@ interface Props {
 
 export const AddSubjectForm:React.FC<Props> = ({ close }) => {
   const { resource } = useResourceContext<WorkshopSubject>()
-  const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
+  const { campaignId, id } = useParams() as { campaignId: string, id: string }
   const {
     data: users, fetch: fetchUsers, isLoading: isUsersLoading,
   } = useResources<User>('users', { basePath: `campaigns/${campaignId}`, responseType: UserTR })

@@ -29,8 +29,8 @@ export const WorkshopEditFormModal: FC<Props> = ({
   const [form] = Form.useForm()
   const [workshopManagers, setWorkshopManagers] = useState<UserDetails[]>([])
   const [workshopAssessors, setWorkshopAssessors] = useState<UserDetails[]>([])
-  const { campaignId } = useParams<{ campaignId: string }>()
-  const { projectId } = useParams<{ projectId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
+  const { projectId } = useParams() as { projectId: string }
 
   const {
     collectionAction,

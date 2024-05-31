@@ -55,7 +55,7 @@ const OtherReportListComponent: React.FC<Props> = ({
   useEffect(() => {
     fetchOtherReports(campaignId, tableConfig)
   }, [tableConfig.page])
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const parsedPage = parseInt(tableConfig.page as unknown as string, 10)
   const { message } = App.useApp()
 

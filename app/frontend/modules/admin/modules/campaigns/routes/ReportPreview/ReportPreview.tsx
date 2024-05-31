@@ -5,7 +5,7 @@ import {
   Layout, Button, Row, Col, Spin, Space, App, Affix, Dropdown, Tag,
 } from 'antd'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
-import { RouteComponentProps, useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import _ from 'lodash'
 import Report from '~/modules/reports/report'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
@@ -25,23 +25,23 @@ const TAG_COLORS = {
   change_requested: 'warning',
   approved: 'success',
 }
-interface Params {
+type Params = {
   projectId: string
   campaignId: string
   id: string
 }
 
-type Props = PropsFromRedux & RouteComponentProps<Params>
+type Props = PropsFromRedux
 
 export default function ReportPreview ({
-  userReport,
-  match: { params: { campaignId, id } }, fetchReport, download, downloadInProgress,
+  userReport, fetchReport, download, downloadInProgress,
   features, asyncDownload, clearUseReportDetails, startQC,
   sendToReview, abortQC, approveReport, requestChanges, removeApproval,
 }: Props) {
   const [pages, setPages] = useState([])
   const location = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
+  const { campaignId, id } = useParams() as Params
   const { message } = App.useApp()
 
   const params = new URLSearchParams(location.search)
@@ -91,7 +91,7 @@ export default function ReportPreview ({
 
   const onChangeView = ({ key }) => {
     params.set('skip_logic', `${key === 'all'}`)
-    history.replace(`${location.pathname}?${params.toString()}`)
+    navigate(`${location.pathname}?${params.toString()}`, { replace: true })
   }
 
   const onReportDownloadClick = () => {

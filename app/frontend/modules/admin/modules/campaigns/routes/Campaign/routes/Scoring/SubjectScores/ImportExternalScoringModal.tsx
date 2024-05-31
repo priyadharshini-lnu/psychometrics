@@ -23,7 +23,7 @@ const ImportExternalScoringModalComponent: React.FC<Props> = ({
   close, open, importExternalCampaignScores,
 }) => {
   const [form] = Form.useForm()
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [file, setFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState([])

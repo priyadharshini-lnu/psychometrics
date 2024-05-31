@@ -1,5 +1,5 @@
 import { Radio, type RadioChangeEvent } from 'antd'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import styles from './Header.less'
 
 interface Props {
@@ -7,20 +7,20 @@ interface Props {
 }
 
 export const Tabs: React.FC<Props> = ({ active }) => {
-  const history = useHistory()
-  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const { id } = useParams() as { id: string }
 
   const change = (e: RadioChangeEvent) => {
     const val = e.target.value
     if (val === active) { return }
     if (val === 'questions') {
-      return history.push(`/administration/assessments/${id}`)
+      return navigate(`/administration/assessments/${id}`)
     }
     if (val === 'scoring') {
-      return history.push(`/administration/assessments/${id}/scoring`)
+      return navigate(`/administration/assessments/${id}/scoring`)
     }
     if (val === 'resources') {
-      return history.push(`/administration/assessments/${id}/resources`)
+      return navigate(`/administration/assessments/${id}/resources`)
     }
   }
 

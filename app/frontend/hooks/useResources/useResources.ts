@@ -5,7 +5,7 @@ import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
 import { useDispatch } from 'react-redux'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import humps from 'humps'
 import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
@@ -36,7 +36,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const client = useClient()
   const dispatch = useDispatch()
   const location = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const queryString = qs.parse(location.search.substring(1))
   const schema = Schema[resourceName]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -447,7 +447,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const newQuery = { ...queryString, q: { ...query } }
     setQueryState(query)
     if (trackUrl) {
-      history.push({ search: `?${qs.stringify(newQuery)}` })
+      navigate({ search: `?${qs.stringify(newQuery)}` })
     }
   })
 

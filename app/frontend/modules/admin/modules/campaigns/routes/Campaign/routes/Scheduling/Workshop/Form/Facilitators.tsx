@@ -56,8 +56,8 @@ const { I18n } = window
 export const Facilitators: React.FC<Props> = ({
   basicInfoData, onCancel, onPrevious, onSubmit,
 }) => {
-  const { campaignId } = useParams<{ campaignId: string }>()
-  const { projectId } = useParams<{ projectId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
+  const { projectId } = useParams() as { projectId: string }
 
   const {
     collectionAction,

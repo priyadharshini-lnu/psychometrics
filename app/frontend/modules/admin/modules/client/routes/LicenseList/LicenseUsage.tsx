@@ -22,8 +22,7 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const LicenseUsage: React.FC<Props> = () => {
-  const { clientId } = useParams<{ clientId: string }>()
-  const { licenseId } = useParams<{ licenseId: string }>()
+  const { clientId, licenseId } = useParams() as { clientId: string, licenseId: string}
 
   const config = {
     trackUrl: true,
@@ -100,7 +99,7 @@ const LicenseUsage: React.FC<Props> = () => {
 
 const BreadcrumbsComponent = () => {
   const { resource } = useResourceContext<LicenseUsage>()
-  const { clientId } = useParams<{ clientId: string }>()
+  const { clientId } = useParams() as { clientId: string }
 
   return (
     <Breadcrumb

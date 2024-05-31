@@ -2,7 +2,7 @@ import {
   useEffect, FC, useContext, useState,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   Col, Row, Typography, Layout, Card, Skeleton,
 } from 'antd'
@@ -53,7 +53,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
   isLoading,
 }) => {
   const [error, setError] = useState(false)
-  const history = useHistory()
+  const navigate = useNavigate()
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
 
 
   const handleProfileCompletion = () => {
-    history.push('/profile_details')
+    navigate('/profile_details')
   }
 
   const isProfileComplete = profileCompletionPercentage === 100

@@ -17,7 +17,7 @@ interface SelectedIdpTemplate {
 
 export const Idp: React.FC<{}> = () => {
   const { message } = App.useApp()
-  const { campaignId, id, projectId } = useParams<{ projectId: string, campaignId: string, id: string }>()
+  const { campaignId, id, projectId } = useParams() as { projectId: string, campaignId: string, id: string }
   const [selectedIdpTemplate, setSelectedIdpTemplate] = useState<SelectedIdpTemplate | null>()
   const [activeIdpTemplate, setActiveIdpTemplate] = useState<IdpTemplate | null>(null)
 

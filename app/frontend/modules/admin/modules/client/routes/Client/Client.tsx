@@ -1,5 +1,7 @@
 import { FC } from 'react'
-import { useParams, useHistory, useLocation } from 'react-router-dom'
+import {
+  useParams, useNavigate, useLocation,
+} from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import {
@@ -26,12 +28,12 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 export const Client: FC<Props> = ({ currentUser }) => {
-  const { clientId } = useParams<{ clientId: string }>()
-  const history = useHistory()
+  const { clientId } = useParams() as { clientId: string }
+  const navigate = useNavigate()
   const { pathname } = useLocation()
 
   const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/clients/${clientId}/${key}`)
+    navigate(`${settings.urlPrefix}/clients/${clientId}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
@@ -112,7 +114,7 @@ export const Client: FC<Props> = ({ currentUser }) => {
       />
       <RouteList
         routes={routes}
-        urlPrefix={`${settings.urlPrefix}`}
+        urlPrefix=""
       />
     </div>
   )

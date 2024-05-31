@@ -79,7 +79,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
   openModal,
   remove,
 }) => {
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { modal, message } = App.useApp()
 

@@ -31,7 +31,7 @@ type DataType = {
 }
 
 export function Weightages () {
-  const { campaignId } = useParams<{ projectId: string, campaignId: string }>()
+  const { campaignId } = useParams() as { projectId: string, campaignId: string }
 
   const {
     data: campaignAssessmentsData,

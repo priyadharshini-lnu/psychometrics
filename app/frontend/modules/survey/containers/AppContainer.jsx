@@ -2,15 +2,13 @@ import { Component } from 'react'
 import { Provider } from 'react-redux'
 import { ErrorBoundary } from 'react-error-boundary'
 import '~/modules/survey/styles/globals.less'
-import { BrowserRouter as Router } from 'react-router-dom'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
 import { setStore } from '~/modules/survey/store/StoreWatchman'
-import RouteList from '~/components/RouteList'
 import DnDProvider from '~/components/DnD/DnDProvider'
 import store from '../store'
-import routes from './routes'
 import styles from '~/modules/survey/layouts/Dashboard/Dashboard.less'
 import { DefaultAntThemeWrapper } from '~/glint'
+import { Layout } from './Layout'
 
 class AppContainer extends Component {
   undoListener = null
@@ -62,9 +60,7 @@ class AppContainer extends Component {
           <ErrorBoundary fallbackRender={() => this.overlay()}>
             <Provider store={store}>
               <DnDProvider>
-                <Router>
-                  <RouteList routes={routes} urlPrefix="/administration" />
-                </Router>
+                <Layout />
               </DnDProvider>
             </Provider>
           </ErrorBoundary>

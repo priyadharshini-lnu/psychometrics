@@ -49,7 +49,7 @@ const AddAssessmentModal: React.FC<Props> = ({
   fetchLeadAssessorAssessment,
   close,
 }) => {
-  const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
+  const { campaignId, id } = useParams() as { campaignId: string, id: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedAssessorId = parseInt(id, 10)
   const [leadSelected, setLeadSelected] = useState(false)

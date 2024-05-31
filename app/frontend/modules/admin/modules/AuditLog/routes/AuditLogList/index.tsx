@@ -261,7 +261,7 @@ const AuditLogList: React.FC<Props> = (
   )
 }
 
-export default withEnhancedTable(connecter(AuditLogList), 'auidtLogList', {
+export default withEnhancedTable<{}>(connecter(AuditLogList), 'auidtLogList', {
   maintainHistory: true,
   filterPredicates: FILTER_PREDICATES,
 })

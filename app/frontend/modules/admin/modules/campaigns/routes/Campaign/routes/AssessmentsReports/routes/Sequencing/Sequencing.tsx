@@ -78,7 +78,7 @@ const SequencingComponent: FC<PropsFromRedux> = ({
   removeGroup,
   updateGroup,
 }) => {
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
 
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))

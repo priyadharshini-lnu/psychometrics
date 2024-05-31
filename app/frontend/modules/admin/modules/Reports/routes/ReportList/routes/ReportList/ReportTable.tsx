@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MessageInstance } from 'antd/es/message/interface'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
@@ -182,7 +182,7 @@ const getActionsMenuProps = ({
   setConfirmation, report, openDrawer, message,
 }: ActionMenuProps): MenuProps => {
   const { resource } = useResourceContext<Report>()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const toggleArchive = () => resource.updateResource({
     id: report.id,
@@ -229,7 +229,7 @@ const getActionsMenuProps = ({
       label: (
         <Button
           type="link"
-          onClick={() => history.push(`${settings.urlPrefix}/reports/${report.id}/edit`)}
+          onClick={() => navigate(`${settings.urlPrefix}/reports/${report.id}/edit`)}
           className="ps-0"
         >
           {I18n.t('reports.actions.edit')}

@@ -4,6 +4,7 @@ import {
   Table, Row, Col, Progress, Card, Statistic, Radio, RadioChangeEvent, Typography,
 } from 'antd'
 import _ from 'lodash'
+import { useParams } from 'react-router-dom'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   getUsers, getAssessments, fetch, AssesmentStats,
@@ -17,9 +18,7 @@ const { Title } = Typography
 const { I18n } = window
 
 type PropsFromRedux = ConnectedProps<typeof connector>
-
-interface OwnProps { match: { params: { campaignId: string } } }
-type Props = PropsFromRedux & OwnProps
+type Props = PropsFromRedux
 
 const connector = connect((state: RootState) => ({
   users: getUsers(state),
@@ -27,8 +26,9 @@ const connector = connect((state: RootState) => ({
 }), { fetch })
 
 const StatsComponent: React.FC<Props> = ({
-  users, assessments, fetch, match: { params: { campaignId } },
+  users, assessments, fetch,
 }) => {
+  const { campaignId } = useParams() as {campaignId: string}
   useEffect(() => { fetch(campaignId) }, [])
   const [statsType, setStatsType] = useState('percentage')
 

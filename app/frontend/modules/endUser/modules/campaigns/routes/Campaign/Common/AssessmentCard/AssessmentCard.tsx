@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import {
   Avatar, Row, Col, Button, Space, theme,
 } from 'antd'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { secondsToDayHoursAndMinutes, SECONDS_IN_HOUR } from '~/utils/time'
 import dayjs from '~/utils/dayjs'
 import { UserAssessment } from '~/modules/endUser/modules/campaigns/core/userAssessment/interfaces'
@@ -49,7 +49,7 @@ export const AssessmentCard: React.FC<Props> = ({
   const [withinActivityScheduleTime, setWithinActivityScheduleTime] = useState(
     scheduleTime ? currentTime.isSameOrAfter(scheduleTimeMomentObj) : false,
   )
-  const history = useHistory()
+  const navigate = useNavigate()
   const isWorkshopActivity = userAssessment.workshopActivity
 
   let disableActionButton = disabled
@@ -77,7 +77,7 @@ export const AssessmentCard: React.FC<Props> = ({
 
   const loadAssessment = ({ id }) => {
     setLoading(true)
-    history.push(`/user_assessments/${id}`)
+    navigate(`/user_assessments/${id}`)
   }
 
   const iconUrl = assessmentIconUrl

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Radio } from 'antd'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { SmsInvitesTable } from './SmsInvitesTable'
 import { SmsHistoriesList } from './SmsHistoriesList'
 import settings from '~/modules/admin/modules/campaigns/settings'
@@ -10,13 +10,13 @@ import styles from './styles.less'
 const { I18n } = window
 
 export const SmsInvites = () => {
-  const { campaignId, tab } = useParams<{ campaignId: string, tab: string }>()
+  const { campaignId, tab } = useParams() as { campaignId: string, tab: string }
   const [currentTab, setTab] = useState(tab || 'invites')
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const prefixPath = `${settings.urlPrefix}/${campaignId}/participants/sms`
   const handleTabChange = (currentTab) => {
-    routeUtils.moveTo(history, prefixPath, `/${currentTab}`)
+    routeUtils.moveTo(navigate, prefixPath, `/${currentTab}`)
     setTab(currentTab)
   }
 

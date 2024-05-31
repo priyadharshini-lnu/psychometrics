@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import { TeamOutlined, PlusOutlined, CloseOutlined } from '@ant-design/icons'
 
+import { useParams } from 'react-router-dom'
 import userPresenter from '~/presenters/user'
 import { relationshipWithoutSelf } from '~/core/relationship'
 import styles from './NominationForm.less'
@@ -17,13 +18,13 @@ export const NominationForm = (props) => {
   const {
     handleAddNomination, searchEvaluators, updateForm, allowedRelationshipsForNewNominations,
     showForm, hideForm, requestApproval, sendEvaluatorReminder, updateAllNominationStatus,
-    match: { params: { campaignId, id: nominationId } },
     nomination: {
       isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail, options,
     },
     autocomplete: { users },
     requirements,
   } = props
+  const { campaignId, nominationId } = useParams() as { campaignId: string, nominationId: string }
 
   const [requestApprovalButtonDisabled, setRequestApprovalButtonDisabled] = useState(false)
 

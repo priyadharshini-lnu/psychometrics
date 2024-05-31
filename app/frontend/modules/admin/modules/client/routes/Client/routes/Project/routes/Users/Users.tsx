@@ -1,4 +1,4 @@
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useNavigate, useLocation, useParams } from 'react-router'
 import { Menu } from 'antd'
 
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
@@ -8,12 +8,12 @@ import { routes } from './routes'
 const { I18n } = window
 
 export const Users = () => {
-  const history = useHistory()
-  const { projectId } = useParams<{ projectId: string }>()
+  const navigate = useNavigate()
+  const { projectId } = useParams() as { projectId: string }
   const { pathname } = useLocation()
 
   const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/${projectId}/users/${key}`)
+    navigate(`${settings.urlPrefix}/${projectId}/users/${key}`)
   }
 
   const handleSelectedKeys = (): string[] => {

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import styles from './Options.less'
 import SubjectSection from './SubjectSection'
 import ManagerSection from './ManagerSection'
@@ -7,10 +8,8 @@ import GlobalSection from './GlobalSection'
 
 function Options ({
   fetchParticipantOptions,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const { campaignId } = useParams()
   useEffect(() => {
     fetchParticipantOptions(campaignId)
   }, [])

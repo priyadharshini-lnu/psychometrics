@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Col, Row, Tabs,
 } from 'antd'
-import { useParams, useLocation, useHistory } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import _ from 'lodash'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
@@ -40,11 +40,11 @@ const Evaluation: FC<Props> = ({
 }) => {
   let parsedCampaignId; let
     parsedUserId
-  const { campaignId, userId } = useParams<{ campaignId?: string, userId?: string }>()
+  const { campaignId, userId } = useParams() as { campaignId: string, userId: string }
   if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
   if (userId) { parsedUserId = parseInt(userId, 10) }
   const location = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const params = new URLSearchParams(location.search)
 
   useEffect(() => {
@@ -81,12 +81,12 @@ const Evaluation: FC<Props> = ({
 
     if (id === 'overview') {
       params.delete('tab')
-      history.replace(`${location.pathname}?${params.toString()}`)
+      navigate(`${location.pathname}?${params.toString()}`, { replace: true })
       changeForm(null)
       return
     }
     params.set('tab', id)
-    history.replace(`${location.pathname}?${params.toString()}`)
+    navigate(`${location.pathname}?${params.toString()}`, { replace: true })
     changeForm(+id)
 
     const assessorForm = _.last(assessorAssessments[id])

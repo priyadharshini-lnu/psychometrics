@@ -4,8 +4,8 @@ import {
 } from 'antd'
 
 import { MoreOutlined } from '@ant-design/icons'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
+import { useParams } from 'react-router-dom'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'
@@ -15,23 +15,13 @@ import { secondsToDayHoursAndMinutes } from '~/utils/time'
 const { Column } = Table
 const { I18n } = window
 
-interface OwnProps {
-  match: {
-    params: {
-      projectId: string
-      campaignId: string
-    }
-  }
-}
-
-export type Props = RouteComponentProps & OwnProps & PropsFromRedux
+export type Props = PropsFromRedux
 
 const AssessmentList: React.FC<Props> = ({
   assessments: {
     list,
     permissions,
   },
-  match: { params: { projectId, campaignId } },
   openModal,
   rescoreResponses,
   exportRawResults,
@@ -46,6 +36,7 @@ const AssessmentList: React.FC<Props> = ({
   toggleRequireScheduling,
   toggleAutoAssign,
 }) => {
+  const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
@@ -255,4 +246,4 @@ const AssessmentList: React.FC<Props> = ({
   )
 }
 
-export default withRouter(AssessmentList)
+export default AssessmentList

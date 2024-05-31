@@ -24,7 +24,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const AdminRolesList: React.FC<Props> = ({ openModal }) => {
-  const { clientId } = useParams<{ clientId: string }>()
+  const { clientId } = useParams() as { clientId: string }
   const config = {
     responseType: AdminRoleTR,
     basePath: `clients/${clientId}`,

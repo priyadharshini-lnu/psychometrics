@@ -1,7 +1,7 @@
 import {
   Button, Space,
 } from 'antd'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { CheckCircleFilled } from '@ant-design/icons'
 import { Panel } from '~/glint'
 import styles from './Form.less'
@@ -9,11 +9,11 @@ import styles from './Form.less'
 const { I18n } = window
 
 export const SuccessCreatedPage = ({ next }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
 
   const skip = () => {
-    history.push(location.pathname.replace(/\/new$/, ''))
+    navigate(location.pathname.replace(/\/new$/, ''))
   }
 
   return (

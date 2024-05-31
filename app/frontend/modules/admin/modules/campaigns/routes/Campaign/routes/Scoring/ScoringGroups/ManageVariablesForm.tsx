@@ -20,7 +20,7 @@ interface Props {
 export const ManageVariablesForm: React.FC<Props> = ({
   close, open,
 }) => {
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as { campaignId: string }
   const { data, fetch, updateResource: update } = useResources<CampaignScoringVariable>('campaign_scoring_variables', {
     basePath: `campaigns/${campaignId}`,
   })

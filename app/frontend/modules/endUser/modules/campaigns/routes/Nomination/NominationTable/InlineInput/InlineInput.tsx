@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {
   Input, Button, Form, AutoComplete, Space,
 } from 'antd'
+import { useParams } from 'react-router-dom'
 import userPresenter from '~/presenters/user'
 import styles from './InlineInput.less'
 
@@ -10,8 +11,8 @@ const { I18n } = window
 export const InlineInput = ({
   relationship, handleAddNomination, searchEvaluators, hideForm,
   autocomplete: { users },
-  match: { params: { campaignId, id: nominationId } },
 }) => {
+  const { campaignId, nominationId } = useParams() as { campaignId: string, nominationId: string }
   const [email, setEmail] = useState(null)
   const [hasErrors, setHasErrors] = useState<{email: boolean, user?: boolean, relationship?: boolean}>(
     { email: false, user: false },

@@ -16,6 +16,7 @@ import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
 import { connect } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
@@ -68,7 +69,6 @@ const EvaluationComponent = ({
       expiry_date,
     },
   }, fetchAssessment, clearEvaluation, updateStatus,
-  match: { params },
   preview: {
     enableProgress,
     type,
@@ -79,6 +79,7 @@ const EvaluationComponent = ({
   markAssessmentTimedOut,
   progress,
 }) => {
+  const params = useParams()
   const assessmentRef = createRef()
   const {
     edit, step, approve_evaluation, lang, read,

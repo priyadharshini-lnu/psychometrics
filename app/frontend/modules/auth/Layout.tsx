@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 import { CSSProperties } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import {
   Layout, Row, Col, Space, theme,
 } from 'antd'
@@ -66,14 +66,15 @@ export const LayoutComponent = ({ config }) => {
               {config.id && <LangDropdownWithChangeLocale />}
             </Layout.Header>
             <Layout.Content className={styles.content}>
-              {routes.map((route, i) => (
-                <Route
-                  key={i}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.main}
-                />
-              ))}
+              <Routes>
+                {routes.map((route, i) => (
+                  <Route
+                    key={i}
+                    path={route.path}
+                    element={<route.main />}
+                  />
+                ))}
+              </Routes>
             </Layout.Content>
             <Layout.Footer className={styles.footer}>
               <Space>

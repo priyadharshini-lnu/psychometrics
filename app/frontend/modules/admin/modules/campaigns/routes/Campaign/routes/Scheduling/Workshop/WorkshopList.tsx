@@ -3,7 +3,7 @@ import {
   Row, Avatar, Button, Space, Dropdown, message,
 } from 'antd'
 import {
-  useLocation, useHistory, Link, useParams,
+  useLocation, useNavigate, Link, useParams,
 } from 'react-router-dom'
 import {
   PlusOutlined,
@@ -21,12 +21,12 @@ import { secondsToDayHoursAndMinutes } from '~/utils/time'
 const { I18n } = window
 
 export const WorkshopList: React.FC = () => {
-  const { campaignId } = useParams<{ campaignId: string }>()
-  const history = useHistory()
+  const { campaignId } = useParams() as { campaignId: string }
+  const navigate = useNavigate()
   const location = useLocation()
 
   const openForm = () => {
-    history.push(`${location.pathname}/new`)
+    navigate(`${location.pathname}/new`)
   }
 
   const config = {
@@ -62,7 +62,7 @@ export const WorkshopList: React.FC = () => {
             id="name"
             width="20%"
             render={(_, { id, name }) => (
-              <Link to={{ pathname: `assessment_center/${id}`, state: { search: location.search } }}>
+              <Link to={`${id}`} state={{ search: location.search }}>
                 {name}
               </Link>
             )}
@@ -114,10 +114,10 @@ export const WorkshopList: React.FC = () => {
 }
 
 const MenuComponent = ({ workshop, setData }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const copy = () => {
     setData(workshop)
-    history.push(`${location.pathname}/new`)
+    navigate(`${location.pathname}/new`)
   }
   const { resource } = useResourceContext<Workshop>()
 

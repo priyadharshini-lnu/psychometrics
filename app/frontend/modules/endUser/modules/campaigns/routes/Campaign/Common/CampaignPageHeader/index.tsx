@@ -1,6 +1,6 @@
 import React, { useEffect, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
@@ -36,7 +36,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   campaigns, fetchCampaigns, activeCampaignId, extra,
 }) => {
   const { token } = useToken()
-  const history = useHistory()
+  const navigate = useNavigate()
   const activeCampaign = campaigns.find(campaign => campaign.id === activeCampaignId)
   const completedCampaignsCount = campaigns.filter(campaign => campaign.progressStatus === 'completed').length
   const totalCampaigns = campaigns.length
@@ -46,7 +46,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   }
 
   const handleNavigation = () => {
-    history.push('/dashboard')
+    navigate('/dashboard')
   }
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   }, [])
 
   const handleCampaignSelect = (menu) => {
-    history.push(menu.key)
+    navigate(menu.key)
   }
   const menuItems = campaigns.map((campaign) => {
     const campaignName = campaign.type === 'threesixty' ? campaign.assessmentName : campaign.name

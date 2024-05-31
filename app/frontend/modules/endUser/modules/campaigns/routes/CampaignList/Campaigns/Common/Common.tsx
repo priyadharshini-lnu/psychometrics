@@ -1,5 +1,5 @@
 import { Col } from 'antd'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
 import { StatusText } from '~/modules/endUser/modules/campaigns/components/StatusText'
 import { DetailsCard, ViewMoreText } from '~/glint'
@@ -12,13 +12,13 @@ const { I18n } = window
 export const Common = ({
   campaign, fetchCampaigns, campaignDisabled, scheduledForFuture,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const handleClick = () => {
-    history.push(`/campaigns/${campaign.id}`)
+    navigate(`/campaigns/${campaign.id}`)
   }
 
   const handleSecondaryBtnClick = () => {
-    history.push(`/campaigns/${campaign.id}/insights`)
+    navigate(`/campaigns/${campaign.id}/insights`)
   }
 
   return (

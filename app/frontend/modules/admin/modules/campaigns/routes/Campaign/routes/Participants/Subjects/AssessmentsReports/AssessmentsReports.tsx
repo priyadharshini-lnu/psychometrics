@@ -27,7 +27,7 @@ const AssessmentsReports: React.FC<Props> = ({
   regenerateInProgress,
   proctoringSessions,
 }) => {
-  const { campaignId, id } = useParams<{campaignId:string, tab:string, id: string}>()
+  const { campaignId, id } = useParams() as {campaignId:string, tab:string, id: string}
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
   const { message } = App.useApp()

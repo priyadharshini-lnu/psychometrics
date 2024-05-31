@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   ShopOutlined,
@@ -11,9 +11,9 @@ const { I18n } = window
 
 export const Tabs: React.FC = () => {
   const { pathname } = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/${key}`)
+    navigate(`${settings.urlPrefix}/${key}`)
   }
 
   const menuItems: ItemType[] = [

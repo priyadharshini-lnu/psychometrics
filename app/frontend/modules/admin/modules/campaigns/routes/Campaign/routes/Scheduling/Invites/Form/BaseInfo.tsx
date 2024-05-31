@@ -44,7 +44,7 @@ type Props = OwnProps & PropsFromRedux
 export const BaseInfoFormComponent: React.FC<Props> = ({
   form, next, onCancel, prev, workshops, errors, availableLocales,
 }) => {
-  const params = useParams<{campaignId: string}>()
+  const params = useParams() as {campaignId: string}
   const [preferredLang, setPreferredLang] = useState(form.getFieldValue('allowLanguagePreference'))
   const [allowNeurodiversityOption, setAllowNeurodiversityOption] = useState(
     form.getFieldValue('allowNeurodiversityOption'),

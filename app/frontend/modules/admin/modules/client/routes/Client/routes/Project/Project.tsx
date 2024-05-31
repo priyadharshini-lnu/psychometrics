@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { useParams, useHistory, useLocation } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   SettingOutlined,
@@ -36,8 +36,8 @@ type Props = PropsFromRedux
 const Project: FC<Props> = ({
   currentUser, fetchProject,
 }) => {
-  const { projectId } = useParams<{ projectId: string }>()
-  const history = useHistory()
+  const { projectId } = useParams() as { projectId: string }
+  const navigate = useNavigate()
   const { pathname } = useLocation()
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const Project: FC<Props> = ({
   }, [])
 
   const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/${projectId}/${key}`)
+    navigate(`${settings.urlPrefix}/${projectId}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
@@ -160,7 +160,7 @@ const Project: FC<Props> = ({
       />
       <RouteList
         routes={routes}
-        urlPrefix={`${settings.urlPrefix}/:projectId`}
+        urlPrefix=""
       />
     </div>
   )

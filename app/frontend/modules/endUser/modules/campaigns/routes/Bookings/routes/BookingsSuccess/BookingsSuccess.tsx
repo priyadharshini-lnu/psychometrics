@@ -8,7 +8,7 @@ import {
 import {
   google, outlook, yahoo, ics, office365, CalendarEvent,
 } from 'calendar-link'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { CheckCircleFilled } from '@ant-design/icons'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
@@ -63,18 +63,19 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   requestCancelBooking, requestForCancelInProgress, cancelInProgress,
 }) => {
   const { message } = App.useApp()
+  const location = useLocation()
   const tourRef = useRef<HTMLDivElement>(null)
   const queryString = qs.parse(location.search.substring(1))
   const [requestCancellation, setRequestrequestCancellation] = useState<boolean>(false)
   const [bookingDetails, setbookingDetails] = useState<null | SingleBooking >(null)
-  const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
+  const { inviteOrBookingId } = useParams() as { inviteOrBookingId: string }
   const bookedDateTime = bookingDetails?.bookedDate
   const bookedDateTimeMomentObject = bookedDateTime ? dayjs(bookedDateTime.date) : null
   const currentTimezone = bookingDetails?.timezone || dayjs.tz.guess() || 'Asia/Dubai'
   const currentTime = dayjs().tz(currentTimezone)
   const bookedDateTimeMomentObjectTz = bookedDateTimeMomentObject?.clone().tz(currentTimezone)
   const duration = bookingDetails?.duration || 0
-  const history = useHistory()
+  const navigate = useNavigate()
   const bookingId = bookingDetails?.id.toString()
   const workshopId = bookingDetails?.workshopId
 
@@ -105,7 +106,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
     if (allowCancelByUser && bookingId && workshopId) {
       cancelBooking(bookingId, workshopId).then(() => {
         message.success(I18n.t('frontend.bookings.cancellation_success'))
-        history.push('/invites')
+        navigate('/invites')
       }).catch((errors) => {
         const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
         message.error(I18n.t('frontend.bookings.cancellation_failed', { error }))
@@ -119,7 +120,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
     if (bookingId && workshopId) {
       requestCancelBooking(bookingId, workshopId, reason).then(() => {
         message.success(I18n.t('frontend.bookings.request_cancellation_success'))
-        history.push('/invites')
+        navigate('/invites')
       })
         .catch((errors) => {
           const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
@@ -129,7 +130,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   }
 
   const handleRescheduleBooking = () => {
-    history.push(`/invites/${inviteOrBookingId}/details?type=booking`)
+    navigate(`/invites/${inviteOrBookingId}/details?type=booking`)
   }
 
   const headerContent = (
@@ -142,7 +143,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
 
   const handleAddToCalendarClick = () => {
     if (queryString.tour === 'true') {
-      history.push(history.location.pathname)
+      navigate(location.pathname)
     }
   }
 
@@ -209,7 +210,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
               },
             ]}
             onClose={() => {
-              history.push(history.location.pathname)
+              navigate(location.pathname)
             }
             }
           />

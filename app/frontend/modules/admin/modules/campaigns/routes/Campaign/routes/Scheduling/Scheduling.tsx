@@ -1,7 +1,9 @@
 import React from 'react'
 import { Menu } from 'antd'
-import { History } from 'history'
 import { connect, ConnectedProps } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { WorkshopList } from './Workshop'
+import { Invites, InvitesForm } from './Invites'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
@@ -15,18 +17,14 @@ const connector = connect((state: RootState) => ({
   campaignPermissions: getCurrentCampaign(state).permissions,
 }))
 
-interface OwnProps {
-  routes: Array<{ path: string, components: JSX.Element }>,
-  history: History
-}
-
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-type Props = PropsFromRedux & OwnProps
+type Props = PropsFromRedux
 
-const SchedulingComponent: React.FC<Props> = ({ history, routes, campaignPermissions }) => {
+const SchedulingComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const prefix = `${settings.urlPrefix}/:campaignId`
-  const onSelect = ({ key }) => routeUtils.moveTo(history, prefix, key)
+  const navigate = useNavigate()
+  const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
 
   const menuItems = () => ([
     campaignPermissions.viewWorkshops ? {
@@ -50,7 +48,14 @@ const SchedulingComponent: React.FC<Props> = ({ history, routes, campaignPermiss
           className="w-100"
         />
       </div>
-      <RouteList routes={routes} urlPrefix={prefix} />
+      <RouteList
+        routes={[
+          { redirect: true, from: '', to: 'assessment_center' },
+          { path: '/assessment_center', component: <WorkshopList /> },
+          { path: '/:tab', component: <Invites /> },
+          { path: '/invites/add_invite', component: <InvitesForm /> }]}
+        urlPrefix=""
+      />
     </div>
   )
 }

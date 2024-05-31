@@ -101,7 +101,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   )
 
   const { message } = App.useApp()
-  const params = useParams<{ projectId: string, campaignId: string, clientId: string }>()
+  const params = useParams() as { projectId: string, campaignId: string, clientId: string }
   const { projectId } = params
   const { clientId } = params
   const campaignIdParams = params.campaignId

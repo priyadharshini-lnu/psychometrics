@@ -21,7 +21,7 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 export type Props = PropsFromRedux
 
 const AssessorDetails: React.FC<Props> = ({ assessor, fetchSingle }) => {
-  const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
+  const { campaignId, id } = useParams() as { campaignId: string, id: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedId = parseInt(id, 10)
 

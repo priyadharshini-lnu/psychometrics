@@ -5,7 +5,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Layout, Typography, Tabs,
 } from 'antd'
-import { RouteComponentProps, useHistory } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import _ from 'lodash'
 import { useReportDimensions } from '~/hooks/useReportDimensions'
@@ -41,16 +41,17 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Params = {
   url: string
 }
-type Props = RouteComponentProps<Params> & PropsFromRedux
+type Props = PropsFromRedux
 
 const InsightsComponent: FC<Props> = ({
-  match, userDashboard, fetchInsights, isUserReportAvailable, isInsightLoading,
+  userDashboard, fetchInsights, isUserReportAvailable, isInsightLoading,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
+  const params = useParams() as Params
 
   useEffect(() => {
-    fetchInsights(match.url)
-  }, [match.url])
+    fetchInsights(params.url)
+  }, [params.url])
 
   return (
     <>
@@ -64,7 +65,7 @@ const InsightsComponent: FC<Props> = ({
           <>
             <SubHeader
               title={I18n.t('campaign.dashboard_menu.insights')}
-              onBack={() => history.push('/dashboard')}
+              onBack={() => navigate('/dashboard')}
             />
             <InsightsBody userDashboard={userDashboard} isUserReportAvailable={isUserReportAvailable} />
           </>

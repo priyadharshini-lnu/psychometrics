@@ -35,7 +35,7 @@ export const BulkSchedule: React.FC<Props> = ({
 }) => {
   const {
     id, campaignId,
-  } = useParams<{ id: string, campaignId: string }>()
+  } = useParams() as { id: string, campaignId: string }
 
   const { fetch } = useResources<CampaignAssessment>('campaign_assessments', {
     basePath: `campaigns/${campaignId}/workshops/${id}`,
