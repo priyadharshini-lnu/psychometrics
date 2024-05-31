@@ -22,7 +22,7 @@ module UsersResults
           end
 
           broadcast(:ok, extended_scoring.
-            deep_merge(factor.id.to_s => { 'score' => score }).
+            deep_merge(factor.id.to_s => { 'score' => round_score(score) }).
             deep_merge(factor.id.to_s => percentage))
         end
 

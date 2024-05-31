@@ -2,11 +2,8 @@
 
 module Administration
   class BulkReportPolicy < Administration::BasePolicy
-    def new?
-      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage) || @user.has_grant?(:assigns, :view)
+    def download?
+      user.is?(:superadmin) || record.user_id == user.id
     end
-
-    alias create? new?
-    alias download? new?
   end
 end

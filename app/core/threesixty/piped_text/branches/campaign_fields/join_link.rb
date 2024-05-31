@@ -11,12 +11,13 @@ module Threesixty
             return broadcast(:ok, '') unless context[:subject]
 
             exp = Time.current.to_i + params['expiry'].to_i
+            text = params['text'] || 'Join Campaign'
 
             token = ::Campaigns::JwtTokenizer.encode(
               { subject_id: context[:subject].id, campaign_id: params['campaign_id'], exp: exp }
             )
             root = root_url(Utility::Url.get_params(subdomain: context[:subject].project.try(:subdomain)))
-            broadcast :ok, "<a href='#{root}campaigns/join_with_token?token=#{token}'>link</a>"
+            broadcast :ok, "<a href='#{root}campaigns/join_with_token?token=#{token}' target='_blank'>#{text}</a>"
           end
         end
       end

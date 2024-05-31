@@ -4,6 +4,7 @@ import cs from 'classnames'
 import Utils from '~/modules/reports/utils/Utils'
 import ScoreRange from './ScoreRange'
 import styles from './styles.less'
+import { ColorPicker } from '~/glint'
 
 export default class ScoreRangeList extends Component {
   addScoreRange = () => {
@@ -39,6 +40,18 @@ export default class ScoreRangeList extends Component {
     this.update()
   }
 
+  changeLineColor = (color) => {
+    const { model } = this.props
+    model.props.scoreLineColor = color
+    this.update()
+  }
+
+  changeBulletColor = (color) => {
+    const { model } = this.props
+    model.props.scoreBulletColor = color
+    this.update()
+  }
+
   update = () => {
     const { model } = this.props
     model.update()
@@ -46,10 +59,30 @@ export default class ScoreRangeList extends Component {
   }
 
   render () {
-    const { model: { props: { scoreRanges = [] } } } = this.props
+    const { model: { props: { scoreRanges = [], scoreLineColor, scoreBulletColor } } } = this.props
 
     return (
       <div className="mts">
+        <div className={styles.colors}>
+          <div className={styles.colorRow}>
+            <ColorPicker
+              swatchClassName={styles.swatch}
+              getValueInHexFormat
+              value={scoreLineColor || '#000000'}
+              onChange={this.changeLineColor}
+            />
+            <span>Line Color</span>
+          </div>
+          <div className={styles.colorRow}>
+            <ColorPicker
+              swatchClassName={styles.swatch}
+              getValueInHexFormat
+              value={scoreBulletColor || '#000000'}
+              onChange={this.changeBulletColor}
+            />
+            <span>Bullet Color</span>
+          </div>
+        </div>
         <div>
           <span>Score Ranges</span>
           <i className={cs('fa', 'fa-plus', 'mls', styles.add)} onClick={this.addScoreRange} />

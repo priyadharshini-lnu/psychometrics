@@ -10,19 +10,19 @@ import {
   ArrowLeftOutlined, CopyOutlined, EditOutlined,
 } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { formatWorkshopDate } from '~/utils/workshop'
 import { WorkshopEditFormModal } from './WorkshopEditFormModal'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
 import { useResources } from '~/hooks/useResources'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
-import { ResourceAvatar } from '~/glint'
-import styles from './styles.less'
+import { ResourceAvatar, DateTimeWithZone } from '~/glint'
 import { SubjectList } from './SubjectList'
 import { Activities } from './Activities'
 import { ResourceList } from './ResourceList'
 import { ChangeStatusModal } from './ChangeStatusModal'
+
+import styles from './styles.less'
 
 const { I18n } = window
 const STATUS_TAG_COLOR = {
@@ -106,7 +106,7 @@ export const WorkshopPage: FC = () => {
           size="small"
         >
           <Descriptions.Item label={I18n.t('administration.scheduling.info.date')}>
-            {formatWorkshopDate(workshop.startTime)}
+            <DateTimeWithZone dateString={workshop.startTime} />
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.duration')}>
             {secondsToDayHoursAndMinutes(workshop.duration)}

@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class TemplateSerializer < Panko::Serializer
-      attributes :id, :name, :assessment_id
+      attributes :id, :name, :assessment_id, :owner_id
     end
   end
 end

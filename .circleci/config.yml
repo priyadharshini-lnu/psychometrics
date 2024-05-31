@@ -102,14 +102,14 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - yarn-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
+            - yarn-cache2-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
       - run:
           name: Yarn
           command: yarn install --pure-lockfile
       - save_cache:
-          key: yarn-cache-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
+          key: yarn-cache2-{{ .Environment.CACHE_VERSION }}-<< parameters.node-env >>-{{ arch }}-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
+            - ~/.cache/yarn
 
   setup_db:
     parameters:
@@ -546,16 +546,22 @@ workflows:
             - bundle
       - bundle_assets:
           requires:
+            - yarn
+            - bundle
+      - vitest:
+          requires:
+            - bundle_assets
             - rubocop
             - brakeman
             - eslint
             - typescript
-      - vitest:
-          requires:
-            - bundle_assets
       - rspec:
           requires:
             - bundle_assets
+            - rubocop
+            - brakeman
+            - eslint
+            - typescript
       - coveralls:
           requires:
             - vitest

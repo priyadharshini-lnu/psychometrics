@@ -66,7 +66,7 @@ export class Scoring extends Component {
           onChange={this.changeSubject}
           className={`form-control ${localStyles.subjectSelect}`}
         >
-          {!condition.props.subject && <option />}
+          <option />
           {subjects?.map(factor => (
             <option key={factor.id} value={factor.id}>{factor.alias || factor.name}</option>
           ))}

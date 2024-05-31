@@ -3,6 +3,10 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
+      = f.input :owner_id,
+                as: :select,
+                collection: [['TTE', nil], *Client.tenancies.order(:name).map { |u| [u.name, u.id] }],
+                input_html: { data: { live_search: true } }
       = f.input :assessment_id,
                 as: :select,
                 collection: Assessment.with_category(Assessment.categories['threesixty']).order(:name).map { |a| [a.decorate.name, a.id] },

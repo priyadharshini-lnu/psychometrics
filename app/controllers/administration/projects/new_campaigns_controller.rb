@@ -111,7 +111,7 @@ module Administration
       end
 
       def templates_and_assessment
-        templates = policy_scope(CampaignTemplate).all
+        templates = Administration::CampaignTemplatePolicy::Scope.new(current_user, CampaignTemplate).resolve(client.id)
         campaigns = project.project_campaigns.where(type: 'threesixty').includes(threesixty_campaign: :assessment)
 
         render json: Administration::Campaigns::TemplatesAndAssementsSerializer.new.serialize({

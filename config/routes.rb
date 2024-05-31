@@ -882,7 +882,8 @@ Rails.application.routes.draw do
                             invitations: 'users/invitations',
                             passwords: 'passwords',
                             password_expired: 'users/password_expired',
-                            magic_links: 'users/magic_links' }
+                            magic_links: 'users/magic_links',
+                            unlocks: 'users/unlocks' }
 
   namespace 'passwordless' do
     devise_for :users,

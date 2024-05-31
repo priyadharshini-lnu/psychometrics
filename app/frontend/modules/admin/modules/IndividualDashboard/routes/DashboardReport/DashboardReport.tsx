@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Skeleton, Row, Col, Descriptions, InputNumber, Button,
+  Skeleton, Row, Col, InputNumber, Button,
 } from 'antd'
 import { useLocation, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -11,10 +10,7 @@ import {
 } from '~/modules/admin/modules/IndividualDashboard/core/userReport'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { isRequestInProgress } from '~/core/request'
-import userPresenter from '~/presenters/user'
 import styles from './styles.less'
-
-const { I18n } = window
 
 const connecter = connect((state: RootState) => ({
   userReport: getCurrent(state),
@@ -68,7 +64,7 @@ export const DashboardReportComponent: React.FC<Props> = ({
 
   return (
     <div className="p6">
-      <PageHeader
+      {/* <PageHeader
         ghost={false}
         title={userPresenter.getFullName({ firstName: user.first_name, lastName: user.last_name })}
         subTitle={user.email}
@@ -82,7 +78,7 @@ export const DashboardReportComponent: React.FC<Props> = ({
             <Descriptions.Item label={field.name}>{field.value}</Descriptions.Item>
           ))}
         </Descriptions>
-      </PageHeader>
+      </PageHeader> */}
       <Row gutter={[0, 16]} justify="center">
         <Col>
           <div className={styles.reportContainer}>

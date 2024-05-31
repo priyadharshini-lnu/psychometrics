@@ -6,7 +6,7 @@ import {
   WorkshopInvitedSubject, WorkshopInvitedSubjectTR,
 } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import { ResourceAvatar } from '~/glint'
+import { ResourceAvatar, DateTimeWithZone } from '~/glint'
 import { formatWorkshopDate } from '~/utils/workshop'
 
 const { I18n } = window
@@ -85,12 +85,14 @@ export const RequestsTable = () => {
                     {formatWorkshopDate(data.subjectWorkshopDateTime)}
                   </Descriptions.Item>
                   <Descriptions.Item label="To" labelStyle={{ color: 'gray' }}>
-                    {formatWorkshopDate(data.bookedWorkshopDateTime)}
+                    <DateTimeWithZone dateString={data.bookedWorkshopDateTime} />
                   </Descriptions.Item>
                 </Descriptions>
               )
             }
-            return formatWorkshopDate(data.subjectWorkshopDateTime)
+            return (
+              <DateTimeWithZone dateString={data.subjectWorkshopDateTime} />
+            )
           }}
         />
         <Resource.Column<WorkshopInvitedSubject>

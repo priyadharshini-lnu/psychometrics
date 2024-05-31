@@ -206,8 +206,8 @@ const Subtitle: FC<SubtitleProps> = ({
   let dateTimeWithTimezoneEnd
 
   if (dateTime && timezone) {
-    dateTimeWithTimezone = dayjs.tz(dateTime, timezone)
-    dateTimeWithTimezoneEnd = dayjs.tz(dateTime, timezone).add(duration || 0, 's')
+    dateTimeWithTimezone = dayjs(dateTime).tz(timezone)
+    dateTimeWithTimezoneEnd = dayjs(dateTime).add(duration || 0, 's').tz(timezone)
   }
 
   return (
@@ -225,6 +225,7 @@ const Subtitle: FC<SubtitleProps> = ({
             {dateTimeWithTimezone.format('hh:mmA')}
             -
             {dateTimeWithTimezoneEnd?.format('hh:mmA')}
+            <Text type="secondary">{dateTimeWithTimezone?.format(' (z)')}</Text>
           </>
         )}
       </Space>

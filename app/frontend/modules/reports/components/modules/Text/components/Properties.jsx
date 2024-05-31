@@ -161,9 +161,9 @@ class Properties extends Component {
     this.update()
   }
 
-  changeStyles = (val) => {
+  changePrecision = (val) => {
     const { model } = this.props
-    model.props.styleIds = val
+    model.props.precision = val
     this.update()
   }
 
@@ -344,6 +344,19 @@ class Properties extends Component {
             />
             Italics
           </label>
+          {model.props.sourceType === 'ResultText' && model.props.source?.type === 'DataSheet' && (
+          <div className={styles.block} style={{ position: 'relative' }}>
+            <div className="margin-top-10">Number Precision</div>
+            <label className={styles.inputLabel}>
+              <ChoicesInput
+                value={model.props.precision || 0}
+                onChange={this.changePrecision}
+                minValue={0}
+                maxValue={10}
+              />
+            </label>
+          </div>
+          )}
         </div>
         <Button size="small" danger onClick={this.resetStyles} icon={<ClearOutlined />}>Reset Font Styles</Button>
         <hr className={styles.divider} />
@@ -359,6 +372,7 @@ class Properties extends Component {
             Edit and Approve
           </label>
         </div>
+
         <hr className={styles.divider} />
         <div className={styles.block} style={{ position: 'relative' }}>
           Background Color

@@ -51,9 +51,8 @@ describe Lambdas::NotificationHandlers::ZipS3Files do
       admin_job_record.reload
 
       expect(admin_job_record.completed?).to eq(true)
-      expect(admin_job_record.content).to eq(
-        "<a href=\"#{bulk_report.reload.files[0].url}\">abc.pdf</a>"
-      )
+      url = Utility::Url.generate(:download_administration_bulk_report_url, id: bulk_report.id)
+      expect(admin_job_record.content).to eq("<a href=\"#{url}\">abc.pdf</a>")
     end
   end
 

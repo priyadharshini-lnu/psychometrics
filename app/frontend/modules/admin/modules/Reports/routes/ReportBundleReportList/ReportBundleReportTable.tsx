@@ -24,6 +24,11 @@ export const ReportBundleReportTable: React.FC = () => (
       width={400}
     />
     <Resource.Column<ReportBundleReport>
+      title={I18n.t('common.column.package_id')}
+      id="externalPackageId"
+      width={300}
+    />
+    <Resource.Column<ReportBundleReport>
       title={I18n.t('common.column.created_at')}
       id="created_at"
       width={300}
