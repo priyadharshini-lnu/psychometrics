@@ -94,6 +94,8 @@ const createRootReducer = () => combineReducers({
   connection,
   auditLogs,
   individualDashboard: individualDashboardReducer,
+  liveChat: () => ({}),
+  flash: () => ({}),
 })
 
 export type RootState = ReturnType<ReturnType<typeof createRootReducer>>

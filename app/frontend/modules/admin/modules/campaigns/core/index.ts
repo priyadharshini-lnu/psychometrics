@@ -37,4 +37,5 @@ export default combineReducers({
   smsInvites,
   proctoringSessions,
   stats,
+  project: () => ({}),
 })

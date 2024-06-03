@@ -46,6 +46,7 @@ const rootReducer = () => combineReducers({
   report: combineReducers({ builder: reportBuilder }),
   checkingWizard,
   connection,
+  liveChat: () => ({}),
 })
 
 export type RootState = ReturnType<ReturnType<typeof rootReducer>>
