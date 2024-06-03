@@ -26,10 +26,10 @@ module UsersResults
               filtered_scoring = sub_extended_scoring.slice(*sub_factor_ids.map(&:to_s)).select do |_k, v|
                 get_sub_factor_score(v)
               end
-              calc_score(filtered_scoring)&.round(2)
+              calc_score(filtered_scoring)
             end
 
-          broadcast :ok, sub_extended_scoring.deep_merge(factor.id.to_s => { 'score' => round_score(score) })
+          broadcast :ok, sub_extended_scoring.deep_merge(factor.id.to_s => { 'score' => round_score(score, 2) })
         end
 
         def calc_score(scoring)
