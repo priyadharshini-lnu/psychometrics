@@ -39,7 +39,7 @@ const connector = connect(
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Params = {
-  url: string
+  campaignId: string
 }
 type Props = PropsFromRedux
 
@@ -47,11 +47,11 @@ const InsightsComponent: FC<Props> = ({
   userDashboard, fetchInsights, isUserReportAvailable, isInsightLoading,
 }) => {
   const navigate = useNavigate()
-  const params = useParams() as Params
+  const { campaignId } = useParams() as Params
 
   useEffect(() => {
-    fetchInsights(params.url)
-  }, [params.url])
+    fetchInsights(`/campaigns/${campaignId}/insights`)
+  }, [campaignId])
 
   return (
     <>
