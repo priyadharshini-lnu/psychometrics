@@ -82,12 +82,12 @@ describe UserReports::GetUserResultsQuery do
   end
 
   it 'pick UsersResult for lead assessor assessment' do
+    report.assessments_reports.create(assessment_id: lead_assessment.id, report_id: report.id)
     same_campaign_users_assessment1 = create(:user_assessment, :with_result, campaign: campaign,
       assessment: assessments[0], subject: user, evaluator: user, status: :completed)
     same_campaign_users_assessment2 = create(:user_assessment, :with_result, campaign: campaign,
       assessment: lead_assessment, subject: user, evaluator: user, status: :in_progress, completed_at: Time.zone.now)
-
-    users_results = described_class.new(user_report, :lead_assessor).query
+    users_results = described_class.new(user_report.reload, :lead_assessor).query
 
     expect(users_results).to include(same_campaign_users_assessment1.users_result)
     expect(users_results).to include(same_campaign_users_assessment2.users_result)
