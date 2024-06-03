@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Dropdown, Space } from 'antd'
+import { Dropdown, Space, Button } from 'antd'
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
@@ -19,10 +19,15 @@ interface Props {
 
 const LangDropdown: React.FC<Props> = ({ locales, currentLocale, onChange }) => {
   const [loading, setLoading] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const onSelect = ({ key }) => {
     setLoading(true)
     onChange(key)
+  }
+
+  const handleOpenChange = (open) => {
+    setOpen(open)
   }
 
   const menuItems = _.map(locales, locale => (
@@ -37,18 +42,30 @@ const LangDropdown: React.FC<Props> = ({ locales, currentLocale, onChange }) => 
     <div>
       <Space>
         <LanguageIcon className={styles.icon} />
-        <Dropdown menu={{ items: menuItems, onClick: onSelect }} trigger={['click']}>
-          <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+        <Dropdown
+          autoFocus
+          onOpenChange={handleOpenChange}
+          menu={{ items: menuItems, onClick: onSelect }}
+          trigger={['click']}
+        >
+          <Button
+            aria-expanded={open}
+            className="ps-0 pe-0"
+            type="link"
+            tabIndex={0}
+            onClick={e => e.preventDefault()}
+            aria-description={I18n.t('frontend.aria.lang_dropdown_description')}
+          >
             {loading
               ? <LoadingOutlined />
               : (
                 <span>
                   {I18n.t(`languages_localized.${currentLocale}`)}
                   {' '}
-                  <DownOutlined />
+                  <DownOutlined aria-label="" />
                 </span>
               )}
-          </a>
+          </Button>
         </Dropdown>
       </Space>
     </div>

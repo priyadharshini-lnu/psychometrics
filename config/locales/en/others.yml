@@ -2101,6 +2101,7 @@ en:
     are_you_sure: Are you sure?
     aria:
       campaign_name_description: ', for campaign "%{campaignName}"'
+      lang_dropdown_description: ",change language"
       task_btn_description: task %{assessmentName}
     assessment: Assessment
     assessment_groups:
