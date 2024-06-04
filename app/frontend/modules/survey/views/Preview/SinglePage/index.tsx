@@ -55,7 +55,11 @@ const SinglePage: React.FC<Props> = ({
     ? questions.filter((q:{id:number}) => visibleQuestions.includes(q.id))
     : questions
 
-  const visibleBlocks = _.groupBy(filteredQuestions, (q:{block_id:number}) => q.block_id)
+
+  const withSymbols = filteredQuestions.map(
+    (q:{block_id: number}) => ({ ...q, block_id: Symbol.for(q.block_id.toString()) }),
+  )
+  const visibleBlocks = _.groupBy(withSymbols, 'block_id') as object
 
   if (!questions.length) {
     return (
@@ -73,14 +77,15 @@ const SinglePage: React.FC<Props> = ({
           <Button type="link" onClick={() => updateVisibility([])}>Show All</Button>
         </div>
       )}
-      {_.map(visibleBlocks, (questions, blockId) => {
-        const block = blocks[blockId]
+      {_.map(Reflect.ownKeys(visibleBlocks), (blockId: symbol) => {
+        const questions = visibleBlocks[blockId]
+        const block = blocks[blockId.description as string]
         const { staticContent } = block.props
 
         return (
-          <div className={cs(styles.block)} key={blockId}>
+          <div className={cs(styles.block)} key={blockId.description}>
             <div>
-              {staticContent && <StaticContent {...{ block }} key={blockId} />}
+              {staticContent && <StaticContent {...{ block }} key={blockId.description} />}
               <div className={cs(styles.questionsBlock)}>
                 <QuestionList page={null} readOnly questions={questions} backButtonPressed={false} />
               </div>
