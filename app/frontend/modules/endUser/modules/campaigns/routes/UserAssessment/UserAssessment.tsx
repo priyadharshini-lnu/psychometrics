@@ -88,6 +88,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   }, [])
 
   useEffect(() => {
+    const evaluationSessionIdCheckChannel = new BroadcastChannel('evaluationSessionIdCheck')
+
     let interval
     if (results.id && evaluationSessionId) {
       interval = setInterval(() => {
@@ -96,11 +98,31 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             if (response.sessionId !== evaluationSessionId) {
               setShowInvalidSession(true)
               clearInterval(interval)
+              evaluationSessionIdCheckChannel.close()
             }
           })
       }, 30000)
+
+      evaluationSessionIdCheckChannel.addEventListener('message', (e) => {
+        if (e.data.type === 'DuplicateEvaluationSessionIdFound' && e.data.evaluationSessionId === evaluationSessionId) {
+          location.reload()
+        }
+
+        if (e.data.type === 'CheckDuplicateEvaluationSessionId') {
+          if (e.data.evaluationSessionId !== evaluationSessionId) return
+          evaluationSessionIdCheckChannel.postMessage({
+            type: 'DuplicateEvaluationSessionIdFound', evaluationSessionId,
+          })
+          setShowInvalidSession(true)
+          interval && clearInterval(interval)
+        }
+      })
+      evaluationSessionIdCheckChannel.postMessage({ type: 'CheckDuplicateEvaluationSessionId', evaluationSessionId })
     }
-    return () => interval && clearInterval(interval)
+    return () => {
+      interval && clearInterval(interval)
+      evaluationSessionIdCheckChannel && evaluationSessionIdCheckChannel.close()
+    }
   }, [results.id])
 
   const { isMobile } = useContext(MediaQueryContext)
