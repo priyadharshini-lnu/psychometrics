@@ -68,6 +68,11 @@ function* genPrevPage () {
     yield put(hideEnd())
     yield put(hideSubmitPage())
   }
+
+  if (state.preview.end) {
+    return
+  }
+
   const questions = pageQuestions(state.preview)
   const prev = getPrevPage(state.preview)
 

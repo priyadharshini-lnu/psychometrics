@@ -797,6 +797,7 @@ en:
       archived:
         success_message: Asessment %{name} archived successfully
       back_to_campaign: Back to Campaign
+      back_to_dashboard: Back to Dashboard
       copy:
         success_message: Asessment %{name} was copied successfully
       details: Details
