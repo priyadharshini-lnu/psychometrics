@@ -19,6 +19,7 @@ type DetailsCardProps = {
   onButtonClick?: () => void
   onSecondaryBtnClick?: () => void
   progressPercentage?: number
+  progressLabelAria?: string
   status?: string | React.ReactElement
   subtitle?: string | React.ReactElement | null
   showStatusAtTop?: boolean
@@ -39,6 +40,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
   onButtonClick,
   onSecondaryBtnClick,
   progressPercentage,
+  progressLabelAria,
   description,
   status,
   subtitle,
@@ -93,7 +95,12 @@ export const DetailsCard: FC<DetailsCardProps> = ({
       </Space>
       <Row className={styles.cardFooter}>
         <Col lg={progressBarSpanLg} md={8} xs={progressBarSpanXs}>
-          {progressPercentage !== undefined && <Progress percent={progressPercentage} />}
+          {progressPercentage !== undefined && (
+          <Progress
+            aria-label={progressLabelAria}
+            percent={progressPercentage}
+          />
+          )}
         </Col>
         {buttonText && (
           <Col

@@ -2102,7 +2102,9 @@ en:
     aria:
       campaign_name_description: ', for campaign "%{campaignName}"'
       lang_dropdown_description: ",change language"
+      profile_progress: Profile completion is
       task_btn_description: task %{assessmentName}
+      task_progress_label: Task completion is
     assessment: Assessment
     assessment_groups:
       create_success: The group was created successfully

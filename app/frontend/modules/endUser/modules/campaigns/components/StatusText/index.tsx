@@ -1,8 +1,9 @@
 
 import { FC } from 'react'
-import { Typography } from 'antd'
+import { Tag } from 'antd'
 
-const { Text } = Typography
+import styles from './StatusText.less'
+
 const { I18n } = window
 const STATUSES = {
   not_started: { label: I18n.t('campaign_assessment.statuses.not_started'), textType: 'secondary' },
@@ -28,6 +29,6 @@ type StatusTextProps = {
 export const StatusText: FC<StatusTextProps> = ({ taskStatus }) => {
   const statusData = STATUSES[`${taskStatus}`] || {}
   return (
-    <Text type={statusData.textType}>{statusData.label}</Text>
+    <Tag color={statusData.textType} className={styles.statusText}>{statusData.label}</Tag>
   )
 }
