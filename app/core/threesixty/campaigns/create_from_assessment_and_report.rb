@@ -4,17 +4,21 @@ module Threesixty
   module Campaigns
     class CreateFromAssessmentAndReport < BaseCommand
       private_attr_reader :source_assessment, :source_report, :new_assessment, :new_report, :client,
-                          :form, :project, :threesixty_campaign, :old_to_new_factor_mapping, :questions_mapping
+                          :form, :project, :threesixty_campaign, :old_to_new_factor_mapping, :questions_mapping,
+                          :resource_name
 
-      def initialize(source_assessment, source_report, form, project, user)
+      # rubocop:disable Metrics/ParameterLists
+      def initialize(source_assessment, source_report, form, project, user, resource_name: nil)
         @source_assessment = source_assessment
         @source_report = source_report
-        @new_report = ::Reports::CopyReport.call!(source_report.id, user)
+        @resource_name = resource_name
+        @new_report = ::Reports::CopyReport.call!(source_report.id, user, new_report_name: resource_name)
         @project = project
         @client = project.client
         @user = user
         event = ::Assessments::CopyAssessment.call(
-          source_assessment.id, user, client.id, skip_owner_validation: true
+          source_assessment.id, user, client.id, skip_owner_validation: true,
+          new_assessment_name: resource_name
         )
         raise('CopyAssessment failed!') unless event[:ok]
 
@@ -24,9 +28,12 @@ module Threesixty
         @old_to_new_factor_mapping = {}
         @questions_mapping = event[:ok][:questions_mapping]
       end
+      # rubocop:enable Metrics/ParameterLists
 
       def call
-        result = Dimensions::Copy.call!(source_assessment.dimension, form.factors || [], client)
+        result = Dimensions::Copy.call!(
+          source_assessment.dimension, form.factors || [], client, new_dimension_name: form.name
+        )
         new_dimension = result[:new_dimension]
         update_factor_ids(result[:old_to_new_factor_mapping])
 

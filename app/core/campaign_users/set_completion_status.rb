@@ -28,6 +28,8 @@ module CampaignUsers
 
       return 'not_started' if statuses.empty?
 
+      return 'completed' if statuses.any?('ineligible')
+
       return 'completed' if statuses.all? { |status| UserAssessment::DEEMED_COMPLETED_STATUS.include?(status) }
 
       return 'not_started' if statuses.all?('not_started')

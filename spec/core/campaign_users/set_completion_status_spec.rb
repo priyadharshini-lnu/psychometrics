@@ -7,6 +7,15 @@ describe CampaignUsers::SetCompletionStatus do
   let(:campaign_id) { campaign_user.campaign_id }
   let(:subject_id) { campaign_user.user_id }
 
+  it 'sets completion_status to completed if any assessment is ineligible' do
+    user_assessments = create_list(:user_assessment, 2, :with_result,
+                                   subject_id: subject_id, evaluator_id: subject_id, campaign_id: campaign_id)
+    user_assessments.first.update(status: :ineligible)
+    described_class.call!(campaign_user)
+
+    expect(campaign_user.reload.completion_status).to eq('completed')
+  end
+
   it 'sets completion_status to not_started if there are assessment assigned to the user' do
     described_class.call!(campaign_user)
 
