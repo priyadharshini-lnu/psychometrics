@@ -12,7 +12,7 @@ class UserDashboardSchema < BaseSchema
       required(:campaign_id).filled(:int?)
       required(:pdf).maybe(:hash?)
       required(:is_self).filled(:bool?)
-      required(:results).filled(:hash?)
+      required(:results).maybe(:hash?)
       required(:report).hash(ReportSchema.schema(_, _))
       required(:user).hash(UserSchema.schema(_, _))
     end
