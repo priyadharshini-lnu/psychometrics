@@ -12,6 +12,7 @@ interface State {
   login_box_position: LoginBoxPosition,
   saml_login_allowed: boolean
   saml_enforced: boolean
+  require_mobile_number: boolean
   primary_color?: string
   error_color?: string,
   warning_color?: string,
@@ -26,6 +27,7 @@ export const defaultState: State = {
   background: null,
   login_box_position: 'auto',
   saml_login_allowed: false,
+  require_mobile_number: false,
   saml_enforced: false,
   background_size: 'cover',
 }

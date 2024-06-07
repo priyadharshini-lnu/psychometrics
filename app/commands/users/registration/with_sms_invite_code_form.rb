@@ -23,10 +23,8 @@ module Users
       end
 
       def sms_invite
-        @sms_invite ||= context.project.sms_invites.
-                        where.not(status: :registered).
-                        where('expiry >= :now', now: Time.zone.now).
-                        find_by(code: sms_invite_code)
+        @sms_invite ||= Administration::Clients::SmsInvites::VerificationQuery.
+                        new(context.project, sms_invite_code).query
       end
     end
   end

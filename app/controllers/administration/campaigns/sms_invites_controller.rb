@@ -20,7 +20,7 @@ module Administration
               sms_invites: sms_invites,
               campaign: campaign,
               resource_class: resource_class,
-              headers: SmsInvites::ImportForm::VALID_HEADERS
+              headers: ::SmsInvites::ImportForm::VALID_HEADERS
             }
           end
           format.json do

@@ -4707,6 +4707,13 @@ ansi-styles@^5.0.0:
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
 
+antd-phone-input@^0.3.7:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/antd-phone-input/-/antd-phone-input-0.3.7.tgz#2c194bab16a15735c2e575451bbeda62ee124d7f"
+  integrity sha512-HOLTbx806NGrBy4OPwsC5sLfywxiVVZ+ZD7DjhVbsTAsjmEdE3MsV2hWPwZkK05VY49/3qTqiMxgh/a6899vsQ==
+  dependencies:
+    react-phone-hooks "^0.1.4"
+
 antd@^5.10.0:
   version "5.11.0"
   resolved "https://registry.yarnpkg.com/antd/-/antd-5.11.0.tgz#c0404412473f9ac14c5f75bc679fb805e59d4ec6"
@@ -11691,6 +11698,11 @@ react-pdf@^8.0.2:
     pdfjs-dist "3.11.174"
     tiny-invariant "^1.0.0"
     warning "^4.0.0"
+
+react-phone-hooks@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/react-phone-hooks/-/react-phone-hooks-0.1.4.tgz#132881498ab223bc8c0208ce4b27d50a3866271e"
+  integrity sha512-9fQsWB80u0Wlci1Ea/aQ2Z1SY7rBjSPbTPMvfcw049/PYh/MoTn+UELWnGVc9P/ZjvLd3yWteLoLTPl70dKQZQ==
 
 react-prop-types@^0.4.0:
   version "0.4.0"

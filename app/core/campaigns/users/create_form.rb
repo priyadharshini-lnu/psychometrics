@@ -8,6 +8,7 @@ module Campaigns
       attribute :first_name, String
       attribute :last_name, String
       attribute :email, String
+      attribute :mobile_number, String
       attribute :operation, String, default: 'add_and_allow_new_response'
       attribute :locale, String
       attribute :schedule_start_date, DateTime
@@ -15,6 +16,7 @@ module Campaigns
 
       validates :first_name, :last_name, :email, presence: true
       validates :email, format: { with: Devise.email_regexp }
+      validates :mobile_number, format: { with: /\A\+(?:[0-9] ?){6,14}[0-9]\z/ }, allow_blank: true
       validates :operation, inclusion: { in: %w[skip_existing add_with_existing_response add_and_allow_new_response] }
       validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
       validate :user_exists_in_project, if: -> { operation == 'skip_existing' }

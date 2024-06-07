@@ -3339,6 +3339,38 @@ ALTER SEQUENCE public.registration_codes_id_seq OWNED BY public.registration_cod
 
 
 --
+-- Name: registration_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.registration_settings (
+    id bigint NOT NULL,
+    require_mobile_number boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    project_id bigint NOT NULL
+);
+
+
+--
+-- Name: registration_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.registration_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: registration_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.registration_settings_id_seq OWNED BY public.registration_settings.id;
+
+
+--
 -- Name: relationships; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4992,7 +5024,8 @@ CREATE TABLE public.users (
     timezone character varying,
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
-    last_unsuccessful_attempt timestamp without time zone
+    last_unsuccessful_attempt timestamp without time zone,
+    mobile_number character varying
 );
 
 
@@ -6114,6 +6147,13 @@ ALTER TABLE ONLY public.registration_codes ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: registration_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_settings ALTER COLUMN id SET DEFAULT nextval('public.registration_settings_id_seq'::regclass);
+
+
+--
 -- Name: relationships id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7221,6 +7261,14 @@ ALTER TABLE ONLY public.questions
 
 ALTER TABLE ONLY public.registration_codes
     ADD CONSTRAINT registration_codes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: registration_settings registration_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_settings
+    ADD CONSTRAINT registration_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -9089,6 +9137,13 @@ CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.re
 
 
 --
+-- Name: index_registration_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_registration_settings_on_project_id ON public.registration_settings USING btree (project_id);
+
+
+--
 -- Name: index_relationships_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10835,6 +10890,14 @@ ALTER TABLE ONLY public.privacy_consents
 
 
 --
+-- Name: registration_settings fk_rails_6dc2196721; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_settings
+    ADD CONSTRAINT fk_rails_6dc2196721 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: workshop_invite_logs fk_rails_6e03291780; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11881,6 +11944,9 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240606133151'),
+('20240603125218'),
+('20240603082942'),
 ('20240523115956'),
 ('20240508075421'),
 ('20240426140020'),

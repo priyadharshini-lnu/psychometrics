@@ -1,0 +1,19 @@
+.input {
+  margin: 8px 0;
+
+  label {
+    font-weight: 600;
+    &:after {
+      content: ''
+    }
+  }
+
+  & :global(.ant-form-item-row) {
+    flex-direction: column;
+  }
+}
+
+.field {
+  flex: 1;
+  width: 100%;
+}

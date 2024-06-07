@@ -50,7 +50,7 @@ RSpec.describe Administration::Campaigns::SmsInvitesController, type: :controlle
       get :index, format: 'csv', params: { new_campaign_id: campaign.id }
       parsed_response = CSV.parse(response.body)
       expect(parsed_response.length).to eq(3)
-      expect(parsed_response[0]).to eq(SmsInvites::ImportForm::VALID_HEADERS)
+      expect(parsed_response[0]).to eq(::SmsInvites::ImportForm::VALID_HEADERS)
       expect(parsed_response[1..]).to match_array([
         expected_sms_invite_export(sms_invites[0]),
         expected_sms_invite_export(sms_invites[1])

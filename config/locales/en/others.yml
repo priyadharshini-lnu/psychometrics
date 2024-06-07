@@ -236,6 +236,10 @@ en:
             last_name:
               blank: Last Name is required
               too_long: Last Name is too long
+            mobile_number:
+              blank: Mobile number is required
+              invalid: Mobile number is not valid
+              verification_expired: Verification code has expired
             registration_code:
               blank: Registration code is required
               incorrect_email_domain: This email address is not valid for the entered registration code
@@ -1145,12 +1149,15 @@ en:
       sso_btn: Login with Single Sign-On
       title: Welcome!
     logout: Logout
+    mobile_number: Mobile Number
     new_password: New Password
     otp:
       code: Code
       code_placeholder: One Time Password
       description: Please enter the OTP that was sent to your registered email address.
       resend: Resend OTP
+      resend_success: OTP is sent to your mobile number
+      sms_description: Please enter the OTP that was sent to your mobile number.
       submit: Verify
       title: One-Time Password
     password: Password
@@ -1183,6 +1190,11 @@ en:
     sign_out: Login as different user
     sign_up: Sign Up
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
+    verify_mobile_number:
+      error:
+        failed: Verification failed. You can retrying verifying again.
+        invalid_code: Invalid code
+        max_attempts_reached: Maximum attempts reached
   browsers:
     chrome: Google Chrome
     download:
@@ -1609,6 +1621,7 @@ en:
       update: Update
       upload: Upload
       upload_file: Upload File
+      verify: Verify
       view: View
     column:
       action: Action
