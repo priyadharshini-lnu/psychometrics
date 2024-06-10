@@ -22,7 +22,7 @@ module UsersResults
           end
 
           broadcast(:ok, extended_scoring.
-            deep_merge(factor.id.to_s => { 'score' => round_score(score) }).
+            deep_merge(factor.id.to_s => { 'score' => round_score(score, 2) }).
             deep_merge(factor.id.to_s => percentage))
         end
 
@@ -38,7 +38,7 @@ module UsersResults
               res.sum / res.size.to_f
             end
 
-            (sum_of_score / results.size.to_f).round(2)
+            (sum_of_score / results.size.to_f)
           end
         end
 

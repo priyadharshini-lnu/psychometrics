@@ -49,6 +49,13 @@ describe Reports::CopyReport do
         expect(subject[:ok].persisted?).to be_truthy
       end
 
+      it 'saves passed report name' do
+        report_name = Faker::Name.name
+        new_report = described_class.call!(report.id, user, new_report_name: report_name)
+
+        expect(new_report.name).to eq(report_name)
+      end
+
       it 'copies all pages' do
         copy = subject[:ok]
 

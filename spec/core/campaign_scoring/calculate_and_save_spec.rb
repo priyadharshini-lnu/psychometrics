@@ -49,6 +49,14 @@ describe CampaignScoring::CalculateAndSave do
         return avg_factor_score + previous_score
       }
     )
+    cf_factor6 = create(
+      :campaign_factor, code: 'helpers_percentile', campaign: campaign, factor_type: 'formula',
+      output_type: 'numeric', formula: 'return helpers.percentile(2.165)'
+    )
+    cf_factor7 = create(
+      :campaign_factor, code: 'helpers_round', campaign: campaign, factor_type: 'formula',
+      output_type: 'numeric', formula: 'return helpers.round(2.165, 2)'
+    )
 
     campaign_factor_values, = described_class.call!(campaign, user)
     indexed_campaign_factor_values = campaign_factor_values.index_by(&:campaign_factor_id)
@@ -58,6 +66,8 @@ describe CampaignScoring::CalculateAndSave do
     expect(indexed_campaign_factor_values[cf_factor3.id].value).to eq('Senior')
     expect(indexed_campaign_factor_values[cf_factor4.id].value).to eq(10)
     expect(indexed_campaign_factor_values[cf_factor5.id].value).to eq(((2 + 4.8) / 2) + (10 * 0.5))
+    expect(indexed_campaign_factor_values[cf_factor6.id].value).to eq(98.5)
+    expect(indexed_campaign_factor_values[cf_factor7.id].value).to eq(2.17)
   end
 
   it 'saves campaign factor values' do

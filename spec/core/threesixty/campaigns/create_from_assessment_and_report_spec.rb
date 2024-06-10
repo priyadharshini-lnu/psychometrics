@@ -4,18 +4,22 @@ require 'rails_helper'
 
 describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
   let(:project) { create(:project) }
-  let(:form) { Threesixty::Campaigns::CreateForm.new(name: 'New campaign') }
+  let!(:campaign_name) { Faker::Name.name }
+  let(:form) { Threesixty::Campaigns::CreateForm.new(name: campaign_name) }
   let(:assessment) { create(:assessment) }
   let(:report) { create(:report) }
   let!(:user) { create(:user) }
 
   describe '.call' do
     it 'creates a Threesixty::Campaign record' do
-      threesixty_campaign = described_class.call!(assessment, report, form, project, user)
-
+      threesixty_campaign = described_class.call!(
+        assessment, report, form, project, user, resource_name: campaign_name
+      )
       expect(threesixty_campaign).to be_an_instance_of(Threesixty::Campaign)
       expect(threesixty_campaign).to be_persisted
-      expect(threesixty_campaign.name).to eq(form.name)
+      expect(threesixty_campaign.name).to eq(campaign_name)
+      expect(threesixty_campaign.assessment.name).to eq(campaign_name)
+      expect(threesixty_campaign.report.name).to eq(campaign_name)
     end
 
     it 'creates a Campaign record' do

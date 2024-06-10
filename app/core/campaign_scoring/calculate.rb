@@ -87,6 +87,10 @@ module CampaignScoring
       lua.datasheet = {
         'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
       }
+      lua.helpers = {
+        'round' => proc { |value, precision = 0| value.round(precision) },
+        'percentile' => proc { |value| Ztable.percentile(value) }
+      }
       lua_code = %(
         #{campaign_scoring_variables_as_lua_table}
         #{dependencies_as_lua_variable(campaign_factor)}
