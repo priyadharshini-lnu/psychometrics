@@ -140,6 +140,7 @@ ar:
       sso_btn: تسجيل الدخول باستخدام الدخول الموحد
       title: مرحباً
     logout: تسجيل خروج
+    mobile_number: رقم الجوال
     new_password: كلمة السر الجديدة
     otp:
       code: رمز
