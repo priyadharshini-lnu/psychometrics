@@ -147,6 +147,7 @@ ar:
       code_placeholder: OTP
       description: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       resend: إعادة إرسال OTP
+      resend_success: إعادة إرسال رمز التحقق
       sms_description: الرجاء إدخال الرمز المؤقت الذي تم إرساله لهاتفك النقال
       submit: تسليم
       title: كلمة السر لمرة واحدة
