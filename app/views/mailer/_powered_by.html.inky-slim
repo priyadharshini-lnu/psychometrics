@@ -4,8 +4,8 @@ wrapper.secondary
     row
       columns.powered-by-tte[valign="middle"]
         center
-          = image_tag('tte-logo-no-text-raster.png', width: 24, height: 40)
+          = image_tag('tte-logo-no-text-raster.png', width: 47, height: 36)
         spacer[size="16"]
 
         p.text-center
-          |  Powered by Mercer Talent Enterprise
+          |  Powered by Lighthouse.
