@@ -22,6 +22,10 @@ module UsersResults
             'zscore' => proc { |factor_id| get_score(factor_id, 'zscore') },
             'percentage_answered' => proc { |factor_id| get_score(factor_id, 'percentage') }
           }
+          lua.helpers = {
+            'round' => proc { |value, precision = 0| value.round(precision) },
+            'percentile' => proc { |value| Ztable.percentile(value) }
+          }
           lua
         end
 
