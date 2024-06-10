@@ -359,6 +359,7 @@ ar:
       unresolve: إلغاء الحل
       update: تحديث
       upload: تحميل
+      verify: تحقق
     column:
       action: نشاط
       category: فئة
