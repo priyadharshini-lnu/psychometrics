@@ -179,8 +179,9 @@ const RegistrationComponent: React.FC<Props> = ({
                 </>
               ) }
 
-              {(isPhoneNumberValid && !verificationToken) && (
+              {(!verificationToken) && (
                 <Button
+                  disabled={!isPhoneNumberValid}
                   type="link"
                   loading={loading}
                   onClick={handleOpenOtpVerificationModal}

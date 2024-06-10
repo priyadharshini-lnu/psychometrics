@@ -147,6 +147,7 @@ ar:
       code_placeholder: OTP
       description: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       resend: إعادة إرسال OTP
+      sms_description: الرجاء إدخال الرمز المؤقت الذي تم إرساله لهاتفك النقال
       submit: تسليم
       title: كلمة السر لمرة واحدة
     password: كلمه السر
@@ -154,7 +155,7 @@ ar:
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
     password_placeholder: أدخل كلمة مرور جديدة
     registration:
-      description: املأ التفاصيل أدناه للتسجيل وإنشاء حساب جديد
+      description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
       email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
       first_name: الاسم الاول
       first_name_placeholder: أدخل اسمك الأول
@@ -179,6 +180,11 @@ ar:
     sign_out: تسجيل خروج
     sign_up: تسجيل
     terms_link: <a href="%{terms_url}"> بيان الخصوصية</a>
+    verify_mobile_number:
+      error:
+        failed: الرمز المدخل خاطئ الرجاء إدخال رمز التحقق من جديد
+        invalid_code: الرمز المدخل خاطئ
+        max_attempts_reached: تم إجراء أكثر من محاولة خاطئة الرجاء المحاولة من جديد بعد ١٠ دقائق.
   campaign:
     all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
     all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
