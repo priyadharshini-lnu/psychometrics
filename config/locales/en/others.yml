@@ -1192,9 +1192,9 @@ en:
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
     verify_mobile_number:
       error:
-        failed: Verification failed. You can try verifying again.
+        failed: Verification failed. Please enter the correct OTP.
         invalid_code: Invalid code
-        max_attempts_reached: Maximum attempts reached
+        max_attempts_reached: Too many attempts. Please with for 10 minutes before trying again.
   browsers:
     chrome: Google Chrome
     download:

@@ -2,6 +2,7 @@ import React from 'react'
 import { Form } from 'antd'
 import PhoneInput from 'antd-phone-input'
 import { PhoneNumber } from 'antd-phone-input/types'
+import cs from 'classnames'
 
 import styles from './styles.less'
 
@@ -50,7 +51,7 @@ export const PhoneNumberField: React.FC<Props> = ({
       }
   >
     <PhoneInput
-      className={styles.field}
+      className={cs(styles.field, styles.tel)}
       size="large"
       name={name}
       {...props}

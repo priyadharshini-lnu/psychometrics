@@ -96,6 +96,7 @@ const OtpVerificationComponent: React.FC<Props> = ({
     }).then(() => {
       setOtpResetNotification(I18n.t('auth.otp.resend_success'))
     }).catch(setError)
+    setOtp('')
   }
 
   return (
@@ -105,10 +106,10 @@ const OtpVerificationComponent: React.FC<Props> = ({
       onCancel={handleCancel}
       footer={[
         <Button key="cancel" onClick={handleCancel}>
-          Cancel
+          {I18n.t('common.actions.cancel')}
         </Button>,
         <Button key="verify" type="primary" onClick={handleSubmit} loading={loading} disabled={!otp}>
-          Verify
+          {I18n.t('common.actions.verify')}
         </Button>,
       ]}
     >

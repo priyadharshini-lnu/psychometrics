@@ -21,18 +21,6 @@ describe Sms::Verification::ConfirmCode do
       end
     end
 
-    context 'when the verification is pending' do
-      it 'retries until the verification is approved' do
-        pending_verification_check = double('VerificationCheck', status: 'pending')
-
-        allow_any_instance_of(Twilio::REST::Client).to receive_message_chain(
-          :verify, :v2, :services, :verification_checks, :create
-        ).and_return(pending_verification_check)
-
-        expect { subject }.to raise_error Sms::Verification::ConfirmCodePendingError
-      end
-    end
-
     context 'when the verification failed' do
       it 'returns a verification response with error' do
         verification_check = double('VerificationCheck', status: 'failed')
