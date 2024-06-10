@@ -8,6 +8,7 @@ import { AnyAction } from 'redux'
 import { getItem, setItem } from '~/utils/storage'
 import {
   nextPage,
+  prevPage,
   setDirtyResults,
   changeElement,
   removePrevPage,
@@ -21,6 +22,7 @@ import {
   fetchQuestionScoring,
   backButtonPressed,
   showErrorWarning,
+  setAnswersSaved,
 } from './actions'
 import {
   getPrevPage,
@@ -66,8 +68,14 @@ function* genPrevPage () {
     yield put(hideEnd())
     yield put(hideSubmitPage())
   }
+
+  if (state.preview.end) {
+    return
+  }
+
   const questions = pageQuestions(state.preview)
   const prev = getPrevPage(state.preview)
+
   if (prev) {
     yield put(hideSubmitPage())
     yield put(backButtonPressed())
@@ -88,6 +96,8 @@ function* genUpdateResultsAsNotDirty () {
 function* genSaveResults () {
   yield put(clearInProgressQuestion())
   const state = yield select()
+  if (state.preview.invalidSession) { return }
+
   if (state.preview.type === 'pass_assessment') {
     const prevPage = getPrevPage(state.preview)
     const currentBlock = getCurrentBlock(state.preview)
@@ -173,6 +183,9 @@ function* genRestart ({ response }: AnyAction) {
       },
     })
   }
+  if (state.preview.invalidSession) {
+    yield put(prevPage({}))
+  }
 }
 
 function* genFinishedEvent () {
@@ -180,10 +193,15 @@ function* genFinishedEvent () {
   sendMessage('assessment:finished', 'completed', state.preview.id)
 }
 
+function* genSetAnserNotSaved () {
+  yield put(setAnswersSaved(false))
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(INIT, genFetchLocalResults),
   debounce(200, ANSWER, genSaveResultsLocal),
+  debounce(200, ANSWER, genSetAnserNotSaved),
   debounce(200, ANSWER, genFetchQuestionScoring),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),

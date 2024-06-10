@@ -43,7 +43,7 @@ interface Errors {
 
 const AVAILABLE_QUESTIONS = {
   MultipleChoice: ['SingleAnswer', 'MultipleAnswer', 'Dropdown'],
-  TextEntry: ['SingleLine', 'Multiline'],
+  TextEntry: ['SingleLine', 'Multiline', 'DateEntry'],
 }
 
 const isAvailable = ({ question }) => AVAILABLE_QUESTIONS[question.type]

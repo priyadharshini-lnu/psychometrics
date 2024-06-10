@@ -9,7 +9,7 @@ import {
   toggleIgnoreValidation, reset, markQuestionInProgress, removeQuestionInProgress,
   clearInProgressQuestion, markAssessmentTimedOut, updateHighlight,
   addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation,
-  showErrorWarning, setSubmissionInProgress,
+  showErrorWarning, setSubmissionInProgress, setAnswersSaved,
 } from './actions'
 
 export interface Question {
@@ -177,6 +177,9 @@ export interface DefaultState {
   nextAssessmentUrl?: string | null
   submitRequired: boolean
   otherPendingAssessmentCount: number
+  evaluationSessionId: string | null
+  invalidSession: boolean
+  answersSaved: boolean
 }
 
 export interface MediaResponse {
@@ -249,6 +252,7 @@ export interface InitData {
   default_norm_id: number
   isAssessor: boolean
   linked_questions: {[key:string]: number[]}
+  evaluationSessionId: string
 }
 export interface Result {
   id: number
@@ -275,6 +279,7 @@ export interface Result {
   seedrandom: string
   campaign_options: { fixed_time: boolean }
   campaign_user: { expiry_date: string }
+  evaluation_session_id: string
 }
 
 interface SaveResponse {
@@ -284,6 +289,7 @@ interface SaveResponse {
   factors?: [],
   translations: object
   next_assessment_url?: string
+  evaluation_session_id: string
 }
 
 interface FetchQuestionScoringResponse {
@@ -337,3 +343,4 @@ export type SetLocalResults = ReturnType<typeof setLocalResults>
 export type SetIsSimulation = ReturnType<typeof setIsSimulation>
 export type FetchQuestionScoring = ApiActionResponse<FetchQuestionScoringResponse>
 export type showErrorWarning = ReturnType<typeof showErrorWarning>
+export type SetAnsersSaved = ReturnType<typeof setAnswersSaved>

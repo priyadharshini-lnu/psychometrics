@@ -58,7 +58,8 @@ module Users
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up) do |u|
-        u.permit(:email, :registration_code, :sms_invite_code, :first_name, :last_name)
+        u.permit(:email, :registration_code, :sms_invite_code, :first_name, :last_name, :mobile_number,
+                 :mobile_verification_token)
       end
     end
   end

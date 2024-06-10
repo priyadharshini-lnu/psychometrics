@@ -236,6 +236,10 @@ en:
             last_name:
               blank: Last Name is required
               too_long: Last Name is too long
+            mobile_number:
+              blank: Mobile number is required
+              invalid: Mobile number is not valid
+              verification_expired: The verification code has expired. You can try verifying again.
             registration_code:
               blank: Registration code is required
               incorrect_email_domain: This email address is not valid for the entered registration code
@@ -797,6 +801,7 @@ en:
       archived:
         success_message: Asessment %{name} archived successfully
       back_to_campaign: Back to Campaign
+      back_to_dashboard: Back to Dashboard
       copy:
         success_message: Asessment %{name} was copied successfully
       details: Details
@@ -938,6 +943,9 @@ en:
         #### Your responses will be submitted and cannot be changed after this.
 
         Click **Back** to review your responses one final time or click **Submit** if you are finished.
+      invalid_session:
+        description: This evaluation session has been invalidated. This can happen if you continued the evaluation in a separate tab, browser or device.
+        title: Last Request Failed
       next: Next
       read_only: Is read only mode, you can not change any results.
       save: Save
@@ -1141,12 +1149,15 @@ en:
       sso_btn: Login with Single Sign-On
       title: Welcome!
     logout: Logout
+    mobile_number: Mobile Number
     new_password: New Password
     otp:
       code: Code
       code_placeholder: One Time Password
       description: Please enter the OTP that was sent to your registered email address.
       resend: Resend OTP
+      resend_success: OTP is sent to your mobile number
+      sms_description: Please enter the OTP that was sent to your mobile number.
       submit: Verify
       title: One-Time Password
     password: Password
@@ -1179,6 +1190,11 @@ en:
     sign_out: Login as different user
     sign_up: Sign Up
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
+    verify_mobile_number:
+      error:
+        failed: Verification failed. Please enter the correct OTP.
+        invalid_code: Invalid code
+        max_attempts_reached: Too many attempts. Please with for 10 minutes before trying again.
   browsers:
     chrome: Google Chrome
     download:
@@ -1431,6 +1447,8 @@ en:
     actions:
       bulk_download: Bulk Download
       export_data: Export Data
+    bulk_download:
+      error: Bulk download is limited to 1000 report files. Current selection has %{count} report files. Please adjust the start and end dates to reduce number of report files to download
     column:
       assessor_access: Assessor Access
       auto_assign: Auto Assign
@@ -1572,6 +1590,7 @@ en:
     actions:
       add: Add
       archive: Archive
+      back_to_dashboard: Back To Dashboard
       back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
@@ -1602,6 +1621,7 @@ en:
       update: Update
       upload: Upload
       upload_file: Upload File
+      verify: Verify
       view: View
     column:
       action: Action
@@ -2017,7 +2037,9 @@ en:
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
-    invalid_token: Something went wrong. Plese reload the page and try again.
+    getting_start: Something went wrong. Plese reload the page and try again.
+    invalid_session_title: Invalid Session
+    invalidate_session_info: Your evaluation was in progress and session has expired or another active evaluation being detected. Please continue to invalidate another session.
     messages:
       already_confirmed: was already confirmed, please try signing in
       carrierwave_direct_allowed_extensions: Wrong file type uploaded. Allowed extensions are %{extensions}
@@ -2176,6 +2198,7 @@ en:
       update_success: "%{readableResourceName} updated successfully"
     restart: Restart
     restart_progress: There were some changes in the assessment. Please refresh the page to see the changes. Refreshing the page will begin the assessment from the start. Questions that you have already answered will be auto filled.
+    saved_results: Answers successfully saved.
     smsInvites:
       create_success: SMS Invite added successfully
       update_success: SMS Invite updated successfully
@@ -2599,6 +2622,9 @@ en:
       username: Username
     update:
       successfully: Profile updated
+  registration:
+    require_mobile_number: Require Mobile Number
+    success_update: Registration was saved successfully
   registration_code:
     allowed_domains: Allowed domains
     invalid_code: Invalid campaign code

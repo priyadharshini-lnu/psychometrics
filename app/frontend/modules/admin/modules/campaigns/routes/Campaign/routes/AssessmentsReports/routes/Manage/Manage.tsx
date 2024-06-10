@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Row, Col, Button, Space, App,
 } from 'antd'
@@ -13,6 +13,7 @@ import { OtherAssessmentList } from './OtherAssessmentList'
 import { OtherAssessorAssessmentList } from './OtherAssessorAssessmentList'
 import AssessorAssessmentList from './AssessorAssessmentList'
 import AddReportModal from './AddReportModal'
+import BulkDownloadModal from '../AssessmentsReports/BulkDownloadModal/BulkDownloadModal'
 import { Strategies } from './AddReportModal/interfaces'
 import UniversalLinkModal from './UniversalLinkModal'
 import ImportRawModal from './ImportRawModal'
@@ -86,6 +87,8 @@ const Manage: React.FC<Props> = ({
   const parsedCampaignId = parseInt(campaignId, 10)
 
   const stateManager = useCampaignAssessorAssessmentsStore()
+  const [downloadModalVisible, setDownloadModalVisible] = useState<boolean>(false)
+
 
   const { message } = App.useApp()
 
@@ -95,11 +98,27 @@ const Manage: React.FC<Props> = ({
     })
   }
 
-  const handleBulkDownload = () => {
-    bulkDownload(parsedCampaignId, selectedIds).then(() => {
-      message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
-    })
+  const handleDownload = (startDate: Date, endDate: Date) => {
+    bulkDownload(parsedCampaignId, selectedIds, startDate, endDate)
+      .then(() => {
+        message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
+        handleCloseDownloadModal()
+      })
+      .catch((error) => {
+        message.error(error)
+        handleCloseDownloadModal()
+      })
   }
+
+
+  const handleOpenDownloadModal = () => {
+    setDownloadModalVisible(true)
+  }
+
+  const handleCloseDownloadModal = () => {
+    setDownloadModalVisible(false)
+  }
+
 
   const {
     createResource,
@@ -123,7 +142,7 @@ const Manage: React.FC<Props> = ({
               {reportPermissions.bulkDownload && (
                 <Button
                   type="default"
-                  onClick={handleBulkDownload}
+                  onClick={handleOpenDownloadModal}
                   disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
                   loading={bulkDownloadInProgress}
                 >
@@ -132,14 +151,21 @@ const Manage: React.FC<Props> = ({
               )}
 
               {reportPermissions.regenerate && (
-                <Button
-                  type="default"
-                  onClick={handleRegenerateReports}
-                  disabled={_.isEmpty(selectedIds) || regenerateInProgress}
-                  loading={regenerateInProgress}
-                >
-                  <span>{I18n.t('user_reports.actions.regenerate')}</span>
-                </Button>
+                <>
+                  <Button
+                    type="default"
+                    onClick={handleRegenerateReports}
+                    disabled={_.isEmpty(selectedIds) || regenerateInProgress}
+                    loading={regenerateInProgress}
+                  >
+                    <span>{I18n.t('user_reports.actions.regenerate')}</span>
+                  </Button>
+                  <BulkDownloadModal
+                    visible={downloadModalVisible}
+                    onCancel={handleCloseDownloadModal}
+                    onDownload={handleDownload}
+                  />
+                </>
               )}
 
               {reportPermissions.addReport && (

@@ -26,6 +26,7 @@ export const UPDATE_EXTRA = 'builder/assessment/UPDATE_EXTRA'
 export const TOGGLE_INSTRUCTIONS = 'builder/assessment/TOGGLE_INSTRUCTIONS'
 export const UPDATE_INSTRUCTIONS_CONTENT = 'builder/assessment/UPDATE_INSTRUCTIONS_CONTENT'
 export const UPDATE_LINKED_QUESTIONS = 'builder/assessment/UPDATE_LINKED_QUESTIONS'
+export const TOGGLE_ENABLE_SAVE = 'survey/assessment/TOGGLE_ENABLE_SAVE'
 
 export const selectQuestion = (question, offset) => ({ type: SELECT_QUESTION, question, offset })
 
@@ -46,6 +47,8 @@ export const toggleEnableBack = () => ({ type: TOGGLE_ENABLE_BACK })
 export const toggleEnableProgress = () => ({ type: TOGGLE_ENABLE_PROGRESS })
 export const toggleSingleQuestionPage = () => ({ type: TOGGLE_ENABLE_SINGLE_QUESTION })
 export const updateLinkedQuestions = (id, questions) => ({ type: UPDATE_LINKED_QUESTIONS, id, questions })
+export const toggleEnableSave = () => ({ type: TOGGLE_ENABLE_SAVE })
+
 
 export const saveAssessment = (data) => {
   const builder = {

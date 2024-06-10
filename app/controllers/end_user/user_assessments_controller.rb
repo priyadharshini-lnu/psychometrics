@@ -5,7 +5,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   layout 'layouts/end_user'
 
   initial_state_for %i[show pass begin]
-  before_action :set_user_assessment, only: %i[assessment details show pass begin]
+  before_action :set_user_assessment, only: %i[assessment details show pass begin validate_session]
   before_action :can_start_based_on_sequencing, only: %i[pass show begin]
   before_action :ensure_user_confirm, only: %i[pass begin]
 
@@ -61,6 +61,10 @@ class EndUser::UserAssessmentsController < ApplicationController
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
     end
+  end
+
+  def validate_session
+    render json: { session_id: @user_assessment.evaluation_session_id }
   end
 
   private

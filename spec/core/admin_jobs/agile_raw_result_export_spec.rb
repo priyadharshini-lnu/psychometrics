@@ -34,8 +34,8 @@ describe AdminJobs::AgileRawResultExport do
 
       described_class.call!(job_record)
 
-      csv = Roo::CSV.new(job_record.file.path)
-      actual_first_row = csv.row(1)
+      csv = CsvUtf8.to_array(job_record.file.path)
+      actual_first_row = csv[0]
 
       expected_first_row = [
         'ID',

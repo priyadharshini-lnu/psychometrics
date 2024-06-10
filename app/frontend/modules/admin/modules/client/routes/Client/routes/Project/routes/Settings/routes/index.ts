@@ -7,6 +7,7 @@ import { Design } from './Design'
 import { Profile } from './Profile'
 import { SecuritySettings } from './Security'
 import { Privacy } from './Privacy'
+import { Registration } from './Registration'
 
 export const routes = [
   {
@@ -40,6 +41,10 @@ export const routes = [
   {
     path: '/profile',
     component: Profile,
+  },
+  {
+    path: '/registration',
+    component: Registration,
   },
   {
     path: '/privacy',

@@ -31,12 +31,15 @@ module Threesixty
 
       def fetch_or_create_subject_user(subject)
         if (user = project_users_indexed[subject[:email].downcase])
-          user.update!(subject.except(:password))
+          user.update!(subject.except(:password, :locale))
+          user.user_profile.update!(locale: subject[:locale])
           @existing_subjects_whose_password_not_changed << user if subject[:password].present?
           user
         else
-          new_user = ::Users::Regular.create!(subject.merge(project: project,
-                                                            create_by_invite: subject[:password].blank?))
+          new_user = ::Users::Regular.create!(
+            subject.merge(project: project, create_by_invite: subject[:password].blank?).except(:locale)
+          )
+          new_user.user_profile.update!(locale: subject[:locale])
           AuditLogModule.audit!(:create, new_user, campaign: threesixty_campaign.campaign,
                                 payload: subject, user: @current_user)
           new_user

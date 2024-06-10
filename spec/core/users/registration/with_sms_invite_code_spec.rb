@@ -11,7 +11,8 @@ describe Users::Registration::WithSmsInviteCode do
       first_name: 'James',
       last_name: 'Smith',
       email: Faker::Internet.email,
-      sms_invite_code: 'abc'
+      sms_invite_code: 'abc',
+      mobile_number: '+911234567890'
     })
   end
 
@@ -23,6 +24,7 @@ describe Users::Registration::WithSmsInviteCode do
     expect(user.first_name).to eq(form.first_name)
     expect(user.last_name).to eq(form.last_name)
     expect(user.campaigns.exists?(id: campaign.id)).to eq(true)
+    expect(user.mobile_number).to eq(form.mobile_number)
   end
 
   it 'updates status and registered_user for sms_invite record' do

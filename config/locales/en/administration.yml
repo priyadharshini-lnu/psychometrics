@@ -498,6 +498,7 @@ en:
       settings:
         enable_back: Enable back button
         enable_progress: Enable progress bar
+        enable_save: Enable save button
         enable_single_question_page: Show one question per page
         enable_timer: Enable timer
         instructions: Enable Instructions
@@ -3499,6 +3500,7 @@ en:
       general: General
       privacy: Privacy
       profile: Profile
+      registration: Registration
       webhooks:
         actions:
           delete:
@@ -3647,6 +3649,9 @@ en:
         required: Required
         update_in: Notify Profile Update in
         year: Year
+      registration_settings:
+        name_label: Name
+        require_mobile_number: Require Mobile Number
       webhook_settings:
         add: Add Webhook
         column_active: Active

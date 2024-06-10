@@ -9,15 +9,17 @@ module UsersResults::ControllerConcern
   end
 
   def update
-    result_params = ::UsersResults::ExtendResourceParams.call!(
-      resource_params.to_h,
-      params[:question_ids],
-      user_assessment
-    )
+    if user_assessment.evaluation_session_id == params[:evaluation_session_id]
+      result_params = ::UsersResults::ExtendResourceParams.call!(
+        resource_params.to_h,
+        params[:question_ids],
+        user_assessment
+      )
 
-    form = ::UsersResults::UpdatingForm.from_params(result_params)
-    progress_was_reseted = user_assessment.progress_reseted
-    ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
+      form = ::UsersResults::UpdatingForm.from_params(result_params)
+      progress_was_reseted = user_assessment.progress_reseted
+      ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
+    end
 
     render json: @users_result,
            serializer: UsersResultUpdateSerializer,

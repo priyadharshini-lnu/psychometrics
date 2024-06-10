@@ -37,18 +37,36 @@ describe CampaignReports::BulkDownload do
   end
 
   it 'calls download report for each user_report which have pdf' do
+    start_date = 2.days.ago.utc.iso8601(3)
+    end_date = 1.day.ago.utc.iso8601(3)
+
     user_reports_with_pdf = create_list(
       :user_report,
       2,
       campaign: campaign,
       report: report,
-      pdf: File.open('spec/fixtures/files/reports/test.pdf')
+      pdf: File.open('spec/fixtures/files/reports/test.pdf'),
+      status: 'prepared'
     )
+
     user_report_without_pdf = create(:user_report, campaign: campaign, report: report)
+
+    user_reports_with_pdf.each do |user_report|
+      create(:user_assessment,
+             subject_id: user_report.user.id,
+             campaign_id: campaign.id,
+             assessment_id: user_report.report.assessment.id,
+             completed_at: 1.day.ago)
+    end
+
+    job_record.data['start_date'] = start_date
+    job_record.data['end_date'] = end_date
+    job_record.save!
 
     expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[0])
     expect_any_instance_of(described_class).to receive(:download_report).with(user_reports_with_pdf[1])
     expect_any_instance_of(described_class).to_not receive(:download_report).with(user_report_without_pdf)
+
     described_class.call!(campaign_reports, current_user, job_record)
   end
 end
