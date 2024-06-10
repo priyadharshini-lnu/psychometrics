@@ -51,7 +51,7 @@ module Sms
 
           it 'broadcasts an error' do
             expected_response = VerificationResponse.new(
-              error_message: 'Verification failed. You can retrying verifying again.',
+              error_message: 'Verification failed. You can try verifying again.',
               status: 'error',
               to_mobile_no: to_mobile_no,
               verification_code: nil

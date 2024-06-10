@@ -1192,7 +1192,7 @@ en:
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
     verify_mobile_number:
       error:
-        failed: Verification failed. You can retrying verifying again.
+        failed: Verification failed. You can try verifying again.
         invalid_code: Invalid code
         max_attempts_reached: Maximum attempts reached
   browsers:
