@@ -1238,6 +1238,7 @@ Rails.application.routes.draw do
             jsonapi_resources :webhooks do
               post :send_test
             end
+            jsonapi_resources :registration_settings, only: %i[index update]
           end
           jsonapi_resources :profile_settings, only: %i[index update]
           jsonapi_resources :dashboards, only: %i[index show create update] do

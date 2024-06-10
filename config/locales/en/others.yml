@@ -2622,6 +2622,9 @@ en:
       username: Username
     update:
       successfully: Profile updated
+  registration:
+    require_mobile_number: Require Mobile Number
+    success_update: Registration was saved successfully
   registration_code:
     allowed_domains: Allowed domains
     invalid_code: Invalid campaign code
