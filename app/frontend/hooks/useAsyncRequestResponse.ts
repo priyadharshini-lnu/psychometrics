@@ -36,8 +36,8 @@ const useAsyncRequestResponse = <T>({
   url,
   data,
   responseType,
-  numberOfTimesToPoll = 5,
-  pollingInterval = 10,
+  numberOfTimesToPoll = 20,
+  pollingInterval = 5,
   onFailure,
 }: UseAsyncRequestResponseProps<T>) => {
   const dispatch = useDispatch()

@@ -40,8 +40,6 @@ module Sms
 
       def handle_verification_status(status)
         case status
-          when 'pending'
-            raise Sms::Verification::ConfirmCodePendingError
           when 'approved'
             verification_response = build_verification_response(status)
 

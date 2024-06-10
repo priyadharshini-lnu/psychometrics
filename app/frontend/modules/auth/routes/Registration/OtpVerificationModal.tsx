@@ -96,6 +96,7 @@ const OtpVerificationComponent: React.FC<Props> = ({
     }).then(() => {
       setOtpResetNotification(I18n.t('auth.otp.resend_success'))
     }).catch(setError)
+    setOtp('')
   }
 
   return (
