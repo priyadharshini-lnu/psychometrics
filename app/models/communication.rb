@@ -75,7 +75,7 @@ class Communication < ApplicationRecord
   end
 
   def selected_campaign_users
-    communication_users = project_campaign.campaign_users.where(users: { disabled: false }, active: true)
+    communication_users = project_campaign.campaign_users.joins(:user).where(users: { disabled: false }, active: true)
     return communication_users.where(user_id: user_ids) if selected_recipients?
 
     communication_users
@@ -161,8 +161,8 @@ class Communication < ApplicationRecord
 
   def not_invited_to_project_current_memberships
     if project.migrated?
-      return selected_campaign_users.joins(:user).
-             where(users: { already_invited: false, disabled: false }, active: true)
+      return selected_campaign_users.
+             where(users: { already_invited: false })
     end
 
     current_memberships.distinct.reject(&:already_invited?)
