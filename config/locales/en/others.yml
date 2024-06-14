@@ -1192,9 +1192,10 @@ en:
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
     verify_mobile_number:
       error:
+        blocked: This number is blocked due to too many attempts.
         failed: Verification failed. Please enter the correct OTP.
         invalid_code: Invalid code
-        max_attempts_reached: Too many attempts. Please with for 10 minutes before trying again.
+        max_attempts_reached: Too many attempts. Please wait for 10 minutes before trying again.
   browsers:
     chrome: Google Chrome
     download:

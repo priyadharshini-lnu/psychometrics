@@ -51,7 +51,28 @@ module Sms
 
           it 'broadcasts an error' do
             expected_response = VerificationResponse.new(
-              error_message: 'Verification failed. Please enter the correct OTP.',
+              error_message: 'Something went wrong. Contact your administrator.',
+              status: 'error',
+              to_mobile_no: to_mobile_no,
+              verification_code: nil
+            )
+
+            expect { subject }.to broadcast(:error, expected_response)
+          end
+        end
+
+        context 'when the number blocked' do
+          let(:error_message) { 'The verification failed' }
+          let(:twilio_error) { Twilio::REST::RestError.new(error_message, Twilio::Response.new(60_410, '')) }
+
+          before do
+            allow(twilio_client).to receive_message_chain(:verify, :v2, :services, :verifications,
+                                                          :create).and_raise(twilio_error)
+          end
+
+          it 'broadcasts an error' do
+            expected_response = VerificationResponse.new(
+              error_message: 'This number is blocked due to too many attempts.',
               status: 'error',
               to_mobile_no: to_mobile_no,
               verification_code: nil

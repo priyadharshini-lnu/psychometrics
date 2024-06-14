@@ -19,12 +19,7 @@ module Sms
 
         broadcast :ok, build_verification_response(verification.status, nil)
       rescue Twilio::REST::RestError => e
-        if e.status_code == 429
-          broadcast :error,
-                    build_verification_response('error', I18n.t('auth.verify_mobile_number.error.max_attempts_reached'))
-        else
-          broadcast :error, build_verification_response('error', I18n.t('auth.verify_mobile_number.error.failed'))
-        end
+        handle_errors(e.code)
       end
 
       private
@@ -35,6 +30,19 @@ module Sms
 
       def verification_service_sid
         Rails.application.secrets.twilio[:verification_service_sid]
+      end
+
+      def handle_errors(status_code)
+        case status_code
+          when 20_429
+            broadcast :error,
+                      build_verification_response('error',
+                                                  I18n.t('auth.verify_mobile_number.error.max_attempts_reached'))
+          when 60_410
+            broadcast :error, build_verification_response('error', I18n.t('auth.verify_mobile_number.error.blocked'))
+          else
+            broadcast :error, build_verification_response('error', I18n.t('common.errors.something_wrong'))
+        end
       end
 
       def build_verification_response(status, error_message)
