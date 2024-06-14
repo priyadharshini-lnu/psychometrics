@@ -15,6 +15,7 @@ import {
   AddStyleType,
   UpdateStyleType,
   REMOVE_STYLE,
+  SaveCampaignFactorsType,
 } from './actions'
 import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 import { Style } from '../interfaces/Report'
@@ -192,7 +193,8 @@ const HANDLERS = {
   [COPY_PAGE]: (state: State, { pageId }: CopyPageType) => setIn(state, ['buffer', 'sourceId'], pageId),
   [COPY_MODULE]: (state: State, { moduleId }: CopyModuleType) => setIn(state, ['buffer', 'moduleId'], moduleId),
   [SAVE_DATA_SHEET]: (state: State, { data }: SaveDataSheetType) => setIn(state, ['data_sheet_columns'], data),
-  [SAVE_CAMPAIGN_FACTORS]: (state: State, { data }: SaveDataSheetType) => setIn(state, ['campaign_factors'], data),
+  [SAVE_CAMPAIGN_FACTORS]: (state: State, { data }:
+    SaveCampaignFactorsType) => setIn(state, ['campaign_factors'], data),
   [CHANGE_SKIP_LOGIC]: (state: State, { value }: ChangeSkipLogic) => setIn(state, ['skipLogic'], value),
   [ADD_STYLE]: (state: State, { style }: AddStyleType) => ({
     ...state, styles: { ...state.styles, [style.id]: style },

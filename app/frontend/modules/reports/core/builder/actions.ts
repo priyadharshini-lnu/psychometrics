@@ -135,3 +135,4 @@ export type ChangeSkipLogic = ReturnType<typeof changeSkipLogic>
 export type UpdatePagePositionType = ReturnType<typeof updatePagePositions>
 export type SetPagePositionType = ReturnType<typeof setPagePositions>
 export type SaveDataSheetType = ApiActionResponse<{data: {}}>
+export type SaveCampaignFactorsType = ApiActionResponse<{data: {}}>
