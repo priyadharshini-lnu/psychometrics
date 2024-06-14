@@ -4,6 +4,7 @@ module Users
   class AuthenticateUser < Rectify::Command
     SPOOF_KEY = :spoof_token
     SSO_KEY = :sso_token
+    JWT_KEY = :jwt
     REDIRECT_KEY = :return_url
 
     def initialize(params)
@@ -27,11 +28,25 @@ module Users
         unless user
           audit!(:single_sign_on, nil, record_type: 'User', payload: params.except('sso_token'), outcome: 'failed',
           failure_reason: :invalid_sso_token)
-          return broadcast(:invalid_sso_token, invalid_sso_redirect_url)
+          return broadcast(:invalid_sso_token, invalid_redirect_url)
         end
 
         audit! :single_sign_on, user, user: user, payload: params.except('sso_token'), outcome: 'successful'
         found_by = :sso
+      end
+
+      if params[JWT_KEY]
+        request.env[:sso] = 'true'
+        authenticate_by_jwt
+
+        unless user
+          audit!(:single_sign_on, nil, record_type: 'User', payload: params.except('jwt'), outcome: 'failed',
+          failure_reason: :invalid_jwt_token)
+          return broadcast(:invalid_jwt_token, invalid_redirect_url)
+        end
+
+        audit! :single_sign_on, user, user: user, payload: params.except('jwt'), outcome: 'successful'
+        found_by = :jwt
       end
 
       # Exit if no params with token
@@ -61,9 +76,15 @@ module Users
       @user = possible_user if possible_sso_token == params[SSO_KEY]
     end
 
+    # Tries auth by JWT token
+    #
+    def authenticate_by_jwt
+      @user = JwtAuthenticator.authenticate(params[JWT_KEY])
+    end
+
     # Builds an url for redirection with status
     #
-    def invalid_sso_redirect_url
+    def invalid_redirect_url
       return if params[REDIRECT_KEY].blank?
 
       uri = URI.parse params[REDIRECT_KEY]

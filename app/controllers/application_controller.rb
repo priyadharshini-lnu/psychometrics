@@ -88,6 +88,7 @@ class ApplicationController < ::BaseController
 
   # rubocop:disable Metrics/CyclomaticComplexity
   # rubocop:disable Metrics/PerceivedComplexity
+  # rubocop:disable Metrics/AbcSize
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Assessors')
@@ -100,6 +101,11 @@ class ApplicationController < ::BaseController
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
     return if @current_project.nil? && request.controller_class.to_s == 'Users::UnlocksController'
     unless @current_project
+      return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
+    end
+
+    if current_user && current_user.project_id != @current_project.id
+      sign_out(current_user)
       return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
     end
 
