@@ -14,7 +14,7 @@ module Threesixty
         @client = project.client
         @user = user
         event = ::Assessments::CopyAssessment.call(
-          source_assessment.id, user, client.id, skip_owner_validation: true
+          source_assessment.id, user, nil, client.id, skip_owner_validation: true
         )
         raise('CopyAssessment failed!') unless event[:ok]
 

@@ -60,13 +60,13 @@ describe Assessments::CopyAssessment do
       questions.last.update(skip_logic: destination_skip_logic)
     end
 
-    let(:copy) { described_class.call(assessment.id, user)[:ok][:assessment] }
+    let(:copy) { described_class.call(assessment.id, user, "Copy of #{assessment.name}")[:ok][:assessment] }
 
     it 'succeeds' do
       expect(copy).to be_an_instance_of(Assessments::Common)
       expect(copy.persisted?).to be_truthy
 
-      expect(copy.name).to eq("#{assessment.name} (1)")
+      expect(copy.name).to eq("Copy of #{assessment.name}")
     end
 
     it 'copies all blocks' do

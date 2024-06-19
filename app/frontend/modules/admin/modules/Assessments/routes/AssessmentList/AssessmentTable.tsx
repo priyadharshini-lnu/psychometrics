@@ -5,124 +5,149 @@ import {
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MessageInstance } from 'antd/es/message/interface'
 import { useNavigate } from 'react-router-dom'
+import { ConnectedProps, connect } from 'react-redux'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
+import Modals from '~/modules/admin/components/Modals/'
+import CopyAssessmentFormModal from './CopyAssessmentFormModal'
 import settings from '../../settings'
 import styles from './AssessmentList.less'
+import { openModal } from '~/modules/admin/core/ui/modals'
 
 const { I18n } = window
+
+const MODALS = {
+  CopyAssessmentFormModal,
+}
 
 interface JSONApiError {
   title: string
   detail?: string
 }
 
-type Props = {
+
+const connecter = connect(
+  () => ({ }),
+  {
+    openModal,
+  },
+)
+
+type PropsFromRedux = ConnectedProps<typeof connecter>
+
+type Props = PropsFromRedux & {
   openDrawer: (assessment: Assessment) => void
 }
-
-export const AssessmentTable: React.FC<Props> = ({
-  openDrawer,
+const AssessmentTableComponent: React.FC<Props> = ({
+  openDrawer, openModal,
 }) => {
   const { resource } = useResourceContext<Assessment>()
   const collectionFilteredValue = resource.getFilteredValue('category_in') as string[] | undefined
 
   return (
-    <Resource.Table pagination>
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.id')}
-        id="id"
-        sorter
-        render={assessment => (
-          <AssessmentId assessment={assessment} />
-        )}
-      />
-      <Resource.Column<Assessment>
-        id="disabled"
-        title={I18n.t('common.column.active')}
-        render={assessment => <ActiveSwitch assessment={assessment} />}
-      />
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.icon')}
-        id="icon"
-        width={100}
-        render={assessment => (
-          <ResourceAvatar
-            url={assessment.iconUrl}
-            color={assessment.iconColor}
-            name={assessment.name}
-          />
-        )}
-      />
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.name')}
-        id="name"
-        width={400}
-        sorter
-        render={(_, assessment) => (
-          <>
-            <div>{assessment.name}</div>
-            <TagList
-              initialTags={(assessment.tagList || []).filter(tag => tag !== null) as string[]}
-              config={{
-                editable: false,
-              }}
+    <>
+      <Resource.Table pagination>
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.id')}
+          id="id"
+          sorter
+          render={assessment => (
+            <AssessmentId assessment={assessment} />
+          )}
+        />
+        <Resource.Column<Assessment>
+          id="disabled"
+          title={I18n.t('common.column.active')}
+          render={assessment => <ActiveSwitch assessment={assessment} />}
+        />
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.icon')}
+          id="icon"
+          width={100}
+          render={assessment => (
+            <ResourceAvatar
+              url={assessment.iconUrl}
+              color={assessment.iconColor}
+              name={assessment.name}
             />
-          </>
-        )}
-      />
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.dimension')}
-        id="dimension"
-        width={300}
-        render={(_, { dimension }) => dimension?.name}
-      />
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.owner')}
-        id="owner"
-        width={300}
-        render={(_, { owner }) => owner?.name}
-      />
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.type')}
-        id="type"
-        width={300}
-        sorter
-        render={assessment => I18n.t(`assessments.fields.type.${assessment.type}`)}
-      />
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.category')}
-        id="category"
-        width={300}
-        sorter
-        filters={
+          )}
+        />
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.name')}
+          id="name"
+          width={400}
+          sorter
+          render={(_, assessment) => (
+            <>
+              <div>{assessment.name}</div>
+              <TagList
+                initialTags={(assessment.tagList || []).filter(tag => tag !== null) as string[]}
+                config={{
+                  editable: false,
+                }}
+              />
+            </>
+          )}
+        />
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.dimension')}
+          id="dimension"
+          width={300}
+          render={(_, { dimension }) => dimension?.name}
+        />
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.owner')}
+          id="owner"
+          width={300}
+          render={(_, { owner }) => owner?.name}
+        />
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.type')}
+          id="type"
+          width={300}
+          sorter
+          render={assessment => I18n.t(`assessments.fields.type.${assessment.type}`)}
+        />
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.category')}
+          id="category"
+          width={300}
+          sorter
+          filters={
           settings.categories.map((t: string) => ({ text: I18n.t(`assessments.fields.category.${t}`), value: t }))
         }
-        filteredValue={collectionFilteredValue}
-        render={assessment => I18n.t(`assessments.fields.category.${assessment.category}`)}
-      />
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.updated_at')}
-        id="updated_at"
-        width={300}
-        sorter
-      />
-      <Resource.Column<Assessment>
-        title={I18n.t('common.column.action')}
-        id="action"
-        render={(_, assessment) => (
-          <Dropdown
-            assessment={assessment}
-            openDrawer={openDrawer}
-          />
-        )}
-      />
-    </Resource.Table>
+          filteredValue={collectionFilteredValue}
+          render={assessment => I18n.t(`assessments.fields.category.${assessment.category}`)}
+        />
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.updated_at')}
+          id="updated_at"
+          width={300}
+          sorter
+        />
+        <Resource.Column<Assessment>
+          title={I18n.t('common.column.action')}
+          id="action"
+          render={(_, assessment) => (
+            <Dropdown
+              assessment={assessment}
+              openDrawer={openDrawer}
+              openCopyModal={(assessment) => {
+                openModal('CopyAssessmentFormModal', { assessment })
+              }}
+            />
+          )}
+        />
+      </Resource.Table>
+      <Modals modals={MODALS} />
+    </>
   )
 }
+
+export const AssessmentTable = connecter(AssessmentTableComponent)
 
 const AssessmentId = ({ assessment }: { assessment: Assessment }) => {
   if (assessment.category === 'agile') {
@@ -158,10 +183,11 @@ const ActiveSwitch: React.FC<{ assessment: Assessment }> = ({ assessment }) => {
 
 type DropDownProps = {
   openDrawer: (assessment: Assessment) => void
+  openCopyModal: (assessment: Assessment) => void
   assessment: Assessment
 }
 const Dropdown: React.FC<DropDownProps> = (
-  { assessment, openDrawer },
+  { assessment, openDrawer, openCopyModal },
 ) => {
   const [confirmation, setConfirmation] = useState(false)
   const { message } = App.useApp()
@@ -176,7 +202,7 @@ const Dropdown: React.FC<DropDownProps> = (
     <>
       <ConditionalDropdown
         menu={getActionsMenuProps({
-          assessment, setConfirmation, openDrawer, message,
+          assessment, setConfirmation, openDrawer, message, openCopyModal,
         })}
       />
       <ConfirmationModal
@@ -199,10 +225,11 @@ interface ActionMenuData {
   setConfirmation: (confirmation: boolean) => void
   openDrawer: (assessment: Assessment) => void
   message: MessageInstance
+  openCopyModal: (assessment: Assessment) => void
 }
 
 const getActionsMenuProps = ({
-  setConfirmation, assessment, openDrawer, message,
+  setConfirmation, assessment, openDrawer, message, openCopyModal,
 }: ActionMenuData): MenuProps => {
   const { resource } = useResourceContext<Assessment>()
   const navigate = useNavigate()
@@ -228,17 +255,6 @@ const getActionsMenuProps = ({
     message.success(I18n.t('assessments.actions.restore.success_message', { name: response.name }))
     resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount - 1 : 0 })
     resource.setData(resource.data.filter(a => a.id !== assessment.id))
-  })
-
-  const copy = () => resource.memberAction({
-    id: assessment.id,
-    action: 'copy',
-    method: 'post',
-    updateStore: true,
-    responseType: AssessmentTR,
-  }).then((response: Assessment) => {
-    resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount + 1 : 0 })
-    message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
   })
 
   const exportRawFactorScore = () => resource.memberAction({
@@ -274,7 +290,7 @@ const getActionsMenuProps = ({
       return navigate(`${settings.urlPrefix}/${assessment.id}/edit`)
     }
     if (key === 'copy') {
-      return copy()
+      return openCopyModal(assessment)
     }
     if (key === 'archive') {
       return toggleArchive()

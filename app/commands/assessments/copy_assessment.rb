@@ -2,14 +2,15 @@
 
 module Assessments
   class CopyAssessment < BaseCommand
-    private_attr_reader :assessment, :owner_id, :current_user, :skip_owner_validation
+    private_attr_reader :assessment, :assessment_name, :owner_id, :current_user, :skip_owner_validation
 
-    def initialize(assessment_id, current_user, owner_id = nil, skip_owner_validation: false)
+    def initialize(assessment_id, current_user, assessment_name = nil, owner_id = nil, skip_owner_validation: false)
       @assessment = Assessment.includes(blocks: {
         questions: %i[factors_scorings question_recodings translations]
       }).find(assessment_id)
       @owner_id = owner_id || @assessment.owner_id
       @current_user = current_user
+      @assessment_name = assessment_name || @assessment.name
       @blocks_mapping = {}
       @questions_mapping = {}
       @skip_owner_validation = skip_owner_validation
@@ -23,6 +24,7 @@ module Assessments
       # rubocop:disable Metrics/BlockLength
       new_assessment = ActiveRecord::Base.transaction do
         new_assessment = assessment.clone
+        new_assessment.name = assessment_name
         new_assessment.owner_id = owner_id
         new_assessment.created_by = current_user
         new_assessment.updated_by = current_user

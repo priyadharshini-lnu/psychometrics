@@ -6,6 +6,7 @@ module Api
 
     validates_request_schema :create, :create_contract_based_on_assessment_type
     validates_request_schema :update, :update_contract_based_on_assessment_type
+    validates_request_schema :copy, Api::V2::Assessment::CopyContract.new
 
     INTEGRATIONS_CONTRACTS = {
       'hogan' => Api::V2::Assessment::HoganContract,
@@ -54,7 +55,7 @@ module Api
 
     def copy
       audit! :copy, resource, payload: { source_id: resource.id }
-      result = ::Assessments::CopyAssessment.call!(resource.id, current_user)
+      result = ::Assessments::CopyAssessment.call!(resource.id, current_user, params[:data][:attributes][:name])
       jsonapi_render json: result[:assessment]
     end
 

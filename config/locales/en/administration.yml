@@ -402,7 +402,10 @@ en:
           not_selected_users: Not Selected Users
           selected_users: Selected Users
       copy:
+        copy: copy
+        copy_assessment: Copy Assessment
         error: Assessment "%{name}" was not copied.
+        name: Name
         successfully: Assessment "%{name}" was copied successfully.
       create:
         successfully: Assessment "%{name}" was created successfully.
