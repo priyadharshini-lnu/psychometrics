@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Row, Col, Form, Button, App, Checkbox, Table,
+  Row, Col, Form, Button, App, Checkbox,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources/useResources'
@@ -9,13 +9,6 @@ import {
 } from '~/modules/admin/modules/client/core/registrationSettings'
 
 const { I18n } = window
-const { Column } = Table
-
-interface Field {
-  index: string
-  name: string
-  enabled: boolean
-}
 
 export const Registration: React.FC<{}> = () => {
   const { projectId } = useParams<{ projectId: string }>()
@@ -83,27 +76,17 @@ export const Registration: React.FC<{}> = () => {
           onFinish={onFinish}
           initialValues={registrationSettings}
         >
-          <Table
-            pagination={false}
-            dataSource={[
-              {
-                name: I18n.t('administration.projects.registration_settings.require_mobile_number'),
-                enabled: registrationSettings.requireMobileNumber,
-              }]}
-            rowKey="name"
+          <Form.Item
+            name="requireMobileNumber"
+            label={I18n.t('administration.projects.registration_settings.require_mobile_number')}
+            valuePropName="checked"
           >
-            <Column title={I18n.t('administration.projects.registration_settings.name_label')} dataIndex="name" />
-            <Column
-              title="Enabled"
-              dataIndex="enabled"
-              render={(_, row:Field) => (
-                <Checkbox
-                  onChange={e => updateEnabledSettings({ requireMobileNumber: e.target.checked })}
-                  checked={row.enabled}
-                />
-              )}
+            <Checkbox
+              checked={registrationSettings.requireMobileNumber}
+              onChange={e => updateEnabledSettings({ requireMobileNumber: e.target.checked })}
             />
-          </Table>
+          </Form.Item>
+
           <Row className="mt-4">
             <Button type="primary" htmlType="submit" className="mb-16" loading={isSaving}>
               {I18n.t('administration.save')}
