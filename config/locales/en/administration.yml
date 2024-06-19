@@ -3805,7 +3805,10 @@ en:
         qc_in_progress: QC in Progress
     reports:
       copy:
+        copy: copy
+        copy_report: Copy Report
         error: Report %{id} was not copied.
+        name: Name
         successfully: Report '%{name}' was copied successfully.
       create:
         successfully: Report '%{name}' was created successfully.

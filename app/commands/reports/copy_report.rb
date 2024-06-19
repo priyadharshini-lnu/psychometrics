@@ -2,9 +2,10 @@
 
 module Reports
   class CopyReport < BaseCommand
-    private_attr_reader :report, :user
+    private_attr_reader :report, :user, :report_name
 
-    def initialize(report_id, user)
+    def initialize(report_id, user, report_name = nil)
+      @report_name = report_name
       @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
       @user = user
     end
@@ -12,6 +13,9 @@ module Reports
     def call
       new_report = ActiveRecord::Base.transaction do
         new_report = report.clone
+        if report_name
+          new_report.name = report_name
+        end
         new_report.created_by = user
         new_report.save!
 
