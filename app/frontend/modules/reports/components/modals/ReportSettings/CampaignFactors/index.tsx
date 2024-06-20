@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import styles from './styles.less'
 import { saveCampaignFactors } from '~/modules/reports/core/builder/actions'
 import { RootState } from '~/modules/reports/core/rootReducers'
+import AppStore from '~/modules/reports/store/AppStore'
 
 const connecter = connect(
   ({ report: { builder } }: RootState) => ({
@@ -73,6 +74,7 @@ export const CampaignFactorsComponent = ({ columns, saveCampaignFactors }: Props
       message.config({
         getContainer: () => document.getElementById('fixed_header') || document.body,
       })
+      AppStore.report.campaignFactors = values.items
       message.success('Campaign factors updated successfully')
     }
   }
