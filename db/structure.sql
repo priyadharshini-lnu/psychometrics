@@ -5025,7 +5025,8 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    mobile_number character varying
+    mobile_number character varying,
+    mobile_verified boolean DEFAULT false
 );
 
 
@@ -11944,6 +11945,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240614104722'),
 ('20240606133151'),
 ('20240603125218'),
 ('20240603082942'),

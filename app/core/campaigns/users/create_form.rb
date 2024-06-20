@@ -9,6 +9,7 @@ module Campaigns
       attribute :last_name, String
       attribute :email, String
       attribute :mobile_number, String
+      attribute :mobile_verified, Boolean
       attribute :operation, String, default: 'add_and_allow_new_response'
       attribute :locale, String
       attribute :schedule_start_date, DateTime

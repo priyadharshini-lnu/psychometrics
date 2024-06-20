@@ -13,6 +13,7 @@ describe Campaigns::Users::ProcessImport do
         first_name: 'Fedor',
         last_name: 'Tar',
         email: 'fedor@gmail.com',
+        mobile_number: '+971111111111',
         password: 'asdasd1234',
         schedule_start_date: 1.day.from_now.to_s,
         schedule_end_date: 2.days.from_now.to_s,
@@ -28,6 +29,7 @@ describe Campaigns::Users::ProcessImport do
         first_name: 'Vlad',
         last_name: 'Ata',
         email: 'vlad@gmail.com',
+        mobile_number: nil,
         password: 'asdfd',
         age: 35,
         created_at: '11 Jul 2020 / 17:25',
@@ -38,6 +40,7 @@ describe Campaigns::Users::ProcessImport do
         first_name: 'Namu1234',
         last_name: 'Uki',
         email: 'namu@gmail.com',
+        mobile_number: nil,
         password: 'AAA',
         created_at: '11 Jul 2020 / 17:25',
         custom_field: '1111'
@@ -118,7 +121,8 @@ describe Campaigns::Users::ProcessImport do
 
     expect(imported_users.size).to eq(3)
     expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
-    expect(fedor_user).to have_attributes(first_name: 'Fedor', last_name: 'Tar')
+    expect(fedor_user).to have_attributes(mobile_number: '+971111111111')
+    expect(fedor_user).to have_attributes(mobile_verified: false)
     expect(fedor_user.user_profile).to have_attributes(age: 32)
     expect(fedor_user.user_profile).to have_attributes(gender: 'male', profile_locale: 'en')
     expect(fedor_user.user_profile).to have_attributes(custom_fields: {})
@@ -159,6 +163,34 @@ describe Campaigns::Users::ProcessImport do
       expect(fedor_user.user_profile).to have_attributes(age: 32)
       expect(fedor_user.user_profile).to have_attributes(custom_fields: { question.id.to_s => '1111' })
       expect(vlad_user.user_profile).to have_attributes(age: 35)
+    end
+  end
+
+  describe 'with existing user' do
+    it 'sets mobile verified false if mobile number is changed' do
+      campaign.users.create!(email: 'fedor@gmail.com', password: 'A!sdasd129431', mobile_number: '+971111111110',
+                             mobile_verified: true)
+
+      described_class.call!(
+        campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+      )
+
+      fedor_user = campaign.users.find_by(email: 'fedor@gmail.com')
+      expect(fedor_user).to have_attributes(mobile_number: '+971111111111')
+      expect(fedor_user).to have_attributes(mobile_verified: false)
+    end
+
+    it 'keeps mobile verified true if mobile number is not changed' do
+      campaign.users.create!(email: 'fedor@gmail.com', password: 'A!sdasd129431', mobile_number: '+971111111111',
+                             mobile_verified: true)
+
+      described_class.call!(
+        campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+      )
+
+      fedor_user = campaign.users.find_by(email: 'fedor@gmail.com')
+      expect(fedor_user).to have_attributes(mobile_number: '+971111111111')
+      expect(fedor_user).to have_attributes(mobile_verified: true)
     end
   end
 end
