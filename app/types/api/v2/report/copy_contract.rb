@@ -12,9 +12,7 @@ module Api
           end
         end
         rule(data: { attributes: :name }) do
-          next if value
-
-          key.failure(:filled?)
+          key.failure(:filled?) if value.strip.blank?
         end
       end
     end

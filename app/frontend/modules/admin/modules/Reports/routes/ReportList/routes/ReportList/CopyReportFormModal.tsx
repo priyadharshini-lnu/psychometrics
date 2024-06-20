@@ -54,7 +54,7 @@ const CopyReportFormModal: React.FC<Props> = ({
           <Form.Item
             name="name"
             label={I18n.t('administration.reports.copy.name')}
-            rules={[{ required: true }]}
+            rules={[{ required: true, transform: value => value.trim() }]}
           >
             <Input name="report_name" />
           </Form.Item>

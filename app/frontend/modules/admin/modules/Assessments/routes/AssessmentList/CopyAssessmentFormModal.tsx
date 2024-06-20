@@ -53,7 +53,7 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
           <Form.Item
             name="name"
             label={I18n.t('administration.assessments.copy.name')}
-            rules={[{ required: true }]}
+            rules={[{ required: true, transform: value => value.trim() }]}
           >
             <Input name="assessment_name" />
           </Form.Item>
