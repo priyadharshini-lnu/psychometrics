@@ -26,7 +26,7 @@ module Users
 
       def create_user
         user_form = Campaigns::Users::CreateForm.new(form.attributes.slice(:first_name, :last_name, :email,
-                                                                           :mobile_number))
+                                                                           :mobile_number, :mobile_verified))
         Campaigns::Users::Create.call(user_form, registration_code.campaign) do
           on(:ok) do
             increment_registration_code_usage(registration_code)

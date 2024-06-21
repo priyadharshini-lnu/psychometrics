@@ -75,6 +75,8 @@ describe Users::Registration::WithRegistrationCodeForm do
 
     before(:each) do
       project.registration_setting.update(require_mobile_number: true)
+      allow_any_instance_of(Administration::Clients::RegistrationCodes::VerificationQuery).
+        to receive(:query).and_return([reg_code])
     end
 
     it 'raise error when mobile number is empty' do
@@ -97,6 +99,15 @@ describe Users::Registration::WithRegistrationCodeForm do
       expect(form.errors[:mobile_number]).to include(
         I18n.t('activemodel.errors.models.register.attributes.mobile_number.invalid')
       )
+    end
+
+    it 'set mobile_verified to true when mobile number is verified' do
+      form = described_class.new(
+        valid_attrs
+      ).with_context(project: project)
+
+      expect(form.valid?).to eq(true)
+      expect(form.mobile_verified).to eq(true)
     end
 
     private
