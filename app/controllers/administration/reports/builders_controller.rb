@@ -6,6 +6,14 @@ module Administration
       before_action :set_report
       append_before_action :pundit_authorize
 
+      def show
+        render json: ReportSerializer.new(
+          context: {
+            builder: true
+          }
+        ).serialize(@report)
+      end
+
       def update
         builder = ::Builders::ReportBuilder.new(@report, params.require(:builder), current_user)
         if builder.save

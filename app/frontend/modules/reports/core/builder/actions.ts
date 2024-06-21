@@ -4,6 +4,7 @@ import SerializeReport from './SerializeReport'
 import PageInterface from '../interfaces/Page'
 import ModuleInterface from '../interfaces/Module'
 
+export const FETCH = 'report/FETCH'
 export const INIT = 'report/INIT'
 export const ENABLE = 'report/ENABLE'
 export const DISABLE = 'report/DISABLE'
@@ -37,6 +38,14 @@ export enum SelectedTypes {
   'Page'= 'Page',
   'Report'= 'Report'
 }
+
+export const fetch = id => ({
+  type: FETCH,
+  request: {
+    url: `/administration/reports/${id}/builders`,
+    camelize: false,
+  },
+})
 
 export const init = (data, userReport = null, campaignId = null) => ({
   type: INIT, data, userReport, campaignId,

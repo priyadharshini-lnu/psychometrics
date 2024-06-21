@@ -788,7 +788,7 @@ Rails.application.routes.draw do
         post :upload_data_sheet
       end
       scope module: 'reports' do
-        resource :builders, only: [:update]
+        resource :builders, only: %i[show update]
       end
     end
 

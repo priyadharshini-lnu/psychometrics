@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
+import { message } from 'antd'
 import headerStore from '~/modules/reports/store/HeaderStore'
 import AppStore from '~/modules/reports/store/AppStore'
-import NotificationDispatcher from '~/modules/reports/dispatchers/NotificationDispatcher'
 import Module from '~/modules/reports/models/Module'
 import { getModule } from '~/modules/reports/core/builder/selectors'
 import store from '~/modules/reports/store'
@@ -167,10 +167,10 @@ export class FixedHeader extends Component {
       const normalizedData = normalize(data, schema)
       AppStore.init(data.data)
       store.dispatch({ type: INIT, data: normalizedData })
-      NotificationDispatcher.notify({ message: 'Report successfully saved' })
+      message.success('Report successfully saved')
     }).catch(() => {
       target.removeAttribute('disabled')
-      NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
+      message.error('Something went wrong. Contact your administrator.')
     })
   }
 
