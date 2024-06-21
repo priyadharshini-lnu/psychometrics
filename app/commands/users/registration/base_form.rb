@@ -8,6 +8,7 @@ module Users
       attribute :last_name, String
       attribute :mobile_number, String
       attribute :mobile_verification_token, String
+      attribute :mobile_verified, Boolean, default: false
 
       validates :email, :first_name, :last_name, presence: true
       validate :validate_email_uniqueness
@@ -48,7 +49,11 @@ module Users
 
         begin
           decoded = JWT.decode(mobile_verification_token, Rails.application.secrets.encrypted_key)
-          return true if decoded[0]['data'] == mobile_number
+          if decoded[0]['data'] == mobile_number
+            self.mobile_verified = true
+
+            return true
+          end
         rescue JWT::ExpiredSignature
           errors.add(:mobile_number,
                      I18n.t('activemodel.errors.models.register.attributes.mobile_number.verification_expired'))

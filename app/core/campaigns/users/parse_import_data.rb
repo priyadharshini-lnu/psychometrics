@@ -10,6 +10,7 @@ module Campaigns
         first_name
         last_name
         email
+        mobile_number
         locale
         password
         overwrite_password

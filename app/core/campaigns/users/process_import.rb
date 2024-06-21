@@ -75,6 +75,7 @@ module Campaigns
         pwd_to_be_not_changed = pwd_to_be_not_changed?(user, attrs)
         strong_attrs = attrs.except(:created_at, :active, :schedule_start_date, :schedule_end_date)
         strong_attrs = strong_attrs.except(:password) if pwd_to_be_not_changed
+        strong_attrs = strong_attrs.merge(mobile_verified: false) if mobile_number_changed?(user, attrs)
 
         attrs_to_update = strong_attrs.merge(modified_by_id: current_user.id).except(:overwrite_password)
 
@@ -103,6 +104,10 @@ module Campaigns
 
       def pwd_to_be_not_changed?(user, attrs)
         attrs[:password].present? && user.encrypted_password.present? && attrs[:overwrite_password] != 'Yes'
+      end
+
+      def mobile_number_changed?(user, attrs)
+        user.mobile_number != attrs[:mobile_number]
       end
     end
   end

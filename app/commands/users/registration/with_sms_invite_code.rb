@@ -13,7 +13,7 @@ module Users
       def call
         transaction do
           user_form = Campaigns::Users::CreateForm.new(form.attributes.slice(:first_name, :last_name, :email,
-                                                                             :mobile_number))
+                                                                             :mobile_number, :mobile_verified))
           user = Campaigns::Users::Create.call!(user_form, sms_invite.campaign)
           sms_invite.update!(registered_user: user, status: :registered)
           broadcast(:ok, user)

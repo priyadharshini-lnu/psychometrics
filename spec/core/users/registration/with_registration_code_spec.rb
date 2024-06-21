@@ -14,7 +14,8 @@ describe Users::Registration::WithRegistrationCode do
       last_name: 'Smith',
       email: Faker::Internet.email,
       registration_code: 'abc',
-      mobile_number: '+911234567890'
+      mobile_number: '+911234567890',
+      mobile_verified: true
     })
   end
 
@@ -27,6 +28,7 @@ describe Users::Registration::WithRegistrationCode do
     expect(user.last_name).to eq(form.last_name)
     expect(user.campaigns.exists?(id: campaign.id)).to eq(true)
     expect(user.mobile_number).to eq(form.mobile_number)
+    expect(user.mobile_verified).to eq(form.mobile_verified)
   end
 
   it 'increments registration_code use_count' do
