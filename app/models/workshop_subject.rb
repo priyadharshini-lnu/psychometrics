@@ -16,7 +16,9 @@ class WorkshopSubject < ApplicationRecord
   after_commit :send_workshop_cancelled_email, on: %i[update],
     if: proc { saved_change_to_scheduling_status? && %w[cancelled late_cancelled].include?(scheduling_status) }
 
-  after_commit :publish_scheduling_scheduled, on: %i[create]
+  after_commit :publish_scheduling_scheduled_create, on: %i[create]
+  after_commit :publish_scheduling_scheduled, on: %i[update],
+    if: proc { saved_change_to_scheduling_status? && scheduled? }
   after_commit :publish_scheduling_cancelled, on: %i[update],
     if: proc { saved_change_to_scheduling_status? && cancelled? }
   after_commit :publish_scheduling_rescheduled, on: %i[update],
@@ -36,6 +38,8 @@ class WorkshopSubject < ApplicationRecord
   def publish_scheduling_scheduled
     WorkshopSubjects::Webhook.new(id).publish_scheduling_scheduled
   end
+
+  alias publish_scheduling_scheduled_create publish_scheduling_scheduled
 
   def publish_scheduling_cancelled
     WorkshopSubjects::Webhook.new(id).publish_scheduling_cancelled
