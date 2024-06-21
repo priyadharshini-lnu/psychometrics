@@ -8,7 +8,13 @@ class Webhook < WebhookSystem::Subscription
     assessment_completed: WebhookEvents::AssessmentCompleted,
     assessment_timeout: WebhookEvents::AssessmentTimeout,
     results_available: WebhookEvents::ResultsAvailable,
-    report_available: WebhookEvents::ReportAvailable
+    report_available: WebhookEvents::ReportAvailable,
+    scheduling_scheduled: WebhookEvents::SchedulingScheduled,
+    scheduling_rescheduled: WebhookEvents::SchedulingRescheduled,
+    scheduling_cancelled: WebhookEvents::SchedulingCancelled,
+    scheduling_invited: WebhookEvents::SchedulingInvited,
+    campaign_results_available: WebhookEvents::CampaignResultsAvailable,
+    campaign_user_status: WebhookEvents::CampaignUserStatus
   }.freeze
 
   USER_REPORT_EVENTS = {

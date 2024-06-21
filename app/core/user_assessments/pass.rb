@@ -12,9 +12,11 @@ module UserAssessments
     def call
       return broadcast :ok if user_assessment.completed?
 
-      UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment.not_started?
       user_assessment.update(build_user_assessment_params)
-      user_assessment.in_progress! unless instructions_enabled?
+
+      if user_assessment.status_previously_changed?(from: :not_started, to: :in_progress)
+        UserAssessments::Webhook.new(user_assessment).publish_assessment_started
+      end
 
       broadcast :ok
     end
@@ -31,6 +33,7 @@ module UserAssessments
       params[:started_at] = Time.zone.now unless user_assessment.started_at
       params[:expiry_date] = time.second.from_now if time
       params[:evaluation_session_id] = Devise.friendly_token
+      params[:status] = :in_progress
 
       params
     end

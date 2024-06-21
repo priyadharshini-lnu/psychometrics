@@ -37,8 +37,17 @@ class CampaignUser < ApplicationRecord
   after_commit :generate_or_remove_report_on_score_finalized,
                if: proc { campaign_scores_finalized_previously_changed? },
                on: [:update]
+  after_commit :publish_campaign_results_available,
+               if: proc { campaign_scores_finalized_previously_changed? && campaign_scores_finalized? },
+                on: [:update]
+  after_commit :publish_campaign_user_status, if: proc { status_previously_changed? }, on: [:update]
+
   delegate :proctoring_enabled?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
+
+  def publish_campaign_user_status
+    CampaignUsers::Webhook.new(self).publish_campaign_user_status
+  end
 
   def generate_or_remove_report_on_score_finalized
     if campaign_scores_finalized?
@@ -46,6 +55,10 @@ class CampaignUser < ApplicationRecord
     else
       UserReports::RemovePdfJob.perform_later(campaign_factor_dependent_user_reports.pluck(:id))
     end
+  end
+
+  def publish_campaign_results_available
+    CampaignUsers::Webhook.new(self).publish_campaign_results_available
   end
 
   def campaign_factor_dependent_user_reports
