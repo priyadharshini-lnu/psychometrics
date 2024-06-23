@@ -32,6 +32,15 @@ const LookupResultTextValue = {
         }
         break
       }
+      case 'Factor': {
+        const factor = _.get(model, ['props', 'source', 'factors'])
+        if (factor) {
+          const scoring = _.get(ResultStore, ['results', model.assessment_id, 'scoring', factor.id])
+          const value = _.get(scoring, ['results', 0, 'norm']) || _.get(scoring, ['results', 0, 'value'])
+          return value ?? ''
+        }
+        break
+      }
       case 'Count':
       case 'Score':
       case 'Stability':

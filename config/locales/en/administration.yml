@@ -3528,6 +3528,9 @@ en:
           description:
             label: Description
             name: description
+          include_locales:
+            label: Include Translations
+            name: include_locales
           password:
             label: Password
             name: password
@@ -3537,8 +3540,14 @@ en:
               assessment_completed: Assessment Completed
               assessment_started: Assessment Started
               assessment_timeout: Assessment Timeout
+              campaign_results_available: Campaign Results Available
+              campaign_user_status: Campaign User Status
               report_available: Report Available
               results_available: Results Available
+              scheduling_cancelled: Scheduling Cancelled
+              scheduling_invited: Scheduling Invited
+              scheduling_rescheduled: Scheduling Rescheduled
+              scheduling_scheduled: Scheduling Scheduled
             name: topics
           url:
             label: Url
@@ -4147,6 +4156,8 @@ en:
         bulk_mark_finalized_confirm: Finalizing score for selected users will generate the report which uses campaign factor for the users. Are you sure you want to proceed?”
         bulk_mark_not_finalized: Bulk Mark Not Finalized
         bulk_mark_not_finalized_confirm: Removing finalize from the selected users will remove the generated report which uses campaign factor for the users. Are you sure you want to proceed?
+        bulk_publish_results_available: Bulk Publish Campaign Results Available
+        bulk_publish_results_available_confirm: Are you sure you want to push campaign results available webhook for selected users?
         bulk_rescore: Bulk Rescore
         bulk_rescore_confirm: Rescoring the selected users. Are you sure you want to proceed?
         calculated_date: Calculated Date
@@ -4159,6 +4170,8 @@ en:
         mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?”
         mark_not_finalized: Mark Not Finalized
         mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
+        publish_results_available: Publish Campaign Results Available
+        publish_results_available_confirm: Are you sure you want to push campaign results available webhook for user '%{email}'?
         rank: Rank
         rescore: Rescore
         rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?

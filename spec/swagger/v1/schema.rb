@@ -38,6 +38,34 @@ module Swagger
           ## Authentication
           Basic Auth is used to make API calls. Use the **API Key** as the Username and **Token** as the password.
 
+          ## Single Sign-On
+          Single Sign-On (SSO) is a feature that allows users to access multiple applications with one set of login credentials.
+
+          There are 3 ways to use SSO feature.
+
+          ### SAML 2.0
+          Lighthouse supports SAML 2.0 for SSO. Please contact your TTE Project Manager to configure your Identity Provider (IdP).
+
+          ### SSO URLs using REST API
+          The Lighthouse API provides a way to generate SSO URLs using the REST API. The SSO URL can be used to authenticate users and redirect them to the participant dashboard.
+
+          ### JWT
+          You can pass JWT token to any of the Lighthouse Participant portal URLs to authenticate the user. The JWT token should be passed as a query parameter `jwt`.
+
+          Example:
+          ```
+          https://<subdomain>.tte-lighthouse.com/?jwt=<jwt_token>
+          ```
+          The JWT token should be signed with the API Token provided by TTE. API Token is also used as a password for Basic Authentication for the APIs.
+
+          Following are the claims that should be present in the payload:
+          - `sub`: User's email address or User ID
+          - `exp`: Expiry time of the token
+
+          Following are the claims that should be present in the header:
+          - `alg`: Use `HS256`
+          - `api_key`: API Key provided by TTE
+
           ## Workflow
           There is no particular workflow you need to follow. A typical workflow is shown below.
 

@@ -11,11 +11,11 @@
       },
       "evaluator": {
         "id": 34621,
-        "name": "buntys ttkk"
+        "name": "Test Subject"
       },
       "subject": {
         "id": 34621,
-        "name": "buntys ttkk"
+        "name": "Test Subject"
       },
       "project": {
         "id": 1938,
@@ -28,6 +28,14 @@
       "campaign": {
         "id": 10536,
         "name": "ITR 2022 Common"
+      },
+      "locale": {
+        "en": {
+          "assessment": {
+            "id": 703,
+            "name": "Test HBRI"
+          }
+        }
       },
       "event_time": "2023-01-31T21:10:23.975+05:30"
     }
@@ -44,11 +52,11 @@
       },
       "evaluator": {
         "id": 34621,
-        "name": "buntys ttkk"
+        "name": "Test Subject"
       },
       "subject": {
         "id": 34621,
-        "name": "buntys ttkk"
+        "name": "Test Subject"
       },
       "project": {
         "id": 1938,
@@ -61,6 +69,14 @@
       "campaign": {
         "id": 10536,
         "name": "ITR 2022 Common"
+      },
+      "locale": {
+        "en": {
+          "assessment": {
+            "id": 703,
+            "name": "Test HBRI"
+          }
+        }
       },
       "event_time": "2023-02-01T20:21:39.802+05:30"
     }
@@ -77,11 +93,11 @@
       },
       "evaluator": {
         "id": 34621,
-        "name": "buntys ttkk"
+        "name": "Test Subject"
       },
       "subject": {
         "id": 34621,
-        "name": "buntys ttkk"
+        "name": "Test Subject"
       },
       "project": {
         "id": 1938,
@@ -94,6 +110,14 @@
       "campaign": {
         "id": 10536,
         "name": "ITR 2022 Common"
+      },
+      "locale": {
+        "en": {
+          "assessment": {
+            "id": 703,
+            "name": "Test HBRI"
+          }
+        }
       },
       "event_time": "2023-02-01T20:32:47.527+05:30"
     }
@@ -114,7 +138,7 @@
       },
       "subject": {
         "id": 34621,
-        "name": "buntys ttkk"
+        "name": "Test Subject"
       },
       "project": {
         "id": 1938,
@@ -131,20 +155,18 @@
       "event_time": "2023-02-01T20:40:04.739+05:30"
     }
   },
-  "results_available":
+  "scheduling_scheduled":
   {
-    "event_name": "results_available",
+    "event_name": "scheduling_scheduled",
     "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
     "data": 
     {
-      "report": {
-        "id": null,
-        "name": null
-      },
-      "results": null,
       "subject": {
         "id": 34621,
-        "name": "buntys ttkk"
+        "name": "Test Subject",
+        "preferred_language": "en",
+        "neurodivergent": false,
+        "neurodivergent_comments": null
       },
       "project": {
         "id": 1938,
@@ -158,7 +180,195 @@
         "id": 10536,
         "name": "ITR 2022 Common"
       },
+      "workshop": {
+        "id": 1,
+        "name": "Workshop 1",
+        "start_time": "2023-02-01T20:43:48.531+05:30",
+        "end_time": "2023-02-01T21:43:48.531+05:30"
+      },
+      "invite": {
+        "id": 1,
+        "name": "Invite Name",
+        "description": "Invite Description",
+        "url": "https://aug.ttedev.me:3030/invites"
+      },
       "event_time": "2023-02-01T20:43:48.531+05:30"
+    }
+  },
+  "scheduling_invited":
+  {
+    "event_name": "scheduling_invited",
+    "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
+    "data":
+    {
+      "subject": {
+        "id": 34621,
+        "name": "Test Subject"
+      },
+      "project": {
+        "id": 1938,
+        "name": "aug sept"
+      },
+      "client": {
+        "id": 1937,
+        "name": "QA sept 2022 testing"
+      },
+      "campaign": {
+        "id": 10536,
+        "name": "ITR 2022 Common"
+      },
+      "invite": {
+        "id": 1,
+        "name": "Invite Name",
+        "description": "Invite Description",
+        "url": "https://aug.ttedev.me:3030/invites"
+      },
+      "workshops": [
+        {
+          "id": 1,
+          "name": "Workshop 1"
+        }
+      ],
+      "event_time": "2023-02-01T20:43:48.531+05:30"
+    }
+  },
+  "scheduling_rescheduled":
+  {
+    "event_name": "scheduling_rescheduled",
+    "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
+    "data":
+    {
+      "subject": {
+        "id": 34621,
+        "name": "Test Subject"
+      },
+      "project": {
+        "id": 1938,
+        "name": "aug sept"
+      },
+      "client": {
+        "id": 1937,
+        "name": "QA sept 2022 testing"
+      },
+      "campaign": {
+        "id": 10536,
+        "name": "ITR 2022 Common"
+      },
+      "invite": {
+        "id": 1,
+        "name": "Invite Name",
+        "description": "Invite Description",
+        "url": "https://aug.ttedev.me:3030/invites"
+      },
+      "reschedule_to_workshop": {
+        "id": 2,
+        "name": "Workshop 2",
+        "start_time": "2023-02-01T20:43:48.531+05:30",
+        "end_time": "2023-02-01T21:43:48.531+05:30"
+      },
+      "reschedule_from_workshop": {
+        "id": 1,
+        "name": "Workshop 1",
+        "start_time": "2023-02-01T20:43:48.531+05:30",
+        "end_time": "2023-02-01T21:43:48.531+05:30"
+      },
+      "event_time": "2023-02-01T20:43:48.531+05:30"
+    }
+  },
+  "scheduling_cancelled":
+  {
+    "event_name": "scheduling_cancelled",
+    "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
+    "data":
+    {
+      "subject": {
+        "id": 34621,
+        "name": "Test Subject"
+      },
+      "project": {
+        "id": 1938,
+        "name": "aug sept"
+      },
+      "client": {
+        "id": 1937,
+        "name": "QA sept 2022 testing"
+      },
+      "campaign": {
+        "id": 10536,
+        "name": "ITR 2022 Common"
+      },
+      "invite": {
+        "id": 1,
+        "name": "Invite Name",
+        "description": "Invite Description",
+        "url": "https://aug.ttedev.me:3030/invites"
+      },
+      "workshop": {
+        "id": 1,
+        "name": "Workshop 1",
+        "start_time": "2023-02-01T20:43:48.531+05:30",
+        "end_time": "2023-02-01T21:43:48.531+05:30"
+      },
+      "event_time": "2023-02-01T20:43:48.531+05:30"
+    }
+  },
+  "campaign_results_available":
+  {
+    "event_name": "campaign_results_available",
+    "event_id": "a6932fc4-73ef-45af-9507-198580ef9510",
+    "data":
+    {
+      "subject": {
+        "id": 34621,
+        "name": "Test Subject"
+      },
+      "project": {
+        "id": 1938,
+        "name": "aug sept"
+      },
+      "client": {
+        "id": 1937,
+        "name": "QA sept 2022 testing"
+      },
+      "campaign": {
+        "id": 10536,
+        "name": "ITR 2022 Common"
+      },
+      "results": [
+        {
+          "id": 1,
+          "name": "Result 1",
+          "value": 10
+        }
+      ],
+      "event_time": "2023-02-01T20:43:48.531+05:30"
+    }
+  },
+  "campaign_user_status":
+  {
+    "event_name": "campaign_user_status",
+    "event_id": "3a4d6ec0-53b6-4455-a3da-80bf321d0958",
+    "data": {
+      "status": "not_started",
+      "subject": {
+        "id": 1,
+        "name": "Atul  A",
+        "email": "ata@ata.com"
+      },
+      "project": {
+        "id": 1,
+        "name": "Emirates NBD"
+      },
+      "client": {
+        "id": 1,
+        "name": "Emirates NBD"
+      },
+      "campaign": {
+        "id": 1,
+        "name": "AA Campaign"
+      },
+      "locale": null,
+      "event_time": "2024-06-12T19:43:56.648+05:30"
     }
   }
 }

@@ -31,6 +31,7 @@ class ChartsMenu extends Component {
       model, model: { assessment_id: assessmentId },
     } = this.props
     const { category } = AppStore.getAssessmentById(assessmentId)
+
     return _.filter(SOURCE_TYPES[category], type => !!model.canShowDataSet(type.value, category))
   }
 

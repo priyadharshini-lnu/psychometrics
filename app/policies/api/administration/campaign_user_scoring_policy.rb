@@ -19,6 +19,10 @@ module Api
         has_permission?(:results, :finalize_scores)
       end
 
+      def publish_campaign_results_available?
+        has_permission?(:results, :scores) && has_permission?(:project_settings, :webhooks)
+      end
+
       def rescore_bulk?
         has_permission?(:results, :rescore_responses)
       end

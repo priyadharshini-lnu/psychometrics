@@ -70,7 +70,7 @@ const OtpVerificationComponent: React.FC<Props> = ({
     onFailure: (response) => {
       const { errorMessage } = response.responseData
 
-      setError(errorMessage || I18n.t('auth.verify_mobile_number.error.failed'))
+      setError(errorMessage || I18n.t('common.errors.something_wrong'))
       setLoading(false)
     },
   })

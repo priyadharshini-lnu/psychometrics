@@ -183,6 +183,7 @@ ar:
     terms_link: <a href="%{terms_url}"> بيان الخصوصية</a>
     verify_mobile_number:
       error:
+        blocked: تم حظر رقم الجوال بسبب كثرة المحاولات.
         failed: الرمز المدخل خاطئ الرجاء إدخال رمز التحقق من جديد
         invalid_code: الرمز المدخل خاطئ
         max_attempts_reached: تم إجراء أكثر من محاولة خاطئة الرجاء المحاولة من جديد بعد ١٠ دقائق.

@@ -1963,6 +1963,7 @@ CREATE TABLE public.factors (
     scale_min double precision,
     scale_max double precision,
     custom_formula character varying,
+    owner_id bigint,
     "precision" integer
 );
 
@@ -5176,7 +5177,8 @@ CREATE TABLE public.webhook_subscriptions (
     updated_at timestamp without time zone,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    auth_type integer DEFAULT 0
+    auth_type integer DEFAULT 0,
+    include_locales boolean DEFAULT false
 );
 
 
@@ -8641,6 +8643,13 @@ CREATE INDEX index_factors_on_dimension_id ON public.factors USING btree (dimens
 
 
 --
+-- Name: index_factors_on_owner_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_on_owner_id ON public.factors USING btree (owner_id);
+
+
+--
 -- Name: index_factors_on_parent_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10347,6 +10356,14 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 
 --
+-- Name: factors fk_rails_225e7dce0c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_225e7dce0c FOREIGN KEY (owner_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11945,6 +11962,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240619103701'),
 ('20240614104722'),
 ('20240606133151'),
 ('20240603125218'),
@@ -11960,6 +11978,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240419110536'),
 ('20240416093121'),
 ('20240415123000'),
+('20240405101155'),
 ('20240403123008'),
 ('20240401134614'),
 ('20240401112155'),

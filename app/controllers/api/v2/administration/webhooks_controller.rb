@@ -24,7 +24,7 @@ module Api
 
     def send_test
       @webhook = Webhook.find(params[:webhook_id])
-      event = params[:data][:attributes][:payload_data]
+      event = payload_data_params
 
       response = ::Administration::Webhooks::PushWebhook.call(
         @webhook, event
@@ -42,6 +42,12 @@ module Api
       else
         render json: @webhook.event_logs.last.response
       end
+    end
+
+    def payload_data_params
+      params.require(:data).require(:attributes).require(:payload_data).permit(
+        :event_name, :event_id, data: {}
+      ).to_h
     end
 
     def context

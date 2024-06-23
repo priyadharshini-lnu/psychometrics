@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :workshop_subject do
     workshop
+    workshop_invited_subject
     user
     campaign
     attended { false }

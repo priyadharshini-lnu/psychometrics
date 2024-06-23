@@ -16,6 +16,14 @@ class WorkshopSubject < ApplicationRecord
   after_commit :send_workshop_cancelled_email, on: %i[update],
     if: proc { saved_change_to_scheduling_status? && %w[cancelled late_cancelled].include?(scheduling_status) }
 
+  after_commit :publish_scheduling_scheduled_create, on: %i[create]
+  after_commit :publish_scheduling_scheduled, on: %i[update],
+    if: proc { saved_change_to_scheduling_status? && scheduled? }
+  after_commit :publish_scheduling_cancelled, on: %i[update],
+    if: proc { saved_change_to_scheduling_status? && cancelled? }
+  after_commit :publish_scheduling_rescheduled, on: %i[update],
+    if: proc { saved_change_to_scheduling_status? && rescheduled? }
+
   scope :participatable, lambda {
     where.not(attendance_status: %i[no_show dropped_out]).
       where.not(scheduling_status: %i[rescheduled cancelled late_rescheduled late_cancelled])
@@ -26,6 +34,20 @@ class WorkshopSubject < ApplicationRecord
       where(attendance_status: %i[no_show dropped_out])
     )
   }
+
+  def publish_scheduling_scheduled
+    WorkshopSubjects::Webhook.new(id).publish_scheduling_scheduled
+  end
+
+  alias publish_scheduling_scheduled_create publish_scheduling_scheduled
+
+  def publish_scheduling_cancelled
+    WorkshopSubjects::Webhook.new(id).publish_scheduling_cancelled
+  end
+
+  def publish_scheduling_rescheduled
+    WorkshopSubjects::Webhook.new(id).publish_scheduling_rescheduled
+  end
 
   def campaign_user
     CampaignUser.find_by(user_id: user_id, campaign_id: workshop.campaign_id)

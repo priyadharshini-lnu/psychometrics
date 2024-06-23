@@ -5,7 +5,7 @@ export const RegistrationSettingsTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
     id: t.string,
-    requireMobileNumber: t.union([t.boolean, t.null]),
+    requireMobileNumber: t.union([t.boolean, t.undefined]),
     project: t.union([
       t.type({
         id: t.string,

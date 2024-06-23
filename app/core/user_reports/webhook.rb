@@ -14,7 +14,12 @@ module UserReports
     def publish_report_available
       return if user_result.nil?
 
-      WebhookSubscriptions::Publish.call!(project, :report_available, report_available_data)
+      WebhookSubscriptions::Publish.call!(
+        project,
+        :report_available,
+        report_available_data,
+        webhook_id: webhook_id
+      )
     end
 
     def report_available_data
@@ -32,7 +37,10 @@ module UserReports
 
     def publish_reports_result_available
       WebhookSubscriptions::Publish.call(
-        project, :results_available, result_available_data, webhook_id
+        project,
+        :results_available,
+        result_available_data,
+        webhook_id: webhook_id
       )
     end
 
