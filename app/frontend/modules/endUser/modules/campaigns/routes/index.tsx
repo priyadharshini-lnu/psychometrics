@@ -36,7 +36,7 @@ const routes = [
     component: <Campaign />,
   },
   {
-    path: '/invites',
+    path: '/invites/*',
     component: <Bookings />,
   },
   {

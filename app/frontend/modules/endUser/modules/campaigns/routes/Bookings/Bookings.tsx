@@ -15,7 +15,7 @@ export const Bookings = () => (
       </Col>
     </GlintPageHeader>
     <Layout.Content className={styles.pageContent}>
-      <RouteList routes={routes} urlPrefix="/invites" />
+      <RouteList routes={routes} urlPrefix="" />
     </Layout.Content>
   </>
 )
