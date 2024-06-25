@@ -78,6 +78,17 @@ const Properties: FC<Props> = ({ model }) => {
             <input
               style={{ marginRight: '5px' }}
               type="checkbox"
+              checked={model.props.showAsBarChart}
+              onChange={e => onChange('showAsBarChart', e.currentTarget.checked)}
+            />
+            As Bar Chart
+          </label>
+        </div>
+        <div className={styles.flexRow}>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
               checked={model.props.showLabels}
               onChange={e => onChange('showLabels', e.currentTarget.checked)}
             />
@@ -97,6 +108,7 @@ const Properties: FC<Props> = ({ model }) => {
               style={{ marginRight: '5px' }}
               type="checkbox"
               checked={model.props.showLines}
+              disabled={model.props.showAsBarChart}
               onChange={e => onChange('showLines', e.currentTarget.checked)}
             />
             Lines
