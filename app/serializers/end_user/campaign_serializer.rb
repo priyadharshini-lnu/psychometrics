@@ -25,7 +25,7 @@ module EndUser
     end
 
     def workshop
-      workshop = Workshop.visible_to_end_user(current_user.id).first
+      workshop = Workshop.visible_to_end_user(current_user.id).where(campaign_id: object.id).first
 
       return nil unless workshop
 
