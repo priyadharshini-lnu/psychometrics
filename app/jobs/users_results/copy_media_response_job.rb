@@ -7,9 +7,10 @@ module UsersResults
 
       begin
         bucket = Rails.application.secrets.s3_compatible_storage[:private_bucket]
+        path = URI.parse(media_response.asset.url).path[1..]
         Aws::S3::Client.new.copy_object(
           bucket: bucket,
-          copy_source: "#{bucket}/#{media_response.asset.path}",
+          copy_source: "#{bucket}/#{path}",
           key: "uploads/media_response/asset/#{filename}",
           acl: media_response.asset.acl
         )
