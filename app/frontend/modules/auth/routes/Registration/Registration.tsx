@@ -4,89 +4,31 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
-  Typography, Input, Alert, Row, Col, Form, Button,
+  Typography, Input, Alert, Row, Col, Form,
 } from 'antd'
-import { CheckCircleOutlined, EditOutlined } from '@ant-design/icons'
 
-import { PhoneNumber } from 'antd-phone-input/types'
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
 import styles from './styles.less'
 import { RootState } from '../../core/reducers'
 import { InputField } from '../../components/InputField'
-import { PhoneNumberField } from '../../../../glint/components/PhoneNumberField'
-import { OtpVerificationModal } from './OtpVerificationModal'
-import {
-  sendMobileNumberVerificationOtp,
-} from '../../core/otpVerification'
+import { MobileNumberRegistrationComponent } from './MobileNumberRegistrationComponent'
 
 const { I18n } = window
 
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
-interface ValidationObject {
-  valid: (arg: boolean) => boolean
-}
 
 const RegistrationComponent: React.FC<Props> = ({
   projectConfig,
   csrfToken,
   user,
   errors,
-  sendMobileNumberVerificationOtp,
 }) => {
-  const [isPhoneNumberValid, setPhoneNumberValid] = useState(false)
-  const [phoneNumber, setPhoneNumber] = useState(user.mobile_number)
-  const [otpVerificationModalVisible, setOtpVerificationModalVisible] = useState(false)
   const [verificationToken, setVerificationToken] = useState(
     user.mobile_verification_token,
   )
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
-
-  const handlePhoneNumberChange = (value: PhoneNumber) => {
-    const fullPhoneNumber = `+${value.countryCode}${value.areaCode}${value.phoneNumber}`
-
-    setPhoneNumber(fullPhoneNumber)
-  }
-
-  const validator = (_: unknown, { valid }: ValidationObject) => {
-    if (verificationToken || valid(true)) {
-      setPhoneNumberValid(true)
-      return Promise.resolve()
-    }
-
-    setPhoneNumberValid(false)
-    return Promise.reject()
-  }
-
-  const handleOpenOtpVerificationModal = () => {
-    setLoading(true)
-    sendMobileNumberVerificationOtp({
-      mobileNumber: phoneNumber,
-      smsInviteCode: user.sms_invite_code,
-      registrationCode: user.registration_code,
-      projectId: projectConfig.id,
-    }).then(() => {
-      setLoading(false)
-      setOtpVerificationModalVisible(true)
-    }).catch(setError).then(() => setLoading(false))
-  }
-
-  const handleCloseOtpVerificationModal = () => {
-    setOtpVerificationModalVisible(false)
-  }
-
-  const handleMobileNumberEdit = () => {
-    setVerificationToken('')
-  }
-
-  const handleOnVerificationSuccess = (
-    verificationToken: React.SetStateAction<string>,
-  ) => {
-    setVerificationToken(verificationToken)
-    setOtpVerificationModalVisible(false)
-  }
+  const [error, setError] = useState<string | null>(null)
 
   return (
     <div className={styles.container}>
@@ -151,57 +93,13 @@ const RegistrationComponent: React.FC<Props> = ({
           defaultValue={user.email}
         />
 
+
         {projectConfig.require_mobile_number && (
-          <>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <PhoneNumberField
-                label={I18n.t('auth.mobile_number')}
-                name="mobile_number"
-                validator={validator}
-                errors={errors.mobile_number}
-                handlePhoneNumberChange={handlePhoneNumberChange}
-                disabled={!!verificationToken}
-              />
-
-              { verificationToken && (
-                <>
-                  <Button type="link" disabled style={{ padding: 5, marginTop: '30px' }}>
-                    <CheckCircleOutlined />
-                  </Button>
-                  <Button
-                    type="link"
-                    onClick={handleMobileNumberEdit}
-                    style={{ padding: 5, marginTop: '30px' }}
-                  >
-                    <EditOutlined />
-                    {I18n.t('common.actions.edit')}
-                  </Button>
-                </>
-              ) }
-
-              {(!verificationToken) && (
-                <Button
-                  disabled={!isPhoneNumberValid}
-                  type="link"
-                  loading={loading}
-                  onClick={handleOpenOtpVerificationModal}
-                  style={{ marginTop: '30px' }}
-                >
-                  {I18n.t('common.actions.verify')}
-                </Button>
-              )}
-            </div>
-            <Input
-              type="hidden"
-              name="user[mobile_number]"
-              value={phoneNumber}
-            />
-            <Input
-              type="hidden"
-              name="user[mobile_verification_token]"
-              value={verificationToken}
-            />
-          </>
+          <MobileNumberRegistrationComponent
+            setError={setError}
+            verificationToken={verificationToken}
+            setVerificationToken={setVerificationToken}
+          />
         )}
 
         <Typography.Paragraph className={styles.hint}>
@@ -253,20 +151,15 @@ const RegistrationComponent: React.FC<Props> = ({
           </Link>
         </div>
       </Form>
-
-      <OtpVerificationModal
-        mobileNumber={phoneNumber}
-        visible={otpVerificationModalVisible}
-        onCancel={handleCloseOtpVerificationModal}
-        onVerificationSuccess={handleOnVerificationSuccess}
-        registrationCode={user.registration_code}
-        smsInviteCode={user.sms_invite_code}
-      />
     </div>
   )
 }
 
-
-const connector = connect((state: RootState) => state, { sendMobileNumberVerificationOtp })
+const connector = connect(
+  (state: RootState) => ({
+    ...state,
+  }),
+  { },
+)
 
 export const Registration = connector(RegistrationComponent)

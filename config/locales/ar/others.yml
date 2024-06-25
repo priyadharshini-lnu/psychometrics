@@ -16,6 +16,12 @@ ar:
         password: كلمه السر
     errors:
       models:
+        register:
+          attributes:
+            mobile_number:
+              blank: رقم الجوال مطلوب
+              invalid: رقم الجوال غير صالح
+              verification_expired: لقد انتهت صلاحية رمز التحقق. يمكنك محاولة التحقق مرة أخرى.
         user:
           attributes:
             current_password:
@@ -147,6 +153,7 @@ ar:
       code_placeholder: OTP
       description: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       resend: إعادة إرسال OTP
+      resend_in: إعادة إرسال خلال %{timestamp} ثانية
       resend_success: إعادة إرسال رمز التحقق
       sms_description: الرجاء إدخال الرمز المؤقت الذي تم إرساله لهاتفك النقال
       submit: تسليم

@@ -86,7 +86,6 @@ export const Registration: React.FC<{}> = () => {
               onChange={e => updateEnabledSettings({ requireMobileNumber: e.target.checked })}
             />
           </Form.Item>
-
           <Row className="mt-4">
             <Button type="primary" htmlType="submit" className="mb-16" loading={isSaving}>
               {I18n.t('administration.save')}

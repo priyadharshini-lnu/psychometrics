@@ -2,14 +2,12 @@
 
 module Sms
   module Verification
-    class SendCode < BaseCommand
+    class SendCode < AsyncResponseRequest::AsyncRequestHandler
       private_attr_reader :to_mobile_no
 
-      def initialize(to_mobile_no)
-        @to_mobile_no = to_mobile_no
-      end
-
       def call
+        @to_mobile_no = params[:mobile_number]
+
         verification = client.
                        verify.
                        v2.
@@ -17,9 +15,12 @@ module Sms
                        verifications.
                        create(locale: I18n.locale, to: to_mobile_no, channel: 'sms')
 
-        broadcast :ok, build_verification_response(verification.status, nil)
+        async_response.response_data = build_verification_response(verification.status, nil)
+        audit_success
+        broadcast :ok, async_response
       rescue Twilio::REST::RestError => e
         handle_errors(e.code)
+        audit_failure(e.message&.strip)
       end
 
       private
@@ -33,16 +34,34 @@ module Sms
       end
 
       def handle_errors(status_code)
-        case status_code
-          when 20_429
-            broadcast :error,
-                      build_verification_response('error',
-                                                  I18n.t('auth.verify_mobile_number.error.max_attempts_reached'))
-          when 60_410
-            broadcast :error, build_verification_response('error', I18n.t('auth.verify_mobile_number.error.blocked'))
-          else
-            broadcast :error, build_verification_response('error', I18n.t('common.errors.something_wrong'))
-        end
+        async_response.response_data = case status_code
+                                         when 20_429
+                                           build_verification_response(
+                                             'error',
+                                             I18n.t('auth.verify_mobile_number.error.max_attempts_reached')
+                                           )
+
+                                         when 60_410
+                                           build_verification_response(
+                                             'error',
+                                             I18n.t('auth.verify_mobile_number.error.blocked')
+                                           )
+                                         else
+
+                                           build_verification_response(
+                                             'error', I18n.t('common.errors.something_wrong')
+                                           )
+                                       end
+
+        broadcast(:invalid, async_response)
+      end
+
+      def async_response
+        @async_response ||= AsyncResponseRequest::AsyncResponse.new(
+          processing_status: :completed,
+          response_type: :json,
+          response_data: {}
+        )
       end
 
       def build_verification_response(status, error_message)
@@ -52,6 +71,20 @@ module Sms
           to_mobile_no: to_mobile_no,
           verification_code: nil
         )
+      end
+
+      def audit_failure(error_message)
+        AuditLogModule.audit!(
+          :send_verification_code,
+          nil,
+          payload: params,
+          outcome: :failed,
+          failure_reason: error_message
+        )
+      end
+
+      def audit_success
+        AuditLogModule.audit!(:send_verification_code, nil, payload: params)
       end
     end
   end

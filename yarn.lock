@@ -4707,13 +4707,6 @@ ansi-styles@^5.0.0:
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-5.2.0.tgz#07449690ad45777d1924ac2abb2fc8895dba836b"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
 
-antd-phone-input@^0.3.7:
-  version "0.3.7"
-  resolved "https://registry.yarnpkg.com/antd-phone-input/-/antd-phone-input-0.3.7.tgz#2c194bab16a15735c2e575451bbeda62ee124d7f"
-  integrity sha512-HOLTbx806NGrBy4OPwsC5sLfywxiVVZ+ZD7DjhVbsTAsjmEdE3MsV2hWPwZkK05VY49/3qTqiMxgh/a6899vsQ==
-  dependencies:
-    react-phone-hooks "^0.1.4"
-
 antd@^5.10.0:
   version "5.11.0"
   resolved "https://registry.yarnpkg.com/antd/-/antd-5.11.0.tgz#c0404412473f9ac14c5f75bc679fb805e59d4ec6"
@@ -7835,6 +7828,11 @@ globby@^11.0.1, globby@^11.0.2, globby@^11.1.0:
     ignore "^5.2.0"
     merge2 "^1.4.1"
     slash "^3.0.0"
+
+google-libphonenumber@^3.2.34:
+  version "3.2.34"
+  resolved "https://registry.yarnpkg.com/google-libphonenumber/-/google-libphonenumber-3.2.34.tgz#ef29b53be0f9fb517aaa53d26a541150f86ec921"
+  integrity sha512-CLwkp0lZvMywh6dCh0T3Fm8XsfJhLAupc8AECwYkJNQBPW8wQPrv/tV0oFKCs8FMw+pTQyNPZoycgBzYjqtTZQ==
 
 gopd@^1.0.1:
   version "1.0.1"
@@ -11632,6 +11630,11 @@ react-inspector@^6.0.0:
   resolved "https://registry.yarnpkg.com/react-inspector/-/react-inspector-6.0.2.tgz#aa3028803550cb6dbd7344816d5c80bf39d07e9d"
   integrity sha512-x+b7LxhmHXjHoU/VrFAzw5iutsILRoYyDq97EDYdFpPLcvqtEzk4ZSZSQjnFPbr5T57tLXnHcqFYoN1pI6u8uQ==
 
+react-international-phone@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-international-phone/-/react-international-phone-4.3.0.tgz#cb04295b13b5a55f50f36e3c0b7f6c2dc549bb6c"
+  integrity sha512-lIntIkwq2j0m3j4RsRiGJl/buHMLBd+mQ9S9RfiX3KbiUCUtbawoPCV2r8BvyeRMZI0cDtovoukBCuZ+70QzJA==
+
 react-is@18.1.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.1.0.tgz#61aaed3096d30eacf2a2127118b5b41387d32a67"
@@ -11698,11 +11701,6 @@ react-pdf@^8.0.2:
     pdfjs-dist "3.11.174"
     tiny-invariant "^1.0.0"
     warning "^4.0.0"
-
-react-phone-hooks@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/react-phone-hooks/-/react-phone-hooks-0.1.4.tgz#132881498ab223bc8c0208ce4b27d50a3866271e"
-  integrity sha512-9fQsWB80u0Wlci1Ea/aQ2Z1SY7rBjSPbTPMvfcw049/PYh/MoTn+UELWnGVc9P/ZjvLd3yWteLoLTPl70dKQZQ==
 
 react-prop-types@^0.4.0:
   version "0.4.0"

@@ -1156,6 +1156,7 @@ en:
       code_placeholder: One Time Password
       description: Please enter the OTP that was sent to your registered email address.
       resend: Resend OTP
+      resend_in: Resend in %{timestamp} seconds
       resend_success: OTP is sent to your mobile number
       sms_description: Please enter the OTP that was sent to your mobile number.
       submit: Verify
