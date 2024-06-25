@@ -26,7 +26,7 @@ class AssessmentSerializer < Panko::Serializer
     return [] unless object.dimension
 
     Panko::ArraySerializer.new(
-      object.dimension.all_factors.includes(:sub_factors),
+      object.dimension.all_factors.with_attached_icon.includes(:sub_factors),
       each_serializer: Factors::WithSubFactorsSerializer,
       context: {
         assessment_id: object.id

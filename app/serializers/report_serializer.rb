@@ -63,7 +63,7 @@ class ReportSerializer < Panko::Serializer
               includes(:sub_factors).
               order(name: :asc)
     aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
-    factors.group_by(&:dimension_id).transform_values do |group|
+    factors.with_attached_icon.group_by(&:dimension_id).transform_values do |group|
       Panko::ArraySerializer.new(
         group,
         each_serializer: ::Factors::WithSubFactorsSerializer,
@@ -80,7 +80,12 @@ class ReportSerializer < Panko::Serializer
     occupations = Occupation.includes(:occupations_factors).
                   where(dimension_id: object.assessments.pluck(:dimension_id)).
                   order(name: :asc)
-    occupations.group_by(&:dimension_id).transform_values do |group|
+    occupations.includes(
+      icon_attachment: :blob,
+      alternative_icon_attachment: :blob,
+      indicative_roles_image_attachment: :blob,
+      key_career_tracks_image_attachment: :blob
+    ).group_by(&:dimension_id).transform_values do |group|
       Panko::ArraySerializer.new(
         group,
         each_serializer: OccupationSerializer
