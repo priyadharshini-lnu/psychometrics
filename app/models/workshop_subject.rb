@@ -36,17 +36,17 @@ class WorkshopSubject < ApplicationRecord
   }
 
   def publish_scheduling_scheduled
-    WorkshopSubjects::Webhook.new(id).publish_scheduling_scheduled
+    WorkshopSubjects::Webhook.new(self).publish_scheduling_scheduled
   end
 
   alias publish_scheduling_scheduled_create publish_scheduling_scheduled
 
   def publish_scheduling_cancelled
-    WorkshopSubjects::Webhook.new(id).publish_scheduling_cancelled
+    WorkshopSubjects::Webhook.new(self).publish_scheduling_cancelled
   end
 
   def publish_scheduling_rescheduled
-    WorkshopSubjects::Webhook.new(id).publish_scheduling_rescheduled
+    WorkshopSubjects::Webhook.new(self).publish_scheduling_rescheduled
   end
 
   def campaign_user

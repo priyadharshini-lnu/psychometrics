@@ -7,7 +7,7 @@ describe WorkshopSubject, type: :model do
     context '#publish_scheduling_cancelled' do
       it 'publishes scheduling cancelled webhook event' do
         workshop_subject = create(:workshop_subject)
-        webhook = WorkshopSubjects::Webhook.new(workshop_subject.id)
+        webhook = WorkshopSubjects::Webhook.new(workshop_subject)
         expect(WebhookSubscriptions::Publish).to receive(:call).with(
           workshop_subject.campaign.project,
           :scheduling_cancelled,

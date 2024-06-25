@@ -7,9 +7,9 @@ module WebhookSubscriptions
     EVENT_TO_WEBHOOK_MAPPING = {
       assessment_started: UserAssessments::Webhook,
       assessment_completed: UserAssessments::Webhook,
-      scheduling_scheduled: WorkshopInvites::Webhook,
-      scheduling_cancelled: WorkshopInvites::Webhook,
-      scheduling_rescheduled: WorkshopInvites::Webhook,
+      scheduling_scheduled: WorkshopSubjects::Webhook,
+      scheduling_cancelled: WorkshopSubjects::Webhook,
+      scheduling_rescheduled: WorkshopSubjects::Webhook,
       scheduling_invited: WorkshopInvites::Webhook
     }.freeze
 
