@@ -60,7 +60,9 @@ describe Assessments::CopyAssessment do
       questions.last.update(skip_logic: destination_skip_logic)
     end
 
-    let(:copy) { described_class.call(assessment.id, user, "Copy of #{assessment.name}")[:ok][:assessment] }
+    let(:copy) do
+      described_class.call(assessment.id, user, new_assessment_name: "Copy of #{assessment.name}")[:ok][:assessment]
+    end
 
     it 'succeeds' do
       expect(copy).to be_an_instance_of(Assessments::Common)

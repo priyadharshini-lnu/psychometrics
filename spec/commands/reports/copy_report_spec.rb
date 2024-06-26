@@ -41,7 +41,7 @@ describe Reports::CopyReport do
     end
 
     context 'Success' do
-      subject { described_class.call(report.id, user, "Copy of #{report.name}") }
+      subject { described_class.call(report.id, user, new_report_name: "Copy of #{report.name}") }
 
       it 'broadcasts :ok' do
         expect { subject }.to broadcast(:ok)
