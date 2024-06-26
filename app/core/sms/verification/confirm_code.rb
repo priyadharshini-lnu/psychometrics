@@ -35,7 +35,7 @@ module Sms
       end
 
       def verification_service_sid
-        Rails.application.secrets.twilio[:verification_service_sid]
+        Settings.secrets.twilio[:verification_service_sid]
       end
 
       def handle_verification_status(status)

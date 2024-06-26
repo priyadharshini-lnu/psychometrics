@@ -6,7 +6,7 @@ class MobileNumberVerificationSerializer < Panko::Serializer
   def verification_token
     JWT.encode(
       { data: mobile_number, exp: 10.minutes.from_now.to_i },
-      Rails.application.secrets.encrypted_key
+      Settings.secrets.encrypted_key.to_s
     )
   end
 
