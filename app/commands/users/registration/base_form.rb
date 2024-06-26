@@ -6,9 +6,14 @@ module Users
       attribute :email, String
       attribute :first_name, String
       attribute :last_name, String
+      attribute :mobile_number, String
+      attribute :mobile_verification_token, String
+      attribute :mobile_verified, Boolean, default: false
 
       validates :email, :first_name, :last_name, presence: true
       validate :validate_email_uniqueness
+      validate :validate_mobile_number
+      validate :validate_mobile_number_verification_token
 
       private
 
@@ -26,6 +31,40 @@ module Users
           errors.add(:base,
                      I18n.t('devise.registrations.communication_not_setup_error'))
         end
+      end
+
+      def validate_mobile_number
+        return unless registration_setting.require_mobile_number
+
+        return if mobile_number.present?
+
+        errors.add(:mobile_number,
+                   I18n.t('activemodel.errors.models.register.attributes.mobile_number.blank'))
+      end
+
+      def validate_mobile_number_verification_token
+        return true unless registration_setting.require_mobile_number
+
+        return false if mobile_verification_token.blank?
+
+        begin
+          decoded = JWT.decode(mobile_verification_token, Rails.application.secrets.encrypted_key)
+          if decoded[0]['data'] == mobile_number
+            self.mobile_verified = true
+
+            return true
+          end
+        rescue JWT::ExpiredSignature
+          errors.add(:mobile_number,
+                     I18n.t('activemodel.errors.models.register.attributes.mobile_number.verification_expired'))
+        else
+          errors.add(:mobile_number,
+                     I18n.t('activemodel.errors.models.register.attributes.mobile_number.invalid'))
+        end
+      end
+
+      def registration_setting
+        @registration_setting ||= context.project.registration_setting
       end
 
       def campaign

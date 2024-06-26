@@ -14,10 +14,12 @@ module Threesixty
       def call
         threesixty_campaign = if assessment
                                 ::Threesixty::Campaigns::CreateFromAssessmentAndReport.call!(
-                                  assessment, report, form, project, user
+                                  assessment, report, form, project, user, resource_name: form.name
                                 )
                               else
-                                ::Threesixty::Campaigns::CreateEmptyCampaign.call!(form, project, user)
+                                ::Threesixty::Campaigns::CreateEmptyCampaign.call!(
+                                  form, project, user, resource_name: form.name
+                                )
                               end
 
         load_templates(threesixty_campaign)

@@ -4,7 +4,7 @@ module Auth
   class ProjectConfigSerializer < Panko::Serializer
     attributes :id, :background_color, :login_box_position, :background, :saml_login_allowed,
                :saml_enforced, :client_logo, :secondary_logo, :primary_color,
-               :error_color, :warning_color, :success_color, :info_color, :background_size
+               :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number
 
     DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
 
@@ -34,6 +34,10 @@ module Auth
 
     def saml_enforced
       object.saml_enforced?
+    end
+
+    def require_mobile_number
+      object.registration_setting.require_mobile_number
     end
 
     private

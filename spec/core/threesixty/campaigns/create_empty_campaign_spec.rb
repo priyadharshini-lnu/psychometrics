@@ -3,10 +3,11 @@
 require 'rails_helper'
 
 describe Threesixty::Campaigns::CreateEmptyCampaign do
-  subject(:threesixty_campaign) { described_class.call!(form, project, user) }
+  subject(:threesixty_campaign) { described_class.call!(form, project, user, resource_name: campaign_name) }
 
+  let!(:campaign_name) { Faker::Name.name }
   let(:project) { create(:project) }
-  let(:form) { Threesixty::Campaigns::CreateForm.new(name: 'New campaign') }
+  let(:form) { Threesixty::Campaigns::CreateForm.new(name: campaign_name) }
   let(:user) { create(:user) }
 
   before { threesixty_campaign }
@@ -15,7 +16,9 @@ describe Threesixty::Campaigns::CreateEmptyCampaign do
     it 'creates a Threesixty::Campaign record' do
       expect(threesixty_campaign).to be_an_instance_of(Threesixty::Campaign)
       expect(threesixty_campaign).to be_persisted
-      expect(threesixty_campaign.name).to eq(form.name)
+      expect(threesixty_campaign.name).to eq(campaign_name)
+      expect(threesixty_campaign.assessment.name).to eq(campaign_name)
+      expect(threesixty_campaign.report.name).to eq(campaign_name)
     end
 
     it 'creates a Campaign record' do

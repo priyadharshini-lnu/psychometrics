@@ -14,10 +14,12 @@ describe Dimensions::Copy do
   end
 
   it 'duplicates dimension' do
-    result = described_class.call!(dimension, [], client)
+    new_dimension_name = Faker::Name.name
+    result = described_class.call!(dimension, [], client, new_dimension_name: new_dimension_name)
 
     expect(result[:new_dimension]).to be_instance_of(Dimension)
     expect(result[:new_dimension].id).to_not eq(dimension.id)
+    expect(result[:new_dimension].name).to eq(new_dimension_name)
   end
 
   it 'duplicates only factors which are passed as factors_to_copy' do

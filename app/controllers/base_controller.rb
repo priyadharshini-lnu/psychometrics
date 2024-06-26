@@ -50,28 +50,46 @@ class BaseController < ActionController::Base
     return if @anonymous_user
 
     Users::AuthenticateUser.call(params) do
-      on(:ok) do |user, found_by|
-        if found_by == :spoof
-          request.env['warden'].request.env['devise.skip_trackable'] = 1
-          session[:spoofed] = true
-        end
-        if found_by == :sso
-          session[:sso] = {
-            'user_id' => user.id,
-            'user_assessment_id' => params[:user_assessment_id],
-            'display' => params[:display],
-            'return_url' => params[:return_url]
-          }
-        end
-        session.delete(:sso) unless found_by == :sso
-        session.delete(:spoofed) unless found_by == :spoofed
-
-        sign_in(user)
-        redirect_to(url_without_spoof) if found_by == :spoof
-      end
+      on(:ok) { |user, found_by| handle_successful_authentication(user, found_by) }
       on(:invalid_sso_token) { |url| redirect_to(url) && return if url }
+      on(:invalid_jwt_token) { |url| redirect_to(url) && return if url }
     end
     super
+  end
+
+  def handle_successful_authentication(user, found_by)
+    handle_spoofing(found_by)
+    handle_sso_or_jwt(found_by, user)
+    sign_in_and_redirect(user, found_by)
+  end
+
+  def handle_spoofing(found_by)
+    if found_by == :spoof
+      request.env['warden'].request.env['devise.skip_trackable'] = 1
+      session[:spoofed] = true
+    else
+      session.delete(:spoofed)
+    end
+  end
+
+  def handle_sso_or_jwt(found_by, user)
+    if %i[sso jwt].include?(found_by)
+      session[:sso] = {
+        'user_id' => user.id,
+        'user_assessment_id' => params[:user_assessment_id],
+        'display' => params[:display],
+        'return_url' => params[:return_url]
+      }
+    else
+      session.delete(:sso)
+    end
+  end
+
+  def sign_in_and_redirect(user, found_by)
+    sign_in(user)
+
+    return redirect_to(url_without_spoof) if found_by == :spoof
+    return redirect_to(url_without_jwt) if found_by == :jwt
   end
 
   def send_tmp_file(file_path, options = {})
@@ -97,7 +115,15 @@ class BaseController < ActionController::Base
   end
 
   def url_without_spoof
-    Utility::Url.remove_query_params(request.url, [Users::AuthenticateUser::SPOOF_KEY.to_s])
+    Utility::Url.remove_query_params(request.url,
+                                     [Users::AuthenticateUser::SPOOF_KEY.to_s,
+                                      Users::AuthenticateUser::REDIRECT_KEY.to_s])
+  end
+
+  def url_without_jwt
+    Utility::Url.remove_query_params(request.url,
+                                     [Users::AuthenticateUser::JWT_KEY.to_s,
+                                      Users::AuthenticateUser::REDIRECT_KEY.to_s])
   end
 
   def feature_flags

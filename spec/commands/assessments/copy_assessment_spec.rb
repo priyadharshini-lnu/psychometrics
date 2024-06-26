@@ -69,6 +69,14 @@ describe Assessments::CopyAssessment do
       expect(copy.name).to eq("Copy of #{assessment.name}")
     end
 
+    it 'saves passed assessment name' do
+      assessment = create(:assessment)
+      assessment_name = Faker::Name.name
+      assessment = described_class.call!(assessment.id, user, new_assessment_name: assessment_name)[:assessment]
+
+      expect(assessment.name).to eq(assessment_name)
+    end
+
     it 'copies all blocks' do
       expect(copy.blocks.length).to eq(assessment.blocks.length)
     end

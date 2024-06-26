@@ -9,26 +9,37 @@ describe UsersResults::Scoring::AddScore do
   context 'with rounding' do
     it 'scoring_strategy: :questions' do
       factor1 = create(:factor, scoring_strategy: :questions, precision: 1)
+      factor2 = create(:factor, scoring_strategy: :questions)
+      factor3 = create(:factor, scoring_strategy: :questions, precision: 3)
 
       factor_hash = {
-        factor1.id => { factor: factor1, sub_factor_hash: {} }
+        factor1.id => { factor: factor1, sub_factor_hash: {} },
+        factor2.id => { factor: factor2, sub_factor_hash: {} },
+        factor3.id => { factor: factor3, sub_factor_hash: {} }
       }
-
+      results = {
+        'results' => [
+          { 'value' => [2, 3, 4], 'question_id' => 1 },
+          { 'value' => 5, 'question_id' => 2 },
+          { 'value' => 2, 'question_id' => 3 }
+        ]
+      }
       factor_ids = factor_hash.keys
 
       scoring = {
-        factor1.id.to_s => {
-          'results' => [
-            { 'value' => [2, 3, 4], 'question_id' => 1 },
-            { 'value' => 5, 'question_id' => 2 },
-            { 'value' => 2, 'question_id' => 3 }
-          ]
-        }
+        factor1.id.to_s => results,
+        factor2.id.to_s => results,
+        factor3.id.to_s => results
       }
       unrounded_score = (((2 + 3 + 4) / 3) + 5 + 2) / 3.0
       result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
+
       expect(result[factor1.id.to_s]['score']).to_not eq(unrounded_score)
       expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(1))
+      expect(result[factor2.id.to_s]['score']).to_not eq(unrounded_score)
+      expect(result[factor2.id.to_s]['score']).to eq(unrounded_score.round(2))
+      expect(result[factor3.id.to_s]['score']).to_not eq(unrounded_score)
+      expect(result[factor3.id.to_s]['score']).to eq(unrounded_score.round(3))
     end
 
     it 'scoring_strategy: :questions_sum' do
@@ -75,45 +86,59 @@ describe UsersResults::Scoring::AddScore do
     end
 
     it 'scoring_strategy :sub_factors_average' do
-      factor1 = create(:factor, scoring_strategy: :sub_factors_average, precision: 2)
+      factor1 = create(:factor, scoring_strategy: :sub_factors_average, precision: 1)
       factor2 = create(:factor, scoring_strategy: :questions)
       factor3 = create(:factor, scoring_strategy: :questions)
+      factor4 = create(:factor, scoring_strategy: :sub_factors_average)
 
-      sub_factor_hash = [
+      factor1_sub_factor_hash = [
         create(:factors_sub_factor, factor: factor1, sub_factor: factor2, weight: 1),
         create(:factors_sub_factor, factor: factor1, sub_factor: factor3, weight: 3)
       ].index_by(&:sub_factor_id)
+      factor4_sub_factor_hash = [
+        create(:factors_sub_factor, factor: factor4, sub_factor: factor2, weight: 1),
+        create(:factors_sub_factor, factor: factor4, sub_factor: factor3, weight: 3)
+      ].index_by(&:sub_factor_id)
 
       factor_hash = {
-        factor1.id => { factor: factor1, sub_factor_hash: sub_factor_hash },
+        factor1.id => { factor: factor1, sub_factor_hash: factor1_sub_factor_hash },
         factor2.id => { factor: factor2, sub_factor_hash: {} },
-        factor3.id => { factor: factor3, sub_factor_hash: {} }
+        factor3.id => { factor: factor3, sub_factor_hash: {} },
+        factor4.id => { factor: factor4, sub_factor_hash: factor4_sub_factor_hash }
       }
 
       factor_ids = factor_hash.keys
 
       scoring = {
-        factor2.id.to_s => { 'results' => [{ 'value' => [1, 2], 'question_id' => 3 }] },
-        factor3.id.to_s => { 'results' => [{ 'value' => [1, 5], 'question_id' => 5 }] }
+        factor2.id.to_s => { 'results' => [{ 'value' => [1, 2, 5], 'question_id' => 3 }] },
+        factor3.id.to_s => { 'results' => [{ 'value' => [1, 4, 2], 'question_id' => 5 }] }
       }
       result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
-      unrounded_score = ((1.5 * 1) + (3.0 * 3)) / (1 + 3)
+      unrounded_score = (((8 / 3.0).round(2) * 1) + ((7 / 3.0).round(2) * 3)) / (1 + 3)
       expect(result[factor1.id.to_s]['score']).to_not eq(unrounded_score)
-      expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(2))
+      expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(1))
+      expect(result[factor4.id.to_s]['score']).to_not eq(unrounded_score)
+      expect(result[factor4.id.to_s]['score']).to eq(unrounded_score.round(2))
     end
 
     it 'scoring_strategy :sub_factor_questions' do
-      factor1 = create(:factor, scoring_strategy: :sub_factor_questions)
+      factor1 = create(:factor, scoring_strategy: :sub_factor_questions, precision: 3)
       factor2 = create(:factor, scoring_strategy: :questions)
       factor3 = create(:factor, scoring_strategy: :questions)
+      factor4 = create(:factor, scoring_strategy: :sub_factor_questions)
       factor1_sub_factor_hash = [
         create(:factors_sub_factor, factor: factor1, sub_factor: factor2),
         create(:factors_sub_factor, factor: factor1, sub_factor: factor3)
       ].index_by(&:sub_factor_id)
+      factor4_sub_factor_hash = [
+        create(:factors_sub_factor, factor: factor4, sub_factor: factor2),
+        create(:factors_sub_factor, factor: factor4, sub_factor: factor3)
+      ].index_by(&:sub_factor_id)
       factor_hash = {
         factor1.id => { factor: factor1, sub_factor_hash: factor1_sub_factor_hash },
         factor2.id => { factor: factor2, sub_factor_hash: {} },
-        factor3.id => { factor: factor3, sub_factor_hash: {} }
+        factor3.id => { factor: factor3, sub_factor_hash: {} },
+        factor4.id => { factor: factor4, sub_factor_hash: factor4_sub_factor_hash }
       }
       factor_ids = factor_hash.keys
       scoring = {
@@ -128,7 +153,9 @@ describe UsersResults::Scoring::AddScore do
       result = described_class.call!(factor_hash, factor_ids, scoring, five_scale_norm, {}, {})
       unrounded_score = (((1 + 2) / 2.0) + ((1 + 5) / 2.0) + 7) / 3.0
       expect(result[factor1.id.to_s]['score']).to_not eq(unrounded_score)
-      expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(2))
+      expect(result[factor1.id.to_s]['score']).to eq(unrounded_score.round(3))
+      expect(result[factor4.id.to_s]['score']).to_not eq(unrounded_score)
+      expect(result[factor4.id.to_s]['score']).to eq(unrounded_score.round(2))
     end
 
     it 'scoring_strategy :sub_factor_questions_sum' do

@@ -11,6 +11,7 @@ module Administration
       clients: [],
       projects: [],
       project_settings: [],
+      registration_settings: [],
       sms_invites: [],
       campaigns: [],
       norms: [],

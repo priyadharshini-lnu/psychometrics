@@ -5,6 +5,8 @@ interface UserAttributes {
   last_name: string
   registration_code: string
   email: string
+  mobile_number: string
+  mobile_verification_token?: string
   reset_password_token?: string
   sms_invite_code?: string
   invitation_token?: string
@@ -17,6 +19,7 @@ export const defaultState: State = {
   last_name: '',
   registration_code: '',
   email: '',
+  mobile_number: '',
 }
 
 export default createReducer({}, defaultState)

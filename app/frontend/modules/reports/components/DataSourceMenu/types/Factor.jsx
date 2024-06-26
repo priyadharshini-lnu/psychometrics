@@ -9,7 +9,7 @@ const ALL_FACTORS = 'All Factors'
 
 class Factor extends Component {
   getOptions () {
-    const { model } = this.props
+    const { model, singleChoice } = this.props
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
@@ -17,7 +17,9 @@ class Factor extends Component {
       id: f.id,
       alias: `${f.alias.substring(0, 24)}`,
     }))
-    factors.unshift({ id: ALL_FACTORS, alias: ALL_FACTORS })
+    if (!singleChoice) {
+      factors.unshift({ id: ALL_FACTORS, alias: ALL_FACTORS })
+    }
 
     return model.filterFactors(factors)
   }
@@ -37,7 +39,7 @@ class Factor extends Component {
   }
 
   render () {
-    const { model, model: { type, props: { type: propType } } } = this.props
+    const { model, model: { type, props: { type: propType } }, singleChoice } = this.props
 
     if (type === 'Graph' && propType === 'Bubble') {
       return null
@@ -51,7 +53,7 @@ class Factor extends Component {
         getOptionValue={opt => opt.id}
         getOptionLabel={opt => opt.alias}
         autoFocus={false}
-        isMulti
+        isMulti={!singleChoice}
         onChange={this.onChange}
       />
     )

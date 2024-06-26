@@ -177,10 +177,24 @@ module Administration
       end
 
       def bulk_download
-        AdminJob.call(:bulk_download_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
-        audit! :bulk_download, nil, record_type: 'CampaignReport', payload: { ids: params[:ids] }, campaign: campaign
+        campaign_reports = campaign.campaign_reports.where(id: params[:ids])
 
-        head :ok
+        user_reports = ::Reports::BulkDownloadsQuery.new(campaign_reports, params).query.pluck(:id)
+
+        report_count = user_reports.count
+
+        if report_count > 1000
+          render json: { errors: I18n.t('campaign_report.bulk_download.error', count: report_count) },
+                 status: :unprocessable_entity
+        else
+          AdminJob.call(:bulk_download_reports,
+                        { ids: params[:ids], campaign_id: campaign.id, start_date: params[:start_date],
+                          end_date: params[:end_date] },
+                        current_user)
+          audit! :bulk_download, nil, record_type: 'CampaignReport', payload: { ids: params[:ids] }, campaign: campaign
+
+          head :ok
+        end
       end
 
       private

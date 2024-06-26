@@ -37,6 +37,12 @@ export const AddEditWebhookModal: React.FC<Props> = ({
     'assessment_timeout',
     'results_available',
     'report_available',
+    'scheduling_invited',
+    'scheduling_scheduled',
+    'scheduling_cancelled',
+    'scheduling_rescheduled',
+    'campaign_user_status',
+    'campaign_results_available',
   ]
 
   return (
@@ -88,9 +94,17 @@ export const AddEditWebhookModal: React.FC<Props> = ({
             </Form.Item>
             <Form.Item
               name={I18n.t('administration.project_tabs.webhooks.form.active.name')}
-              label={I18n.t('administration.project_tabs.webhooks.form.active.name')}
+              label={I18n.t('administration.project_tabs.webhooks.form.active.label')}
               valuePropName="checked"
               initialValue={webhook?.active || true}
+            >
+              <Switch />
+            </Form.Item>
+            <Form.Item
+              name={I18n.t('administration.project_tabs.webhooks.form.include_locales.name')}
+              label={I18n.t('administration.project_tabs.webhooks.form.include_locales.label')}
+              valuePropName="checked"
+              initialValue={webhook?.includeLocales || false}
             >
               <Switch />
             </Form.Item>

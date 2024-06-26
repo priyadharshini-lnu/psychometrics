@@ -28,6 +28,7 @@ export default interface Module {
     showLabels: boolean
     showValues: boolean
     showLines: boolean
+    showAsBarChart: boolean
     text?: string
     type?: string
     url?: string

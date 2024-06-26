@@ -12,7 +12,7 @@ module UsersResults
 
           score = results.present? ? calc_score(results) : nil
 
-          broadcast :ok, extended_scoring.deep_merge(factor.id.to_s => { 'score' => round_score(score) })
+          broadcast :ok, extended_scoring.deep_merge(factor.id.to_s => { 'score' => round_score(score, 2) })
         end
 
         class << self

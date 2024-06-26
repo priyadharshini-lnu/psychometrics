@@ -10,7 +10,7 @@ module Assessments
       }).find(assessment_id)
       @owner_id = owner_id || @assessment.owner_id
       @current_user = current_user
-      @assessment_name = assessment_name || @assessment.name
+      @assessment_name = assessment_name
       @blocks_mapping = {}
       @questions_mapping = {}
       @skip_owner_validation = skip_owner_validation
@@ -24,7 +24,7 @@ module Assessments
       # rubocop:disable Metrics/BlockLength
       new_assessment = ActiveRecord::Base.transaction do
         new_assessment = assessment.clone
-        new_assessment.name = assessment_name
+        new_assessment.name = assessment_name if assessment_name
         new_assessment.owner_id = owner_id
         new_assessment.created_by = current_user
         new_assessment.updated_by = current_user

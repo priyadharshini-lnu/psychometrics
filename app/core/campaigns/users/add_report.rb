@@ -95,6 +95,7 @@ module Campaigns
           assessment_id: assessment.id,
           subject: user,
           norm_id: norm_assessment[:norm_id],
+          fixed_norm: norm_assessment[:norm_id].present?,
           evaluator: user,
           relationship: Relationship.self_relationship,
           status: existing_result&.status || :not_started,

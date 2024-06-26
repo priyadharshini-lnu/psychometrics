@@ -6,6 +6,7 @@ import ResultStore from '~/modules/reports/store/ResultStore'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import styles from '../styles.less'
 import MilestoneTd from './MilestoneTd'
+import BarChart from './BarChart'
 import buildFakeData from '../buildFakeData'
 import Legend from '../Legend'
 
@@ -17,7 +18,7 @@ const connector = connect((state, { model }) => ({
 }))
 
 const QuestionComponent = ({ filters, model, questions }) => {
-  const { props: { questionsChoices } } = model
+  const { props: { questionsChoices, showAsBarChart } } = model
 
   const enhanceFiltersByValue = (questionId, choiceId) => {
     if (!ResultStore.realResults) {
@@ -59,7 +60,7 @@ const QuestionComponent = ({ filters, model, questions }) => {
 
   const filteredQuestionsChoices = questionChoicesToTableValues(questionsChoices, questions)
 
-  const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / milestones.length
+  const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / (milestones.length || 1)
   const getDescStyle = results => ({ minHeight: `${FILTER_ROW_HEIGHT * results.length}px` })
   const { fontSize, fontFamily } = model.props.style
   const style = {
@@ -113,15 +114,18 @@ const QuestionComponent = ({ filters, model, questions }) => {
                   <td>
                     <div className={styles.description} style={descStyle}>{questionChoice.name}</div>
                   </td>
-                  {milestones.map((m, i) => (
-                    <MilestoneTd
-                      filters={results}
-                      milestoneIndex={i}
-                      key={m.id}
-                      milestone={m}
-                      model={model}
-                    />
-                  ))}
+                  {showAsBarChart
+                    ? <BarChart filters={results} model={model} milestones={milestones} />
+                    : milestones.map((m, i) => (
+                      <MilestoneTd
+                        filters={results}
+                        milestoneIndex={i}
+                        key={m.id}
+                        milestone={m}
+                        model={model}
+                      />
+                    ))
+                  }
                 </tr>
               )
             })}

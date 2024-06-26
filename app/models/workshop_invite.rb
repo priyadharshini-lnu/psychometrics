@@ -24,4 +24,8 @@ class WorkshopInvite < ApplicationRecord
       end
     end
   end
+
+  def end_user_url
+    Utility::Url.generate(:invites_url, subdomain: campaign.project.subdomain)
+  end
 end

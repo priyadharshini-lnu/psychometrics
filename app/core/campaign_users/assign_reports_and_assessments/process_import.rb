@@ -39,7 +39,8 @@ module CampaignUsers
               Campaigns::Users::AddReport.call(campaign_user, report, {
                 assessments: [assessment],
                 report_family_id: attrs[:report_bundle_id].to_i,
-                current_user: current_user
+                current_user: current_user,
+                norm_ids: [{ id: assessment.id, norm_id: attrs[:norm_id].present? ? attrs[:norm_id].to_i : nil }]
               })
 
               job_record.increment_completed_tasks!

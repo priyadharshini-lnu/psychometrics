@@ -24,10 +24,11 @@ module UsersResults
         end
         # rubocop:enable Metrics/ParameterLists
 
-        def round_score(score)
+        def round_score(score, default_precision = nil)
           return score if score.nil? || !score.is_a?(Numeric)
 
-          factor_data[:factor].precision ? score.round(factor_data[:factor].precision) : score
+          precision = factor_data[:factor].precision || default_precision
+          precision ? score.round(precision) : score
         end
       end
     end

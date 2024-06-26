@@ -8,14 +8,13 @@ module Reports
       @report_name = report_name
       @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
       @user = user
+      @new_report_name = new_report_name
     end
 
     def call
       new_report = ActiveRecord::Base.transaction do
         new_report = report.clone
-        if report_name
-          new_report.name = report_name
-        end
+        new_report.name = report_name if report_name
         new_report.created_by = user
         new_report.save!
 

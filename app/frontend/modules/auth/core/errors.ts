@@ -10,6 +10,7 @@ interface Errors {
   password_confirmation?: string[]
   current_password?: string[]
   otp? :string[]
+  mobile_number?: string[]
 }
 
 type State = Errors

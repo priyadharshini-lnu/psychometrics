@@ -3,24 +3,27 @@
 require 'rails_helper'
 
 describe Api::V1::ResultSerializer do
+  let(:assessment1) { create(:assessment, name: 'ass 17') }
+  let(:assessment2) { create(:assessment, name: 'ass 18') }
+
   let(:raw_data) do
     [{ key: 'first_name', name: 'First Name',
        config_data: { 'key' => 'first_name', 'type' => 'user_data', 'label' => 'First Name' }, value: 'Shuja' },
      { key: 'last_name', name: 'Last Name',
        config_data: { 'key' => 'last_name', 'type' => 'user_data', 'label' => 'Last Name' }, value: 'GPTS' },
      { key: 549, name: 'Accountability',
-       config_data: { 'type' => 'normed_factor', 'factorId' => 549, 'assessmentId' => 17 }, value: 6 },
+       config_data: { 'type' => 'normed_factor', 'factorId' => 549, 'assessmentId' => assessment1.id }, value: 6 },
      { key: 554, name: 'Efficacy',
-       config_data: { 'type' => 'normed_factor', 'factorId' => 554, 'assessmentId' => 17 }, value: 5 },
+       config_data: { 'type' => 'normed_factor', 'factorId' => 554, 'assessmentId' => assessment1.id }, value: 5 },
      { key: 2, name: 'Occupation 2',
        config_data: {
          'type' => 'ranked_occupations',
-         'label' => 'OccupationRank 1', 'order' => 'desc', 'position' => 1, 'assessmentId' => 17
+         'label' => 'OccupationRank 1', 'order' => 'desc', 'position' => 1, 'assessmentId' => assessment1.id
        }, value: 3 },
      { key: 3, name: 'Occupation 3',
        config_data: {
          'type' => 'ranked_occupations',
-         'label' => 'OccupationRank 2', 'order' => 'desc', 'position' => 2, 'assessmentId' => 18
+         'label' => 'OccupationRank 2', 'order' => 'desc', 'position' => 2, 'assessmentId' => assessment2.id
        }, value: 5 },
      { key: 'id_number', name: 'ID Number',
        config_data: {
@@ -42,11 +45,6 @@ describe Api::V1::ResultSerializer do
 
   let(:user_report) { create(:user_report) }
 
-  before do
-    create(:assessment, id: 17, name: 'ass 17')
-    create(:assessment, id: 18, name: 'ass 18')
-  end
-
   subject { described_class.new(context: { user_report: user_report }).serialize(raw_data).deep_symbolize_keys }
   it do
     expect(subject[:campaign_id]).to eq(user_report.campaign_id)
@@ -55,7 +53,7 @@ describe Api::V1::ResultSerializer do
     expect(subject[:assessments]).to match_array(
       [
         {
-          id: 17,
+          id: assessment1.id,
           name: 'ass 17',
           results: {
             normed_factors: [
@@ -75,7 +73,7 @@ describe Api::V1::ResultSerializer do
           }
         },
         {
-          id: 18,
+          id: assessment2.id,
           name: 'ass 18',
           results: {
             normed_factors: [],

@@ -1,0 +1,43 @@
+.filters {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  padding: 8px 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.td {
+  position: relative;
+}
+
+body:not([data-locale="ar"]) {
+  .filters {
+    border-left: 1px solid #020202;
+  }
+}
+
+body[data-locale="ar"] {
+  .filters {
+    border-right: 1px solid #020202;
+  }
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  flex: 1;
+
+  .bar {
+    height: 60%;
+  }
+
+  .value {
+    margin: 0 4px;
+    font-size: 0.65em;
+  }
+}

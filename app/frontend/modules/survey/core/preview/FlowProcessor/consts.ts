@@ -54,3 +54,5 @@ export const ACTIVE_DICTATION_ON_QUESTION = 'ACTIVE_DICTATION_ON_QUESTION'
 export const FETCH_QUESTION_SCORING = 'flow_processor/FETCH_QUESTION_SCORING'
 
 export const SHOW_ERROR_WARNING = 'flow_processor/SHOW_ERROR_WARNING'
+
+export const SET_ANSWERS_SAVED = 'flow_processor/SET_ANSWERS_SAVED'

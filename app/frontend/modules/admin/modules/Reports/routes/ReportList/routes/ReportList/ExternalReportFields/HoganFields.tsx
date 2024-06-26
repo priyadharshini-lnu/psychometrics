@@ -15,9 +15,7 @@ export const HoganFields: React.FC<{ form: FormInstance }> = ({ form }) => {
     fetch({ apiConfig: { filter: { type_eq: 'hogan', assessment_ids_in: assessmentIds } } })
   }, [assessmentIds])
 
-  const { data: externalReports, fetch, isLoading } = useResources<ExternalAssessment>('external_reports', {
-    trackUrl: true,
-  })
+  const { data: externalReports, fetch, isLoading } = useResources<ExternalAssessment>('external_reports')
 
   return (
     <>
@@ -25,10 +23,15 @@ export const HoganFields: React.FC<{ form: FormInstance }> = ({ form }) => {
         name={['externalSettings', 'reportId']}
         label={I18n.t('reports.columns.external_settings.hogan_report_id')}
       >
-        <Select notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}>
-          {externalReports.map(({ id, name }) => (
-            <Select.Option key={id} value={id}>{`${name} - ${id}`}</Select.Option>
-          ))}
+        <Select
+          notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
+          showSearch
+          filterOption={(input, option) => (option?.key.toLowerCase().indexOf(input.toLowerCase()) >= 0)}
+        >
+          {externalReports.map(({ id, name }) => {
+            const label = `${name} - ${id}`
+            return <Select.Option key={label} value={id}>{label}</Select.Option>
+          })}
         </Select>
       </Form.Item>
     </>

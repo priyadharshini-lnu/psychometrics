@@ -47,4 +47,73 @@ describe Users::Registration::WithRegistrationCodeForm do
 
     expect(form.valid?).to eq(true)
   end
+
+  context 'require_mobile_number is true in registration_setting' do
+    let(:valid_attrs) do
+      {
+        first_name: 'James',
+        last_name: 'Smith',
+        email: "#{Faker::Internet.user_name}@cc.com",
+        registration_code: 'abc',
+        mobile_number: '+911234567890',
+        mobile_verification_token: mobile_verification_token('+911234567890')
+      }
+    end
+
+    let!(:reg_code) do
+      create(
+        :registration_code, project: project, campaign: create(:campaign), code: 'abc',
+      start_date: 1.day.ago, end_date: 2.days.from_now
+      )
+    end
+
+    let!(:communication) do
+      create(
+        :communication, kind: :invitation, recipients: :new_users, project_campaign: reg_code.campaign
+      )
+    end
+
+    before(:each) do
+      project.registration_setting.update(require_mobile_number: true)
+      allow_any_instance_of(Administration::Clients::RegistrationCodes::VerificationQuery).
+        to receive(:query).and_return([reg_code])
+    end
+
+    it 'raise error when mobile number is empty' do
+      form = described_class.new(valid_attrs.merge(mobile_number: '')).with_context(project: project)
+
+      expect(form.valid?).to eq(false)
+
+      expect(form.errors[:mobile_number]).to include(
+        I18n.t('activemodel.errors.models.register.attributes.mobile_number.blank')
+      )
+    end
+
+    it 'raise error when mobile number not mathching with validation token' do
+      form = described_class.new(
+        valid_attrs.merge(mobile_verification_token: mobile_verification_token('911234567890'))
+      ).with_context(project: project)
+
+      expect(form.valid?).to eq(false)
+
+      expect(form.errors[:mobile_number]).to include(
+        I18n.t('activemodel.errors.models.register.attributes.mobile_number.invalid')
+      )
+    end
+
+    it 'set mobile_verified to true when mobile number is verified' do
+      form = described_class.new(
+        valid_attrs
+      ).with_context(project: project)
+
+      expect(form.valid?).to eq(true)
+      expect(form.mobile_verified).to eq(true)
+    end
+
+    private
+
+    def mobile_verification_token(mobile_number)
+      JWT.encode({ data: mobile_number }, Rails.application.secrets.encrypted_key)
+    end
+  end
 end
