@@ -17,7 +17,7 @@ describe AdminJobs::WorkshopStatusExport do
   it 'export correct headers' do
     described_class.call!(job_record)
 
-    csv = CsvUtf8.to_array(job_record.file.path)
+    csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
     expect(csv[0]).to eq([
       'Id',
       'First name',
