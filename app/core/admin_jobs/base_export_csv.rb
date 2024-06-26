@@ -11,6 +11,7 @@ module AdminJobs
         io: File.open(file_path),
         filename: File.basename(file_path)
       )
+      job_record.complete!
       FileUtils.rm_f(file_path)
 
       broadcast :ok
@@ -18,10 +19,13 @@ module AdminJobs
 
     def write_csv
       job_record.update(total_tasks: record_count)
-      CSV.open(file_path, 'wb') do |csv|
+      CsvUtf8.write(file_path) do |csv|
         write_csv_headers(csv)
         records_for_export.each_with_index do |record, index|
-          rows = data_row(record).first.is_a?(Array) ? data_row(record) : [data_row(record)]
+          row_data = data_row(record)
+          next if row_data.blank?
+
+          rows = row_data.first.is_a?(Array) ? row_data : [row_data]
           rows.each do |row|
             csv << row
           end
@@ -32,7 +36,6 @@ module AdminJobs
             job_record.update!(completed_tasks: record_count)
           end
         end
-        job_record.complete!
       end
     end
 

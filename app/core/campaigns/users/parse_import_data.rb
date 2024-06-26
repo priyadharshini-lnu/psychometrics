@@ -10,6 +10,7 @@ module Campaigns
         first_name
         last_name
         email
+        mobile_number
         password
         overwrite_password
         schedule_start_date
@@ -22,7 +23,7 @@ module Campaigns
         @campaign = campaign
         @records =
           if import_data.is_a?(ActionDispatch::Http::UploadedFile) || import_data.is_a?(Rack::Test::UploadedFile)
-            Roo::CSV.new(import_data.path).to_a
+            CsvUtf8.to_array(import_data.path)
           else
             import_data
           end

@@ -8,7 +8,9 @@ class UsersResultUpdateSchema < BaseSchema
 
       required(:expired).maybe(:bool?)
       required(:current_block).maybe do
-        hash(BlockSchema.schema(_, _))
+        hash do
+          hash(BlockSchema.schema(_, _))
+        end
       end
       required(:translations).maybe(:hash?)
       required(:progress_was_reseted).maybe(:bool?)
@@ -17,6 +19,7 @@ class UsersResultUpdateSchema < BaseSchema
       end
       required(:next_assessment_url).maybe(:str?)
       required(:scoring).maybe(:hash?)
+      required(:evaluation_session_id).maybe(:str?)
     end
   end
 end

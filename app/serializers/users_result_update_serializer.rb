@@ -2,12 +2,18 @@
 
 class UsersResultUpdateSerializer < Panko::Serializer
   include Rails.application.routes.url_helpers
-  attributes :expired, :current_block, :translations, :progress_was_reseted, :factors, :next_assessment_url, :scoring
+
+  attributes :expired, :current_block, :translations, :progress_was_reseted, :factors, :next_assessment_url, :scoring,
+             :evaluation_session_id
 
   def scoring
     return unless context[:current_user]&.assessor? && object.completed?
 
     object.scoring
+  end
+
+  def evaluation_session_id
+    object.user_assessment.evaluation_session_id
   end
 
   def next_assessment_url

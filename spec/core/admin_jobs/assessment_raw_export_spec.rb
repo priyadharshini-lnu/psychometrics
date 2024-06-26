@@ -20,67 +20,45 @@ describe AdminJobs::AssessmentRawExport do
     it 'first row in csv contains result_details_header along with question ids' do
       described_class.call!(job_record)
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_first_row = csv.row(1)
+      csv = CsvUtf8.to_array(job_record.file.path)
+      actual_first_row = csv[0]
 
-        expected_first_row = [
-          'Result ID',
-          'Subject Name',
-          'Subject Email',
-          'Evaluator Name',
-          'Evaluator Email',
-          'Relationship',
-          'Started At',
-          'Completed At',
-          'Norm',
-          'Status',
-          'Completion Reason'
-        ]
-
-        questions.each do |q|
-          expected_first_row << "QID#{q.id}"
-          expected_first_row << "QID#{q.id}_#{ImportExportConst::DURATION}"
-        end
-
-        expect(actual_first_row).to eq(expected_first_row)
+      expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+                            'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm',
+                            'Status', 'Completion Reason']
+      questions.each do |q|
+        expected_first_row << "QID#{q.id}"
+        expected_first_row << "QID#{q.id}_#{ImportExportConst::DURATION}"
       end
+      expect(actual_first_row).to eq(expected_first_row)
     end
 
     it 'second row in csv  contains  question names' do
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_second_row = csv.row(2)
+      expected_second_row = [''] * 12
+      questions.each { |q| expected_second_row << ([q.name] * 2) }
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_second_row = csv.row(2)
-        expected_second_row = [''] * 11
-        questions.each { |q| expected_second_row << ([q.name] * 2) }
-
-        expect(actual_second_row).to eq(expected_second_row.flatten)
-      end
+      expect(actual_second_row).to eq(expected_second_row.flatten)
     end
 
     it 'third row in csv contains question text' do
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_third_row = csv.row(3)
+      expected_third_row = [''] * 12
+      questions.each { |q| expected_third_row << ([q.props['questionText']] * 2) }
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_third_row = csv.row(3)
-        expected_third_row = [''] * 11
-        questions.each { |q| expected_third_row << ([q.props['questionText']] * 2) }
-
-        expect(actual_third_row).to eq(expected_third_row.flatten)
-      end
+      expect(actual_third_row).to eq(expected_third_row.flatten)
     end
 
     it 'csv contains each user result as separate row' do
       create_list(:users_result, 2, assessment: assessment, campaign: campaign, status: :in_progress)
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        expect(csv.last_row).to eq(6)
-      end
+      expect(csv.last_row).to eq(6)
     end
 
     it 'each user result row in csv have result details along with answer to the question' do
@@ -90,30 +68,28 @@ describe AdminJobs::AssessmentRawExport do
       })
 
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_result_row = csv.row(5)
+      expected_result_row = [
+        res.encoded_id,
+        "#{res.subject.first_name}, #{res.subject.last_name}",
+        res.subject.email,
+        "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
+        res.evaluator.email,
+        'Self',
+        res.user_assessment.started_at.to_s,
+        res.completed_at.to_s,
+        nil,
+        nil,
+        I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+        nil,
+        2,
+        30,
+        3,
+        nil
+      ]
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_result_row = csv.row(5)
-        expected_result_row = [
-          res.encoded_id,
-          "#{res.subject.first_name}, #{res.subject.last_name}",
-          res.subject.email,
-          "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
-          res.evaluator.email,
-          'Self',
-          res.user_assessment.started_at.to_s,
-          res.completed_at.to_s,
-          nil,
-          I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
-          nil,
-          2,
-          30,
-          3,
-          nil
-        ]
-
-        expect(actual_result_row).to eq(expected_result_row)
-      end
+      expect(actual_result_row).to eq(expected_result_row)
     end
   end
 
@@ -122,69 +98,50 @@ describe AdminJobs::AssessmentRawExport do
 
     it 'first row in csv contains result_details_header along with question ids' do
       described_class.call!(job_record)
+      csv = CsvUtf8.to_array(job_record.file.path)
+      actual_first_row = csv[0]
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_first_row = csv.row(1)
+      expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+                            'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm',
+                            'Status', 'Completion Reason']
 
-        expected_first_row = [
-          'Result ID',
-          'Subject Name',
-          'Subject Email',
-          'Evaluator Name',
-          'Evaluator Email',
-          'Relationship',
-          'Started At',
-          'Completed At',
-          'Norm',
-          'Status',
-          'Completion Reason'
-        ]
-
-        ImportExportConst::EMAIL_QUESTION_FIELDS.each do |email_field|
-          expected_first_row << "QID#{question.id}_#{email_field}"
-        end
-
-        expected_first_row << "QID#{question.id}_#{ImportExportConst::DURATION}"
-
-        expect(actual_first_row).to eq(expected_first_row)
+      ImportExportConst::EMAIL_QUESTION_FIELDS.each do |email_field|
+        expected_first_row << "QID#{question.id}_#{email_field}"
       end
+
+      expected_first_row << "QID#{question.id}_#{ImportExportConst::DURATION}"
+
+      expect(actual_first_row).to eq(expected_first_row)
     end
 
     it 'second row in csv contains question names' do
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_second_row = csv.row(2)
+      expected_second_row = [''] * 12
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_second_row = csv.row(2)
-        expected_second_row = [''] * 11
+      ImportExportConst::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_second_row << question.name }
 
-        ImportExportConst::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_second_row << question.name }
+      # For QID#{question.id}_#{ImportExportConst::DURATION}" column
+      expected_second_row << question.name
 
-        # For QID#{question.id}_#{ImportExportConst::DURATION}" column
-        expected_second_row << question.name
-
-        expect(actual_second_row).to eq(expected_second_row)
-      end
+      expect(actual_second_row).to eq(expected_second_row)
     end
 
     it 'third row in csv contains question text' do
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_third_row = csv.row(3)
+      expected_third_row = [''] * 12
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_third_row = csv.row(3)
-        expected_third_row = [''] * 11
-
-        ImportExportConst::EMAIL_QUESTION_FIELDS.count.times do |_i|
-          expected_third_row << question.props['questionText']
-        end
-
-        # For QID#{question.id}_#{ImportExportConst::DURATION}" column
+      ImportExportConst::EMAIL_QUESTION_FIELDS.count.times do |_i|
         expected_third_row << question.props['questionText']
-
-        expect(actual_third_row).to eq(expected_third_row)
       end
+
+      # For QID#{question.id}_#{ImportExportConst::DURATION}" column
+      expected_third_row << question.props['questionText']
+
+      expect(actual_third_row).to eq(expected_third_row)
     end
 
     it 'each user_result row in csv have result details along with answer to the question' do
@@ -198,33 +155,30 @@ describe AdminJobs::AssessmentRawExport do
       })
 
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_result_row = csv.row(5)
+      expected_result_row = [
+        res.encoded_id,
+        "#{res.subject.first_name}, #{res.subject.last_name}",
+        res.subject.email,
+        "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
+        res.evaluator.email,
+        'Self',
+        res.user_assessment.started_at.to_s,
+        res.completed_at.to_s,
+        nil,
+        nil,
+        I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+        nil,
+        'Rupert Smith',
+        nil,
+        nil,
+        'subject',
+        'message',
+        120
+      ]
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_result_row = csv.row(5)
-
-        expected_result_row = [
-          res.encoded_id,
-          "#{res.subject.first_name}, #{res.subject.last_name}",
-          res.subject.email,
-          "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
-          res.evaluator.email,
-          'Self',
-          res.user_assessment.started_at.to_s,
-          res.completed_at.to_s,
-          nil,
-          I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
-          nil,
-          'Rupert Smith',
-          nil,
-          nil,
-          'subject',
-          'message',
-          120
-        ]
-
-        expect(actual_result_row).to eq(expected_result_row)
-      end
+      expect(actual_result_row).to eq(expected_result_row)
     end
   end
 
@@ -233,56 +187,37 @@ describe AdminJobs::AssessmentRawExport do
 
     it 'first row in csv contains result_details_header along with question ids' do
       described_class.call!(job_record)
+      csv = CsvUtf8.to_array(job_record.file.path)
+      actual_first_row = csv[0]
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_first_row = csv.row(1)
+      expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
+                            'Relationship', 'Started At', 'Completed At', 'Completion Code', 'Norm',
+                            'Status', 'Completion Reason']
+      expected_first_row << "QID#{question.id}"
+      expected_first_row << "QID#{question.id}_#{ImportExportConst::DURATION}"
 
-        expected_first_row = [
-          'Result ID',
-          'Subject Name',
-          'Subject Email',
-          'Evaluator Name',
-          'Evaluator Email',
-          'Relationship',
-          'Started At',
-          'Completed At',
-          'Norm',
-          'Status',
-          'Completion Reason'
-        ]
-
-        expected_first_row << "QID#{question.id}"
-        expected_first_row << "QID#{question.id}_#{ImportExportConst::DURATION}"
-
-        expect(actual_first_row).to eq(expected_first_row)
-      end
+      expect(actual_first_row).to eq(expected_first_row)
     end
 
     it 'second row in csv contains question names' do
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_second_row = csv.row(2)
+      expected_second_row = [''] * 12
+      expected_second_row << ([question.name] * 2)
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_second_row = csv.row(2)
-        expected_second_row = [''] * 11
-        expected_second_row << ([question.name] * 2)
-
-        expect(actual_second_row).to eq(expected_second_row.flatten)
-      end
+      expect(actual_second_row).to eq(expected_second_row.flatten)
     end
 
     it 'third row in csv contains question text' do
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_third_row = csv.row(3)
+      expected_third_row = [''] * 12
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_third_row = csv.row(3)
-        expected_third_row = [''] * 11
-        expected_third_row << ([question.props['questionText']] * 2)
+      expected_third_row << ([question.props['questionText']] * 2)
 
-        expect(actual_third_row).to eq(expected_third_row.flatten)
-      end
+      expect(actual_third_row).to eq(expected_third_row.flatten)
     end
 
     it 'each row have result with each reply on new line into same column as answer to the question' do
@@ -297,29 +232,26 @@ describe AdminJobs::AssessmentRawExport do
       })
 
       described_class.call!(job_record)
+      csv = Roo::CSV.new(job_record.file.path, csv_options: { converters: [:numeric] })
+      actual_result_row = csv.row(5)
+      expected_result_row = [
+        res.encoded_id,
+        "#{res.subject.first_name}, #{res.subject.last_name}",
+        res.subject.email,
+        "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
+        res.evaluator.email,
+        'Self',
+        res.user_assessment.started_at.to_s,
+        res.completed_at.to_s,
+        nil,
+        nil,
+        I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+        nil,
+        "Hey\r\nHello\r\nHi",
+        120
+      ]
 
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-        actual_result_row = csv.row(5)
-
-        expected_result_row = [
-          res.encoded_id,
-          "#{res.subject.first_name}, #{res.subject.last_name}",
-          res.subject.email,
-          "#{res.evaluator.first_name}, #{res.evaluator.last_name}",
-          res.evaluator.email,
-          'Self',
-          res.user_assessment.started_at.to_s,
-          res.completed_at.to_s,
-          nil,
-          I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
-          nil,
-          "Hey\r\nHello\r\nHi",
-          120
-        ]
-
-        expect(actual_result_row).to eq(expected_result_row)
-      end
+      expect(actual_result_row).to eq(expected_result_row)
     end
   end
 end

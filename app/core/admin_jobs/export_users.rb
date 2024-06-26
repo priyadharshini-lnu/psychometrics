@@ -22,6 +22,7 @@ module AdminJobs
         user.first_name,
         user.last_name,
         user.email,
+        user.mobile_number,
         nil,
         nil,
         campaign_user.schedule_start_date,

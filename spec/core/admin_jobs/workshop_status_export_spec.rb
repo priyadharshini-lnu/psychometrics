@@ -17,12 +17,8 @@ describe AdminJobs::WorkshopStatusExport do
   it 'export correct headers' do
     described_class.call!(job_record)
 
-    actual_first_row = job_record.file.open do |f|
-      csv = Roo::CSV.new(f, csv_options: { converters: [:numeric] })
-      csv.row(1)
-    end
-
-    expect(actual_first_row).to eq([
+    csv = CsvUtf8.to_array(job_record.file.path)
+    expect(csv[0]).to eq([
       'Id',
       'First name',
       'Last name',

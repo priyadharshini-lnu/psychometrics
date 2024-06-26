@@ -15,10 +15,19 @@ interface UseAsyncRequestResponseProps<T> {
   responseType: t.Type<T>,
   numberOfTimesToPoll?: number,
   pollingInterval?: number,
+  onFailure?: (response: any) => void, // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 const PostToQueueResponseTR = t.type({
-  asyncRequestUuid: t.string,
+  asyncRequestUuid: t.union([
+    t.string,
+    t.undefined,
+  ]),
+  responseData: t.union([
+    t.string,
+    t.type({}),
+    t.undefined,
+  ]),
 })
 
 export type PostToQueueResponse = t.TypeOf<typeof PostToQueueResponseTR>
@@ -27,12 +36,13 @@ const useAsyncRequestResponse = <T>({
   url,
   data,
   responseType,
-  numberOfTimesToPoll = 5,
-  pollingInterval = 10,
+  numberOfTimesToPoll = 20,
+  pollingInterval = 5,
+  onFailure,
 }: UseAsyncRequestResponseProps<T>) => {
   const dispatch = useDispatch()
   const [asyncLoading, setAsyncLoading] = useState(false)
-  const attemptRef = useRef(0)
+  const attemptRef = useRef(1)
   const intervalIdRef: React.MutableRefObject<NodeJS.Timeout> = useRef(setTimeout(() => {}, 0))
 
   const postQueueRequest = async (
@@ -53,6 +63,13 @@ const useAsyncRequestResponse = <T>({
     return response
   }
 
+  const handleError = (error: string) => {
+    const errorMessage = error || I18n.t('common.errors.something_wrong')
+    message.error(errorMessage)
+    clearTimeout(intervalIdRef.current)
+    setAsyncLoading(false)
+  }
+
   const queryQueueStatus = async (asyncRequestUuid: string): Promise<ApiAction<T>> => {
     const action = {
       type: QUERY_QUEUE_STATUS,
@@ -69,7 +86,6 @@ const useAsyncRequestResponse = <T>({
   const startPollingForStatus = async (asyncRequestUuid: string) => {
     try {
       const { response: { status, response } } = await queryQueueStatus(asyncRequestUuid)
-
       if (status === 'completed') {
         if (response.responseType === 'redirect') {
           const redirectUrl = response.responseData
@@ -81,18 +97,20 @@ const useAsyncRequestResponse = <T>({
         return response
       }
 
-      if (status === 'request_not_found' || (attemptRef.current >= numberOfTimesToPoll)) {
-        setAsyncLoading(false)
-        message.error(I18n.t('common.errors.something_wrong'))
-        clearTimeout(intervalIdRef.current)
+      if (status === 'failed' || status === 'request_not_found' || (attemptRef.current >= numberOfTimesToPoll)) {
+        if (onFailure) {
+          onFailure(response)
+          clearTimeout(intervalIdRef.current)
+          setAsyncLoading(false)
+        } else {
+          handleError(response.responseData?.error)
+        }
         return null
       }
 
       attemptRef.current += 1
     } catch (error) {
-      setAsyncLoading(false)
-      message.error(I18n.t('common.errors.something_wrong'))
-      clearTimeout(intervalIdRef.current)
+      handleError(error)
       return null
     }
   }
@@ -104,6 +122,12 @@ const useAsyncRequestResponse = <T>({
         const { response } = await postQueueRequest(data)
         const { asyncRequestUuid } = response
 
+        if (asyncRequestUuid === undefined) {
+          setAsyncLoading(false)
+          resolve(response)
+          return response
+        }
+
         intervalIdRef.current = setInterval(() => {
           startPollingForStatus(asyncRequestUuid)
             .then((pollingResult) => {
@@ -113,13 +137,12 @@ const useAsyncRequestResponse = <T>({
               }
             })
             .catch((error) => {
-              clearInterval(intervalIdRef.current)
+              handleError(error)
               reject(error)
             })
         }, pollingInterval * 1000)
       } catch (error) {
-        message.error(I18n.t('common.errors.something_wrong'))
-        reject(error)
+        handleError(error)
       }
     })
   }

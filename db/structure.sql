@@ -2069,6 +2069,7 @@ CREATE TABLE public.factors (
     scale_min double precision,
     scale_max double precision,
     custom_formula character varying,
+    owner_id bigint,
     "precision" integer
 );
 
@@ -3621,6 +3622,38 @@ CREATE SEQUENCE public.registration_codes_id_seq
 --
 
 ALTER SEQUENCE public.registration_codes_id_seq OWNED BY public.registration_codes.id;
+
+
+--
+-- Name: registration_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.registration_settings (
+    id bigint NOT NULL,
+    require_mobile_number boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    project_id bigint NOT NULL
+);
+
+
+--
+-- Name: registration_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.registration_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: registration_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.registration_settings_id_seq OWNED BY public.registration_settings.id;
 
 
 --
@@ -5613,7 +5646,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint
+    manager_id bigint,
+    mobile_number character varying,
+    mobile_verified boolean DEFAULT false
 );
 
 
@@ -5763,7 +5798,8 @@ CREATE TABLE public.webhook_subscriptions (
     updated_at timestamp without time zone,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    auth_type integer DEFAULT 0
+    auth_type integer DEFAULT 0,
+    include_locales boolean DEFAULT false
 );
 
 
@@ -6788,6 +6824,13 @@ ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.qu
 --
 
 ALTER TABLE ONLY public.registration_codes ALTER COLUMN id SET DEFAULT nextval('public.registration_codes_id_seq'::regclass);
+
+
+--
+-- Name: registration_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_settings ALTER COLUMN id SET DEFAULT nextval('public.registration_settings_id_seq'::regclass);
 
 
 --
@@ -8032,6 +8075,14 @@ ALTER TABLE ONLY public.questions
 
 ALTER TABLE ONLY public.registration_codes
     ADD CONSTRAINT registration_codes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: registration_settings registration_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_settings
+    ADD CONSTRAINT registration_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -9553,6 +9604,13 @@ CREATE INDEX index_factors_on_dimension_id ON public.factors USING btree (dimens
 
 
 --
+-- Name: index_factors_on_owner_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_on_owner_id ON public.factors USING btree (owner_id);
+
+
+--
 -- Name: index_factors_on_parent_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10131,6 +10189,13 @@ CREATE INDEX index_questions_on_updated_by_id ON public.questions USING btree (u
 --
 
 CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.registration_codes USING btree (project_id, code);
+
+
+--
+-- Name: index_registration_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_registration_settings_on_project_id ON public.registration_settings USING btree (project_id);
 
 
 --
@@ -11629,6 +11694,14 @@ ALTER TABLE ONLY public.skill_aliases
 
 
 --
+-- Name: factors fk_rails_225e7dce0c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_225e7dce0c FOREIGN KEY (owner_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12202,6 +12275,14 @@ ALTER TABLE ONLY public.privacy_consents
 
 ALTER TABLE ONLY public.job_role_translations
     ADD CONSTRAINT fk_rails_6d3315144b FOREIGN KEY (job_role_id) REFERENCES public.job_roles(id);
+
+
+--
+-- Name: registration_settings fk_rails_6dc2196721; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_settings
+    ADD CONSTRAINT fk_rails_6dc2196721 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -13395,6 +13476,11 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240619103701'),
+('20240614104722'),
+('20240606133151'),
+('20240603125218'),
+('20240603082942'),
 ('20240523115956'),
 ('20240514065558'),
 ('20240508075421'),
@@ -13409,6 +13495,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240417083055'),
 ('20240416093121'),
 ('20240415123000'),
+('20240405101155'),
 ('20240403123008'),
 ('20240401134614'),
 ('20240401112155'),
