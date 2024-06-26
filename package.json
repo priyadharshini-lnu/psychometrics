@@ -12,6 +12,7 @@
     "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx app/frontend/ --max-warnings=0 --fix",
     "test": "vitest --run --config ./vitest.config.ts",
     "test:watch": "vitest --config ./vitest.config.ts",
+    "test:updatesnapshot": "vitest --run -u --config ./vitest.config.ts",
     "test:coverage": "vitest --coverage --detectOpenHandles && coveralls < coverage/lcov.info",
     "coveralls": "coveralls < coverage/lcov.info",
     "types": "tsc",
