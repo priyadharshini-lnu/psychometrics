@@ -17,7 +17,7 @@ describe Campaigns::Users::ParseImportData do
 
     expect(data).to eq([
       ['Active', 'First Name', 'Last Name', 'Email Address', 'Mobile number', 'Password',
-       'Overwrite password', 'Schedule start date', 'Schedule end date', 'Created Date', 'Age',
+       'Overwrite password', 'Schedule start date', 'Schedule end date', 'Created Date', 'Manager email', 'Age',
        'Gender', 'ProfileLocale', 'Custom Field1', 'Custom Field2'],
       {
         active: true,
