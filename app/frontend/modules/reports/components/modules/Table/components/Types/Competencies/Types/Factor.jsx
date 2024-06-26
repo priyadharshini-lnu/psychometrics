@@ -7,6 +7,7 @@ import styles from '../styles.less'
 import MilestoneTd from './MilestoneTd'
 import buildFakeData from '../buildFakeData'
 import Legend from '../Legend'
+import BarChart from './BarChart'
 
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
@@ -45,7 +46,7 @@ export default function Factor ({ model, filters }) {
   }
 
   const {
-    milestones, factorIds, mainHeaderColor, secondHeaderColor,
+    milestones, factorIds, mainHeaderColor, secondHeaderColor, showAsBarChart,
   } = model.props
 
   if (!filters.length || !factorIds.length) return null
@@ -115,15 +116,17 @@ export default function Factor ({ model, filters }) {
                       {I18nStore.tFactor(factor, 'description')}
                     </div>
                   </td>
-                  {milestones.map((m, i) => (
-                    <MilestoneTd
-                      filters={results}
-                      milestoneIndex={i}
-                      key={m.id}
-                      model={model}
-                      milestone={m}
-                    />
-                  ))}
+                  {showAsBarChart
+                    ? <BarChart filters={results} model={model} milestones={milestones} />
+                    : milestones.map((m, i) => (
+                      <MilestoneTd
+                        filters={results}
+                        milestoneIndex={i}
+                        key={m.id}
+                        model={model}
+                        milestone={m}
+                      />
+                    ))}
                 </tr>
               )
             })}
