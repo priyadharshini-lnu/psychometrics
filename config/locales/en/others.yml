@@ -1195,6 +1195,7 @@ en:
         blocked: This number is blocked due to too many attempts.
         failed: Verification failed. Please enter the correct OTP.
         invalid_code: Invalid code
+        invalid_number: Mobile number is incorrect. Please recheck your number
         max_attempts_reached: Too many attempts. Please wait for 10 minutes before trying again.
   browsers:
     chrome: Google Chrome

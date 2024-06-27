@@ -81,6 +81,27 @@ module Sms
             expect { subject }.to broadcast(:error, expected_response)
           end
         end
+
+        context 'when the number is wrong' do
+          let(:error_message) { 'Invalid parameter `To`: +9665500000000' }
+          let(:twilio_error) { Twilio::REST::RestError.new(error_message, Twilio::Response.new(60_200, '')) }
+
+          before do
+            allow(twilio_client).to receive_message_chain(:verify, :v2, :services, :verifications,
+                                                          :create).and_raise(twilio_error)
+          end
+
+          it 'broadcasts an error' do
+            expected_response = VerificationResponse.new(
+              error_message: 'Mobile number is incorrect. Please recheck your number',
+              status: 'error',
+              to_mobile_no: to_mobile_no,
+              verification_code: nil
+            )
+
+            expect { subject }.to broadcast(:error, expected_response)
+          end
+        end
       end
     end
   end
