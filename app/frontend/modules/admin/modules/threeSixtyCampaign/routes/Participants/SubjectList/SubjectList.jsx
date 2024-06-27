@@ -155,6 +155,8 @@ export default function SubjectList ({
                       <MoreOutlined />
                     </div>
                   )}
+                  placement="bottomRight"
+                  autoAdjustOverflow={false}
                 />
               )}
             />

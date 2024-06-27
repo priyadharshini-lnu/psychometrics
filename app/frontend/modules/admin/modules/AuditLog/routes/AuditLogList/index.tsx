@@ -132,6 +132,7 @@ const AuditLogList: React.FC<Props> = (
               spinning: isLoading,
               indicator: <Spin size="large" />,
             }}
+            scroll={{ x: 'auto' }}
           >
             <Column
               title={I18n.t('administration.audit_log.record_id')}
