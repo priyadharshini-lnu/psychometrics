@@ -631,9 +631,21 @@ en:
         header: Edit report assignment
     audit_log:
       action: Action
+      audit_logs: Audit Logs
       campaign: Campaign
       client: Client
       client_ip: Client Ip
+      collapse_filters: Collapse Filters
+      dashboard: Dashboard
+      date_presets:
+        last_30_days: Last 30 days
+        last_7_days: Last 7 days
+        last_month: Last month
+        last_week: Last week
+        today: Today
+        yesterday: Yesterday
+      date_range: Date Range
+      expand_filters: Expand Filters
       failure_reason: Failure Reason
       id: Id
       interface: Interface
@@ -712,6 +724,8 @@ en:
       assessments: Assessments
       assessor_dashboard: Assessor Dashboard
       assessors: Assessors
+      audit_log_info: Audit Log Info
+      audit_logs: Audit Logs
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy

@@ -6,6 +6,7 @@ import {
   InitTableReturnType,
   ChangeSortReturnType,
   RemoveFilterReturnType,
+  RemoveAllFiltersReturnType,
   ChangePageReturnType,
   ChangeFilterReturnType,
   SetTableConfigFromUrlType,
@@ -13,6 +14,7 @@ import {
   CHANGE_FILTER,
   CHANGE_PAGE,
   REMOVE_FILTER,
+  REMOVE_ALL_FILTERS,
   CHANGE_SORT,
   SET_TABLE_CONFIG,
   REMOVE_SORT,
@@ -88,6 +90,13 @@ const HANDLERS = {
       state,
       [tableName, 'filters'],
       filters => (_.omit(filters, [filterName])),
+    )
+  ),
+  [REMOVE_ALL_FILTERS]: (state: State, { payload: { tableName } }: RemoveAllFiltersReturnType) => (
+    updateIn(
+      state,
+      [tableName, 'filters'],
+      () => ({}),
     )
   ),
 }

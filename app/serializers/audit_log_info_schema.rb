@@ -4,28 +4,28 @@
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Lint/UnderscorePrefixedVariableName
 
-class AuditLogSchema < BaseSchema
+class AuditLogInfoSchema < BaseSchema
   def self.schema(_, _)
     Dry::Schema.JSON do
       config.validate_keys = false
 
       required(:id).filled(:int?)
       required(:action).filled(:str?)
-      optional(:campaign_id).maybe(:int?)
-      optional(:client_id).maybe(:int?)
-      optional(:payload).maybe(:hash?)
-      optional(:project_id).maybe(:int?)
+      required(:campaign_id).maybe(:int?)
+      required(:client_id).maybe(:int?)
+      required(:payload).maybe(:hash?)
+      required(:project_id).maybe(:int?)
       required(:record_id).maybe(:int?)
       required(:record_type).filled(:str?)
-      optional(:request).maybe(:hash?)
+      required(:request).maybe(:hash?)
       required(:user_id).maybe(:int?)
       required(:created_at).filled(:str?)
-      optional(:request_uuid).maybe(:str?)
-      optional(:client_ip).maybe(:str?)
-      optional(:interface).maybe(:str?)
-      optional(:user_agent).maybe(:str?)
-      optional(:outcome).filled(:str?)
-      optional(:failure_reason).maybe(:str?)
+      required(:request_uuid).maybe(:str?)
+      required(:client_ip).maybe(:str?)
+      required(:interface).maybe(:str?)
+      required(:user_agent).maybe(:str?)
+      required(:outcome).filled(:str?)
+      required(:failure_reason).maybe(:str?)
       required(:client).maybe do
         hash do
           required(:id).filled(:int?)
@@ -51,7 +51,7 @@ class AuditLogSchema < BaseSchema
           required(:full_name).filled(:str?)
         end
       end
-      optional(:active_record_audits).array(ActiveRecordAuditSchema.schema(_, _))
+      required(:active_record_audits).array(ActiveRecordAuditSchema.schema(_, _))
     end
   end
 end
