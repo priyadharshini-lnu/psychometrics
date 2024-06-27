@@ -5,6 +5,7 @@ export const WebhookTR = t.type({
   projectId: t.number,
   url: t.string,
   active: t.boolean,
+  includeLocales: t.boolean,
   description: t.string,
   createdAt: t.string,
   updatedAt: t.string,

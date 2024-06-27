@@ -89,13 +89,17 @@ module CampaignReports
     end
 
     def user_reports_with_pdf
+      start_date = job_record.data['start_date']
+      end_date = job_record.data['end_date']
+
+      user_report_ids = ::Reports::BulkDownloadsQuery.new(campaign_reports,
+                                                          { start_date: start_date,
+                                                            end_date: end_date }).query.pluck(:id)
+
       UserReport.
         joins(:pdf_file_attachment).
         includes(:user, :report).
-        where(
-          report_id: campaign_reports.pluck(:report_id),
-          campaign_id: campaign_reports.first.campaign_id
-        )
+        where(id: user_report_ids).where.not(pdf: nil)
     end
   end
 end

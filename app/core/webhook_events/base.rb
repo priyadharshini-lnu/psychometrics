@@ -8,6 +8,7 @@ module WebhookEvents
     attribute :campaign, type: Hash
     attribute :ctx, type: Hash
     attribute :event_time, type: DateTime
+    attribute :locale, type: Hash
 
     def self.call(ctx)
       event = new(ctx: ctx)
@@ -42,6 +43,7 @@ module WebhookEvents
           id: ctx[:campaign]&.id,
           name: ctx[:campaign]&.name
         },
+        locale: ctx[:locale],
         event_time: DateTime.now
       }
     end

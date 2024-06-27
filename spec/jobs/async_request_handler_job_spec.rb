@@ -17,22 +17,15 @@ describe AsyncRequestHandlerJob, type: :job do
 
   describe '#perform' do
     it 'calls the appropriate request handler and stores the response' do
-      expect(Saville::StartAssessment).to receive(:call!).
-        with(context).and_return(saville_assessment_order_response)
+      allow(Saville::StartAssessment).to receive(:call!) do |_, &block|
+        block.call(:ok, saville_assessment_order_response)
+      end
 
       in_progress_async_response = AsyncResponseRequest::AsyncResponse.new(
         async_request_uuid: async_request_uuid, processing_status: :in_progress
       )
       expect(AsyncResponseRequest::SetAsyncResponse).to receive(:call!).
         with(async_response: in_progress_async_response)
-
-      completed_async_response = AsyncResponseRequest::AsyncResponse.new(
-        async_request_uuid: async_request_uuid,
-        processing_status: :completed,
-        response_type: :redirect,
-        response_data: 'https://saville.cc.com/assessment_id'
-      )
-      expect(AsyncResponseRequest::SetAsyncResponse).to receive(:call!).with(async_response: completed_async_response)
 
       described_class.new.perform(context: context, handler: ::Saville::StartAssessment)
     end

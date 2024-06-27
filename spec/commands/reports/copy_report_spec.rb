@@ -41,13 +41,20 @@ describe Reports::CopyReport do
     end
 
     context 'Success' do
-      subject { described_class.call(report.id, user, "Copy of #{report.name}") }
+      subject { described_class.call(report.id, user, new_report_name: "Copy of #{report.name}") }
 
       it 'broadcasts :ok' do
         expect { subject }.to broadcast(:ok)
         expect(subject[:ok]).to be_an_instance_of(Report)
         expect(subject[:ok].persisted?).to be_truthy
         expect(subject[:ok].name).to eq("Copy of #{report.name}")
+      end
+
+      it 'saves passed report name' do
+        report_name = Faker::Name.name
+        new_report = described_class.call!(report.id, user, new_report_name: report_name)
+
+        expect(new_report.name).to eq(report_name)
       end
 
       it 'copies all pages' do

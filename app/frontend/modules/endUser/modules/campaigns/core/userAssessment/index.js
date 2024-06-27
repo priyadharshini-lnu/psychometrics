@@ -7,11 +7,20 @@ export const getCampaignRemainingTime = state => (
   _.get(state, ['campaigns', 'userAssessment', 'results', 'remaining_campaign_time'])
 )
 
+const SET_INVALIDATED = 'userAssessment/SET_INVALIDATED'
+
 const FETCH = 'userAssessment/FETCH'
 const FETCH_RESULTS = 'userAssessment/FETCH_RESULTS'
 const FETCH_FAILURE = 'userAssessment/FETCH_FAILURE'
 
 const FETCH_ASSESSMENT = 'userAssessment/FETCH_ASSESSMENT'
+
+const VALIDATE_SESSION = 'userAssessment/VALIDATE_SESSION'
+
+export const setInvalidated = () => ({
+  type: SET_INVALIDATED,
+})
+
 
 export const fetchAssessment = (userAssessmentId, isEdit) => ({
   type: FETCH_ASSESSMENT,
@@ -41,6 +50,15 @@ export const fetchResults = (userAssessmentId, isEdit) => ({
   },
 })
 
+
+export const validateSession = (userAssessmentId, sessionId) => ({
+  type: VALIDATE_SESSION,
+  request: {
+    url: `/user_assessments/${userAssessmentId}/validate_session`,
+    body: { session_id: sessionId },
+  },
+})
+
 export const defaultState = {
   results: {
     subject: {},
@@ -51,6 +69,7 @@ export const defaultState = {
   userAssessmentData: {},
   loaded: false,
   error: false,
+  invalidated: false,
 }
 
 const HANDLERS = {
@@ -58,6 +77,9 @@ const HANDLERS = {
   [FETCH_FAILURE]: state => ({ ...state, loaded: true, error: true }),
   [FETCH_ASSESSMENT]: (state, action) => ({ ...state, assessment: action.response }),
   [FETCH_RESULTS]: (state, action) => ({ ...state, results: action.response, loaded: true }),
+  [SET_INVALIDATED]: state => ({
+    ...state, invalidated: true,
+  }),
   [ACCEPT_POLICY]: state => setIn(state, ['results', 'privacy_consent_required'], true),
 }
 

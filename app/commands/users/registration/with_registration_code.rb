@@ -25,7 +25,8 @@ module Users
       private
 
       def create_user
-        user_form = Campaigns::Users::CreateForm.new(form.attributes.slice(:first_name, :last_name, :email))
+        user_form = Campaigns::Users::CreateForm.new(form.attributes.slice(:first_name, :last_name, :email,
+                                                                           :mobile_number, :mobile_verified))
         Campaigns::Users::Create.call(user_form, registration_code.campaign) do
           on(:ok) do
             increment_registration_code_usage(registration_code)
@@ -36,7 +37,7 @@ module Users
 
       # TODO: Remove once migration to new campaign structure is complete
       def legacy_create_user
-        attributes = form.attributes.except(:registration_code)
+        attributes = form.attributes.except(:registration_code, :mobile_verification_token)
         attributes[:project_id] = project.id
         attributes[:terms] = true
         attributes[:create_by_invite] = true

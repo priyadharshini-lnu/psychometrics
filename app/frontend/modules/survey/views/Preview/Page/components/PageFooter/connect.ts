@@ -4,6 +4,7 @@ import { saveCurrentPage } from '~/modules/survey/core/preview/FlowProcessor/act
 
 const mapStateToProps = state => ({
   options: _.get(state, ['campaigns', 'campaign', 'options', 'participants']),
+  invalidSession: state.preview.invalidSession,
 })
 
 const mapDispatchToProps = {

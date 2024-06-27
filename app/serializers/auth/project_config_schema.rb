@@ -12,6 +12,7 @@ module Auth
         required(:background).maybe(:str?)
         required(:saml_login_allowed).maybe(:bool?)
         required(:saml_enforced).maybe(:bool?)
+        required(:require_mobile_number).maybe(:bool?)
         required(:client_logo).maybe(:str?)
         required(:secondary_logo).maybe(:str?)
         required(:primary_color).maybe(:str?)

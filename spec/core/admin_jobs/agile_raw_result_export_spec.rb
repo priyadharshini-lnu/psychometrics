@@ -34,12 +34,8 @@ describe AdminJobs::AgileRawResultExport do
 
       described_class.call!(job_record)
 
-      actual_first_row = nil
-
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f)
-        actual_first_row = csv.row(1)
-      end
+      csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
+      actual_first_row = csv[0]
 
       expected_first_row = [
         'ID',
@@ -72,13 +68,8 @@ describe AdminJobs::AgileRawResultExport do
 
       described_class.call!(job_record)
 
-      actual_second_row = nil
-
-      job_record.file.open do |f|
-        csv = Roo::CSV.new(f)
-        actual_second_row = csv.row(2)
-      end
-
+      csv = Roo::CSV.new(active_storage_file_path(job_record.file))
+      actual_second_row = csv.row(2)
       expected_second_row = [
         users_result.encoded_id,
         users_result.subject.first_name,
@@ -100,7 +91,7 @@ describe AdminJobs::AgileRawResultExport do
         '2022-05-09T07:48:51+00:00'
       ]
 
-      expect(actual_second_row).to eq(expected_second_row)
+      expect(actual_second_row).to eq(expected_second_row.flatten)
     end
   end
 end

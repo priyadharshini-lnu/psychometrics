@@ -15,6 +15,9 @@ module AllowedPermissions
       security
       webhooks
     ],
+    'registration_settings' => %w[
+      manage
+    ],
     'dashboards' => %w[view accesssheet_view accesssheet_manage accesssheet_settings],
     'sms_invites' => %w[view manage],
     'sms_histories' => %w[view],
@@ -76,6 +79,9 @@ module AllowedPermissions
       security
       webhooks
       privacy_settings
+    ],
+    'registration_settings' => %w[
+      manage
     ],
     'campaigns' => %w[
       view

@@ -140,12 +140,15 @@ ar:
       sso_btn: تسجيل الدخول باستخدام الدخول الموحد
       title: مرحباً
     logout: تسجيل خروج
+    mobile_number: رقم الجوال
     new_password: كلمة السر الجديدة
     otp:
       code: رمز
       code_placeholder: OTP
       description: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       resend: إعادة إرسال OTP
+      resend_success: إعادة إرسال رمز التحقق
+      sms_description: الرجاء إدخال الرمز المؤقت الذي تم إرساله لهاتفك النقال
       submit: تسليم
       title: كلمة السر لمرة واحدة
     password: كلمه السر
@@ -153,7 +156,7 @@ ar:
     password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
     password_placeholder: أدخل كلمة مرور جديدة
     registration:
-      description: املأ التفاصيل أدناه للتسجيل وإنشاء حساب جديد
+      description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
       email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
       first_name: الاسم الاول
       first_name_placeholder: أدخل اسمك الأول
@@ -178,6 +181,12 @@ ar:
     sign_out: تسجيل خروج
     sign_up: تسجيل
     terms_link: <a href="%{terms_url}"> بيان الخصوصية</a>
+    verify_mobile_number:
+      error:
+        blocked: تم حظر رقم الجوال بسبب كثرة المحاولات.
+        failed: الرمز المدخل خاطئ الرجاء إدخال رمز التحقق من جديد
+        invalid_code: الرمز المدخل خاطئ
+        max_attempts_reached: تم إجراء أكثر من محاولة خاطئة الرجاء المحاولة من جديد بعد ١٠ دقائق.
   campaign:
     all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
     all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
@@ -352,6 +361,7 @@ ar:
       unresolve: إلغاء الحل
       update: تحديث
       upload: تحميل
+      verify: تحقق
     column:
       action: نشاط
       category: فئة
@@ -420,6 +430,28 @@ ar:
     two_factor_authentication:
       attempt: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       code_has_been_sent: تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل
+  errors:
+    error: الخطأ
+    error_500: هناك خطأ ما. تواصل مع مديرك.
+    forbidden: لم يكن لديك الوصول إلى هذه الصفحة
+    forbidden_action: ليس لديك أذونات لهذا الإجراء
+    invalid_token: هناك خطأ ما. يرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
+    messages:
+      already_confirmed: تم تأكيده بالفعل، يرجى محاولة تسجيل الدخول
+      carrierwave_direct_allowed_extensions: تم تحميل نوع ملف خاطئ. الامتدادات المسموح بها هي %{extensions}
+      carrierwave_direct_filename_invalid: ''
+      confirmation_period_expired: يجب التأكيد خلال %{period}، يرجى طلب تأكيد جديد
+      expired: انتهت صلاحيته، يرجى طلب واحدة جديدة
+      iiht_cannot_reset: لا يمكن إعادة تعيين هذا التقييم لأنه تم الوصول إلى الحد الأقصى لعدد مرات إعادة التعيين.
+      not_found: غير معثور عليه
+      not_locked: لم يكن مقفلا
+      not_saved:
+        one: 'خطأ واحد أدى إلى منع حفظ %{resource} هذا:'
+        other: "%{count} أخطاء منعت حفظ %{resource} هذا:"
+    module_error: حدث خطأ ما في هذه الوحدة، يرجى الاتصال بالإدارة.
+    module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
+    module_props_error: حدث خطأ ما في هذه الوحدة.
+    try_again: حاول مرة اخرى
   frontend:
     activate: تنشيط
     are_you_sure: هل أنت متأكد؟

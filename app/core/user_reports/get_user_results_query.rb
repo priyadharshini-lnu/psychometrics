@@ -10,20 +10,22 @@ module UserReports
     end
 
     def query
+      assessment_ids = user_report.report.assessment_ids
       user_assessments = UserAssessment.where(
-        assessment_id: user_report.report.assessment_ids,
+        assessment_id: assessment_ids,
         subject_id: user_report.user_id,
         # Disabling this condition for the assessor form to work in the report
         # evaluator_id: user_report.user_id,
         status: :completed
       ).order(completed_at: :desc)
-
       if view_report_as == :lead_assessor
         lead_form = UserAssessments::GetLeadUserAssessmentForSubject.call!(user_report.campaign, user_report.user)
-        user_assessments = user_assessments.or(
-          UserAssessment.where(campaign_id: user_report.campaign_id, assessment_id: lead_form.assessment_id,
-                               status: :in_progress, subject_id: user_report.user_id)
-        )
+        if lead_form.present? && assessment_ids.include?(lead_form.assessment_id)
+          user_assessments = user_assessments.or(
+            UserAssessment.where(campaign_id: user_report.campaign_id, assessment_id: lead_form.assessment_id,
+                                 status: :in_progress, subject_id: user_report.user_id)
+          )
+        end
       end
 
       user_assessments = user_assessments.each_with_object({}) do |ua, hash|

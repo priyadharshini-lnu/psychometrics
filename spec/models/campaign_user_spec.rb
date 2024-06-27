@@ -3,6 +3,29 @@
 require 'rails_helper'
 
 describe CampaignUser, type: :model do
+  describe 'Callbacks' do
+    context '#publish_campaign_results_available' do
+      let!(:campaign_user) { create(:campaign_user) }
+      let!(:campaign_factor) { create(:campaign_factor, campaign: campaign_user.campaign) }
+
+      it 'publishes campaign_results_available webhook event' do
+        webhook = CampaignUsers::Webhook.new(campaign_user)
+        expect(WebhookSubscriptions::Publish).to receive(:call).with(
+          campaign_user.campaign.project,
+          :campaign_results_available,
+          webhook.send(:campaign_results_available_data),
+          webhook_id: nil
+        )
+        campaign_user.update(campaign_scores_finalized: true)
+      end
+
+      it 'does not publish campaign_results_available webhook event if campaign_scores_finalized is false' do
+        expect(WebhookSubscriptions::Publish).not_to receive(:call)
+        campaign_user.update(campaign_scores_finalized: false)
+      end
+    end
+  end
+
   describe 'scheduled_at' do
     it 'if campaign is inactive, gives max date between campaign start_date and schedule_start_date' do
       campaign = create(:campaign, status: :inactive, start_date: 2.days.from_now)

@@ -901,6 +901,15 @@ Rails.application.routes.draw do
       post :accept_privacy, on: :collection
     end
 
+    scope module: :users do
+      resources :mobile_number_verifications, only: [] do
+        collection do
+          post :send_verification_code
+          post :verify
+        end
+      end
+    end
+
     resources :highlights, only: %i[update]
 
     scope module: :end_user do
@@ -993,6 +1002,13 @@ Rails.application.routes.draw do
           get :assessment
           get :pass
           get :begin
+          get :validate_session
+        end
+      end
+
+      resource :async_requests, only: [] do
+        collection do
+          get :status
         end
       end
 
@@ -1271,6 +1287,7 @@ Rails.application.routes.draw do
             jsonapi_resources :webhooks do
               post :send_test
             end
+            jsonapi_resources :registration_settings, only: %i[index update]
           end
           jsonapi_resources :profile_settings, only: %i[index update]
           jsonapi_resources :dashboards, only: %i[index show create update] do

@@ -15,8 +15,10 @@ describe CampaignUsers::AssignReportsAndAssessments::ProcessImport do
   let!(:norm) { create(:norm) }
   let!(:user) { create(:user, email: 'john@cc.com') }
   let!(:user2) { create(:user, email: 'smith@cc.com') }
+  let!(:user3) { create(:user, email: 'without_norm@cc.com') }
   let!(:campaign_user1) { create(:campaign_user, campaign: campaign, user: user) }
   let!(:campaign_user2) { create(:campaign_user, campaign: campaign, user: user2) }
+  let!(:campaign_user3) { create(:campaign_user, campaign: campaign, user: user3) }
 
   let(:admin_job_record) { create(:admin_job_record) }
   let(:import_data) do
@@ -47,7 +49,14 @@ describe CampaignUsers::AssignReportsAndAssessments::ProcessImport do
         report_bundle_id: report.report_families.first.id,
         report_id: report.id,
         assessment_id: assessment.id,
-        norm_id: norm.id
+        norm_id: nil
+      },
+      {
+        email: 'without_norm@cc.com',
+        report_bundle_id: report.report_families.first.id,
+        report_id: report.id,
+        assessment_id: assessment.id,
+        norm_id: nil
       }
     ]
   end
@@ -61,8 +70,10 @@ describe CampaignUsers::AssignReportsAndAssessments::ProcessImport do
 
     user1 = campaign.users.find_by(email: 'john@cc.com')
     user2 = campaign.users.find_by(email: 'smith@cc.com')
+    user3 = campaign.users.find_by(email: 'without_norm@cc.com')
     user1_campaign_user = campaign.campaign_users.find_by(user_id: user1.id)
     user2_campaign_user = campaign.campaign_users.find_by(user_id: user2.id)
+    user3_campaign_user = campaign.campaign_users.find_by(user_id: user3.id)
 
     expect(user1_campaign_user.user_reports.count).to eq(2)
     expect(user1_campaign_user.user_reports.find_by(report_id: report.id)).to be_present
@@ -70,8 +81,12 @@ describe CampaignUsers::AssignReportsAndAssessments::ProcessImport do
     expect(user1_campaign_user.user_assessments.count).to eq(2)
     expect(user1_campaign_user.user_assessments.find_by(assessment_id: assessment.id)).to be_present
     expect(user1_campaign_user.user_assessments.find_by(assessment_id: assessment2.id)).to be_present
+    expect(user1_campaign_user.user_assessments.find_by(assessment_id: assessment.id).norm_id).to be norm.id
+    expect(user1_campaign_user.user_assessments.find_by(assessment_id: assessment.id).fixed_norm).to be_truthy
     expect(user2_campaign_user.user_reports.count).to eq(1)
     expect(user2_campaign_user.user_reports.find_by(report_id: report.id)).to be_present
+    expect(user3_campaign_user.user_assessments.find_by(assessment_id: assessment.id).norm_id).to be nil
+    expect(user3_campaign_user.user_assessments.find_by(assessment_id: assessment.id).fixed_norm).to be_falsey
   end
 
   it 'raises Licenses::NotEnoughError' do

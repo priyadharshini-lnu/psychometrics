@@ -17,6 +17,7 @@ class UsersResultUpdateSchema < BaseSchema
       end
       required(:next_assessment_url).maybe(:str?)
       required(:scoring).maybe(:hash?)
+      required(:evaluation_session_id).maybe(:str?)
     end
   end
 end

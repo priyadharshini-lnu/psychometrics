@@ -9,12 +9,16 @@ class UsersResultSerializer < Panko::Serializer
              :prev_pages, :timed_out, :completed_at, :factors, :remaining_campaign_time,
              :remaining_assessment_time, :reset_count, :hash_id, :proctoring_enabled,
              :privacy_consent_required, :other_pending_assessments_count, :prework, :relationship, :campaign_options,
-             :media_responses, :participant, :campaign_user, :user
+             :media_responses, :participant, :campaign_user, :user, :evaluation_session_id
 
   has_one :subject, serializer: UserSerializer
 
   delegate :reset_count, :started_at, :prework, :other_pending_assessments_count, to: :user_assessment
   delegate :remaining_campaign_time, to: :current_campaign_user, allow_nil: true
+
+  def evaluation_session_id
+    object.user_assessment.evaluation_session_id
+  end
 
   def campaign_options
     ::EndUser::CampaignOptionsSerializer.new(campaign_options: campaign.campaign_options).

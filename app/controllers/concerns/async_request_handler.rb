@@ -31,7 +31,7 @@ module AsyncRequestHandler
   end
 
   def async_request_uuid
-    @async_request_uuid ||= "#{uuid}|#{current_user.id}"
+    @async_request_uuid ||= "#{uuid}|#{current_user&.id}"
   end
 
   def uuid

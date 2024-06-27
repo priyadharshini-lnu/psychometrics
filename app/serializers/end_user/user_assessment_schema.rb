@@ -35,6 +35,7 @@ module EndUser
         required(:meeting_time).maybe(:str?)
         required(:meeting_link).maybe(:str?)
         required(:require_scheduling).maybe(:bool?)
+        required(:evaluation_session_id).maybe(:str?)
       end
     end
   end

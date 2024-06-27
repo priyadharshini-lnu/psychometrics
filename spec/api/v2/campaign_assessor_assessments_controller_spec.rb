@@ -123,14 +123,14 @@ subject_assessor_assessments" do
             }
           }
         }]
-        let!(:workshop_subject) { create(:workshop_subject) }
-        let!(:campaign) { create(:campaign) }
-        let!(:subject_assessment) { create(:assessment) }
-        let!(:assessment) { create(:assessment, linked_assessment_id: subject_assessment.id) }
-        let!(:campaign_assessor_assessment) do
+        let(:workshop_subject) { create(:workshop_subject) }
+        let(:campaign) { create(:campaign) }
+        let(:linked_assessment) { create(:assessment) }
+        let(:assessment) { create(:assessment, linked_assessment_id: linked_assessment.id) }
+        let(:campaign_assessor_assessment) do
           create(:campaign_assessor_assessment, campaign: campaign, assessment: assessment)
         end
-        let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign, assessor_form_id: assessment.id) }
+        let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign) }
         let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
         let!(:self_relationship) { create(:relationship, name: 'Self', type: :global) }
         let!(:user_assessment) do
@@ -144,9 +144,8 @@ subject_assessor_assessments" do
           create(:user_assessment, relationship: Relationship.self_relationship,
                                     subject: workshop_subject.user,
                                     evaluator: workshop_subject.user,
-                                    campaign: campaign,
-                                    assessment: subject_assessment,
-                                    meeting_type: :not_available)
+                                    assessment: linked_assessment,
+                                    campaign: campaign)
         end
         let(:workshop_subject_id) { workshop_subject.id.to_s }
         let(:campaign_id) { campaign.id.to_s }
@@ -161,7 +160,7 @@ subject_assessor_assessments" do
             'status' => user_assessment.status,
             'schedule_time' => user_assessment.schedule_time,
             'meeting_link' => user_assessment.meeting_link,
-            'linked_activity' => assessment.linked_assessment&.name,
+            'linked_activity' => campaign_assessor_assessment.assessment.linked_assessment&.name,
             'subject_linked_activity_present' => true,
             'assessor' => {
               'id' => user_assessment.evaluator.id.to_s,

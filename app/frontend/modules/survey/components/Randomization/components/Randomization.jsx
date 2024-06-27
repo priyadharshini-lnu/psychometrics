@@ -123,31 +123,33 @@ export class Randomization extends Component {
             {entityName}
             s
           </label>
-          <label className={styles.inputLabel}>
-            <input
-              checked={type === 'ByFactors'}
-              type="radio"
-              value="ByFactors"
-              onChange={this.handleChangeType}
-            />
-            {' '}
-            Select only
-            <input
-              value={type === 'ByFactors' ? questions : undefined}
-              onChange={this.handleChangeQuestions}
-              className={styles.questionInput}
-              disabled={type !== 'ByFactors'}
-            />
-            questions per factor and show
-            <input
-              value={type === 'ByFactors' ? perPage : undefined}
-              onChange={this.handleChangePerPage}
-              className={styles.questionInput}
-              disabled={type !== 'ByFactors'}
-            />
-            {' '}
-            per page
-          </label>
+          {entityName === 'question' && (
+            <label className={styles.inputLabel}>
+              <input
+                checked={type === 'ByFactors'}
+                type="radio"
+                value="ByFactors"
+                onChange={this.handleChangeType}
+              />
+              {' '}
+              Select only
+              <input
+                value={type === 'ByFactors' ? questions : undefined}
+                onChange={this.handleChangeQuestions}
+                className={styles.questionInput}
+                disabled={type !== 'ByFactors'}
+              />
+              questions per factor and show
+              <input
+                value={type === 'ByFactors' ? perPage : undefined}
+                onChange={this.handleChangePerPage}
+                className={styles.questionInput}
+                disabled={type !== 'ByFactors'}
+              />
+              {' '}
+              per page
+            </label>
+          )}
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>

@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { Space, Typography } from 'antd'
+import { Space, Typography, Alert } from 'antd'
 import { RootState } from '~/modules/survey/core/rootReducers'
 
 import { EndOfAssessmentElementProps } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
@@ -25,6 +25,8 @@ const connector = connect(({ preview }: RootState) => ({
   nextAssessmentUrl: preview.nextAssessmentUrl,
   otherPendingAssessmentCount: preview.otherPendingAssessmentCount,
   assessmentId: preview.id,
+  invalidSession: preview.invalidSession,
+
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -44,6 +46,7 @@ const EndPage: FC<Props> = ({
   otherPendingAssessmentCount,
   allowMultipleResponses,
   assessmentId,
+  invalidSession,
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -67,39 +70,56 @@ const EndPage: FC<Props> = ({
     <div className={styles.page}>
       <div className={styles.logo}>{/* <img src={Logo} /> */}</div>
       <div className={styles.end}>
-        <Space direction="vertical" align="center">
-          <Typography.Text>
-            {message}
-            <UniqueID endOfAssessmentElementProps={endOfAssessmentElementProps} dbResult={dbResult} />
-          </Typography.Text>
-          {!showScoringOnEndPage && !isAnonymousAssessment && (
-            <>
-              {otherPendingAssessmentCount > 0 && (
-              <Typography.Title level={3}>
-                {I18n.t('assessments.actions.pending_tasks',
-                  { count: otherPendingAssessmentCount, locale: I18n.uiLocale })
+        {invalidSession ? (
+          <Space direction="vertical">
+            <Alert
+              style={{ textAlign: 'initial' }}
+              message={I18n.t('assessments.page.invalid_session.title')}
+              description={I18n.t('assessments.page.invalid_session.description')}
+              type="error"
+              showIcon
+            />
+            {!isAnonymousAssessment && (
+              <a href={dashboardUrl}>
+                {I18n.t('assessments.actions.back_to_dashboard', { locale: I18n.uiLocale })}
+              </a>
+            )}
+          </Space>
+        ) : (
+          <Space direction="vertical" align="center">
+            {!showScoringOnEndPage && !isAnonymousAssessment && (
+              <>
+                  {otherPendingAssessmentCount > 0 && (
+                  <Typography.Title level={3}>
+                    {I18n.t('assessments.actions.pending_tasks',
+                      { count: otherPendingAssessmentCount, locale: I18n.uiLocale })
                  }
-              </Typography.Title>
-              )}
-              <a href={`${dashboardUrl}?user_assessment_id=${userAssessmentId}`}>
-                {I18n.t('assessments.actions.goto_dashboard', { locale: I18n.uiLocale })}
-              </a>
-            </>
-          )}
-          {isAnonymousAssessment && allowMultipleResponses && (
-            <form method="post" action={location.pathname}>
-              <input type="hidden" name="_method" value="DELETE" />
-              <input
-                type="hidden"
-                name="authenticity_token"
-                value={document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') as string}
-              />
-              <a href="#" onClick={e => (e.currentTarget.parentNode as HTMLFormElement).submit()}>
-                {I18n.t('assessments.actions.submit_another_response', { locale: I18n.uiLocale })}
-              </a>
-            </form>
-          )}
-        </Space>
+                  </Typography.Title>
+                  )}
+                <a href={`${dashboardUrl}?user_assessment_id=${userAssessmentId}`}>
+                  {I18n.t('assessments.actions.goto_dashboard', { locale: I18n.uiLocale })}
+                </a>
+              </>
+            )}
+            {isAnonymousAssessment && allowMultipleResponses && (
+              <form method="post" action={location.pathname}>
+                <input type="hidden" name="_method" value="DELETE" />
+                <input
+                  type="hidden"
+                  name="authenticity_token"
+                  value={document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') as string}
+                />
+                <a href="#" onClick={e => (e.currentTarget.parentNode as HTMLFormElement).submit()}>
+                  {I18n.t('assessments.actions.submit_another_response', { locale: I18n.uiLocale })}
+                </a>
+              </form>
+            )}
+            <Typography.Text>
+              {message}
+              <UniqueID endOfAssessmentElementProps={endOfAssessmentElementProps} dbResult={dbResult} />
+            </Typography.Text>
+          </Space>
+        )}
       </div>
       <ScoringTable
         showScoringOnEndPage={showScoringOnEndPage}

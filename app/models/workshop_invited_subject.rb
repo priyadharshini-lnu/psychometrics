@@ -5,6 +5,7 @@ class WorkshopInvitedSubject < ApplicationRecord
 
   belongs_to :workshop_invite
   belongs_to :user
+  belongs_to :reschedule_workshop, class_name: 'Workshop', optional: true
 
   has_one :workshop_subject, dependent: :nullify
   has_many :workshops, through: :workshop_invite
@@ -22,6 +23,7 @@ class WorkshopInvitedSubject < ApplicationRecord
   }
 
   after_commit :send_workshop_invite_email, on: %i[create]
+  after_commit :publish_scheduling_invited, on: %i[create]
 
   scope :invites, -> { where(status: :pending) }
   scope :bookings, lambda {
@@ -42,6 +44,10 @@ class WorkshopInvitedSubject < ApplicationRecord
     return unless communication
 
     communication.emails.create!(campaign_user: campaign_user, workshop_invite: workshop_invite)
+  end
+
+  def publish_scheduling_invited
+    WorkshopInvites::Webhook.new(self).publish_scheduling_invited
   end
 
   def reschedulable?

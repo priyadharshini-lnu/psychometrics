@@ -11,6 +11,7 @@ import {
   TOGGLE_ENABLE_SINGLE_QUESTION, CHANGE_DEFAULT_NORM,
   TOGGLE_INSTRUCTIONS, UPDATE_INSTRUCTIONS_CONTENT,
   UPDATE_LINKED_QUESTIONS,
+  TOGGLE_ENABLE_SAVE,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -125,6 +126,9 @@ const HANDLERS = {
   [CHANGE_DEFAULT_NORM]: (state, { id }) => (setIn(state, ['default_norm_id'], id)),
   [UPDATE_FLOW]: (state, { flow }) => ({ ...state, flow }),
   [TOGGLE_ENABLE_BACK]: state => setIn(state, ['enable_back'], !state.enable_back),
+  [TOGGLE_ENABLE_SAVE]: state => setIn(
+    state, ['options', 'enable_save'], !state.options.enable_save,
+  ),
   [TOGGLE_ENABLE_PROGRESS]: state => setIn(state, ['enable_progress'], !state.enable_progress),
   [TOGGLE_ENABLE_SINGLE_QUESTION]: state => setIn(
     state, ['options', 'enable_single_question_page'], !state.options.enable_single_question_page,

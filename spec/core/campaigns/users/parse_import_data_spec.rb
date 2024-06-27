@@ -16,14 +16,15 @@ describe Campaigns::Users::ParseImportData do
     data = described_class.call!(file, campaign)
 
     expect(data).to eq([
-      ['Active', 'First Name', 'Last Name', 'Email Address', 'Password', 'Overwrite password',
-       'Schedule start date', 'Schedule end date', 'Created Date', 'Manager email',
-       'Age', 'Gender', 'ProfileLocale', 'Custom Field1', 'Custom Field2'],
+      ['Active', 'First Name', 'Last Name', 'Email Address', 'Mobile number', 'Password',
+       'Overwrite password', 'Schedule start date', 'Schedule end date', 'Created Date', 'Manager email', 'Age',
+       'Gender', 'ProfileLocale', 'Custom Field1', 'Custom Field2'],
       {
         active: true,
         first_name: 'Fedor',
         last_name: 'Tar',
         email: 'fedor@gmail.com',
+        mobile_number: '+971111111111',
         password: nil,
         overwrite_password: nil,
         schedule_start_date: '14 Jul 2020 10:30 +04:00',
@@ -40,6 +41,7 @@ describe Campaigns::Users::ParseImportData do
         first_name: 'Vlad',
         last_name: 'Ata',
         email: 'vlad@gmail.com',
+        mobile_number: nil,
         password: nil,
         overwrite_password: nil,
         schedule_start_date: nil,
@@ -56,6 +58,7 @@ describe Campaigns::Users::ParseImportData do
         first_name: 'Rohan',
         last_name: 'R',
         email: 'rohan@gmail.com',
+        mobile_number: nil,
         password: nil,
         overwrite_password: nil,
         schedule_start_date: nil,
@@ -72,6 +75,7 @@ describe Campaigns::Users::ParseImportData do
         first_name: 'Shuja',
         last_name: 'S',
         email: 'shuja@gmail.com',
+        mobile_number: nil,
         password: nil,
         overwrite_password: nil,
         schedule_start_date: nil,
