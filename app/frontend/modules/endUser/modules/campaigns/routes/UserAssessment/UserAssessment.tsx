@@ -168,6 +168,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                 className={styles.progressStatus}
                 key="3"
                 percent={progress}
+                aria-label={I18n.t('user_assessments.progress_label')}
                 {...progressBarProps}
               />
               )}

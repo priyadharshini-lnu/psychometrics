@@ -3694,6 +3694,9 @@ en:
       test_webhook:
         submit_button_name: Send Test
         title: Send Webhook Event Test
+    progress_label: Assessment Progress
+    questions:
+      single_line_answer_label: Answer
     redirect: You would be redirected to third-party site for this assessment. Please click continue if you want to start the assessment.
     status:
       completed: Completed

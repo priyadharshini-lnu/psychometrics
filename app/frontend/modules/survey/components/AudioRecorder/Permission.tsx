@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  message, Avatar, Button, Result,
+  message, Avatar, Button, Result, Space,
 } from 'antd'
 import { AudioOutlined } from '@ant-design/icons'
 
@@ -29,15 +29,18 @@ export const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
     <Result
       status="info"
       icon={<Avatar icon={<AudioOutlined />} size="large" aria-hidden="true" />}
-      subTitle={I18n.t('assessments.audio_response.permission_text')}
       extra={(
-        <Button
-          type="primary"
-          onClick={requestBrowserPermission}
-          disabled={readOnly}
-        >
-          {I18n.t('assessments.video_response.device')}
-        </Button>
+        <Space direction="vertical">
+          {I18n.t('assessments.audio_response.permission_text')}
+          <Button
+            type="primary"
+            onClick={requestBrowserPermission}
+            disabled={readOnly}
+          >
+            {I18n.t('assessments.video_response.device')}
+          </Button>
+        </Space>
+
       )}
     />
   )

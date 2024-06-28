@@ -6,6 +6,8 @@ import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 import useForceUpdate from '~/hooks/useUpdate'
 import { TextEntryCounter } from '~/modules/survey/components/modules/TextEntry/components/TextEntryCounter'
 
+const { I18n } = window
+
 interface Props {
   model: PreviewModel
   readOnly: boolean
@@ -49,6 +51,7 @@ const SingleLinePreview: FC<Props> = ({
             onKeyDown={handleKeyDown}
             value={value}
             type={type === 'SingleLine' ? 'text' : 'password'}
+            aria-label={I18n.t('user_assessments.questions.single_line_answer_label')}
           />
         </Col>
       </Row>
