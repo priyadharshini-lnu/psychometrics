@@ -80,6 +80,13 @@ const MobileNumberRegistrationForm: React.FC<Props> = ({
   })
 
   const handleOpenOtpVerificationModal = () => {
+    const verificationToken = getValidVerificationToken()
+
+    if (verificationToken) {
+      setVerificationToken(verificationToken)
+      return
+    }
+
     const nextOtpTime = localStorage.getItem(`nextOtpTime_${phoneNumber}`)
     let newRemainingTime = 0
 
@@ -97,6 +104,21 @@ const MobileNumberRegistrationForm: React.FC<Props> = ({
         setOtpVerificationFormVisible(true)
       }).catch(setError).catch(setError)
     }
+  }
+
+  const getValidVerificationToken = (): string | null => {
+    const storedToken = localStorage.getItem(`verificationToken_${phoneNumber}`)
+    const storedTimestamp = localStorage.getItem(`tokenTimestamp_${phoneNumber}`)
+    const verificationToken = storedToken || user.mobile_verification_token
+
+    if (verificationToken && storedTimestamp) {
+      const remainingTime = Date.now() - parseInt(storedTimestamp, 10)
+
+      if (remainingTime < TOKEN_EXPIRATION_TIME) {
+        return verificationToken
+      }
+    }
+    return null
   }
 
   const handleCloseOtpVerificationModal = () => {
@@ -119,15 +141,10 @@ const MobileNumberRegistrationForm: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    const storedToken = localStorage.getItem(`verificationToken_${phoneNumber}`)
-    const storedTimestamp = localStorage.getItem(`tokenTimestamp_${phoneNumber}`)
-
-    if (storedToken && storedTimestamp) {
-      const remainingTime = Date.now() - parseInt(storedTimestamp, 10)
-
-      if (remainingTime < TOKEN_EXPIRATION_TIME) {
-        setVerificationToken(storedToken)
-      }
+    const verificationToken = getValidVerificationToken()
+    if (verificationToken) {
+      setVerificationToken(verificationToken)
+      localStorage.setItem(`verificationToken_${phoneNumber}`, verificationToken)
     }
   }, [phoneNumber, setVerificationToken])
 

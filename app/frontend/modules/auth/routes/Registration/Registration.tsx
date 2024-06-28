@@ -30,6 +30,21 @@ const RegistrationComponent: React.FC<Props> = ({
   )
   const [error, setError] = useState<string | null>(null)
 
+  const handleSubmit = () => {
+    try {
+      clearVerificationTokens()
+
+      const formElement = document.getElementById('form-registration') as HTMLFormElement
+      formElement.submit()
+    } catch (e) { /* empty */ }
+  }
+
+  const clearVerificationTokens = () => {
+    const keysToRemove = Object.keys(localStorage).filter(key => key.startsWith('verificationToken_'))
+    keysToRemove.forEach(key => localStorage.removeItem(key))
+  }
+
+
   return (
     <div className={styles.container}>
       <Typography.Title level={3}>
@@ -54,15 +69,7 @@ const RegistrationComponent: React.FC<Props> = ({
         layout="vertical"
         action="/users"
         method="post"
-        initialValues={{
-          mobile_number: user.mobile_number,
-          'user[mobile_number]': user.mobile_number,
-          'user[mobile_verification_token]': user.mobile_verification_token,
-        }}
-        onFinish={() => (
-            document.getElementById('form-registration') as HTMLFormElement
-        ).submit()
-        }
+        onFinish={handleSubmit}
       >
         <Input type="hidden" name="authenticity_token" value={csrfToken} />
         <Row gutter={16}>
