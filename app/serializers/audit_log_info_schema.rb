@@ -16,7 +16,7 @@ class AuditLogInfoSchema < BaseSchema
       required(:payload).maybe(:hash?)
       required(:project_id).maybe(:int?)
       required(:record_id).maybe(:int?)
-      required(:record_type).filled(:str?)
+      required(:record_type).maybe(:str?)
       required(:request).maybe(:hash?)
       required(:user_id).maybe(:int?)
       required(:created_at).filled(:str?)

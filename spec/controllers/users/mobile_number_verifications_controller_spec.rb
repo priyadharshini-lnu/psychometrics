@@ -53,7 +53,7 @@ describe Users::MobileNumberVerificationsController, type: :controller do
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['errors'][0]).to eq('Registration code is invalid')
 
-        check_audit_log(action: 'send_verification_code', mobile_number: mobile_number, code_type: 'registration_code',
+        check_audit_log(mobile_number: mobile_number, code_type: 'registration_code',
                         code: registration_code.code, outcome: 'failed',
                         failure_reason: 'Registration code is invalid')
       end
@@ -80,7 +80,7 @@ describe Users::MobileNumberVerificationsController, type: :controller do
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['errors'][0]).to eq('SMS Invite code is invalid')
 
-        check_audit_log(action: 'send_verification_code', mobile_number: mobile_number,
+        check_audit_log(mobile_number: mobile_number,
                         code_type: 'sms_invite_code', code: 'abc', outcome: 'failed',
                         failure_reason: 'SMS Invite code is invalid')
       end
@@ -133,7 +133,8 @@ describe Users::MobileNumberVerificationsController, type: :controller do
     audit_log = AuditLog.last
 
     expect(audit_log.user_id).to eq(nil)
-    expect(audit_log.action).to eq(params[:action])
+    expect(audit_log.action).to eq('send_verification_code')
+    expect(audit_log.project_id).to eq(project.id)
 
     expect(audit_log.payload).to include('mobile_number_verification' => {
       'mobile_number' => '1234567890',

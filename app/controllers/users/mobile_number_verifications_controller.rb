@@ -12,7 +12,10 @@ class Users::MobileNumberVerificationsController < ApplicationController
     permit_params: ->(params) { params.require(:mobile_number_verification).permit(:mobile_number, :verification_code) }
 
   async_request :send_verification_code, handler: Sms::Verification::SendCode,
-    permit_params: ->(params) { params.require(:mobile_number_verification).permit(:mobile_number) }
+    permit_params: lambda { |params|
+                     params.require(:mobile_number_verification).
+                       permit(:mobile_number, :sms_invite_code, :registration_code)
+                   }
 
   private
 
@@ -41,7 +44,8 @@ class Users::MobileNumberVerificationsController < ApplicationController
   end
 
   def audit_failure(error_message)
-    audit! :send_verification_code, nil, payload: params, outcome: :failed, failure_reason: error_message
+    audit! :send_verification_code, nil, project: @current_project,
+    payload: params, outcome: :failed, failure_reason: error_message
   end
 
   def registration_code_record

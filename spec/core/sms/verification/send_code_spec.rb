@@ -5,6 +5,7 @@ require 'rails_helper'
 module Sms
   module Verification
     RSpec.describe SendCode do
+      let(:project) { create(:project) }
       let(:to_mobile_no) { '+919995323922' }
       let(:verification_service_sid) { 'SERVICE_SID' }
       let(:twilio_client) { instance_double(Twilio::REST::Client) }
@@ -12,7 +13,7 @@ module Sms
         instance_double(Twilio::REST::Verify::V2::ServiceContext::VerificationInstance, status: 'pending')
       end
 
-      let(:context) { { params: { mobile_number: to_mobile_no } } }
+      let(:context) { { project: project, params: { mobile_number: to_mobile_no } } }
 
       before do
         allow(Sms::TwilioClient).to receive(:get).and_return(twilio_client)
@@ -100,6 +101,7 @@ module Sms
 
         expect(audit_log.user_id).to eq(nil)
         expect(audit_log.action).to eq('send_verification_code')
+        expect(audit_log.project_id).to eq(project.id)
         expect(audit_log.payload).to include('mobile_number' => to_mobile_no)
         expect(audit_log.outcome).to eq(params[:outcome])
         expect(audit_log.failure_reason).to eq(params[:failure_reason])

@@ -51,22 +51,20 @@ module Sms
 
             broadcast(:ok, async_response)
           when 'max_attempts_reached'
-            error_message = I18n.t('auth.verify_mobile_number.error.max_attempts_reached')
             verification_response = build_verification_response(
-              'error', error_message
+              'error', I18n.t('auth.verify_mobile_number.error.max_attempts_reached')
             )
 
             async_response.response_data = verification_response
-            audit_failure(error_message)
+            audit_failure(status)
 
             broadcast(:invalid, async_response)
           else
-            error_message = I18n.t('auth.verify_mobile_number.error.invalid_code')
             verification_response = build_verification_response(
-              'error', error_message
+              'error', I18n.t('auth.verify_mobile_number.error.invalid_code')
             )
 
-            audit_failure(error_message)
+            audit_failure(status)
 
             async_response.response_data = verification_response
             broadcast(:invalid, async_response)
@@ -98,6 +96,7 @@ module Sms
         AuditLogModule.audit!(
           :confirm_verification_code,
           nil,
+          project: context[:project],
           payload: params,
           outcome: :failed,
           failure_reason: error_message
@@ -105,7 +104,12 @@ module Sms
       end
 
       def audit_success
-        AuditLogModule.audit!(:confirm_verification_code, nil, payload: params)
+        AuditLogModule.audit!(
+          :confirm_verification_code,
+          nil,
+          project: context[:project],
+          payload: params
+        )
       end
     end
   end

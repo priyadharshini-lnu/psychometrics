@@ -77,6 +77,7 @@ module Sms
         AuditLogModule.audit!(
           :send_verification_code,
           nil,
+          project: context[:project],
           payload: params,
           outcome: :failed,
           failure_reason: error_message
@@ -84,7 +85,12 @@ module Sms
       end
 
       def audit_success
-        AuditLogModule.audit!(:send_verification_code, nil, payload: params)
+        AuditLogModule.audit!(
+          :send_verification_code,
+          nil,
+          project: context[:project],
+          payload: params
+        )
       end
     end
   end

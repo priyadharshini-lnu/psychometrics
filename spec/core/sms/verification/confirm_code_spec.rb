@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 describe Sms::Verification::ConfirmCode do
+  let(:project) { create(:project) }
   let(:to_mobile_no) { '+919995323922' }
   let(:verification_code) { '123777' }
-  let(:context) { { params: { mobile_number: to_mobile_no, verification_code: verification_code } } }
+  let(:context) { { project: project, params: { mobile_number: to_mobile_no, verification_code: verification_code } } }
 
   describe '#call' do
     subject { described_class.new(context).call }
@@ -43,7 +44,7 @@ describe Sms::Verification::ConfirmCode do
         expect { subject }.to broadcast(:invalid)
 
         check_audit_log(code_type: 'verification_code', code: verification_code, outcome: 'failed',
-                        failure_reason: 'Invalid code')
+                        failure_reason: 'failed')
       end
     end
 
@@ -57,7 +58,7 @@ describe Sms::Verification::ConfirmCode do
         expect { subject }.to broadcast(:invalid)
 
         check_audit_log(code_type: 'verification_code', code: verification_code, outcome: 'failed',
-                        failure_reason: 'Too many attempts. Please wait for 10 minutes before trying again.')
+                        failure_reason: 'max_attempts_reached')
       end
     end
 
@@ -87,6 +88,7 @@ describe Sms::Verification::ConfirmCode do
 
       expect(audit_log.user_id).to eq(nil)
       expect(audit_log.action).to eq('confirm_verification_code')
+      expect(audit_log.project_id).to eq(project.id)
       expect(audit_log.payload).to include('mobile_number' => to_mobile_no)
       expect(audit_log.payload).to include(params[:code_type] => params[:code])
       expect(audit_log.outcome).to eq(params[:outcome])
