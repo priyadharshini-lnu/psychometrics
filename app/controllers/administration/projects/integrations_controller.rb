@@ -46,7 +46,8 @@ module Administration
 
       def form_class
         @form_class ||= {
-          'iiht' => Integrations::IihtForm
+          'iiht' => Integrations::IihtForm,
+          'hogan' => Integrations::HoganForm
         }[resource_params[:name]]
       end
 

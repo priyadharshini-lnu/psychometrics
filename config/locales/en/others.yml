@@ -152,6 +152,10 @@ en:
             to_email:
               blank: Email field can't be blank
               invalid: Email is invalid
+        hogan:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project
         iiht:
           attributes:
             name:

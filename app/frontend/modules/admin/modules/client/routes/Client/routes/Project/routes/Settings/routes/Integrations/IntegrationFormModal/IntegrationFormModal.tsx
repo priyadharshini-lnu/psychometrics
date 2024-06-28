@@ -5,12 +5,14 @@ import { FieldData } from 'rc-field-form/lib/interface'
 import { Integration, integrationNames } from '~/modules/admin/modules/client/core/integrations'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { IihtForm } from './IihtForm'
+import { HoganForm } from './HoganForm'
 
 const { Option } = Select
 const { I18n } = window
 
 const integrationComponents = {
   iiht: IihtForm,
+  hogan: HoganForm,
 }
 
 type OwnProps = {
@@ -60,6 +62,7 @@ export const IntegrationFormModal: React.FC<Props> = ({
             <Select
               className="w-100"
               onChange={() => {}}
+              disabled={!!integration}
             >
               {integrationNames.map(
                 name => <Option key={name} value={name}>{I18n.t(`administration.integrations.names.${name}`)}</Option>,

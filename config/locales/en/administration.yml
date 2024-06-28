@@ -3144,9 +3144,15 @@ en:
         details: Details
         name: Integration Name
       details:
+        provider: Provider Name
         webhookUrl: Webhook URL
       integrations: Integrations
       modal:
+        hogan:
+          provider: Provider
+          providers:
+            mercer: Mercer
+            phoenix: Phoenix
         iiht:
           password: Password
           tenancy_name: Tenancy name
@@ -3155,6 +3161,7 @@ en:
           webhook_url: Webhook URL
         title: Add
       names:
+        hogan: HOGAN
         iiht: IIHT
       validations:
         iiht:

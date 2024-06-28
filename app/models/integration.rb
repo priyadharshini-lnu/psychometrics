@@ -5,7 +5,7 @@ class Integration < ApplicationRecord
 
   belongs_to :project, class_name: 'Client'
 
-  enum name: { iiht: 0 }
+  enum name: { iiht: 0, hogan: 1 }
 
   scope :active, -> { where(active: true) }
 

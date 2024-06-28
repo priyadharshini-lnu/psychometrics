@@ -210,6 +210,7 @@ export interface UserDetails {
     email: string | null
   }
   hoganId: string | null
+  hoganProvider: string | null
 }
 
 export interface State {

@@ -46,8 +46,9 @@ export const AsyncHoganAssessmentTR = t.type({
     processingStatus: t.string,
     responseType: t.string,
     responseData: t.union([
-      t.null,
       HoganDataTR,
+      t.null,
+      t.type({}),
     ]),
   }),
 })

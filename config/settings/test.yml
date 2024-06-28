@@ -37,6 +37,11 @@ secret:
         client_user_id: client_user_id
         client_password: client_password
         master_client_id: client_id
+      mercer:
+        client_id: mercer_client_id
+        client_user_id: mercer_client_user_id
+        client_password: mercer_client_password
+        master_client_id: mercer_client_id
     encrypted_key: nu24x9RAy6tKuOW6rFvEPsB7hehnAI5ixicyqKqgcU4=
     login_url: https://hogan.com
     wsdl_api_url: https://hogan.com/wsdl

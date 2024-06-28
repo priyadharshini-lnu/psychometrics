@@ -78,7 +78,19 @@ const IntegrationsComponent: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('administration.integrations.columns.details')}
-              render={({ details }) => {
+              render={({ name, details, provider }) => {
+                if (name === 'hogan') {
+                  return (
+                    <>
+                      <b>
+                        {I18n.t('administration.integrations.details.provider')}
+                        :
+                      </b>
+                      <div>{provider}</div>
+                    </>
+                  )
+                }
+
                 if (!details) { return null }
 
                 return map(details, (value, key) => (

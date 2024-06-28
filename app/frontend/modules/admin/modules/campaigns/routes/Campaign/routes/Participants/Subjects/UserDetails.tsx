@@ -250,7 +250,13 @@ export const UserDetails: React.FC<Props> = ({
             )}
             {user.hoganId && (
               <Descriptions.Item label={I18n.t('campaign_users.details.hogan_id')}>
-                {user.hoganId}
+                <>
+                  {user.hoganId}
+                  {' '}
+                  (
+                  {user.hoganProvider}
+                  )
+                </>
               </Descriptions.Item>
             )}
           </Descriptions>

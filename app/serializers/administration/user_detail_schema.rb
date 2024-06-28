@@ -59,6 +59,7 @@ module Administration
         required(:additional_time).maybe(:int?)
         required(:active).filled(:bool?)
         required(:hogan_id).maybe(:str?)
+        required(:hogan_provider).maybe(:str?)
         required(:permissions).hash do
           required(:add_report).filled(:bool?)
           required(:regenerate_report).filled(:bool?)

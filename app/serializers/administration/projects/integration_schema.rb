@@ -12,6 +12,7 @@ module Administration
           required(:active).filled(:bool?)
           required(:details).maybe do
             hash do
+              optional(:provider).filled(:str?)
               optional(:webhook_url).filled(:str?)
               optional(:host).filled(:str?)
               optional(:subdomain).filled(:str?)
@@ -20,9 +21,10 @@ module Administration
               optional(:project_id).filled(:str?)
             end
           end
-          required(:user).filled(:str?)
-          required(:tenant_id).filled(:str?)
-          required(:tenancy_name).filled(:str?)
+          optional(:user).maybe(:str?)
+          optional(:tenant_id).maybe(:str?)
+          optional(:tenancy_name).maybe(:str?)
+          optional(:provider).maybe(:str?)
         end
       end
     end

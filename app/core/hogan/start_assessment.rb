@@ -48,7 +48,7 @@ module Hogan
           password: password,
           participant_id: participant_id,
           user_id: current_user.id,
-          provider: Settings.secrets.hogan[:default_provider]
+          provider: project.hogan_provider
         )
       end
     end

@@ -311,6 +311,10 @@ class Client < ApplicationRecord
     active_licenses.select(&:enough_licenses?).pluck(:id)
   end
 
+  def hogan_provider
+    provider_from_hogan_integration || Settings.secrets.hogan[:default_provider]
+  end
+
   private
 
   def generate_hogan_group_name
@@ -358,6 +362,12 @@ class Client < ApplicationRecord
     if operator.is?(:project_admin) && root?
       errors.add(:base)
     end
+  end
+
+  def provider_from_hogan_integration
+    config = integrations.hogan.active.last&.config
+
+    config['provider'] if config.present?
   end
 end
 # rubocop:enable Metrics/ClassLength

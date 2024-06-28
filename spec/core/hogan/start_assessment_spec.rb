@@ -6,7 +6,7 @@ describe Hogan::StartAssessment do
   let(:assessment) { create(:hogan_assessment, dimension: nil) }
   let(:user_assessment) { create(:user_assessment, assessment: assessment, evaluator: user, subject: user) }
   let(:user) { create(:user) }
-  let(:project) { create(:project) }
+  let(:project) { user_assessment.project }
 
   let(:context) { { params: { id: user_assessment.id }, current_user: user } }
 
@@ -44,12 +44,49 @@ describe Hogan::StartAssessment do
         expect(user_assessment.reload.status).to eq('in_progress')
       end
 
+      it 'creates hogan credentials' do
+        start_assessment.call
+
+        hogan_credential = HoganCredential.last
+
+        expect(hogan_credential.participant_id).to eq('1')
+        expect(hogan_credential.provider).to eq('phoenix')
+      end
+
       it 'broadcasts :ok and returns async_response' do
         expect { start_assessment.call }.to broadcast(:ok) do |async_response|
           expect(async_response).to be_a(AsyncResponseRequest::AsyncResponse)
           expect(async_response.processing_status).to eq(:completed)
           expect(async_response.response_type).to eq(:json)
           expect(async_response.response_type['direct_assessment_id']).to eq('assessmentId')
+        end
+      end
+
+      context 'provider is set as mercer in integration' do
+        let!(:integration) { create(:integration, :hogan_integration, project: project) }
+
+        it 'creates hogan credentials with mercer as provider' do
+          start_assessment.call
+
+          hogan_credential = HoganCredential.last
+
+          expect(hogan_credential.participant_id).to eq('1')
+          expect(hogan_credential.provider).to eq('mercer')
+        end
+      end
+
+      context 'default_provider is set as mercer in secrets' do
+        before do
+          allow(Settings.secrets.hogan).to receive(:default_provider).and_return('mercer')
+        end
+
+        it 'creates hogan credentials with mercer as provider' do
+          start_assessment.call
+
+          hogan_credential = HoganCredential.last
+
+          expect(hogan_credential.participant_id).to eq('1')
+          expect(hogan_credential.provider).to eq('mercer')
         end
       end
     end
