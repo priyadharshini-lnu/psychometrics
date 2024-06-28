@@ -3464,6 +3464,7 @@ en:
         subjects: Subjects
     piped_text_modal:
       join_link: Join Link
+      profile_custom_field: Profile Custom Field
       title: Add Piped Text
     proctoring_sessions:
       columns:

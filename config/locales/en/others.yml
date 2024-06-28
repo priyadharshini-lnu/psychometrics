@@ -1742,6 +1742,8 @@ en:
     QAR: QAR
     SAR: SAR
     USD: USD
+  custom_field:
+    field_name: Field Name
   devise:
     administrators:
       meta_title: Login to administration panel
