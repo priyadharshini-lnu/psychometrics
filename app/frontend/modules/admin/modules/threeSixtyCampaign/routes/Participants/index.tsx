@@ -2,9 +2,10 @@ import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import RouteList from '~/components/RouteList'
 import { get as getCurrentUser } from '~/core/currentUser'
+import { set as setSelectedTab, get as getSelectedTab } from '../../core/selectedParticipantTab'
 import routeUtils from '~/utils/route'
 import settings from '../../settings'
 import { PageHeader } from '../../PageHeader'
@@ -23,16 +24,15 @@ const routes = [
   { path: '/evaluators', component: <EvaluatorList /> },
   { path: '/managers', component: <ManagerList /> },
 ]
-function Index ({ currentUser }) {
-  const [selected, setSelected] = useState('')
+function Index ({ currentUser, setSelectedTab, selectedTab }) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setSelected(`/participants${routeUtils.getActiveRoutePath(routes)}`)
+    setSelectedTab(`/participants${routeUtils.getActiveRoutePath(routes)}`)
   }, [])
 
   const onSelect = ({ key }) => {
-    setSelected(key)
+    setSelectedTab(key)
     routeUtils.moveTo(navigate, settings.urlPrefix, key)
   }
   const menuItems = [
@@ -51,7 +51,7 @@ function Index ({ currentUser }) {
         <Menu
           items={menuItems}
           onSelect={onSelect}
-          selectedKeys={[selected]}
+          selectedKeys={[selectedTab]}
           mode="horizontal"
         />
         <div className={styles.container}>
@@ -67,4 +67,7 @@ function Index ({ currentUser }) {
 
 export default connect(state => ({
   currentUser: getCurrentUser(state),
-}), {})(Index)
+  selectedTab: getSelectedTab(state),
+}), {
+  setSelectedTab,
+})(Index)

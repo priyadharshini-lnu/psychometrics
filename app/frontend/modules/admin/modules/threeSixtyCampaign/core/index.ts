@@ -85,11 +85,11 @@ function* genReloadCurrentParticipantTab () {
   const selectedTab = yield select(getSelectedTab)
   const campaignId = yield select(getCurrentCampaignId)
   switch (selectedTab) {
-    case 'subjects':
+    case '/participants/subjects':
       return yield put(fetchSubjects(campaignId))
-    case 'evaluators':
+    case '/participants/evaluators':
       return yield put(fetchEvaluators(campaignId))
-    case 'managers':
+    case '/participants/managers':
       return yield put(fetchManagers(campaignId))
     default:
       return null
