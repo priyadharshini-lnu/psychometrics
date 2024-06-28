@@ -28,7 +28,7 @@ if Object.const_defined?('RuboCop::Cop::Cop')
 else
   # rubocop:disable Lint/EmptyClass
   module CustomRubocops
-    class AvoidDirectUseOfMailMethod
+    class AvoidActiveRecordInMigrations
     end
   end
   # rubocop:enable Lint/EmptyClass
