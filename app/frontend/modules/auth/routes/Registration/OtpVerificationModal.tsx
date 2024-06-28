@@ -12,9 +12,9 @@ import {
 } from '../../core/otpVerification'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import {
-  AsyncExternalAssessmentTR,
-  AsyncExternalAssessment,
-} from '~/modules/admin/modules/client/core/externalAssessments'
+  AsyncRequestResponseTR,
+  AsyncRequestResponse,
+} from '~/modules/admin/modules/client/core/asyncRequestResponse'
 
 interface OtpVerificationProps {
   mobileNumber: string
@@ -63,10 +63,10 @@ const OtpVerificationComponent: React.FC<Props> = ({
 
   const {
     makeAsyncRequest,
-  } = useAsyncRequestResponse<AsyncExternalAssessment>({
+  } = useAsyncRequestResponse<AsyncRequestResponse>({
     url: '/mobile_number_verifications/verify',
     data: { mobileNumber, verificationCode: otp },
-    responseType: AsyncExternalAssessmentTR,
+    responseType: AsyncRequestResponseTR,
     onFailure: (response) => {
       const { errorMessage } = response.responseData
 

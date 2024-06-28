@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
+import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import _ from 'lodash'
 import {
   Layout, Row, Col, Alert, Button, Result, Typography, Space, App,
@@ -9,15 +9,15 @@ import {
   PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined, ReloadOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
-import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
+
 import { STATUSES } from '~/constants/campaign'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
-  continueCampaign,
-  beginCampaign,
   reset as resetCampaign,
   resetPracticeCampaign,
+  setCampaignUser,
 } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 
@@ -28,6 +28,11 @@ import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
 import { InstructionsPanel } from './InstructionsPanel'
 import { AssessmentCardContainer } from './AssessmentCardContainer'
+import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
+import {
+  AsyncRequestResponseTR,
+  AsyncRequestResponse,
+} from '~/modules/admin/modules/client/core/asyncRequestResponse'
 import styles from './styles.less'
 
 const connector = connect(
@@ -39,8 +44,6 @@ const connector = connect(
     privacyConsentRequired: state.campaigns.campaign?.privacyConsentRequired,
   }),
   {
-    beginCampaign,
-    continueCampaign,
     resetCampaign,
     acceptPolicy,
     resetPracticeCampaign,
@@ -61,8 +64,6 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignUser, groups,
     campaignUser: { expiryDate },
   },
-  beginCampaign,
-  continueCampaign,
   resetPracticeCampaign,
 }) => {
   const { modal, message } = App.useApp()
@@ -76,6 +77,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
     campaignTime,
   } = campaign
 
+  const dispatch = useDispatch()
   const needsProctoring = proctoringEnabled && !isProctored()
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
@@ -133,17 +135,32 @@ const CommonComponent: FC<CommonComponentProps> = ({
     )
   }
 
-  const startCampaignActivities = () => {
-    const func = canBeginCampaign ? beginCampaign : continueCampaign
-    func(campaignUser.id).then(
-      ({ response: { examusSessionUrl } }: ApiActionResponse<{ examusSessionUrl?: string }>) => {
-        if (proctoringEnabled && examusSessionUrl) { window.location.href = examusSessionUrl }
-      },
-    ).catch((error) => {
-      message.error(error)
-    })
-  }
+  const asyncUrl = canBeginCampaign
+    ? `/campaign_users/${campaignUser.id}/begin_campaign`
+    : `/campaign_users/${campaignUser.id}/continue_campaign`
 
+  const {
+    asyncLoading, makeAsyncRequest,
+  } = useAsyncRequestResponse<AsyncRequestResponse>({
+    url: asyncUrl,
+    data: { id: campaignUser.id },
+    responseType: AsyncRequestResponseTR,
+  })
+
+  const startCampaignActivities = async () => {
+    try {
+      const { responseData } = await makeAsyncRequest()
+      const { examusSessionUrl } = responseData
+
+      if (proctoringEnabled && examusSessionUrl) {
+        window.location.href = examusSessionUrl
+      } else {
+        dispatch(setCampaignUser(responseData))
+      }
+    } catch (error) {
+      message.error(error)
+    }
+  }
 
   const handleStartCampaignActivities = () => {
     if (!fixedTimed) { return startCampaignActivities() }
@@ -159,6 +176,8 @@ const CommonComponent: FC<CommonComponentProps> = ({
         startCampaignActivities()
       },
     })
+
+    return null
   }
 
   const handleResetPracticeCampaign = (campaignId) => {
@@ -205,129 +224,134 @@ const CommonComponent: FC<CommonComponentProps> = ({
   )
 
   return (
-    <Content>
-      <>
-        <CampaignPageHeader extra={statusElement} activeCampaignId={campaign.id} />
-        <Row>
-          <Col span={24}>
-            {!campaignClosed && allAssessmentsComplete ? (
-              <Result
-                status="success"
-                title={I18n.t('campaign.thank_you_for_time')}
-                subTitle={
-                      campaignsCount > 1
-                        ? I18n.t('campaign.all_activities_are_completed_multiple')
-                        : I18n.t('campaign.all_activities_are_completed')
-                    }
-                extra={
-                      campaignsCount > 1 && (
-                        <Button href="/" type="link">
-                          {I18n.t('campaign.goto_dashboard')}
-                        </Button>
-                      )
-                    }
-                className={styles.resultContainer}
-              />
-            ) : (
-              instructionsEnabled && (
-              <InstructionsPanel
-                description={<SafeHTML html={instructions} config="adminRichText" />}
-                title={I18n.t('campaign.instructions.heading')}
-                heightLimit={200}
-              />
-              )
-            )}
-          </Col>
-        </Row>
-        <Row>
-          <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
-            {campaignClosedForUser && (
-            <div className="mvm font-bold">
-              <AssessmentCardContainer>
-                <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
-              </AssessmentCardContainer>
-            </div>
-            )}
-            <div className={styles.tasksContainer}>
-              <AssessmentCardContainer>
-                <Row>
-                  <Col span={24} style={{ paddingInlineStart: '14px' }}>
-                    {canBeginCampaign && (
-                      <>
-                        <Title className={styles.beginText} level={4}>
-                          {I18n.t('campaign.begin')}
-                        </Title>
-                        <Button
-                          size="small"
-                          type="primary"
-                          onClick={handleStartCampaignActivities}
-                          disabled={!allPreworkIsComplete}
-                        >
-                          {I18n.t('campaign.begin')}
-                          {' '}
-                          <DirectionalArrowIcon />
-                        </Button>
-                      </>
-                    )}
-                    {campaign.practiceCampaign && hasStartedCampaign && !isProctored() && (
-                      <>
-                        <Title className={styles.beginText} level={4}>
-                          {I18n.t('campaign.restart_practice')}
-                        </Title>
-                        <Button
-                          size="small"
-                          type="primary"
-                          onClick={() => handleResetPracticeCampaign(campaign.id)}
-                          icon={<ReloadOutlined />}
-                        >
-                          {I18n.t('campaign.restart_practice')}
-                        </Button>
-                      </>
-                    )}
-                    {canContinueCampaign && (
-                      <>
-                        <Title className={styles.beginText} level={4}>
-                          {I18n.t('campaign.continue')}
-                        </Title>
-                          {/* {<p>This is text will come from backend</p>} */}
-                        <Button
-                          size="small"
-                          type="primary"
-                          onClick={handleStartCampaignActivities}
-                          disabled={!allPreworkIsComplete}
-                        >
-                          {I18n.t('campaign.continue')}
-                          {' '}
-                          <DirectionalArrowIcon />
-                        </Button>
-                      </>
-                    )}
-                    {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
-                      <div className="mt-1">
-                        <Space>
-                          <InfoCircleOutlined />
-                          <Typography.Text type="secondary">
-                            {I18n.t('campaign.begin_btn_msg_before_prework')}
-                          </Typography.Text>
-                        </Space>
-                      </div>
-                    )}
-                  </Col>
-                </Row>
-              </AssessmentCardContainer>
-              <AssessmentsContainer
-                groups={groups}
-                ungrouped={ungrouped}
-                campaign={campaign}
-                canNotStartPrework={canNotStartPrework}
-                canNotStartAssessment={canNotStartAssessment}
-                campaignNotStarted={canBeginCampaign || canContinueCampaign}
-              />
-            </div>
-          </Col>
-        </Row>
-      </>
-    </Content>
+    <>
+      {asyncLoading && <PageContentSkeleton />}
+      {!asyncLoading
+        && (
+          <Content>
+            <CampaignPageHeader extra={statusElement} activeCampaignId={campaign.id} />
+            <Row>
+              <Col span={24}>
+                {!campaignClosed && allAssessmentsComplete ? (
+                  <Result
+                    status="success"
+                    title={I18n.t('campaign.thank_you_for_time')}
+                    subTitle={
+                        campaignsCount > 1
+                          ? I18n.t('campaign.all_activities_are_completed_multiple')
+                          : I18n.t('campaign.all_activities_are_completed')
+                      }
+                    extra={
+                        campaignsCount > 1 && (
+                          <Button href="/" type="link">
+                            {I18n.t('campaign.goto_dashboard')}
+                          </Button>
+                        )
+                      }
+                    className={styles.resultContainer}
+                  />
+                ) : (
+                  instructionsEnabled && (
+                  <InstructionsPanel
+                    description={<SafeHTML html={instructions} config="adminRichText" />}
+                    title={I18n.t('campaign.instructions.heading')}
+                    heightLimit={200}
+                  />
+                  )
+                )}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24} className={cs({ disabled: canNotStartAssessment })}>
+                {campaignClosedForUser && (
+                <div className="mvm font-bold">
+                  <AssessmentCardContainer>
+                    <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
+                  </AssessmentCardContainer>
+                </div>
+                )}
+                <div className={styles.tasksContainer}>
+                  <AssessmentCardContainer>
+                    <Row>
+                      <Col span={24} style={{ paddingInlineStart: '14px' }}>
+                        {canBeginCampaign && (
+                          <>
+                            <Title className={styles.beginText} level={4}>
+                              {I18n.t('campaign.begin')}
+                            </Title>
+                            <Button
+                              size="small"
+                              type="primary"
+                              onClick={handleStartCampaignActivities}
+                              disabled={!allPreworkIsComplete}
+                            >
+                              {I18n.t('campaign.begin')}
+                              {' '}
+                              <DirectionalArrowIcon />
+                            </Button>
+                          </>
+                        )}
+                        {campaign.practiceCampaign && hasStartedCampaign && !isProctored() && (
+                          <>
+                            <Title className={styles.beginText} level={4}>
+                              {I18n.t('campaign.restart_practice')}
+                            </Title>
+                            <Button
+                              size="small"
+                              type="primary"
+                              onClick={() => handleResetPracticeCampaign(campaign.id)}
+                              icon={<ReloadOutlined />}
+                            >
+                              {I18n.t('campaign.restart_practice')}
+                            </Button>
+                          </>
+                        )}
+                        {canContinueCampaign && (
+                          <>
+                            <Title className={styles.beginText} level={4}>
+                              {I18n.t('campaign.continue')}
+                            </Title>
+                            {/* {<p>This is text will come from backend</p>} */}
+                            <Button
+                              size="small"
+                              type="primary"
+                              onClick={handleStartCampaignActivities}
+                              disabled={!allPreworkIsComplete}
+                            >
+                              {I18n.t('campaign.continue')}
+                              {' '}
+                              <DirectionalArrowIcon />
+                            </Button>
+                          </>
+                        )}
+                        {fixedTimed && !allPreworkIsComplete && (canBeginCampaign || canContinueCampaign) && (
+                        <div className="mt-1">
+                          <Space>
+                            <InfoCircleOutlined />
+                            <Typography.Text type="secondary">
+                              {I18n.t('campaign.begin_btn_msg_before_prework')}
+                            </Typography.Text>
+                          </Space>
+                        </div>
+                        )}
+                      </Col>
+                    </Row>
+                  </AssessmentCardContainer>
+                  <AssessmentsContainer
+                    groups={groups}
+                    ungrouped={ungrouped}
+                    campaign={campaign}
+                    canNotStartPrework={canNotStartPrework}
+                    canNotStartAssessment={canNotStartAssessment}
+                    campaignNotStarted={canBeginCampaign || canContinueCampaign}
+                  />
+                </div>
+              </Col>
+            </Row>
+          </Content>
+        )
+      }
+    </>
   )
 }
 

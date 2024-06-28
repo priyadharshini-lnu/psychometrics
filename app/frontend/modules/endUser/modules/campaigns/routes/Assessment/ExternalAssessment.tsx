@@ -9,9 +9,9 @@ import styles from './UserAssessment.less'
 import RedirectIcon from './RedirectIcon'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import {
-  AsyncExternalAssessmentTR,
-  AsyncExternalAssessment,
-} from '~/modules/admin/modules/client/core/externalAssessments'
+  AsyncRequestResponseTR,
+  AsyncRequestResponse,
+} from '~/modules/admin/modules/client/core/asyncRequestResponse'
 
 const { I18n } = window
 const { Content } = Layout
@@ -33,10 +33,10 @@ export const ExternalAssessment: FC<Props> = ({
 
   const {
     asyncLoading, makeAsyncRequest,
-  } = useAsyncRequestResponse<AsyncExternalAssessment>({
+  } = useAsyncRequestResponse<AsyncRequestResponse>({
     url: userAssessmentUrl,
     data: { id: userAssessmentId },
-    responseType: AsyncExternalAssessmentTR,
+    responseType: AsyncRequestResponseTR,
     numberOfTimesToPoll: 5,
     pollingInterval: 10,
   })

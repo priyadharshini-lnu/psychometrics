@@ -64,10 +64,15 @@ const useAsyncRequestResponse = <T>({
   }
 
   const handleError = (error: string) => {
-    const errorMessage = error || I18n.t('common.errors.something_wrong')
-    message.error(errorMessage)
     clearTimeout(intervalIdRef.current)
     setAsyncLoading(false)
+
+    if (onFailure) {
+      onFailure(error)
+    } else {
+      const errorMessage = error || I18n.t('common.errors.something_wrong')
+      message.error(errorMessage)
+    }
   }
 
   const queryQueueStatus = async (asyncRequestUuid: string): Promise<ApiAction<T>> => {
@@ -94,6 +99,7 @@ const useAsyncRequestResponse = <T>({
         }
 
         clearTimeout(intervalIdRef.current)
+        setAsyncLoading(false)
         return response
       }
 
