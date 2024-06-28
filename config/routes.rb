@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
-  get '/admin', to: 'admin_app#dashboard', as: :admin
-  get '/admin/meet/:room_id', to: 'admin_app#dashboard', as: :admin_meeting
+  get '/admin', to: 'administration/app#dashboard', as: :admin
+  get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
 
   # TODO: remove this once we move Threesixty use common campaign type route
   # rubocop:disable Style/FormatStringToken
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}')
   # rubocop:enable Style/FormatStringToken
 
-  get '/admin/*all', to: 'admin_app#dashboard'
+  get '/admin/*all', to: 'administration/app#dashboard'
 
   concern :media_uploades do
     member do

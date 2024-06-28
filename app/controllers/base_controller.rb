@@ -9,6 +9,7 @@ class BaseController < ActionController::Base
   add_flash_types :notice, :error, :success
 
   prepend_before_action :authenticate_user!, unless: -> { try(:skip_authentication?) }
+  prepend_before_action :set_client_by_subdomain
   before_action :set_current_attributes
   before_action :detect_mobile
   before_action :set_sentry_context
@@ -46,10 +47,33 @@ class BaseController < ActionController::Base
                 alert: I18n.t('devise.password_expired.password_policy_changed')
   end
 
+  # Detect Client by subdomain
+
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
+  def set_client_by_subdomain
+    return if request.controller_class.to_s.start_with?('Administration')
+    return if request.controller_class.to_s.start_with?('Assessors')
+    return if request.controller_class.to_s.start_with?('Api::V1')
+    return if request.controller_class.to_s.start_with?('Webhooks')
+
+    @current_project = GetProjectBySubdomain.call!(request.subdomain)
+    return render_http_locked if @current_project&.disabled?
+
+    return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
+    return if @current_project.nil? && request.controller_class.to_s == 'Users::UnlocksController'
+    unless @current_project
+      return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
+    end
+
+    @current_client = @current_project.client
+  end
+  # rubocop:enable all
+
   def authenticate_user!
     return if @anonymous_user
 
-    Users::AuthenticateUser.call(params) do
+    Users::AuthenticateUser.call(params, @current_project) do
       on(:ok) { |user, found_by| handle_successful_authentication(user, found_by) }
       on(:invalid_sso_token) { |url| redirect_to(url) && return if url }
       on(:invalid_jwt_token) { |url| redirect_to(url) && return if url }
