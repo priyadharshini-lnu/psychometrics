@@ -3,15 +3,21 @@ require:
   - rubocop-rails
   - ./lib/custom_rubocops/avoid_direct_use_of_mail_method.rb
   - ./lib/custom_rubocops/avoid_using_memoization_in_serializers.rb
+  - ./lib/custom_rubocops/avoid_active_record_in_migrations.rb
 AllCops:
   NewCops: enable
   Exclude:
     - vendor/**/*
     - node_modules/**/*
     - db/schema.rb
-    - db/migrate/**/*
     - db/seeds/**/*
     - bin/*
+    - 'db/migrate/2024[0-1][0-5][0-3][0-9]*_*.rb'  # exclude migration files from January to May 2024
+  Include:
+    # include all migration files from 2024
+    - 'db/migrate/2024[0-1][0-9][0-3][0-9]*_*.rb'
+    - 'db/migrate/20[2-9][5-9][0-1][0-9][0-3][0-9]*_*.rb' 
+
   UseCache: true
   CacheRootDirectory: tmp
 
@@ -19,8 +25,10 @@ AvoidDirectUseOfMailMethod:
   Include:
     - app/mailers/**/*
 AvoidUsingMemoizationInSerializers:
-   Include:
+  Include:
     - app/serializers/**/*
+AvoidActiveRecordInMigrations:
+  Enabled: true
 
 ##
 ## Layout
