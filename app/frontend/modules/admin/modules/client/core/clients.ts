@@ -1,5 +1,5 @@
 import * as t from 'io-ts'
-import { ResourceIdentifierTR } from './resource'
+import { ResourceIdentifierTR } from '~/modules/admin/core/types/resource'
 
 export const ClientTR = t.intersection([
   ResourceIdentifierTR,

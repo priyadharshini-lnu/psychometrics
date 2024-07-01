@@ -7,6 +7,7 @@ import UserAvailabilityRoutes from '~/modules/admin/modules/UserAvailability/rou
 import AuditLogRoutes from '~/modules/admin/modules/AuditLog/routes'
 import AssessmentRoutes from '~/modules/admin/modules/Assessments/routes'
 import ReportApprovalsRoutes from '~/modules/admin/modules/ReportApprovals/routes'
+import CampaignRoutes from '~/modules/admin/modules/CampaignTemplates/routes'
 
 const routes = [
   ...ProfileRoutes,
@@ -18,6 +19,7 @@ const routes = [
   ...UserAvailabilityRoutes,
   ...AuditLogRoutes,
   ...AssessmentRoutes,
+  ...CampaignRoutes,
 ]
 
 export default routes

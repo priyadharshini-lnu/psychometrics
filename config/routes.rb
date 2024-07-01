@@ -1254,6 +1254,7 @@ Rails.application.routes.draw do
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end
+          jsonapi_resources :campaign_templates
           jsonapi_resources :assessments, concerns: :taggable do
             post :toggle_archive
             post :copy

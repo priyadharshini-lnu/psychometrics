@@ -3,6 +3,8 @@
 class CampaignTemplate < ApplicationRecord
   audited
 
+  include RansackSearchableFields
+
   belongs_to :assessment
   belongs_to :report
   belongs_to :owner, class_name: 'Client'

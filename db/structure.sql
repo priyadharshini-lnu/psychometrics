@@ -1258,9 +1258,9 @@ ALTER SEQUENCE public.campaign_reports_id_seq OWNED BY public.campaign_reports.i
 
 CREATE TABLE public.campaign_templates (
     id bigint NOT NULL,
-    name character varying,
-    assessment_id integer,
-    report_id integer,
+    name character varying NOT NULL,
+    assessment_id integer NOT NULL,
+    report_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     owner_id integer
@@ -13476,6 +13476,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240628111224'),
 ('20240621084730'),
 ('20240619103701'),
 ('20240614104722'),

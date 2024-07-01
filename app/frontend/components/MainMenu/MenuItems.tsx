@@ -69,7 +69,7 @@ export const getSelected = (): string => {
     return 'reportApprovals'
   }
 
-  if (location.href.match(/\/administration(\/)(campaign_templates)/)) {
+  if (location.href.match(/\/admin(\/)(campaign_templates)/)) {
     return 'campaignTemplates'
   }
 
@@ -106,7 +106,7 @@ const Link = ({ href, children }) => {
       'profileDetails', 'auditLogs',
       'changePassword', 'clients',
       'users', 'userAvailability',
-      'reports', 'assessments', 'reportApprovals']
+      'reports', 'assessments', 'reportApprovals', 'campaignTemplates']
     return !allowedPages.includes(selected)
   }
   if (isThreesixty || isAssessmentBuilder || isAllowed()) {
@@ -218,7 +218,7 @@ export const menuItems = (permissions: Permissions, hasSubmenu: boolean) => [
   } : null,
   permissions.campaignTemplates ? {
     key: 'campaignTemplates',
-    label: <a href={permissions.campaignTemplates}>{I18n.t('administration.navigation.campaign_templates')}</a>,
+    label: <Link href={permissions.campaignTemplates}>{I18n.t('administration.navigation.campaign_templates')}</Link>,
     icon: <i className="fa fa-gear" />,
   } : null,
   {

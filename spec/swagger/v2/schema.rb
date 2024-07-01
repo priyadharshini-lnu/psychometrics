@@ -315,6 +315,18 @@ module Swagger
           CampaignFactorResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignFactor::Schema.single_resource_response
           ),
+          CampaignTemplateListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignTemplate::Schema.multiple_resource_response
+          ),
+          CampaignTemplateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignTemplate::Schema.single_resource_response
+          ),
+          CampaignTemplateCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignTemplate::Schema.create_request
+          ),
+          CampaignTemplatetUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignTemplate::Schema.update_request
+          ),
           WorkshopResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.single_resource_response
           ),

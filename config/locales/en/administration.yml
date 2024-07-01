@@ -844,6 +844,11 @@ en:
         archived: Archived
         disable: Archive
         enable: Unarchive
+      campaign_templates: Campaign Templates
+      column:
+        assessment: Assessment
+        owner: Owner
+        report: Report
       copy:
         error: Client Tenancy %{name} was not copied.
         successfully: Client Tenancy %{name} was successfully copied.
@@ -864,6 +869,16 @@ en:
         name: Name
         report_bundle: Report bundle
         updated_at: Updated date
+      form:
+        assessment: Assessment
+        assessment_placeholder: Select an assessment
+        name: Name
+        name_placeholder: Enter name
+        owner: Owner
+        owner_placeholder: Select an owner
+        report: report
+        report_placeholder: Select a report
+        title: Campaign Template
       index:
         export: Export
         new: Add
@@ -883,6 +898,10 @@ en:
         updated_at: Updated date
       new:
         header: New Client
+      remove_confirm:
+        content: Are you sure you want to remove the campaign template '%{name}'?
+        success: Campaing template '%{name}'' was successfully removed.
+        title: Remove Campaign Template
       resource:
         confirmations:
           delete:

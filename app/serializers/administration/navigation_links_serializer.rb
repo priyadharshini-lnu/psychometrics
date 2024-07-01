@@ -37,7 +37,7 @@ module Administration
           links['report_approvals'] = "#{admin_path}/report_approvals/my_tasks"
         end
         if policy(%i[administration campaign_template]).index?
-          links['campaign_templates'] = administration_campaign_templates_path
+          links['campaign_templates'] = "#{admin_path}/campaign_templates"
         end
         links['audit_logs'] = "#{admin_path}/audit_logs" if policy(%i[administration audit_log]).index?
       end.transform_keys! { |k| k.camelcase(:lower) }
