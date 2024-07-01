@@ -114,7 +114,15 @@ export const PageSider: FC<PageSiderProps> = ({
           </Drawer>
         </>
       ) : (
-        <Sider trigger={null} collapsible collapsed={menuCollapsed} theme="light" style={{ position: 'relative' }}>
+        <Sider
+          width="12.5rem"
+          collapsedWidth="5rem"
+          trigger={null}
+          collapsible
+          collapsed={menuCollapsed}
+          theme="light"
+          style={{ position: 'relative' }}
+        >
           {siderTrigger}
           <div
             className={cs({

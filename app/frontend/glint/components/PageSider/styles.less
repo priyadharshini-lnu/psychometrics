@@ -7,7 +7,7 @@
 }
 
 .siderItemsContainer, .drawerItemsContainer {
-  width: 200px;
+  width: 12.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -23,15 +23,15 @@
 
 .sider-trigger {
   position: fixed;
-  left: 214px;
-  top: 14px;
-  z-index: 2;
+  left: calc(12.5rem + 14px);
+  top: 0.875rem;
+  z-index: 11;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .sider-trigger--collapsed {
-  left: 90px;
+  left: calc(5rem + 10px);
 }
 
 .drawer-trigger {
@@ -61,7 +61,7 @@
   }
 }
 .page-sider--collapsed {
-  width: 80px;
+  width: 5rem;
 }
 .sidebarLogo {
   width: 100%;
@@ -81,7 +81,7 @@
 }
 .sider-drawer {
   & :global(.ant-drawer-content-wrapper) {
-    max-width: 320px;
+    max-width: 20rem;
   }
   & :global(.ant-drawer-body) {
     padding-inline: 0px;
@@ -94,10 +94,10 @@
 
 :global(.rtl) {
   .sider-trigger {
-    right: 214px;
+    right: calc(12.5rem + 14px);
   }
   .sider-trigger--collapsed {
-    right: 90px;
+    right: calc(5rem + 10px);
   }
   .triggerIcon {
     transform: rotate(180deg);
