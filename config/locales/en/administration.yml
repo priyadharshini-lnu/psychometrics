@@ -221,6 +221,7 @@ en:
           projectSettings:
             design: Design
             integrations: Integrations
+            privacy_settings: Privacy Settings
             saml: SAML
             security: Security
             smtp: SMTP
@@ -236,6 +237,8 @@ en:
           registrationCodes:
             manage: Manage
             view: View
+          registrationSettings:
+            manage: Manage
           reports:
             manage: Manage
             view: View
