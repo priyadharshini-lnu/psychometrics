@@ -90,14 +90,9 @@ module Sms
           end
 
           it 'broadcasts an error' do
-            expected_response = VerificationResponse.new(
-              error_message: 'Mobile number is incorrect. Please recheck your number',
-              status: 'error',
-              to_mobile_no: to_mobile_no,
-              verification_code: nil
-            )
+            expected_response = async_response('error', 'Mobile number is incorrect. Please recheck your number')
 
-            expect { subject }.to broadcast(:error, expected_response)
+            expect { subject }.to broadcast(:invalid, expected_response)
           end
         end
       end

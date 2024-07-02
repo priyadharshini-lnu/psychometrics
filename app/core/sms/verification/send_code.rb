@@ -41,8 +41,8 @@ module Sms
                                              'error',
                                              I18n.t('auth.verify_mobile_number.error.max_attempts_reached')
                                            )
-                                          when 60_200
-                                            build_verification_response(
+                                         when 60_200
+                                           build_verification_response(
                                              'error',
                                              I18n.t('auth.verify_mobile_number.error.invalid_number')
                                            )
