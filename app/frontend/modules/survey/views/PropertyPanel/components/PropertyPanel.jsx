@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import _ from 'lodash'
 import {
-  Divider, Checkbox, Space, ConfigProvider,
+  Divider, Checkbox, Space, ConfigProvider, Alert, Button,
+  Popover,
 } from 'antd'
 import Action from '~/modules/survey/undo'
 import LogicElement from '~/modules/survey/models/logic/LogicElement'
@@ -50,12 +51,33 @@ const PropertyPanelComponent = (props) => {
   const questiontypeBtn = (
     <div className={styles.fieldset} style={{ position: 'relative' }}>
       <span className={styles.label}>Change Question Type</span>
-      <button type="button" data-toggle="dropdown" className={`btn btn-success dropdown-toggle ${styles.menuButton}`}>
-        <span className={`fa fa-${serializedQuestion.moduleConfig.icon} ${styles.icon}`} />
-        <span>{serializedQuestion.moduleConfig.moduleName}</span>
-        <span className="caret" />
-      </button>
-      <Menu onSelect={changeQuestionType} />
+      {question.isNew ? (
+        <>
+          <Popover
+            overlayInnerStyle={{ padding: 0 }}
+            trigger="click"
+            placement="leftBottom"
+            content={<Menu onSelect={changeQuestionType} />}
+          >
+            <Button
+              type="primary"
+              size="large"
+              className={`${styles.menuButton}`}
+            >
+              <span className={`fa fa-${serializedQuestion.moduleConfig.icon} ${styles.icon}`} />
+              <span>{serializedQuestion.moduleConfig.moduleName}</span>
+              <span className="caret" />
+            </Button>
+          </Popover>
+
+        </>
+      ) : (
+        <Alert
+          className={styles.alert}
+          type="warning"
+          message={I18n.t('administration.survey_builder.property_panel.cant_change_type')}
+        />
+      )}
     </div>
   )
 

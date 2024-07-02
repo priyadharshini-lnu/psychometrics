@@ -4,7 +4,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
 <DocumentFragment>
   <div>
     <div
-      class="ms-4 me-4"
+      class="m-4"
     >
       <span
         class="ant-typography css-dev-only-do-not-override-2i2tap"

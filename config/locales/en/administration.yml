@@ -4553,6 +4553,7 @@ en:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying
         answer_type: Answer type
+        cant_change_type: Type can not be changed for saved question
         date_format: Date format
         date_format_options:
           dd_mm_yyy: DD-MM-YYYY
