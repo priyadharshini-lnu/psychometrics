@@ -35,6 +35,7 @@ class PreviewComponent extends Component {
 
   renderAnswersType () {
     const {
+      errors,
       readOnly,
       model,
       model: {
@@ -57,6 +58,7 @@ class PreviewComponent extends Component {
         fetchAwsSpeechTextPresignedUrl={fetchAwsSpeechTextPresignedUrl}
         nextPage={nextPage}
         singleQuestionFlow={singleQuestionFlow}
+        errors={errors}
       />
     )
   }

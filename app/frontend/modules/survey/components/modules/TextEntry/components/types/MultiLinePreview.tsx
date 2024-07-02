@@ -13,6 +13,7 @@ interface Props {
   activeDictationOnQuestion: number
   setDictationActiveOnQuestion(questionId: number): void
   fetchAwsSpeechTextPresignedUrl(): Promise<{ response: { url: string } }>
+  errors: string[]
 }
 
 const MultiLinePreview: FC<Props> = ({
@@ -21,6 +22,7 @@ const MultiLinePreview: FC<Props> = ({
   activeDictationOnQuestion,
   setDictationActiveOnQuestion,
   fetchAwsSpeechTextPresignedUrl,
+  errors,
 }) => {
   const {
     props: { type, allowDictation },
@@ -78,6 +80,8 @@ const MultiLinePreview: FC<Props> = ({
                 disabled={isDictating || readOnly}
                 value={value}
                 handleOnChange={handleOnChange}
+                errors={errors}
+                questionId={questionId}
               />
             </SpeechToTextInput>
           ) : (
@@ -86,6 +90,8 @@ const MultiLinePreview: FC<Props> = ({
               disabled={readOnly}
               value={value}
               handleOnChange={handleOnChange}
+              errors={errors}
+              questionId={questionId}
             />
           )}
         </Col>
@@ -100,6 +106,8 @@ interface MultiLineTextAreaProps {
   disabled: boolean
   value: string
   handleOnChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
+  errors: string[]
+  questionId: number
 }
 
 const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
@@ -107,17 +115,22 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
   disabled,
   handleOnChange,
   value,
+  errors,
+  questionId,
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
 
   return (
     <textarea
+      aria-invalid={!!errors.length}
       autoComplete="off"
+      aria-describedby={`error-for-question-${questionId}`}
       disabled={disabled}
       rows={rows}
       className="w-100 ant-input"
       onChange={handleOnChange}
       value={value}
+      id={`question-${questionId}`}
     />
   )
 }

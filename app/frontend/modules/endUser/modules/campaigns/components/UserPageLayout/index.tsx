@@ -31,7 +31,7 @@ const UserPageLayoutComponent: FC<Props> = ({ campaign, updateProfileRequired, c
     <Button
       className={styles.skipToContent}
       type="link"
-      href="#main-content"
+      href="#user-page-main-content"
     >
       {I18n.t('frontend.skip_to_content')}
     </Button>

@@ -12,7 +12,7 @@ export default class TimeEntryPreview extends Component {
   }
 
   render () {
-    const { model: { result: { answers } } } = this.props
+    const { model: { result: { answers }, id: questionId }, errors } = this.props
 
     const value = getIn(answers, ['0', 'value'])
 
@@ -22,6 +22,8 @@ export default class TimeEntryPreview extends Component {
         format={FORMAT}
         placeholder="HH:mm"
         onChange={this.changeAnswer}
+        aria-invalid={!!errors.length}
+        aria-describedby={`error-for-question-${questionId}`}
       />
     )
   }

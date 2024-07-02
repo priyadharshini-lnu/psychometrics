@@ -13,15 +13,17 @@ interface Props {
   readOnly: boolean
   nextPage: () => {}
   singleQuestionFlow: boolean
+  errors: string[]
 }
 
 const SingleLinePreview: FC<Props> = ({
-  model, readOnly, nextPage, singleQuestionFlow,
+  model, readOnly, nextPage, singleQuestionFlow, errors,
 }) => {
   const forceUpdate = useForceUpdate()
   const {
     result,
     props: { type },
+    id: questionId,
   } = model
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +47,8 @@ const SingleLinePreview: FC<Props> = ({
       <Row>
         <Col span={24}>
           <Input
+            aria-invalid={!!errors.length}
+            aria-describedby={`error-for-question-${questionId}`}
             autoComplete="off"
             disabled={readOnly}
             onChange={handleOnChange}

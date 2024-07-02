@@ -66,13 +66,22 @@ class Question extends Component {
   }
 
   renderError () {
-    const { errors } = this.props
+    const { errors, model } = this.props
     return (
-      errors.map((err, i) => (
-        <div key={i} className={styles.error} style={this.addLtrStyleIfNeed(err.message || '')}>
-          <SafeHTML as="div" html={err.message} config="error" />
-        </div>
-      ))
+      <div id={`error-for-question-${model.id}`}>
+        {
+        errors.map((err, i) => (
+          <div
+            key={i}
+            className={styles.error}
+            style={this.addLtrStyleIfNeed(err.message || '')}
+          >
+            <SafeHTML as="div" html={err.message} config="error" />
+          </div>
+        ))
+      }
+      </div>
+
     )
   }
 
@@ -116,8 +125,8 @@ class Question extends Component {
         onClick={this.onClick}
       >
         <div className={`${styles.content} ${isRtl(defaultLanguage) ? 'rtl' : ''}`}>
-          {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
           <div className={styles.contentOuter}>
+            {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
             <div className={styles.previewContainer}>
               {this.renderPreview()}
             </div>
