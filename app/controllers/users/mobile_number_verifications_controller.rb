@@ -11,17 +11,11 @@ class Users::MobileNumberVerificationsController < ApplicationController
   async_request :verify, handler: Sms::Verification::ConfirmCode,
     permit_params: ->(params) { params.require(:mobile_number_verification).permit(:mobile_number, :verification_code) }
 
-  def send_verification_code
-    Sms::Verification::SendCode.call!(mobile_number) do
-      on(:ok) do
-        render json: { status: :ok }
-      end
-
-      on(:error) do |result|
-        render json: { errors: [result.error_message] }, status: 422
-      end
-    end
-  end
+  async_request :send_verification_code, handler: Sms::Verification::SendCode,
+    permit_params: lambda { |params|
+                     params.require(:mobile_number_verification).
+                       permit(:mobile_number, :sms_invite_code, :registration_code)
+                   }
 
   private
 
@@ -31,19 +25,32 @@ class Users::MobileNumberVerificationsController < ApplicationController
 
   def ensure_valid_invitation_code
     if via_registration_code? && registration_code_record.blank?
-      render json: { errors: [I18n.t('activemodel.errors.models.register.attributes.registration_code.invalid')] },
+      error_message = I18n.t('activemodel.errors.models.register.attributes.registration_code.invalid')
+
+      audit_failure(error_message)
+
+      render json: { errors: [error_message] },
              status: 422
     end
 
     if via_sms_invite_code? && sms_invite_record.blank?
-      render json: { errors: [I18n.t('activemodel.errors.models.register.attributes.sms_invite_code.invalid')] },
+      error_message = I18n.t('activemodel.errors.models.register.attributes.sms_invite_code.invalid')
+
+      audit_failure(error_message)
+
+      render json: { errors: [error_message] },
              status: 422
     end
   end
 
+  def audit_failure(error_message)
+    audit! :send_verification_code, nil, project: @current_project,
+    payload: params, outcome: :failed, failure_reason: error_message
+  end
+
   def registration_code_record
     @registration_code_record ||= ::Administration::Clients::RegistrationCodes::VerificationQuery.
-                                  new(@current_project, params[:registration_code]).query
+                                  new(@current_project, params[:mobile_number_verification][:registration_code]).query
   end
 
   def sms_invite_record
@@ -52,10 +59,10 @@ class Users::MobileNumberVerificationsController < ApplicationController
   end
 
   def via_sms_invite_code?
-    params[:sms_invite_code].present?
+    params[:mobile_number_verification][:sms_invite_code].present?
   end
 
   def via_registration_code?
-    params[:registration_code].present?
+    params[:mobile_number_verification][:registration_code].present?
   end
 end

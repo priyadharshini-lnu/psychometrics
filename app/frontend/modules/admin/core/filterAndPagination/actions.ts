@@ -5,6 +5,7 @@ export const INIT_TABLE = 'INIT_TABLE'
 export const CHANGE_FILTER = 'modules/admin/CHANGE_FILTER'
 export const CHANGE_PAGE = 'modules/admin/CHANGE_PAGE'
 export const REMOVE_FILTER = 'modules/admin/REMOVE_FILTER'
+export const REMOVE_ALL_FILTERS = 'modules/admin/REMOVE_ALL_FILTERS'
 export const CHANGE_SORT = 'modules/admin/CHANGE_SORT'
 export const REMOVE_SORT = 'modules/admin/REMOVE_SORT'
 export const SET_TABLE_CONFIG = 'modules/admin/SET_TABLE_CONFIG'
@@ -24,6 +25,11 @@ export const changeFilter = (
 export const removeFilter = (tableName: string, filterName: string) => ({
   type: REMOVE_FILTER,
   payload: { tableName, filterName },
+})
+
+export const removeAllFilters = (tableName: string) => ({
+  type: REMOVE_ALL_FILTERS,
+  payload: { tableName },
 })
 
 export const changePage = (tableName: string, pageNumber: number, pageSize?: number) => ({
@@ -48,6 +54,7 @@ export const setTableConfigFromUrl = (tableConfig: TableConfig) => ({
 
 export type changeFilterType = typeof changeFilter
 export type removeFilterType = typeof removeFilter
+export type removeAllFiltersType = typeof removeAllFilters
 export type changePageType = typeof changePage
 export type changeSortType = typeof changeSort
 export type removeSortType = typeof removeSort
@@ -59,6 +66,7 @@ export type ChangeFilterReturnType = ReturnType<typeof changeFilter>
 export type ChangeSortReturnType = ReturnType<typeof changeSort>
 export type RemoveSortReturnType = ReturnType<typeof removeSort>
 export type RemoveFilterReturnType = ReturnType<typeof removeFilter>
+export type RemoveAllFiltersReturnType = ReturnType<typeof removeAllFilters>
 export type ChangePageReturnType = ReturnType<typeof changePage>
 export type SetTableConfigFromUrlType = ReturnType<typeof setTableConfigFromUrl>
 export type ActionsReturnType = ChangeFilterReturnType | ChangeSortReturnType |

@@ -1,5 +1,5 @@
 import {
-  useEffect, FC, useContext, useState,
+  useEffect, FC, useContext,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Redirect, RouteComponentProps } from 'react-router-dom'
@@ -15,6 +15,7 @@ import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import store from '~/modules/endUser/store'
 import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/ResourcesTabs'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
+import useAvoidMultipleEvaluation from '~/hooks/useAvoidMultipleEvaluation'
 
 import {
   fetchAssessment, validateSession, setInvalidated,
@@ -80,50 +81,14 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   markAssessmentTimedOut,
   progress,
 }) => {
-  const [showInvalidSession, setShowInvalidSession] = useState(false)
-
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)
   }, [])
 
-  useEffect(() => {
-    const evaluationSessionIdCheckChannel = new BroadcastChannel('evaluationSessionIdCheck')
-
-    let interval
-    if (results.id && evaluationSessionId) {
-      interval = setInterval(() => {
-        validateSession(params.userAssessmentId, evaluationSessionId)
-          .then(({ response }: {response: { sessionId: string }}) => {
-            if (response.sessionId !== evaluationSessionId) {
-              setShowInvalidSession(true)
-              clearInterval(interval)
-              evaluationSessionIdCheckChannel.close()
-            }
-          })
-      }, 30000)
-
-      evaluationSessionIdCheckChannel.addEventListener('message', (e) => {
-        if (e.data.type === 'DuplicateEvaluationSessionIdFound' && e.data.evaluationSessionId === evaluationSessionId) {
-          location.reload()
-        }
-
-        if (e.data.type === 'CheckDuplicateEvaluationSessionId') {
-          if (e.data.evaluationSessionId !== evaluationSessionId) return
-          evaluationSessionIdCheckChannel.postMessage({
-            type: 'DuplicateEvaluationSessionIdFound', evaluationSessionId,
-          })
-          setShowInvalidSession(true)
-          interval && clearInterval(interval)
-        }
-      })
-      evaluationSessionIdCheckChannel.postMessage({ type: 'CheckDuplicateEvaluationSessionId', evaluationSessionId })
-    }
-    return () => {
-      interval && clearInterval(interval)
-      evaluationSessionIdCheckChannel && evaluationSessionIdCheckChannel.close()
-    }
-  }, [results.id])
+  const [showInvalidSession, setShowInvalidSession] = useAvoidMultipleEvaluation(
+    params.userAssessmentId, results, validateSession,
+  )
 
   const { isMobile } = useContext(MediaQueryContext)
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }

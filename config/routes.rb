@@ -1106,11 +1106,13 @@ Rails.application.routes.draw do
     get 'invites/:id/booking', to: 'end_user/users#dashboard'
     get 'invites/:id/success', to: 'end_user/users#dashboard'
     get 'invites/:id/details', to: 'end_user/users#dashboard'
+    get 'evaluation_session_exists', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 
   get 'media_players/audio', to: 'media_players#audio'
   get 'media_players/video', to: 'media_players#video'
+  get 'evaluation_session_exists', to: 'end_user/users#dashboard'
 
   if Rails.env.production?
     authenticate :user, ->(u) { u.is?(:superadmin) } do

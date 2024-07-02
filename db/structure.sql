@@ -8083,10 +8083,17 @@ CREATE INDEX index_audit_logs_on_action ON public.audit_logs USING btree (action
 
 
 --
--- Name: index_audit_logs_on_record_type_and_record_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_audit_logs_on_record_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_audit_logs_on_record_type_and_record_id ON public.audit_logs USING btree (record_type, record_id);
+CREATE INDEX index_audit_logs_on_record_id ON public.audit_logs USING btree (record_id);
+
+
+--
+-- Name: index_audit_logs_on_record_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_record_type ON public.audit_logs USING btree (record_type);
 
 
 --
@@ -11965,6 +11972,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240619103701'),
 ('20240614104722'),
 ('20240606133151'),
+('20240604174136'),
+('20240604173936'),
 ('20240603125218'),
 ('20240603082942'),
 ('20240523115956'),

@@ -25,6 +25,7 @@ module AsyncRequestHandler
 
   def default_async_request_context
     {
+      project: @current_project,
       current_user: current_user,
       async_request_uuid: async_request_uuid
     }

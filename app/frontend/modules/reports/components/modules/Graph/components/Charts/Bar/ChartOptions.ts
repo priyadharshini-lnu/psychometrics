@@ -31,6 +31,11 @@ export default function ChartOptions (
       tickLength: 0,
     }
   }
+  const borderRadius = {
+    where: (model.props.barBorderRadiusType ? 'all' : 'end') as 'all' | 'end',
+    radius: model.props.barBorderRadius || 0,
+    scope: 'point' as ('point' | 'stack'),
+  }
   return {
     chart: {
       type: 'column',
@@ -93,10 +98,10 @@ export default function ChartOptions (
         },
       },
       bar: {
-        borderRadius: model.props.barBorderRadius || 0,
+        borderRadius,
       },
       column: {
-        borderRadius: model.props.barBorderRadius || 0,
+        borderRadius,
       },
     },
     tooltip: {
