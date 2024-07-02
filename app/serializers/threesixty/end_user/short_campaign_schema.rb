@@ -11,7 +11,7 @@ module Threesixty
 
           required(:id).filled(:int?)
           required(:type).filled(:str?)
-          required(:timing).filled(:str?)
+          required(:timing).maybe(:str?)
           required(:assessment_name).filled(:str?)
           required(:evaluations_counters).maybe do
             hash do

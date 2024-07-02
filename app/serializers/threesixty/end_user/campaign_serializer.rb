@@ -5,7 +5,7 @@ module Threesixty
     class CampaignSerializer < Threesixty::EndUser::BaseCampaignSerializer
       attributes :id, :type, :assessment_name, :instructions,
                  :evaluations_counters, :nominations_counters, :reports_counters, :nominations,
-                 :managed_subjects, :is_subject, :status, :evaluations, :reports, :options
+                 :managed_subjects, :is_subject, :status, :evaluations, :reports, :options, :nomination_subjects
 
       def evaluations
         Panko::ArraySerializer.new(
@@ -69,7 +69,7 @@ module Threesixty
           each_serializer: Threesixty::EndUser::CampaignNomineeSerializer,
           context: {
             current_user: current_user,
-            is_nomination_completed: is_nomination_complete_hash[nomination_subjects.first.user_id]
+            is_nomination_complete_hash: is_nomination_complete_hash
           }
         ).to_a
       end

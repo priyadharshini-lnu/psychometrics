@@ -19,7 +19,11 @@ module Threesixty::EndUser
     end
 
     def is_nomination_completed
-      context[:is_nomination_completed]
+      is_nomination_complete_hash[object.user_id]
+    end
+
+    def is_nomination_complete_hash
+      context[:is_nomination_complete_hash]
     end
   end
 end

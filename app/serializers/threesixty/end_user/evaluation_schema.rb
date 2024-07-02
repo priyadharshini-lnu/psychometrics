@@ -14,7 +14,7 @@ module Threesixty
           required(:evaluator_id).filled(:int?)
           required(:campaign_id).filled(:int?)
           required(:evaluator_nomination_status).filled(:str?)
-          required(:status).filled(:str?)
+          required(:status).maybe(:str?)
           required(:subject_evaluation_closed).filled(:bool?)
           optional(:assessment_extra).hash do
             optional(:timer).maybe(:int?)
