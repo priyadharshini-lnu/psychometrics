@@ -7,7 +7,7 @@ module Administration
       before_action :ensure_project, except: %i[dashboard]
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access
-                                            start_qc abort_qc send_for_approval request_changes
+                                            start_qc abort_qc send_for_approval request_changes possible_webhook_events
                                             remove_approval webhook_payload upload_file remove_file]
       before_action :pundit_authorize
 

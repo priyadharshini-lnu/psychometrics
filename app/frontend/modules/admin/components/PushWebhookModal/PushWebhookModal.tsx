@@ -84,6 +84,11 @@ const PushWebhookModal: React.FC<Props> = ({
       basePath: `projects/${projectId}`,
       trackUrl: true,
       responseType: WebhookTR,
+      apiConfig: {
+        filter: {
+          active_true: 'true',
+        },
+      },
     },
   )
 
@@ -245,7 +250,7 @@ const PushWebhookModal: React.FC<Props> = ({
                   </div>
                 </Form.Item>
                 <CopyToClipboard
-                  text={requestData}
+                  text={JSON.stringify(requestData)}
                   onCopy={() => message.info(
                     I18n.t('user_assessments.modals.push_test_webhook.copy_request_data_success'),
                   )}

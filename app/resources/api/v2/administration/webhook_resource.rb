@@ -6,7 +6,7 @@ class Api::V2::Administration::WebhookResource < Api::V2::Administration::BaseRe
   attributes :url, :description, :created_at, :updated_at, :topics, :username,
              :project_id, :auth_type, :active, :password, :include_locales
 
-  ransack_filters %i[filterable_fields]
+  ransack_filters %i[filterable_fields active_true]
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
