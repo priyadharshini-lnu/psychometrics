@@ -97,6 +97,7 @@ class User < ApplicationRecord
   has_many :campaign_admin_clients, lambda {
     where(memberships: { role: Membership::CAMPAIGN_ADMIN_ROLE, disabled: false })
   }, through: :memberships, source: 'client'
+  has_many :campaign_admin_clients_ttes, through: :campaign_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
@@ -152,6 +153,10 @@ class User < ApplicationRecord
 
   delegate :subdomain, to: :project, allow_nil: true
   delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
+
+  def accessible_client_ids
+    client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids
+  end
 
   def maskable_identity(mask: false)
     @maskable_identity ||= Users::MaskableIdentity.new(self, mask: mask)

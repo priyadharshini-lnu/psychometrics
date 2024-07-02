@@ -19,7 +19,7 @@ RSpec.describe WorkshopSubjects::Webhook do
       expect(WebhookSubscriptions::Publish).to receive(:call).with(
         campaign.project, :scheduling_scheduled, scheduling_scheduled_data, record: workshop_subject, webhook_id: nil
       )
-      described_class.new(workshop_subject.id).publish_scheduling_scheduled
+      described_class.new(workshop_subject).publish_scheduling_scheduled
     end
   end
 
@@ -35,7 +35,7 @@ RSpec.describe WorkshopSubjects::Webhook do
       expect(WebhookSubscriptions::Publish).to receive(:call).with(
         campaign.project, :scheduling_cancelled, scheduling_cancelled_data, record: workshop_subject, webhook_id: nil
       )
-      described_class.new(workshop_subject.id).publish_scheduling_cancelled
+      described_class.new(workshop_subject).publish_scheduling_cancelled
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe WorkshopSubjects::Webhook do
         record: workshop_subject,
         webhook_id: nil
       )
-      described_class.new(workshop_subject.id).publish_scheduling_rescheduled
+      described_class.new(workshop_subject).publish_scheduling_rescheduled
     end
   end
 end

@@ -4,10 +4,8 @@ module WorkshopSubjects
   class Webhook
     private_attr_reader :workshop_subject, :project, :webhook_id, :workshop_invite
 
-    def initialize(workshop_subject_id, webhook_id = nil)
-      @workshop_subject = @workshop_subject ||= WorkshopSubject.includes(
-        :campaign, :workshop_invited_subject, :workshop, :user, :workshop_invite
-      ).find(workshop_subject_id)
+    def initialize(workshop_subject, webhook_id = nil)
+      @workshop_subject = workshop_subject
       @workshop_invite = workshop_subject.workshop_invite
       @project = workshop_subject.campaign.project
       @webhook_id = webhook_id
@@ -43,9 +41,9 @@ module WorkshopSubjects
       )
     end
 
-    private
-
     def prepare_localized_webhook_data
+      return unless workshop_invite
+
       workshop_invite.translations.each_with_object({}) do |translation, hash|
         hash[translation.locale] = {
           invite: {
@@ -56,6 +54,8 @@ module WorkshopSubjects
         }
       end
     end
+
+    private
 
     def scheduling_scheduled_data
       {
@@ -78,7 +78,7 @@ module WorkshopSubjects
     def scheduling_rescheduled_data
       {
         campaign: workshop_subject.campaign,
-        rescheduled_to_workshop: workshop_subject.workshop_invited_subject.reschedule_workshop,
+        rescheduled_to_workshop: workshop_subject.workshop_invited_subject&.reschedule_workshop,
         rescheduled_from_workshop: workshop_subject.workshop,
         subject: workshop_subject.user,
         invite: workshop_invite

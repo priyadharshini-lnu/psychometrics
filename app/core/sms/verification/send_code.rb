@@ -19,6 +19,7 @@ module Sms
         audit_success
         broadcast :ok, async_response
       rescue Twilio::REST::RestError => e
+        Rails.logger.error("OTP sending failed for #{to_mobile_no}. Error code: #{e.code}, Message: #{e.message}")
         handle_errors(e.code)
         audit_failure(e.message&.strip)
       end
@@ -40,7 +41,11 @@ module Sms
                                              'error',
                                              I18n.t('auth.verify_mobile_number.error.max_attempts_reached')
                                            )
-
+                                         when 60_200
+                                           build_verification_response(
+                                             'error',
+                                             I18n.t('auth.verify_mobile_number.error.invalid_number')
+                                           )
                                          when 60_410
                                            build_verification_response(
                                              'error',

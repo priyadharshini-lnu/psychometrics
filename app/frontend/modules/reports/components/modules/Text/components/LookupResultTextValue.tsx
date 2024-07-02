@@ -6,6 +6,7 @@ import AppStore from '~/modules/reports/store/AppStore'
 import Factors from '~/modules/reports/commands/Factors'
 import { SafeHTML } from '~/components/SafeHTML'
 import GetSavilleScore from './GetSavilleScore'
+import Result from '~/modules/reports/models/Result'
 
 const LookupResultTextValue = {
   run (model): ReactElement | number | string | null {
@@ -35,9 +36,12 @@ const LookupResultTextValue = {
       case 'Factor': {
         const factor = _.get(model, ['props', 'source', 'factors'])
         if (factor) {
-          const scoring = _.get(ResultStore, ['results', model.assessment_id, 'scoring', factor.id])
-          const value = _.get(scoring, ['results', 0, 'norm']) || _.get(scoring, ['results', 0, 'value'])
-          return value ?? ''
+          const factorIds = [factor.id]
+          const result = ResultStore.results[model.assessment_id] as unknown as Result
+          const factorData = result.getTopFactors(0, factorIds.length, factorIds, 1)
+          if (factorData.length) {
+            return (factorData[0].meanNormScore || factorData[0].meanRawScore) ?? ''
+          }
         }
         break
       }
