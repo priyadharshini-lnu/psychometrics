@@ -217,6 +217,6 @@ class UserReport < ApplicationRecord
   def remove_pdf_and_update_status!
     return unless prepared?
 
-    update!(remove_pdf: true, status: :not_prepared, approval_status: :not_ready)
+    update!(purge_pdf_file: true, status: :not_prepared, approval_status: :not_ready)
   end
 end

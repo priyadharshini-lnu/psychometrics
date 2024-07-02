@@ -80,7 +80,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
       _.each(files, (img, name) => {
         if (img?.file) {
           (img.file as UploadFile).status === 'removed'
-            ? formData.append(`remove_${name}`, '1')
+            ? formData.append(`purge_${name}`, '1')
             : formData.append(name, img.file as File, img.file.name)
         }
       })

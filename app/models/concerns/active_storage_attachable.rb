@@ -64,6 +64,24 @@ module ActiveStorageAttachable
 
       # setting folder to store attachment on the storage
       generate_attachment_key_for attribute
+
+      define_method "#{attribute}_url" do |variant = nil|
+        attachment_url(attribute, variant)
+      end
+
+      define_method "purge_#{attribute}=" do |value|
+        instance_variable_set("@purge_#{attribute}", value)
+      end
+
+      define_method "purge_#{attribute}?" do
+        instance_variable_get("@purge_#{attribute}")
+      end
+
+      after_update lambda {
+        if send("purge_#{attribute}?") && send(attribute).attached?
+          send(attribute).purge_later
+        end
+      }
     end
 
     def has_one_image_attachment(
@@ -93,11 +111,11 @@ module ActiveStorageAttachable
         instance_variable_get("@purge_#{attribute}")
       end
 
-      after_commit do
-        if send("purge_#{attribute}?")
+      after_update lambda {
+        if send("purge_#{attribute}?") && send(attribute).attached?
           send(attribute).purge_later
         end
-      end
+      }
     end
 
     def has_many_attachments(attribute, content_type: nil, service: Settings.storage.public_storage_service)
