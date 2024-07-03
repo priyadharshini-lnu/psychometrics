@@ -215,11 +215,11 @@ class Text extends Component {
           />
         )
       } if (sourceType === 'ResultText') {
-        const textValue = LookupResultTextValue.run(model)
+        let textValue = LookupResultTextValue.run(model)
         if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
           const factorResults = ResultStore.results[assessmentId].campaignFactorResults
           const code = model.props.source.codes[0]
-          return factorResults && (_.find(factorResults, { code })?.value || '')
+          textValue = factorResults && (_.find(factorResults, { code })?.value || '')
         }
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
@@ -245,6 +245,7 @@ class Text extends Component {
         </div>
       )
     }
+
     return this.edit
       ? (
         <FroalaEditor
