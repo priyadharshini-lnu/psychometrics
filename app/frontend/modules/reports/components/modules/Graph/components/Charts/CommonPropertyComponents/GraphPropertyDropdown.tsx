@@ -19,6 +19,7 @@ export const GraphPropertyDropdown: FC<Props> = ({
   <>
     <Typography.Text>{label}</Typography.Text>
     <Select
+      size="small"
       value={value}
       onChange={changeHandler}
       getPopupContainer={(triggerNode: HTMLElement) => triggerNode.parentNode as HTMLElement}

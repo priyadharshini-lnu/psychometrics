@@ -10,6 +10,7 @@ interface Props {
   graphicalPosition: string
   legendPosition: string
   barBorderRadius: string
+  barBorderRadiusType: boolean
   maxValue: string | null
   source: {
     type: string

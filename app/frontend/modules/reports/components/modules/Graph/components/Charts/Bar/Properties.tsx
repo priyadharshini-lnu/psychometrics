@@ -4,7 +4,7 @@ import {
   Checkbox, InputNumber, Space, Typography,
 } from 'antd'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
-
+import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import useUpdate from '~/hooks/useUpdate'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
@@ -80,6 +80,10 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
     model.props.barBorderRadius = value
     update()
   }
+  const changeBarBorderRadiusType = (value: boolean) => {
+    model.props.barBorderRadiusType = value
+    update()
+  }
 
   const changeGraphicalPosition = (value: string) => {
     model.props.graphicalPosition = value
@@ -143,15 +147,23 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
         options={axisDisplayOptions}
         changeHandler={checkboxHandler}
       />
+      <hr className={styles.divider} />
       {model.props.graphicalRepresentation !== '3D' && (
-      <PropertyPixelOrPercent
-        label={I18n.t('reports.builder.graph.properties.barBorderRadius')}
-        defaultValue={model.props.barBorderRadius}
-        size="small"
-        step="1"
-        onChange={changeBarBorderRadius}
-      />
+        <>
+          <PropertyPixelOrPercent
+            label={I18n.t('reports.builder.graph.properties.barBorderRadius')}
+            defaultValue={model.props.barBorderRadius}
+            size="small"
+            step="1"
+            onChange={changeBarBorderRadius}
+          />
+          <Space>
+            <Checkbox onChange={e => changeBarBorderRadiusType(e.target.checked)} />
+            All corner rounded
+          </Space>
+        </>
       )}
+      <hr className={styles.divider} />
       <GraphPropertyDropdown
         label={I18n.t('reports.builder.graph.properties.legendPosition')}
         options={positionOptions}
@@ -193,6 +205,7 @@ const MaxValueOptions: React.FC<MaxValueOptionsProps> = ({ value, changeHandler 
   <>
     <Typography.Text>{I18n.t('reports.builder.graph.properties.maxValueLabel')}</Typography.Text>
     <InputNumber
+      size="small"
       value={value}
       onChange={changeHandler}
       placeholder={I18n.t('reports.builder.graph.properties.maxValueLabelPlaceholder')}
