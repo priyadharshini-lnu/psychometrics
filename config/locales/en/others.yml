@@ -2719,6 +2719,7 @@ en:
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines
+          hideYAxisTitle: Hide Y-axis title
           hideZeroValueColumns: Hide Zero Value Columns
           legendPosition: Legend Position
           maxValueLabel: Max Value (number)

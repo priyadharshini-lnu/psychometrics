@@ -75,6 +75,7 @@ export default function ChartOptions (
           color: color || '#000',
           fontFamily,
         },
+        enabled: !model.props.yAxisLabelHide,
       },
     },
     plotOptions: {
