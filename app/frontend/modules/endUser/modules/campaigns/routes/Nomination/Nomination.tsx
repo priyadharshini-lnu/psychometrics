@@ -114,6 +114,7 @@ const NominationComponent = (props) => {
         <SubHeader
           title={I18n.t('threesixty.nomination')}
           onBack={() => navigate(`/threesixty_campaigns/${params.campaignId}`)}
+          backButtonAriaLabel={I18n.t('frontend.aria.back_to_tasks')}
         />
         <Row justify="center">
           <Col xs={24} lg={22} xl={20} xxl={14}>

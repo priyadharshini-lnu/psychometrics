@@ -122,6 +122,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
       <SubHeader
         title={assessment.name}
         onBack={() => navigate(`/campaigns/${campaignId}`)}
+        backButtonAriaLabel={I18n.t('frontend.aria.back_to_tasks')}
       />
       <Content className={styles.agileContent}>
         <div id="agile-container" className={styles.agileContainer} />

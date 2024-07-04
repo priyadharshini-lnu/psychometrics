@@ -176,9 +176,11 @@ const EvaluationComponent = ({
           className={styles.campaignHeader}
           backIcon={(
             <Space>
-              <DirectionalNavigateBackIcon
-                className={styles.backIcon}
-              />
+              <Button ghost type="text" size="small" aria-label={I18n.t('frontend.aria.back_to_tasks')}>
+                <DirectionalNavigateBackIcon
+                  className={styles.backIcon}
+                />
+              </Button>
               <CountdownTimer
                 notificationPoints={[{ completionPercentage: 30, type: 'info' },
                   { completionPercentage: 15, type: 'warning' },

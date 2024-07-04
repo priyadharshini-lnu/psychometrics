@@ -84,9 +84,11 @@ const ReportComponent = ({
         <PageHeader
           className={styles.campaignHeader}
           backIcon={(
-            <DirectionalNavigateBackIcon
-              className={styles.backIcon}
-            />
+            <Button ghost type="text" size="small" aria-label={I18n.t('frontend.aria.back_to_tasks')}>
+              <DirectionalNavigateBackIcon
+                className={styles.backIcon}
+              />
+            </Button>
           )}
           title={(
             <Text className={styles.campaignDropdown}>

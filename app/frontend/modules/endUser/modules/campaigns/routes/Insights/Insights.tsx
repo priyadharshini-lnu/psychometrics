@@ -66,6 +66,7 @@ const InsightsComponent: FC<Props> = ({
             <SubHeader
               title={I18n.t('campaign.dashboard_menu.insights')}
               onBack={() => navigate('/dashboard')}
+              backButtonAriaLabel={I18n.t('frontend.aria.back_to_dashboard')}
             />
             <InsightsBody userDashboard={userDashboard} isUserReportAvailable={isUserReportAvailable} />
           </>

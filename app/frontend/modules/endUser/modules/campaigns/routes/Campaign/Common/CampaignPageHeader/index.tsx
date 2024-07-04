@@ -5,6 +5,7 @@ import { DownOutlined } from '@ant-design/icons'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
   Row, Col, Dropdown, Tag, theme,
+  Button,
 } from 'antd'
 
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
@@ -110,7 +111,16 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       style={{ backgroundColor: token.colorPrimary }}
       className={styles.campaignHeader}
       onBack={handleNavigation}
-      backIcon={<DirectionalNavigateBackIcon className={styles.backIcon} />}
+      backIcon={(
+        <Button
+          size="small"
+          ghost
+          type="text"
+          aria-label={I18n.t('frontend.aria.back_to_dashboard')}
+        >
+          <DirectionalNavigateBackIcon className={styles.backIcon} />
+        </Button>
+)}
       ghost={false}
       title={titleElement}
       extra={extra}

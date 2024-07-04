@@ -2127,6 +2127,8 @@ en:
     activate: Activate
     are_you_sure: Are you sure?
     aria:
+      back_to_dashboard: Back to Dashboard
+      back_to_tasks: Back to Tasks
       campaign_name_description: ', for campaign "%{campaignName}"'
       lang_dropdown_description: ",change language"
       profile_progress: Profile completion is

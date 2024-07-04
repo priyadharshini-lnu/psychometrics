@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Col, Progress, Space, ProgressProps,
+  Layout, Col, Progress, Space, ProgressProps, Button,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -154,7 +154,11 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               className={styles.campaignHeader}
               onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
               backIcon={enableBackButton
-              && <DirectionalNavigateBackIcon className={styles.backIcon} />
+              && (
+              <Button size="small" type="text" ghost aria-label={I18n.t('frontend.aria.back_to_tasks')}>
+                <DirectionalNavigateBackIcon className={styles.backIcon} />
+              </Button>
+              )
               }
               ghost={false}
               title={(
