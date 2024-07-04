@@ -3503,7 +3503,7 @@ en:
     participants:
       tabs:
         assessors: Assessors
-        sms_invites: SMS Invites
+        sms_contacts: SMS Contacts
         subjects: Subjects
     piped_text_modal:
       join_link: Join Link
@@ -4399,7 +4399,7 @@ en:
         undelivered: Undelivered
     sms_invites:
       actions:
-        add: Add SMS Invite
+        add: Add SMS Contact
       columns:
         created_at: Created At
         created_by: Created By
@@ -4407,6 +4407,7 @@ en:
         first_name: First Name
         last_name: Last Name
         mobile_no: Mobile No
+      contacts: Contacts
       form_modal:
         first_name: First Name
         last_name: Last Name
@@ -4449,8 +4450,8 @@ en:
         not_invited: Not Invited
         registered: Registered
       tools:
-        export: Export SMS Invites
-        import: Import SMS Invites
+        export: Export SMS Contacts
+        import: Import SMS Contacts
         send_sms: Send SMS
     sms_records:
       columns:

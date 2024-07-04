@@ -115,7 +115,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('common.model.sms_invite')}`}</span>
+          <span className="mlm">{`${total} ${I18n.t('common.model.sms_contact')}`}</span>
         </Col>
         <Space>
           <Select

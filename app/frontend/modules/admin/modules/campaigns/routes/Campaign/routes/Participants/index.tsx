@@ -39,7 +39,7 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions }) => {
   })
   campaignPermissions.viewSmsInvites && menuItems.push({
     key: '/participants/sms/invites',
-    label: I18n.t('administration.participants.tabs.sms_invites'),
+    label: I18n.t('administration.participants.tabs.sms_contacts'),
   })
 
   return (
