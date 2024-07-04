@@ -7,13 +7,18 @@ import Resource from './Resource'
 
 export default function ResourceManager (props) {
   useEffect(() => {
-    const { subscribeSocket, socketInitialized, loadAssessments } = props
+    const {
+      fetch, init, subscribeSocket, socketInitialized, loadAssessments,
+    } = props
     const urldata = location.pathname.match(/assessments\/(\d+)/)
     const id = urldata && urldata[1]
     if (!socketInitialized) {
       subscribeSocket('Assessments::Channel', { assessment_id: id })
     }
     loadAssessments(id)
+    fetch(id).then(({ response }) => {
+      init(response)
+    })
   }, [])
 
   const { resources, reorderResources } = props

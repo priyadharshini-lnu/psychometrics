@@ -24,18 +24,7 @@ module Assessments
 
     def subscribed
       assessment = Assessment.find(params['assessment_id'])
-      if Administration::AssessmentPolicy.new(current_user, assessment, project_id: assessment.owner_id).edit?
-        transmit(
-          {
-            action: 'assessment_data',
-            data: Assessments::AssessmentSerializer.new(
-              context: {
-                include: '**'
-              }
-            ).serialize(assessment)
-          }
-        )
-      else
+      unless Administration::AssessmentPolicy.new(current_user, assessment, project_id: assessment.owner_id).edit?
         reject
       end
     end

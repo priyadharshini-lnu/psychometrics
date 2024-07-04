@@ -18,10 +18,7 @@ const Socket = ({ dispatch }) => next => (action) => {
     NotificationDispatcher.notify(notification)
   }
 
-  if (data.action === 'assessment_data') {
-    const normalizedData = normalize(data.data, schema)
-    dispatch({ type: INIT, data: normalizedData })
-  } else if (data.action === 'question_data') {
+  if (data.action === 'question_data') {
     dispatch({ type: INIT_QUESTION_CENTER, data: data.data })
   } else if (data.action === 'block_data') {
     const normalizedData = normalize({

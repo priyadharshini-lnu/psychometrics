@@ -672,7 +672,7 @@ Rails.application.routes.draw do
             post :not_selected_users
           end
         end
-        resource :builders, only: [:update]
+        resource :builders, only: %i[show update]
         resource :scoring, only: [:update], controller: :scoring
         resource :agiles, only: %i[show update]
       end
