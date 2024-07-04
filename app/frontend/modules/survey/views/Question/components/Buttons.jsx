@@ -1,5 +1,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Button } from 'antd'
+import cs from 'classnames'
 import styles from './Buttons.less'
 
 class Question extends Component {
@@ -41,23 +43,44 @@ class Question extends Component {
     return (
       <div onClick={e => e.stopPropagation()}>
         <div className={`${styles.left} ${up || ''}`}>
-          <a onClick={this.moveUp} className={`btn btn-primary ${styles.moveBtn} ${styles.up}`}>
-            <span className={`fa fa-arrow-up ${styles.btnicon}`} />
-          </a>
-          <a onClick={this.moveDown} className={`btn btn-primary ${styles.moveBtn} ${styles.down}`}>
-            <span className={`fa fa-arrow-down ${styles.btnicon}`} />
-          </a>
+          <Button
+            size="small"
+            type="primary"
+            icon={<span className={cs('fa fa-arrow-up', styles.btnicon)} />}
+            onClick={this.moveUp}
+            className={cs(styles.moveBtn, styles.up)}
+          />
+          <Button
+            size="small"
+            type="primary"
+            icon={<span className={`fa fa-arrow-down ${styles.btnicon}`} />}
+            onClick={this.moveDown}
+            className={cs(styles.moveBtn, styles.down)}
+          />
         </div>
         <div className={`${styles.right} ${up || ''}`} style={selected ? { right: 14 } : {}}>
-          <a onClick={this.insertTop} className={`btn btn-success ${styles.addBtn}`}>
-            <span className={`fa fa-plus ${styles.btnicon}`} />
-          </a>
-          <a onClick={remove} className={`btn btn-danger ${styles.addBtn}`}>
-            <span className={`fa fa-minus ${styles.btnicon}`} />
-          </a>
-          <a onClick={this.insertBottom} className={`btn btn-success ${styles.addBtn}`}>
-            <span className={`fa fa-plus ${styles.btnicon}`} />
-          </a>
+          <Button
+            size="small"
+            type="primary"
+            icon={<span className={`fa fa-plus ${styles.btnicon}`} />}
+            onClick={this.insertTop}
+            className={`${styles.btn}`}
+          />
+          <Button
+            size="small"
+            type="primary"
+            danger
+            icon={<span className={`fa fa-trash ${styles.btnicon}`} />}
+            onClick={remove}
+            className={`${styles.btn}`}
+          />
+          <Button
+            size="small"
+            type="primary"
+            icon={<span className={`fa fa-plus ${styles.btnicon}`} />}
+            onClick={this.insertBottom}
+            className={`${styles.btn}`}
+          />
         </div>
       </div>
     )

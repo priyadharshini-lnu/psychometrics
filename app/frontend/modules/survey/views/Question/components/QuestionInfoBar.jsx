@@ -1,14 +1,24 @@
 import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import { DropdownButton, MenuItem } from 'react-bootstrap'
+import {
+  Dropdown, Button, Space, Popconfirm,
+} from 'antd'
+import {
+  EyeOutlined, SaveOutlined, PartitionOutlined, SettingOutlined, CheckCircleOutlined,
+  EyeInvisibleOutlined, CommentOutlined, DeleteOutlined,
+} from '@ant-design/icons'
 import LogicElement from '~/modules/survey/models/logic/LogicElement'
-import InlineEditor from '~/modules/survey/components/InlineEditor'
 import styles from './Question.less'
 
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
+  }
+
+  remove () {
+    const { remove } = this.props
+    remove()
   }
 
   addNote = () => {
@@ -54,15 +64,7 @@ class Question extends Component {
     })
   }
 
-  changeName = (value) => {
-    const { renameQuestion, model } = this.props
-    renameQuestion(model, value)
-  }
-
   hasDefaultValues (model) {
-    if (!model.props.defaultValues) {
-      debugger
-    }
     if (model.props.defaultValues.length > 0) {
       return model.type !== 'TextEntry' || _.some(
         model.props.defaultValues, object => object.value,
@@ -71,72 +73,104 @@ class Question extends Component {
     return false
   }
 
-  renderRandomMenuItem () {
+  randomizationMenuItem () {
     const { moduleConfig } = this.props
     if (moduleConfig.randomization) {
-      return (
-        <MenuItem onSelect={this.randomization}>
-          <span className={`icon fa fa-random ${styles.menuicon}`} />
-          Randomization...
-        </MenuItem>
-      )
+      return [
+        {
+          key: 'randomization',
+          icon: <span className={`icon fa fa-random ${styles.menuicon}`} />,
+          label: 'Randomization',
+          onClick: this.randomization,
+        },
+      ]
     }
-    return null
+    return []
   }
 
   renderAddToTemplate () {
     const { model, block } = this.props
     if (!model.templateId && !block.templateId) {
-      return (
-        <MenuItem onSelect={this.saveAsTemplate}>
-          <span className={`icon fa fa-floppy-o ${styles.menuicon}`} />
-          Save as a Template
-        </MenuItem>
-      )
+      return [
+        {
+          key: 'add_to_template',
+          label: 'Save as a Template',
+          icon: <SaveOutlined />,
+          onClick: this.saveAsTemplate,
+        },
+      ]
     }
-    return null
+    return []
   }
 
-  renderDefaultValueMenuItem () {
+  defaultValueMenuItem () {
     const { moduleConfig } = this.props
     if (moduleConfig.defaultValue) {
-      return (
-        <MenuItem onSelect={this.defaultValue}>
-          <span className={`icon fa fa-dot-circle-o ${styles.menuicon}`} />
-          Add Default Choices...
-        </MenuItem>
-      )
+      return [
+        {
+          key: 'add_default_choice',
+          icon: <CheckCircleOutlined />,
+          label: 'Default Choices',
+          onClick: this.defaultValue,
+        },
+      ]
     }
-    return null
+    return []
   }
 
   renderOptions () {
-    const { model } = this.props
     return (
-      <DropdownButton
-        onClick={e => e.stopPropagation(e)}
-        className={styles.dropdown}
-        bsStyle="default"
-        title={<span className="icon fa fa-gear" />}
-        id={`block_menu_${model.id}`}
+      <Dropdown
+        trigger={['click']}
+        menu={{
+          items: [
+            {
+              key: 'add_display_logic',
+              icon: <EyeOutlined />,
+              label: 'Add Display Logic',
+              onClick: this.displayLogic,
+            },
+            {
+              key: 'add_skip_logic',
+              icon: <EyeInvisibleOutlined />,
+              label: 'Add Skip Logic',
+              onClick: this.addSkipLogic,
+            },
+            ...this.defaultValueMenuItem(),
+            {
+              key: 'add_note',
+              label: 'Add Note',
+              icon: <CommentOutlined />,
+              onClick: this.addNote,
+            },
+
+            ...this.linkedQuestionsMenuItem(),
+            ...this.randomizationMenuItem(),
+            ...this.renderAddToTemplate(),
+            {
+              key: 'delete_question',
+              label: (
+                <Popconfirm
+                  title="Delete the question"
+                  description="Are you sure to delete this question?"
+                  onConfirm={() => this.remove()}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  Delete Question
+                </Popconfirm>
+              ),
+              icon: <DeleteOutlined />,
+            },
+          ],
+        }}
       >
-        <MenuItem onSelect={this.displayLogic}>
-          <span className={`icon fa fa-eye ${styles.menuicon}`} />
-          Add Display Logic...
-        </MenuItem>
-        <MenuItem onSelect={this.addSkipLogic}>
-          <span className={`icon fa fa-eye-slash  ${styles.menuicon}`} />
-          Add Skip Logic...
-        </MenuItem>
-        {this.renderDefaultValueMenuItem()}
-        <MenuItem onSelect={this.addNote}>
-          <span className={`icon fa fa-pencil-square-o ${styles.menuicon}`} />
-          Add Note...
-        </MenuItem>
-        {this.renderLinkedQuestions()}
-        {this.renderRandomMenuItem()}
-        {this.renderAddToTemplate()}
-      </DropdownButton>
+        <Button block>
+          <Space>
+            <SettingOutlined />
+          </Space>
+        </Button>
+      </Dropdown>
     )
   }
 
@@ -164,24 +198,24 @@ class Question extends Component {
     return null
   }
 
-  renderLinkedQuestions () {
+  linkedQuestionsMenuItem () {
     const { linkedAssessment } = this.props
     if (linkedAssessment) {
-      return (
-        <MenuItem onSelect={this.linkedAssessment}>
-          <span className={`icon fa fa-random ${styles.menuicon}`} />
-          {I18n.t('assessments.question_info_bar.select_linked_questions')}
-        </MenuItem>
-      )
+      return [
+        {
+          key: 'linked_assessment',
+          label: I18n.t('assessments.question_info_bar.select_linked_questions'),
+          icon: <PartitionOutlined />,
+          onclick: this.linkedAssessment,
+        },
+      ]
     }
-    return null
+    return []
   }
 
   render () {
-    const { model } = this.props
     return (
       <div className={styles.infobar}>
-        <InlineEditor styles={styles.editable} onChange={this.changeName} value={model.name} />
         {this.renderOptions()}
         {this.renderDefaultValue()}
         {this.renderRandomLabel()}

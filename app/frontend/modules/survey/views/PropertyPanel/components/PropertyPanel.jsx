@@ -22,6 +22,7 @@ const PropertyPanelComponent = (props) => {
     openDisplayLogic, changeType, openPreview, firstBlockContentOffset,
   } = props
   const panelRef = useRef(null)
+  const [showMenu, setShowMenu] = useState(false)
   const [isOverflown, setIsOverflown] = useState(false)
   const style = {
     top: isOverflown ? 'unset' : offset,
@@ -46,6 +47,7 @@ const PropertyPanelComponent = (props) => {
     if (question.type === type && _.isEmpty(props)) { return }
     Action('QuestionChangeType', question, { oldType: question.type, newType: type })
     changeType(question, type, props)
+    setShowMenu(false)
   }
 
   const questiontypeBtn = (
@@ -57,6 +59,9 @@ const PropertyPanelComponent = (props) => {
             overlayInnerStyle={{ padding: 0 }}
             trigger="click"
             placement="leftBottom"
+            open={showMenu}
+            onClick={() => setShowMenu(true)}
+            onOpenChange={() => setShowMenu(false)}
             content={<Menu onSelect={changeQuestionType} />}
           >
             <Button

@@ -1,22 +1,20 @@
-import { Modal } from 'react-bootstrap'
+import { Modal } from 'antd'
 
-const {
-  Header, Body, Footer, Title,
-} = Modal
 const Confirmation = ({
   show, title, children, onConfirm, onCancel, confirm, cancel,
 }) => (
-  <Modal show={show} keyboard={false}>
-    <Header>
-      <Title>{title || 'Confirm'}</Title>
-    </Header>
-    <Body>
-      {children}
-    </Body>
-    <Footer>
-      <button className="btn btn-success" onClick={onConfirm}>{confirm || 'Yes'}</button>
-      <button className="btn btn-danger" onClick={onCancel}>{cancel || 'No'}</button>
-    </Footer>
+  <Modal
+    open={show}
+    title={title || 'Confirm'}
+    keyboard={false}
+    okText={confirm || 'Yes'}
+    cancelText={cancel || 'No'}
+    onOk={onConfirm}
+    onCancel={onCancel}
+    cancelButtonProps={{ type: 'primary' }}
+    okButtonProps={{ danger: true }}
+  >
+    {children}
   </Modal>
 )
 

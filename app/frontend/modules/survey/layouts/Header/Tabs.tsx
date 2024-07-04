@@ -26,7 +26,13 @@ export const Tabs: React.FC<Props> = ({ active }) => {
 
   return (
     <div className={styles.tabs}>
-      <Radio.Group onChange={change} defaultValue="questions" value={active} buttonStyle="solid">
+      <Radio.Group
+        className={styles.radiogroup}
+        onChange={change}
+        defaultValue="questions"
+        value={active}
+        buttonStyle="solid"
+      >
         <Radio.Button value="questions">Questions</Radio.Button>
         <Radio.Button value="scoring">Scoring</Radio.Button>
         <Radio.Button value="resources">Resources</Radio.Button>

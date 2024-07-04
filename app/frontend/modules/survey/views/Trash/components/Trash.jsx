@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Button } from 'antd'
 import FlipMove from 'react-flip-move'
 import styles from '~/modules/survey/views/Block/components/Block.less'
 import Confirmation from '~/modules/survey/components/Confirmation'
@@ -76,7 +77,7 @@ class Trash extends Component {
             <span className={styles.editable} onClick={this.edit}>Trash / Unused Questions</span>
           </div>
           <div className={styles.options}>
-            <a className="btn btn-default" onClick={this.showConfirmation}>Empty Trash</a>
+            <Button onClick={this.showConfirmation}>Empty Trash</Button>
           </div>
         </div>
         <div className={[trashStyles.content]} style={{ display: opened ? 'block' : 'none' }}>
