@@ -25,6 +25,10 @@ const { I18n } = window
 
 type CampaignFactorGroupType = CampaignFactorGroup & {campaignFactors: CampaignFactor[]}
 
+enum StackRank {
+  UNRANKED = '-',
+}
+
 type DataType = {
   key: React.Key;
   id: string;
@@ -33,7 +37,7 @@ type DataType = {
   campaignScoresFinalizedDate: string | null;
   campaignScoresCalculatedDate: string | null;
   errors: Error[] | null;
-  stackRank: number | null ;
+  stackRank: number | StackRank ;
   [key: string]: string | number | boolean | null | Error[] | {[key: string]: boolean};
 }
 
@@ -446,7 +450,7 @@ const processData = (
     campaignScoresFinalizedDate: valueData?.campaignScoresFinalizedDate,
     campaignScoresCalculatedDate: valueData?.campaignScoresCalculatedDate,
     campaignScoresFinalized: valueData?.campaignScoresFinalized,
-    stackRank: valueData?.stackRank || null,
+    stackRank: valueData?.stackRank || StackRank.UNRANKED,
     errors: valueData?.campaignScoresErrors,
   }
 
