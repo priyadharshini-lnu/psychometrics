@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   # rubocop:enable Style/FormatStringToken
 
   get '/admin/*all', to: 'administration/app#dashboard'
+  get '/global_config', to: 'apps#global_config'
 
   concern :media_uploades do
     member do
