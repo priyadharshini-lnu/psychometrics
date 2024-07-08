@@ -128,10 +128,10 @@ class Text extends Component {
     }
   }
 
-  pipedText (text = '') {
+  pipedText (text) {
     const { module, pageNumber, totalPages } = this.props
     return PipedText.run(
-      text || I18nStore.tModule(module, 'text'),
+      text ?? I18nStore.tModule(module, 'text'),
       module,
       { page_number: pageNumber, total_pages: totalPages },
     )
