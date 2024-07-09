@@ -99,6 +99,12 @@ export const General: React.FC = () => {
                   <Option value="pl">
                     {I18n.t('languages.pl')}
                   </Option>
+                  <Option value="pt">
+                    {I18n.t('languages.pt')}
+                  </Option>
+                  <Option value="es-ES">
+                    {I18n.t('languages.es-ES')}
+                  </Option>
                 </Select>
               </Form.Item>
               <Form.Item name="enableLiveChat" valuePropName="checked">
