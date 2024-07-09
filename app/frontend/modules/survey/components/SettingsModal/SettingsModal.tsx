@@ -37,7 +37,7 @@ const SettingsModalComponent = ({
 }) => {
   const { extra } = assessment
   const isAssessmentTimerAdded = extra && Object.prototype.hasOwnProperty.call(extra, 'timer')
-  const isThreeSixtyAsessment = assessment && assessment.category === CAMPAIGN_TYPES.THREESIXTY
+  const isThreeSixtyAssessment = assessment && assessment.category === CAMPAIGN_TYPES.THREESIXTY
 
   const toggleTimer = () => {
     if (isAssessmentTimerAdded) {
@@ -96,7 +96,7 @@ const SettingsModalComponent = ({
           </Space>
         </Col>
 
-        {!isThreeSixtyAsessment && (
+        {!isThreeSixtyAssessment && (
         <Col span={24}>
           <Space>
             <Switch checked={assessment.instructions.enabled} onChange={toggleInstructions} />
