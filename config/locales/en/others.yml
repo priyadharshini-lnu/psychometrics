@@ -1668,6 +1668,7 @@ en:
       report: Report
       report_id: Report Id
       require_scheduling: Require Scheduling
+      responses_count: Responses Count
       schedule_time: Schedule Time
       scheduling: Scheduling
       status: Status
