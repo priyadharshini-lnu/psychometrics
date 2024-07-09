@@ -724,6 +724,7 @@ en:
         assign_reports_and_assessments: Assign Reports and Assessments
         bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
         bulk_download_reports: Bulk Download Reports
+        bulk_download_user_reports: Bulk Download User Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
@@ -3579,6 +3580,7 @@ en:
   user_reports:
     actions:
       add: Add Report
+      download: Download
       regenerate: Regenerate
     approval_statuses:
       approved: Approved

@@ -27,6 +27,10 @@ module Administration
         has_permission?(:results, :regenerate_report)
       end
 
+      def bulk_download?
+        has_permission?(:results, :download_report)
+      end
+
       def toggle_status?
         can_mange_campaign_users?
       end

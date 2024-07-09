@@ -192,6 +192,7 @@ export interface UserDetails {
     regenerateReport: boolean
     toggleStatus: boolean
     remove: boolean
+    bulkDownload: boolean
   }
   hoganId: string | null
 }

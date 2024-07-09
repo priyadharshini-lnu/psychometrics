@@ -241,6 +241,7 @@ Rails.application.routes.draw do
           collection do
             post :regenerate
             get :dashboard
+            post :bulk_download
           end
         end
         resources :text_module_overrides do

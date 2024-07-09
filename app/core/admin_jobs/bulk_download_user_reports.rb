@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 module AdminJobs
-  class BulkDownloadReports < AdminJobs::Base
+  class BulkDownloadUserReports < AdminJobs::Base
     include ActionView::Helpers::TagHelper
     include ActionView::Context
 
     def call
-      result = ::CampaignReports::BulkDownload.call(campaign_reports: campaign_reports, current_user: owner,
-                                                    job_record: record)
+      result = ::CampaignReports::BulkDownload.call(user_reports: user_reports, current_user: owner, job_record: record)
 
       bulk_report = result[:ok]
 
@@ -30,27 +29,32 @@ module AdminJobs
       broadcast :waiting
     end
 
-    def valid?
-      campaign.present? && campaign_reports.present?
-    end
-
     def generate_title_link
       {
-        href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessments_reports/manage",
-        label: "#{campaign.name} - #{campaign_reports.first.report.name} (...)"
+        href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/participants/users/#{user.id}",
+        label: "#{campaign.name} - #{user.decorate.full_name}"
       }
     end
 
     def generate_details
       [
-        [I18n.t('administration.reports.name'), campaign_reports.map { |cr| cr.report.name }.join(', ')]
+        [I18n.t('administration.users.user'), user.decorate.full_name],
+        [I18n.t('administration.reports.name'), user_reports.map { |cr| cr.report.name }.join(', ')]
       ]
+    end
+
+    def valid?
+      campaign.present? && user_reports.present? && user.present?
     end
 
     private
 
-    def campaign_reports
-      @campaign_reports ||= campaign.campaign_reports.where(id: record.data['ids'])
+    def user_reports
+      @user_reports ||= campaign.user_reports.where(id: record.data['ids'])
+    end
+
+    def user
+      @user ||= user_reports.first&.user
     end
   end
 end
