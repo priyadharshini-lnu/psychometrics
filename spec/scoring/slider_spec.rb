@@ -14,13 +14,23 @@ RSpec.describe Scoring::TextEntry do
   let!(:question) { Question.new(props: { 'minValue' => 50, 'maxValue' => 200, 'choices' => 3 }) }
 
   describe '#calculate' do
+    it 'score when template is less than answers' do
+      template = [
+        { 'index' => 1, 'min' => 0, 'max' => 3 }
+      ]
+      answers = [{ 'index' => 0, 'value' => 100 }, { 'index' => 1, 'value' => 150 }]
+      result = slider.calculate(question, { 'answers' => answers }, template)[:value]
+
+      expect(result).to eq(((150 - 50) / (200 - 50).to_f * 3) / 1.to_f)
+    end
+
     context 'when scoring: choice #1 - 2, choice #2 - 3, choice #3 - 4' do
       context 'and question props: minValue = 50, maxValue = 200' do
         context 'when answer: #1 - 100, #2, #3 - 0' do
           it 'returns 2/9' do
             result = slider.
                      calculate(question, { 'answers' => [{ 'index' => 0, 'value' => 100 }] }, template_data)[:value]
-            expect(result).to eq(2 / 9.to_f)
+            expect(result).to eq(((100 - 50) / (200 - 50).to_f * 2) / 1.to_f)
           end
         end
         context 'when answer: #1 - 100, #2, #3 - 200' do
@@ -34,13 +44,21 @@ RSpec.describe Scoring::TextEntry do
                                    { 'index' => 2, 'value' => 200 }
                                  ]
                                }, template_data)[:value]
-            expect(result).to eq(23 / 9.to_f)
+            expect(result.round(3)).to eq(
+              (
+                (
+                  ((100 - 50) / (200 - 50).to_f * 2) +
+                  ((200 - 50) / (200 - 50).to_f * 3) +
+                  ((200 - 50) / (200 - 50).to_f * 4)
+                ) / 3.to_f
+              ).round(3)
+            )
           end
         end
         context 'when empty answer' do
           it 'returns 0' do
             result = slider.calculate(question, { 'answers' => [] }, template_data)[:value]
-            expect(result).to eq(0)
+            expect(result).to eq(nil)
           end
         end
         context 'when scoring is reversed, answer: #1 - 100, #2, #3 - 200' do
