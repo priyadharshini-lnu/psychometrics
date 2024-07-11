@@ -4178,7 +4178,7 @@ en:
         calculated_date: Calculated Date
         calculation_errors: Calculation Errors
         export: Export Scorings
-        export_success: Export scores job scheduled successfull
+        export_success: Export scores job was scheduled successfully
         finalized: Finalized
         finalized_date: Finalized Date
         mark_finalized: Mark Finalized
@@ -4225,7 +4225,7 @@ en:
       security_setting: Security settings
       send_unlock_email: Send unlock email
       tfa_enabled: Enable Two Factor Authentication
-      update_success_msg: Password settings successfull updated
+      update_success_msg: Password settings was updated successfully
     settings:
       admin_roles:
         admin_role_single: Admin Role
