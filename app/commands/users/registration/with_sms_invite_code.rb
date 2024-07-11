@@ -14,7 +14,12 @@ module Users
         transaction do
           user_form = Campaigns::Users::CreateForm.new(form.attributes.slice(:first_name, :last_name, :email,
                                                                              :mobile_number, :mobile_verified))
-          user = Campaigns::Users::Create.call!(user_form, sms_invite.campaign)
+          user = Campaigns::Users::Create.call!(user_form, sms_invite.campaign) do
+            on(:insufficient_license) do
+              raise Errors::LicenseError.new(nil, nil, user, 'LicenseError')
+            end
+          end
+
           sms_invite.update!(registered_user: user, status: :registered)
           broadcast(:ok, user)
         end

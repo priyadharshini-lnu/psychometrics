@@ -160,7 +160,7 @@ module Administration
                 }
               ).serialize(user)
             end
-            on(:error) do |errors|
+            on(:insufficient_license) do |errors|
               return render json: { errors: errors.is_a?(String) ? { base: errors } : errors },
                             status: 422
             end

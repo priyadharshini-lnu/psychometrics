@@ -2045,7 +2045,7 @@ en:
           incorrect_domain: Incorrect domain format.
           invalid_attribute: "%{attribute} is invalid"
           invalid_end_date: has to be greater than the start date
-          license_issue: Not enough licenses.
+          license_issue: You don't have enough license to register. Please contact your administrator.
           presence: "%{attribute} must be entered"
           review: Please review the problems.
         form_fields:

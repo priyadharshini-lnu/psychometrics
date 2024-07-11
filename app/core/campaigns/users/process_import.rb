@@ -56,7 +56,7 @@ module Campaigns
             else
               form = ::Campaigns::Users::Import::CreateForm.new(user_data.merge(operation: operation))
               ::Campaigns::Users::Create.call(form, campaign, current_user) do
-                on(:error) do |error|
+                on(:insufficient_license) do |error|
                   raise Licenses::NotEnoughError, error
                 end
                 on(:ok) do |u|
@@ -128,7 +128,7 @@ module Campaigns
         form = ::Campaigns::Users::Import::CreateForm.new(user_data.merge(operation: operation))
 
         ::Campaigns::Users::Create.call(form, campaign, current_user) do |result|
-          result.on(:error) do |error|
+          result.on(:insufficient_license) do |error|
             raise Licenses::NotEnoughError, error
           end
           result.on(:ok) do |manager|

@@ -44,7 +44,7 @@ export const routes = [
   },
   {
     path: '/registration',
-    component: Registration,
+    component: <Registration />,
   },
   {
     path: '/privacy',
