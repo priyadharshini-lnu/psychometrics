@@ -41,7 +41,7 @@ CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
 -- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
 --
 
-COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+COMMENT ON EXTENSION pg_stat_statements IS 'track planning and execution statistics of all SQL statements executed';
 
 
 --
@@ -1963,7 +1963,6 @@ CREATE TABLE public.factors (
     scale_min double precision,
     scale_max double precision,
     custom_formula character varying,
-    owner_id bigint,
     "precision" integer
 );
 
@@ -4127,7 +4126,8 @@ CREATE TABLE public.smtp_settings (
     "boolean" boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    project_id bigint NOT NULL
+    project_id bigint NOT NULL,
+    use_sender_verification boolean DEFAULT false
 );
 
 
@@ -4387,8 +4387,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -8643,13 +8642,6 @@ CREATE INDEX index_factors_on_dimension_id ON public.factors USING btree (dimens
 
 
 --
--- Name: index_factors_on_owner_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_factors_on_owner_id ON public.factors USING btree (owner_id);
-
-
---
 -- Name: index_factors_on_parent_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10356,14 +10348,6 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 
 --
--- Name: factors fk_rails_225e7dce0c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factors
-    ADD CONSTRAINT fk_rails_225e7dce0c FOREIGN KEY (owner_id) REFERENCES public.clients(id);
-
-
---
 -- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11968,6 +11952,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240603125218'),
 ('20240603082942'),
 ('20240523115956'),
+('20240510095101'),
 ('20240508075421'),
 ('20240426140020'),
 ('20240424120254'),
@@ -11978,7 +11963,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240419110536'),
 ('20240416093121'),
 ('20240415123000'),
-('20240405101155'),
 ('20240403123008'),
 ('20240401134614'),
 ('20240401112155'),

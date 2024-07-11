@@ -17,6 +17,10 @@ export interface State {
   password: string
   authenticationType: string
   enabled: boolean
+  fromName: string
+  fromEmail: string
+  useSenderAuthentication: boolean
+  testEmailId?: string
 }
 
 const defaultState = {} as State
@@ -25,7 +29,7 @@ export const VALIDATE_SETTINGS = 'resource/campaigns/smtpSetting/VALIDATE_SETTIN
 export const SAVE_SETTINGS = 'resource/campaigns/smtpSetting/SAVE_SETTINGS'
 export const TEST_SETTINGS = 'resource/campaigns/smtpSetting/TEST_SETTINGS'
 
-export const validateSettings = (projectId: number, resource: State): ApiAction<void> => ({
+export const validateSettings = (projectId: number, resource: Partial<State>): ApiAction<void> => ({
   type: VALIDATE_SETTINGS,
   request: {
     method: 'post',
@@ -35,7 +39,7 @@ export const validateSettings = (projectId: number, resource: State): ApiAction<
   },
 })
 
-export const saveSettings = (projectId: number, smtpSettingId: number, resource: State): ApiAction<void> => ({
+export const saveSettings = (projectId: number, smtpSettingId: number, resource: Partial<State>): ApiAction<void> => ({
   type: SAVE_SETTINGS,
   request: {
     method: 'put',
@@ -45,7 +49,7 @@ export const saveSettings = (projectId: number, smtpSettingId: number, resource:
   },
 })
 
-export const sendTestEmail = (projectId: number, smtpSetting: State, to_email: string): ApiAction<void> => ({
+export const sendTestEmail = (projectId: number, smtpSetting: Partial<State>, to_email: string): ApiAction<void> => ({
   type: TEST_SETTINGS,
   request: {
     method: 'post',

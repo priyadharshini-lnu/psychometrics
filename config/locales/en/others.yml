@@ -287,6 +287,10 @@ en:
             import_data:
               duplicated_mobile_numbers: 'The following mobile numbers are duplicated in CSV: %{mobile_numbers}'
               invalid_header: Invalid header. Export SMS invite to get the correct headers
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: Email Id format is not valid.
         super_admin_edit:
           attributes:
             email:
