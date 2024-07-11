@@ -1670,6 +1670,7 @@ en:
       report: Report
       report_id: Report Id
       require_scheduling: Require Scheduling
+      responses_count: Responses Count
       schedule_time: Schedule Time
       scheduling: Scheduling
       status: Status
@@ -2361,8 +2362,8 @@ en:
     en: English
     en-GB: English - UK
     eo: Esperanto
-    es: Spanish (Latin America)
-    es-ES: Spanish (Spain)
+    es: Español (latinoamerica)
+    es-ES: Español (españa)
     et: Estonian
     fa: Persian
     fi: Finnish
@@ -2387,7 +2388,7 @@ en:
     nl: Dutch
     'no': Norwegian
     pl: Polish
-    pt: Portuguese
+    pt: Português
     pt-BR: Brazilian Portuguese
     pt-PT: Portuguese (Portugal)
     pt_BR: Portuguese (Brazil)
@@ -2723,6 +2724,7 @@ en:
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines
+          hideYAxisTitle: Hide Y-axis title
           hideZeroValueColumns: Hide Zero Value Columns
           legendPosition: Legend Position
           maxValueLabel: Max Value (number)

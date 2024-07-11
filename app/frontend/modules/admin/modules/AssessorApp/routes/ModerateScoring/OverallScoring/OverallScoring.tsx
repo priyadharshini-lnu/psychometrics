@@ -38,6 +38,9 @@ export const OverallScoring = ({ header }) => {
         filter: {
           user_id_eq: userId,
         },
+        page: {
+          size: 100,
+        },
       },
     },
   )

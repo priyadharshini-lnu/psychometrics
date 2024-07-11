@@ -29,17 +29,21 @@ class Assessors::UsersController < Administration::BaseController
   end
 
   def show
-    user_assessments = UserAssessment.joins(:assessment).where(
+    grouped_user_assessments = UserAssessment.joins(:assessment).where(
       evaluator: current_user, subject: @user, campaign_id: params[:campaign_id],
       relationship: Relationship.assessor_relationship, assessment: { category: :assessor_form }
-    )
+    ).group_by(&:assessment_id)
+
     user_reports = UserReport.assessor_report_for_campaign(params[:campaign_id]).where(user_id: @user.id)
-    serialized_user_assessments = Panko::ArraySerializer.new(
-      user_assessments, each_serializer: Administration::Assessors::UserAssessmentSerializer,
-      context: {
-        project_id: campaign.project_id
-      }
-    ).to_a
+    serialized_user_assessments = grouped_user_assessments.map do |_key, user_assessments|
+      Administration::Assessors::UserAssessmentSerializer.new(
+        context: {
+          status: user_assessments.all?(&:completed?) ? :completed : user_assessments.first.status,
+          responses_count: user_assessments.count,
+          project_id: campaign.project_id
+        }
+      ).serialize(user_assessments.first)
+    end
     serialized_user_reports = Panko::ArraySerializer.new(
       user_reports, each_serializer: Administration::Assessors::UserReportSerializer
     ).to_a

@@ -12,7 +12,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
     @assessor_assessments = policy_scope(UserAssessment).joins(:assessment).where(
       campaign_id: campaign.id, subject_id: user.id, assessments: { category: :assessor_form },
       relationship: Relationship.assessor_relationship
-    ).order('completed_at DESC NULLS LAST').order(:id)
+    ).order('completed_at DESC NULLS FIRST').order(:id)
 
     assessment_ids = @assessor_assessments.pluck('assessments.linked_assessment_id')
 
@@ -83,7 +83,8 @@ class Assessors::EvaluationsController < Assessors::BaseController
     new_user_assessment.create_users_result
 
     redirect_to assessors_campaign_evaluation_url(
-      @assessor_assessment.campaign_id, new_user_assessment.subject_id, tab: new_user_assessment.assessment_id
+      @assessor_assessment.campaign_id, new_user_assessment.subject_id, tab: new_user_assessment.assessment_id,
+      assessment: new_user_assessment.id
     )
   end
 

@@ -14,6 +14,21 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
 
   before_create { @model.campaign_id = context[:campaign].id }
   after_create :increment_booked_seats
+  after_create :link_to_workshop_invite
+
+  def link_to_workshop_invite
+    workshop_invited_subject = WorkshopInvitedSubject.find_by(
+      user_id: @model.user_id,
+      workshop_invite_id: WorkshopInvite.where(campaign_id: @model.campaign_id).select(:id),
+      status: :pending
+    )
+    return unless workshop_invited_subject
+
+    ApplicationRecord.transaction do
+      @model.update!(workshop_invited_subject_id: workshop_invited_subject.id)
+      workshop_invited_subject.update!(status: :accepted)
+    end
+  end
 
   def increment_booked_seats
     @model.workshop.increment_booked_seats
