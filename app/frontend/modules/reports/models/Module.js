@@ -249,10 +249,18 @@ _.extend(Module.prototype, {
   },
 
   isMultiFiltering () {
+    if (!this.moduleConfig?.settings?.[this.props.type]) {
+      return false
+    }
+
     return !!_.result(this.moduleConfig.settings[this.props.type], 'multiFiltering')
   },
 
   isQuestionMultiFiltering () {
+    if (!this.moduleConfig?.settings?.[this.props.type]) {
+      return false
+    }
+
     return !!_.result(this.moduleConfig.settings[this.props.type], 'questionMultiFiltering')
   },
 
