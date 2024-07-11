@@ -2878,7 +2878,7 @@ en:
         successfully: Factor '%{name}' was copied successfully.
       create:
         error: "'%{name}' factor was not created"
-        successfully: "%'{name}' factor was created successfully."
+        successfully: "'%{name}' factor was created successfully."
       destroy:
         successfully: Factor "%{name}" was deleted successfully.
       edit:
