@@ -129,8 +129,8 @@ const MenuComponent = ({ workshop, setData }) => {
     }).then(() => {
       resource.fetch()
       message.success(I18n.t('administration.workshop.actions.remove_workshop'))
-    }).catch(() => {
-      message.error(I18n.t('administration.workshop.errors.remove_workshop_failure'))
+    }).catch((error) => {
+      message.error(error.base[0].title)
     })
   }
 

@@ -54,7 +54,8 @@ module Api
 
         render json: :ok
       else
-        jsonapi_render_errors [{ code: :error }], status: :unprocessable_entity
+        error_message = I18n.t('administration.workshop.errors.remove_workshop_failure')
+        jsonapi_render_errors [{ code: :error, title: error_message }], status: :unprocessable_entity
       end
     end
 
