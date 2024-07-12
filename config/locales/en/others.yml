@@ -3152,6 +3152,7 @@ en:
     modals:
       exports:
         export_sign_in_url: Export with magic sign in URL
+        include_inactive_users: Export with inactive users
         title: Export Users
       import:
         body: Refer to the Export functionality to extract a template that can be used to Import here.

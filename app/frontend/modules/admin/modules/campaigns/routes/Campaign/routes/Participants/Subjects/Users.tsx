@@ -34,6 +34,7 @@ const MODALS = {
 export const FILTER_PREDICATES = {
   campaignUsersCompletionStatus: 'In',
   campaignUsersStatus: 'In',
+  campaignUsersActive: 'In',
 }
 
 const { Column } = Table
@@ -98,7 +99,13 @@ const UserList: React.FC<Props> = ({
   const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const { modal, message } = App.useApp()
   useEffect(() => {
-    fetch(campaignId, tableConfig)
+    fetch(campaignId, {
+      ...tableConfig,
+      filters: {
+        ...tableConfig.filters,
+        campaignUsersActiveIn: filters.campaignUsersActiveIn || 'true',
+      },
+    })
   }, [tableConfig])
 
   const handleUserTypeFilterChange = (value: string): void => {
@@ -175,7 +182,12 @@ const UserList: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('administration.campaigns.users.is_active')}
-              key="enable"
+              key="campaignUsersActive"
+              filters={[
+                { text: 'Active', value: true },
+                { text: 'Inactive', value: false },
+              ]}
+              filteredValue={getFilteredValue('campaignUsersActive') || [true]}
               render={
                 ({
                   active, id,
