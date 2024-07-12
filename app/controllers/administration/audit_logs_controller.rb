@@ -28,7 +28,7 @@ module Administration
 
     def show
       authorize @log
-      render json: AuditLogSerializer.new.serialize(@log)
+      render json: AuditLogInfoSerializer.new.serialize(@log)
     end
 
     def actions

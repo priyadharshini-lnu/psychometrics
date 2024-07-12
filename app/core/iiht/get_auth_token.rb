@@ -31,6 +31,7 @@ module Iiht
 
           connection.headers['Accept'] = 'application/json'
           connection.headers['Content-Type'] = 'application/json'
+          connection.use Faraday::Response::RaiseError
         end
 
         response = client.post(

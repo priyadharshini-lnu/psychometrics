@@ -51,11 +51,11 @@ export const fetchResults = (userAssessmentId, isEdit) => ({
 })
 
 
-export const validateSession = (userAssessmentId, sessionId) => ({
+export const validateSession = (userAssessmentId, evaluationSessionId) => ({
   type: VALIDATE_SESSION,
   request: {
-    url: `/user_assessments/${userAssessmentId}/validate_session`,
-    body: { session_id: sessionId },
+    url: '/evaluation_session_exists',
+    body: { evaluationSessionId, userAssessmentId },
   },
 })
 

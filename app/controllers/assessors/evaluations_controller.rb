@@ -50,7 +50,10 @@ class Assessors::EvaluationsController < Assessors::BaseController
 
   def show
     user_result = @assessor_assessment.users_result
-    attributes = { last_activity_at: DateTime.current }
+    attributes = {
+      last_activity_at: DateTime.current,
+      evaluation_session_id: Devise.friendly_token
+    }
     attributes = attributes.merge(started_at: Time.zone.now) unless @assessor_assessment.started_at
     @assessor_assessment.update!(attributes)
     set_locale_for_user_assessment(@assessor_assessment)

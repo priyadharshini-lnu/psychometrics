@@ -50,4 +50,18 @@ describe Iiht::GetAssessments do
 
     expect(response).to eq([])
   end
+
+  context 'when an error occurs in iiht api' do
+    it 'rescues from StandardError and returns nil' do
+      stub_request(:get, "#{Settings.iiht.base_api_url}/GetAssessments").
+        with(query: {
+          tenantId: config['tenant_id'], maxResultCount: 100, skipCount: 0
+        }).
+        and_raise(Faraday::Error)
+
+      response = described_class.call!(project)
+
+      expect(response).to eq([])
+    end
+  end
 end

@@ -183,6 +183,7 @@ export const DOWNLOAD = 'campaigns/userReports/DOWNLOAD'
 export const ASYNC_DOWNLOAD = 'campaigns/userReports/ASYNC_DOWNLOAD'
 export const SELECT_RECORDS = 'campaigns/userReports/SELECT_RECORDS'
 export const REGENERATE_REPORTS = 'campaigns/userReports/REGENERATE_REPORTS'
+export const BULK_DOWNLOAD = 'campaigns/userReports/BULK_DOWNLOAD'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 export const TOGGLE_USER_ACCESS_REQUEST = 'resource/campaigns/report/TOGGLE_USER_ACCESS_REQUEST'
 export const SET_USER_REPORTS = 'campaigns/userReports/SET_USER_REPORTS'
@@ -389,6 +390,17 @@ export const regenerateReports = (campaignId: number, ids: number[]) => ({
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_reports/regenerate`,
+    body: { ids },
+    loader: true,
+  },
+})
+
+export const bulkDownload = (campaignId: number, ids: number[]) => ({
+  type: BULK_DOWNLOAD,
+  ids,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/bulk_download`,
     body: { ids },
     loader: true,
   },

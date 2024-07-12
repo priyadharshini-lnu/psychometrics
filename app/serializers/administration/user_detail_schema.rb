@@ -64,6 +64,7 @@ module Administration
           required(:regenerate_report).filled(:bool?)
           required(:toggle_status).filled(:bool?)
           required(:remove).filled(:bool?)
+          required(:bulk_download).filled(:bool?)
         end
         required(:completed_at).maybe(:str?)
         required(:user_assessments).array(Administration::UserAssessmentSchema.schema(_, _))

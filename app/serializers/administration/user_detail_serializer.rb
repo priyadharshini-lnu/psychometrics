@@ -95,6 +95,7 @@ module Administration
           'add_report',
           'regenerate_report',
           'toggle_status',
+          'bulk_download',
           %w[remove destroy]
         ],
         {

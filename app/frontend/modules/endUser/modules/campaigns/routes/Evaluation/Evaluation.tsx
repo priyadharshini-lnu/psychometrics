@@ -11,6 +11,7 @@ import {
   ConfigProvider,
   Space,
   Typography,
+  Modal,
 } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -22,7 +23,8 @@ import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import { statusMenuItems } from '~/modules/endUser/modules/campaigns/common/menuItems'
 import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
 import store from '~/modules/endUser/store'
-
+import useAvoidMultipleEvaluation from '~/hooks/useAvoidMultipleEvaluation'
+import { validateSession } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import {
   fetchEvaluation, fetchAssessment, clearEvaluation,
   updateStatus,
@@ -45,6 +47,7 @@ const connector = connect((state: any) => ({
   clearEvaluation,
   updateStatus,
   markAssessmentTimedOut,
+  validateSession,
 })
 const { Content } = Layout
 const { I18n } = window
@@ -78,6 +81,7 @@ const EvaluationComponent = ({
   preview,
   markAssessmentTimedOut,
   progress,
+  validateSession,
 }) => {
   const assessmentRef = createRef()
   const {
@@ -92,6 +96,10 @@ const EvaluationComponent = ({
       history.replaceState(null, '', location.href.replace('edit=true', 'edit=false'))
     }
   }, [])
+
+  const [showInvalidSession, setShowInvalidSession] = useAvoidMultipleEvaluation(
+    params.id, results, validateSession,
+  )
 
   if (!loaded) { return null }
 
@@ -205,6 +213,23 @@ const EvaluationComponent = ({
         />
         {!error && (
         <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+          {showInvalidSession && (
+            <Modal
+              title={I18n.t('errors.invalid_session_title')}
+              open={showInvalidSession}
+              cancelText={I18n.t('common.actions.close')}
+              okText={I18n.t('common.actions.back_to_dashboard')}
+              closable={false}
+              maskClosable={false}
+              onCancel={() => {
+                setShowInvalidSession(false)
+              }}
+              onOk={() => { window.location.href = '/assessors' }}
+              centered
+            >
+              {I18n.t('assessments.page.invalid_session.description')}
+            </Modal>
+          )}
           <ResourcesTabs assessmentStarted={started} assessment={assessment}>
             <Row justify="end" className={styles.dropdownRow}>
               <Col className={styles.dropdownCol}>

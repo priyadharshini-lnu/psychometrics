@@ -6,7 +6,10 @@ module AdminJobs
     include ActionView::Context
 
     def call
-      bulk_report = ::CampaignReports::BulkDownload.call!(campaign_reports, owner, record)
+      result = ::CampaignReports::BulkDownload.call(campaign_reports: campaign_reports, current_user: owner,
+                                                    job_record: record)
+
+      bulk_report = result[:ok]
 
       if bulk_report
         content = [

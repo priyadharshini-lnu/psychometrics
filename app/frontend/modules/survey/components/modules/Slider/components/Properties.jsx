@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Checkbox } from 'antd'
 import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
 import Action from '~/modules/survey/undo'
 import ChoicesInput from '~/modules/survey/components/ChoicesInput'
@@ -100,6 +101,14 @@ export class Properties extends Component {
     model.update()
   }
 
+  handleNotApplicableOptionChange = (event) => {
+    const { model } = this.props
+    model.changeProps({
+      notApplicable: event.target.checked,
+    })
+    model.update()
+  }
+
   // ====================================
   // RENDERS
   // ====================================
@@ -111,6 +120,15 @@ export class Properties extends Component {
           <span className={styles.label}>Choices</span>
           <ChoicesInput maxValue={50} value={props.choices} model={model} onChange={this.changeChoices} />
         </div>
+        <Checkbox
+          onChange={this.handleNotApplicableOptionChange}
+          checked={props.notApplicable}
+          className="ms-4 me-4"
+        >
+          {I18n.t(
+            'administration.survey_builder.property_panel.add_n_a_option',
+          )}
+        </Checkbox>
         <hr className={styles.divider} />
       </div>
     )

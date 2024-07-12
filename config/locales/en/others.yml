@@ -728,6 +728,7 @@ en:
         assign_reports_and_assessments: Assign Reports and Assessments
         bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
         bulk_download_reports: Bulk Download Reports
+        bulk_download_user_reports: Bulk Download User Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
@@ -803,11 +804,11 @@ en:
   assessments:
     actions:
       archived:
-        success_message: Asessment %{name} archived successfully
+        success_message: Assessment %{name} archived successfully
       back_to_campaign: Back to Campaign
       back_to_dashboard: Back to Dashboard
       copy:
-        success_message: Asessment %{name} was copied successfully
+        success_message: Assessment %{name} was copied successfully
       details: Details
       download_csv: Download CSV
       edit: Edit
@@ -825,7 +826,7 @@ en:
       remove:
         confirm_message: Are you sure you want to delete the assessment '%{name}'?
         confirm_title: Confirmation Required
-        success_message: Asessment %{name} has been removed
+        success_message: Assessment %{name} has been removed
       rescore: Rescore
       restore:
         success_message: Assessment %{name} restored successfully
@@ -833,9 +834,9 @@ en:
       submit_another_response: Submit another response
       submit_evaluation: Submit Evaluation
       translations:
-        success_message: The asessment translations updated
+        success_message: The assessment translations updated
       unarchived:
-        success_message: Asessment %{name} unarchived successfully
+        success_message: Assessment %{name} unarchived successfully
       view: View
     active: Active
     archived: Archived
@@ -1160,6 +1161,7 @@ en:
       code_placeholder: One Time Password
       description: Please enter the OTP that was sent to your registered email address.
       resend: Resend OTP
+      resend_in: Resend in %{timestamp} seconds
       resend_success: OTP is sent to your mobile number
       sms_description: Please enter the OTP that was sent to your mobile number.
       submit: Verify
@@ -1747,6 +1749,8 @@ en:
     QAR: QAR
     SAR: SAR
     USD: USD
+  custom_field:
+    field_name: Field Name
   devise:
     administrators:
       meta_title: Login to administration panel
@@ -3582,6 +3586,7 @@ en:
   user_reports:
     actions:
       add: Add Report
+      download: Download
       regenerate: Regenerate
     approval_statuses:
       approved: Approved

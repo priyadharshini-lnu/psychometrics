@@ -8,6 +8,7 @@ module Scoring
       values = []
       result['answers'].each do |answer|
         next unless answer['value']
+        next if result.dig('not_applicable', answer['index'].to_s)
 
         object = scoring_template.find { |template| template['index'] == answer['index'] }
         next unless object

@@ -78,7 +78,7 @@ export const AssessmentsContainer = ({
     <ViewsContainer
       title={I18n.t('campaign_assessment.assessments_heading')}
       defaultView="grid"
-      viewTypeStorageKey="asessmentListingType"
+      viewTypeStorageKey="assessmentListingType"
       className={styles.container}
     >
       {(view) => {
