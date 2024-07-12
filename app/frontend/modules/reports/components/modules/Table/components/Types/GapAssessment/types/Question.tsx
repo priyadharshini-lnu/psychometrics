@@ -398,6 +398,17 @@ const TBody: FC<TBodyProps> = ({ gaps, emptyText, hideValues }) => {
     )
   }
 
+  const gapStyle = (diff) => {
+    if (diff === 0) { return }
+    return (diff > 0 ? styles.positive : styles.negative)
+  }
+
+  const gapValue = (diff) => {
+    if (diff === 0) { return 0 }
+
+    return (diff > 0 ? '+' : '-') + Utils.round(diff, 2)
+  }
+
   return (
     <>
       {gaps.map((gap, i) => (
@@ -409,7 +420,9 @@ const TBody: FC<TBodyProps> = ({ gaps, emptyText, hideValues }) => {
             <>
               <td dir="ltr">{Utils.round(gap.left, 2)}</td>
               <td dir="ltr">{Utils.round(gap.right, 2)}</td>
-              <td dir="ltr">{Utils.round(gap.diff, 2)}</td>
+              <td dir="ltr" className={gapStyle(gap.diff)}>
+                {gapValue(gap.diff)}
+              </td>
             </>
           )}
         </tr>
