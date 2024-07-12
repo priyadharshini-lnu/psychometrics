@@ -77,6 +77,17 @@ RSpec.describe Scoring::TextEntry do
             expect(result.round(10)).to eq((4 / 9.to_f).round(10))
           end
         end
+
+        context 'when not_applicable answer' do
+          it 'returns only applicable score' do
+            result = slider.calculate(question, { 'answers' => [
+              { 'index' => 0, 'value' => 150 },
+              { 'index' => 1, 'value' => 200 },
+              { 'index' => 2, 'value' => 200 }
+            ], 'not_applicable' => { '0' => true, '2' => true } }, template_data)[:value]
+            expect(result).to eq(3.0)
+          end
+        end
       end
     end
   end

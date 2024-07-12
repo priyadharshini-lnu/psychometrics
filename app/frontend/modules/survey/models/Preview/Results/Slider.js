@@ -19,7 +19,9 @@ _.extend(Slider.prototype, {
 
   // Force Response
   requiredValidation () {
-    return this.result.answers.length === this.result.question.props.choices
+    const notApplicableCount = _.countBy(this.result.notApplicable, c => c)?.true || 0
+    const answers = this.result.answers.filter(a => this.result.notApplicable?.[a.index] !== true)
+    return answers.length === (this.result.question.props.choices - notApplicableCount)
   },
 })
 

@@ -57,6 +57,8 @@ const DefaultProps = {
     labels: 3,
     labelsTexts: [],
     questionText: 'Click to write the question text',
+    notApplicable: false,
+    notApplicableLabel: 'Not Applicable',
     type: 'Slider',
     gridLines: 10,
     minValue: 0,

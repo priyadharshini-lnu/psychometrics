@@ -29,7 +29,7 @@ export default class extends Component {
       <LabelEditor
         onChange={this.changeNotApplicableLabel}
         maxWidth={150}
-        value={notApplicableLabel}
+        value={notApplicableLabel || 'Not Applicable'}
       />
     )
   }
