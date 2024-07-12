@@ -1,10 +1,3 @@
 ---
 ar:
   administration:
-    clients:
-      registration_codes:
-        errors:
-          invalid_attribute: "%{attribute} غير صالحة"
-          license_issue: ليس لديك تراخيص كافية للتسجيل. يرجى الاتصال بالمسؤول الخاص بك.
-          presence: "%{attribute} غير صالحة"
-          review: يرجى مراجعة المشاكل.

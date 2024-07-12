@@ -516,8 +516,16 @@ jobs:
             docker push registry.heroku.com/<< parameters.target-app-name >>/worker
             docker push registry.heroku.com/<< parameters.target-app-name >>/release
             heroku container:release web worker release -a << parameters.target-app-name >>
-
-
+  i18n_unused_key_checks:
+    executor: tte-executor
+    resource_class: medium
+    steps:
+      - checkout
+      - bundle_restore
+      - run:
+          name: Check for unused translation keys
+          command: |
+            bundle exec i18n-tasks unused
 orbs:
   aws-cli: circleci/aws-cli@4.1.2
   heroku: circleci/heroku@2.0.0
@@ -555,6 +563,9 @@ workflows:
             - brakeman
             - eslint
             - typescript
+      - i18n_unused_key_checks:
+          requires:
+            - bundle_assets
       - rspec:
           requires:
             - bundle_assets

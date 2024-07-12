@@ -56,6 +56,7 @@ pl:
       description: Aby utworzyć nowe hasło, prosimy o wpisanie nowego hasła w polach poniżej
       submit: Zatwierdź
       title: Stwórz hasło
+    sign_in: Zaloguj
     sign_out: Zaloguj się jako inny użytkownik
     sign_up: Zapisz się
     terms_link: <a href="%{terms_url}">Warunki i oświadczenie o ochronie prywatności</a>
@@ -66,8 +67,10 @@ pl:
     begin_campaign_msg: Rozpocznij kampanię przed przystąpieniem do oceny
     campaigns: Kampanie
     closed_campaign_message: Ta kampania jest zamknięta. W ramach tej kampanii nie możesz dokonać żadnej oceny.
+    complete_all: Wykonaj wszystkie powiązane oceny
     complete_prev: Ukończ wszystkie poprzednie oceny
     complete_tasks: Przed podjęciem tej czynności wykonaj poniższe zadania.
+    completed: Zakończony
     continue: Kontynuuj swoje zadania
     dashboard_instructions: Przydzielono Ci wiele działań, które musisz wykonać. Upewnij się, że wszystkie przypisane działania zostały wykonane we wszystkich kampaniach.
     dashboard_menu:
@@ -75,6 +78,7 @@ pl:
       change_password: Zmień hasło
       home: Dom
       insights: Insights
+      livechat: WSPARCIE NA ŻYWO
       profile: Profil
       profile_details: Detale
       tasks: Zadania
@@ -87,7 +91,9 @@ pl:
     errors:
       invalid_status: Nieprawidłowy stan kampanii
     goto_dashboard: Przejdź do pulpitu nawigacyjnego
+    in_progress: W trakcie
     inactive_campaign_message: Obecnie nie przydzielono Ci żadnych działań.
+    ineligible: Nieposiadający kwalifikacji
     insights_reports: Spostrzeżenia i raporty
     instruction_modal:
       campaign_start_final_instructions: |-
@@ -105,15 +111,22 @@ pl:
         <h4>Przeglądarka kontrolująca</h4>
         <p>  Aby wykonać nadzorowane zadania, będziesz musiał pobrać i zainstalować specjalną przeglądarkę. Postępuj zgodnie z instrukcjami na następnym ekranie. Możesz to odinstalować po wykonaniu wszystkich wymaganych czynności.
         </p>
+      title: Instrukcje
     instructions:
       collapse_link_text: Pokaż mniej
       expand_link_text: Pokaż więcej
       heading: Zanim zaczniesz, zapoznaj się z poniższymi wytycznymi. Życzymy Ci wszystkiego najlepszego!
+    interrupted: Przerwano
     language:
+      cancel: Anuluj
       content: To zadanie nie jest dostępne w aktualnie wybranym języku. Aby kontynuować, wybierz jeden z dostępnych języków.
+      proceed: Kontynuować
       single_lang: To zadanie jest dostępne tylko w %{lang}. Kliknij „Kontynuuj”, aby kontynuować.
       title: Wybierz język
+    new: Nowy
+    not_started: Nowy
     panels:
+      assessments: Zadania
       dashboard: Deska rozdzielcza
       reports: Raporty
     profile:
@@ -130,8 +143,14 @@ pl:
       cancel: Anuluj
       continue: Dalej
       notification: Twój czas przydzielony na to zadanie „%{assessmentName}” wynosił %{totalAssessmentTime}. Ze względu na ogólny czas, który upłynął, masz teraz tylko %{remainingCampaignTime} jako dostosowany czas na wykonanie tego zadania.
+      title: Ostrzeżenie dotyczące pozostałego czasu
+    timed_out: Przekroczono limit czasu
     timer:
+      expiry_message: ocena się kończy
+      message: Czas pozostały na wykonanie wszystkich zadań
       notification: Masz %{minutes} minut i %{seconds} sekund na ukończenie
+    ungrouped: Niepogrupowane zadania
+    welcome: Witamy
   campaign_assessment:
     assessments_heading: Twoje zadania
     statuses:
@@ -158,8 +177,10 @@ pl:
       add: Dodaj
       archive: Archiwum
       cancel: Anuluj
+      close: Blisko
       delete: Kasować
       edit: Edytować
+      import: Import
       remove: Usunąć
       reset: Nastawić
       resolve: Rozwiązać
@@ -172,6 +193,7 @@ pl:
       upload: Przekazać plik
   navigation:
     logout: Wyloguj
+    profile: Profil
   profile:
     add_field: Dodaj pole
     add_photo: Dodaj zdjęcie

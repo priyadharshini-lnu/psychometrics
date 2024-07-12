@@ -2,10 +2,33 @@
 en:
   activemodel:
     attributes:
+      assign_report:
+        adding_report_ids: Report(s)
+        is_applying_to_existing_users: Apply these changes to existing users
+        report_family_id: Report Bundle
+      datasheet:
+        file: File (.xlsx)
+      hogan:
+        assessment_id: Hogan assessment ID
+      iiht:
+        assessment_id: IIHT assessment ID
+      new_assessments_client:
+        assessment_ids: Assessments
+        is_applying_to_existing_users: Apply these changes to existing users
+      pearson:
+        assessment_id: Pearson assessment ID
+      regenerate_reports:
+        report_ids: Reports
+      saville:
+        assessment_id: Saville assessment ID
       sheet_column:
         accessor_access: Accessor access
         dashboard_use: Dashboard use
+        name: Name
+        type: Type
         visible_in_list: Visible in list
+      update_assessment:
+        is_applying_to_existing_users: Apply these changes to existing users
     errors:
       models:
         admin_edit:
@@ -315,6 +338,11 @@ en:
               inclusion: must be a boolean
             start_date_time:
               invalid_datetime: is invalid
+    models:
+      assign_report: Assign report Form
+      datasheet: Datasheet Form
+      regenerate_reports: Regenerate Reports
+      update_assessment: Update assessment Form
   activerecord:
     attributes:
       administration/assessments/assign_form:
@@ -678,8 +706,35 @@ en:
           attributes:
             current_password:
               invalid: Current password is incorrect
+    models:
+      administration/assessments/assign_form: Assigns Form
+      assessment: Assessments
+      assign: Assigns
+      block: Block
+      client: Clients
+      communication: Communication
+      dimension: Dimensions
+      factor: Factors
+      factors_norm: factors_norms
+      innovation_style: Innovation Styles
+      innovation_styles_factor: Innovation Styles
+      library: Library
+      license: License
+      membership: Membership
+      norm: Norms
+      occupation: Occupations
+      occupations_factor: Occupations
+      question: Question
+      report: Report
+      report_family: ReportFamily
+      user: Users
+      user_form: User
   admin_jobs:
     attrs:
+      active: Active
+      created_at: Created Date
+      id: ID
+      name: Name
       operations:
         assessment_norm_export: Normed Results Export
         assessment_raw_factor_export: Raw Factor Scores Export
@@ -732,12 +787,15 @@ en:
         failed: Failed
         in_progress: In Progress
         scheduled: Scheduled
+      updated_at: Modified Date
     bulk_download_reports:
       content:
         title: Links to download reports
     close: Close
     details: Details
     errors: Errors
+    export_report_data:
+      title: Link to download report data
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
@@ -745,6 +803,14 @@ en:
     results: Results
   anonym:
     continue: Continue
+    copy:
+      archived: has been archived
+      expired: has expired
+      not_active: is no longer active
+    labels:
+      archived: Archived
+      expired: Expired
+      not_active: Not Active
     link_invalid_error_message: The link you're trying to access is invalid. Please contact the administrator to get the correct URL and proceed with the survey.
     notifications:
       restart:
@@ -774,6 +840,9 @@ en:
       moderate: Moderate Scores
       new_response: New Response
       next_assessment: Pass To Next Assessment
+      pending_tasks:
+        one: You have one 1 pending task
+        other: You have %{count} pending tasks
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
@@ -808,7 +877,17 @@ en:
       begin: Begin
       continue: Continue
     categories:
+      '360': 360 Campaign
+      agile: AGILE
+      assessor_form: Assessor Form
+      case_study: Case Study
+      hogan: Hogan
+      meeting: Meeting
+      mindmill: Mindmill
+      organisational: Survey
+      psychometric: Assessment
       redirecting: Redirecting
+      saville: Saville
     column:
       enable_audio_check: Enable Audio Check
       enable_network_check: Enable Network Check
@@ -822,6 +901,8 @@ en:
         saville_assessment_id: Saville assessment ID
     create: Create
     dashboard: Dashboard
+    decorator:
+      no_description: Description is empty
     dictation:
       allow_browser_permision: Please allow browser audio permission to use dictation
       autostopping_in: Auto-stopping in %{reverseCountdown}
@@ -866,12 +947,18 @@ en:
         mindmill: Mindmill
         pearson: Pearson Assessment
         saville: Saville Assessment
+    file_upload:
+      select_file: Select file
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
         default_message: Default end of assessment message
         mark_as_ineligible: Mark as ineligible
         show_uniq_identifier: Show Unique Identifier to respondents (for anonymous surveys)
+    index:
+      managers_assessments_button: Action Planning
+      managers_dashboard_button: Managers Dashboard
+      user_dashboard_button: User Dashboard
     instructions:
       begin_assessment: Begin
       cancel: Cancel
@@ -909,6 +996,18 @@ en:
     question_info_bar:
       select_linked_questions: Select Linked Questions
     reset: Reset
+    resource:
+      assigned: Assigned %{date}
+      invite_users: Invite Users
+      questions:
+        one: 1 Question
+        other: "%{count} Questions"
+        zero: No Questions
+      results: Results
+      status:
+        completed: Completed
+        in_progress: Resume
+        not_started: Start
     scoring:
       competency: Competency
       id: ID
@@ -920,19 +1019,25 @@ en:
     update: Update
     upload: Upload
     video_response:
+      delete: Delete
       device: Allow
       discard: Discard
       media_recorder:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
         unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
+      offline_message: Please check your internet connection.
       retake: Retake
+      retry: Retry
       save: Save
       saved:
         label: Saved
         tooltip: This video has been marked for submission. Alternatively you can choose another take.
       saving: Saving...
+      selected: Selected
       start_recording: Start recording
+      status:
+        recording: Recording
       tracker:
         backward: You are too close to the screen. Please move a bit back
         forward: You are too far away from the screen. Please move a bit closer
@@ -942,8 +1047,10 @@ en:
     wait: Wait
   assessments_reports:
     add_group_form:
+      name: Name
       previous_assessments_required: Assessments to runs in below order
       previous_group_required: Previous group completion required
+      title: Assessment group
     menu:
       assessment_center: Assessment Center
       assessments_and_reports: Assessments & Reports
@@ -967,6 +1074,8 @@ en:
           ok: Yes, delete
           text: Are you sure you want to delete "%{name}" group?
           title: Delete Group
+      move_assessment: Move assessment
+      move_group: Move group
       no_assessments: Drag and drop the assessments
       no_ungrouped_assessments: Drag and drop the assessments here for ungrouping
       ungrouped_assessments: Ungrouped assessments
@@ -992,6 +1101,17 @@ en:
         reject: Reject
         text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
         title: Data processing consent
+      assigned: Assigned %{date}
+      mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
+      questions:
+        one: 1 Question
+        other: "%{count} Questions"
+        zero: No Questions
+      status:
+        completed: Completed
+        in_progress: Resume
+        not_started: Start
+        overdue: Overdue
     assigns_reports:
       download: Download
       duration: Duration
@@ -1001,16 +1121,48 @@ en:
       completed: Completed %{date}
       no_description: Description is empty
       not_completed: Not Completed
+    index:
+      managers_dashboard_button: Managers Dashboard
+      user_dashboard_button: User Dashboard
     multiple_report:
       results: Results
     notifications:
       completed: '%{user_name} finished assessment "%{assessment_name}"'
       in_progress: '%{user_name} started to take assessment "%{assessment_name}"'
+    project_assessment:
+      accept_privacy_modal:
+        accept: Accept
+        reject: Reject
+        text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
+        title: Data processing consent
+      assigned: Assigned %{date}
+      mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
+      questions:
+        one: 1 Question
+        other: "%{count} Questions"
+        zero: No Questions
+      status:
+        completed: Completed
+        in_progress: Resume
+        not_started: Start
+        overdue: Overdue
     reports:
       load_results: 'Load Results: %{report}'
       processing: Processing...
       results: Results
   audit_log_failures:
+    devise:
+      already_authenticated: You are already signed in.
+      inactive: Your account is not activated yet.
+      invalid: Invalid email or password.
+      invited: You have a pending invitation, accept it to finish creating your account.
+      last_attempt: You have one more attempt before your account is locked.
+      locked: Your account is locked.
+      not_found_in_database: Invalid email or password.
+      saml_user_not_present: User is not present in the system
+      timeout: Your session expired. Please login again to continue.
+      unauthenticated: You need to login or register before continuing.
+      unconfirmed: You have to confirm your email address before continuing.
     invalid_sso_token: Invalid SSO Token
     record_not_found: Record Not Found
     user_not_authorized: User Not Authorized
@@ -1069,12 +1221,14 @@ en:
       description: To create a new password, please enter your new password in the boxes below
       submit: Submit
       title: Create Password
+    sign_in: Sign In
     sign_out: Login as different user
     sign_up: Sign Up
     terms_link: <a href="%{terms_url}">Terms and Privacy Statement</a>
     verify_mobile_number:
       error:
         blocked: This number is blocked due to too many attempts.
+        failed: Verification failed. Please enter the correct OTP.
         invalid_code: Invalid code
         max_attempts_reached: Too many attempts. Please wait for 10 minutes before trying again.
   browsers:
@@ -1104,8 +1258,10 @@ en:
     campaigns: Campaigns
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     code_usage_limit_reached: Code usage limit reached, please contact administrator
+    complete_all: Complete all related assessments
     complete_prev: Complete all previous assessments
     complete_tasks: Please complete tasks below before taking this action.
+    completed: Completed
     continue: Continue your tasks
     dashboard_instructions: You have been assigned multiple activities that you need to complete. Please make sure to check that all the assigned activities have been completed across all the campaigns.
     dashboard_menu:
@@ -1115,6 +1271,7 @@ en:
       development: Development
       home: Home
       insights: Insights
+      livechat: Live Support
       my_direct_reports: My Direct Reports
       my_plan: My Plan
       profile: Profile
@@ -1124,12 +1281,15 @@ en:
     edit_evaluation:
       body: Please be informed that once you click on Re-evaluate, you will be directed to the start of the survey where you can edit the responses. The previous responses will still be available but you can change them as per your perusal. Upon editing, you will have to re-submit the assessment to complete the process.
       edit: Re-evaluate
+      prev_results: Previous Results
       title: Confirm
       view: View Assessment
     errors:
       invalid_status: Invalid campaign status
     goto_dashboard: Go to the Dashboard
+    in_progress: In Progress
     inactive_campaign_message: Currently, you have not been assigned any activities.
+    ineligible: Ineligible
     insights_reports: Insights & Reports
     instruction_modal:
       campaign_start_final_instructions: |
@@ -1151,15 +1311,22 @@ en:
         <p>
           You will be required to download and install a special browser to complete the proctored tasks. Please follow the instructions in the next screen. You can uninstall this after completing all required activities.
         </p>
+      title: Instructions
     instructions:
       collapse_link_text: Show less
       expand_link_text: Show more
       heading: Please review the guidelines below before you get started. We wish you all the best!
+    interrupted: Interrupted
     language:
+      cancel: Cancel
       content: This task is not available in the currently selected language. Please select one of the available languages to proceed.
+      proceed: Proceed
       single_lang: This task is available only in %{lang}. Click "Proceed" to continue.
       title: Select language
+    new: New
+    not_started: New
     panels:
+      assessments: Tasks
       dashboard: Dashboard
       reports: Reports
     profile:
@@ -1180,8 +1347,30 @@ en:
       cancel: Cancel
       continue: Continue
       notification: Your allocated time for this task "%{assessmentName}" was %{totalAssessmentTime}. Due to the overall elapsed time, you now have only %{remainingCampaignTime} as your adjusted time to complete this task.
+      title: Time left warning
+    timed_out: Timed Out
     timer:
+      expiry_message: assessment ends
+      message: Time left to complete all tasks
       notification: You have %{minutes} minutes and %{seconds} seconds to complete
+    ungrouped: Ungrouped tasks
+    welcome: Welcome
+    workshops:
+      activities: Center Activities
+      assessment_center: Assessment Center
+      click_here: Click here to join meeting >
+      duration: Duration
+      duration_to_complete: "%{duration} to complete"
+      inactive_message: Currently, you have not been assigned any assessment centers.
+      not_scheduled_button: Not scheduled
+      not_started_button: Not started
+      participate: Participate
+      preworks: Preworks
+      starts_in: Starts in
+      status:
+        ongoing: On Going
+        upcoming: Upcoming
+      workshop_instructions: Make sure to join assessment center on time.
   campaign_assessment:
     actions:
       export_completion_status: Export Completion Status
@@ -1208,6 +1397,7 @@ en:
       locales: Locales
       norm: Norm
       prework: Prework
+      status: Status
       universal_link: Universal link
     messages:
       export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
@@ -1230,6 +1420,7 @@ en:
         upload: Upload
       regenerate:
         content: Are you sure you want to regenerate available reports?
+        successfully: Reports will be regenerated.
         title: Regenerate reports?
       remove:
         helper_text: 'DANGER: Selecting this will remove all users'' responses to this assessment in this campaign.'
@@ -1286,6 +1477,7 @@ en:
       timed_out: Timed Out
       universal_link: Universal link
     ungrouped_assessments_heading: Ungrouped
+    update_exists: Update all exists assessments
   campaign_join_token:
     campaign_id: Campaign ID
     expire_in: Expire in (sec)
@@ -1329,6 +1521,7 @@ en:
   campaign_users:
     actions:
       add_manager: Add manager
+      add_report: Add report
       extend_time: Extend Time
       search_user: Search user
     assessments:
@@ -1358,6 +1551,10 @@ en:
         not_started: Not Started
         timed_out: Timed Out
     modals:
+      change_password:
+        content: Are you sure you want to send instructions with link to change password?
+        successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
+        title: Change password %{name}?
       remove: Are you sure you want to remove user with email '%{email}' from this campaign?
   campaigns:
     assessments_and_reports:
@@ -1385,43 +1582,63 @@ en:
       continue: Continue
       processing: Processing
       record_title: Please speak and repeat the following sentence 3 times.
+      run_again: Run again
       speech_detection: Speech detection
       test_message: great to speak with you
       title: We need to ensure your system can record audio.
     network_check:
       continue: Continue
       download: Download
+      levels:
+        '0': Network broken (reconnecting)
+        '1': Very bad network
+        '2': Bad network
+        '3': Average network
+        '4': Good network
+        '5': Very good network
+      network: Network
       please_check_connection: Please check your Internet Connection
       processing: Processing
       run_again: Run again
       run_again_title: And run this test again
+      start: Start
       title: Click start to begin internet speed test.
       upload: Upload
+    steps:
+      audio_check: Microphone Test
+      network_check: Internet Speed Test
+      system_check: System Check
+      video_check: Video Camera Test
     success:
       start: Start assessment
       title: You have successfully completed all checks.
     system_check:
       continue: Continue
+      start: Start
       title: Before starting this assessment, your system needs to undergo some checks.
     video_check:
       access: Access
       access_help: Click here for help.
       allow: Allow
       allow_title: Please allow to use camera to record Video
+      ambient_light: Ambient Light
       continue: Continue
       description: Any video or photo captured at this stage will not be saved or used. It is used locally on your device to ensure the camera is functioning for an upcoming question that may require video recording.
       face_detection: Face detection
       processing: Processing
       run_again: Run again
       title: We need to ensure your system can record the video
+  clear_filter: Clear Filter
   common:
     actions:
       add: Add
       approve: Approve
       archive: Archive
+      back_to_dashboard: Back To Dashboard
       back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
+      close: Close
       continue: Continue
       copy: Copy
       create: Create
@@ -1429,7 +1646,10 @@ en:
       edit: Edit
       export: Export
       filter_by_tags: Filter by tags
+      import: Import
       insert: Insert
+      mark_complete: Mark Complete
+      mark_not_started: Mark Not Started
       ok: OK
       remove: Remove
       reset: Reset
@@ -1442,6 +1662,7 @@ en:
       start: Start
       unarchive: Unarchive
       unresolve: Unresolve
+      unschedule: Unschedule
       update: Update
       upload: Upload
       upload_file: Upload File
@@ -1458,6 +1679,8 @@ en:
       assessments: Assessments
       assessor: Assessor
       category: Category
+      completion_count: Completion Count
+      completion_status: Completion Status
       created_at: Created At
       created_by: Created By
       created_date: Created Date
@@ -1505,14 +1728,17 @@ en:
       admins: Admins
       assessment: Assessment
       assessments: Assessments
+      assessors: Assessors
       campaigns: Campaigns
       completion_statuses: Completion Statuses
       datasheet: Datasheet
+      idp_templates: Idp Templates
       projects: Projects
       report: Report
       reports: Reports
       scoring: Scoring
       sms_contact: SMS Contact
+      sms_history: SMS History
       threesixty_campaign: Threesixty Campaign Scores
     status:
       completed: Completed
@@ -1526,6 +1752,8 @@ en:
     text:
       accepted: Accepted
       all_pages: All Pages
+      approve: Approve
+      approved: Approved
       cancel: Cancel
       confirm: Confirm
       continue: Continue
@@ -1546,7 +1774,21 @@ en:
     validations:
       should_be_whole_number: should be a whole number
   confirmation:
+    default_body: Are you sure?
+    default_title: Confirmation
     delete_comment: Are you sure you want to delete this comment?
+  currencies:
+    AED: AED
+    BHD: BHD
+    BYN: BYN
+    EUR: EUR
+    GBP: GBP
+    INR: INR
+    KWD: KWD
+    OMR: OMR
+    QAR: QAR
+    SAR: SAR
+    USD: USD
   devise:
     administrators:
       meta_title: Login to administration panel
@@ -1821,12 +2063,55 @@ en:
     communication:
       body:
         error: Email body has incorrect pipetext.
+      delivery_rule:
+        in_progress: If assessment is in progress
+        not_competed: If assessment is not completed
+        not_started: If assessment is not started
+        send_now: Send now
+        specific_datetime: Send at
+      kind:
+        completion: Completion
+        invitation: Invitation
+        other: Other
+        reminder: Reminder
+        workshop_booked: Assessment center booking confirmation
+        workshop_cancelled: Assessment center cancelled
+        workshop_completed: Assessment center completed
+        workshop_invite: Assessment center invite
+        workshop_invite_reminder: Assessment center invite reminder
+        workshop_upcoming_reminder: Assessment center upcoming reminder
+      recipients:
+        all: All
+        selected: Selected
+    report:
+      type:
+        common: Any
+        eti: ETI
+        yti: YTI
   errors:
+    bookings:
+      already_booked: You have already booked a seat for this assessment center.
+      seats_not_available: Seats are not available.
     error: Error
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
     forbidden_action: You do not have permissions to this action
-    invalid_token: Something went wrong. Plese reload the page and try again.
+    getting_start: Something went wrong. Plese reload the page and try again.
+    invalid_session_title: Invalid Session
+    invalidate_session_info: Your evaluation was in progress and session has expired or another active evaluation being detected. Please continue to invalidate another session.
+    messages:
+      already_confirmed: was already confirmed, please try signing in
+      carrierwave_direct_allowed_extensions: Wrong file type uploaded. Allowed extensions are %{extensions}
+      carrierwave_direct_filename_invalid: ''
+      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
+      expired: has expired, please request a new one
+      iiht_cannot_reset: This assessment can't be reset as maximum reset count has been reached.
+      not_found: not found
+      not_locked: was not locked
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+      skill_not_exist_in_user_idp_plan: User idp skill doesn't exist in user idp plan
     module_error: Something went wrong with this module, please contact administration.
     module_error_editor: Something went wrong with this module, please check module settings.
     module_props_error: Something went wrong with this module.
@@ -2028,6 +2313,12 @@ en:
     views_container:
       aria_grid_view: Grid view
       aria_list_view: List view
+  hogan:
+    assigns:
+      results:
+        not_completed: Hogan Report isn't ready yet
+        successfully: Hogan Report was saved successfully
+  id: Id
   idp:
     actions: Actions
     board: Board
@@ -2093,6 +2384,7 @@ en:
         learning_structured: Structured Learning (%{count})
         other: Other
         technical: Technical
+    plan: Plan
     profile_details: Profile Details
     skill_gap_report: Skill Gap Report
     status: Status
@@ -2102,12 +2394,26 @@ en:
       pending_approval: Pending
     users: Users
   idp_templates:
+    actions:
+      save: Save
     assign: Assign
     assign_idp_template: Assign Idp Template
     errors:
       idp_template_not_found: IDP template not found
     placeholder: Select a Idp Template
+  invites:
+    create:
+      successfully: Your invitations was sent successfully
+    form:
+      emails_hint: Set each email in new line
+      send_invites: Send Invites
+    new:
+      header: Invite Form
   jobs:
+    reports_export:
+      download:
+        description: Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>
+        message: Report is ready
     threesixty:
       export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
       export_raw_results_scheduled: Raw Results export job was scheduled successfully
@@ -2256,6 +2562,14 @@ en:
     zh-TW: 漢語
     zh_CN: Chinese (Simplified)
     zh_TW: Chinese (Traditional)
+  layouts:
+    users:
+      dashboard: Dashboard
+      help: Help
+      logout: Log Out
+      menu: Menu
+      notifications: Notifications
+      profile: Profile
   license_usage:
     active: Active
     campaign_name: Campaign name
@@ -2269,6 +2583,7 @@ en:
   licenses:
     enabled: Enabled
     end_date: End date
+    id: License ID
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
     not_enough_license_count: Not enough licenses, please contact administrator
     not_enough_proctoring_credits: Not enough credits to begin proctoring session
@@ -2283,6 +2598,7 @@ en:
       threesixty: Threesixty
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
+    used_percentage: Used Percentage
   loading: Processing...
   mailer:
     from: The Talent Enterprise
@@ -2308,14 +2624,113 @@ en:
         weekly_stats: 'Past week license usage stats :'
   maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
+  managers:
+    assessments:
+      index:
+        actions: Actions
+        name: Name
+      resource:
+        action_planning: Action Planning
+    assigns:
+      index:
+        title: Assessments and Reporting Centre
+      list:
+        action: Action
+        assessment_name: Assessment Name
+        assessment_type: Assessment Type
+        completion_date: Completion Date
+        name: Name
+        status: Completion Status
+      resource:
+        email: Email
+        save: Save in PDF
+        view: View
+    dashboard:
+      index:
+        assessment_center: Assessment / Report Centre
+        notification_center: Notification Centre
+        notifications: Notifications
+        relationships: Company Relationships
+        reporting: Reporting
+        statistics: Statistics
+    notifications:
+      index:
+        subtitle: Notifications
+        title: Notification Centre
+    reports:
+      show:
+        export_pdf: Export to PDF
+        header: Report
+    statistics:
+      index:
+        title: Statistics
+    tasks:
+      comment:
+        made_comment: made a comment.
+      edit:
+        header: Update Action Item
+      index:
+        subtitle: Action Items
+        title: Action Planning Dashboard
+        tooltips:
+          create: Create
+      list:
+        actions: Actions
+        add_item: Add Action Item
+        competency: Competency
+        high: High Priority
+        low: Low Priority
+        medium: Medium Priority
+        subtitle_high: High Priority Items
+        subtitle_low: Low Priority Items
+        subtitle_medium: Medium Priority Items
+        summary: Showing %{total} of %{total} entries.
+      new:
+        header: Create Action Item
+      resource:
+        tooltips:
+          delete: Delete Action Item
+          edit: Edit Action Item
+      resource_extension:
+        add: Add Sub Action Item
+        add_comment: Add Comment
+        leave_comment: 'Leave a comment/note:'
+        notes: 'Notes/Comments:'
+        sub_tasks: Sub Action Items
+      subtasks:
+        list:
+          actions: Actions
+          date: Target Completion Date
+          name: Action Item
+          status: Status
+      summary:
+        completed: Completed
+        in_progress: In Progress
+        manager_summary: Manager Summary
+        not_started: Not Started
+        overdue: Overdue
+        total: Total Items
+      summary_managers:
+        assignee: Assigner
+        completed: Completed
+        in_progress: In Progress
+        not_started: Not Started
+        overdue: Overdue
+    users:
+      index:
+        title: Company Relationships
   mindmill:
     assigns:
       results:
+        not_completed: Mindmill Assessment not completed
         successfully: Mindmill Assessment was successfully pass
   my: My
   myself: Myself
+  na: NA
   navigation:
     logout: Log out
+    profile: Profile
+  next: Next
   'no': 'No'
   nominations:
     approval_email_error: Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}
@@ -2330,6 +2745,7 @@ en:
         success: Norm for Factor '%{factorName}' was updated successfully.
       values:
         empty: Empty
+        required: "%{title} is required"
   profile:
     add_field: Add Field
     add_photo: Add Photo
@@ -2362,6 +2778,7 @@ en:
     update:
       successfully: Profile was updated successfully
   registration:
+    require_mobile_number: Require Mobile Number
     success_update: Registration was saved successfully
   registration_code:
     allowed_domains: Allowed domains
@@ -2397,6 +2814,7 @@ en:
         confirm_message: Are you sure you want to delete the report bundle "%{name}"?
         confirm_title: Confirmation Required
         success_message: Report Bundle %{name} has been deleted
+    create: Create
     report_bundle: Report Bundle
     report_bundles: Report Bundles
     reports:
@@ -2406,6 +2824,7 @@ en:
           confirm_message: Are you sure you want to delete the report "%{name}" from '%{report_bundle_name}'?
           confirm_title: Confirmation Required
           success_message: Report %{name} has been deleted
+      select: Select Report
   reports:
     actions:
       add: Add Report
@@ -2421,6 +2840,9 @@ en:
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Click here to continue
+      pending_tasks:
+        one: You have one 1 pending task
+        other: You have %{count} pending tasks
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
@@ -2466,6 +2888,7 @@ en:
       default_language: Default Language
       external_settings:
         hogan_report_id: Hogan Report ID
+        pearson_provider: Pearson Provider
         saville_report_id: Saville Report ID
     create: Create
     dashboard: Dashboard
@@ -2485,6 +2908,14 @@ en:
     modules:
       common:
         all_factors: All factors
+        almost_always: Almost Always
+        less_typical: Less Typical
+        moderate: Moderate
+        more_typical: More Typical
+        rare: Rare
+      cpi_occupations:
+        occupations: Occupations
+        your_potential_suitability: Your Potential Suitability
       factors_table:
         description: Description
         no_data: There is no data available for this section.
@@ -2500,31 +2931,50 @@ en:
         rank: Rank
         scoring_category: Competency
       highest_lowest:
+        average: Average
         bottom_5: BOTTOM 5
         category: Category
+        email: Email
+        first_name: First Name
         highest_scores: Highest Scores
         item: Indicator
+        last_name: Last Name
         lowest_scores: Lowest scores
         mean_score: Mean Score
         rank: Rank
+        result: Result
+        score: Score
         scoring_category: Competency
         sub_competenties: Sub-Competencies
         top_5: TOP 5
       potential_career_full:
+        bachelors_or_masters_qualification: Bachelors or Masters Qualification
         career_strengths_and_results: Career Strengths and Your Results
         career_sub_tracks: Career Sub-tracks
+        detailed_career_guide: Detailed Career Guide
+        diploma_qualification: Diploma Qualification
+        education_level: Education Level
+        high_school_entry_roles: High School Entry Roles
         key_career_tracks_within: Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do note that roles in italics require higher levels of education and / or experience.
         potential_areas_of_study: Potential Areas of Study
+        potential_roles: Potential Roles
         strength_high: Signature Strength
         strength_low: Developmental Strength
         strength_moderate: Potential Strength
         work_environment: Work Environment
         your_suitability: Your Suitability
+      potential_career_short:
+        career: career
+        for_this: for this
+        key: key
+        strengths: strengths
+        your_scores: Your Scores
       single_value:
         factor_name: Scoring Category
         question_name: Questions
       single_value_cluster:
         competency: Competency
+        description: Description
         developmental_rating: Developmental Rating
         questions: Questions
       strength_clusters:
@@ -2550,8 +3000,12 @@ en:
         completed: Completed
         footnote: "* Excluded due to minimum threshold requirement"
         invited: Invited
+        number_of_evaluators_invited: Number of evaluators invited
         relationships: Relationships
+        subject: Subject
+        title: Report Summary
         total: Total
+        total_evaluations: Total evaluations for this assessment
       video_response:
         no_results: No videos recorded
     pages:
@@ -2581,6 +3035,7 @@ en:
       automatically_generate_password: Automatically generate password
       change_password_on_login: Change password on login
       login_link: Login Link
+      name: Name
       new_password: New Password
       password_placeholder: Enter Password
       send_password_email: Send password via Email
@@ -2594,6 +3049,12 @@ en:
     filters:
       clear: Clear Filters
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    password_reset:
+      description: Please enter your email address in the box below and click 'Reset Password'.
+      email_label: Email Address
+      instruction: Enter the email associated with your account
+      submit: Reset Password
+      title: Forgot Password?
     terms_conditions_privacy: Privacy Statement
     tte_terms_and_condition: Terms & Privacy
   sheet:
@@ -2964,6 +3425,11 @@ en:
     accept_privacy_modal:
       accept: Accept
       checkbox: I have read and understood Privacy Policy mentioned above
+      policy_link: Click here to read the privacy policy.
+      reject: Reject
+      text: |
+        Prior to proceeding to complete the tasks below, I confirm that I have read and agree to
+        The Talent Enterprise's Privacy Policy and related guidelines regarding the use of my personal information.
       title: Data processing consent
     action: Action
     add: Add
@@ -2977,6 +3443,17 @@ en:
     approved: Approved
     approving_mail_sent: Mail for approving nomination has been sent to managers
     as_my: as my
+    assesment:
+      modals:
+        help:
+          body: "<h2>Help</h2> <p>need content for help modal</p>"
+          title: Help
+      navigation:
+        menu:
+          help: Help
+          logout: Logout
+          profile: Profile
+          switching-lang: Switching language
     assessment: Assessment
     back_to_tasks: Back to tasks
     begin: Begin
@@ -3019,6 +3496,8 @@ en:
     first_name: First Name
     first_name_error: Please input First Name
     help: Help
+    helps:
+      main: "<h2>Help</h2> <p>need content for help modal</p>"
     language: Language
     last_name: Last Name
     last_name_error: Please input Last Name
@@ -3121,16 +3600,39 @@ en:
     yourself: Yourself
   time:
     formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: DD/MM/YYYY hh:mm A
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
       datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: DD/MM/YYYY
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
     active: Active
     allow_multiple_respones: Allow users to submit multiple responses
+    are_you_sure: Are you sure? This will make the existing URL unusable.
+    close: Close
+    deactivate_link: Deactivate Link
     png: PNG
     regenerate_link: Regenerate Link
+    save: Save
     successfully_generated: Generated successfully
     successfully_updated: Updated successfully
     svg: SVG
+  update_profile:
+    cancel: Cancel
+    title: Update Profile
+    update: Update
+    updated_successfully: Profile was updated successfully
   user:
     datasheet:
       attribute: Attribute
@@ -3139,6 +3641,8 @@ en:
       email: Email Address
       first_name: First Name
       last_name: Last Name
+      password: New Password
+      password_confirmation: Password Confirmation
     form:
       email: Email
       first_name: First name
@@ -3173,6 +3677,8 @@ en:
   user_assessments:
     modals:
       actions:
+        push_webhook:
+          name: Push Webhook
         reset_progress:
           name: Reset Progress
           success_message: Assessment %{name} is ready for edit
@@ -3249,6 +3755,10 @@ en:
         success: File uploaded successfully.
         upload: Upload
     preview_report: Preview Report
+    readable_statuses:
+      generating: Report is being generated
+      not_prepared: Report is not available
+      prepared: Download the report
     statuses:
       generating: Generating
       not_prepared: Not Available
@@ -3261,6 +3771,7 @@ en:
           enabled: 2 Factor Auth is Enabled
         option_to_disable: Disable 2FA
         option_to_enable: Enable 2FA
+      details: Details
       remove:
         confirm_message: Are you sure you want to delete the user with an email '%{email}'?
         confirm_title: Confirmation Required
@@ -3279,6 +3790,7 @@ en:
       title: User details
     global_assessors: Global Assessors
     password_change_success: Password was changed successfully. Please login with your new password.
+    remove_message: Are you sure?
     roles:
       campaign_admin: Campaign Admin
       campaign_assessor: Campaign Assessor
@@ -3342,8 +3854,14 @@ en:
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
     text: Your response must not contain a numbers
+    title:
+      one: There is one error, please check your responses
+      other: There are %{count} errors, please check your responses
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
+  workshops_invites:
+    workshop:
+      title: Workshops
   'yes': 'Yes'
   your: Your
   yourself: Yourself
