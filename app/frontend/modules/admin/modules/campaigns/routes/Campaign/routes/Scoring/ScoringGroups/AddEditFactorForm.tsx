@@ -68,6 +68,7 @@ export const AddEditFactorForm: FC<Props> = ({
   const [form] = Form.useForm()
   const nameValue = Form.useWatch('name', form)
   const factorType = Form.useWatch('factorType', form)
+  const outputType = Form.useWatch('outputType', form)
 
   const isNew = factorData === undefined
   const initialValues = factorData
@@ -389,9 +390,13 @@ export const AddEditFactorForm: FC<Props> = ({
             <Form.Item label={I18n.t('administration.scoring.public')} name="publicVisibility" valuePropName="checked">
               <Switch />
             </Form.Item>
-            <Form.Item label={I18n.t('administration.scoring.ranked')} name="ranked" valuePropName="checked">
-              <Switch />
-            </Form.Item>
+            {outputType === 'numeric'
+              ? (
+                <Form.Item label={I18n.t('administration.scoring.ranked')} name="ranked" valuePropName="checked">
+                  <Switch />
+                </Form.Item>
+              ) : null
+            }
             <Form.Item>
               <Button type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>
             </Form.Item>

@@ -1956,6 +1956,7 @@ en:
         code_already_exists: A factor with the same code already exists.
         invalid_lua_name: should be valid lua variable name
         name_already_exists: A factor with the same name already exists.
+        rank_not_allowed: Only factors with an output type of numeric can be ranked.
       campaign_factor_group:
         group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.
