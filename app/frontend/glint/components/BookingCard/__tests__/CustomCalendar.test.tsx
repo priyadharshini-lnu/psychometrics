@@ -6,7 +6,7 @@ import { act } from 'react-dom/test-utils'
 
 import { CustomCalendar } from '~/glint/components/BookingCard/CustomCalendar'
 
-const availableDates = ['2024-07-15T09:00:00.100+05:30', '2024-07-15T09:30:00.100+05:30'].map(date => dayjs(date))
+const availableDates = ['2524-07-15T09:00:00.100+05:30', '2524-07-15T09:30:00.100+05:30'].map(date => dayjs(date))
 const availableDateStrings = availableDates.map(date => date.date().toString())
 const DATE_FORMAT = 'DD/MM/YYYY'
 
