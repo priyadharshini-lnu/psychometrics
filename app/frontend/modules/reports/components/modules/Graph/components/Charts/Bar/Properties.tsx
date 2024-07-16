@@ -158,7 +158,10 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
             onChange={changeBarBorderRadius}
           />
           <Space>
-            <Checkbox onChange={e => changeBarBorderRadiusType(e.target.checked)} />
+            <Checkbox
+              checked={model.props.barBorderRadiusType}
+              onChange={e => changeBarBorderRadiusType(e.target.checked)}
+            />
             All corner rounded
           </Space>
         </>
