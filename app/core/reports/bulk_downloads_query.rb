@@ -11,8 +11,8 @@ module Reports
       start_date = @params[:start_date].presence
       end_date = @params[:end_date].presence
 
-      start_date_parsed = Date.parse(start_date) if start_date
-      end_date_parsed = Date.parse(end_date) if end_date
+      start_date_parsed = DateTime.parse(start_date) if start_date
+      end_date_parsed = DateTime.parse(end_date) if end_date
 
       user_reports = UserReport.
                      joins(:report, :user).
@@ -30,13 +30,13 @@ module Reports
       if start_date && end_date
         user_reports = user_reports.
                        having('MAX(user_assessments.completed_at) <= ? AND MIN(user_assessments.completed_at) >= ?',
-                              end_date_parsed.end_of_day, start_date_parsed.beginning_of_day)
+                              end_date_parsed, start_date_parsed)
       elsif start_date
         user_reports = user_reports.
-                       having('MIN(user_assessments.completed_at) >= ?', start_date_parsed.beginning_of_day)
+                       having('MIN(user_assessments.completed_at) >= ?', start_date_parsed)
       elsif end_date
         user_reports = user_reports.
-                       having('MAX(user_assessments.completed_at) <= ?', end_date_parsed.end_of_day)
+                       having('MAX(user_assessments.completed_at) <= ?', end_date_parsed)
       end
 
       user_reports
