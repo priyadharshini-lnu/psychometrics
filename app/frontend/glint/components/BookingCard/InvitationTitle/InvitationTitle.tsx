@@ -5,6 +5,7 @@ import { GlobalOutlined } from '@ant-design/icons'
 import TimzoneSelect from '~/components/TimeZoneSelect'
 
 const { Title } = Typography
+const { I18n } = window
 
 type Props = {
   title: string,
@@ -23,9 +24,11 @@ export const InvitationTitle:FC<Props> = ({
       <span className="text-nowrap">
         <GlobalOutlined />
         <TimzoneSelect
+          aria-description={currentTimeZone}
           value={currentTimeZone}
           onChange={onTimeZoneChange}
           bordered={false}
+          aria-label={I18n.t('glint.booking_card.aria_timezone_select')}
         />
       </span>
     </Space>

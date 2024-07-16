@@ -249,6 +249,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
                       label={I18n.t('frontend.bookings.buttons.book')}
                       type="primary"
                       onClick={handleBook}
+                      aria-description={selectedDateTime.date.format('D, MMMM, YYYY, hh:mm A')}
                     />
                   </div>
                   )}

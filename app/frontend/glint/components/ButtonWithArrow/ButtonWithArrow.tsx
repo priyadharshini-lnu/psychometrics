@@ -13,6 +13,6 @@ export const ButtonWithArrow: React.FC<Props> = ({
 }) => (
   <AntButton className={cs(styles.btn, className)} {...props}>
     <div>{label}</div>
-    <DirectionalArrowIcon className={styles.icon} />
+    <DirectionalArrowIcon aria-label="" className={styles.icon} />
   </AntButton>
 )
