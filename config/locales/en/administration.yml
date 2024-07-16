@@ -2333,6 +2333,7 @@ en:
         background_size_cover: Cover
         bg_upload: Upload
         client_logo_label: Client Logo
+        contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
         error_color: Error Color
         info_color: Info Color
         logo_upload: Upload

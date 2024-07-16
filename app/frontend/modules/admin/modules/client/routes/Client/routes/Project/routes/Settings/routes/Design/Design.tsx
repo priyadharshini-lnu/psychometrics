@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import {
   Row, Col, Form, Radio, Button, Upload, ConfigProvider, App,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { UploadOutlined } from '@ant-design/icons'
+import { generate } from '@ant-design/colors'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { UploadFile } from 'antd/lib/upload/interface'
@@ -15,9 +16,12 @@ import {
 import { useResources } from '~/hooks/useResources/useResources'
 import { ColorPicker } from '~/glint'
 import { DesignPreview } from './DesignPreview'
+import { getContrastRatio } from '~/utils/contrastRatio'
+
 import styles from './styles.less'
 
 const { I18n } = window
+const DEFAULT_PRIMARY_COLOR = '#009ea7'
 
 const connecter = connect(() => ({}), { uploadFiles })
 
@@ -33,6 +37,15 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
   const [designSettings] = data
   const [values, setValues] = useState({})
   const { message } = App.useApp()
+  const logo = Form.useWatch('logo', form)
+  const background = Form.useWatch('background', form)
+  const secondaryLogo = Form.useWatch('secondaryLogo', form)
+
+  const colors = _.pick(designSettings,
+    ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
+
+  const primaryColor = Form.useWatch('primaryColor', form) || colors.primaryColor || DEFAULT_PRIMARY_COLOR
+
   useEffect(() => {
     if (designSettings) {
       form.setFieldsValue(designSettings)
@@ -50,6 +63,19 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
       theme: {},
     })
   }, [])
+
+  const primaryColorHasEnoughContrast = useMemo(() => {
+    if (primaryColor) {
+      const colorPalette = generate(primaryColor)
+      const primaryColorCodeWithoutHash = primaryColor.slice(1)
+      const hasEnoughContrastRatioWhiteFont = getContrastRatio(primaryColorCodeWithoutHash, 'FFFFFF').isAccessible
+      const hasEnoughContrastRatioBgTheme = getContrastRatio(
+        primaryColorCodeWithoutHash, colorPalette[0].slice(1),
+      ).isAccessible
+      return (hasEnoughContrastRatioWhiteFont && hasEnoughContrastRatioBgTheme)
+    }
+    return true
+  }, [primaryColor])
 
   const onFinish = () => {
     const values = form.getFieldsValue()
@@ -97,13 +123,6 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
   const resetColor = (field) => {
     form.setFieldsValue({ [field]: null })
   }
-
-  const logo = Form.useWatch('logo', form)
-  const background = Form.useWatch('background', form)
-  const secondaryLogo = Form.useWatch('secondaryLogo', form)
-
-  const colors = _.pick(designSettings,
-    ['primaryColor', 'errorColor', 'warningColor', 'successColor', 'infoColor']) as Theme
 
   return (
     <Row justify="space-between" className="pl" gutter={16}>
@@ -183,12 +202,20 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               </Button>
             </div>
           </Form.Item>
-          <Form.Item label={I18n.t('administration.projects.design_settings.primary_color')}>
+          <Form.Item
+            label={I18n.t('administration.projects.design_settings.primary_color')}
+          >
             <div className={styles.colorPicker}>
-              <Form.Item name="primaryColor">
-                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor="#009ea7" />
+              <Form.Item
+                help={primaryColorHasEnoughContrast ? ''
+                  : I18n.t('administration.projects.design_settings.contrast_ratio_warning')}
+                hasFeedback={!primaryColorHasEnoughContrast}
+                validateStatus="error"
+                name="primaryColor"
+              >
+                <ColorPicker getValueInHexFormat swatchClassName={styles.swatch} defaultColor={DEFAULT_PRIMARY_COLOR} />
               </Form.Item>
-              <Button onClick={() => resetColor('primaryColor')}>
+              <Button className={styles.primaryColorReset} onClick={() => resetColor('primaryColor')}>
                 {I18n.t('administration.projects.design_settings.reset')}
               </Button>
             </div>
