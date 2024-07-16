@@ -292,6 +292,7 @@ ar:
     password: كلمة المرور
     password_confirmation: تأكيد كلمة المرور
     title: غيّر كلمة المرور
+    warning_message: 'هام: تغيير كلمة المرور الخاصة بك سيؤدي إلى تسجيل خروجك.'
   checking_wizard:
     audio_check:
       access: إذن الدخول
