@@ -111,6 +111,7 @@ ignore_unused:
   - 'administration.campaign_templates.list.*'
   - 'administration.dimensions.list.*'
   - 'administration.norms.list.*'
+  - 'administration.factors.list.*'
   - 'administration.libraries.list.*'
   - 'administration.communications.list.*'
   - 'administration.table.entries.*'
