@@ -148,7 +148,7 @@ describe AdminJobs::ImportAssessmentQuestions do
     q7_grit_scores = q7.factors_scorings.find { |fs| fs.factor_id == grit_factor.id }
 
     expect(q4_accountability_scores.props).to eq(
-      [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }, { 'index' => 2, 'value' => 3 }]
+      [{ 'index' => 0, 'value' => 1 }, { 'index' => 2, 'value' => 3 }]
     )
     expect(q4_grit_scores.props).to eq(
       [{ 'index' => 0, 'value' => 2 }, { 'index' => 1, 'value' => 4 }, { 'index' => 2, 'value' => 5 }]
@@ -182,25 +182,9 @@ describe AdminJobs::ImportAssessmentQuestions do
     )
     expect(q7_grit_scores.props).to eq(
       [{
-        'choice' => 0,
+        'choice' => 1,
         'scale' => 0,
-        'value' => 3
-      }, {
-        'choice' => 0,
-        'scale' => 1,
-        'value' => 2
-      }, {
-        'choice' => 0,
-        'scale' => 2,
         'value' => 4
-      }, {
-        'choice' => 1,
-        'scale' => 0,
-        'value' => 6
-      }, {
-        'choice' => 1,
-        'scale' => 1,
-        'value' => 3
       }, {
         'choice' => 1,
         'scale' => 2,

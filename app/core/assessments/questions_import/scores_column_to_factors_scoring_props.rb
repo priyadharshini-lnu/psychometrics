@@ -20,16 +20,20 @@ module Assessments
       private
 
       def multiple_choice_scores
-        scores.map.with_index do |score, index|
-          { 'index' => index, 'value' => score }
+        scores.filter_map.with_index do |score, index|
+          { 'index' => index, 'value' => score } if score.present?
         end
       end
 
       def matrix_table_scores
         choice = 0
         scale = 0
-        scores.map.with_index do |score, index|
-          props = { 'choice' => choice, 'scale' => scale, 'value' => score }
+        scores.filter_map.with_index do |score, index|
+          props = nil
+          if score.present?
+            props = { 'choice' => choice, 'scale' => scale, 'value' => score }
+          end
+
           scale = (index + 1) % question.props['scalePoints']
           choice += 1 if scale.zero?
           props
@@ -39,6 +43,8 @@ module Assessments
       def pre_process_scores
         comma_separated_scores.split(',').map do |score|
           score.strip!
+          next nil if score.blank?
+
           score.match?(/\d+/) ? score.to_i : score.to_f
         end
       end
