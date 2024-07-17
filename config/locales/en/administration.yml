@@ -4029,6 +4029,7 @@ en:
         last_week: Last week
         today: Today
       errors:
+        assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
         date_required: Please select a date
         invalid_url: Invalid URL format
         meeting_link_https: Meeting link must start with "https://"

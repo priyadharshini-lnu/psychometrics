@@ -2,12 +2,13 @@
 
 module WorkshopSubjects
   class UpdateSubjectData < BaseCommand
-    attr_accessor :subject_id, :campaign_id, :params
+    attr_accessor :subject_id, :campaign_id, :params, :retain_assessor_user_assessment_ids
 
     def initialize(subject_id, campaign_id, params)
       @subject_id = subject_id
       @campaign_id = campaign_id
       @params = params
+      @retain_assessor_user_assessment_ids = []
     end
 
     def call
@@ -20,8 +21,8 @@ module WorkshopSubjects
     def update_subject
       WorkshopSubject.transaction do
         update_subject_data
-        update_subject_assessments
-        update_assessor_assessments
+        process_assessor_assessments
+        remove_assessor_assessments
       end
     end
 
@@ -29,66 +30,70 @@ module WorkshopSubjects
       workshop_subject.update!(attendance_status: params[:attendance_status], late_duration: params[:late_duration])
     end
 
-    def update_assessor_assessments
+    def process_assessor_assessments
       params[:assessor_assessments].each do |assessor_assessment|
-        assessor_id = assessor_assessment.dig(:assessor, :id)
-        if assessor_id
-          Assessor.find_or_create_by!(user_id: assessor_id, campaign_id: campaign_id)
-          find_or_update_assessor_assessment(assessor_assessment)
-        elsif assessor_assessment[:assessor_user_assessment_id]
-          assessor_ua = UserAssessment.find_by(
-            campaign_id: campaign_id,
-            id: assessor_assessment[:assessor_user_assessment_id],
-            relationship_id: Relationship.assessor_relationship.id
-          )
-          next if assessor_ua.nil?
-
-          assessor_ua.linked_subject_user_assessment&.update!(meeting_link: nil, meeting_type: nil)
-          assessor_ua.destroy!
-        end
+        assessor_user_assessment = if assessor_assessment[:campaign_assessor_assessment_id]
+                                     create_assessor_user_assessment(assessor_assessment)
+                                   else
+                                     update_existing_assessor_user_assessment(assessor_assessment)
+                                   end
+        retain_assessor_user_assessment_ids << assessor_user_assessment.id if assessor_user_assessment
       end
     end
 
-    def update_subject_assessments
-      assessments_data = params[:assessments]
+    def update_existing_assessor_user_assessment(assessor_assessment)
+      assessor_user_assessment = UserAssessment.find(assessor_assessment[:id])
+      linked_subject_user_assessment = assessor_user_assessment.linked_subject_user_assessment
 
-      assessments_data.each do |assessment_data|
-        user_assessment = UserAssessment.find(assessment_data[:id])
-        user_assessment.update!(schedule_time: assessment_data[:schedule_time])
-      end
-    end
-
-    def find_or_update_assessor_assessment(assessment_data)
-      user_assessment = UserAssessment.find_or_create_by(
-        assessment_id: campaign_assessor_assessment(assessment_data).assessment_id,
-        campaign_id: campaign_id,
-        subject_id: workshop_subject.user_id,
-        evaluator_id: assessment_data[:assessor][:id],
-        relationship_id: Relationship.assessor_relationship.id
-      )
-
-      linked_subject_user_assessment = user_assessment.linked_subject_user_assessment
-
-      if (assessment_data[:meeting_link] || assessment_data[:meeting_type]) && linked_subject_user_assessment.nil?
+      if (
+        assessor_assessment[:meeting_link] || assessor_assessment[:meeting_type]
+      ) && linked_subject_user_assessment.nil?
         return broadcast :error, [
           {
             assessor_forms: I18n.t('administration.workshop_subjects.errors.update_assessor_for_failure')
           }
         ]
       end
+      update_assessor_user_assessment(assessor_user_assessment, assessor_assessment)
+      assessor_user_assessment
+    end
 
-      user_assessment.schedule_time = assessment_data[:schedule_time]
-      user_assessment.users_result = UsersResult.create! if user_assessment.users_result.blank?
-      user_assessment.save!
+    def update_assessor_user_assessment(assessor_user_assessment, assessor_assessment)
+      assessor_user_assessment.update!(schedule_time: assessor_assessment[:schedule_time])
 
-      user_assessment.linked_subject_user_assessment&.update!(
-        meeting_link: assessment_data[:meeting_link],
-        meeting_type: assessment_data[:meeting_type]
+      assessor_user_assessment.linked_subject_user_assessment&.update!(
+        meeting_link: assessor_assessment[:meeting_link],
+        meeting_type: assessor_assessment[:meeting_type]
       )
     end
 
-    def campaign_assessor_assessment(assessment_data)
-      CampaignAssessorAssessment.find(assessment_data[:id])
+    def create_assessor_user_assessment(assessor_assessment)
+      assessor_user_assessment = UserAssessment.create!(
+        assessment_id: assessor_assessment[:assessment_id],
+        campaign_id: campaign_id,
+        subject_id: workshop_subject.user_id,
+        evaluator_id: assessor_assessment[:assessor][:id],
+        relationship: Relationship.assessor_relationship,
+        users_result: UsersResult.create!
+      )
+      update_assessor_user_assessment(assessor_user_assessment, assessor_assessment)
+      assessor_user_assessment
+    end
+
+    def remove_assessor_assessments
+      assessor_user_assessments_to_delete = UserAssessment.where(
+        relationship_id: Relationship.assessor_relationship.id,
+        subject_id: workshop_subject.user_id,
+        campaign_id: campaign_id
+      ).where.not(id: retain_assessor_user_assessment_ids)
+
+      return if assessor_user_assessments_to_delete.blank?
+
+      assessor_user_assessments_to_delete.each do |ua|
+        ua.linked_subject_user_assessment&.update!(meeting_link: nil, meeting_type: nil)
+      end
+
+      assessor_user_assessments_to_delete.destroy_all
     end
 
     def workshop_subject

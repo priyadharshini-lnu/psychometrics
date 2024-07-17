@@ -11,8 +11,13 @@ describe WorkshopSubjects::UpdateSubjectData do
   end
   let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
   let!(:assessor) { create(:assessor, campaign: campaign) }
-  let!(:user_assessment) { create(:user_assessment, campaign: campaign, evaluator: assessor.user) }
   let!(:workshop_subject) { create(:workshop_subject, workshop: workshop, campaign: campaign) }
+  let!(:user_assessment) do
+    create(
+      :user_assessment, campaign: campaign, evaluator: assessor.user, relationship: relationship,
+      assessment: campaign_assessment.assessment, subject: workshop_subject.user
+    )
+  end
 
   describe '.call' do
     let(:params) do
@@ -28,9 +33,13 @@ describe WorkshopSubjects::UpdateSubjectData do
         assessor_assessments: [
           {
             assessor: {
-              id: campaign.assessors.first.user_id
+              id: campaign.assessors.first.user_id,
+              user_id: campaign.assessors.first.user_id,
+              name: campaign.assessors.first.user.name,
+              photo_url: nil
             },
-            id: campaign_assessor_assessment.id
+            id: user_assessment.id,
+            schedule_time: '2023-08-04T02:00:00.063Z'
           }
         ]
       }
@@ -46,29 +55,52 @@ describe WorkshopSubjects::UpdateSubjectData do
       expect(user_assessment.evaluator_id).to eq(campaign.assessors.first.user_id)
     end
 
-    it "creates new assessor record if assessor doesn't exist with user_id or campaign_id" do
-      user = create(:user)
-      params[:assessor_assessments][0][:assessor][:id] = user.id
+    it 'updates existing assessor_user_assessment with matching id in params' do
+      described_class.call!(workshop_subject.id, campaign.id, params)
 
-      expect do
-        described_class.call!(workshop_subject.id, campaign.id, params)
-      end.to change { Assessor.count }.by(1)
+      expect(user_assessment.reload.schedule_time).to eq('2023-08-04T02:00:00.063Z')
     end
 
-    it 'creates user_assessment if record doesnt exist with evalutor_id, subject_id, campaign_id or assessment_id' do
-      params[:assessor_assessments][0][:assessor][:id] = create(:user).id
-
+    it 'creates new assessor_user_assessment record if campaign_assessor_assessment_id present in params' do
+      new_campaign_assessor_assessment = create(:campaign_assessor_assessment, campaign: campaign)
+      params[:assessor_assessments] << {
+        campaign_assessor_assessment_id: new_campaign_assessor_assessment.id,
+        schedule_time: '2023-08-04T02:00:00.063Z',
+        assessment_id: new_campaign_assessor_assessment.assessment_id,
+        assessor: {
+          id: campaign.assessors.first.user_id,
+          user_id: campaign.assessors.first.user_id,
+          name: campaign.assessors.first.user.name,
+          photo_url: nil
+        }
+      }
       expect do
         described_class.call!(workshop_subject.id, campaign.id, params)
-      end.to change { UserAssessment.count }.by(1)
+      end.to change { UserAssessment.count }.by(1).and change { UsersResult.count }.by(1)
+      expect(UserAssessment.last.assessment_id).to eq(new_campaign_assessor_assessment.assessment_id)
+      expect(UserAssessment.last.evaluator_id).to eq(campaign.assessors.first.user_id)
+      expect(UserAssessment.last.schedule_time).to eq('2023-08-04T02:00:00.063Z')
+      expect(UserAssessment.last.relationship_id).to eq(relationship.id)
     end
 
-    it 'create users_result record for users_assessment if it doesnt exist' do
-      params[:assessor_assessments][0][:assessor][:id] = create(:user).id
+    it 'removes assessor_user_assessment records not included in the params during the delete operation' do
+      user_assessment_to_delete = create(
+        :user_assessment, campaign: campaign, evaluator: assessor.user, relationship: relationship,
+        assessment: campaign_assessment.assessment, subject: workshop_subject.user
+      )
+      params[:assessor_assessments] = [
+        {
+          id: user_assessment.id,
+          schedule_time: '2023-08-04T02:00:00.063Z'
+        }
+      ]
 
       expect do
         described_class.call!(workshop_subject.id, campaign.id, params)
-      end.to change { UsersResult.count }.by(1)
+      end.to change { UserAssessment.count }.by(-1).and change { UsersResult.count }.by(-1)
+
+      expect(UserAssessment.exists?(user_assessment.id)).to be true
+      expect(UserAssessment.exists?(user_assessment_to_delete.id)).to be false
     end
   end
 end

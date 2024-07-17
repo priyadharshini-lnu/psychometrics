@@ -1,5 +1,18 @@
 import * as t from 'io-ts'
 
+export const AssessorTR = t.type({
+  id: t.string,
+  name: t.string,
+  userId: t.union([t.string, t.null]),
+  photoUrl: t.union([t.string, t.null]),
+})
+
+export const WorkshopTR = t.type({
+  id: t.string,
+  name: t.string,
+  startTime: t.string,
+})
+
 export const WorkshopSubjectTR = t.type({
   id: t.string,
   attendanceStatus: t.string,
@@ -18,22 +31,20 @@ export const WorkshopSubjectTR = t.type({
     t.undefined]),
 })
 
-export const AssessorAssessmentTR = t.type({
+export const AssessorUserAssessmentTR = t.type({
   id: t.string,
   name: t.string,
-  assessorUserAssessmentId: t.union([t.number, t.null]),
   status: t.union([t.string, t.null]),
+  assessmentId: t.number,
   scheduleTime: t.union([t.string, t.null, t.undefined]),
   meetingLink: t.union([t.string, t.null]),
-  linkedActivity: t.union([t.string, t.null]),
-  assessor: t.union([
-    t.type({
-      id: t.string,
-      name: t.string,
-      photoUrl: t.union([t.string, t.null]),
-    }),
-    t.null]),
+  meetingType: t.union([t.string, t.null]),
+  linkedActivityId: t.union([t.string, t.null]),
+  assessor: t.union([AssessorTR, t.null]),
+  source: t.union([t.string, t.null]),
 })
+
+export const CampaignAssessorAssessmentTR = AssessorUserAssessmentTR
 
 export const EditableWorkshopSubjectTR = t.type({
   id: t.string,
@@ -53,19 +64,10 @@ export const EditableWorkshopSubjectTR = t.type({
     }),
     t.undefined]),
   workshop: t.union([
-    t.type({
-      id: t.string,
-      name: t.string,
-      startTime: t.string,
-    }),
+    WorkshopTR,
     t.undefined]),
   meta: t.type({
-    assessors: t.array(t.type({
-      id: t.string,
-      name: t.string,
-      userId: t.union([t.string, t.null]),
-      photoUrl: t.union([t.string, t.null]),
-    })),
+    assessors: t.array(AssessorTR),
     assessorAssessments: t.array(t.type({
       id: t.string,
       name: t.string,
@@ -94,8 +96,17 @@ export const SubjectAssessmentTR = t.type({
   name: t.string,
   status: t.string,
   scheduleTime: t.union([t.string, t.null, t.undefined]),
+  assessment: t.type({
+    id: t.string,
+  }),
 })
 
-export type SubjectAssessment = t.TypeOf<typeof SubjectAssessmentTR>
+export type Workshop = t.TypeOf<typeof WorkshopTR>
 
-export type AssessorAssessment = t.TypeOf<typeof AssessorAssessmentTR>
+export type Assessor = t.TypeOf<typeof AssessorTR>
+
+export type SubjectUserAssessment = t.TypeOf<typeof SubjectAssessmentTR>
+
+export type AssessorUserAssessment = t.TypeOf<typeof AssessorUserAssessmentTR>
+
+export type CampaignAssessorAssessment = t.TypeOf<typeof CampaignAssessorAssessmentTR>

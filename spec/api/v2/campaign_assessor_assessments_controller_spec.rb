@@ -103,25 +103,30 @@ subject_assessor_assessments" do
       parameter name: :workshop_subject_id, in: :path, type: :string
 
       response '200', 'Subject Assessor Assessments' do
-        examples 'application/json' => [{
-          data: {
-            type: 'subject_assessor_assessments',
-            attributes: {
+        examples 'application/json' => {
+          assessor_user_assessments: [{
+            id: '1',
+            name: 'Assessment 1',
+            status: 'pending',
+            schedule_time: '2023-08-04T02:00:00.063Z',
+            meeting_link: 'http://www.example.com',
+            assessor: {
               id: '1',
-              name: 'Assessment 1',
-              user_assessment_id: 1,
-              status: 'pending',
-              schedule_time: '2020-10-10T10:10:10.000Z',
-              meeting_link: 'https://meet.google.com/abc-xyz',
-              linked_activity: 'Assessment 1',
-              assessor: {
-                id: '1',
-                name: 'John Doe',
-                photo_url: 'https://example.com/photo.jpg'
-              }
-            }
-          }
-        }]
+              user_id: 1,
+              name: 'Assessor 1',
+              photo_url: 'http://www.example.com'
+            },
+            assessment_id: 1,
+            linked_activity_id: '1'
+          }],
+          campaign_assessor_assessments: [{
+            id: '1',
+            name: 'Assessment 1',
+            assessment_id: 1,
+            linked_activity_id: '1'
+          }]
+        }
+
         let(:workshop_subject) { create(:workshop_subject) }
         let(:campaign) { create(:campaign) }
         let(:linked_assessment) { create(:assessment) }
@@ -132,7 +137,7 @@ subject_assessor_assessments" do
         let!(:campaign_assessment) { create(:campaign_assessment, campaign: campaign) }
         let!(:relationship) { create(:relationship, name: 'Assessor', type: :global) }
         let!(:self_relationship) { create(:relationship, name: 'Self', type: :global) }
-        let!(:user_assessment) do
+        let!(:assessor_user_assessment) do
           create(:user_assessment, relationship: relationship,
                                    subject: workshop_subject.user,
                                    campaign: campaign,
@@ -150,22 +155,29 @@ subject_assessor_assessments" do
 
         run_test! do |response|
           assessment_response = JSON.parse(response.body)
-          expect(assessment_response[0]).to have_key('id')
-          expect(assessment_response).to match_array([{
-            'id' => campaign_assessor_assessment.id.to_s,
-            'name' => campaign_assessor_assessment.assessment.name,
-            'assessor_user_assessment_id' => user_assessment.id,
-            'status' => user_assessment.status,
-            'schedule_time' => user_assessment.schedule_time,
-            'meeting_type' => user_assessment.meeting_type,
-            'meeting_link' => user_assessment.meeting_link,
-            'linked_activity' => campaign_assessor_assessment.assessment.linked_assessment&.name,
-            'subject_linked_activity_present' => true,
+          expect(assessment_response['assessor_user_assessments'][0]).to have_key('id')
+          expect(assessment_response['assessor_user_assessments']).to match_array([{
+            'id' => assessor_user_assessment.id.to_s,
+            'name' => assessor_user_assessment.assessment.name,
+            'status' => assessor_user_assessment.status,
+            'schedule_time' => assessor_user_assessment.schedule_time,
+            'meeting_link' => assessor_user_assessment.meeting_link,
             'assessor' => {
-              'id' => user_assessment.evaluator.id.to_s,
-              'name' => user_assessment.evaluator.name,
-              'photo_url' => user_assessment.evaluator.photo_url
-            }
+              'id' => assessor_user_assessment.evaluator.id.to_s,
+              'user_id' => assessor_user_assessment.evaluator.id.to_s,
+              'name' => assessor_user_assessment.evaluator.name,
+              'photo_url' => assessor_user_assessment.evaluator.photo_url
+            },
+            'meeting_type' => assessor_user_assessment.meeting_type,
+            'assessment_id' => assessor_user_assessment.assessment_id,
+            'linked_activity_id' => linked_assessment.id.to_s
+          }])
+
+          expect(assessment_response['campaign_assessor_assessments']).to match_array([{
+            'id' => campaign_assessor_assessment.id,
+            'name' => campaign_assessor_assessment.assessment.name,
+            'assessment_id' => campaign_assessor_assessment.assessment_id,
+            'linked_activity_id' => campaign_assessor_assessment.assessment.linked_assessment_id.to_s
           }])
         end
       end
