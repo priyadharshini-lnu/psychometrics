@@ -3,6 +3,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import { selectedQuestion } from '~/modules/survey/core/builder/assessment/selectors'
 import { changeType, addSkipLogic, addNote } from '~/modules/survey/core/builder/assessment/question/actions'
 import { addPageBreak, copyQuestion } from '~/modules/survey/core/builder/assessment/block/actions'
+import { unselectQuestion } from '~/modules/survey/core/builder/assessment/actions'
 
 export default connect(
   (state) => {
@@ -22,5 +23,6 @@ export default connect(
     addSkipLogic,
     copyQuestion,
     addNote,
+    unselectQuestion,
   },
 )
