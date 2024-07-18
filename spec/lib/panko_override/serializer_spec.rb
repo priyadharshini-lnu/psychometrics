@@ -27,42 +27,108 @@ describe 'PankoOverride::Serializer' do
   end
 
   it 'raises error for additional keys' do
-    expect { Dummy::AuthorWithAdditionalKeySerializer.new.serialize(author) }.to raise_error(
-      PankoOverride::Exceptions::SchemaValidationFailed,
-      [
+    response = Dummy::AuthorWithAdditionalKeySerializer.new.serialize(author)
+
+    expect(response).to include(:schema_validation_error)
+
+    schema_validation_error = JSON.parse(response[:schema_validation_error], symbolize_names: true)
+
+    expect(schema_validation_error).to match({
+      type: 'PankoOverride::Exceptions::SchemaValidationFailed',
+      message: a_string_including(
         'Schema: Dummy::AuthorWithAdditionalKeySchema',
-        'Errors: [{:title=>"is not allowed", :path=>"name"}]',
-        "Response: {\"id\"=>#{author.id}, \"name\"=>\"#{author.name}\"}"
-      ].join("\n")
-    )
+        'is not allowed'
+      ),
+      meta: {
+        errors: [
+          {
+            title: 'is not allowed',
+            path: 'name'
+          }
+        ],
+        response: {
+          id: author.id,
+          name: 'John'
+        },
+        schema: 'Dummy::AuthorWithAdditionalKeySchema'
+      },
+      exception: true
+    })
   end
 
   it 'raises validation failed for has_one association' do
     author = Dummy::Author.create!
     post = Dummy::Post.create!(title: 'Post title', author_id: author.id)
 
-    expect { Dummy::PostSerializer.new.serialize(post) }.to raise_error(
-      PankoOverride::Exceptions::SchemaValidationFailed,
-      [
-        'Schema: Dummy::PostSchema',
-        'Errors: [{:title=>"must be a string", :path=>"author/name"}]',
-        "Response: {\"id\"=>#{post.id}, \"title\"=>\"#{post.title}\", \"author\"=>{\"id\"=>#{author.id}, \"name\"=>nil}, \"comments\"=>[]}" # rubocop:disable Layout/LineLength
-      ].join("\n")
-    )
+    response = Dummy::PostSerializer.new.serialize(post)
+
+    expect(response).to include(:schema_validation_error)
+    schema_validation_error = JSON.parse(response[:schema_validation_error], symbolize_names: true)
+
+    expect(schema_validation_error).to match({
+      type: 'PankoOverride::Exceptions::SchemaValidationFailed',
+      message: a_string_including('Schema: Dummy::PostSchema', 'must be a string', 'author/name'),
+      meta: {
+        errors: [
+          {
+            title: 'must be a string',
+            path: 'author/name'
+          }
+        ],
+        response: {
+          id: post.id,
+          title: 'Post title',
+          author: {
+            id: author.id,
+            name: nil
+          },
+          comments: []
+        },
+        schema: 'Dummy::PostSchema'
+      },
+      exception: true
+    })
   end
 
   it 'raises validation failed for has_many association' do
     post = Dummy::Post.create!(title: 'Post title', author_id: author.id)
     comment = Dummy::Comment.create!(post_id: post.id, text: nil)
 
-    expect { Dummy::PostSerializer.new.serialize(post) }.to raise_error(
-      PankoOverride::Exceptions::SchemaValidationFailed,
-      [
+    response = Dummy::PostSerializer.new.serialize(post)
+
+    schema_validation_error = JSON.parse(response[:schema_validation_error], symbolize_names: true)
+
+    expect(schema_validation_error).to match({
+      type: 'PankoOverride::Exceptions::SchemaValidationFailed',
+      message: a_string_including(
         'Schema: Dummy::PostSchema',
-        'Errors: [{:title=>"must be a string", :path=>"comments/0/text"}]',
-        "Response: {\"id\"=>#{post.id}, \"title\"=>\"#{post.title}\", \"author\"=>{\"id\"=>#{author.id}, \"name\"=>\"#{author.name}\"}, \"comments\"=>[{\"id\"=>#{comment.id}, \"text\"=>nil}]}" # rubocop:disable Layout/LineLength
-      ].join("\n")
-    )
+        'must be a string'
+      ),
+      meta: {
+        errors: [
+          {
+            title: 'must be a string',
+            path: 'comments/0/text'
+          }
+        ],
+        response: {
+          id: post.id,
+          title: 'Post title',
+          author: {
+            id: author.id,
+            name: 'John'
+          },
+          comments: [
+            {
+              id: comment.id,
+              text: nil
+            }
+          ]
+        },
+        schema: 'Dummy::PostSchema'
+      },
+      exception: true
+    })
   end
 
   it 'serialization works with associations' do

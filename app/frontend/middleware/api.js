@@ -9,6 +9,7 @@ import { LOADING, LOADING_COMPLETE, setResponseDataMismatched } from '~/core/req
 import { setIn } from '~/utils/immutable'
 import { camelizeKeys } from '~/utils/object'
 import { isLiveEnvironment } from '~/utils/isLiveEnvironment'
+import { captureSchemaValidationError } from '~/utils/schemaValidationError'
 
 const debounceTimers = {}
 const buildUrl = ({
@@ -99,6 +100,8 @@ const apiMiddleware = () => next => (action) => {
     })
     .then(({ data, headers }) => {
       if (responseType === 'blob') { downloadFile(data, headers) }
+
+      captureSchemaValidationError(data)
       const transformedData = camelize ? camelizeKeys(data, { except: camelizeExcept, only: camelizeOnly }) : data
       if (!isLiveEnvironment() && !validResponseData({
         typedResponse, transformedData, requestName: SUCCESS, next,

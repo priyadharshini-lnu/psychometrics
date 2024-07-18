@@ -27,7 +27,13 @@ module PankoOverride
               path: [i].concat(error.path).join('/')
             }
           end
-          raise PankoOverride::Exceptions::SchemaValidationFailed.new(response, schema_class, errors)
+
+          response[:schema_validation_error] =
+            PankoOverride::SchemaValidationFailedResponse.call!(response, schema_class, errors)
+
+          log_and_capture_exception(response[:schema_validation_error])
+
+          return responses
         end
 
         responses
@@ -47,6 +53,15 @@ module PankoOverride
 
       def serialize_to_json(_subjects)
         raise NoMethodError, 'serialize_to_json is not supported. Please use to_a or as_json instead.'
+      end
+
+      private
+
+      def log_and_capture_exception(failure_response)
+        exception_details = JSON.parse(failure_response)['message']
+
+        Rails.logger.error(exception_details)
+        Sentry.capture_exception(StandardError.new(exception_details))
       end
     end
     # rubocop:enable Metrics/BlockLength

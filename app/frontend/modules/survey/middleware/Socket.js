@@ -6,6 +6,7 @@ import schema from '../store/schema'
 import { INIT } from '../core/builder/assessment/actions'
 import { INIT_QUESTION_CENTER } from '../core/builder/questionCenter'
 import NotificationDispatcher from '../dispatchers/NotificationDispatcher'
+import { captureSchemaValidationError } from '~/utils/schemaValidationError'
 
 export const RequestsPool = {}
 
@@ -13,6 +14,8 @@ const Socket = ({ dispatch }) => next => (action) => {
   if (action.type !== SOCKET_MESSAGE) { return next(action) }
 
   const { data, notification } = action
+
+  data && captureSchemaValidationError(data)
 
   if (notification) {
     NotificationDispatcher.notify(notification)
