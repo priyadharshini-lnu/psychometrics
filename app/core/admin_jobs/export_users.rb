@@ -44,7 +44,8 @@ module AdminJobs
     end
 
     def records_for_export
-      campaign.users.
+      User.joins(:campaign_users).
+        where(campaign_users: { campaign_id: campaign.id }).
         includes(:creator, :modifier, campaign_users: [:campaign], user_assessments: :users_result).
         ransack(record.data['filters']).result
     end
