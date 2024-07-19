@@ -29,11 +29,19 @@ class Workshop < ApplicationRecord
     where('workshops.start_time >= ?', Time.current.beginning_of_day).
       where('workshops.name ILIKE ?', "%#{query}%")
   }
+
   scope :visible_to_end_user, lambda { |user_id|
     Workshop.
       includes(:workshop_subjects).
       where(workshop_subjects: { user_id: user_id }).
       merge(WorkshopSubject.participatable)
+  }
+
+  scope :accessible_as_assessor_or_manager, lambda { |user|
+    Workshop.
+      left_joins(:workshop_assessors, :workshop_managers).
+      where('workshop_assessors.user_id = :user_id OR workshop_managers.user_id = :user_id', user_id: user.id).
+      distinct
   }
 
   after_save :create_meeting_room, if: -> { video_call_internal? && meeting_room.blank? }
