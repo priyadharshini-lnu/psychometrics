@@ -507,6 +507,14 @@ jobs:
           name: Release to heroku
           command: |
             heroku container:release web worker release -a << parameters.app-name >>
+      - when:
+          condition:
+            equal: [ master, << pipeline.git.branch >> ]
+          steps:
+          - run:
+              name: Release heroku testing
+              command: |
+                heroku container:release web worker release -a tte-lighthouse-testing
   heroku_release_production:
     executor: tte-docker-build
     parameters:
