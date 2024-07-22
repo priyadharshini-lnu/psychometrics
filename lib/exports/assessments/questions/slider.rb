@@ -11,14 +11,24 @@ module Exports
         #   }, ...]
         # TO:
         #   [12, ...]
-        def self.result(user_result, question, scoring = false, _export_with_labels = false)
-          answers = get_answers(user_result, question)
+        def self.result(user_result, question, scoring = false, _export_with_labels = false) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+          answers = get_answers(user_result, question) || []
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
-          answers = (answers || []).
-                    map do |a|
-            a['value'].is_a?(Numeric) ? ((scoring && factors_scoring[a['index']]) || 1) * a['value'] : ''
+          not_applicable = get_not_applicable(user_result, question) || {}
+          na_label = question.props['notApplicableLabel'] || NOT_APPLICABLE_PLACEHOLDER
+
+          answers = Array.new(question.props['choices'].to_i) do |c|
+            a = answers.find do |answer|
+              answer['index'] == c
+            end || (not_applicable[c.to_s] ? { 'value' => na_label } : { 'value' => nil })
+            if a['value'].is_a?(Numeric)
+              ((scoring && factors_scoring[a['index']]) || 1) * a['value']
+            else
+              (a['value'] || '')
+            end
           end
+
           answers = Array.new(question_headers_except_duration_size(question)) { '' } if answers.empty?
           answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
