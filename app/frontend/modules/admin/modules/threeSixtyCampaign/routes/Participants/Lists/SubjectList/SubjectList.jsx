@@ -3,12 +3,11 @@ import _ from 'lodash'
 import {
   Table, Row, Col, App,
 } from 'antd'
-import { UserOutlined, MoreOutlined } from '@ant-design/icons'
+import { UserOutlined } from '@ant-design/icons'
 import userPresenter from '~/presenters/user'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import styles from './SubjectList.less'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import ToolsDropdown from '../ToolsDropdown'
 import { Manage } from '../Manage'
@@ -152,11 +151,6 @@ export default function SubjectList ({
                       setShowResetSubjectModal,
                     })
                   }
-                  innerElement={(
-                    <div className={styles.actions}>
-                      <MoreOutlined />
-                    </div>
-                  )}
                 />
               )}
             />
