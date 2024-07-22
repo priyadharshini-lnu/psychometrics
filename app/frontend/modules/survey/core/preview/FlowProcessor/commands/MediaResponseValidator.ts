@@ -8,7 +8,9 @@ const { I18n } = window
 const MediaResponseValidator = {
   run (question: Question, mediaResponses: MediaResponse[]) {
     if (isMandatory(question)) {
-      const mediaResponse = _.find(mediaResponses, mr => mr.questionId === question.id && mr.userSelected)
+      const mediaResponse = mediaResponses.length > 1
+        ? _.find(mediaResponses, mr => (mr.questionId === question.id && mr.userSelected))
+        : mediaResponses[0]
       if (!mediaResponse || !mediaResponse?.url) {
         const validationMessage = I18n.lookup(`${getValidationKey(question)}.required`)
           || I18n.t('validations.required')
