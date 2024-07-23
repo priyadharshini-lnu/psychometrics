@@ -531,7 +531,7 @@ pt:
     first_name: Nome próprio
     gender: Género
     last_name: Apelido
-    locale: Idioma preferido
+    locale: Idioma preferencial
     male: Masculino
     not_disclosed: Prefiro não revelar
     password: Palavra-passe
