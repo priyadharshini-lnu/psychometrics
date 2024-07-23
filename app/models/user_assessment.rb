@@ -3,7 +3,7 @@
 # rubocop:disable Metrics/ClassLength
 class UserAssessment < ApplicationRecord
   audited
-  DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
+  DEEMED_COMPLETED_STATUS = %w[completed ineligible].freeze
 
   belongs_to :assessment
   belongs_to :campaign

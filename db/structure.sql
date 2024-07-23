@@ -4102,7 +4102,8 @@ CREATE TABLE public.saville_user_assessments (
     norm_id character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    data_seprator character varying
+    data_seprator character varying,
+    error_code character varying
 );
 
 
@@ -13476,6 +13477,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240703110220'),
 ('20240628111224'),
 ('20240621084730'),
 ('20240619103701'),

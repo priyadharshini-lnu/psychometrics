@@ -96,10 +96,11 @@ const useAsyncRequestResponse = <T>({
           const redirectUrl = response.responseData
 
           location.href = redirectUrl
+        } else {
+          setAsyncLoading(false)
         }
 
         clearTimeout(intervalIdRef.current)
-        setAsyncLoading(false)
         return response
       }
 

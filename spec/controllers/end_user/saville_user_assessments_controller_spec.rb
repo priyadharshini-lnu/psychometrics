@@ -65,5 +65,13 @@ RSpec.describe EndUser::SavilleUserAssessmentsController, type: :controller do
 
       expect(user_assessment.reload.completed?).to eq(false)
     end
+
+    it 'mark user_assessment as timed_out if saville assessment is return error and redirect to campaign' do
+      get :redirect, params: { id: user_assessment.id, error: 14 }
+
+      expect(user_assessment.reload.timed_out?).to eq(true)
+      expect(user_assessment.reload.completion_reason).to eq('time_out_offline')
+      expect(user_assessment.saville_user_assessment.error_code).to eq('14')
+    end
   end
 end

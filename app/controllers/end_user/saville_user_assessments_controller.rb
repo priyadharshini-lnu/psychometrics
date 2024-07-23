@@ -11,14 +11,30 @@ class EndUser::SavilleUserAssessmentsController < ApplicationController
 
   def redirect
     campaign = @user_assessment.campaign
-    if Saville::GetAssessmentStatus.call!(@user_assessment) == 'Completed'
+
+    if params[:error]
+      Saville::HandleErrorCode.call!(params[:error], @user_assessment)
+    elsif assessment_completed?
       @user_assessment.update!(status: :completed, completed_at: Time.current)
     end
 
-    redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
+    redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id),
+                error: error_message)
   end
 
   private
+
+  def assessment_completed?
+    Saville::GetAssessmentStatus.call!(@user_assessment) == 'Completed'
+  end
+
+  def error_message
+    if params[:error] == Saville::HandleErrorCode::ALREADY_STARTED_ERROR_CODE
+      I18n.t('errors.assessments.timed_out',  assessment_name: @user_assessment.assessment.name)
+    elsif params[:error]
+      I18n.t('common.errors.something_wrong') if params[:error]
+    end
+  end
 
   def can_start_based_on_sequencing
     return if UserAssessments::CanStartBasedOnSequencing.call!(@user_assessment)

@@ -94,6 +94,7 @@ export const AssessmentCard: React.FC<Props> = ({
   if (completionPercent === 100) {
     taskStatus = 'completed'
   }
+
   const statusElement = <StatusText taskStatus={taskStatus} />
 
   const titleElement = (

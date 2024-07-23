@@ -7,7 +7,7 @@ import styles from './StatusText.less'
 const { I18n } = window
 const STATUSES = {
   not_started: { label: I18n.t('campaign_assessment.statuses.not_started'), textType: 'secondary' },
-  timed_out: { label: I18n.t('campaign_assessment.statuses.timed_out'), textType: 'secondary' },
+  timed_out: { label: I18n.t('campaign_assessment.statuses.timed_out'), textType: 'error' },
   in_progress: { label: I18n.t('campaign_assessment.statuses.in_progress'), textType: 'warning' },
   interrupted: { label: I18n.t('campaign_assessment.statuses.in_progress'), textType: 'warning' },
   completed: { label: I18n.t('campaign_assessment.statuses.completed'), textType: 'success' },

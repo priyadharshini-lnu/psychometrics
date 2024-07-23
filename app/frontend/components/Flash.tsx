@@ -5,7 +5,7 @@ import _ from 'lodash'
 import { RootState } from '../core/reducers'
 
 const FLASH_TYPES = {
-  success: 'success', error: 'danger', notice: 'info', alert: 'warning',
+  success: 'success', error: 'error', notice: 'info', alert: 'warning',
 }
 
 type PropsFromRedux = ConnectedProps<typeof connector>

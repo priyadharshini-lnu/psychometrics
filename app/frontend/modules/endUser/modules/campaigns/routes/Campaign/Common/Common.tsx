@@ -1,4 +1,5 @@
 import { FC } from 'react'
+
 import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import _ from 'lodash'
 import {
@@ -12,6 +13,7 @@ import cs from 'classnames'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 
 import { STATUSES } from '~/constants/campaign'
+import { Flash } from '~/components/Flash'
 
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
@@ -272,6 +274,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                 )}
                 <div className={styles.tasksContainer}>
                   <AssessmentCardContainer>
+                    <Flash className="mt-2" />
                     <Row>
                       <Col span={24} style={{ paddingInlineStart: '14px' }}>
                         {canBeginCampaign && (

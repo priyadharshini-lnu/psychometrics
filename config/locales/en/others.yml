@@ -1822,6 +1822,8 @@ en:
       body:
         error: Email body has incorrect pipetext.
   errors:
+    assessments:
+      timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
     error: Error
     error_500: Something went wrong. Contact your administrator.
     forbidden: You do not have access to this page
