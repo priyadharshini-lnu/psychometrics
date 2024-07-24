@@ -21,7 +21,7 @@ const connecter = connect(
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-const LicenseUsage: React.FC<Props> = () => {
+const LicenseUsageComponent: React.FC<Props> = () => {
   const { clientId, licenseId } = useParams() as { clientId: string, licenseId: string}
 
   const config = {
@@ -173,4 +173,4 @@ const Filter = () => {
     </Resource.Filter>
   )
 }
-export default connecter(LicenseUsage)
+export default connecter(LicenseUsageComponent)
