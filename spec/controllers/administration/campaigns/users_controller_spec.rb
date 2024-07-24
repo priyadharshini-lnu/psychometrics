@@ -101,7 +101,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'regenerate_report' => true,
         'remove' => true,
         'toggle_status' => true,
-        'bulk_download' => true
+        'bulk_download' => true,
+        'view_workshop_details' => true
       },
       'hogan_id' => nil
     })
