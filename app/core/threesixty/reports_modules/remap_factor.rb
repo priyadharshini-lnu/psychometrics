@@ -30,7 +30,7 @@ module Threesixty
               value: new_factor.id,
               parent_id: new_factor.parent_id,
               name: new_factor.name,
-              alias: new_factor.aliases.find_by(report_id: report.id)&.name
+              alias: new_factor.aliases.find_or_create_by(report_id: report.id, name: new_factor.name)&.name
             }
           end
           m.save!

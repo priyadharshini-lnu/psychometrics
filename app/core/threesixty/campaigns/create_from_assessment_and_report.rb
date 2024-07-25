@@ -5,28 +5,20 @@ module Threesixty
     class CreateFromAssessmentAndReport < BaseCommand
       private_attr_reader :source_assessment, :source_report, :new_assessment, :new_report, :client,
                           :form, :project, :threesixty_campaign, :old_to_new_factor_mapping, :questions_mapping,
-                          :resource_name
+                          :resource_name, :user
 
       # rubocop:disable Metrics/ParameterLists
       def initialize(source_assessment, source_report, form, project, user, resource_name: nil)
         @source_assessment = source_assessment
         @source_report = source_report
         @resource_name = resource_name
-        @new_report = ::Reports::CopyReport.call!(source_report.id, user, new_report_name: resource_name)
         @project = project
         @client = project.client
         @user = user
-        event = ::Assessments::CopyAssessment.call(
-          source_assessment.id, user, client.id, skip_owner_validation: true,
-          new_assessment_name: resource_name
-        )
-        raise('CopyAssessment failed!') unless event[:ok]
 
-        @new_assessment = event[:ok][:assessment]
         @form = form
         @threesixty_campaign = Threesixty::Campaigns::Build.call!(form, project)
         @old_to_new_factor_mapping = {}
-        @questions_mapping = event[:ok][:questions_mapping]
       end
       # rubocop:enable Metrics/ParameterLists
 
@@ -35,7 +27,18 @@ module Threesixty
           source_assessment.dimension, form.factors || [], client, new_dimension_name: form.name
         )
         new_dimension = result[:new_dimension]
+
+        event = ::Assessments::CopyAssessment.call(
+          source_assessment.id, user, client.id, skip_owner_validation: true,
+          new_assessment_name: resource_name
+        )
+        raise('CopyAssessment failed!') unless event[:ok]
+
+        @new_assessment = event[:ok][:assessment]
+        @questions_mapping = event[:ok][:questions_mapping]
         update_factor_ids(result[:old_to_new_factor_mapping])
+
+        @new_report = ::Reports::CopyReport.call!(source_report.id, user, new_report_name: resource_name)
 
         new_assessment.update!(dimension_id: new_dimension.id)
         update_new_report(result[:old_to_new_factor_mapping])
@@ -57,12 +60,12 @@ module Threesixty
         new_report.skip_owner_validation = true
         new_report.save!
 
-        Threesixty::ReportsModules::RemapFactor.call!(new_report, old_to_new_factor_mapping)
-        Threesixty::ReportsModules::RemapQuestion.call!(new_report, questions_mapping)
-
         new_report.filters.update_all(assessment_id: new_assessment.id)
         new_report.assessments_reports.update_all(assessment_id: new_assessment.id)
         new_report.modules.update_all(assessment_id: new_assessment.id)
+
+        Threesixty::ReportsModules::RemapFactor.call!(new_report, old_to_new_factor_mapping)
+        Threesixty::ReportsModules::RemapQuestion.call!(new_report, questions_mapping)
       end
 
       def update_threesixty_campaign
