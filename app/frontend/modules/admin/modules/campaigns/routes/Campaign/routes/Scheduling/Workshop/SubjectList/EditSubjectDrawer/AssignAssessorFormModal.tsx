@@ -21,6 +21,7 @@ type FormValues = {
   assessmentId: number,
   scheduleTime: dayjs.Dayjs,
   meetingType: string,
+  meetingLink: string,
   assessorUserId: string,
 }
 
@@ -83,17 +84,22 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
       a.assessmentId === values.assessmentId))
     const selectedAssessor = assessors?.find(assessor => assessor.userId === values.assessorUserId)
     if (!selectedAssessment || !selectedAssessor) return
+    let meetingLink: string | null = null
+    if (assessorFormInstance.getFieldValue('meetingType') !== 'not_available') {
+      // eslint-disable-next-line prefer-destructuring
+      meetingLink = values.meetingLink
+    }
     const newAssessment: AssessorUserAssessment = {
-      id: selectedAssessment?.id,
+      id: assessment?.id || selectedAssessment?.id,
       name: selectedAssessment.name,
       status: assessment?.status || 'not_started',
       meetingType: values.meetingType,
       linkedActivityId: selectedAssessment.linkedActivityId,
-      meetingLink: selectedAssessment?.meetingType === 'not_available' ? null : (assessment?.meetingLink || null),
+      meetingLink,
       assessmentId: values.assessmentId,
       assessor: { ...selectedAssessor, id: values.assessorUserId },
       scheduleTime: values.scheduleTime.format('YYYY-MM-DD HH:mm:ss'),
-      source: selectedAssessment.source ? selectedAssessment.source : ASSESSMENT_SOURCE.CAMPAIGN_ASSESSOR_ASSESSMENTS,
+      source: assessment?.source ? assessment.source : ASSESSMENT_SOURCE.CAMPAIGN_ASSESSOR_ASSESSMENTS,
     }
     onFormFinish(newAssessment, type, assessment)
     close()
@@ -213,7 +219,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
             </Radio.Group>
           </Form.Item>
         )}
-        {assessment?.meetingType && assessment.meetingType === 'custom' ? (
+        {assessorFormInstance.getFieldValue('meetingType') === 'custom' ? (
           <Form.Item
             className="mb-0"
             wrapperCol={{ offset: 6 }}

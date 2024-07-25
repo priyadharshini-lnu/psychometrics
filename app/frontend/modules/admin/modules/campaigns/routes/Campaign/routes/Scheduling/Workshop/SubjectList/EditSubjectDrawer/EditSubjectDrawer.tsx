@@ -179,7 +179,9 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     const comboExist = assessorAssessmentsMap.assignedAssessmentIds.get(
       `${newAssessment.assessmentId}_${newAssessment.assessor?.userId}`,
     )
-    if (comboExist) {
+    const allowUpdate = newAssessment.assessmentId === prevAssessment?.assessmentId
+    && newAssessment?.assessor?.userId === prevAssessment.assessor?.userId
+    if (comboExist && !allowUpdate) {
       return
     }
     if (type === 'create') {
