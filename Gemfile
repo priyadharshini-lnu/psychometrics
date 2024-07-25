@@ -38,7 +38,9 @@ gem 'icalendar', '~> 2.9.0'
 gem 'two_factor_authentication', git: 'https://github.com/TheTalentEnterprise/two_factor_authentication',
   branch: 'fix_deprecated_methods'
 # rubocop:enable Bundler/OrderedGems, Lint/RedundantCopDisableDirective
-gem 'devise-security', '~> 0.18.0'
+# Issue link : https://github.com/devise-security/devise-security/issues/448
+gem 'devise-security', '~> 0.17.0' # don't upgrade this to 0.18.0 until we have fix for issue mentioned in above comment
+
 gem 'pundit', '~> 2.1.1'
 
 ### Assets

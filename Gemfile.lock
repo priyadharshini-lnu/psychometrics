@@ -358,7 +358,7 @@ GEM
     devise-passwordless (1.0.1)
       devise
       globalid
-    devise-security (0.18.0)
+    devise-security (0.17.0)
       devise (>= 4.3.0)
     devise_invitable (2.0.9)
       actionmailer (>= 5.0)
@@ -1096,7 +1096,7 @@ DEPENDENCIES
   devise (~> 4.9.3)
   devise-i18n (~> 1.9.2)
   devise-passwordless (~> 1.0.1)
-  devise-security (~> 0.18.0)
+  devise-security (~> 0.17.0)
   devise_invitable (~> 2.0.9)
   devise_saml_authenticatable (~> 1.9.1)
   dotiw (~> 5.3.3)
