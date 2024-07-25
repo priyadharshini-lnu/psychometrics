@@ -28,7 +28,7 @@ module EndUser
 
         if @current_project.available_locales.include?(params[:lang])
           cookies[:locale] = params[:lang]
-          current_user.update_column(:locale, params[:lang])
+          current_user.user_profile.update_column(:locale, params[:lang])
         end
       end
 

@@ -72,10 +72,12 @@ const CommonComponent: React.FC<Props> = ({
   const reset = () => {
     const { hostname } = location
     Cookies.remove('tte-anonym-payload', { domain: `.${hostname}`, path: '/' })
+    setTimeout(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     // Param to be passed to force reload in firefox - https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
-    location.reload(true)
+      location.reload(true)
+    }, 500)
   }
 
   return (
