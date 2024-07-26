@@ -34,7 +34,9 @@ module Api
         end
 
         rule(data: { attributes: :assessment_score_type }) do
-          key.failure(:filled?) if values.dig(:data, :attributes, :factor_type) == 'assessment' && value.blank?
+          if %w[assessment assessor_scoring].include?(values.dig(:data, :attributes, :factor_type)) && value.blank?
+            key.failure(:filled?)
+          end
         end
 
         rule(data: { attributes: :ranked }) do

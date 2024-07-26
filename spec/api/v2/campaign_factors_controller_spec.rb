@@ -7,6 +7,7 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
   let!(:superadmin) { create(:superadmin) }
   let!(:campaign) { create(:campaign) }
   let(:campaign_id) { campaign.id }
+  let!(:dimension) { create(:dimension) }
   let!(:campaign_factor_group) { create(:campaign_factor_group, campaign_id: campaign_id) }
   let(:campaign_factor_group_id) { campaign_factor_group.id.to_s }
   let!(:campaign_factor) do
@@ -239,6 +240,28 @@ describe Api::V2::Administration::CampaignFactorsController, swagger_doc: 'v2/sw
             with_data({ 'id' => second_factor_group.id.to_s, 'type' => 'campaign_factor_groups' })
         end
       end
+    end
+  end
+
+  describe 'import' do
+    it 'queues import_campaign_factors job successfully' do
+      file = Rack::Test::UploadedFile.new(
+        Rails.root.join('spec/fixtures/files/import_campaign_factors/valid_file.xlsx'), 'application/xlsx'
+      )
+
+      post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import", params: { file: file }
+
+      expect(AdminJobRecord.exists?(operation: 'import_campaign_factors')).to be_truthy
+    end
+
+    it 'returns validation error' do
+      file = Rack::Test::UploadedFile.new(
+        Rails.root.join('spec/fixtures/files/import_campaign_factors/invalid_rows.xlsx'), 'application/xlsx'
+      )
+
+      post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import", params: { file: file }
+
+      expect(response).to have_http_status(422)
     end
   end
 end

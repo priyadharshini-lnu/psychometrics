@@ -38,6 +38,14 @@ const getMenuProps = (onClick): MenuProps => {
       key: 'variables',
       label: I18n.t('administration.scoring.variables'),
     },
+    {
+      key: 'export_factors',
+      label: I18n.t('administration.scoring.export.factors'),
+    },
+    {
+      key: 'import_factors',
+      label: I18n.t('administration.scoring.import.factors'),
+    },
   ]
   return ({ items: menuItems, onClick })
 }

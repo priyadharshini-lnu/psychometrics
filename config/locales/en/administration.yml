@@ -837,6 +837,22 @@ en:
         report_update: Report is updated
         scoring_update: Scoring is updated
         trash_empty: Trash Comment empty
+    campaign_factor_import:
+      errors:
+        assessment_not_found_in_campaign: Assessment ID '%{assessment_id}' not found in campaign
+        code_already_exists: A factor with the same code '%{code}' already exists.
+        factor_not_in_assessment_dimension: Factor id '%{factor_id}' not part of assessment’s dimension
+        invalid_lua_name: The code '%{code}' should be a valid lua variable name
+        invalid_name_format: The name '%{name}' should match the expected format.
+        missing_assessment_id: Assessment id is required.
+        missing_assessment_score_type: Assessment score type is required.
+        missing_factor_id: Factor id is required.
+        name_already_exists: A factor with the same name '%{name}' already exists.
+        name_size_exceded: Name should not exceed %{size} characters.
+        rank_not_allowed: Only factors with an output type of numeric can be ranked.
+    campaign_factors_import:
+      errors:
+        invalid_headers: 'Following headers are invalid: %{headers}'
     campaign_templates:
       base:
         active: Active
@@ -4132,14 +4148,19 @@ en:
       edit_factor: Edit Factor
       export:
         details: Campaign scorings
+        factors: Export Campaign Factors
       factor: Factor
       factor_group_removed_successfully: Campaign Factor group removed successfully
       factor_removed_successfully: Campaign Factor removed successfully
+      factors_exported_successfully: Export campaign factors job was scheduled successfully
+      factors_imported_successfully: Import campaign factors job was scheduled successfully
       final: Final
       final_score_updated_successfully: Final score updated successfully
       formula: Formula
       get_started: Get Started
       id: Id
+      import:
+        factors: Import Campaign Factors
       name: Name
       no_groups: No groups present
       output_type: Output Type

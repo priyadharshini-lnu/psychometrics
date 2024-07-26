@@ -1323,6 +1323,8 @@ Rails.application.routes.draw do
             jsonapi_resources :campaign_factors, only: %i[index create update destroy] do
               collection do
                 post :update_positions
+                get  :export
+                post :import
               end
             end
             jsonapi_resources :campaign_user_scorings, only: %i[index] do
