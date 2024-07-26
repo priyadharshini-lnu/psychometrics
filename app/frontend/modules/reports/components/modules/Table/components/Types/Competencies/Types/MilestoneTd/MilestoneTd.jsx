@@ -5,7 +5,7 @@ import styles from './styles.less'
 import FilterAvatar from '../../FilterAvatar'
 
 export default function MilestoneTd ({
-  milestoneIndex, milestone: { min, max }, model, filters,
+  milestoneIndex, milestone: { min, max }, model, filters, columnWidth,
 }) {
   const { showLines, scoreBackgroundColor } = model.props
   const filteredResults = filters.filter(
@@ -19,7 +19,7 @@ export default function MilestoneTd ({
   const locale = I18nStore.locale || 'en'
   const direction = locale === 'ar' ? 'right' : 'left'
   return (
-    <td className={styles.td}>
+    <td className={styles.td} width={`${columnWidth}%`}>
       <div className={styles.filters}>
         {filters.map((filter) => {
           const result = _.get(keyedResults, filter.id, false)
@@ -56,7 +56,7 @@ function FilterComponent ({
   style,
   reversed,
 }) {
-  const { showLabels, showValues } = model.props
+  const { showLabels, showValues, precision } = model.props
   const fontSize = 0.65
   const classes = [styles.container, reversed ? styles.reversed : '', showValues ? styles.outline : '']
 
@@ -67,7 +67,7 @@ function FilterComponent ({
       <FilterAvatar filter={filter} fontSize={fontSize} showLabel={showLabels} />
       {showValues && (
         <div className={styles.value} style={{ fontSize: `${fontSize}em` }}>
-          {filter.value.toFixed(2)}
+          {filter.value.toFixed(precision ?? 2)}
         </div>
       )}
     </div>

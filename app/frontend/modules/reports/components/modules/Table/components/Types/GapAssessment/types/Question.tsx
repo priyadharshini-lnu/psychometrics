@@ -78,6 +78,7 @@ interface OwnProps {
   hideValues: boolean
   noOfItems: number | null
   gapCutoff: number | null
+  precision?: number
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -91,6 +92,7 @@ const QuestionTypeComponent: FC<Props> = ({
   hideValues,
   noOfItems,
   gapCutoff,
+  precision,
 }) => {
   const calculateGaps = (
     questionsChoicesTableValues: QuestionsChoicesTableValues,
@@ -141,7 +143,7 @@ const QuestionTypeComponent: FC<Props> = ({
             })
           },
         )
-        return round(value, 2) || 0
+        return round(value, precision ?? 2) || 0
       })
 
       if (!factor) {
@@ -154,7 +156,7 @@ const QuestionTypeComponent: FC<Props> = ({
         factorName: factor.name,
         questionName: choice.name,
         factor,
-        diff: round(row.left - row.right, 2),
+        diff: round(row.left - row.right, precision ?? 2),
       }
     })
 
@@ -235,6 +237,7 @@ const QuestionTypeComponent: FC<Props> = ({
                   'reports.modules.gap_assessment.no_negative_gaps',
                 )}
                 hideValues={hideValues}
+                precision={precision}
               />
             </>
           )}
@@ -387,9 +390,12 @@ interface TBodyProps {
   gaps: Array<Gap>
   emptyText: string
   hideValues: boolean
+  precision?: number
 }
 
-const TBody: FC<TBodyProps> = ({ gaps, emptyText, hideValues }) => {
+const TBody: FC<TBodyProps> = ({
+  gaps, emptyText, hideValues, precision,
+}) => {
   if (gaps.length === 0) {
     return (
       <tr>
@@ -406,7 +412,7 @@ const TBody: FC<TBodyProps> = ({ gaps, emptyText, hideValues }) => {
   const gapValue = (diff) => {
     if (diff === 0) { return 0 }
 
-    return (diff > 0 ? '+' : '-') + Utils.round(diff, 2)
+    return (diff > 0 ? '+' : '-') + Utils.round(diff, precision ?? 2)
   }
 
   return (
@@ -418,8 +424,8 @@ const TBody: FC<TBodyProps> = ({ gaps, emptyText, hideValues }) => {
           <td>{gap.questionName}</td>
           {!hideValues && (
             <>
-              <td dir="ltr">{Utils.round(gap.left, 2)}</td>
-              <td dir="ltr">{Utils.round(gap.right, 2)}</td>
+              <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>
+              <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>
               <td dir="ltr" className={gapStyle(gap.diff)}>
                 {gapValue(gap.diff)}
               </td>

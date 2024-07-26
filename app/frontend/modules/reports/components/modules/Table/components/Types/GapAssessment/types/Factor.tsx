@@ -92,6 +92,7 @@ interface Props {
   hideValues: boolean
   noOfItems: number | null
   gapCutoff: number | null
+  precision?: number
 }
 
 const Factor: FC<Props> = ({
@@ -102,6 +103,7 @@ const Factor: FC<Props> = ({
   hideValues,
   noOfItems,
   gapCutoff,
+  precision,
 }) => {
   const calculateGaps = (
     assessmentId: PropertiesModel['assessment_id'],
@@ -201,6 +203,7 @@ const Factor: FC<Props> = ({
                   'reports.modules.gap_assessment.no_positive_gaps',
                 )}
                 hideValues={hideValues}
+                precision={precision}
               />
             </>
           )}
@@ -222,6 +225,7 @@ const Factor: FC<Props> = ({
                   'reports.modules.gap_assessment.no_negative_gaps',
                 )}
                 hideValues={hideValues}
+                precision={precision}
               />
             </>
           )}
@@ -273,12 +277,14 @@ interface TBodyProps {
   gaps: Array<Gap>
   emptyText: string
   hideValues: boolean
+  precision?: number
 }
 
 const TBody: FC<TBodyProps> = ({
   gaps,
   emptyText,
   hideValues,
+  precision,
 }) => {
   if (gaps.length === 0) {
     return (
@@ -296,9 +302,9 @@ const TBody: FC<TBodyProps> = ({
           <td>{I18nStore.tFactorName(gap)}</td>
           {!hideValues && (
             <>
-              <td dir="ltr">{Utils.round(gap.left, 2)}</td>
-              <td dir="ltr">{Utils.round(gap.right, 2)}</td>
-              <td dir="ltr">{Utils.round(gap.diff, 2)}</td>
+              <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>
+              <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>
+              <td dir="ltr">{Utils.round(gap.diff, precision ?? 2)}</td>
             </>
           )}
         </tr>

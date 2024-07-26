@@ -4,7 +4,7 @@ import styles from './styles.less'
 export default function BarChart ({
   model, filters, milestones,
 }) {
-  const { showValues } = model.props
+  const { showValues, precision } = model.props
   const keyedResults = _.keyBy(filters, 'id')
   const maxValue = (milestones || []).reduce((acc, m) => (parseInt(m.max, 10) > acc ? parseInt(m.max, 10) : acc), 0)
   const widthByValue = value => (parseFloat(value)) / (maxValue || 5) * 100
@@ -23,7 +23,7 @@ export default function BarChart ({
           return (
             <div className={styles.barRow}>
               <div className={styles.bar} style={style} />
-              {showValues && <div className={styles.value}>{result.value.toFixed(2)}</div>}
+              {showValues && <div className={styles.value}>{result.value.toFixed(precision ?? 2)}</div>}
             </div>
           )
         })}
