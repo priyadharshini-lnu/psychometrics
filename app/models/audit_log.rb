@@ -18,7 +18,7 @@ class AuditLog < ApplicationRecord
 
   enum outcome: { failed: 0, successful: 1 }
 
-  after_initialize :initialize_payload_request
+  before_save :initialize_payload_request
 
   add_searchable_assoc_scope :client
   add_searchable_assoc_scope :project

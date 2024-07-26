@@ -8083,6 +8083,13 @@ CREATE INDEX index_audit_logs_on_action ON public.audit_logs USING btree (action
 
 
 --
+-- Name: index_audit_logs_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_created_at ON public.audit_logs USING btree (created_at);
+
+
+--
 -- Name: index_audit_logs_on_record_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8101,6 +8108,13 @@ CREATE INDEX index_audit_logs_on_record_type ON public.audit_logs USING btree (r
 --
 
 CREATE INDEX index_audit_logs_on_user_id_and_action ON public.audit_logs USING btree (user_id, action);
+
+
+--
+-- Name: index_audit_logs_on_user_id_and_action_and_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_user_id_and_action_and_created_at ON public.audit_logs USING btree (user_id, action, created_at);
 
 
 --
@@ -11969,6 +11983,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240721171706'),
+('20240721171655'),
 ('20240619103701'),
 ('20240614104722'),
 ('20240606133151'),

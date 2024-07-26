@@ -10,19 +10,29 @@ module Administration
     def index
       @q = policy_scope(::AuditLog).ransack(params[:filters])
 
-      @logs = @q.result.includes(:user, :active_record_audits, :client, :project, :campaign).
-              order(id: :desc).page(params[:page]).per(params[:size] || 25)
+      @logs = @q.result.
+              select('audit_logs.id, audit_logs.action, audit_logs.created_at, audit_logs.user_id,
+                 audit_logs.client_id, audit_logs.project_id, audit_logs.campaign_id,
+                 audit_logs.record_id, audit_logs.record_type').
+              includes(:user, :client, :project, :campaign).
+              order(created_at: :desc).
+              page(params[:page]).
+              per(params[:size] || 25)
 
+      total_count = @q.result.count
       serialized_logs = Panko::ArraySerializer.new(
         @logs,
         each_serializer: AuditLogSerializer
       ).to_a
 
+      types = Rails.cache.read('audit_log_record_types') || []
+      actions = Rails.cache.read('audit_log_actions') || []
+
       render json: {
         list: serialized_logs,
-        total: @q.result.count,
-        types: policy_scope(::AuditLog).distinct(:record_type).pluck(:record_type).compact.sort,
-        actions: policy_scope(::AuditLog).distinct(:action).pluck(:action).compact.sort
+        total: total_count,
+        types: types,
+        actions: actions
       }
     end
 
