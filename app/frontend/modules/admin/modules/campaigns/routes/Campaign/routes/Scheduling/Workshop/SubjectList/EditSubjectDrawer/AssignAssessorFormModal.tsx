@@ -98,7 +98,7 @@ export const AssignAssessorFormModal:FC<Props> = (props) => {
       meetingLink,
       assessmentId: values.assessmentId,
       assessor: { ...selectedAssessor, id: values.assessorUserId },
-      scheduleTime: values.scheduleTime.format('YYYY-MM-DD HH:mm:ss'),
+      scheduleTime: values.scheduleTime.format(),
       source: assessment?.source ? assessment.source : ASSESSMENT_SOURCE.CAMPAIGN_ASSESSOR_ASSESSMENTS,
     }
     onFormFinish(newAssessment, type, assessment)

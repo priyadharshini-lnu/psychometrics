@@ -21,6 +21,7 @@ module WorkshopSubjects
     def update_subject
       WorkshopSubject.transaction do
         update_subject_data
+        update_subject_assessments
         process_assessor_assessments
         remove_assessor_assessments
       end
@@ -28,6 +29,15 @@ module WorkshopSubjects
 
     def update_subject_data
       workshop_subject.update!(attendance_status: params[:attendance_status], late_duration: params[:late_duration])
+    end
+
+    def update_subject_assessments
+      assessments_data = params[:assessments]
+
+      assessments_data.each do |assessment_data|
+        user_assessment = UserAssessment.find(assessment_data[:id])
+        user_assessment.update!(schedule_time: assessment_data[:schedule_time])
+      end
     end
 
     def process_assessor_assessments

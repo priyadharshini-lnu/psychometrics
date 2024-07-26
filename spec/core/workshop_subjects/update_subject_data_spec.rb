@@ -55,6 +55,12 @@ describe WorkshopSubjects::UpdateSubjectData do
       expect(user_assessment.evaluator_id).to eq(campaign.assessors.first.user_id)
     end
 
+    it 'updates assessments schedule time' do
+      described_class.call!(workshop_subject.id, campaign.id, params)
+
+      expect(user_assessment.reload.schedule_time).to eq('2023-08-04T02:00:00.063Z')
+    end
+
     it 'updates existing assessor_user_assessment with matching id in params' do
       described_class.call!(workshop_subject.id, campaign.id, params)
 
