@@ -56,31 +56,31 @@ const MOCK_NEGATIVE_GAPS: Array<Gap> = [
     name: 'Leads Transformation',
     left: 1.83,
     right: 0.72,
-    diff: 1.11,
+    diff: -1.11,
   },
   {
     name: 'Greater Together',
     left: 1.83,
     right: 0.71,
-    diff: 1.12,
+    diff: -1.12,
   },
   {
     name: 'Game Changer',
     left: 1.83,
     right: 0.7,
-    diff: 1.13,
+    diff: -1.13,
   },
   {
     name: 'Customer First',
     left: 2.0,
     right: 0.83,
-    diff: 1.17,
+    diff: -1.17,
   },
   {
     name: 'Customer First (1)',
     left: 2.0,
     right: 0.83,
-    diff: 1.17,
+    diff: -1.17,
   },
 ]
 
@@ -294,6 +294,14 @@ const TBody: FC<TBodyProps> = ({
     )
   }
 
+
+  const gapValue = (diff) => {
+    if (diff === 0) { return 0 }
+
+    return (diff > 0 ? '+' : '') + Utils.round(diff, precision ?? 2)
+  }
+
+
   return (
     <>
       {gaps.map((gap, i) => (
@@ -304,7 +312,7 @@ const TBody: FC<TBodyProps> = ({
             <>
               <td dir="ltr">{Utils.round(gap.left, precision ?? 2)}</td>
               <td dir="ltr">{Utils.round(gap.right, precision ?? 2)}</td>
-              <td dir="ltr">{Utils.round(gap.diff, precision ?? 2)}</td>
+              <td dir="ltr">{gapValue(gap.diff)}</td>
             </>
           )}
         </tr>

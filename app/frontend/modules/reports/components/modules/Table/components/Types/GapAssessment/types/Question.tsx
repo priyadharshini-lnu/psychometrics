@@ -412,7 +412,7 @@ const TBody: FC<TBodyProps> = ({
   const gapValue = (diff) => {
     if (diff === 0) { return 0 }
 
-    return (diff > 0 ? '+' : '-') + Utils.round(diff, precision ?? 2)
+    return (diff > 0 ? '+' : '') + Utils.round(diff, precision ?? 2)
   }
 
   return (
