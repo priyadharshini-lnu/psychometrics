@@ -1868,6 +1868,11 @@ en:
       accept_invite_msg: You have received an invite. Please reserve your slot.
       add_to_calendar: Add To Calendar
       add_to_calendar_tour_description: Add this booking to your calendar
+      add_to_google_calendar: Add to google calendar
+      add_to_i_calendar: Add to iCalendar
+      add_to_msoffice_calendar: Add to microsoft office 365 calendar
+      add_to_outlook_calendar: Add to outlook calendar
+      add_to_yahoo_calendar: Add to yahoo calendar
       assessment_center_alert:
         btn_title: Campaign
         message_part1: Complete all the preworks in this

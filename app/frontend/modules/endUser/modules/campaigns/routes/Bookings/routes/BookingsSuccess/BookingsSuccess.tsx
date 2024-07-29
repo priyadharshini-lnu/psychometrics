@@ -176,19 +176,49 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
           <Text type="secondary">{I18n.t('frontend.bookings.add_to_calendar')}</Text>
         </Col>
         <div className={styles.inviteDiv} ref={tourRef}>
-          <a href={google(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
+          <a
+            aria-label={I18n.t('frontend.bookings.add_to_google_calendar')}
+            href={google(event)}
+            target="_blank"
+            rel="noreferrer noopener"
+            onClick={handleAddToCalendarClick}
+          >
             <GoogleCalendarIcon />
           </a>
-          <a href={yahoo(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
+          <a
+            aria-label={I18n.t('frontend.bookings.add_to_yahoo_calendar')}
+            href={yahoo(event)}
+            target="_blank"
+            rel="noreferrer noopener"
+            onClick={handleAddToCalendarClick}
+          >
             <YahooIcon />
           </a>
-          <a href={outlook(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
+          <a
+            aria-label={I18n.t('frontend.bookings.add_to_outlook_calendar')}
+            href={outlook(event)}
+            target="_blank"
+            rel="noreferrer noopener"
+            onClick={handleAddToCalendarClick}
+          >
             <OutlookIcon />
           </a>
-          <a href={ics(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
+          <a
+            aria-label={I18n.t('frontend.bookings.add_to_i_calendar')}
+            href={ics(event)}
+            target="_blank"
+            rel="noreferrer noopener"
+            onClick={handleAddToCalendarClick}
+          >
             <IcalIcon />
           </a>
-          <a href={office365(event)} target="_blank" rel="noreferrer noopener" onClick={handleAddToCalendarClick}>
+          <a
+            aria-label={I18n.t('frontend.bookings.add_to_msoffice_calendar')}
+            href={office365(event)}
+            target="_blank"
+            rel="noreferrer noopener"
+            onClick={handleAddToCalendarClick}
+          >
             <Office365Icon />
           </a>
         </div>
