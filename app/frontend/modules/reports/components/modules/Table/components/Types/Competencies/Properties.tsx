@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { InputNumber } from 'antd'
 import Module from '~/modules/reports/core/interfaces/Module'
 
 import ColorSet from '~/modules/reports/components/ColorSet'
@@ -71,7 +72,32 @@ const Properties: FC<Props> = ({ model }) => {
           onChange={color => onChange('scoreBackgroundColor', color)}
         />
       </div>
+      <div className={styles.block}>
+        Border Color
+        <ColorPicker
+          defaultColor="#00000000"
+          getValueInHexFormat
+          value={model.props.borderColor}
+          onChange={color => onChange('borderColor', color)}
+        />
+      </div>
       <div className="margin-top-10">
+        <div>Number Prceision:</div>
+        <InputNumber min={0} size="small" value={model.props.precision} onChange={val => onChange('precision', val)} />
+      </div>
+      <div className="margin-top-10">
+        <div className={styles.flexRow}>
+          <label className={styles.inputLabel}>
+            <input
+              style={{ marginRight: '5px' }}
+              type="checkbox"
+              checked={model.props.hideHeader}
+              onChange={e => onChange('hideHeader', e.currentTarget.checked)}
+            />
+            Hide header
+          </label>
+        </div>
+
         Show
         <div className={styles.flexRow}>
           <label className={styles.inputLabel}>

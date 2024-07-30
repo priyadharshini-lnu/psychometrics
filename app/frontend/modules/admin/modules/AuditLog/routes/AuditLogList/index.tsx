@@ -128,7 +128,7 @@ const AuditLogList: React.FC<Props> = (
   }
 
   return isLoading ? <PageContentSkeleton /> : (
-    <>
+    <div style={{ marginTop: '10px' }}>
       <Breadcrumb
         crumbs={[
           {
@@ -142,114 +142,115 @@ const AuditLogList: React.FC<Props> = (
         ]}
       />
 
-      <Form form={form} layout="vertical" onFinish={handleSearch} className="ms-5 me-5">
-        <Row gutter={[16, 16]} justify="start">
-          <Col xs={24} sm={12} md={8} lg={6}>
-            <Form.Item name="recordId" label={I18n.t('administration.audit_log.record_id')}>
-              <Input placeholder={I18n.t('administration.audit_log.search_record')} />
-            </Form.Item>
-          </Col>
-          <Col xs={24} sm={12} md={8} lg={6}>
-            <Form.Item name="recordType" label={I18n.t('administration.audit_log.type')}>
-              <Select placeholder={I18n.t('administration.audit_log.type')}>
-                {types.map(type => (
-                  <Select.Option key={type} value={type}>{type}</Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Col>
+      <div style={{ marginTop: '30px' }}>
+        <Form form={form} layout="vertical" onFinish={handleSearch} className="ms-5 me-5">
+          <Row gutter={[16, 16]} justify="start">
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <Form.Item name="recordId" label={I18n.t('administration.audit_log.record_id')}>
+                <Input placeholder={I18n.t('administration.audit_log.search_record')} />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <Form.Item name="recordType" label={I18n.t('administration.audit_log.type')}>
+                <Select placeholder={I18n.t('administration.audit_log.type')}>
+                  {types.map(type => (
+                    <Select.Option key={type} value={type}>{type}</Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
 
-          <Col xs={24} sm={12} md={8} lg={6}>
-            <Form.Item name="dateRange" label={I18n.t('administration.audit_log.date_range')}>
-              <DatePicker.RangePicker
-                onCalendarChange={onCalendarChange}
-                disabledDate={disabledDate}
-                allowClear={false}
-                ranges={{
-                  [I18n.t('administration.audit_log.date_presets.today')]: [
-                    dayjs().startOf('day'),
-                    dayjs().endOf('day'),
-                  ],
-                  [I18n.t('administration.audit_log.date_presets.yesterday')]: [
-                    dayjs().subtract(1, 'day').startOf('day'),
-                    dayjs().subtract(1, 'day').endOf('day'),
-                  ],
-                  [I18n.t('administration.audit_log.date_presets.last_week')]: [
-                    dayjs().subtract(1, 'week').startOf('week'),
-                    dayjs().subtract(1, 'week').endOf('week'),
-                  ],
-                  [I18n.t('administration.audit_log.date_presets.last_month')]: [
-                    dayjs().subtract(1, 'month').startOf('month'),
-                    dayjs().subtract(1, 'month').endOf('month'),
-                  ],
-                  [I18n.t('administration.audit_log.date_presets.last_7_days')]: [
-                    dayjs().subtract(7, 'd'),
-                    dayjs(),
-                  ],
-                  [I18n.t('administration.audit_log.date_presets.last_30_days')]: [
-                    dayjs().subtract(30, 'd'),
-                    dayjs(),
-                  ],
-                }}
-              />
-            </Form.Item>
-          </Col>
-          {isExpanded && (
-            <>
-              <Col xs={24} sm={12} md={8} lg={6}>
-                <Form.Item name="action" label={I18n.t('administration.audit_log.action')}>
-                  <Select placeholder={I18n.t('administration.audit_log.action')}>
-                    {(actions || []).map(action => (
-                      <Select.Option key={action} value={action}>{action}</Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={12} md={8} lg={6}>
-                <Form.Item name="user" label={I18n.t('administration.audit_log.search_user')}>
-                  <Input placeholder={I18n.t('administration.audit_log.search_user')} />
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={12} md={8} lg={6}>
-                <Form.Item name="client" label={I18n.t('administration.audit_log.search_client')}>
-                  <Input placeholder={I18n.t('administration.audit_log.search_client')} />
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={12} md={8} lg={6}>
-                <Form.Item name="project" label={I18n.t('administration.audit_log.search_project')}>
-                  <Input placeholder={I18n.t('administration.audit_log.search_project')} />
-                </Form.Item>
-              </Col>
-              <Col xs={24} sm={12} md={8} lg={6}>
-                <Form.Item name="campaign" label={I18n.t('administration.audit_log.search_campaign')}>
-                  <Input placeholder={I18n.t('administration.audit_log.search_campaign')} />
-                </Form.Item>
-              </Col>
-            </>
-          )}
-          <Col span={24} style={{ textAlign: 'right' }}>
-            <Form.Item>
-              <Space>
-                <Button onClick={() => setIsExpanded(!isExpanded)}>
-                  {isExpanded
-                    ? I18n.t('administration.audit_log.collapse_filters')
-                    : I18n.t('administration.audit_log.expand_filters')
-                  }
-                </Button>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  icon={<SearchOutlined />}
-                >
-                  {I18n.t('administration.audit_log.search')}
-                </Button>
-                <Button onClick={handleReset}>{I18n.t('administration.audit_log.reset')}</Button>
-              </Space>
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form>
-
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <Form.Item name="dateRange" label={I18n.t('administration.audit_log.date_range')}>
+                <DatePicker.RangePicker
+                  onCalendarChange={onCalendarChange}
+                  disabledDate={disabledDate}
+                  allowClear={false}
+                  ranges={{
+                    [I18n.t('administration.audit_log.date_presets.today')]: [
+                      dayjs().startOf('day'),
+                      dayjs().endOf('day'),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.yesterday')]: [
+                      dayjs().subtract(1, 'day').startOf('day'),
+                      dayjs().subtract(1, 'day').endOf('day'),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.last_week')]: [
+                      dayjs().subtract(1, 'week').startOf('week'),
+                      dayjs().subtract(1, 'week').endOf('week'),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.last_month')]: [
+                      dayjs().subtract(1, 'month').startOf('month'),
+                      dayjs().subtract(1, 'month').endOf('month'),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.last_7_days')]: [
+                      dayjs().subtract(7, 'd'),
+                      dayjs(),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.last_30_days')]: [
+                      dayjs().subtract(30, 'd'),
+                      dayjs(),
+                    ],
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            {isExpanded && (
+              <>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="action" label={I18n.t('administration.audit_log.action')}>
+                    <Select placeholder={I18n.t('administration.audit_log.action')}>
+                      {(actions || []).map(action => (
+                        <Select.Option key={action} value={action}>{action}</Select.Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="user" label={I18n.t('administration.audit_log.search_user')}>
+                    <Input placeholder={I18n.t('administration.audit_log.search_user')} />
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="client" label={I18n.t('administration.audit_log.search_client')}>
+                    <Input placeholder={I18n.t('administration.audit_log.search_client')} />
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="project" label={I18n.t('administration.audit_log.search_project')}>
+                    <Input placeholder={I18n.t('administration.audit_log.search_project')} />
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="campaign" label={I18n.t('administration.audit_log.search_campaign')}>
+                    <Input placeholder={I18n.t('administration.audit_log.search_campaign')} />
+                  </Form.Item>
+                </Col>
+              </>
+            )}
+            <Col span={24} style={{ textAlign: 'right' }}>
+              <Form.Item>
+                <Space>
+                  <Button onClick={() => setIsExpanded(!isExpanded)}>
+                    {isExpanded
+                      ? I18n.t('administration.audit_log.collapse_filters')
+                      : I18n.t('administration.audit_log.expand_filters')
+                    }
+                  </Button>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    icon={<SearchOutlined />}
+                  >
+                    {I18n.t('administration.audit_log.search')}
+                  </Button>
+                  <Button onClick={handleReset}>{I18n.t('administration.audit_log.reset')}</Button>
+                </Space>
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
+      </div>
 
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
@@ -335,7 +336,7 @@ const AuditLogList: React.FC<Props> = (
           hideOnSinglePage
         />
       </div>
-    </>
+    </div>
   )
 }
 

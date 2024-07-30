@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import { SafeHTML } from '~/components/SafeHTML'
 import Utils from '~/modules/reports/utils'
 import store from '~/modules/reports/store'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
@@ -189,7 +190,12 @@ class ResponseSummary extends Component {
                         {I18nStore.tFactorName(factor)}
                       </td>
                     )}
-                    <td>{I18nStore.tQuestion(new Question(question), 'questionText')}</td>
+                    <td>
+                      <SafeHTML
+                        config="richTextQuestion"
+                        html={I18nStore.tQuestion(new Question(question), 'questionText')}
+                      />
+                    </td>
                     {filterIds.map((id, i) => {
                       const data = this.data[id][questionId]
                       return (

@@ -53,6 +53,7 @@ const QuestionComponent = ({ filters, model, questions }) => {
 
   const {
     milestones, mainHeaderColor, secondHeaderColor,
+    hideHeader, borderColor,
   } = model.props
   if (!filters.length) return null
   const filterIdsHavingResults = new Set()
@@ -67,41 +68,46 @@ const QuestionComponent = ({ filters, model, questions }) => {
     fontSize,
     fontFamily,
   }
+  if (borderColor) {
+    style.borderColor = borderColor
+  }
 
   return (
     <>
       <div className={styles.table} style={style}>
         <table>
-          <thead>
-            <tr>
-              <td
-                rowSpan={2}
-                className={cs(styles.label, styles.competencyLabel)}
-                style={{ color: mainHeaderColor }}
-              >
-                {I18nStore.t('reports.modules.single_value_cluster.questions')}
-              </td>
-              <td
-                colSpan={milestones.length}
-                className={cs(styles.label, styles.questionLabel)}
-                style={{ color: mainHeaderColor }}
-              >
-                {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
-              </td>
-            </tr>
-            <tr>
-              {milestones.map(m => (
+          {!hideHeader && (
+            <thead>
+              <tr>
                 <td
-                  key={m.id}
-                  className={cs(styles.label, styles.milestoneLabel)}
-                  style={{ borderBottomColor: m.color, color: secondHeaderColor }}
-                  width={`${milestoneColumnWidth}%`}
+                  rowSpan={2}
+                  className={cs(styles.label, styles.competencyLabel)}
+                  style={{ color: mainHeaderColor }}
                 >
-                  {m.name}
+                  {I18nStore.t('reports.modules.single_value_cluster.questions')}
                 </td>
-              ))}
-            </tr>
-          </thead>
+                <td
+                  colSpan={milestones.length}
+                  className={cs(styles.label, styles.questionLabel)}
+                  style={{ color: mainHeaderColor }}
+                >
+                  {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
+                </td>
+              </tr>
+              <tr>
+                {milestones.map(m => (
+                  <td
+                    key={m.id}
+                    className={cs(styles.label, styles.milestoneLabel)}
+                    style={{ borderBottomColor: m.color, color: secondHeaderColor }}
+                    width={`${milestoneColumnWidth}%`}
+                  >
+                    {m.name}
+                  </td>
+                ))}
+              </tr>
+            </thead>
+          )}
           <tbody>
             {filteredQuestionsChoices.map((questionChoice) => {
               const results = enhanceFiltersByValue(questionChoice.questionId, questionChoice.choiceId)
@@ -111,13 +117,14 @@ const QuestionComponent = ({ filters, model, questions }) => {
               const descStyle = getDescStyle(results)
               return (
                 <tr key={`${questionChoice.questionId}_${questionChoice.choiceId}`}>
-                  <td>
+                  <td width={`${DESC_COLUMN_WIDTH}%`}>
                     <div className={styles.description} style={descStyle}>{questionChoice.name}</div>
                   </td>
                   {showAsBarChart
                     ? <BarChart filters={results} model={model} milestones={milestones} />
                     : milestones.map((m, i) => (
                       <MilestoneTd
+                        columnWidth={milestoneColumnWidth}
                         filters={results}
                         milestoneIndex={i}
                         key={m.id}

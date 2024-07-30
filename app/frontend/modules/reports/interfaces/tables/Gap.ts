@@ -15,6 +15,7 @@ interface Props {
   hideValues: boolean
   noOfItems: number | null
   gapCutoff: number | null
+  precision?: number
 }
 
 export enum GapType {

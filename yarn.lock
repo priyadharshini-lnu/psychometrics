@@ -3751,10 +3751,10 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.4.3.tgz#af975e367743fa91989cd666666aec31a8f50591"
   integrity sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==
 
-"@thetalententerprise/interactive-assessments@1.9.4":
-  version "1.9.4"
-  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.9.4/6cd025b4f3629c2a1c5e15fec3693b8095da8858#6cd025b4f3629c2a1c5e15fec3693b8095da8858"
-  integrity sha512-1KHS6Jaxie/K3KAdfLqzDQSOyxwTXAG5hI4yWlUdIXjwLNgkYEgwO5wuW+h25rvw9R8tGGQ24/nifB1Bw/Qgmg==
+"@thetalententerprise/interactive-assessments@1.9.5":
+  version "1.9.5"
+  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.9.5/b65352c42107140442fba016705652441b0cd6fc#b65352c42107140442fba016705652441b0cd6fc"
+  integrity sha512-2p3ItqsuhP9UKjiQ4IH2cqy0sezXVhg90rKHtUwIIY9plfHgoKCli4c1FNKy5HQnHsh5HQcowx9BrRpJohbhsA==
   dependencies:
     javascript-obfuscator "^4.0.2"
 

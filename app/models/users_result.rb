@@ -38,10 +38,10 @@ class UsersResult < ApplicationRecord
            to: :user_assessment, allow_nil: true)
 
   before_create :generate_randomseed
-  after_commit :compute_external_scores, if: -> { external_results_previously_changed? }
+  after_commit :compute_external_scores, if: -> { external_results_previously_changed? }, on: %i[update]
 
   def compute_external_scores
-    return if !completed? || external_results.blank? || assessment.internal?
+    return if external_results.blank? || assessment.internal?
 
     update!(scoring: ::UsersResults::CalculateScoring.call!(self))
     user_assessment.calculate_and_save_campaign_scoring

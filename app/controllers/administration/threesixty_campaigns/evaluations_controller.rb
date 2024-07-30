@@ -74,7 +74,14 @@ module Administration
       end
 
       def pundit_authorize
-        authorize %i[threesixty participant]
+        authorize(
+          %i[threesixty evaluation],
+          nil,
+          {
+            threesixty_campaign: threesixty_campaign,
+            project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
+          }
+        )
       end
 
       def init_breadcrumbs

@@ -78,8 +78,8 @@ const HANDLERS = {
   [ADD_NOTE]: (state: State, { question }: AddNoteType) => (
     setIn(state, [question.id, 'showComments'], true)
   ),
-  [RENAME_QUESTION]: (state: State, { question, value }: RenameQuestionType) => (
-    setIn(state, [question.id, 'name'], value)
+  [RENAME_QUESTION]: (state: State, { value }: RenameQuestionType) => (
+    setIn(state, ['question', 'name'], value)
   ),
   [CHANGE_TYPE]: (state: State, { question, qtype, props }: ChangeTypeType) => {
     Question.prototype.changeType.call(question, qtype, props)

@@ -4417,10 +4417,16 @@ en:
       port: Port
       send_test_email: Send Test Email
       smtp: SMTP
+      test_email_modal:
+        input_hint: Your email setting will not saved until test email was sent successfully.
+        input_placeholder: Test Email ID
+        success_message: SMTP setting updated successfully.
+        title: Test Email Id
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
       update_success_msg: SMTP setting updated successfully.
+      use_sender_verification: Use sender verification
       user_name: User Name
     stats:
       assessments:

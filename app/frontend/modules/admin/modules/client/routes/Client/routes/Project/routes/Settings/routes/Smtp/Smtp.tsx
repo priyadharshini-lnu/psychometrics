@@ -22,6 +22,7 @@ import { isRequestInProgress } from '~/core/request'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { TestSettingModal } from './TestSettingModal'
+import { TestEmailModal } from './TestEmailModal'
 
 const connector = connect(
   (state: RootState) => ({
@@ -51,6 +52,7 @@ const ENCRYPTION_TO_PORT_MAPPIN = {
 
 const MODALS = {
   TestSettingModal,
+  TestEmailModal,
 }
 
 const SmtpComponent: React.FC<Props> = ({
@@ -60,13 +62,15 @@ const SmtpComponent: React.FC<Props> = ({
   const { projectId } = useParams<{ projectId: string }>()
   const parsedProjectId = parseInt(projectId, 10)
   const { message } = App.useApp()
+  const enabled = Form.useWatch('enabled', form)
 
   enum SubmitFormType {
     None = 'none',
     Validation = 'validation',
     Update = 'update'
   }
-  const [submitFormFor, setsubmitFormFor] = useState<SubmitFormType>(SubmitFormType.None)
+  const [submitFormFor, setSubmitFormFor] = useState<SubmitFormType>(SubmitFormType.None)
+  const useSenderVerification = Form.useWatch('useSenderVerification', form)
 
   useUpdateEffect(() => {
     if (submitFormFor !== SubmitFormType.None) { form.submit() }
@@ -77,16 +81,25 @@ const SmtpComponent: React.FC<Props> = ({
     form.setFieldsValue({ port })
   }
 
-  const formSubmitRequest = (values: SmtpSetting) => {
-    if (submitFormFor === SubmitFormType.Update) {
-      return saveSettings(parsedProjectId, smtpSetting.id, values).then(() => {
-        message.success(I18n.t('administration.smtp_settings.update_success_msg'))
-      }).finally(() => setsubmitFormFor(SubmitFormType.None))
+  const formSubmitRequest = (values: Partial<SmtpSetting>) => {
+    if (values.useSenderAuthentication) {
+      values = { fromName: values.fromName, fromEmail: values.fromEmail }
+    }
+    if (submitFormFor === SubmitFormType.Validation) {
+      return validateSettings(parsedProjectId, values).then(() => {
+        openModal('TestSettingModal', { projectId, smtpSetting: form.getFieldsValue(true) })
+      }).finally(() => setSubmitFormFor(SubmitFormType.None))
     }
 
-    return validateSettings(parsedProjectId, values).then(() => {
-      openModal('TestSettingModal', { projectId, smtpSetting: form.getFieldsValue(true) })
-    }).finally(() => setsubmitFormFor(SubmitFormType.None))
+    if (values.enabled) {
+      return validateSettings(parsedProjectId, values).then(() => {
+        openModal('TestEmailModal', { projectId, smtpSetting: form.getFieldsValue(true) })
+      }).finally(() => setSubmitFormFor(SubmitFormType.None))
+    }
+
+    return saveSettings(parsedProjectId, smtpSetting.id, values).then(() => {
+      message.success(I18n.t('administration.smtp_settings.update_success_msg'))
+    }).finally(() => setSubmitFormFor(SubmitFormType.None))
   }
 
   if (isProjectLoading) return <Skeleton />
@@ -109,7 +122,7 @@ const SmtpComponent: React.FC<Props> = ({
               sm: 24, md: 10, lg: 8, xl: 8,
             },
             labelAlign: 'left',
-            initialValues: { authentication: !isEmpty(smtpSetting.userName) },
+            initialValues: { authentication: !isEmpty(smtpSetting.userName), useSenderVerification: false },
             onValuesChange: (changedValues) => {
               if (changedValues.encryption) { handleEncryptionChange(changedValues.encryption) }
               if (changedValues.authentication) { form.setFieldsValue({ authenticationType: 'plain' }) }
@@ -141,86 +154,27 @@ const SmtpComponent: React.FC<Props> = ({
               </Form.Item>
 
               <Form.Item
-                name="host"
-                label={I18n.t('administration.smtp_settings.host')}
-              >
-                <Input />
-              </Form.Item>
-
-              <Form.Item
-                name="encryption"
-                label={I18n.t('administration.smtp_settings.encryption')}
-              >
-                <Radio.Group>
-                  <Radio value="none">{I18n.t('administration.smtp_settings.encryption_types.none')}</Radio>
-                  <Radio value="ssl">{I18n.t('administration.smtp_settings.encryption_types.ssl')}</Radio>
-                  <Radio value="tls">{I18n.t('administration.smtp_settings.encryption_types.tls')}</Radio>
-                </Radio.Group>
-              </Form.Item>
-
-              <Form.Item
-                name="port"
-                label={I18n.t('administration.smtp_settings.port')}
-              >
-                <Input />
-              </Form.Item>
-
-              <Form.Item
-                name="authentication"
-                label={I18n.t('administration.smtp_settings.authentication')}
+                name="useSenderVerification"
+                label={I18n.t('administration.smtp_settings.use_sender_verification')}
                 valuePropName="checked"
               >
                 <Switch />
               </Form.Item>
 
-              {form.getFieldValue('authentication')
-                && (
-                  <>
-                    <Form.Item
-                      name="authenticationType"
-                      label={I18n.t('administration.smtp_settings.authentication_type')}
-                    >
-                      <Radio.Group>
-                        <Radio value="plain">
-                          {I18n.t('administration.smtp_settings.authentication_types.plain')}
-                        </Radio>
-                        <Radio value="login">
-                          {I18n.t('administration.smtp_settings.authentication_types.login')}
-                        </Radio>
-                        <Radio value="cram_md5">
-                          {I18n.t('administration.smtp_settings.authentication_types.cram_md5')}
-                        </Radio>
-                      </Radio.Group>
-                    </Form.Item>
+              {!useSenderVerification && <SMTPAuthSettings form={form} />}
 
-                    <Form.Item
-                      name="userName"
-                      label={I18n.t('administration.smtp_settings.user_name')}
-                    >
-                      <Input />
-                    </Form.Item>
-
-                    <Form.Item
-                      name="password"
-                      label={I18n.t('administration.smtp_settings.password')}
-                    >
-                      <Input.Password />
-                    </Form.Item>
-                  </>
-                )
-              }
               <Space>
                 <Button
                   type="primary"
-                  loading={isUpdating}
-                  onClick={() => { setsubmitFormFor(SubmitFormType.Update) }}
+                  loading={!enabled && isUpdating}
+                  onClick={() => { setSubmitFormFor(SubmitFormType.Update) }}
                 >
                   {I18n.t('common.actions.update')}
                 </Button>
                 <Button
                   icon={<MailOutlined />}
-                  loading={isValidating}
-                  onClick={() => { setsubmitFormFor(SubmitFormType.Validation) }}
+                  loading={submitFormFor === SubmitFormType.Validation && isValidating}
+                  onClick={() => { setSubmitFormFor(SubmitFormType.Validation) }}
                 >
                   {I18n.t('administration.smtp_settings.send_test_email')}
                 </Button>
@@ -233,5 +187,79 @@ const SmtpComponent: React.FC<Props> = ({
     </Row>
   )
 }
+
+const SMTPAuthSettings = ({ form }) => (
+  <>
+    <Form.Item
+      name="host"
+      label={I18n.t('administration.smtp_settings.host')}
+    >
+      <Input />
+    </Form.Item>
+
+    <Form.Item
+      name="encryption"
+      label={I18n.t('administration.smtp_settings.encryption')}
+    >
+      <Radio.Group>
+        <Radio value="none">{I18n.t('administration.smtp_settings.encryption_types.none')}</Radio>
+        <Radio value="ssl">{I18n.t('administration.smtp_settings.encryption_types.ssl')}</Radio>
+        <Radio value="tls">{I18n.t('administration.smtp_settings.encryption_types.tls')}</Radio>
+      </Radio.Group>
+    </Form.Item>
+
+    <Form.Item
+      name="port"
+      label={I18n.t('administration.smtp_settings.port')}
+    >
+      <Input />
+    </Form.Item>
+
+    <Form.Item
+      name="authentication"
+      label={I18n.t('administration.smtp_settings.authentication')}
+      valuePropName="checked"
+    >
+      <Switch />
+    </Form.Item>
+
+    {form.getFieldValue('authentication')
+      && (
+        <>
+          <Form.Item
+            name="authenticationType"
+            label={I18n.t('administration.smtp_settings.authentication_type')}
+          >
+            <Radio.Group>
+              <Radio value="plain">
+                {I18n.t('administration.smtp_settings.authentication_types.plain')}
+              </Radio>
+              <Radio value="login">
+                {I18n.t('administration.smtp_settings.authentication_types.login')}
+              </Radio>
+              <Radio value="cram_md5">
+                {I18n.t('administration.smtp_settings.authentication_types.cram_md5')}
+              </Radio>
+            </Radio.Group>
+          </Form.Item>
+
+          <Form.Item
+            name="userName"
+            label={I18n.t('administration.smtp_settings.user_name')}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="password"
+            label={I18n.t('administration.smtp_settings.password')}
+          >
+            <Input.Password />
+          </Form.Item>
+        </>
+      )
+    }
+  </>
+)
 
 export const Smtp = connector(SmtpComponent)

@@ -28,7 +28,7 @@ module EndUser
 
         if @current_project.available_locales.include?(params[:lang])
           cookies[:locale] = params[:lang]
-          current_user.update_column(:locale, params[:lang])
+          current_user.user_profile.update_column(:locale, params[:lang])
         end
       end
 
@@ -53,7 +53,7 @@ module EndUser
     def restart
       cookies.delete(Users::AuthenticateAnonymousUser::ANONYM_COOKIE_KEY, domain: request.host)
 
-      redirect_to anonym_pass_path(params[:assessment_key])
+      redirect_to anonym_pass_path(params[:assessment_key], lang: params[:lang] || 'en')
     end
 
     def error; end

@@ -109,6 +109,7 @@ gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel', br
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 3.2'
 
+gem 'active_storage_svg_sanitizer', git: 'https://github.com/TheTalentEnterprise/active_storage_svg_sanitizer'
 gem 'active_storage_validations', '~> 1.0.3'
 gem 'ancestry', '~> 3.0.0'
 gem 'audited', '~> 5.4.2'

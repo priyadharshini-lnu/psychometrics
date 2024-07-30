@@ -270,11 +270,15 @@ const AssessmentsReports: React.FC<Props> = ({
         <h3>{I18n.t('common.model.assessments')}</h3>
         <AssessmentList />
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('campaign_users.details.assessment_center')}</h3>
-        <WorkshopList />
-        <div className={styles.tableDivider} />
-        <h3>{I18n.t('campaign_users.details.assessment_center_invites')}</h3>
-        <WorkshopInviteList />
+        {user.permissions.viewWorkshopDetails && (
+          <>
+            <h3>{I18n.t('campaign_users.details.assessment_center')}</h3>
+            <WorkshopList />
+            <div className={styles.tableDivider} />
+            <h3>{I18n.t('campaign_users.details.assessment_center_invites')}</h3>
+            <WorkshopInviteList />
+          </>
+        )}
         {proctoringSessions.length !== 0 && (
           <>
             <div className={styles.tableDivider} />
