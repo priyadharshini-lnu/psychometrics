@@ -29,6 +29,7 @@ export class VideoPlayer extends Component {
       controlBar: {
         fullscreenToggle: false,
         volumePanel: false,
+        pictureInPictureToggle: false,
       },
     }
 

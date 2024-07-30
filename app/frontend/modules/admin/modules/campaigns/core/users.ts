@@ -193,6 +193,7 @@ export interface UserDetails {
     toggleStatus: boolean
     remove: boolean
     bulkDownload: boolean
+    viewWorkshopDetails: boolean
   }
   hoganId: string | null
 }

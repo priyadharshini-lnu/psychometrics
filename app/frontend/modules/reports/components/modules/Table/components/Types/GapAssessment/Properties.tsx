@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import {
   Space, Typography, Select, Checkbox,
+  InputNumber,
 } from 'antd'
 
 import { PropertiesModel, GapType } from '~/modules/reports/interfaces/tables/Gap'
@@ -33,7 +34,7 @@ interface Props {
 export const Properties: FC<Props> = ({ model }) => {
   const {
     props: {
-      gapType, sourceType, questionsChoices, factorIds, hideValues = false, noOfItems, gapCutoff,
+      gapType, sourceType, questionsChoices, factorIds, hideValues = false, noOfItems, gapCutoff, precision,
     },
     assessment_id,
   } = model
@@ -71,6 +72,10 @@ export const Properties: FC<Props> = ({ model }) => {
         gapCutoff={gapCutoff}
         onChange={onChange}
       />
+      <div className="margin-top-10">
+        <div>Number Prceision:</div>
+        <InputNumber min={0} size="small" value={precision} onChange={val => onChange('precision', val)} />
+      </div>
     </Space>
   )
 }

@@ -7,11 +7,11 @@ module Administration
     end
 
     def export?
-      @user.is?(:superadmin) || @user.has_grant?(:translations, :export)
+      @user.has_grant?(:assessments, :manage)
     end
 
     def import?
-      @user.is?(:superadmin) || @user.has_grant?(:translations, :import)
+      @user.has_grant?(:assessments, :manage)
     end
   end
 end

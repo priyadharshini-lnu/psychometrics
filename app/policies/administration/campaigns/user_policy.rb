@@ -109,6 +109,10 @@ module Administration
         can_mange_campaign_users?
       end
 
+      def view_workshop_details?
+        has_permission?(:workshops, :view)
+      end
+
       private
 
       def can_mange_campaign_users?

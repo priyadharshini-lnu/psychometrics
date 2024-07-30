@@ -924,6 +924,7 @@ Rails.application.routes.draw do
       get 'anonym/error', to: 'anonyms#error'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       delete 'anonym/:assessment_key', to: 'anonyms#restart', as: :anonym_restart
+      get 'anonym/:assessment_key/restart', to: 'anonyms#restart'
       get :workshop_invites, to: 'workshop_invited_subjects#invites', defaults: { format: :json }
       get :workshop_bookings, to: 'workshop_invited_subjects#bookings', defaults: { format: :json }
 

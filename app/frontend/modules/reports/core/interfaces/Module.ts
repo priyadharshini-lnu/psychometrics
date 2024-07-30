@@ -25,10 +25,13 @@ export default interface Module {
     mainHeaderColor: RgbaColor | string
     secondHeaderColor: RgbaColor | string
     scoreBackgroundColor: RgbaColor | string
+    borderColor: string
     showLabels: boolean
     showValues: boolean
     showLines: boolean
     showAsBarChart: boolean
+    hideHeader: boolean
+    precision?: number
     text?: string
     type?: string
     url?: string

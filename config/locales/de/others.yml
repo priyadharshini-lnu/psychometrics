@@ -170,6 +170,7 @@ de:
     password: Passwort
     password_confirmation: Password Confirmation
     title: Kennwort ändern
+    warning_message: 'Wichtig: Wenn Sie Ihr Passwort ändern, werden Sie abgemeldet.'
   checking_wizard:
     audio_check:
       access: Zugriff

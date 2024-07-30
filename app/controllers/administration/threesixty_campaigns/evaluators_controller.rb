@@ -38,7 +38,8 @@ module Administration
             counters: counters,
             subject_evaluator_counters: subject_evaluator_counters,
             current_user: current_user,
-            project_id: threesixty_campaign.campaign.project_id
+            project_id: threesixty_campaign.campaign.project_id,
+            campaign_id: threesixty_campaign.campaign_id
           ).to_h
         end
         render json: { evaluators: evaluators, total: total, permissions: permissions }

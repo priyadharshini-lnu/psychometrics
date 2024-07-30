@@ -2,6 +2,11 @@
 
 module SmtpSettings
   class Form < Rectify::Form
+    mimic :smtp_setting_form
+
+    SMTP_AUTH_ATTRIBUTES = %i[host port encryption user_name password authentication_type].freeze
+
+    attribute :test_email_id, String
     attribute :enabled, Boolean
     attribute :from_name, String
     attribute :from_email, String
@@ -12,14 +17,19 @@ module SmtpSettings
     attribute :authentication_type, String
     attribute :user_name, String
     attribute :password, String
+    attribute :use_sender_verification, Boolean
 
     validates :from_name, presence: true, if: :enabled?
-    validates :from_email, :host, :encryption, :port, presence: true, if: :apply_all_field_validation?
+    validates :from_email, presence: true, if: :apply_all_field_validation?
+    validates :host, :encryption, :port, presence: true, if: lambda {
+                                                               apply_all_field_validation? && !use_sender_verification
+                                                             }
     validates :authentication_type, :user_name, :password, presence: true,
       if: -> { apply_all_field_validation? && authentication? }
     validates :from_email, format: { with: Devise.email_regexp }, allow_blank: true
     validates :host, format: { with: RegexConstants::DOMAIN_REGEX }, allow_blank: true
     validates :port, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 655_35 }, allow_blank: true
+    validates :test_email_id, format: { with: Devise.email_regexp }, allow_blank: true
 
     def apply_all_field_validation?
       return false unless enabled?
@@ -30,7 +40,10 @@ module SmtpSettings
     end
 
     def attributes
-      super.except(:authentication)
+      attrs = super.except(:authentication, :test_email_id)
+      return attrs.except(*SMTP_AUTH_ATTRIBUTES) if use_sender_verification
+
+      attrs
     end
   end
 end

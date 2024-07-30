@@ -273,6 +273,7 @@ es-ES:
     password: Contraseña
     password_confirmation: Confirmación de la contraseña
     title: Cambiar contraseña
+    warning_message: 'Importante: cambiar su contraseña cerrará su sesión.'
   checking_wizard:
     audio_check:
       access: Acceder

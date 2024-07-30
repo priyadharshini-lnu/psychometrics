@@ -172,6 +172,7 @@ pl:
     password: Hasło
     password_confirmation: Potwierdzenie hasła
     title: Zmień hasło
+    warning_message: 'Ważne: zmiana hasła spowoduje wylogowanie.'
   common:
     actions:
       add: Dodaj

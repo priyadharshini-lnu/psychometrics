@@ -96,6 +96,7 @@ module Administration
           'regenerate_report',
           'toggle_status',
           'bulk_download',
+          'view_workshop_details',
           %w[remove destroy]
         ],
         {

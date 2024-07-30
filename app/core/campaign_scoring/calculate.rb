@@ -60,7 +60,6 @@ module CampaignScoring
                                          when 'formula'
                                            compute_formula(campaign_factor)
                                        end
-
       validate_campaign_factor_value!(campaign_factor, computed_campaign_factor_value)
 
       @factor_values[campaign_factor] = CampaignScoring::FactorValue.new(computed_campaign_factor_value)
@@ -115,11 +114,13 @@ module CampaignScoring
     def dependencies_as_lua_variable(campaign_factor)
       variables = ''
       campaign_factor.dependencies.each do |cf|
+        next variables += "__#{cf.code} =  nil \n" unless @factor_values[cf].value
+
         if cf.numeric_output_type?
           variables += "__#{cf.code} =  #{@factor_values[cf].value} \n"
         elsif cf.string_output_type?
           value = @factor_values[cf].value.gsub("'", "\\\\'")
-          variables += "__#{cf.code} =  '#{value}' \n"
+          variables += value ? "__#{cf.code} =  '#{value}' \n" : "__#{cf.code} =  nil \n"
         end
       end
       variables

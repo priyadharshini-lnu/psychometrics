@@ -271,6 +271,7 @@ pt:
     password: Palavra-passe
     password_confirmation: Confirmação da palavra-passe
     title: Alterar a palavra-passe
+    warning_message: 'Importante: Alterar a sua palavra-passe irá desconectá-lo.'
   checking_wizard:
     audio_check:
       access: Acesso
@@ -530,7 +531,7 @@ pt:
     first_name: Nome próprio
     gender: Género
     last_name: Apelido
-    locale: Idioma preferido
+    locale: Idioma preferencial
     male: Masculino
     not_disclosed: Prefiro não revelar
     password: Palavra-passe
