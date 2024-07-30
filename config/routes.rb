@@ -1242,6 +1242,9 @@ Rails.application.routes.draw do
               post :send_test
             end
             jsonapi_resources :registration_settings, only: %i[index update]
+            jsonapi_resources :threesixty_campaigns do
+              post :create_campaign, on: :collection
+            end
           end
           jsonapi_resources :profile_settings, only: %i[index update]
           jsonapi_resources :dashboards, only: %i[index show create update] do

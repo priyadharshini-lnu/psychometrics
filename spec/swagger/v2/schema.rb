@@ -420,6 +420,9 @@ module Swagger
           ),
           CampaignScoringVariableUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignScoringVariable::Schema.update_request
+          ),
+          ThreesixtyCampaignSingleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ThreesixtyCampaign::Schema.single_resource_response
           )
         }
       }

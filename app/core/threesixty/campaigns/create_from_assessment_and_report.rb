@@ -30,7 +30,8 @@ module Threesixty
 
         event = ::Assessments::CopyAssessment.call(
           source_assessment.id, user, client.id, skip_owner_validation: true,
-          new_assessment_name: resource_name
+          new_assessment_name: resource_name,
+          questions_to_copy: form.questions
         )
         raise('CopyAssessment failed!') unless event[:ok]
 
