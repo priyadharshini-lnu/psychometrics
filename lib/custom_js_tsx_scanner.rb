@@ -53,7 +53,7 @@ if Object.const_defined?('I18n::Tasks')
         occurrence = occurrence_from_position(path, text, text.index(key))
 
         parent_key = if key.include?('$')
-                       key[/.*?(?=\.[$]\{)/]
+                       key[/.*?(?=\.[$]\{)/] || key[/.*(?=\.[^.]*_\$\{)/]
                      else
                        key
                      end

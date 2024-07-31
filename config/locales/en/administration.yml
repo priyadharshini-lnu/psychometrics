@@ -43,8 +43,19 @@ en:
           threesixty_permission: Permissions specific to 360 campaigns
           title: Notes
         view:
+          add_campaign_admin: Add Campaign Admin
+          add_client_admin: Add Client Admin
+          add_project_admin: Add Project Admin
+          add_threesixty_campaign_admin: Add Campaign Admin
+          edit_campaign_admin: Edit Campaign Admin
+          edit_client_admin: Edit Client Admin
+          edit_project_admin: Edit Project Admin
+          edit_threesixty_campaign_admin: Edit Campaign Admin
           first_name: First name
           last_name: Last name
+          project_admin: Project Admin
+          project_list: Project List
+          role: Campaign Admin
           title:
             campaign_admin: Campaign Admin
             client_admin: Client Admin
@@ -2254,6 +2265,7 @@ en:
             label: Send Test
         form:
           active:
+            label: Active
             name: active
           auth_type:
             basic:
