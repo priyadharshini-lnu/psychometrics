@@ -34,6 +34,12 @@
       border: 1px solid var(--ant-error-color);
     }
   }
+  & :global(.ant-upload) {
+    &:focus-visible {
+      outline: 4px solid var(--ant-primary-3) !important;
+      outline-offset: 2px;
+    }
+  }
 }
 
 .uploadBtn {
