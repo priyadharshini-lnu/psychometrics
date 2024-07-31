@@ -67,7 +67,8 @@ class AdminJobRecord < ApplicationRecord
     super_admin_export_admin_with_permissions: 39,
     bulk_download_user_reports: 40,
     export_campaign_factors: 41,
-    import_campaign_factors: 42
+    import_campaign_factors: 42,
+    create_threesixty_campaign: 43
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

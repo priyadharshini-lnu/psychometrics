@@ -22,6 +22,9 @@ module Threesixty
                                 )
                               end
 
+        AuditLogModule.audit! :create_threesixty_campaign, threesixty_campaign.campaign, payload: form.attributes,
+                              project: project, user: user
+
         load_templates(threesixty_campaign)
 
         campaign = threesixty_campaign.campaign
