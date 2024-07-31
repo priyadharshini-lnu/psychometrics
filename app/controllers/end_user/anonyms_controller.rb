@@ -18,6 +18,8 @@ module EndUser
 
     ANONYM_COOKIE_KEY = 'tte-anonym-payload'
 
+    rescue_from Licenses::NotEnoughError, with: -> { redirect_to(action: 'error') && return }
+
     def show
       if @campaign_assessment.nil? || assessment.archived? || !@campaign_assessment.enable_universal_links?
         redirect_to(action: 'error') && return
@@ -28,7 +30,7 @@ module EndUser
 
         if @current_project.available_locales.include?(params[:lang])
           cookies[:locale] = params[:lang]
-          current_user.update_column(:locale, params[:lang])
+          current_user.user_profile.update_column(:locale, params[:lang])
         end
       end
 
@@ -116,6 +118,8 @@ module EndUser
     end
 
     def find_or_create_anonymous_user
+      return if @campaign_assessment.nil?
+
       @current_user = @anonymous_user || Users::CreateAnonymCampaignUser.call!(@campaign_assessment)
       set_anonym_cookie(@current_user)
     end
