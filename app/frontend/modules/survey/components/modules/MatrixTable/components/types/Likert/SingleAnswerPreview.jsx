@@ -53,19 +53,13 @@ const SingleAnswerPreview = ({ model, I18n, readOnly }) => {
                 const object = _.find(result.answers, { scale, choice }) || {}
                 return (
                   <div key={scale}>
-                    {props.labels > 0
-                    && (
-                    <div id={`${result.questionId}-label-${scale}`} className={styles.labelItem}>
-                      {props.labelsTexts[scale] || moduleConfig.defaultLabelText(scale + 1)}
-                    </div>
-                    )}
                     <Space size={0}>
                       <InputComponent
                         disabled={readOnly}
                         checked={object.value || false}
                         onChange={e => changeValue(scale, choice, e)}
                         // eslint-disable-next-line max-len
-                        aria-describedby={`${result.questionId}-choice-${choice} ${result.questionId}-label-${scale} ${result.questionId}-scalepoint-${scale}`}
+                        aria-describedby={`${result.questionId}-choice-${choice} ${result.questionId}-scalepoint-${scale}`}
                       />
                       <span id={`${result.questionId}-scalepoint-${scale}`} className={styles.scalePointItem}>
                         {I18n.tQuestion(model, `scalePointsTexts${scale + 1}`, { scale })
