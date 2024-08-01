@@ -963,6 +963,24 @@ en:
         reports: Reports
         status: Status
         type: Type
+      modals:
+        create_threesixity:
+          close:
+            content: Are you sure you want to close the 360 Campaign Creator? Any unsaved customization work will be lost. Please confirm your decision.
+            title: Close 360 Campaign Creator?
+          instructions_creation:
+            empty: 'Empty: Start with a blank survey and customize it according to your specific needs.'
+            previous: 'Previous: Select a previous assessment as a starting point and make modifications.'
+            standard: 'Standard: Use a pre-designed template with commonly used questions & indicators.'
+            sub_title: Please select the type of campaign you would like to create.
+            title: Welcome to the 360 Campaign Creator!
+          instructions_customization:
+            sub_title: Select the template and factors to be included in the assessment.
+            title: Customize your assessment!
+          questions:
+            select_all: Select All
+            sub_title: Select the questions and indicators to be included in the assessment
+            title: Questions and Indicators
       options:
         description:
           name: Description
@@ -2619,8 +2637,12 @@ en:
     clients_hierarchy: Project > Campaign > Sub Campaign
     close: Close
     common:
+      add: Add
+      back: Back
+      cancel: Cancel
       disabled: Diasbled
       enabled: Enabled
+      next: Next
       reset: Reset
       save: Save
     communications:

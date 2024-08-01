@@ -423,6 +423,9 @@ module Swagger
           ),
           ThreesixtyCampaignSingleResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::ThreesixtyCampaign::Schema.single_resource_response
+          ),
+          FactorsMultipleResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::Assessment::Factor::Schema.multiple_resource_response
           )
         }
       }

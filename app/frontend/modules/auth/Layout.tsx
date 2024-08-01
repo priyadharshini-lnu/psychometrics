@@ -91,6 +91,7 @@ export const LayoutComponent = ({ config }) => {
         <Col
           xs={{ span: 0 }}
           sm={{ span: 0 }}
+          md={{ span: 0 }}
           lg={{ span: 16 }}
           style={bgStyles}
           className={styles.background}

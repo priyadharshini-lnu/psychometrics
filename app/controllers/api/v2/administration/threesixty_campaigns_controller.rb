@@ -11,16 +11,20 @@ module Api
       end
 
       if form.threesixty_type == Threesixty::Campaign::EMPTY
-        @result = ::Threesixty::Campaigns::Create.call(project, form, current_user)
+        result = ::Threesixty::Campaigns::Create.call(project, form, current_user)
+        if result[:ok]
+          jsonapi_render json: result[:ok]
+        else
+          jsonapi_render_errors [{ code: result[:error] }], status: :unprocessable_entity
+        end
       else
         AdminJob.call(
           :create_threesixty_campaign,
           { project_id: project.id, data: params[:data][:attributes] },
           current_user
         )
+        render json: 'ok', status: :created
       end
-
-      render json: 'ok', status: :created
     end
 
     def policy_class

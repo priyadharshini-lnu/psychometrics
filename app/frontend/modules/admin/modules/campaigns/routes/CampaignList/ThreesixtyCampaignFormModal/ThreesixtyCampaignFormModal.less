@@ -1,0 +1,52 @@
+.modal:global(.ant-modal){
+  max-width: unset;
+  height: 100%;
+  max-width: 1024px;
+  max-height: 720px;
+  padding-bottom: 0;
+  top: 50%;
+  translate: 0 -50%;
+  & :global(.ant-modal-content){
+    padding: 0;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.modalBody{
+  flex: 1 1 auto;
+  border-top: 1px solid #e8e8e8;
+  overflow: hidden;
+}
+
+.modalHeader{
+  padding: 16px 16px 8px 16px;
+}
+
+.borderBottom{
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.borderTop{
+  border-top: 1px solid #e8e8e8;
+}
+
+
+.borderLeft{
+  border-left: 1px solid #e8e8e8;
+}
+
+.background{
+  background: #e8e8e844;
+}
+
+.rhsCtr{
+  overflow: hidden;
+}
+
+.questionList {
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  overflow: auto;
+}

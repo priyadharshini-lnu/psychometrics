@@ -17,6 +17,7 @@ export const get = (state): Campaign[] => _.get(state, ['campaigns', 'list'])
 
 export const FETCH = 'campaigns/FETCH_CAMPAIGNS'
 export const CREATE = 'resource/campaign/CREATE'
+export const ADD_IN_REDUX_STORE = 'resource/campaign/ADD_IN_REDUX_STORE'
 export const UPDATE = 'resource/campaign/UPDATE'
 export const REMOVE = 'resource/campaign/REMOVE'
 export const FETCH_TEMPLATES_AND_ASSESSMENTS = 'campaigns/FETCH_TEMPLATES_AND_ASSESSMENTS'
@@ -70,6 +71,13 @@ export const fetchTemplatesAndAssessments = (projectId): ApiAction<TemplateAndAs
   },
 })
 
+export const addInReduxStore = (data: Campaign) => ({
+  type: ADD_IN_REDUX_STORE,
+  payload: {
+    data,
+  },
+})
+
 export const remove = (campaignId: number, projectId: number) => ({
   type: REMOVE,
   request: {
@@ -82,11 +90,13 @@ export const remove = (campaignId: number, projectId: number) => ({
 type FetchType = ApiActionResponse<{campaigns: Campaign[]}>
 type CreateType = ApiActionResponse<Campaign>
 type UpdateType = CreateType
+type AddType = ReturnType<typeof addInReduxStore>
 type RemoveType = ApiActionResponse<number>
 
 const HANDLERS = {
   [FETCH]: (_, { response }: FetchType) => response.campaigns,
   [CREATE]: (state: State, { response }: CreateType) => ([response, ...state]),
+  [ADD_IN_REDUX_STORE]: (state: State, { payload }: AddType) => ([payload.data, ...state]),
   [UPDATE]: (state: State, { response }: UpdateType) => (
     _.map(state, (campaign: Campaign) => {
       if (campaign.id === response.id) { return response }

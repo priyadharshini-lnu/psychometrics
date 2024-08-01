@@ -23,8 +23,9 @@ module Threesixty
       # rubocop:enable Metrics/ParameterLists
 
       def call
+        factor_ids = form.factors || source_assessment.dimention.all_factors.pluck(:id)
         result = Dimensions::Copy.call!(
-          source_assessment.dimension, form.factors || [], client, new_dimension_name: form.name
+          source_assessment.dimension, factor_ids, client, new_dimension_name: form.name
         )
         new_dimension = result[:new_dimension]
 
