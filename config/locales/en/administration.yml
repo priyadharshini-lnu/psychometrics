@@ -1899,6 +1899,12 @@ en:
       index:
         new: Add
         title: Innovation Styles
+      list:
+        created_at: Created date
+        id: Id
+        name: Name
+        position: Position
+        updated_at: Modified date
       new:
         header: New Innovation Style
       resource:
@@ -1925,6 +1931,14 @@ en:
       index:
         new: Add
         title: Factors
+      list:
+        condition: Condition
+        created_at: Created date
+        id: Id
+        name: Name
+        position: Position
+        updated_at: Modified date
+        weight: Weight
       new:
         header: Attach Factors
       resource:
@@ -2150,6 +2164,11 @@ en:
       index:
         new: Add
         title: Occupations
+      list:
+        created_at: Created Date
+        id: Id
+        name: Name
+        updated_at: Modified Date
       new:
         header: New occupation
       resource:
@@ -2176,6 +2195,14 @@ en:
       index:
         new: Add
         title: Factors
+      list:
+        condition: Condition
+        created_at: Created date
+        id: Id
+        name: Name
+        position: Position
+        updated_at: Modified date
+        weight: Weight
       new:
         header: Attach Factors
       resource:

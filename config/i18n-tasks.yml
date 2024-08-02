@@ -116,6 +116,10 @@ ignore_unused:
   - 'administration.communications.list.*'
   - 'administration.table.entries.*'
   - 'administration.profiles.*'
+  - administration.innovation_styles.list.*
+  - administration.innovation_styles_factors.list.*
+  - administration.occupations.list.*
+  - administration.occupations_factors.list*
   - 'administration'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
