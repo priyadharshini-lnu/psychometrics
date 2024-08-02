@@ -2786,7 +2786,7 @@ en:
         score: Score
         zscore: Z Score
       scoring: Scoring
-      scoring_description: Campaign Scoring allows reporting accross assessments
+      scoring_description: Campaign Scoring allows reporting across assessments
       select_assessment_first: Select Assessment First
       select_factor: Select Factor
       show_weightages: Show Weightages

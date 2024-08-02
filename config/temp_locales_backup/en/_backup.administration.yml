@@ -4206,7 +4206,7 @@ en:
         score: Score
         zscore: Z Score
       scoring: Scoring
-      scoring_description: Campaign Scoring allows reporting accross assessments
+      scoring_description: Campaign Scoring allows reporting across assessments
       select_assessment: Select Assessment or Diminsion
       select_assessment_first: Select Assessment First
       select_factor: Select Factor
