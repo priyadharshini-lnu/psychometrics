@@ -190,7 +190,7 @@ function* genRestart ({ response }: AnyAction) {
 
 function* genFinishedEvent () {
   const state = yield select()
-  sendMessage('assessment:finished', 'completed', state.preview.id)
+  sendMessage('assessment:finished', state.preview.id)
 }
 
 function* genSetAnserNotSaved () {
