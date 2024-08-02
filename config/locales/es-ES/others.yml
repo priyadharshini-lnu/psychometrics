@@ -916,3 +916,6 @@ es-ES:
     range: Responda al menos %{min} opción(es) y no más de %{max}.
     required: Responda esta pregunta
     text: Su respuesta no debe contener cifras
+    title:
+      one: Hay un error, por favor revisa tus respuestas
+      other: Hay %{count} errores, por favor revisa tus respuestas
