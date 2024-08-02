@@ -18,6 +18,7 @@ import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/Re
 import { useMedia } from '~/modules/endUser/rootHooks'
 import { PageHeader as GlintPageHeader, CountdownTimer } from '~/glint'
 import Confirm from './Confirm'
+import AreadyCompletedModal from './AreadyCompletedModal'
 
 import styles from './Common.less'
 
@@ -49,6 +50,9 @@ const CommonComponent: React.FC<Props> = ({
       current_step: currentStep,
       current_element: currentElement,
       remaining_assessment_time: remainingAssessmentTime,
+      campaign_user: {
+        status,
+      },
     },
   },
   preview,
@@ -57,11 +61,17 @@ const CommonComponent: React.FC<Props> = ({
   markAssessmentTimedOut,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
+  const [showAlreadyCompletedModal, setShowAlreadyCompletedModal] = useState(false)
   const isMaxSm = useMedia('max-sm')
   let progressBarProps: ProgressProps = { type: 'line', style: { width: '200px' } }
   if (isMaxSm) { progressBarProps = { type: 'circle', width: 50 } }
 
   useEffect(() => {
+    if (status && status === 'completed') {
+      setShowAlreadyCompletedModal(true)
+      return
+    }
+
     if (currentElement > 0 || currentStep > 0) {
       setShowConfirm(true)
     }
@@ -82,7 +92,7 @@ const CommonComponent: React.FC<Props> = ({
     <>
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
-          {remainingAssessmentTime && (
+          { remainingAssessmentTime ? (
             <CountdownTimer
               prefix={(
                 <>
@@ -94,7 +104,7 @@ const CommonComponent: React.FC<Props> = ({
               seconds={remainingAssessmentTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
-          )}
+          ) : null}
         </Col>
         <Col span={4} className="ta-e">
           {availableTranslations
@@ -137,11 +147,17 @@ const CommonComponent: React.FC<Props> = ({
                 rstore={store}
                 isAnonymousAssessment="true"
                 renderedByEnduser
+                status={status}
               />
             </ResourcesTabs>
           </div>
         </ConfigProvider>
         <Confirm open={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
+        <AreadyCompletedModal
+          open={showAlreadyCompletedModal}
+          onRetake={reset}
+          onCancel={() => setShowAlreadyCompletedModal(false)}
+        />
       </Content>
     </>
   )

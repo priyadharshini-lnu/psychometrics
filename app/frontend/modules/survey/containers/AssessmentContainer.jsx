@@ -22,7 +22,7 @@ class AssessmentContainer extends Component {
   constructor (props) {
     super()
     this.state = {
-      loading: !props.isAssessor && !props.showAsSinglePage,
+      loading: !props.isAssessor && !props.showAsSinglePage && props.status !== 'completed',
     }
   }
 

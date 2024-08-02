@@ -22,12 +22,17 @@ ar:
               invalid: كلمة المرور الحالية غير صحيحة
   administration:
   anonym:
+    close: يغلق
     continue: استمرار
     notifications:
       restart:
         copy: كنت قد بدأت بالدراسة الإستقصائية. بإمكانك المتابعة أو إعادة البدء
         title: تريد ان تستمر؟
+      retake:
+        copy: لقد أنجزت بالفعل هذا الاستطلاع. لاستعادتها، يرجى النقر على زر إعادة الالتقاط أدناه.
+        title: إعادة المحاولة؟
     restart: إعادة البدء
+    retake: إعادة الالتقاط
   assessments:
     actions:
       back_to_campaign: العودة إلى الحملة

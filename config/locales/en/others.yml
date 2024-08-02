@@ -744,13 +744,18 @@ en:
     notifications: Notifications
     results: Results
   anonym:
+    close: Close
     continue: Continue
     link_invalid_error_message: The link you're trying to access is invalid. Please contact the administrator to get the correct URL and proceed with the survey.
     notifications:
       restart:
         copy: You had already started this survey. You can choose to Continue or Restart.
         title: Continue?
+      retake:
+        copy: You have already completed this survey. To retake it, please click the Retake button below.
+        title: Retake?
     restart: Restart
+    retake: Retake
   assessments:
     actions:
       add_tag:
