@@ -18,6 +18,7 @@ class SmtpSetting < ApplicationRecord
   end
 
   def settings_for_email
+    return if use_sender_verification?
     return if !enabled? || host.blank? || !Settings.features.smtp_enabled
 
     options = {

@@ -144,6 +144,25 @@ export const UserDetails: React.FC<Props> = ({
 
   const isFixedTime = campaign?.campaignOptions?.fixedTime || false
   const canExtendTime = (isFixedTime && ['timed_out', 'completed'].includes(user.status))
+  let tabs = [
+    {
+      key: 'assessments',
+      label: I18n.t('assessments_reports.menu.assessments_and_reports'),
+      children: <AssessmentsReports />,
+    }
+  ]
+  if (user.permissions.viewWorkshopDetails) {
+    tabs.push({
+      key: 'assessment_center',
+      label: I18n.t('assessments_reports.menu.assessment_center'),
+      children: <AssessmentCenter />,
+    })
+  }
+  tabs.push({
+    key: 'idp',
+    label: I18n.t('assessments_reports.menu.idp'),
+    children: <Idp />,
+  })
 
   return (
     <div>
@@ -267,23 +286,7 @@ export const UserDetails: React.FC<Props> = ({
         onChange={changeTab}
         defaultActiveKey="assessments"
         className={styles.tabs}
-        items={[
-          {
-            key: 'assessments',
-            label: I18n.t('assessments_reports.menu.assessments_and_reports'),
-            children: <AssessmentsReports />,
-          },
-          {
-            key: 'assessment_center',
-            label: I18n.t('assessments_reports.menu.assessment_center'),
-            children: <AssessmentCenter />,
-          },
-          {
-            key: 'idp',
-            label: I18n.t('assessments_reports.menu.idp'),
-            children: <Idp />,
-          },
-        ]}
+        items={tabs}
       />
       <Modals modals={MODALS} />
     </div>

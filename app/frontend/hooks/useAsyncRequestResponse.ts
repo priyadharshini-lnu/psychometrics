@@ -101,6 +101,7 @@ const useAsyncRequestResponse = <T>({
         }
 
         clearTimeout(intervalIdRef.current)
+        setAsyncLoading(false)
         return response
       }
 

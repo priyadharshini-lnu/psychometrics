@@ -41,6 +41,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
   const [errors, setErrors] = useState(null)
   const { message } = App.useApp()
 
+
   const handleOnSubmit = () => {
     sendTestEmail(projectId, smtpSetting, email)
       .then(() => {
@@ -79,7 +80,7 @@ const TestSettingModalComponent: React.FC<Props> = ({
       )}
       <Input
         placeholder="Enter email address"
-        prefix={<MailOutlined />}
+        prefix={<MailOutlined className="me-2" />}
         value={email as string}
         size="large"
         onChange={e => setEmail(e.target.value)}

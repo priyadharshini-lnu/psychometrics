@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Spin,
+  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select,
 } from 'antd'
 import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
@@ -18,6 +17,7 @@ import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { isRequestInProgress } from '~/core/request'
 import settings from '../../settings'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 export const FILTER_PREDICATES = {
   recordType: 'In',
@@ -35,8 +35,8 @@ const connecter = connect(
   },
 )
 
-export type PropsFromRedux = ConnectedProps<typeof connecter>
-type Props = TableProps & PropsFromRedux
+export type PropsFromRedux = ConnectedProps<typeof connecter>;
+type Props = TableProps & PropsFromRedux;
 
 const { Column } = Table
 const { I18n } = window
@@ -52,68 +52,207 @@ const AuditLogList: React.FC<Props> = (
     },
     isLoading,
     tableConfig,
-    getFilteredValue,
     onTableChange,
     changeFilter,
     removeFilter,
+    removeAllFilters,
     changePage,
   },
 ) => {
   useEffect(() => {
-    fetch(tableConfig)
+    const today = dayjs()
+    const filtersForCurrentDayPresent = tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq
+
+    if (!filtersForCurrentDayPresent || tableConfig.initialized === false) {
+      const updatedFilters = {
+        ...tableConfig.filters,
+        created_at_gteq: today.startOf('day').toString(),
+        created_at_lteq: today.endOf('day').toString(),
+      }
+
+      fetch({
+        ...tableConfig,
+        filters: updatedFilters,
+      })
+    } else {
+      fetch(tableConfig)
+    }
   }, [tableConfig])
 
-  let initialRange: [dayjs.Dayjs, dayjs.Dayjs] | null = null
-  if (tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq) {
-    initialRange = [dayjs(tableConfig.filters.created_at_gteq), dayjs(tableConfig.filters.created_at_lteq)]
+  const today = dayjs()
+  const initialRange: [dayjs.Dayjs, dayjs.Dayjs] = [today.startOf('day'), today.endOf('day')]
+
+  const [range, setRange] = useState<RangeValue<dayjs.Dayjs> | null>(initialRange)
+
+  const [form] = Form.useForm()
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  const handleSearch = (values) => {
+    const {
+      recordId, recordType, action, dateRange, user, client, project, campaign,
+    } = values
+    changeFilter('record_id_eq', recordId)
+    changeFilter('record_type_in', recordType)
+    changeFilter('action_in', action)
+
+    if (dateRange) {
+      changeFilter('created_at_gteq', dateRange[0].startOf('day').toString())
+      changeFilter('created_at_lteq', dateRange[1].endOf('day').toString())
+    } else {
+      removeFilter('created_at_gteq')
+      removeFilter('created_at_lteq')
+    }
+
+    changeFilter('user_eq', user)
+    changeFilter('client_eq', client)
+    changeFilter('project_eq', project)
+    changeFilter('campaign_eq', campaign)
   }
-  const [range, setRange] = useState<RangeValue<dayjs.Dayjs> | null | undefined>(initialRange || null)
 
+  const handleReset = () => {
+    form.resetFields()
+    removeAllFilters('auditLogList')
+    setRange(initialRange)
+  }
 
-  const filterProps = (type: string, value = '', filter = '') => ({
-    filterDropdown: ({
-      selectedKeys, confirm, setSelectedKeys,
-    }) => (
-      <div style={{ padding: 8 }}>
-        <Input
-          placeholder={I18n.t(`administration.audit_log.search_${type}`)}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-          defaultValue={value}
-          value={selectedKeys[0]}
-          onPressEnter={() => changeFilter(filter || `${type}_search`, selectedKeys[0])}
-          style={{ marginBottom: 8, display: 'block' }}
-        />
-        <Space>
-          <Button
-            type="primary"
-            icon={<SearchOutlined />}
-            size="small"
-            style={{ width: 90 }}
-            onClick={() => {
-              confirm({ closeDropdown: false })
-              changeFilter(filter || `${type}_search`, selectedKeys[0])
-            }}
-          >
-            {I18n.t('administration.audit_log.search')}
-          </Button>
-          <Button
-            onClick={() => {
-              removeFilter(filter || `${type}_search`)
-              setSelectedKeys([])
-            }}
-            size="small"
-            style={{ width: 90 }}
-          >
-            {I18n.t('administration.audit_log.reset')}
-          </Button>
-        </Space>
-      </div>
-    ),
-    filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
-  })
+  const disabledDate = (current) => {
+    if (!range || !range[0]) {
+      return current && current > dayjs().endOf('day')
+    }
+    const tooLate = range[0] && current.diff(range[0], 'days') > 30
+
+    return tooLate || current > dayjs().endOf('day')
+  }
+
+  const onCalendarChange = (dates) => {
+    setRange(dates)
+  }
 
   return isLoading ? <PageContentSkeleton /> : (
-    <>
+    <div style={{ marginTop: '10px' }}>
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/admin',
+            label: () => I18n.t('administration.audit_log.dashboard'),
+          },
+          {
+            link: () => '/admin/audit_logs',
+            label: () => I18n.t('administration.audit_log.audit_logs'),
+          },
+        ]}
+      />
+
+      <div style={{ marginTop: '30px' }}>
+        <Form form={form} layout="vertical" onFinish={handleSearch} className="ms-5 me-5">
+          <Row gutter={[16, 16]} justify="start">
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <Form.Item name="recordId" label={I18n.t('administration.audit_log.record_id')}>
+                <Input placeholder={I18n.t('administration.audit_log.search_record')} />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <Form.Item name="recordType" label={I18n.t('administration.audit_log.type')}>
+                <Select placeholder={I18n.t('administration.audit_log.type')}>
+                  {types.map(type => (
+                    <Select.Option key={type} value={type}>{type}</Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+
+            <Col xs={24} sm={12} md={8} lg={6}>
+              <Form.Item name="dateRange" label={I18n.t('administration.audit_log.date_range')}>
+                <DatePicker.RangePicker
+                  onCalendarChange={onCalendarChange}
+                  disabledDate={disabledDate}
+                  allowClear={false}
+                  ranges={{
+                    [I18n.t('administration.audit_log.date_presets.today')]: [
+                      dayjs().startOf('day'),
+                      dayjs().endOf('day'),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.yesterday')]: [
+                      dayjs().subtract(1, 'day').startOf('day'),
+                      dayjs().subtract(1, 'day').endOf('day'),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.last_week')]: [
+                      dayjs().subtract(1, 'week').startOf('week'),
+                      dayjs().subtract(1, 'week').endOf('week'),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.last_month')]: [
+                      dayjs().subtract(1, 'month').startOf('month'),
+                      dayjs().subtract(1, 'month').endOf('month'),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.last_7_days')]: [
+                      dayjs().subtract(7, 'd'),
+                      dayjs(),
+                    ],
+                    [I18n.t('administration.audit_log.date_presets.last_30_days')]: [
+                      dayjs().subtract(30, 'd'),
+                      dayjs(),
+                    ],
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            {isExpanded && (
+              <>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="action" label={I18n.t('administration.audit_log.action')}>
+                    <Select placeholder={I18n.t('administration.audit_log.action')}>
+                      {(actions || []).map(action => (
+                        <Select.Option key={action} value={action}>{action}</Select.Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="user" label={I18n.t('administration.audit_log.search_user')}>
+                    <Input placeholder={I18n.t('administration.audit_log.search_user')} />
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="client" label={I18n.t('administration.audit_log.search_client')}>
+                    <Input placeholder={I18n.t('administration.audit_log.search_client')} />
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="project" label={I18n.t('administration.audit_log.search_project')}>
+                    <Input placeholder={I18n.t('administration.audit_log.search_project')} />
+                  </Form.Item>
+                </Col>
+                <Col xs={24} sm={12} md={8} lg={6}>
+                  <Form.Item name="campaign" label={I18n.t('administration.audit_log.search_campaign')}>
+                    <Input placeholder={I18n.t('administration.audit_log.search_campaign')} />
+                  </Form.Item>
+                </Col>
+              </>
+            )}
+            <Col span={24} style={{ textAlign: 'right' }}>
+              <Form.Item>
+                <Space>
+                  <Button onClick={() => setIsExpanded(!isExpanded)}>
+                    {isExpanded
+                      ? I18n.t('administration.audit_log.collapse_filters')
+                      : I18n.t('administration.audit_log.expand_filters')
+                    }
+                  </Button>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    icon={<SearchOutlined />}
+                  >
+                    {I18n.t('administration.audit_log.search')}
+                  </Button>
+                  <Button onClick={handleReset}>{I18n.t('administration.audit_log.reset')}</Button>
+                </Space>
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
+      </div>
+
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
@@ -138,20 +277,15 @@ const AuditLogList: React.FC<Props> = (
               title={I18n.t('administration.audit_log.record_id')}
               key="recordId"
               dataIndex="recordId"
-              {...filterProps('record', tableConfig.filters.record_id_eq, 'record_id_eq')}
             />
             <Column
               title={I18n.t('administration.audit_log.type')}
               key="recordType"
               dataIndex="recordType"
-              filters={types.map((t: string) => ({ text: t, value: t }))}
-              filteredValue={getFilteredValue('recordType')}
             />
             <Column
               title={I18n.t('administration.audit_log.action')}
               key="action"
-              filters={actions && actions.map((t: string) => ({ text: t, value: t }))}
-              filteredValue={getFilteredValue('action')}
               render={({ id, action }) => (
                 <Link to={`${settings.urlPrefix}/${id}`}>{action}</Link>
               )}
@@ -163,51 +297,10 @@ const AuditLogList: React.FC<Props> = (
               render={createdAt => (
                 dayjs(createdAt).format('lll')
               )}
-              filterDropdown={({
-                confirm,
-              }) => (
-                <div style={{ padding: 8 }}>
-                  <DatePicker.RangePicker
-                    value={range}
-                    onChange={dates => setRange(dates)}
-                  />
-                  <div className="mtm flex justify-content-space-between">
-                    <Button
-                      type="primary"
-                      icon={<SearchOutlined />}
-                      size="small"
-                      style={{ width: 90 }}
-                      onClick={() => {
-                        confirm({ closeDropdown: true })
-                        if (range) {
-                          range[0] && changeFilter('created_at_gteq', range[0].startOf('day').toString())
-                          range[1] && changeFilter('created_at_lteq', range[1].endOf('day').toString())
-                        }
-                      }}
-                    >
-                      {I18n.t('administration.audit_log.search')}
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        setRange(null)
-                        removeFilter('created_at_gteq')
-                        removeFilter('created_at_lteq')
-                        confirm({ closeDropdown: true })
-                      }}
-                      size="small"
-                      style={{ width: 90 }}
-                    >
-                      {I18n.t('administration.audit_log.reset')}
-                    </Button>
-                  </div>
-                </div>
-              )}
-              filterIcon={() => <SearchOutlined style={{ color: range ? '#1BAF99' : undefined }} />}
             />
             <Column
               title={I18n.t('administration.audit_log.user')}
               key="user"
-              {...filterProps('user', tableConfig.filters.user_search)}
               render={({ user, userId }) => {
                 if (!userId) return null
 
@@ -217,7 +310,6 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.client')}
               key="client"
-              {...filterProps('client', tableConfig.filters.client_search)}
               render={({ client, clientId }) => (
                 client
                   ? <a href={`/admin/clients/${client.id}/projects`}>{client.name}</a>
@@ -227,7 +319,6 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.project')}
               key="project"
-              {...filterProps('project', tableConfig.filters.project_search)}
               render={({ project, projectId }) => (
                 project
                   ? <a href={`/admin/projects/${project.id}/new_campaigns`}>{project.name}</a>
@@ -237,7 +328,6 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.campaign')}
               key="campaign"
-              {...filterProps('campaign', tableConfig.filters.campaign_search)}
               render={({ projectId, campaignId, campaign }) => (
                 campaign ? (
                   <a href={`/admin/projects/${projectId}/new_campaigns/${campaignId}`}>
@@ -258,11 +348,11 @@ const AuditLogList: React.FC<Props> = (
           hideOnSinglePage
         />
       </div>
-    </>
+    </div>
   )
 }
 
-export default withEnhancedTable<{}>(connecter(AuditLogList), 'auidtLogList', {
-  maintainHistory: true,
+export default withEnhancedTable<{}>(connecter(AuditLogList), 'auditLogList', {
+  maintainHistory: false,
   filterPredicates: FILTER_PREDICATES,
 })

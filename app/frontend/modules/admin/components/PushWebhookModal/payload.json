@@ -352,8 +352,7 @@
       "status": "not_started",
       "subject": {
         "id": 1,
-        "name": "Atul  A",
-        "email": "ata@ata.com"
+        "name": "Atul  A"
       },
       "project": {
         "id": 1,
@@ -368,6 +367,49 @@
         "name": "AA Campaign"
       },
       "locale": null,
+      "event_time": "2024-06-12T19:43:56.648+05:30"
+    }
+  },
+  "results_available": {
+    "event_name": "results_available",
+    "event_id": "3a4d6ec0-53b6-4455-a3da-80bf321d0958",
+    "data": {
+      "report": {
+        "id": 1,
+        "name": "Test Report"
+      },
+      "results": {
+        "user_data": {
+          "first_name": "Test",
+          "last_name": "user",
+          "email": "test.user1@tte.email"
+        },
+        "assessments": [],
+        "computed_scores": [
+          {
+            "id": "COGNITIVE_SCORE",
+            "name": "Cognitive Score",
+            "value": 1
+          }
+        ],
+        "campaign_id": 12777
+      },
+      "subject": {
+        "id": 1,
+        "name": "Test User"
+      },
+      "project": {
+        "id": 1,
+        "name": "Test Project"
+      },
+      "client": {
+        "id": 1,
+        "name": "Test Client"
+      },
+      "campaign": {
+        "id": 1,
+        "name": "Test Campaign"
+      },
       "event_time": "2024-06-12T19:43:56.648+05:30"
     }
   }

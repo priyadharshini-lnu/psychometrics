@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import {
   Layout, Col, ConfigProvider, Progress,
 } from 'antd'
-import Cookies from 'js-cookie'
 import { connect, ConnectedProps } from 'react-redux'
 import { ClockCircleOutlined } from '@ant-design/icons'
 
@@ -47,7 +46,7 @@ const CommonComponent: React.FC<Props> = ({
       selected_locale: selectedLanguage,
       available_translations: availableTranslations,
       translations,
-      current_step: currentStep,
+      current_page: currentPage,
       current_element: currentElement,
       remaining_assessment_time: remainingAssessmentTime,
       campaign_user: {
@@ -72,7 +71,7 @@ const CommonComponent: React.FC<Props> = ({
       return
     }
 
-    if (currentElement > 0 || currentStep > 0) {
+    if (currentElement > 0 || currentPage > 0) {
       setShowConfirm(true)
     }
   }, [results])
@@ -80,12 +79,7 @@ const CommonComponent: React.FC<Props> = ({
   if (!assessment) { return null }
 
   const reset = () => {
-    const { hostname } = location
-    Cookies.remove('tte-anonym-payload', { domain: `.${hostname}`, path: '/' })
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    // Param to be passed to force reload in firefox - https://developer.mozilla.org/en-US/docs/Web/API/Location/reload
-    location.reload(true)
+    window.location.href = `${window.location.pathname}/restart${window.location.search}`
   }
 
   return (

@@ -483,9 +483,21 @@ en:
         header: Edit report assignment
     audit_log:
       action: Action
+      audit_logs: Audit Logs
       campaign: Campaign
       client: Client
       client_ip: Client Ip
+      collapse_filters: Collapse Filters
+      dashboard: Dashboard
+      date_presets:
+        last_30_days: Last 30 days
+        last_7_days: Last 7 days
+        last_month: Last month
+        last_week: Last week
+        today: Today
+        yesterday: Yesterday
+      date_range: Date Range
+      expand_filters: Expand Filters
       failure_reason: Failure Reason
       interface: Interface
       log_date: Log Date
@@ -554,6 +566,8 @@ en:
       assessments: Assessments
       assessor_dashboard: Assessor Dashboard
       assessors: Assessors
+      audit_log_info: Audit Log Info
+      audit_logs: Audit Logs
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy
@@ -2229,6 +2243,7 @@ en:
         subjects: Subjects
     piped_text_modal:
       join_link: Join Link
+      profile_custom_field: Profile Custom Field
       title: Add Piped Text
     proctoring_sessions:
       columns:
@@ -2830,7 +2845,7 @@ en:
         calculated_date: Calculated Date
         calculation_errors: Calculation Errors
         export: Export Scorings
-        export_success: Export scores job scheduled successfull
+        export_success: Export scores job was scheduled successfully
         finalized: Finalized
         finalized_date: Finalized Date
         import_external_scores: Import External Scorings
@@ -2873,6 +2888,7 @@ en:
       security: Security Settings
       send_unlock_email: Send unlock email
       tfa_enabled: Enable Two Factor Authentication
+      update_success_msg: Password settings was updated successfully
     settings:
       admin_roles:
         admin_role_single: Admin Role
@@ -3048,10 +3064,16 @@ en:
       port: Port
       send_test_email: Send Test Email
       smtp: SMTP
+      test_email_modal:
+        input_hint: Your email setting will not saved until test email was sent successfully.
+        input_placeholder: Test Email ID
+        success_message: SMTP setting updated successfully.
+        title: Test Email Id
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
       update_success_msg: SMTP setting was updated successfully.
+      use_sender_verification: Use sender verification
       user_name: User Name
     stats:
       assessments:

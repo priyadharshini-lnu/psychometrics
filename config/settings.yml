@@ -1,10 +1,12 @@
 project_name: Psychometrics
 privacy_policy_version: <%= ENV.fetch('PRIVACY_POLICY_VERSION', '3').to_i %>
 enduser_locales:
-  - en
   - ar
   - de
+  - en
+  - es-ES
   - pl
+  - pt
 timezone: Abu Dhabi
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
 subdomain: <%= ENV["APP_SUB_DOMAIN"] %> # subdomain
@@ -516,6 +518,14 @@ providers:
         assessment_ids:
           - HDS
           - HPI
+      - id: EcHPIMVPILFR
+        name: Hogan Leadership Focus report
+        norm_id: Global
+        language_id: en
+        default_assessment_id: HPI
+        assessment_ids:
+          - HPI
+          - MVPI
     assessments:
       - id: HPI
         name: HPI

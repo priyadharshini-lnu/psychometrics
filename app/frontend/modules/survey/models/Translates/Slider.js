@@ -6,6 +6,9 @@ class Slider extends BaseTranslate {
     if (field === 'questionText') {
       return this.question.props.questionText
     }
+    if (field === 'notApplicableLabel') {
+      return this.question.props.notApplicableLabel
+    }
     if (/^choicesTexts/.test(field)) {
       return this.question.props.choicesTexts[extraData.choice]
     }
@@ -17,6 +20,9 @@ class Slider extends BaseTranslate {
   exportLocales () {
     const result = {
       questionText: this.question.props.questionText,
+    }
+    if (this.question.props.notApplicable) {
+      result.notApplicableLabel = this.question.props.notApplicableLabel
     }
     _.times(this.question.props.choices, (i) => {
       result[`choicesTexts${i + 1}`] = this.question.props.choicesTexts[i]

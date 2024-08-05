@@ -126,6 +126,17 @@ module Administration
         head :ok
       end
 
+      def bulk_download
+        AdminJob.call(:bulk_download_user_reports,
+                      { ids: params[:ids], campaign_id: campaign.id },
+                      current_user)
+
+        audit! :bulk_download, nil, record_type: 'UserReport', payload: { ids: params[:ids] },
+        campaign: campaign
+
+        head :ok
+      end
+
       def toggle_user_access
         resource.toggle!(:user_access)
         audit! :toggle_user_access, resource, campaign: campaign

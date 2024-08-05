@@ -2,8 +2,16 @@
 
 module Api
   module Administration
-    class ReportFamilyPolicy < ::Administration::ReportFamilyPolicy
+    class ReportFamilyPolicy < ::Administration::BasePolicy
       def index?
+        @user.is?(:superadmin)
+      end
+
+      def create?
+        @user.is?(:superadmin)
+      end
+
+      def update?
         @user.is?(:superadmin)
       end
 

@@ -3,12 +3,16 @@
 module Administration
   module Assessors
     class UserAssessmentSerializer < Panko::Serializer
-      attributes :id, :assessment_name, :status
+      attributes :id, :assessment_id, :assessment_name, :status, :responses_count
 
       delegate :name, to: :assessment, prefix: true
 
       def status
-        object.users_result.status
+        context[:status]
+      end
+
+      def responses_count
+        context[:responses_count]
       end
 
       private

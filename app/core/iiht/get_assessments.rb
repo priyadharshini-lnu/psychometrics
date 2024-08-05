@@ -14,8 +14,13 @@ module Iiht
     def call
       return broadcast :ok, [] unless config
 
-      data = Rails.cache.fetch(cache_key, expires_in: 1.day, race_condition_ttl: 1.minute, force: force) do
-        load_assessments
+      begin
+        data = Rails.cache.fetch(cache_key, expires_in: 1.day, race_condition_ttl: 1.minute, force: force) do
+          load_assessments
+        end
+      rescue Faraday::Error => e
+        Sentry.capture_exception(e, extra: { project_id: project.id })
+        return broadcast :ok, []
       end
 
       broadcast :ok, data

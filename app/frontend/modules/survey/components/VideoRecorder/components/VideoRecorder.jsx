@@ -216,9 +216,11 @@ class VideoRecorder extends Component {
       preload: 'auto',
       controls: true,
       fluid: true,
+      disablePictureInPicture: true,
       controlBar: {
         fullscreenToggle: false,
         volumePanel: false,
+        pictureInPictureToggle: false,
       },
     }
 
@@ -262,6 +264,7 @@ class VideoRecorder extends Component {
         fluid: true,
         controlBar: {
           fullscreenToggle: false,
+          pictureInPictureToggle: false,
           volumePanel: false,
           timeDivider: false,
           durationDisplay: false,

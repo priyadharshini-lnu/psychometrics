@@ -2,6 +2,7 @@ import times from 'lodash/times'
 import { useState } from 'react'
 import {
   Slider as AntSlider, InputNumber, Row, Col, Button,
+  Checkbox,
 } from 'antd'
 import _ from 'lodash'
 
@@ -19,6 +20,7 @@ export const SliderQuestion = ({
   } = model
   const {
     gridLines, maxValue, minValue, numberOfDecimals, labels, choices, hideChoiceText, hideGridValues, hideValue,
+    notApplicable, notApplicableLabel,
   } = props
   const labelWidth = `${100 / labels}%`
   const questionChoices = preview ? choicesIds : times(choices, i => i)
@@ -34,6 +36,19 @@ export const SliderQuestion = ({
     if (update) {
       changeValue(choiceId, scaledValue(value))
     }
+  }
+
+  const handleNotApplicable = (choiceId, value) => {
+    if (!preview) { return }
+
+    result.notApplicable = result.notApplicable || {}
+    result.notApplicable[choiceId] = value
+
+    setValue({ ...values })
+  }
+
+  const changeNotApplicableLabel = (value) => {
+    model.changeProps({ notApplicableLabel: value })
   }
 
   const labelsColspan = () => {
@@ -84,6 +99,15 @@ export const SliderQuestion = ({
     return 14
   }
 
+  const renderNotApplicableHeader = () => {
+    const { notApplicable } = model.props
+    if (!notApplicable) { return null }
+    return (
+      <span>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
+    )
+  }
+
+
   const gridMarkingRow = (
     <Row className={`${styles.gridRow} ${styles.gridMarksRow}`}>
       <Col span={gridLinesColspan()} offset={hideChoiceText ? 0 : 8}>
@@ -121,18 +145,40 @@ export const SliderQuestion = ({
           <Col span={hideValue ? 24 : 20} className={styles.responseLabelRowMobile}>
             <Row>{labelRow}</Row>
           </Col>
+
           <Col span={hideChoiceText ? 24 : 16}>
+            {notApplicable && (
+              <Row justify="end">
+                <Col className={styles.label}>
+                  <Checkbox
+                    checked={result.notApplicable?.[choiceId]}
+                    defaultChecked={false}
+                    onChange={e => handleNotApplicable(choiceId, e.target.checked)}
+                  >
+                    {preview ? renderNotApplicableHeader() : (
+                      <LabelEditor
+                        onChange={changeNotApplicableLabel}
+                        maxWidth={150}
+                        value={notApplicableLabel}
+                      />
+                    )}
+                  </Checkbox>
+                </Col>
+              </Row>
+            )}
             <Row className={styles.responseControlsRow}>
               <Col className={styles.sliderContainer} span={hideValue ? 24 : 21}>
                 <AntSlider
                   onAfterChange={value => onChangeSlider(choiceId, value, true)}
                   onChange={value => onChangeSlider(choiceId, value)}
-                  value={preview ? values[choiceId]?.value : props.fakeResults[choiceId]}
+                  value={preview
+                    ? (values[choiceId]?.value)
+                    : props.fakeResults[choiceId]}
                   min={1}
                   max={100}
                   className="ms-0 me-0"
                     // Widthout this extra span with key, the tooltip doesn't move properly
-                  disabled={readOnly}
+                  disabled={readOnly || result.notApplicable?.[choiceId] === true}
                   tooltip={{
                     formatter: hideValue ? null : value => <span key={value}>{scaledValue(value)}</span>,
                   }}
@@ -149,10 +195,11 @@ export const SliderQuestion = ({
                     min={minValue}
                     max={maxValue}
                     controls={false}
-                    disabled={readOnly}
+                    disabled={readOnly || result.notApplicable?.[choiceId] === true}
                   />
                   {!readOnly && (
                     <Button
+                      disabled={readOnly || result.notApplicable?.[choiceId] === true}
                       onClick={() => onChangeSlider(choiceId, minValue, true)}
                       type="link"
                       className="text-align-c"

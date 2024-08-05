@@ -11,7 +11,7 @@ import { PropertiesModel } from '~/modules/reports/interfaces/tables/Gap'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import { BasePropertiesModel as BaseQuestionModelInProperties } from '~/modules/survey/interfaces/questions/Base'
 
-const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
+const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide', 'Slider']
 const QUESTION_CHOICE_SEPERATOR = '_'
 
 const connector = connect((state: RootState) => ({

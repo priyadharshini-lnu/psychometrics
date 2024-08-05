@@ -16,6 +16,7 @@ module Administration
           required(:user_name).maybe(:str?)
           required(:authentication_type).maybe(:str?)
           required(:enabled).filled(:bool?)
+          required(:use_sender_verification).filled(:bool?)
         end
       end
     end

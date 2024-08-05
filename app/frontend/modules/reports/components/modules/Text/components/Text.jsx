@@ -133,9 +133,13 @@ class Text extends Component {
     }
   }
 
-  pipedText () {
+  pipedText (text) {
     const { module, pageNumber, totalPages } = this.props
-    return PipedText.run(module, { page_number: pageNumber, total_pages: totalPages })
+    return PipedText.run(
+      text ?? I18nStore.tModule(module, 'text'),
+      module,
+      { page_number: pageNumber, total_pages: totalPages },
+    )
   }
 
   buildStyles (styles, overrides) {
@@ -256,7 +260,7 @@ class Text extends Component {
             className={cs(styles.editor, 'fr-view')}
           >
             <ReactMarkdown>
-              {model.getTextByCondition()}
+              {this.pipedText(model.getTextByCondition())}
             </ReactMarkdown>
           </div>
         )
@@ -280,11 +284,11 @@ class Text extends Component {
           />
         )
       } if (sourceType === 'ResultText') {
-        const textValue = LookupResultTextValue.run(model)
+        let textValue = LookupResultTextValue.run(model)
         if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
           const factorResults = ResultStore.results[assessmentId].campaignFactorResults
           const code = model.props.source.codes[0]
-          return factorResults && (_.find(factorResults, { code })?.value || '')
+          textValue = factorResults && (_.find(factorResults, { code })?.value || '')
         }
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>
@@ -310,6 +314,7 @@ class Text extends Component {
         </div>
       )
     }
+
     return this.edit
       ? (
         <FroalaEditor

@@ -131,13 +131,13 @@ const OverrideComponent: FC<Props> = ({
       </ReactMarkdown>
     )
     if (module.props.sourceType === 'ConditionalText') {
-      return renderToStaticMarkup(compileMarkdown(module.getTextByCondition()))
+      return renderToStaticMarkup(compileMarkdown(PipedText.run(module.getTextByCondition(), module)))
     }
     if (module.props.sourceType === 'ConditionalFactorOccupationText') {
       return renderToStaticMarkup(compileMarkdown(GetText.run(module)))
     }
     if (module.props.sourceType === 'PipedText') {
-      return PipedText.run(module)
+      return PipedText.run(I18nStore.tModule(module, 'text'), module)
     }
     if (module.props.sourceType === 'ResultText') {
       const result = LookupResultTextValue.run(module)

@@ -17,6 +17,20 @@ SET row_security = off;
 
 
 --
+-- Name: btree_gin; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS btree_gin WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION btree_gin; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION btree_gin IS 'support for indexing common datatypes in GIN';
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -728,7 +742,7 @@ CREATE TABLE public.audit_logs (
     request text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    campaign_id integer,
+    campaign_id bigint,
     project_id integer,
     client_id integer,
     request_uuid character varying,
@@ -736,7 +750,9 @@ CREATE TABLE public.audit_logs (
     interface integer,
     client_ip character varying,
     outcome integer DEFAULT 1,
-    failure_reason character varying
+    failure_reason character varying,
+    year smallint,
+    month smallint
 );
 
 
@@ -2070,7 +2086,6 @@ CREATE TABLE public.factors (
     scale_min double precision,
     scale_max double precision,
     custom_formula character varying,
-    owner_id bigint,
     "precision" integer
 );
 
@@ -2166,9 +2181,9 @@ ALTER SEQUENCE public.factors_norms_id_seq OWNED BY public.factors_norms.id;
 CREATE TABLE public.factors_scoring (
     id integer NOT NULL,
     props json,
-    factor_id integer,
+    factor_id bigint,
     assessment_id integer,
-    question_id integer
+    question_id bigint
 );
 
 
@@ -3507,6 +3522,39 @@ ALTER SEQUENCE public.profile_settings_id_seq OWNED BY public.profile_settings.i
 
 
 --
+-- Name: project_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_assessments (
+    id bigint NOT NULL,
+    assessment_id bigint,
+    project_id bigint,
+    normalize_factor_scores boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_assessments_id_seq OWNED BY public.project_assessments.id;
+
+
+--
 -- Name: question_recoding; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4579,7 +4627,8 @@ CREATE TABLE public.smtp_settings (
     "boolean" boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    project_id bigint NOT NULL
+    project_id bigint NOT NULL,
+    use_sender_verification boolean DEFAULT false
 );
 
 
@@ -5172,6 +5221,39 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 
 --
+-- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_factor_scores (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    scores jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_assessment_factor_scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_assessment_factor_scores_id_seq OWNED BY public.user_assessment_factor_scores.id;
+
+
+--
 -- Name: user_assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5648,9 +5730,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint,
     mobile_number character varying,
-    mobile_verified boolean DEFAULT false
+    mobile_verified boolean DEFAULT false,
+    manager_id bigint
 );
 
 
@@ -6808,6 +6890,13 @@ ALTER TABLE ONLY public.profile_settings ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: project_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments ALTER COLUMN id SET DEFAULT nextval('public.project_assessments_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7127,6 +7216,13 @@ ALTER TABLE ONLY public.threesixty_subjects ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.translations ALTER COLUMN id SET DEFAULT nextval('public.translations_id_seq'::regclass);
+
+
+--
+-- Name: user_assessment_factor_scores id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores ALTER COLUMN id SET DEFAULT nextval('public.user_assessment_factor_scores_id_seq'::regclass);
 
 
 --
@@ -8056,6 +8152,14 @@ ALTER TABLE ONLY public.profile_settings
 
 
 --
+-- Name: project_assessments project_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT project_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8432,6 +8536,14 @@ ALTER TABLE ONLY public.translations
 
 
 --
+-- Name: user_assessment_factor_scores user_assessment_factor_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT user_assessment_factor_scores_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: user_assessments user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8672,6 +8784,13 @@ CREATE INDEX email_histories_campaign ON public.threesixty_email_histories USING
 --
 
 CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories USING btree (threesixty_email_schedule_id);
+
+
+--
+-- Name: idx_audit_logs_year_month_day; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_audit_logs_year_month_day ON public.audit_logs USING btree (EXTRACT(year FROM created_at), EXTRACT(month FROM created_at), EXTRACT(day FROM created_at));
 
 
 --
@@ -9011,10 +9130,31 @@ CREATE INDEX index_audit_logs_on_action ON public.audit_logs USING btree (action
 
 
 --
--- Name: index_audit_logs_on_record_type_and_record_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_audit_logs_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_audit_logs_on_record_type_and_record_id ON public.audit_logs USING btree (record_type, record_id);
+CREATE INDEX index_audit_logs_on_created_at ON public.audit_logs USING btree (created_at);
+
+
+--
+-- Name: index_audit_logs_on_month; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_month ON public.audit_logs USING btree (month);
+
+
+--
+-- Name: index_audit_logs_on_record_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_record_id ON public.audit_logs USING btree (record_id);
+
+
+--
+-- Name: index_audit_logs_on_record_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_record_type ON public.audit_logs USING btree (record_type);
 
 
 --
@@ -9022,6 +9162,27 @@ CREATE INDEX index_audit_logs_on_record_type_and_record_id ON public.audit_logs 
 --
 
 CREATE INDEX index_audit_logs_on_user_id_and_action ON public.audit_logs USING btree (user_id, action);
+
+
+--
+-- Name: index_audit_logs_on_user_id_and_action_and_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_user_id_and_action_and_created_at ON public.audit_logs USING btree (user_id, action, created_at);
+
+
+--
+-- Name: index_audit_logs_on_year; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_year ON public.audit_logs USING btree (year);
+
+
+--
+-- Name: index_audit_logs_on_year_and_month_combined; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_audit_logs_on_year_and_month_combined ON public.audit_logs USING btree (year, month);
 
 
 --
@@ -9606,13 +9767,6 @@ CREATE INDEX index_factors_on_dimension_id ON public.factors USING btree (dimens
 
 
 --
--- Name: index_factors_on_owner_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_factors_on_owner_id ON public.factors USING btree (owner_id);
-
-
---
 -- Name: index_factors_on_parent_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10128,6 +10282,20 @@ CREATE INDEX index_profile_fields_on_question_id ON public.profile_fields USING 
 --
 
 CREATE INDEX index_profile_settings_on_project_id ON public.profile_settings USING btree (project_id);
+
+
+--
+-- Name: index_project_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_assessments_on_assessment_id ON public.project_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_project_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_assessments_on_project_id ON public.project_assessments USING btree (project_id);
 
 
 --
@@ -10765,6 +10933,20 @@ CREATE INDEX index_translations_on_resource_type_and_resource_id ON public.trans
 --
 
 CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON public.translations USING btree (translateable_type, translateable_id);
+
+
+--
+-- Name: index_user_assessment_factor_scores_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_factor_scores_on_factor_id ON public.user_assessment_factor_scores USING btree (factor_id);
+
+
+--
+-- Name: index_user_assessment_factor_scores_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_factor_scores_on_user_assessment_id ON public.user_assessment_factor_scores USING btree (user_assessment_id);
 
 
 --
@@ -11696,14 +11878,6 @@ ALTER TABLE ONLY public.skill_aliases
 
 
 --
--- Name: factors fk_rails_225e7dce0c; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factors
-    ADD CONSTRAINT fk_rails_225e7dce0c FOREIGN KEY (owner_id) REFERENCES public.clients(id);
-
-
---
 -- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12064,6 +12238,14 @@ ALTER TABLE ONLY public.dashboards
 
 
 --
+-- Name: project_assessments fk_rails_4e1aa7f7d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT fk_rails_4e1aa7f7d5 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
 -- Name: privacy_setting_translations fk_rails_4f38fd7ce2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12317,6 +12499,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.skills_development_actions
     ADD CONSTRAINT fk_rails_70b2e78217 FOREIGN KEY (development_action_id) REFERENCES public.development_actions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_assessment_factor_scores fk_rails_71d3d729a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT fk_rails_71d3d729a1 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13368,6 +13558,14 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 
 
 --
+-- Name: project_assessments fk_rails_f36f27136e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT fk_rails_f36f27136e FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: api_keys fk_rails_f435faf77d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13456,6 +13654,14 @@ ALTER TABLE ONLY public.user_idp_development_actions
 
 
 --
+-- Name: user_assessment_factor_scores fk_rails_fceff3a97b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT fk_rails_fceff3a97b FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: factors_sub_factors fk_rails_fe8dca5bf7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13478,17 +13684,24 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240801132558'),
+('20240801121907'),
 ('20240801093652'),
+('20240721171706'),
+('20240721171655'),
 ('20240703110220'),
 ('20240628111224'),
 ('20240621084730'),
 ('20240619103701'),
 ('20240614104722'),
 ('20240606133151'),
+('20240604174136'),
+('20240604173936'),
 ('20240603125218'),
 ('20240603082942'),
 ('20240523115956'),
 ('20240514065558'),
+('20240510095101'),
 ('20240508075421'),
 ('20240429145945'),
 ('20240426140020'),
@@ -13501,7 +13714,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240417083055'),
 ('20240416093121'),
 ('20240415123000'),
-('20240405101155'),
 ('20240403123008'),
 ('20240401134614'),
 ('20240401112155'),

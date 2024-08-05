@@ -11,7 +11,11 @@ const getMenuProps = (field, context, insert) => {
 }
 
 const Dropdown = ({ field, context, insert }) => (
-  <AntDropdown menu={getMenuProps(field, context, insert)} overlayStyle={{ zIndex: 10001 }}>
+  <AntDropdown
+    getPopupContainer={node => node.parentNode}
+    menu={getMenuProps(field, context, insert)}
+    overlayStyle={{ zIndex: 10001 }}
+  >
     <a className="ant-dropdown-link" href="#" style={{ display: 'block' }}>
       {field.name}
       {' '}

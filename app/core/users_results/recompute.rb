@@ -12,13 +12,14 @@ module UsersResults
 
     def call
       return broadcast :ok, user_result unless user_assessment.completed?
-      return broadcast :ok, recompute_saville_assessment if user_assessment.saville?
-      return broadcast :ok, recompute_pearson_assessment if user_assessment.pearson?
+
+      recompute_saville_assessment if user_assessment.saville?
+      recompute_pearson_assessment if user_assessment.pearson?
 
       if user_result.assessment.agile?
         compute_agile_assessment_scoring
       else
-        compute_common_assessment_scoring
+        compute_non_agile_scores
       end
 
       broadcast :ok, user_result
@@ -34,7 +35,7 @@ module UsersResults
       Pearson::SaveScoresAndReports.call!(user_assessment)
     end
 
-    def compute_common_assessment_scoring
+    def compute_non_agile_scores
       user_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(user_result)
       user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result) if user_result.completed?
       user_result.occupations = Assigns::CalculateOccupations.call!(user_result)

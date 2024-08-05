@@ -1,9 +1,8 @@
 import { Table } from 'antd'
-import { CheckOutlined, MoreOutlined } from '@ant-design/icons'
+import { CheckOutlined } from '@ant-design/icons'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import userPresenter from '~/presenters/user'
 import { getActionsMenuProps } from '../getActionsMenuProps'
-import styles from './EvaluatorTable.less'
 
 const { Column } = Table
 
@@ -71,11 +70,6 @@ export default function EvaluatorTable ({
                 onUserUpdate: onCloseParticipantModal,
               })
             }
-            innerElement={(
-              <div className={styles.actions}>
-                <MoreOutlined />
-              </div>
-            )}
           />
         )}
       />

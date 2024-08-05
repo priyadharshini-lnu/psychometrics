@@ -43,7 +43,7 @@ module Administration
     end
 
     def rescore_response?
-      !record&.assessment&.external? && has_permission?(:results, :rescore_responses)
+      has_permission?(:results, :rescore_responses)
     end
 
     def toggle_require_scheduling?

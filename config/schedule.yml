@@ -91,3 +91,7 @@ export_auditlogs:
   class: ClientAuditlogExportSettings::ExportAllAuditLogsJob
   queue_as: cron_tasks
 
+refresh_audit_log_cache:
+  cron: "0 1 * * *"  # Every day at 01:00 AM
+  class: RefreshAuditLogCacheJob
+  queue_as: cron_tasks

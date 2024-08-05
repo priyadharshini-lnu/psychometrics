@@ -19,12 +19,14 @@ module Sms
                              create(to: to_mobile_no, code: verification_code)
 
         handle_verification_status(verification_check.status)
-      rescue Twilio::REST::RestError
+      rescue Twilio::REST::RestError => e
         verification_response = build_verification_response(
           'error', I18n.t('auth.verify_mobile_number.error.invalid_code')
         )
 
         async_response.response_data = verification_response
+        audit_failure(e.message&.strip)
+
         broadcast(:invalid, async_response)
       end
 
@@ -44,6 +46,9 @@ module Sms
             verification_response = build_verification_response(status)
 
             async_response.response_data = serialized_result(verification_response)
+
+            audit_success
+
             broadcast(:ok, async_response)
           when 'max_attempts_reached'
             verification_response = build_verification_response(
@@ -51,11 +56,15 @@ module Sms
             )
 
             async_response.response_data = verification_response
+            audit_failure(status)
+
             broadcast(:invalid, async_response)
           else
             verification_response = build_verification_response(
               'error', I18n.t('auth.verify_mobile_number.error.invalid_code')
             )
+
+            audit_failure(status)
 
             async_response.response_data = verification_response
             broadcast(:invalid, async_response)
@@ -81,6 +90,26 @@ module Sms
 
       def serialized_result(verification_response)
         ::MobileNumberVerificationSerializer.new.serialize(verification_response)
+      end
+
+      def audit_failure(error_message)
+        AuditLogModule.audit!(
+          :confirm_verification_code,
+          nil,
+          project: context[:project],
+          payload: params,
+          outcome: :failed,
+          failure_reason: error_message
+        )
+      end
+
+      def audit_success
+        AuditLogModule.audit!(
+          :confirm_verification_code,
+          nil,
+          project: context[:project],
+          payload: params
+        )
       end
     end
   end

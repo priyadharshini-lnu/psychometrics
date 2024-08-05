@@ -165,7 +165,7 @@ const AssessmentList: React.FC<Props> = ({
               key="subjectName"
             />
             <Column
-              title={I18n.t('administration.assessor.assessments.subject_name')}
+              title={I18n.t('administration.assessor.assessments.subject_email')}
               dataIndex="subjectEmail"
               key="subjectEmail"
             />

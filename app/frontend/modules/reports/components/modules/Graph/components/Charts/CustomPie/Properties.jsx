@@ -14,6 +14,12 @@ class Properties extends Component {
     this.forceUpdate()
   }
 
+  changeProperty = (propertyName, value) => {
+    const { model } = this.props
+    model.props[propertyName] = value
+    this.update()
+  }
+
   changeBorderWidth = (value) => {
     const { model } = this.props
     model.props.chartBorderWidth = `${value}px`
@@ -22,11 +28,25 @@ class Properties extends Component {
 
   render () {
     const { model } = this.props
-    const { chartBorderWidth } = model.props
+    const { chartBorderWidth, radarMax } = model.props
     return (
       <div>
         <div className="margin-bottom-10">Up to 4 items can be displayed</div>
         <hr className={styles.divider} />
+        { model.props.source.type === 'CampaignFactors' ? (
+          <>
+            <div className={styles.block}>
+              Radar Maximum
+              <ChoicesInput
+                value={radarMax}
+                onChange={e => this.changeProperty('radarMax', e)}
+                minValue={5}
+                maxValue={10}
+              />
+            </div>
+            <hr className={styles.divider} />
+          </>
+        ) : null}
         <div className={styles.block}>
           Pie Thickness
           <ChoicesInput

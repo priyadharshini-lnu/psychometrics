@@ -26,35 +26,22 @@ describe Users::MobileNumberVerificationsController, type: :controller do
     end
 
     context 'with registation code' do
-      let(:params) { { mobile_number: mobile_number, registration_code: 'abc', project_id: project.id } }
-
-      it 'calls the SendCode service and returns a success' do
-        verification_response = Sms::Verification::VerificationResponse.new(
-          error_message: nil,
-          status: 'approved',
-          to_mobile_no: mobile_number
-        )
-
-        stub_command_broadcast('Sms::Verification::SendCode', :ok, verification_response)
-
-        post :send_verification_code, params: params, format: :json
-
-        expect(response).to have_http_status(:success)
+      let(:params) do
+        { mobile_number_verification: { mobile_number: mobile_number, registration_code: 'abc',
+                                        project_id: project.id } }
       end
 
-      it 'returns an error message when the SendCode service fails' do
-        verification_response = Sms::Verification::VerificationResponse.new(
-          error_message: 'An error occurred',
-          status: 'failed',
-          to_mobile_no: mobile_number
-        )
-
-        stub_command_broadcast('Sms::Verification::SendCode', :error, verification_response)
+      it 'queues the request and sets status to in progress' do
+        async_request_handler_job = class_double('AsyncRequestHandlerJob').as_stubbed_const
+        allow(async_request_handler_job).to receive(:perform_later)
 
         post :send_verification_code, params: params, format: :json
 
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(JSON.parse(response.body)['errors'][0]).to eq('An error occurred')
+        expect(response).to have_http_status(:ok)
+        expect(AsyncRequestHandlerJob).to have_received(:perform_later)
+
+        async_request_uuid = assigns(:async_request_uuid)
+        verify_async_response(async_request_uuid, 'not_started')
       end
 
       it 'returns an error message when the registration code is invalid' do
@@ -65,6 +52,10 @@ describe Users::MobileNumberVerificationsController, type: :controller do
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['errors'][0]).to eq('Registration code is invalid')
+
+        check_audit_log(mobile_number: mobile_number, code_type: 'registration_code',
+                        code: registration_code.code, outcome: 'failed',
+                        failure_reason: 'Registration code is invalid')
       end
     end
 
@@ -75,7 +66,10 @@ describe Users::MobileNumberVerificationsController, type: :controller do
         )
       end
 
-      let(:params) { { mobile_number: mobile_number, sms_invite_code: 'abc', project_id: project.id } }
+      let(:params) do
+        { mobile_number_verification: { mobile_number: mobile_number, sms_invite_code: 'abc',
+                                        project_id: project.id } }
+      end
 
       it 'returns an error message when the sms invite code is invalid' do
         allow_any_instance_of(Administration::Clients::SmsInvites::VerificationQuery).
@@ -85,22 +79,26 @@ describe Users::MobileNumberVerificationsController, type: :controller do
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(JSON.parse(response.body)['errors'][0]).to eq('SMS Invite code is invalid')
+
+        check_audit_log(mobile_number: mobile_number,
+                        code_type: 'sms_invite_code', code: 'abc', outcome: 'failed',
+                        failure_reason: 'SMS Invite code is invalid')
       end
 
-      it 'calls the SendCode service and returns a success' do
-        verification_response = Sms::Verification::VerificationResponse.new(
-          error_message: nil,
-          status: 'approved',
-          to_mobile_no: mobile_number
-        )
-        stub_command_broadcast('Sms::Verification::SendCode', :ok, verification_response)
-
+      it 'queues the request and sets status to in progress' do
         allow_any_instance_of(Administration::Clients::SmsInvites::VerificationQuery).
           to receive(:query).and_return([sms_invite])
 
+        async_request_handler_job = class_double('AsyncRequestHandlerJob').as_stubbed_const
+        allow(async_request_handler_job).to receive(:perform_later)
+
         post :send_verification_code, params: params, format: :json
 
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:ok)
+        expect(AsyncRequestHandlerJob).to have_received(:perform_later)
+
+        async_request_uuid = assigns(:async_request_uuid)
+        verify_async_response(async_request_uuid, 'not_started')
       end
     end
   end
@@ -118,10 +116,32 @@ describe Users::MobileNumberVerificationsController, type: :controller do
       expect(AsyncRequestHandlerJob).to have_received(:perform_later)
 
       async_request_uuid = assigns(:async_request_uuid)
-      status, response = AsyncResponseRequest::GetAsyncResponse.call!(async_request_uuid)
-      expect(status).to eq('not_started')
-      expect(response).to be_an_instance_of(AsyncResponseRequest::AsyncResponse)
-      expect(response.processing_status).to eq('not_started')
+      verify_async_response(async_request_uuid, 'not_started')
     end
+  end
+
+  private
+
+  def verify_async_response(async_request_uuid, expected_status)
+    status, response = AsyncResponseRequest::GetAsyncResponse.call!(async_request_uuid)
+    expect(status).to eq(expected_status)
+    expect(response).to be_an_instance_of(AsyncResponseRequest::AsyncResponse)
+    expect(response.processing_status).to eq(expected_status)
+  end
+
+  def check_audit_log(params)
+    audit_log = AuditLog.last
+
+    expect(audit_log.user_id).to eq(nil)
+    expect(audit_log.action).to eq('send_verification_code')
+    expect(audit_log.project_id).to eq(project.id)
+
+    expect(audit_log.payload).to include('mobile_number_verification' => {
+      'mobile_number' => '1234567890',
+      'project_id' => project.id.to_s,
+      params[:code_type] => params[:code]
+    })
+    expect(audit_log.outcome).to eq(params[:outcome])
+    expect(audit_log.failure_reason).to eq(params[:failure_reason])
   end
 end
