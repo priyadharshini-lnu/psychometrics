@@ -103,6 +103,7 @@ module CampaignReports
         joins(:pdf_file_attachment).
         includes(:user, :report).
         where(id: user_report_ids)
+      end
     end
   end
 end

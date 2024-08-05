@@ -3,7 +3,7 @@ import { Dropdown, Space, Flex } from 'antd'
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
-import { useMedia } from 'react-use-media'
+import { useMedia } from 'use-media'
 import { LanguageIcon } from '~/glint/icons/LanguageIcon'
 import styles from './styles.less'
 
