@@ -99,10 +99,10 @@ module CampaignReports
         user_report_ids = ::Reports::BulkDownloadsQuery.new(campaign_reports,
                                                             { start_date: start_date,
                                                               end_date: end_date }).query.pluck(:id)
-      UserReport.
-        joins(:pdf_file_attachment).
-        includes(:user, :report).
-        where(id: user_report_ids)
+        UserReport.
+          joins(:pdf_file_attachment).
+          includes(:user, :report).
+          where(id: user_report_ids)
       end
     end
   end
