@@ -22,14 +22,6 @@ pt:
               invalid: A palavra-passe atual está incorreta
   anonym:
     continue: Continuar
-    copy:
-      archived: foi arquivado
-      expired: expirou
-      not_active: já não se encontra ativa
-    labels:
-      archived: Arquivado
-      expired: Expirado
-      not_active: Não ativo
     notifications:
       restart:
         copy: Já iniciou este inquérito. Pode escolher Continuar ou Reiniciar.
@@ -47,22 +39,6 @@ pt:
     card_actions:
       begin: Começar
       continue: Continuar
-    categories:
-      '360': Campanha 360
-      agile: AGILE
-      case_study: Caso prático
-      hogan: Hogan
-      mindmill: Mindmill
-      organisational: Inquérito
-      psychometric: Avaliação
-    decorator:
-      no_description: A descrição está vazia
-    file_upload:
-      select_file: Selecionar ficheiro
-    index:
-      managers_assessments_button: Planeamento de ações
-      managers_dashboard_button: Painel do gestor
-      user_dashboard_button: Painel do utilizador
     instructions:
       begin_assessment: Começar
       cancel: Cancelar
@@ -83,34 +59,20 @@ pt:
     pickgrouprank:
       items: Itens
     proceed: Continuar mesmo assim
-    resource:
-      assigned: Atribuído em %{date}
-      invite_users: Convidar utilizadores
-      results: Resultados
-      status:
-        completed: Concluído
-        in_progress: Recomeçar
-        not_started: Iniciar
     unknown_error: Ocorreu um erro desconhecido.
     video_response:
-      delete: Eliminar
       device: Permitir
       discard: Eliminar
       media_recorder:
         failure: O seu navegador não suporta gravação de vídeos. Utilize o Chrome ou o Firefox para gravação de vídeos
         success: Permita o uso da câmara e do microfone para gravar áudio e vídeo
-      offline_message: Verifique a sua ligação à Internet.
       retake: Refazer
-      retry: Tentar novamente
       save: Guardar
       saved:
         label: Guardado
         tooltip: Este vídeo foi marcado para envio. Em alternativa, pode escolher gravar outra vez.
       saving: A guardar...
-      selected: Selecionado
       start_recording: Iniciar gravação
-      status:
-        recording: A gravar
       tracker:
         backward: Está muito próximo do ecrã. Afaste-se um pouco.
         forward: Está muito longe do ecrã. Aproxime-se um pouco.
@@ -170,7 +132,6 @@ pt:
       description: Para criar uma nova palavra-passe, insira a sua nova palavra-passe nas caixas abaixo
       submit: Enviar
       title: Criar palavra-passe
-    sign_in: Iniciar sessão
     sign_out: Iniciar sessão como utilizador diferente
     sign_up: Registar-se
     terms_link: <a href="%{terms_url}">Termos e Declaração de Privacidade</a>
@@ -180,9 +141,7 @@ pt:
     begin: Comece as suas tarefas
     campaigns: Campanhas
     closed_campaign_message: Esta campanha está fechada. Não pode realizar nenhuma avaliação nesta campanha.
-    complete_all: Conclua todas as avaliações relacionadas
     complete_prev: Conclua todas as avaliações anteriores
-    completed: Concluído
     continue: Continue as suas tarefas
     dashboard_instructions: Foram-lhe atribuídas a várias atividades que precisa de concluir. Certifique-se de que verifica se todas as atividades atribuídas foram concluídas em todas as campanhas.
     dashboard_menu:
@@ -191,7 +150,6 @@ pt:
       change_password: Alterar a palavra-passe
       home: Início
       insights: Informações
-      livechat: Assistência em tempo real
       profile: Perfil
       profile_details: Detalhes
       tasks: Tarefas
@@ -202,7 +160,6 @@ pt:
       title: Confirmar
       view: Ver avaliação
     goto_dashboard: Aceder ao Painel
-    in_progress: Em curso
     inactive_campaign_message: Atualmente, não tem nenhuma atividade atribuída.
     insights_reports: Informações e relatórios
     instruction_modal:
@@ -225,20 +182,13 @@ pt:
         <p>
           Para concluir as tarefas supervisionadas, ser-lhe-á solicitado que descarregue e instale um navegador especial. Siga as instruções no ecrã a seguir. Pode desinstalar depois de concluir todas as atividades necessárias.
         </p>
-      title: Instruções
     instructions:
       heading: Consulte as orientações abaixo antes de começar. Desejamos-lhe sucesso!
-    interrupted: Interrompido
     language:
-      cancel: Cancelar
       content: Esta tarefa não está disponível no idioma atualmente selecionado. Selecione um dos idiomas disponíveis para prosseguir.
-      proceed: Prosseguir
       single_lang: Esta tarefa está disponível apenas em %{lang}. Clique em "Prosseguir" para continuar.
       title: Selecionar idioma
-    new: Novo
-    not_started: Novo
     panels:
-      assessments: Tarefas
       reports: Relatórios
     profile:
       complete_heading: O seu perfil está completo
@@ -254,12 +204,8 @@ pt:
       cancel: Cancelar
       continue: Continuar
       notification: O tempo que lhe foi atribuído para esta tarefa "%{assessmentName}" foi de %{totalAssessmentTime}. Devido ao tempo total decorrido, agora tem apenas %{remainingCampaignTime} como tempo ajustado para concluir esta tarefa.
-      title: Aviso de tempo restante
     timer:
-      message: Tempo restante para concluir as tarefas
       notification: Tem %{minutes} minutos e %{seconds} segundos para concluir
-    ungrouped: Tarefas desagrupadas
-    welcome: Damos-lhe as boas-vindas
   campaign_assessment:
     assessments_heading: As suas tarefas
     statuses:
@@ -281,46 +227,29 @@ pt:
       continue: Continuar
       processing: A processar
       record_title: Diga e repita a seguinte frase 3 vezes.
-      run_again: Executar novamente
       speech_detection: Deteção de voz
       test_message: é ótimo falar consigo
       title: Necessitamos de garantir que o seu sistema consegue gravar áudio.
     network_check:
       continue: Continuar
       download: Descarregar
-      levels:
-        '0': Rede perdida (a reestabelecer ligação)
-        '1': Rede muito fraca
-        '2': Rede fraca
-        '3': Rede média
-        '4': Rede boa
-        '5': Rede muito boa
-      network: Rede
       please_check_connection: Verifique a sua ligação à Internet
       processing: A processar
       run_again: Executar novamente
       run_again_title: E execute este teste novamente
-      start: Iniciar
       title: Clique em Iniciar para começar o teste de velocidade da Internet.
       upload: Carregar
-    steps:
-      audio_check: Teste do microfone
-      network_check: Teste de velocidade da Internet
-      system_check: Verificação do sistema
-      video_check: Teste da câmara de vídeo
     success:
       start: Iniciar avaliação
       title: Concluiu todas as verificações com êxito.
     system_check:
       continue: Continuar
-      start: Iniciar
       title: Antes de iniciar esta avaliação, é necessário realizar algumas verificações ao seu sistema.
     video_check:
       access: Acesso
       access_help: Clique aqui para obter ajuda.
       allow: Permitir
       allow_title: Permita o uso da câmara para gravar vídeo
-      ambient_light: Luz ambiente
       continue: Continuar
       description: Qualquer vídeo ou foto capturado nesta fase não será guardado ou usado. É usado localmente no seu dispositivo para garantir que a câmara está a funcionar para uma pergunta futura que possa necessitar de gravação de vídeo.
       face_detection: Deteção de rosto
@@ -336,7 +265,6 @@ pt:
       copy: Copiar
       delete: Eliminar
       edit: Editar
-      import: Importar
       remove: Remover
       reset: Repor
       resolve: Resolver
@@ -499,7 +427,6 @@ pt:
         completion_statuses:
           completed: Concluído
           in_progress: Em curso
-          interrupted: Interrompido
           not_started: Não iniciado
     change_password: Alterar palavra-passe
     delete: Eliminar
@@ -520,7 +447,6 @@ pt:
     'yes': Sim
   navigation:
     logout: Terminar sessão
-    profile: Perfil
   profile:
     add_photo: Adicionar fotografia
     age: Idade
@@ -546,15 +472,6 @@ pt:
       download: Descarregar relatório
       view: Ver relatório
     modules:
-      common:
-        almost_always: Quase sempre
-        less_typical: Menos típico
-        moderate: Moderado
-        more_typical: Mais típico
-        rare: Raro
-      cpi_occupations:
-        occupations: Ocupações
-        your_potential_suitability: A sua adequação potencial
       factors_table:
         description: Descrição
         no_data: Não há dados disponíveis para esta secção.
@@ -570,50 +487,31 @@ pt:
         rank: Classificação
         scoring_category: Competência
       highest_lowest:
-        average: Média
         bottom_5: ÚLTIMOS 5
         category: Categoria
-        email: E-mail
-        first_name: Nome próprio
         highest_scores: Pontuações mais altas
         item: Indicador
-        last_name: Apelido
         lowest_scores: Pontuações mais baixas
         mean_score: Pontuação média
         rank: Classificação
-        result: Resultado
-        score: Pontuação
         scoring_category: Competência
         sub_competenties: Sub-competências
         top_5: TOP 5
       potential_career_full:
-        bachelors_or_masters_qualification: Licenciatura ou mestrado
         career_strengths_and_results: Pontos fortes da carreira e os seus resultados
         career_sub_tracks: Subpercursos de carreira
-        detailed_career_guide: Guia de carreira pormenorizado
-        diploma_qualification: Qualificação do diploma
-        education_level: Nível de escolaridade
-        high_school_entry_roles: Funções de entrada no ensino secundário
         key_career_tracks_within: Segue-se uma lista de potenciais funções para cada uma das carreiras. Lembre-se que esta lista é meramente indicativa e não exaustiva. Note-se que as funções em itálico exigem níveis de formação e/ou experiência mais elevados.
         potential_areas_of_study: Potenciais áreas de estudo
-        potential_roles: Potenciais funções
         strength_high: Força da assinatura
         strength_low: Força do desenvolvimento
         strength_moderate: Força potencial
         work_environment: Ambiente de trabalho
         your_suitability: A sua aptidão
-      potential_career_short:
-        career: carreira
-        for_this: para esta
-        key: chave
-        strengths: pontos fortes
-        your_scores: As suas pontuações
       single_value:
         factor_name: Categoria da pontuação
         question_name: Perguntas
       single_value_cluster:
         competency: Competência
-        description: Descrição
         developmental_rating: Classificação do desenvolvimento
         questions: Perguntas
       strength_clusters:
@@ -639,12 +537,8 @@ pt:
         completed: Concluído
         footnote: "* Excluído devido ao requisito de limiar mínimo"
         invited: Convidado
-        number_of_evaluators_invited: Número de avaliadores convidados
         relationships: Relações
-        subject: Assunto
-        title: Resumo do relatório
         total: Total
-        total_evaluations: Total de avaliações para este inquérito
       video_response:
         no_results: Não foram gravados vídeos
     show:
@@ -662,12 +556,6 @@ pt:
     filters:
       clear: Limpar filtros
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
-    password_reset:
-      description: Introduza o seu endereço de e-mail na caixa abaixo e clique em "Repor a palavra-passe".
-      email_label: Endereço de e-mail
-      instruction: Insira o e-mail associado à sua conta
-      submit: Redefinir a palavra-passe
-      title: Esqueceu-se da palavra-passe?
     terms_conditions_privacy: Declaração de privacidade
     tte_terms_and_condition: Termos e privacidade
   simple_form:
@@ -699,11 +587,6 @@ pt:
     accept_privacy_modal:
       accept: Aceitar
       checkbox: Li e compreendi a Política de Privacidade acima mencionada
-      policy_link: Clique aqui para ler a nossa política de privacidade.
-      reject: Rejeitar
-      text: |-
-        Antes de prosseguir com a realização das tarefas abaixo, confirmo que li e concordo com
-        a Política de Privacidade da The Talent Enterprise e as diretrizes relacionadas com a utilização das minhas informações pessoais.
       title: Consentimento para o tratamento de dados
     add: Adicionar
     and: E
@@ -755,8 +638,6 @@ pt:
     first_name: Nome próprio
     first_name_error: Introduza o seu nome
     help: Ajuda
-    helps:
-      main: "<h2>Ajuda</h2> <p>preciso de conteúdo para o modal de ajuda</p>"
     language: Idioma
     last_name: Apelido
     last_name_error: Introduza o seu apelido
@@ -880,8 +761,6 @@ pt:
     TextEntry:
       Email:
         character_range: A mensagem de e-mail introduzida tem de ter, no mínimo, %{min} e, no máximo, %{max} caracteres.
-        max_length: A mensagem de e-mail introduzida não pode ter mais de %{max} caracteres.
-        min_length: A mensagem de e-mail introduzida não pode ter menos de %{min} caracteres.
         subject:
           min_length: O campo "Assunto" deve ter um mínimo de 10 caracteres
         to:

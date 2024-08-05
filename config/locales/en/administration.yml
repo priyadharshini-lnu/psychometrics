@@ -2888,7 +2888,6 @@ en:
       security: Security Settings
       send_unlock_email: Send unlock email
       tfa_enabled: Enable Two Factor Authentication
-      update_success_msg: Password settings was updated successfully
     settings:
       admin_roles:
         admin_role_single: Admin Role
@@ -3067,7 +3066,6 @@ en:
       test_email_modal:
         input_hint: Your email setting will not saved until test email was sent successfully.
         input_placeholder: Test Email ID
-        success_message: SMTP setting updated successfully.
         title: Test Email Id
       test_modal:
         success_message: Test Email sent to %{email_id}.
