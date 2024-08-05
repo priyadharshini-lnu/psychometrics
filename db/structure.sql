@@ -1067,7 +1067,8 @@ CREATE TABLE public.campaign_factor_values (
     string_value character varying,
     numeric_value double precision,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    calculation_type integer DEFAULT 0
 );
 
 
@@ -13477,6 +13478,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240801093652'),
 ('20240703110220'),
 ('20240628111224'),
 ('20240621084730'),

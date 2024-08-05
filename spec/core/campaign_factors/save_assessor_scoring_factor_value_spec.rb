@@ -64,7 +64,10 @@ describe CampaignFactors::SaveAssessorScoringFactorValue do
     described_class.call!(campaign, params, assessor)
 
     expect(campaign_factor.campaign_factor_values.first.numeric_value).to eq(4)
+    expect(campaign_factor.campaign_factor_values.first.calculation_type).to eq('manual')
+
     expect(campaign_factor2.campaign_factor_values.first).to be_present
     expect(campaign_factor2.campaign_factor_values.first.numeric_value).to eq(2)
+    expect(campaign_factor2.campaign_factor_values.first.calculation_type).to eq('manual')
   end
 end

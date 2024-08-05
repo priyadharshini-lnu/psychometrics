@@ -38,4 +38,13 @@ describe AdminJobs::ImportExternalCampaignScoring do
 
     expect(numeric_values).to contain_exactly(60, 71.8)
   end
+
+  it 'sets calulcation type as manual' do
+    described_class.call!(job_record)
+
+    campaign_factor_values = CampaignFactorValue.where(user: user, campaign: campaign)
+
+    expect(campaign_factor_values.first.calculation_type).to eq('manual')
+    expect(campaign_factor_values.second.calculation_type).to eq('manual')
+  end
 end

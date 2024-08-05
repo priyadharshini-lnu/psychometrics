@@ -95,6 +95,7 @@ describe CampaignScoring::Calculate do
 
   describe 'calculate assessor_scoring factor_type' do
     let(:assessor_form) { create(:assessment, category: 'lead_assessor_form') }
+    let(:assessor_assessment) { create(:assessment, category: :assessor_form) }
 
     it 'returns score' do
       create(
@@ -117,6 +118,24 @@ describe CampaignScoring::Calculate do
       values = described_class.call!(campaign, user)
 
       expect(values[cf].value).to eq(nil)
+    end
+
+    it 'returns calculated score if lead_assessor is nil' do
+      cf = create(:campaign_factor, campaign: campaign, factor: factor, factor_type: 'assessor_scoring')
+      assessor_user_assessment = create(:user_assessment, campaign: campaign, subject: user,
+        assessment: assessor_assessment, relationship: Relationship.assessor_relationship, status: :completed)
+
+      assessor_user_assessment.users_result.update!(
+        scoring: {
+          factor.id.to_s => { 'norm_score' => 3 }
+        }
+      )
+
+      FactoryBot.create(:factors_scoring, factor: factor, assessment: assessor_user_assessment.assessment)
+
+      values = described_class.call!(campaign, user)
+
+      expect(values[cf].value).to eq(3.0)
     end
   end
 

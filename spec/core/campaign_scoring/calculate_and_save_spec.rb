@@ -117,4 +117,50 @@ describe CampaignScoring::CalculateAndSave do
 
     expect(campaign_user.reload.campaign_scores_finalized).to eq(false)
   end
+
+  it 'auto moderate assessor assessments and save campaign factor values' do
+    create(:campaign_user, campaign: campaign, user: user)
+
+    cf_factor1 = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: :assessor_scoring, assessment_score_type: 'score'
+    )
+    cf_factor2 = create(
+      :campaign_factor, code: 'factor2', campaign: campaign, assessment: assessment, factor: factor2,
+      factor_type: :assessor_scoring, assessment_score_type: 'score'
+    )
+
+    assessor_assessment = create(:assessment, category: :assessor_form)
+
+    assessor_user_assessment = create(:user_assessment, campaign: campaign, subject: user,
+      assessment: assessor_assessment, relationship: Relationship.assessor_relationship, status: :completed)
+
+    assessor_user_assessment.users_result.update!(
+      scoring: {
+        factor1.id.to_s => { 'score' => 3 },
+        factor2.id.to_s => { 'score' => 5 }
+      }
+    )
+
+    second_assessor_user_assessment = create(:user_assessment, campaign: campaign, subject: user,
+      assessment: assessor_assessment, relationship: Relationship.assessor_relationship, status: :completed)
+
+    second_assessor_user_assessment.users_result.update!(
+      scoring: {
+        factor1.id.to_s => { 'score' => 2 },
+        factor2.id.to_s => { 'score' => 4 }
+      }
+    )
+
+    FactoryBot.create(:factors_scoring, factor: factor1, assessment: assessor_user_assessment.assessment)
+    FactoryBot.create(:factors_scoring, factor: factor2, assessment: second_assessor_user_assessment.assessment)
+
+    create(:campaign_assessor_assessment_factor_weight, campaign: campaign, assessment: assessor_assessment,
+      factor_id: factor1.id, weight: 0.5)
+
+    described_class.call!(campaign, user)
+
+    expect(cf_factor1.campaign_factor_values.find_by(user: user).numeric_value).to eq(1.25)
+    expect(cf_factor2.campaign_factor_values.find_by(user: user).numeric_value).to eq(4.5)
+  end
 end

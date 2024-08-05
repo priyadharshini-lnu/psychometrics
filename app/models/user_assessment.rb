@@ -103,10 +103,8 @@ class UserAssessment < ApplicationRecord
   def calculate_and_save_campaign_scoring
     return unless CampaignUser.exists?(campaign_id: campaign_id, user_id: subject_id)
 
-    if self_assessment? || assessment.lead_assessor_form?
-      # TODO: Investigate why users_result.scoring is nil if we don't add delay of 30 seconds
-      CampaignScoring::CalculateAndSaveJob.set(wait: 30.seconds).perform_later(campaign, subject)
-    end
+    # TODO: Investigate why users_result.scoring is nil if we don't add delay of 30 seconds
+    CampaignScoring::CalculateAndSaveJob.set(wait: 30.seconds).perform_later(campaign, subject)
   end
 
   def sync_assessor_form_status_to_subject_meeting

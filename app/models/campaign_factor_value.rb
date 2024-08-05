@@ -8,6 +8,8 @@ class CampaignFactorValue < ApplicationRecord
   belongs_to :campaign_user, primary_key: :user_id, foreign_key: :user_id
   belongs_to :campaign_factor
 
+  enum calculation_type: { auto: 0, manual: 1 }
+
   def value
     if campaign_factor.numeric_output_type?
       numeric_value

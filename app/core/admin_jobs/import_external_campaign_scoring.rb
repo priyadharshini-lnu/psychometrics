@@ -46,6 +46,7 @@ module AdminJobs
 
       campaign_factor.campaign_factor_values.find_or_initialize_by(user: user, campaign: campaign).tap do |cfv|
         cfv.value = campaign_factor.numeric_output_type? ? value.to_d : value.to_s
+        cfv.calculation_type = :manual
         cfv.save!
       end
     end

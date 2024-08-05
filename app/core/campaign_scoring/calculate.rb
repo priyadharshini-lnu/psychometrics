@@ -9,8 +9,6 @@ module CampaignScoring
       @campaign = campaign
       @user = user
       @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
-      @existing_campaign_factor_values =
-        campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
       @user_assessments = campaign.user_assessments.includes(:users_result).where(
         subject_id: user.id,
         evaluator_id: user.id
@@ -20,6 +18,8 @@ module CampaignScoring
     end
 
     def call
+      @factor_values = CampaignFactors::CalculateAssessorScoringFactor.call!(campaign, user)
+
       campaign_user.update(campaign_scores_errors: nil) if campaign_user.campaign_scores_errors.present?
       campaign_factors_sorted_by_formula_factors_at_end.each do |cf, _acc|
         calculate_campaign_factor_value(cf)
@@ -67,7 +67,12 @@ module CampaignScoring
     end
 
     def assessor_scoring(campaign_factor)
-      existing_campaign_factor_values[campaign_factor.id]&.value
+      @factor_values[campaign_factor]&.value || existing_campaign_factor_values[campaign_factor.id]&.value
+    end
+
+    def existing_campaign_factor_values
+      @existing_campaign_factor_values ||=
+        campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
     end
 
     def compute_formula(campaign_factor)
