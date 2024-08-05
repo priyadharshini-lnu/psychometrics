@@ -77,9 +77,11 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
         action: 'create_campaign',
         method: 'post',
         body: values,
-      }).then(() => {
-        message.success(I18n.t('administration.campaigns.modals.create_threesixity.success_job'))
-        close()
+      }).then((result) => {
+        if (result === 'ok') {
+          message.success(I18n.t('administration.campaigns.modals.create_threesixity.success_job'))
+          close()
+        }
       })
     } else {
       setShowAdvancedSettingsForm(true)

@@ -29,7 +29,7 @@ describe Api::V2::Administration::ThreesixtyCampaignsController, swagger_doc: 'v
       parameter name: :body, in: :body, schema: { '$ref' => '#/components/schemas/ThreesixtyCampaignRequest' },
                 required: true
 
-      response '201', 'ThreesixtyCampaign Created' do
+      response '200', 'ThreesixtyCampaign Created' do
         schema '$ref' => '#/components/schemas/OKResponse'
         examples 'application/json' => {
           data: {
@@ -63,7 +63,7 @@ describe Api::V2::Administration::ThreesixtyCampaignsController, swagger_doc: 'v
 
         run_test! do |response|
           response = response.body
-          expect(response).to eq('ok')
+          expect(JSON.parse(response)).to eq('ok')
           expect(AdminJobRecord.last.operation).to eq('create_threesixty_campaign')
           expect(AdminJobRecord.last.data).to eq({
             'project_id' => project_id,

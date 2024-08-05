@@ -105,7 +105,7 @@ module Reports
         end
 
         if mod.props['filter'].is_a?(Integer)
-          mod.update(props: mod.props.merge('filter' => filter_map[id]))
+          mod.update(props: mod.props.merge('filter' => filter_map[mod.props['filter']]))
         end
 
         if mod.props['filters'].is_a?(Integer)

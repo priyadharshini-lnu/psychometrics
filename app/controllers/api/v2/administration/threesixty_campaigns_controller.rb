@@ -13,7 +13,8 @@ module Api
       if form.threesixty_type == Threesixty::Campaign::EMPTY
         result = ::Threesixty::Campaigns::Create.call(project, form, current_user)
         if result[:ok]
-          jsonapi_render json: result[:ok]
+          render json: ::Administration::Campaigns::CampaignSerializer.new({ context: { current_user: current_user } }).
+            serialize(result[:ok].campaign)
         else
           jsonapi_render_errors [{ code: result[:error] }], status: :unprocessable_entity
         end
@@ -23,7 +24,7 @@ module Api
           { project_id: project.id, data: params[:data][:attributes] },
           current_user
         )
-        render json: 'ok', status: :created
+        render json: :ok
       end
     end
 

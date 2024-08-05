@@ -741,6 +741,7 @@ en:
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
+        create_threesixty_campaign: Create Threesixty Campaign
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_report_data: Export report data
