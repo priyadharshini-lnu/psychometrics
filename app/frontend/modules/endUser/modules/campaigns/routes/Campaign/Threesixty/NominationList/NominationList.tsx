@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import { useState } from 'react'
 import {
-  Progress, Modal, Tooltip, Typography, Row, Checkbox,
+  Progress, Modal, Tooltip, Typography, Row, Button,
 } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
+import { QuestionCircleOutlined, CheckCircleFilled } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -39,11 +39,10 @@ const NominationItem = ({ item }) => {
         key={email}
       >
         <Tooltip placement="topLeft" title={email}>
-          <Checkbox
-            checked={isNominationCompleted}
-          >
+          <Button type="link">
             <span className={styles.subjectLabel}>{userPresenter.selfUserName(item)}</span>
-          </Checkbox>
+            {isNominationCompleted ? <CheckCircleFilled className={styles.completed} color="green" /> : null}
+          </Button>
         </Tooltip>
       </Link>
     </>

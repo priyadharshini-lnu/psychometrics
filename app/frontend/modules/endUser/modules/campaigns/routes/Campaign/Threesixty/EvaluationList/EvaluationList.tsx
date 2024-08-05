@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import { useState } from 'react'
 import {
-  Dropdown, Progress, Modal, Tooltip, Typography, Row, Checkbox,
+  Dropdown, Progress, Modal, Tooltip, Typography, Row, Button,
 } from 'antd'
 import {
-  InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
+  InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined, CheckCircleFilled,
 } from '@ant-design/icons'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -99,13 +99,15 @@ const EvaluationListComponent = ({
     return (
       <>
         <Tooltip placement="topLeft" title={email}>
-          <Checkbox
-            disabled={canNotEvaluate(item)}
-            checked={isEvaluationCompleted(item)}
+          <Button
+            className="pt-0 pb-0"
             onClick={e => handleAssessmentLinkClick(e, item, getPath(item))}
+            type="link"
+            disabled={canNotEvaluate(item)}
           >
             <span className={styles.subjectLabel}>{userPresenter.selfUserName(item, subject)}</span>
-          </Checkbox>
+            {isEvaluationCompleted(item) ? <CheckCircleFilled className={styles.completed} /> : null}
+          </Button>
         </Tooltip>
 
         {options.global.disableAllEvaluations && (

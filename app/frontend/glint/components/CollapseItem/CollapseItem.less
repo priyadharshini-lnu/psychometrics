@@ -2,13 +2,12 @@
 @import "~/styles/spacing.less";
 
 .collapse {
-  background-color: @white;
-  & > :global(.ant-collapse-item > .ant-collapse-header) {
-    padding-inline-start: 0px;
+  & :global(.ant-collapse-content .ant-collapse-content-box) {
+    padding-inline-start: 24px;
+    padding-block-start: 0px !important;
   }
   & > :global(.ant-collapse-item > .ant-collapse-header .ant-collapse-arrow) {
     color: var(--ant-primary-color);
-    margin-inline-end: @space-2;
   }
 }
 

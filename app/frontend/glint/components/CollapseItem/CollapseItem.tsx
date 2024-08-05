@@ -13,7 +13,7 @@ type Props = {
 export const CollapseItem: FC<Props> = ({ title, list, children }) => (
   <Collapse className={styles.collapse} bordered={false} defaultActiveKey="panel">
     <Panel header={title} key="panel">
-      <Space direction="vertical" size="middle">
+      <Space size={0} direction="vertical">
         {list.map(item => children(item))}
       </Space>
     </Panel>
