@@ -188,7 +188,10 @@ module Administration
       end
 
       def set_campaign
-        @campaign = policy_scope(Campaign).find_by(project_id: params[:project_id], id: params[:id])
+        @campaign = policy_scope(Campaign).includes(
+          assessments: { icon_attachment: :blob },
+          reports: { icon_attachment: :blob }
+        ).find_by(project_id: params[:project_id], id: params[:id])
       end
 
       def create_common_campaign
