@@ -9,6 +9,7 @@ module Campaigns
       validate :validate_user_can_book
       validate :validate_user_finished_prework
       validate :validate_rebooking_after_cancellation
+      validate :validate_scheduling_deadline
 
       def validate_seats_availability
         return if errors.present?
@@ -36,6 +37,14 @@ module Campaigns
 
         if workshop_invited_subject.cancelled? && !workshop.cancellable?
           errors.add(:base, I18n.t('administration.bookings.errors.cancelled_and_rebook_deadline_passed'))
+        end
+      end
+
+      def validate_scheduling_deadline
+        return if errors.present?
+
+        if workshop.scheduling_lead_time_passed?
+          errors.add(:base, I18n.t('administration.bookings.errors.booking_deadline_passed'))
         end
       end
 

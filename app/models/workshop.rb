@@ -58,8 +58,8 @@ class Workshop < ApplicationRecord
     Time.current < (start_time - cancellation_lead_time)
   end
 
-  def reschedulable?
-    Time.current < (start_time - reschedule_lead_time)
+  def scheduling_lead_time_passed?
+    Time.current > (start_time - reschedule_lead_time)
   end
 
   def seats_available?

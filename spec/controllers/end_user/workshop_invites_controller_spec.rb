@@ -141,6 +141,29 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       )
     end
 
+    it 'returns error is passed reschedule deadline' do
+      workshop.update!(booked_seats: 1, total_seats: 2, reschedule_lead_time: 0)
+
+      frozen_time = workshop.start_time + 1.hour
+
+      allow(Time).to receive(:current).and_return(frozen_time)
+
+      post :book, params: {
+        workshop_id: workshop.id,
+        id: workshop_invite.id,
+        workshop_subject_details: {
+          preferred_language: 'en',
+          neurodivergent: true,
+          neurodivergent_comments: 'test'
+        }
+      }
+
+      expect(response.status).to eq(400)
+      expect(JSON.parse(response.body)['errors']).to eq(
+        [I18n.t('administration.bookings.errors.booking_deadline_passed')]
+      )
+    end
+
     it 'returns error if the user is already cancelled and lead_cancellation time has passed' do
       workshop.update!(
         booked_seats: 1, total_seats: 2, cancellation_lead_time: 0
