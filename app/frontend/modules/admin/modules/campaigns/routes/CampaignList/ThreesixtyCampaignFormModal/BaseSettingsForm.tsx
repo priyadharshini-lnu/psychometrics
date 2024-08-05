@@ -78,7 +78,7 @@ const BaseSettingsForm = ({
               <Form.Item
                 name="name"
                 label="Name"
-                rules={[{ required: true }]}
+                rules={[{ required: true, transform: value => value.trim() }]}
               >
                 <Input />
               </Form.Item>

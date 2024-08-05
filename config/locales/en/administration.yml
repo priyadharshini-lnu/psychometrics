@@ -981,6 +981,8 @@ en:
             select_all: Select All
             sub_title: Select the questions and indicators to be included in the assessment
             title: Questions and Indicators
+          success: 360 Campaign was successfully created.
+          success_job: 360 Campaign creation job was successfully scheduled.
       options:
         description:
           name: Description

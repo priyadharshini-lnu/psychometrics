@@ -36,7 +36,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   fetchTemplatesAndAssessments,
   addInReduxStore,
 }) => {
-  const { modal } = App.useApp()
+  const { modal, message } = App.useApp()
   const [showAdvancedSettingsForm, setShowAdvancedSettingsForm] = useState(false)
   const [baseSettings, setBaseSettings] = useState< baseSettings | null>(null)
   const [campaignTemplates, setCampaignTemplates] = useState<CampaignTemplate[]>([])
@@ -68,6 +68,8 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
         body: values,
       }).then((data: Campaign) => {
         addInReduxStore(data)
+        message.success(I18n.t('administration.campaigns.modals.create_threesixity.success'))
+        close()
       })
       setShowAdvancedSettingsForm(false)
     } else if (values.threesixty_type === THREESIXTY_TYPES.PREVIOUS_360) {
@@ -75,6 +77,9 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
         action: 'create_campaign',
         method: 'post',
         body: values,
+      }).then(() => {
+        message.success(I18n.t('administration.campaigns.modals.create_threesixity.success_job'))
+        close()
       })
     } else {
       setShowAdvancedSettingsForm(true)
@@ -95,6 +100,9 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
       action: 'create_campaign',
       method: 'post',
       body,
+    }).then(() => {
+      message.success(I18n.t('administration.campaigns.modals.create_threesixity.success_job'))
+      close()
     })
   }
 
