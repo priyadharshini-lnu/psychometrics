@@ -144,12 +144,12 @@ export const UserDetails: React.FC<Props> = ({
 
   const isFixedTime = campaign?.campaignOptions?.fixedTime || false
   const canExtendTime = (isFixedTime && ['timed_out', 'completed'].includes(user.status))
-  let tabs = [
+  const tabs = [
     {
       key: 'assessments',
       label: I18n.t('assessments_reports.menu.assessments_and_reports'),
       children: <AssessmentsReports />,
-    }
+    },
   ]
   if (user.permissions.viewWorkshopDetails) {
     tabs.push({

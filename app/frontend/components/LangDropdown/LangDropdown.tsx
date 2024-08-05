@@ -24,8 +24,6 @@ const LangDropdown: React.FC<Props> = ({ locales, currentLocale, onChange }) => 
     maxWidth: 600,
   })
 
-  console.log(isMobile)
-
   const onSelect = ({ key }) => {
     setLoading(true)
     onChange(key)

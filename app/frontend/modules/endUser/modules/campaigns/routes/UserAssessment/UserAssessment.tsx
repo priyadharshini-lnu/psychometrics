@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Col, Progress, Space, ProgressProps, Button, Modal
+  Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
