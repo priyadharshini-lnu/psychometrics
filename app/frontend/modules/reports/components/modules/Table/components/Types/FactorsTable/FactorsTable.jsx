@@ -244,8 +244,9 @@ class FactorsTable extends Component {
         const {
           tableStyle = 'default', minPosition, maxPosition, reverseOrder, source: { factors },
           showDescription, showIcons, showStrengthsBlindspots, showScore, showName, showLabel,
-          scoreProgressColor, scoreBackgroundColor, maxScoreValue,
+          scoreProgressColor, scoreBackgroundColor, maxScoreValue, scorePosition = 'inline',
           scoreDisplay = 'circular', scoreRanges = [], scoreLineColor, scoreBulletColor, precision,
+          showScoreText, scoreBulletGraphHeight,
         } = model.props
 
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
@@ -253,6 +254,36 @@ class FactorsTable extends Component {
         const score = _.round(normedOrRawMeanScore, 1)
         const maxValue = maxScoreValue ?? (factor.strategy === 3 ? 100 : 5)
         const percent = score * 100 / maxValue
+
+        const scoreUI = (
+          <>
+            {showScore && (
+              tableStyle === 'default' && scoreDisplay === 'circular' && (
+              <PieGraph
+                strokeWidth="10"
+                text={_.isNil(precision) ? score : _.round(score, precision)}
+                percent={Math.min(percent, 100)}
+                progressColor={scoreProgressColor}
+                backgroundColor={scoreBackgroundColor}
+              />
+              )
+            )}
+            {showScore && (
+              tableStyle === 'default' && scoreDisplay === 'bullet' && (
+              <BulletGraph
+                scoreRanges={scoreRanges}
+                baselineScore={conditionBaselineScore}
+                scorePercentage={score}
+                lineColor={scoreLineColor}
+                bulletColor={scoreBulletColor}
+                showScoreText={showScoreText}
+                score={score}
+                scoreBulletGraphHeight={scoreBulletGraphHeight}
+              />
+              )
+            )}
+          </>
+        )
 
         return (
           <tr key={i}>
@@ -270,13 +301,14 @@ class FactorsTable extends Component {
                     <img src={factor.icon} />
                   </div>
                 )}
-                {(showName || showDescription || showStrengthsBlindspots) && (
+                {(showName || showDescription || showStrengthsBlindspots || (showScore && scorePosition === 'block')) && (
                   <div className={styles.content}>
                     {showName && (
                       <div className={styles.strength}>
                         {_.isEmpty(conditionTitle) ? I18nStore.tFactor(factor, 'alias') : conditionTitle}
                       </div>
                     )}
+                    {scorePosition === 'block' ? scoreUI : null}
                     {showDescription && (
                       <ReactMarkdown className={cs(styles.text, 'mt4')}>
                         {conditionText}
@@ -296,38 +328,14 @@ class FactorsTable extends Component {
                 )}
               </td>
             )}
-            {(showScore || showLabel) && (
+            {((showScore && scorePosition === 'inline') || (showLabel && !showScore)) && (
               <td className={cs({
                 [styles.score]: showScore,
                 [styles.circular]: scoreDisplay === 'circular',
                 [styles.bullet]: scoreDisplay === 'bullet',
               })}
               >
-                {showScore && (
-                  tableStyle === 'default' && scoreDisplay === 'circular' && (
-                    <PieGraph
-                      strokeWidth="10"
-                      text={_.isNil(precision) ? score : _.round(score, precision)}
-                      percent={Math.min(percent, 100)}
-                      progressColor={scoreProgressColor}
-                      backgroundColor={scoreBackgroundColor}
-                    />
-                  )
-                )}
-                {showScore && (
-                  tableStyle === 'default' && scoreDisplay === 'bullet' && (
-                    <>
-                      <BulletGraph
-                        scoreRanges={scoreRanges}
-                        baselineScore={conditionBaselineScore}
-                        score={percent}
-                        lineColor={scoreLineColor}
-                        bulletColor={scoreBulletColor}
-                      />
-                      {showLabel && <div className={styles.bulletLabel}>{conditionLabel}</div>}
-                    </>
-                  )
-                )}
+                {scoreUI}
                 {showScore && tableStyle === 'compact' && score}
                 {!showScore && showLabel && (
                   <div className={styles.label} style={{ backgroundColor: conditionColor }}>{conditionLabel}</div>
