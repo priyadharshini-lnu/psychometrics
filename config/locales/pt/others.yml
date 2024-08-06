@@ -916,5 +916,5 @@ pt:
     text: A sua resposta não pode conter números
     title:
       one: Há um erro, por favor verifique suas respostas
-      other: Existem %{count} erros, por favor verifique suas respostas
-      two: Há 2 erros, por favor verifique suas respostas
+      other: Existem %{count} erros, por favor verifique as suas respostas
+      two: Há 2 erros, por favor verifique as suas respostas
