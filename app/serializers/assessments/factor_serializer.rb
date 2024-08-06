@@ -3,7 +3,7 @@
 module Assessments
   class FactorSerializer < ActiveModel::Serializer
     type :factor
-    attributes :id, :name, :parent_id, :scoring, :description, :icon
+    attributes :id, :name, :parent_id, :scoring, :description, :icon, :scoring_strategy
 
     def icon
       object.icon.url(:middle)

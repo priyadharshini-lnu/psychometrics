@@ -103,7 +103,7 @@ module Assessments
       new_question.props['choices'] = choice_texts.size
 
       new_question.factors_scorings.each do |fs|
-        scores = question_config[:selected_choice_indexes].map.with_index do |index, new_index|
+        scores = question_config[:selected_choice_indexes].filter_map.with_index do |index, new_index|
           score = fs.props.find { |s| s['index'] == index }
           next unless score
 

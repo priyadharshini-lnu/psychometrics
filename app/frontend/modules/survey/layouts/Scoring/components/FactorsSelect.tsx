@@ -8,6 +8,7 @@ type Option = {
 };
 
 const renderOptions = (factors): Option[] => _.chain(factors)
+  .filter(f => f.scoring_strategy === 'questions')
   .flatMap(factor => [
     { label: factor.name, value: factor.id },
     ..._.map(factor.sub_factors?.list, subFactor => ({
