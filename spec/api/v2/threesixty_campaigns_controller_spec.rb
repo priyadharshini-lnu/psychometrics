@@ -51,7 +51,7 @@ describe Api::V2::Administration::ThreesixtyCampaignsController, swagger_doc: 'v
               attributes: {
                 name: 'new campaign',
                 threesixty_type: Threesixty::Campaign::STANDARD_360,
-                campaign_template_id: campaign_template.id,
+                campaign_template_id: campaign_template.id.to_s,
                 factors: assessment.dimension.factor_ids,
                 questions: [
                   { id: question.id, selected_choice_indexes: [0, 2] }
@@ -67,7 +67,8 @@ describe Api::V2::Administration::ThreesixtyCampaignsController, swagger_doc: 'v
           expect(AdminJobRecord.last.operation).to eq('create_threesixty_campaign')
           expect(AdminJobRecord.last.data).to eq({
             'project_id' => project_id,
-            'data' => { 'campaign_template_id' => campaign_template.id, 'factors' => assessment.dimension.factor_ids,
+            'data' => { 'campaign_template_id' => campaign_template.id.to_s,
+                        'factors' => assessment.dimension.factor_ids,
                         'name' => 'new campaign', 'threesixty_type' => 'standard_360',
                         'questions' => [{ 'id' => question.id, 'selected_choice_indexes' => [0, 2] }] }
           })

@@ -63,7 +63,7 @@ const AdvancedSettingsForm = ({
 
   const handleFinish = () => {
     const data = {
-      factors: checkedFactorsForFactorsTree,
+      factors: checkedFactorsForFactorsTree.map(factorId => parseInt(factorId, 10)),
       questions: selectedQuestions,
       campaign_template_id: `${selectedTemplate?.id}`,
     }

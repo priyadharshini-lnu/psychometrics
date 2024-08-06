@@ -134,12 +134,13 @@ const transformCheckedKeysToSelectedQuestionsAndChoices = (
   checkedKeys: string[],
   questionMap: Map<string, Question & {choices: number[]}>,
 ): TransformedQuestion[] => {
-  const selectedQuestionAndChoicesMap = new Map<string, TransformedQuestion>()
+  const selectedQuestionAndChoicesMap = new Map<number, TransformedQuestion>()
 
   // this set contains questions, if question is selected by clicking question checkbox
-  const selectedQuestionMap = new Set<string>()
+  const selectedQuestionMap = new Set<number>()
   checkedKeys.forEach((key) => {
-    const [question_id, choiceIndex] = `${key}`.split('_')
+    const [_question_id, choiceIndex] = `${key}`.split('_')
+    const question_id = parseInt(_question_id, 10)
     if (!choiceIndex) {
       selectedQuestionMap.add(question_id)
     }
@@ -147,7 +148,7 @@ const transformCheckedKeysToSelectedQuestionsAndChoices = (
       selectedQuestionAndChoicesMap[question_id] = { id: question_id, selected_choice_indexes: [] }
     }
 
-    const question = questionMap.get(question_id)
+    const question = questionMap.get(`${question_id}`)
 
     if (question?.type === MATRIX_TABLE) {
       if (selectedQuestionMap.has(question_id)) {
