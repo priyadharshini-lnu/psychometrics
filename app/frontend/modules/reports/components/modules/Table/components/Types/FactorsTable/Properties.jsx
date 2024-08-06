@@ -1,7 +1,9 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
-import { InputNumber, Row, Col } from 'antd'
+import {
+  InputNumber, Row, Col, Radio, Checkbox, Slider,
+} from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
 import AppStore from '~/modules/reports/store/AppStore'
@@ -404,9 +406,49 @@ class Properties extends Component {
         {showScore && (
           tableStyle === 'default' && scoreDisplay === 'bullet' && (
             <>
+              <div className={styles.block}>
+                <Checkbox
+                  checked={model.props.showScoreText}
+                  className={styles.radioLabel}
+                  onChange={({ target: { checked } }) => {
+                    this.onChangeColor('showScoreText', checked)
+                  }}
+                >
+                  Show Score Text
+                </Checkbox>
+              </div>
               <ScoreRangeList model={model} />
+              <div className={styles.block}>
+                Bullet line height
+                <Slider
+                  min={1}
+                  max={100}
+                  onChange={value => this.onChangeColor('scoreBulletGraphHeight', +value)}
+                  value={model.props.scoreBulletGraphHeight ? model.props.scoreBulletGraphHeight : 30}
+                />
+              </div>
             </>
           )
+        )}
+        {showScore && (
+        <div className={styles.block}>
+          Score Position
+          <div className={styles.flexRow}>
+            <Radio.Group
+              onChange={({ target: { value } }) => {
+                this.onChangeColor('scorePosition', value)
+              }}
+              defaultValue={model.props.scorePosition || 'inline'}
+            >
+              <Radio value="inline" className={styles.radioLabel}>
+                Inline
+              </Radio>
+              <Radio value="block" className={styles.radioLabel}>
+                Block
+              </Radio>
+            </Radio.Group>
+          </div>
+        </div>
         )}
         <hr className={styles.divider} />
         <div>Font</div>
