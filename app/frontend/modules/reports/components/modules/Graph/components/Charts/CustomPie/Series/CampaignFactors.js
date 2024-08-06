@@ -6,18 +6,20 @@ const MAX_SCORING_VALUE = 6
 
 export const Functions = {}
 
-const buildForSources = (results, columns) => {
-  const data = (columns || []).map(col => _.meanBy(results.groupedCampaignFactors, d => parseFloat(d[col]) || 0))
-  return _.map(data, obj => _.round((obj * 100) / MAX_SCORING_VALUE, 1))
+const buildForSources = (results, columns, model) => {
+  const campaignFactorResults = _.keyBy(results.campaignFactorResults, 'code')
+  const data = (columns || []).map(col => parseFloat(campaignFactorResults[col]?.value) || 0)
+  return _.map(data, obj => _.round((obj * 100) / (model.props.radarMax || MAX_SCORING_VALUE), 1))
 }
 
-const buildForFilters = (results, columns) => results.map((result, i) => {
-  let data = (columns || []).map(col => _.meanBy(result.results.groupedCampaignFactors, d => parseFloat(d[col]) || 0))
+const buildForFilters = (results, columns, model) => results.map((result, i) => {
+  const campaignFactorResults = _.keyBy(results.campaignFactorResults, 'code')
+  let data = (columns || []).map(col => parseFloat(campaignFactorResults[col]?.value) || 0)
   if (!ResultStore.realResults) {
     data = data.map(d => d + i)
   }
   return {
-    data: data.map(obj => _.round((obj * 100) / MAX_SCORING_VALUE, 1)),
+    data: _.map(data, obj => _.round((obj * 100) / (model.props.radarMax || MAX_SCORING_VALUE), 1)),
     filterId: result.filterId,
   }
 })
@@ -25,10 +27,10 @@ const buildForFilters = (results, columns) => results.map((result, i) => {
 export default {
   series (results, columns, model, strategy) {
     if (strategy === STRATEGIES.SOURCES) {
-      return buildForSources(results[0].results, columns)
+      return buildForSources(results[0].results, columns, model)
     }
     if (strategy === STRATEGIES.FILTERS) {
-      return buildForFilters(results, columns)
+      return buildForFilters(results, columns, model)
     }
     return []
   },

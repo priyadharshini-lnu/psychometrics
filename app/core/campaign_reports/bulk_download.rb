@@ -4,9 +4,10 @@ module CampaignReports
   class BulkDownload < BaseCommand
     include Rails.application.routes.url_helpers
 
-    private_attr_reader :campaign_reports, :current_user, :bulk_report, :job_record
+    private_attr_reader :user_reports, :campaign_reports, :current_user, :bulk_report, :job_record
 
-    def initialize(campaign_reports, current_user, job_record)
+    def initialize(current_user:, job_record:, user_reports: nil, campaign_reports: nil)
+      @user_reports = user_reports
       @campaign_reports = campaign_reports
       @current_user = current_user
       @job_record = job_record
@@ -89,17 +90,20 @@ module CampaignReports
     end
 
     def user_reports_with_pdf
-      start_date = job_record.data['start_date']
-      end_date = job_record.data['end_date']
+      if user_reports.present?
+        user_reports.where(status: 'prepared').where.not(pdf: nil).includes(:user, :report)
+      else
+        start_date = job_record.data['start_date']
+        end_date = job_record.data['end_date']
 
-      user_report_ids = ::Reports::BulkDownloadsQuery.new(campaign_reports,
-                                                          { start_date: start_date,
-                                                            end_date: end_date }).query.pluck(:id)
-
-      UserReport.
-        joins(:pdf_file_attachment).
-        includes(:user, :report).
-        where(id: user_report_ids).where.not(pdf: nil)
+        user_report_ids = ::Reports::BulkDownloadsQuery.new(campaign_reports,
+                                                            { start_date: start_date,
+                                                              end_date: end_date }).query.pluck(:id)
+        UserReport.
+          joins(:pdf_file_attachment).
+          includes(:user, :report).
+          where(id: user_report_ids)
+      end
     end
   end
 end

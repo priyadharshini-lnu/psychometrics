@@ -7,6 +7,7 @@ import styles from '../styles.less'
 import MilestoneTd from './MilestoneTd'
 import buildFakeData from '../buildFakeData'
 import Legend from '../Legend'
+import BarChart from './BarChart'
 
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
@@ -45,7 +46,8 @@ export default function Factor ({ model, filters }) {
   }
 
   const {
-    milestones, factorIds, mainHeaderColor, secondHeaderColor,
+    milestones, factorIds, mainHeaderColor, secondHeaderColor, showAsBarChart,
+    hideHeader, borderColor,
   } = model.props
 
   if (!filters.length || !factorIds.length) return null
@@ -59,42 +61,47 @@ export default function Factor ({ model, filters }) {
     fontSize,
     fontFamily,
   }
+  if (borderColor) {
+    style.borderColor = borderColor
+  }
 
   return (
     <>
       <div className={styles.table} style={style}>
         <table>
-          <thead>
-            <tr>
-              <td
-                rowSpan={2}
-                className={cs(styles.label, styles.competencyLabel)}
-                width={`${DESC_COLUMN_WIDTH}%`}
-                style={{ color: mainHeaderColor }}
-              >
-                {I18nStore.t('reports.modules.single_value_cluster.competency')}
-              </td>
-              <td
-                colSpan={milestones.length}
-                className={cs(styles.label, styles.factorLabel)}
-                style={{ color: mainHeaderColor }}
-              >
-                {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
-              </td>
-            </tr>
-            <tr>
-              {milestones.map(m => (
+          {!hideHeader && (
+            <thead>
+              <tr>
                 <td
-                  key={m.id}
-                  className={cs(styles.label, styles.milestoneLabel)}
-                  style={{ borderBottomColor: `${m.color}`, color: secondHeaderColor }}
-                  width={`${milestoneColumnWidth}%`}
+                  rowSpan={2}
+                  className={cs(styles.label, styles.competencyLabel)}
+                  width={`${DESC_COLUMN_WIDTH}%`}
+                  style={{ color: mainHeaderColor }}
                 >
-                  {m.name}
+                  {I18nStore.t('reports.modules.single_value_cluster.competency')}
                 </td>
-              ))}
-            </tr>
-          </thead>
+                <td
+                  colSpan={milestones.length}
+                  className={cs(styles.label, styles.factorLabel)}
+                  style={{ color: mainHeaderColor }}
+                >
+                  {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
+                </td>
+              </tr>
+              <tr>
+                {milestones.map(m => (
+                  <td
+                    key={m.id}
+                    className={cs(styles.label, styles.milestoneLabel)}
+                    style={{ borderBottomColor: `${m.color}`, color: secondHeaderColor }}
+                    width={`${milestoneColumnWidth}%`}
+                  >
+                    {m.name}
+                  </td>
+                ))}
+              </tr>
+            </thead>
+          )}
           <tbody>
             {factorIds.map((id) => {
               const factor = factorMap[id]
@@ -111,19 +118,24 @@ export default function Factor ({ model, filters }) {
                         <span className="mls">{I18nStore.tFactor(factor, 'name')}</span>
                       </div>
                     </div>
-                    <div className={styles.description} style={descStyle}>
+                    <div className={styles.description} style={descStyle} width={`${DESC_COLUMN_WIDTH}%`}>
                       {I18nStore.tFactor(factor, 'description')}
                     </div>
                   </td>
-                  {milestones.map((m, i) => (
-                    <MilestoneTd
-                      filters={results}
-                      milestoneIndex={i}
-                      key={m.id}
-                      model={model}
-                      milestone={m}
-                    />
-                  ))}
+                  {showAsBarChart
+                    ? (
+                      <BarChart filters={results} model={model} milestones={milestones} />
+                    )
+                    : milestones.map((m, i) => (
+                      <MilestoneTd
+                        columnWidth={milestoneColumnWidth}
+                        filters={results}
+                        milestoneIndex={i}
+                        key={m.id}
+                        model={model}
+                        milestone={m}
+                      />
+                    ))}
                 </tr>
               )
             })}

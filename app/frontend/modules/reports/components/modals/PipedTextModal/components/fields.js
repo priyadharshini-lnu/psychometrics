@@ -159,6 +159,11 @@ const FIELDS = [
         value: '{{s://Field/RelationshipName}}',
       },
       {
+        name: 'ProfileCustomField',
+        type: 'profile_custom_field',
+        getValue: fieldName => `{{s://ProfileCustomField/${fieldName}}}`,
+      },
+      {
         name: 'DataSheet',
         type: 'autocomplete',
         items: ({ datasheetFields }) => datasheetFields.map(field => ({ label: field.name })),

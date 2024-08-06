@@ -237,8 +237,8 @@ const SequencingComponent: FC<PropsFromRedux> = ({
       'position',
     )
     const updatedGroupIdList = updatedAssessments.map(item => item.id)
-    setAssessments((prevAsessments) => {
-      const otherGroupAssessments: CampaignAssessment[] = prevAsessments.filter(
+    setAssessments((prevAssessments) => {
+      const otherGroupAssessments: CampaignAssessment[] = prevAssessments.filter(
         assessment => !updatedGroupIdList.includes(assessment.id),
       )
       return [...otherGroupAssessments, ...updatedAssessments]

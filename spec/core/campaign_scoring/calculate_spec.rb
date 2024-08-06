@@ -246,7 +246,7 @@ describe CampaignScoring::Calculate do
       expect(values[formula_cf].value).to eq("1\"2'")
     end
 
-    it 'returns nil if dependent factor is non computable' do
+    it 'returns exception when adding nil to number' do
       users_result.user_assessment.update!(status: :in_progress)
       create(
         :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
@@ -262,10 +262,57 @@ describe CampaignScoring::Calculate do
           return __factor1 + __factor2
         )
       )
-
       values = described_class.call!(campaign, user)
-      expect(values[formula_cf].error.class).to_not eq('Rufus::Lua::LuaError')
-      expect(values[formula_cf].value).to eq(nil)
+      expect(values[formula_cf].error.class).to eq(Lua::Exceptions::RuntimeError)
+      expect(values[formula_cf].error.message).to eq(
+        "<eval>:7: attempt to perform arithmetic on a nil value (global '__factor1')"
+      )
+    end
+
+    it 'calculates even when dependent string factor is not calculated' do
+      create(
+        :campaign_factor, code: 'factor1', campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: 'return nil'
+      )
+      create(
+        :campaign_factor, code: 'factor2', campaign: campaign, assessment: assessment, factor: factor2,
+        factor_type: 'assessor_scoring', assessment_score_type: 'norm_score', output_type: 'string'
+      )
+      create(
+        :campaign_factor, code: 'factor3', campaign: campaign, factor_type: 'formula', output_type: 'string',
+         formula: "return 'factor3 string'"
+      )
+      formula_cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'string',
+        formula: %(
+          return __factor1 or __factor2 or __factor3
+        )
+      )
+      values = described_class.call!(campaign, user)
+      expect(values[formula_cf].value).to eq('factor3 string')
+    end
+
+    it 'calculates even when dependent numeric factor is not calculated' do
+      create(
+        :campaign_factor, code: 'factor1', campaign: campaign, factor_type: 'formula', formula: 'return nil',
+         output_type: 'numeric'
+      )
+      create(
+        :campaign_factor, code: 'factor2', campaign: campaign, assessment: assessment, factor: factor2,
+        factor_type: 'assessor_scoring', assessment_score_type: 'norm_score', output_type: 'numeric'
+      )
+      create(
+        :campaign_factor, code: 'factor3', campaign: campaign, factor_type: 'formula', output_type: 'numeric',
+        formula: 'return 2'
+      )
+      formula_cf = create(
+        :campaign_factor, campaign: campaign, factor_type: 'formula', output_type: 'numeric',
+        formula: %(
+          return __factor1 or __factor2 or __factor3
+        )
+      )
+      values = described_class.call!(campaign, user)
+      expect(values[formula_cf].value).to eq(2)
     end
 
     it 'return exceptions if dependent factor is not present' do

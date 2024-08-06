@@ -316,9 +316,11 @@ const HANDLERS = {
   [ADD_MEDIA_RESPONSE]: (state: State, { payload: { mediaResponse } }: AddMediaResponse) => (
     {
       ...state,
-      mediaResponses: state.mediaResponses.find((mr:MediaResponse) => mr.questionId === mediaResponse.questionId)
-        ? state.mediaResponses.map(mr => (mr.id === mediaResponse.id ? mediaResponse : mr))
-        : [...state.mediaResponses, mediaResponse],
+      mediaResponses:
+        (state.mediaResponses.find((mr:MediaResponse) => mr.questionId === mediaResponse.questionId)
+          && state.mediaResponses.find((mr:MediaResponse) => (mr.id === mediaResponse.id)))
+          ? state.mediaResponses.map(mr => (mr.id === mediaResponse.id ? mediaResponse : mr))
+          : [...state.mediaResponses, mediaResponse],
     }
   ),
   [REMOVE_MEDIA_RESPONSE]: (state: State, { payload: { questionId } }: RemoveMediaResponse) => (

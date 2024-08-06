@@ -65,6 +65,8 @@ module Administration
           required(:regenerate_report).filled(:bool?)
           required(:toggle_status).filled(:bool?)
           required(:remove).filled(:bool?)
+          required(:bulk_download).filled(:bool?)
+          required(:view_workshop_details).filled(:bool?)
         end
         required(:manager).hash do
           optional(:id).maybe(:int?)

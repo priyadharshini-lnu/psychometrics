@@ -273,6 +273,10 @@ en:
             import_data:
               duplicated_mobile_numbers: 'The following mobile numbers are duplicated in CSV: %{mobile_numbers}'
               invalid_header: Invalid header. Export SMS invite to get the correct headers
+        smtp_setting_form:
+          attributes:
+            test_email_id:
+              invalid: Email Id format is not valid.
         super_admin_edit:
           attributes:
             email:
@@ -688,6 +692,7 @@ en:
         assign_reports_and_assessments: Assign Reports and Assessments
         bulk_create_workshop_invites: Bulk Assessment Center Invitations Send
         bulk_download_reports: Bulk Download Reports
+        bulk_download_user_reports: Bulk Download User Reports
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_threesixty_reports: Regenerate Threesixty Subject Reports
         bulk_regenerate_user_reports: Regenerate User Reports
@@ -784,7 +789,7 @@ en:
       remove:
         confirm_message: Are you sure you want to delete the assessment "%{name}"?
         confirm_title: Confirmation Required
-        success_message: Assessment "%{name}" has been removed
+        success_message: Assessment %{name} has been removed
       remove_tag:
         success_message: Tag was removed successfully
       rescore: Rescore
@@ -1044,6 +1049,7 @@ en:
       code_placeholder: One Time Password
       description: Please enter the OTP that was sent to your registered email address.
       resend: Resend OTP
+      resend_in: Resend in %{timestamp} seconds
       resend_success: OTP is sent to your mobile number
       sms_description: Please enter the OTP that was sent to your mobile number.
       submit: Verify
@@ -1081,6 +1087,7 @@ en:
       error:
         blocked: This number is blocked due to too many attempts.
         invalid_code: Invalid code
+        invalid_number: Mobile number is incorrect. Please recheck your number
         max_attempts_reached: Too many attempts. Please wait for 10 minutes before trying again.
   browsers:
     chrome: Google Chrome
@@ -1493,6 +1500,7 @@ en:
       report: Report
       report_id: Report Id
       require_scheduling: Require Scheduling
+      responses_count: Responses Count
       schedule_time: Schedule Time
       scheduling: Scheduling
       status: Status
@@ -1552,6 +1560,8 @@ en:
       should_be_whole_number: should be a whole number
   confirmation:
     delete_comment: Are you sure you want to delete this comment?
+  custom_field:
+    field_name: Field Name
   devise:
     administrators:
       meta_title: Login to administration panel
@@ -2224,8 +2234,8 @@ en:
     en: English
     en-GB: English - UK
     eo: Esperanto
-    es: Spanish (Latin America)
-    es-ES: Spanish (Spain)
+    es: Español (latinoamerica)
+    es-ES: Español (españa)
     et: Estonian
     fa: Persian
     fi: Finnish
@@ -2250,7 +2260,7 @@ en:
     nl: Dutch
     'no': Norwegian
     pl: Polish
-    pt: Portuguese
+    pt: Português
     pt-BR: Brazilian Portuguese
     pt-PT: Portuguese (Portugal)
     pt_BR: Portuguese (Brazil)
@@ -2470,6 +2480,7 @@ en:
           hideXAxisLine: Hide X-axis gridlines
           hideXAxisTitle: Hide X-axis title
           hideYAxisLine: Hide Y-axis gridlines
+          hideYAxisTitle: Hide Y-axis title
           hideZeroValueColumns: Hide Zero Value Columns
           legendPosition: Legend Position
           maxValueLabel: Max Value (number)
@@ -3247,6 +3258,7 @@ en:
   user_reports:
     actions:
       add: Add Report
+      download: Download
       regenerate: Regenerate
     approval_statuses:
       approved: Approved

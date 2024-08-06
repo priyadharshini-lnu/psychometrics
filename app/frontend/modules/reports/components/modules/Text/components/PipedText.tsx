@@ -1,14 +1,14 @@
 import _ from 'lodash'
 import ResultStore from '~/modules/reports/store/ResultStore'
-import I18nStore from '~/modules/reports/store/I18nStore'
 import AppStore from '~/modules/reports/store/AppStore'
 
 const PipedText = {
-  run (module, params = {}): string | null {
+  run (text, module, params = {}): string | null {
     const { assessment_id: assessmentId } = module
 
     const interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name|page_number|total_pages)}}/g
-    const compiled = _.template(I18nStore.tModule(module, 'text'), { interpolate })
+    const compiled = _.template(text, { interpolate })
+
     return compiled({
       first_name: _.get(ResultStore, 'user.first_name', '{{first_name}}'),
       last_name: _.get(ResultStore, 'user.last_name', '{{last_name}}'),

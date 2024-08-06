@@ -110,6 +110,11 @@ const UserDetails: React.FC<Props> = (
                 dataIndex="assessmentName"
               />
               <Column
+                title={I18n.t('common.column.responses_count')}
+                key="responsesCount"
+                dataIndex="responsesCount"
+              />
+              <Column
                 title={I18n.t('common.column.status')}
                 key="status"
                 render={({ status }) => I18n.t(`campaign_assessment.statuses.${status}`)}

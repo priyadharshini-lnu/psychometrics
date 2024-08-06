@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Col, Progress, Space, ProgressProps, Button,
+  Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -13,9 +13,10 @@ import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import store from '~/modules/endUser/store'
 import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/ResourcesTabs'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
+import useAvoidMultipleEvaluation from '~/hooks/useAvoidMultipleEvaluation'
 
 import {
-  fetchAssessment,
+  fetchAssessment, validateSession, setInvalidated,
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -36,7 +37,9 @@ const connector = connect((state: RootState) => ({
 }),
 {
   fetchAssessment,
+  validateSession,
   markAssessmentTimedOut,
+  setInvalidated,
 })
 
 type Params = {
@@ -78,6 +81,11 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)
   }, [])
+
+  const [showInvalidSession, setShowInvalidSession] = useAvoidMultipleEvaluation(
+    params.userAssessmentId, results, validateSession,
+  )
+
   const { isMobile } = useContext(MediaQueryContext)
   const navigate = useNavigate()
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
@@ -178,6 +186,23 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               )}
             />
             <div className={styles.assessmentContainer}>
+              {showInvalidSession && (
+                <Modal
+                  title={I18n.t('errors.invalid_session_title')}
+                  open={showInvalidSession}
+                  cancelText={I18n.t('common.actions.close')}
+                  okText={I18n.t('common.actions.back_to_dashboard')}
+                  closable={false}
+                  maskClosable={false}
+                  onCancel={() => {
+                    setShowInvalidSession(false)
+                  }}
+                  onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
+                  centered
+                >
+                  {I18n.t('assessments.page.invalid_session.description')}
+                </Modal>
+              )}
               {loaded && !error && (
               <ResourcesTabs assessmentStarted={started} assessment={assessment}>
                 <PassAssessment

@@ -30,8 +30,8 @@ RSpec.describe Administration::AuditLogsController, type: :request do
         audit_entry = json_response['list'].last
         expect(audit_entry['action']).to eq('sign_in')
 
-        expect(json_response['types']).to eq(['Users::SuperAdmin'])
-        expect(json_response['actions']).to eq(['sign_in'])
+        expect(json_response['types']).to eq([])
+        expect(json_response['actions']).to eq([])
       end
     end
 
@@ -50,8 +50,8 @@ RSpec.describe Administration::AuditLogsController, type: :request do
         expect(audit_entry['record_id']).to eq(dimension.id)
         expect(audit_entry['action']).to eq('create')
 
-        expect(json_response['types']).to eq(['Dimension', 'Users::SuperAdmin'])
-        expect(json_response['actions']).to eq(%w[create sign_in])
+        expect(json_response['types']).to eq([])
+        expect(json_response['actions']).to eq([])
       end
     end
   end

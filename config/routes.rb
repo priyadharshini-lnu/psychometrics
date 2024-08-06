@@ -247,6 +247,7 @@ Rails.application.routes.draw do
           collection do
             post :regenerate
             get :dashboard
+            post :bulk_download
           end
         end
         resources :text_module_overrides do
@@ -931,6 +932,7 @@ Rails.application.routes.draw do
       get 'anonym/error', to: 'anonyms#error'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       delete 'anonym/:assessment_key', to: 'anonyms#restart', as: :anonym_restart
+      get 'anonym/:assessment_key/restart', to: 'anonyms#restart'
       get :workshop_invites, to: 'workshop_invited_subjects#invites', defaults: { format: :json }
       get :workshop_bookings, to: 'workshop_invited_subjects#bookings', defaults: { format: :json }
 
@@ -1145,11 +1147,13 @@ Rails.application.routes.draw do
     get 'invites/:id/success', to: 'end_user/users#dashboard'
     get 'invites/:id/details', to: 'end_user/users#dashboard'
     get 'idp/*path', to: 'end_user/users#dashboard'
+    get 'evaluation_session_exists', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
 
   get 'media_players/audio', to: 'media_players#audio'
   get 'media_players/video', to: 'media_players#video'
+  get 'evaluation_session_exists', to: 'end_user/users#dashboard'
 
   if Rails.env.production?
     authenticate :user, ->(u) { u.is?(:superadmin) } do

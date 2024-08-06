@@ -103,7 +103,9 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'add_report' => true,
         'regenerate_report' => true,
         'remove' => true,
-        'toggle_status' => true
+        'toggle_status' => true,
+        'bulk_download' => true,
+        'view_workshop_details' => true
       },
       'manager' => {},
       'hogan_id' => hogan_credential.participant_id,

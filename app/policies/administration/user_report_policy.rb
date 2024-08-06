@@ -74,6 +74,10 @@ module Administration
       @user.is?(:superadmin) || has_permission?(:results, :regenerate_report)
     end
 
+    def bulk_download?
+      has_permission?(:results, :bulk_download)
+    end
+
     def destroy?
       @user.is?(:superadmin)
     end

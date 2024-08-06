@@ -72,7 +72,9 @@ RSpec.describe Assessors::UsersController, type: :controller do
       expect(parsed_response['user_assessments']).to eq([{
         'id' => assessors_user_assessment.id,
         'assessment_name' => assessors_user_assessment.assessment.name,
-        'status' => assessors_user_assessment.users_result.status
+        'status' => assessors_user_assessment.users_result.status,
+        'assessment_id' => assessors_user_assessment.assessment_id,
+        'responses_count' => 1
       }])
     end
 

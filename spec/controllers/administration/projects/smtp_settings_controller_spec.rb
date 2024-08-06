@@ -14,14 +14,16 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
       put :update, params: {
         project_id: project.id,
         id: smtp_setting.id,
-        resource: build(:smtp_setting, enabled: true, host: 'gmail.com', port: '465').attributes
+        resource: build(
+          :smtp_setting, enabled: true, host: 'gmail.com', port: '465'
+        ).attributes.merge(test_email_id: 'test@example.com')
       }, format: :json
       smtp_setting.reload
 
       parsed_response = JSON.parse(response.body)
       expected_response = smtp_setting.slice(
         :id, :authentication_type, :enabled, :encryption, :from_name, :from_email,
-        :host, :user_name, :port
+        :host, :user_name, :port, :use_sender_verification
       )
       expect(parsed_response).to eq(expected_response)
       expect(smtp_setting.host).to eq('gmail.com')
@@ -35,7 +37,9 @@ RSpec.describe Administration::Projects::SmtpSettingsController, type: :controll
       put :update, params: {
         project_id: project.id,
         id: smtp_setting.id,
-        resource: build(:smtp_setting, enabled: true, host: 'gmail.com', port: '465', password: '').attributes
+        resource: build(
+          :smtp_setting, enabled: true, host: 'gmail.com', port: '465', password: ''
+        ).attributes.merge(test_email_id: 'test@example.com')
       }, format: :json
       smtp_setting.reload
 

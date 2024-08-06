@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Layout, Card, Progress, Space,
-  Button,
+  Button, Modal,
 } from 'antd'
 import _ from 'lodash'
 import { useLocation } from 'react-router-dom'
@@ -18,6 +18,8 @@ import {
   AssessorAssessment as AssessorAssessmentType, updateAssessorAssessmentStatus,
 } from '../../core/evaluation'
 import { MultipleResponseTable } from './MultipleResponseTable'
+import { validateSession } from '~/modules/endUser/modules/campaigns/core/userAssessment'
+import useAvoidMultipleEvaluation from '~/hooks/useAvoidMultipleEvaluation'
 
 const { I18n } = window
 const { Content } = Layout
@@ -31,6 +33,7 @@ const connecter = connect((state: RootState) => ({
 }), {
   fetch: fetchAssessorAssessment,
   updateAssessorAssessmentStatus,
+  validateSession,
 })
 
 interface Props extends ConnectedProps<typeof connecter> {
@@ -54,6 +57,7 @@ const AssessorAssessment: React.FC<Props> = ({
   },
   allowMultipleResponses,
   updateAssessorAssessmentStatus,
+  validateSession,
 }) => {
   const { search } = useLocation()
   const params = new URLSearchParams(search)
@@ -94,7 +98,12 @@ const AssessorAssessment: React.FC<Props> = ({
     }
   }, [userAssessmentId, currentAssessorFormId])
 
+
   const assessorForm = assessorForms[userAssessmentId || 0]
+
+  const [showInvalidSession, setShowInvalidSession] = useAvoidMultipleEvaluation(
+    userAssessmentId, assessorForm?.result, validateSession,
+  )
 
   const bodyStyles = {
     padding: 0,
@@ -136,6 +145,23 @@ const AssessorAssessment: React.FC<Props> = ({
                 {I18n.t('common.actions.back_to_responses')}
               </Button>
             )
+        )}
+        {showInvalidSession && (
+          <Modal
+            title={I18n.t('errors.invalid_session_title')}
+            open={showInvalidSession}
+            cancelText={I18n.t('common.actions.close')}
+            okText={I18n.t('common.actions.back_to_dashboard')}
+            closable={false}
+            maskClosable={false}
+            onCancel={() => {
+              setShowInvalidSession(false)
+            }}
+            onOk={() => { window.location.href = '/assessors' }}
+            centered
+          >
+            {I18n.t('assessments.page.invalid_session.description')}
+          </Modal>
         )}
         {(!allowMultipleResponses || (allowMultipleResponses && userAssessmentId)) && loaded && (
           <AssessmentContainer

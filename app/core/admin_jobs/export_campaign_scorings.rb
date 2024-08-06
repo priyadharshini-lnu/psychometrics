@@ -9,12 +9,14 @@ module AdminJobs
     private
 
     def headers
-      [
+      column_headers = [
         'User ID',
         'Email',
         'First Name',
         'Last Name'
-      ] + campaign_factors.map(&:name) + [
+      ] + campaign_factors.map(&:name)
+      column_headers << 'Rank' if rank_by_column_exist
+      column_headers + [
         'Calculated Date',
         'Finalized Date',
         'Finalized'
@@ -60,6 +62,7 @@ module AdminJobs
       row += campaign_factors.map do |cf|
         score[cf.id.to_s]
       end
+      row << score['stack_rank'] if rank_by_column_exist
       row + [
         score['campaign_scores_calculated_date'],
         score['campaign_scores_finalized_date'],
@@ -73,6 +76,10 @@ module AdminJobs
         offset: offset,
         limit: limit
       ).query
+    end
+
+    def rank_by_column_exist
+      @rank_by_column_exist ||= CampaignFactor.exists?(campaign_id: campaign.id, ranked: true)
     end
 
     def file_name

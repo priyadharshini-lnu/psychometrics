@@ -44,6 +44,6 @@ class BaseSchema
      Assessments::Actions::Block::CreateByTemplate::BlockSchema,
      Assessments::Actions::Question::CreateByTemplate::QuestionSchema,
      Assessments::QuestionSchema, Assessments::AssessmentSchema, Assessments::BlockSchema, Assessments::FactorSchema,
-     UsersResultUpdateSchema, ProfileFieldSchema, FactorSchema, UserReportEventSchema]
+     UsersResultUpdateSchema, ProfileFieldSchema, FactorSchema, UserReportEventSchema, AuditLogInfoSchema]
   end
 end

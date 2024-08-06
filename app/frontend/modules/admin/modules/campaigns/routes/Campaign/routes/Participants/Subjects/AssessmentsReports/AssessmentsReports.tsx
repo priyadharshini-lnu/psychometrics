@@ -26,11 +26,19 @@ const AssessmentsReports: React.FC<Props> = ({
   regenerateReports,
   regenerateInProgress,
   proctoringSessions,
+  bulkDownload,
+  bulkDownloadInProgress,
 }) => {
   const { campaignId, id } = useParams() as {campaignId:string, tab:string, id: string}
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
   const { message } = App.useApp()
+
+  const handleDownload = () => {
+    bulkDownload(parsedCampaignId, selectedIds).then(() => {
+      message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
+    })
+  }
 
   const handleRegenerateReports = () => {
     regenerateReports(parsedCampaignId, selectedIds).then(() => {
@@ -47,6 +55,16 @@ const AssessmentsReports: React.FC<Props> = ({
         <div>
           <div className={styles.newReportButton}>
             <Space>
+              {user.permissions.bulkDownload && (
+                <Button
+                  type="default"
+                  onClick={handleDownload}
+                  disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
+                  loading={bulkDownloadInProgress}
+                >
+                  <span>{I18n.t('user_reports.actions.download')}</span>
+                </Button>
+              )}
               {user.permissions.regenerateReport && (
                 <Button
                   type="default"

@@ -203,6 +203,8 @@ export interface UserDetails {
     regenerateReport: boolean
     toggleStatus: boolean
     remove: boolean
+    bulkDownload: boolean
+    viewWorkshopDetails: boolean
   }
   manager: {
     id: number | null

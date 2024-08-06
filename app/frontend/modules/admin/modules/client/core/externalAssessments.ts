@@ -23,18 +23,18 @@ const HoganDataTR = t.type({
 
 export type HoganData = t.TypeOf<typeof HoganDataTR>
 
-export const AsyncHoganAssessmentTR = t.type({
+export const AsyncExternalAssessmentTR = t.type({
   status: t.string,
   response: t.type({
     asyncRequestUuid: t.string,
     processingStatus: t.string,
     responseType: t.string,
     responseData: t.union([
-      HoganDataTR,
+      t.string,
       t.null,
       t.type({}),
     ]),
   }),
 })
 
-export type AsyncHoganAssessment = t.TypeOf<typeof AsyncHoganAssessmentTR>
+export type AsyncExternalAssessment = t.TypeOf<typeof AsyncExternalAssessmentTR>

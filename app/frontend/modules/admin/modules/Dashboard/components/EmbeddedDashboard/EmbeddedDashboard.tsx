@@ -96,7 +96,7 @@ export const EmbeddedDashboard: React.FC<Props> = ({
 
   return (
     <div className={cs({ [styles.normalMode]: !isFullScreenMode, [styles.fullScreenMode]: isFullScreenMode })}>
-      {!powerBiLoaded && <div className={styles.skeletonContainer}><Skeleton active /></div>}
+      {embedToken && !powerBiLoaded && <div className={styles.skeletonContainer}><Skeleton active /></div>}
       {isFullScreenMode ? (
         <PageHeader
           className={styles.pageHeader}

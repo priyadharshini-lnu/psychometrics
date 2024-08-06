@@ -22,7 +22,12 @@ module CampaignUsers
       factor_columns = dynamic_factor_columns
       rank_column = find_rank_by_column
       ranking_sql = if rank_column
-                      "RANK() OVER (ORDER BY NULLIF(ct.\"#{rank_column}\"::text, 'null')::float DESC) as stack_rank,"
+                      <<~SQL.squish
+                        CASE
+                          WHEN ct."#{rank_column}" IS NOT NULL THEN
+                            RANK() OVER (ORDER BY ct."#{rank_column}"::float DESC NULLS LAST)
+                        END as stack_rank,
+                      SQL
                     else
                       ''
                     end

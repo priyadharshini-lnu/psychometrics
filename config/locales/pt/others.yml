@@ -1,0 +1,799 @@
+---
+pt:
+  activerecord:
+    attributes:
+      membership:
+        first_name: Nome próprio
+        last_name: Apelido
+      user:
+        email: Endereço de e-mail
+        first_name: Nome próprio
+        last_name: Apelido
+      user_form:
+        email: Endereço de e-mail
+        first_name: Nome próprio
+        last_name: Apelido
+        password: Palavra-passe
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: A palavra-passe atual está incorreta
+  anonym:
+    continue: Continuar
+    notifications:
+      restart:
+        copy: Já iniciou este inquérito. Pode escolher Continuar ou Reiniciar.
+        title: Continuar?
+    restart: Reiniciar
+  assessments:
+    actions:
+      back_to_campaign: Voltar à Campanha
+      extend_time: Prolongar o tempo
+      goto_dashboard: Clique aqui para continuar
+      rescore: Reavaliar
+    audio_response:
+      permission_denied_message: Ative a permissão do microfone no seu navegador para gravar a resposta
+      permission_text: Permita o uso do microfone para gravar áudio
+    card_actions:
+      begin: Começar
+      continue: Continuar
+    instructions:
+      begin_assessment: Começar
+      cancel: Cancelar
+      default: Esta é uma atividade cronometrada. Depois de clicar em Iniciar avaliação, terá %{time} minutos para concluí-la.
+      title: Instruções
+    messages:
+      finish: "Agradecemos o seu tempo. \nAs suas respostas foram gravadas."
+    page:
+      back: Voltar
+      confirm_message: |-
+        #### As suas respostas serão enviadas e não poderão ser alteradas depois disto.
+
+        Clique em **Voltar** para rever as suas respostas uma última vez ou clique em **Enviar** se tiver terminado.
+      next: Avançar
+      read_only: O modo é apenas de leitura, não pode alterar nenhum resultado.
+      save: Guardar
+      submit: Enviar
+    pickgrouprank:
+      items: Itens
+    proceed: Continuar mesmo assim
+    unknown_error: Ocorreu um erro desconhecido.
+    video_response:
+      device: Permitir
+      discard: Eliminar
+      media_recorder:
+        failure: O seu navegador não suporta gravação de vídeos. Utilize o Chrome ou o Firefox para gravação de vídeos
+        success: Permita o uso da câmara e do microfone para gravar áudio e vídeo
+      retake: Refazer
+      save: Guardar
+      saved:
+        label: Guardado
+        tooltip: Este vídeo foi marcado para envio. Em alternativa, pode escolher gravar outra vez.
+      saving: A guardar...
+      start_recording: Iniciar gravação
+      tracker:
+        backward: Está muito próximo do ecrã. Afaste-se um pouco.
+        forward: Está muito longe do ecrã. Aproxime-se um pouco.
+        frame: Certifique-se de que o seu rosto está alinhado com a moldura
+        ready: Pressione o botão Gravar quando estiver a postos para gravar
+      use_this: Enviar esta gravação
+    wait: Aguardar
+  auth:
+    current_password: Palavra-passe atual
+    current_password_placeholder: Insira a palavra-passe atual
+    email: E-mail
+    email_placeholder: Insira o endereço de e-mail
+    expired_password:
+      description: Preencha todos os campos para criar uma nova palavra-passe
+      submit: Enviar
+      title: Renovar a sua palavra-passe
+    login:
+      description: Inicie sessão com as informações da sua conta pessoal
+      forgot_password: Esqueceu-se da palavra-passe?
+      login_btn: Iniciar sessão
+      not_member: Não é membro?
+      or: OU
+      sso_btn: Iniciar sessão usando o Início de sessão única
+      title: Damos-lhe as boas-vindas!
+    logout: Terminar sessão
+    new_password: Nova palavra-passe
+    otp:
+      code: Código
+      code_placeholder: Palavra-passe de uso único
+      description: Insira a OTP que foi enviado para o seu endereço de e-mail registado.
+      resend: Reenviar OTP
+      submit: Verificar
+      title: Palavra-passe de uso único
+    password: Palavra-passe
+    password_confirmation: Confirmar palavra-passe
+    password_confirmation_placeholder: Insira a confirmação da palavra-passe
+    password_placeholder: Insira a palavra-passe
+    registration:
+      description: Preencha os dados abaixo para se registar e criar uma nova conta
+      email_hint: Respeitamos a sua privacidade e não toleramos spam. Nunca forneceremos as suas informações a terceiros
+      first_name: Nome próprio
+      first_name_placeholder: Insira o nome próprio
+      have_account: Já tem uma conta?
+      last_name: Apelido
+      last_name_placeholder: Insira o apelido
+      login_now: Iniciar sessão agora!
+      registration_code: Código de registo
+      registration_code_placeholder: Insira Código de registo
+      terms_notice: Ao efetuar o registo, concorda com os nossos <a href="%{terms_url}">Termos de Serviço e Política de Privacidade</a>
+      title: Registar-se
+    reset_password:
+      back_to_sign_in: Voltar ao início de sessão
+      description: Insira o e-mail associado à sua conta
+      submit: Redefinir a palavra-passe
+      title: Esqueceu-se da palavra-passe?
+    set_password:
+      description: Para criar uma nova palavra-passe, insira a sua nova palavra-passe nas caixas abaixo
+      submit: Enviar
+      title: Criar palavra-passe
+    sign_out: Iniciar sessão como utilizador diferente
+    sign_up: Registar-se
+    terms_link: <a href="%{terms_url}">Termos e Declaração de Privacidade</a>
+  campaign:
+    all_activities_are_completed: Todas as atividades estão agora concluídas.
+    all_activities_are_completed_multiple: Todas as atividades desta campanha estão agora concluídas. Aceda ao Painel e verifique se tem alguma outra atividade atribuída.
+    begin: Comece as suas tarefas
+    campaigns: Campanhas
+    closed_campaign_message: Esta campanha está fechada. Não pode realizar nenhuma avaliação nesta campanha.
+    complete_prev: Conclua todas as avaliações anteriores
+    continue: Continue as suas tarefas
+    dashboard_instructions: Foram-lhe atribuídas a várias atividades que precisa de concluir. Certifique-se de que verifica se todas as atividades atribuídas foram concluídas em todas as campanhas.
+    dashboard_menu:
+      bookings: Reservas
+      campaign: Campanha
+      change_password: Alterar a palavra-passe
+      home: Início
+      insights: Informações
+      profile: Perfil
+      profile_details: Detalhes
+      tasks: Tarefas
+    details: Detalhes
+    edit_evaluation:
+      body: Informamos que, ao clicar em Reavaliar, será direcionado para o início do inquérito, onde poderá editar as respostas. As respostas anteriores ainda estarão disponíveis, mas pode alterá-las conforme a sua leitura cuidadosa. Após a edição, terá que reenviar a avaliação para concluir o processo.
+      edit: Reavaliar
+      title: Confirmar
+      view: Ver avaliação
+    goto_dashboard: Aceder ao Painel
+    inactive_campaign_message: Atualmente, não tem nenhuma atividade atribuída.
+    insights_reports: Informações e relatórios
+    instruction_modal:
+      campaign_start_final_instructions: |
+        <p>
+          Tenha em atenção de que não há forma de parar ou pausar o cronómetro. O cronómetro da campanha continuará a funcionar mesmo quando fechar o navegador, pelo que, em nenhum momento, deve pensar em deixar as tarefas a meio para fazer outra coisa. Certifique-se de que minimiza as distrações durante as tarefas. Encontre um ambiente silencioso, desative as notificações nos seus dispositivos e evite multitarefas. Mantenha a sua concentração e atenção. Quando o cronómetro da campanha chegar ao fim, não poderá continuar. Se leu as instruções acima, clique em iniciar para continuar as tarefas atribuídas.
+        </p>
+      campaign_start_instruction: |
+        <h4>Leia as instruções a seguir adequadamente.</h4>
+        <p>
+          A(s) tarefa(s) que está prestes a iniciar são cronometradas. Depois de clicar em "Iniciar", o cronómetro da campanha começará automaticamente. Tem %{minutes} minutos para concluir todas as atividades. Procure concluir as tarefas dentro do prazo designado e administre o tempo de forma eficaz para evitar pressa no processo de avaliação. Certifique-se de que conclui as tarefas de uma só vez. Por isso, se precisar de fazer uma pausa, agora é a hora.
+        </p>
+      common_proctoring_instructions: |
+        <h4>Supervisão</h4>
+        <p>
+          Ao clicar no botão Iniciar, será redirecionado para o nosso sistema de supervisão. O sistema monitorizará a sua câmara, microfone e ecrã durante a sessão. Estas sessões são supervisionadas automaticamente pelo nosso sofisticado sistema de IA, proporcionando uma experiência de utilizador ininterrupta e tranquila. No entanto, as sessões também podem ser analisadas por supervisores humanos. Quaisquer indícios de má conduta ou irregularidades serão sinalizados. Isto está a ser feito para garantir que não ocorre qualquer tentativa de batota. Se forem detetadas suspeitas, as suas tarefas serão canceladas.
+        </p>
+      lockdown_browser_instruction: |
+        <h4>Navegador de supervisão</h4>
+        <p>
+          Para concluir as tarefas supervisionadas, ser-lhe-á solicitado que descarregue e instale um navegador especial. Siga as instruções no ecrã a seguir. Pode desinstalar depois de concluir todas as atividades necessárias.
+        </p>
+    instructions:
+      heading: Consulte as orientações abaixo antes de começar. Desejamos-lhe sucesso!
+    language:
+      content: Esta tarefa não está disponível no idioma atualmente selecionado. Selecione um dos idiomas disponíveis para prosseguir.
+      single_lang: Esta tarefa está disponível apenas em %{lang}. Clique em "Prosseguir" para continuar.
+      title: Selecionar idioma
+    panels:
+      reports: Relatórios
+    profile:
+      complete_heading: O seu perfil está completo
+      complete_profile_label: Completar agora
+      edit_profile_label: Editar perfil
+      incomplete_heading: Complete o seu perfil
+      last_login_text: 'Último início de sessão em:'
+      last_updated_text: 'O seu perfil foi atualizado pela última vez em:'
+      sub_heading: Preencha as informações completas do seu perfil
+      welcome_text: Damos-lhe as boas-vindas,
+    thank_you_for_time: Agradecemos o seu tempo
+    time_left:
+      cancel: Cancelar
+      continue: Continuar
+      notification: O tempo que lhe foi atribuído para esta tarefa "%{assessmentName}" foi de %{totalAssessmentTime}. Devido ao tempo total decorrido, agora tem apenas %{remainingCampaignTime} como tempo ajustado para concluir esta tarefa.
+    timer:
+      notification: Tem %{minutes} minutos e %{seconds} segundos para concluir
+  campaign_assessment:
+    assessments_heading: As suas tarefas
+    statuses:
+      completed: Concluído
+      in_progress: Em curso
+      not_started: Não iniciado
+  change_password_page:
+    old_password: Palavra-passe antiga
+    password: Palavra-passe
+    password_confirmation: Confirmação da palavra-passe
+    title: Alterar a palavra-passe
+    warning_message: 'Importante: Alterar a sua palavra-passe irá desconectá-lo.'
+  checking_wizard:
+    audio_check:
+      access: Acesso
+      access_help: Clique aqui para obter ajuda.
+      allow: Permitir
+      allow_title: Permita o uso do microfone para gravar áudio
+      continue: Continuar
+      processing: A processar
+      record_title: Diga e repita a seguinte frase 3 vezes.
+      speech_detection: Deteção de voz
+      test_message: é ótimo falar consigo
+      title: Necessitamos de garantir que o seu sistema consegue gravar áudio.
+    network_check:
+      continue: Continuar
+      download: Descarregar
+      please_check_connection: Verifique a sua ligação à Internet
+      processing: A processar
+      run_again: Executar novamente
+      run_again_title: E execute este teste novamente
+      title: Clique em Iniciar para começar o teste de velocidade da Internet.
+      upload: Carregar
+    success:
+      start: Iniciar avaliação
+      title: Concluiu todas as verificações com êxito.
+    system_check:
+      continue: Continuar
+      title: Antes de iniciar esta avaliação, é necessário realizar algumas verificações ao seu sistema.
+    video_check:
+      access: Acesso
+      access_help: Clique aqui para obter ajuda.
+      allow: Permitir
+      allow_title: Permita o uso da câmara para gravar vídeo
+      continue: Continuar
+      description: Qualquer vídeo ou foto capturado nesta fase não será guardado ou usado. É usado localmente no seu dispositivo para garantir que a câmara está a funcionar para uma pergunta futura que possa necessitar de gravação de vídeo.
+      face_detection: Deteção de rosto
+      processing: A processar
+      run_again: Executar novamente
+      title: Necessitamos de garantir que o seu sistema consegue gravar o vídeo
+  common:
+    actions:
+      add: Adicionar
+      archive: Arquivar
+      cancel: Cancelar
+      close: Fechar
+      copy: Copiar
+      delete: Eliminar
+      edit: Editar
+      remove: Remover
+      reset: Repor
+      resolve: Resolver
+      restore: Restaurar
+      save: Guardar
+      search: Pesquisar
+      send: Enviar
+      start: Iniciar
+      unarchive: Desarquivar
+      unresolve: Reabrir
+      update: Atualizar
+      upload: Carregar
+    column:
+      action: Ação
+      category: Categoria
+      created_at: Criado em
+      id: Identificação
+      status: Estado
+    model:
+      assessments: Avaliações
+      campaigns: Campanhas
+      reports: Relatórios
+    text:
+      cancel: Cancelar
+      confirm: Confirmar
+      continue: Continuar
+      default: Padrão
+      download: Descarregar
+      na: N/A
+      ok: OK
+      response: Resposta
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Iniciar sessão
+    failure:
+      already_authenticated: Já está inscrito.
+      inactive: A sua conta ainda não está ativada.
+      invalid: E-mail ou palavra-passe inválidos.
+      invited: Tem um convite pendente, aceite-o para finalizar a criação da sua conta.
+      magic_link_invalid: Link de início de sessão inválido ou expirado.
+      not_found_in_database: E-mail ou palavra-passe inválidos.
+      timeout: A sua sessão expirou. Inicie sessão para continuar.
+      unauthenticated: Tem de iniciar sessão ou registar-se antes de continuar.
+    invitations:
+      edit:
+        password_label: Palavra-passe
+    registrations:
+      communication_not_setup_error: A comunicação por e-mail de registo não está configurada, contacte o administrador deste projeto.
+      new:
+        email: Endereço de e-mail
+        first_name: Nome próprio
+        instruction: Preencha os dados abaixo para se registar e criar uma nova conta
+        last_name: Apelido
+        privacy_notice: Respeitamos a sua privacidade e não toleramos spam. Nunca forneceremos as suas informações a terceiros.
+        registration_code: Código de registo
+        submit: Registar
+        tabs:
+          register: Registar
+          sign_in: Iniciar sessão
+        terms_notice: Ao efetuar o registo, concorda com os nossos <a href="%{terms_url}">Termos de Serviço e Política de Privacidade</a>
+        title: Registe-se agora
+      success:
+        actions:
+          sign_in: Iniciar sessão
+    sessions:
+      new:
+        email: Endereço de e-mail
+        forgot_password: Esqueceu-se da palavra-passe?
+        instruction: Inicie sessão com as informações da sua conta pessoal
+        password_placeholder: Palavra-passe
+        submit: Iniciar sessão
+        tabs:
+          register: Registar
+          sign_in: Iniciar sessão
+        title: Damos-lhe as boas-vindas!
+    two_factor_authentication:
+      attempt: Insira a OTP que recebeu no seu endereço de e-mail registado
+      code_has_been_sent: A sua nova OTP foi enviada para o seu e-mail registado
+  frontend:
+    activate: Ativar
+    are_you_sure: Tem certeza?
+    assessment: Avaliação
+    assessment_groups:
+      create_success: O grupo foi criado com êxito
+      update_success: O grupo foi atualizado com êxito
+    background_reading: Leitura de contexto
+    bookings:
+      accept_invite_msg: Recebeu um convite. Reserve a sua vaga.
+      add_to_calendar: Adicionar ao calendário
+      add_to_calendar_tour_description: Adicione esta reserva ao seu calendário
+      assessment_center_alert:
+        btn_title: Campanha
+        message_part1: Conclua todas as atividades prévias nisto
+        message_part2: antes de reservar uma vaga.
+      assessment_center_group_name: Centro de avaliação
+      booking_failed_msg: 'Falha ao reservar vaga: %{error}'
+      buttons:
+        book: Reservar
+        book_again: Reservar novamente
+        cancel: Cancelar
+        cancel_booking: Cancelar reserva
+        confirm_booking: Confirmar reserva
+        confirm_reschedule: Confirmar reagendamento
+        modify: Modificar
+        nevermind: Esquecer
+        no_text: Não
+        request_cancel: Solicitar cancelamento
+        request_reschedule: Solicitação de reagendamento
+        reschedule: Reagendar
+        reserve_spot: Reserve a sua vaga
+        yes_text: Sim
+      cancel_booking_confirmation: Tem certeza de que deseja cancelar esta reserva?
+      cancellation_failed: 'Falha ao cancelar a reserva: %{error}'
+      cancellation_success: Reserva cancelada com êxito
+      comments_required_msg: Insira os seus comentários
+      confirm_booking_description: Confirme se estes dados estão corretos antes de finalizar a reserva.
+      confirm_booking_title: Confirmar esta reserva?
+      default_failure_msg: Não é possível processar o seu pedido. Tente novamente mais tarde.
+      default_requires_msg: "%{name} é obrigatório"
+      join_activity_meeting: Participar na reunião
+      join_workshop_meeting: Participar na reunião
+      language: Idioma
+      language_placeholder: Selecione um idioma
+      language_preference_question: Tem preferência de idioma?
+      language_required_msg: Selecione um idioma
+      meeting_start_text: 'A reunião começará dentro de:'
+      need_changes: Necessita de fazer as alterações?
+      neurodivergence_comment_placeholder: Os seus comentários
+      neurodivergence_question: Precisa de alguma adaptação ou ajuste razoável devido a necessidades especiais ou deficiências para participar plenamente na avaliação?
+      other_invite: Ver mais %{count} convite
+      other_invites: Ver mais %{count} convites
+      reason: Motivo
+      reason_for_cancel: Motivo do cancelamento
+      reason_for_reschedule: Motivo para o reagendamento
+      request_cancellation_failed: 'Falha ao solicitar cancelamento: %{error}'
+      request_cancellation_success: Solicitado para cancelamento com êxito
+      request_reschedule_failed: 'Falha ao solicitar reagendamento: %{error}'
+      request_reschedule_success: Solicitado para reagendamento com êxito
+      reschedule_failed_msg: 'Falha ao reagendar: %{error}'
+      reschedule_reason_placeholder: Para continuar, insira o motivo do reagendamento.
+      schedule_success: Esta reserva está agendada
+      schedule_success_msg: Enviamos por e-mail um convite de calendário com todos os detalhes para si e para outros participantes.
+      starts_at: 'Começa a: %{date}'
+      starts_in: 'Começa em:'
+      tab_label:
+        bookings: Reservas
+        invites: Convites
+      what: O quê
+      when: Quando
+      workshop_start_text: O seu Centro de avaliação começará em
+    break_time: Intervalo
+    campaign:
+      actions:
+        remove:
+          confirmation: Insira o nome da campanha atual fornecido abaixo na caixa de texto para remover a campanha
+          success: "%{campaignName} removida com êxito."
+      users:
+        completion_statuses:
+          completed: Concluído
+          in_progress: Em curso
+          not_started: Não iniciado
+    change_password: Alterar palavra-passe
+    delete: Eliminar
+    edit: Editar
+    login: Iniciar sessão
+    manage: Gerir
+    'no': Não
+    resource:
+      create_success: "%{readableResourceName} adicionado com êxito"
+      update_success: "%{readableResourceName} atualizado com êxito"
+    update: Atualizar
+    upload: Carregar
+    workshop_invited_subjects:
+      statuses:
+        cancelled: Cancelado
+        requested_cancellation: Solicitou cancelamento
+        requested_rescheduling: Solicitou reagendamento
+    'yes': Sim
+  navigation:
+    logout: Terminar sessão
+  profile:
+    add_photo: Adicionar fotografia
+    age: Idade
+    change_password: Alterar a palavra-passe
+    change_photo: Alterar fotografia
+    email: E-mail
+    female: Feminino
+    first_name: Nome próprio
+    gender: Género
+    last_name: Apelido
+    locale: Idioma preferencial
+    male: Masculino
+    not_disclosed: Prefiro não revelar
+    password: Palavra-passe
+    password_confirmation: Confirmação da palavra-passe
+    success_update: Perfil guardado com êxito
+    timezone: Fuso horário
+    title: O meu perfil
+    update: Atualizar
+  reports:
+    actions:
+      add: Adicionar relatório
+      download: Descarregar relatório
+      view: Ver relatório
+    modules:
+      factors_table:
+        description: Descrição
+        no_data: Não há dados disponíveis para esta secção.
+        rank: Classificação
+        score: Pontuação
+      gap_assessment:
+        gap: Diferença
+        item: Indicador
+        negative_gap: Diferenças negativas
+        no_negative_gaps: Não há diferenças negativas
+        no_positive_gaps: Não há diferenças positivas
+        positive_gap: Diferenças positivas
+        rank: Classificação
+        scoring_category: Competência
+      highest_lowest:
+        bottom_5: ÚLTIMOS 5
+        category: Categoria
+        highest_scores: Pontuações mais altas
+        item: Indicador
+        lowest_scores: Pontuações mais baixas
+        mean_score: Pontuação média
+        rank: Classificação
+        scoring_category: Competência
+        sub_competenties: Sub-competências
+        top_5: TOP 5
+      potential_career_full:
+        career_strengths_and_results: Pontos fortes da carreira e os seus resultados
+        career_sub_tracks: Subpercursos de carreira
+        key_career_tracks_within: Segue-se uma lista de potenciais funções para cada uma das carreiras. Lembre-se que esta lista é meramente indicativa e não exaustiva. Note-se que as funções em itálico exigem níveis de formação e/ou experiência mais elevados.
+        potential_areas_of_study: Potenciais áreas de estudo
+        strength_high: Força da assinatura
+        strength_low: Força do desenvolvimento
+        strength_moderate: Força potencial
+        work_environment: Ambiente de trabalho
+        your_suitability: A sua aptidão
+      single_value:
+        factor_name: Categoria da pontuação
+        question_name: Perguntas
+      single_value_cluster:
+        competency: Competência
+        developmental_rating: Classificação do desenvolvimento
+        questions: Perguntas
+      strength_clusters:
+        index_sub_factors_considered: Subfatores do Thriving Index que foram considerados para fornecer a sua pontuação final relativamente ao ambiente de trabalho %{workstyle}
+        possible_roles: Funções possíveis
+        work_environments: Ambientes de trabalho previstos
+      three_sixty_default:
+        factor:
+          items: Itens
+          max: Valor máximo
+          mean: Média
+          min: Valor mínimo
+          standardDeviation: Desvio padrão
+          sum: Soma
+          totalResponses: Total de respostas
+          variance: Variação
+          weightedMean: Média ponderada
+        question:
+          no_response: Nenhuma resposta disponível
+        statistic: Estatísticas
+        value: Valor
+      three_sixty_report_summary:
+        completed: Concluído
+        footnote: "* Excluído devido ao requisito de limiar mínimo"
+        invited: Convidado
+        relationships: Relações
+        total: Total
+      video_response:
+        no_results: Não foram gravados vídeos
+    show:
+      export_pdf: Exportar para PDF
+      header: Relatório
+    statuses:
+      approved: Aprovados
+      available: Disponível
+      denied: Recusado
+      incomplete: Incompleto
+      not_available: Não disponível
+      on_hold: Pendente
+      released: Divulgado
+  shared:
+    filters:
+      clear: Limpar filtros
+    internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
+    terms_conditions_privacy: Declaração de privacidade
+    tte_terms_and_condition: Termos e privacidade
+  simple_form:
+    placeholders:
+      administrator:
+        email: Endereço de e-mail
+        last_name: Apelido
+      memebrship:
+        last_name: Apelido
+      user:
+        email: Endereço de e-mail
+        first_name: Nome próprio
+        last_name: Apelido
+        password: Palavra-passe
+      user_form:
+        email: Endereço de e-mail
+        first_name: Nome próprio
+        last_name: Apelido
+        password: Palavra-passe
+  subjects:
+    statuses:
+      completed: Concluído
+      declined: Declinado
+      denied: Recusado
+      done: Concluído
+      not_completed: Não concluído
+      waiting: Em espera
+  threesixty:
+    accept_privacy_modal:
+      accept: Aceitar
+      checkbox: Li e compreendi a Política de Privacidade acima mencionada
+      title: Consentimento para o tratamento de dados
+    add: Adicionar
+    and: E
+    approve_all: Aprovar tudo
+    approve_all_successful: Aprovou todas as nomeações
+    approve_evaluations: Aprovar avaliações
+    approve_nominations: Aprovar nomeações
+    approve_reports: Aprovar relatórios
+    approved: Aprovados
+    approving_mail_sent: O e-mail para aprovação da nomeação foi enviado aos gestores
+    as_my: como minha
+    assessment: Avaliação
+    back_to_tasks: Voltar às tarefas
+    begin: Começar
+    cancel: Cancelar
+    close_evaluation_modal:
+      message: Depois de ver o relatório, %{pronoun_or_name} não poderá receber mais avaliações
+      title: Tem a certeza de que pretende ver o relatório?
+    closed_campaign_message: Esta campanha 360 está encerrada. Não é possível nomear ou avaliar ninguém para esta campanha.
+    completed: Concluído
+    confirm: Tem certeza?
+    confirmation_for_nomination_removal: Tem a certeza de que pretende remover a nomeação?
+    confirmation_required: Confirmação necessária
+    confirmation_text_incorrect: O texto de confirmação está incorreto
+    confirmation_text_placeholder: Texto de confirmação aqui
+    continue: Continuar
+    dashboard_title: Damos-lhe as boas-vindas, %{name}
+    decline: Recusar
+    decline_invite: Recusar convite
+    denied: Recusado
+    deny_all: Recusar tudo
+    deny_all_successful: Recusou todas as nomeações
+    download_pdf: Descarregar PDF
+    download_report: Descarregar relatório
+    download_reports: Descarregar relatórios
+    edit_user: Editar utilizador
+    email_approve_request: Pedido de aprovação por e-mail
+    email_schedules:
+      delete_successful: Calendário de e-mail eliminado com êxito
+    evaluate: Avaliar
+    evaluation: Avaliação
+    evaluation_all_closed_message: Neste momento, todas as nomeações estão a aguardar aprovação
+    evaluation_closed_nomination_message: Não é possível nomear para este tema porque a avaliação está encerrada para este tema
+    evaluation_help_modal:
+      title: Ajuda na avaliação
+    evaluations: Avaliações
+    evaluator: Avaliador
+    export_pdf: Exportar PDF
+    first_name: Nome próprio
+    first_name_error: Introduza o seu nome
+    help: Ajuda
+    language: Idioma
+    last_name: Apelido
+    last_name_error: Introduza o seu apelido
+    load_results: Resultados de carregamento
+    mail_history:
+      statuses:
+        success: Êxito
+        undelivered: Não entregue
+    mindmill_confirmation: Ao iniciar esta avaliação, perderá os resultados "%{assessment}". Clique em "Cancelar" se pretender abandonar os resultados e clique em "Ok" se pretender continuar
+    my_projects: Os meus projetos
+    nominate: Nomear
+    nominate_evaluators: Nomear avaliadores para
+    nomination: Nomeação
+    nomination_help_modal:
+      title: Ajuda para nomeações
+    nominations: Nomeações
+    options:
+      global:
+        cannot_re_edit: Os participantes não podem editar as avaliações
+    or: Ou
+    page_title: Revisão do Signify 360° – Nível de aplicação
+    participant_list:
+      actions:
+        approve_report: Aprovar relatório
+        download_report: Descarregar relatório
+        edit: Editar
+        hold_report: Reter relatório
+        login: Iniciar sessão
+        mark_as_done: Marcar como enviado
+        release_report: Divulgar relatório
+        remove_campaign: Remover da campanha
+        remove_report_approval: Remover aprovação do relatório
+        remove_report_hold_release_report: Remover retenção/divulgação do relatório
+        remove_subject: Remover assunto
+        unmark_as_done: Desmarcar como enviado
+        view_report: Ver relatório
+        view_responses: Ver respostas
+      confirmation_messages:
+        approve_report: Tem a certeza de que quer aprovar o relatório?
+        hold_report: Tem a certeza de que quer reter o relatório?
+        mark_evaluation_done: Tem a certeza de que pretende marcar a avaliação como concluída? A avaliação será encerrada para este assunto.
+        release_report: Tem a certeza de que quer divulgar o relatório?
+        remove_from_campaign: Tem a certeza de que pretende remover o utilizador da campanha?
+        remove_release_hold: Tem a certeza de que pretende remover o estatuto de divulgado/retido?
+        remove_report_approval: Tem a certeza de que pretende remover a aprovação do relatório?
+        remove_subject: Tem a certeza de que pretende remover o assunto com o e-mail da campanha?
+        umark_evaluation_as_complete: Tem a certeza de que pretende anular a marcação da avaliação como concluída?
+      report_generation_message: O relatório está a ser gerado. Avisaremos quando o relatório estiver pronto.
+    processing: A processar
+    processing_report: A processar relatório
+    progress_text: "%{completed} de %{total}"
+    question:
+      chat_type:
+        input_placeholder: Escreva a sua mensagem...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: Editar
+        max_length_warning: Restam %{x} caracteres
+        message: A sua mensagem
+        send: Enviar
+        subject: Assunto
+        successful_message: Enviou o e-mail com sucesso
+        to: Para
+    remind_all: Lembrar tudo
+    remind_mail_sent: Lembretes enviados aos avaliadores que não concluíram a avaliação
+    report_for: Relatório para
+    report_generation_in_progress: O relatório está a ser gerado. Avisaremos quando o relatório estiver pronto.
+    reports: Relatórios
+    reports_help_modal:
+      title: Ajuda para relatórios
+    reset_campaign_confirmation: Introduza na caixa de texto o nome da campanha atual indicado abaixo para repor todos os participantes
+    reset_nomination_confirmation: Introduza na caixa de texto o nome atual da campanha indicado abaixo para anular todas as nomeações
+    save: Guardar
+    select_relationnship: Selecionar relacionamento
+    select_relationship: Selecionar relacionamento
+    self: O próprio
+    set_name_for_evaluator: Definir o nome do avaliador
+    setup_nominations: Definir as nomeações
+    subject: Assunto
+    submit: Enviar
+    total_progress: Progresso total
+    user_name_input_placeholder: escreva o nome ou e-mail...
+    validation_errors: Erros de validação
+    view_my_report: Ver O meu relatório
+    view_nominations: Ver nomeações
+    view_reports: Ver relatórios
+    waiting: Em espera
+    you: Você
+    yourself: Você mesmo
+  user:
+    fields:
+      email: Endereço de e-mail
+      first_name: Nome próprio
+      last_name: Apelido
+  user_reports:
+    actions:
+      regenerate: Regenerar
+    messages:
+      regenerate_successful: Tarefa de regeneração de relatórios agendada com êxito
+    modals:
+      remove:
+        content: Tem a certeza de que pretende remover o relatório %{userReportName}?
+        successfully: Relatório %{userReportName} removido com sucesso
+    preview_report: Pré-visualizar relatório
+    statuses:
+      generating: A gerar
+      not_prepared: Não disponível
+      prepared: Disponível
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: O áudio está gravado mas não está gravado
+        RECORDING: A gravação áudio está em curso
+        SAVING: O carregamento do áudio gravado está em curso
+      required: Grave e guarde o áudio antes de continuar
+    FileUpload:
+      in_progress:
+        SAVING: O carregamento do ficheiro está em curso
+      required: Carregue o ficheiro
+    TextEntry:
+      Email:
+        character_range: A mensagem de e-mail introduzida tem de ter, no mínimo, %{min} e, no máximo, %{max} caracteres.
+        subject:
+          min_length: O campo "Assunto" deve ter um mínimo de 10 caracteres
+        to:
+          required: O campo é obrigatório
+    VideoResponse:
+      in_progress:
+        recorded: O vídeo está gravado mas não está guardado
+        recording: A gravação vídeo está em curso
+        saving: O carregamento do vídeo gravado está em curso
+      required: Grave e guarde o vídeo antes de continuar
+    actions_still_in_progress: Estão em curso as ações abaixo. Se prosseguir, vai perder estes dados.
+    blank: não pode ficar em branco
+    character_range: A sua resposta deve ter, pelo menos, %{min} e não mais do que %{max} caracteres.
+    date: A sua resposta tem de ser uma data válida (mm/dd/aaaa)
+    each_group_contains: Cada grupo tem de conter, no mínimo, %{min} e, no máximo, %{max} itens
+    email: A sua resposta tem de ser um e-mail válido
+    file_upload:
+      EntityTooLarge: O tamanho do ficheiro deverá ser menor que %{maxFileSize} MB
+      WrongFileType: 'O tipo de ficheiro deve ser um dos seguintes: %{allowedFileTypes}'
+    issue: Problema
+    least: Responda pelo menos %{min} opção(ões).
+    least_hotspot: Responda pelo menos %{min} opção(ões).
+    max_character: A sua resposta não deve conter mais do que %{max} caracteres.
+    max_word: A sua resposta não deve ter mais do que %{max} palavras.
+    min_character: A sua resposta deve conter pelo menos %{min} caracteres.
+    min_word: A sua resposta deve contar pelo menos %{min} palavras
+    must_rank_between: Atribua um valor de %{min} a %{max} para cada item. Os valores não podem ser repetidos.
+    must_select: Selecione de %{min} a %{max} opções
+    number: A sua resposta deve ser um número
+    range: Responda pelo menos %{min} e não mais do que %{max} opção(ões).
+    required: Responda a esta questão
+    text: A sua resposta não pode conter números
+    title:
+      one: Há um erro, por favor verifique suas respostas
+      other: Existem %{count} erros, por favor verifique suas respostas
+      two: Há 2 erros, por favor verifique suas respostas

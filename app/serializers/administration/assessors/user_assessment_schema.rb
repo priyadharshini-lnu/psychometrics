@@ -8,8 +8,10 @@ module Administration
           config.validate_keys = true
 
           required(:id).filled(:int?)
+          required(:assessment_id).filled(:int?)
           required(:assessment_name).filled(:str?)
           required(:status).filled(:str?)
+          required(:responses_count).filled(:int?)
         end
       end
     end

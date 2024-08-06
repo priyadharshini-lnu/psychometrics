@@ -55,9 +55,13 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def factors
-    assessment = Assessment.where(owner_id: [nil, current_user.client_ids]).find(params[:id])
+    assessment_scope = if current_user.is?(:superadmin)
+                         Assessment.all
+                       else
+                         Assessment.where(owner_id: [nil, current_user.accessible_client_ids])
+                       end
 
-    render json: assessment.dimension.all_factors.as_json(only: %i[id name])
+    render json: assessment_scope.find(params[:id]).dimension.all_factors.as_json(only: %i[id name])
   end
 
   def upload_data_sheet

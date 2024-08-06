@@ -13,8 +13,8 @@ import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/compone
 import RedirectIcon from './RedirectIcon'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import {
-  AsyncHoganAssessmentTR,
-  AsyncHoganAssessment,
+  AsyncExternalAssessmentTR,
+  AsyncExternalAssessment,
   HoganData,
 } from '~/modules/admin/modules/client/core/externalAssessments'
 
@@ -34,10 +34,10 @@ export const HoganStep: FC<Props> = ({
   const [loading, setLoading] = useState(false)
   const {
     makeAsyncRequest,
-  } = useAsyncRequestResponse<AsyncHoganAssessment>({
+  } = useAsyncRequestResponse<AsyncExternalAssessment>({
     url: userAssessmentUrl,
     data: { id: userAssessmentId },
-    responseType: AsyncHoganAssessmentTR,
+    responseType: AsyncExternalAssessmentTR,
   })
 
   useEffect(() => {

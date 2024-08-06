@@ -1,5 +1,7 @@
 import { useEffect, FC } from 'react'
-import { Layout, Col, Space } from 'antd'
+import {
+  Layout, Flex,
+} from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 
@@ -67,28 +69,26 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
 
   const headerElement = (
     <>
-      <Col offset={4} span={16} className="ta-c">
-        <Space align="center" size="large">
-          {isTimedCampaign && remainingCampaignTime && (
-          <CountdownTimer
-            prefix={(
-              <>
-                {I18n.t('user_assessments.timer_title.campaign')}
-                {': '}
-                <ClockCircleOutlined />
-              </>
+      <Flex flex="auto" className="ms-8">
+        <Flex justify="center" align="center" flex="auto">
+          {isTimedCampaign && remainingCampaignTime ? (
+            <CountdownTimer
+              prefix={(
+                <>
+                  {I18n.t('user_assessments.timer_title.campaign')}
+                  {': '}
+                  <ClockCircleOutlined />
+                </>
               )}
-            notificationPoints={notificationDurations}
-            notificationTemplate={notificationMessage}
-            seconds={remainingCampaignTime}
-            onFinish={() => fetchCampaign(location.pathname)}
-          />
-          )}
-        </Space>
-      </Col>
-      <Col flex="auto" span={24} className="ta-e">
+              notificationPoints={notificationDurations}
+              notificationTemplate={notificationMessage}
+              seconds={remainingCampaignTime}
+              onFinish={() => fetchCampaign(location.pathname)}
+            />
+          ) : <div className="p-1" />}
+        </Flex>
         <LangDropdownWithChangeLocale />
-      </Col>
+      </Flex>
     </>
 
   )

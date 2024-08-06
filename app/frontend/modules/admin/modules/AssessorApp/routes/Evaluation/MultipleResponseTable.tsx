@@ -42,18 +42,19 @@ export const MultipleResponseTable: FC<Props> = ({ assessorAssessments, onView }
     },
   ]
   const lastAssessment = _.last(assessorAssessments)
+  const inProgress = _.some(assessorAssessments, ua => ua.status !== 'completed')
 
   return (
     <div className="p-4">
       <Space className="w-100" direction="vertical">
-        <Table dataSource={assessorAssessments} columns={columns} pagination={false} />
-        {lastAssessment?.status === 'completed' && (
+        <Table dataSource={assessorAssessments} columns={columns} pagination={{ pageSize: 25 }} />
+        {lastAssessment && !inProgress ? (
           <div className="ta-e">
             <Button type="primary" href={`/assessors/evaluations/${lastAssessment.id}/new_response`}>
               {I18n.t('assessments.actions.new_response', { locale: I18n.uiLocale })}
             </Button>
           </div>
-        )}
+        ) : null}
       </Space>
     </div>
   )
