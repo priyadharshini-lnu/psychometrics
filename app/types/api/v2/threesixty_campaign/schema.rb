@@ -38,9 +38,9 @@ module Api
         def self.create_campaign
           json_api_attributes do
             required(:threesixty_type).filled(:string)
-            required(:campaign_template_id).filled(:string)
-            required(:factors).array(:integer)
-            required(:questions).array(:hash) do
+            optional(:campaign_template_id).filled(:string)
+            optional(:factors).array(:integer)
+            optional(:questions).array(:hash) do
               required(:id).filled(:integer)
               required(:selected_choice_indexes).array(:integer)
             end

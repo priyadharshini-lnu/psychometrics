@@ -13,7 +13,7 @@ module AdminJobs
 
     def generate_title_link
       {
-        href: administration_project_new_campaigns_path(project_id: project.id),
+        href: "#{admin_path}/projects/#{project.id}/new_campaigns",
         label: project.name
       }
     end

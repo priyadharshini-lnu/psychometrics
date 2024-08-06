@@ -79,13 +79,52 @@ const AdvancedSettingsForm = ({
     setSelectedQuestions([])
   }
 
-  const handleValuesChange = (_, allValues: { campaign_template_id: string}) => {
-    const { campaign_template_id } = allValues
-    if (campaign_template_id) {
-      setShowFactorsSelect(true)
-    } else if (!campaign_template_id) {
-      setShowFactorsSelect(false)
-    }
+  const handleInitialLoad = (assessmentId: string) => {
+    collectionAction({
+      action: `${assessmentId}/factors`,
+      method: 'get',
+      apiConfig: {
+        include: ['sub_factors', 'parent_factors', 'parent_factors.sub_factors'],
+      },
+    }).then((data: Factor[]) => {
+      if (data.length > 0 && data.length <= 20) {
+        setShowFactorsSelect(false)
+        handleSelectAllFactors(data, assessmentId)
+      } else {
+        setShowFactorsSelect(true)
+      }
+    })
+  }
+
+  const handleSelectAllFactors = (factors: Factor[], assessmentId: string) => {
+    const newExpandedKeys = new Set<string>()
+    const newCheckedIds = new Set<string>()
+    const updatedSelectedFactorsMap = new Map<string, FactorForTree>()
+    const factorsAndParentFactorsMap = new Map([...factorsMap, ...getAllFactorsAndParentFactors(factors)])
+    setFactorsMap(factorsAndParentFactorsMap)
+    factors.map((factor) => {
+      newCheckedIds.add(`${factor.id}`)
+      const haveParentFactor = (factor.parent_factors?.length ?? 0) > 0
+      if (haveParentFactor) {
+        factor.parent_factors.forEach((parentFactor) => {
+          const parentFactorId = `${parentFactor.id}`
+          const parentData = modfiedDataForFactorsTree(factorsAndParentFactorsMap.get(parentFactorId))
+          newExpandedKeys.add(parentFactorId)
+          if (!updatedSelectedFactorsMap.has(parentFactorId)) {
+            updatedSelectedFactorsMap.set(parentFactorId, parentData.data)
+          }
+        })
+      } else {
+        const modifiedFactorData = modfiedDataForFactorsTree(factor)
+        newExpandedKeys.add(modifiedFactorData.data.id)
+        updatedSelectedFactorsMap.set(modifiedFactorData.data.id, modifiedFactorData.data)
+      }
+    })
+    setSelectedFactors(Array.from(updatedSelectedFactorsMap.values()))
+    const checkedIds = Array.from(newCheckedIds)
+    setCheckedFactors(checkedIds)
+    setExpandedKeys(Array.from(newExpandedKeys))
+    handleFetchQuestions(checkedIds, assessmentId)
   }
 
 
@@ -119,18 +158,20 @@ const AdvancedSettingsForm = ({
     })
   }
 
-  const handleFetchQuestions = (factorIds: string[]) => {
-    collectionAction({
-      action: `${selectedAssessmentId}/factors/questions`,
-      method: 'get',
-      apiConfig: {
-        filter: {
-          factor_ids: factorIds,
+  const handleFetchQuestions = (factorIds: string[], assessmentId: string | number | null) => {
+    if (assessmentId) {
+      collectionAction({
+        action: `${assessmentId}/factors/questions`,
+        method: 'get',
+        apiConfig: {
+          filter: {
+            factor_ids: factorIds,
+          },
         },
-      },
-    }).then((data: Question[]) => {
-      setQuestions(data)
-    })
+      }).then((data: Question[]) => {
+        setQuestions(data)
+      })
+    }
   }
 
   const debouncedOnFactorSearch = useDebouncedCallback((searchTerm: string) => {
@@ -145,15 +186,15 @@ const AdvancedSettingsForm = ({
 
   const handleCheckForFactorsTree = (checkedKeys: string[]) => {
     setCheckedFactors(checkedKeys)
-    handleFetchQuestions(checkedKeys)
+    handleFetchQuestions(checkedKeys, selectedAssessmentId)
   }
 
-  const handleChange = (value: string) => {
+  const handleFactorChange = (value: string) => {
     const newSelectedFactors = modfiedDataForFactorsTree(factorsMap.get(value))
     form.setFieldValue('factors', null)
     const newCheckedIds = [...checkedFactorsForFactorsTree, value, ...newSelectedFactors.subFactorsIds]
     setCheckedFactors(newCheckedIds)
-    handleFetchQuestions(newCheckedIds)
+    handleFetchQuestions(newCheckedIds, selectedAssessmentId)
 
     const isParentFactor = (factorsMap.get(value)?.parent_factors?.length ?? 0) > 0
     const updatedSelectedFactorsMap = new Map(selectedFactors.map(factor => [factor.id, factor]))
@@ -180,7 +221,10 @@ const AdvancedSettingsForm = ({
     const campaignTemplate = _.find(campaignTemplates,
       (campaignTemplate: CampaignTemplate) => campaignTemplate.id === campaignTemplateId)
     setSelectedTempalte(campaignTemplate)
-    if (campaignTemplate) { handleAssessmentChange(campaignTemplate.assessmentId) }
+    if (campaignTemplate) {
+      handleAssessmentChange(campaignTemplate.assessmentId)
+      handleInitialLoad(campaignTemplate.assessmentId)
+    }
   }
 
   const handleAssessmentChange = (assessmentId: number) => {
@@ -218,7 +262,6 @@ const AdvancedSettingsForm = ({
       form={form}
       className="h-100"
       onFinish={handleFinish}
-      onValuesChange={handleValuesChange}
     >
       <Flex vertical className="h-100">
         <Flex flex="auto" className="h-100" style={{ overflow: 'hidden' }}>
@@ -243,7 +286,7 @@ const AdvancedSettingsForm = ({
                 showSearch
                 suffixIcon={<SearchOutlined />}
                 filterOption={false}
-                onChange={handleChange}
+                onChange={handleFactorChange}
                 options={(factors || []).map(f => ({
                   value: f.id,
                   label: f.sub_factors?.length ? <b>{f.name}</b> : f.name,
@@ -312,7 +355,7 @@ const sortFactors = (factors: Factor[]) => factors.sort((a, b) => {
   if (!a.parent && b.parent) {
     return 1
   }
-  return 0
+  return a.name.localeCompare(b.name)
 })
 
 
