@@ -62,7 +62,7 @@ const BaseSettingsForm = ({
       layout="vertical"
       initialValues={{
         layout: 'vertical',
-        name: initialSettings?.name,
+        name: initialSettings?.name ? initialSettings.name : '',
         status: initialSettings?.status || STATUSES.ACTIVE,
         threesixty_type: initialSettings?.threesixty_type || THREESIXTY_TYPES.EMPTY,
       }}
