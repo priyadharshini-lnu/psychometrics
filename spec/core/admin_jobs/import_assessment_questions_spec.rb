@@ -9,7 +9,7 @@ describe AdminJobs::ImportAssessmentQuestions do
   let(:assessment) { create(:assessment, dimension: dimension) }
   let!(:block) { create(:block, assessment: assessment, name: 'Default Block') }
   let!(:accountability_factor) { create(:factor, dimension: dimension, name: 'Accountability') }
-  let!(:grit_factor) { create(:factor, dimension: dimension, name: 'Grit') }
+  let!(:grit_factor) { create(:factor, dimension: dimension, name: '.Grit.1') }
   let(:job_record) do
     create(
       :admin_job_record, operation: :import_assessment_questions,
