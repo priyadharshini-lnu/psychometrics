@@ -16,4 +16,8 @@ class Api::V2::Administration::CampaignTemplateResource < Api::V2::Administratio
   def updated_at
     @model.decorate.updated_at
   end
+
+  def self.sortable_fields(context)
+    super + %i[report.name owner.name assessment.name]
+  end
 end

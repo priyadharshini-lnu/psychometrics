@@ -48,7 +48,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
       />
       <Resource.Column<CampaignTemplate>
         title={I18n.t('administration.campaign_templates.column.assessment')}
-        id="assessment"
+        id="assessment.name"
         render={campaignTemplate => (campaignTemplate.assessment?.id ? (
           <Typography.Link
             copyable
@@ -63,7 +63,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
       />
       <Resource.Column<CampaignTemplate>
         title={I18n.t('administration.campaign_templates.column.report')}
-        id="report"
+        id="report.name"
         render={campaignTemplate => (campaignTemplate.report?.id ? (
           <Typography.Link
             copyable
@@ -78,7 +78,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
       />
       <Resource.Column<CampaignTemplate>
         title={I18n.t('administration.campaign_templates.column.owner')}
-        id="owner"
+        id="owner.name"
         render={campaignTemplate => (campaignTemplate.owner?.id ? (
           <Typography.Link
             copyable
