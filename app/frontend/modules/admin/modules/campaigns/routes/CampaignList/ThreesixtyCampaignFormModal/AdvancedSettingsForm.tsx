@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Button,
   Flex,
@@ -59,6 +59,13 @@ const AdvancedSettingsForm = ({
   const [selectedTemplate, setSelectedTempalte] = useState<CampaignTemplate>()
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
   const [campaignTemplatesData, setCampaignTemplatesData] = useState<CampaignTemplate[]>(campaignTemplates)
+  const [templateSearchterm, setTemplateSearchterm] = useState('')
+
+  useEffect(() => {
+    if (campaignTemplates.length) {
+      handleTemplateSearch(templateSearchterm)
+    }
+  }, [campaignTemplates])
 
   const handleFinish = () => {
     const data = {
@@ -240,6 +247,7 @@ const AdvancedSettingsForm = ({
   }
 
   const handleTemplateSearch = (searchTerm: string) => {
+    setTemplateSearchterm(searchTerm)
     if (searchTerm) {
       const filteredTemplates = campaignTemplates.filter((template: CampaignTemplate) => (
         template.name.trim().toLowerCase().includes(searchTerm.trim().toLowerCase())))

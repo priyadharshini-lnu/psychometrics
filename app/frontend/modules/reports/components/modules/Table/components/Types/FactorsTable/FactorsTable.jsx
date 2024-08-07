@@ -198,11 +198,11 @@ class FactorsTable extends Component {
   getFilters = () => {
     const { model } = this.props
     const filterIds = model.props.filter
-    const filters = filterIds.map(filterId => _.find(
+    const filters = filterIds?.map(filterId => _.find(
       AppStore.report.filters, { id: filterId },
     )).filter(f => !_.isEmpty(f))
 
-    return filters
+    return filters || []
   }
 
 
@@ -297,7 +297,7 @@ class FactorsTable extends Component {
         const percent = score * 100 / maxValue
 
         const filters = this.getFilters()
-        const showWithFilters = (model.props.mode !== 'topFactors' && filters)
+        const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
         const resultsWithEnhancedWithFilters = this.enhanceFiltersByValue(factor)
 
         const scoreUI = (
@@ -420,7 +420,7 @@ class FactorsTable extends Component {
 
     const { model } = this.props
     const filters = this.getFilters()
-    const showWithFilters = (model.props.mode !== 'topFactors' && filters)
+    const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
     return (
       <thead>
         <tr>
