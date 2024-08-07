@@ -1,4 +1,5 @@
 import _, { findIndex } from 'lodash'
+import * as t from 'io-ts'
 import {
   useState, useMemo, useEffect, useRef,
 } from 'react'
@@ -28,6 +29,9 @@ import { getGroupById, updateArrayItemsPositionOnIndices, getItemIdFromSortingId
 import { ToolsDropdown } from './ToolsDropdown'
 import { ManageVariablesForm } from './ManageVariablesForm'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
+import { ImportFactorsForm } from './ImportFactorsForm'
+import { importFactors, IMPORT } from '~/modules/admin/modules/campaigns/core/campaignFactor'
+import { isRequestInProgress } from '~/core/request'
 
 const getFactorsByGroupId = (factors: CampaignFactor[], groupId: string) => factors
   .filter(factor => factor.campaignFactorGroupId === parseInt(groupId, 10))
@@ -42,14 +46,20 @@ const { I18n } = window
 const connector = connect(
   (state: RootState) => ({
     campaignPermissions: getCurrentCampaign(state).permissions,
+    loading: isRequestInProgress(state, IMPORT),
   }),
+  {
+    importFactors,
+  },
 )
+
 
 type Props = ConnectedProps<typeof connector>;
 
 const ScoringGroupsComponent = (props: Props) => {
   const [addGroup, setAddGroup] = useState(false)
   const [openAddEditFactor, setOpenAddEditFactor] = useState(false)
+  const [openImportFactorsForm, setOpenImportFactorsForm] = useState(false)
   const [currentGroupId, setCurrentGroupId] = useState<string>('')
   const [currentFactor, setCurrentFactor] = useState<CampaignFactor | undefined>(undefined)
   const [openVariablesForm, setOpenVariablesForm] = useState(false)
@@ -60,7 +70,7 @@ const ScoringGroupsComponent = (props: Props) => {
   const [activeId, setActiveId] = useState<string | null>(null)
   const recentlyMovedToNewContainer = useRef(false)
   const { modal, message } = App.useApp()
-  const { campaignPermissions } = props
+  const { campaignPermissions, importFactors, loading } = props
 
   const {
     createResource: initializeScoring,
@@ -83,6 +93,7 @@ const ScoringGroupsComponent = (props: Props) => {
     fetch: fetchCampaignFactors, createResource: addCampaignFactor,
     removeResource: removeCampaignFactor,
     updateResource: updateCampaignFactor,
+    collectionAction,
   } = useResources<CampaignFactor>(
     'campaign_factors', {
       basePath: `campaigns/${campaignId}`,
@@ -404,6 +415,22 @@ const ScoringGroupsComponent = (props: Props) => {
     if (key === 'variables') {
       setOpenVariablesForm(true)
     }
+    if (key === 'import_factors') {
+      setOpenImportFactorsForm(true)
+    }
+    if (key === 'export_factors') {
+      handleExportFactors()
+    }
+  }
+
+  const handleExportFactors = () => {
+    collectionAction({
+      action: 'export',
+      method: 'get',
+      responseType: t.literal('ok'),
+    }).then(() => {
+      message.success(I18n.t('administration.scoring.factors_exported_successfully'))
+    })
   }
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
@@ -620,6 +647,14 @@ const ScoringGroupsComponent = (props: Props) => {
       <ManageVariablesForm
         open={openVariablesForm}
         close={() => setOpenVariablesForm(false)}
+      />
+
+      <ImportFactorsForm
+        campaignId={campaignId}
+        importFactors={importFactors}
+        open={openImportFactorsForm}
+        close={() => setOpenImportFactorsForm(false)}
+        loading={loading}
       />
     </Flex>
   )

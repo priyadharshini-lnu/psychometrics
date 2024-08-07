@@ -1213,6 +1213,7 @@ Rails.application.routes.draw do
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end
+
           jsonapi_resources :assessments do
             post :toggle_archive
             post :copy
@@ -1242,7 +1243,20 @@ Rails.application.routes.draw do
             jsonapi_resources :webhooks do
               post :send_test
             end
+
             jsonapi_resources :registration_settings, only: %i[index update]
+            jsonapi_resources :assessments do
+              scope module: :assessments do
+                jsonapi_resources :factors do
+                  collection do
+                    get :questions
+                  end
+                end
+              end
+            end
+            jsonapi_resources :threesixty_campaigns do
+              post :create_campaign, on: :collection
+            end
           end
           jsonapi_resources :profile_settings, only: %i[index update]
           jsonapi_resources :dashboards, only: %i[index show create update] do
@@ -1324,6 +1338,8 @@ Rails.application.routes.draw do
             jsonapi_resources :campaign_factors, only: %i[index create update destroy] do
               collection do
                 post :update_positions
+                get  :export
+                post :import
               end
             end
             jsonapi_resources :campaign_user_scorings, only: %i[index] do

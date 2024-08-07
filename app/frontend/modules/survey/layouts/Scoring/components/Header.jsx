@@ -4,7 +4,7 @@ import { Button, Radio } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import { RECODING, SCORING } from '~/modules/survey/constants/scoring'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
-import FactorsMenu from './FactorsMenu'
+import FactorsSelect from './FactorsSelect'
 import styles from './Scoring.less'
 import { Tabs } from '../../Header/Tabs'
 
@@ -35,7 +35,7 @@ export default class Header extends Component {
             <Radio.Button value={SCORING}>Scoring</Radio.Button>
             <Radio.Button value={RECODING}>Recoding</Radio.Button>
           </Radio.Group>
-          {selectedFactor && type === SCORING && <FactorsMenu {...this.props} />}
+          {selectedFactor && type === SCORING && <FactorsSelect {...this.props} />}
         </div>
         <ul className={cs('panel-controls', styles.controls)}>
           <li><Tabs active="scoring" /></li>

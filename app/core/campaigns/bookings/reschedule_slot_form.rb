@@ -34,7 +34,7 @@ module Campaigns
       def validate_reschedule_deadline
         return if errors.present?
 
-        if !workshop.reschedulable? && status == 'rescheduled'
+        if workshop.scheduling_lead_time_passed? && status == 'rescheduled'
           errors.add(:base, I18n.t('administration.bookings.errors.reschedule_deadline_passed'))
         end
       end

@@ -5,17 +5,17 @@ FactoryBot.define do
     sequence(:name) { |i| "Question #{i}" }
     type { 'MultipleChoice' }
     props do
-      '{
-        "choices": 3,
-        "choicesTexts":["","",""],
-        "questionText": "Click to write the question text",
-        "type": "SingleAnswer",
-        "position": "Vertical",
-        "defaultValues": [],
-        "randomization": {
-          "type": "No"
+      {
+        choices: 3,
+        choicesTexts: %w[1 2 3],
+        questionText: 'Click to write the question text',
+        type: 'SingleAnswer',
+        position: 'Vertical',
+        defaultValues: [],
+        randomization: {
+          type: 'No'
         }
-      }'
+      }
     end
     block
 

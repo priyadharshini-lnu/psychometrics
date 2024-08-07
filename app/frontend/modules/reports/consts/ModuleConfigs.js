@@ -214,6 +214,7 @@ export default {
       VideoResponse: { multiFiltering: true },
       SingleValue: { multiFiltering: true },
       Competencies: { multiFiltering: true },
+      FactorsTable: { multiFiltering: true },
     },
 
     HrisData: {

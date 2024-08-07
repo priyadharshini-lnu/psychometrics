@@ -8,6 +8,7 @@ module Threesixty
       attribute :campaign_template_id, Integer
       attribute :assessment_id, Integer
       attribute :factors, Array
+      attribute :questions, Array
       attribute :status, String, default: 'active'
 
       validates :name, :threesixty_type, presence: true

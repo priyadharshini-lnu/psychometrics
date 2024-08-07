@@ -712,6 +712,7 @@ en:
       errors:
         already_booked: You have already booked a seat for it.
         already_cancelled: You have already cancelled the booking.
+        booking_deadline_passed: This date is no longer available, kindly select a different date from the previous screen.
         cancellation_deadline_passed: Cancellation deadline passed.
         cancelled_and_rebook_deadline_passed: Cancelled and deadline passed for book again.
         late_cancellation_not_allowed: Late cancellation is not allowed.
@@ -837,6 +838,22 @@ en:
         report_update: Report is updated
         scoring_update: Scoring is updated
         trash_empty: Trash Comment empty
+    campaign_factor_import:
+      errors:
+        assessment_not_found_in_campaign: Assessment ID '%{assessment_id}' not found in campaign
+        code_already_exists: A factor with the same code '%{code}' already exists.
+        factor_not_in_assessment_dimension: Factor id '%{factor_id}' not part of assessment’s dimension
+        invalid_lua_name: The code '%{code}' should be a valid lua variable name
+        invalid_name_format: The name '%{name}' should match the expected format.
+        missing_assessment_id: Assessment id is required.
+        missing_assessment_score_type: Assessment score type is required.
+        missing_factor_id: Factor id is required.
+        name_already_exists: A factor with the same name '%{name}' already exists.
+        name_size_exceded: Name should not exceed %{size} characters.
+        rank_not_allowed: Only factors with an output type of numeric can be ranked.
+    campaign_factors_import:
+      errors:
+        invalid_headers: 'Following headers are invalid: %{headers}'
     campaign_templates:
       base:
         active: Active
@@ -947,6 +964,26 @@ en:
         reports: Reports
         status: Status
         type: Type
+      modals:
+        create_threesixity:
+          close:
+            content: Are you sure you want to close the 360 Campaign Creator? Any unsaved customization work will be lost. Please confirm your decision.
+            title: Close 360 Campaign Creator?
+          instructions_creation:
+            empty: 'Empty: Start with a blank survey and customize it according to your specific needs.'
+            previous: 'Previous: Select a previous assessment as a starting point and make modifications.'
+            standard: 'Standard: Use a pre-designed template with commonly used questions & indicators.'
+            sub_title: Please select the type of campaign you would like to create.
+            title: Welcome to the 360 Campaign Creator!
+          instructions_customization:
+            sub_title: Select the template and factors to be included in the assessment.
+            title: Customize your assessment!
+          questions:
+            select_all: Select All
+            sub_title: Select the questions and indicators to be included in the assessment
+            title: Questions and Indicators
+          success: 360 Campaign was successfully created.
+          success_job: 360 Campaign creation job was successfully scheduled.
       options:
         description:
           name: Description
@@ -2603,8 +2640,12 @@ en:
     clients_hierarchy: Project > Campaign > Sub Campaign
     close: Close
     common:
+      add: Add
+      back: Back
+      cancel: Cancel
       disabled: Diasbled
       enabled: Enabled
+      next: Next
       reset: Reset
       save: Save
     communications:
@@ -4029,6 +4070,7 @@ en:
         last_week: Last week
         today: Today
       errors:
+        assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
         date_required: Please select a date
         invalid_url: Invalid URL format
         meeting_link_https: Meeting link must start with "https://"
@@ -4131,14 +4173,19 @@ en:
       edit_factor: Edit Factor
       export:
         details: Campaign scorings
+        factors: Export Campaign Factors
       factor: Factor
       factor_group_removed_successfully: Campaign Factor group removed successfully
       factor_removed_successfully: Campaign Factor removed successfully
+      factors_exported_successfully: Export campaign factors job was scheduled successfully
+      factors_imported_successfully: Import campaign factors job was scheduled successfully
       final: Final
       final_score_updated_successfully: Final score updated successfully
       formula: Formula
       get_started: Get Started
       id: Id
+      import:
+        factors: Import Campaign Factors
       name: Name
       no_groups: No groups present
       output_type: Output Type

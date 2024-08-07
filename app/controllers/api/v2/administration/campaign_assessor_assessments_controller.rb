@@ -5,32 +5,41 @@ module Api
     validates_request_schema :create, Api::V2::CampaignAssessorAssessment::CreateContract.new
 
     def subject_assessor_assessments
-      workshop_subject = WorkshopSubject.find(params[:workshop_subject_id])
+      render json: {
+        assessor_user_assessments: serialized_assessor_user_assessments,
+        campaign_assessor_assessments: serialized_campaign_assessor_assessments
+      }
+    end
 
-      campaign_assessor_assessments = CampaignAssessorAssessment.where(campaign_id: params[:campaign_id])
+    def serialized_campaign_assessor_assessments
+      Panko::ArraySerializer.new(
+        campaign_assessor_assessments,
+        each_serializer: ::Administration::Campaigns::WorkshopSubjects::CampaignAssessorAssessmentSerializer
+      ).to_a
+    end
 
+    def serialized_assessor_user_assessments
       assessor_user_assessments = UserAssessment.where(
         relationship_id: Relationship.assessor_relationship.id,
-        assessment_id: campaign_assessor_assessments.pluck(:assessment_id),
         subject_id: workshop_subject.user_id,
-        campaign_id: params[:campaign_id]
-      ).index_by(&:assessment_id)
+        campaign_id: campaign_id
+      )
 
-      subject_user_assessments = UserAssessment.where(
-        relationship_id: Relationship.self_relationship.id,
-        evaluator_id: workshop_subject.user_id,
-        subject_id: workshop_subject.user_id,
-        campaign_id: params[:campaign_id]
-      ).index_by(&:assessment_id)
-
-      render json: Panko::ArraySerializer.new(
-        campaign_assessor_assessments,
-        each_serializer: ::Administration::Campaigns::WorkshopSubjects::CampaignAssessorAssessmentSerializer,
+      Panko::ArraySerializer.new(
+        assessor_user_assessments,
+        each_serializer: ::Administration::Campaigns::WorkshopSubjects::AssessorUserAssessmentSerializer,
         context: {
-          subject_user_assessments: subject_user_assessments, assessor_user_assessments: assessor_user_assessments,
           current_user: current_user
         }
       ).to_a
+    end
+
+    def workshop_subject
+      @workshop_subject ||= WorkshopSubject.find(params[:workshop_subject_id])
+    end
+
+    def campaign_assessor_assessments
+      CampaignAssessorAssessment.where(campaign_id: campaign_id)
     end
   end
 end

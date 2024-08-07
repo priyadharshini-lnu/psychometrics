@@ -15,6 +15,7 @@ import connect from './connect'
 import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
+import PropertyFilter from '~/modules/reports/components/PropertyFilter'
 
 
 const ALL_FACTORS = 'All Factors'
@@ -320,10 +321,16 @@ class Properties extends Component {
           </div>
         )}
         {mode === 'orderedFactors' && (
-          <div className="mvs">
-            <div className={cs(styles.label, 'mbm mtl')}>Factors Order</div>
-            {factors && <SortableFactors selectedFactors={factors} update={this.setSortedFactors} />}
-          </div>
+          <>
+            <div className="mvs">
+              <div className={cs(styles.label, 'mbm mtl')}>Factors Order</div>
+              {factors && <SortableFactors selectedFactors={factors} update={this.setSortedFactors} />}
+            </div>
+            <div>
+              <PropertyFilter model={model} />
+            </div>
+          </>
+
         )}
         <hr className={styles.divider} />
         <div className="margin-top-10">

@@ -16,7 +16,7 @@ module Assessments
       #   {
       #     'block' => { 'Name' => 'Default Block' },
       #     'question' => { 'Name' => 'Q1', 'Type' => 'Text Entry' },
-      #     'question_+property' => { 'type' => 'Single Line' },
+      #     'question_property' => { 'type' => 'Single Line' },
       #   },
       #   {
       #     'block' => { 'name' => 'YTI'},
@@ -25,12 +25,12 @@ module Assessments
       #       'type' => 'Multiple Answers',
       #       'questionText' => 'Which of these are gulf countries',
       #       'choicesTexts' => ['UAE', 'KSA'],
-      #       'randomization.type' => nil
+      #       'randomization: { type' => nil }
       #     },
-      #     'scoring' => { 'accountability' => nil, 'grit' => nil }
+      #     'scoring' => { 'Accountability' => nil, 'Grit' => nil }
       #   }
       # ]
-      def call
+      def call # rubocop:disable Metrics/PerceivedComplexity
         headers = rows[0]
         sub_headers = rows[1]
         questions = rows[2..]
@@ -42,10 +42,15 @@ module Assessments
 
             header = headers[index]
             sub_header = sub_headers[index]
-            sub_header = sub_header&.downcase if HEADERS_WHOSE_SUB_HEADER_CAN_BE_DOWNCASED.include?(header)
             next if header.blank? || sub_header.blank?
 
-            Utility::Hash.set_nested_key(hash, "#{header.tr(' ', '_').downcase}.#{sub_header}", column_value)
+            sub_header = sub_header.downcase if HEADERS_WHOSE_SUB_HEADER_CAN_BE_DOWNCASED.include?(header)
+            if header == 'Scoring'
+              hash['scoring'] ||= {}
+              hash['scoring'][sub_header] ||= column_value
+            else
+              Utility::Hash.set_nested_key(hash, "#{header.tr(' ', '_').downcase}.#{sub_header}", column_value)
+            end
           end
           array << hash
         end
