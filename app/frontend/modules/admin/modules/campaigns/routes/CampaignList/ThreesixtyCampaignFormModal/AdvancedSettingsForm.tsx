@@ -17,8 +17,6 @@ import { Factor } from '~/modules/admin/modules/campaigns/core/factors'
 import styles from './ThreesixtyCampaignFormModal.less'
 import { CampaignCreatorSVG } from './CampaignCreatorSVG'
 
-const { Option } = Select
-
 const { I18n } = window
 
 export type Question = {
@@ -60,6 +58,7 @@ const AdvancedSettingsForm = ({
   const [selectedAssessmentId, setSelectedAssessmentId] = useState<number | null>(null)
   const [selectedTemplate, setSelectedTempalte] = useState<CampaignTemplate>()
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
+  const [campaignTemplatesData, setCampaignTemplatesData] = useState<CampaignTemplate[]>(campaignTemplates)
 
   const handleFinish = () => {
     const data = {
@@ -151,8 +150,8 @@ const AdvancedSettingsForm = ({
         },
       },
     }).then((data: Factor[]) => {
-      const sorteData = sortFactors(data)
-      setFactors(sorteData)
+      const sortedData = sortFactors(data)
+      setFactors(sortedData)
       const factorsAndParentFactorsMap = new Map([...factorsMap, ...getAllFactorsAndParentFactors(data)])
       setFactorsMap(factorsAndParentFactorsMap)
     })
@@ -187,6 +186,10 @@ const AdvancedSettingsForm = ({
   const handleCheckForFactorsTree = (checkedKeys: string[]) => {
     setCheckedFactors(checkedKeys)
     handleFetchQuestions(checkedKeys, selectedAssessmentId)
+  }
+
+  const handleFactorsExpand = (expandedKeys: string[]) => {
+    setExpandedKeys(expandedKeys)
   }
 
   const handleFactorChange = (value: string) => {
@@ -236,6 +239,16 @@ const AdvancedSettingsForm = ({
     setSelectedQuestions(selectedQuestions)
   }
 
+  const handleTemplateSearch = (searchTerm: string) => {
+    if (searchTerm) {
+      const filteredTemplates = campaignTemplates.filter((template: CampaignTemplate) => (
+        template.name.trim().toLowerCase().includes(searchTerm.trim().toLowerCase())))
+      setCampaignTemplatesData(filteredTemplates)
+    } else {
+      setCampaignTemplatesData(campaignTemplates)
+    }
+  }
+
   const emptyRHS = (
     <Flex vertical gap={16} justify="center" align="center">
       <Flex vertical style={{ width: '200px', height: '200px' }} justify="center" align="center">
@@ -271,10 +284,16 @@ const AdvancedSettingsForm = ({
               label="Campaign template"
               rules={[{ required: true }]}
             >
-              <Select onChange={handleCampaignTemplateChange}>
-                {_.map(campaignTemplates, (template: CampaignTemplate) => (
-                  <Option key={template.id} value={template.id}>{template.name}</Option>))}
-              </Select>
+              <Select
+                onChange={handleCampaignTemplateChange}
+                showSearch
+                filterOption={false}
+                onSearch={handleTemplateSearch}
+                options={(campaignTemplatesData || []).map(template => ({
+                  value: template.id,
+                  label: template.name,
+                }))}
+              />
             </Form.Item>
             {showFactorsSelect && (
             <Form.Item
@@ -289,13 +308,14 @@ const AdvancedSettingsForm = ({
                 onChange={handleFactorChange}
                 options={(factors || []).map(f => ({
                   value: f.id,
-                  label: f.sub_factors?.length ? <b>{f.name}</b> : f.name,
+                  label: f.parent ? <b>{f.name}</b> : f.name,
                 }))}
               />
             </Form.Item>
             )}
             <Tree
               checkable
+              onExpand={handleFactorsExpand}
               expandedKeys={expandedKeysForFactorsTree}
               onCheck={handleCheckForFactorsTree}
               checkedKeys={checkedFactorsForFactorsTree}

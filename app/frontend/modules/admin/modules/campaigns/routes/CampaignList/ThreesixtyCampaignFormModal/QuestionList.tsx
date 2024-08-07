@@ -43,29 +43,31 @@ const QuestionList = ({ questions, onSelect }: Props) => {
     const newAlQuestionsAndChoices = new Set<string>()
     if (questions) {
       const data: QuestionTree[] = questions.map((item) => {
-        const choices: number[] = []
+        const choices = new Set<number>()
         const { id } = item
-        let children: QuestionTree['children']
+        const childrenMap = new Map<string, {title: string, key: string}>()
 
         if (MATRIX_TABLE === item.type) {
-          children = item.factors.map((factor) => {
-            choices.push(factor.props[0].choice)
-            const key = `${id}_${factor.props[0].choice}`
-            newAlQuestionsAndChoices.add(key)
-            return ({
-              title: item.props.choicesTexts[factor.props[0].choice],
-              key,
+          item.factors.forEach((factor) => {
+            factor.props.forEach((prop) => {
+              choices.add(prop.choice)
+              const key = `${id}_${prop.choice}`
+              newAlQuestionsAndChoices.add(key)
+              childrenMap.set(key, {
+                title: item.props.choicesTexts[prop.choice],
+                key,
+              })
             })
           })
         }
 
-        newQuestionsAndChoicesMap.set(id, { ...item, choices })
+        newQuestionsAndChoicesMap.set(id, { ...item, choices: Array.from(choices) })
         newExpandedKeys.push(id)
         newAlQuestionsAndChoices.add(id)
         return {
           title: item.name,
           key: id,
-          children,
+          children: Array.from(childrenMap.values()).sort((a, b) => a.key.localeCompare(b.key)),
         }
       })
       setQuestionMap(newQuestionsAndChoicesMap)

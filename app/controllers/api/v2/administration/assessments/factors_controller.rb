@@ -4,7 +4,7 @@ module Api
   class V2::Administration::Assessments::FactorsController < Api::V2::Administration::BaseController
     validate_crud_requests Api::V2::Assessment::Factor::Schema
     def questions
-      factor_ids = params[:filter][:factor_ids].split(',')
+      factor_ids = params.dig(:filter, :factor_ids)&.split(',')
       factor_scorings = FactorsScoring.where(assessment_id: params[:assessment_id], factor: factor_ids).
                         select(:question_id, :id, :props, :factor_id)
       grouped_by_question_id = factor_scorings.group_by(&:question_id)
