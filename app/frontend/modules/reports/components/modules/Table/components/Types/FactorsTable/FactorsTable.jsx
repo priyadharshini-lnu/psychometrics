@@ -318,7 +318,7 @@ class FactorsTable extends Component {
               <BulletGraph
                 scoreRanges={scoreRanges}
                 baselineScore={conditionBaselineScore}
-                scorePercentage={score}
+                scorePercentage={percent}
                 lineColor={scoreLineColor}
                 bulletColor={scoreBulletColor}
                 showScoreText={showScoreText}
