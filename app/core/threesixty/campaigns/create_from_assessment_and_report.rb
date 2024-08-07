@@ -23,7 +23,8 @@ module Threesixty
       # rubocop:enable Metrics/ParameterLists
 
       def call
-        factor_ids = form.factors || source_assessment.dimention.all_factors.pluck(:id)
+        factor_ids = form.factors.presence || source_assessment.dimension.all_factors.pluck(:id)
+
         result = Dimensions::Copy.call!(
           source_assessment.dimension, factor_ids, client, new_dimension_name: form.name
         )
@@ -32,7 +33,7 @@ module Threesixty
         event = ::Assessments::CopyAssessment.call(
           source_assessment.id, user, client.id, skip_owner_validation: true,
           new_assessment_name: resource_name,
-          questions_to_copy: form.questions
+          questions_to_copy: form.questions.presence
         )
         raise('CopyAssessment failed!') unless event[:ok]
 
