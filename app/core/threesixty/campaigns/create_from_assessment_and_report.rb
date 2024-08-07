@@ -67,6 +67,8 @@ module Threesixty
         new_report.assessments_reports.update_all(assessment_id: new_assessment.id)
         new_report.modules.update_all(assessment_id: new_assessment.id)
 
+        new_report.reload.add_all_factor_aliases
+
         Threesixty::ReportsModules::RemapFactor.call!(new_report, old_to_new_factor_mapping)
         Threesixty::ReportsModules::RemapQuestion.call!(new_report, questions_mapping)
       end
