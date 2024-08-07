@@ -712,6 +712,7 @@ en:
       errors:
         already_booked: You have already booked a seat for it.
         already_cancelled: You have already cancelled the booking.
+        booking_deadline_passed: This date is no longer available, kindly select a different date from the previous screen.
         cancellation_deadline_passed: Cancellation deadline passed.
         cancelled_and_rebook_deadline_passed: Cancelled and deadline passed for book again.
         late_cancellation_not_allowed: Late cancellation is not allowed.
