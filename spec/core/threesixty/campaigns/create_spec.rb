@@ -77,7 +77,17 @@ describe Threesixty::Campaigns::Create do
       question.factors_scorings.create(
         assessment: assessment,
         factor_id: dimension.factor_ids.first, question_id: question.id,
-        props: [{ 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }, { 'index' => 2, 'value' => 3 }]
+        props: [
+          { 'choice' => 0, 'scale' => 0, 'value' => 1 },
+          { 'choice' => 0, 'scale' => 1, 'value' => 2 },
+          { 'choice' => 0, 'scale' => 2, 'value' => 3 },
+          { 'choice' => 1, 'scale' => 0, 'value' => 4 },
+          { 'choice' => 1, 'scale' => 1, 'value' => 5 },
+          { 'choice' => 1, 'scale' => 2, 'value' => 6 },
+          { 'choice' => 2, 'scale' => 0, 'value' => 7 },
+          { 'choice' => 2, 'scale' => 1, 'value' => 8 },
+          { 'choice' => 2, 'scale' => 2, 'value' => 9 }
+        ]
       )
       assessment.factors_scoring.create(factor_id: dimension.factor_ids.first, question_id: question2.id)
     end
@@ -92,8 +102,12 @@ describe Threesixty::Campaigns::Create do
       expect(a.blocks.size).to eq(2)
       expect(a.questions.first.props['choices']).to eq(2)
       expect(a.questions.first.props['choicesTexts']).to eq(%w[1 3])
-      expect(a.questions.first.factors_scorings.first.props).to eq([{ 'index' => 0, 'value' => 1 },
-                                                                    { 'index' => 1, 'value' => 3 }])
+      expect(a.questions.first.factors_scorings.first.props).to eq([{ 'choice' => 0, 'scale' => 0, 'value' => 1 },
+                                                                    { 'choice' => 0, 'scale' => 1, 'value' => 2 },
+                                                                    { 'choice' => 0, 'scale' => 2, 'value' => 3 },
+                                                                    { 'choice' => 1, 'scale' => 0, 'value' => 7 },
+                                                                    { 'choice' => 1, 'scale' => 1, 'value' => 8 },
+                                                                    { 'choice' => 1, 'scale' => 2, 'value' => 9 }])
       expect(a.blocks.first.questions.first.type).to eq('MatrixTable')
       expect(a.blocks.last.questions.last.type).to include('StaticContent')
     end

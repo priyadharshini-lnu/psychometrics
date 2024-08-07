@@ -104,12 +104,12 @@ module Assessments
 
       new_question.factors_scorings.each do |fs|
         scores = question_config[:selected_choice_indexes].filter_map.with_index do |index, new_index|
-          score = fs.props.find { |s| s['index'] == index }
-          next unless score
+          scores = fs.props.select { |s| s['choice'] == index }
+          next if scores.empty?
 
-          score['index'] = new_index
-          score
-        end
+          scores.each { |s| s['choice'] = new_index }
+          scores
+        end.flatten
 
         fs.update(props: scores)
       end
