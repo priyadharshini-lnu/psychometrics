@@ -558,7 +558,6 @@ en:
     bookings:
       errors:
         already_booked: You have already booked a seat for it.
-        already_cancelled: You have already cancelled the booking.
         booking_deadline_passed: This date is no longer available, kindly select a different date from the previous screen.
         cancellation_deadline_passed: Cancellation deadline passed.
         cancelled_and_rebook_deadline_passed: Cancelled and deadline passed for book again.
@@ -697,7 +696,6 @@ en:
         missing_factor_id: Factor id is required.
         name_already_exists: A factor with the same name '%{name}' already exists.
         name_size_exceded: Name should not exceed %{size} characters.
-        rank_not_allowed: Only factors with an output type of numeric can be ranked.
     campaign_factors_import:
       errors:
         invalid_headers: 'Following headers are invalid: %{headers}'
@@ -793,7 +791,6 @@ en:
             title: Customize your assessment!
           questions:
             select_all: Select All
-            sub_title: Select the questions and indicators to be included in the assessment
             title: Questions and Indicators
           success: 360 Campaign was successfully created.
           success_job: 360 Campaign creation job was successfully scheduled.
