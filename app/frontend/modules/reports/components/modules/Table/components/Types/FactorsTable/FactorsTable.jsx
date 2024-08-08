@@ -7,9 +7,11 @@ import ReactMarkdown from 'react-markdown'
 
 import ResultStore from '~/modules/reports/store/ResultStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
+import AppStore from '~/modules/reports/store/AppStore'
 import { TopFactorType } from '~/modules/reports/models/Results/interfaces'
 import BulletGraph from '~/modules/reports/components/BulletGraph'
-import PieGraph from '../../../../../PieGraph'
+import PieGraph from '~/modules/reports/components/PieGraph'
+import buildFakeData from './buildFakeData'
 
 import styles from './FactorsTable.less'
 
@@ -193,6 +195,45 @@ class FactorsTable extends Component {
     }
   }
 
+  getFilters = () => {
+    const { model } = this.props
+    const filterIds = model.props.filter
+    const filters = filterIds?.map(filterId => _.find(
+      AppStore.report.filters, { id: filterId },
+    )).filter(f => !_.isEmpty(f))
+
+    return filters || []
+  }
+
+
+  enhanceFiltersByValue = (factor) => {
+    const { model } = this.props
+    const precision = model.props.precision ?? 2
+    const filters = this.getFilters()
+    if (!ResultStore.realResults) {
+      const { milestones } = model.props
+      return buildFakeData({ filters, milestones, precision })
+    }
+
+    const enhancedFilters = filters.map((filter) => {
+      const scoring = _.get(ResultStore, [
+        'results',
+        model.assessment_id,
+        'resultsByFilter',
+        filter.id,
+        'scoring',
+        factor.id,
+      ])
+
+      if (!scoring) return { ...filter, value: 0 }
+      const nonZeroResults = _.filter(scoring.results, res => res.getValue())
+      const value = (_.round(_.meanBy(nonZeroResults, res => res.getValue()), precision))
+      return { ...filter, value }
+    })
+
+    return enhancedFilters
+  }
+
   canShowRank () {
     const { model: { props: { showRankOrder, mode } } } = this.props
 
@@ -244,8 +285,9 @@ class FactorsTable extends Component {
         const {
           tableStyle = 'default', minPosition, maxPosition, reverseOrder, source: { factors },
           showDescription, showIcons, showStrengthsBlindspots, showScore, showName, showLabel,
-          scoreProgressColor, scoreBackgroundColor, maxScoreValue,
+          scoreProgressColor, scoreBackgroundColor, maxScoreValue, scorePosition = 'inline',
           scoreDisplay = 'circular', scoreRanges = [], scoreLineColor, scoreBulletColor, precision,
+          showScoreText, scoreBulletGraphHeight,
         } = model.props
 
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
@@ -253,6 +295,40 @@ class FactorsTable extends Component {
         const score = _.round(normedOrRawMeanScore, 1)
         const maxValue = maxScoreValue ?? (factor.strategy === 3 ? 100 : 5)
         const percent = score * 100 / maxValue
+
+        const filters = this.getFilters()
+        const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
+        const resultsWithEnhancedWithFilters = this.enhanceFiltersByValue(factor)
+
+        const scoreUI = (
+          <>
+            {showScore && (
+              tableStyle === 'default' && scoreDisplay === 'circular' && (
+              <PieGraph
+                strokeWidth="10"
+                text={_.isNil(precision) ? score : _.round(score, precision)}
+                percent={Math.min(percent, 100)}
+                progressColor={scoreProgressColor}
+                backgroundColor={scoreBackgroundColor}
+              />
+              )
+            )}
+            {showScore && (
+              tableStyle === 'default' && scoreDisplay === 'bullet' && (
+              <BulletGraph
+                scoreRanges={scoreRanges}
+                baselineScore={conditionBaselineScore}
+                scorePercentage={percent}
+                lineColor={scoreLineColor}
+                bulletColor={scoreBulletColor}
+                showScoreText={showScoreText}
+                score={score}
+                scoreBulletGraphHeight={scoreBulletGraphHeight}
+              />
+              )
+            )}
+          </>
+        )
 
         return (
           <tr key={i}>
@@ -263,20 +339,21 @@ class FactorsTable extends Component {
                 </span>
               </td>
             )}
-            {(showIcons || showName || showDescription) && (
+            {(showIcons || showName || showDescription || (showScore && scorePosition === 'block')) && (
               <td className={styles.description}>
                 {showIcons && (
                   <div className={styles.icons}>
                     <img src={factor.icon} />
                   </div>
                 )}
-                {(showName || showDescription || showStrengthsBlindspots) && (
+                {(showName || showDescription || showStrengthsBlindspots || (showScore && scorePosition === 'block')) && (
                   <div className={styles.content}>
                     {showName && (
                       <div className={styles.strength}>
                         {_.isEmpty(conditionTitle) ? I18nStore.tFactor(factor, 'alias') : conditionTitle}
                       </div>
                     )}
+                    {scorePosition === 'block' && !showWithFilters ? scoreUI : null}
                     {showDescription && (
                       <ReactMarkdown className={cs(styles.text, 'mt4')}>
                         {conditionText}
@@ -296,44 +373,32 @@ class FactorsTable extends Component {
                 )}
               </td>
             )}
-            {(showScore || showLabel) && (
+            {!showWithFilters && ((showScore && scorePosition === 'inline') || (showLabel && !showScore)) ? (
               <td className={cs({
                 [styles.score]: showScore,
                 [styles.circular]: scoreDisplay === 'circular',
                 [styles.bullet]: scoreDisplay === 'bullet',
               })}
               >
-                {showScore && (
-                  tableStyle === 'default' && scoreDisplay === 'circular' && (
-                    <PieGraph
-                      strokeWidth="10"
-                      text={_.isNil(precision) ? score : _.round(score, precision)}
-                      percent={Math.min(percent, 100)}
-                      progressColor={scoreProgressColor}
-                      backgroundColor={scoreBackgroundColor}
-                    />
-                  )
-                )}
-                {showScore && (
-                  tableStyle === 'default' && scoreDisplay === 'bullet' && (
-                    <>
-                      <BulletGraph
-                        scoreRanges={scoreRanges}
-                        baselineScore={conditionBaselineScore}
-                        score={percent}
-                        lineColor={scoreLineColor}
-                        bulletColor={scoreBulletColor}
-                      />
-                      {showLabel && <div className={styles.bulletLabel}>{conditionLabel}</div>}
-                    </>
-                  )
-                )}
+                {scoreUI}
                 {showScore && tableStyle === 'compact' && score}
                 {!showScore && showLabel && (
                   <div className={styles.label} style={{ backgroundColor: conditionColor }}>{conditionLabel}</div>
                 )}
               </td>
-            )}
+            ) : null}
+
+            {showWithFilters && ((showScore) || (showLabel && !showScore)) ? (
+              resultsWithEnhancedWithFilters.map((filter, i) => (
+                <td
+                  key={i}
+                  className={cs(styles.score)}
+                >
+                  {filter.value.toFixed(precision)}
+                </td>
+              ))
+            ) : null}
+
           </tr>
         )
       })
@@ -354,12 +419,18 @@ class FactorsTable extends Component {
     }
 
     const { model } = this.props
+    const filters = this.getFilters()
+    const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
     return (
       <thead>
         <tr>
           {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
           <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
-          {model.props.showScore && <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th>}
+          {model.props.showScore && !showWithFilters
+            ? <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th> : null}
+          {model.props.showScore && showWithFilters ? filters.map((filter, i) => (
+            <th key={i} className={styles.filter} scope="col">{filter.name}</th>
+          )) : null}
         </tr>
       </thead>
     )

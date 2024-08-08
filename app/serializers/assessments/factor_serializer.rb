@@ -2,7 +2,7 @@
 
 module Assessments
   class FactorSerializer < Panko::Serializer
-    attributes :id, :name, :parent_id, :scoring, :description, :icon
+    attributes :id, :name, :parent_id, :scoring, :description, :icon, :scoring_strategy
 
     def icon
       object.icon_url(:medium)

@@ -20,17 +20,17 @@ module Threesixty
 
       def remap_multiple_factors_in_source
         report.modules.where("reports_modules.props -> 'source' ->>  'factors' IS NOT NULL").each do |m|
-          m.props['source']['factors'] = m.props['source']['factors'].map do |factor|
+          m.props['source']['factors'] = m.props['source']['factors'].filter_map do |factor|
             old_factor_id = factor['id']
             new_factor =  old_to_new_factor_mapping[old_factor_id]
-            next factor unless new_factor
+            next nil unless new_factor
 
             {
               id: new_factor.id,
               value: new_factor.id,
               parent_id: new_factor.parent_id,
               name: new_factor.name,
-              alias: new_factor.aliases.find_by(report_id: report.id)&.name
+              alias: new_factor.aliases.find_or_create_by(report_id: report.id, name: new_factor.name)&.name
             }
           end
           m.save!

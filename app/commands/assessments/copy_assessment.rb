@@ -2,21 +2,24 @@
 
 module Assessments
   class CopyAssessment < BaseCommand
-    private_attr_reader :assessment, :owner_id, :current_user, :skip_owner_validation, :new_assessment_name
+    private_attr_reader :assessment, :owner_id, :current_user, :skip_owner_validation, :new_assessment_name,
+                        :questions_to_copy
 
-    def initialize(assessment_id, current_user, owner_id = nil, skip_owner_validation: false, new_assessment_name: nil)
+    def initialize(assessment_id, current_user, owner_id = nil, # rubocop:disable Metrics/ParameterLists
+                   skip_owner_validation: false, new_assessment_name: nil, questions_to_copy: nil)
       @assessment = Assessment.includes(blocks: {
         questions: %i[factors_scorings question_recodings translations]
       }).find(assessment_id)
       @owner_id = owner_id || @assessment.owner_id
       @current_user = current_user
       @blocks_mapping = {}
+      @questions_to_copy = questions_to_copy
       @questions_mapping = {}
       @skip_owner_validation = skip_owner_validation
       @new_assessment_name = new_assessment_name
     end
 
-    def call # rubocop:disable Metrics/AbcSize
+    def call # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       # Get original flow and norm_rules
       flow = (assessment.flow || {}).to_json
       norm_rules = (assessment.norm_rules || {}).to_json
@@ -31,26 +34,42 @@ module Assessments
         new_assessment.skip_owner_validation = skip_owner_validation
         new_assessment.save!
 
+        scoring_question_ids = assessment.factors_scoring.pluck(:question_id)
+        no_scoring_questions = assessment.question_ids - scoring_question_ids
+        question_ids = questions_to_copy ? questions_to_copy.pluck(:id) : assessment.question_ids
+
+        question_ids |= no_scoring_questions
+
         # Loop blocks to save for the new assessment
         assessment.blocks.each do |block|
-          new_block = make_copy(block, new_assessment)
-          new_block.save!
+          # Loop questions to save for the new block
+          block_question_ids = block.questions.pluck(:id)
 
-          @blocks_mapping[block.id] = new_block.id
+          next if (block_question_ids & question_ids).size.zero?
+
+          @new_block = make_copy(block, new_assessment)
+          @new_block.save!
+
+          @blocks_mapping[block.id] = @new_block.id
 
           # Replace original Block Id to New Block Id
           flow = update_id_in_json_config(flow, block.id, @blocks_mapping, 'current')
 
-          # Loop questions to save for the new block
-          block.questions.each do |question|
+          block.questions.where(id: block_question_ids & question_ids).each do |question|
             new_question = make_copy(question, new_assessment)
-            new_block.questions << new_question
-
+            new_question.save!
             @questions_mapping[question.id] = new_question.id
-
             %w[factors_scorings question_recodings].map do |name|
               copy_association(name, question, new_question, new_assessment)
             end
+
+            question_config = @questions_to_copy&.find { |qc| qc[:id] == question.id }
+            if question_config && new_question.type == 'MatrixTable'
+              update_matrix_question(new_question, question_config)
+            end
+
+            new_question.save!
+            @new_block.questions << new_question
 
             copy_translations(question, new_question, new_assessment)
           end
@@ -77,6 +96,24 @@ module Assessments
     end
 
     private
+
+    def update_matrix_question(new_question, question_config)
+      choice_texts = question_config[:selected_choice_indexes].map { |index| new_question.props['choicesTexts'][index] }
+      new_question.props['choicesTexts'] = choice_texts
+      new_question.props['choices'] = choice_texts.size
+
+      new_question.factors_scorings.each do |fs|
+        scores = question_config[:selected_choice_indexes].filter_map.with_index do |index, new_index|
+          scores = fs.props.select { |s| s['choice'] == index }
+          next if scores.empty?
+
+          scores.each { |s| s['choice'] = new_index }
+          scores
+        end.flatten
+
+        fs.update(props: scores)
+      end
+    end
 
     def make_copy(object, resource, resource_key = 'assessment_id')
       copy = object.clone(false)

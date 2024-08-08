@@ -63,7 +63,7 @@ const LeadAssessorAssessment: React.FC<Props> = ({
     fetchLeadAssessment(parsedCampaignId, parsedUserId).then(({ response }) => {
       const { status } = (response as FetchLeadAssessmentsType).lead_assessor_result
 
-      sendMessage('assessment:finished', status)
+      sendMessage('lead_assessor_assessment:status_change', status)
     })
     fetchAssessorAssessments(parsedCampaignId, parsedUserId)
   }, [])

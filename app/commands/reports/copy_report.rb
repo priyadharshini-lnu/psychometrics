@@ -92,17 +92,23 @@ module Reports
 
     def update_modules(report, filter_map) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       report.modules.each do |mod|
-        if mod.props && mod.props['filters'].is_a?(Array) && mod.props['filters'].present?
+        next unless mod.props
+
+        if mod.props['filters'].is_a?(Array) && mod.props['filters'].present?
           new_filters = mod.props['filters'].map { |id| filter_map[id] }
           mod.update(props: mod.props.merge('filters' => new_filters))
         end
 
-        if mod.props && mod.props['filter'].is_a?(Array) && mod.props['filter'].present?
+        if mod.props['filter'].is_a?(Array) && mod.props['filter'].present?
           new_filters = mod.props['filter'].map { |id| filter_map[id] }
           mod.update(props: mod.props.merge('filter' => new_filters))
         end
 
-        if mod.props && mod.props['filters'].is_a?(Integer)
+        if mod.props['filter'].is_a?(Integer)
+          mod.update(props: mod.props.merge('filter' => filter_map[mod.props['filter']]))
+        end
+
+        if mod.props['filters'].is_a?(Integer)
           mod.update(props: mod.props.merge('filters' => filter_map[mod.props['filters']]))
         end
       end

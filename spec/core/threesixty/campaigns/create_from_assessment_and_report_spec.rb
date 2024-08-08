@@ -84,9 +84,9 @@ describe Threesixty::Campaigns::CreateFromAssessmentAndReport do
 
       threesixty_campaign = described_class.call!(assessment, report, form, project, user)
       report_module = threesixty_campaign.report.modules.first
-      expected_factor_id = threesixty_campaign.assessment.dimension.all_factors.find_by(name: factor.name)
+      expected_factor = threesixty_campaign.assessment.dimension.all_factors.find_by(name: factor.name)
 
-      expect(report_module.props['factorId']).to eq(expected_factor_id)
+      expect(report_module.props['factorId']).to eq(expected_factor.id)
       expect(report_module.props['factorId']).to_not eq(factor.id)
     end
   end

@@ -6,16 +6,28 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import dayjs from '~/utils/dayjs'
 
 import { ResourceAvatar } from '~/glint'
-import { PROGRESS_STATUSES } from './EditSubjectDrawer'
+import { PROGRESS_STATUSES } from './Constants'
+import { AssessorUserAssessment, SubjectUserAssessment } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 
 const { I18n } = window
 const { Column } = Table
 
-export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDeleteAssessorForm }) => (
+type Props = {
+  assessments: AssessorUserAssessment[]
+  onEdit: (data: AssessorUserAssessment) => void
+  onDelete: (data: AssessorUserAssessment) => void
+  linkedAssessments: Map<string, SubjectUserAssessment> | null
+}
+export const AssessorAssessmentList = ({
+  assessments,
+  linkedAssessments,
+  onEdit,
+  onDelete,
+}: Props) => (
   <Table
     pagination={false}
-    dataSource={assessorAssessments}
-    rowKey={data => data.id}
+    dataSource={assessments}
+    rowKey={data => `${data.assessmentId}_${data.assessor?.id}`}
   >
     <Column
       title={I18n.t('common.column.id')}
@@ -30,11 +42,11 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
       dataIndex="assessor"
       render={assessor => (
         assessor && (
-        <ResourceAvatar
-          name={assessor.name || ''}
-          tooltip={assessor.name || ''}
-          url={assessor.photoUrl || ''}
-        />
+          <ResourceAvatar
+            name={assessor.name || ''}
+            tooltip={assessor.name || ''}
+            url={assessor.photoUrl || ''}
+          />
         )
       )}
     />
@@ -43,7 +55,7 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
       dataIndex="scheduleTime"
       render={scheduleTime => (
         scheduleTime && (
-        <span>{dayjs(scheduleTime).format('HH:mm A')}</span>
+          <span>{dayjs(scheduleTime).format('HH:mm A')}</span>
         )
       )}
     />
@@ -79,14 +91,16 @@ export const AssessorFormList = ({ assessorAssessments, onEditAssessorForm, onDe
     />
     <Column
       title={I18n.t('common.column.linked_activities')}
-      dataIndex="linkedActivity"
+      dataIndex="linkedActivityId"
+      render={linkedActivityId => (linkedActivityId && linkedAssessments?.get(linkedActivityId)?.name)
+      }
     />
     <Column
       title=""
       render={data => (
         <Space key={data.id}>
-          <Button onClick={() => onEditAssessorForm(data)} type="link" icon={<EditOutlined />} />
-          <Button onClick={() => onDeleteAssessorForm(data.id)} type="link" icon={<DeleteOutlined />} />
+          <Button onClick={() => onEdit(data)} type="link" icon={<EditOutlined />} />
+          <Button disabled={!data.assessor} onClick={() => onDelete(data)} type="link" icon={<DeleteOutlined />} />
         </Space>
       )}
     />

@@ -103,12 +103,16 @@ const ScoringTable: React.FC = () => {
 
   const [disabled, setDisabled] = useState<boolean>(true)
 
-  useMessageBus('assessment:finished', (status) => {
+  useMessageBus('lead_assessor_assessment:status_change', (status) => {
     if (status === 'completed') {
       setDisabled(true)
     } else {
       setDisabled(false)
     }
+  })
+
+  useMessageBus('assessment:finished', () => {
+    handleSave()
   })
 
   const sortedEvaluatorsData = useMemo(() => sortEvaluatorsByEmail(evaluatorsData), [evaluatorsData])
@@ -177,7 +181,7 @@ const ScoringTable: React.FC = () => {
       campaign_factor_id: factorIdToIdMap[`factorId${key}`],
       score: Number(finalScores[key]),
     }))
-    updateFinalScore(
+    return updateFinalScore(
       {
         action: 'save_assessor_scoring_factor_value',
         method: 'post',

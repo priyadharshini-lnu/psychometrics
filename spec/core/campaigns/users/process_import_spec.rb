@@ -143,6 +143,27 @@ describe Campaigns::Users::ProcessImport do
     expect(nam_campaign_user.active).to be_truthy
   end
 
+  it '.call - all new users' do
+    _, imported_users = described_class.call!(
+      campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+    )
+
+    vlad_user = campaign.users.find_by(email: 'vlad@gmail.com')
+    vlad_campaign_user = campaign.campaign_users.find_by(user_id: vlad_user.id)
+
+    nam_user = campaign.users.find_by(email: 'namu@gmail.com')
+    nam_campaign_user = campaign.campaign_users.find_by(user_id: nam_user.id)
+
+    fedor_user = campaign.users.find_by(email: 'fedor@gmail.com')
+    fedor_campaign_user = campaign.campaign_users.find_by(user_id: fedor_user.id)
+
+    expect(imported_users.size).to eq(3)
+
+    expect(vlad_campaign_user.active).to be_falsey
+    expect(fedor_campaign_user.active).to be_truthy
+    expect(nam_campaign_user.active).to be_truthy
+  end
+
   describe 'with custom fields' do
     let!(:question) do
       create(:question, name: 'custom_field')

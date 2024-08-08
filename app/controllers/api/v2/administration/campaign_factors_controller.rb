@@ -16,5 +16,28 @@ module Api
         jsonapi_render_errors [{ code: result[:error] }], status: :unprocessable_entity
       end
     end
+
+    def export
+      audit! :export_campaign_factors, nil, record_type: CampaignFactor, payload: nil, campaign: campaign
+
+      AdminJob.call(
+        :export_campaign_factors,
+        { campaign_id: campaign.id },
+        current_user
+      )
+      render json: :ok
+    end
+
+    def import
+      form = ::CampaignFactors::ImportForm.new(file: params[:file]).with_context(campaign: campaign)
+
+      if form.valid?
+        AdminJob.call(:import_campaign_factors, { campaign_id: campaign.id }, current_user, params[:file])
+
+        head :ok
+      else
+        render json: { errors: form.errors.full_messages }, status: 422
+      end
+    end
   end
 end
