@@ -18,7 +18,7 @@ class WorkshopInvite < ApplicationRecord
   def available_workshops_date_and_id
     [].tap do |available_dates|
       workshops.each do |workshop|
-        if workshop.booked_seats != workshop.total_seats
+        if workshop.booked_seats != workshop.total_seats && !workshop.scheduling_lead_time_passed?
           available_dates << { id: workshop.id, date: workshop.start_time.iso8601 }
         end
       end
