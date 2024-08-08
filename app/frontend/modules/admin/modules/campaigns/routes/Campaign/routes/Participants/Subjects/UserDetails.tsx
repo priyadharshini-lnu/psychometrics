@@ -33,6 +33,7 @@ import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { AssignManagerFormModal } from './AssignManagerFormModal'
 import UploadFileModal from './AssessmentsReports/UploadFileModal'
+import { getFeatures } from '~/core/config'
 
 const { I18n } = window
 
@@ -52,6 +53,7 @@ export const connecter = connect(
     user: getCurrentUser(state),
     assessmentStatuses: getStatusesCount(state),
     loading: isRequestInProgress(state, FETCH_SINGLE),
+    features: getFeatures(state),
   }),
   {
     fetchSingleUser,
@@ -73,6 +75,7 @@ export const UserDetails: React.FC<Props> = ({
   toggleActive,
   remove,
   extendTime,
+  features,
 }) => {
   const {
     projectId, campaignId, tab: paramTab, id: userId,
@@ -85,6 +88,7 @@ export const UserDetails: React.FC<Props> = ({
   const { modal, message } = App.useApp()
   const navigate = useNavigate()
   const [tab, setTab] = useState(paramTab || 'assessments')
+  const idpEnabled = features.idp_enabled
 
   useEffect(() => {
     fetchSingleUser(parsedCampaignId, parsedUserId)
@@ -158,11 +162,13 @@ export const UserDetails: React.FC<Props> = ({
       children: <AssessmentCenter />,
     })
   }
-  tabs.push({
-    key: 'idp',
-    label: I18n.t('assessments_reports.menu.idp'),
-    children: <Idp />,
-  })
+  if (idpEnabled) {
+    tabs.push({
+      key: 'idp',
+      label: I18n.t('assessments_reports.menu.idp'),
+      children: <Idp />,
+    })
+  }
 
   return (
     <div>

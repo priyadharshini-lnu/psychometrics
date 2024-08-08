@@ -24,11 +24,13 @@ import {
 import { CampaignIcon } from '~/glint/icons'
 import { PageSider } from '~/glint'
 import styles from './styles.less'
+import { getFeatures } from '~/core/config'
 
 const connector = connect((state: RootState) => ({
   logo: getProjectLogo(state),
   projectName: getProjectName(state),
   showBookings: getShowBookings(state),
+  features: getFeatures(state),
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -37,11 +39,17 @@ type UserPageSiderProps = {
   siderFooter: (collapsed: boolean) => React.ReactElement
   updateProfileRequired: boolean
   showBookings?: boolean
+  features?: boolean
 } & PropsFromRedux
 
 const { I18n } = window
 
-const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookings?: boolean) => ([{
+const getMenuItems = (
+  showCampaign?: boolean,
+  showInsights?: boolean,
+  showBookings?: boolean,
+  idpEnabled?: boolean,
+) => ([{
   key: 'dashboard',
   label: I18n.t('campaign.dashboard_menu.home'),
   icon: <HomeOutlined className={styles.siderIcon} />,
@@ -56,7 +64,7 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookin
   ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
 }] : [],
 // eslint-disable-next-line no-constant-condition
-...true ? [{
+...idpEnabled ? [{
   key: 'idp',
   label: I18n.t('campaign.dashboard_menu.development'),
   icon: <ReadOutlined className={styles.siderIcon} />,
@@ -81,12 +89,12 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookin
 }])
 
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
-  showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings,
+  showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings, features,
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const { pathname } = location
-  let menuItems = getMenuItems(false, false, showBookings)
+  let menuItems = getMenuItems(false, false, showBookings, features?.idp_enabled)
   let activeItem:string
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
@@ -132,7 +140,12 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   if (pathname.includes('/campaigns/') || isThreesixty) {
     const [,, campaignId] = location.pathname.split('/')
     campaignIdRef.current = campaignId
-    menuItems = getMenuItems(true, pathname.includes('/threesixty_campaigns/') ? false : showInsights, showBookings)
+    menuItems = getMenuItems(
+      true,
+      pathname.includes('/threesixty_campaigns/') ? false : showInsights,
+      showBookings,
+      features?.idp_enabled,
+    )
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else {
     activeItem = pathname.slice(1)
