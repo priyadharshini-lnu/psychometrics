@@ -14,7 +14,10 @@ module Threesixty
         format.html { render 'end_user/users/dashboard' }
         format.json do
           render json: Threesixty::NominationSerializer.new(
-            include: '**'
+            include: '**',
+            context: {
+              current_user: current_user
+            }
           ).serialize(@subject)
         end
       end

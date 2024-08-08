@@ -3,10 +3,9 @@
 module Threesixty
   class NominationSerializer < Panko::Serializer
     attributes :id, :is_self, :can_send_request_approval_email, :evalaution_completed_for_subject, :relationships,
-               :options, :instructions, :requirements
+               :options, :instructions, :requirements, :subject
 
     has_many :evaluators, serializer: Threesixty::EndUser::NomineeSerializer
-    has_one :subject, serializer: UserSerializer
 
     def evalaution_completed_for_subject
       object.evaluation_status_completed?
@@ -42,6 +41,16 @@ module Threesixty
         object.campaign.threesixty_campaign.instruction_templates.enabled.includes(:translations),
         each_serializer: ::Threesixty::InstructionTemplateSerializer
       ).to_a
+    end
+
+    def subject
+      UserSerializer.new.serialize(object.user)
+    end
+
+    private
+
+    def current_user
+      context[:current_user]
     end
   end
 end
