@@ -9,6 +9,10 @@ import { set as setSelectedTab, get as getSelectedTab } from '../../core/selecte
 import routeUtils from '~/utils/route'
 import settings from '../../settings'
 import { PageHeader } from '../../PageHeader'
+import CampaignNameConfirmationModal from '../../components/CampaignNameConfirmationModal'
+import ResetCampaignModal from '../../components/ResetCampaignModal'
+import ManageRelationshipsModal from './ManageRelationshipsModal'
+import ParticipantModal from './ParticipantModal'
 import Options from './Options'
 import SubjectList from './SubjectList'
 import EvaluatorList
@@ -60,6 +64,10 @@ function Index ({ currentUser, setSelectedTab, selectedTab }) {
             urlPrefix=""
           />
         </div>
+        <ParticipantModal />
+        <ManageRelationshipsModal />
+        <ResetCampaignModal />
+        <CampaignNameConfirmationModal />
       </div>
     </>
   )
