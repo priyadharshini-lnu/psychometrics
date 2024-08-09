@@ -16,7 +16,11 @@ module ActiveStorageAttachable
 
       return unless attachment.attached?
 
-      return attachment.variant(variant)&.processed&.url if variant && attachment.variable?
+      begin
+        return attachment.variant(variant)&.processed&.url if variant && attachment.variable?
+      rescue ActiveStorage::FileNotFoundError
+        return nil
+      end
 
       attachment&.url
     end

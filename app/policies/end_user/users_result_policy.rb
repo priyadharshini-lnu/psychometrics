@@ -2,6 +2,8 @@
 
 class EndUser::UsersResultPolicy < Threesixty::BasePolicy
   def update?
+    return false if @record.campaign_user.disabled
+
     (@record.evaluator_id == @current_user.id) || superadmin?
   end
 

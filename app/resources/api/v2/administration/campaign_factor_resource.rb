@@ -33,6 +33,11 @@ class Api::V2::Administration::CampaignFactorResource < Api::V2::Administration:
   end
 
   before_update do
+    output_type = context[:params].dig(:data, :attributes, :output_type)
+    id = context[:params].dig(:data, :id)
+    if output_type != 'numeric'
+      @model.campaign.campaign_factors.where(id).update(ranked: false)
+    end
     ranked = context[:params].dig(:data, :attributes, :ranked)
     if ranked
       @model.campaign.campaign_factors.where(ranked: true).update_all(ranked: false)

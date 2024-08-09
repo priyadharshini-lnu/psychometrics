@@ -70,7 +70,7 @@ describe Assessments::QuestionsImport::ImportForm do
   it 'passes if file is valid' do
     dimension = create(:dimension)
     create(:factor, dimension: dimension, name: 'Accountability')
-    create(:factor, dimension: dimension, name: 'Grit')
+    create(:factor, dimension: dimension, name: '.Grit.1')
     assessment = create(:assessment, dimension: dimension)
     file = Rack::Test::UploadedFile.new(
       Rails.root.join('spec/fixtures/files/import_assessment_questions/valid_file.xlsx'),

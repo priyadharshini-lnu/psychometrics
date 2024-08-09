@@ -1,8 +1,11 @@
-import { useEffect, useState, FC } from 'react'
-import _ from 'lodash'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
-  Drawer, Table, Space, Row, Col, Typography, Form, Select, Alert,
-  Button, Divider, Skeleton,
+  useEffect, useState, FC,
+  useMemo,
+} from 'react'
+import {
+  Drawer, Space, Row, Col, Typography, Form, Select, Alert,
+  Button, Divider,
 } from 'antd'
 import {
   PlusOutlined,
@@ -17,17 +20,27 @@ import dayjs from '~/utils/dayjs'
 import InputDuration from '~/components/InputDuration'
 
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { FullWidthSkeleton, ResourceAvatar } from '~/glint'
+import { FullWidthSkeleton, ResourceAvatar, TableSkeleton } from '~/glint'
 import Modals from '~/modules/admin/components/Modals/'
-import { AssessorFormModal } from './AssessorFormModal'
-import { AssessorFormList } from './AssessorFormList'
+import { AssignAssessorFormModal } from './AssignAssessorFormModal'
+import { AssessorAssessmentList } from './AssessorAssessmentList'
 import { UserAssessmentList } from './UserAssessmentList'
-import { useResources } from '~/hooks/useResources'
 import {
-  EditableWorkshopSubject, SubjectAssessment, AssessorAssessment, AssessorAssessmentTR,
+  AssessorUserAssessment,
+  AssessorUserAssessmentTR,
+  CampaignAssessorAssessment,
+  CampaignAssessorAssessmentTR,
+  SubjectUserAssessment,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 
 import styles from './EditSubjectDrawer.less'
+import { ASSESSMENT_SOURCE, STATUSES } from './Constants'
+import { useWorkshopSubjectResources } from './useWorkshopSubjectResources'
+import { combineAssessments } from './Helpers'
+
+const MODALS = {
+  AssessorFormModal: AssignAssessorFormModal,
+}
 
 const connector = connect(null, {
   openModal,
@@ -51,21 +64,7 @@ type OwnProps = {
 }
 type Props = PropsFromRedux & OwnProps
 
-const { Column } = Table
 const { I18n } = window
-
-export const STATUSES = [
-  { label: I18n.t('common.status.not_status'), value: 'no_status' }, // remove use of common.
-  { label: I18n.t('common.status.on_time'), value: 'on_time' },
-  { label: I18n.t('common.status.no_show'), value: 'no_show' },
-  { label: I18n.t('common.status.late'), value: 'late' },
-  { label: I18n.t('common.status.dropped_out'), value: 'dropped_out' },
-]
-export const PROGRESS_STATUSES = {
-  not_started: { label: I18n.t('common.status.not_started'), color: 'default' },
-  in_progress: { label: I18n.t('common.status.in_progress'), color: 'warning' },
-  completed: { label: I18n.t('common.status.completed'), color: 'success' },
-}
 
 const { Text, Title } = Typography
 
@@ -78,109 +77,93 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   const [, setFields] = useState({})
   const [errors, setErrors] = useState<Errors>()
   const [statusFormInstance] = Form.useForm()
-
   const { campaignId, id } = useParams() as { campaignId: string, id: string }
-  const { fetchSingle, getResource, isLoading } = useResources<EditableWorkshopSubject>(
-    'workshop_subjects',
-    {
-      basePath: `campaigns/${campaignId}/workshops/${id}/`,
-      apiConfig: {
-        include: ['user', 'workshop'],
-        include_resource_meta: ['assessor_assessments', 'assessors'],
-      },
-    },
-  )
-  const workshopSubjectDetailsLoading = isLoading(`fetch@${subjectId}`)
+
+  const [assessments, setAssessments] = useState<SubjectUserAssessment[]>([])
+  const [assessmentsMap, setAssessmentsMap] = useState<Map<string, SubjectUserAssessment> | null>(null)
+  // Assessor Assessments for which Assessor has been assigned
+  const [assessorUserAssessments, setAssessorUserAssessments] = useState<AssessorUserAssessment[]>([])
+  const [campaignAssessorAssessments, setCampaignAssessorAssessments] = useState<CampaignAssessorAssessment[]>([])
+  const [campaignAssessorAssessmentsMap, setCampaignAssessorAssessmentsMap] = useState<Map<number,
+  CampaignAssessorAssessment> | null>(null)
+  const [combinedAssessorAssessments, setCombinedAssessorAssessments] = useState<AssessorUserAssessment[]>([])
 
   const {
-    memberAction,
-  } = useResources<EditableWorkshopSubject>(
-    'workshop_subjects',
-    {
-      basePath: `campaigns/${campaignId}/`,
-    },
-  )
+    fetchSubject,
+    workshopSubjectDetailsLoading,
+    workshopSubject,
+    subjecUserAssessments,
+    fetchAssessments,
+    fetchAssessorAssessments,
+    updateSubject,
+  } = useWorkshopSubjectResources(campaignId, id, subjectId, userId)
 
-  const workshopSubject = getResource(subjectId)
-
-  const {
-    data: assessments, fetch: fetchAssessments,
-  } = useResources<SubjectAssessment>(
-    'user_assessments',
-    {
-      basePath: `campaigns/${campaignId}/workshop_subjects/${subjectId}/`,
-      apiConfig: {
-        filter: {
-          subject_id_eq: userId,
-          campaign_id_eq: campaignId,
-          preworks: 'false',
-          workshop_activities: 'true',
-        },
-      },
-    },
-  )
-
-  const {
-    collectionAction: fetchAssessorAssessments,
-  } = useResources<AssessorAssessment>(
-    'campaign_assessor_assessments',
-    {
-      basePath: `campaigns/${campaignId}/workshop_subjects/${subjectId}/`,
-      apiConfig: {
-        filter: {
-          subject_id_eq: subjectId,
-        },
-      },
-    },
-  )
-
-  const [assessorAssessments, setAssessorAssessments] = useState<AssessorAssessment[]>([])
-  const subjectDetails = {
-    ...workshopSubject,
-    assessments,
-    assessorAssessments,
-  }
-  const [subjectData, setSubjectData] = useState(subjectDetails)
-
+  const assessorAssessmentsMap = useMemo(() => {
+    const assignedAssessmentIds = new Map()
+    const unassignedAssessmentIds = new Map()
+    combinedAssessorAssessments.forEach((assessment) => {
+      if (assessment.assessor) {
+        assignedAssessmentIds.set(`${assessment.assessmentId}_${assessment.assessor?.userId}`, assessment)
+      } else {
+        unassignedAssessmentIds.set(assessment.assessmentId, assessment)
+      }
+    })
+    return {
+      assignedAssessmentIds,
+      unassignedAssessmentIds,
+    }
+  }, [combinedAssessorAssessments])
 
   useEffect(() => {
-    if (workshopSubject) {
-      setSubjectData({ ...subjectData, ...workshopSubject })
-    }
-  }, [workshopSubject])
+    const assessments = combineAssessments(assessorUserAssessments, campaignAssessorAssessments)
+    setCombinedAssessorAssessments(assessments)
+  }, [assessorUserAssessments, campaignAssessorAssessments])
 
   useEffect(() => {
-    if (assessments) {
-      setSubjectData({ ...subjectData, assessments })
-    }
-  }, [assessments])
-
-  useEffect(() => {
-    if (assessorAssessments) {
-      setSubjectData({ ...subjectData, assessorAssessments })
-    }
-  }, [assessorAssessments])
+    setAssessments(subjecUserAssessments)
+    const map = new Map()
+    subjecUserAssessments.forEach((am) => {
+      map.set(am.assessment.id, am)
+    })
+    setAssessmentsMap(map)
+  }, [subjecUserAssessments])
 
   useEffect(() => {
     if (open && subjectId) {
-      fetchSingle({ id: subjectId })
+      fetchSubject({ id: subjectId })
       fetchAssessments()
-      fetchAssessorAssessments(
-        { action: 'subject_assessor_assessments', method: 'get', responseType: t.array(AssessorAssessmentTR) },
-      ).then((data: AssessorAssessment[]) => {
-        setAssessorAssessments(data)
+      fetchAssessorAssessments({
+        action: 'subject_assessor_assessments',
+        method: 'get',
+        responseType: {
+          assessor_assessments: t.array(AssessorUserAssessmentTR),
+          campaign_assessor_assessments: t.array(CampaignAssessorAssessmentTR),
+        },
+      }).then((
+        data: {
+          assessorUserAssessments: AssessorUserAssessment[],
+          campaignAssessorAssessments: CampaignAssessorAssessment[]
+        },
+      ) => {
+        setAssessorUserAssessments(data.assessorUserAssessments)
+        setCampaignAssessorAssessments(data.campaignAssessorAssessments)
+        const map = new Map()
+        data.campaignAssessorAssessments.forEach((am) => {
+          map.set(am.assessmentId, am)
+        })
+        setCampaignAssessorAssessmentsMap(map)
       })
     }
   }, [subjectId, open])
 
   const handleTimeChange = (value: Dayjs | null, userAssessmentId: string) => {
     const scheduleTime = value ? mergeDateAndTime(dayjs(workshopStartTime), value) : null
-    const updatedAssessments = subjectData.assessments
+    const updatedAssessments = assessments
       .map(userAssessment => (
         userAssessment.id.toString() === userAssessmentId.toString()
           ? { ...userAssessment, scheduleTime: scheduleTime?.format() } : userAssessment
       ))
-    setSubjectData({ ...subjectData, assessments: updatedAssessments })
+    setAssessments(updatedAssessments)
   }
 
   const handleClose = () => {
@@ -188,66 +171,115 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     onClose()
   }
 
-  const handleAssessorFormSubmit = ({ id, values }) => {
-    const { assessorAssessments } = subjectData
-    const dataExist = assessorAssessments.some(assessment => assessment.id === `${id}`)
-    if (dataExist) {
-      const updatedAssessorFormData = assessorAssessments.map((assessment) => {
-        if (assessment.id === `${id}`) {
-          return ({
-            ...assessment,
-            ...values,
-            scheduleTime: values.scheduleTime.format(),
-          })
+  const handleAssessorFormSubmit = (
+    newAssessment:AssessorUserAssessment,
+    type: 'update' | 'create',
+    prevAssessment?: AssessorUserAssessment,
+  ) => {
+    const comboExist = assessorAssessmentsMap.assignedAssessmentIds.get(
+      `${newAssessment.assessmentId}_${newAssessment.assessor?.userId}`,
+    )
+    const allowUpdate = newAssessment.assessmentId === prevAssessment?.assessmentId
+    && newAssessment?.assessor?.userId === prevAssessment.assessor?.userId
+    if (comboExist && !allowUpdate) {
+      return
+    }
+    if (type === 'create') {
+      setCombinedAssessorAssessments([newAssessment, ...combinedAssessorAssessments])
+    }
+
+    if (type === 'update') {
+      const updatedAssessorFormData = combinedAssessorAssessments.map((
+        assessment: AssessorUserAssessment,
+      ) => {
+        if (assessment.assessmentId === prevAssessment?.assessmentId
+          && assessment?.assessor?.userId === prevAssessment.assessor?.userId) {
+          return (
+            newAssessment
+          )
         }
         return assessment
       })
-      setSubjectData({ ...subjectData, assessorAssessments: updatedAssessorFormData })
-    } else {
-      setSubjectData({
-        ...subjectData,
-        assessorAssessments: [...assessorAssessments,
-          { ...values, id, scheduleTime: values.scheduleTime.format() }],
-      })
+      setCombinedAssessorAssessments(updatedAssessorFormData)
     }
   }
 
-  const handleEditAssessorForm = (data) => {
+  const handleOpenAssignAssessorFormModal = (data?: AssessorUserAssessment) => {
     openModal('AssessorFormModal', {
-      initialFormData: { ...data, scheduleTime: dayjs(data.scheduleTime || Date.now()) },
+      assessment: data,
       assessors: workshopSubject?.meta.assessors,
       workshop: workshopSubject?.workshop,
-      assessments: workshopSubject?.meta.assessorAssessments,
+      campaignAssessorAssessments,
+      combinedAssessorAssessments,
+      linkedAssessments: assessmentsMap,
+      onFormFinish: handleAssessorFormSubmit,
     })
   }
-  const handleDeleteAssessorForm = (id) => {
-    const { assessorAssessments } = subjectData
-    const dataExist = assessorAssessments.some(assessment => assessment.id === id)
-    if (dataExist) {
-      const updatedAssessorFormData = assessorAssessments.map((assessment) => {
-        if (assessment.id === id) {
-          return ({
-            ...assessment,
-            scheduleTime: null,
-            assessor: null,
-            meetingType: 'none',
-            meetingLink: null,
-            status: null,
-          })
-        }
-        return assessment
-      })
-      setSubjectData({ ...subjectData, assessorAssessments: updatedAssessorFormData })
+
+  const handleDeleteAssessorForm = (deleteAssessment: AssessorUserAssessment) => {
+    const comboExist = assessorAssessmentsMap.assignedAssessmentIds.get(
+      `${deleteAssessment.assessmentId}_${deleteAssessment.assessor?.userId}`,
+    )
+
+    if (comboExist) {
+      const isUnasigenedAssessment = assessorAssessmentsMap.unassignedAssessmentIds.get(deleteAssessment.assessmentId)
+      let updatedAssessorFormData: AssessorUserAssessment[]
+      if (isUnasigenedAssessment) {
+        updatedAssessorFormData = combinedAssessorAssessments.filter(assessment => !(
+          assessment.assessmentId === deleteAssessment.assessmentId
+          && assessment.assessor?.userId === deleteAssessment.assessor?.userId))
+      } else {
+        updatedAssessorFormData = combinedAssessorAssessments.map((assessment) => {
+          if (assessment.assessmentId === deleteAssessment.assessmentId
+             && assessment.assessor?.userId === deleteAssessment.assessor?.userId) {
+            const campaignAssessment = campaignAssessorAssessmentsMap?.get(deleteAssessment.assessmentId)
+            const updatedAssessment = ({
+              id: campaignAssessment?.id || '',
+              scheduleTime: null,
+              name: campaignAssessment?.name || '',
+              status: campaignAssessment?.status || '',
+              meetingLink: campaignAssessment?.meetingLink || '',
+              meetingType: campaignAssessment?.meetingType || '',
+              linkedActivityId: campaignAssessment?.linkedActivityId || '',
+              assessmentId: deleteAssessment.assessmentId,
+              assessor: null,
+              source: ASSESSMENT_SOURCE.CAMPAIGN_ASSESSOR_ASSESSMENTS,
+            })
+            return updatedAssessment
+          }
+          return assessment
+        })
+      }
+      setCombinedAssessorAssessments(updatedAssessorFormData)
     }
   }
 
-  const updateSubject = () => {
+  const handleSaveData = () => {
     const statusValues = statusFormInstance.getFieldsValue()
-    memberAction({
+    const assessorAssessments = combinedAssessorAssessments
+      .filter(am => am.assessor)
+      .map((assessment) => {
+        if (assessment.source === ASSESSMENT_SOURCE.CAMPAIGN_ASSESSOR_ASSESSMENTS) {
+          const newAssessment: {id?: string, campaignAssessorAssessmentId?: string } &
+             Omit<AssessorUserAssessment, 'id'> = {
+               ...assessment,
+               campaignAssessorAssessmentId: assessment.id,
+             }
+          delete newAssessment.id
+          return newAssessment
+        }
+        return assessment
+      })
+    updateSubject({
       id: subjectId,
       action: 'update_subject_details_and_assessments',
       method: 'post',
-      body: { ...subjectData, ...statusValues },
+      body: {
+        ...workshopSubject,
+        ...statusValues,
+        assessments,
+        assessorAssessments,
+      },
     }).catch((e) => {
       setErrors(e)
     }).then((response) => {
@@ -257,22 +289,28 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     })
   }
 
-  const handleSaveData = () => {
-    updateSubject()
-  }
+  const skeleton = (
+    <>
+      <FullWidthSkeleton active rows={1} height="100" />
+      <Divider />
+      <TableSkeleton rowsCount={3} columnsCount={4} cellHeight="40px" />
+      <Divider />
+      <TableSkeleton rowsCount={3} columnsCount={4} cellHeight="40px" />
+    </>
+  )
 
   const title = !workshopSubjectDetailsLoading ? (
     <Row className="font-normal fs-14" wrap={false} gutter={[8, 0]}>
       <Col span={12}>
         <Space>
           <ResourceAvatar
-            tooltip={subjectData?.user?.fullName || ''}
-            url={subjectData?.user?.photoUrl || ''}
-            name={subjectData?.user?.fullName || ''}
+            tooltip={workshopSubject?.user?.fullName || ''}
+            url={workshopSubject?.user?.photoUrl || ''}
+            name={workshopSubject?.user?.fullName || ''}
           />
           <Space size={0} direction="vertical">
-            {subjectData?.user?.fullName}
-            <Text type="secondary">{subjectData?.user?.email}</Text>
+            {workshopSubject?.user?.fullName}
+            <Text type="secondary">{workshopSubject?.user?.email}</Text>
           </Space>
         </Space>
       </Col>
@@ -280,26 +318,26 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         <Space size="small" align="end" direction="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.language')}</Text>
           <Text className="flex-end">
-            {subjectData?.language || I18n.t('administration.scheduling.subjects.language_not_selected')}
+            {workshopSubject?.language || I18n.t('administration.scheduling.subjects.language_not_selected')}
           </Text>
         </Space>
       </Col>
       <Col span={3}>
         <Space size="small" align="end" direction="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.preworks')}</Text>
-          <Text className="flex-end">{subjectData?.preworks}</Text>
+          <Text className="flex-end">{workshopSubject?.preworks}</Text>
         </Space>
       </Col>
       <Col span={6}>
         <Space size="small" align="end" direction="vertical">
           <Text type="secondary">{I18n.t('administration.scheduling.subjects.activities')}</Text>
-          <Text className="flex-end">{subjectData?.workshopActivities}</Text>
+          <Text className="flex-end">{workshopSubject?.workshopActivities}</Text>
         </Space>
       </Col>
     </Row>
   ) : <FullWidthSkeleton active rows={1} height="100" />
 
-  const statusForm = !workshopSubjectDetailsLoading ? (
+  const statusForm = (
     <Form
       form={statusFormInstance}
       className={styles.form}
@@ -313,7 +351,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
           className="font-normal"
           label="Status"
           name="attendanceStatus"
-          initialValue={subjectData.attendanceStatus}
+          initialValue={workshopSubject?.attendanceStatus}
         >
           <Select dropdownStyle={{ minWidth: '120px' }}>
             {STATUSES.map(status => (
@@ -327,7 +365,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
           </Select>
         </Form.Item>
         {statusFormInstance.getFieldValue('attendanceStatus') === 'late' ? (
-          <Form.Item label="Late Duration" name="lateDuration" initialValue={subjectData.lateDuration || null}>
+          <Form.Item label="Late Duration" name="lateDuration" initialValue={workshopSubject?.lateDuration || null}>
             <InputDuration
               value=""
               onChange={() => {}}
@@ -337,105 +375,75 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
         ) : null}
       </Space>
     </Form>
-  ) : <FullWidthSkeleton active rows={1} height="100" />
+  )
 
-  const assessmentsTable = !workshopSubjectDetailsLoading ? (
-    <UserAssessmentList
-      assessments={subjectData.assessments}
-      onTimeChange={handleTimeChange}
-    />
-
-  ) : <TableSkeleton rowsCount={3} columnsCount={4} cellHeight="40px" />
-
-  const assessorAssessmentsTable = !workshopSubjectDetailsLoading ? (
-    <AssessorFormList
-      assessorAssessments={subjectData.assessorAssessments}
-      onEditAssessorForm={handleEditAssessorForm}
-      onDeleteAssessorForm={handleDeleteAssessorForm}
-    />
-
-  ) : <TableSkeleton rowsCount={3} columnsCount={4} cellHeight="40px" />
-
-  const footer = !workshopSubjectDetailsLoading
-    ? <Button type="primary" onClick={handleSaveData}>Save</Button> : <Skeleton.Button active />
+  const footer = workshopSubjectDetailsLoading ? (
+    <FullWidthSkeleton active rows={1} height="50" />
+  ) : (
+    <Button type="primary" onClick={handleSaveData}>
+      {I18n.t('administration.common.save')}
+    </Button>
+  )
 
   return (
     <>
       <Drawer
-        footerStyle={{ textAlign: 'end' }}
         footer={footer}
         width="80%"
         title={title}
         open={open}
         onClose={handleClose}
         destroyOnClose
-      >
-        {statusForm}
-        <Divider />
-        <Space size="large" direction="vertical" rootClassName="w-100">
-          <Title rootClassName="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessments')}</Title>
-          {assessmentsTable}
-          <Title rootClassName="mb-0" level={5}>{I18n.t('administration.scheduling.subjects.assessor_forms')}</Title>
-          {errors && errors.base && errors.base.length > 0 && (
-          <Alert
-            message={errors.base.map(
-              error => error?.title[0].assessor_forms,
-            )}
-            type="error"
-          />
-          )}
-          {assessorAssessmentsTable}
-          {!workshopSubjectDetailsLoading ? (
-            <Button onClick={() => openModal(
-              'AssessorFormModal',
-              {
-                assessors: workshopSubject?.meta.assessors,
-                assessments: workshopSubject?.meta.assessorAssessments,
-                workshop: workshopSubject?.workshop,
-              },
-            )}
-            >
-              <PlusOutlined />
-              {I18n.t('administration.scheduling.subjects.add_assessor_form')}
-            </Button>
-          ) : <Skeleton.Button active />}
-        </Space>
-        <Divider />
-      </Drawer>
-      <Modals
-        modals={{
-          AssessorFormModal: props => (
-            <AssessorFormModal
-              {...props}
-              onFormFinish={handleAssessorFormSubmit}
-            />
-          ),
+        styles={{
+          footer: { textAlign: 'end' },
         }}
-      />
+      >
+        {workshopSubjectDetailsLoading ? skeleton : (
+          <>
+            {statusForm}
+            <Space size="large" direction="vertical" rootClassName="w-100">
+              <Title
+                rootClassName="mb-0"
+                level={5}
+              >
+                {I18n.t('administration.scheduling.subjects.assessments')}
+              </Title>
+              <UserAssessmentList
+                assessments={assessments}
+                onTimeChange={handleTimeChange}
+              />
+              <Title
+                rootClassName="mb-0"
+                level={5}
+              >
+                {I18n.t('administration.scheduling.subjects.assessor_forms')}
+              </Title>
+              {errors?.base && errors.base.length > 0 && (
+              <Alert
+                message={errors.base.map(
+                  error => error?.title[0].assessor_forms,
+                )}
+                type="error"
+              />
+              )}
+              <AssessorAssessmentList
+                assessments={combinedAssessorAssessments}
+                linkedAssessments={assessmentsMap}
+                onEdit={handleOpenAssignAssessorFormModal}
+                onDelete={handleDeleteAssessorForm}
+              />
+              <Button onClick={() => handleOpenAssignAssessorFormModal()}>
+                <PlusOutlined />
+                {I18n.t('administration.scheduling.subjects.add_assessor_form')}
+              </Button>
+            </Space>
+          </>
+        )}
+      </Drawer>
+      <Modals modals={MODALS} />
     </>
   )
 }
 
-type TableSkeletonProps = {
-  columnsCount: number,
-  rowsCount: number,
-  cellHeight: string,
-}
-
-const TableSkeleton: FC<TableSkeletonProps> = ({ columnsCount, rowsCount, cellHeight }) => {
-  const dataSource = _.range(0, rowsCount).map(number => ({ number }))
-  return (
-    <Table pagination={false} dataSource={dataSource}>
-      {_.range(0, columnsCount).map(number => (
-        <Column
-          key={number}
-          title={<FullWidthSkeleton active rows={1} height={cellHeight} />}
-          dataIndex="id"
-          render={() => <FullWidthSkeleton active rows={1} height={cellHeight} />}
-        />
-      ))}
-    </Table>
-  )
-}
 
 export const EditSubjectDrawer = connector(EditSubjectDrawerComponent)

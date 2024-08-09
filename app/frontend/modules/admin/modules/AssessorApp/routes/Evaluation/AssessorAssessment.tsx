@@ -80,7 +80,7 @@ const AssessorAssessment: React.FC<Props> = ({
     setUserAssessmentId(id)
   }
 
-  useMessageBus('assessment:finished', (_status, assessmentId) => {
+  useMessageBus('assessment:finished', (assessmentId) => {
     if (userAssessmentId) {
       updateAssessorAssessmentStatus(assessmentId, +userAssessmentId)
     }

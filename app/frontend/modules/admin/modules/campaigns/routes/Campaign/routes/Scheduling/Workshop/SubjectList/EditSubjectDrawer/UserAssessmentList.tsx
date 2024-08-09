@@ -4,7 +4,7 @@ import {
 import { useEffect, useState } from 'react'
 import dayjs from '~/utils/dayjs'
 
-import { PROGRESS_STATUSES } from './EditSubjectDrawer'
+import { PROGRESS_STATUSES } from './Constants'
 
 const { I18n } = window
 const { Column } = Table

@@ -58,7 +58,9 @@ module Assessments
               I18n.t('administration.assessment_question_import.errors.scores_not_allowed')
             )
           end
-          next if comma_separated_scores.split(',').all? { |score| score.strip.match?(/\A\d+\.{0,1}\d*\z/) }
+          if comma_separated_scores.split(',').all? { |score| score.blank? || score.strip.match?(/\A\d+\.{0,1}\d*\z/) }
+            next
+          end
 
           errors.add(
             :base,

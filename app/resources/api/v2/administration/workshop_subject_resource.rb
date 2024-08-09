@@ -103,6 +103,7 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
         assessments << {
           id: campaign_assessor_assessment.id,
           name: campaign_assessor_assessment.assessment.name,
+          assessment_id: campaign_assessor_assessment.assessment_id,
           subject_linked_activity_present: subject_assessor_assessments[
             campaign_assessor_assessment.assessment&.linked_assessment_id
           ].present?

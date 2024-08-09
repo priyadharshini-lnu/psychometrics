@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import _ from 'lodash'
 import {
-  Divider, Checkbox, Space, ConfigProvider, Alert, Button,
-  Popover,
+  Divider, Checkbox, Space, ConfigProvider, Alert, Popover,
+  Flex, Button,
 } from 'antd'
+import {
+  CloseOutlined,
+} from '@ant-design/icons'
 import Action from '~/modules/survey/undo'
 import LogicElement from '~/modules/survey/models/logic/LogicElement'
 import Question from '~/modules/survey/models/Question'
@@ -19,7 +22,7 @@ const QUESTION_BLOCK_BOTTOM_OFFSET = QUESTION_BLOCK_BOTTOM_MARGIN + QUESTION_BLO
 const PropertyPanelComponent = (props) => {
   const {
     question, offset, addPageBreak, addSkipLogic, copyQuestion, addNote, restricted,
-    openDisplayLogic, changeType, openPreview, firstBlockContentOffset,
+    openDisplayLogic, changeType, openPreview, firstBlockContentOffset, unselectQuestion,
   } = props
   const panelRef = useRef(null)
   const [showMenu, setShowMenu] = useState(false)
@@ -52,7 +55,10 @@ const PropertyPanelComponent = (props) => {
 
   const questiontypeBtn = (
     <div className={styles.fieldset} style={{ position: 'relative' }}>
-      <span className={styles.label}>Change Question Type</span>
+      <Flex justify="space-between" align="center">
+        <span className={styles.label}>Change Question Type</span>
+        <Button shape="circle" type="text" onClick={unselectQuestion} icon={<CloseOutlined />} />
+      </Flex>
       {question.isNew ? (
         <>
           <Popover

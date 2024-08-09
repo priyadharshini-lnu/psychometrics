@@ -42,10 +42,14 @@ en:
               blank: Report Bundle ID can't be blank
             report_id:
               blank: Report ID can't be blank
-        campaigns_external_scores_import_form:
+        campaign_factor_import_form:
           attributes:
             file:
               invalid_format: Please upload xlsx file
+        campaigns_external_scores_import_form:
+          attributes:
+            file:
+              invalid_format: Please upload CSV file
         column:
           attributes:
             name:
@@ -701,6 +705,8 @@ en:
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_dimension: Copy Dimension
+        create_threesixty_campaign: Create Threesixty Campaign
+        export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
@@ -709,6 +715,7 @@ en:
         import_accesssheet: Import Accessheet
         import_assessment_questions: Import Assessment Questions
         import_assessors: Import Assessors
+        import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
         import_external_campaign_scoring: Import External Campaign Scoring
         import_question_translations: Import Question Translations
@@ -1774,6 +1781,7 @@ en:
         code_already_exists: A factor with the same code already exists.
         invalid_lua_name: should be valid lua variable name
         name_already_exists: A factor with the same name already exists.
+        rank_not_allowed: Only factors with an output type of numeric can be ranked.
       campaign_factor_group:
         group_already_exists: A group with the same name already exists.
         last_factor_group: Cannot delete last Campaign factor group.

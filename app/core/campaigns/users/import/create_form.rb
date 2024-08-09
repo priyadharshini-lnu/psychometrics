@@ -9,6 +9,7 @@ module Campaigns
         attribute :first_name, String
         attribute :last_name, String
         attribute :email, String
+        attribute :active, Boolean
         attribute :mobile_number, String
         attribute :operation, String
         attribute :password, String
@@ -35,7 +36,7 @@ module Campaigns
         end
 
         def active
-          true
+          super.nil? ? true : super
         end
 
         private

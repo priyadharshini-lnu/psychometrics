@@ -123,6 +123,10 @@ class Factor < ApplicationRecord
     slice(:name, :dimension_id, :scoring_strategy)
   end
 
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filterable_fields search_query]
+  end
+
   private
 
   def create_aliases

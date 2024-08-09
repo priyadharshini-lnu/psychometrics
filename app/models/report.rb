@@ -251,6 +251,12 @@ class Report < ApplicationRecord
     %i[filterable_fields with_resource_state]
   end
 
+  def add_all_factor_aliases
+    assessments.map do |assessment|
+      add_factors_aliases(assessment)
+    end
+  end
+
   private
 
   def create_default_styles

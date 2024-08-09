@@ -19,6 +19,14 @@ module Api
         update?
       end
 
+      def export?
+        has_permission?(:campaign_factors, :manage)
+      end
+
+      def import?
+        has_permission?(:campaign_factors, :manage)
+      end
+
       def destroy?
         has_permission?(:campaign_factors, :manage)
       end

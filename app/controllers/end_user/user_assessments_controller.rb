@@ -8,6 +8,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   before_action :set_user_assessment, only: %i[assessment details show pass begin validate_session]
   before_action :can_start_based_on_sequencing, only: %i[pass show begin]
   before_action :ensure_user_confirm, only: %i[pass begin]
+  before_action :ensure_campaign_user_is_active
 
   def assessment
     @selected_locale = @user_assessment.selected_locale || user_locale
@@ -103,5 +104,9 @@ class EndUser::UserAssessmentsController < ApplicationController
     if request.format.html? && @user_assessment.closed?
       redirect_to assessment_completed_path(@user_assessment.campaign_id, user_assessment_id: @user_assessment.id)
     end
+  end
+
+  def ensure_campaign_user_is_active
+    raise Pundit::NotAuthorizedError if @user_assessment.campaign_user.disabled
   end
 end
