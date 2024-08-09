@@ -2,13 +2,15 @@ import { Select } from 'antd'
 import _ from 'lodash'
 import { useMemo, useState, useCallback } from 'react'
 
+const ALLOWED_SCORING_STRATEGIES = ['questions', 'questions_sum', 'questions_percentage']
+
 type Option = {
   label: string;
   value: string;
 };
 
 const renderOptions = (factors): Option[] => _.chain(factors)
-  .filter(f => f.scoring_strategy === 'questions')
+  .filter(f => ALLOWED_SCORING_STRATEGIES.includes(f.scoring_strategy))
   .flatMap(factor => [
     { label: factor.name, value: factor.id },
     ..._.map(factor.sub_factors?.list, subFactor => ({
