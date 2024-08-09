@@ -31,6 +31,7 @@ export const ThreeSixtySpecificGrants = {
 }
 
 export const ThreeSixtyCampaignAdminGrants = {
+  users: ['reset_password'],
   campaigns: [
     'view',
     'manage',

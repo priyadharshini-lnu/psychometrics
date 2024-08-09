@@ -32,7 +32,7 @@ module Administration
       end
 
       def update?
-        has_permission?(:cmapiagns, :manage)
+        has_permission?(:campaigns, :manage)
       end
 
       def remove_report_approval?
@@ -81,6 +81,10 @@ module Administration
 
       def edit_user?
         has_permission?(:campaigns, :manage_users)
+      end
+
+      def reset_password?
+        has_permission?(:users, :reset_password)
       end
 
       def view_report?

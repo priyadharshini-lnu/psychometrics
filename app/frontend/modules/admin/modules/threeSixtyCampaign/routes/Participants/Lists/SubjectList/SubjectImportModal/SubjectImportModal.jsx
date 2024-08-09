@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import { LoadingOutlined, ImportOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { useParams } from 'react-router-dom'
 import UserList from '~/modules/admin/modules/threeSixtyCampaign/routes/UserList/UserList'
 import FileImport from './FileImport'
 
@@ -15,10 +16,8 @@ export default function SubjectImportModal ({
   clearImportData,
   errors,
   existingSubjectsWhosePasswordNotChanged,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const { campaignId } = useParams()
   const [file, setFile] = useState(null)
 
   const importButtonIcon = () => {

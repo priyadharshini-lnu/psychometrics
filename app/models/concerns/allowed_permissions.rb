@@ -151,6 +151,7 @@ module AllowedPermissions
   }.freeze
 
   THREESIXTY_CAMPAIGN_ADMIN_PERMISSIONS = {
+    'users' => ['reset_password'],
     'campaigns' => %w[
       view
       manage

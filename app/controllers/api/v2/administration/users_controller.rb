@@ -68,6 +68,10 @@ module Api
 
     private
 
+    def campaign_id
+      params[:campaign_id] || params.dig(:data, :attributes, :campaign_id)
+    end
+
     def context_for_schema_validation
       { current_user: current_user, project: project, campaign: campaign, user: @resource }
     end
@@ -75,7 +79,8 @@ module Api
     def set_resource
       # rubocop:disable Naming/MemoizedInstanceVariableName
       @resource ||= Api::Administration::UserPolicy::Scope.new(
-        current_user, User
+        current_user,
+        User
       ).resolve.find(params[:user_id])
       # rubocop:enable Naming/MemoizedInstanceVariableName
     end
