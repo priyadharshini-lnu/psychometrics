@@ -978,10 +978,16 @@ en:
           instructions_customization:
             sub_title: Select the template and factors to be included in the assessment.
             title: Customize your assessment!
+          no_factors:
+            description: Please try some other search keywords.
+            title: No Factors Found
           questions:
             select_all: Select All
             sub_title: Select the questions and indicators to be included in the assessment
             title: Questions and Indicators
+          search_factors:
+            description: Please enter at least 3 characters to find the factors you're looking for.
+            title: Begin Your Search
           success: 360 Campaign was successfully created.
           success_job: 360 Campaign creation job was successfully scheduled.
       options:
