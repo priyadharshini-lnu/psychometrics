@@ -30,7 +30,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def search_admins?
-    @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users)
+    @user.is?(:superadmin) || @user.has_grant?(:projects, :manage_users) || @user.has_grant?(:assessors, :manage)
   end
 
   def create_superadmin?
