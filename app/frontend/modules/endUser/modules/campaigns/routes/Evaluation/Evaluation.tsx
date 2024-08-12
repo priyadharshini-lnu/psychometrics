@@ -12,6 +12,7 @@ import {
   Space,
   Typography,
   Modal,
+  Watermark,
 } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -41,6 +42,7 @@ const connector = connect((state: any) => ({
   evaluation: state.campaigns.evaluation,
   preview: state.preview,
   progress: state.preview.initialized && getProgress(state.preview),
+  campaignOptions: state.campaigns.campaign.options,
 }), {
   fetchEvaluation,
   fetchAssessment,
@@ -82,6 +84,9 @@ const EvaluationComponent = ({
   markAssessmentTimedOut,
   progress,
   validateSession,
+  campaignOptions: {
+    participants: { global: globalParticipantOptions },
+  },
 }) => {
   const assessmentRef = createRef()
   const {
@@ -163,7 +168,10 @@ const EvaluationComponent = ({
 
   if (!loaded || error) { return null }
   return (
-    <>
+    <Watermark
+      content={globalParticipantOptions?.showWatermark ? globalParticipantOptions?.watermarkContent : ''}
+      font={{ color: 'rgba(0,0,0,0.3)' }}
+    >
       <GlintPageHeader>
         <Col flex="auto" className="ta-e">
           <Space align="center" size="large" />
@@ -256,7 +264,7 @@ const EvaluationComponent = ({
         </ConfigProvider>
         )}
       </Content>
-    </>
+    </Watermark>
 
   )
 }

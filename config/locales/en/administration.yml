@@ -1025,6 +1025,9 @@ en:
           rules: Rules
           trial: Proctoring Trial
           type: Type
+        show_watermark: Show watermark
+        watermark_content: Watermark Content
+        watermark_info: If you don't add any content, by default email of user would appear as water mark. You can use any of following pipetext -<br/> {{id}} - Participant id </br> {{first_name}} - Participant first name </br> {{last_name}} - Participant last name </br> {{email}} - Participant email
       pdf_password: PDF Password
       users:
         completion_status: Completion Status

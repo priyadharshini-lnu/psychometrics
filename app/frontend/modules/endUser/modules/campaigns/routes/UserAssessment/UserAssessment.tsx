@@ -4,10 +4,11 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import { Redirect, RouteComponentProps } from 'react-router-dom'
 import { push } from 'connected-react-router'
-import { PageHeader } from '@ant-design/pro-layout'
 import {
+  Watermark,
   Layout, Col, Progress, Space, ProgressProps, Modal,
 } from 'antd'
+import { PageHeader } from '@ant-design/pro-layout'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
 import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
@@ -68,6 +69,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       proctoring_enabled: proctoringEnabled,
       prework,
       evaluation_session_id: evaluationSessionId,
+      campaign_options: campaignOptions,
     },
   }, fetchAssessment, validateSession,
   match: { params },
@@ -107,7 +109,10 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     I18n.t('campaign.timer.notification', { minutes, seconds })
   )
   return (
-    <>
+    <Watermark
+      content={campaignOptions?.show_watermark ? campaignOptions.watermark_content : ''}
+      font={{ color: 'rgba(0,0,0,0.3)' }}
+    >
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">
@@ -221,7 +226,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
         ) : <PageContentSkeleton />}
 
       </Content>
-    </>
+    </Watermark>
   )
 }
 

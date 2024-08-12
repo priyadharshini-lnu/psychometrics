@@ -8,6 +8,8 @@ module Threesixty
       ].freeze
 
       attribute :can_not_edit_evaluation, Boolean, deafult: false
+      attribute :show_watermark, Boolean, deafult: false
+      attribute :watermark_content, String
 
       validates(*ALL_BOOLEAN_FIELDS,
                 inclusion: { in: [true, false], message: I18n.t('threesixty.options.form.value_not_valid') },

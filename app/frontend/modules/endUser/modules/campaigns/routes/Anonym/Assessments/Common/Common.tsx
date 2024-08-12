@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Layout, Col, ConfigProvider, Progress,
+  Layout, Col, ConfigProvider, Progress, Watermark,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ClockCircleOutlined } from '@ant-design/icons'
@@ -48,6 +48,7 @@ const CommonComponent: React.FC<Props> = ({
       current_page: currentPage,
       current_element: currentElement,
       remaining_assessment_time: remainingAssessmentTime,
+      campaign_options: campaignOptions,
     },
   },
   preview,
@@ -73,7 +74,10 @@ const CommonComponent: React.FC<Props> = ({
   }
 
   return (
-    <>
+    <Watermark
+      content={campaignOptions?.show_watermark ? campaignOptions?.watermark_content : ''}
+      font={{ color: 'rgba(0,0,0,0.3)' }}
+    >
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           {remainingAssessmentTime && (
@@ -132,7 +136,7 @@ const CommonComponent: React.FC<Props> = ({
         </ConfigProvider>
         <Confirm open={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
       </Content>
-    </>
+    </Watermark>
   )
 }
 
