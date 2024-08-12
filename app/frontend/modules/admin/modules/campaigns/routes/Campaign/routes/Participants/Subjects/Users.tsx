@@ -395,13 +395,7 @@ const getActionsMenuProps = ({
       return onEdit()
     }
     if (key === 'changePassword') {
-      return openModal(
-        'ResetPasswordModal',
-        {
-          user,
-          campaignId,
-        },
-      )
+      return openModal('ResetPasswordModal', { user })
     }
     if (key === 'remove') {
       return handleDelete()

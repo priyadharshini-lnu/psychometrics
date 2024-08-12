@@ -1,14 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
   Table, Row, Col, App,
 } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import { useParams } from 'react-router-dom'
 import userPresenter from '~/presenters/user'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
-import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import ToolsDropdown from '../ToolsDropdown'
@@ -18,17 +16,8 @@ import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
 import Pagination from '../../../../components/Pagination'
 import SearchInput from '../SearchInput'
-import Modals from '~/modules/admin/components/Modals'
 
 const { Column } = Table
-
-const MODALS = {
-  ResetPasswordModal,
-  UserEditModal,
-  CreateSubjectModal,
-  SubjectImportModal,
-  ResetSubjectModal,
-}
 
 export default function SubjectList ({
   fetchSubjects,
@@ -43,14 +32,16 @@ export default function SubjectList ({
   permissions,
   page,
   searchTerm,
-  campaignId,
   editUser,
+  match: {
+    params: { campaignId },
+  },
+  match,
 }) {
-  const { campaignId: currentCampaignId } = useParams()
   const { message } = App.useApp()
-
+  const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
   useEffect(() => {
-    fetchSubjects(currentCampaignId, page, searchTerm)
+    fetchSubjects(campaignId, page, searchTerm)
   }, [page, searchTerm])
   const curriedFetchSubjects = _.curry(fetchSubjects)
 
@@ -58,11 +49,11 @@ export default function SubjectList ({
     openModal('ParticipantModal', {
       user,
       permissions,
-      onClose: () => fetchSubjects(currentCampaignId, page, searchTerm),
+      onClose: () => fetchSubjects(campaignId, page, searchTerm),
     })
   }
 
-  const onUserUpdate = () => fetchSubjects(currentCampaignId, page)
+  const onUserUpdate = () => fetchSubjects(campaignId, page)
 
   return (
     <>
@@ -73,7 +64,7 @@ export default function SubjectList ({
         </Col>
         <Col span={20} className="text-align-r">
           <SearchInput
-            onChange={curriedFetchSubjects(currentCampaignId)}
+            onChange={curriedFetchSubjects(campaignId)}
             path="/participants/subjects"
             searchTerm={searchTerm}
           />
@@ -146,6 +137,7 @@ export default function SubjectList ({
                       subjectId: id,
                       email,
                       user,
+                      campaignId,
                       update,
                       remove,
                       removeUser,
@@ -155,8 +147,8 @@ export default function SubjectList ({
                       onUserUpdate,
                       permissions,
                       regenerateReport,
-                      campaignId,
                       message,
+                      setShowResetSubjectModal,
                     })
                   }
                 />
@@ -168,7 +160,10 @@ export default function SubjectList ({
           </div>
         </Col>
       </Row>
-      <Modals modals={MODALS} />
+      <CreateSubjectModal match={match} />
+      <SubjectImportModal match={match} />
+      <UserEditModal match={match} />
+      <ResetSubjectModal open={showResetSubjectModal} />
     </>
   )
 }

@@ -1,6 +1,6 @@
-
 export const getActionsMenuProps = ({
   subjectId,
+  campaignId,
   update,
   user,
   remove,
@@ -11,8 +11,8 @@ export const getActionsMenuProps = ({
   onUserUpdate,
   permissions,
   regenerateReport,
-  campaignId,
   message,
+  setShowResetSubjectModal,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
@@ -89,12 +89,6 @@ export const getActionsMenuProps = ({
     })
   }
 
-  const openResetPasswordModal = (user, campaignId) => {
-    openModal('ResetPasswordModal', {
-      user, campaignId,
-    })
-  }
-
   const requestDownloadReport = (campaignId, subjectId) => {
     downloadReport(campaignId, subjectId)
       .then(({ response }) => {
@@ -148,10 +142,6 @@ export const getActionsMenuProps = ({
     permissions.editUser && {
       key: 'edit_user',
       label: I18n.t('threesixty.participant_list.actions.edit'),
-    },
-    permissions.resetPassword && {
-      key: 'changePassword',
-      label: I18n.t('users.actions.reset_password.option'),
     },
     { type: 'divider' },
     permissions.viewReport && {
@@ -251,13 +241,11 @@ export const getActionsMenuProps = ({
       return unmarkEvaluationAsComplete(subjectId)
     }
     if (key === 'remove_subject') {
+      setShowResetSubjectModal(true)
       return removeSubject(subjectId)
     }
     if (key === 'remove_campaign') {
       return removeUserWithConfirmation()
-    }
-    if (key === 'changePassword') {
-      return openResetPasswordModal(user, campaignId)
     }
   }
 

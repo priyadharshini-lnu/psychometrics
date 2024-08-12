@@ -15,10 +15,9 @@ export default connect(
   ({
     threeSixtyCampaign: {
       subjects: { list, total, permissions },
-      campaignDetails: { campaignId },
     },
   }) => ({
-    subjects: list, total, permissions, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(), campaignId,
+    subjects: list, total, permissions, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
   }),
   dispatch => ({
     fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),

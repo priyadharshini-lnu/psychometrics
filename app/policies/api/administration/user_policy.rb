@@ -24,7 +24,10 @@ module Api
       end
 
       def reset_password?
-        has_permission?(:users, :reset_password, project_id: @record.project_id, campaign_id: campaign_id)
+        return true if @user.is?(:superadmin)
+        return false unless @record.is?(:regular)
+
+        @user.has_permission?(:users, :reset_password, project_id: @record.project_id)
       end
 
       def change_password?

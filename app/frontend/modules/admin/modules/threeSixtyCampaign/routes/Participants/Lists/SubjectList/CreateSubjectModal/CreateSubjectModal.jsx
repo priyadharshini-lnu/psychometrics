@@ -4,7 +4,6 @@ import {
   Modal, Button, Divider, Form, Form as AntForm,
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
-import { useParams } from 'react-router-dom'
 import SpreadSheet from '~/components/SpreadSheet'
 import spreadSheetUtils from '~/modules/admin/utils/spreadSheet'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
@@ -42,8 +41,10 @@ export default function CreateSubjectModal ({
   subjects,
   creationInProgress,
   clearForm,
+  match: {
+    params: { projectId, campaignId },
+  },
 }) {
-  const { campaignId, projectId } = useParams()
   useEffect(() => () => {
     clearForm()
   }, [])
