@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
@@ -7,6 +7,7 @@ import {
 import snakeCase from 'lodash/snakeCase'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 
+import { SafeHTML } from '~/components/SafeHTML'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { CampaignOptions as ICampaignOptions } from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import {
@@ -22,6 +23,7 @@ import Option from '~/modules/admin/components/Options/Expandable'
 import { getFeatures } from '~/core/config'
 import Instructions from './Instructions'
 import { Description } from './Description'
+import { MaskedInput } from '~/glint'
 
 const { I18n } = window
 
@@ -51,6 +53,7 @@ const CampaignOptions: React.FC<Props> = ({
   features,
 }) => {
   const { projectId, campaignId } = useParams<{ projectId: string, campaignId: string }>()
+  const [watermarkContent, setWatermarkContent] = useState<string>('')
 
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -62,6 +65,10 @@ const CampaignOptions: React.FC<Props> = ({
   useEffect(() => {
     fetch(parsedProjectId, parsedCampaignId)
   }, [])
+
+  useEffect(() => {
+    setWatermarkContent(options.watermarkContent || '')
+  }, [options.watermarkContent])
 
 
   const parametersForField = name => ({
@@ -90,6 +97,34 @@ const CampaignOptions: React.FC<Props> = ({
         workshopBookingRequiresPreworkCompletion: value,
       },
     ),
+  })
+
+  const parametersForShowWatermark = () => ({
+    value: (options || {}).showWatermark,
+    onChange: (value: boolean) => update(
+      parsedProjectId, parsedCampaignId, {
+        ...options,
+        showWatermark: value,
+      },
+    ),
+  })
+
+  const handleWatermarkContentChange = (e) => {
+    const {
+      target: { value },
+    } = e
+    setWatermarkContent(value)
+  }
+
+  const parametersWatermarkContent = ({
+    value: watermarkContent,
+    defaultValue: options.watermarkContent,
+    onBlur: () => update(
+      parsedProjectId,
+      parsedCampaignId,
+      { ...options, watermarkContent },
+    ),
+    onChange: handleWatermarkContentChange,
   })
 
   const parametersForFixedTimeDuration = ({
@@ -285,6 +320,37 @@ const CampaignOptions: React.FC<Props> = ({
           label={I18n.t('administration.campaigns.options.prework_required')}
           {...parametersForWorkshopBookingRequiresPreworkCompletionField()}
         />
+
+        <Option
+          label={I18n.t('administration.campaigns.options.show_watermark')}
+          {...parametersForShowWatermark()}
+        />
+
+        {
+          options.showWatermark ? (
+            <Row>
+              <Col span={5} offset={2}>
+                <MaskedInput
+                  masked
+                  className="mbl"
+                  placeholder={I18n.t('administration.campaigns.options.watermark_content')}
+                  {...parametersWatermarkContent}
+                />
+              </Col>
+              <Col>
+                <Tooltip
+                  title={(
+                    <SafeHTML
+                      html={I18n.lookup('administration.campaigns.options.watermark_info')}
+                    />
+                )}
+                >
+                  <QuestionCircleOutlined className="ms-4" />
+                </Tooltip>
+              </Col>
+            </Row>
+          ) : null
+        }
 
         <Option
           label={I18n.t('administration.campaigns.options.instructions.enable')}

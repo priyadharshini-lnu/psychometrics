@@ -39,7 +39,7 @@ module Threesixty
     end
 
     def options
-      render json: @campaign.option, serializer: Threesixty::CampaignOptionsSerializer
+      render json: @campaign.option, serializer: Threesixty::CampaignOptionsSerializer, current_user: current_user
     end
 
     def change_locale

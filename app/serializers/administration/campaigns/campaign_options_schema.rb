@@ -3,8 +3,8 @@
 module Administration
   module Campaigns
     class CampaignOptionsSchema < BaseSchema
-      def self.schema(_, _)
-        Dry::Schema.JSON do
+      def self.schema(_, _) # rubocop:disable Metrics/AbcSize
+        Dry::Schema.JSON do # rubocop:disable Metrics/BlockLength
           config.validate_keys = true
 
           required(:fixed_time).maybe(:bool?)
@@ -31,6 +31,8 @@ module Administration
           required(:proctoring_type).filled(:str?)
           required(:proctoring_trial).filled(:bool?)
           required(:workshop_booking_requires_prework_completion).filled(:bool?)
+          required(:show_watermark).filled(:bool?)
+          required(:watermark_content).maybe(:str?)
         end
       end
     end

@@ -99,7 +99,7 @@ class PageFooter extends Component {
     const disableActionableButtons = isDisconnected || submissionInProgress || submissionFailed
 
     return (
-      <>
+      <div className={styles.overlay}>
         {submissionFailed
         && (
         <div>
@@ -187,7 +187,7 @@ class PageFooter extends Component {
             )}
           </QuestionInProgressPopConfirm>
         </div>
-      </>
+      </div>
     )
   }
 }

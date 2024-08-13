@@ -27,6 +27,8 @@ module EndUser
         end
         required(:integration_type).filled(:str?)
         required(:workshop_booking_requires_prework_completion).filled(:bool?)
+        required(:show_watermark).filled(:bool?)
+        required(:watermark_content).maybe(:str?)
       end
     end
   end

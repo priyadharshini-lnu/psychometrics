@@ -12,6 +12,7 @@ import {
   Space,
   Typography,
   Modal,
+  Watermark,
 } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -41,6 +42,7 @@ const connector = connect((state: any) => ({
   evaluation: state.campaigns.evaluation,
   preview: state.preview,
   progress: state.preview.initialized && getProgress(state.preview),
+  campaignOptions: state.campaigns.campaign.options,
 }), {
   fetchEvaluation,
   fetchAssessment,
@@ -82,6 +84,9 @@ const EvaluationComponent = ({
   markAssessmentTimedOut,
   progress,
   validateSession,
+  campaignOptions: {
+    participants: { global: globalParticipantOptions },
+  },
 }) => {
   const assessmentRef = createRef()
   const {
@@ -179,27 +184,31 @@ const EvaluationComponent = ({
         </Col>
       </GlintPageHeader>
       <Content className={styles.pageContent}>
-        <PageHeader
-          className={styles.campaignHeader}
-          backIcon={(
-            <Space>
-              <DirectionalNavigateBackIcon
-                className={styles.backIcon}
-              />
-              <CountdownTimer
-                notificationPoints={[{ completionPercentage: 30, type: 'info' },
-                  { completionPercentage: 15, type: 'warning' },
-                  { completionPercentage: 5, type: 'error' }]}
-                seconds={secondsLeftFromNow(expiry_date)}
-                onFinish={() => markAssessmentTimedOut(preview)}
-              />
-            </Space>
+        <Watermark
+          content={globalParticipantOptions?.showWatermark ? globalParticipantOptions?.watermarkContent : ''}
+          font={{ color: 'rgba(0,0,0,0.3)' }}
+        >
+          <PageHeader
+            className={styles.campaignHeader}
+            backIcon={(
+              <Space>
+                <DirectionalNavigateBackIcon
+                  className={styles.backIcon}
+                />
+                <CountdownTimer
+                  notificationPoints={[{ completionPercentage: 30, type: 'info' },
+                    { completionPercentage: 15, type: 'warning' },
+                    { completionPercentage: 5, type: 'error' }]}
+                  seconds={secondsLeftFromNow(expiry_date)}
+                  onFinish={() => markAssessmentTimedOut(preview)}
+                />
+              </Space>
         )}
-          ghost={false}
-          title={titleElement}
-          onBack={handleBackButtonClick}
-          extra={[
-            type !== 'preview_block' && enableProgress
+            ghost={false}
+            title={titleElement}
+            onBack={handleBackButtonClick}
+            extra={[
+              type !== 'preview_block' && enableProgress
                 && (
                 <Progress
                   key="1"
@@ -209,11 +218,11 @@ const EvaluationComponent = ({
                   style={{ width: '200px' }}
                 />
                 ),
-          ]}
-        />
-        {!error && (
-        <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-          {showInvalidSession && (
+            ]}
+          />
+          {!error && (
+          <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+            {showInvalidSession && (
             <Modal
               title={I18n.t('errors.invalid_session_title')}
               open={showInvalidSession}
@@ -229,35 +238,35 @@ const EvaluationComponent = ({
             >
               {I18n.t('assessments.page.invalid_session.description')}
             </Modal>
+            )}
+            <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+              <Row justify="end" className={styles.dropdownRow}>
+                <Col className={styles.dropdownCol}>
+                  <StatusDropdown />
+                </Col>
+              </Row>
+              <PassAssessment
+                ref={assessmentRef}
+                id="pass_assessment"
+                initialized={initialized}
+                type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
+                isThreesixty="true"
+                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
+                data={assessment}
+                result={results}
+                dashboardUrl={`/threesixty_campaigns/${params.campaignId}`}
+                locales={translations}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                notAnEndPage={approve_evaluation || edit === 'true'}
+                rstore={store}
+                renderedByEnduser
+              />
+            </ResourcesTabs>
+          </ConfigProvider>
           )}
-          <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-            <Row justify="end" className={styles.dropdownRow}>
-              <Col className={styles.dropdownCol}>
-                <StatusDropdown />
-              </Col>
-            </Row>
-            <PassAssessment
-              ref={assessmentRef}
-              id="pass_assessment"
-              initialized={initialized}
-              type={approve_evaluation || read === 'true' ? 'view_results' : 'pass_assessment'}
-              isThreesixty="true"
-              resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
-              data={assessment}
-              result={results}
-              dashboardUrl={`/threesixty_campaigns/${params.campaignId}`}
-              locales={translations}
-              selectedLocale={selectedLanguage && selectedLanguage.code}
-              notAnEndPage={approve_evaluation || edit === 'true'}
-              rstore={store}
-              renderedByEnduser
-            />
-          </ResourcesTabs>
-        </ConfigProvider>
-        )}
+        </Watermark>
       </Content>
     </>
-
   )
 }
 
