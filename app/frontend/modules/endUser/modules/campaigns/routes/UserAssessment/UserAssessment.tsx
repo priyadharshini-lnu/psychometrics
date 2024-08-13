@@ -109,10 +109,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     I18n.t('campaign.timer.notification', { minutes, seconds })
   )
   return (
-    <Watermark
-      content={campaignOptions?.show_watermark ? campaignOptions.watermark_content : ''}
-      font={{ color: 'rgba(0,0,0,0.3)' }}
-    >
+
+    <>
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">
@@ -160,73 +158,78 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             }
         </Col>
       </GlintPageHeader>
+
       <Content className={styles.pageContent}>
-        {loaded ? (
-          <>
-            <PageHeader
-              className={styles.campaignHeader}
-              onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
-              backIcon={enableBackButton
+        <Watermark
+          content={campaignOptions?.show_watermark ? campaignOptions.watermark_content : ''}
+          font={{ color: 'rgba(0,0,0,0.3)' }}
+        >
+          {loaded ? (
+            <>
+              <PageHeader
+                className={styles.campaignHeader}
+                onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
+                backIcon={enableBackButton
               && <DirectionalNavigateBackIcon className={styles.backIcon} />
               }
-              ghost={false}
-              title={(
-                <div className={styles.campaignDropdown}>
-                  {assessment.name}
-                </div>
+                ghost={false}
+                title={(
+                  <div className={styles.campaignDropdown}>
+                    {assessment.name}
+                  </div>
               )}
-              extra={type !== 'preview_block' && enableProgress && started && (
-              <Progress
-                strokeColor="#fff"
-                className={styles.progressStatus}
-                key="3"
-                percent={progress}
-                {...progressBarProps}
+                extra={type !== 'preview_block' && enableProgress && started && (
+                  <Progress
+                    strokeColor="#fff"
+                    className={styles.progressStatus}
+                    key="3"
+                    percent={progress}
+                    {...progressBarProps}
+                  />
+                )}
               />
-              )}
-            />
-            <div className={styles.assessmentContainer}>
-              {showInvalidSession && (
-                <Modal
-                  title={I18n.t('errors.invalid_session_title')}
-                  open={showInvalidSession}
-                  cancelText={I18n.t('common.actions.close')}
-                  okText={I18n.t('common.actions.back_to_dashboard')}
-                  closable={false}
-                  maskClosable={false}
-                  onCancel={() => {
-                    setShowInvalidSession(false)
-                  }}
-                  onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
-                  centered
-                >
-                  {I18n.t('assessments.page.invalid_session.description')}
-                </Modal>
-              )}
-              {loaded && !error && (
-              <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-                <PassAssessment
-                  id="pass_assessment"
-                  type="pass_assessment"
-                  initialized={initialized}
-                  data={assessment}
-                  result={results}
-                  locales={translations}
-                  dashboardUrl={`/assessment_completed/${campaignId}`}
-                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  rstore={store}
-                  evaluationSessionId={evaluationSessionId}
-                  renderedByEnduser
-                />
-              </ResourcesTabs>
-              )}
-            </div>
-          </>
-        ) : <PageContentSkeleton />}
-
+              <div className={styles.assessmentContainer}>
+                {showInvalidSession && (
+                  <Modal
+                    title={I18n.t('errors.invalid_session_title')}
+                    open={showInvalidSession}
+                    cancelText={I18n.t('common.actions.close')}
+                    okText={I18n.t('common.actions.back_to_dashboard')}
+                    closable={false}
+                    maskClosable={false}
+                    onCancel={() => {
+                      setShowInvalidSession(false)
+                    }}
+                    onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
+                    centered
+                  >
+                    {I18n.t('assessments.page.invalid_session.description')}
+                  </Modal>
+                )}
+                {loaded && !error && (
+                  <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+                    <PassAssessment
+                      id="pass_assessment"
+                      type="pass_assessment"
+                      initialized={initialized}
+                      data={assessment}
+                      result={results}
+                      locales={translations}
+                      dashboardUrl={`/assessment_completed/${campaignId}`}
+                      resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
+                      selectedLocale={selectedLanguage && selectedLanguage.code}
+                      rstore={store}
+                      evaluationSessionId={evaluationSessionId}
+                      renderedByEnduser
+                    />
+                  </ResourcesTabs>
+                )}
+              </div>
+            </>
+          ) : <PageContentSkeleton />}
+        </Watermark>
       </Content>
-    </Watermark>
+    </>
   )
 }
 

@@ -74,10 +74,7 @@ const CommonComponent: React.FC<Props> = ({
   }
 
   return (
-    <Watermark
-      content={campaignOptions?.show_watermark ? campaignOptions?.watermark_content : ''}
-      font={{ color: 'rgba(0,0,0,0.3)' }}
-    >
+    <>
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           {remainingAssessmentTime && (
@@ -102,9 +99,13 @@ const CommonComponent: React.FC<Props> = ({
         </Col>
       </GlintPageHeader>
       <Content className={styles.pageContent}>
-        <SubHeader
-          title={assessment.name}
-          extra={enableProgress
+        <Watermark
+          content={campaignOptions?.show_watermark ? campaignOptions?.watermark_content : ''}
+          font={{ color: 'rgba(0,0,0,0.3)' }}
+        >
+          <SubHeader
+            title={assessment.name}
+            extra={enableProgress
             && (
             <Progress
               strokeColor="#fff"
@@ -113,30 +114,31 @@ const CommonComponent: React.FC<Props> = ({
               {...progressBarProps}
             />
             )}
-        />
-        <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-          <div className={styles.assessmentContainer}>
-            <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-              <PassAssessment
-                id="pass_assessment"
-                type="pass_assessment"
-                initialized={initialized}
-                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
-                data={assessment}
-                result={results}
-                dashboardUrl={`/campaigns/${campaignId}`}
-                locales={translations}
-                selectedLocale={selectedLanguage && selectedLanguage.code}
-                rstore={store}
-                isAnonymousAssessment="true"
-                renderedByEnduser
-              />
-            </ResourcesTabs>
-          </div>
-        </ConfigProvider>
-        <Confirm open={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
+          />
+          <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+            <div className={styles.assessmentContainer}>
+              <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+                <PassAssessment
+                  id="pass_assessment"
+                  type="pass_assessment"
+                  initialized={initialized}
+                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
+                  data={assessment}
+                  result={results}
+                  dashboardUrl={`/campaigns/${campaignId}`}
+                  locales={translations}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
+                  rstore={store}
+                  isAnonymousAssessment="true"
+                  renderedByEnduser
+                />
+              </ResourcesTabs>
+            </div>
+          </ConfigProvider>
+          <Confirm open={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
+        </Watermark>
       </Content>
-    </Watermark>
+    </>
   )
 }
 
