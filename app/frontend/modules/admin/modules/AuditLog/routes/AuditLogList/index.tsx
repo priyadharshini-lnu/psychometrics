@@ -152,7 +152,10 @@ const AuditLogList: React.FC<Props> = (
             </Col>
             <Col xs={24} sm={12} md={8} lg={6}>
               <Form.Item name="recordType" label={I18n.t('administration.audit_log.type')}>
-                <Select placeholder={I18n.t('administration.audit_log.type')}>
+                <Select
+                  placeholder={I18n.t('administration.audit_log.type')}
+                  showSearch
+                >
                   {types.map(type => (
                     <Select.Option key={type} value={type}>{type}</Select.Option>
                   ))}
@@ -161,7 +164,11 @@ const AuditLogList: React.FC<Props> = (
             </Col>
 
             <Col xs={24} sm={12} md={8} lg={6}>
-              <Form.Item name="dateRange" label={I18n.t('administration.audit_log.date_range')}>
+              <Form.Item
+                name="dateRange"
+                label={I18n.t('administration.audit_log.date_range')}
+                initialValue={initialRange}
+              >
                 <DatePicker.RangePicker
                   onCalendarChange={onCalendarChange}
                   disabledDate={disabledDate}
@@ -199,7 +206,10 @@ const AuditLogList: React.FC<Props> = (
               <>
                 <Col xs={24} sm={12} md={8} lg={6}>
                   <Form.Item name="action" label={I18n.t('administration.audit_log.action')}>
-                    <Select placeholder={I18n.t('administration.audit_log.action')}>
+                    <Select
+                      placeholder={I18n.t('administration.audit_log.action')}
+                      showSearch
+                    >
                       {(actions || []).map(action => (
                         <Select.Option key={action} value={action}>{action}</Select.Option>
                       ))}
@@ -341,6 +351,6 @@ const AuditLogList: React.FC<Props> = (
 }
 
 export default withEnhancedTable(connecter(AuditLogList), 'auditLogList', {
-  maintainHistory: false,
+  maintainHistory: true,
   filterPredicates: FILTER_PREDICATES,
 })

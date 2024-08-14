@@ -44,8 +44,6 @@ module Api::V2::Administration::Concerns::ApiController
     }
     error = error.merge(detail: e.more_info) if e.more_info
     error = error.merge(meta: e.meta) if e.meta
-    audit! :record_not_found, current_user, payload: params.merge(error: e.more_info), outcome: :failed,
-    failure_reason: :record_not_found
     render json: { errors: [error] }, status: e.status
   end
 

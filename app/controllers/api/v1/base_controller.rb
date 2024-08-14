@@ -75,8 +75,6 @@ module Api
       end
 
       def render_error(e)
-        audit! :record_not_found, current_user, payload: params.merge(error: e.more_info), outcome: :failed,
-        failure_reason: :record_not_found
         render json: { code: e.code, message: e.message, more_info: e.more_info, meta: e.meta }, status: e.status
       end
 
