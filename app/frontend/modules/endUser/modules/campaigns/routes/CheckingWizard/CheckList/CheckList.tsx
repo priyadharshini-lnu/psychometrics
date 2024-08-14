@@ -22,7 +22,7 @@ export const CheckList: React.FC<Props> = ({ dataSource, className }) => (
       return (
         <List.Item className={styles.item}>
           <span>{item.name}</span>
-          <Icon />
+          {Icon && <Icon />}
         </List.Item>
       )
     }}

@@ -76,7 +76,7 @@ const EvaluationListComponent = ({
   )
 
   const getPath = (item) => {
-    if (!isEvaluationCompleted(item) && WizardIsRequired.run(item.assessmentExtra)) {
+    if (!isEvaluationCompleted(item) && WizardIsRequired.run(item.assessmentExtra, item.id)) {
       return `/system_checks/${item.assessmentId}/${item.id}`
     }
     return `/threesixty_campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`

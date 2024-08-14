@@ -6,15 +6,20 @@ module AdminJobs
 
     def call
       form = ::Threesixty::Campaigns::CreateForm.from_params(record.data['data'])
-      ::Threesixty::Campaigns::Create.call!(project, form, record.owner)
+      campaing = ::Threesixty::Campaigns::Create.call!(project, form, record.owner)
+      record.update(data: record.data.merge(campaign_id: campaing.id))
 
       broadcast :ok
     end
 
     def generate_title_link
+      campaign = ::Threesixty::Campaign.find_by(id: record.data['campaign_id'])
+
+      return {} unless campaign
+
       {
-        href: "#{admin_path}/projects/#{project.id}/new_campaigns",
-        label: project.name
+        href: administration_client_project_threesixty_campaign_path(project.client.id, project.id, campaign.id),
+        label: campaign.name
       }
     end
 

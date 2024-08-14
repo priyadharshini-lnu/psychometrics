@@ -19,10 +19,11 @@ module UserAssessments
 
     def system_checks_required?
       extra = user_assessment.assessment.extra
+      video_check = JSON.parse(cookies['checking_wizard.video'] || '{}')
 
-      return true if extra['enable_audio_check'] == '1' && !cookies['checking_wizard.audio']
-      return true if extra['enable_video_check'] == '1' && !cookies['checking_wizard.video']
-      return true if extra['enable_network_check'] == '1' && !cookies['checking_wizard.network']
+      return true if extra['enable_audio_check'] == true && !cookies['checking_wizard.audio']
+      return true if extra['enable_video_check'] == true && !video_check[user_assessment.id.to_s]
+      return true if extra['enable_network_check'] == true && !cookies['checking_wizard.network']
 
       false
     end
