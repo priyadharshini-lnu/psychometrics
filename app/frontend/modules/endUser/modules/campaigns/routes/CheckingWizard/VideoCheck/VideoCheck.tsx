@@ -6,9 +6,8 @@ import {
   Button, Card, Col, Space,
 } from 'antd'
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
-import FaceMesh from '@mediapipe/face_mesh'
-import * as faceLandmarksDetection from '@tensorflow-models/face-landmarks-detection'
 import axios from 'axios'
+import * as faceLandmarksDetection from './face-landmarks-detection.esm'
 import { BROWSER_NAME } from '~/utils/uaParser'
 import { InitVideo } from './InitVideo'
 import { Progress } from '../Progress'
@@ -21,7 +20,6 @@ import { CheckListStatus } from '../interfaces'
 
 import styles from './styles.less'
 
-window.FaceMesh = FaceMesh.FaceMesh
 const { I18n, $ } = window
 
 interface Props {
@@ -30,7 +28,8 @@ interface Props {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let player: any = null
-let detector: faceLandmarksDetection.FaceLandmarksDetector | null = null
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let detector: any | null = null
 
 export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -51,7 +50,7 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       setTimeout(() => track(), 1000)
     })
     player.on('finishRecord', () => dispatch(failFaceDetectionByTimeout()))
-    const detectorConfig: faceLandmarksDetection.MediaPipeFaceMeshMediaPipeModelConfig = {
+    const detectorConfig = {
       runtime: 'mediapipe', // or 'tfjs'
       maxFaces: 1,
       refineLandmarks: false,
