@@ -1595,11 +1595,15 @@ en:
       allow_title: Please allow to use camera to record Video
       ambient_light: Ambient Light
       continue: Continue
-      description: Any video or photo captured at this stage will not be saved or used. It is used locally on your device to ensure the camera is functioning for an upcoming question that may require video recording.
+      description: Once video recording is working and detects your face, the captured photo will be saved for verification.
       face_detection: Face detection
+      hint: The captured picture will be uploaded for verification.
       processing: Processing
+      retake: Retake
       run_again: Run again
       title: We need to ensure your system can record the video
+      upload: Upload
+      uploading: Uploading
   clear_filter: Clear Filter
   common:
     actions:

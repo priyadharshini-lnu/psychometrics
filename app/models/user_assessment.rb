@@ -21,6 +21,7 @@ class UserAssessment < ApplicationRecord
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
+  has_many :user_assessment_verification_images, dependent: :destroy
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
   enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
