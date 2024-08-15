@@ -7,6 +7,7 @@ describe Api::V2::Administration::CampaignsController, swagger_doc: 'v2/swagger.
   let!(:campaign) { create(:campaign) }
   let!(:idp_template) { create(:idp_template) }
   let!(:superadmin) { create(:superadmin) }
+  let!(:include_resource_meta) { 'permissions' }
 
   before(:each) do
     sign_in(superadmin)
@@ -14,6 +15,28 @@ describe Api::V2::Administration::CampaignsController, swagger_doc: 'v2/swagger.
 
   after(:each) do
     sign_out(superadmin)
+  end
+
+  path '/campaigns/{campaign_id}' do
+    get 'Show Campaign' do
+      operationId 'ShowCampaign'
+      tags 'ShowCampaign'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :campaign_id, in: :path, type: :string
+      parameter name: :include_resource_meta, in: :query, required: true
+
+      response '200', 'Campaign Found' do
+        let(:campaign_id) { campaign.id }
+
+        run_test! do |response|
+          campaign_response = JSON.parse(response.body)['data']
+          expect(campaign_response).to have_key('id')
+          expect(campaign_response).to have_attribute(:name).with_value(campaign.name)
+          expect(campaign_response['meta']).to have_key('permissions')
+        end
+      end
+    end
   end
 
   path '/campaigns/{campaign_id}' do

@@ -1317,7 +1317,7 @@ Rails.application.routes.draw do
             end
           end
 
-          resources :campaigns, only: [:update] do
+          resources :campaigns, only: %i[update show] do
             scope module: :campaigns do
               jsonapi_resources :sms_histories, only: %i[index]
             end

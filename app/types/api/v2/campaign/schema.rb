@@ -15,7 +15,14 @@ module Api
 
         def self.relationships(_)
           [
-            { name: :default_idp_template, resource: :idp_templates, relationship: :one, allowed_blank: true }
+            { name: :default_idp_template, resource: :idp_templates, relationship: :one, allowed_blank: true },
+            {
+              name: :threesixty_campaign,
+              resource: :threesixty_campaigns,
+              relationship: :one,
+              required: false,
+              allowed_blank: true
+            }
           ]
         end
       end
