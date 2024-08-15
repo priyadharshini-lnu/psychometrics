@@ -5,7 +5,7 @@ import React, {
 import {
   Button, Card, Col, Space,
 } from 'antd'
-import { CheckOutlined, RightOutlined } from '@ant-design/icons'
+import { CheckOutlined, RightOutlined, RedoOutlined } from '@ant-design/icons'
 import axios from 'axios'
 import * as faceLandmarksDetection from './face-landmarks-detection.esm'
 import { BROWSER_NAME } from '~/utils/uaParser'
@@ -131,6 +131,11 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     dispatch(updateFaceDetection(CheckListStatus.InProgress))
     track()
   }
+  let progress = 0
+  if (state.access === CheckListStatus.Done) progress += 33
+  if (state.faceDetection === CheckListStatus.Done) progress += 33
+  if (state.uploading === CheckListStatus.Done) progress += 34
+
 
   return (
     <>
@@ -172,7 +177,7 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       </Col>
       <Col className={styles.container} lg={8} xs={24} sm={24}>
         <Card className={styles.card}>
-          <Progress percent={30} title={I18n.t('checking_wizard.video_check.processing')} />
+          <Progress percent={progress} title={I18n.t('checking_wizard.video_check.processing')} />
           <CheckList
             className="mt24"
             dataSource={[
@@ -192,9 +197,9 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
               {state.access === CheckListStatus.Done
                 && (
                   <Button
-                    type="primary"
                     className={styles.continueButton}
                     onClick={rerun}
+                    icon={<RedoOutlined />}
                     disabled={state.uploading === CheckListStatus.InProgress
                       || state.uploading === CheckListStatus.Done}
                   >
