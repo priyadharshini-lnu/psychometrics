@@ -11,7 +11,7 @@ module Communications
       end
 
       def fetch_campaign_users(communication)
-        communication.selected_campaign_users.where.not(completion_status: :completed)
+        communication.campaign_users_not_recently_invited.where.not(completion_status: :completed)
       end
     end
   end

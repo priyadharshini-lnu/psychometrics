@@ -172,6 +172,14 @@ class Communication < ApplicationRecord
     slice(:client_id, :project_id, :campaign_id)
   end
 
+  def campaign_users_not_recently_invited
+    campaign_users_recently_invited = CommunicationEmail.
+                                      invitation_within_last_24_hrs(project_id).
+                                      select(:campaign_user_id)
+
+    selected_campaign_users.where.not(id: campaign_users_recently_invited)
+  end
+
   private
 
   def send_email_now

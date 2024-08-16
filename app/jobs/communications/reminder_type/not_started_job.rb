@@ -9,7 +9,7 @@ module Communications
         return if communication.stop_reminder_datetime && communication.stop_reminder_datetime <= DateTime.current
 
         if communication.project.migrated?
-          fetch_campaign_users(communication).each do |campaign_user|
+          fetch_campaign_users(communication).find_each do |campaign_user|
             communication.emails.create(campaign_user_id: campaign_user.id)
           end
         else
@@ -30,7 +30,7 @@ module Communications
       end
 
       def fetch_campaign_users(communication)
-        communication.selected_campaign_users.where(completion_status: :not_started)
+        communication.campaign_users_not_recently_invited.where(completion_status: :not_started)
       end
 
       def fetch_memberships(communication)
