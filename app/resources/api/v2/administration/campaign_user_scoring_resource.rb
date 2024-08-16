@@ -7,6 +7,8 @@ class Api::V2::Administration::CampaignUserScoringResource < Api::V2::Administra
   has_one :user
   has_many :campaign_factor_values
 
+  ransack_filters %i[search_query]
+
   def self.records(opts = {})
     Api::Administration::CampaignUserScoringPolicy::Scope.new(
       opts[:context][:user], CampaignUser,
