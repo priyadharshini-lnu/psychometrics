@@ -12,7 +12,6 @@ import { BROWSER_NAME } from '~/utils/uaParser'
 import { InitVideo } from './InitVideo'
 import { Progress } from '../Progress'
 import { CheckList } from '../CheckList'
-
 import reducer, {
   initialState, updateAccess, updateFaceDetection, failFaceDetectionByTimeout, updateUploading,
 } from './reducer'
@@ -21,6 +20,13 @@ import { CheckListStatus } from '../interfaces'
 import styles from './styles.less'
 
 const { I18n, $ } = window
+
+// fix esbuild/rollup issue related to circluar dependency in tenserflow
+if (__DEV__) {
+  import('@mediapipe/face_mesh').then((mod) => {
+    window.FaceMesh = mod.FaceMesh
+  })
+}
 
 interface Props {
   nextStep: () => void
@@ -114,8 +120,11 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       dispatch(updateUploading(CheckListStatus.Done))
       axios.put(`${location.pathname}/user_verification_image_upload_callback`, data, {
         headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+      }).then(() => {
+        nextStep()
+      }).catch(() => {
+        dispatch(updateUploading(CheckListStatus.Failed))
       })
-      nextStep()
     }).catch(() => {
       dispatch(updateUploading(CheckListStatus.Failed))
     })
