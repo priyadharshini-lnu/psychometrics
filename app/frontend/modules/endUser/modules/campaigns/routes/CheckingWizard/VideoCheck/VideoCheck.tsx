@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import { CheckOutlined, RightOutlined, RedoOutlined } from '@ant-design/icons'
 import axios from 'axios'
-import * as faceLandmarksDetection from './face-landmarks-detection.esm'
+import * as faceapi from 'face-api.js'
 import { BROWSER_NAME } from '~/utils/uaParser'
 import { InitVideo } from './InitVideo'
 import { Progress } from '../Progress'
@@ -16,7 +16,6 @@ import reducer, {
   initialState, updateAccess, updateFaceDetection, failFaceDetectionByTimeout, updateUploading,
 } from './reducer'
 import { CheckListStatus } from '../interfaces'
-
 import styles from './styles.less'
 
 const { I18n, $ } = window
@@ -34,8 +33,6 @@ interface Props {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let player: any = null
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let detector: any | null = null
 
 export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -49,6 +46,7 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     player.on('error', () => {
       dispatch(updateAccess(CheckListStatus.Failed))
     })
+    faceapi.nets.tinyFaceDetector.loadFromUri('/face-api/models')
     player.on('deviceReady', () => {
       player.record().start()
     })
@@ -56,16 +54,6 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       setTimeout(() => track(), 1000)
     })
     player.on('finishRecord', () => dispatch(failFaceDetectionByTimeout()))
-    const detectorConfig = {
-      runtime: 'mediapipe', // or 'tfjs'
-      maxFaces: 1,
-      refineLandmarks: false,
-      solutionPath: '/@mediapipe/face_mesh',
-    }
-    const model = faceLandmarksDetection.SupportedModels.MediaPipeFaceMesh
-    faceLandmarksDetection.createDetector(model, detectorConfig).then((d) => {
-      detector = d
-    })
   }, [])
 
   const requestAccess = async () => {
@@ -81,15 +69,11 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
   }
 
   const track = async () => {
-    if (!videoRef.current || !detector) return
-    let faces
-    try {
-      faces = await detector.estimateFaces(videoRef.current, { flipHorizontal: false })
-    } catch (error) {
-      detector.dispose()
-    }
+    if (!videoRef.current) return
 
-    if (faces?.length > 0) {
+    const options = new faceapi.TinyFaceDetectorOptions()
+    const detections = await faceapi.detectSingleFace(videoRef.current, options)
+    if (detections) {
       player.record().pause()
       const canvas = document.createElement('canvas')
       const video = videoRef.current
