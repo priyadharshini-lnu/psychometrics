@@ -72,25 +72,28 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     if (!videoRef.current) return
 
     const options = new faceapi.TinyFaceDetectorOptions()
-    const detections = await faceapi.detectSingleFace(videoRef.current, options)
-    if (detections) {
-      player.record().pause()
-      const canvas = document.createElement('canvas')
-      const video = videoRef.current
-      canvas.width = video.videoWidth
-      canvas.height = video.videoHeight
-      // draw the video at that frame
-      const ctx = canvas.getContext('2d')
-      ctx?.translate(canvas.width, 0)
-      ctx?.scale(-1, 1)
-      ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
-      canvas.toBlob((blob) => {
+
+    const canvas = document.createElement('canvas')
+    const video = videoRef.current
+    canvas.width = video.videoWidth
+    canvas.height = video.videoHeight
+    // draw the video at that frame
+    const ctx = canvas.getContext('2d')
+    ctx?.translate(canvas.width, 0)
+    ctx?.scale(-1, 1)
+    ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
+
+    canvas.toBlob(async (blob) => {
+      const detections = await faceapi.detectSingleFace(canvas, options)
+
+      if (detections) {
+        player.record().pause()
         setImg(blob)
-      }, 'image/jpeg', 0.95)
-      dispatch(updateFaceDetection(CheckListStatus.Done))
-    } else {
-      setTimeout(() => track(), 500)
-    }
+        dispatch(updateFaceDetection(CheckListStatus.Done))
+      } else {
+        setTimeout(() => track(), 500)
+      }
+    }, 'image/jpeg', 0.95)
   }
 
   const upload = async () => {
