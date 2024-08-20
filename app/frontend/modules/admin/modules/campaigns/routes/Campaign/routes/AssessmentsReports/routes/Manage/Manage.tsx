@@ -140,14 +140,21 @@ const Manage: React.FC<Props> = ({
           <div className={styles.newReportButton}>
             <Space>
               {reportPermissions.bulkDownload && (
-                <Button
-                  type="default"
-                  onClick={handleOpenDownloadModal}
-                  disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
-                  loading={bulkDownloadInProgress}
-                >
-                  <span>{I18n.t('campaign_report.actions.bulk_download')}</span>
-                </Button>
+                <>
+                  <Button
+                    type="default"
+                    onClick={handleOpenDownloadModal}
+                    disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
+                    loading={bulkDownloadInProgress}
+                  >
+                    <span>{I18n.t('campaign_report.actions.bulk_download')}</span>
+                  </Button>
+                  <BulkDownloadModal
+                    visible={downloadModalVisible}
+                    onCancel={handleCloseDownloadModal}
+                    onDownload={handleDownload}
+                  />
+                </>
               )}
 
               {reportPermissions.regenerate && (
@@ -160,11 +167,6 @@ const Manage: React.FC<Props> = ({
                   >
                     <span>{I18n.t('user_reports.actions.regenerate')}</span>
                   </Button>
-                  <BulkDownloadModal
-                    visible={downloadModalVisible}
-                    onCancel={handleCloseDownloadModal}
-                    onDownload={handleDownload}
-                  />
                 </>
               )}
 
