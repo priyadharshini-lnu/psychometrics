@@ -375,6 +375,7 @@ en:
         invalid_sub_header: "'%{sub_header}' is not a valid subheader for header '%{header}'"
         scores_not_allowed: Scores can only be added for MultiChoice and Matrix type question
       modal:
+        download_xls: Download Example XLSX file
         title: Import Questions
       successfully_scheduled: Question Import scheduled successfully.
     assessments:
