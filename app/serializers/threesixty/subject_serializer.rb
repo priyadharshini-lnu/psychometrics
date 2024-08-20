@@ -43,6 +43,7 @@ module Threesixty
         [
           %w[login spoof],
           'edit_user',
+          'reset_password',
           'view_report',
           'download_report',
           'view_responses',

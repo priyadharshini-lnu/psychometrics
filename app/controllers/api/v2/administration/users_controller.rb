@@ -70,6 +70,10 @@ module Api
 
     private
 
+    def campaign_id
+      params[:campaign_id] || params.dig(:data, :attributes, :campaign_id)
+    end
+
     def context_for_schema_validation
       { current_user: current_user, project: project, campaign: campaign, user: @resource }
     end

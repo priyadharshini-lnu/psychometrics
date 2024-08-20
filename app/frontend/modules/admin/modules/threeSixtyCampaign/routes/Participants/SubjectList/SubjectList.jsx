@@ -15,6 +15,7 @@ import { Manage } from '../Manage'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
+import ResetPasswordModal from '../ResetPasswordModal'
 import Pagination from '../../../components/Pagination'
 import SearchInput from '../SearchInput'
 
@@ -34,6 +35,7 @@ export default function SubjectList ({
   page,
   searchTerm,
   editUser,
+  currentCampaignId,
 }) {
   const { campaignId } = useParams()
   const { message } = App.useApp()
@@ -147,6 +149,7 @@ export default function SubjectList ({
                       regenerateReport,
                       message,
                       setShowResetSubjectModal,
+                      currentCampaignId,
                     })
                   }
                   placement="bottomRight"
@@ -164,6 +167,7 @@ export default function SubjectList ({
       <SubjectImportModal />
       <UserEditModal />
       <ResetSubjectModal open={showResetSubjectModal} />
+      <ResetPasswordModal />
     </>
   )
 }

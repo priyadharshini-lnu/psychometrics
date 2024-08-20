@@ -95,6 +95,10 @@ module Administration
         has_permission?(:results, :regenerate_report)
       end
 
+      def reset_password?
+        has_permission?(:users, :reset_password)
+      end
+
       def view_responses?
         has_permission?(:results, :raw_responses)
       end

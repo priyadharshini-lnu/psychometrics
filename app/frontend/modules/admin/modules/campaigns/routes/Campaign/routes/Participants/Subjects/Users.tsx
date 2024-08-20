@@ -402,7 +402,7 @@ const getActionsMenuProps = ({
       return onEdit()
     }
     if (key === 'changePassword') {
-      return openModal('ResetPasswordModal', { user })
+      return openModal('ResetPasswordModal', { user, campaignId })
     }
     if (key === 'remove') {
       return handleDelete()

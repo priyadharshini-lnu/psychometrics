@@ -3101,6 +3101,7 @@ en:
         remove_report_approval: Remove report approval
         remove_report_hold_release_report: Remove Report Hold/Release
         remove_subject: Remove subject
+        reset_password: Reset Password
         unmark_as_done: Unmark as done
         view_report: View Report
         view_responses: View Responses
