@@ -90,6 +90,7 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
         initialValue={assessment?.owner?.id || null}
       >
         <Select
+          disabled={!!assessment}
           showSearch
           onSearch={(value) => {
             fetchClients({

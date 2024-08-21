@@ -38,6 +38,7 @@ export const PearsonFields: React.FC<{ form: FormInstance, assessment: Assessmen
         rules={[{ required: true }]}
       >
         <Select
+          disabled={!!assessment}
           showSearch
           onSearch={(value) => {
             fetchAssessments({

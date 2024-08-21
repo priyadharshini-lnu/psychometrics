@@ -49,6 +49,7 @@ export const IihtFields: React.FC<{ form: FormInstance, assessment: Assessment }
       >
         <Select
           showSearch
+          disabled={!!assessment}
           onSearch={(value) => {
             fetchProjects({
               apiConfig: {
@@ -72,6 +73,7 @@ export const IihtFields: React.FC<{ form: FormInstance, assessment: Assessment }
       >
         <Select
           showSearch
+          disabled={!!assessment}
           onSearch={(value) => {
             fetchAssessments({
               apiConfig: { filter: { type_eq: 'iiht', filterable_fields: value, project_id_eq: projectId } },

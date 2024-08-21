@@ -46,6 +46,7 @@ export const MettlFields: React.FC<{ form: FormInstance, assessment: Assessment 
         rules={[{ required: true }]}
       >
         <Select
+          disabled={!!assessment}
           showSearch
           onSearch={(value) => {
             fetchProjects({
@@ -69,6 +70,7 @@ export const MettlFields: React.FC<{ form: FormInstance, assessment: Assessment 
         rules={[{ required: true }]}
       >
         <Select
+          disabled={!!assessment}
           showSearch
           onSearch={(value) => {
             fetchAssessments({
