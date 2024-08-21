@@ -112,9 +112,19 @@ class UserReport < ApplicationRecord
   def attach_pdf!(data)
     case data
       when String
-        pdf_file.attach(
-          ActiveStorageSupport::Base64Attach.attachment_from_data({ data: "data:application/pdf;base64,[#{data}]" })
-        )
+        if data.start_with?('http://', 'https://')
+          url = URI.parse(data)
+          file = URI(data).open
+          pdf_file.attach(
+            io: file,
+            filename: File.basename(url.path),
+            content_type: File.extname(url.path)
+          )
+        else
+          pdf_file.attach(
+            ActiveStorageSupport::Base64Attach.attachment_from_data({ data: "data:application/pdf;base64,[#{data}]" })
+          )
+        end
       when File
         pdf_file.attach(
           io: data,
