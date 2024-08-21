@@ -5,7 +5,8 @@ module Administration
     class IntegrationSerializer < Panko::Serializer
       include Rails.application.routes.url_helpers
 
-      attributes :id, :name, :active, :details, :user, :tenant_id, :tenancy_name, :provider
+      attributes :id, :name, :active, :details, :user, :tenant_id, :tenancy_name, :provider,
+                 :private_key, :public_key
 
       def details
         if object.iiht?
@@ -35,6 +36,14 @@ module Administration
 
       def provider
         object.config['provider']
+      end
+
+      def public_key
+        object.mettl_config['public_key']
+      end
+
+      def private_key
+        object.mettl_config['private_key']
       end
     end
   end

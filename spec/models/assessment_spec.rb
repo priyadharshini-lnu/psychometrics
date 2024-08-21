@@ -20,6 +20,38 @@ RSpec.describe Assessment, type: :model do
     end
   end
 
+  describe '#mettl' do
+    it 'returns true for mettl assessment' do
+      assessment = build(:assessment, type: Assessment::TYPES[:mettl])
+
+      expect(assessment.mettl?).to eq(true)
+    end
+
+    it 'returns false for non mettl assessment' do
+      assessment = build(:assessment, type: Assessment::TYPES[:common])
+
+      expect(assessment.mettl?).to eq(false)
+    end
+  end
+
+  describe '#external?' do
+    external_types = %i[mindmill hogan saville pearson iiht mettl]
+
+    external_types.each do |type|
+      it "returns true for #{type} assessment" do
+        assessment = build(:assessment, type: Assessment::TYPES[type])
+
+        expect(assessment.external?).to eq(true)
+      end
+    end
+
+    it 'returns false for non-external assessment' do
+      assessment = build(:assessment, type: Assessment::TYPES[:common])
+
+      expect(assessment.external?).to eq(false)
+    end
+  end
+
   describe '#external_assessment_name' do
     context 'when assessment type is common' do
       it 'returns nil' do
@@ -89,6 +121,36 @@ RSpec.describe Assessment, type: :model do
 
       it 'returns the assessment name' do
         expect(iiht_assessment.external_assessment_name).to eq('assessment_name')
+      end
+    end
+
+    context 'when assessment type is mettl' do
+      let(:mettl_assessment) { create(:assessment, :mettl) }
+
+      before do
+        create(:mettl_assessment, product_id: mettl_assessment.external_assessment_id, name: 'Mettl Assessment')
+      end
+
+      it 'returns the assessment title' do
+        expect(mettl_assessment.external_assessment_name).to eq('Mettl Assessment')
+      end
+    end
+
+    describe 'create_mettl_schedule' do
+      let(:mettl_assessment) { build(:assessment, :mettl) }
+
+      it 'enqueues Mettl::CreateScheduleJob' do
+        expect(Mettl::CreateScheduleJob).to receive(:perform_later).with(mettl_assessment)
+
+        mettl_assessment.save!
+      end
+
+      it 'does not enqueue Mettl::CreateScheduleJob for non-mettl assessment' do
+        non_mettl_assessment = build(:assessment, :hogan)
+
+        expect(Mettl::CreateScheduleJob).not_to receive(:set)
+
+        non_mettl_assessment.save!
       end
     end
   end

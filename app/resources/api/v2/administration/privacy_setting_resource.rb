@@ -4,7 +4,7 @@ class Api::V2::Administration::PrivacySettingResource < Api::V2::Administration:
   attributes :id, :privacy_consent, :custom_privacy_policy_version, :custom_privacy_consent_texts,
              :privacy_link_text, :privacy_link_url, :enable_privacy_link,
              :custom_privacy_consent, :mask_identity_for_pearson, :mask_identity_for_saville, :mask_identity_for_hogan,
-             :mask_identity_for_iiht, :mask_identity_for_examus
+             :mask_identity_for_iiht, :mask_identity_for_examus, :mask_identity_for_mettl
 
   has_one :project
 

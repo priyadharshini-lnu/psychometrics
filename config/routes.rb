@@ -865,6 +865,9 @@ Rails.application.routes.draw do
     post '/saville/results', to: 'saville#results', as: :saville
     post 'sms_histories', to: 'sms_histories#status', as: :sms_histories
     post '/:project_id/iiht/results', to: 'iiht#results', as: :iiht
+    post '/:project_id/mettl/completion_notification', to: 'mettl#completion_notification',
+                                                            as: :mettl_completion_notification
+    post '/:project_id/mettl/results', to: 'mettl#results', as: :mettl_results_notification
   end
 
   devise_scope :user do
@@ -987,6 +990,12 @@ Rails.application.routes.draw do
       end
 
       resources :iiht_user_assessments, only: [] do
+        member do
+          post :pass
+        end
+      end
+
+      resources :mettl_user_assessments, only: [] do
         member do
           post :pass
         end

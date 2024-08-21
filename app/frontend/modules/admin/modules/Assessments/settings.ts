@@ -14,6 +14,7 @@ const settings = {
     'pearson',
     'iiht',
     'mindmill',
+    'mettl',
   ],
 }
 

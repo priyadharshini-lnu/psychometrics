@@ -16,7 +16,8 @@ class Report < ApplicationRecord
     hogan: 2,
     saville: 3,
     pearson: 4,
-    custom_upload: 5
+    custom_upload: 5,
+    mettl: 6
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10

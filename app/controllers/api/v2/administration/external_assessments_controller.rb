@@ -16,6 +16,8 @@ module Api
           render_json_api_response(iiht_assessments(search))
         when 'saville'
           render_json_api_response(saville_assessments(search))
+        when 'mettl'
+          render_json_api_response(mettl_assessments(search))
       end
     end
 
@@ -56,6 +58,12 @@ module Api
       Settings.providers.saville.assessments.sort_by { |a| a[:name] }.map do |a|
         { id: a[:id].downcase, name: a[:name] }
       end
+    end
+
+    def mettl_assessments(search)
+      MettlAssessment.filterable_fields(search).
+        where(project_id: params[:filter][:project_id_eq]).
+        map { |a| { id: a.product_id, name: a.name } }
     end
   end
 end

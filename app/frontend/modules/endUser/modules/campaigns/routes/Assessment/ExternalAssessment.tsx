@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import {
   Layout, Col, Typography, Button, Space,
 } from 'antd'
@@ -18,21 +18,17 @@ const { Content } = Layout
 
 interface Props {
   userAssessmentId: string
-  userAssessmentType?: string
   userAssessmentUrl: string
   onCancel: () => void
 }
 
 export const ExternalAssessment: FC<Props> = ({
   userAssessmentId,
-  userAssessmentType,
   userAssessmentUrl,
   onCancel,
 }) => {
-  const [loading, setLoading] = useState(false)
-
   const {
-    asyncLoading, makeAsyncRequest,
+    asyncLoading: loading, makeAsyncRequest: startAssessment,
   } = useAsyncRequestResponse<AsyncRequestResponse>({
     url: userAssessmentUrl,
     data: { id: userAssessmentId },
@@ -42,16 +38,7 @@ export const ExternalAssessment: FC<Props> = ({
   })
 
   const process = async () => {
-    if (
-      userAssessmentType === 'Assessments::Saville'
-      || userAssessmentType === 'Assessments::Pearson'
-      || userAssessmentType === 'Assessments::Iiht'
-    ) {
-      makeAsyncRequest()
-    } else {
-      setLoading(true)
-      location.href = userAssessmentUrl
-    }
+    startAssessment()
   }
 
   return (
@@ -76,8 +63,8 @@ export const ExternalAssessment: FC<Props> = ({
             </Button>
             <Button
               type="primary"
-              loading={loading || asyncLoading}
-              disabled={loading || asyncLoading}
+              loading={loading}
+              disabled={loading}
               onClick={() => process()}
             >
               {I18n.t('campaign.time_left.continue')}

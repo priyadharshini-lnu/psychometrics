@@ -12,6 +12,7 @@ module Api
       'hogan' => Api::V2::Assessment::HoganContract,
       'pearson' => Api::V2::Assessment::PearsonContract,
       'iiht' => Api::V2::Assessment::IihtContract,
+      'mettl' => Api::V2::Assessment::MettlContract,
       'saville' => Api::V2::Assessment::SavilleContract
     }.freeze
 

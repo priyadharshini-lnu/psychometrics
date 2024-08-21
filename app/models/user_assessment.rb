@@ -18,6 +18,7 @@ class UserAssessment < ApplicationRecord
   has_one :saville_user_assessment, dependent: :destroy
   has_one :pearson_user_assessment, dependent: :destroy
   has_one :iiht_user_assessment, dependent: :destroy
+  has_one :mettl_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
@@ -31,7 +32,7 @@ class UserAssessment < ApplicationRecord
 
   has_one :threesixty_campaign, through: :campaign
 
-  delegate :saville?, :iiht?, :pearson?, :assessor_form?, to: :assessment
+  delegate :saville?, :iiht?, :pearson?, :mettl?, :assessor_form?, to: :assessment
   delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
 

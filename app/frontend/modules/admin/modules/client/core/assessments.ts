@@ -114,6 +114,7 @@ export const TYPES = [
   'iiht',
   'pearson',
   'saville',
+  'mettl',
 ]
 
 export const Schema = {

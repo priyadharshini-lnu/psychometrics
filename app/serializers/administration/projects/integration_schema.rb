@@ -25,6 +25,8 @@ module Administration
           optional(:tenant_id).maybe(:str?)
           optional(:tenancy_name).maybe(:str?)
           optional(:provider).maybe(:str?)
+          optional(:public_key).maybe(:str?)
+          optional(:private_key).maybe(:str?)
         end
       end
     end

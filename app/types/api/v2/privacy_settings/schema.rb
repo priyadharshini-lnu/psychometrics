@@ -12,6 +12,7 @@ class Api::V2::PrivacySettings::Schema < Api::Base::Schema
       optional(:mask_identity_for_hogan).maybe(:bool)
       optional(:mask_identity_for_iiht).maybe(:bool)
       optional(:mask_identity_for_examus).maybe(:bool)
+      optional(:mask_identity_for_mettl).maybe(:bool)
       optional(:privacy_consent).maybe(:bool)
       optional(:custom_privacy_consent).maybe(:bool)
       optional(:custom_privacy_policy_version).maybe(:integer)

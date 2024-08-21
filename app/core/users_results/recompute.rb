@@ -15,6 +15,7 @@ module UsersResults
 
       recompute_saville_assessment if user_assessment.saville?
       recompute_pearson_assessment if user_assessment.pearson?
+      recompute_mettl_assessment if user_assessment.mettl?
 
       if user_result.assessment.agile?
         compute_agile_assessment_scoring
@@ -33,6 +34,10 @@ module UsersResults
 
     def recompute_pearson_assessment
       Pearson::SaveScoresAndReports.call!(user_assessment)
+    end
+
+    def recompute_mettl_assessment
+      ::Mettl::SaveScoresAndReport.call!(user_assessment)
     end
 
     def compute_non_agile_scores

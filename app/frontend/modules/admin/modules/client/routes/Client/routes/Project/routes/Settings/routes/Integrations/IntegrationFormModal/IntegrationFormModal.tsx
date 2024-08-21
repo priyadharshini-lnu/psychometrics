@@ -6,6 +6,7 @@ import { Integration, integrationNames } from '~/modules/admin/modules/client/co
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { IihtForm } from './IihtForm'
 import { HoganForm } from './HoganForm'
+import { MettlForm } from './MettlForm'
 
 const { Option } = Select
 const { I18n } = window
@@ -13,6 +14,7 @@ const { I18n } = window
 const integrationComponents = {
   iiht: IihtForm,
   hogan: HoganForm,
+  mettl: MettlForm,
 }
 
 type OwnProps = {

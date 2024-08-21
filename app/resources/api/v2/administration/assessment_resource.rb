@@ -70,6 +70,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
       )
     end
     settings.merge(
+      assessment_id: @model.external_assessment_id.to_s,
       assessment_name: @model.external_assessment_name,
       norm_name: @model.external_norm_name
     )

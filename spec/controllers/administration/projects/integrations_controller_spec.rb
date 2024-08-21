@@ -21,6 +21,15 @@ describe Administration::Projects::IntegrationsController, type: :controller do
     }
   end
 
+  let(:mettl_valid_params) do
+    {
+      name: 'mettl',
+      active: true,
+      public_key: 'public_key',
+      private_key: 'private_key'
+    }
+  end
+
   describe 'POST create' do
     context 'iiht integration' do
       it 'creates integrations if params are valid' do
@@ -33,7 +42,9 @@ describe Administration::Projects::IntegrationsController, type: :controller do
         integration = project.reload.integrations.iiht.first
         expected_response = integration.attributes.slice('id', 'name', 'active').merge(
           integration.config.except('password'),
-          'provider' => nil
+          'provider' => nil,
+          'public_key' => nil,
+          'private_key' => nil
         ).merge(
           'details' => {
             'webhook_url' => webhooks_iiht_url(
@@ -83,7 +94,9 @@ describe Administration::Projects::IntegrationsController, type: :controller do
           'provider' => 'phoenix',
           'tenant_id' => nil,
           'tenancy_name' => nil,
-          'user' => nil
+          'user' => nil,
+          'public_key' => nil,
+          'private_key' => nil
         ).merge(
           'details' => nil
         )
@@ -101,6 +114,52 @@ describe Administration::Projects::IntegrationsController, type: :controller do
         parsed_response = JSON.parse(response.body)
         expect(response.status).to eq(422)
         expect(parsed_response).to eq({ 'errors' => { 'provider' => ["can't be blank"] } })
+      end
+    end
+  end
+
+  describe 'POST create' do
+    context 'mettl integration' do
+      it 'creates integration if params are valid' do
+        expect do
+          post :create, params: {
+            project_id: project.id,
+            resource: mettl_valid_params
+          }, format: :json
+        end.to change { Integration.where(project_id: project.id, name: 'mettl').count }.by(1)
+
+        integration = project.reload.integrations.find_by(name: 'mettl')
+        expect(integration).not_to be_nil
+        expect(integration.mettl_config['public_key']).to eq('public_key')
+        expect(integration.mettl_config['private_key']).to eq('private_key')
+        expect(integration.active).to be(true)
+        expect(response.status).to eq(200)
+      end
+
+      it "doesn't create integration if params are not valid" do
+        post :create, params: {
+          project_id: project.id,
+          resource: mettl_valid_params.merge(public_key: '')
+        }, format: :json
+
+        parsed_response = JSON.parse(response.body)
+        expect(response.status).to eq(422)
+        expect(parsed_response).to eq({ 'errors' => { 'public_key' => ["can't be blank"] } })
+      end
+
+      it "doesn't create integration if name is not unique" do
+        create(:integration, :mettl_integration, project: project)
+
+        post :create, params: {
+          project_id: project.id,
+          resource: mettl_valid_params
+        }, format: :json
+
+        parsed_response = JSON.parse(response.body)
+        expect(response.status).to eq(422)
+        expect(parsed_response).to eq(
+          { 'errors' => { 'name' => ['This integration is already present for this project'] } }
+        )
       end
     end
   end

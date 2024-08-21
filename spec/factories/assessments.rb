@@ -37,6 +37,12 @@ FactoryBot.define do
       type { ::Assessments::Pearson }
       external_settings { { assessment_id: 'assessmentId' } }
     end
+
+    trait :mettl do
+      category { Assessment::CATEGORIES[:mettl] }
+      type { ::Assessments::Mettl }
+      external_settings { { assessment_id: 'assessmentId' } }
+    end
   end
 
   factory :assessment_hogan, class: 'Assessments::Hogan' do

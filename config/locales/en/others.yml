@@ -155,6 +155,10 @@ en:
               inclusion: Wrong locale
             password:
               too_short: Password is too short. Minimum %{count} character required
+        mettl:
+          attributes:
+            name:
+              not_unique: This integration is already present for this project
         password_reset:
           attributes:
             email:
@@ -834,6 +838,7 @@ en:
         hogan_assessment_id: Hogan Assessment ID
         iiht_assessment_id: IIHT assessment ID
         iiht_schedule_config: Schedule config
+        mettl_assessment_id: METTL assessment ID
         pearson_assessment_id: Pearson assessment ID
         pearson_norm_id: Pearson norm ID
         saville_assessment_id: Saville assessment ID
@@ -867,6 +872,7 @@ en:
         iiht: IIHT
         lead_assessor_form: Lead Assessor Form
         meeting: Meeting
+        mettl: Mettl
         mindmill: Mindmill
         organisational: Org Surveys
         pearson: Pearson
@@ -880,6 +886,7 @@ en:
         common: TTE Assessment
         hogan: Hogan
         iiht: IIHT Assessment
+        mettl: Mettl Assessment
         mindmill: Mindmill
         pearson: Pearson Assessment
         saville: Saville Assessment
@@ -2515,10 +2522,12 @@ en:
         custom_upload: Custom Upload
         hogan: Hogan
         internal: Internal
+        mettl: Mettl
         mindmill: Mindmill
         pearson: Pearson
         saville: Saville
     form:
+      load_from_mettl: Load from Mettl
       load_from_pearson: Load from Pearson
       none_external: None - Use report builder
     modules:

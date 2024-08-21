@@ -214,6 +214,12 @@ export const Privacy: React.FC = () => {
               >
                 <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_examus')}</Checkbox>
               </Form.Item>
+              <Form.Item
+                valuePropName="checked"
+                name="maskIdentityForMettl"
+              >
+                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_mettl')}</Checkbox>
+              </Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"

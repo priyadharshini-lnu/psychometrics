@@ -84,7 +84,6 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       <ExternalAssessment
         onCancel={backToCampaign}
         userAssessmentId={userAssessmentId}
-        userAssessmentType={userAssessmentData.type}
         userAssessmentUrl={assessmentUrl(userAssessmentData, locale || I18n.currentLocale())}
       />
     )

@@ -7,6 +7,7 @@ export const ProjectPrivacySettingsTR = t.type({
   maskIdentityForHogan: t.boolean,
   maskIdentityForIiht: t.boolean,
   maskIdentityForExamus: t.boolean,
+  maskIdentityForMettl: t.boolean,
   privacyConsent: t.union([t.boolean, t.null]),
   customPrivacyConsent: t.boolean,
   customPrivacyConsentTexts: t.array(t.type({

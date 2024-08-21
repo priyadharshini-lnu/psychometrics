@@ -2035,9 +2035,15 @@ en:
           tenancy_name: Tenancy name
           tenant_id: Tenant ID
           user: User
+        mettl:
+          privateKey: Private Key
+          privateKeyRequired: Private key is required.
+          publicKey: Public Key
+          publicKeyRequired: Public key is required.
       names:
         hogan: HOGAN
         iiht: IIHT
+        mettl: METTL
       validations:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
@@ -2468,6 +2474,7 @@ en:
         mask_identity_for_examus: Mask data for Examus Proctoring
         mask_identity_for_hogan: Mask data for Hogan
         mask_identity_for_iiht: Mask data for IIHT
+        mask_identity_for_mettl: Mask data for METTL
         mask_identity_for_pearson: Mask data for Pearson
         mask_identity_for_saville: Mask data for Saville
         privacy_link: Enable Privacy Link
