@@ -28,4 +28,28 @@ describe Integration, type: :model do
       expect(decrypted_config['private_key']).to eq(private_key)
     end
   end
+
+  describe 'update_mettl_catalog' do
+    it 'enqueues Mettl::FetchAssessmentsJob when creating a mettl integration' do
+      expect(Mettl::FetchAssessmentsJob).to receive(:perform_later)
+
+      create(:integration, :mettl_integration)
+    end
+
+    it 'enqueues Mettl::FetchAssessmentsJob when updating a mettl integration' do
+      mettl_integration = create(:integration, :mettl_integration)
+
+      expect(Mettl::FetchAssessmentsJob).to receive(:perform_later)
+
+      mettl_integration.update!(name: 'mettl')
+    end
+
+    it 'does not enqueue Mettl::FetchAssessmentsJob for non-mettl assessment' do
+      non_mettl_integration = create(:integration, :hogan_integration)
+
+      expect(Mettl::FetchAssessmentsJob).not_to receive(:perform_later)
+
+      non_mettl_integration.update!(name: 'hogan')
+    end
+  end
 end

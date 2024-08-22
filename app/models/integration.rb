@@ -9,6 +9,8 @@ class Integration < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
+  after_commit :trigger_fetch_assessments_job, if: :mettl?
+
   def iiht_config
     decrypted_password = Encryptor.decrypt(Base64.decode64(config['password']))
     config.merge('password' => decrypted_password)
@@ -25,5 +27,11 @@ class Integration < ApplicationRecord
 
   def log_attribute_for_delete
     slice(:id, :name, :project_id)
+  end
+
+  private
+
+  def trigger_fetch_assessments_job
+    Mettl::FetchAssessmentsJob.perform_later
   end
 end
