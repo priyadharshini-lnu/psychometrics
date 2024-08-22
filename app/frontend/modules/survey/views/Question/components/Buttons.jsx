@@ -40,7 +40,7 @@ class Question extends Component {
 
     return (
       <div onClick={e => e.stopPropagation()}>
-        <div className={`${styles.left} ${up || ''}`}>
+        <div className={`${styles.left} ${up || ''}`} style={selected ? { left: 0 } : {}}>
           <a onClick={this.moveUp} className={`btn btn-primary ${styles.moveBtn} ${styles.up}`}>
             <span className={`fa fa-arrow-up ${styles.btnicon}`} />
           </a>
@@ -48,7 +48,7 @@ class Question extends Component {
             <span className={`fa fa-arrow-down ${styles.btnicon}`} />
           </a>
         </div>
-        <div className={`${styles.right} ${up || ''}`} style={selected ? { right: 14 } : {}}>
+        <div className={`${styles.right} ${up || ''}`} style={selected ? { right: 19 } : {}}>
           <a onClick={this.insertTop} className={`btn btn-success ${styles.addBtn}`}>
             <span className={`fa fa-plus ${styles.btnicon}`} />
           </a>
