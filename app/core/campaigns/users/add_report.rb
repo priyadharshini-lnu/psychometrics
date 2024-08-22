@@ -145,7 +145,7 @@ module Campaigns
         existing_mettl_user_assessment = existing_result&.mettl_user_assessment
         user_assessment.create_mettl_user_assessment(
           email: existing_mettl_user_assessment&.url,
-          schedule_id: existing_mettl_user_assessment&.schedule_id,
+          mettl_schedule_id: existing_mettl_user_assessment&.mettl_schedule_id,
           url: existing_mettl_user_assessment&.url
         )
       end

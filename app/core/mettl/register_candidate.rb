@@ -30,7 +30,7 @@ module Mettl
 
     def save_mettl_user_assessment(result)
       user_assessment.mettl_user_assessment.update!(
-        url: result['url'], email: result['email'], schedule_id: mettl_schedule.id
+        url: result['url'], email: result['email'], mettl_schedule_id: mettl_schedule.id
       )
     end
 

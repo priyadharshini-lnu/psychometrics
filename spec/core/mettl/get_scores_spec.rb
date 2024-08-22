@@ -16,7 +16,7 @@ describe Mettl::GetScores do
 
   let(:user_assessment) { create(:user_assessment, assessment: assessment, project: project) }
   let!(:mettl_user_assessment) do
-    create(:mettl_user_assessment, user_assessment: user_assessment, schedule_id: mettl_schedule.id)
+    create(:mettl_user_assessment, user_assessment: user_assessment, mettl_schedule_id: mettl_schedule.id)
   end
 
   let(:scores_response) do

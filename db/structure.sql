@@ -3007,7 +3007,7 @@ CREATE TABLE public.mettl_user_assessments (
     user_assessment_id bigint NOT NULL,
     url character varying,
     email character varying,
-    schedule_id integer,
+    mettl_schedule_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -13847,6 +13847,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240822061229'),
 ('20240820083735'),
 ('20240816122815'),
 ('20240816043248'),

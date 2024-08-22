@@ -51,7 +51,7 @@ describe Mettl::RegisterCandidate do
 
         expect(mettl_user_assessment.url).to eq(schedule_link)
         expect(mettl_user_assessment.email).to eq('some_email@cc.com')
-        expect(mettl_user_assessment.schedule_id).to eq(mettl_schedule.id)
+        expect(mettl_user_assessment.mettl_schedule_id).to eq(mettl_schedule.id)
       end
     end
 
