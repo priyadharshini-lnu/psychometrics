@@ -194,9 +194,14 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   after_commit :sync_translated_columns, on: %i[update create]
   after_commit -> { create_mettl_schedule }, if: :mettl?, on: %i[create]
+  after_commit -> { set_mettl_assessment_return_url }, if: :mettl?, on: %i[create]
 
   def create_mettl_schedule
     Mettl::CreateScheduleJob.perform_later(self)
+  end
+
+  def set_mettl_assessment_return_url
+    Mettl::EditAssessmentJob.perform_later(external_assessment_id)
   end
 
   def v2_pearson_assessment?

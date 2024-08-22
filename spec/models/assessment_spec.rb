@@ -153,5 +153,23 @@ RSpec.describe Assessment, type: :model do
         non_mettl_assessment.save!
       end
     end
+
+    describe 'set_mettl_assessment_return_url' do
+      let(:mettl_assessment) { build(:assessment, :mettl) }
+
+      it 'enqueues Mettl::EditAssessmentJob' do
+        expect(Mettl::EditAssessmentJob).to receive(:perform_later).with(mettl_assessment.external_assessment_id)
+
+        mettl_assessment.save!
+      end
+
+      it 'does not enqueue Mettl::EditAssessmentJob for non-mettl assessment' do
+        non_mettl_assessment = build(:assessment, :hogan)
+
+        expect(Mettl::EditAssessmentJob).not_to receive(:set)
+
+        non_mettl_assessment.save!
+      end
+    end
   end
 end

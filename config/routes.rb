@@ -940,6 +940,7 @@ Rails.application.routes.draw do
       get :workshop_bookings, to: 'workshop_invited_subjects#bookings', defaults: { format: :json }
 
       get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect
+      get 'mettl/assessment/:mettl_assessment_id', to: 'mettl_user_assessments#redirect', as: :mettl_assessment_redirect
 
       resources :meeting_rooms, only: [] do
         get :token, on: :member
