@@ -6,6 +6,7 @@ import { TimerText } from '~/modules/endUser/modules/campaigns/components/TimerT
 import { CountdownTimer } from '~/glint'
 import { useTimeout } from '~/hooks/useTimeout'
 import { randomWholeNumber } from '~/utils/number'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 
 const { I18n } = window
 
@@ -45,7 +46,7 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledFo
 
   const duration = () => {
     if (/^\d+$/.test(campaign.timing)) {
-      return dayjs.duration(+campaign.timing, 'seconds').humanize()
+      return secondsToDayHoursAndMinutes(+campaign.timing)
     }
     return campaign.timing
   }

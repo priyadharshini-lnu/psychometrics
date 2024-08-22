@@ -419,14 +419,19 @@ class FactorsTable extends Component {
     }
 
     const { model } = this.props
+    const {
+      scorePosition = 'inline', showIcons, showStrengthsBlindspots, showName, showDescription,
+    } = model.props
     const filters = this.getFilters()
     const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
     return (
       <thead>
         <tr>
           {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
-          <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
-          {model.props.showScore && !showWithFilters
+          {(showIcons || showName || showDescription || showStrengthsBlindspots) ? (
+            <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
+          ) : null}
+          {model.props.showScore && scorePosition === 'inline' && !showWithFilters
             ? <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th> : null}
           {model.props.showScore && showWithFilters ? filters.map((filter, i) => (
             <th key={i} className={styles.filter} scope="col">{filter.name}</th>

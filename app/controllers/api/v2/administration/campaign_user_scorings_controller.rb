@@ -7,12 +7,12 @@ module Api
     def index
       sort = @request.parse_sort_criteria(params[:sort])&.first || { field: 'email', direction: :asc }
       limit = limit_and_offset[:limit]
-
       query_object = CampaignUsers::CampaignUserScoresQuery.new(
         campaign_id: campaign.id,
         sort: sort,
         limit: limit,
-        offset: limit_and_offset[:offset]
+        offset: limit_and_offset[:offset],
+        search_term: params.dig(:filter, :search_query)
       )
 
       total_records = CampaignUser.where(campaign_id: campaign.id).count
