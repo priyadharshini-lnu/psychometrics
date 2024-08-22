@@ -56,7 +56,7 @@ const IntegrationsComponent: React.FC<Props> = ({
   return (
     <>
       <Row className="pl">
-        <Col lg={12} md={17} sm={24}>
+        <Col lg={14} md={17} sm={24}>
           <Button
             type="primary"
             icon={<PlusOutlined />}
@@ -87,6 +87,21 @@ const IntegrationsComponent: React.FC<Props> = ({
                         :
                       </b>
                       <div>{provider}</div>
+                    </>
+                  )
+                }
+
+                if (name === 'mettl') {
+                  return (
+                    <>
+                      <b>
+                        {I18n.t('administration.integrations.details.webhookUrls')}
+                        :
+                      </b>
+                      <div>
+                        <div>{details.completionWebhookUrl}</div>
+                        <div>{details.resultsWebhookUrl}</div>
+                      </div>
                     </>
                   )
                 }

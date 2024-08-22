@@ -2023,6 +2023,7 @@ en:
       details:
         provider: Provider Name
         webhookUrl: Webhook URL
+        webhookUrls: Webhook URLs
       integrations: Integrations
       modal:
         hogan:

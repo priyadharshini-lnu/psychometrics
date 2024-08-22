@@ -19,6 +19,23 @@ module Administration
               project_id: object.project_id
             )
           }
+        elsif object.mettl?
+          {
+            completion_webhook_url: webhooks_mettl_completion_notification_url(
+              host: Settings.domain,
+              subdomain: Settings.subdomain,
+              protocol: Settings.protocol,
+              port: Settings.port,
+              project_id: object.project_id
+            ),
+            results_webhook_url: webhooks_mettl_results_notification_url(
+              host: Settings.domain,
+              subdomain: Settings.subdomain,
+              protocol: Settings.protocol,
+              port: Settings.port,
+              project_id: object.project_id
+            )
+          }
         end
       end
 

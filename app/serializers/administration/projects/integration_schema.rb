@@ -19,6 +19,8 @@ module Administration
               optional(:protocol).filled(:str?)
               optional(:port).filled(:str?)
               optional(:project_id).filled(:str?)
+              optional(:completion_webhook_url).filled(:str?)
+              optional(:results_webhook_url).filled(:str?)
             end
           end
           optional(:user).maybe(:str?)
