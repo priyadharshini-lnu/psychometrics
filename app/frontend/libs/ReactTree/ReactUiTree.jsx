@@ -25,7 +25,7 @@ export default class UITree extends Component {
     if (!this._updated) {
       this.setState(this.init(nextProps))
     } else {
-      this._updated = false
+      this._updated = true
     }
   }
 
