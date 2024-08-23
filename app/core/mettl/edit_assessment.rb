@@ -4,10 +4,11 @@ module Mettl
   class EditAssessment < Base
     include Rails.application.routes.url_helpers
 
-    private_attr_reader :mettl_assessment, :project
+    private_attr_reader :mettl_assessment, :project, :request_body
 
-    def initialize(mettl_assessment)
+    def initialize(mettl_assessment, request_body)
       @mettl_assessment = mettl_assessment
+      @request_body = request_body
       @project = mettl_assessment.project
     end
 
@@ -37,17 +38,11 @@ module Mettl
     end
 
     def string_to_sign(timestamp)
-      "#{http_method}#{api_endpoint}\n#{public_key}\n#{request_data}\n#{timestamp}"
-    end
-
-    def request_data
-      {
-        exitRedirectionURL: assessment_redirect_url
-      }.to_json
+      "#{http_method}#{api_endpoint}\n#{public_key}\n#{request_body.to_json}\n#{timestamp}"
     end
 
     def encoded_request
-      URI.encode_www_form_component(request_data)
+      URI.encode_www_form_component(request_body.to_json)
     end
 
     def http_method
@@ -60,16 +55,6 @@ module Mettl
 
     def public_key
       config['public_key']
-    end
-
-    def assessment_redirect_url
-      mettl_assessment_redirect_url(
-        host: Settings.domain,
-        subdomain: project.subdomain,
-        protocol: Settings.protocol,
-        port: Settings.port,
-        mettl_assessment_id: mettl_assessment.id
-      )
     end
   end
 end
