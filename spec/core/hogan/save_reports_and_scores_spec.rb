@@ -55,6 +55,6 @@ describe Hogan::SaveReportsAndScores do
 
     expect(users_result.reload.external_results).to eq({ 'some_score' => 1 })
     expect(user_report.reload.status).to eq('prepared')
-    expect(user_report.pdf?).to eq(true)
+    expect(user_report.pdf_file.attached?).to eq(true)
   end
 end

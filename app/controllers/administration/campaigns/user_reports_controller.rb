@@ -31,7 +31,7 @@ module Administration
       end
 
       def upload_file
-        resource.update!(pdf: params[:file], status: :prepared)
+        resource.attach_pdf!(params[:file])
         render json: Administration::UserReportSerializer.new(
           context: {
             current_user: current_user,
