@@ -2049,6 +2049,8 @@ en:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
           tenant_id_present: Tenant id is already present in other project
+        mettl:
+          public_key_present: Public key is already present in other project
     invited_subject:
       add_btn: Add Subject
       column:
