@@ -7,5 +7,9 @@ module Private
   class ImageDirectUploader < CarrierWave::Uploader::Base
     include CarrierWaveDirect::Uploader
     include PrivatableUploader
+
+    def store_dir
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
+    end
   end
 end

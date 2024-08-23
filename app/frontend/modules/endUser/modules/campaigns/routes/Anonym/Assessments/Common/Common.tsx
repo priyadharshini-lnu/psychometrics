@@ -102,6 +102,8 @@ const CommonComponent: React.FC<Props> = ({
         <Watermark
           content={campaignOptions?.show_watermark ? campaignOptions?.watermark_content : ''}
           font={{ color: 'rgba(0,0,0,0.3)' }}
+          gap={[10, 0]}
+          rotate={-15}
         >
           <SubHeader
             title={assessment.name}

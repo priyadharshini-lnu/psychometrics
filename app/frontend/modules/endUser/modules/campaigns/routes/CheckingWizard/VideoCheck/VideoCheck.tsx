@@ -5,19 +5,17 @@ import React, {
 import {
   Button, Card, Col, Space,
 } from 'antd'
-import { CheckOutlined, RightOutlined } from '@ant-design/icons'
-import * as faceLandmarksDetection from '@tensorflow-models/face-landmarks-detection'
+import { CheckOutlined, RightOutlined, RedoOutlined } from '@ant-design/icons'
 import axios from 'axios'
+import * as faceapi from 'face-api.js'
 import { BROWSER_NAME } from '~/utils/uaParser'
 import { InitVideo } from './InitVideo'
 import { Progress } from '../Progress'
 import { CheckList } from '../CheckList'
-
 import reducer, {
   initialState, updateAccess, updateFaceDetection, failFaceDetectionByTimeout, updateUploading,
 } from './reducer'
 import { CheckListStatus } from '../interfaces'
-
 import styles from './styles.less'
 
 const { I18n, $ } = window
@@ -28,7 +26,6 @@ interface Props {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let player: any = null
-let detector: faceLandmarksDetection.FaceLandmarksDetector | null = null
 
 export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -42,6 +39,7 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     player.on('error', () => {
       dispatch(updateAccess(CheckListStatus.Failed))
     })
+    faceapi.nets.tinyFaceDetector.loadFromUri('/face-api/models')
     player.on('deviceReady', () => {
       player.record().start()
     })
@@ -49,16 +47,6 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       setTimeout(() => track(), 1000)
     })
     player.on('finishRecord', () => dispatch(failFaceDetectionByTimeout()))
-    const detectorConfig: faceLandmarksDetection.MediaPipeFaceMeshMediaPipeModelConfig = {
-      runtime: 'mediapipe', // or 'tfjs'
-      maxFaces: 1,
-      refineLandmarks: false,
-      solutionPath: '/@mediapipe/face_mesh',
-    }
-    const model = faceLandmarksDetection.SupportedModels.MediaPipeFaceMesh
-    faceLandmarksDetection.createDetector(model, detectorConfig).then((d) => {
-      detector = d
-    })
   }, [])
 
   const requestAccess = async () => {
@@ -74,32 +62,30 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
   }
 
   const track = async () => {
-    if (!videoRef.current || !detector) return
-    let faces
-    try {
-      faces = await detector.estimateFaces(videoRef.current, { flipHorizontal: false })
-    } catch (error) {
-      detector.dispose()
-    }
+    if (!videoRef.current) return
+    const options = new faceapi.TinyFaceDetectorOptions()
 
-    if (faces?.length > 0) {
-      player.record().pause()
-      const canvas = document.createElement('canvas')
-      const video = videoRef.current
-      canvas.width = video.videoWidth
-      canvas.height = video.videoHeight
-      // draw the video at that frame
-      const ctx = canvas.getContext('2d')
-      ctx?.translate(canvas.width, 0)
-      ctx?.scale(-1, 1)
-      ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
-      canvas.toBlob((blob) => {
+    const canvas = document.createElement('canvas')
+    const video = videoRef.current
+    canvas.width = video.videoWidth
+    canvas.height = video.videoHeight
+    // draw the video at that frame
+    const ctx = canvas.getContext('2d')
+    ctx?.translate(canvas.width, 0)
+    ctx?.scale(-1, 1)
+    ctx?.drawImage(video, 0, 0, canvas.width, canvas.height)
+
+    canvas.toBlob(async (blob) => {
+      const detections = await faceapi.detectSingleFace(canvas, options)
+
+      if (detections) {
+        player.record().pause()
         setImg(blob)
-      }, 'image/jpeg', 0.95)
-      dispatch(updateFaceDetection(CheckListStatus.Done))
-    } else {
-      setTimeout(() => track(), 500)
-    }
+        dispatch(updateFaceDetection(CheckListStatus.Done))
+      } else {
+        setTimeout(() => track(), 500)
+      }
+    }, 'image/jpeg', 0.95)
   }
 
   const upload = async () => {
@@ -113,8 +99,11 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       dispatch(updateUploading(CheckListStatus.Done))
       axios.put(`${location.pathname}/user_verification_image_upload_callback`, data, {
         headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+      }).then(() => {
+        nextStep()
+      }).catch(() => {
+        dispatch(updateUploading(CheckListStatus.Failed))
       })
-      nextStep()
     }).catch(() => {
       dispatch(updateUploading(CheckListStatus.Failed))
     })
@@ -130,6 +119,11 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     dispatch(updateFaceDetection(CheckListStatus.InProgress))
     track()
   }
+  let progress = 0
+  if (state.access === CheckListStatus.Done) progress += 33
+  if (state.faceDetection === CheckListStatus.Done) progress += 33
+  if (state.uploading === CheckListStatus.Done) progress += 34
+
 
   return (
     <>
@@ -171,7 +165,7 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       </Col>
       <Col className={styles.container} lg={8} xs={24} sm={24}>
         <Card className={styles.card}>
-          <Progress percent={30} title={I18n.t('checking_wizard.video_check.processing')} />
+          <Progress percent={progress} title={I18n.t('checking_wizard.video_check.processing')} />
           <CheckList
             className="mt24"
             dataSource={[
@@ -191,9 +185,9 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
               {state.access === CheckListStatus.Done
                 && (
                   <Button
-                    type="primary"
                     className={styles.continueButton}
                     onClick={rerun}
+                    icon={<RedoOutlined />}
                     disabled={state.uploading === CheckListStatus.InProgress
                       || state.uploading === CheckListStatus.Done}
                   >

@@ -187,6 +187,8 @@ const EvaluationComponent = ({
         <Watermark
           content={globalParticipantOptions?.showWatermark ? globalParticipantOptions?.watermarkContent : ''}
           font={{ color: 'rgba(0,0,0,0.3)' }}
+          gap={[10, 0]}
+          rotate={-15}
         >
           <PageHeader
             className={styles.campaignHeader}
