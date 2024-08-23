@@ -5489,7 +5489,9 @@ CREATE TABLE public.user_assessments (
     meeting_link character varying,
     require_scheduling boolean DEFAULT false,
     completion_status_code character varying,
-    evaluation_session_id character varying
+    evaluation_session_id character varying,
+    score_calculated boolean DEFAULT false,
+    score_calculated_at timestamp(6) without time zone
 );
 
 
@@ -13826,6 +13828,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240808093057'),
 ('20240809081127'),
 ('20240806160845'),
 ('20240721171706'),

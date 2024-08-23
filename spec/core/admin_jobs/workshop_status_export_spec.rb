@@ -44,7 +44,8 @@ describe AdminJobs::WorkshopStatusExport do
     create(
       :user_assessment, campaign: campaign,
       subject: user, evaluator: user,
-      assessment: prework_activity.assessment, status: :completed, completed_at: 1.day.ago
+      assessment: prework_activity.assessment, status: :completed, completed_at: 1.day.ago,
+      score_calculated: true
     )
     described_class.call!(job_record)
 

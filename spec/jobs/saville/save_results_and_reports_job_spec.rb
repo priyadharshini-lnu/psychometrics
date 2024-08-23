@@ -60,6 +60,10 @@ RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
     let(:user_assessment) { saville_user_assessment.user_assessment }
     let!(:report) { create(:report, :saville, assessments: [user_assessment.assessment]) }
 
+    before do
+      user_assessment.update!(status: 'completed')
+    end
+
     it "doesn't return exception if results are blank" do
       response = %(
         <AssessmentResult>
@@ -219,16 +223,19 @@ RSpec.describe Saville::SaveResultsAndReportsJob, type: :job do
       create(:user_report, report: report, campaign_id: user_assessment.campaign_id,
         user_id: user_assessment.subject_id, pdf: nil, status: :not_prepared)
 
-      described_class.new.perform(score_response)
-      scores = user_assessment.users_result.reload.external_results['scores']
-      expect(scores).to eq(
-        [
-          { 'id' => 'WAVEFS_RATACQ', 'score' => 1.0, 'score_type' => 'Normative', 'value_type' => 'sten' },
-          { 'id' => 'WAVEFS_CONRANK', 'score' => 2.0, 'score_type' => 'Ipsative', 'value_type' => 'Percentile' }
-        ]
-      )
-      expect(user_assessment.reload.status).to eq('completed')
-      expect(user_assessment.users_result.scoring).to eq({ factor.id.to_s => { 'norm_score' => 1.0 } })
+      perform_enqueued_jobs do
+        described_class.new.perform(score_response)
+
+        scores = user_assessment.users_result.reload.external_results['scores']
+        expect(scores).to eq(
+          [
+            { 'id' => 'WAVEFS_RATACQ', 'score' => 1.0, 'score_type' => 'Normative', 'value_type' => 'sten' },
+            { 'id' => 'WAVEFS_CONRANK', 'score' => 2.0, 'score_type' => 'Ipsative', 'value_type' => 'Percentile' }
+          ]
+        )
+        expect(user_assessment.reload.status).to eq('completed')
+        expect(user_assessment.users_result.scoring).to eq({ factor.id.to_s => { 'norm_score' => 1.0 } })
+      end
     end
   end
 end

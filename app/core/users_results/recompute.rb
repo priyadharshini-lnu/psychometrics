@@ -16,11 +16,7 @@ module UsersResults
       recompute_saville_assessment if user_assessment.saville?
       recompute_pearson_assessment if user_assessment.pearson?
 
-      if user_result.assessment.agile?
-        compute_agile_assessment_scoring
-      else
-        compute_non_agile_scores
-      end
+      UserAssessments::SaveScores.call!(user_assessment)
 
       broadcast :ok, user_result
     end
@@ -33,20 +29,6 @@ module UsersResults
 
     def recompute_pearson_assessment
       Pearson::SaveScoresAndReports.call!(user_assessment)
-    end
-
-    def compute_non_agile_scores
-      user_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(user_result)
-      user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result) if user_result.completed?
-      user_result.occupations = Assigns::CalculateOccupations.call!(user_result)
-      user_result.innovation_styles = Assigns::CalculateInnovationStyles.call!(user_result)
-      user_result.save!
-    end
-
-    def compute_agile_assessment_scoring
-      user_result.update!(
-        scoring: ::UsersResults::CalculateAgileScoring.call!(user_result)
-      )
     end
   end
 end
