@@ -34,7 +34,7 @@ module Mettl
       user_report = user_assessment.user_reports(:mettl).first
       return broadcast :ok unless user_report
 
-      user_report.attach_pdf!(pdf_report_url) if pdf_report_url
+      user_report.attach_pdf!(pdf_report_url, 'mettl-report.pdf') if pdf_report_url
 
       broadcast :ok
     end

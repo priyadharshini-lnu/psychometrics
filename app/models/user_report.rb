@@ -109,16 +109,17 @@ class UserReport < ApplicationRecord
     where(campaign_id: campaign_id, report_id: accessible_report_ids)
   end
 
-  def attach_pdf!(data)
+  def attach_pdf!(data, filename = nil)
     case data
       when String
         if data.start_with?('http://', 'https://')
           url = URI.parse(data)
           file = URI(data).open
+
           pdf_file.attach(
             io: file,
-            filename: File.basename(url.path),
-            content_type: File.extname(url.path).presence || 'application/pdf'
+            filename: filename || File.basename(url.path),
+            content_type: 'application/pdf'
           )
         else
           pdf_file.attach(
@@ -128,8 +129,8 @@ class UserReport < ApplicationRecord
       when File
         pdf_file.attach(
           io: data,
-          filename: File.basename(data),
-          content_type: File.extname(data)
+          filename: filename || File.basename(data),
+          content_type: 'application/pdf'
         )
       else
         return false
