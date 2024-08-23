@@ -23,7 +23,7 @@ module Reports
         required(:embedded_data).maybe(:hash?)
         required(:manager_evaluation_status).filled(:str?)
         required(:subject_datasheet).maybe(:hash?)
-        required(:external_scoring).maybe(:hash?)
+        required(:external_scoring).value { hash? | array? | nil? }
         required(:occupations).array do
           hash do
             required(:id).filled(:int?)
