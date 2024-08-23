@@ -118,7 +118,7 @@ class UserReport < ApplicationRecord
           pdf_file.attach(
             io: file,
             filename: File.basename(url.path),
-            content_type: File.extname(url.path)
+            content_type: File.extname(url.path).presence || 'application/pdf'
           )
         else
           pdf_file.attach(
