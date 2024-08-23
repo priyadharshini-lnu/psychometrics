@@ -503,7 +503,6 @@ en:
         enable_single_question_page: Show one question per page
         enable_timer: Enable timer
         instructions: Enable Instructions
-        timer: Timer
         title: Assessment Settings
       sidebar:
         assign: Assign Assessment
