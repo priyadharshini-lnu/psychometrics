@@ -10,7 +10,7 @@ import Question from '~/modules/survey/views/Question'
 export default function QuestionList ({ block, questions, search }) {
   return (
     questions.length > 100
-      ? <VirtualQuestionList block={block} questions={questions} search={search} />
+      ? <VirtualizedQuestionList block={block} questions={questions} search={search} />
       : (
         <div className={styles.main}>
           <FlipMove style={{ position: 'initial' }}>
@@ -28,7 +28,7 @@ export default function QuestionList ({ block, questions, search }) {
 }
 
 
-function VirtualQuestionList ({ block, questions, search }) {
+function VirtualizedQuestionList ({ block, questions, search }) {
   const data = useMemo(() => {
     if (!search) return questions
     return questions.filter(question => question.name?.toLowerCase().includes(search.toLowerCase())
