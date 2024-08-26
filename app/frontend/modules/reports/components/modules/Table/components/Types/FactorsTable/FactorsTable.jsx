@@ -158,13 +158,16 @@ class FactorsTable extends Component {
     module: PropTypes.object.isRequired,
   }
 
-  getMockData (size) {
+  getMockData (factors, size) {
     const data = []
     while (data.length < size && size > 0) {
       const items = _.take(MockData, size - data.length)
       data.push(...items)
     }
-    return data
+    return data.map((factor, i) => ({
+      ...factor,
+      ...factors[i],
+    }))
   }
 
   prepareRows () {
@@ -185,9 +188,9 @@ class FactorsTable extends Component {
     } else {
       // eslint-disable-next-line no-lonely-if
       if (props.mode === 'topFactors') {
-        this.factorsData = this.getMockData(props.maxPosition - props.minPosition + 1)
+        this.factorsData = this.getMockData(sourceFactors, props.maxPosition - props.minPosition + 1)
       } else {
-        this.factorsData = this.getMockData(factorIds.length)
+        this.factorsData = this.getMockData(sourceFactors, factorIds.length)
       }
     }
     if (props.reverseOrder && props.mode === 'topFactors') {
@@ -258,9 +261,9 @@ class FactorsTable extends Component {
         if (ResultStore.realResults) {
           for (let i = 0; i < conditions.length; i += 1) {
             conditionTitle = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
-              _.indexOf(module.textConditions, conditions[i]), 'title')
+              _.indexOf(module.textConditions, conditions[i]), 'title') || I18nStore.tFactorName(factor)
             conditionText = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
-              _.indexOf(module.textConditions, conditions[i]), 'text')
+              _.indexOf(module.textConditions, conditions[i]), 'text') || I18nStore.tFactor(factor, 'description')
             conditionStrengths = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
               _.indexOf(module.textConditions, conditions[i]), 'strengths')
             conditionBlindspots = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
