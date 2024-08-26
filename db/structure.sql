@@ -10249,10 +10249,10 @@ CREATE INDEX index_memberships_on_user_id ON public.memberships USING btree (use
 
 
 --
--- Name: index_mettl_assessments_on_product_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_mettl_assessments_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_mettl_assessments_on_product_id_and_project_id ON public.mettl_assessments USING btree (product_id, project_id);
+CREATE UNIQUE INDEX index_mettl_assessments_on_product_id ON public.mettl_assessments USING btree (product_id);
 
 
 --
@@ -13847,6 +13847,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240823114034'),
 ('20240822061229'),
 ('20240820083735'),
 ('20240816122815'),

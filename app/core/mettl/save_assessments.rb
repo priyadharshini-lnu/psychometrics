@@ -9,13 +9,17 @@ module Mettl
           product_id: assessment['id']
         )
 
-        mettl_assessment.update(
-          name: assessment['name'],
-          duration: assessment['duration'],
-          registration_fields: assessment['registrationFields'],
-          instructions: assessment['instructions'],
-          default_instructions: assessment['defaultInstructions']
-        )
+        begin
+          mettl_assessment.update!(
+            name: assessment['name'],
+            duration: assessment['duration'],
+            registration_fields: assessment['registrationFields'],
+            instructions: assessment['instructions'],
+            default_instructions: assessment['defaultInstructions']
+          )
+        rescue ActiveRecord::RecordNotUnique => e
+          Sentry.capture_exception(e, extra: { project_id: project.id, product_id: assessment['id'] })
+        end
       end
     end
   end

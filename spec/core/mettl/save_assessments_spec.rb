@@ -57,5 +57,30 @@ RSpec.describe Mettl::SaveAssessments, type: :service do
       assessment = MettlAssessment.find_by(project_id: project.id, product_id: '123')
       expect(assessment.name).to eq('Assessment 1')
     end
+
+    it 'raises an error when trying to save duplicate product_id' do
+      allow(Sentry).to receive(:capture_exception)
+      new_project = create(:project)
+
+      Mettl::SaveAssessments.call(project, assessments)
+
+      duplicate_assessments = [
+        {
+          'id' => '123',
+          'name' => 'Duplicate Assessment',
+          'duration' => 30,
+          'registrationFields' => %w[field5 field6],
+          'instructions' => 'Duplicate Instructions',
+          'defaultInstructions' => 'Duplicate Default Instructions'
+        }
+      ]
+
+      Mettl::SaveAssessments.call(new_project, duplicate_assessments)
+
+      expect(Sentry).to have_received(:capture_exception).with(
+        instance_of(ActiveRecord::RecordNotUnique),
+        extra: { project_id: new_project.id, product_id: '123' }
+      )
+    end
   end
 end
