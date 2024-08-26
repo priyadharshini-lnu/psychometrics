@@ -101,7 +101,7 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
 
     axios.put(data.url, img, {
       headers: {
-        contentType: 'image/jpeg',
+        'Content-Type': 'image/jpeg',
       },
     }).then(() => {
       dispatch(updateUploading(CheckListStatus.Done))
