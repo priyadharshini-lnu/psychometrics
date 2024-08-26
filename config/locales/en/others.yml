@@ -795,6 +795,9 @@ en:
       moderate: Moderate Scores
       new_response: New Response
       next_assessment: Pass To Next Assessment
+      pending_tasks:
+        one: You have one 1 pending task
+        other: You have %{count} pending tasks
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       remove:
