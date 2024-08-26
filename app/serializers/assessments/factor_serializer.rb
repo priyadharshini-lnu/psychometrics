@@ -9,7 +9,7 @@ module Assessments
     end
 
     def scoring
-      context[:factors_scoring]
+      context[:factors_scoring][object.id] || []
     end
   end
 end
