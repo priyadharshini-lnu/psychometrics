@@ -30,7 +30,7 @@ module Mettl
 
     def save_mettl_user_assessment(result)
       user_assessment.mettl_user_assessment.update!(
-        url: result['url'], email: result['email'], mettl_schedule_id: mettl_schedule.id
+        url: result['url'], email: result['email'], mettl_schedule_record_id: mettl_schedule_record.id
       )
     end
 
@@ -73,15 +73,15 @@ module Mettl
     end
 
     def api_endpoint
-      "#{Settings.mettl.base_api_url}/v2/schedules/#{mettl_schedule.access_key}/candidates"
+      "#{Settings.mettl.base_api_url}/v2/schedules/#{mettl_schedule_record.access_key}/candidates"
     end
 
     def public_key
       config['public_key']
     end
 
-    def mettl_schedule
-      MettlSchedule.find_by(assessment_id: user_assessment.assessment_id)
+    def mettl_schedule_record
+      MettlScheduleRecord.find_by(assessment_id: user_assessment.assessment_id)
     end
 
     def maskable_identity

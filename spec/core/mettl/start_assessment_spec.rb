@@ -9,8 +9,8 @@ describe Mettl::StartAssessment do
   let(:user_assessment) do
     create(:user_assessment, evaluator: user, mettl_user_assessment: build(:mettl_user_assessment))
   end
-  let!(:mettl_schedule) do
-    create(:mettl_schedule, project: user_assessment.project, assessment: user_assessment.assessment)
+  let!(:mettl_schedule_record) do
+    create(:mettl_schedule_record, project: user_assessment.project, assessment: user_assessment.assessment)
   end
 
   let(:campaign) { user_assessment.campaign }

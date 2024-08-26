@@ -10,7 +10,7 @@ describe Mettl::RegisterCandidate do
     create(:assessment, :mettl, project: project, external_settings: { assessment_id: mettl_assessment.id })
   end
 
-  let!(:mettl_schedule) { create(:mettl_schedule, project: project, assessment: assessment) }
+  let!(:mettl_schedule_record) { create(:mettl_schedule_record, project: project, assessment: assessment) }
 
   let(:user_assessment) { create(:user_assessment, assessment: assessment, project: project) }
   let!(:mettl_user_assessment) do
@@ -51,7 +51,7 @@ describe Mettl::RegisterCandidate do
 
         expect(mettl_user_assessment.url).to eq(schedule_link)
         expect(mettl_user_assessment.email).to eq('some_email@cc.com')
-        expect(mettl_user_assessment.mettl_schedule_id).to eq(mettl_schedule.id)
+        expect(mettl_user_assessment.mettl_schedule_record_id).to eq(mettl_schedule_record.id)
       end
     end
 

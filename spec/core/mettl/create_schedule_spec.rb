@@ -37,16 +37,16 @@ describe Mettl::CreateSchedule do
 
   describe '#call' do
     context 'when the request is successful' do
-      it 'created mettl_schedule' do
+      it 'created mettl_schedule_record' do
         subject.call
 
-        mettl_schedule = MettlSchedule.last
+        mettl_schedule_record = MettlScheduleRecord.last
 
-        expect(mettl_schedule.project_id).to eq(project.id)
-        expect(mettl_schedule.assessment_id).to eq(assessment.id)
-        expect(mettl_schedule.schedule_id).to eq(16_388_921)
-        expect(mettl_schedule.access_key).to eq('7bmicsn75s')
-        expect(mettl_schedule.access_url).to eq('https://tests.mettl.com/authenticateKey/7bmicsn75s')
+        expect(mettl_schedule_record.project_id).to eq(project.id)
+        expect(mettl_schedule_record.assessment_id).to eq(assessment.id)
+        expect(mettl_schedule_record.schedule_id).to eq(16_388_921)
+        expect(mettl_schedule_record.access_key).to eq('7bmicsn75s')
+        expect(mettl_schedule_record.access_url).to eq('https://tests.mettl.com/authenticateKey/7bmicsn75s')
       end
     end
 

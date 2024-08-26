@@ -12,11 +12,11 @@ describe Mettl::GetScores do
     create(:assessment, :mettl, project: project, external_settings: { assessment_id: mettl_assessment.id })
   end
 
-  let!(:mettl_schedule) { create(:mettl_schedule, project: project, assessment: assessment) }
+  let!(:mettl_schedule_record) { create(:mettl_schedule_record, project: project, assessment: assessment) }
 
   let(:user_assessment) { create(:user_assessment, assessment: assessment, project: project) }
   let!(:mettl_user_assessment) do
-    create(:mettl_user_assessment, user_assessment: user_assessment, mettl_schedule_id: mettl_schedule.id)
+    create(:mettl_user_assessment, user_assessment: user_assessment, mettl_schedule_record_id: mettl_schedule_record.id)
   end
 
   let(:scores_response) do

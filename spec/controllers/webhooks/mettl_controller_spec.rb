@@ -10,7 +10,7 @@ RSpec.describe Webhooks::MettlController, type: :controller do
     create(:assessment, :mettl, project: project, external_settings: { assessment_id: mettl_assessment.id })
   end
 
-  let!(:mettl_schedule) { create(:mettl_schedule, project: project, assessment: assessment) }
+  let!(:mettl_schedule_record) { create(:mettl_schedule_record, project: project, assessment: assessment) }
 
   let(:user_assessment) { create(:user_assessment, assessment: assessment, project: project) }
   let!(:mettl_user_assessment) do

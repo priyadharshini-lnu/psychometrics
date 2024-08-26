@@ -37,7 +37,7 @@ module Mettl
     private
 
     def save_mettle_schedule(result)
-      MettlSchedule.create(
+      MettlScheduleRecord.create(
         project_id: project.id,
         assessment_id: assessment.id,
         schedule_id: result['id'],

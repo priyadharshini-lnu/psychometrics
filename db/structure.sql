@@ -2963,10 +2963,10 @@ ALTER SEQUENCE public.mettl_assessments_id_seq OWNED BY public.mettl_assessments
 
 
 --
--- Name: mettl_schedules; Type: TABLE; Schema: public; Owner: -
+-- Name: mettl_schedule_records; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.mettl_schedules (
+CREATE TABLE public.mettl_schedule_records (
     id bigint NOT NULL,
     project_id bigint,
     assessment_id bigint NOT NULL,
@@ -2980,10 +2980,10 @@ CREATE TABLE public.mettl_schedules (
 
 
 --
--- Name: mettl_schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: mettl_schedule_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.mettl_schedules_id_seq
+CREATE SEQUENCE public.mettl_schedule_records_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2992,10 +2992,10 @@ CREATE SEQUENCE public.mettl_schedules_id_seq
 
 
 --
--- Name: mettl_schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: mettl_schedule_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.mettl_schedules_id_seq OWNED BY public.mettl_schedules.id;
+ALTER SEQUENCE public.mettl_schedule_records_id_seq OWNED BY public.mettl_schedule_records.id;
 
 
 --
@@ -3007,7 +3007,7 @@ CREATE TABLE public.mettl_user_assessments (
     user_assessment_id bigint NOT NULL,
     url character varying,
     email character varying,
-    mettl_schedule_id bigint,
+    mettl_schedule_record_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -6852,10 +6852,10 @@ ALTER TABLE ONLY public.mettl_assessments ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- Name: mettl_schedules id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: mettl_schedule_records id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.mettl_schedules ALTER COLUMN id SET DEFAULT nextval('public.mettl_schedules_id_seq'::regclass);
+ALTER TABLE ONLY public.mettl_schedule_records ALTER COLUMN id SET DEFAULT nextval('public.mettl_schedule_records_id_seq'::regclass);
 
 
 --
@@ -8112,11 +8112,11 @@ ALTER TABLE ONLY public.mettl_assessments
 
 
 --
--- Name: mettl_schedules mettl_schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: mettl_schedule_records mettl_schedule_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.mettl_schedules
-    ADD CONSTRAINT mettl_schedules_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.mettl_schedule_records
+    ADD CONSTRAINT mettl_schedule_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -10263,17 +10263,17 @@ CREATE INDEX index_mettl_assessments_on_project_id ON public.mettl_assessments U
 
 
 --
--- Name: index_mettl_schedules_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_mettl_schedule_records_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_mettl_schedules_on_assessment_id ON public.mettl_schedules USING btree (assessment_id);
+CREATE INDEX index_mettl_schedule_records_on_assessment_id ON public.mettl_schedule_records USING btree (assessment_id);
 
 
 --
--- Name: index_mettl_schedules_on_project_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_mettl_schedule_records_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_mettl_schedules_on_project_id ON public.mettl_schedules USING btree (project_id);
+CREATE INDEX index_mettl_schedule_records_on_project_id ON public.mettl_schedule_records USING btree (project_id);
 
 
 --
@@ -12953,10 +12953,10 @@ ALTER TABLE ONLY public.active_storage_variant_records
 
 
 --
--- Name: mettl_schedules fk_rails_993b57125e; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: mettl_schedule_records fk_rails_993b57125e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.mettl_schedules
+ALTER TABLE ONLY public.mettl_schedule_records
     ADD CONSTRAINT fk_rails_993b57125e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
@@ -13521,10 +13521,10 @@ ALTER TABLE ONLY public.memberships_admin_roles
 
 
 --
--- Name: mettl_schedules fk_rails_dda6b322d7; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: mettl_schedule_records fk_rails_dda6b322d7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.mettl_schedules
+ALTER TABLE ONLY public.mettl_schedule_records
     ADD CONSTRAINT fk_rails_dda6b322d7 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
@@ -13847,6 +13847,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240826050104'),
 ('20240823114034'),
 ('20240822061229'),
 ('20240820083735'),

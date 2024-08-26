@@ -58,7 +58,7 @@ module Mettl
     end
 
     def access_key
-      MettlSchedule.find_by(id: mettl_user_assessment.mettl_schedule_id)&.access_key
+      MettlScheduleRecord.find_by(id: mettl_user_assessment.mettl_schedule_record_id)&.access_key
     end
   end
 end
