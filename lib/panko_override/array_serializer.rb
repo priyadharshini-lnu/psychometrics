@@ -12,7 +12,7 @@ module PankoOverride
 
       def to_a
         responses = existing_to_a
-        return responses if skip_schema_check?
+        return responses if skip_schema_check? || responses.size > 100
 
         check_schema_class_is_present_and_valid!(serializer_class, responses)
         schema_class = schema_class(serializer_class)

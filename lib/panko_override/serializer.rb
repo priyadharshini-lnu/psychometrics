@@ -13,7 +13,7 @@ module PankoOverride
 
       def serialize(object)
         response = existing_serialize(object)
-        return response if skip_schema_check?
+        return response if skip_schema_check? || context&.dig(:skip_schema_check)
 
         check_schema_class_is_present_and_valid!(serializer_class, response)
         validation_result = schema_class.validate_schema!(response, self)

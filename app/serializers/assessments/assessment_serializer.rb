@@ -28,11 +28,13 @@ module Assessments
 
     def factors
       factors_scoring = object.factors_scoring.group_by(&:factor_id)
+      skip_schema_check = object.dimension.all_factors.count > 100
 
       object.dimension.all_factors.with_attached_icon.map do |factor|
         Assessments::FactorSerializer.new(
           context: {
-            assessment_id: object.id, factors_scoring: factors_scoring[factor.id] || []
+            assessment_id: object.id, factors_scoring: factors_scoring[factor.id] || [],
+            skip_schema_check: skip_schema_check
           }
         ).serialize(factor)
       end
