@@ -109,6 +109,14 @@ RSpec.describe Mettl::SaveScoresAndReport do
   end
 
   describe '#call' do
+    it 'broadcasts :ok if scores_and_report is blank' do
+      subject = described_class.new(user_assessment, {})
+
+      expect(subject).to receive(:broadcast).with(:ok)
+
+      subject.call
+    end
+
     it 'updates the user_assessment and users_result with external results' do
       expect(users_result).to receive(:update).with(
         external_results: {

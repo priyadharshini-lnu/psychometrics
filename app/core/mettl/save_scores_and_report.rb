@@ -10,6 +10,8 @@ module Mettl
     end
 
     def call
+      return broadcast :ok if scores_and_report.blank?
+
       external_results = {
         meta_data: {
           start_time: parse_datetime(scores_and_report.dig('testStatus', 'startTime')),
