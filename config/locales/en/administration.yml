@@ -4766,6 +4766,7 @@ en:
           title: Report
       messages:
         email_messages: Email Messages
+        factor_benchmark_scores_updated: Factor Benchmark Scores updated successfully
         instruction_messages: Instruction Messages
         mail_history: Mail History
         options: Options

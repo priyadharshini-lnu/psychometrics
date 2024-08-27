@@ -1357,6 +1357,7 @@ en:
       export_raw_without_labels: Raw (without labels)
       export_result: Export Result
       export_scoring: Scoring
+      factor_benchmark_score: Factor Benchmark Score
       import_raw: Raw
       import_scoring: Scoring
       regenerate: Regenerate Reports
@@ -1378,6 +1379,7 @@ en:
       export_completion_statuses_scheduled: Completion Statuses export job scheduled successfully
       export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job scheduled successfully
       external_results_export_scheduled: External Assessment export job scheduled successfully
+      factor_benchmark_scores_updated: Factor Benchmark Scores updated successfully
       norm_results_export_scheduled: Assessment Normed Results export job scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job scheduled successfully
       raw_results_export_scheduled: Assessment Raw Results export job scheduled successfully

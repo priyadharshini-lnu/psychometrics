@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import cs from 'classnames'
@@ -32,6 +33,7 @@ const MockData = [
     color: '#666666',
     meanNormScore: 65.8,
     strategy: 0,
+    benchmarkScore: 70,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
 * Lorem ipsum dolor sit amet consectetur
@@ -56,6 +58,7 @@ const MockData = [
     label: 'Medium',
     color: '#999999',
     meanNormScore: 35,
+    benchmarkScore: 50,
     strategy: 1,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -81,6 +84,7 @@ const MockData = [
     label: 'Medium',
     color: '#999999',
     meanNormScore: 55,
+    benchmarkScore: 45,
     strategy: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -107,6 +111,7 @@ const MockData = [
     label: 'Low',
     color: '#aaaaaa',
     meanNormScore: 0.75,
+    benchmarkScore: 2,
     strategy: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -133,6 +138,7 @@ const MockData = [
     label: 'High',
     color: '#666666',
     meanNormScore: 95,
+    benchmarkScore: 80,
     strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -244,8 +250,9 @@ class FactorsTable extends Component {
   }
 
   renderFactors () {
-    const { model, module } = this.props
+    const { model, module, assessments } = this.props
     const { fontFamily } = module.props.style
+    const benchmarkScores = assessments[model.assessment_id]?.factor_benchmark_scores || []
 
     return (
       this.factorsData.map((factor, i) => {
@@ -290,7 +297,7 @@ class FactorsTable extends Component {
           showDescription, showIcons, showStrengthsBlindspots, showScore, showName, showLabel,
           scoreProgressColor, scoreBackgroundColor, maxScoreValue, scorePosition = 'inline',
           scoreDisplay = 'circular', scoreRanges = [], scoreLineColor, scoreBulletColor, precision,
-          showScoreText, scoreBulletGraphHeight,
+          showScoreText, scoreBulletGraphHeight, showBenchmarks,
         } = model.props
 
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
@@ -402,6 +409,11 @@ class FactorsTable extends Component {
               ))
             ) : null}
 
+            {showBenchmarks ? (
+              <td className={cs(styles.score)}>
+                {benchmarkScores[factor.id] ? parseFloat(benchmarkScores[factor.id]).toFixed(precision) : ''}
+              </td>
+            ) : null}
           </tr>
         )
       })
@@ -439,6 +451,9 @@ class FactorsTable extends Component {
           {model.props.showScore && showWithFilters ? filters.map((filter, i) => (
             <th key={i} className={styles.filter} scope="col">{filter.name}</th>
           )) : null}
+          {model.props.showBenchmarks
+            ? <th className={styles.benchmarks} scope="col">{model.props.benchmarksLabel}</th>
+            : null}
         </tr>
       </thead>
     )
@@ -466,4 +481,11 @@ class FactorsTable extends Component {
   }
 }
 
-export default FactorsTable
+
+export default connect(
+  state => ({
+    assessments: state.report.builder.assessments,
+  }),
+  {
+  },
+)(FactorsTable)
