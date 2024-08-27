@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '3.1.2'
+ruby '3.1.6'
 gem 'bundler',                    '~> 2.3.17'
 gem 'rack',                       '~> 2.2.0'
 
