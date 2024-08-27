@@ -21,7 +21,7 @@ module AdminJobs
         user_result.subject.email,
         user_name(user_result.evaluator.first_name, user_result.evaluator.last_name),
         user_result.evaluator.email,
-        user_result.user_assessment.relationship.name,
+        user_result.user_assessment.relationship&.name,
         user_result.created_at.to_s,
         user_result.completed_at.to_s,
         user_result.user_assessment.score_calculated_at.to_s,
@@ -33,8 +33,8 @@ module AdminJobs
     def records_for_export
       UsersResult.joins(:user_assessment).
         where(user_assessments: { assessment_id: assessment.id, campaign_id: campaign.id }).
-        merge(UserAssessment.scored)
-      includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
+        merge(UserAssessment.scored).
+        includes(:norm, :subject, :evaluator, user_assessment: %i[relationship]).
         find_each(batch_size: 100)
     end
 
