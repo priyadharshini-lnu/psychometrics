@@ -121,7 +121,7 @@ ignore_unused:
   - administration.occupations.list.*
   - administration.occupations_factors.list*
   - 'administration'
-  - 'checking_wizard.network_check.steps*'
+  - 'checking_wizard.steps*'
   - 'assessments.actions.pending_tasks*'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
