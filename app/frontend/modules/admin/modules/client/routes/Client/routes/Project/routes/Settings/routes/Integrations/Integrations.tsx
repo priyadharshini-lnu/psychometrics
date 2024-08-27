@@ -1,21 +1,22 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Button, Table, Badge, Space, Tooltip,
+  Row, Col, Button, Table, Badge, Space, Tooltip, message,
 } from 'antd'
 import {
-  DeleteOutlined, EditOutlined, PlusOutlined, LoadingOutlined,
+  DeleteOutlined, EditOutlined, PlusOutlined, LoadingOutlined, SyncOutlined,
 } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import map from 'lodash/map'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
-  get, fetch, remove, REMOVE,
+  get, fetch, remove, REMOVE, loadMettlAssessments,
 } from '~/modules/admin/modules/client/core/integrations'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
 import { isRequestInProgress } from '~/core/request'
 import { IntegrationFormModal } from './IntegrationFormModal'
+
 
 const { Column } = Table
 
@@ -28,6 +29,7 @@ const connector = connect(
     fetch,
     remove,
     openModal,
+    loadMettlAssessments,
   },
 )
 
@@ -45,13 +47,25 @@ const IntegrationsComponent: React.FC<Props> = ({
   fetch,
   remove,
   openModal,
+  loadMettlAssessments,
   isDeleteRequestInProgress,
 }) => {
   const { projectId } = useParams() as { projectId: string }
 
+
   useEffect(() => {
     fetch(projectId)
   }, [])
+
+  const handleMettlLoad = () => {
+    loadMettlAssessments(projectId)
+      .then(() => {
+        message.success(I18n.t('administration.integrations.load_mettl_success'))
+      })
+  }
+
+  const mettlIntegrationExists = integrations.some(integration => integration.name === 'mettl')
+
 
   return (
     <>
@@ -61,10 +75,23 @@ const IntegrationsComponent: React.FC<Props> = ({
             type="primary"
             icon={<PlusOutlined />}
             className="mb-4"
+            style={{ marginRight: '10px' }}
             onClick={() => openModal('IntegrationFormModal')}
           >
             {I18n.t('administration.integrations.actions.add')}
           </Button>
+
+          {mettlIntegrationExists && (
+            <Button
+              type="primary"
+              className="mb-4"
+              icon={<SyncOutlined />}
+              onClick={handleMettlLoad}
+            >
+              {I18n.t('administration.integrations.actions.load_mettl_catalog')}
+            </Button>
+          )}
+
           <Table dataSource={integrations} pagination={false}>
             <Column
               title={I18n.t('common.column.status')}

@@ -43,6 +43,16 @@ export const remove = (projectId: string, id: string): ApiAction<RemoveType> => 
   },
 })
 
+export const LOAD_METTL_ASSESSMENTS = 'resource/campaigns/integrations/LOAD_METTL_ASSESSMENTS'
+export const loadMettlAssessments = (projectId: string): ApiAction<void> => ({
+  type: LOAD_METTL_ASSESSMENTS,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/integrations/load_mettl_assessments`,
+    loader: true,
+  },
+})
+
 const CREATE = 'resource/campaigns/integrations/CREATE'
 const UPDATE = 'resource/campaigns/integrations/UPDATE'
 

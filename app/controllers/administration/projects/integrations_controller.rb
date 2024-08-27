@@ -24,6 +24,11 @@ module Administration
         end
       end
 
+      def load_mettl_assessments
+        Mettl::FetchSingleProjectAssessmentsJob.perform_later(params[:project_id])
+        render json: { message: I18n.t('administration.integrations.load_mettl_success') }, status: :ok
+      end
+
       def update
         form = form_class.from_params(resource_params).with_context(project: project, integration: resource)
         if form.valid?

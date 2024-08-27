@@ -2016,6 +2016,7 @@ en:
     integrations:
       actions:
         add: Integrations
+        load_mettl_catalog: Load Mettl Assessment Catalog
       columns:
         active: Active
         details: Details
@@ -2025,6 +2026,7 @@ en:
         webhookUrl: Webhook URL
         webhookUrls: Webhook URLs
       integrations: Integrations
+      load_mettl_success: Load mettl assessments job is successfuly enqueued
       modal:
         hogan:
           provider: Provider

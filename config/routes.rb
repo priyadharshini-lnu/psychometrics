@@ -374,7 +374,11 @@ Rails.application.routes.draw do
           end
         end
         resources :security_settings, only: %i[update]
-        resources :integrations, only: %i[index create update destroy]
+        resources :integrations, only: %i[index create update destroy] do
+          collection do
+            post :load_mettl_assessments
+          end
+        end
       end
 
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
