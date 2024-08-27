@@ -1266,6 +1266,7 @@ Rails.application.routes.draw do
               post :create_superadmin
               post :create_global_assessor
               post :change_password
+              get :current_user_details
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end

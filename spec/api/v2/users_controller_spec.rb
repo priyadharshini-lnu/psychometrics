@@ -126,6 +126,39 @@ describe Api::V2::Administration::UsersController, swagger_doc: 'v2/swagger.json
           )
         end
       end
+
+      describe 'Get current user details' do
+        before(:each) { login_user(superadmin) }
+        after(:each) { sign_out(superadmin) }
+        it 'check response' do
+          get '/api/v2/administration/users/current_user_details'
+          parsed_response = JSON.parse(response.body)['data']
+          expect(parsed_response['id']).to eq(superadmin.id.to_s)
+          expect(parsed_response['attributes']['email']).to eq(superadmin.email)
+          expect(parsed_response['attributes']['first_name']).to eq(superadmin.first_name)
+          expect(parsed_response['attributes']['last_name']).to eq(superadmin.last_name)
+          expect(parsed_response['attributes']['navigation_links']['links']).to eq(
+            {
+              'profileDetails' => '/admin/profile/details',
+              'profile' => '/admin/profile',
+              'changePassword' => '/admin/profile/change_password',
+              'clients' => '/admin/clients',
+              'users' => '/admin/users',
+              'norms' => '/administration/norms',
+              'dimensions' => '/administration/dimensions',
+              'assessments' => '/admin/assessments',
+              'userAvailability' => '/admin/user_availabilities',
+              'questionCenter' => '/administration/templates/questions',
+              'libraries' => '/administration/libraries',
+              'communicationCenter' => '/administration/communications',
+              'reports' => '/admin/reports',
+              'reportApprovals' => '/admin/report_approvals/my_tasks',
+              'campaignTemplates' => '/admin/campaign_templates',
+              'auditLogs' => '/admin/audit_logs'
+            }
+          )
+        end
+      end
     end
   end
 

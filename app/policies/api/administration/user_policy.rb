@@ -19,6 +19,10 @@ module Api
         has_permission?(:projects, :manage_users, project_id: @record.project_id) || @user.id == @record.id
       end
 
+      def current_user_details?
+        true
+      end
+
       def create_global_assessor?
         @user.is?(:superadmin)
       end

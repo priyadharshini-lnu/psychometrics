@@ -68,6 +68,10 @@ module Api
       jsonapi_render json: user
     end
 
+    def current_user_details
+      jsonapi_render json: current_user, options: { resource: Api::V2::Administration::CurrentUserResource }
+    end
+
     private
 
     def campaign_id
