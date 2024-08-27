@@ -21,7 +21,12 @@ class UsersResultSerializer < Panko::Serializer
   end
 
   def campaign_options
-    ::EndUser::CampaignOptionsSerializer.new(campaign_options: campaign.campaign_options).
+    ::EndUser::CampaignOptionsSerializer.new(
+      campaign_options: campaign.campaign_options,
+      context: {
+        current_user: current_user
+      }
+    ).
       serialize(campaign.campaign_options)
   end
 

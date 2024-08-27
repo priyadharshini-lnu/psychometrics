@@ -2,7 +2,7 @@
 
 module Reports
   class BuildResults < BaseCommand
-    attr_reader :report, :users_results, :resources, :refs, :datasheet_data
+    attr_reader :report, :users_results, :resources, :refs, :datasheet_data, :campaign
 
     CLASS_MAP = {
       user_data: 'Reports::ResultTypes::User',
@@ -19,13 +19,15 @@ module Reports
       zscore_to_percentile: 'Reports::ResultTypes::ZscoreToPercentile',
       ref: 'Reports::ResultTypes::Ref',
       datasheet: 'Reports::ResultTypes::Datasheet',
-      float: 'Reports::ResultTypes::Float'
+      float: 'Reports::ResultTypes::Float',
+      campaign_factor: 'Reports::ResultTypes::CampaignFactor'
     }.freeze
 
     def initialize(report, users_results, data = nil)
       @report = report
       @users_results = users_results
       @resources = data || ::Reports::GetDataConfigurationResources.call!(report)
+      @campaign = users_results.empty? ? nil : users_results.first.campaign
       @refs = {}
     end
 
@@ -44,6 +46,26 @@ module Reports
         key = data['ref_id']
         @refs[key] = CLASS_MAP[data['type'].to_sym].constantize.call(self, data)
       end
+    end
+
+    def campaign_factor_value(code)
+      return nil if campaign.nil?
+
+      campaign_factor_results[code]
+    end
+
+    def campaign_factor_results
+      codes = @resources[:campaign_factor_codes]
+      return nil if codes.empty?
+
+      @campaign_factor_results ||=
+        campaign.campaign_factors.joins(:campaign_factor_values).
+        where(
+          campaign_factor_values: { user_id: users_results.first.subject.id }, code: codes
+        ).
+        select(
+          :name, :code, :output_type, 'campaign_factor_values.numeric_value', 'campaign_factor_values.string_value'
+        ).to_a.index_by(&:code)
     end
 
     def datasheet_value(column_name)

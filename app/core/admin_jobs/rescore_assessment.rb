@@ -4,7 +4,7 @@ module AdminJobs
   class RescoreAssessment < AdminJobs::Base
     def call
       record.update(total_tasks: results.count)
-      results.find_each do |res|
+      results.find_each(batch_size: 200) do |res|
         record.increment_completed_tasks!
         user_assessment = res.user_assessment
         user_assessment.update_norm!(record.data['norm_id']) if record.data['norm_id'].present?

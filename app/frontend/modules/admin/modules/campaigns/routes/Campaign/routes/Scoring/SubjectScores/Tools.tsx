@@ -30,7 +30,6 @@ export const Tools: React.FC<Props> = ({
         <DownOutlined />
       </Button>
       )}
-    className="mrm"
     hideForEmptyMenu
   />
 )

@@ -10,10 +10,10 @@ export const getCampaignRemainingTime = state => (
 const SET_INVALIDATED = 'userAssessment/SET_INVALIDATED'
 
 const FETCH = 'userAssessment/FETCH'
-const FETCH_RESULTS = 'userAssessment/FETCH_RESULTS'
+export const FETCH_RESULTS = 'userAssessment/FETCH_RESULTS'
 const FETCH_FAILURE = 'userAssessment/FETCH_FAILURE'
 
-const FETCH_ASSESSMENT = 'userAssessment/FETCH_ASSESSMENT'
+export const FETCH_ASSESSMENT = 'userAssessment/FETCH_ASSESSMENT'
 
 const VALIDATE_SESSION = 'userAssessment/VALIDATE_SESSION'
 
@@ -27,6 +27,7 @@ export const fetchAssessment = (userAssessmentId, isEdit) => ({
   request: {
     url: `/user_assessments/${userAssessmentId}/assessment`,
     camelize: false,
+    loader: true,
   },
   userAssessmentId,
   isEdit,
@@ -47,6 +48,7 @@ export const fetchResults = (userAssessmentId, isEdit) => ({
     url: `/user_assessments/${userAssessmentId}/users_results`,
     body: { edit: isEdit, cache: new Date().valueOf() },
     camelize: false,
+    loader: true,
   },
 })
 

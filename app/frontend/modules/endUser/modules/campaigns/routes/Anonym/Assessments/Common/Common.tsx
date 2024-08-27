@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Layout, Col, ConfigProvider, Progress,
+  Layout, Col, ConfigProvider, Progress, Watermark,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ClockCircleOutlined } from '@ant-design/icons'
@@ -52,6 +52,7 @@ const CommonComponent: React.FC<Props> = ({
       campaign_user: {
         status,
       },
+      campaign_options: campaignOptions,
     },
   },
   preview,
@@ -113,9 +114,15 @@ const CommonComponent: React.FC<Props> = ({
         </Col>
       </GlintPageHeader>
       <Content className={styles.pageContent}>
-        <SubHeader
-          title={assessment.name}
-          extra={enableProgress
+        <Watermark
+          content={campaignOptions?.show_watermark ? campaignOptions?.watermark_content : ''}
+          font={{ color: 'rgba(0,0,0,0.3)' }}
+          gap={[10, 0]}
+          rotate={-15}
+        >
+          <SubHeader
+            title={assessment.name}
+            extra={enableProgress
             && (
             <Progress
               strokeColor="#fff"
@@ -124,34 +131,35 @@ const CommonComponent: React.FC<Props> = ({
               {...progressBarProps}
             />
             )}
-        />
-        <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-          <div className={styles.assessmentContainer}>
-            <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-              <PassAssessment
-                id="pass_assessment"
-                type="pass_assessment"
-                initialized={initialized}
-                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
-                data={assessment}
-                result={results}
-                dashboardUrl={`/campaigns/${campaignId}`}
-                locales={translations}
-                selectedLocale={selectedLanguage && selectedLanguage.code}
-                rstore={store}
-                isAnonymousAssessment="true"
-                renderedByEnduser
-                status={status}
-              />
-            </ResourcesTabs>
-          </div>
-        </ConfigProvider>
-        <Confirm open={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
-        <AreadyCompletedModal
-          open={showAlreadyCompletedModal}
-          onRetake={reset}
-          onCancel={() => setShowAlreadyCompletedModal(false)}
-        />
+          />
+          <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+            <div className={styles.assessmentContainer}>
+              <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+                <PassAssessment
+                  id="pass_assessment"
+                  type="pass_assessment"
+                  initialized={initialized}
+                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
+                  data={assessment}
+                  result={results}
+                  dashboardUrl={`/campaigns/${campaignId}`}
+                  locales={translations}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
+                  rstore={store}
+                  isAnonymousAssessment="true"
+                  renderedByEnduser
+                  status={status}
+                />
+              </ResourcesTabs>
+            </div>
+          </ConfigProvider>
+          <Confirm open={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
+          <AreadyCompletedModal
+            open={showAlreadyCompletedModal}
+            onRetake={reset}
+            onCancel={() => setShowAlreadyCompletedModal(false)}
+          />
+        </Watermark>
       </Content>
     </>
   )

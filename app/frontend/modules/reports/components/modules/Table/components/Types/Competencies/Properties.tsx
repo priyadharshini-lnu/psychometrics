@@ -82,7 +82,7 @@ const Properties: FC<Props> = ({ model }) => {
         />
       </div>
       <div className="margin-top-10">
-        <div>Number Prceision:</div>
+        <div>Number Precision:</div>
         <InputNumber min={0} size="small" value={model.props.precision} onChange={val => onChange('precision', val)} />
       </div>
       <div className="margin-top-10">

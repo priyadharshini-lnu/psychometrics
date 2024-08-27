@@ -10,24 +10,17 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: c_11492; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_11492;
+
+
+--
 -- Name: public; Type: SCHEMA; Schema: -; Owner: -
 --
 
 -- *not* creating schema, since initdb creates it
-
-
---
--- Name: btree_gin; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS btree_gin WITH SCHEMA public;
-
-
---
--- Name: EXTENSION btree_gin; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION btree_gin IS 'support for indexing common datatypes in GIN';
 
 
 --
@@ -111,6 +104,118 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: accesssheet; Type: VIEW; Schema: c_11492; Owner: -
+--
+
+CREATE VIEW c_11492.accesssheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Organization'::text) AS "Organization"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 544)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_11492; Owner: -
+--
+
+CREATE VIEW c_11492.datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Subject Name'::text) AS "Subject Name",
+    (sheet_rows.data ->> 'Level'::text) AS "Level",
+    (sheet_rows.data ->> 'Position '::text) AS "Position ",
+    (sheet_rows.data ->> 'Organization'::text) AS "Organization",
+    (sheet_rows.data ->> 'Tenure'::text) AS "Tenure",
+    (sheet_rows.data ->> 'Success Profile'::text) AS "Success Profile",
+    (sheet_rows.data ->> 'Success Readiness 1'::text) AS "Success Readiness 1",
+    (sheet_rows.data ->> 'Success Readiness 2'::text) AS "Success Readiness 2",
+    ((sheet_rows.data ->> '1.Strategic Focus'::text))::double precision AS "1.Strategic Focus",
+    ((sheet_rows.data ->> '2.Leading Change'::text))::double precision AS "2.Leading Change",
+    ((sheet_rows.data ->> '3.Motivating & Inspiring'::text))::double precision AS "3.Motivating & Inspiring",
+    ((sheet_rows.data ->> '4.Develop And Empower People'::text))::double precision AS "4.Develop And Empower People",
+    ((sheet_rows.data ->> '5.Visioning & Alignment'::text))::double precision AS "5.Visioning & Alignment",
+    ((sheet_rows.data ->> '6.Communicating With Impact'::text))::double precision AS "6.Communicating With Impact",
+    ((sheet_rows.data ->> '7.Achieving Results'::text))::double precision AS "7.Achieving Results",
+    ((sheet_rows.data ->> '8.Commitment & Ownership'::text))::double precision AS "8.Commitment & Ownership",
+    ((sheet_rows.data ->> 'F2F Overall Score'::text))::double precision AS "F2F Overall Score",
+    ((sheet_rows.data ->> 'Leading Change'::text))::double precision AS "Leading Change",
+    ((sheet_rows.data ->> 'Commitment & Ownership'::text))::double precision AS "Commitment & Ownership",
+    ((sheet_rows.data ->> 'Communicating With Impact'::text))::double precision AS "Communicating With Impact",
+    ((sheet_rows.data ->> 'Develop And Empower People'::text))::double precision AS "Develop And Empower People",
+    ((sheet_rows.data ->> 'Strategic Focus'::text))::double precision AS "Strategic Focus",
+    ((sheet_rows.data ->> 'Visioning & Alignment'::text))::double precision AS "Visioning & Alignment",
+    ((sheet_rows.data ->> 'Achieving Results'::text))::double precision AS "Achieving Results",
+    ((sheet_rows.data ->> 'Motivating & Inspiring'::text))::double precision AS "Motivating & Inspiring",
+    ((sheet_rows.data ->> 'Social Desirability'::text))::double precision AS "Social Desirability",
+    ((sheet_rows.data ->> 'TI Overall Score'::text))::double precision AS "TI Overall Score",
+    ((sheet_rows.data ->> 'Excitable'::text))::double precision AS "Excitable",
+    ((sheet_rows.data ->> 'Skeptical'::text))::double precision AS "Skeptical",
+    ((sheet_rows.data ->> 'Cautious'::text))::double precision AS "Cautious",
+    ((sheet_rows.data ->> 'Reserved'::text))::double precision AS "Reserved",
+    ((sheet_rows.data ->> 'Leisurely'::text))::double precision AS "Leisurely",
+    ((sheet_rows.data ->> 'Bold'::text))::double precision AS "Bold",
+    ((sheet_rows.data ->> 'Mischievous'::text))::double precision AS "Mischievous",
+    ((sheet_rows.data ->> 'Colorful'::text))::double precision AS "Colorful",
+    ((sheet_rows.data ->> 'Imaginative'::text))::double precision AS "Imaginative",
+    ((sheet_rows.data ->> 'Diligent'::text))::double precision AS "Diligent",
+    ((sheet_rows.data ->> 'Dutiful'::text))::double precision AS "Dutiful",
+    ((sheet_rows.data ->> 'Qualitative_Scale'::text))::double precision AS "Qualitative_Scale",
+    ((sheet_rows.data ->> 'Quantitative_Scale'::text))::double precision AS "Quantitative_Scale",
+    ((sheet_rows.data ->> 'HBRI Overall Score'::text))::double precision AS "HBRI Overall Score",
+    ((sheet_rows.data ->> '5 point scale'::text))::double precision AS "5 point scale",
+    ((sheet_rows.data ->> 'Prospection'::text))::double precision AS "Prospection",
+    ((sheet_rows.data ->> 'Sustainability'::text))::double precision AS "Sustainability",
+    ((sheet_rows.data ->> 'Contribution'::text))::double precision AS "Contribution",
+    ((sheet_rows.data ->> 'Alignment'::text))::double precision AS "Alignment",
+    ((sheet_rows.data ->> 'Empowerment'::text))::double precision AS "Empowerment",
+    ((sheet_rows.data ->> 'Attunement'::text))::double precision AS "Attunement",
+    ((sheet_rows.data ->> 'Foresight'::text))::double precision AS "Foresight",
+    ((sheet_rows.data ->> 'Overall ACPI'::text))::double precision AS "Overall ACPI",
+    ((sheet_rows.data ->> 'Promotion & Growth'::text))::double precision AS "Promotion & Growth",
+    ((sheet_rows.data ->> 'Pay, Rewards & Benefits'::text))::double precision AS "Pay, Rewards & Benefits",
+    ((sheet_rows.data ->> 'Job Security'::text))::double precision AS "Job Security",
+    ((sheet_rows.data ->> 'Work Environment'::text))::double precision AS "Work Environment",
+    ((sheet_rows.data ->> 'Recognition'::text))::double precision AS "Recognition",
+    ((sheet_rows.data ->> 'Purpose & Meaning'::text))::double precision AS "Purpose & Meaning",
+    ((sheet_rows.data ->> 'Career Opportunities'::text))::double precision AS "Career Opportunities",
+    ((sheet_rows.data ->> 'Work Life Balance'::text))::double precision AS "Work Life Balance",
+    ((sheet_rows.data ->> 'Learning & Development'::text))::double precision AS "Learning & Development",
+    ((sheet_rows.data ->> 'Positive Relationships'::text))::double precision AS "Positive Relationships",
+    ((sheet_rows.data ->> 'Extrinsic Score'::text))::double precision AS "Extrinsic Score",
+    ((sheet_rows.data ->> 'Intrinsic Score'::text))::double precision AS "Intrinsic Score",
+    ((sheet_rows.data ->> 'Overall WPI Score'::text))::double precision AS "Overall WPI Score",
+    ((sheet_rows.data ->> 'Overall Potential'::text))::double precision AS "Overall Potential",
+    (sheet_rows.data ->> 'Talent Mapping'::text) AS "Talent Mapping",
+    (sheet_rows.data ->> 'Performance Level'::text) AS "Performance Level",
+    (sheet_rows.data ->> 'Potential'::text) AS "Potential",
+    (sheet_rows.data ->> 'Position in 9 Box'::text) AS "Position in 9 Box",
+    ((sheet_rows.data ->> 'Managers Ranks'::text))::double precision AS "Managers Ranks",
+    ((sheet_rows.data ->> 'Section Head Ranks'::text))::double precision AS "Section Head Ranks",
+    ((sheet_rows.data ->> 'Overall Rank'::text))::double precision AS "Overall Rank",
+    (sheet_rows.data ->> 'Gender'::text) AS "Gender",
+    (sheet_rows.data ->> 'Performance'::text) AS "Performance"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 421)
+  ORDER BY sheet_rows.id;
+
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -742,7 +847,7 @@ CREATE TABLE public.audit_logs (
     request text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    campaign_id bigint,
+    campaign_id integer,
     project_id integer,
     client_id integer,
     request_uuid character varying,
@@ -750,9 +855,7 @@ CREATE TABLE public.audit_logs (
     interface integer,
     client_ip character varying,
     outcome integer DEFAULT 1,
-    failure_reason character varying,
-    year smallint,
-    month smallint
+    failure_reason character varying
 );
 
 
@@ -1208,7 +1311,9 @@ CREATE TABLE public.campaign_options (
     proctoring_trial boolean DEFAULT false,
     workshop_booking_requires_prework_completion boolean DEFAULT false,
     campaign_scoring_variables text,
-    proctoring_type integer DEFAULT 0 NOT NULL
+    proctoring_type integer DEFAULT 0 NOT NULL,
+    show_watermark boolean DEFAULT false,
+    watermark_content character varying DEFAULT ''::character varying
 );
 
 
@@ -1563,6 +1668,40 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
+
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -2147,9 +2286,9 @@ ALTER SEQUENCE public.factors_norms_id_seq OWNED BY public.factors_norms.id;
 CREATE TABLE public.factors_scoring (
     id integer NOT NULL,
     props json,
-    factor_id bigint,
+    factor_id integer,
     assessment_id integer,
-    question_id bigint
+    question_id integer
 );
 
 
@@ -3596,39 +3735,6 @@ ALTER SEQUENCE public.profile_settings_id_seq OWNED BY public.profile_settings.i
 
 
 --
--- Name: project_assessments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.project_assessments (
-    id bigint NOT NULL,
-    assessment_id bigint,
-    project_id bigint,
-    normalize_factor_scores boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: project_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.project_assessments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: project_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.project_assessments_id_seq OWNED BY public.project_assessments.id;
-
-
---
 -- Name: question_recoding; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4298,20 +4404,6 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
-
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
 
 
 --
@@ -5295,24 +5387,23 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 
 --
--- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+-- Name: user_assessment_verification_images; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.user_assessment_factor_scores (
+CREATE TABLE public.user_assessment_verification_images (
     id bigint NOT NULL,
+    file character varying,
     user_assessment_id bigint NOT NULL,
-    factor_id bigint NOT NULL,
-    scores jsonb DEFAULT '{}'::jsonb,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
 
 
 --
--- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: user_assessment_verification_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.user_assessment_factor_scores_id_seq
+CREATE SEQUENCE public.user_assessment_verification_images_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -5321,10 +5412,10 @@ CREATE SEQUENCE public.user_assessment_factor_scores_id_seq
 
 
 --
--- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: user_assessment_verification_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.user_assessment_factor_scores_id_seq OWNED BY public.user_assessment_factor_scores.id;
+ALTER SEQUENCE public.user_assessment_verification_images_id_seq OWNED BY public.user_assessment_verification_images.id;
 
 
 --
@@ -6593,6 +6684,13 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
+
+
+--
 -- Name: communication_emails id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6978,13 +7076,6 @@ ALTER TABLE ONLY public.profile_settings ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- Name: project_assessments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.project_assessments ALTER COLUMN id SET DEFAULT nextval('public.project_assessments_id_seq'::regclass);
-
-
---
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7307,10 +7398,10 @@ ALTER TABLE ONLY public.translations ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- Name: user_assessment_factor_scores id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: user_assessment_verification_images id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.user_assessment_factor_scores ALTER COLUMN id SET DEFAULT nextval('public.user_assessment_factor_scores_id_seq'::regclass);
+ALTER TABLE ONLY public.user_assessment_verification_images ALTER COLUMN id SET DEFAULT nextval('public.user_assessment_verification_images_id_seq'::regclass);
 
 
 --
@@ -7800,6 +7891,14 @@ ALTER TABLE ONLY public.clients_reports
 
 
 --
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: communication_emails communication_emails_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8256,14 +8355,6 @@ ALTER TABLE ONLY public.profile_settings
 
 
 --
--- Name: project_assessments project_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.project_assessments
-    ADD CONSTRAINT project_assessments_pkey PRIMARY KEY (id);
-
-
---
 -- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8640,11 +8731,11 @@ ALTER TABLE ONLY public.translations
 
 
 --
--- Name: user_assessment_factor_scores user_assessment_factor_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: user_assessment_verification_images user_assessment_verification_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.user_assessment_factor_scores
-    ADD CONSTRAINT user_assessment_factor_scores_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.user_assessment_verification_images
+    ADD CONSTRAINT user_assessment_verification_images_pkey PRIMARY KEY (id);
 
 
 --
@@ -8891,13 +8982,6 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 
 
 --
--- Name: idx_audit_logs_year_month_day; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX idx_audit_logs_year_month_day ON public.audit_logs USING btree (EXTRACT(year FROM created_at), EXTRACT(month FROM created_at), EXTRACT(day FROM created_at));
-
-
---
 -- Name: idx_on_assessment_id_3b131a93ee; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8944,6 +9028,13 @@ CREATE UNIQUE INDEX idx_on_idp_template_id_development_action_id_catego_bd39b965
 --
 
 CREATE UNIQUE INDEX idx_on_idp_template_id_skill_id_category_11f5232638 ON public.idp_template_skills USING btree (idp_template_id, skill_id, category);
+
+
+--
+-- Name: idx_on_user_assessment_id_cb9cc55a9e; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_user_assessment_id_cb9cc55a9e ON public.user_assessment_verification_images USING btree (user_assessment_id);
 
 
 --
@@ -9241,13 +9332,6 @@ CREATE INDEX index_audit_logs_on_created_at ON public.audit_logs USING btree (cr
 
 
 --
--- Name: index_audit_logs_on_month; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_audit_logs_on_month ON public.audit_logs USING btree (month);
-
-
---
 -- Name: index_audit_logs_on_record_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9273,20 +9357,6 @@ CREATE INDEX index_audit_logs_on_user_id_and_action ON public.audit_logs USING b
 --
 
 CREATE INDEX index_audit_logs_on_user_id_and_action_and_created_at ON public.audit_logs USING btree (user_id, action, created_at);
-
-
---
--- Name: index_audit_logs_on_year; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_audit_logs_on_year ON public.audit_logs USING btree (year);
-
-
---
--- Name: index_audit_logs_on_year_and_month_combined; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_audit_logs_on_year_and_month_combined ON public.audit_logs USING btree (year, month);
 
 
 --
@@ -10424,20 +10494,6 @@ CREATE INDEX index_profile_settings_on_project_id ON public.profile_settings USI
 
 
 --
--- Name: index_project_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_project_assessments_on_assessment_id ON public.project_assessments USING btree (assessment_id);
-
-
---
--- Name: index_project_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_project_assessments_on_project_id ON public.project_assessments USING btree (project_id);
-
-
---
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11072,20 +11128,6 @@ CREATE INDEX index_translations_on_resource_type_and_resource_id ON public.trans
 --
 
 CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON public.translations USING btree (translateable_type, translateable_id);
-
-
---
--- Name: index_user_assessment_factor_scores_on_factor_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_assessment_factor_scores_on_factor_id ON public.user_assessment_factor_scores USING btree (factor_id);
-
-
---
--- Name: index_user_assessment_factor_scores_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_assessment_factor_scores_on_user_assessment_id ON public.user_assessment_factor_scores USING btree (user_assessment_id);
 
 
 --
@@ -12377,14 +12419,6 @@ ALTER TABLE ONLY public.dashboards
 
 
 --
--- Name: project_assessments fk_rails_4e1aa7f7d5; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.project_assessments
-    ADD CONSTRAINT fk_rails_4e1aa7f7d5 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
-
-
---
 -- Name: privacy_setting_translations fk_rails_4f38fd7ce2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12641,14 +12675,6 @@ ALTER TABLE ONLY public.skills_development_actions
 
 
 --
--- Name: user_assessment_factor_scores fk_rails_71d3d729a1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_assessment_factor_scores
-    ADD CONSTRAINT fk_rails_71d3d729a1 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
-
-
---
 -- Name: reports_accesses fk_rails_74cd2e276f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12734,6 +12760,14 @@ ALTER TABLE ONLY public.reports_modules
 
 ALTER TABLE ONLY public.mettl_assessments
     ADD CONSTRAINT fk_rails_7f18bbad7b FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: comments fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.comments
+    ADD CONSTRAINT fk_rails_7f3b1733e2 FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
 
 
 --
@@ -13086,6 +13120,14 @@ ALTER TABLE ONLY public.assessments_clients
 
 ALTER TABLE ONLY public.agiles
     ADD CONSTRAINT fk_rails_aaee109dc4 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_assessment_verification_images fk_rails_abb6eb0a48; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_verification_images
+    ADD CONSTRAINT fk_rails_abb6eb0a48 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13721,14 +13763,6 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 
 
 --
--- Name: project_assessments fk_rails_f36f27136e; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.project_assessments
-    ADD CONSTRAINT fk_rails_f36f27136e FOREIGN KEY (project_id) REFERENCES public.clients(id);
-
-
---
 -- Name: api_keys fk_rails_f435faf77d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13817,14 +13851,6 @@ ALTER TABLE ONLY public.user_idp_development_actions
 
 
 --
--- Name: user_assessment_factor_scores fk_rails_fceff3a97b; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_assessment_factor_scores
-    ADD CONSTRAINT fk_rails_fceff3a97b FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE RESTRICT;
-
-
---
 -- Name: factors_sub_factors fk_rails_fe8dca5bf7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13855,8 +13881,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240816043248'),
 ('20240814093440'),
 ('20240813091709'),
-('20240801132558'),
-('20240801121907'),
+('20240809081127'),
+('20240806160845'),
 ('20240801093652'),
 ('20240721171706'),
 ('20240721171655'),

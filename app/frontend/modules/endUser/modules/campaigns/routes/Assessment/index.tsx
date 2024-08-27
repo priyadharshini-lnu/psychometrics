@@ -89,7 +89,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     )
   }
 
-  if (WizardIsRequired.run(userAssessmentData.assessmentExtra)) {
+  if (WizardIsRequired.run(userAssessmentData.assessmentExtra, userAssessmentId)) {
     return <CheckingWizard assessmentId={assessmentId} userAssessmentId={userAssessmentId} />
   }
 

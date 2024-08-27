@@ -2,8 +2,6 @@
 @import "~/styles/spacing.less";
 
 .container {
-  max-height: 75vh;
-  overflow: hidden;
   & :global(.ant-card) {
     max-height: 100%;
   }
@@ -77,4 +75,19 @@
     font-size: 45px;
     margin-bottom: @space-4;
   }
+}
+
+.faceContainer {
+  padding: 12px;
+  border: 1px solid @border-color-base;
+  margin-top: 8px;
+}
+
+.face {
+  border-radius: 4px;
+  max-width: 100%;
+}
+
+.video {
+  transform: scale(-1, 1);
 }

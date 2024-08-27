@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Col,
   Layout,
@@ -10,10 +10,15 @@ import qs from 'qs'
 
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { get as getConfig } from '~/modules/endUser/core/config'
+import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
-import { get as getCampaign, getUserAssessmentData } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
-import { fetchAssessment, getCampaignRemainingTime } from '~/modules/endUser/modules/campaigns/core/userAssessment'
+import {
+  get as getCampaign, getUserAssessmentData, getCampaignOptions,
+} from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
+import {
+  fetchAssessment, getCampaignRemainingTime, FETCH_RESULTS,
+} from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import styles from './styles.less'
 import { CountdownTimer, PageHeader as GlintPageHeader } from '~/glint'
 
@@ -27,6 +32,8 @@ const connector = connect(
     userAssessment: getUserAssessmentData(state),
     assessment: state.campaigns.userAssessment.assessment,
     remainingCampaignTime: getCampaignRemainingTime(state),
+    campaignOptions: getCampaignOptions(state),
+    resultsLoading: isRequestInProgress(state, FETCH_RESULTS),
   }),
   {
     fetchAssessment,
@@ -56,11 +63,14 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
   userAssessment,
   fetchAssessment,
   remainingCampaignTime,
+  campaignOptions,
+  resultsLoading,
 }) => {
   const campaignId = agileCampaign || userAssessment.campaignId
   const navigate = useNavigate()
   const params = useParams() as Params
 
+  const [assessmentLoading, setAssessmentLoading] = useState(true)
   const initializeAgile = () => {
     const { lang } = qs.parse(location.search.substr(1))
     const appOptions = {
@@ -79,6 +89,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
         returnURL: isAnonym ? '' : `/assessment_completed/${campaignId}`,
         assetsBaseURL: agileAssetsUrl,
         locale: lang?.toString(),
+        watermark: campaignOptions?.show_watermark ? campaignOptions.watermark_content : null,
       },
     }
     InteractiveAssessmentsModule().then(({ InteractiveAssessments }) => {
@@ -87,13 +98,17 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    initializeAgile()
+    const { edit } = qs.parse(location.search.substr(1))
+    fetchAssessment(params.userAssessmentId, edit).then(() => {
+      setAssessmentLoading(false)
+    })
   }, [])
 
   useEffect(() => {
-    const { edit } = qs.parse(location.search.substr(1))
-    fetchAssessment(params.userAssessmentId, edit)
-  }, [])
+    if (!assessmentLoading && !resultsLoading) {
+      initializeAgile()
+    }
+  }, [assessmentLoading, resultsLoading])
 
   const notificationMessage = (minutes: number, seconds: number) => (
     I18n.t('campaign.timer.notification', { minutes, seconds })

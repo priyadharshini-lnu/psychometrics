@@ -24,7 +24,7 @@ describe UserAssessments::CanStart do
   end
 
   it 'returns true if system checks required' do
-    assessment.extra = { enable_audio_check: '1' }
+    assessment.extra = { enable_audio_check: true }
     user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
       assessment, campaign: campaign)
 
@@ -32,7 +32,7 @@ describe UserAssessments::CanStart do
   end
 
   it 'returns false if system checks passed' do
-    assessment.extra = { enable_audio_check: '1' }
+    assessment.extra = { enable_audio_check: true }
     user_assessment = create(:user_assessment, subject: user, evaluator: user, assessment:
       assessment, campaign: campaign)
 

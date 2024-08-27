@@ -79,10 +79,8 @@ module Api
     def audit_log_for_record_not_found(error)
       query = {}
       query[error.primary_key] = error.id
-      if error.model && error.id && error.primary_key && !error.model.safe_constantize.find_by(query)
-        audit! :record_not_found, current_user, payload: params.merge(model: error.model, model_id: error.id),
-        outcome: :failed, failure_reason: :record_not_found
-      else
+
+      unless error.model && error.id && error.primary_key && !error.model.safe_constantize.find_by(query)
         audit! :user_not_authorized, current_user, payload: params,
         outcome: :failed, failure_reason: :user_not_authorized
       end

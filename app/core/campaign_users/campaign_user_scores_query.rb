@@ -2,10 +2,11 @@
 
 module CampaignUsers
   class CampaignUserScoresQuery < Rectify::Query
-    private_attr_reader :campaign_id, :sort, :limit, :offset
+    private_attr_reader :campaign_id, :sort, :limit, :offset, :search_term
 
-    def initialize(campaign_id:, sort: { field: 'email', direction: :asc }, limit: 25, offset: 0)
+    def initialize(campaign_id:, search_term: nil, sort: { field: 'email', direction: :asc }, limit: 25, offset: 0)
       @campaign_id = campaign_id
+      @search_term = search_term
       @sort = sort
       @limit = limit.to_i
       @offset = offset.to_i
@@ -50,7 +51,8 @@ module CampaignUsers
       if factor_columns.present?
         base_query += "LEFT JOIN (#{crosstab_query}) AS ct ON cu.user_id = ct.user_id "
       end
-      base_query += "WHERE cu.campaign_id = #{campaign_id} ORDER BY #{sanitized_sort_column} #{sort[:direction]}
+      base_query += "WHERE cu.campaign_id = #{campaign_id} #{search_condition}
+      ORDER BY #{sanitized_sort_column} #{sort[:direction]}
       LIMIT #{limit} OFFSET #{offset};"
       base_query
     end
@@ -104,6 +106,13 @@ module CampaignUsers
     def find_rank_by_column
       rank_by_factor = CampaignFactor.find_by(campaign_id: campaign_id, ranked: true)
       rank_by_factor&.id&.to_s
+    end
+
+    def search_condition
+      return '' if @search_term.nil?
+
+      sanitized_search_term = ActiveRecord::Base.connection.quote("%#{@search_term}%")
+      "AND (u.email ILIKE #{sanitized_search_term} OR u.id::text ILIKE #{sanitized_search_term})"
     end
   end
 end

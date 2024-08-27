@@ -90,7 +90,7 @@ export const ImportQuestionsModalComponent: React.FC<Props> = ({ assessmentId, c
             target="blank"
           >
             <CloudDownloadOutlined />
-            <span className="mls">{I18n.t('administration.sms_invites.import.download_example_csv')}</span>
+            <span className="mls">{I18n.t('administration.assessment_question_import.modal.download_xls')}</span>
           </a>
         </div>
         <Form name="basic">

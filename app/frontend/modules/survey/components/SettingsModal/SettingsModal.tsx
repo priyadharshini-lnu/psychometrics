@@ -1,10 +1,11 @@
 import {
-  Button, Modal, Space, Switch, TimePicker, Row, Col, Alert, Popconfirm,
+  Button, Modal, Space, Switch, Row, Col, Alert, Popconfirm, Tooltip,
 } from 'antd'
+import { QuestionCircleOutlined, FieldTimeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import { setIn } from '~/utils/immutable'
-import dayjs from '~/utils/dayjs'
+import InputDuration from '~/components/InputDuration'
 import { closeModal, getData } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/survey/core/rootReducers'
 import {
@@ -52,12 +53,7 @@ const SettingsModalComponent = ({
     }
   }
 
-  const updateTimer = (time) => {
-    const timer = time && dayjs.duration({
-      hours: time.hour(),
-      minutes: time.minute(),
-      seconds: time.second(),
-    }).asSeconds()
+  const updateTimer = (timer) => {
     updateExtra({ ...extra, timer })
   }
 
@@ -138,18 +134,22 @@ const SettingsModalComponent = ({
         </Col>
 
         {isAssessmentTimerAdded && (
-        <Col span={24}>
-          {I18n.t('administration.assessments.settings.timer')}
-          :
-          <TimePicker
-            defaultValue={dayjs.utc(0)}
-            value={(extra.timer || extra.timer === 0) ? dayjs.utc(extra.timer * 1000) : null}
-            onChange={updateTimer}
-            placeholder="Set timer"
-            className="mhs"
-            popupClassName="assessment-timer"
-          />
-        </Col>
+          <>
+            <Col span={4}>
+              <InputDuration
+                placeholder="1h 30m"
+                value={extra.timer}
+                className="mhs"
+                onChange={updateTimer}
+                prefix={<FieldTimeOutlined />}
+              />
+            </Col>
+            <Col span={2}>
+              <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
+                <QuestionCircleOutlined className="ms-4" />
+              </Tooltip>
+            </Col>
+          </>
         )}
       </Row>
     </Modal>

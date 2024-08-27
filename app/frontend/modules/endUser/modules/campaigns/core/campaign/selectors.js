@@ -4,6 +4,7 @@ import { get as getCurrentUser } from '~/core/currentUser'
 
 export const get = state => _.get(state, ['campaigns', 'campaign'])
 export const getUserAssessmentData = state => _.get(state, ['campaigns', 'userAssessment', 'userAssessmentData'])
+export const getCampaignOptions = state => _.get(state, ['campaigns', 'userAssessment', 'results', 'campaign_options'])
 
 export const getNominations = (state) => {
   const { nominations } = state.campaign

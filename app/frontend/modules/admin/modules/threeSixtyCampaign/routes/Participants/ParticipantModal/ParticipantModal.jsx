@@ -45,9 +45,6 @@ export default function ParticipantModal ({
       ]}
     >
       <Tabs defaultActiveKey="2" activeKey={currentKey} onChange={key => setCurrentKey(key)}>
-        <Tabs.TabPane tab="Relationships" key="1">
-          Relationships
-        </Tabs.TabPane>
         <Tabs.TabPane tab="Evaluators" key="2">
           <EvaluatorList />
         </Tabs.TabPane>

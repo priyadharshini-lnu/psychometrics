@@ -5,7 +5,9 @@ class EndUser::UserAssessmentsController < ApplicationController
   layout 'layouts/end_user'
 
   initial_state_for %i[show pass begin]
-  before_action :set_user_assessment, only: %i[assessment details show pass begin validate_session]
+  before_action :set_user_assessment,
+                only: %i[assessment details show pass begin validate_session upload_user_verification_image_url
+                         user_verification_image_upload_callback]
   before_action :can_start_based_on_sequencing, only: %i[pass show begin]
   before_action :ensure_user_confirm, only: %i[pass begin]
   before_action :ensure_campaign_user_is_active
@@ -63,6 +65,29 @@ class EndUser::UserAssessmentsController < ApplicationController
 
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
+    end
+  end
+
+  def upload_user_verification_image_url
+    UserAssessmentVerificationImages::GetImageUploadUrl.call(@user_assessment) do
+      on(:ok) { |data| render json: data }
+      on(:error) do |error|
+        render json: {
+          error: error
+        }, status: 400
+      end
+    end
+  end
+
+  def user_verification_image_upload_callback
+    media = @user_assessment.user_assessment_verification_images.find(params[:media_id])
+    media.file_key = params[:asset_key]
+    if media.save
+      render json: 'ok'
+    else
+      error_message = media.errors.messages.values.join(',')
+      media.destroy
+      render json: { error_message: error_message }, status: 422
     end
   end
 
