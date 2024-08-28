@@ -7,7 +7,7 @@ describe Threesixty::InstructionTemplates::Load do
 
   describe '.call' do
     it 'loads all instruction_templates for campaign' do
-      template_loader = described_class.new(threesixty_campaign)
+      template_loader = described_class.new(threesixty_campaign, nil)
       instruction_templates_attributes = [
         {
           'name' => 'subject_invite',

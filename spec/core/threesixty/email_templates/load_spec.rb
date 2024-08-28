@@ -7,7 +7,7 @@ describe Threesixty::EmailTemplates::Load do
 
   describe '.call' do
     it 'loads all email_templates for campaign' do
-      template_loader = described_class.new(threesixty_campaign)
+      template_loader = described_class.new(threesixty_campaign, nil)
       email_templates_attributes = [
         {
           'from' => 'jamaes',
