@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom'
 import { CampaignList } from './CampaignList'
 import { Campaign } from './Campaign'
 import { Profile } from './Profile'
@@ -6,7 +7,7 @@ import { Insights } from './Insights'
 import { UserAssessment } from './UserAssessment'
 import { Assessment } from './Assessment'
 import { AgileUserAssessment } from './AgileUserAssessment'
-// import { CheckingWizard } from './CheckingWizard'
+import { CheckingWizard } from './CheckingWizard'
 import { Nomination } from './Nomination'
 import { Evaluation } from './Evaluation'
 import { Report } from './Report'
@@ -17,6 +18,11 @@ import { MyPlan } from './idp/MyPlan'
 import { InitialSteps } from './idp/InitialSteps'
 import { DirectReportsList } from './idp/DirectReports/List'
 import { DirectReportDetails } from './idp/DirectReports/Details'
+
+const CWizard = () => {
+  const { assessmentId, id } = useParams() as { assessmentId: string, id: string }
+  return <CheckingWizard assessmentId={+assessmentId} userAssessmentId={+id} />
+}
 
 const routes = [
   {
@@ -63,11 +69,10 @@ const routes = [
     path: '/agile_user_assessments/:userAssessmentId',
     component: <AgileUserAssessment />,
   },
-  // ToDo: Ashish Dhama Uncomment this after adding fixing the component
-  // {
-  //   path: '/system_checks/:assessmentId/:id',
-  //   component: <CheckingWizard />,
-  // },
+  {
+    path: '/system_checks/:assessmentId/:id',
+    component: <CWizard />,
+  },
   {
     path: '/threesixty_campaigns/:campaignId/nominations/:id',
     component: <Nomination />,

@@ -1426,6 +1426,11 @@ en:
       run_again_title: And run this test again
       title: Click start to begin internet speed test.
       upload: Upload
+    steps:
+      audio_check: Microphone Test
+      network_check: Internet Speed Test
+      system_check: System Check
+      video_check: Video Camera Test
     success:
       start: Start assessment
       title: You have successfully completed all checks.
