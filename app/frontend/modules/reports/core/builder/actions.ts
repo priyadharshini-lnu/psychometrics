@@ -27,6 +27,7 @@ export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 export const SAVE_CAMPAIGN_FACTORS = 'report/SAVE_CAMPAIGN_FACTORS'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
+export const REMAP_ASSESSMENT = 'report/REMAP_ASSESSMENT'
 
 export enum SelectedTypes {
   'Module'= 'Module',
@@ -37,6 +38,15 @@ export enum SelectedTypes {
 export const init = (data, userReport = null, campaignId = null) => ({
   type: INIT, data, userReport, campaignId,
 })
+export const remapAssessment = (id: number, currentAssessmentId: number, newAssessmentId: number) => ({
+  type: REMAP_ASSESSMENT,
+  request: {
+    method: 'put',
+    url: `/administration/reports/${id}/remap_assessment`,
+    body: { currentAssessmentId, newAssessmentId },
+  },
+})
+
 export const openRichEditor = () => ({ type: OPEN_RICH_EDITOR })
 export const closeRichEditor = () => ({ type: CLOSE_RICH_EDITOR })
 

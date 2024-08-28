@@ -780,6 +780,7 @@ Rails.application.routes.draw do
       member do
         get :preview
         post :upload_data_sheet
+        put :remap_assessment
       end
       scope module: 'reports' do
         resource :builders, only: [:update]

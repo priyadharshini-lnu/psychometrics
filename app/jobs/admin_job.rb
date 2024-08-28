@@ -52,7 +52,8 @@ class AdminJob < ApplicationJob
     bulk_download_user_reports: AdminJobs::BulkDownloadUserReports,
     export_campaign_factors: AdminJobs::ExportCampaignFactors,
     import_campaign_factors: AdminJobs::ImportCampaignFactors,
-    create_threesixty_campaign: AdminJobs::CreateThreesixtyCampaign
+    create_threesixty_campaign: AdminJobs::CreateThreesixtyCampaign,
+    remap_report_assessment: AdminJobs::RemapReportAssessment
   }.freeze
 
   def perform(record)

@@ -3903,6 +3903,11 @@ en:
         name: Name
         type: Type
         updated_at: Modified date
+      modals:
+        remap_assessment:
+          assesment_id: Assessment ID
+          new_assessment_id: New Assessment ID
+          success_message: Remaping of assessment was scheduled, please refresh after some time
       name: Reports
       new:
         header: Select Report
