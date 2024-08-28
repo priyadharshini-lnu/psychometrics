@@ -102,10 +102,10 @@ const AuditLogList: React.FC<Props> = (
       removeFilter('created_at_lteq')
     }
 
-    changeFilter('user_eq', user)
-    changeFilter('client_eq', client)
-    changeFilter('project_eq', project)
-    changeFilter('campaign_eq', campaign)
+    changeFilter('user_search', user)
+    changeFilter('client_search', client)
+    changeFilter('project_search', project)
+    changeFilter('campaign_search', campaign)
   }
 
   const handleReset = () => {
