@@ -66,11 +66,9 @@ pt:
       media_recorder:
         failure: O seu navegador não suporta gravação de vídeos. Utilize o Chrome ou o Firefox para gravação de vídeos
         success: Permita o uso da câmara e do microfone para gravar áudio e vídeo
-      retake: Refazer
       save: Guardar
       saved:
         label: Guardado
-        tooltip: Este vídeo foi marcado para envio. Em alternativa, pode escolher gravar outra vez.
       saving: A guardar...
       start_recording: Iniciar gravação
       tracker:
@@ -78,7 +76,6 @@ pt:
         forward: Está muito longe do ecrã. Aproxime-se um pouco.
         frame: Certifique-se de que o seu rosto está alinhado com a moldura
         ready: Pressione o botão Gravar quando estiver a postos para gravar
-      use_this: Enviar esta gravação
     wait: Aguardar
   auth:
     current_password: Palavra-passe atual

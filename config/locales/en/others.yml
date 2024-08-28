@@ -953,11 +953,9 @@ en:
         failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
         success: Please allow to use camera and microphone to record audio and Video
         unsupported: This browser doesnt support Video Recording. Please use any of the following browsers,
-      retake: Retake
       save: Save
       saved:
         label: Saved
-        tooltip: This video has been marked for submission. Alternatively you can choose another take.
       saving: Saving...
       start_recording: Start recording
       tracker:
@@ -965,7 +963,6 @@ en:
         forward: You are too far away from the screen. Please move a bit closer
         frame: Please make sure that your face aligns with the frame
         ready: Press the Record button when ready to record
-      use_this: Submit this take
     wait: Wait
   assessments_reports:
     add_group_form:

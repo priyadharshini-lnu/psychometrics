@@ -68,11 +68,9 @@ es-ES:
       media_recorder:
         failure: Su navegador no admite la grabación de vídeo. Use Chrome o Firefox para poder grabar vídeo.
         success: Permita el uso de la cámara y el micrófono para grabar audio y vídeo
-      retake: Repetir
       save: Guardar
       saved:
         label: Guardado/a
-        tooltip: Se ha marcado este vídeo para su envío. Si quiere, puede elegir otra toma.
       saving: Guardando...
       start_recording: Empezar a grabar
       tracker:
@@ -80,7 +78,6 @@ es-ES:
         forward: Está demasiado lejos de la pantalla. Acérquese un poco
         frame: Procure que su cara esté alineada con el marco
         ready: Cuando esté listo/a para grabar, puse el botón «Grabar»
-      use_this: Enviar esta toma
     wait: Esperar
   auth:
     current_password: Contraseña actual
