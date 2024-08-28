@@ -54,6 +54,8 @@ export interface CampaignOptions {
   timeZone?: string
   fixedTime: boolean
   workshopBookingRequiresPreworkCompletion: boolean
+  showWatermark: boolean
+  watermarkContent?: string
   fixedTimeDuration?: number
   instructionsEnabled: boolean
   instructionsWithLocales: InstructionsWithLocale[]

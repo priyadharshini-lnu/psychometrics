@@ -86,7 +86,7 @@ module Assessments
             'randomization.questions'
           ],
           'Required Validation' => %w[Type],
-          'Scoring' => context.assessment.dimension.all_factors.pluck(:name)
+          'Scoring' => %w[Factors]
         }
       end
 

@@ -58,7 +58,9 @@ module Threesixty
       end
 
       def options
-        CampaignOptionsSerializer.new.serialize(current_option)
+        CampaignOptionsSerializer.new(
+          context: { current_user: current_user }
+        ).serialize(current_option)
       end
 
       def nominations

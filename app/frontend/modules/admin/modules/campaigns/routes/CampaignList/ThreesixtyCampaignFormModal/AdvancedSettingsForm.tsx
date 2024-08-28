@@ -7,7 +7,7 @@ import {
   Tree,
   Typography,
 } from 'antd'
-import { SearchOutlined } from '@ant-design/icons'
+import { SearchOutlined, ContainerOutlined, LoadingOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { useDebouncedCallback } from 'use-debounce'
 import { useResources } from '~/hooks/useResources'
@@ -52,7 +52,7 @@ const AdvancedSettingsForm = ({
   const [factorsMap, setFactorsMap] = useState<Map<string, Factor>>(new Map())
   const [checkedFactorsForFactorsTree, setCheckedFactors] = useState<string[]>([])
   const [expandedKeysForFactorsTree, setExpandedKeys] = useState<string[]>([])
-  const [factors, setFactors] = useState<Factor[]>([])
+  const [factors, setFactors] = useState<Factor[] | null>(null)
   const [selectedFactors, setSelectedFactors] = useState<FactorForTree[]>([])
   const [questions, setQuestions] = useState<Question[]>([])
   const [selectedAssessmentId, setSelectedAssessmentId] = useState<number | null>(null)
@@ -60,13 +60,14 @@ const AdvancedSettingsForm = ({
   const [selectedQuestions, setSelectedQuestions] = useState<string[]>([])
   const [campaignTemplatesData, setCampaignTemplatesData] = useState<CampaignTemplate[]>(campaignTemplates)
   const [templateSearchterm, setTemplateSearchterm] = useState('')
+  const [isFactorsLoading, setIsFactorsLoading] = useState(false)
+
 
   useEffect(() => {
     if (campaignTemplates.length) {
       handleTemplateSearch(templateSearchterm)
     }
   }, [campaignTemplates])
-
   const handleFinish = () => {
     const data = {
       factors: checkedFactorsForFactorsTree.map(factorId => parseInt(factorId, 10)),
@@ -78,7 +79,7 @@ const AdvancedSettingsForm = ({
 
   const resetSettings = () => {
     setSelectedFactors([])
-    setFactors([])
+    setFactors(null)
     setQuestions([])
     setFactorsMap(new Map())
     setCheckedFactors([])
@@ -157,6 +158,7 @@ const AdvancedSettingsForm = ({
         },
       },
     }).then((data: Factor[]) => {
+      setIsFactorsLoading(false)
       const sortedData = sortFactors(data)
       setFactors(sortedData)
       const factorsAndParentFactorsMap = new Map([...factorsMap, ...getAllFactorsAndParentFactors(data)])
@@ -181,7 +183,10 @@ const AdvancedSettingsForm = ({
   }
 
   const debouncedOnFactorSearch = useDebouncedCallback((searchTerm: string) => {
-    handleFetchFactors(searchTerm)
+    if (searchTerm.trim().length >= 3) {
+      handleFetchFactors(searchTerm)
+      setIsFactorsLoading(true)
+    }
   }, 500)
 
   const handleSearch = (searchTerm: string) => {
@@ -277,6 +282,56 @@ const AdvancedSettingsForm = ({
     </Flex>
   )
 
+  const factorsSelectDropdownEmptyState = (
+    <>
+      {isFactorsLoading ? (
+        <Flex
+          vertical
+          className="w-100 p-4"
+          justify="center"
+          align="center"
+        >
+          <LoadingOutlined style={{ fontSize: 24 }} />
+
+        </Flex>
+      ) : null}
+      {factors === null && !isFactorsLoading ? (
+        <Flex
+          vertical
+          className="w-100 p-4"
+          justify="center"
+          align="center"
+        >
+          <SearchOutlined style={{ fontSize: 24 }} />
+          <Typography.Title level={5} style={{ margin: 0 }}>
+            {I18n.t('administration.campaigns.modals.create_threesixity.search_factors.title')}
+          </Typography.Title>
+          <Typography.Paragraph style={{ margin: 0, textAlign: 'center' }} type="secondary">
+            {I18n.t('administration.campaigns.modals.create_threesixity.search_factors.description')}
+          </Typography.Paragraph>
+        </Flex>
+      ) : null
+      }
+      {factors !== null && !isFactorsLoading ? (
+        <Flex
+          vertical
+          className="w-100 p-4"
+          justify="center"
+          align="center"
+        >
+          <ContainerOutlined style={{ fontSize: 24 }} />
+          <Typography.Title level={5} style={{ margin: 0 }}>
+            {I18n.t('administration.campaigns.modals.create_threesixity.no_factors.title')}
+          </Typography.Title>
+          <Typography.Paragraph style={{ margin: 0, textAlign: 'center' }} type="secondary">
+            {I18n.t('administration.campaigns.modals.create_threesixity.no_factors.description')}
+          </Typography.Paragraph>
+        </Flex>
+      ) : null
+      }
+    </>
+  )
+
   return (
     <Form
       layout="vertical"
@@ -313,6 +368,7 @@ const AdvancedSettingsForm = ({
                 showSearch
                 suffixIcon={<SearchOutlined />}
                 filterOption={false}
+                notFoundContent={factorsSelectDropdownEmptyState}
                 onChange={handleFactorChange}
                 options={(factors || []).map(f => ({
                   value: f.id,

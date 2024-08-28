@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Skeleton, Row, Col, App, Popover, Pagination,
+  Table, Input, Skeleton, App, Popover, Pagination,
+  Flex,
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { CheckOutlined, AppstoreOutlined, WarningFilled } from '@ant-design/icons'
@@ -24,6 +25,7 @@ import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campai
 import { ImportExternalScoringModal } from './ImportExternalScoringModal'
 
 const { I18n } = window
+const { Search } = Input
 
 type CampaignFactorGroupType = CampaignFactorGroup & {campaignFactors: CampaignFactor[]}
 
@@ -84,6 +86,8 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
     requests,
     getSortOrder,
     handleTableChange,
+    changeFilter,
+    getFilteredValue,
   } = useResources<CampaignScores>(
     'campaign_user_scorings',
     {
@@ -236,14 +240,19 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
 
   return (
     <div>
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
+      <Flex justify="space-between" className="pm">
+        <Flex className="pls" justify="center" align="center">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
           <span className="mlm">
             {`${CampaignFactorValuesData.length} ${I18n.t('administration.scoring.subjects')}`}
           </span>
-        </Col>
-        <div>
+        </Flex>
+        <Flex gap={8}>
+          <Search
+            placeholder={I18n.t('common.actions.search')}
+            value={getFilteredValue('search_query')}
+            onChange={({ target: { value } }) => { changeFilter('search_query', value) }}
+          />
           <Tools
             permissions={{
               export: campaignPermissions.viewCampaignScoring,
@@ -266,8 +275,8 @@ const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) =>
               }
             }
           />
-        </div>
-      </Row>
+        </Flex>
+      </Flex>
       {(isCampaignFactorsLoading || isCampaignFactorValuesLoading) ? (
         <Skeleton active />
       ) : (

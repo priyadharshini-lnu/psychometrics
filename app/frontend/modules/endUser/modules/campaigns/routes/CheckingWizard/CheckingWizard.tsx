@@ -98,7 +98,15 @@ const CheckingWizardComponent: React.FC<Props> = ({
 
   const nextStep = () => {
     const steps = getSteps()
-    Cookies.set(`checking_wizard.${steps[currentStep].key}`, true, { expires: 4 / 24 })
+    if (steps[currentStep].key === 'video') {
+      const data = JSON.parse(Cookies.get(`checking_wizard.${steps[currentStep].key}`) || '{}')
+      Cookies.set(
+        `checking_wizard.${steps[currentStep].key}`,
+        JSON.stringify({ ...data, [userAssessmentId]: true }), { expires: 1 / 24 },
+      )
+    } else {
+      Cookies.set(`checking_wizard.${steps[currentStep].key}`, true, { expires: 4 / 24 })
+    }
 
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1)

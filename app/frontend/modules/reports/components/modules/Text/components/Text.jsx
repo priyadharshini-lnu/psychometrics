@@ -288,7 +288,7 @@ class Text extends Component {
         if (model?.props?.source?.type === 'CampaignFactors' && model?.props?.source?.codes?.length > 0) {
           const factorResults = ResultStore.results[assessmentId].campaignFactorResults
           const code = model.props.source.codes[0]
-          textValue = factorResults && (_.find(factorResults, { code })?.value || '')
+          textValue = factorResults && (_.find(factorResults, { code })?.value ?? '')
         }
         return (
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')}>

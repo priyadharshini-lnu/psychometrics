@@ -133,6 +133,7 @@ class Page extends Component {
         </div>
         {type !== 'preview_block' && (
           <Footer
+            className={styles.footer}
             preview={preview}
             hasPrevPage={hasPrevPage}
             page={page}

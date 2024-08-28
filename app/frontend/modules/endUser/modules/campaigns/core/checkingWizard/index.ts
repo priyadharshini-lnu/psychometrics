@@ -42,6 +42,7 @@ export const fetch = (assessmentId: number, id: number, type?: string): ApiActio
       url: `/system_checks/${assessmentId}/${id}`,
       body: { type },
     },
+  userAssessmentId: id,
 })
 
 export const preSignUrl = () => ({
@@ -57,10 +58,17 @@ type FetchType = ReturnType<typeof fetch>
 type PageSignType = ApiActionResponse<{url: string}>
 
 const HANDLERS = {
-  [FETCH]: (state: State, { response }: FetchType) => {
-    const checks = _.reduce(response.checks, (result, value, key) => (
-      { ...result, [key]: value && !Cookies.get(`checking_wizard.${key}`) }
-    ), {})
+  [FETCH]: (state: State, request: FetchType) => {
+    const { response, requestAction: { userAssessmentId } } = request
+    const checks = _.reduce(response.checks, (result, value, key) => {
+      let checkCompleted = false
+      if (key === 'video') {
+        checkCompleted = JSON.parse(Cookies.get('checking_wizard.video') || '{}')[userAssessmentId]
+      } else {
+        checkCompleted = Cookies.get(`checking_wizard.${key}`)
+      }
+      return { ...result, [key]: value && !checkCompleted }
+    }, {})
     return { ...state, ...response, checks }
   },
   [PRE_SIGN_URL]: (state: State, { response: { url } }: PageSignType) => ({ ...state, preSignedUrl: url }),

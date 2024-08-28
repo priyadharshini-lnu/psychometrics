@@ -1,4 +1,5 @@
 export enum Status {
+    Pending = 'pending',
     Failed = 'failed',
     Done = 'done',
     InProgress = 'in_progress',

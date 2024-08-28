@@ -47,7 +47,10 @@ module Assessments
             sub_header = sub_header.downcase if HEADERS_WHOSE_SUB_HEADER_CAN_BE_DOWNCASED.include?(header)
             if header == 'Scoring'
               hash['scoring'] ||= {}
-              hash['scoring'][sub_header] ||= column_value
+              column_value.strip.split("\n").each do |factor_score|
+                factor_name, _, scores = factor_score.rpartition(':')
+                hash['scoring'][factor_name] = scores
+              end
             else
               Utility::Hash.set_nested_key(hash, "#{header.tr(' ', '_').downcase}.#{sub_header}", column_value)
             end

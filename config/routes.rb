@@ -1020,6 +1020,8 @@ Rails.application.routes.draw do
           get :pass
           get :begin
           get :validate_session
+          get :upload_user_verification_image_url
+          put :user_verification_image_upload_callback
         end
       end
 

@@ -1,9 +1,9 @@
 import {
   ChangeEvent, KeyboardEvent, FC, useState, useEffect,
 } from 'react'
-import { Input } from 'antd'
 import { InputProps } from 'antd/lib/input/Input'
-import styles from './InputDuration.less'
+
+import { MaskedInput } from '~/glint'
 
 const MINUTE = 60
 const HOUR = 60 * MINUTE
@@ -22,10 +22,8 @@ const InputDuration: FC<Props> = ({
   ...restInputProps
 }) => {
   const [inputValue, setInputValue] = useState(maskUp(value))
-  const [showMask, setShowMask] = useState(false)
 
   const maskAndReturnIntValue = () => {
-    setShowMask(false)
     const maskedValue = maskUp(inputValue)
 
     if (maskedValue !== inputValue) {
@@ -40,7 +38,6 @@ const InputDuration: FC<Props> = ({
     const {
       target: { value },
     } = event
-    setShowMask(true)
     setInputValue(value)
   }
 
@@ -57,15 +54,8 @@ const InputDuration: FC<Props> = ({
 
   return (
     <>
-      {masked && showMask && (
-        <div
-          className={styles.mask}
-          onClick={maskAndReturnIntValue}
-        />
-      )}
-      <Input
-        style={{ zIndex: (masked && showMask) ? 5001 : 'initial' }}
-        onFocus={() => setShowMask(true)}
+      <MaskedInput
+        masked={masked}
         onChange={handleOnChange}
         onBlur={maskAndReturnIntValue}
         onKeyPress={handleOnKeyPress}

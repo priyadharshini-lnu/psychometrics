@@ -116,7 +116,6 @@ class AssignsController < ApplicationController
   def set_assign
     @assign = policy_scope(Assign).where.not(status: %i[completed timed_out]).find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    audit! :record_not_found, current_user, payload: params, outcome: :failed, failure_reason: :record_not_found
     redirect_to root_path
   end
 

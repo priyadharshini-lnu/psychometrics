@@ -1,10 +1,10 @@
 import { useEffect, FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
-import { PageHeader } from '@ant-design/pro-layout'
 import {
-  Layout, Col, Progress, Space, ProgressProps, Button, Modal,
+  Watermark, Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
+import { PageHeader } from '@ant-design/pro-layout'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
@@ -64,6 +64,8 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       remaining_assessment_time: remainingAssessmentTime,
       proctoring_enabled: proctoringEnabled,
       prework,
+      evaluation_session_id: evaluationSessionId,
+      campaign_options: campaignOptions,
     },
   }, fetchAssessment,
   preview: {
@@ -107,6 +109,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   )
 
   return (
+
     <>
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
@@ -155,38 +158,45 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             }
         </Col>
       </GlintPageHeader>
+
       <Content className={styles.pageContent}>
-        {loaded ? (
-          <>
-            <PageHeader
-              className={styles.campaignHeader}
-              onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
-              backIcon={enableBackButton
-              && (
-              <Button size="small" type="text" ghost aria-label={I18n.t('frontend.aria.back_to_tasks')}>
-                <DirectionalNavigateBackIcon className={styles.backIcon} />
-              </Button>
-              )
+        <Watermark
+          content={campaignOptions?.show_watermark ? campaignOptions.watermark_content : ''}
+          font={{ color: 'rgba(0,0,0,0.3)' }}
+          gap={[10, 0]}
+          rotate={-15}
+        >
+          {loaded ? (
+            <>
+              <PageHeader
+                className={styles.campaignHeader}
+                onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
+                backIcon={enableBackButton
+                && (
+                <Button size="small" type="text" ghost aria-label={I18n.t('frontend.aria.back_to_tasks')}>
+                  <DirectionalNavigateBackIcon className={styles.backIcon} />
+                </Button>
+                )
               }
-              ghost={false}
-              title={(
-                <div className={styles.campaignDropdown}>
-                  {assessment.name}
-                </div>
+                ghost={false}
+                title={(
+                  <div className={styles.campaignDropdown}>
+                    {assessment.name}
+                  </div>
               )}
-              extra={type !== 'preview_block' && enableProgress && started && (
-              <Progress
-                strokeColor="#fff"
-                className={styles.progressStatus}
-                key="3"
-                percent={progress}
-                aria-label={I18n.t('user_assessments.progress_label')}
-                {...progressBarProps}
+                extra={type !== 'preview_block' && enableProgress && started && (
+                <Progress
+                  strokeColor="#fff"
+                  className={styles.progressStatus}
+                  key="3"
+                  percent={progress}
+                  aria-label={I18n.t('user_assessments.progress_label')}
+                  {...progressBarProps}
+                />
+                )}
               />
-              )}
-            />
-            <div className={styles.assessmentContainer}>
-              {showInvalidSession && (
+              <div className={styles.assessmentContainer}>
+                {showInvalidSession && (
                 <Modal
                   title={I18n.t('errors.invalid_session_title')}
                   open={showInvalidSession}
@@ -202,28 +212,29 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                 >
                   {I18n.t('assessments.page.invalid_session.description')}
                 </Modal>
-              )}
-              {loaded && !error && (
-              <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-                <PassAssessment
-                  id="pass_assessment"
-                  type="pass_assessment"
-                  initialized={initialized}
-                  data={assessment}
-                  result={results}
-                  locales={translations}
-                  dashboardUrl={`/assessment_completed/${campaignId}`}
-                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  rstore={store}
-                  renderedByEnduser
-                />
-              </ResourcesTabs>
-              )}
-            </div>
-          </>
-        ) : <PageContentSkeleton />}
-
+                )}
+                {loaded && !error && (
+                <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+                  <PassAssessment
+                    id="pass_assessment"
+                    type="pass_assessment"
+                    initialized={initialized}
+                    data={assessment}
+                    result={results}
+                    locales={translations}
+                    dashboardUrl={`/assessment_completed/${campaignId}`}
+                    resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
+                    selectedLocale={selectedLanguage && selectedLanguage.code}
+                    rstore={store}
+                    valuationSessionId={evaluationSessionId}
+                    renderedByEnduser
+                  />
+                </ResourcesTabs>
+                )}
+              </div>
+            </>
+          ) : <PageContentSkeleton />}
+        </Watermark>
       </Content>
     </>
   )

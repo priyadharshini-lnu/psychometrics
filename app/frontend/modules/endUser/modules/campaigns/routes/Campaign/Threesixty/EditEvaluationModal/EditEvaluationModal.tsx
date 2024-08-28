@@ -27,7 +27,9 @@ export const EditEvaluationModal: React.FC<Props> = ({
   const getViewPath = () => `/threesixty_campaigns/${item.campaignId}/evaluations/${item.id}?read=true`
 
   const getEditPath = () => {
-    if (WizardIsRequired.run(item.assessmentExtra)) return `/system_checks/${item.assessmentId}/${item.id}?mode=edit`
+    if (WizardIsRequired.run(item.assessmentExtra, item.id)) {
+      return `/system_checks/${item.assessmentId}/${item.id}?mode=edit`
+    }
     return `/threesixty_campaigns/${item.campaignId}/evaluations/${item.id}?edit=true`
   }
 
