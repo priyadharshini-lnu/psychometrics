@@ -1445,9 +1445,7 @@ en:
       retake: Retake
       run_again: Run again
       title: We need to ensure your system can record the video
-      upload: Upload
       uploading: Uploading
-  clear_filter: Clear Filter
   common:
     actions:
       add: Add
