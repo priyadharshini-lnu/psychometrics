@@ -30,5 +30,11 @@ module Threesixty
       object.participants['global']['watermark_content'] = watermark
       object.participants
     end
+
+    private
+
+    def current_user
+      context[:current_user]
+    end
   end
 end
