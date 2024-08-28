@@ -53,4 +53,10 @@ class MediaResponse < ApplicationRecord
 
     self.user_selected = true unless media_responses_exists
   end
+
+  private
+
+  def assign_key_to_blob(action, attribute, filename)
+    action.blob.key = attachment_storage_path(attribute, filename)
+  end
 end

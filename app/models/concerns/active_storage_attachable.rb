@@ -25,6 +25,13 @@ module ActiveStorageAttachable
       attachment&.url
     end
 
+    def assign_key_to_blob(action, attribute, filename)
+      action.blob.key = attachment_storage_path(
+        attribute,
+        "#{action.blob.class.generate_unique_secure_token}_#{filename}"
+      )
+    end
+
     after_create do
       customize_attachment_path
     end
@@ -171,16 +178,12 @@ module ActiveStorageAttachable
         # By-pass as base64'ed attachments are treated as a Hash
         filename = if attachable.is_a?(Hash)
                      attachable.fetch(:filename)
-                   elsif send(attribute).attached? && send(attribute).blob.filename.present?
-                     send(attribute).blob['filename']
+                   elsif (attachment = send(attribute)) && attachment.attached? && attachment.blob.filename.present?
+                     attachment.blob['filename']
                    else
                      attachable&.original_filename
                    end
-
-        action.blob.key = attachment_storage_path(
-          attribute,
-          "#{action.blob.class.generate_unique_secure_token}_#{filename}"
-        )
+        assign_key_to_blob(action, attribute, filename)
       end
     end
 
