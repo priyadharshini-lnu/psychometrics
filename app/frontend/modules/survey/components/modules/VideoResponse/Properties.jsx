@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cs from 'classnames'
 import { Button, InputNumber } from 'antd'
 import _ from 'lodash'
+import InputDuration from '~/components/InputDuration'
 import { DefaultTrackerOptions } from '~/modules/survey/constants/DefaultProps'
 import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
 import ValidationTypes from '~/modules/survey/components/ValidationTypes'
@@ -39,7 +40,7 @@ export class Properties extends Component {
 
   changeDuration = (e) => {
     const { model } = this.props
-    const duration = parseInt(e.currentTarget.value, 10)
+    const duration = parseInt(e, 10)
     model.changeProps({ duration })
     this.update()
   }
@@ -81,9 +82,12 @@ export class Properties extends Component {
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         <span className={styles.label}>Max Duration</span>
-        <select className="form-control" value={model.props.duration} onChange={this.changeDuration}>
-          {this.durations.map(j => (<option key={j.value} value={j.value}>{`${j.display}`}</option>))}
-        </select>
+        <InputDuration
+          value={model.props.duration}
+          maxDuration={600}
+          onChange={this.changeDuration}
+          placeholder={I18n.t('administration.components.input_duration.placeholder')}
+        />
       </div>
     )
   }
