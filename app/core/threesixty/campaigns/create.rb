@@ -26,7 +26,7 @@ module Threesixty
           AuditLogModule.audit! :create_threesixty_campaign, threesixty_campaign.campaign, payload: form.attributes,
                                 project: project, user: user
 
-          load_templates(threesixty_campaign)
+          load_templates(threesixty_campaign, assessment&.threesixty_campaign)
 
           campaign = threesixty_campaign.campaign
           if threesixty_campaign.assessment
@@ -55,9 +55,9 @@ module Threesixty
         @campaign_template ||= CampaignTemplate.find(form.campaign_template_id)
       end
 
-      def load_templates(threesixty_campaign)
-        Threesixty::EmailTemplates::Load.call(threesixty_campaign)
-        Threesixty::InstructionTemplates::Load.call(threesixty_campaign)
+      def load_templates(threesixty_campaign, prev_campaign)
+        Threesixty::EmailTemplates::Load.call(threesixty_campaign, prev_campaign)
+        Threesixty::InstructionTemplates::Load.call(threesixty_campaign, prev_campaign)
       end
     end
   end
