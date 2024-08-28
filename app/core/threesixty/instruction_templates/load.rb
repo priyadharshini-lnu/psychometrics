@@ -11,16 +11,14 @@ module Threesixty
       def call
         if prev_campaign
           prev_campaign.instruction_templates.each do |instruction_template|
-            template = threesixty_campaign.instruction_templates.create!(instruction_template.attributes.except('id'))
-            instruction_template.translations.each do |transaction|
-              template.translations.create!(transaction.attributes.except('id'))
-            end
+            template = instruction_template.deep_clone(include: :translations)
+            template.threesixty_campaign_id = threesixty_campaign.id
+            template.save!
           end
         else
-          instruction_templates =
-            read_yaml.map do |attributes|
-              threesixty_campaign.instruction_templates.new(attributes)
-            end
+          instruction_templates = read_yaml.map do |attributes|
+            threesixty_campaign.instruction_templates.new(attributes)
+          end
           ::Threesixty::InstructionTemplate.import(instruction_templates, recursive: true)
         end
       end

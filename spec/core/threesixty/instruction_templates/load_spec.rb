@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 describe Threesixty::InstructionTemplates::Load do
+  let(:prev_campaign) { create(:threesixty_campaign) }
   let(:threesixty_campaign) { create(:threesixty_campaign) }
 
   describe '.call' do
@@ -25,6 +26,15 @@ describe Threesixty::InstructionTemplates::Load do
       template_loader.call
 
       expect(threesixty_campaign.instruction_templates).to psy_have_attributes(instruction_templates_attributes)
+    end
+
+    it 'loads with prev campaign' do
+      prev_campaign.instruction_templates.create!(name: 'subject_invite', enabled: true, content: 'new content')
+
+      described_class.call!(threesixty_campaign, prev_campaign)
+
+      expect(threesixty_campaign.instruction_templates.first.content).to eq('new content')
+      expect(threesixty_campaign.instruction_templates.first.translations.count).to eq(1)
     end
   end
 end

@@ -11,17 +11,14 @@ module Threesixty
       def call
         if prev_campaign
           prev_campaign.email_templates.each do |email_template|
-            template = threesixty_campaign.email_templates.create!(email_template.attributes.except('id'))
-            email_template.translations.each do |transaction|
-              template.translations.create!(transaction.attributes.except('id'))
-            end
+            template = email_template.deep_clone(include: :translations)
+            template.threesixty_campaign_id = threesixty_campaign.id
             template.save!
           end
         else
           email_templates = read_yaml.map do |attributes|
             threesixty_campaign.email_templates.new(attributes)
           end
-
           ::Threesixty::EmailTemplate.import(email_templates, recursive: true)
         end
       end

@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 describe Threesixty::EmailTemplates::Load do
+  let(:prev_campaign) { create(:threesixty_campaign) }
   let(:threesixty_campaign) { create(:threesixty_campaign) }
 
   describe '.call' do
@@ -33,6 +34,17 @@ describe Threesixty::EmailTemplates::Load do
       template_loader.call
 
       expect(threesixty_campaign.email_templates.order(:id)).to psy_have_attributes(email_templates_attributes)
+    end
+
+    it 'loads with prev campaign' do
+      prev_campaign.email_templates.create!(from: 'james', reply_to_email: 'james@cc.com', name: 'subject_invite',
+                                            subject: 'subject', content: 'new content')
+
+      described_class.call!(threesixty_campaign, prev_campaign)
+
+      expect(threesixty_campaign.email_templates.first.subject).to eq('subject')
+      expect(threesixty_campaign.email_templates.first.content).to eq('new content')
+      expect(threesixty_campaign.email_templates.first.translations.count).to eq(1)
     end
   end
 end
