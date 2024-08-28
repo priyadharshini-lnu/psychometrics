@@ -89,7 +89,7 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
 
   return (
     <Layout.Content className={styles.pageContent}>
-      <Col lg={12} xs={24} sm={24} className={styles.containerColumn}>
+      <Col xs={24} sm={24} className={styles.containerColumn}>
         <Tabs
           tabBarStyle={{ marginBottom: '2rem' }}
           items={tabItems}
