@@ -13,8 +13,6 @@ module Threesixty
     end
 
     def participants
-      return unless object&.participants
-
       watermark_content = object.participants.dig('global', 'watermark_content')
       show_watermark = object.participants.dig('global', 'show_watermark')
 
