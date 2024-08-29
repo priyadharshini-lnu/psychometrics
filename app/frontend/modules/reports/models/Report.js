@@ -5,6 +5,7 @@ import I18nStore from '~/modules/reports/store/I18nStore'
 import {
   PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY, AGILE, SAVILLE,
   ORG_SURVEYS, CASE_STUDIES, PEARSON,
+  ASSESSOR_FORM,
 } from '~/modules/reports/models/Assessment'
 import Filter from './Filter'
 
@@ -23,6 +24,10 @@ export const ALL_PAGE_SIZES = [...PAGE_SIZES, ...LEGACY_PAGE_SIZES]
 const BASE_FONT_SIZE = 14
 
 export const SOURCE_TYPES = {
+  [ASSESSOR_FORM]: [
+    { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
+  ],
   [PSYCHOMETRIC]: [
     { value: 'Question', label: 'Question', condition: false },
     { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
