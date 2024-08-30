@@ -178,6 +178,7 @@ en:
             bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage
             manage_admins: Manage Admins
+            manage_factor_benchmark_scores: Manage Factor Benchmark Scores
             manage_messages: Manage Messages
             manage_options: Manage Options
             manage_report_approvals: Manage Report Approvals
