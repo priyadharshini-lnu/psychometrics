@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {
   Modal, Button, Select, message,
+  Space,
 } from 'antd'
 import _ from 'lodash'
 import styles from './RemapAssessment.less'
@@ -17,7 +18,7 @@ const RemapAssessment = ({
     if (assessmentId && newAssessmentId) {
       remapAssessment(reportId, assessmentId, newAssessmentId).then(() => {
         message.config({ top: 50 })
-        message.success(I18n.t('administration.reports.modals.remap_assessment.success_message'))
+        message.success(I18n.t('administration.reports.modals.remap_assessment.success_message'), 20)
         close()
       })
     }
@@ -28,6 +29,8 @@ const RemapAssessment = ({
     <Modal
       open
       title="Remap Assessment"
+      onCancel={close}
+      maskClosable={false}
       footer={(
         <div>
           <Button type="primary" onClick={save}>{I18n.t('common.actions.save')}</Button>
@@ -36,15 +39,16 @@ const RemapAssessment = ({
         )}
     >
       <div className={styles.body}>
-        <div className={styles.input}>
-          <label>{I18n.t('administration.reports.modals.remap_assessment.assesment_id')}</label>
-          <Select className="w-100" options={options} value={assessmentId} onChange={setAssessmentId} />
-        </div>
-        <div className={styles.divider} />
-        <div className={styles.input}>
-          <label>{I18n.t('administration.reports.modals.remap_assessment.new_assessment_id')}</label>
-          <Select className="w-100" options={options} value={newAssessmentId} onChange={setNewAssessmentId} />
-        </div>
+        <Space direction="vertical" className={styles.content}>
+          <div className={styles.input}>
+            <label>{I18n.t('administration.reports.modals.remap_assessment.assesment_id')}</label>
+            <Select className="w-100" options={options} value={assessmentId} onChange={setAssessmentId} />
+          </div>
+          <div className={styles.input}>
+            <label>{I18n.t('administration.reports.modals.remap_assessment.new_assessment_id')}</label>
+            <Select className="w-100" options={options} value={newAssessmentId} onChange={setNewAssessmentId} />
+          </div>
+        </Space>
       </div>
     </Modal>
   )

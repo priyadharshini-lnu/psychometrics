@@ -11,10 +11,12 @@ module Administration::Reports
     end
 
     def call
-      update_filters
-      update_modules
-      update_module_conditions
-      update_page_conditions
+      Report.transaction do
+        update_filters
+        update_modules
+        update_module_conditions
+        update_page_conditions
+      end
       broadcast :ok
     end
 

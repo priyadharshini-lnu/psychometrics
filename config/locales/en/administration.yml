@@ -3907,7 +3907,7 @@ en:
         remap_assessment:
           assesment_id: Assessment ID
           new_assessment_id: New Assessment ID
-          success_message: Remaping of assessment was scheduled, please refresh after some time
+          success_message: Remaping of assessment was scheduled, please refresh after some time. Do not edit the report and do not save any new changes until remapping is done.
       name: Reports
       new:
         header: Select Report
