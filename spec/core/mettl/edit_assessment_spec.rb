@@ -67,8 +67,8 @@ describe Mettl::EditAssessment do
         service.call
       end
 
-      it 'broadcasts :ok with an empty array' do
-        expect(service).to receive(:broadcast).with(:ok, [])
+      it 'broadcasts :ok' do
+        expect(service).to receive(:broadcast).with(:ok)
         service.call
       end
     end

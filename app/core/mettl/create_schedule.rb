@@ -12,10 +12,11 @@ module Mettl
       'sourceApp' => "lighthouse-#{ENV.fetch('REAL_ENV', 'dev')}"
     }.freeze
 
-    private_attr_reader :assessment, :project
+    private_attr_reader :assessment, :project, :schedule_config
 
-    def initialize(assessment)
+    def initialize(assessment, schedule_config = {})
       @assessment = assessment
+      @schedule_config = schedule_config
       @project = assessment.project
     end
 
@@ -28,15 +29,17 @@ module Mettl
         raise "Mettl::CreateSchedule failed for Assessment: #{assessment.id}. Error: #{result['error']['message']}"
       end
 
-      save_mettle_schedule(result['createdSchedule'])
+      mettl_user_assessment = save_mettl_schedule(result['createdSchedule'])
+
+      broadcast :ok, mettl_user_assessment
     rescue Faraday::Error => e
       Sentry.capture_exception(e, extra: { project_id: project.id })
-      broadcast :ok, []
+      broadcast :ok
     end
 
     private
 
-    def save_mettle_schedule(result)
+    def save_mettl_schedule(result)
       MettlScheduleRecord.create(
         project_id: project.id,
         assessment_id: assessment.id,
@@ -60,13 +63,13 @@ module Mettl
     end
 
     def request_data
-      schedule_config = DEFAULT_SCHEDULE_CONFIG.merge(
-        name: "#{mettl_assessment.name} - #{assessment.id}",
+      default_schedule_config = DEFAULT_SCHEDULE_CONFIG.merge(
+        name: "#{mettl_assessment.name} - #{ENV.fetch('SERVER_NAME', 'dev')} - #{assessment.id}",
         testFinishNotificationUrl: assessment_completion_notification_url,
         testGradedNotificationUrl: assessment_result_notification_url
       )
 
-      schedule_config.to_json
+      default_schedule_config.merge!(schedule_config).to_json
     end
 
     def encoded_request
@@ -79,10 +82,6 @@ module Mettl
 
     def api_endpoint
       "#{Settings.mettl.base_api_url}/v2/assessments/#{mettl_assessment.product_id}/schedules"
-    end
-
-    def public_key
-      config['public_key']
     end
 
     def mettl_assessment

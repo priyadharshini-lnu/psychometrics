@@ -11,32 +11,43 @@ module Mettl
 
     def call
       response = client.post(register_candidate_url)
-
       result = ::JSON.parse(response.body)
 
-      unless result['status'] == 'SUCCESS'
-        raise "Mettl::RegisterCandidate failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
+      if result['status'] == 'SUCCESS'
+        save_mettl_user_assessment(result['registrationStatus'].first)
+        broadcast :ok
+      else
+        handle_failure(result)
       end
-
-      save_mettl_user_assessment(result['registrationStatus'].first)
     rescue StandardError => e
-      Sentry.capture_exception(e, extra: {
-        user_assessment_id: user_assessment.id, project_id: project.id
-      })
-      broadcast :ok, []
+      handle_exception(e)
     end
 
     private
 
+    def handle_failure(result)
+      error_message = "Mettl::RegisterCandidate failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
+      raise error_message
+    end
+
+    def handle_exception(exception)
+      Sentry.capture_exception(exception, extra: {
+        user_assessment_id: user_assessment.id,
+        project_id: project.id
+      })
+      broadcast :ok
+    end
+
     def save_mettl_user_assessment(result)
       user_assessment.mettl_user_assessment.update!(
-        url: result['url'], email: result['email'], mettl_schedule_record_id: mettl_schedule_record.id
+        url: result['url'],
+        email: result['email'],
+        mettl_schedule_record_id: mettl_schedule_record.id
       )
     end
 
     def register_candidate_url
       timestamp = Time.now.to_i
-
       signature = Mettl::GetSignature.call!(config, string_to_sign(timestamp))
 
       "#{api_endpoint}?ak=#{public_key}&ts=#{timestamp}&asgn=#{signature}&rd=#{encoded_request}"
@@ -73,15 +84,27 @@ module Mettl
     end
 
     def api_endpoint
-      "#{Settings.mettl.base_api_url}/v2/schedules/#{mettl_schedule_record.access_key}/candidates"
+      "#{Settings.mettl.base_api_url}/v2/schedules/#{access_key}/candidates"
     end
 
-    def public_key
-      config['public_key']
+    def access_key
+      mettl_schedule_record.access_key
     end
 
     def mettl_schedule_record
-      MettlScheduleRecord.find_by(assessment_id: user_assessment.assessment_id)
+      @mettl_schedule_record ||= find_mettl_schedule_record
+    end
+
+    def find_mettl_schedule_record
+      if mettl_user_assessment.mettl_schedule_record_id.present?
+        MettlScheduleRecord.find_by(id: mettl_user_assessment.mettl_schedule_record_id)
+      else
+        MettlScheduleRecord.find_by(assessment_id: user_assessment.assessment_id)
+      end
+    end
+
+    def mettl_user_assessment
+      @mettl_user_assessment ||= user_assessment.mettl_user_assessment
     end
 
     def maskable_identity

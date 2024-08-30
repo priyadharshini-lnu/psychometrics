@@ -16,6 +16,7 @@ module UsersResults
         reset_user_result
         remove_media_responses
         Saville::ResetAssessment.call!(user_assessment) if user_assessment.saville?
+        Mettl::ResetCandidateAssessment.call!(user_assessment) if user_assessment.mettl?
       end
 
       broadcast :ok

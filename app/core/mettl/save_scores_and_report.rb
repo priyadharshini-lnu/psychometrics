@@ -25,7 +25,7 @@ module Mettl
       user_assessment.users_result.update(external_results: external_results)
 
       completed_at = parse_datetime(scores_and_report.dig('testStatus', 'endTime'))
-      user_assessment.update(completed_at: completed_at) if completed_at
+      user_assessment.update(status: :completed, completed_at: completed_at) if completed_at
 
       generate_internal_reports
 

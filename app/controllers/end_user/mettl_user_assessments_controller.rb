@@ -33,8 +33,8 @@ class EndUser::MettlUserAssessmentsController < ApplicationController
 
   def set_user_assessment_id_in_session
     mettl_assessment = MettlAssessment.find_by(product_id: @user_assessment.assessment.external_assessment_id)
-    session[:in_progress_mettle_assessment_details] = {
-      mettle_assessment_id: mettl_assessment.id, user_assessment_id: @user_assessment.id
+    session[:in_progress_mettl_assessment_details] = {
+      mettl_assessment_id: mettl_assessment.id, user_assessment_id: @user_assessment.id
     }
   end
 
@@ -44,9 +44,9 @@ class EndUser::MettlUserAssessmentsController < ApplicationController
 
   def find_user_assessment_from_session
     mettl_assessment_id = params[:mettl_assessment_id].to_i
-    session_details = session[:in_progress_mettle_assessment_details]
+    session_details = session[:in_progress_mettl_assessment_details]
 
-    if session_details && session_details['mettle_assessment_id'].to_i == mettl_assessment_id
+    if session_details && session_details['mettl_assessment_id'].to_i == mettl_assessment_id
       user_assessment_id = session_details['user_assessment_id']
       UserAssessment.find_by(id: user_assessment_id)
     end
@@ -57,6 +57,6 @@ class EndUser::MettlUserAssessmentsController < ApplicationController
   end
 
   def clear_user_assessment_from_session
-    session.delete(:in_progress_mettle_assessment_details)
+    session.delete(:in_progress_mettl_assessment_details)
   end
 end

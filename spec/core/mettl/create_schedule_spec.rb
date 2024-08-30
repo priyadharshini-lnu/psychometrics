@@ -81,8 +81,8 @@ describe Mettl::CreateSchedule do
         subject.call
       end
 
-      it 'broadcasts :ok with an empty array' do
-        expect(subject).to receive(:broadcast).with(:ok, [])
+      it 'broadcasts :ok' do
+        expect(subject).to receive(:broadcast).with(:ok)
         subject.call
       end
     end

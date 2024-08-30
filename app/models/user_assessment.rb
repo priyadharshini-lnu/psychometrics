@@ -4,6 +4,7 @@
 class UserAssessment < ApplicationRecord
   audited
   DEEMED_COMPLETED_STATUS = %w[completed ineligible].freeze
+  MAX_RESET_COUNT = 3
 
   belongs_to :assessment
   belongs_to :campaign

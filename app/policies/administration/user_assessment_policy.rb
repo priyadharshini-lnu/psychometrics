@@ -55,7 +55,10 @@ module Administration
     def reset?
       assessment = record.assessment
       has_permission_to_reset_assessment? &&
-        (assessment.common? || assessment.saville? || (assessment.iiht? && record.completed?))
+        (assessment.common? ||
+          assessment.saville? ||
+          (assessment.mettl? && record.reset_count < UserAssessment::MAX_RESET_COUNT && record.completed?) ||
+           (assessment.iiht? && record.completed?))
     end
 
     def reset_progress?

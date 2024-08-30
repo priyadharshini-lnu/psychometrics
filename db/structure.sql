@@ -3114,7 +3114,9 @@ CREATE TABLE public.mettl_schedule_records (
     access_key character varying,
     access_url character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    duplicated_from_id bigint,
+    schedule_number integer DEFAULT 1
 );
 
 
@@ -13873,6 +13875,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240827094045'),
 ('20240826050104'),
 ('20240823114034'),
 ('20240822061229'),

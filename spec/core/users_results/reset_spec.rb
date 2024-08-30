@@ -80,6 +80,25 @@ describe UsersResults::Reset do
     subject
   end
 
+  it 'calls Mettl::ResetCandidateAssessment is it is a mettl assessment' do
+    allow(user_assessment.assessment).to receive(:mettl?).and_return(true)
+    expect(Mettl::ResetCandidateAssessment).to receive(:call!).with(user_assessment)
+
+    subject
+  end
+
+  it 'calls Mettl::ResetCandidateAssessment is it is a mettl assessment and not reached max reset count' do
+    allow(user_assessment.assessment).to receive(:mettl?).and_return(true)
+    expect(Mettl::ResetCandidateAssessment).to receive(:call!).with(user_assessment)
+
+    subject
+
+    user_assessment.update!(reset_count: 3)
+    expect(Mettl::ResetCandidateAssessment).not_to receive(:call!).with(user_assessment)
+
+    subject
+  end
+
   it 'reset users_result data' do
     expect { subject }.to change { users_result.answers }.from(test).to({}).
       and change { users_result.scoring }.from(test).to(nil).

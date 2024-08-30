@@ -32,5 +32,9 @@ module Mettl
     def api_endpoint
       raise NotImplementedError
     end
+
+    def public_key
+      config['public_key']
+    end
   end
 end

@@ -131,6 +131,7 @@ RSpec.describe Mettl::SaveScoresAndReport do
       )
 
       expect(user_assessment).to receive(:update).with(
+        status: :completed,
         completed_at: DateTime.parse('Fri, 16 Aug 2024 13:14:21 UTC').in_time_zone('UTC')
       )
 

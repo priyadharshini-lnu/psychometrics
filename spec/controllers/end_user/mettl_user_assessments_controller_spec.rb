@@ -57,8 +57,8 @@ RSpec.describe EndUser::MettlUserAssessmentsController, type: :controller do
 
   describe 'GET #redirect' do
     before do
-      session[:in_progress_mettle_assessment_details] = {
-        'mettle_assessment_id' => mettl_assessment.id, 'user_assessment_id' => user_assessment.id
+      session[:in_progress_mettl_assessment_details] = {
+        'mettl_assessment_id' => mettl_assessment.id, 'user_assessment_id' => user_assessment.id
       }
     end
 
@@ -74,7 +74,7 @@ RSpec.describe EndUser::MettlUserAssessmentsController, type: :controller do
 
     context 'when user assessment is not found in session' do
       before do
-        session[:in_progress_mettle_assessment_details] = nil
+        session[:in_progress_mettl_assessment_details] = nil
       end
 
       it 'redirects to the root path' do

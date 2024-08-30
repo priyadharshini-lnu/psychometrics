@@ -64,9 +64,5 @@ module Mettl
     def api_endpoint
       "#{Settings.mettl.base_api_url}/v2/assessments"
     end
-
-    def public_key
-      config['public_key']
-    end
   end
 end

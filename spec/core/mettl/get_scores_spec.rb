@@ -95,7 +95,7 @@ describe Mettl::GetScores do
       end
 
       it 'broadcasts :ok with an empty array' do
-        expect(subject).to receive(:broadcast).with(:ok, [])
+        expect(subject).to receive(:broadcast).with(:ok, {})
         subject.call
       end
     end
@@ -117,10 +117,10 @@ describe Mettl::GetScores do
           allow(client).to receive(:get).and_raise(Faraday::Error.new('error'))
         end
 
-        it 'captures the exception and broadcasts :ok with an empty array' do
+        it 'captures the exception and broadcasts :ok' do
           expect(Sentry).to receive(:capture_exception).with(instance_of(Faraday::Error),
                                                              extra: { project_id: project.id })
-          expect(subject).to receive(:broadcast).with(:ok, [])
+          expect(subject).to receive(:broadcast).with(:ok, {})
           subject.call
         end
       end

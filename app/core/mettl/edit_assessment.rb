@@ -24,7 +24,7 @@ module Mettl
       broadcast :ok, result
     rescue Faraday::Error => e
       Sentry.capture_exception(e, extra: { project_id: project.id })
-      broadcast :ok, []
+      broadcast :ok
     end
 
     private
@@ -51,10 +51,6 @@ module Mettl
 
     def api_endpoint
       "#{Settings.mettl.base_api_url}/v2/assessments/#{mettl_assessment.product_id}/settings/edit"
-    end
-
-    def public_key
-      config['public_key']
     end
   end
 end

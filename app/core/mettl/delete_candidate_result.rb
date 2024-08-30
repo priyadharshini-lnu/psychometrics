@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Mettl
-  class GetScores < Base
+  class DeleteCandidateResult < Base
     private_attr_reader :user_assessment, :project
 
     def initialize(user_assessment)
@@ -10,28 +10,27 @@ module Mettl
     end
 
     def call
-      return broadcast :ok, {} unless config
+      response = client.delete(delete_candidate_result_url)
 
-      begin
-        response = client.get(result_url)
+      result = ::JSON.parse(response.body)
 
-        result = JSON.parse(response.body)
-
-        unless result['status'] == 'SUCCESS'
-          raise "Mettl::GetScores failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
-        end
-      rescue Faraday::Error => e
-        Sentry.capture_exception(e, extra: { project_id: project.id })
-        return broadcast :ok, {}
+      unless result['status'] == 'SUCCESS'
+        raise "Mettl::DeleteCandidateResult failed for UserAssessment: #{user_assessment.id}. Error: #{result['error']['message']}" # rubocop:disable Layout/LineLength
       end
 
-      broadcast :ok, result['candidate']
+      user_assessment.mettl_user_assessment.update!(url: nil)
+    rescue StandardError => e
+      Sentry.capture_exception(e, extra: {
+        user_assessment_id: user_assessment.id, project_id: project.id
+      })
+      broadcast :ok
     end
 
     private
 
-    def result_url
+    def delete_candidate_result_url
       timestamp = Time.now.to_i
+
       signature = Mettl::GetSignature.call!(config, string_to_sign(timestamp))
 
       "#{api_endpoint}?ak=#{public_key}&ts=#{timestamp}&asgn=#{signature}"
@@ -42,7 +41,7 @@ module Mettl
     end
 
     def http_method
-      'GET'
+      'DELETE'
     end
 
     def api_endpoint
@@ -50,7 +49,7 @@ module Mettl
     end
 
     def mettl_user_assessment
-      user_assessment.mettl_user_assessment
+      @mettl_user_assessment ||= user_assessment.mettl_user_assessment
     end
 
     def access_key
