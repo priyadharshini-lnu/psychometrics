@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: Remove this file. It is no longer needed.
 module DataMigration
   module Projects
     # rubocop:disable Metrics/ClassLength

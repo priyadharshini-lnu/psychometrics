@@ -26,7 +26,6 @@
 //= require filterrific/filterrific-jquery
 //= require administration/overrides/filterrific
 //= require js-routes
-//= require views/assigns/_assign
 
 //= require cable
 

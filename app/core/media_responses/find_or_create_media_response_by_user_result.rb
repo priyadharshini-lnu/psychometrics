@@ -11,7 +11,7 @@ module  MediaResponses
     end
 
     def call
-      record = if same_question_and_assign?
+      record = if same_question_and_user_result?
                  media_record
                elsif media_belongs_to_same_project?
                  UsersResults::CopyMediaResponseJob.perform_later(media_record, user_result)
@@ -25,7 +25,7 @@ module  MediaResponses
       media_record&.users_result&.subject&.project_id == user_result.subject&.project_id
     end
 
-    def same_question_and_assign?
+    def same_question_and_user_result?
       media_record&.users_result == user_result && media_record&.question == question
     end
   end

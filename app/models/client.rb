@@ -45,7 +45,6 @@ class Client < ApplicationRecord
   has_many :profile_fields, through: :profile_setting
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy
   has_many :end_users, class_name: 'Users::Regular', foreign_key: :project_id
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
            class_name: 'Membership'
@@ -218,10 +217,6 @@ class Client < ApplicationRecord
     return locales if locales.any?
 
     [I18n.default_locale]
-  end
-
-  def assign_by_membership_and_assessment(membership_id, assessment_id)
-    memberships.find(membership_id).assigns.find_by(assessment_id: assessment_id)
   end
 
   def license_msg

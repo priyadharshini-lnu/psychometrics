@@ -46,6 +46,6 @@ module AgileUserResult
   end
 
   def user_result
-    @user_result || @assign
+    @user_result
   end
 end

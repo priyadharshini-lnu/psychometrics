@@ -43,7 +43,7 @@ module UsersResults
         status: :completed,
         completed_at: Time.zone.now
       )
-      user_result.is_a?(Assign) ? user_result.update!(attributes) : user_result.user_assessment.update!(attributes)
+      user_result.user_assessment.update!(attributes)
 
       ::UsersResults::SaveAgileScoringJob.set(wait: 10.seconds).perform_later(user_result, current_user)
     end
@@ -52,8 +52,6 @@ module UsersResults
       norm_id = user_assessment.applicable_norm_id
       norm_id ||= Norm.find_by(id: user_result&.agile&.config&.dig('normId'))&.id
       return {} unless norm_id
-
-      return { norm_data: { id: norm_id } } if user_result.is_a?(Assign)
 
       { norm_id: norm_id }
     end

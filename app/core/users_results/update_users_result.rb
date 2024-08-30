@@ -53,8 +53,8 @@ module UsersResults
         users_result.answers = ::UsersResults::RemoveDirtyResults.call!(users_result.answers)
         users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
-        users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
-        users_result.innovation_styles = Assigns::CalculateInnovationStyles.call!(users_result)
+        users_result.occupations = ::UsersResults::CalculateOccupations.call!(users_result)
+        users_result.innovation_styles = UsersResults::CalculateInnovationStyles.call!(users_result)
         UserAssessments::Webhook.new(user_assessment).publish_assessment_completed
         if threesixty_campaign
           user_assessment_attrs = { evaluator_nomination_status: :completed }

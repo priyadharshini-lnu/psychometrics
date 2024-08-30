@@ -9,7 +9,7 @@ RSpec.describe Licenses::CreateThreesixtySubject do
   describe '.use' do
     context 'are not enough licences' do
       it 'builds a license_usage' do
-        expect { described_class.use(user: user, campaign: campaign) }.to raise_error(Errors::LicenseError)
+        expect { described_class.call(user: user, campaign: campaign) }.to raise_error(Errors::LicenseError)
       end
     end
     context 'are enough licences' do
@@ -19,7 +19,7 @@ RSpec.describe Licenses::CreateThreesixtySubject do
                      client: campaign.client, start_date: 1.day.ago, end_date: 100.years.since)
       end
       it 'builds a license_usage' do
-        described_class.use(user: user, campaign: campaign)
+        described_class.call(user: user, campaign: campaign)
         usage = LicenseUsage.last
         expect(usage.user_id).to eq(user.id)
         expect(usage.license_id).to eq(license.id)

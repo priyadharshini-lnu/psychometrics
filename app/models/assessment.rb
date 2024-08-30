@@ -117,7 +117,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   # HABTM Report Bundles
   has_many :report_families, through: :reports
 
-  has_many :assigns, dependent: :restrict_with_error
   has_many :user_assessments, dependent: :restrict_with_error
   has_many :users_results, through: :user_assessments, dependent: :restrict_with_error
   has_many :saville_user_assessments, through: :user_assessments, dependent: :restrict_with_error
@@ -128,7 +127,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :assessments_clients, dependent: :restrict_with_error
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
     class_name: 'CampaignAssessment', foreign_key: :assessor_form_id
-  has_many :memberships, through: :assigns
   has_many :campaign_factors, dependent: :restrict_with_error
   has_many :idp_template_skills, dependent: :restrict_with_error
 

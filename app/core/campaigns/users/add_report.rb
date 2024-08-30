@@ -86,7 +86,7 @@ module Campaigns
       def create_assessment_to_user(assessment)
         norm_assessment = (options[:norm_ids] || []).find { |na| na[:id] == assessment.id } || {}
         existing_result = existing_user_result_to_copy(assessment)
-        user_result = existing_result ? UsersResults::Copy.call!(existing_result) : create_new_user_result(assessment)
+        user_result = existing_result ? UsersResults::Copy.call!(existing_result) : UsersResult.create!
         campaign_assessment = CampaignAssessment.find_by(campaign: campaign, assessment: assessment)
 
         user_assessment = UserAssessment.create(
@@ -157,19 +157,6 @@ module Campaigns
           joins(:user_assessment).
           order(created_at: :desc).
           find_by(user_assessments: { assessment_id: assessment.id })
-      end
-
-      def create_new_user_result(assessment)
-        user_result = UsersResult.create!
-
-        if assessment.mindmill?
-          user_result.create_mindmill_credential(
-            user_name: "#{Settings.assigns.mindmill_prefix}_#{user_result.id}",
-            password: SecureRandom.hex
-          )
-        end
-
-        user_result
       end
 
       def generate_report_pdf(user_report)
