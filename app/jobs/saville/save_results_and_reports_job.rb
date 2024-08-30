@@ -28,7 +28,10 @@ module Saville
 
         next unless user_report
 
-        user_report.attach_pdf!(base64_report)
+        user_report.attach_pdf!(
+          base64_report,
+          "#{user_report.report.name.parameterize}.pdf"
+        )
       end
     end
 

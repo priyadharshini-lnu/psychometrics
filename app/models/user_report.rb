@@ -122,9 +122,11 @@ class UserReport < ApplicationRecord
             content_type: 'application/pdf'
           )
         else
-          pdf_file.attach(
-            ActiveStorageSupport::Base64Attach.attachment_from_data({ data: "data:application/pdf;base64,[#{data}]" })
-          )
+          data_to_attach = ActiveStorageSupport::Base64Attach.attachment_from_data({
+            data: "data:application/pdf;base64,[#{data}]"
+          })
+          data_to_attach[:filename] = filename if filename
+          pdf_file.attach(data_to_attach)
         end
       when File
         pdf_file.attach(
