@@ -6,7 +6,7 @@ module EndUser
     attributes :id, :report_name, :status, :user_access, :user_id, :pdf_url, :require_approval, :poster_url
 
     def poster_url
-      object.report.poster&.url
+      object.report.poster_url
     end
 
     def approved
@@ -16,7 +16,7 @@ module EndUser
     def pdf_url
       return nil if require_approval && !object.approved?
 
-      object.pdf_file&.url
+      object.pdf_file_url
     end
 
     def report_name

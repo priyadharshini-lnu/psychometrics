@@ -9,6 +9,13 @@ class Api::V2::Administration::CampaignTemplateResource < Api::V2::Administratio
 
   ransack_filters %i[filterable_fields]
 
+  def self.records(opts)
+    super(opts).includes(
+      assessment: { icon_attachment: :blob, poster_attachment: :blob },
+      report: { icon_attachment: :blob, poster_attachment: :blob }
+    )
+  end
+
   def created_at
     @model.decorate.created_at
   end

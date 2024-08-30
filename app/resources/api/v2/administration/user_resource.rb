@@ -27,7 +27,7 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
   end
 
   def photo_url
-    @model.photo&.url
+    @model.photo_url
   end
 
   def name

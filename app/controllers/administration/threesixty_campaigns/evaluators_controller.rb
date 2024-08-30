@@ -10,7 +10,7 @@ module Administration
       def index
         option = threesixty_campaign.option
         query = policy_scope(::Threesixty::Evaluator).
-                includes(:user, self_subject: :user).
+                includes(user: { user_profile: { photo_attachment: :blob } }, self_subject: :user).
                 where(campaign_id: threesixty_campaign.campaign_id).
                 where(
                   'users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',

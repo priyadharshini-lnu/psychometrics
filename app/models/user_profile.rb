@@ -18,10 +18,6 @@ class UserProfile < ApplicationRecord
 
   has_one_image_attachment :photo, variants: [:icon]
 
-  def photo_url
-    photo.processed&.url
-  end
-
   def attachment_storage_path(attribute_name, filename)
     "public/user_profile/#{user_id}/#{attribute_name}/#{filename}"
   end

@@ -9,23 +9,23 @@ module Threesixty::InitialState
     end
   end
 
-  def set_init_state # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
+  def set_init_state # rubocop:disable Metrics/AbcSize
     @current_project ||= GetProjectBySubdomain.call!(request.subdomain)
 
     @init_state = {
       campaigns: {
         project: {
           name: @current_project.name,
-          logo: @current_project.design_setting.logo&.url,
-          secondaryLogo: @current_project.design_setting.secondary_logo&.url,
+          logo: @current_project.design_setting.logo_url,
+          secondaryLogo: @current_project.design_setting.secondary_logo_url,
           privacyText: @current_project.privacy_setting.privacy_link_text,
           privacyPageLink: @current_project.privacy_setting.privacy_link_url
         }
       }.merge(campaign_intial_state),
       config: {
         design: {
-          logo: @current_project.design_setting.logo&.url,
-          secondary_logo: @current_project.design_setting.secondary_logo&.url,
+          logo: @current_project.design_setting.logo_url,
+          secondary_logo: @current_project.design_setting.secondary_logo_url,
           primary_color: @current_project.design_setting.primary_color,
           error_color: @current_project.design_setting.error_color,
           warning_color: @current_project.design_setting.warning_color,
