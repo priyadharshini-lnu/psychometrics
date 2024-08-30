@@ -4,6 +4,7 @@ import GeoIP from './GeoIP'
 import EmbeddedData from './EmbeddedData'
 import EvaluatorRelationship from './EvaluatorRelationship'
 import DataSheet from './DataSheet'
+import UserType from './UserType'
 
 export default {
   Question: Question.Select,
@@ -13,6 +14,7 @@ export default {
   EvaluatorRelationship: EvaluatorRelationship.Select,
   SubjectDataSheet: DataSheet.Select,
   EvaluatorDataSheet: DataSheet.Select,
+  UserType: UserType.Select,
 }
 
 export const Previews = {
@@ -23,4 +25,5 @@ export const Previews = {
   EvaluatorRelationship: EvaluatorRelationship.Preview,
   SubjectDataSheet: DataSheet.Preview,
   EvaluatorDataSheet: DataSheet.Preview,
+  UserType: UserType.Preview,
 }
