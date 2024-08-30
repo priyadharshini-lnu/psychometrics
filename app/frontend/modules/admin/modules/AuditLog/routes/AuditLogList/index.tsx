@@ -326,9 +326,12 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.campaign')}
               key="campaign"
-              render={({ projectId, campaignId, campaign }) => (
+              render={({
+                project, campaignId, campaign,
+              }) => (
+
                 campaign ? (
-                  <a href={`/admin/projects/${projectId}/new_campaigns/${campaignId}`}>
+                  <a href={`/admin/projects/${project.id}/new_campaigns/${campaign.id}`}>
                     {campaign.name}
                   </a>
                 ) : campaignId && `${campaignId} - deleted`
