@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require js-cookie
-//= require common
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require bootstrap-colorpicker
