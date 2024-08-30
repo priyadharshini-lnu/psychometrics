@@ -41,7 +41,7 @@ const flow = createSlice({
   initialState: defaultState,
   reducers: {
     reset (state, { payload: flow }) {
-      state.elements = flow.elements
+      state.elements = flow?.elements || []
     },
     updateElements (state, { payload }) {
       const flow = new Flow({ elements: loadElements(payload) })
@@ -107,7 +107,7 @@ const flow = createSlice({
   extraReducers: (builder) => {
     builder.addCase(INIT, (state, { data }) => {
       const { flow } = denormalize(data.result, schema, data.entities)
-      state.elements = _.map((flow?.elements || { elements: [] }), (el, i) => new FlowElement(el, null, i))
+      state.elements = _.map((flow?.elements || { elements: [] }).elements, (el, i) => new FlowElement(el, null, i))
     })
   },
 })
