@@ -12,7 +12,7 @@ class AssessmentSerializer < Panko::Serializer
        coalesce(template.props, props).as('props'),
        coalesce(template.name, name).as('name')]
     end.joining { template.outer }.
-             includes(questions_ams: :comments).where.has { (template.disabled == false) | (template.id == nil) }
+             includes(:questions_ams).where.has { (template.disabled == false) | (template.id == nil) }
     Panko::ArraySerializer.new(
       blocks,
       each_serializer: BlockSerializer,

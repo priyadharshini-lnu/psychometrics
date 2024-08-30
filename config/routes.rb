@@ -165,10 +165,6 @@ Rails.application.routes.draw do
 
     resources :imports, only: %i[new create]
 
-    concern :commentable do
-      resources :comments
-    end
-
     concern :client_editable do
       member do
         get :copy

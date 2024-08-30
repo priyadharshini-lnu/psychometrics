@@ -4,8 +4,6 @@ class QuestionSerializer < Panko::Serializer
   attributes :id, :name, :type, :position, :props, :deleted, :created_at, :block_id,
              :validation, :required_validation, :display_logic, :skip_logic, :template_id, :assessment_id
 
-  has_many :comments, each_serializer: CommentSerializer
-
   def deleted
     !!object.deleted_at
   end

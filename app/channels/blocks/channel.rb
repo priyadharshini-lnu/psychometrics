@@ -4,7 +4,6 @@ module Blocks
   class Channel < ApplicationCable::Channel
     include Blocks::Actions::Block
     include Blocks::Actions::Question
-    include Blocks::Actions::Comment
     include Pundit
     include Administration::Policies
 

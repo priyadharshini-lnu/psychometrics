@@ -21,7 +21,7 @@ const QUESTION_BLOCK_BOTTOM_OFFSET = QUESTION_BLOCK_BOTTOM_MARGIN + QUESTION_BLO
 
 const PropertyPanelComponent = (props) => {
   const {
-    question, offset, addPageBreak, addSkipLogic, copyQuestion, addNote, restricted,
+    question, offset, addPageBreak, addSkipLogic, copyQuestion, restricted,
     openDisplayLogic, changeType, openPreview, firstBlockContentOffset, unselectQuestion,
   } = props
   const panelRef = useRef(null)
@@ -124,10 +124,6 @@ const PropertyPanelComponent = (props) => {
           >
             <span className={`fa fa-check-circle-o ${styles.icon}`} />
             <span>Copy Question</span>
-          </a>
-          <a onClick={() => addNote(question)} className={styles.menuitem}>
-            <span className={`fa fa-pencil-square-o ${styles.icon}`} />
-            <span>Add Note</span>
           </a>
         </>
       )}

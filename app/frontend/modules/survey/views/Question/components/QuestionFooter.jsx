@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './Question.less'
-import CommentsList from './CommentsList'
 import SkipLogic from './SkipLogic'
 
 class QuestionFooter extends Component {
@@ -18,10 +17,8 @@ class QuestionFooter extends Component {
   }
 
   render () {
-    const { model: { showComments, comments } } = this.props
     return (
       <div className={styles.footer}>
-        {(showComments || comments.length > 0) && <CommentsList {...this.props} />}
         {this.renderSkipLogic()}
       </div>
     )

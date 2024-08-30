@@ -20,7 +20,6 @@ class Question < ApplicationRecord
   has_many :factors_scorings, dependent: :destroy
   has_many :question_recodings, dependent: :destroy
   has_many :factors_scorings_with_props, -> { with_props }, class_name: 'FactorsScoring', foreign_key: :question_id
-  has_many :comments, as: :commentable, dependent: :destroy
   has_many :translations, as: :translateable, dependent: :destroy
   has_many :media_responses, dependent: :nullify
 

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Lint/UnderscorePrefixedVariableName
-
 module Assessments
   class QuestionSchema < BaseSchema
     def self.schema(_, _)
@@ -21,10 +19,7 @@ module Assessments
         required(:skip_logic).maybe(:array?)
         required(:template_id).maybe(:int?)
         required(:block_id).filled(:int?)
-        required(:comments).array(Assessments::CommentSchema.schema(_, _))
       end
     end
   end
 end
-
-# rubocop:enable Lint/UnderscorePrefixedVariableName

@@ -6,7 +6,7 @@ import { setIn } from '~/utils/immutable'
 import Question from '~/modules/survey/models/Question'
 import { Question as QuestionInerface } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import {
-  UPDATE_QUESTION, CHANGE_TYPE, ADD_NOTE, RENAME_QUESTION,
+  UPDATE_QUESTION, CHANGE_TYPE, RENAME_QUESTION,
   changeType, renameQuestion,
 } from '../assessment/question/actions'
 import { QuestionSerializer } from '../assessment/SerializeAssessment'
@@ -58,11 +58,10 @@ export const defaultState = {
 
 type ChangeTypeType = ReturnType<typeof changeType>
 type RenameQuestionType = ReturnType<typeof renameQuestion>
-interface AddNoteType {
-  type: typeof ADD_NOTE,
+type UpdateQuestionType = {
+  type: string,
   question: QuestionInerface
 }
-type UpdateQuestionType = AddNoteType
 interface InitQuestionType {
   type: typeof INIT_QUESTION_CENTER,
   data: QuestionInerface
@@ -75,9 +74,6 @@ const HANDLERS = {
     question: data,
     loaded: true,
   }),
-  [ADD_NOTE]: (state: State, { question }: AddNoteType) => (
-    setIn(state, [question.id, 'showComments'], true)
-  ),
   [RENAME_QUESTION]: (state: State, { value }: RenameQuestionType) => (
     setIn(state, ['question', 'name'], value)
   ),

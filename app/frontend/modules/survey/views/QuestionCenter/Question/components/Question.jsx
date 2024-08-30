@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './Question.less'
-import Footer from './QuestionFooter'
 import Header from './QuestionHeader'
 import QuestionInfoBar from './QuestionInfoBar'
 import QuestionRenderer from './QuestionRenderer'
@@ -41,7 +40,6 @@ class Question extends Component {
         <div className={styles.content}>
           <Header {...this.props} />
           <QuestionRenderer {...this.props} />
-          <Footer {...this.props} />
         </div>
       </div>
     )

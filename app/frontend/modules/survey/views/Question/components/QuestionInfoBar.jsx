@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import {
   EyeOutlined, SaveOutlined, PartitionOutlined, SettingOutlined, CheckCircleOutlined,
-  EyeInvisibleOutlined, CommentOutlined, DeleteOutlined,
+  EyeInvisibleOutlined, DeleteOutlined,
 } from '@ant-design/icons'
 import LogicElement from '~/modules/survey/models/logic/LogicElement'
 import styles from './Question.less'
@@ -19,11 +19,6 @@ class Question extends Component {
   remove () {
     const { remove } = this.props
     remove()
-  }
-
-  addNote = () => {
-    const { model, addNote } = this.props
-    addNote(model)
   }
 
   addSkipLogic = () => {
@@ -137,13 +132,6 @@ class Question extends Component {
               onClick: this.addSkipLogic,
             },
             ...this.defaultValueMenuItem(),
-            {
-              key: 'add_note',
-              label: 'Add Note',
-              icon: <CommentOutlined />,
-              onClick: this.addNote,
-            },
-
             ...this.linkedQuestionsMenuItem(),
             ...this.randomizationMenuItem(),
             ...this.renderAddToTemplate(),
