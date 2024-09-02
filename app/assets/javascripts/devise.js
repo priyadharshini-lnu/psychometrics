@@ -33,5 +33,3 @@
 //= require i18n/translations
 
 //= require file_downloader
-
-//= require_tree ./application
