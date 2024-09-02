@@ -1010,30 +1010,8 @@ en:
     report_not_found: Report with id %{report_id} is not found
     report_not_in_bundle: Report with id %{report_id} is not part of report bundle with id %{bundle_id}
   assigns:
-    assign:
-      accept_privacy_modal:
-        accept: Accept
-        reject: Reject
-        text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
-        title: Data processing consent
-    assigns_reports:
-      download: Download
-      duration: Duration
-      progress: Progress
-      summary_report: Summary report
     decorator:
-      completed: Completed %{date}
       no_description: Description is empty
-      not_completed: Not Completed
-    multiple_report:
-      results: Results
-    notifications:
-      completed: '%{user_name} finished assessment "%{assessment_name}"'
-      in_progress: '%{user_name} started to take assessment "%{assessment_name}"'
-    reports:
-      load_results: 'Load Results: %{report}'
-      processing: Processing...
-      results: Results
   audit_log_failures:
     invalid_sso_token: Invalid SSO Token
     record_not_found: Record Not Found
@@ -2336,7 +2314,6 @@ en:
       threesixty: Threesixty
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
-  loading: Processing...
   mailer:
     from: The Talent Enterprise
     license:
@@ -2361,10 +2338,6 @@ en:
         weekly_stats: 'Past week license usage stats :'
   maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
-  mindmill:
-    assigns:
-      results:
-        successfully: Mindmill Assessment was successfully pass
   my: My
   myself: Myself
   navigation:
