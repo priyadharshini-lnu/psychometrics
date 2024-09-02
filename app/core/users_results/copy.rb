@@ -9,7 +9,7 @@ module UsersResults
     end
 
     def call
-      new_user_result = user_result.deep_clone(include: :mindmill_credential)
+      new_user_result = user_result.deep_clone
       new_user_result.save!
       UsersResults::CopyMediaResponsesJob.set(wait: 30.seconds).perform_later(user_result, new_user_result)
       broadcast :ok, new_user_result

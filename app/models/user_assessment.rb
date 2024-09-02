@@ -20,7 +20,6 @@ class UserAssessment < ApplicationRecord
   has_one :pearson_user_assessment, dependent: :destroy
   has_one :iiht_user_assessment, dependent: :destroy
   has_one :mettl_user_assessment, dependent: :destroy
-  has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
   has_many :user_assessment_verification_images, dependent: :destroy

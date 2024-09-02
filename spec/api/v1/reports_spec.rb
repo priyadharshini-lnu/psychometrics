@@ -28,9 +28,6 @@ describe 'Reports' do
   let!(:user_report) { create(:user_report, report: report, user: user, campaign: campaign) }
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
-  before do
-    allow_any_instance_of(AssignsReport).to receive(:use_license) { 'nth' }
-  end
 
   path '/projects/{project_id}/users/{user_id}/reports' do
     get 'Get user reports' do

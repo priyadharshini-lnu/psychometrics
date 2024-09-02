@@ -14,7 +14,6 @@ class UsersResult < ApplicationRecord
   has_one :subject, through: :user_assessment
   has_one :evaluator, through: :user_assessment
   has_one :assessment, through: :user_assessment
-  has_one :mindmill_credential, dependent: :destroy
   has_one :saville_user_assessment, through: :user_assessment
   has_one :pearson_user_assessment, through: :user_assessment
 
