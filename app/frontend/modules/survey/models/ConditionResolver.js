@@ -72,6 +72,7 @@ _.extend(ConditionResolver.prototype, {
       }
       prev = result
     })
+
     return res
   },
 
@@ -94,7 +95,7 @@ _.extend(ConditionResolver.prototype, {
     }
 
     if (condition.conditionType === 'UserType') {
-      return new UserType(condition, { isAnonymousAssessment: this.isAnonymousAssessment }).resolve()
+      return { value: new UserType(condition, { isAnonymousAssessment: this.isAnonymousAssessment }).resolve() }
     }
 
     if (condition.conditionType === 'DataSheet') {
