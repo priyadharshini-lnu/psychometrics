@@ -867,13 +867,6 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :mindmill_user_assessments, only: [] do
-        member do
-          get :pass
-          get :redirect
-        end
-      end
-
       resources :saville_user_assessments, only: [] do
         member do
           post :pass
