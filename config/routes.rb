@@ -437,75 +437,8 @@ Rails.application.routes.draw do
         get :export
       end
       scope module: :clients do
-        resources :users do
-          # user_id means membership_id in this case
-          scope module: :users do
-            resources :assigns, only: %i[index new create edit destroy] do
-              get :reports, on: :collection
-              put :reset, on: :member
-              put :update_additional_time, on: :member
-            end
-            resources :reports, only: [:destroy] do
-              get :preview, on: :member
-            end
-            resources :assigns_reports, only: %i[new create destroy] do
-              put :regenerate, on: :member
-              put :toggle_user_access, on: :member
-            end
-            resources :assign_assessments, only: %i[new create]
-          end
-
-          member do
-            patch :toggle_status
-            patch :toggle_membership_status
-            get :sidebar
-            get :reset_password
-            get :spoof
-          end
-          collection do
-            get :admins
-            get :export
-            get :export_completion_status
-            post :assign_multiple
-          end
-
-          resources :api_keys, except: %i[destroy edit update show] do
-            member do
-              patch :toggle_status
-            end
-          end
-        end
-        resources :reports, only: %i[index]
-        namespace :reports do
-          resources :regenerates, only: %i[new create]
-        end
-        resource :assign_reports, only: %i[new create edit update]
-        resource :assign_assessments, only: %i[new create edit update]
-        resources :registration_codes do
-          patch :toggle_status, on: :member
-          get :download_qrcode, on: :member
-        end
-        resources :statistics, only: [:index]
-
         resources :projects, concerns: :client_editable do
-          collection do
-            get :export
-          end
-          # resource :designs, only: [:edit, :update]
           scope module: :projects do
-            resources :campaigns, concerns: :client_editable do
-              collection do
-                get :export
-              end
-              scope module: :campaigns do
-                resources :sub_campaigns, concerns: :client_editable do
-                  collection do
-                    get :export
-                  end
-                end
-              end
-            end
-
             resources :new_campaigns
 
             resources :threesixty_campaigns, concerns: :client_editable do
@@ -515,32 +448,9 @@ Rails.application.routes.draw do
             end
           end
         end
-        resources :campaigns, concerns: :client_editable, only: %i[index edit update destroy]
         get '/projects/:project_id/threesixty_campaigns/:id/*all',
             to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
         get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
-
-        resources :sub_campaigns, concerns: :client_editable, only: %i[index edit update destroy]
-
-        resources :licenses, only: %i[index show new create edit update] do
-          resources :license_usages, only: [:index] do
-            member do
-              patch :toggle_activation_status
-            end
-          end
-          patch :toggle_status, on: :member
-          get :overview, on: :collection
-        end
-        resources :assessments, only: %i[index destroy] do
-          get :select_raw_export_type
-          get :export_results
-          get :export_normed_results
-          get :export_hogan_results
-          put :enable_universal_links
-          put :disable_universal_links
-          get :download_qrcode
-          post :generate_universal_link
-        end
         resources :sheet_rows, except: %i[show edit update]
       end
     end
