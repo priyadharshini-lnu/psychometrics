@@ -578,16 +578,6 @@ Rails.application.routes.draw do
       end
 
       scope module: 'assessments' do
-        resources :assigns, only: %i[new create] do
-          collection do
-            get :step1
-            get :step2
-            post :finish
-            post :form
-            post :selected_users
-            post :not_selected_users
-          end
-        end
         resource :builders, only: %i[show update]
         resource :scoring, only: [:update], controller: :scoring
         resource :agiles, only: %i[show update]
@@ -814,12 +804,6 @@ Rails.application.routes.draw do
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
-    resources :assigns, only: %i[index update], concerns: :media_uploades do
-      get :pass, on: :member
-      get :assessment, on: :member
-      post :accept_privacy, on: :collection
-    end
-
     scope module: :users do
       resources :mobile_number_verifications, only: [] do
         collection do
@@ -1010,39 +994,6 @@ Rails.application.routes.draw do
         end
       end
       get 'system_checks/:assessment_id/:id', to: 'campaigns#system_checks'
-    end
-
-    namespace :mindmill do
-      resources :assigns, only: [] do
-        member do
-          get :pass
-          get :redirect
-        end
-      end
-    end
-    namespace :hogan do
-      resources :assigns, only: [] do
-        member do
-          get :redirect
-          put :pass
-        end
-      end
-    end
-
-    concern :agile_assigns do
-      resources :assigns, only: %i[show update] do
-        member do
-          post :events
-          put :set_language
-        end
-      end
-    end
-
-    namespace :agile do
-      namespace :anonym do
-        concerns :agile_assigns
-      end
-      concerns :agile_assigns
     end
 
     resources :reports, only: %i[show] do
