@@ -244,13 +244,29 @@ status: :in_progress)
         factor_type: 'assessment', assessment_score_type: 'score'
       )
       perform_enqueued_jobs do
-        users_result.user_assessment.update!(status: :completed)
+        users_result.user_assessment.update!(status: :completed, score_calculated: true,
+                                             score_calculated_at: Time.current)
       end
 
       campaign_factor = user.campaign_factor_values.find_by(
         campaign_factor: cf_factor1, numeric_value: 2, campaign: users_result.campaign
       )
       expect(campaign_factor).to_not eq nil
+    end
+
+    it 'ignore calculating campaign scoring if score_calculated is not true' do
+      cf_factor1 = create(
+        :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+        factor_type: 'assessment', assessment_score_type: 'score'
+      )
+      perform_enqueued_jobs do
+        users_result.user_assessment.update!(status: :completed)
+      end
+      campaign_factor = user.campaign_factor_values.find_by(
+        campaign_factor: cf_factor1, numeric_value: 10, campaign: users_result.campaign
+      )
+
+      expect(campaign_factor).to eq nil
     end
 
     it 'ignore calculating campaign scoring if user_assessment is not completed' do

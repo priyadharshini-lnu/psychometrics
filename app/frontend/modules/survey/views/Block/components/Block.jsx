@@ -1,5 +1,6 @@
 import { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
+import { Input } from 'antd'
 import _ from 'lodash'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import QuestionList from '~/modules/survey/views/QuestionList'
@@ -26,6 +27,7 @@ class Block extends Component {
       opened: true,
       showPrompt: false,
       showDeleteConfirmation: false,
+      search: '',
     }
   }
 
@@ -222,7 +224,10 @@ class Block extends Component {
 
   render () {
     const { model, first } = this.props
-    const { opened, showPrompt, showDeleteConfirmation } = this.state
+    const {
+      opened, showPrompt, showDeleteConfirmation, search,
+    } = this.state
+
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
       <div className={styles.block}>
@@ -231,6 +236,16 @@ class Block extends Component {
             <span onClick={this.expand} className={iconClass} />
             <InlineEditor value={model.name} onChange={this.changeName} />
           </div>
+          {model.questions.length > 100 && (
+            <div className={styles.search}>
+              <Input.Search
+                placeholder="type to search question"
+                className={styles.input}
+                onChange={e => this.setState({ search: e.currentTarget.value })}
+                allowClear
+              />
+            </div>
+          )}
           <div>
             {this.renderRandomLabel()}
             <div className={styles.options}>{this.renderOptions()}</div>
@@ -244,7 +259,7 @@ class Block extends Component {
           className={[styles.content]}
           style={{ display: opened ? 'block' : 'none' }}
         >
-          <QuestionList block={model} />
+          <QuestionList block={model} search={search} />
           <Footer {...this.props} onMinimize={this.expand} />
         </div>
         <Prompt

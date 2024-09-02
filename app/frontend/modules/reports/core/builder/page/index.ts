@@ -9,6 +9,8 @@ import {
 import {
   ADD_MODULE, REMOVE_PAGE, RENAME_PAGE, SAVE_DISPLAY_LOGIC, REMOVE_DISPLAY_LOGIC,
   AddModuleType, RemovePageType, RenamePageType, SaveDisplayLogicType, RemoveDisplayLogicType,
+  UPDATE_ALL,
+  UpdateAllType,
 } from './actions'
 import PageInterface from '../../interfaces/Page'
 
@@ -44,6 +46,9 @@ const HANDLERS = {
     state, [id, 'display_logic'], displayLogic,
   ),
   [REMOVE_DISPLAY_LOGIC]: (state: Store, { id }: RemoveDisplayLogicType) => setIn(state, [id, 'display_logic'], null),
+  [UPDATE_ALL]: (state: Store, { pages }: UpdateAllType) => _.reduce(pages, (acc, page) => ({
+    ...acc, [page.id]: page,
+  }), {}),
 }
 
 export default createReducer(HANDLERS, defaultState)

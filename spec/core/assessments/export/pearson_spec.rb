@@ -9,7 +9,9 @@ describe Assessments::Export::Pearson do
       { 'name' => 'APM3_TOT_Correct', 'value' => 2 }
     ]
   end
-  let(:user_result) { create(:users_result, external_results: external_results, status: :completed) }
+  let(:user_result) do
+    create(:users_result, external_results: external_results, status: :completed, score_calculated: true)
+  end
   let!(:user_assessment) { user_result.user_assessment }
   let(:campaign) { user_assessment.campaign }
   let(:assessment) { user_assessment.assessment }

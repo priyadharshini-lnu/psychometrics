@@ -59,7 +59,8 @@ module Assessments
 
       def users_results
         UsersResult.joins(:user_assessment).
-          where(user_assessments: { campaign_id: campaign.id, assessment_id: assessment.id, status: :completed }).
+          where(user_assessments: { campaign_id: campaign.id, assessment_id: assessment.id }).
+          merge(UserAssessment.scored).
           includes(user_assessment: :subject)
       end
     end

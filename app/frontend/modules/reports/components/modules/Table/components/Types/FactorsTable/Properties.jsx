@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cs from 'classnames'
 import {
   InputNumber, Row, Col, Radio, Checkbox, Slider,
+  Input,
 } from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
@@ -61,7 +62,7 @@ class Properties extends Component {
     return factors
   }
 
-  factor = f => ({ id: f.id, alias: `${f.alias.substring(0, 24)}` })
+  factor = f => ({ id: f.id, alias: `${(f.alias || f.name)?.substring(0, 24)}` })
 
   factorSelect = (factors) => {
     const { model } = this.props
@@ -109,6 +110,12 @@ class Properties extends Component {
     const { model } = this.props
     model.props.precision = val
     this.update()
+  }
+
+  changeBenchmarkLabel = (e) => {
+    const { model } = this.props
+    model.props.benchmarksLabel = e.currentTarget.value
+    model.update()
   }
 
   update = () => {
@@ -240,6 +247,7 @@ class Properties extends Component {
       { label: 'Icons', prop: 'showIcons', default: false },
       { label: 'Label', prop: 'showLabel', default: false },
       { label: 'Border', prop: 'showBorder', default: false },
+      { label: 'Show benchmark score', prop: 'showBenchmarks', default: false },
     ]
 
     return (
@@ -356,6 +364,16 @@ class Properties extends Component {
         <div className="margin-top-10">
           <div className={cs(styles.label, 'mbm mtl')}>Show Elements</div>
           {this.renderTableOptions()}
+          {model.props.showBenchmarks && (
+            <div>
+              <Input
+                placeholder="Benchmark label"
+                value={model.props.benchmarksLabel}
+                onChange={this.changeBenchmarkLabel}
+              />
+            </div>
+          )}
+
         </div>
         <hr className={styles.divider} />
         <div>

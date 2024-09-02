@@ -32,6 +32,11 @@ module Factors
       new_factor.remote_icon_url = factor.icon_url
       new_factor.save!
       new_factor
+    rescue StandardError => _e
+      new_factor = factor.dup
+      new_factor.remove_icon = true
+      new_factor.save!
+      new_factor
     end
 
     def create_factor_sub_factor(old_factor, old_sub_factor, new_factor, new_sub_factor)

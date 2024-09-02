@@ -25,4 +25,69 @@ describe UsersResults::Recompute do
       described_class.call!(user_assessment.users_result, user_assessment.user)
     end
   end
+
+  describe 'pearson user_assessment' do
+    let(:assessment) { create(:assessment, :pearson) }
+    let(:report) { create(:report, :pearson, assessments: [assessment], provider: 'pearson') }
+    let(:user_assessment) { create(:user_assessment, assessment: assessment) }
+    let!(:pearson_user_assessment) do
+      create(:pearson_user_assessment, user_assessment: user_assessment, norm_id: 'norm_id')
+    end
+
+    it 'call Pearson::SaveScoresAndReports' do
+      allow(user_assessment).to receive(:completed?).and_return(true)
+      expect(Pearson::SaveScoresAndReports).to receive(:call!).with(user_assessment)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+
+    it "doesn't call Pearson::SaveScoresAndReports if assessment is not_started" do
+      allow(user_assessment).to receive(:not_started?).and_return(true)
+      expect(Pearson::SaveScoresAndReports).to_not receive(:call!)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+  end
+
+  describe 'agile user_assessment' do
+    let(:assessment) { create(:assessment) }
+    let(:user_assessment) { create(:user_assessment, assessment: assessment) }
+
+    before do
+      allow(user_assessment.users_result.assessment).to receive(:agile?).and_return(true)
+    end
+
+    it 'call UsersResults::CalculateAgileScoring' do
+      allow(user_assessment).to receive(:completed?).and_return(true)
+      expect(UsersResults::CalculateAgileScoring).to receive(:call!).with(user_assessment.users_result)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+
+    it "doesn't call UsersResults::CalculateAgileScoring if assessment is not_started" do
+      allow(user_assessment).to receive(:not_started?).and_return(true)
+      expect(UsersResults::CalculateAgileScoring).to_not receive(:call!)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+  end
+
+  describe 'non agile user_assessment' do
+    let(:assessment) { create(:assessment) }
+    let(:user_assessment) { create(:user_assessment, assessment: assessment) }
+
+    it 'call ::UsersResults::CalculateScoring' do
+      allow(user_assessment).to receive(:completed?).and_return(true)
+      expect(::UsersResults::CalculateScoring).to receive(:call!).with(user_assessment.users_result)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+
+    it "doesn't call ::UsersResults::CalculateScoring if assessment is not_started" do
+      allow(user_assessment).to receive(:not_started?).and_return(true)
+      expect(::UsersResults::CalculateScoring).to_not receive(:call!)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+  end
 end

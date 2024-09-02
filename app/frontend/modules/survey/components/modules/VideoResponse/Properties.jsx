@@ -2,7 +2,6 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
 import { Button, InputNumber } from 'antd'
-import _ from 'lodash'
 import InputDuration from '~/components/InputDuration'
 import { DefaultTrackerOptions } from '~/modules/survey/constants/DefaultProps'
 import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
@@ -45,13 +44,6 @@ export class Properties extends Component {
     this.update()
   }
 
-  changeMaxTakes = (e) => {
-    const { model } = this.props
-    const maxTakes = parseInt(e.currentTarget.value, 10)
-    model.changeProps({ maxTakes })
-    this.update()
-  }
-
   updateFitInFrame = (e) => {
     const { model } = this.props
     const fitInFrame = e.currentTarget.value
@@ -88,20 +80,6 @@ export class Properties extends Component {
           onChange={this.changeDuration}
           placeholder={I18n.t('administration.components.input_duration.placeholder')}
         />
-      </div>
-    )
-  }
-
-  maxTakesFields () {
-    const { model } = this.props
-
-    return (
-      <div className={styles.fieldset} style={{ position: 'relative' }}>
-        <span className={styles.label}>Number of takes</span>
-        <select className="form-control" value={model.props.maxTakes} onChange={this.changeMaxTakes}>
-          <option value={null}>No Restriction</option>
-          {_.times(5, takeNo => (<option key={takeNo} value={takeNo + 1}>{takeNo + 1}</option>))}
-        </select>
       </div>
     )
   }
@@ -179,7 +157,6 @@ export class Properties extends Component {
     return (
       <div>
         { this.durationFields() }
-        {this.maxTakesFields() }
         { this.frameFields() }
       </div>
     )

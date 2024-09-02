@@ -206,6 +206,11 @@ export class FixedHeader extends Component {
     openDataConfiguration()
   }
 
+  openRemapAssessment = () => {
+    const { openRemapAssessment } = this.props
+    openRemapAssessment()
+  }
+
   render () {
     const { richEditorOpened } = this.props
     const style = {
@@ -287,6 +292,7 @@ export class FixedHeader extends Component {
                   <li><a href={`/administration/reports/${_.result(AppStore.report, 'id')}/preview`}>Preview</a></li>
                   <li><a onClick={this.openAliasModal}>Aliases</a></li>
                   <li><a onClick={this.openDataConfigurationModal}>Data Report Configuration</a></li>
+                  <li><a onClick={this.openRemapAssessment}>Remap Assessment</a></li>
                 </ul>
                 <form
                   style={{ display: 'none' }}

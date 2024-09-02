@@ -19,6 +19,7 @@ const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
+    campaignId: state.threeSixtyCampaign.campaignDetails.campaignId,
     dimensionId: getCurrentDimensionId(state),
     assessmentId: getCurrentAssessmentId(state),
     reportId: getCurrentReportId(state),
@@ -38,11 +39,12 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & OwnProps
 
 export const ManageComponent: React.FC<Props> = ({
-  openModal, dimensionId, reportId, assessmentId, currentUser,
+  openModal, campaignId, dimensionId, reportId, assessmentId, currentUser,
 }) => (
   <ConditionalDropdown
     menu={getMenuProps({
       openModal,
+      campaignId,
       dimensionId,
       reportId,
       assessmentId,
@@ -63,7 +65,7 @@ export const ManageComponent: React.FC<Props> = ({
 )
 
 const getMenuProps = ({
-  dimensionId, reportId, assessmentId, openModal, currentUser,
+  campaignId, dimensionId, reportId, assessmentId, openModal, currentUser,
 }):MenuProps => {
   const menuItems = [
     currentUser.permissions.editDimension && {
@@ -91,11 +93,19 @@ const getMenuProps = ({
       key: 'manage_relationship',
       label: I18n.t('administration.threesixty_campaigns.manage.manage_relationships'),
     },
+    { type: 'divider' },
+    currentUser.permissions.manageFactorBenchmarkScores && {
+      key: 'factor_benchmark_score',
+      label: I18n.t('campaign_assessment.actions.factor_benchmark_score'),
+    },
   ]
 
   const handleMenuClick = ({ key }) => {
     if (key === 'manage_relationship') {
       openModal('ManageRelationshipsModal')
+    }
+    if (key === 'factor_benchmark_score') {
+      return openModal('FactorBenchmarkScoreModal', { campaignId, dimensionId })
     }
   }
 

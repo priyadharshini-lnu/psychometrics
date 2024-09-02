@@ -15,7 +15,8 @@ describe CampaignScoring::Calculate do
       scoring[factor.id.to_s] = { 'norm_score' => 1, 'score' => 2, 'zscore' => 3.3, 'percentage' => 4 }
       create(
         :users_result, campaign: campaign, assessment: assessment,
-        scoring: scoring, subject: user, evaluator: user, status: :completed
+        scoring: scoring, subject: user, evaluator: user, status: :completed,
+        score_calculated: true
       )
     end
 
@@ -99,7 +100,7 @@ describe CampaignScoring::Calculate do
     it 'returns score' do
       create(
         :users_result, campaign: campaign, assessment: assessor_form,
-        subject: user, status: :completed
+        subject: user, status: :completed, score_calculated: true
       )
       cf = create(:campaign_factor, campaign: campaign, factor: factor, factor_type: 'assessor_scoring')
       create(:campaign_factor_value, campaign_factor: cf, user: user, campaign: campaign, numeric_value: 10)
@@ -165,7 +166,7 @@ describe CampaignScoring::Calculate do
       scoring[factor2.id.to_s] = { 'norm_score' => 4.8, 'score' => 5 }
       create(
         :users_result, campaign: campaign, assessment: assessment,
-        scoring: scoring, subject: user, evaluator: user, status: :completed
+        scoring: scoring, subject: user, evaluator: user, status: :completed, score_calculated: true
       )
     end
 
@@ -408,7 +409,7 @@ describe CampaignScoring::Calculate do
       scoring[factor1.id.to_s] = { 'norm_score' => 1, 'score' => 2 }
       create(
         :users_result, campaign: campaign, assessment: assessment,
-        scoring: scoring, subject: user, evaluator: user, status: :completed
+        scoring: scoring, subject: user, evaluator: user, status: :completed, score_calculated: true
       )
     end
 
@@ -429,7 +430,7 @@ describe CampaignScoring::Calculate do
     scoring[factor.id.to_s] = { 'norm_score' => 1, 'score' => 2, 'zscore' => 3.3, 'percentage' => 40 }
     create(
       :users_result, campaign: campaign, assessment: assessment,
-      scoring: scoring, subject: user, evaluator: user, status: :completed
+      scoring: scoring, subject: user, evaluator: user, status: :completed, score_calculated: true
     )
     norm_score = create(
       :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,

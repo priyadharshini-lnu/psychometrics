@@ -20,13 +20,6 @@ import styles from './styles.less'
 
 const { I18n, $ } = window
 
-// fix esbuild/rollup issue related to circluar dependency in tenserflow
-if (__DEV__) {
-  import('@mediapipe/face_mesh').then((mod) => {
-    window.FaceMesh = mod.FaceMesh
-  })
-}
-
 interface Props {
   nextStep: () => void
 }
@@ -70,7 +63,6 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
 
   const track = async () => {
     if (!videoRef.current) return
-
     const options = new faceapi.TinyFaceDetectorOptions()
 
     const canvas = document.createElement('canvas')

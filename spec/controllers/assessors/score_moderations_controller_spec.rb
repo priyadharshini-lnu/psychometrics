@@ -43,7 +43,7 @@ RSpec.describe Assessors::ScoreModerationsController, type: :controller do
 
     it 'returns subject reports and main report' do
       create(:user_assessment, evaluator: current_user, campaign: assessors_campaign, subject: subject_user,
-           assessment: report.assessments.first, status: :completed)
+           assessment: report.assessments.first, status: :completed, score_calculated: true)
       get :reports, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
       parsed_response = JSON.parse(response.body)
       expect(parsed_response['reports'].size).to eq(1)

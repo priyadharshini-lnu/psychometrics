@@ -54,6 +54,10 @@ module Administration::Threesixty
       has_permission?(:campaigns, :manage)
     end
 
+    def manage_factor_benchmark_scores?
+      has_permission?(:campaigns, :manage_factor_benchmark_scores)
+    end
+
     def reset?
       has_permission?(:campaigns, :manage)
     end

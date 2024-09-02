@@ -3,7 +3,7 @@
 module Reports
   class AssessmentSerializer < ActiveModel::Serializer
     attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules,
-               :dimension_id, :factors, :factor_scoring_counters
+               :dimension_id, :factors, :factor_scoring_counters, :factor_benchmark_scores
 
     has_many :blocks, serializer: BlockSerializer do
       object.blocks.
@@ -14,6 +14,13 @@ module Reports
         joining { template.outer }.
         includes(questions_ams: :comments).
         where.has { (template.disabled == false) | (template.id == nil) }
+    end
+
+    def factor_benchmark_scores
+      return {} unless object.threesixty_campaign
+
+      FactorBenchmarkScore.where(assessment_id: object.id, campaign_id: object.threesixty_campaign.campaign_id).
+        pluck(:factor_id, :benchmark_score).to_h
     end
 
     def factor_scoring_counters
