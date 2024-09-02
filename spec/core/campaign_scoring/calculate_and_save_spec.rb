@@ -14,7 +14,8 @@ describe CampaignScoring::CalculateAndSave do
     scoring[factor2.id.to_s] = { 'norm_score' => 4.8, 'score' => 5 }
     create(
       :users_result, campaign: campaign, assessment: assessment,
-      scoring: scoring, subject: user, evaluator: user, status: :completed
+      scoring: scoring, subject: user, evaluator: user, status: :completed,
+      score_calculated: true
     )
   end
 

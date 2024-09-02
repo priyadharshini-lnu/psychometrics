@@ -4,6 +4,7 @@ import GeoIP from './GeoIP'
 import EmbeddedData from './EmbeddedData'
 import DataSheet from './DataSheet'
 import EvaluatorRelationship from './EvaluatorRelationship'
+import UserType from '~/modules/survey/components/LogicElement/types/UserType'
 
 export default {
   Question,
@@ -13,4 +14,5 @@ export default {
   DataSheet,
   SubjectDataSheet: DataSheet,
   EvaluatorRelationship,
+  UserType: { Editor: UserType.Select, Preview: UserType.Preview },
 }

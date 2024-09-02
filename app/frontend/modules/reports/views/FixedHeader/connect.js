@@ -32,5 +32,6 @@ export default connect(
     openCampaignFactors: data => openModal('campaignFactorsModal', data),
     openAlias: data => openModal('alias', data),
     openDataConfiguration: data => openModal('dataConfiguration', data),
+    openRemapAssessment: data => openModal('remapAssessment', data),
   },
 )

@@ -780,6 +780,7 @@ Rails.application.routes.draw do
       member do
         get :preview
         post :upload_data_sheet
+        put :remap_assessment
       end
       scope module: 'reports' do
         resource :builders, only: [:update]
@@ -1272,6 +1273,13 @@ Rails.application.routes.draw do
           resources :campaigns, only: [] do
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
+            scope module: :campaigns do
+              jsonapi_resources :factor_benchmark_scores do
+                collection do
+                  post :bulk_create
+                end
+              end
+            end
             jsonapi_resources :workshops, only: %i[index show update] do
               member do
                 post :change_status

@@ -1261,7 +1261,8 @@ CREATE TABLE public.campaign_factor_values (
     string_value character varying,
     numeric_value double precision,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    calculation_type integer DEFAULT 0
 );
 
 
@@ -2314,6 +2315,40 @@ ALTER SEQUENCE public.email_templates_id_seq OWNED BY public.email_templates.id;
 
 
 --
+-- Name: factor_benchmark_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.factor_benchmark_scores (
+    id bigint NOT NULL,
+    benchmark_score numeric,
+    factor_id bigint NOT NULL,
+    campaign_id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: factor_benchmark_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.factor_benchmark_scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: factor_benchmark_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.factor_benchmark_scores_id_seq OWNED BY public.factor_benchmark_scores.id;
+
+
+--
 -- Name: factors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3209,6 +3244,113 @@ ALTER SEQUENCE public.memberships_id_seq OWNED BY public.memberships.id;
 
 
 --
+-- Name: mettl_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.mettl_assessments (
+    id bigint NOT NULL,
+    product_id character varying NOT NULL,
+    name character varying NOT NULL,
+    duration integer,
+    instructions text,
+    default_instructions text,
+    registration_fields jsonb,
+    project_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: mettl_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.mettl_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mettl_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.mettl_assessments_id_seq OWNED BY public.mettl_assessments.id;
+
+
+--
+-- Name: mettl_schedules; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.mettl_schedules (
+    id bigint NOT NULL,
+    project_id bigint,
+    assessment_id bigint NOT NULL,
+    schedule_id integer NOT NULL,
+    schedule_name character varying,
+    access_key character varying,
+    access_url character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: mettl_schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.mettl_schedules_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mettl_schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.mettl_schedules_id_seq OWNED BY public.mettl_schedules.id;
+
+
+--
+-- Name: mettl_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.mettl_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    url character varying,
+    email character varying,
+    mettl_schedule_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: mettl_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.mettl_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mettl_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.mettl_user_assessments_id_seq OWNED BY public.mettl_user_assessments.id;
+
+
+--
 -- Name: mindmill_credentials; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3638,7 +3780,8 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_saville boolean DEFAULT false,
     mask_identity_for_hogan boolean DEFAULT false,
     mask_identity_for_iiht boolean DEFAULT false,
-    mask_identity_for_examus boolean DEFAULT false
+    mask_identity_for_examus boolean DEFAULT false,
+    mask_identity_for_mettl boolean DEFAULT false
 );
 
 
@@ -5489,7 +5632,9 @@ CREATE TABLE public.user_assessments (
     meeting_link character varying,
     require_scheduling boolean DEFAULT false,
     completion_status_code character varying,
-    evaluation_session_id character varying
+    evaluation_session_id character varying,
+    score_calculated boolean DEFAULT false,
+    score_calculated_at timestamp(6) without time zone
 );
 
 
@@ -6824,6 +6969,13 @@ ALTER TABLE ONLY public.email_templates ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: factor_benchmark_scores id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_benchmark_scores ALTER COLUMN id SET DEFAULT nextval('public.factor_benchmark_scores_id_seq'::regclass);
+
+
+--
 -- Name: factors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6989,6 +7141,27 @@ ALTER TABLE ONLY public.memberships ALTER COLUMN id SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public.memberships_admin_roles ALTER COLUMN id SET DEFAULT nextval('public.memberships_admin_roles_id_seq'::regclass);
+
+
+--
+-- Name: mettl_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_assessments ALTER COLUMN id SET DEFAULT nextval('public.mettl_assessments_id_seq'::regclass);
+
+
+--
+-- Name: mettl_schedules id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_schedules ALTER COLUMN id SET DEFAULT nextval('public.mettl_schedules_id_seq'::regclass);
+
+
+--
+-- Name: mettl_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.mettl_user_assessments_id_seq'::regclass);
 
 
 --
@@ -8039,6 +8212,14 @@ ALTER TABLE ONLY public.email_templates
 
 
 --
+-- Name: factor_benchmark_scores factor_benchmark_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_benchmark_scores
+    ADD CONSTRAINT factor_benchmark_scores_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: factors_aliases factors_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8244,6 +8425,30 @@ ALTER TABLE ONLY public.memberships_admin_roles
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT memberships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mettl_assessments mettl_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_assessments
+    ADD CONSTRAINT mettl_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mettl_schedules mettl_schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_schedules
+    ADD CONSTRAINT mettl_schedules_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mettl_user_assessments mettl_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_user_assessments
+    ADD CONSTRAINT mettl_user_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -9919,6 +10124,27 @@ CREATE INDEX index_email_templates_on_campaign_id ON public.email_templates USIN
 
 
 --
+-- Name: index_factor_benchmark_scores_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factor_benchmark_scores_on_assessment_id ON public.factor_benchmark_scores USING btree (assessment_id);
+
+
+--
+-- Name: index_factor_benchmark_scores_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factor_benchmark_scores_on_campaign_id ON public.factor_benchmark_scores USING btree (campaign_id);
+
+
+--
+-- Name: index_factor_benchmark_scores_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factor_benchmark_scores_on_factor_id ON public.factor_benchmark_scores USING btree (factor_id);
+
+
+--
 -- Name: index_factors_aliases_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10336,6 +10562,41 @@ CREATE INDEX index_memberships_on_role ON public.memberships USING btree (role);
 --
 
 CREATE INDEX index_memberships_on_user_id ON public.memberships USING btree (user_id);
+
+
+--
+-- Name: index_mettl_assessments_on_product_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_mettl_assessments_on_product_id_and_project_id ON public.mettl_assessments USING btree (product_id, project_id);
+
+
+--
+-- Name: index_mettl_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mettl_assessments_on_project_id ON public.mettl_assessments USING btree (project_id);
+
+
+--
+-- Name: index_mettl_schedules_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mettl_schedules_on_assessment_id ON public.mettl_schedules USING btree (assessment_id);
+
+
+--
+-- Name: index_mettl_schedules_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mettl_schedules_on_project_id ON public.mettl_schedules USING btree (project_id);
+
+
+--
+-- Name: index_mettl_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mettl_user_assessments_on_user_assessment_id ON public.mettl_user_assessments USING btree (user_assessment_id);
 
 
 --
@@ -12396,6 +12657,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: factor_benchmark_scores fk_rails_4ca0980ea6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_benchmark_scores
+    ADD CONSTRAINT fk_rails_4ca0980ea6 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
 -- Name: dashboards fk_rails_4d4d1beb84; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12740,6 +13009,14 @@ ALTER TABLE ONLY public.reports_modules
 
 
 --
+-- Name: mettl_assessments fk_rails_7f18bbad7b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_assessments
+    ADD CONSTRAINT fk_rails_7f18bbad7b FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: comments fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12825,6 +13102,14 @@ ALTER TABLE ONLY public.privacy_consents
 
 ALTER TABLE ONLY public.hogan_credentials
     ADD CONSTRAINT fk_rails_8b50dd238d FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: mettl_user_assessments fk_rails_8bf226c657; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_user_assessments
+    ADD CONSTRAINT fk_rails_8bf226c657 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
 
 
 --
@@ -12953,6 +13238,14 @@ ALTER TABLE ONLY public.memberships
 
 ALTER TABLE ONLY public.active_storage_variant_records
     ADD CONSTRAINT fk_rails_993965df05 FOREIGN KEY (blob_id) REFERENCES public.active_storage_blobs(id);
+
+
+--
+-- Name: mettl_schedules fk_rails_993b57125e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_schedules
+    ADD CONSTRAINT fk_rails_993b57125e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -13124,6 +13417,14 @@ ALTER TABLE ONLY public.dimensions
 
 
 --
+-- Name: factor_benchmark_scores fk_rails_b025f0548c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_benchmark_scores
+    ADD CONSTRAINT fk_rails_b025f0548c FOREIGN KEY (factor_id) REFERENCES public.factors(id);
+
+
+--
 -- Name: innovation_styles_factors fk_rails_b0b768b7ef; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13281,6 +13582,14 @@ ALTER TABLE ONLY public.workshop_subjects
 
 ALTER TABLE ONLY public.development_actions
     ADD CONSTRAINT fk_rails_c7b4390378 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: factor_benchmark_scores fk_rails_c83a2d4b31; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_benchmark_scores
+    ADD CONSTRAINT fk_rails_c83a2d4b31 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
 
 
 --
@@ -13521,6 +13830,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 ALTER TABLE ONLY public.memberships_admin_roles
     ADD CONSTRAINT fk_rails_dd856566e9 FOREIGN KEY (admin_role_id) REFERENCES public.admin_roles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: mettl_schedules fk_rails_dda6b322d7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mettl_schedules
+    ADD CONSTRAINT fk_rails_dda6b322d7 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13826,8 +14143,17 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240826085931'),
+('20240822061229'),
+('20240820083735'),
+('20240816122815'),
+('20240816043248'),
+('20240814093440'),
+('20240813091709'),
 ('20240809081127'),
+('20240808093057'),
 ('20240806160845'),
+('20240801093652'),
 ('20240721171706'),
 ('20240721171655'),
 ('20240705073952'),

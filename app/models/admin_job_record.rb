@@ -68,7 +68,8 @@ class AdminJobRecord < ApplicationRecord
     bulk_download_user_reports: 40,
     export_campaign_factors: 41,
     import_campaign_factors: 42,
-    create_threesixty_campaign: 43
+    create_threesixty_campaign: 43,
+    remap_report_assessment: 44
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

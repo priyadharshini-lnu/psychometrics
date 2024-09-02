@@ -11,13 +11,14 @@ module UserReports
 
     def query
       assessment_ids = user_report.report.assessment_ids
-      user_assessments = UserAssessment.where(
-        assessment_id: assessment_ids,
-        subject_id: user_report.user_id,
-        # Disabling this condition for the assessor form to work in the report
-        # evaluator_id: user_report.user_id,
-        status: :completed
-      ).order(completed_at: :desc)
+      user_assessments = UserAssessment.
+                         scored.
+                         where(
+                           assessment_id: assessment_ids,
+                           subject_id: user_report.user_id
+                           # Disabling this condition for the assessor form to work in the report
+                           # evaluator_id: user_report.user_id,
+                         ).order(completed_at: :desc)
       if view_report_as == :lead_assessor
         lead_form = UserAssessments::GetLeadUserAssessmentForSubject.call!(user_report.campaign, user_report.user)
         if lead_form.present? && assessment_ids.include?(lead_form.assessment_id)

@@ -1,9 +1,12 @@
 import { Radio, Divider } from 'antd'
 import _ from 'lodash'
+import Modals from '~/modules/admin/components/Modals'
 import RouteList from '~/components/RouteList'
 // eslint-disable-next-line max-len
 import CampaignNameConfirmationModal from '~/modules/admin/modules/threeSixtyCampaign/components/CampaignNameConfirmationModal'
 import ResetCampaignModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetCampaignModal'
+import FactorBenchmarkScoreModal from '~/modules/admin/modules/threeSixtyCampaign/components/FactorBenchmarkScoreModal'
+
 import routeUtils from '~/utils/route'
 import settings from '../../../settings'
 import SubjectList from './SubjectList'
@@ -36,6 +39,10 @@ const Lists = ({ history, routes, setSelectedTab }) => {
       <ManageRelationshipsModal />
       <ResetCampaignModal />
       <CampaignNameConfirmationModal />
+      <Modals modals={{
+        FactorBenchmarkScoreModal,
+      }}
+      />
     </div>
   )
 }

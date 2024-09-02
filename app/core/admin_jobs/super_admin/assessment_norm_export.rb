@@ -10,7 +10,7 @@ module AdminJobs
         [
           'Result ID', 'Project ID', 'Project Name', 'Campaign ID', 'Campaign Name',
           'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
-          'Relationship', 'Started At', 'Completed At', 'Norm', 'Status', *factor_names
+          'Relationship', 'Started At', 'Completed At', 'Score Calculated At', 'Norm', 'Status', *factor_names
         ]
       end
 
@@ -32,6 +32,7 @@ module AdminJobs
           user_result.user_assessment.relationship.name,
           user_result.created_at.to_s,
           user_result.completed_at.to_s,
+          user_result.user_assessment.score_calculated_at.to_s,
           user_result.norm ? user_result.norm.name : '',
           I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
           *norm_scores
@@ -40,9 +41,9 @@ module AdminJobs
 
       def records_for_export
         query = UsersResult.joins(:user_assessment).
-                where(
-                  user_assessments: { assessment_id: assessment.id, status: :completed }
-                )
+                where(user_assessments: { assessment_id: assessment.id }).
+                merge(UserAssessment.scored)
+
         if campaign_ids.present?
           query = query.where(user_assessments: { campaign_id: campaign_ids })
         end

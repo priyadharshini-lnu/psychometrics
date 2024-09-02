@@ -39,6 +39,10 @@ export default {
         value: '',
         predicate: 'EqualTo',
       },
+      UserType: {
+        predicate: 'is',
+        value: 'Registered',
+      },
     },
   },
   Conjoint: {

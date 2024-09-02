@@ -12,6 +12,7 @@ import ConditionalImageModal from './ConditionalImageModal'
 import DisplayLogic from './DisplayLogic'
 import PipedTextModal from './PipedTextModal'
 import CampaignFactorsModal from './CampaignFactorsModal'
+import RemapAssessment from './RemapAssessment'
 
 const MODALS = {
   filter: FilterModal,
@@ -27,6 +28,7 @@ const MODALS = {
   conditionalImage: ConditionalImageModal,
   displayLogic: DisplayLogic,
   pipedText: PipedTextModal,
+  remapAssessment: RemapAssessment,
 }
 
 

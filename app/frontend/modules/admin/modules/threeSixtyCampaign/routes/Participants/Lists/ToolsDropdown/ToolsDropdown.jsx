@@ -60,7 +60,7 @@ const getCustomMenuProps = ({
 }
 
 export default function ToolsDropdown ({
-  resetCampaign, resetAllNominations, openModal, rescoreAssessment,
+  dimensionId, resetCampaign, resetAllNominations, openModal, rescoreAssessment,
   match: { params: { campaignId, projectId } }, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults,
 }) {
@@ -137,6 +137,7 @@ export default function ToolsDropdown ({
         getCustomMenuProps({
           projectId,
           campaignId,
+          dimensionId,
           resetCampaignWithConfirmation,
           resetAllNominationsWithConfirmation,
           handleRescoreAssessment,

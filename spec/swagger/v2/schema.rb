@@ -426,6 +426,12 @@ module Swagger
           ),
           FactorsMultipleResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Assessment::Factor::Schema.multiple_resource_response
+          ),
+          FactorBenchmarkScoreResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::FactorBenchmarkScore::Schema.multiple_resource_response
+          ),
+          FactorBenchmarkScoreBulkCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::FactorBenchmarkScore::Schema.bulk_create
           )
         }
       }
