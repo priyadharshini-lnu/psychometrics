@@ -52,20 +52,6 @@ class UserDecorator < BaseDecorator
     end
   end
 
-  def clients_hierarchy
-    admin_levels = admin_end_level_hierarchy
-    end_levels = []
-    end_levels = client_end_level_hierarchy unless object.is?(:project_admin)
-    end_levels.concat(clients_hierarchy_for_regular_user).join('<br/>')
-    if object.is?(:client_admin) || object.is?(:superadmin)
-      admin_levels.concat(client_admin_hierarchy_for_user).join('<br/>')
-    end
-    admin_levels.concat(assessor_hierarchy_for_user).join('<br/>') if object.assessors.any?
-    admin_levels.concat(campaign_admin_hierarchy_for_user).join('<br/>') if object.is?(:campaign_admin)
-
-    [admin_levels, end_levels].reject(&:empty?).join('<br/>').html_safe
-  end
-
   def admin_end_level_hierarchy
     object.project_admin_clients.map do |client|
       path = h.administration_client_project_admins_path(client)
@@ -78,24 +64,6 @@ class UserDecorator < BaseDecorator
     object.campaign_admin_campaigns.map do |campaign|
       path = h.administration_project_new_campaign_path(campaign.project, campaign)
       h.link_to campaign.decorate.html_escaped_display_name, path
-    end
-  end
-
-  def client_end_level_hierarchy
-    object.clients.end_level.map do |client|
-      clients_array = client.path.order(:id)
-      whole_path = clients_array.filter_map do |c|
-        next if c.tenancy?
-
-        path = if c.campaign_level? || c.sub_campaign_level?
-                 h.administration_client_project_campaigns_path(clients_array[0], c)
-               elsif c.depth == 2 && clients_array[1].sub_campaign_level?
-                 h.administration_client_project_campaign_sub_campaigns_path(clients_array[0], clients_array[1], c)
-               end
-        path ||= h.administration_client_users_path(c)
-        h.link_to c.decorate.html_escaped_display_name, path
-      end.join(' > ')
-      "&#187; #{whole_path}"
     end
   end
 
@@ -113,22 +81,6 @@ class UserDecorator < BaseDecorator
     object.client_admin_clients.map do |client|
       link = h.link_to(client.decorate.html_escaped_display_name, h.administration_client_client_admins_path(client))
       "&#187; #{link}"
-    end
-  end
-
-  def clients_hierarchy_for_regular_user
-    object.campaigns.includes(:project, :threesixty_campaign).map do |campaign|
-      project = campaign.project
-      client = campaign.client
-      whole_path = [
-        h.link_to(client.decorate.html_escaped_display_name, h.administration_client_client_admins_path(client)),
-        h.link_to(
-          project.decorate.html_escaped_display_name,
-          h.administration_client_project_campaigns_path(client, project)
-        ),
-        h.link_to(campaign.decorate.html_escaped_display_name, campaign_path(campaign, project, client))
-      ].join(' > ')
-      "&#187; #{whole_path}"
     end
   end
 

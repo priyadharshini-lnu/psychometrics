@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
   audited
 
@@ -63,8 +62,6 @@ class Membership < ApplicationRecord
   validate :relevant_role, if: -> { client.present? }
 
   before_save :set_project_membership, if: -> { client.end_level? }
-  after_create_commit :create_invitation_emails
-  after_create_commit :create_other_emails
   after_destroy :clear_project_membership, if: -> { client.end_level? }
 
   has_ancestry
@@ -209,27 +206,6 @@ class Membership < ApplicationRecord
     project_membership.destroy!
   end
 
-  def create_invitation_emails
-    return if already_invited?
-
-    invite = invitation_for_current_membership
-    if invite
-      invite.emails.create(membership_id: id)
-    elsif through_registration
-      raw_token = Users::FindOrCreateInvitationToken.call!(user)
-      InvitationMailer.invite(user_id, client_id, raw_token).deliver_later
-    end
-  end
-
-  def create_other_emails
-    communications = Communication.other.where(end_level_id: client.path_ids)
-    communications = communications.send_now.
-                     or(communications.specific_datetime.where('delivery_at <= ?', Time.current))
-    communications.find_each(batch_size: 100) do |communication|
-      communication.emails.create(membership_id: id) if communication.selected_memberships_ids.include?(id)
-    end
-  end
-
   def relevant_role
     valid = case role
               when CLIENT_ADMIN_ROLE
@@ -246,13 +222,6 @@ class Membership < ApplicationRecord
     errors.add(:role, 'Invalid') unless valid
   end
 
-  def invitation_for_current_membership
-    Communication.new_users_recipients.invitation_for_end_level_id(client.path_ids).
-      includes(:memberships).order(created_at: :desc).detect do |communication|
-      communication.current_memberships_ids.include?(id)
-    end
-  end
-
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
@@ -260,4 +229,3 @@ class Membership < ApplicationRecord
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
