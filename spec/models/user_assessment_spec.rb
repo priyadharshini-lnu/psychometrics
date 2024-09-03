@@ -325,7 +325,7 @@ status: :in_progress)
 
     it 'saves campaign factor values' do
       perform_enqueued_jobs do
-        assessor_user_assessment.update!(status: :completed)
+        assessor_user_assessment.update!(status: :completed, score_calculated: true)
       end
 
       expect(campaign_user.campaign_factor_values.first.numeric_value).to eq(3)
