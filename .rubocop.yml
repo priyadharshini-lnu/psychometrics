@@ -17,6 +17,9 @@ AllCops:
     # Exclude all migration files from 2010 to 2023
     - 'db/migrate/201[0-9][0-9][0-9][0-9][0-9]*_*.rb'
     - 'db/migrate/202[0-3][0-9][0-9][0-9][0-9]*_*.rb'
+    - db/migrate/20240808093057_add_score_calculated_to_user_assessment.rb
+    - db/migrate/20240808093057_add_score_calculated_to_user_assessment.rb
+    - db/migrate/20240806160845_add_show_watermark_to_campaign_options.rb
 
 
   UseCache: true
