@@ -8,4 +8,18 @@ class MettlScheduleRecord < ApplicationRecord
   def parent_or_self
     parent_schedule || self
   end
+
+  scope :parent_schedules, -> { where(duplicated_from_id: nil) }
+
+  scope :filterable_fields, lambda { |query|
+                              where(
+                                'mettl_schedule_records.schedule_name ILIKE :query ' \
+                                'OR mettl_schedule_records.schedule_id = :query_id',
+                                query: "%#{query}%", query_id: query.to_i
+                              )
+                            }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filterable_fields]
+  end
 end

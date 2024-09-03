@@ -4,9 +4,9 @@ import {
   Row, Col, Button, Table, Badge, Space, Tooltip, message,
 } from 'antd'
 import {
-  DeleteOutlined, EditOutlined, PlusOutlined, LoadingOutlined, SyncOutlined,
+  DeleteOutlined, EditOutlined, PlusOutlined, LoadingOutlined, SyncOutlined, EyeOutlined,
 } from '@ant-design/icons'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import map from 'lodash/map'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
@@ -16,6 +16,8 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
 import { isRequestInProgress } from '~/core/request'
 import { IntegrationFormModal } from './IntegrationFormModal'
+import routeUtils from '~/utils/route'
+import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
 
 
 const { Column } = Table
@@ -52,6 +54,12 @@ const IntegrationsComponent: React.FC<Props> = ({
 }) => {
   const { projectId } = useParams() as { projectId: string }
 
+  const navigate = useNavigate()
+  const prefix = `${settings.urlPrefix}/:projectId/settings`
+
+  const handleTabChange = (currentTab) => {
+    routeUtils.moveTo(navigate, prefix, `/${currentTab}`)
+  }
 
   useEffect(() => {
     fetch(projectId)
@@ -63,9 +71,6 @@ const IntegrationsComponent: React.FC<Props> = ({
         message.success(I18n.t('administration.integrations.load_mettl_success'))
       })
   }
-
-  const mettlIntegrationExists = integrations.some(integration => integration.name === 'mettl')
-
 
   return (
     <>
@@ -80,17 +85,6 @@ const IntegrationsComponent: React.FC<Props> = ({
           >
             {I18n.t('administration.integrations.actions.add')}
           </Button>
-
-          {mettlIntegrationExists && (
-            <Button
-              type="primary"
-              className="mb-4"
-              icon={<SyncOutlined />}
-              onClick={handleMettlLoad}
-            >
-              {I18n.t('administration.integrations.actions.load_mettl_catalog')}
-            </Button>
-          )}
 
           <Table dataSource={integrations} pagination={false}>
             <Column
@@ -150,6 +144,14 @@ const IntegrationsComponent: React.FC<Props> = ({
               title={I18n.t('common.column.action')}
               render={integration => (
                 <Space size="middle">
+                  {integration.name === 'mettl' && (
+                    <Tooltip title={I18n.t('administration.integrations.actions.load_mettl_catalog')}>
+                      <SyncOutlined onClick={handleMettlLoad} />
+                    </Tooltip>
+                  )}
+                  <Tooltip title={I18n.t('administration.integrations.view_all_schedules')}>
+                    <EyeOutlined onClick={() => handleTabChange('integrations/mettl_schedule_records')} />
+                  </Tooltip>
                   <Tooltip title={I18n.t('common.actions.edit')}>
                     <EditOutlined onClick={() => openModal('IntegrationFormModal', { integration })} />
                   </Tooltip>

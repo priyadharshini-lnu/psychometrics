@@ -2025,6 +2025,7 @@ en:
     integrations:
       actions:
         add: Integrations
+        back: Back to Integrations
         load_mettl_catalog: Load Mettl Assessment Catalog
       columns:
         active: Active
@@ -2062,6 +2063,7 @@ en:
           tenant_id_present: Tenant id is already present in other project
         mettl:
           public_key_present: Public key is already present in other project
+      view_all_schedules: View All Mettl Schedules
     invited_subject:
       add_btn: Add Subject
       column:
@@ -2479,6 +2481,11 @@ en:
         project_number_label: Project Number
         save_changes: Save Changes
         sub_domain_label: Sub Domain
+      mettl_schedule_records:
+        created_at: Created At
+        schedule_id: Schedule ID
+        schedule_name: Schedule Name
+        search: Search
       privacy_settings:
         dp_consent: Enable Data Processing consent
         dp_consent_custom: Customise Data Processing consent
