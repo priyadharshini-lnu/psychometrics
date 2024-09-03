@@ -69,12 +69,22 @@ const FactorType: FC<Props> = ({
     return allFactorsIds
   }
 
+  const mockedResult = (data) => {
+    const dimensionId = AppStore.getAssessmentById(assessment_id)?.dimensionId ?? ''
+    const allFactors: Array<{ id: number; name: string }> = AppStore.factors?.[dimensionId] ?? []
+
+    return factorIds.map((id, i) => ({
+      ...data[i],
+      name: allFactors.find(factor => factor.id === id)?.name ?? '',
+    }))
+  }
+
   // If no factors are selected, by default consider all factors
   const providedFactorIds = factorIds && factorIds.length > 0 ? factorIds : getAllFactors()
 
   const [highestFactors, lowestFactors] = ResultStore.realResults
     ? calculateHighestLowest(assessment_id, filterId, providedFactorIds)
-    : [MOCK_HIGHEST_DATA, MOCK_LOWEST_DATA]
+    : [mockedResult(MOCK_HIGHEST_DATA), mockedResult(MOCK_LOWEST_DATA)]
 
   const filter = AppStore.report.filters.find(
     filter => filter.id === filterId,

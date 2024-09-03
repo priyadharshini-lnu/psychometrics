@@ -16,7 +16,7 @@ class Campaign < ApplicationRecord
   belongs_to :project, class_name: 'Client'
   belongs_to :default_idp_template, class_name: 'IdpTemplate', optional: true
 
-  has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
+  has_one :threesixty_campaign, class_name: '::Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :campaign_options, dependent: :destroy
   has_one :accesssheet, dependent: :destroy
@@ -35,6 +35,7 @@ class Campaign < ApplicationRecord
   has_many :campaign_factors, dependent: :destroy
   has_many :campaign_factor_values, dependent: :destroy
   has_many :campaign_assessor_assessment_factor_weights, dependent: :destroy
+  has_many :factor_benchmark_scores, dependent: :destroy
 
   delegate :fixed_time?,
            :fixed_time,

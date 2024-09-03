@@ -730,6 +730,7 @@ en:
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report
+        remap_report_assessment: Remap Report Assessment
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
@@ -1219,6 +1220,7 @@ en:
       export_result: Export Result
       export_scores: Export Scores
       export_scoring: Scoring
+      factor_benchmark_score: Factor Benchmark Score
       import_raw: Raw
       import_scoring: Scoring
       regenerate: Regenerate Reports
@@ -2066,6 +2068,8 @@ en:
       last_week: Last Week
       today: Today
       yesterday: Yesterday
+    input_duration:
+      max_duration: Maximum duration is %{duration}
     schedule_availability:
       copy_to_all: Copy to all
       end_date: End Date

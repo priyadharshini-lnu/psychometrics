@@ -103,10 +103,10 @@ const AuditLogList: React.FC<Props> = (
       removeFilter('created_at_lteq')
     }
 
-    changeFilter('user_eq', user)
-    changeFilter('client_eq', client)
-    changeFilter('project_eq', project)
-    changeFilter('campaign_eq', campaign)
+    changeFilter('user_search', user)
+    changeFilter('client_search', client)
+    changeFilter('project_search', project)
+    changeFilter('campaign_search', campaign)
   }
 
   const handleReset = () => {
@@ -338,9 +338,12 @@ const AuditLogList: React.FC<Props> = (
             <Column
               title={I18n.t('administration.audit_log.campaign')}
               key="campaign"
-              render={({ projectId, campaignId, campaign }) => (
+              render={({
+                project, campaignId, campaign,
+              }) => (
+
                 campaign ? (
-                  <a href={`/admin/projects/${projectId}/new_campaigns/${campaignId}`}>
+                  <a href={`/admin/projects/${project.id}/new_campaigns/${campaign.id}`}>
                     {campaign.name}
                   </a>
                 ) : campaignId && `${campaignId} - deleted`

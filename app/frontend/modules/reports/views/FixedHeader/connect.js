@@ -32,5 +32,6 @@ export default connect(
     openAlias: data => openModal('alias', data),
     openDataConfiguration: data => openModal('dataConfiguration', data),
     openSettings: data => openModal('reportSettings', data),
+    openRemapAssessment: data => openModal('remapAssessment', data),
   },
 )

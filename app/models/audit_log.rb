@@ -26,13 +26,23 @@ class AuditLog < ApplicationRecord
 
   enum :interface, %i[api browser]
 
-  scope :user_search, lambda {  |search_term|
+  scope :user_search, lambda { |search_term|
+    table_alias = 'users'
+    scope = joins(
+      %(
+        LEFT OUTER JOIN "users" "#{table_alias}" ON
+        "#{table_alias}"."id" = "#{table_name}"."user_id"
+      )
+    )
+
     if (search_term !~ /\D/) && search_term.present?
-      where(
-        'user_id = ? OR users.email ILIKE ?', search_term, "%#{search_term}%"
+      scope.where(
+        %("#{table_name}"."user_id" = ? OR #{table_alias}.email ILIKE ?),
+        search_term,
+        "%#{search_term}%"
       )
     else
-      where('users.email ILIKE ?', "%#{search_term}%")
+      scope.where("#{table_alias}.email ILIKE ?", "%#{search_term}%")
     end
   }
 

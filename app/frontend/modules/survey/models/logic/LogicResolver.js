@@ -95,6 +95,10 @@ export default class LogicResolver {
       if (condition.conditionType === 'GeoIP') {
         return true
       }
+
+      if (condition.conditionType === 'UserType') {
+        return !!(condition.predicate && condition.value)
+      }
     })
   }
 

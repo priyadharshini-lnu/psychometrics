@@ -9,7 +9,8 @@ describe Hogan::HandleAssessmentCompletion do
   let(:project) { create(:project) }
   let!(:users_result) { create(:users_result, without_user_assessment: true) }
   let(:user_assessment) do
-    create(:user_assessment, assessment: assessment, users_result: users_result, status: :completed)
+    create(:user_assessment, assessment: assessment, users_result: users_result, status: :completed,
+score_calculated: true)
   end
   let!(:user_report) do
     create(:user_report,

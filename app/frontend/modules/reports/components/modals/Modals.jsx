@@ -12,6 +12,7 @@ import ConditionalImageModal from './ConditionalImageModal'
 import DisplayLogic from './DisplayLogic'
 import PipedTextModal from './PipedTextModal'
 import { ReportSettings } from './ReportSettings'
+import RemapAssessment from './RemapAssessment'
 
 const MODALS = {
   filter: FilterModal,
@@ -27,6 +28,7 @@ const MODALS = {
   displayLogic: DisplayLogic,
   pipedText: PipedTextModal,
   reportSettings: ReportSettings,
+  remapAssessment: RemapAssessment,
 }
 
 

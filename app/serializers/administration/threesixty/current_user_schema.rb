@@ -30,6 +30,7 @@ module Administration
             required(:manageRelationships).filled(:bool?)
             required(:regenerateReport).filled(:bool?)
             required(:manageAdmins).filled(:bool?)
+            required(:manageFactorBenchmarkScores).filled(:bool?)
           end
           optional(:photo)
           required(:timezone).maybe(:str?)

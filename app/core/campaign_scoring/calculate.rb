@@ -12,7 +12,7 @@ module CampaignScoring
       @user_assessments = campaign.user_assessments.includes(:users_result).where(
         subject_id: user.id,
         evaluator_id: user.id
-      ).completed.index_by(&:assessment_id)
+      ).scored.index_by(&:assessment_id)
       @factor_values = {}
       @exceptions = {}
     end

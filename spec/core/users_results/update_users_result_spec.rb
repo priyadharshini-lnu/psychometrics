@@ -8,6 +8,8 @@ describe ::UsersResults::UpdateUsersResult do
     double('users_result', subject: 'subject', evaluator: 'evaluator', threesixty_campaign: threesixty_campaign,
       user_assessment: UserAssessment.new(campaign: build(:campaign)))
   end
+  let!(:norm) { create(:norm) }
+
   let(:evaluator_user) { double('user', id: 1) }
 
   subject { described_class.call(form, users_result, evaluator_user) }
@@ -56,10 +58,38 @@ describe ::UsersResults::UpdateUsersResult do
 
     it 'should save dirty results and change progress_reseted to false' do
       users_result = user_assessment.users_result
+
       described_class.call(form, users_result, evaluator_user)
 
       expect(user_assessment.progress_reseted).to be_falsey
       expect(users_result.answers).to eq({ '1' => { 'dirty' => true } })
+    end
+  end
+
+  describe 'completed assessment' do
+    let(:form) { double('form', invalid?: false, attributes_with_values: { norm_id: norm.id }) }
+    let(:user_assessment) { create(:user_assessment, status: 'completed') }
+
+    before do
+      allow(::UsersResults::SaveScoringWithCallbacksJob).to receive(:perform_later)
+    end
+
+    it 'updates completed_at and norm_id' do
+      users_result = user_assessment.users_result
+
+      described_class.call(form, users_result, evaluator_user)
+
+      expect(user_assessment.completed_at).to be_present
+      expect(user_assessment.norm_id).to be_present
+    end
+
+    it 'enqueues SaveScoringWithCallbacksJob' do
+      users_result = user_assessment.users_result
+
+      described_class.call(form, users_result, evaluator_user)
+
+      expect(::UsersResults::SaveScoringWithCallbacksJob).to have_received(:perform_later).with(users_result,
+                                                                                                evaluator_user)
     end
   end
 
@@ -106,13 +136,15 @@ describe ::UsersResults::UpdateUsersResult do
       context 'users_result is completed' do
         before do
           allow(users_result.user_assessment).to receive(:completed?).and_return(true)
+          allow(::UsersResults::SaveScoringWithCallbacksJob).to receive(:perform_later)
         end
 
-        it { expect(::UsersResults::RemoveDirtyResults).to receive(:call!).with(subject.answers).and_return({}) }
-        it { expect(::UsersResults::ExpandAnswersByRecoding).to receive(:call!).with(subject) }
-        it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject) }
-        it { expect(::Assigns::CalculateOccupations).to receive(:call!).with(subject) }
-        it { expect(users_result.user_assessment).to receive(:'completed_at=').with(Time.zone.now) }
+        it 'enqueues SaveScoringWithCallbacksJob' do
+          described_class.call(form, users_result, evaluator_user)
+
+          expect(::UsersResults::SaveScoringWithCallbacksJob).to have_received(:perform_later).with(users_result,
+                                                                                                    evaluator_user)
+        end
       end
     end
   end

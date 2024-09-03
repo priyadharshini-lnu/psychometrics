@@ -23,7 +23,8 @@ module AdminJobs
 
       def users_results
         query = UsersResult.joins(:user_assessment).
-                where(user_assessments: { assessment_id: assessment.id, status: :completed }).
+                where(user_assessments: { assessment_id: assessment.id }).
+                merge(UserAssessment.scored).
                 includes(campaign: :project, user_assessment: :subject)
         return query if campaign_ids.blank?
 

@@ -32,6 +32,7 @@ export const IMPORT_TRANSLATIONS = 'report/IMPORT_TRANSLATIONS'
 export const ADD_STYLE = 'report/ADD_STYLE'
 export const UPDATE_STYLE = 'report/UPDATE_STYLE'
 export const REMOVE_STYLE = 'report/REMOVE_STYLE'
+export const REMAP_ASSESSMENT = 'report/REMAP_ASSESSMENT'
 
 export enum SelectedTypes {
   'Module'= 'Module',
@@ -50,6 +51,15 @@ export const fetch = id => ({
 export const init = (data, userReport = null, campaignId = null) => ({
   type: INIT, data, userReport, campaignId,
 })
+export const remapAssessment = (id: number, currentAssessmentId: number, newAssessmentId: number) => ({
+  type: REMAP_ASSESSMENT,
+  request: {
+    method: 'put',
+    url: `/administration/reports/${id}/remap_assessment`,
+    body: { currentAssessmentId, newAssessmentId },
+  },
+})
+
 export const openRichEditor = () => ({ type: OPEN_RICH_EDITOR })
 export const closeRichEditor = () => ({ type: CLOSE_RICH_EDITOR })
 

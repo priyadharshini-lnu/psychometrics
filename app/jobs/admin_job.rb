@@ -53,6 +53,7 @@ class AdminJob < ApplicationJob
     export_campaign_factors: AdminJobs::ExportCampaignFactors,
     import_campaign_factors: AdminJobs::ImportCampaignFactors,
     create_threesixty_campaign: AdminJobs::CreateThreesixtyCampaign,
+    remap_report_assessment: AdminJobs::RemapReportAssessment,
     threesixty_campaign_export_scores: AdminJobs::ThreesixtyCampaignExportScores,
     import_external_campaign_scoring: AdminJobs::ImportExternalCampaignScoring
   }.freeze

@@ -23,7 +23,7 @@ module Administration
     end
 
     def all_assessments_are_completed
-      object.all_assessments_are_completed?
+      object.all_assessments_are_scored?
     end
 
     def has_report_config

@@ -32,7 +32,7 @@ module UserAssessments
 
     def publish_results_available
       user_assessment.user_reports.each do |user_report|
-        next unless user_report.all_assessments_are_completed?
+        next unless user_report.all_assessments_are_scored?
         next if user_report.report.data_configuration.empty?
 
         UserReports::Webhook.new(user_report).publish_reports_result_available

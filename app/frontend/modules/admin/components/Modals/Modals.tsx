@@ -21,7 +21,8 @@ const Modals: React.FC<Props> = ({
         const ModalComponent = modals[modalName]
         const modalProps = data[modalName] || {}
         if (ModalComponent === undefined) {
-          throw new Error(`Modal ${modalName} not present in modals props. Modals are ${Object.keys(modals)}`)
+          console.error(`Modal ${modalName} not present in modals props. Modals are ${Object.keys(modals)}`)
+          return null
         }
         return <ModalComponent key={modalName} close={() => closeModal(modalName)} {...modalProps} />
       })}

@@ -15,8 +15,10 @@ describe Threesixty::Participants::CalcCounters do
              campaign: campaign, evaluator_id: second_subject.user_id, manager_nomination_status: :approved)
       create(:threesixty_participant,
              campaign: campaign, evaluator_id: first_subject.user_id, manager_nomination_status: :waiting)
-      create(:users_result, campaign: campaign, subject_id: first_subject.user_id, status: :completed)
-      create(:users_result, campaign: campaign, subject_id: first_subject.user_id, status: :completed)
+      create(:users_result, campaign: campaign, subject_id: first_subject.user_id, status: :completed,
+score_calculated: true)
+      create(:users_result, campaign: campaign, subject_id: first_subject.user_id, status: :completed,
+score_calculated: true)
     end
 
     let(:option_which_does_not_require_approval) do

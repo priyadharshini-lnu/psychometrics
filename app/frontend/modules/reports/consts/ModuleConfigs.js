@@ -214,7 +214,7 @@ export default {
       VideoResponse: { multiFiltering: true },
       SingleValue: { multiFiltering: true },
       Competencies: { multiFiltering: true },
-      FactorsTable: { multiFiltering: true },
+      FactorsTable: { multiFiltering: true, benchmarksLabel: 'Benchmark Score' },
     },
 
     HrisData: {
@@ -226,6 +226,9 @@ export default {
       ],
     },
     defaultProps: {
+      FactorsTable: {
+        benchmarksLabel: 'Benchmark Score',
+      },
       HighestLowest: {
         sourceType: 'Question',
       },

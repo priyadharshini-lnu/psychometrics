@@ -46,6 +46,7 @@ describe Reports::PrepareDataForReport do
            assessment: threesixty_campaign.assessment,
            subject: subject.user,
            evaluator: evaluator,
-          relationship: relationship)
+          relationship: relationship,
+          score_calculated: true)
   end
 end

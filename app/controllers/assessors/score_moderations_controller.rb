@@ -51,7 +51,7 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
                          campaign.user_reports.find_by(report_id: main_report.report_id, user_id: user.id)
                        end
 
-    if main_user_report&.all_assessments_are_completed?(except_assessment_ids: [campaign.lead_assessor_assessment.id])
+    if main_user_report&.all_assessments_are_scored?(except_assessment_ids: [campaign.lead_assessor_assessment.id])
       main_user_report_id = main_user_report.id
     end
 
