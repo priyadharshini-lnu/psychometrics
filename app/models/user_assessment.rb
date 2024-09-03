@@ -34,7 +34,7 @@ class UserAssessment < ApplicationRecord
 
   has_one :threesixty_campaign, through: :campaign
 
-  delegate :saville?, :iiht?, :pearson?, :mettl?, :assessor_form?, to: :assessment
+  delegate :saville?, :iiht?, :pearson?, :mettl?, :assessor_form?, :external?, to: :assessment
   delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
 
@@ -82,6 +82,8 @@ class UserAssessment < ApplicationRecord
   scope :pending_assessments, lambda {
     where('subject_id = evaluator_id').where.not(status: %i[completed timed_out ineligible])
   }
+
+  scope :scored, -> { where(status: :completed, score_calculated: true) }
   scope :deemed_completed, -> { where(status: DEEMED_COMPLETED_STATUS) }
   scope :deemed_incomplete, -> { where.not(status: DEEMED_COMPLETED_STATUS) }
 
@@ -99,7 +101,7 @@ class UserAssessment < ApplicationRecord
                if: proc { status_previously_changed? }, on: %i[update]
 
   after_commit -> { calculate_and_save_campaign_scoring },
-               if: proc { status_previously_changed? && completed? }, on: %i[update]
+               if: proc { score_calculated_previously_changed? && completed? }, on: %i[update]
 
   alias result users_result
 

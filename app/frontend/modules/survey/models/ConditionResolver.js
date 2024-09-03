@@ -2,9 +2,10 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Validations from './Validations'
 import FlowDatasheetResolver from './logic/resolvers/FlowDatasheetResolver'
+import UserType from './logic/resolvers/UserType'
 
 const ConditionResolver = function (conditions, {
-  questions, results, dataSheet, subjectDataSheet, relationship,
+  questions, results, dataSheet, subjectDataSheet, relationship, isAnonymousAssessment,
 }) {
   this.conditions = conditions
   this.questions = questions
@@ -12,6 +13,7 @@ const ConditionResolver = function (conditions, {
   this.dataSheet = dataSheet
   this.subjectDataSheet = subjectDataSheet
   this.relationship = relationship
+  this.isAnonymousAssessment = isAnonymousAssessment
 }
 
 ConditionResolver.prototype = new EventEmitter()
@@ -45,6 +47,10 @@ _.extend(ConditionResolver.prototype, {
       if (condition.conditionType === 'GeoIP') {
         return true
       }
+
+      if (condition.conditionType === 'UserType') {
+        return !!(condition.predicate && condition.value)
+      }
     })
   },
 
@@ -66,6 +72,7 @@ _.extend(ConditionResolver.prototype, {
       }
       prev = result
     })
+
     return res
   },
 
@@ -85,6 +92,10 @@ _.extend(ConditionResolver.prototype, {
 
     if (condition.conditionType === 'GeoIP') {
       return {}
+    }
+
+    if (condition.conditionType === 'UserType') {
+      return { value: new UserType(condition, { isAnonymousAssessment: this.isAnonymousAssessment }).resolve() }
     }
 
     if (condition.conditionType === 'DataSheet') {

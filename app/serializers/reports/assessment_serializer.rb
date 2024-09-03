@@ -3,7 +3,7 @@
 module Reports
   class AssessmentSerializer < Panko::Serializer
     attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules,
-               :dimension_id, :factors, :factor_scoring_counters, :blocks
+               :dimension_id, :factors, :factor_scoring_counters, :blocks, :factor_benchmark_scores
 
     def blocks
       blocks = object.blocks.
@@ -22,6 +22,13 @@ module Reports
           piped_text_context: context[:piped_text_context]
         }
       ).to_a
+    end
+
+    def factor_benchmark_scores
+      return {} unless object.threesixty_campaign
+
+      FactorBenchmarkScore.where(assessment_id: object.id, campaign_id: object.threesixty_campaign.campaign_id).
+        pluck(:factor_id, :benchmark_score).to_h
     end
 
     def factor_scoring_counters

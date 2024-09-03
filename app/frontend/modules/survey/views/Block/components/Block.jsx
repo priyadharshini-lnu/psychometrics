@@ -1,7 +1,9 @@
 import { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
+import {
+  Input, Dropdown, Collapse, Button,
+} from 'antd'
 import _ from 'lodash'
-import { Dropdown, Collapse, Button } from 'antd'
 import QuestionList from '~/modules/survey/views/QuestionList'
 import BlockModel from '~/modules/survey/models/Block'
 import InlineEditor from '~/modules/survey/components/InlineEditor'
@@ -25,6 +27,7 @@ class Block extends Component {
     this.state = {
       showPrompt: false,
       showDeleteConfirmation: false,
+      search: '',
     }
   }
 
@@ -234,7 +237,9 @@ class Block extends Component {
 
   render () {
     const { model, first } = this.props
-    const { showPrompt, showDeleteConfirmation } = this.state
+    const {
+      showPrompt, showDeleteConfirmation, search,
+    } = this.state
     return (
       <Collapse
         className={styles.block}
@@ -247,6 +252,16 @@ class Block extends Component {
               <div className={styles.expander}>
                 <InlineEditor value={model.name} onChange={this.changeName} />
               </div>
+              {model.questions.length > 100 && (
+                <div className={styles.search}>
+                  <Input.Search
+                    placeholder="type to search question"
+                    className={styles.input}
+                    onChange={e => this.setState({ search: e.currentTarget.value })}
+                    allowClear
+                  />
+                </div>
+              )}
               <div>
                 {this.renderRandomLabel()}
                 <div className={styles.options}>{this.renderOptions()}</div>
@@ -264,7 +279,7 @@ class Block extends Component {
                 ref={first ? this.questionContentRef : undefined}
                 className={[styles.content]}
               >
-                <QuestionList block={model} />
+                <QuestionList block={model} search={search} />
                 <Footer {...this.props} onMinimize={this.expand} />
               </div>
               <Prompt

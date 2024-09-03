@@ -81,6 +81,7 @@ export class Condition extends Component {
         <option value="DataSheet">Datasheet</option>
         <option value="SubjectDataSheet">Subject Datasheet</option>
         <option value="EvaluatorRelationship">Evaluator Relationship</option>
+        <option value="UserType">User Type</option>
       </select>
     )
   }

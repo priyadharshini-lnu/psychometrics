@@ -6,8 +6,8 @@ import {
   INIT, PASTE_PAGE, PASTE_MODULE, PastePageType, PasteModuleType,
 } from '../actions'
 import {
-  UPDATE_MODULE, REMOVE_MODULE,
-  UpdateModuleType, RemoveModuleType,
+  UPDATE_MODULE, REMOVE_MODULE, UPDATE_ALL,
+  UpdateModuleType, RemoveModuleType, UpdateAllType,
 } from './actions'
 import {
   ADD_MODULE,
@@ -43,6 +43,9 @@ const HANDLERS = {
     }, {}),
   }),
   [PASTE_MODULE]: (state: Store, { module }: PasteModuleType) => setIn(state, module.id, module.toJSON()),
+  [UPDATE_ALL]: (state: Store, { modules }: UpdateAllType) => _.reduce(modules, (acc, module) => ({
+    ...acc, [module.id]: module,
+  }), {}),
 }
 
 export default createReducer(HANDLERS, defaultState)

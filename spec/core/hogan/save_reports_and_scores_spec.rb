@@ -12,7 +12,7 @@ describe Hogan::SaveReportsAndScores do
   let!(:user_assessment) do
     create(
       :user_assessment, assessment: assessment, subject: user, campaign: campaign,
-      users_result: users_result, status: :completed
+      users_result: users_result, status: :completed, score_calculated: true
     )
   end
   let!(:user_report) do

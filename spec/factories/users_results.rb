@@ -13,6 +13,7 @@ FactoryBot.define do
       assessment_id { nil }
       campaign_id { nil }
       status { 0 }
+      score_calculated { false }
       without_user_assessment { nil }
     end
 
@@ -26,7 +27,8 @@ FactoryBot.define do
              assessment_id: attrs.assessment_id || attrs.assessment.id,
              campaign_id: attrs.campaign_id || attrs.campaign.id,
              relationship: attrs.relationship,
-             status: attrs.status)
+             status: attrs.status,
+             score_calculated: attrs.score_calculated)
     end
   end
 end

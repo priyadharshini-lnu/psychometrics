@@ -26,6 +26,10 @@ module Administration
       @user.has_permission?(:reports, :manage, project_id: @record.owner_id)
     end
 
+    def remap_assessment?
+      @user.has_permission?(:reports, :manage, project_id: @record.owner_id)
+    end
+
     def open_channel?
       @user.has_permission?(:reports, :manage, project_id: @record.owner_id)
     end

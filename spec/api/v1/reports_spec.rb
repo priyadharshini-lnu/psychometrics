@@ -192,6 +192,7 @@ describe 'Reports' do
 
         before do
           user_assessment.users_result.completed!
+          user_assessment.update(score_calculated: true)
         end
 
         run_test! do |response|
@@ -223,7 +224,7 @@ describe 'Reports' do
           expect(error).to eq(
             'code' => 1004,
             'message' => 'Assessment not completed',
-            'more_info' => "Assessments for report #{report_id} are not completed",
+            'more_info' => "Scorings for report #{report_id} are not calculated yet",
             'meta' => nil
           )
         end

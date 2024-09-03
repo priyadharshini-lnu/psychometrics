@@ -28,6 +28,10 @@ export const DEFAULTS = {
     predicate: 'EqualTo',
     value: '',
   },
+  UserType: {
+    predicate: 'is',
+    value: 'Registered',
+  },
 }
 
 export const TYPE_LABELS = {
@@ -38,4 +42,5 @@ export const TYPE_LABELS = {
   SubjectDataSheet: 'Subject DataSheet',
   EvaluatorDataSheet: 'Evaluator DataSheet',
   EvaluatorRelationship: 'Evaluator Relationship',
+  UserType: 'UserType',
 }

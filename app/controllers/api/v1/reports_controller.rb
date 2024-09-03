@@ -30,8 +30,8 @@ module Api
                 "Report ID: #{params[:id]} not found for user in Campaign: #{@campaign.id}."
         end
 
-        unless @user_report.all_assessments_are_completed?
-          raise Api::Errors::AssessmentsNotCompleted, "Assessments for report #{report.id} are not completed"
+        unless @user_report.all_assessments_are_scored?
+          raise Api::Errors::AssessmentsNotCompleted, "Scorings for report #{report.id} are not calculated yet"
         end
 
         if @user_report.report.data_only? && report_user_results.length.zero?

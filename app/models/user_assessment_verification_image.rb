@@ -18,9 +18,9 @@ class UserAssessmentVerificationImage < ApplicationRecord
   # list of CarrierWave attributes to be synced to ActiveStorage
   sync_to_active_storage :file
 
-  def attachment_storage_path(filename)
+  def attachment_storage_path(attribute_name, filename)
     project_id = user_assessment.project.id
 
-    "private/projects/#{project_id}/user_verification_images/#{user_assessment.id}/file/#{filename}"
+    "private/projects/#{project_id}/user_verification_images/#{user_assessment.id}/#{attribute_name}/#{filename}"
   end
 end

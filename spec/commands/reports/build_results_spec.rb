@@ -18,6 +18,7 @@ describe Reports::BuildResults do
              external_results: external_results,
              scoring: scoring)
     end
+    let(:campaign) { user_result.campaign }
     let(:build_results_command) { described_class.new(report, [user_result]) }
     let(:external_results) { { 'ed.attempted' => 1, 'ed.correct' => 2 } }
     let(:data_configuration) { YAML.safe_load(file_fixture('reports/data_configuration.yml').read) }
@@ -185,6 +186,35 @@ describe Reports::BuildResults do
         data['factorId'] = 1
         data['assessmentId'] = 'not_exists'
         is_expected.to eq(key: 1, name: 'Test factor1', value: nil, config_data: data)
+      end
+    end
+
+    context 'CampaignFactor' do
+      before(:each) do
+        allow(::Reports::GetDataConfigurationResources).to receive(:call!).
+          and_return({ campaign_factor_codes: ['cognitive_score'] })
+      end
+
+      let(:data) do
+        { 'code' => 'cognitive_score', 'id' => 'COGNITIVE_SCORE', 'label' => 'Overall Cognitive Percentile' }
+      end
+
+      subject { Reports::ResultTypes::CampaignFactor.call(build_results_command, data) }
+
+      it 'gets campaign factor score is scores are present' do
+        campaign_factor = create(:campaign_factor, campaign: campaign, code: 'cognitive_score')
+        create(:campaign_factor_value, user: user, campaign: campaign, campaign_factor: campaign_factor,
+          numeric_value: 3)
+        is_expected.to eq(key: 'COGNITIVE_SCORE', name: 'Overall Cognitive Percentile', value: 3, config_data: data)
+      end
+
+      it 'returns nil if campaign_factor_value is not present' do
+        create(:campaign_factor, campaign: campaign, code: 'cognitive_score')
+        is_expected.to eq(key: 'COGNITIVE_SCORE', name: 'Overall Cognitive Percentile', value: nil, config_data: data)
+      end
+
+      it 'returns nil if campaign_factor is not present' do
+        is_expected.to eq(key: 'COGNITIVE_SCORE', name: 'Overall Cognitive Percentile', value: nil, config_data: data)
       end
     end
 

@@ -18,6 +18,8 @@ import SubjectList from './SubjectList'
 import EvaluatorList
   from './EvaluatorList'
 import ManagerList from './ManagerList'
+import Modals from '~/modules/admin/components/Modals'
+import FactorBenchmarkScoreModal from '~/modules/admin/modules/threeSixtyCampaign/components/FactorBenchmarkScoreModal'
 
 import styles from './styles.less'
 
@@ -68,6 +70,10 @@ function Index ({ currentUser, setSelectedTab, selectedTab }) {
         <ManageRelationshipsModal />
         <ResetCampaignModal />
         <CampaignNameConfirmationModal />
+        <Modals modals={{
+          FactorBenchmarkScoreModal,
+        }}
+        />
       </div>
     </>
   )

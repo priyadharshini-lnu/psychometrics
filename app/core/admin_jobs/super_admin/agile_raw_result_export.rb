@@ -75,9 +75,8 @@ module AdminJobs
 
       def records_for_export
         query = UsersResult.joins(:user_assessment).
-                where(
-                  user_assessments: { assessment_id: assessment.id, status: :completed }
-                )
+                where(user_assessments: { assessment_id: assessment.id, status: :completed })
+
         if campaign_ids.present?
           query = query.where(user_assessments: { campaign_id: campaign_ids })
         end

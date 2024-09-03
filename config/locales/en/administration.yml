@@ -106,6 +106,7 @@ en:
             bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage
             manage_admins: Manage Admins
+            manage_factor_benchmark_scores: Manage Factor Benchmark Scores
             manage_messages: Manage Messages
             manage_options: Manage Options
             manage_report_approvals: Manage Report Approvals
@@ -2634,6 +2635,11 @@ en:
         owner: Owner
         report_family: Report Bundle
         title: Reports
+      modals:
+        remap_assessment:
+          assesment_id: Assessment ID
+          new_assessment_id: New Assessment ID
+          success_message: Remaping of assessment was scheduled, please refresh after some time. Do not edit the report and do not save any new changes until remapping is done.
       name: Reports
       new:
         header: Select Report
@@ -3430,6 +3436,7 @@ en:
           title: Report
       messages:
         email_messages: Email Messages
+        factor_benchmark_scores_updated: Factor Benchmark Scores updated successfully
         instruction_messages: Instruction Messages
         mail_history: Mail History
         options: Options
