@@ -20,6 +20,7 @@ module Administration
           required(:lock_account).filled(:bool?)
           required(:restrict_sequences).filled(:bool?)
           required(:tfa_enabled).filled(:bool?)
+          required(:magic_link_expiry_in_seconds).maybe(:int?)
         end
       end
     end

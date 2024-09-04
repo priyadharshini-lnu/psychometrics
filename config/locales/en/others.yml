@@ -242,6 +242,10 @@ en:
               invalid: SMS Invite code is invalid
         saml_setting:
           invalid_cert: Invalid certificate
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: Duration should be minimum 5 minutes
         sheet:
           attributes:
             file:

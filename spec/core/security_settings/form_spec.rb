@@ -13,6 +13,13 @@ describe SecuritySettings::Form do
       expect(form.errors[:min_password_length]).to eq(['is not a number'])
     end
 
+    it 'validates fails when magic_link_expiry_in_seconds is less than 5 minutes' do
+      form = described_class.new(attributes.merge(magic_link_expiry_in_seconds: 4.minutes.to_i))
+
+      expect(form.valid?).to eq(false)
+      expect(form.errors[:magic_link_expiry_in_seconds]).to eq(['Duration should be minimum 5 minutes'])
+    end
+
     it 'passes all validation' do
       form = described_class.new(attributes)
 

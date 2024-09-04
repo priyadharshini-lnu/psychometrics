@@ -2965,6 +2965,7 @@ en:
       enforce_strong: Enforce strong password
       expiration: Password expiration
       lock_account: Lock account
+      magic_link_expiry_duration: Magic link expiration duration
       min_length: Minimum password length
       never: Never
       restrict_sequences: Restrict sequential and repetitive characters
