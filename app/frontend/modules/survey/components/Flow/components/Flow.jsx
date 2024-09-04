@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Modal } from 'antd'
 import { useSelector } from 'react-redux'
 import Tree from '~/libs/ReactTree'
@@ -11,6 +11,11 @@ const Flow = (props) => {
   const ref = useRef()
   const flow = useSelector((state => state.survey.builder.flow))
   const { tree, close } = props
+
+  useEffect(() => {
+    const { reset, assessment } = props
+    reset(assessment.flow)
+  }, [])
 
   const save = () => {
     const { updateFlow } = props
@@ -36,6 +41,7 @@ const Flow = (props) => {
 
     const { tree } = props
     // Build new state for Tree component
+    // props.updateElements(tree)
     const newTreeState = ref.current.init({ tree, renderNode: renderElement, onChange: handleChange })
     // Set new state
     ref.current.setState(newTreeState)
@@ -44,7 +50,9 @@ const Flow = (props) => {
   // Happens when tree was reorder
   // Update store flow
   const handleChange = (tree) => {
+    const { updateElements } = props
     updateTree(tree)
+    updateElements(tree.children)
   }
 
   const renderElement = (element, i, parent = null) => {

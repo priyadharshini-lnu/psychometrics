@@ -17,8 +17,7 @@ class Block extends Component {
   changeBlock = (e) => {
     const { model, onUpdate } = this.props
     const val = e.currentTarget.value
-    model.props.current = val
-    onUpdate(model)
+    onUpdate({ ...model, props: { ...model.props, current: val } })
   }
 
   toggleQuestions = () => {

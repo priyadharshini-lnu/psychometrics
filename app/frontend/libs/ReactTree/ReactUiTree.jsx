@@ -99,7 +99,7 @@ export default class UITree extends Component {
     if (e.button !== 0) return
     if (this.props.handleClass) {
       const re = new RegExp(this.props.handleClass, 'i')
-      if (!e.target.className.match(re)) {
+      if (!e.target.className?.match?.(re)) {
         return
       }
     }

@@ -8,7 +8,7 @@ const FlowElement = function (attrs = {}, parentPath = null, index = 0) {
   this.uuid = attrs.uuid || genUUID()
   this.type = attrs.type
   this.parent = {}
-  this.props = attrs.props || {}
+  this.props = attrs.props ? { ...attrs.props } : {}
   this.path = _.isArray(parentPath) ? parentPath.concat(index) : [index]
   if (this.props.conditions && this.props.conditions.length) {
     this.props.conditions = _.map(this.props.conditions, condition => new FlowCondition(condition))

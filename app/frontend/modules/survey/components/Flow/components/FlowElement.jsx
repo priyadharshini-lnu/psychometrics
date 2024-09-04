@@ -8,7 +8,9 @@ import Settings from './Settings'
 
 const canAddMore = type => Settings[type].children
 
-const FlowElement = ({ model: element, index, parent }) => {
+const FlowElement = ({
+  model: element, index, parent, ...props
+}) => {
   const dispatch = useDispatch()
 
   const addNew = () => {
@@ -51,6 +53,7 @@ const FlowElement = ({ model: element, index, parent }) => {
       <div>
         <div className={`${styles.element} ${styles[model.type]}`}>
           <View
+            {...props}
             model={model}
             onRemove={remove}
             onAddBelow={addBelow}
