@@ -1591,6 +1591,8 @@ en:
       next: Next
       reset: Reset
       save: Save
+      select_all: Select all
+      unselect_all: Unselect all
     communications:
       create:
         successfully: Communication was created successfully.
