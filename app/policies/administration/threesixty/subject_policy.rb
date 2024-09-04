@@ -32,7 +32,7 @@ module Administration
       end
 
       def update?
-        has_permission?(:cmapiagns, :manage)
+        has_permission?(:campaigns, :manage)
       end
 
       def remove_report_approval?
@@ -95,12 +95,16 @@ module Administration
         has_permission?(:results, :regenerate_report)
       end
 
+      def reset_password?
+        has_permission?(:users, :reset_password)
+      end
+
       def view_responses?
         has_permission?(:results, :raw_responses)
       end
 
       def remove_subject?
-        has_permission?(:projects, :manage_users)
+        has_permission?(:campaigns, :manage_users)
       end
 
       def remove_from_campaign?

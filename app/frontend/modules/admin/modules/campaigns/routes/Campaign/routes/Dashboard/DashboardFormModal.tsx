@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Input, Select } from 'antd'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import * as t from 'io-ts'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { formDataToResource } from '~/libs/jsonApi/helpers'
@@ -21,8 +21,8 @@ interface Props {
 export const DashboardFormModal: React.FC<Props> = ({
   close,
 }) => {
-  const history = useHistory()
-  const { campaignId, projectId } = useParams<{ campaignId: string, projectId: string }>()
+  const navigate = useNavigate()
+  const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const stateManager = useDashboardStore()
   const {
     createResource, collectionAction, isRequestSuccessful,
@@ -39,7 +39,7 @@ export const DashboardFormModal: React.FC<Props> = ({
   const handleDashboardCreation = (values) => {
     const resource = formDataToResource({ ...values, campaignId }, 'dashboards')
     return createResource(resource).then(() => {
-      history.push(`/admin/projects/${projectId}/new_campaigns/${campaignId}/dashboard`)
+      navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/dashboard`)
     })
   }
 
@@ -62,7 +62,7 @@ export const DashboardFormModal: React.FC<Props> = ({
             label={I18n.t('common.column.name')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="dashboard_name" />
           </Form.Item>
 
           <Form.Item

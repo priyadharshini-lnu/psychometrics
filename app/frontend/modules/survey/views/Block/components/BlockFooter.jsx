@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Popover, Button } from 'antd'
 import Block from '~/modules/survey/models/Block'
 import Menu from '~/modules/survey/components/ModulesMenu'
 import styles from './Block.less'
@@ -12,6 +13,7 @@ class BlockFooter extends Component {
 
   state = {
     opened: true,
+    isMenuOpen: false,
   }
 
   expand = () => {
@@ -32,6 +34,7 @@ class BlockFooter extends Component {
   changeType = (type) => {
     const { addQuestion, model } = this.props
     addQuestion(model, { type })
+    this.setState({ isMenuOpen: false })
   }
 
   openSearchQuestionPopup = () => {
@@ -48,10 +51,13 @@ class BlockFooter extends Component {
     const { model } = this.props
     if (!model.templateId) {
       return (
-        <a onClick={this.openSearchQuestionPopup} className={`btn btn-default ${styles.button}`}>
-          <span className={`icon fa fa-copy ${styles.icon}`} />
+        <Button
+          onClick={this.openSearchQuestionPopup}
+          icon={<span className={`icon fa fa-copy ${styles.icon}`} />}
+          className={`${styles.button}`}
+        >
           Copy Question From...
-        </a>
+        </Button>
       )
     }
     return (
@@ -61,20 +67,31 @@ class BlockFooter extends Component {
 
   render () {
     const { onMinimize } = this.props
+    const { isMenuOpen } = this.state
     return (
       <div className={styles.footer}>
         <div className={styles.footerButtons}>
           {this.renderCopyQuestion()}
-          <div style={{ position: 'relative' }}>
-            <button onClick={this.createDefault} type="button" className={`btn btn-success ${styles.button}`}>
-              <span className={`icon fa fa-plus ${styles.icon}`} />
-              {' '}
+          <div className={styles.createQuestion}>
+            <Button
+              type="primary"
+              menu={[]}
+              icon={<span className={`icon fa fa-plus ${styles.icon}`} />}
+              onClick={this.createDefault}
+              className={styles.left}
+            >
               Create a New Question...
-            </button>
-            <button type="button" className="btn btn-success dropdown-toggle" data-toggle="dropdown">
-              <span className="caret" />
-            </button>
-            <Menu onSelect={this.changeType} className={styles.menu} />
+            </Button>
+            <Popover
+              trigger="click"
+              overlayInnerStyle={{ padding: 0 }}
+              onClick={() => this.setState({ isMenuOpen: true })}
+              content={<Menu onSelect={this.changeType} />}
+              open={isMenuOpen}
+              onOpenChange={open => this.setState({ isMenuOpen: open })}
+            >
+              <Button className={styles.right} type="primary" icon={<span className="caret" />} />
+            </Popover>
           </div>
         </div>
         <div className={styles.footerOptions}>

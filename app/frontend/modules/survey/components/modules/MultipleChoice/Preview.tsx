@@ -23,17 +23,12 @@ const MultipleAnswerPreview = lazy(
 const DropdownPreview = lazy(
   () => import(/* webpackChunkName: "mc-dropdownPreview" */ './components/types/DropdownPreview'),
 )
-const SelectBoxPreview = lazy(
-  () => import(/* webpackChunkName: "mc-selectBoxPreview" */ './components/types/SelectBoxPreview'),
-)
-const MultiSelectBoxPreview = lazy(
-  () => import(/* webpackChunkName: "mc-multiSelectBoxPreview" */ './components/types/MultiSelectBoxPreview'),
-)
 
 interface OwnProps {
   model: PreviewModel
   readOnly: boolean
   nextPage: () => {}
+  questionCount: number
 }
 
 const connector = connect(
@@ -42,7 +37,7 @@ const connector = connect(
     factors: preview.factors,
     scores: getQuestionScoring(preview, id),
     I18n: getI18n(preview),
-    singleQuestionFlow: preview.enableSingleQuestionPage,
+    enableSingleQuestionPage: preview.enableSingleQuestionPage,
   }),
 )
 
@@ -58,7 +53,8 @@ export const PreviewComponent: FC<Props> = ({
   model,
   readOnly,
   nextPage,
-  singleQuestionFlow,
+  enableSingleQuestionPage,
+  questionCount,
 }) => {
   const {
     props: { type },
@@ -70,7 +66,7 @@ export const PreviewComponent: FC<Props> = ({
     readOnly,
     I18n,
     nextPage,
-    singleQuestionFlow,
+    singleQuestionFlow: enableSingleQuestionPage && questionCount === 1,
   }
 
   return (
@@ -88,10 +84,6 @@ export const PreviewComponent: FC<Props> = ({
           <MultipleAnswerPreview {...answerTypeProps} />
         )}
         {type === 'Dropdown' && <DropdownPreview {...answerTypeProps} />}
-        {type === 'SelectBox' && <SelectBoxPreview {...answerTypeProps} />}
-        {type === 'MultiSelectBox' && (
-          <MultiSelectBoxPreview {...answerTypeProps} />
-        )}
         {showQuestionScoring && scores && size(scores) !== 0 && (
           <div>
             <ScoringTable factors={factors} scoring={scores} I18n={I18n} />

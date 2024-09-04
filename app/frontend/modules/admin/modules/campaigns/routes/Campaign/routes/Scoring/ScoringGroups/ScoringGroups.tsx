@@ -58,12 +58,12 @@ type Props = ConnectedProps<typeof connector>;
 
 const ScoringGroupsComponent = (props: Props) => {
   const [addGroup, setAddGroup] = useState(false)
-  const [openAddEditFactor, setOpenAddEditFactor] = useState(false)
+  const [openAddEditFactor, setOpenAddEditFactor] = useState({ open: false, mode: 'add' })
   const [openImportFactorsForm, setOpenImportFactorsForm] = useState(false)
   const [currentGroupId, setCurrentGroupId] = useState<string>('')
   const [currentFactor, setCurrentFactor] = useState<CampaignFactor | undefined>(undefined)
   const [openVariablesForm, setOpenVariablesForm] = useState(false)
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [factorGroupsLocalState, setFactorGroupsLocalState] = useState<CampaignFactorGroup[]>([])
   const [campaignFactorsLocalState, setCampaignFactorsLocalState] = useState<CampaignFactor[]>([])
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor))
@@ -180,7 +180,7 @@ const ScoringGroupsComponent = (props: Props) => {
 
   const handleOpenEditFactor = (factor: CampaignFactor) => {
     setCurrentFactor(factor)
-    setOpenAddEditFactor(true)
+    setOpenAddEditFactor({ open: true, mode: 'edit' })
   }
 
   const handleGroupDragnDrop = (activeId: string, overId: string) => {
@@ -318,6 +318,7 @@ const ScoringGroupsComponent = (props: Props) => {
   const initializeGroup = () => {
     initializeScoring('').then(() => {
       fetchAndUpdateFactorGroups()
+      fetchAndUpdateFactors()
     })
   }
 
@@ -558,7 +559,7 @@ const ScoringGroupsComponent = (props: Props) => {
                       removeGroup={handleConfirmRemoveFactorGroup}
                       addFactor={(groupId) => {
                         setCurrentGroupId(groupId)
-                        setOpenAddEditFactor(true)
+                        setOpenAddEditFactor({ open: true, mode: 'add' })
                       }}
                       hasFactors={!!factors.length}
                       onGroupNameChange={handleGroupNameChange}
@@ -636,13 +637,15 @@ const ScoringGroupsComponent = (props: Props) => {
       <AddGroupForm addGroup={handleAddGroup} open={addGroup} onClose={() => setAddGroup(false)} />
       <AddEditFactorForm
         addFactor={handleAddFactor}
-        open={openAddEditFactor}
+        open={openAddEditFactor.open}
         onClose={() => {
-          setOpenAddEditFactor(false)
+          setOpenAddEditFactor({ open: false, mode: openAddEditFactor.mode })
           setCurrentFactor(undefined)
         }}
         factorData={currentFactor}
         editFactor={handleEditFactor}
+        title={openAddEditFactor.mode === 'edit'
+          ? I18n.t('administration.scoring.edit_factor') : I18n.t('administration.scoring.add_factor')}
       />
       <ManageVariablesForm
         open={openVariablesForm}

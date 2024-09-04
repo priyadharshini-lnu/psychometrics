@@ -9,6 +9,13 @@ const { Footer } = Modal
 const { Title } = Modal
 
 export default class extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      initialAnswers: props.question.result.answers,
+    }
+  }
+
   clear = () => {
     const { question } = this.props
     question.resetDefaultValues()
@@ -28,8 +35,18 @@ export default class extends Component {
     return <View model={question} />
   }
 
+  handleClose = () => {
+    const { question, close, preview } = this.props
+    const { initialAnswers } = this.state
+    question.result.answers = initialAnswers
+    if (preview.results[question.id]) {
+      preview.results[question.id].answers = initialAnswers
+    }
+    question.update()
+    close()
+  }
+
   render () {
-    const { close } = this.props
     return (
       <Modal show dialogClassName={styles.modal} bsSize="large" keyboard={false}>
         <Header>
@@ -41,7 +58,7 @@ export default class extends Component {
         <Footer>
           <button className="btn btn-default" style={{ float: 'left' }} onClick={this.clear}>Clear</button>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={close}>Close</button>
+          <button className="btn btn-danger" onClick={this.handleClose}>Close</button>
         </Footer>
       </Modal>
     )

@@ -25,6 +25,7 @@ module Api
               optional(:norm_id).maybe(:string)
               optional(:schedule_config).maybe(:string)
             end
+            optional(:tag_list).maybe(:array).each(:string)
           end
         end
 

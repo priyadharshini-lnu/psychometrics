@@ -30,10 +30,6 @@ describe 'Reports' do
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   before do
     allow_any_instance_of(AssignsReport).to receive(:use_license) { 'nth' }
-    allow_any_instance_of(Report).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)
-    allow_any_instance_of(Report).to receive_message_chain(:poster, :url).and_return(Faker::Internet.url)
-    allow_any_instance_of(Assessment).to receive_message_chain(:icon, :url).and_return(Faker::Internet.url)
-    allow_any_instance_of(Assessment).to receive_message_chain(:poster, :url).and_return(Faker::Internet.url)
   end
 
   path '/projects/{project_id}/users/{user_id}/reports' do

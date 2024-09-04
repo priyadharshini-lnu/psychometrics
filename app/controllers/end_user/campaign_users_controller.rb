@@ -1,31 +1,20 @@
 # frozen_string_literal: true
 
 class EndUser::CampaignUsersController < ApplicationController
+  include AsyncRequestHandler
+
   before_action :set_campaign_user
   before_action :check_all_prework_are_completed,
                 only: %i[begin_campaign continue_campaign proctoring_redirect]
 
-  def begin_campaign
-    data = {}
-    unless @campaign_user.not_started_campaign?
-      return render json: { errors: I18n.t('campaign.errors.invalid_status') }, status: 422
-    end
+  before_action :ensure_campaign_not_in_progress, only: %i[begin_campaign]
+  before_action :ensure_campaign_already_in_progress, only: %i[continue_campaign]
 
-    if @campaign_user.proctoring_enabled?
-      result = Examus::GetSessionUrl.call(@campaign_user, I18n.locale)
-      if result[:error]
-        return render json: { errors: result[:error] }, status: 422
-      end
+  async_request :begin_campaign_with_proctoring, handler: CampaignUsers::BeginProctoringCampaign,
+    permit_params: ->(params) { params.require(:campaign_user).permit(:id) }
 
-      data = { examus_session_url: result[:ok] }
-    else
-      CampaignUsers::BeginCampaign.call!(@campaign_user)
-    end
-
-    render json: ::EndUser::CampaignUserSerializer.new(context: {
-      **data
-    }).serialize(@campaign_user)
-  end
+  async_request :continue_campaign_with_proctoring, handler: CampaignUsers::ContinueProctoringCampaign,
+    permit_params: ->(params) { params.require(:campaign_user).permit(:id) }
 
   def proctoring_redirect
     return redirect_to_campaign unless @campaign_user.proctoring_enabled?
@@ -39,29 +28,40 @@ class EndUser::CampaignUsersController < ApplicationController
     redirect_to_campaign
   end
 
-  def continue_campaign
-    unless @campaign_user.interrupted_campaign? || @campaign_user.in_progress_campaign?
-      return render json: { errors: I18n.t('campaign.errors.invalid_status') }, status: 422
-    end
-
-    data = {}
+  def begin_campaign
     if @campaign_user.proctoring_enabled?
-      result = Examus::GetSessionUrl.call(@campaign_user, I18n.locale)
-      if result[:error]
-        return render json: { errors: result[:error] }, status: 422
-      end
-
-      data = { examus_session_url: result[:ok] }
+      begin_campaign_with_proctoring
     else
-      CampaignUsers::ContinueCampaign.call(@campaign_user)
-    end
+      CampaignUsers::BeginCampaign.call!(@campaign_user)
 
-    render json: ::EndUser::CampaignUserSerializer.new(context: {
-      **data
-    }).serialize(@campaign_user)
+      render json: { response_data: ::EndUser::CampaignUserSerializer.new(context: {}).serialize(@campaign_user) },
+             status: :ok
+    end
+  end
+
+  def continue_campaign
+    if @campaign_user.proctoring_enabled?
+      continue_campaign_with_proctoring
+    else
+      CampaignUsers::ContinueCampaign.call!(@campaign_user)
+      render json: { response_data: ::EndUser::CampaignUserSerializer.new(context: {}).serialize(@campaign_user) },
+             status: :ok
+    end
   end
 
   private
+
+  def ensure_campaign_not_in_progress
+    return if @campaign_user.not_started_campaign?
+
+    render json: { errors: I18n.t('campaign.errors.invalid_status') }, status: 422
+  end
+
+  def ensure_campaign_already_in_progress
+    return if @campaign_user.interrupted_campaign? || @campaign_user.in_progress_campaign?
+
+    render json: { errors: I18n.t('campaign.errors.invalid_status') }, status: 422
+  end
 
   def check_all_prework_are_completed
     return if @campaign_user.all_prework_completed?

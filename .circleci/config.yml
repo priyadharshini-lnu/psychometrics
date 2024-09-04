@@ -4,7 +4,7 @@ executors:
   tte-executor-full:
     docker:
       - &docker_image
-        image: talententerprise/tte:ruby-3.1.2-node-18.16.1-lua-5.3
+        image: talententerprise/tte:ruby-3.1.6-node-18.16.1-lua-5.3
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -291,7 +291,7 @@ jobs:
             bundle exec rails assets:precompile
       - save_assets_cache
 
-  jest:
+  vitest:
     executor: tte-executor
     resource_class: large
     steps:
@@ -299,12 +299,12 @@ jobs:
       - assets_files
       - restore_cache:
           keys:
-            - jest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
+            - vitest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
       - yarn_restore
       - run:
           name: Check if compiled files exist
           command: |
-            FILE=~/cachedflags/job.jest.flag
+            FILE=~/cachedflags/job.vitest.flag
             if test -f "$FILE"; then
               yarn run coveralls < coverage/lcov.info
               circleci-agent step halt
@@ -314,28 +314,28 @@ jobs:
       - bundle_restore
       - restore_cache:
           keys:
-            - jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
-            - jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}
-            - jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}
+            - vitest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
+            - vitest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}
+            - vitest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}
       - run:
-          name: Jest
+          name: Vitest
           command: |
             cp config/database.yml.sample config/database.yml
             bundle exec rake i18n:js:export
-            (find tmp/cache/jest -type f -mtime +30 -delete) || echo "No old cache files to prune"
-            yarn test --coverage --detectOpenHandles -w 2 && yarn run coveralls < coverage/lcov.info
+            (find tmp/cache/vitest -type f -mtime +30 -delete) || echo "No old cache files to prune"
+            yarn test --coverage --maxWorkers 2 --minWorkers 1 && yarn run coveralls < coverage/lcov.info
       - run:
-          name: Jest flag
+          name: Vitest flag
           command: mkdir -p ~/cachedflags/ && touch ~/cachedflags/job.jest.flag
       - save_cache:
-          key: jest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
+          key: vitest-cacheflag-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ checksum "webpack-files.txt" }}
           paths:
-            - ~/cachedflags/job.jest.flag
+            - ~/cachedflags/job.vitest.flag
             - coverage/lcov.info
       - save_cache:
-          key: jest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
+          key: vitest-cache-{{ .Environment.CACHE_VERSION }}-{{ arch }}-{{ .Branch }}-{{ checksum "webpack-files.txt" }}
           paths:
-            - tmp/cache/jest
+            - tmp/cache/vitest
 
   rspec:
     executor: tte-executor-full
@@ -538,8 +538,16 @@ jobs:
             docker push registry.heroku.com/<< parameters.target-app-name >>/worker
             docker push registry.heroku.com/<< parameters.target-app-name >>/release
             heroku container:release web worker release -a << parameters.target-app-name >>
-
-
+  i18n_unused_key_checks:
+    executor: tte-executor
+    resource_class: medium
+    steps:
+      - checkout
+      - bundle_restore
+      - run:
+          name: Check for unused translation keys
+          command: |
+            bundle exec i18n-tasks unused
 orbs:
   aws-cli: circleci/aws-cli@4.1.2
   heroku: circleci/heroku@2.0.0
@@ -570,13 +578,16 @@ workflows:
           requires:
             - yarn
             - bundle
-      - jest:
+      - vitest:
           requires:
             - bundle_assets
             - rubocop
             - brakeman
             - eslint
             - typescript
+      - i18n_unused_key_checks:
+          requires:
+            - bundle_assets
       - rspec:
           requires:
             - bundle_assets
@@ -586,7 +597,7 @@ workflows:
             - typescript
       - coveralls:
           requires:
-            - jest
+            - vitest
             - rspec
       - build_docker_image:
           name: build_image_develop
@@ -595,12 +606,13 @@ workflows:
             branches:
               only:
                 - develop
+                - update-ruby-3-1-6
       - heroku_release:
           name: heroku_release_develop
           app-name: tte-lighthouse-develop
           requires:
             - build_image_develop
-            - jest
+            - vitest
             - rspec
           filters:
             branches:
@@ -618,7 +630,7 @@ workflows:
           app-name: tte-lighthouse
           requires:
             - build_image_review
-            - jest
+            - vitest
             - rspec
           filters:
             branches:
@@ -636,7 +648,7 @@ workflows:
           app-name: tte-lighthouse-staging
           requires:
             - build_image_staging
-            - jest
+            - vitest
             - rspec
           filters:
             branches:

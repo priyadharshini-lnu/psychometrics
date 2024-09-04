@@ -7,17 +7,8 @@ class MediaResponse < ApplicationRecord
 
   include EncodableId
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
-  mount_uploader :asset, Private::MediaResponseUploader
-
-  has_one_attachment :as_asset, service: Settings.storage.private_storage_service
-  # TODO: add :asset content_type validation after ActiveStorage migration
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :asset
+  has_one_attachment :asset, service: Settings.storage.private_storage_service
 
   def attachment_storage_path(attribute_name, filename)
     project_id = users_result ? users_result.campaign.project_id : assign.membership.project_membership.client_id
@@ -30,19 +21,16 @@ class MediaResponse < ApplicationRecord
   belongs_to :assign
   belongs_to :users_result
 
-  attr_accessor :skip_filename_validation
-
-  validates :asset, filename_format: true, unless: :skip_filename_validation
   validate :verify_multiple_take_limit, on: :create
 
   before_create :set_user_selected
 
   def filename
-    asset&.filename&.split('/')&.last
+    asset&.filename.to_s
   end
 
   def video_file_path(filename)
-    asset.key.sub('${filename}', filename)
+    attachment_storage_path('asset', filename)
   end
 
   def verify_multiple_take_limit
@@ -64,5 +52,11 @@ class MediaResponse < ApplicationRecord
     media_responses_exists = question.media_responses.exists?(assign_id: assign&.id, users_result_id: users_result&.id)
 
     self.user_selected = true unless media_responses_exists
+  end
+
+  private
+
+  def assign_key_to_blob(action, attribute, filename)
+    action.blob.key = attachment_storage_path(attribute, filename)
   end
 end

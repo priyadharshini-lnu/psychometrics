@@ -953,6 +953,46 @@
         79
       ],
       "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "3a43273aa59aafb85fcaa0ab81e366b3b05be7d4ea16858a61a75965e2230c8b",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "config/initializers/acts_as_taggable_on_extensions.rb",
+      "line": 8,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "joins(:taggings).where(\"#{ActsAsTaggableOn.taggings_table}.tenant IN (?) OR #{ActsAsTaggableOn.taggings_table}.tenant IS NULL\", tenants.map(&:to_s))",
+      "render_path": null,
+      "location": null,
+      "user_input": "ActsAsTaggableOn.taggings_table",
+      "confidence": "Weak",
+      "cwe_id": [
+        89
+      ]
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "d64a1065cfb24a9ef67d8a6f5a7aa2919f7e898f70280119eb77a7ba13dbead0",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/base_controller.rb",
+      "line": 133,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "BaseController",
+        "method": "context"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ]
     }
   ],
   "updated": "2024-04-26 18:25:24 +0400",

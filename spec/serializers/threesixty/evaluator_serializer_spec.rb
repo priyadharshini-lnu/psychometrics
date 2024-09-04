@@ -38,10 +38,13 @@ describe Threesixty::EvaluatorSerializer do
 
     it do
       result = described_class.new(
-        evaluator_with_subject, counters: counters, option: option, current_user: current_user
-      ).to_hash
+        context: {
+          counters: counters, option: option, current_user: current_user
+        }
+      ).serialize(evaluator_with_subject).deep_symbolize_keys
+
       expect(result[:is_subject]).to eq true
-      expect(result[:user]['email']).to eq 'dustin@poirier.com'
+      expect(result[:user][:email]).to eq 'dustin@poirier.com'
       expect(result[:evaluators]).to eq '4 / 5'
       expect(result[:evaluations]).to eq '3 / 5'
       expect(result[:status]).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
@@ -50,8 +53,11 @@ describe Threesixty::EvaluatorSerializer do
 
     it do
       result = described_class.new(
-        evaluator, counters: counters, option: option, current_user: current_user
-      ).to_hash
+        context: {
+          counters: counters, option: option, current_user: current_user
+        }
+      ).serialize(evaluator).deep_symbolize_keys
+
       expect(result[:is_subject]).to eq false
       expect(result[:evaluators]).to eq nil
       expect(result[:evaluations]).to eq '3 / 5'

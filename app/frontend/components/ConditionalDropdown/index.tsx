@@ -1,18 +1,19 @@
 import React, { ReactElement } from 'react'
-import { Dropdown, MenuProps } from 'antd'
+import { Dropdown, MenuProps, DropdownProps } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import compact from 'lodash/compact'
 import castArray from 'lodash/castArray'
 
-interface Props {
+interface Props extends Pick<DropdownProps, 'placement'> {
   menu: MenuProps | null
   innerElement?: ReactElement
   className?: string
   hideForEmptyMenu?: boolean
+  autoAdjustOverflow?: boolean
 }
 
 const ConditionalDropdown: React.FC<Props> = ({
-  menu, innerElement, className, hideForEmptyMenu,
+  menu, innerElement, className, hideForEmptyMenu, placement, autoAdjustOverflow,
 }) => {
   const defaultInnerElement = (
     <a>
@@ -66,6 +67,8 @@ const ConditionalDropdown: React.FC<Props> = ({
       trigger={['click']}
       disabled={!hasChildrens}
       className={className || ''}
+      placement={placement}
+      autoAdjustOverflow={autoAdjustOverflow}
     >
       {innerElement || defaultInnerElement}
     </Dropdown>

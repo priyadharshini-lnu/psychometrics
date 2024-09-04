@@ -1,10 +1,11 @@
 import React, { useEffect, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
 import { PageHeader } from '@ant-design/pro-layout'
 import {
   Row, Col, Dropdown, Tag, theme,
+  Button,
 } from 'antd'
 
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
@@ -36,7 +37,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   campaigns, fetchCampaigns, activeCampaignId, extra,
 }) => {
   const { token } = useToken()
-  const history = useHistory()
+  const navigate = useNavigate()
   const activeCampaign = campaigns.find(campaign => campaign.id === activeCampaignId)
   const completedCampaignsCount = campaigns.filter(campaign => campaign.progressStatus === 'completed').length
   const totalCampaigns = campaigns.length
@@ -46,7 +47,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   }
 
   const handleNavigation = () => {
-    history.push('/dashboard')
+    navigate('/dashboard')
   }
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   }, [])
 
   const handleCampaignSelect = (menu) => {
-    history.push(menu.key)
+    navigate(menu.key)
   }
   const menuItems = campaigns.map((campaign) => {
     const campaignName = campaign.type === 'threesixty' ? campaign.assessmentName : campaign.name
@@ -110,7 +111,16 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       style={{ backgroundColor: token.colorPrimary }}
       className={styles.campaignHeader}
       onBack={handleNavigation}
-      backIcon={<DirectionalNavigateBackIcon className={styles.backIcon} />}
+      backIcon={(
+        <Button
+          size="small"
+          ghost
+          type="text"
+          aria-label={I18n.t('frontend.aria.back_to_dashboard')}
+        >
+          <DirectionalNavigateBackIcon className={styles.backIcon} />
+        </Button>
+)}
       ghost={false}
       title={titleElement}
       extra={extra}

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import {
   fetchResult,
 } from '~/modules/endUser/modules/campaigns/core/anonym'
@@ -24,7 +25,6 @@ interface OwnProps {
     error: boolean
     assessment: Assessment
   }
-  match: { params: {assessmentKey: string}}
 }
 
 type Props = PropsFromRedux & OwnProps
@@ -34,8 +34,8 @@ const AnonymComponent: React.FC<Props> = ({
     loaded, error, assessment, results: { agileUserAssessmentUrl },
   },
   fetchResult,
-  match: { params },
 }) => {
+  const params = useParams() as { assessmentKey: string }
   useEffect(() => {
     fetchResult(params.assessmentKey)
   }, [])

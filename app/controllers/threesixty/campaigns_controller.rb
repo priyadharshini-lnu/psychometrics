@@ -32,14 +32,19 @@ module Threesixty
       respond_to do |format|
         format.html
         format.json do
-          render json: @campaign, serializer: Threesixty::EndUser::CampaignSerializer,
-                 current_user: current_user, include: '**'
+          render json: Threesixty::EndUser::CampaignSerializer.new(
+            context: {
+              current_user: current_user, include: '**'
+            }
+          ).serialize(@campaign)
         end
       end
     end
 
     def options
-      render json: @campaign.option, serializer: Threesixty::CampaignOptionsSerializer, current_user: current_user
+      render json: Threesixty::CampaignOptionsSerializer.new(
+        context: { current_user: current_user }
+      ).serialize(@campaign.option)
     end
 
     def change_locale

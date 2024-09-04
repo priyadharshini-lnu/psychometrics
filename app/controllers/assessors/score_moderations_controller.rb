@@ -14,8 +14,11 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
 
     render json: {
       lead_assessor_user_assessment_id: lead_assessment.id,
-      lead_assessor_form: AssessmentSerializer.new(lead_assessment.assessment, selected_locale: selected_locale,
-        piped_text_context: build_piped_context(lead_assessment)).to_hash(include: '**'),
+      lead_assessor_form: AssessmentSerializer.new(context: {
+        selected_locale: selected_locale,
+        piped_text_context: build_piped_context(lead_assessment),
+        include: '**'
+      }).serialize(lead_assessment.assessment),
       lead_assessor_result: UsersResultSerializer.new(
         context: { campaign: lead_assessment.campaign,
                    participant: lead_assessment,
@@ -56,9 +59,13 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
                    where.not(report_id: main_report&.report_id)
 
     render json: {
-      reports: user_reports.map do |r|
-        ShortUserReportSerializer.new(r).to_hash
-      end,
+      reports: Panko::ArraySerializer.new(
+        user_reports,
+        each_serializer: ShortUserReportSerializer,
+        context: {
+
+        }
+      ).to_a,
       main_report_id: main_user_report_id
     }
   end
@@ -73,9 +80,13 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
     )
 
     render json: {
-      assessment: AssessmentSerializer.new(user_assessments.first.assessment, selected_locale: selected_locale,
-                                          piped_text_context: build_piped_context(user_assessments.first)).
-        to_hash(include: '**'),
+      assessment: AssessmentSerializer.new(
+        context: {
+          include: '**',
+          selected_locale: selected_locale,
+          piped_text_context: build_piped_context(user_assessments.first)
+        }
+      ).serialize(user_assessments.first.assessment),
       results: serializer_results(user_assessments)
     }
   end

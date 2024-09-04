@@ -15,7 +15,6 @@ import {
 
 import { BROWSER_FEATURES } from '~/modules/survey/constants/browser'
 import VideoRecorder from '~/modules/survey/components/VideoRecorder'
-import withLimitedTakes from '~/modules/survey/components/VideoRecorder/hoc/withLimitedTakes'
 import { SafeHTML } from '~/components/SafeHTML'
 import { checkBrowserSupportForFeature } from '~/utils/uaParser'
 import { UnsupportedBrowser } from './UnsupportedBrowser'
@@ -85,16 +84,6 @@ class SupportedVideoRecorder extends Component {
   constructor (props) {
     super(props)
     this.VideoRecorderComponent = VideoRecorder
-    const {
-      model: {
-        props: { maxTakes },
-      },
-    } = props
-    if (maxTakes && maxTakes !== '') {
-      this.VideoRecorderComponent = withLimitedTakes(VideoRecorder, {
-        maxTakes,
-      })
-    }
   }
 
   successUpload = (data) => {

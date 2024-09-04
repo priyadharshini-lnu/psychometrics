@@ -5,7 +5,7 @@ module ObjectStorage
     queue_as :low_priority
 
     def perform(key, bucket)
-      Rails.application.secrets.s3_compatible_storage
+      Settings.secrets.s3_compatible_storage
       Aws::S3::Client.new.delete_object(key: key, bucket: bucket)
     end
   end

@@ -3,7 +3,7 @@ import { useResources } from '~/hooks/useResources'
 import { Task, TaskTR } from '../core'
 import { TasksList } from './TasksList'
 
-export const All: React.FC = () => {
+const All: React.FC = () => {
   const {
     fetch, ...args
   } = useResources<Task>('report_approvals', {
@@ -29,3 +29,5 @@ export const All: React.FC = () => {
     </div>
   )
 }
+
+export default All

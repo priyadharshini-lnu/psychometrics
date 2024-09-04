@@ -1,27 +1,30 @@
 # frozen_string_literal: true
 
-class UsersResultUpdateSerializer < ActiveModel::Serializer
+class UsersResultUpdateSerializer < Panko::Serializer
   include Rails.application.routes.url_helpers
 
   attributes :expired, :current_block, :translations, :progress_was_reseted, :factors, :next_assessment_url, :scoring,
              :evaluation_session_id
-  attribute :scoring, if: -> { @instance_options[:current_user]&.assessor? && object.completed? }
 
-  attribute :next_assessment_url, if: -> { object.completed? }
+  def scoring
+    return unless context[:current_user]&.assessor? && object.completed?
 
-  has_many :factors, method: :factors
+    object.scoring
+  end
 
   def evaluation_session_id
     object.user_assessment.evaluation_session_id
   end
 
   def next_assessment_url
+    return unless object.completed?
+
     next_assessment = UserAssessments::GetNext.call!(object.user_assessment)
     user_assessment_path(next_assessment) if next_assessment
   end
 
   def factors
-    return unless @instance_options[:current_user]&.assessor? && object.completed?
+    return unless context[:current_user]&.assessor? && object.completed?
 
     factors = Factor.where(id: object.scoring&.keys)
     Panko::ArraySerializer.new(
@@ -35,28 +38,34 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
   end
 
   def current_block
-    block = Block.find_by(id: @instance_options[:current_block_id])
-    block ? BlockSerializer.new(block, piped_text_context: piped_text_context) : nil
+    block = Block.find_by(id: context[:current_block_id])
+    if block
+      BlockSerializer.new(
+        context: {
+          piped_text_context: piped_text_context
+        }
+      ).serialize(block)
+    end
   end
 
   def translations
     Assessments::GetTranslationWithPipetextReplaced.call!(
       object.assessment,
       piped_text_context: piped_text_context,
-      locale: object.user_assessment.selected_locale || @instance_options[:locale]
+      locale: object.user_assessment.selected_locale || context[:locale]
     )
   end
 
   def progress_was_reseted
-    @instance_options[:progress_was_reseted]
+    context[:progress_was_reseted]
   end
 
   def piped_text_context
     {
       evaluator: object.evaluator,
       subject: object.subject,
-      threesixty_campaign: @instance_options[:threesixty_campaign],
-      campaign: @instance_options[:campaign],
+      threesixty_campaign: context[:threesixty_campaign],
+      campaign: context[:campaign],
       result: object
     }
   end

@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Button } from 'antd'
 import PropTypes from 'prop-types'
 import styles from './Trash.less'
 
@@ -37,8 +38,8 @@ class TrashItem extends Component {
             {this.renderName(model)}
           </div>
           <div className={styles.buttons}>
-            <a onClick={this.restore} className="btn btn-success">Restore</a>
-            <a onClick={this.permanentRemove} className="btn btn-danger">Permanently Delete</a>
+            <Button type="primary" onClick={this.restore}>Restore</Button>
+            <Button type="primary" danger onClick={this.permanentRemove}>Permanently Delete</Button>
           </div>
         </div>
       </li>

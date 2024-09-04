@@ -7,8 +7,9 @@ module Users
     JWT_KEY = :jwt
     REDIRECT_KEY = :return_url
 
-    def initialize(params)
+    def initialize(params, project)
       @params = params
+      @project = project
     end
 
     def call
@@ -57,12 +58,12 @@ module Users
 
     private
 
-    attr_reader :params, :user
+    attr_reader :params, :user, :project
 
     # Tries auth by spoof token
     #
     def authenticate_by_spoof
-      @user = User.find_by(spoof_token: params[SPOOF_KEY])
+      @user = User.find_by(spoof_token: params[SPOOF_KEY], project_id: project.id)
       # Remove temporary spoof token from user
       user&.update_column(:spoof_token, nil)
     end
@@ -70,7 +71,7 @@ module Users
     # Tries auth by SSO token
     #
     def authenticate_by_sso
-      possible_user = Users::Regular.find_by(id: params[:user_id])
+      possible_user = Users::Regular.find_by(id: params[:user_id], project_id: project.id)
       possible_sso_token = $redis.get(possible_user&.sso_key)
 
       @user = possible_user if possible_sso_token == params[SSO_KEY]
@@ -79,7 +80,7 @@ module Users
     # Tries auth by JWT token
     #
     def authenticate_by_jwt
-      @user = JwtAuthenticator.authenticate(params[JWT_KEY])
+      @user = JwtAuthenticator.authenticate(params[JWT_KEY], project)
     end
 
     # Builds an url for redirection with status

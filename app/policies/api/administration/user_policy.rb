@@ -19,15 +19,16 @@ module Api
         has_permission?(:projects, :manage_users, project_id: @record.project_id) || @user.id == @record.id
       end
 
+      def current_user_details?
+        true
+      end
+
       def create_global_assessor?
         @user.is?(:superadmin)
       end
 
       def reset_password?
-        return true if @user.is?(:superadmin)
-        return false unless @record.is?(:regular)
-
-        @user.has_permission?(:users, :reset_password, project_id: @record.project_id)
+        has_permission?(:users, :reset_password, project_id: @record.project_id, campaign_id: campaign_id)
       end
 
       def change_password?
@@ -36,7 +37,7 @@ module Api
 
       class Scope < BasePolicy::Scope
         def resolve
-          return scope if @user.is?(:superadmin)
+          return scope.includes(user_profile: { photo_attachment: :blob }) if @user.is?(:superadmin)
 
           permitted_client_admin_project_ids = @user.client_admin_project_ids.select do |project_id|
             @user.has_permission?(:projects, :manage_users, project_id: project_id)

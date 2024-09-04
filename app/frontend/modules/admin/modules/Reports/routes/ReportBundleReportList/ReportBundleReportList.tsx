@@ -13,8 +13,8 @@ import { useResources } from '~/hooks/useResources'
 
 const { I18n } = window
 
-export const ReportBundleReportList: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
+const ReportBundleReportList: React.FC = () => {
+  const { id } = useParams() as {id: string}
   useEffect(() => {
     fetchSingle({ id })
   }, [id])
@@ -67,3 +67,5 @@ export const ReportBundleReportList: React.FC = () => {
     </>
   )
 }
+
+export default ReportBundleReportList

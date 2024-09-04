@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
-  Modal, Progress, Tooltip, Typography, Row, Checkbox,
+  Modal, Progress, Tooltip, Typography, Row, Button,
 } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
+import { QuestionCircleOutlined, CheckCircleFilled } from '@ant-design/icons'
 import { connect } from 'react-redux'
 
 import userPresenter from '~/presenters/user'
@@ -36,10 +36,10 @@ const ReportListComponent = ({
   const reportHelp = _.find(instructions, { name: 'report_help' })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [reportToShow, setReportToShow] = useState<Record<string, any> | null>(null)
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const redirectToReport = (report) => {
-    history.push(`/threesixty_campaigns/${report.campaignId}/reports/${report.id}`)
+    navigate(`/threesixty_campaigns/${report.campaignId}/reports/${report.id}`)
   }
 
   const showReport = (report) => {
@@ -87,12 +87,14 @@ const ReportListComponent = ({
         </Row>
         {subjectReport
           && (
-          <Checkbox
-            checked={!subjectReport.approved}
+          <Button
+            type="link"
             onClick={() => showReport(subjectReport)}
+            className="ps-0"
           >
             <span className={styles.subjectLabel}>{I18n.t('threesixty.view_my_report')}</span>
-          </Checkbox>
+            {!subjectReport.approved ? <CheckCircleFilled className={styles.completed} /> : null }
+          </Button>
           )}
 
         {approvalReports.length > 0
@@ -131,12 +133,14 @@ const ReportListComponent = ({
 
 const ReportItem = ({ item, showReport, managerApprovesReports }) => (
   <Tooltip placement="topLeft" title={item.user.email} key={item.user.email}>
-    <Checkbox
-      checked={!managerApprovesReports || item.approvalStatus === 'approved'}
+    <Button
+      type="link"
       onClick={showReport}
     >
       <span className={styles.subjectLabel}>{userPresenter.selfUserName(item)}</span>
-    </Checkbox>
+      {!managerApprovesReports || item.approvalStatus === 'approved'
+        ? <CheckCircleFilled className={styles.completed} /> : null}
+    </Button>
   </Tooltip>
 )
 

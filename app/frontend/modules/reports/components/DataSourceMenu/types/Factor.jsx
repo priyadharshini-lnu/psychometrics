@@ -15,7 +15,7 @@ class Factor extends Component {
     const dimensionId = assessment && assessment.dimensionId
     const factors = _.map(AppStore.factors[dimensionId], f => ({
       id: f.id,
-      alias: `${f.alias?.substring(0, 24)}`,
+      alias: `${f.alias}`,
     }))
     if (!singleChoice) {
       factors.unshift({ id: ALL_FACTORS, alias: ALL_FACTORS })
@@ -32,7 +32,7 @@ class Factor extends Component {
     // add all
     if (_.find(factors, { id: ALL_FACTORS })) {
       factors = _.map(model.filterFactors(AppStore.factors[dimensionId]),
-        f => ({ id: f.id, alias: `${f.alias?.substring(0, 24)}` }))
+        f => ({ id: f.id, alias: `${f.alias}` }))
     }
     model.props.source.factors = factors
     onSelect()
@@ -55,6 +55,13 @@ class Factor extends Component {
         autoFocus={false}
         isMulti={!singleChoice}
         onChange={this.onChange}
+        styles={{
+          multiValueLabel: (baseStyles) => ({
+            ...baseStyles,
+            whiteSpace: 'normal',
+            overflow: 'hidden',
+          }),
+        }}
       />
     )
   }

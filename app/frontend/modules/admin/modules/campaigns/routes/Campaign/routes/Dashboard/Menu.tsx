@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Menu as AntMenu } from 'antd'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import settings from '~/modules/admin/modules/campaigns/settings'
@@ -20,10 +20,10 @@ type Props = OwnProps
 export const Menu: React.FC<Props> = ({
   dashboardInitialized, dashboardPreviewAvailable, canManageDashboard, campaignPermissions,
 }) => {
-  const { campaignId } = useParams<{ campaignId: string }>()
-  const history = useHistory()
+  const { campaignId } = useParams() as { campaignId: string }
+  const navigate = useNavigate()
   const onSelect = ({ key }) => {
-    routeUtils.moveTo(history, `${settings.urlPrefix}/${campaignId}/dashboard`, key)
+    routeUtils.moveTo(navigate, `${settings.urlPrefix}/${campaignId}/dashboard`, key)
   }
   const menuItems: ItemType[] = []
   !dashboardInitialized && campaignPermissions.viewDashboard && menuItems.push({

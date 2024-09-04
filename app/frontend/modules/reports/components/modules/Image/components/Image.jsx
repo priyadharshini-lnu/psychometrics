@@ -6,6 +6,9 @@ import Foundation from '~/modules/reports/components/Foundation'
 import ResultStore from '~/modules/reports/store/ResultStore'
 import GetImageURL from './GetImageURL'
 import styles from './Image.less'
+import { joinStyles, useAssignStyle, convertColor } from '../../CommonMethods/styles'
+
+const assignStyle = useAssignStyle('Image')
 
 export class Image extends Component {
   static propTypes = {
@@ -28,21 +31,8 @@ export class Image extends Component {
   renderImg () {
     const { module: model, preview } = this.props
 
-    const {
-      borderColor = {}, borderRadius, borderWidth, borderStyle,
-    } = (model.props.style || {})
 
-    const style = {
-      borderRadius,
-    }
-
-    if (model.props.border) {
-      style.borderWidth = `${borderWidth}px`
-      style.borderStyle = `${borderStyle || 'solid'}`
-      if (borderColor) {
-        style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
-      }
-    }
+    const style = this.buildStyles()
 
     if (preview && model.props.sourceType === 'UserProfileImage') {
       const { user } = ResultStore
@@ -98,23 +88,27 @@ export class Image extends Component {
     return (this.renderText())
   }
 
-  renderText () {
-    const { module: model } = this.props
+  buildStyles () {
+    const { module, reportStyles } = this.props
     const {
-      borderColor = {}, borderRadius, borderWidth, borderStyle,
-    } = (model.props.style || {})
+      borderColor = {}, borderWidth, borderStyle, borderRadius,
+    } = (module.props.style || {})
+    let style = joinStyles(reportStyles, module.props.styleIds)
 
-    const style = {
-      borderRadius,
-    }
+    style.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
 
-    if (model.props.border) {
-      style.borderWidth = `${borderWidth}px`
-      style.borderStyle = `${borderStyle || 'solid'}`
-      if (borderColor) {
-        style.borderColor = `rgba(${borderColor.r}, ${borderColor.g}, ${borderColor.b}, ${borderColor.a})`
-      }
+    if (module.props.border) {
+      if (borderWidth) { style.borderWidth = `${borderWidth}px` }
+      if (borderStyle) { style.borderStyle = `${borderStyle || 'solid'}` }
+      if (borderColor) { style.borderColor = convertColor(borderColor) }
     }
+    style = _.omit(style, 'border')
+
+    return style
+  }
+
+  renderText () {
+    const style = this.buildStyles()
 
     return (
       <div style={style} className={styles.image} onDoubleClick={this.openEditor}>
@@ -124,10 +118,25 @@ export class Image extends Component {
   }
 
   render () {
-    const { module } = this.props
+    const { module, reportStyles } = this.props
+    const {
+      borderRadius,
+    } = (module.props.style || {})
+
+    const style = joinStyles(reportStyles, module.props.styleIds)
+
+    const outerStyle = {}
+    outerStyle.borderRadius = assignStyle(style, 'borderRadius', borderRadius)
+
+    if (style.boxShadow?.enabled) {
+      const {
+        x, y, blur, spread = 0, color = '#000000',
+      } = style.boxShadow
+      outerStyle.boxShadow = `${x || 0}px ${y || 0}px ${blur || 0}px ${spread || 0}px ${color}`
+    }
 
     return (
-      <Foundation {...this.props} aspectRatio={module.props.aspectRatio}>
+      <Foundation {...this.props} aspectRatio={module.props.aspectRatio} outerStyle={outerStyle}>
         {this.renderImg()}
       </Foundation>
     )

@@ -2,16 +2,16 @@ import React, {
   useRef, FC, useState, useEffect,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   HomeOutlined,
   UserOutlined,
   CalendarOutlined,
+  ReadOutlined,
 } from '@ant-design/icons'
 
 
-import lighthouseLogo from '~/modules/endUser/assets/images/lighthouseLogoWide.png'
-import { history } from '~/modules/endUser/store'
+import lighthouseLogo from '~/assets/lighthouseLogoTall.png'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   getProjectLogo,
@@ -24,11 +24,13 @@ import {
 import { CampaignIcon } from '~/glint/icons'
 import { PageSider } from '~/glint'
 import styles from './styles.less'
+import { getFeatures } from '~/core/config'
 
 const connector = connect((state: RootState) => ({
   logo: getProjectLogo(state),
   projectName: getProjectName(state),
   showBookings: getShowBookings(state),
+  features: getFeatures(state),
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -37,15 +39,22 @@ type UserPageSiderProps = {
   siderFooter: (collapsed: boolean) => React.ReactElement
   updateProfileRequired: boolean
   showBookings?: boolean
+  features?: boolean
 } & PropsFromRedux
 
 const { I18n } = window
 
-const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookings?: boolean) => ([{
+const getMenuItems = (
+  showCampaign?: boolean,
+  showInsights?: boolean,
+  showBookings?: boolean,
+  idpEnabled?: boolean,
+) => ([{
   key: 'dashboard',
   label: I18n.t('campaign.dashboard_menu.home'),
   icon: <HomeOutlined className={styles.siderIcon} />,
-}, ...showCampaign ? [{
+},
+...showCampaign ? [{
   key: 'campaign',
   label: I18n.t('campaign.dashboard_menu.campaign'),
   icon: <CampaignIcon className={styles.siderIcon} />,
@@ -53,7 +62,18 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookin
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },
   ] : [{ label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' }],
-}] : [], ...showBookings ? [{
+}] : [],
+// eslint-disable-next-line no-constant-condition
+...idpEnabled ? [{
+  key: 'idp',
+  label: I18n.t('campaign.dashboard_menu.development'),
+  icon: <ReadOutlined className={styles.siderIcon} />,
+  children: [
+    { label: I18n.t('campaign.dashboard_menu.my_plan'), key: 'my_plan' },
+    { label: I18n.t('campaign.dashboard_menu.my_direct_reports'), key: 'my_direct_reports' },
+  ],
+}] : [],
+...showBookings ? [{
   key: 'invites',
   label: I18n.t('campaign.dashboard_menu.bookings'),
   icon: <CalendarOutlined className={styles.siderIcon} />,
@@ -69,11 +89,12 @@ const getMenuItems = (showCampaign?: boolean, showInsights?: boolean, showBookin
 }])
 
 const UserPageSiderComponent: FC<UserPageSiderProps> = ({
-  showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings,
+  showInsights, siderFooter, logo, projectName, updateProfileRequired, showBookings, features,
 }) => {
   const location = useLocation()
+  const navigate = useNavigate()
   const { pathname } = location
-  let menuItems = getMenuItems(false, false, showBookings)
+  let menuItems = getMenuItems(false, false, showBookings, features?.idp_enabled)
   let activeItem:string
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
@@ -88,16 +109,28 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     if (pathname.includes('/profile_details' || '/change_password')) {
       setOpenKey([...openKey, 'profile'])
     }
+    if (pathname.includes('/idp/')) {
+      setOpenKey([...openKey, 'idp'])
+    }
   }, [pathname])
   const handleMenuSelect = (menu) => {
+    if (menu.key === 'steps') { // TODO: remove after implementation
+      return navigate('/idp/steps/getting_start')
+    }
+    if (menu.key === 'my_plan') {
+      return navigate('/idp/my_plan')
+    }
+    if (menu.key === 'my_direct_reports') {
+      return navigate('/idp/direct_reports')
+    }
     if (menu.key === 'tasks') {
       const routePrefix = isThreesixty ? 'threesixty_campaigns' : 'campaigns'
-      return history.push(`/${routePrefix}/${campaignIdRef.current}`)
+      return navigate(`/${routePrefix}/${campaignIdRef.current}`)
     }
     if (menu.key === 'insights') {
-      return history.push(`/campaigns/${campaignIdRef.current}/${menu.key}`)
+      return navigate(`/campaigns/${campaignIdRef.current}/${menu.key}`)
     }
-    history.push(`/${menu.key}`)
+    navigate(`/${menu.key}`)
   }
 
   const handleOpenChange = (openKeys: string[]) => {
@@ -107,7 +140,12 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   if (pathname.includes('/campaigns/') || isThreesixty) {
     const [,, campaignId] = location.pathname.split('/')
     campaignIdRef.current = campaignId
-    menuItems = getMenuItems(true, pathname.includes('/threesixty_campaigns/') ? false : showInsights, showBookings)
+    menuItems = getMenuItems(
+      true,
+      pathname.includes('/threesixty_campaigns/') ? false : showInsights,
+      showBookings,
+      features?.idp_enabled,
+    )
     activeItem = pathname.includes('insights') ? 'insights' : 'tasks'
   } else {
     activeItem = pathname.slice(1)

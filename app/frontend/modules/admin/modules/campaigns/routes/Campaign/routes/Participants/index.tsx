@@ -1,17 +1,18 @@
 import React from 'react'
 import { Menu } from 'antd'
-import { History } from 'history'
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { useNavigate } from 'react-router-dom'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
 
-export { default as Subjects } from './Subjects'
-export { default as Assessors } from './Assessors'
-export { SmsInvites } from './SmsInvites'
+import Subjects from './Subjects'
+import Assessors from './Assessors'
+import { SmsInvites } from './SmsInvites'
+import UserDetails from './Subjects/UserDetails'
 
 const { I18n } = window
 
@@ -20,18 +21,14 @@ const connector = connect((state: RootState) => ({
   campaignPermissions: getCurrentCampaign(state).permissions,
 }))
 
-interface OwnProps {
-  routes: Array<{ path: string, components: JSX.Element }>,
-  history: History
-}
-
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-type Props = PropsFromRedux & OwnProps
+type Props = PropsFromRedux
 
-const ParticipantComponent: React.FC<Props> = ({ campaignPermissions, history, routes }) => {
+const ParticipantComponent: React.FC<Props> = ({ campaignPermissions }) => {
+  const navigate = useNavigate()
   const prefix = `${settings.urlPrefix}/:campaignId`
-  const onSelect = ({ key }) => routeUtils.moveTo(history, prefix, key)
+  const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
   const menuItems: ItemType[] = [{
     key: '/participants/subjects',
     label: I18n.t('administration.participants.tabs.subjects'),
@@ -41,8 +38,8 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions, history, r
     label: I18n.t('administration.participants.tabs.assessors'),
   })
   campaignPermissions.viewSmsInvites && menuItems.push({
-    key: '/participants/sms_invites',
-    label: I18n.t('administration.participants.tabs.sms_invites'),
+    key: '/participants/sms/invites',
+    label: I18n.t('administration.participants.tabs.sms_contacts'),
   })
 
   return (
@@ -50,12 +47,34 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions, history, r
       <Menu
         items={menuItems}
         onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        selectedKeys={getActiveLocationPath()}
         mode="horizontal"
       />
-      <RouteList routes={routes} urlPrefix={prefix} />
+      <RouteList
+        routes={[
+          { redirect: true, from: '', to: 'subjects' },
+          { path: '/subjects', component: <Subjects /> },
+          { path: '/subjects/:id/*', component: <UserDetails /> },
+          { path: '/assessors', component: <Assessors /> },
+          { path: '/sms/:tab', component: <SmsInvites /> },
+        ]}
+        urlPrefix=""
+      />
     </div>
   )
+}
+
+const getActiveLocationPath = (): Array<string> => {
+  if (location.href.match(/participants\/subjects/)) {
+    return ['/participants/subjects']
+  }
+  if (location.href.match(/participants\/assessors/)) {
+    return ['/participants/assessors']
+  }
+  if (location.href.match(/participants\/(sms\/invites|sms\/history)/)) {
+    return ['/participants/sms/invites']
+  }
+  return ['']
 }
 
 export const Participants = connector(ParticipantComponent)

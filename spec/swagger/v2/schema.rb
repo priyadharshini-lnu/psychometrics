@@ -63,12 +63,11 @@ module Swagger
           New attributes could also be added to the request schema but would be optional.
         DESCRIPTION
       },
-      securityDefinitions: { basic: { type: :basic } },
+      securitySchemes: { basic: { type: :basic } },
       paths: {},
       security: {},
-      basePath: '/api/v2/administration',
       servers: [{
-        url: 'https://ttedev.me:3030'
+        url: 'https://ttedev.me:3030/api/v2/administration'
       }],
       schemes: %w[http https],
       consumes: [
@@ -316,6 +315,18 @@ module Swagger
           CampaignFactorResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignFactor::Schema.single_resource_response
           ),
+          CampaignTemplateListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignTemplate::Schema.multiple_resource_response
+          ),
+          CampaignTemplateResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignTemplate::Schema.single_resource_response
+          ),
+          CampaignTemplateCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignTemplate::Schema.create_request
+          ),
+          CampaignTemplatetUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::CampaignTemplate::Schema.update_request
+          ),
           WorkshopResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Workshop::Schema.single_resource_response
           ),
@@ -376,6 +387,9 @@ module Swagger
           WorkshopInvitedSubjectCreateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::WorkshopInvitedSubject::Schema.create_request
           ),
+          CampaignUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::Campaign::Schema.update_request
+          ),
           CampaignAssessmentsListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessment::Schema.multiple_resource_response
           ),
@@ -420,6 +434,21 @@ module Swagger
           ),
           CampaignScoringVariableUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignScoringVariable::Schema.update_request
+          ),
+          IdpTemplateListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::IdpTemplate::Schema.multiple_resource_response
+          ),
+          SkillAliasListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::SkillAlias::Schema.multiple_resource_response
+          ),
+          SkillAliasResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::SkillAlias::Schema.single_resource_response
+          ),
+          SkillAliasCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::SkillAlias::Schema.create_request
+          ),
+          SkillAliasUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::SkillAlias::Schema.update_request
           ),
           ThreesixtyCampaignSingleResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::ThreesixtyCampaign::Schema.single_resource_response

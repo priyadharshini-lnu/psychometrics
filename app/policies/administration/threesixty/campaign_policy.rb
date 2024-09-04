@@ -88,6 +88,10 @@ module Administration::Threesixty
       has_permission?(:results, :raw_responses)
     end
 
+    def export_threesixty_scores?
+      has_permission?(:results, :scores)
+    end
+
     def remove_user?
       has_permission?(:campaigns, :manage_users)
     end

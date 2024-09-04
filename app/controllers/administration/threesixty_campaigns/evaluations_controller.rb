@@ -31,9 +31,11 @@ module Administration
         ).serialize(@users_result)
 
         @assessment = ::AssessmentSerializer.new(
-          threesixty_campaign.assessment,
-          piped_text_context: piped_text_context
-        ).to_hash(include: '**')
+          context: {
+            piped_text_context: piped_text_context,
+            include: '**'
+          }
+        ).serialize(threesixty_campaign.assessment)
       end
 
       def update

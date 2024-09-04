@@ -63,7 +63,7 @@ test('Selectiong different timezone should update the date and time accordingly'
 
 test('User should be able to select a available time slot', async () => {
   const user = userEvent.setup()
-  const dateTimeSelectionHandler = jest.fn(date => date)
+  const dateTimeSelectionHandler = vi.fn(date => date)
   render(
     <div id="container">
       <BookingCard
@@ -95,7 +95,7 @@ test('User should be able to select a available time slot', async () => {
 }, 30000)
 
 test('Questionnaire section should be shown when currentDateTime is passed', async () => {
-  const dateTimeSelectionHandler = jest.fn(date => date)
+  const dateTimeSelectionHandler = vi.fn(date => date)
   render(
     <div id="container">
       <BookingCard
@@ -118,7 +118,7 @@ test('Questionnaire section should be shown when currentDateTime is passed', asy
 })
 
 test('Date and time-slot to be pre-selected when currentDateTime is passed', async () => {
-  const dateTimeSelectionHandler = jest.fn(date => date)
+  const dateTimeSelectionHandler = vi.fn(date => date)
   const slotToBeSelected = availableDates[0]
   render(
     <div id="container">

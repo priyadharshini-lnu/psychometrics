@@ -7,7 +7,7 @@ module Administration
       before_action :ensure_project, except: %i[dashboard]
 
       before_action :set_resource, only: %i[show approve destroy download pdf_preview toggle_user_access
-                                            start_qc abort_qc send_for_approval request_changes
+                                            start_qc abort_qc send_for_approval request_changes possible_webhook_events
                                             remove_approval webhook_payload upload_file remove_file]
       before_action :pundit_authorize
 
@@ -31,7 +31,7 @@ module Administration
       end
 
       def upload_file
-        resource.update!(pdf: params[:file], status: :prepared)
+        resource.attach_pdf!(params[:file])
         render json: Administration::UserReportSerializer.new(
           context: {
             current_user: current_user,
@@ -154,12 +154,16 @@ module Administration
               payload: params.merge(user_dashboard.details_to_log)
           end
           format.json do
-            render json: user_dashboard, report: user_dashboard.report,
-                   results: UserReports::GroupedResultsByAssessment.call!(user_dashboard, view_report_as),
-                   piped_text_context: {},
-                   user_results: user_dashboard.user_results(view_report_as),
-                   serializer: Administration::IndividualDashboardSerializer,
-                   include: '**'
+            render json: Administration::IndividualDashboardSerializer.new(
+              context: {
+                report: user_dashboard.report,
+                results: UserReports::GroupedResultsByAssessment.call!(user_dashboard, view_report_as),
+                piped_text_context: {},
+                user_results: user_dashboard.user_results(view_report_as),
+                current_user: current_user,
+                include: '**'
+              }
+            ).serialize(user_dashboard)
           end
         end
       end

@@ -17,6 +17,18 @@ module Api
       render json: json_api_records(data.as_json, :assessor_scores)
     end
 
+    def active_idp_template
+      user = User.find(params[:id])
+      idp_template = user.active_user_idp_plan&.idp_template
+
+      if idp_template
+        jsonapi_render json: idp_template,
+                       options: { resource: ::Api::V2::Administration::Clients::IdpTemplateResource }
+      else
+        render json: { error: I18n.t('idp_templates.errors.idp_template_not_found') }, status: :not_found
+      end
+    end
+
     def policy_class
       @policy_class ||= Api::Administration::Campaigns::UserPolicy
     end

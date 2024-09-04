@@ -14,8 +14,8 @@ module UserReports
       serialized_result = user_report.
                           user_results(view_report_as).
                           map do |user_result|
-                            ::Reports::ResultSerializer.new(user_result, campaign: campaign).to_h
-                          end.group_by { |result| result[:assessment_id] }
+                            ::Reports::ResultSerializer.new(context: { campaign: campaign }).serialize(user_result)
+                          end.group_by { |result| result['assessment_id'] }
 
       broadcast :ok, serialized_result
     end

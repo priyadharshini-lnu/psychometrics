@@ -37,7 +37,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
-  const { id, campaignId } = useParams<{ id: string, campaignId: string }>()
+  const { id, campaignId } = useParams() as { id: string, campaignId: string }
 
   const config = {
     responseType: WorkshopResourceTR,

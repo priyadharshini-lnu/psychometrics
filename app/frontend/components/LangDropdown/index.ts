@@ -1,4 +1,5 @@
-import LangDropdown from './LangDropdown'
+import { LangDropdownWithChangeLocaleComponent, LangDropdownWithChangeUrl } from './LangDropdown'
 import connect from './connect'
 
-export default connect(LangDropdown)
+export const LangDropdownWithChangeLocale = connect(LangDropdownWithChangeLocaleComponent)
+export { LangDropdownWithChangeUrl }

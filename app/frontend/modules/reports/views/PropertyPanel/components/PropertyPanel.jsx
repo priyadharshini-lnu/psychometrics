@@ -2,12 +2,14 @@ import _ from 'lodash'
 import { Component } from 'react'
 import {
   Slider, InputNumber, Row, Col, Collapse, Input,
+  Tabs, Select, Tag,
 } from 'antd'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Properties } from '~/modules/reports/components/modules'
 import ModuleModel from '~/modules/reports/models/Module'
 import LayoutManager from '~/modules/reports/models/LayoutManager'
 import styles from './PropertyPanel.less'
+import StylesEditor from '~/modules/reports/components/StylesEditor'
 
 const { $ } = window
 const { Panel } = Collapse
@@ -15,6 +17,7 @@ const { Panel } = Collapse
 class PropertyPanel extends Component {
   state = {
     popupOpen: false,
+    currentTab: 'properties',
   }
 
   componentDidMount () {
@@ -26,6 +29,13 @@ class PropertyPanel extends Component {
       this.scrollTop = 0
       this.setState({ popupOpen: false })
     })
+  }
+
+  componentDidUpdate (prevProps) {
+    const { selected } = this.props
+
+    // eslint-disable-next-line react/no-did-update-set-state
+    prevProps.selected !== selected && this.setState({ currentTab: 'properties' })
   }
 
   onChangePosition = (value) => {
@@ -54,6 +64,11 @@ class PropertyPanel extends Component {
     model.update()
   }
 
+  changeStyles = (val) => {
+    const { module, updateModule, reportStyles } = this.props
+    const filteredValues = val.filter(v => reportStyles[v])
+    updateModule({ ...module, props: { ...module.props, styleIds: filteredValues } })
+  }
 
   showOnAllPages = () => {
     const { module } = this.props
@@ -73,8 +88,7 @@ class PropertyPanel extends Component {
     const { selected, module, page } = this.props
 
     if ((!module && !page) || !selected) {
-      const View = Properties.ReportProperties
-      return (<View model={page} />)
+      return
     }
 
     const type = selected.type === 'Module' ? module.type : selected.type
@@ -231,8 +245,8 @@ class PropertyPanel extends Component {
   }
 
   render () {
-    const { selected, module } = this.props
-    const { popupOpen } = this.state
+    const { selected, module, reportStyles } = this.props
+    const { popupOpen, currentTab } = this.state
     const inspectorClasses = [styles.inspector]
     let style = {}
     if (popupOpen) {
@@ -244,25 +258,65 @@ class PropertyPanel extends Component {
       }
     }
     return (
-      <>
-        <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
-          <div className={styles.main}>
-            {selected.type === 'Module' && module && (
-              <>
-                <div>
-                  <div className={styles.title}>Module Name:</div>
-                  <div>
-                    <Input key={module.id} value={module.name} onChange={this.onChangeName} />
-                  </div>
-                </div>
-                <hr className={styles.divider} />
-              </>
-            )}
-            {this.renderCustomProperties()}
-            {selected.type === 'Module' && this.renderLayout()}
-          </div>
-        </div>
-      </>
+      <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
+        <Tabs
+          tabBarStyle={{ padding: '0 10px', margin: 0, borderBottom: '1px solid #ccc' }}
+          defaultActiveKey="properties"
+          activeKey={currentTab}
+          onChange={tab => this.setState({ currentTab: tab })}
+          items={[{
+            label: 'Properties',
+            key: 'properties',
+            children: (
+              <div className={styles.main}>
+                {selected.type === 'Module' && module && (
+                  <>
+                    <div>
+                      <div className={styles.title}>Module Name:</div>
+                      <div>
+                        <Input key={module.id} value={module.name} onChange={this.onChangeName} />
+                      </div>
+                    </div>
+                    <div className="margin-top-10">Styles</div>
+                    <Select
+                      mode="tags"
+                      size="small"
+                      showSearch
+                      filterOption={(input, option) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                      style={{ width: '100%' }}
+                      value={module.props.styleIds?.filter(s => reportStyles[s])}
+                      options={_.map(reportStyles, style => ({ value: style.id, label: style.name }))}
+                      tagRender={({ label, value, onClose }) => {
+                        const deleted = !_.find(reportStyles, { id: value })
+                        return (
+                          <Tag
+                            color={deleted ? 'red' : 'green'}
+                            closable
+                            onClose={onClose}
+                          >
+                            {deleted ? 'DELETED' : label}
+                          </Tag>
+                        )
+                      }}
+                      onChange={this.changeStyles}
+                    />
+                    <hr className={styles.divider} />
+                  </>
+                )}
+                {this.renderCustomProperties()}
+                {selected.type === 'Module' && this.renderLayout()}
+              </div>
+            ),
+          }, {
+            label: 'Styles',
+            key: 'styles',
+            children: (
+              <StylesEditor />
+            ),
+          }]}
+        />
+
+      </div>
     )
   }
 }

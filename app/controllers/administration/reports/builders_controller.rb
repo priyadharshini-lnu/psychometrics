@@ -6,11 +6,24 @@ module Administration
       before_action :set_report
       append_before_action :pundit_authorize
 
+      def show
+        render json: ReportSerializer.new(
+          context: {
+            builder: true
+          }
+        ).serialize(@report)
+      end
+
       def update
         builder = ::Builders::ReportBuilder.new(@report, params.require(:builder), current_user)
         if builder.save
           @report = Report.includes(pages: [:modules]).find(@report.id)
-          render json: { data: ReportSerializer.new(@report, builder: true).to_hash(include: '**') }
+          render json: { data: ReportSerializer.new(
+            context: {
+              builder: true,
+              include: '**'
+            }
+          ).serialize(@report) }
         else
           render json: { error: true }, status: 400
         end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserWithAllFieldsSerializer < ActiveModel::Serializer
+class UserWithAllFieldsSerializer < Panko::Serializer
   attributes :id, :first_name, :last_name, :email, :age, :gender, :locale, :custom_fields, :photo
 
   delegate :age, :gender, :locale, to: :user_profile

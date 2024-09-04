@@ -8,43 +8,45 @@ RSpec.describe EndUser::PearsonUserAssessmentsController, type: :controller do
     create(:user_assessment, evaluator: user, pearson_user_assessment: build(:pearson_user_assessment))
   end
   let(:campaign) { user_assessment.campaign }
+  let(:async_request_uuid) { "#{uuid}|#{user.id}" }
+  let(:request_params) { { id: user_assessment.id, pearson_user_assessment: { id: user_assessment.id } } }
 
   before(:each) { login_user(user) }
   after(:each) { sign_out(user) }
 
-  describe 'GET pass' do
-    it 'redirects to campaign_path if user_assessment is completed' do
-      user_assessment.completed!
-      expect(::Saville::AssessmentOrderRequest).to_not receive(:call!)
-
-      get :pass, params: { id: user_assessment.id }
-
-      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
+  describe 'POST #pass' do
+    before do
+      allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(true)
+      allow(AsyncRequestHandlerJob).to receive(:perform_later)
     end
 
-    it "doesn't create Pearson Schedule if already created" do
-      url = 'https://tte-pearson.com'
-      user_assessment.pearson_user_assessment.update(url: url)
-      expect(::Pearson::CreateSchedule).to_not receive(:call!)
-
-      get :pass, params: { id: user_assessment.id }
-
-      expect(response).to redirect_to(url)
+    after(:each) do
+      $redis.flushdb # rubocop:disable Style/GlobalVars
     end
 
-    it 'create Pearson Schedule if assessment url is not present and marks user_assessment in progress' do
-      config = Rails.application.secrets.pearson
-      url = Faker::Internet.url
-      allow(Pearson::GetAuthToken).to receive(:call!)
-      allow_any_instance_of(UserAssessment).to receive(:pearson_assessment_language).and_return('en-Gb')
-      allow_any_instance_of(Assessment).to receive(:external_assessment_id).and_return('123')
-      stub_request(:post, "#{config[:base_api_url]}/v1/schedules").
-        to_return({ body: { 'data' => { 'urls' => [{ 'url' => url }] } }.to_json })
+    it 'queues the request and sets status to in progress' do
+      post :pass, params: request_params
 
-      get :pass, params: { id: user_assessment.id }
+      expect(response).to have_http_status(:ok)
+      expect(AsyncRequestHandlerJob).to have_received(:perform_later)
 
-      expect(user_assessment.reload.in_progress?).to eq(true)
-      expect(user_assessment.pearson_user_assessment.url).to redirect_to(url)
+      async_request_uuid = assigns(:async_request_uuid)
+      status, response = AsyncResponseRequest::GetAsyncResponse.call!(async_request_uuid)
+      expect(status).to eq('not_started')
+      expect(response).to be_an_instance_of(AsyncResponseRequest::AsyncResponse)
+      expect(response.processing_status).to eq('not_started')
+    end
+
+    context 'when user assessment cannot be started based on sequencing' do
+      before do
+        allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(false)
+      end
+
+      it 'returns the redirect URL to the campaign path' do
+        post :pass, params: request_params
+
+        expect(response).to redirect_to(campaign_path(user_assessment.campaign_id))
+      end
     end
   end
 

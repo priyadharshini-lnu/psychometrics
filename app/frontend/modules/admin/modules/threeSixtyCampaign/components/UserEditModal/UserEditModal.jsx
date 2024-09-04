@@ -4,6 +4,7 @@ import {
   Modal, Button, Form, Input,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import { useParams } from 'react-router-dom'
 import { isSuperAdmin } from '~/core/currentUser'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 
@@ -20,10 +21,8 @@ export default function UserEditModal ({
   currentUser,
   onUserUpdate,
   saveInProgress,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const { campaignId } = useParams()
   const [errors, setErrors] = useState(null)
 
   const handleOnCancel = () => {

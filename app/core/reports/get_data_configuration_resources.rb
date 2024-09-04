@@ -13,7 +13,8 @@ module Reports
     def call
       return broadcast :ok, {} if configuration_sections.blank?
 
-      broadcast :ok, { factor_names: factor_names, questions: questions }
+      broadcast :ok,
+                { factor_names: factor_names, questions: questions, campaign_factor_codes: campaign_factor_codes }
     end
 
     private
@@ -30,6 +31,26 @@ module Reports
         each_with_object({}) do |factor, acc|
           acc[factor.id] = factor.name
         end
+    end
+
+    def campaign_factor_codes
+      map_campaign_factor_codes(configuration_sections)
+    end
+
+    def map_campaign_factor_codes(data)
+      codes = case data
+                when Array
+                  data.map { |d| map_campaign_factor_codes(d) }
+                when Hash
+                  data.map do |k, v|
+                    if k == 'code' && data['type'] == 'campaign_factor'
+                      v
+                    else
+                      map_campaign_factor_codes(v)
+                    end
+                  end
+              end
+      codes.nil? ? [] : codes.flatten.compact
     end
 
     def all_factor_ids

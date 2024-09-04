@@ -1,13 +1,12 @@
 import { Component } from 'react'
-import { DropdownButton, MenuItem } from 'react-bootstrap'
-import { Button, Space } from 'antd'
+import { Button, Space, Dropdown } from 'antd'
 import {
-  EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined,
+  EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined, DownOutlined,
+  TranslationOutlined, PlusOutlined, CopyOutlined, TableOutlined, ImportOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
 import dayjs from '~/utils/dayjs'
-import ActionsHistory from '~/modules/survey/components/ActionsHistory'
 import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { perform } from '~/modules/survey/core/temp/socket'
@@ -150,7 +149,7 @@ export class Header extends Component {
             <li>
               <div>
                 <Button
-                  href={`/administration/reports?q[assessment_id_in][]=${assessment.id}`}
+                  href={`/admin/reports/active?filter[assessments_id_in]=${assessment.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -159,54 +158,84 @@ export class Header extends Component {
               </div>
             </li>
           )}
-          <li className={styles.spaceLeft}><ActionsHistory /></li>
+          {/* <li className={styles.spaceLeft}><ActionsHistory /></li> */}
           <li>
-            <DropdownButton
-              className={styles.dropdown}
-              pullRight
-              bsStyle="default"
-              onClick={e => e.stopPropagation(e)}
-              title={(
-                <span>
-                  <span className="icon fa fa-gear" />
-                  Options
-                </span>
-              )}
-              id="main_menu"
+            <Dropdown
+              trigger={['click']}
+              menu={{
+                items: [
+                  {
+                    key: 'settings',
+                    icon: <SettingOutlined />,
+                    label: 'Settings...',
+                    onClick: this.openSettings,
+                  },
+                  {
+                    key: 'mappgin-norm',
+                    icon: <PartitionOutlined />,
+                    label: I18n.t('administration.assessments.map_norms'),
+                    onClick: this.showMappingNorms,
+                  },
+                  {
+                    key: 'flow',
+                    icon: <i className="fa fa-random" />,
+                    label: I18n.t('administration.assessments.flow'),
+                    onClick: this.openFlow,
+                  },
+                  {
+                    key: 'add-block',
+                    icon: <PlusOutlined />,
+                    label: 'Add Block',
+                    onClick: this.createBlock,
+                  },
+                  {
+                    key: 'copy-block',
+                    icon: <CopyOutlined />,
+                    label: 'Copy Block From...',
+                    onClick: this.openSearchPopup,
+                  },
+                  {
+                    key: 'export-translations',
+                    icon: <TranslationOutlined />,
+                    label: 'Export Translations',
+                    onClick: this.export,
+                  },
+                  {
+                    key: 'import-translations',
+                    icon: <TranslationOutlined />,
+                    label: (
+                      <a
+                        className={styles.linkExport}
+                        data-remote="true"
+                        href={`/administration/translations/assessments/${_.result(assessment, 'id')}/new`}
+                      >
+                        Import Translations
+                      </a>
+                    ),
+                  },
+                  {
+                    key: 'manage-datasheet',
+                    icon: <TableOutlined />,
+                    label: 'Manage Datasheet',
+                    onClick: this.openDataSheetModal,
+                  },
+                  {
+                    key: 'improt-questions',
+                    icon: <ImportOutlined />,
+                    label: I18n.t('administration.assessments.menu.import_questions'),
+                    onClick: this.openImportQuestionsModal,
+                  },
+                ],
+              }}
             >
-              <MenuItem onSelect={this.openSettings}>
+              <Button>
                 <Space>
                   <SettingOutlined />
-                  Settings...
+                  Options
+                  <DownOutlined />
                 </Space>
-              </MenuItem>
-              <MenuItem onSelect={this.showMappingNorms}>
-                <Space>
-                  <PartitionOutlined />
-                  {I18n.t('administration.assessments.map_norms')}
-                </Space>
-              </MenuItem>
-              <MenuItem onSelect={this.openFlow}>
-                <i className="fa fa-random" />
-                {I18n.t('administration.assessments.flow')}
-              </MenuItem>
-              <MenuItem onSelect={this.createBlock}>Add Block</MenuItem>
-              <MenuItem onSelect={this.openSearchPopup}>Copy Block From...</MenuItem>
-              <MenuItem onSelect={this.export}>Export Translations</MenuItem>
-              <li>
-                <a
-                  className={styles.linkExport}
-                  data-remote="true"
-                  href={`/administration/translations/assessments/${_.result(assessment, 'id')}/new`}
-                >
-                  Import Translations
-                </a>
-              </li>
-              <MenuItem onSelect={this.openDataSheetModal}>Manage Datasheet</MenuItem>
-              <MenuItem onSelect={this.openImportQuestionsModal}>
-                {I18n.t('administration.assessments.menu.import_questions')}
-              </MenuItem>
-            </DropdownButton>
+              </Button>
+            </Dropdown>
             <form
               style={{ display: 'none' }}
               ref={(ref) => { this.form = ref }}

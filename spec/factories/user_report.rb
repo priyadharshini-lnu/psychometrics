@@ -7,7 +7,13 @@ FactoryBot.define do
     report
 
     trait :with_pdf do
-      pdf { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/reports/test.pdf'), 'application/pdf') }
+      after(:create) do |user_report|
+        user_report.pdf_file.attach(
+          io: File.open(Rails.root.join('spec/fixtures/files/reports/test.pdf')),
+          filename: 'test.pdf',
+          content_type: 'application/pdf'
+        )
+      end
     end
   end
 end

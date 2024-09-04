@@ -11,6 +11,11 @@ const rootReducer = combineReducers({
     modules,
     ui: combineReducers(temp),
   }),
+  campaigns: () => ({}),
+  config: () => ({}),
+  currentUser: () => ({}),
+  liveChat: () => ({}),
+  flash: () => ({}),
 })
 
 export type RootState = ReturnType<typeof rootReducer>

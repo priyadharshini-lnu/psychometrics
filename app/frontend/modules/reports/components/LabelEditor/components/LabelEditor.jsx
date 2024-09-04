@@ -99,10 +99,11 @@ export class LabelEditor extends Component {
 
   renderEdit () {
     const { value } = this.state
-    const { width, maxWidth } = this.props
+    const { width, maxWidth, minWidth } = this.props
     const style = {
       width,
       maxWidth,
+      minWidth: minWidth || 220,
     }
     return (
       <textarea

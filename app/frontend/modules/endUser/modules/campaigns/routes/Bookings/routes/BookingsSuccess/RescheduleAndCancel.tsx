@@ -1,4 +1,6 @@
-import { FC, useEffect, useState } from 'react'
+import {
+  FC, useEffect, useState, useRef,
+} from 'react'
 import {
   Form, Space, Button, Input, Popconfirm,
 } from 'antd'
@@ -26,6 +28,7 @@ export const RescheduleAndCancel: FC<Props> = ({
 }) => {
   const [openConfirmPopup, setOpenConfirmPopup] = useState(false)
   const [requestCancelForm] = Form.useForm()
+  const cancelConfirmRef = useRef<HTMLElement|null>(null)
   const requestButtonText = cancelBooking ? I18n.t('frontend.bookings.buttons.request_cancel')
     : I18n.t('frontend.bookings.buttons.request_reschedule')
   const reasonLabel = cancelBooking
@@ -36,6 +39,15 @@ export const RescheduleAndCancel: FC<Props> = ({
       setOpenConfirmPopup(false)
     }
   }, [cancelInProgress])
+
+  useEffect(() => {
+    if (openConfirmPopup) {
+      const confirmCancelBtn = cancelConfirmRef.current?.querySelector(
+        '.ant-popconfirm-buttons button',
+      ) as HTMLButtonElement
+      confirmCancelBtn?.focus()
+    }
+  }, [openConfirmPopup])
 
   const cancelBtn = (
     <Button
@@ -83,14 +95,25 @@ export const RescheduleAndCancel: FC<Props> = ({
         <span>{I18n.t('frontend.bookings.need_changes')}</span>
         {allowCancelByUser ? (
           <Popconfirm
+            destroyTooltipOnHide
             title={I18n.t('frontend.bookings.cancel_booking_confirmation')}
-            okButtonProps={{ loading: cancelInProgress }}
-            cancelButtonProps={{ disabled: cancelInProgress }}
+            okButtonProps={{
+              loading: cancelInProgress,
+              'aria-description': I18n.t('frontend.bookings.cancel_booking_confirmation'),
+            }}
+            cancelButtonProps={{
+              disabled: cancelInProgress,
+              'aria-description': I18n.t('frontend.bookings.cancel_booking_confirmation'),
+            }}
             onConfirm={() => onCancelBooking(true)}
             onCancel={() => setOpenConfirmPopup(false)}
             open={openConfirmPopup}
             okText={I18n.t('frontend.bookings.buttons.yes_text')}
             cancelText={I18n.t('frontend.bookings.buttons.no_text')}
+            getPopupContainer={(trigger) => {
+              cancelConfirmRef.current = trigger.parentElement
+              return trigger.parentElement || document.body
+            }}
           >
             {cancelBtn}
           </Popconfirm>

@@ -1,13 +1,12 @@
 import _ from 'lodash'
-import { getIn, setIn } from '~/utils/immutable'
+import { setIn } from '~/utils/immutable'
 import { createReducer } from '~/utils/redux'
 import Question from '~/modules/survey/models/Question'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import {
   ADD_QUESTION, ADD_QUESTIONS, CHANGE_TYPE, UPDATE_POSITIONS, UPDATE_QUESTION,
   ADD_SKIP_LOGIC, REMOVE_SKIP_LOGIC, SAVE_DISPLAY_LOGIC, RENAME_QUESTION, PERMANENT_REMOVE,
-  SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, CHANGE_VALIDATION, ADD_NOTE, ADD_COMMENT,
-  REMOVE_COMMENT,
+  SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, CHANGE_VALIDATION,
 } from './actions'
 import {
   REMOVE_QUESTION, ADD_PAGE_BREAK, RESTORE_QUESTION,
@@ -78,13 +77,6 @@ const HANDLERS = {
   ),
   [CHANGE_VALIDATION]: (state, { question, data }) => setIn(
     state, [question.id, 'validation'], { ...data },
-  ),
-  [ADD_NOTE]: (state, { question }) => setIn(state, [question.id, 'showComments'], true),
-  [ADD_COMMENT]: (state, { question, comment }) => setIn(
-    state, [question.id, 'comments'], getIn(state, [question.id, 'comments']).concat([comment]),
-  ),
-  [REMOVE_COMMENT]: (state, { question, comment }) => setIn(
-    state, [question.id, 'comments'], getIn(state, [question.id, 'comments']).filter(({ id }) => id !== comment.id),
   ),
 }
 

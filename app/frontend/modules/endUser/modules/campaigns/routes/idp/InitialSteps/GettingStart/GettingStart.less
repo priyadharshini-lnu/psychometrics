@@ -1,0 +1,40 @@
+@import "~/styles/antv4.variable.less";
+@import "~/styles/spacing.less";
+
+.box {
+  padding-block: 24px;
+  padding-inline: 48px;
+  margin-block-start: 24px;
+}
+
+.iconContainer {
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+  background-color: var(--ant-primary-1);
+}
+
+.video {
+  height: 465px;
+  width: 620px;
+  & :global(.video-js) :global(.vjs-big-play-button) {
+    background-color: var(--ant-primary-color);
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (max-width: @screen-sm) {
+  .video {
+    height: 320px;
+    width: 320px;
+  }
+  .box {
+    padding-block: 24px;
+    padding-inline: 12px;
+  }
+}

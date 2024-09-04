@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useHistory, useLocation, useParams } from 'react-router'
+import { useNavigate, useLocation, useParams } from 'react-router'
 import {
   Col, Input, Pagination, Row, Table, App, Modal,
 } from 'antd'
@@ -71,7 +71,7 @@ const AssessorsComponent: FC<Props> = ({
   removeAssessor,
   clearCurrentAssessor,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const { search, pathname } = useLocation()
   const searchParams = new URLSearchParams(search)
@@ -79,7 +79,7 @@ const AssessorsComponent: FC<Props> = ({
   const drawerAssessorId = searchParams.get(
     DRAWER_SEARCH_PARAMS.ASSESSOR_ID,
   ) as string
-  const params = useParams<{ projectId: string }>()
+  const params = useParams() as { projectId: string }
   const projectId = parseInt(params.projectId, 10)
   const { modal, message } = App.useApp()
 
@@ -124,7 +124,7 @@ const AssessorsComponent: FC<Props> = ({
 
   const handleEditAdminClick = (id: Assessor['id']) => {
     const editUrl = getIndividualAssessorUrl(DrawerMode.Edit, id)
-    history.push(editUrl)
+    navigate(editUrl)
   }
 
   const handleDeleteAdminClick = (id: Assessor['id']) => {
@@ -190,7 +190,7 @@ const AssessorsComponent: FC<Props> = ({
     searchParams.delete(DRAWER_SEARCH_PARAMS.MODE)
     searchParams.delete(DRAWER_SEARCH_PARAMS.ASSESSOR_ID)
 
-    history.push(`${pathname}?${searchParams.toString()}`)
+    navigate(`${pathname}?${searchParams.toString()}`)
     clearCurrentAssessor()
   }
 
@@ -313,7 +313,7 @@ const AssessorsComponent: FC<Props> = ({
   )
 }
 
-export const Assessors = withEnhancedTable(
+export const Assessors = withEnhancedTable<{}>(
   connector(AssessorsComponent),
   'projectAccessors',
   { maintainHistory: true, filterPredicates: FILTER_PREDICATES_ASSESSORS },

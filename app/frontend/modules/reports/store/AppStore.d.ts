@@ -37,7 +37,7 @@ declare class AppStore {
       minRequiredResponses: number
     }>
     dataSheetColumns: Array<{type: string, name: string}>
-    campaignFactors: Array<{type: string, name: string, code: string}>
+    campaignFactors: Array<{outputType: string, name: string, code: string}>
   }
 }
 

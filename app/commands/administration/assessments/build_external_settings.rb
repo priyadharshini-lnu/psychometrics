@@ -18,6 +18,8 @@ module Administration
             broadcast(:ok, build_pearson)
           when Assessment::TYPES[:iiht]
             broadcast(:ok, build_iiht)
+          when Assessment::TYPES[:mettl]
+            broadcast(:ok, build_mettl)
           when Assessment::TYPES[:saville]
             broadcast(:ok, build_saville)
           when Assessment::TYPES[:common]
@@ -57,6 +59,10 @@ module Administration
         assessment_id = raw_external_settings[:assessment_id]
         settings = Settings.providers.saville.assessments.find { |a| a.id.downcase == assessment_id }
         { norm_id: settings.default_norm_id, assessment_id: assessment_id }
+      end
+
+      def build_mettl
+        { assessment_id: raw_external_settings[:assessment_id] }
       end
     end
   end

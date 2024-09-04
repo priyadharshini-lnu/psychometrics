@@ -16,6 +16,7 @@ module UsersResults
         reset_user_result
         remove_media_responses
         Saville::ResetAssessment.call!(user_assessment) if user_assessment.saville?
+        Mettl::ResetCandidateAssessment.call!(user_assessment) if user_assessment.mettl?
       end
 
       broadcast :ok
@@ -64,7 +65,7 @@ module UsersResults
         report_id: users_result.assessment.report_ids,
         user_id: user_assessment.subject_id,
         campaign_id: user_assessment.campaign_id
-      ).update(remove_pdf: true, status: :not_prepared, approval_status: :not_ready)
+      ).each(&:remove_report_pdf!)
     end
   end
 end

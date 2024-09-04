@@ -1,5 +1,6 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import NotificationCenter from '~/components/NotificationCenter'
 
-ReactDOM.render(<NotificationCenter />, document.getElementById('notification-center-container'))
+const root = createRoot(document.getElementById('notification-center-container'))
+root.render(<NotificationCenter />)

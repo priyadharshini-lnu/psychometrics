@@ -51,7 +51,11 @@ module Administration
         question = ::Builders::Templates::QuestionBuilder.new(resource, params.require(:question))
         if question.save
           audit! :update, resource, payload: params, user: current_user
-          render json: { data: QuestionSerializer.new(resource).to_hash(include: '**') }
+          render json: { data: QuestionSerializer.new(
+            context: {
+              include: '**'
+            }
+          ).serialize(resource) }
         else
           render json: { error: true }, status: 400
         end

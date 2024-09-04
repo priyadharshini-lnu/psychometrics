@@ -12,7 +12,7 @@ export default class DateTimeEntryPreview extends Component {
   }
 
   render () {
-    const { model: { result: { answers } } } = this.props
+    const { model: { result: { answers }, id: questionId }, errors } = this.props
 
     const value = getIn(answers, ['0', 'value'])
 
@@ -23,6 +23,8 @@ export default class DateTimeEntryPreview extends Component {
         disabledTime={false}
         onChange={this.changeAnswer}
         showTime={{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }}
+        aria-invalid={!!errors.length}
+        aria-describedby={`error-for-question-${questionId}`}
       />
     )
   }

@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import ApiAction from 'interfaces/ApiAction'
 import { AnyAction } from 'redux'
+import { takeEvery, put } from 'redux-saga/effects'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { updateIn } from '~/utils/immutable'
@@ -15,6 +16,7 @@ export const RESET_PROGRESS = 'campaigns/assessorAssessments/RESET_PROGRESS'
 export const SELECT_RECORDS = 'campaigns/assessorAssessments/SELECT_RECORDS'
 export const BULK_DELETE = 'campaigns/assessorAssessments/BULK_DELETE'
 export const CREATE = 'resource/assessorAssessment/subject/CREATE'
+export const UPDATE_ASSESSOR_ASSESSMENT = 'resource/assessorAssessment/subject/UPDATE_ASSESSOR_ASSESSMENT'
 
 export const get = (state: RootState) => _.get(state, ['campaigns', 'assessorAssessments'])
 export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedIds')
@@ -37,6 +39,7 @@ export const StateTR = t.type({
 })
 
 export type AssessorAssessment = t.TypeOf<typeof AssessorAssessmentTR>
+// type FetchType = ApiActionResponse<{assessorAssessment: AssessorAssessment}>
 export type State = t.TypeOf<typeof StateTR>
 
 const defaultState: State = { list: [], total: 0, selectedIds: [] }
@@ -50,6 +53,11 @@ export const fetch = (campaignId: number, assessorId: number, tableConfig: Table
     tableConfig,
     typedResponse: StateTR,
   },
+})
+
+export const updateAssessorAssessments = (assessorAssessment: AssessorAssessment) => ({
+  type: UPDATE_ASSESSOR_ASSESSMENT,
+  response: assessorAssessment,
 })
 
 export const reset = (campaignId: number, assessorId: number, id: number) => ({
@@ -112,6 +120,27 @@ const HANDLERS = {
   [CREATE]: (state: State, { response }: ApiActionResponse<AssessorAssessment>) => ({
     ...state, total: state.total + 1, list: [response, ...state.list],
   }),
+  [UPDATE_ASSESSOR_ASSESSMENT]: (state: State, { response }: ApiActionResponse<AssessorAssessment>) => {
+    const updateAssessorAssessments = state.list.map(
+      assessorAssessment => (assessorAssessment.id !== response.id ? assessorAssessment : response),
+    )
+    return { ...state, list: updateAssessorAssessments }
+  },
 }
+
+function* genUpdateUserAssessments ({ response }: ApiAction<State>) {
+  yield put(updateAssessorAssessments(response))
+}
+
+export const watchers = [
+  takeEvery(
+    [
+      RESET,
+      RESCORE,
+      RESET_PROGRESS,
+    ],
+    genUpdateUserAssessments,
+  ),
+]
 
 export default createReducer(HANDLERS, defaultState)

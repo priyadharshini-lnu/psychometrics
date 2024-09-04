@@ -12,10 +12,6 @@ module Administration
           assessment.linked_assessment_id.to_s
         end
 
-        def subject_linked_activity_present
-          subject_user_assessment.present?
-        end
-
         private
 
         def assessment

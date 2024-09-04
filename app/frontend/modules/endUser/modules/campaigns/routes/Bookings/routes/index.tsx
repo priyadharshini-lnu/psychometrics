@@ -5,14 +5,14 @@ import { BookingsSuccess } from './BookingsSuccess'
 export const routes = [
   {
     path: '/',
-    component: BookingsAndInvitesList,
+    component: <BookingsAndInvitesList />,
   },
   {
     path: '/:inviteOrBookingId/details',
-    component: BookingsAndInvitesDetails,
+    component: <BookingsAndInvitesDetails />,
   },
   {
     path: '/:inviteOrBookingId/success',
-    component: BookingsSuccess,
+    component: <BookingsSuccess />,
   },
 ]

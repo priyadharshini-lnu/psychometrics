@@ -54,7 +54,7 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
       }
     )
     Comments::Channel.broadcast_to context[:user_report], action: 'new_comment',
-      comment: UserReportCommentSerializer.new(@model)
+      comment: UserReportCommentSerializer.new.serialize(@model)
   end
 
   def broadcast_update
@@ -83,6 +83,6 @@ class Api::V2::Administration::UserReportCommentResource < Api::V2::Administrati
     end
 
     Comments::Channel.broadcast_to context[:user_report], action: 'update_comment',
-      comment: UserReportCommentSerializer.new(@model)
+      comment: UserReportCommentSerializer.new.serialize(@model)
   end
 end

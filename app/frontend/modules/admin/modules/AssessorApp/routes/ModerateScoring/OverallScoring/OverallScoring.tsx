@@ -12,7 +12,7 @@ const { I18n } = window
 
 export const OverallScoring = ({ header }) => {
   let parsedCampaignId
-  const { campaignId, userId } = useParams<{ campaignId?: string, userId: string }>()
+  const { campaignId, userId } = useParams() as { campaignId?: string, userId: string }
   if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
 
   const {

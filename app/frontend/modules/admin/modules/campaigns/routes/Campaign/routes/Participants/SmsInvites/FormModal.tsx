@@ -44,15 +44,15 @@ const FormModalComponent: React.FC<Props> = ({
     {() => (
       <>
         <Form.Item name="firstName" required label={I18n.t('administration.sms_invites.form_modal.first_name')}>
-          <Input />
+          <Input name="sms_invite_firstname" />
         </Form.Item>
 
         <Form.Item name="lastName" required label={I18n.t('administration.sms_invites.form_modal.last_name')}>
-          <Input />
+          <Input name="sms_invite_lastname" />
         </Form.Item>
 
         <Form.Item name="mobileNo" required label={I18n.t('administration.sms_invites.form_modal.mobile_no')}>
-          <Input />
+          <Input name="sms_invite_mobile" />
         </Form.Item>
 
         <Form.Item name="locale" label={I18n.t('administration.sms_invites.form_modal.locale')} initialValue="en">

@@ -29,7 +29,7 @@ module Api
             )
             # rubocop:enable all
             response = ::Campaigns::Users::Create.call(struct, campaign, current_user) do
-              on(:error) { |error| raise Api::Errors::NotEnoughLicences, error }
+              on(:insufficient_license) { |error| raise Api::Errors::NotEnoughLicences, error }
             end
             audit! :api_create, response[:ok], payload: params, campaign: campaign
 

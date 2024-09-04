@@ -7,7 +7,6 @@ import DefaultProps from '~/modules/survey/constants/DefaultProps'
 import Action from '~/modules/survey/undo'
 import { getStore } from '~/modules/survey/store/StoreWatchman'
 import Condition from './QuestionCondition'
-import Comment from './Comment'
 import Result from './Preview/Result'
 import TranslateManager from './mixins/TranslateManager'
 import LogicElement from './logic/LogicElement'
@@ -29,9 +28,6 @@ const Question = function (attrs = {}) {
   this.templateId = attrs.template_id
   this.saveAsTemplate = false
   this.type = attrs.type || 'MultipleChoice'
-  this.comments = []
-  this.loadComments(attrs.comments || [])
-  this.showComments = this.comments.length > 0
   this.props = _.cloneDeep(DefaultProps[this.type] || {})
   this.props.randomization = { type: 'No' }
   this.requiredValidation = attrs.required_validation || { enabled: false, type: 'Force' }
@@ -96,21 +92,6 @@ _.extend(Question.prototype, {
     this.name = name
   },
 
-  // addComment (data) {
-  // const comment = new Comment(data)
-  // Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
-  //   Object.assign(comment, { id: data.id, name: data.author })
-  //   this.comments.push(comment)
-  //   this.store.update()
-  // })
-  // },
-
-  loadComments (comments) {
-    _.each(comments, (comment) => {
-      this.comments.push(new Comment(comment))
-    })
-  },
-
   loadConditions (conditions) {
     this.validation.args.conditions = []
     _.each(conditions, (condition) => {
@@ -118,17 +99,8 @@ _.extend(Question.prototype, {
     })
   },
 
-  removeComment (comment) {
-    _.remove(this.comments, comment)
-  },
-
   clone () {
     this.store.clone(_.cloneDeep(this))
-  },
-
-  addNote () {
-    this.showComments = true
-    this.store.update()
   },
 
   setChoices (val, undo) {

@@ -1,0 +1,48 @@
+import { useEffect } from 'react'
+import { Modal, Button } from 'antd'
+
+import { useParams } from 'react-router-dom'
+import RelationshipRow from './RelationshipRow'
+
+export default function ManageRelationshipsModal ({
+  closeModal,
+  relationships,
+  fetchWithUsage,
+  create,
+  remove,
+  update,
+}) {
+  const { campaignId } = useParams()
+  useEffect(() => {
+    // This is why I love GraphQL
+    fetchWithUsage(campaignId)
+  }, [])
+
+  return (
+    <Modal
+      title="Manage Relationships"
+      open
+      onCancel={closeModal}
+      footer={[
+        <Button key="back" onClick={closeModal}>
+          Close
+        </Button>,
+      ]}
+    >
+      <table>
+        <tbody>
+          {relationships.map(relationship => (
+            <RelationshipRow
+              key={relationship.id}
+              relationship={relationship}
+              create={create}
+              remove={remove}
+              update={update}
+              campaignId={campaignId}
+            />
+          ))}
+        </tbody>
+      </table>
+    </Modal>
+  )
+}

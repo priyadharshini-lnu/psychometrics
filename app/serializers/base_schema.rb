@@ -9,7 +9,7 @@ class BaseSchema
 
       unless existing_schema.config.validate_keys
         raise PankoOverride::Exceptions::KeyValidationMissing,
-              "Schema class '#{name}' does not have 'config.validate_keys' set to true"
+              "Schema class '#{name}' does not have 'config.validate_keys' set to true. Please set it to true or whitelist the schema in whitelisted_schemas method" # rubocop:disable Layout/LineLength
       end
       existing_schema
     end
@@ -33,7 +33,18 @@ class BaseSchema
 
   def self.whitelisted_schemas
     [UsersResultSchema, ::Api::V1::ResultSchema, ::Administration::DetailsDatasheetRowSchema, AuditLogSchema,
-     ActiveRecordAuditSchema, UsersResultSchema, ::Api::V1::ResultSchema, EndUser::CurrentUserSchema,
-     AssessorScoresSchema, AuditLogInfoSchema]
+     ActiveRecordAuditSchema, EndUser::CurrentUserSchema, AssessorScoresSchema, AdminJobRecordSchema,
+     AssessmentSchema, QuestionSchema, BlockSchema, HighlightSchema,
+     Reports::FilterSchema, Reports::AssessmentSchema, Reports::PageSchema,
+     Reports::ModuleSchema, ReportSchema, UserDashboardSchema, UsersResults::AgileSchema,
+     Threesixty::EndUser::CampaignNomineeSchema, Threesixty::CampaignOptionsSchema, Threesixty::UserReportSchema,
+     Threesixty::EndUser::CampaignSchema, Reports::ResultSchema, UserReportSchema,
+     Administration::IndividualDashboardSchema,
+     Assessments::Actions::Block::CreateByTemplate::QuestionSchema,
+     Assessments::Actions::Block::CreateByTemplate::BlockSchema,
+     Assessments::Actions::Question::CreateByTemplate::QuestionSchema,
+     Assessments::QuestionSchema, Assessments::AssessmentSchema, Assessments::BlockSchema, Assessments::FactorSchema,
+     UsersResultUpdateSchema, ProfileFieldSchema, FactorSchema, UserReportEventSchema, AuditLogInfoSchema,
+     Threesixty::NominationSchema]
   end
 end

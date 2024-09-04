@@ -12,7 +12,7 @@ module AgileUserResult
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
       format.json do
-        render json: user_result, serializer: UsersResults::AgileSerializer
+        render json: UsersResults::AgileSerializer.new.serialize(user_result)
       end
     end
   end

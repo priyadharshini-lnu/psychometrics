@@ -22,15 +22,16 @@ module Threesixty
         )
         result = subjects.map do |subject|
           ::Threesixty::SubjectSerializer.new(
-            subject,
-            option: threesixty_campaign.option,
-            counters: counters,
-            nomination_requirement: nomination_requirement_by_user_id[subject.user_id],
-            subject_evaluator_counters: subject_evaluator_counters,
-            current_user: current_user,
-            project_id: threesixty_campaign.campaign.project_id,
-            campaign_id: threesixty_campaign.campaign_id
-          ).to_h
+            context: {
+              option: threesixty_campaign.option,
+              counters: counters,
+              nomination_requirement: nomination_requirement_by_user_id[subject.user_id],
+              subject_evaluator_counters: subject_evaluator_counters,
+              current_user: current_user,
+              project_id: threesixty_campaign.campaign.project_id,
+              campaign_id: threesixty_campaign.campaign_id
+            }
+          ).serialize(subject)
         end
         broadcast :ok, result
       end

@@ -6,7 +6,7 @@ import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
@@ -15,12 +15,6 @@ const { Column } = Table
 const { I18n } = window
 
 interface OwnProps {
-  match: {
-    params: {
-      projectId: string
-      campaignId: string
-    }
-  }
   openModal(name: string, data?: {
     projectId?: number
     campaignId?: number
@@ -30,19 +24,19 @@ interface OwnProps {
  }): void
 }
 
-export type Props = RouteComponentProps & OwnProps & PropsFromRedux
+export type Props = OwnProps & PropsFromRedux
 
 const ReportList: React.FC<Props> = ({
   reports: {
     list,
   },
   selectRecords,
-  match: { params: { campaignId, projectId } },
   remove,
   openModal,
   toggleUserAccess,
   removeFile,
 }) => {
+  const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedProjectId = parseInt(projectId, 10)
   const { modal, message } = App.useApp()
@@ -260,4 +254,4 @@ const getActionsMenuProps = ({
   return ({ items: menuItems, onClick: handleMenuClick })
 }
 
-export default withRouter(ReportList)
+export default ReportList

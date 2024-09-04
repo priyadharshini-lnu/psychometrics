@@ -1,5 +1,5 @@
 import React from 'react'
-import { useMedia } from 'react-use-media'
+import { useMedia } from 'use-media'
 
 const defaultMediaQueryContext = {
   isMobile: false,

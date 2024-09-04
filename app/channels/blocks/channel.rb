@@ -4,7 +4,6 @@ module Blocks
   class Channel < ApplicationCable::Channel
     include Blocks::Actions::Block
     include Blocks::Actions::Question
-    include Blocks::Actions::Comment
     include Pundit
     include Administration::Policies
 
@@ -14,7 +13,11 @@ module Blocks
         transmit(
           {
             action: 'block_data',
-            data: BlockSerializer.new(block).to_hash(include: '**')
+            data: BlockSerializer.new(
+              context: {
+                include: '**'
+              }
+            ).serialize(block)
           }
         )
       else

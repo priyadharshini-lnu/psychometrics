@@ -12,6 +12,7 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
   model_hint model: 'assessments/pearson', resource: :assessment
   model_hint model: 'assessments/saville', resource: :assessment
   model_hint model: 'assessments/iiht', resource: :assessment
+  model_hint model: 'assessments/mettl', resource: :assessment
 
   class_attribute :_audit_log_config
 
@@ -31,6 +32,12 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
 
   def self.records(opts = {})
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, _model_class])
+  end
+
+  def self.add_tag_filter
+    filter :tagged_with, apply: lambda { |records, tags, _options|
+      records.tagged_with(tags)
+    }
   end
 
   def meta(_options)

@@ -79,6 +79,7 @@ class User < ApplicationRecord
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
   belongs_to :project, class_name: 'Client'
+  belongs_to :manager, class_name: 'User'
 
   has_many :profile_fields, through: :project
   has_many :memberships, inverse_of: :user # on delete cascade
@@ -133,6 +134,11 @@ class User < ApplicationRecord
 
   has_one :security_setting, through: :project
   has_one :user_profile
+  has_one :active_user_idp_plan, -> { active }, class_name: 'UserIdpPlan'
+  has_many :user_idp_plans, dependent: :destroy
+  has_many :user_idp_development_actions, through: :active_user_idp_plan, dependent: :destroy
+  has_many :user_idp_skills, through: :active_user_idp_plan, dependent: :destroy
+  has_many :idp_template_skills, through: :active_user_idp_plan
 
   accepts_nested_attributes_for :memberships
 
@@ -151,8 +157,11 @@ class User < ApplicationRecord
 
   has_one_time_password(encrypted: true)
 
+  acts_as_tagger
+
   delegate :subdomain, to: :project, allow_nil: true
   delegate :photo, :photo_url, :locale, to: :user_profile, allow_nil: true
+  delegate :email, to: :manager, prefix: true, allow_nil: true
 
   def accessible_client_ids
     client_admin_client_ids + project_admin_clients_tte_ids + campaign_admin_clients_tte_ids
@@ -263,6 +272,10 @@ class User < ApplicationRecord
     super && !disabled?
   end
 
+  def owner_ids
+    [client_admin_client_ids, project_admin_client_ids, campaign_admin_client_ids].flatten.uniq
+  end
+
   private
 
   def email_validation
@@ -271,7 +284,7 @@ class User < ApplicationRecord
 
   def generate_invitation_token
     super
-    encrypted_token = Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).
+    encrypted_token = Rails.application.message_verifier(Settings.secrets.secret_token_for_generate).
                       generate(@raw_invitation_token)
     self.encrypted_invitation_raw = encrypted_token
   end

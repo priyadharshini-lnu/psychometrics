@@ -4,11 +4,13 @@ require 'rails_helper'
 
 describe EndUser::CampaignsController, type: :controller do
   let(:user) { create(:user, :with_project_membership) }
+  let(:project) { user.project }
   let(:user2) { create(:user) }
   let!(:campaign) { create(:campaign, project: user.project) }
   let!(:registration_code) { create(:registration_code, project: campaign.project, campaign: campaign, use_count: 0) }
 
   before(:each) do
+    allow(GetProjectBySubdomain).to receive(:call!).and_return(project)
     login_user(user)
   end
 
@@ -91,6 +93,10 @@ describe EndUser::CampaignsController, type: :controller do
   end
 
   context 'when login with SSO token' do
+    before(:each) do
+      sign_out(user)
+    end
+
     let(:sso_token) { 'sso_token' }
     let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
 
@@ -104,7 +110,6 @@ describe EndUser::CampaignsController, type: :controller do
 
     it 'Should not allow login if user not part of project' do
       user.update_column(:project_id, create(:project).id)
-      allow($redis).to receive(:get).with(user.sso_key).and_return(sso_token) # rubocop:disable Style/GlobalVars
 
       get :show, params: { id: campaign.id, user_id: user.id, sso_token: sso_token }
 

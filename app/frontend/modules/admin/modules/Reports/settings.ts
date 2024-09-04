@@ -7,6 +7,7 @@ const settings = {
     [2, 'hogan'],
     [3, 'saville'],
     [4, 'pearson'],
+    [6, 'mettl'],
   ],
 }
 

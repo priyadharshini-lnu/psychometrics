@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Dropdown, Flex, Space } from 'antd'
+import { Dropdown, Space, Flex } from 'antd'
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons'
 import _ from 'lodash'
-import { useMedia } from 'react-use-media'
+import { useLocation } from 'react-router-dom'
+import { useMedia } from 'use-media'
 import { LanguageIcon } from '~/glint/icons/LanguageIcon'
 import styles from './styles.less'
 
@@ -12,33 +13,29 @@ const defaultCurrentLocale = I18n.locale
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  changeLocale: (locale: string) => any
+  onChange: (locale: string) => any
   locales?: string[]
-  current?: string,
+  currentLocale?: string
 }
 
-const LangDropdown: React.FC<Props> = ({
-  locales, current, changeLocale,
-}) => {
+const LangDropdown: React.FC<Props> = ({ locales, currentLocale, onChange }) => {
   const [loading, setLoading] = useState(false)
-  const availableLocales = locales || defaultLocales
-  const availableCurrentLocale = current || defaultCurrentLocale
   const isMobile = useMedia({
     maxWidth: 600,
   })
 
   const onSelect = ({ key }) => {
     setLoading(true)
-    changeLocale(key).then(() => { location.reload() })
+    onChange(key)
   }
 
-  const menuItems = _.map(availableLocales, locale => (
-    locale !== availableCurrentLocale ? (
+  const menuItems = _.map(locales, locale => (
+    locale !== currentLocale ? (
       { key: locale, label: I18n.t(`languages_localized.${locale}`) }
     ) : null
   ))
 
-  if (availableLocales?.length <= 1) return null
+  if (locales && locales?.length <= 1) return null
 
   return (
     <div>
@@ -52,7 +49,7 @@ const LangDropdown: React.FC<Props> = ({
                 : (
                   <span>
                     {isMobile ? null
-                      : I18n.t(`languages_localized.${availableCurrentLocale}`)}
+                      : I18n.t(`languages_localized.${currentLocale}`)}
                     {' '}
                     <DownOutlined />
                   </span>
@@ -62,6 +59,41 @@ const LangDropdown: React.FC<Props> = ({
         </Dropdown>
       </Space>
     </div>
+  )
+}
+
+// updates `lang` query param in URL
+export const LangDropdownWithChangeUrl: React.FC<Omit<Props, 'onChange'>> = ({ locales, currentLocale }) => {
+  const { search } = useLocation()
+  const searchParams = new URLSearchParams(search)
+
+  const handleLanguageChange = (key) => {
+    searchParams.set('lang', key)
+    window.location.search = searchParams.toString()
+  }
+
+  return (
+    <LangDropdown
+      locales={locales}
+      currentLocale={currentLocale}
+      onChange={handleLanguageChange}
+    />
+  )
+}
+
+// updates locale in I18n and reloads the page
+export const LangDropdownWithChangeLocaleComponent: React.FC<Props> = ({ locales, currentLocale, onChange }) => {
+  const availableLocales = locales || defaultLocales
+  const availableCurrentLocale = currentLocale || defaultCurrentLocale
+
+  return (
+    <LangDropdown
+      locales={availableLocales}
+      currentLocale={availableCurrentLocale}
+      onChange={(key) => {
+        onChange(key).then(() => { location.reload() })
+      }}
+    />
   )
 }
 

@@ -13,7 +13,7 @@ module Assessments
 
       action :create do |data, _current_user, assessment|
         block = assessment.blocks.create!(data)
-        BlockSerializer.new(block).to_hash
+        BlockSerializer.new.serialize(block)
       end
 
       action :update do |data|
@@ -39,20 +39,20 @@ module Assessments
       action :move_up do |data|
         block = ::Block.find(data['id'])
         block.move_higher
-        BlockSerializer.new(block).to_hash
+        BlockSerializer.new.serialize(block)
       end
 
       action :move_down do |data|
         block = ::Block.find(data['id'])
         block.move_lower
-        BlockSerializer.new(block).to_hash
+        BlockSerializer.new.serialize(block)
       end
 
       action :restore do |data|
         block = ::Block.find(data['id'])
         block.update(deleted_at: nil)
         block.move_to_bottom
-        BlockSerializer.new(block).to_hash
+        BlockSerializer.new.serialize(block)
       end
 
       action :permanent_destroy do |data|
@@ -63,18 +63,26 @@ module Assessments
       action :clone do |data|
         block = ::Block.find(data['id'])
         cloned_block = block.clone_with_params(name: data['name'], position: data['position'])
-        BlockSerializer.new(cloned_block).to_hash
+        BlockSerializer.new.serialize(cloned_block)
       end
 
       action :create_by_template do |data, _, _assessment|
         template = ::Block.templates.find(data['template_id'])
-        Assessments::Actions::Block::CreateByTemplate::BlockSerializer.new(template).to_hash(include: '**')
+        Assessments::Actions::Block::CreateByTemplate::BlockSerializer.new(
+          context: {
+            include: '**'
+          }
+        ).serialize(template)
       end
 
       action :save_as_template do |data, _, _assessment|
         block = ::Block.find(data['id'])
         block.dup_for_template!
-        BlockSerializer.new(block).to_hash(include: '**')
+        BlockSerializer.new(
+          context: {
+            include: '**'
+          }
+        ).serialize(block)
       end
 
       action :unlink_template do |data|
@@ -83,7 +91,11 @@ module Assessments
         block.questions.each do |question|
           question.update(question.template.general_attributes.merge(template_id: nil))
         end
-        BlockSerializer.new(block).to_hash(include: '**')
+        BlockSerializer.new(
+          context: {
+            include: '**'
+          }
+        ).serialize(block)
         nil
       end
     end

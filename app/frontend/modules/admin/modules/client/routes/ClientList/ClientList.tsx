@@ -7,6 +7,7 @@ import { PlusOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { Client, ClientTR } from '~/modules/admin/modules/client/core/clients'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -43,7 +44,7 @@ interface Meta extends BaseMeta{
   types: string[]
 }
 
-const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
+const ClientList: React.FC<Props> = ({ openModal, currentUser }) => {
   const [countries, setCoutries] = useState<Meta['countries']>([])
   const [types, setTypes] = useState<Meta['types']>([])
   const baseApiConfig = {
@@ -191,6 +192,7 @@ const ClientListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         recordCount={meta.recordCount}
         loading={tableLoading}
         requestStatus={requests.fetch?.status}
+        failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />
       <Modals modals={MODALS} />
     </>
@@ -236,4 +238,4 @@ const getActionMenuProps = ({
   return ({ items: _.compact(menuItems), onClick: handleMenuClick })
 }
 
-export const ClientList = connecter(ClientListComponent)
+export default connecter(ClientList)

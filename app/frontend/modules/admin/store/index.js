@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
-import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import socket from '~/middleware/socket'
 import api from '~/middleware/api'
@@ -23,9 +22,9 @@ if (__DEV__) {
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
 
 const store = createStore(
-  rootReducers(history),
+  rootReducers(),
   __INITIAL_STATE__,
-  composeEnhancers(applyMiddleware(api, socket, sagaMiddleware, flowMiddleware, routerMiddleware(history), thunk)),
+  composeEnhancers(applyMiddleware(api, socket, sagaMiddleware, flowMiddleware, thunk)),
 )
 
 sagaMiddleware.run(rootSagas)

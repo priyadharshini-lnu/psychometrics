@@ -10,31 +10,10 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
 --
 
-CREATE SCHEMA c_10313;
-
-
---
--- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10463;
-
-
---
--- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10501;
-
-
---
--- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA c_10542;
+-- *not* creating schema, since initdb creates it
 
 
 --
@@ -118,103 +97,6 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
-
---
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
---
-
-CREATE VIEW c_10313.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
---
-
-CREATE VIEW c_10463.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.accesssheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'full name'::text) AS "full name",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'roll number'::text) AS "roll number",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'sample'::text) AS sample
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 61)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
---
-
-CREATE VIEW c_10501.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
---
-
-CREATE VIEW c_10542.datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -599,8 +481,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    options json DEFAULT '{}'::json,
     instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -763,12 +645,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -991,82 +873,6 @@ ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
 
 
 --
--- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10313_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 69)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10463_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 65)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10501_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Position'::text) AS "Position"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 62)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10542_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
-    (sheet_rows.data ->> 'Position'::text) AS "Position",
-    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
-    (sheet_rows.data ->> 'Department'::text) AS "Department",
-    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 70)
-  ORDER BY sheet_rows.id;
-
-
---
--- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
---
-
-CREATE VIEW public.c_10543_datasheet AS
- SELECT sheet_rows.id,
-    sheet_rows.email AS "Email",
-    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
-   FROM public.sheet_rows
-  WHERE (sheet_rows.sheet_id = 72)
-  ORDER BY sheet_rows.id;
-
-
---
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1120,13 +926,13 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    external_norm_id character varying,
     available_locales text[] DEFAULT '{}'::text[],
+    external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
+    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
-    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true
 );
@@ -1546,8 +1352,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    default_idp_template_id bigint,
-    practice_campaign boolean DEFAULT false
+    practice_campaign boolean DEFAULT false,
+    default_idp_template_id bigint
 );
 
 
@@ -1743,40 +1549,6 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
-
-
---
--- Name: comments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.comments (
-    id integer NOT NULL,
-    text character varying,
-    created_by integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    commentable_id integer,
-    commentable_type character varying
-);
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.comments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
@@ -2021,76 +1793,6 @@ CREATE SEQUENCE public.data_geos_id_seq
 --
 
 ALTER SEQUENCE public.data_geos_id_seq OWNED BY public.data_geos.id;
-
-
---
--- Name: data_report_jobs; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.data_report_jobs (
-    id bigint NOT NULL,
-    data_report_id integer,
-    status integer DEFAULT 0,
-    admin_job_record_id integer,
-    created_by_id integer,
-    password character varying,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    file character varying
-);
-
-
---
--- Name: data_report_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.data_report_jobs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: data_report_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.data_report_jobs_id_seq OWNED BY public.data_report_jobs.id;
-
-
---
--- Name: data_reports; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.data_reports (
-    id bigint NOT NULL,
-    name character varying,
-    configuration jsonb,
-    owner_id integer,
-    last_updated_by_id integer,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: data_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.data_reports_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: data_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.data_reports_id_seq OWNED BY public.data_reports.id;
 
 
 --
@@ -3281,10 +2983,10 @@ ALTER SEQUENCE public.mettl_assessments_id_seq OWNED BY public.mettl_assessments
 
 
 --
--- Name: mettl_schedules; Type: TABLE; Schema: public; Owner: -
+-- Name: mettl_schedule_records; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.mettl_schedules (
+CREATE TABLE public.mettl_schedule_records (
     id bigint NOT NULL,
     project_id bigint,
     assessment_id bigint NOT NULL,
@@ -3293,15 +2995,17 @@ CREATE TABLE public.mettl_schedules (
     access_key character varying,
     access_url character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    duplicated_from_id bigint,
+    schedule_number integer DEFAULT 1
 );
 
 
 --
--- Name: mettl_schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: mettl_schedule_records_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.mettl_schedules_id_seq
+CREATE SEQUENCE public.mettl_schedule_records_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -3310,10 +3014,10 @@ CREATE SEQUENCE public.mettl_schedules_id_seq
 
 
 --
--- Name: mettl_schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: mettl_schedule_records_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.mettl_schedules_id_seq OWNED BY public.mettl_schedules.id;
+ALTER SEQUENCE public.mettl_schedule_records_id_seq OWNED BY public.mettl_schedule_records.id;
 
 
 --
@@ -3325,7 +3029,7 @@ CREATE TABLE public.mettl_user_assessments (
     user_assessment_id bigint NOT NULL,
     url character varying,
     email character varying,
-    mettl_schedule_id bigint,
+    mettl_schedule_record_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -4562,7 +4266,8 @@ CREATE TABLE public.security_settings (
     send_unlock_email boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    tfa_enabled boolean DEFAULT false
+    tfa_enabled boolean DEFAULT false,
+    magic_link_expiry_in_seconds integer DEFAULT 604800 NOT NULL
 );
 
 
@@ -4583,6 +4288,20 @@ CREATE SEQUENCE public.security_settings_id_seq
 --
 
 ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings.id;
+
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -5301,7 +5020,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -6075,9 +5795,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint,
     mobile_number character varying,
-    mobile_verified boolean DEFAULT false
+    mobile_verified boolean DEFAULT false,
+    manager_id bigint
 );
 
 
@@ -6113,10 +5833,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -6864,13 +6584,6 @@ ALTER TABLE ONLY public.clients_reports ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
-
-
---
 -- Name: communication_emails id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6910,20 +6623,6 @@ ALTER TABLE ONLY public.dashboards ALTER COLUMN id SET DEFAULT nextval('public.d
 --
 
 ALTER TABLE ONLY public.data_geos ALTER COLUMN id SET DEFAULT nextval('public.data_geos_id_seq'::regclass);
-
-
---
--- Name: data_report_jobs id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.data_report_jobs ALTER COLUMN id SET DEFAULT nextval('public.data_report_jobs_id_seq'::regclass);
-
-
---
--- Name: data_reports id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.data_reports ALTER COLUMN id SET DEFAULT nextval('public.data_reports_id_seq'::regclass);
 
 
 --
@@ -7151,10 +6850,10 @@ ALTER TABLE ONLY public.mettl_assessments ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- Name: mettl_schedules id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: mettl_schedule_records id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.mettl_schedules ALTER COLUMN id SET DEFAULT nextval('public.mettl_schedules_id_seq'::regclass);
+ALTER TABLE ONLY public.mettl_schedule_records ALTER COLUMN id SET DEFAULT nextval('public.mettl_schedule_records_id_seq'::regclass);
 
 
 --
@@ -8092,14 +7791,6 @@ ALTER TABLE ONLY public.clients_reports
 
 
 --
--- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.comments
-    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
-
-
---
 -- Name: communication_emails communication_emails_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8145,22 +7836,6 @@ ALTER TABLE ONLY public.dashboards
 
 ALTER TABLE ONLY public.data_geos
     ADD CONSTRAINT data_geos_pkey PRIMARY KEY (id);
-
-
---
--- Name: data_report_jobs data_report_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.data_report_jobs
-    ADD CONSTRAINT data_report_jobs_pkey PRIMARY KEY (id);
-
-
---
--- Name: data_reports data_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.data_reports
-    ADD CONSTRAINT data_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -8436,11 +8111,11 @@ ALTER TABLE ONLY public.mettl_assessments
 
 
 --
--- Name: mettl_schedules mettl_schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: mettl_schedule_records mettl_schedule_records_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.mettl_schedules
-    ADD CONSTRAINT mettl_schedules_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.mettl_schedule_records
+    ADD CONSTRAINT mettl_schedule_records_pkey PRIMARY KEY (id);
 
 
 --
@@ -10565,10 +10240,10 @@ CREATE INDEX index_memberships_on_user_id ON public.memberships USING btree (use
 
 
 --
--- Name: index_mettl_assessments_on_product_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_mettl_assessments_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_mettl_assessments_on_product_id_and_project_id ON public.mettl_assessments USING btree (product_id, project_id);
+CREATE UNIQUE INDEX index_mettl_assessments_on_product_id ON public.mettl_assessments USING btree (product_id);
 
 
 --
@@ -10579,17 +10254,17 @@ CREATE INDEX index_mettl_assessments_on_project_id ON public.mettl_assessments U
 
 
 --
--- Name: index_mettl_schedules_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_mettl_schedule_records_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_mettl_schedules_on_assessment_id ON public.mettl_schedules USING btree (assessment_id);
+CREATE INDEX index_mettl_schedule_records_on_assessment_id ON public.mettl_schedule_records USING btree (assessment_id);
 
 
 --
--- Name: index_mettl_schedules_on_project_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_mettl_schedule_records_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_mettl_schedules_on_project_id ON public.mettl_schedules USING btree (project_id);
+CREATE INDEX index_mettl_schedule_records_on_project_id ON public.mettl_schedule_records USING btree (project_id);
 
 
 --
@@ -13017,14 +12692,6 @@ ALTER TABLE ONLY public.mettl_assessments
 
 
 --
--- Name: comments fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.comments
-    ADD CONSTRAINT fk_rails_7f3b1733e2 FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
 -- Name: user_assessments fk_rails_819dfa2a29; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13241,10 +12908,10 @@ ALTER TABLE ONLY public.active_storage_variant_records
 
 
 --
--- Name: mettl_schedules fk_rails_993b57125e; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: mettl_schedule_records fk_rails_993b57125e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.mettl_schedules
+ALTER TABLE ONLY public.mettl_schedule_records
     ADD CONSTRAINT fk_rails_993b57125e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
@@ -13605,7 +13272,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -13833,10 +13500,10 @@ ALTER TABLE ONLY public.memberships_admin_roles
 
 
 --
--- Name: mettl_schedules fk_rails_dda6b322d7; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: mettl_schedule_records fk_rails_dda6b322d7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.mettl_schedules
+ALTER TABLE ONLY public.mettl_schedule_records
     ADD CONSTRAINT fk_rails_dda6b322d7 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
@@ -14143,7 +13810,12 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240902131904'),
+('20240829113349'),
+('20240827094045'),
 ('20240826085931'),
+('20240826050104'),
+('20240823114034'),
 ('20240822061229'),
 ('20240820083735'),
 ('20240816122815'),
@@ -14156,7 +13828,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240801093652'),
 ('20240721171706'),
 ('20240721171655'),
-('20240705073952'),
 ('20240703110220'),
 ('20240628111224'),
 ('20240621084730'),
@@ -14167,9 +13838,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240604173936'),
 ('20240603125218'),
 ('20240603082942'),
-('20240523124219'),
 ('20240523115956'),
-('20240521084702'),
 ('20240514065558'),
 ('20240510095101'),
 ('20240508075421'),

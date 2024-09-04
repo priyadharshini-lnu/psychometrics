@@ -1,0 +1,51 @@
+.main {
+  min-height: 350px;
+  overflow: hidden;
+  background: #fafbfc;
+  min-height: 90vh;
+}
+
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  &:nth-child(odd) {
+    background-color: #f5f5f5;
+  }
+  .name {
+    flex: 1;
+    padding: 4px;
+    max-width: 120px;
+    font-size: 0.9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  .icons {
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  &:hover {
+    .icons {
+      opacity: 1;
+    }
+  }
+}
+
+.divider {
+  margin: 8px -15px;
+  border-color: #ccc;
+}
+
+.sample {
+  min-width: 200px;
+  min-height: 40px;
+  max-width: 500px;
+  max-height: 300px;
+  overflow: hidden;
+  display: flex;
+}

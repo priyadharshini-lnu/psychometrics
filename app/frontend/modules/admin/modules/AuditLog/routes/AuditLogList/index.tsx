@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select,
+  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin,
 } from 'antd'
 import { AppstoreOutlined, SearchOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
@@ -16,6 +16,7 @@ import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { isRequestInProgress } from '~/core/request'
+import settings from '../../settings'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 export const FILTER_PREDICATES = {
@@ -270,7 +271,18 @@ const AuditLogList: React.FC<Props> = (
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            onChange={onTableChange}
+            pagination={false}
+            loading={{
+              spinning: isLoading,
+              indicator: <Spin size="large" />,
+            }}
+            scroll={{ x: 'auto' }}
+          >
             <Column
               title={I18n.t('administration.audit_log.record_id')}
               key="recordId"
@@ -285,7 +297,7 @@ const AuditLogList: React.FC<Props> = (
               title={I18n.t('administration.audit_log.action')}
               key="action"
               render={({ id, action }) => (
-                <Link to={`/administration/audit_logs/${id}`}>{action}</Link>
+                <Link to={`${settings.urlPrefix}/${id}`}>{action}</Link>
               )}
             />
             <Column
@@ -353,7 +365,7 @@ const AuditLogList: React.FC<Props> = (
   )
 }
 
-export default withEnhancedTable(connecter(AuditLogList), 'auditLogList', {
+export default withEnhancedTable<{}>(connecter(AuditLogList), 'auditLogList', {
   maintainHistory: true,
   filterPredicates: FILTER_PREDICATES,
 })

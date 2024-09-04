@@ -300,4 +300,45 @@ status: :in_progress)
       expect(campaign_factor).to eq nil
     end
   end
+
+  describe 'Calculate and save campaign factor values' do
+    let!(:campaign_user) { create(:campaign_user) }
+    let!(:campaign) { campaign_user.campaign }
+    let(:factor1) { create(:factor) }
+    let!(:campaign_factor) do
+      create(:campaign_factor, campaign: campaign, factor_type: :assessor_scoring, factor: factor1)
+    end
+
+    let!(:assessor_user_assessment) do
+      create(:user_assessment, campaign: campaign, subject: campaign_user.user,
+        assessment: create(:assessment, category: :assessor_form), relationship: Relationship.assessor_relationship,
+        status: :in_progress)
+    end
+
+    let!(:users_result) do
+      assessor_user_assessment.users_result.update!(
+        scoring: {
+          factor1.id.to_s => { 'norm_score' => 3 }
+        }
+      )
+    end
+
+    it 'saves campaign factor values' do
+      perform_enqueued_jobs do
+        assessor_user_assessment.update!(status: :completed, score_calculated: true)
+      end
+
+      expect(campaign_user.campaign_factor_values.first.numeric_value).to eq(3)
+    end
+
+    it 'ignore calculating factor values if it is not a assessor assessment' do
+      assessor_user_assessment.update!(assessment: create(:assessment, category: :lead_assessor_form))
+
+      perform_enqueued_jobs do
+        assessor_user_assessment.update!(status: :completed)
+      end
+
+      expect(campaign_user.campaign_factor_values).to be_empty
+    end
+  end
 end

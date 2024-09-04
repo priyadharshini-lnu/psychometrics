@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class EmailTemplateLocaleSerializer < ActiveModel::Serializer
+  class EmailTemplateLocaleSerializer < Panko::Serializer
     attributes :id, :locale, :subject, :content
+
     def locale
-      instance_options[:locale]
+      context[:locale]
     end
   end
 end

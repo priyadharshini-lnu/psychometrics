@@ -21,7 +21,7 @@ class Module extends Component {
   }
 
   render () {
-    const { page, module } = this.props
+    const { page, module, animation } = this.props
     if (!module.type) { return null }
     if (module.props.showOnAllPages) { return null }
     const model = new ModuleModel(module, page)
@@ -33,10 +33,10 @@ class Module extends Component {
         ref={(r) => { this.ref = r }}
         key={model.id}
         fallbackRender={() => (
-          <Modules.Error module={model} page={page} update={{}} animation />
+          <Modules.Error module={model} page={page} update={{}} animation={animation} />
         )}
       >
-        <View module={model} page={page} update={{}} animation />
+        <View module={model} page={page} update={{}} animation={animation} />
       </ErrorBoundary>
     )
   }

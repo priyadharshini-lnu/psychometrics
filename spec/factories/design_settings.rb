@@ -5,6 +5,5 @@ FactoryBot.define do
     project { create(:project, ancestry_depth: 0) }
     login_box_position { 'auto' }
     background_color { '#ff0000' }
-    secondary_logo { '#ff0000' }
   end
 end

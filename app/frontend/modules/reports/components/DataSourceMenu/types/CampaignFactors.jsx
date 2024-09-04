@@ -1,8 +1,13 @@
 import _ from 'lodash'
 import { Component } from 'react'
+import { connect } from 'react-redux'
 import Select from 'react-select'
-import AppStore from '~/modules/reports/store/AppStore'
 
+const connecter = connect(
+  ({ report: { builder } }) => ({
+    campaignFactors: builder.campaign_factors,
+  }),
+)
 class CampaignFactors extends Component {
   onChange = (data) => {
     const { model, singleChoice, onSelect } = this.props
@@ -11,12 +16,12 @@ class CampaignFactors extends Component {
   }
 
   getOptions = () => {
-    const { onlyNumbers } = this.props
+    const { onlyNumbers, campaignFactors } = this.props
     if (onlyNumbers) {
-      return AppStore.report.campaignFactors.filter(code => code.outputType === 'numeric')
+      return campaignFactors.filter(code => code.outputType === 'numeric')
         .map(d => ({ label: d.name, value: d.code }))
     }
-    return AppStore.report.campaignFactors.map(d => ({ label: d.name, value: d.code }))
+    return campaignFactors.map(d => ({ label: d.name, value: d.code }))
   }
 
   getValue () {
@@ -49,4 +54,4 @@ class CampaignFactors extends Component {
   }
 }
 
-export default CampaignFactors
+export default connecter(CampaignFactors)

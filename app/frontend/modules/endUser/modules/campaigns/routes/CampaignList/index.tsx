@@ -2,7 +2,7 @@ import {
   useEffect, FC, useContext, useState,
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   Col, Row, Typography, Layout, Card, Skeleton,
 } from 'antd'
@@ -15,12 +15,10 @@ import { ProfileCardTitle } from '~/modules/endUser/modules/campaigns/components
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   fetchCampaigns,
-  loginHogan,
   acceptPolicy,
   FETCH,
 } from '~/modules/endUser/modules/campaigns/core/campaigns'
-import { fetchWorkshop, FETCH_WORKSHOP } from '~/modules/endUser/modules/campaigns/core/workshops'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { PageHeader, MediaQueryContext } from '~/glint'
 
 import Campaigns from './Campaigns'
@@ -33,17 +31,13 @@ const { Content } = Layout
 
 const mapStateToProps = (state: RootState) => ({
   campaigns: state.campaigns.campaigns,
-  workshop: state.campaigns.workshop,
   profileCompletionPercentage: state.currentUser.profileCompletionPercentage,
   profileLastUpdatedAt: state.currentUser.updatedAt,
   isLoading: isRequestInProgress(state, FETCH),
-  isWorkshopLoading: isRequestInProgress(state, FETCH_WORKSHOP),
 })
 
 const mapDispatchToProps = {
   fetchCampaigns,
-  fetchWorkshop,
-  loginHogan,
   acceptPolicy,
 }
 
@@ -53,17 +47,14 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 const CampaignListComponent: FC<PropsFromRedux> = ({
   campaigns,
   fetchCampaigns,
-  fetchWorkshop,
-  loginHogan,
   acceptPolicy,
   profileCompletionPercentage,
   profileLastUpdatedAt,
   isLoading,
 }) => {
   const [error, setError] = useState(false)
-  const history = useHistory()
+  const navigate = useNavigate()
   const { isMobile } = useContext(MediaQueryContext) || { isMobile: null }
-  const [flashMessage, setFlashMessage] = useState(window.PsyGlobalState.flashMessage)
 
   useEffect(() => {
     fetchCampaigns().catch(() => {
@@ -71,18 +62,9 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     })
   }, [])
 
-  useEffect(() => {
-    fetchWorkshop().catch(() => {
-      setError(true)
-    })
-  }, [])
-
-  useEffect(() => {
-    setFlashMessage(window.PsyGlobalState.flashMessage)
-  }, [])
 
   const handleProfileCompletion = () => {
-    history.push('/profile_details')
+    navigate('/profile_details')
   }
 
   const isProfileComplete = profileCompletionPercentage === 100
@@ -95,14 +77,14 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
     <>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown />
+          <LangDropdownWithChangeLocale />
         </Col>
       </PageHeader>
       <Content className={styles.pageContent}>
         <div className={styles['container-campaign']}>
           <Row gutter={[32, 32]}>
             <Col span={24}>
-              <Flash flash={flashMessage} className="mb-5" />
+              <Flash className="mb-5" />
               <Card
                 title={(<ProfileCardTitle />)}
                 className={styles.profileCard}
@@ -154,7 +136,6 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                 <Component
                   key={campaign.id}
                   campaign={campaign}
-                  loginHogan={loginHogan}
                   acceptPolicy={acceptPolicy}
                   history={history}
                   fetchCampaigns={fetchCampaigns}

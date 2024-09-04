@@ -1,9 +1,53 @@
-import React from 'react'
-import RouteList from '~/components/RouteList'
-import routes from './routes'
+import React, { Suspense } from 'react'
+import {
+  createBrowserRouter, Navigate, Outlet, RouterProvider,
+} from 'react-router-dom'
+import { PortalMenu } from '~/components/MainMenu'
+import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
 import settings from './settings'
+import Participants from './routes/Participants'
+import { Admins } from './routes/Admins'
+import Datasheet from './routes/Datasheet'
+import Reports from './routes/Reports'
+import Messages from './routes/Messages'
 
-
-export const Layout: React.FC = () => (
-  <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+const Main: React.FC = () => (
+  <Suspense fallback={(
+    <DefaultAntThemeWrapper>
+      <PageLoadSpinner size="large" />
+    </DefaultAntThemeWrapper>
+    )}
+  >
+    <PortalMenu />
+    <Outlet />
+  </Suspense>
 )
+
+export const router = createBrowserRouter([
+  { path: settings.urlPrefix, element: <Navigate to="participants" /> },
+  {
+    path: `${settings.urlPrefix}/participants/*`,
+    element: <Participants />,
+  },
+  {
+    path: `${settings.urlPrefix}/messages/*`,
+    element: <Messages />,
+  },
+  {
+    path: `${settings.urlPrefix}/admins/*`,
+    element: <Admins />,
+  },
+  {
+    path: `${settings.urlPrefix}/reports/*`,
+    element: <Reports />,
+  },
+  {
+    path: `${settings.urlPrefix}/datasheets/*`,
+    element: <Datasheet />,
+  },
+  { path: '*', element: <Main /> },
+])
+
+export function Layout () {
+  return <Suspense fallback="loading..."><RouterProvider router={router} /></Suspense>
+}

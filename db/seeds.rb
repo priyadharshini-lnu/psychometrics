@@ -9,9 +9,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if User.all.empty?
-  Users::SuperAdmin.create(
+  Users::SuperAdmin.create!(
     email: 'superadmin@example.com',
-    password: 'Password@32',
+    password: 'Password@32#12',
     first_name: 'Jon',
     last_name: 'Snow'
   )

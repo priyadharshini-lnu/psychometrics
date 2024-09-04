@@ -28,7 +28,7 @@ const Filters = () => {
 export const WorkshopList: React.FC = () => {
   const {
     tab,
-  } = useParams<{ tab: string | undefined }>()
+  } = useParams<{ tab: string }>()
 
   const config = {
     trackUrl: true,
@@ -45,7 +45,6 @@ export const WorkshopList: React.FC = () => {
 
   return (
     <>
-
       <Resource config={config} name="workshops">
         <Resource.Filter hideSearch placeholder="" name="" />
         <Filters />

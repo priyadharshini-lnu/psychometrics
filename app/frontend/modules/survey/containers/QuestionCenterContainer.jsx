@@ -5,6 +5,7 @@ import QuestionCenter from '~/modules/survey/layouts/QuestionCenter'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
 import { setStore } from '~/modules/survey/store/StoreWatchman'
 import store from '../store'
+import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 
 class AppContainer extends Component {
   componentDidMount () {
@@ -30,6 +31,7 @@ class AppContainer extends Component {
     return (
       <Provider store={store}>
         <QuestionCenter />
+        <DisplayExceptionModal />
       </Provider>
     )
   }

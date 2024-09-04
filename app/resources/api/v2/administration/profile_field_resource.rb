@@ -4,7 +4,7 @@ class Api::V2::Administration::ProfileFieldResource < Api::V2::Administration::B
   attributes :required, :half_size, :position, :question, :name
 
   def question
-    QuestionFieldSerializer.new(@model.question).to_h
+    QuestionFieldSerializer.new.serialize(@model.question)
   end
 
   def name

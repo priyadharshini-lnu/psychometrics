@@ -34,7 +34,7 @@ Rails.application.configure do
   config.cache_store = :memory_store
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = :none
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
@@ -51,7 +51,7 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-  config.time_zone = 'Asia/Dubai'
+  config.time_zone = Settings.timezone
 
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise

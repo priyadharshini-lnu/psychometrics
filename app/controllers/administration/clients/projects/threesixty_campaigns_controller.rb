@@ -136,7 +136,7 @@ module Administration
 
         def set_campaign_template_and_assessments
           @assessments = project.project_campaigns.where(type: 'threesixty').
-                         map(&:threesixty_campaign).map(&:assessment)
+                         map(&:threesixty_campaign).map(&:assessment) # rubocop:disable Performance/MapMethodChain
           @campaign_templates = CampaignTemplate.all
         end
 

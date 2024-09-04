@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 require 'swagger_helper'
+require_relative './concerns/taggable_api_endpoints_shared_examples'
 
 describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagger.json', type: :request do
   let!(:assessment) { create(:assessment, category: 'psychometric') }
@@ -86,7 +87,8 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
               created_by: 'ROHAN PUJARI',
               description: 'asd',
               external_settings: {},
-              extra: { icon_color: 'color' }
+              extra: { icon_color: 'color' },
+              tag_list: ['psychometric']
             },
             relationships: {
               dimension: { data: { type: 'dimensions', id: '39' } },
@@ -106,7 +108,8 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
                 description: 'name',
                 name: 'name',
                 type: 'common',
-                extra: { icon_color: 'color' }
+                extra: { icon_color: 'color' },
+                tag_list: ['psychometric']
               },
               relationships: {
                 dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
@@ -122,6 +125,7 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
           expect(assessment_response).to have_attribute(:name).with_value('name')
           expect(assessment_response).to have_relationship(:dimension).
             with_data({ 'id' => dimension.id.to_s, 'type' => 'dimensions' })
+          expect(assessment_response).to have_attribute(:tag_list).with_value(['psychometric'])
         end
       end
     end
@@ -211,5 +215,9 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
         end
       end
     end
+  end
+
+  describe 'taggable API endpoints' do
+    include_examples 'taggable API endpoints', Assessment
   end
 end

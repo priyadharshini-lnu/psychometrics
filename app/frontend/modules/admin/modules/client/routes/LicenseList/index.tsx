@@ -1,1 +1,3 @@
-export { LicenseList } from './LicensesList'
+import LicenseList from './LicensesList'
+
+export default LicenseList

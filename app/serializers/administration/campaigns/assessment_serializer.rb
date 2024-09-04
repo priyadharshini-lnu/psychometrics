@@ -6,7 +6,7 @@ module Administration
       attributes :id, :name, :icon_url, :icon_color
 
       def icon_url
-        object.icon.url(:thumb) if object.icon?
+        object.icon_url(:thumb) if object.icon.attached?
       end
     end
   end

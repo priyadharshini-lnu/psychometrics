@@ -4,6 +4,7 @@ import {
   addResource, saveResources, loadAssessments, changeResource,
   reorderResources, removeResource,
 } from '~/modules/survey/core/builder/resources'
+import { fetch, init } from '~/modules/survey/core/builder/assessment/actions'
 
 export default connect(
   ({ survey }) => ({
@@ -20,5 +21,7 @@ export default connect(
     changeResource,
     reorderResources,
     removeResource,
+    fetch,
+    init,
   },
 )

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Survey - Components - UnsupportedBrowsers Should match snapshot with given list of supported browsers and os 1`] = `
+exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with given list of supported browsers and os 1`] = `
 <DocumentFragment>
   <div
     class="ant-card ant-card-bordered css-dev-only-do-not-override-2i2tap"
@@ -60,7 +60,7 @@ exports[`Survey - Components - UnsupportedBrowsers Should match snapshot with gi
               >
                 <img
                   class="browserIcon"
-                  src="div"
+                  src="/app/frontend/modules/survey/assets/icons/firefox.r.svg"
                   title="Mozilla Firefox"
                 />
                 <div>
@@ -83,7 +83,7 @@ exports[`Survey - Components - UnsupportedBrowsers Should match snapshot with gi
               >
                 <img
                   class="browserIcon"
-                  src="div"
+                  src="/app/frontend/modules/survey/assets/icons/chrome.r.svg"
                   title="Google Chrome"
                 />
                 <div>
@@ -106,7 +106,7 @@ exports[`Survey - Components - UnsupportedBrowsers Should match snapshot with gi
               >
                 <img
                   class="browserIcon"
-                  src="div"
+                  src="/app/frontend/modules/survey/assets/icons/edge.r.svg"
                   title="Microsoft Edge"
                 />
                 <div>

@@ -41,7 +41,7 @@ module SmsInvites
     def status_callback(sms_history)
       token = JWT.encode(
         { data: sms_history.id, exp: 1.day.from_now.to_i },
-        Rails.application.secrets.webhook_jwt_secret
+        Settings.secrets.webhook_jwt_secret
       )
       webhooks_sms_histories_url(
         token: token,

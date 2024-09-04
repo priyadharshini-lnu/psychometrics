@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { PlusOutlined, CheckOutlined } from '@ant-design/icons'
 import cs from 'classnames'
+import { useParams } from 'react-router-dom'
 import List from './Tabs'
 import styles from './styles.less'
 
@@ -14,10 +15,8 @@ export default function NominationRequirementModal ({
   addNominationRequirement,
   syncWithServer,
   fetchNominationRequirements,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const { campaignId } = useParams()
   useEffect(() => {
     fetchNominationRequirements(campaignId)
   }, [])

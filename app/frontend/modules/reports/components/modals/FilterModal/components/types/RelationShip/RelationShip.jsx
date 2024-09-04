@@ -40,7 +40,7 @@ export default class RelationShip extends Component {
           className={`form-control ${localStyles.predicateSelect}`}
           onChange={this.changeValue}
         >
-          {!condition.props.value && <option />}
+          <option />
           {AppStore.report.relationships.map(relation => (
             <option key={relation.id} value={relation.name}>
               {relation.name}

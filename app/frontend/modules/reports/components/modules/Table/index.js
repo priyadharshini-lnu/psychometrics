@@ -1,5 +1,6 @@
 import Table from './components/TableModule'
 import TableProperties from './components/Properties'
+import connect from './connect'
 
 export { TableProperties }
-export default Table
+export default connect(Table)

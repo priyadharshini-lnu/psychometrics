@@ -34,6 +34,7 @@ export const AssessmentTR = t.type({
   enableNetworkCheck: t.union([t.boolean, t.null]),
   externalSettings: ExternalSettingsTR,
   icon: t.union([t.string, t.null]),
+  tagList: t.array(t.union([t.string, t.null])),
   poster: t.union([t.string, t.null]),
   dimension: t.union([
     t.type({
@@ -56,6 +57,9 @@ export const AssessmentTR = t.type({
   meta: t.type({
     permissions: t.type({
       manage: t.boolean,
+      exportRawResults: t.boolean,
+      exportRawFactorScores: t.boolean,
+      exportNormedResults: t.boolean,
     }),
   }),
   linkedAssessment: t.union([
@@ -110,6 +114,7 @@ export const TYPES = [
   'iiht',
   'pearson',
   'saville',
+  'mettl',
 ]
 
 export const Schema = {

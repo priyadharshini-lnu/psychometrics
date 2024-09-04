@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 module Assessments
-  class FactorSerializer < ActiveModel::Serializer
-    type :factor
+  class FactorSerializer < Panko::Serializer
     attributes :id, :name, :parent_id, :scoring, :description, :icon, :scoring_strategy
 
     def icon
-      object.icon.url(:middle)
+      object.icon_url(:medium)
     end
 
     def scoring
-      @instance_options[:factors_scoring]
+      context[:factors_scoring][object.id] || []
     end
   end
 end

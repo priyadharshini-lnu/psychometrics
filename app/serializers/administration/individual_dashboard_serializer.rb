@@ -3,7 +3,7 @@
 module Administration
   class IndividualDashboardSerializer < ::UserReportSerializer
     def user
-      UserWithAllFieldsSerializer.new(object.user).to_h
+      UserWithAllFieldsSerializer.new.serialize(object.user)
     end
   end
 end

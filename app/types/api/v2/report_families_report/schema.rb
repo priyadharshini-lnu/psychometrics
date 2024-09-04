@@ -16,7 +16,7 @@ module Api
 
         def self.relationships(_)
           [
-            { name: :report, resource: :reports, relationship: :one, required: false, allowed_blank: true },
+            { name: :report, resource: :reports, relationship: :one },
             { name: :report_family, resource: :report_families, relationship: :one, required: false,
               allowed_blank: true }
           ]

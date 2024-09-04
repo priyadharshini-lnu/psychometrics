@@ -1,0 +1,1 @@
+export { DirectReportDetails } from './Details'

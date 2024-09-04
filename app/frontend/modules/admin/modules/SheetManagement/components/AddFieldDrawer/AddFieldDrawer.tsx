@@ -134,7 +134,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
           help={errors.name}
           validateStatus={errors.name ? 'error' : 'success'}
         >
-          <Input onChange={({ target: { value } }) => setName(value)} />
+          <Input name="sheet_name" onChange={({ target: { value } }) => setName(value)} />
         </Form.Item>
         <Form.Item label="Type" name="type" key="type">
           <Select placeholder="Select type...">

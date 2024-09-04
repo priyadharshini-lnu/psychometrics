@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative './../concerns/filter_by_tags_shared_examples'
 
 describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment) }
@@ -26,7 +27,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
             external_settings: {
               assessment_id: 'HDS'
             },
-            extra: { icon_color: 'color' }
+            extra: { icon_color: 'color' },
+            tag_list: ['hogan']
           },
           relationships: {
             dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
@@ -42,6 +44,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(parsed_response['data']).to have_key('attributes')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'form_id')).to eq(5)
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_id')).to eq('HDS')
+      expect(parsed_response.dig('data', 'attributes', 'tag_list')).to eq(['hogan'])
     end
 
     context 'if assessment_id is invalid' do
@@ -168,5 +171,9 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'form_id')).to eq(3)
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_id')).to eq('HPI')
     end
+  end
+
+  describe 'Filter by tags' do
+    include_examples 'Filter by tags', Assessment
   end
 end

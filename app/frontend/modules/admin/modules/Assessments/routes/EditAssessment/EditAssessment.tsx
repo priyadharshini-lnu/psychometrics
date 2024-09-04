@@ -8,7 +8,7 @@ import { EditForm } from './EditForm'
 const { I18n } = window
 
 export const EditAssessment: React.FC = () => {
-  const { id } = useParams<{id: string}>()
+  const { id } = useParams() as {id: string}
   useEffect(() => {
     fetchSingle({ id })
   }, [id])
@@ -35,7 +35,7 @@ export const EditAssessment: React.FC = () => {
           },
           {
             label: () => I18n.t('assessments.assessments'),
-            link: () => '/administration/assessments',
+            link: () => '/admin/assessments',
           },
           {
             label: () => assessment.name,

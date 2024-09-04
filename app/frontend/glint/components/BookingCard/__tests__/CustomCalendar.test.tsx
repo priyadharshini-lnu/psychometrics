@@ -50,7 +50,7 @@ test('Should highlight only available dates', async () => {
 
 test('onDateSelect to be called with correct value upon clicking available dates', async () => {
   const user = userEvent.setup()
-  const handleDateSelect = jest.fn(date => date)
+  const handleDateSelect = vi.fn(date => date)
 
   render(
     <div id="container">
@@ -72,7 +72,7 @@ test('onDateSelect to be called with correct value upon clicking available dates
 
 test('onDateSelect NOT to be called upon clicking unavailable dates', async () => {
   const user = userEvent.setup()
-  const handleDateSelect = jest.fn(date => date)
+  const handleDateSelect = vi.fn(date => date)
 
   render(
     <div id="container">
@@ -126,7 +126,7 @@ test('Should be able to navigate to and fro between months', async () => {
 
 test('Should clear currently selected date when navigated between months', async () => {
   const user = userEvent.setup()
-  const handleDateSelect = jest.fn(date => date)
+  const handleDateSelect = vi.fn(date => date)
 
   render(
     <div id="container">

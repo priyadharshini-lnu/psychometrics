@@ -43,7 +43,12 @@ export const ProfileCompletion:FC<Props> = ({
         </Space>
       </Col>
       <Col span={progressBarColSpan} className={styles.progressCol}>
-        <Progress size={isMobile ? 'small' : 'default'} percent={completionPercent} type="circle" />
+        <Progress
+          aria-label={I18n.t('frontend.aria.profile_progress')}
+          size={isMobile ? 'small' : 'default'}
+          percent={completionPercent}
+          type="circle"
+        />
       </Col>
     </Row>
   )

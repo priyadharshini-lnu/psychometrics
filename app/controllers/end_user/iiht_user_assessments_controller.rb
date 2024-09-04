@@ -1,24 +1,13 @@
 # frozen_string_literal: true
 
 class EndUser::IihtUserAssessmentsController < ApplicationController
+  include AsyncRequestHandler
+
   before_action :set_user_assessment, only: %i[pass]
   before_action :can_start_based_on_sequencing, only: %i[pass]
 
-  def pass
-    campaign = @user_assessment.campaign
-    if @user_assessment.completed?
-      return redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
-    end
-
-    @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
-    @user_assessment.in_progress!
-    iiht_user_assessment = @user_assessment.iiht_user_assessment
-    return redirect_to(iiht_user_assessment.url, allow_other_host: true) if iiht_user_assessment&.url
-
-    ::Iiht::AddAssessment.call!(@user_assessment)
-
-    redirect_to(iiht_user_assessment.url, allow_other_host: true)
-  end
+  async_request :pass, handler: ::Iiht::StartAssessment,
+    permit_params: ->(params) { params.require(:iiht_user_assessment).permit(:id) }
 
   def redirect
     user_assessment = current_user.user_assessments.find_by!(

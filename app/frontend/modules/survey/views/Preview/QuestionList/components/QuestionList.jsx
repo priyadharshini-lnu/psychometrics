@@ -37,7 +37,14 @@ const QuestionList = ({
 
     return (
       <a.div className={styles.main} style={{ ...style }} key={q.key}>
-        <Question readOnly={readOnly} page={page} model={q} key={question.id} defaultLanguage={defaultLanguage} />
+        <Question
+          readOnly={readOnly}
+          page={page}
+          model={q}
+          key={question.id}
+          defaultLanguage={defaultLanguage}
+          questionCount={questions.length}
+        />
       </a.div>
     )
   })

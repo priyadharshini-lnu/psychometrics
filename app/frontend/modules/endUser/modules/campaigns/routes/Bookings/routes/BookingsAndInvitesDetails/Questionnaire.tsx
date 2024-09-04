@@ -64,9 +64,21 @@ export const Questionnaire: FC<Props> = ({
       {allowLanguagePreference ? (
         <>
           <Form.Item name="language" label={I18n.t('frontend.bookings.language_preference_question')}>
-            <Radio.Group onChange={handleLanguagePreference}>
-              <Radio value>{I18n.t('frontend.bookings.buttons.yes_text')}</Radio>
-              <Radio value={false}>{I18n.t('frontend.bookings.buttons.no_text')}</Radio>
+            <Radio.Group
+              onChange={handleLanguagePreference}
+            >
+              <Radio
+                aria-description={I18n.t('frontend.bookings.language_preference_question')}
+                value
+              >
+                {I18n.t('frontend.bookings.buttons.yes_text')}
+              </Radio>
+              <Radio
+                aria-description={I18n.t('frontend.bookings.language_preference_question')}
+                value={false}
+              >
+                {I18n.t('frontend.bookings.buttons.no_text')}
+              </Radio>
             </Radio.Group>
           </Form.Item>
           <Form.Item
@@ -77,6 +89,7 @@ export const Questionnaire: FC<Props> = ({
               getFieldValue('language') ? (
                 <Form.Item name="preferredLanguage" rules={[{ required: true }]}>
                   <Select
+                    aria-label={I18n.t('frontend.bookings.language_placeholder')}
                     placeholder={I18n.t('frontend.bookings.language_placeholder')}
                   >
                     {allowedLanguages.map(lang => (
@@ -98,8 +111,18 @@ export const Questionnaire: FC<Props> = ({
         <>
           <Form.Item name="neurodivergent" label={I18n.t('frontend.bookings.neurodivergence_question')}>
             <Radio.Group>
-              <Radio value>{I18n.t('frontend.bookings.buttons.yes_text')}</Radio>
-              <Radio value={false}>{I18n.t('frontend.bookings.buttons.no_text')}</Radio>
+              <Radio
+                aria-description={I18n.t('frontend.bookings.neurodivergence_question')}
+                value
+              >
+                {I18n.t('frontend.bookings.buttons.yes_text')}
+              </Radio>
+              <Radio
+                value={false}
+                aria-description={I18n.t('frontend.bookings.neurodivergence_question')}
+              >
+                {I18n.t('frontend.bookings.buttons.no_text')}
+              </Radio>
             </Radio.Group>
           </Form.Item>
           <Form.Item noStyle dependencies={['neurodivergent']}>
@@ -109,6 +132,7 @@ export const Questionnaire: FC<Props> = ({
                 name="neurodivergentComments"
               >
                 <Input.TextArea
+                  aria-label={I18n.t('frontend.bookings.neurodivergence_comment_aria_label')}
                   rows={4}
                   placeholder={I18n.t('frontend.bookings.neurodivergence_comment_placeholder')}
                 />

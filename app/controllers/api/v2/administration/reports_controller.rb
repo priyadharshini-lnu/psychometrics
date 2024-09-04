@@ -5,6 +5,7 @@ module Api
     validate_crud_requests Api::V2::ReportApprovalSetting::Schema
     validates_request_schema :create, :create_contract_based_on_provider
     validates_request_schema :update, :update_contract_based_on_provider
+    validates_request_schema :copy, Api::V2::Report::CopyContract.new
 
     INTEGRATIONS_CONTRACTS = {
       'hogan' => Api::V2::Report::HoganContract,
@@ -25,7 +26,9 @@ module Api
     end
 
     def copy
-      result = ::Reports::CopyReport.call!(resource.id, current_user)
+      result = ::Reports::CopyReport.call!(
+        resource.id, current_user, new_report_name: params[:data][:attributes][:name]
+      )
       jsonapi_render json: result
     end
 

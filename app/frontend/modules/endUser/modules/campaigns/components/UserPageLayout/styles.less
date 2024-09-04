@@ -4,3 +4,17 @@
 .container {
   font-size: 14px;
 }
+.skipToContent {
+  position: absolute;
+  top: -2rem;
+  z-index: 100;
+  opacity: 0;
+  left: 0;
+}
+
+.skipToContent:focus {
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+}

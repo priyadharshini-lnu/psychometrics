@@ -3,7 +3,7 @@ import {
   Form, Row, Col, Steps, App,
 } from 'antd'
 import _ from 'lodash'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import routeUtils from '~/utils/route'
 import { useResources } from '~/hooks/useResources'
@@ -19,9 +19,9 @@ const { I18n } = window
 export const InvitesForm = () => {
   const {
     campaignId,
-  } = useParams<{ campaignId: string }>()
+  } = useParams() as { campaignId: string }
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
-  const history = useHistory()
+  const navigate = useNavigate()
   const [form] = Form.useForm()
   const [submitPage, showSubmitPage] = useState(false)
   const [step, setStep] = useState(0)
@@ -64,7 +64,7 @@ export const InvitesForm = () => {
       content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
       okText: I18n.t('common.text.confirm'),
       cancelText: I18n.t('common.text.cancel'),
-      onOk: () => routeUtils.moveTo(history, prefixPath, '/invites'),
+      onOk: () => routeUtils.moveTo(navigate, prefixPath, '/invites'),
     })
   }
 

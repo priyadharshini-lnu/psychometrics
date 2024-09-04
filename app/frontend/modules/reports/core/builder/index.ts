@@ -10,8 +10,15 @@ import {
   ChangeSizeType, UpdatePagePositionType, SaveDataSheetType, CopyModuleType, CopyPageType,
   ChangeSkipLogic,
   SAVE_CAMPAIGN_FACTORS,
+  ADD_STYLE,
+  UPDATE_STYLE,
+  AddStyleType,
+  UpdateStyleType,
+  REMOVE_STYLE,
+  SaveCampaignFactorsType,
 } from './actions'
 import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
+import { Style } from '../interfaces/Report'
 
 const VERTICAL_SPACE_BETWEEN_PAGES = 95
 const DATA_CONFIFURATION_REF = 'ref'
@@ -28,6 +35,7 @@ interface DataConfigurationSection {
   label: string,
   data: DataConfigurationItem
 }
+
 interface State {
   id: number | null,
   loaded: boolean,
@@ -72,7 +80,8 @@ interface State {
     sourceId: number | null,
     moduleId: number | null,
   },
-  pdfExport: boolean
+  pdfExport: boolean,
+  styles: {[id:string]: Style},
 }
 
 export const defaultState: State = {
@@ -117,6 +126,7 @@ export const defaultState: State = {
     moduleId: null,
   },
   pdfExport: false,
+  styles: {},
 }
 
 
@@ -183,8 +193,18 @@ const HANDLERS = {
   [COPY_PAGE]: (state: State, { pageId }: CopyPageType) => setIn(state, ['buffer', 'sourceId'], pageId),
   [COPY_MODULE]: (state: State, { moduleId }: CopyModuleType) => setIn(state, ['buffer', 'moduleId'], moduleId),
   [SAVE_DATA_SHEET]: (state: State, { data }: SaveDataSheetType) => setIn(state, ['data_sheet_columns'], data),
-  [SAVE_CAMPAIGN_FACTORS]: (state: State, { data }: SaveDataSheetType) => setIn(state, ['campaign_factors'], data),
+  [SAVE_CAMPAIGN_FACTORS]: (state: State, { data }:
+    SaveCampaignFactorsType) => setIn(state, ['campaign_factors'], data),
   [CHANGE_SKIP_LOGIC]: (state: State, { value }: ChangeSkipLogic) => setIn(state, ['skipLogic'], value),
+  [ADD_STYLE]: (state: State, { style }: AddStyleType) => ({
+    ...state, styles: { ...state.styles, [style.id]: style },
+  }),
+  [UPDATE_STYLE]: (state: State, { style }: UpdateStyleType) => ({
+    ...state, styles: { ...state.styles, [style.id]: style },
+  }),
+  [REMOVE_STYLE]: (state: State, { style }: UpdateStyleType) => ({
+    ...state, styles: _.omit(state.styles, style.id),
+  }),
 }
 
 

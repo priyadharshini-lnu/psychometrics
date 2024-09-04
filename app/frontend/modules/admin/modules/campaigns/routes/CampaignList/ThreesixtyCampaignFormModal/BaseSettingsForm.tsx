@@ -80,7 +80,7 @@ const BaseSettingsForm = ({
                 label="Name"
                 rules={[{ required: true, transform: value => value.trim() }]}
               >
-                <Input />
+                <Input name="threesixty_campaign_name" />
               </Form.Item>
             </Flex>
 

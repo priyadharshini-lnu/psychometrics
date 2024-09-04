@@ -1,4 +1,7 @@
 <% require './lib/i18n_csv_tasks' %>
+
+<% require './lib/custom_js_tsx_scanner' %>
+
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
 
 # The "main" locale.
@@ -92,12 +95,34 @@ search:
 # - '{devise,simple_form}.*'
 
 ## Consider these keys used:
-# ignore_unused:
-# - 'activerecord.attributes.*'
-# - '{devise,kaminari,will_paginate}.*'
-# - 'simple_form.{yes,no}'
-# - 'simple_form.{placeholders,hints,labels}.*'
-# - 'simple_form.{error_notification,required}.:'
+ignore_unused:
+  - 'activerecord.attributes.*'
+  - 'activerecord.errors.*'
+  - 'dry_errors.*'
+  - 'activemodel.errors.*'
+  - '{devise,kaminari,will_paginate}.*'
+  - 'simple_form.{yes,no}'
+  - 'simple_form.{placeholders,hints,labels}.*'
+  - 'simple_form.{error_notification,required}.:'
+  - 'administration.templates.questions.*'
+  - 'administration.templates.blocks.*'
+  - 'administration.navigation.factors.*'
+  - 'administration.navigation.occupations.*'
+  - 'administration.campaign_templates.list.*'
+  - 'administration.dimensions.list.*'
+  - 'administration.norms.list.*'
+  - 'administration.factors.list.*'
+  - 'administration.libraries.list.*'
+  - 'administration.communications.list.*'
+  - 'administration.table.entries.*'
+  - 'administration.profiles.*'
+  - administration.innovation_styles.list.*
+  - administration.innovation_styles_factors.list.*
+  - administration.occupations.list.*
+  - administration.occupations_factors.list*
+  - 'administration'
+  - 'checking_wizard.steps*'
+  - 'assessments.actions.pending_tasks*'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:

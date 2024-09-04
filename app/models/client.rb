@@ -105,6 +105,8 @@ class Client < ApplicationRecord
            through: :projects, source: :users
 
   has_many :sheets, foreign_key: :project_id, dependent: :destroy
+  has_many :development_actions, dependent: :destroy, foreign_key: :owner_id
+  has_many :idp_templates, dependent: :destroy, foreign_key: :owner_id
   has_one :datasheet, class_name: 'Datasheet', foreign_key: :project_id, dependent: :destroy
   has_one :client_auditlog_export_setting, dependent: :destroy
 
@@ -154,7 +156,8 @@ class Client < ApplicationRecord
   delegate :saml_login_allowed?, :saml_enforced?, to: :saml_setting
   delegate :tfa_enabled?, to: :security_setting
   delegate :mask_identity_for_pearson?, :mask_identity_for_saville?, :mask_identity_for_hogan?,
-           :mask_identity_for_iiht?, :mask_identity_for_examus?, :custom_privacy_consent, to: :privacy_setting
+           :mask_identity_for_iiht?, :mask_identity_for_examus?,
+           :mask_identity_for_mettl?, :custom_privacy_consent, to: :privacy_setting
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :has_integration, ->(name) { joins(:integrations).merge(Integration.where(name: name).active) }
@@ -201,6 +204,10 @@ class Client < ApplicationRecord
 
   def iiht_config
     integrations.iiht.first&.iiht_config
+  end
+
+  def mettl_config
+    integrations.mettl.first&.mettl_config
   end
 
   def saml_setting
@@ -309,6 +316,10 @@ class Client < ApplicationRecord
     active_licenses.select(&:enough_licenses?).pluck(:id)
   end
 
+  def hogan_provider
+    provider_from_hogan_integration || Settings.secrets.hogan[:default_provider]
+  end
+
   private
 
   def generate_hogan_group_name
@@ -356,6 +367,12 @@ class Client < ApplicationRecord
     if operator.is?(:project_admin) && root?
       errors.add(:base)
     end
+  end
+
+  def provider_from_hogan_integration
+    config = integrations.hogan.active.last&.config
+
+    config['provider'] if config.present?
   end
 end
 # rubocop:enable Metrics/ClassLength

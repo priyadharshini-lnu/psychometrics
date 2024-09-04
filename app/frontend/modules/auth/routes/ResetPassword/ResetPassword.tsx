@@ -16,7 +16,7 @@ export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const ResetPasswordComponent: React.FC<Props> = ({
-  projectConfig, csrfToken, user, errors, flash,
+  projectConfig, csrfToken, user, errors,
 }) => {
   if (user.reset_password_token) { return null }
   return (
@@ -30,7 +30,7 @@ const ResetPasswordComponent: React.FC<Props> = ({
           {errors.base.map(message => <Alert message={message} type="error" />)}
         </div>
       )}
-      <Flash flash={flash} />
+      <Flash />
       <Form
         id="form-reset"
         layout="vertical"

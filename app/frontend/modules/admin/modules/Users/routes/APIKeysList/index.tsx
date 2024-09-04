@@ -1,3 +1,3 @@
 import APIKeysList from './APIKeysList'
 
-export { APIKeysList }
+export default APIKeysList

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative './../concerns/filter_by_tags_shared_examples'
 
 describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment) }
@@ -41,7 +42,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
             external_settings: {
               assessment_id: 'fake_id'
             },
-            extra: { icon_color: 'color' }
+            extra: { icon_color: 'color' },
+            tag_list: %w[iiht assessments]
           },
           relationships: relations
         }
@@ -54,6 +56,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(parsed_response['data']).to have_key('attributes')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'schedule_config')).to eq('{}')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_id')).to eq('fake_id')
+      expect(parsed_response.dig('data', 'attributes', 'tag_list')).to eq(%w[iiht assessments])
     end
 
     context 'if schedule_config is not JSON' do
@@ -170,5 +173,9 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'schedule_config')).to eq('{"a":11}')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_id')).to eq('fake_id')
     end
+  end
+
+  describe 'Filter by tags' do
+    include_examples 'Filter by tags', Assessment
   end
 end

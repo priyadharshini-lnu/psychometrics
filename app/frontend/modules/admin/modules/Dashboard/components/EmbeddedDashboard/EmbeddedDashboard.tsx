@@ -4,7 +4,7 @@ import React, {
 import { PageHeader } from '@ant-design/pro-layout'
 import { Button, Result, Skeleton } from 'antd'
 import { ColumnWidthOutlined, FullscreenOutlined } from '@ant-design/icons'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import _ from 'lodash'
 import * as pbi from 'powerbi-client'
 import cs from 'classnames'
@@ -22,7 +22,7 @@ type Props = OwnProps
 export const EmbeddedDashboard: React.FC<Props> = ({
   alwaysFullScreen = false, dashboardName, embedToken, reportId,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const embedContainer = useRef<HTMLDivElement>(null)
   const [isFullScreenMode, setIsFullScreenMode] = useState(alwaysFullScreen)
   const [fitToWidth, setFitToWidth] = useState(false)
@@ -102,7 +102,7 @@ export const EmbeddedDashboard: React.FC<Props> = ({
           className={styles.pageHeader}
           onBack={() => {
             if (alwaysFullScreen) {
-              history.goBack()
+              navigate(-1)
             } else {
               setIsFullScreenMode(false)
             }

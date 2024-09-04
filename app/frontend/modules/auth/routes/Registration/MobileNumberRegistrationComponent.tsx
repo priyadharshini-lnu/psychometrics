@@ -121,7 +121,7 @@ const MobileNumberRegistrationForm: React.FC<Props> = ({
     return null
   }
 
-  const handleCloseOtpVerificationModal = () => {
+  const handleCloseOtpVerificationForm = () => {
     setOtpVerificationFormVisible(false)
   }
 
@@ -194,7 +194,7 @@ const MobileNumberRegistrationForm: React.FC<Props> = ({
       {otpVerificationFormVisible && (
         <OtpVerificationForm
           mobileNumber={phoneNumber}
-          onCancel={handleCloseOtpVerificationModal}
+          onCancel={handleCloseOtpVerificationForm}
           onVerificationSuccess={handleOnVerificationSuccess}
           registrationCode={user.registration_code}
           smsInviteCode={user.sms_invite_code}

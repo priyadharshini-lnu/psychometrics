@@ -23,12 +23,12 @@ module AdminJobs
         user.last_name,
         user.email,
         user.mobile_number,
-        user.locale,
         nil,
         nil,
         campaign_user.schedule_start_date,
         campaign_user.schedule_end_date,
-        user.decorate.created_at
+        user.decorate.created_at,
+        user.manager_email
       ]
 
       profile_fields.each do |field|
@@ -44,7 +44,8 @@ module AdminJobs
     end
 
     def records_for_export
-      campaign.users.
+      User.joins(:campaign_users).
+        where(campaign_users: { campaign_id: campaign.id }).
         includes(:creator, :modifier, campaign_users: [:campaign], user_assessments: :users_result).
         ransack(record.data['filters']).result
     end

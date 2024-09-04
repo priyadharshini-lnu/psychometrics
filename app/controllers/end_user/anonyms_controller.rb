@@ -18,6 +18,8 @@ module EndUser
 
     ANONYM_COOKIE_KEY = 'tte-anonym-payload'
 
+    rescue_from Licenses::NotEnoughError, with: -> { redirect_to(action: 'error') && return }
+
     def show
       if @campaign_assessment.nil? || assessment.archived? || !@campaign_assessment.enable_universal_links?
         redirect_to(action: 'error') && return
@@ -89,9 +91,13 @@ module EndUser
     def render_assessment_and_result
       @selected_locale = @user_assessment.selected_locale || user_locale
 
-      serialized_assessment = AssessmentSerializer.new(assessment, selected_locale: @selected_locale,
-                                                       campaign_assessment: @campaign_assessment).
-                              to_hash(include: '**')
+      serialized_assessment = AssessmentSerializer.new(
+        context: {
+          include: '**',
+          selected_locale: @selected_locale,
+          campaign_assessment: @campaign_assessment
+        }
+      ).serialize(assessment)
 
       serialized_results = UsersResultSerializer.new(
         context: {
@@ -112,6 +118,8 @@ module EndUser
     end
 
     def find_or_create_anonymous_user
+      return if @campaign_assessment.nil?
+
       @current_user = @anonymous_user || Users::CreateAnonymCampaignUser.call!(@campaign_assessment)
       set_anonym_cookie(@current_user)
     end

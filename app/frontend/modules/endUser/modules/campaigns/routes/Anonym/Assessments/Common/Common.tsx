@@ -7,7 +7,7 @@ import { ClockCircleOutlined } from '@ant-design/icons'
 
 import { ProgressProps } from 'antd/lib/progress'
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
-import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
@@ -17,6 +17,7 @@ import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/Re
 import { useMedia } from '~/modules/endUser/rootHooks'
 import { PageHeader as GlintPageHeader, CountdownTimer } from '~/glint'
 import Confirm from './Confirm'
+import AreadyCompletedModal from './AreadyCompletedModal'
 
 import styles from './Common.less'
 
@@ -48,6 +49,9 @@ const CommonComponent: React.FC<Props> = ({
       current_page: currentPage,
       current_element: currentElement,
       remaining_assessment_time: remainingAssessmentTime,
+      campaign_user: {
+        status,
+      },
       campaign_options: campaignOptions,
     },
   },
@@ -57,11 +61,17 @@ const CommonComponent: React.FC<Props> = ({
   markAssessmentTimedOut,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
+  const [showAlreadyCompletedModal, setShowAlreadyCompletedModal] = useState(false)
   const isMaxSm = useMedia('max-sm')
   let progressBarProps: ProgressProps = { type: 'line', style: { width: '200px' } }
   if (isMaxSm) { progressBarProps = { type: 'circle', width: 50 } }
 
   useEffect(() => {
+    if (status && status === 'completed') {
+      setShowAlreadyCompletedModal(true)
+      return
+    }
+
     if (currentElement > 0 || currentPage > 0) {
       setShowConfirm(true)
     }
@@ -77,7 +87,7 @@ const CommonComponent: React.FC<Props> = ({
     <>
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
-          {remainingAssessmentTime && (
+          { remainingAssessmentTime ? (
             <CountdownTimer
               prefix={(
                 <>
@@ -89,12 +99,17 @@ const CommonComponent: React.FC<Props> = ({
               seconds={remainingAssessmentTime}
               onFinish={() => markAssessmentTimedOut(preview)}
             />
-          )}
+          ) : null}
         </Col>
         <Col span={4} className="ta-e">
           {availableTranslations
               && availableTranslations.length > 1
-              && <Language selectedLanguage={selectedLanguage} availableTranslations={availableTranslations || []} />
+              && (
+              <LangDropdownWithChangeUrl
+                currentLocale={selectedLanguage.code}
+                locales={availableTranslations || []}
+              />
+              )
             }
         </Col>
       </GlintPageHeader>
@@ -133,11 +148,17 @@ const CommonComponent: React.FC<Props> = ({
                   rstore={store}
                   isAnonymousAssessment="true"
                   renderedByEnduser
+                  status={status}
                 />
               </ResourcesTabs>
             </div>
           </ConfigProvider>
           <Confirm open={showConfirm} onReset={reset} onOk={() => setShowConfirm(false)} />
+          <AreadyCompletedModal
+            open={showAlreadyCompletedModal}
+            onRetake={reset}
+            onCancel={() => setShowAlreadyCompletedModal(false)}
+          />
         </Watermark>
       </Content>
     </>

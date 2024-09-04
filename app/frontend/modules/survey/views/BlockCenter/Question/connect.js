@@ -3,7 +3,7 @@ import { selectQuestion, unselectQuestion } from '~/modules/survey/core/builder/
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { moduleConfig } from '~/modules/survey/core/builder/assessment/question/selectors'
 import {
-  addSkipLogic, renameQuestion, saveAsTemplate, unlinkTemplate, addComment, addNote, removeComment,
+  addSkipLogic, renameQuestion, saveAsTemplate, unlinkTemplate,
 } from '~/modules/survey/core/builder/assessment/question/actions'
 import {
   removeQuestion, moveQuestionUp, moveQuestionDown,
@@ -30,8 +30,5 @@ export default connect(
     renameQuestion,
     saveAsTemplate,
     unlinkTemplate,
-    addComment,
-    addNote,
-    removeComment,
   },
 )

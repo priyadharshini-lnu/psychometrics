@@ -27,7 +27,7 @@ class LambdaNotificationsController < ActionController::Base
   end
 
   def get_message
-    hash, = JWT.decode(request.raw_post, Rails.application.secrets.aws.dig(:lambda, :signing_secret), 'HS256')
+    hash, = JWT.decode(request.raw_post, Settings.secrets.aws.dig(:lambda, :signing_secret), 'HS256')
     hash['data']
   end
 end

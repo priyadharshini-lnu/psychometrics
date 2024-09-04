@@ -14,7 +14,11 @@ module Administration
           current_user
         )
         scoring.save!
-        render json: { data: ::Assessments::AssessmentSerializer.new(@assessment).to_hash(include: '**') }
+        render json: { data: ::Assessments::AssessmentSerializer.new(
+          context: {
+            include: '**'
+          }
+        ).serialize(@assessment) }
       end
 
       private

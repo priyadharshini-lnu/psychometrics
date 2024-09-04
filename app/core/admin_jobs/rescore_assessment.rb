@@ -4,13 +4,13 @@ module AdminJobs
   class RescoreAssessment < AdminJobs::Base
     def call
       record.update(total_tasks: results.count)
-      results.find_each do |res|
+      results.find_each(batch_size: 200) do |res|
         record.increment_completed_tasks!
         user_assessment = res.user_assessment
         user_assessment.update_norm!(record.data['norm_id']) if record.data['norm_id'].present?
         ::UsersResults::Recompute.call!(res, owner)
       end
-      remove_report_pdf if campaign.threesixty?
+      remove_reports_pdf if campaign.threesixty?
       broadcast :ok
     end
 
@@ -33,10 +33,8 @@ module AdminJobs
 
     private
 
-    def remove_report_pdf
-      campaign.user_reports.each do |ur|
-        ur.update!(remove_pdf: true, status: :not_prepared)
-      end
+    def remove_reports_pdf
+      campaign.user_reports.each(&:remove_report_pdf!)
     end
 
     def campaign_assessment

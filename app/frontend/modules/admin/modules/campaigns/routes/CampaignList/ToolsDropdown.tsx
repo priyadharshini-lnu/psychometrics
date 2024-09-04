@@ -23,7 +23,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
 const ToolsDropdown: FC<Props> = ({ permissions }) => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const { memberAction } = useResources('projects')
 
   const menuItems:ItemType[] = []

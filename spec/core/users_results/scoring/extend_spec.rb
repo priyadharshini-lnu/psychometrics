@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 describe ::UsersResults::Scoring::Extend do
+  let(:dimension) { create(:dimension) }
   let(:norm) { create(:norm, with_factors_norm: false) }
   let(:norm_props) do
     [
@@ -16,10 +17,10 @@ describe ::UsersResults::Scoring::Extend do
   let(:norm_data) { { 'id' => norm.id.to_s, 'type' => 'ETI' } }
 
   it 'add score and norm_score' do
-    factor1 = create(:factor, scoring_strategy: :sub_factors_average)
-    factor2 = create(:factor, scoring_strategy: :questions)
-    factor3 = create(:factor, scoring_strategy: :questions)
-    factor4 = create(:factor, scoring_strategy: :questions)
+    factor1 = create(:factor, scoring_strategy: :sub_factors_average, dimension: dimension)
+    factor2 = create(:factor, scoring_strategy: :questions, dimension: dimension)
+    factor3 = create(:factor, scoring_strategy: :questions, dimension: dimension)
+    factor4 = create(:factor, scoring_strategy: :questions, dimension: dimension)
 
     create(:factors_sub_factor, factor: factor1, sub_factor: factor2, weight: 2)
     create(:factors_sub_factor, factor: factor1, sub_factor: factor3, weight: 3)
@@ -37,7 +38,6 @@ describe ::UsersResults::Scoring::Extend do
       factor3.id => { results: [{ value: [1, 5], question_id: 5 }] },
       factor4.id => { results: [] }
     }
-    dimension = double(all_factors: [factor1, factor2, factor3, factor4])
     expect(::UsersResults::Scoring::Extend.call!(scoring, norm_data, dimension, {})).to eq(
       factor1.id.to_s => {
         'results' => [{ 'value' => [2, 3, 4], 'question_id' => 1 }, { 'value' => 5, 'question_id' => 2 }],

@@ -6,11 +6,23 @@ module Administration
       before_action :set_assessment
       append_before_action :pundit_authorize
 
+      def show
+        render json: ::Assessments::AssessmentSerializer.new(
+          context: {
+            include: '**'
+          }
+        ).serialize(@assessment)
+      end
+
       def update
         builder = ::Builders::AssessmentBuilder.new(@assessment, params.require(:builder), current_user)
         if builder.save
           audit! :update, builder.assessment, payload: params.require(:builder)
-          render json: { data: ::Assessments::AssessmentSerializer.new(@assessment).to_hash(include: '**') }
+          render json: { data: ::Assessments::AssessmentSerializer.new(
+            context: {
+              include: '**'
+            }
+          ).serialize(@assessment) }
         else
           render json: { error: true }, status: 400
         end

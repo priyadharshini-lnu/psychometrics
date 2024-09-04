@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import {
   Row, Col, Steps, Form, App,
 } from 'antd'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { RootState } from 'modules/admin/core/rootReducers'
 import dayjs from '~/utils/dayjs'
@@ -47,7 +47,7 @@ const VIDEO_CALL_TYPES = {
 export const AssessmentCenterFormComponent = ({ workshop }) => {
   const {
     campaignId,
-  } = useParams<{ campaignId: string }>()
+  } = useParams() as { campaignId: string }
   const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
   const [basicInfoData, setBasicInfoData] = useState<BasicInfoData>({
     dates: [],
@@ -61,7 +61,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
     reschedule_lead_time: workshop?.rescheduleLeadTime,
     allow_late_cancellation_and_rescheduling: workshop?.allowLateCancellationAndRescheduling,
   })
-  const history = useHistory()
+  const navigate = useNavigate()
   const [step, setStep] = useState(0)
   const [showSuccessPage, setShowSuccessPage] = useState(false)
   const [submitPage, showSubmitPage] = useState(false)
@@ -122,7 +122,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
       content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
       okText: I18n.t('common.text.confirm'),
       cancelText: I18n.t('common.text.cancel'),
-      onOk: () => routeUtils.moveTo(history, prefixPath, '/assessment_center'),
+      onOk: () => routeUtils.moveTo(navigate, prefixPath, '/assessment_center'),
     })
   }
 

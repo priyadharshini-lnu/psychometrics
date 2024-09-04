@@ -30,6 +30,30 @@ module Api
       def manage?
         show?
       end
+
+      def update?
+        @user.has_permission?(:assessments, :manage, project_id: record.owner_id)
+      end
+
+      def add_tag?
+        @user.has_permission?(:assessments, :manage, project_id: record.owner_id)
+      end
+
+      def remove_tag?
+        @user.has_permission?(:assessments, :manage, project_id: record.owner_id)
+      end
+
+      def export_raw_results?
+        @user.is?(:superadmin)
+      end
+
+      def export_raw_factor_scores?
+        @user.is?(:superadmin)
+      end
+
+      def export_normed_results?
+        @user.is?(:superadmin)
+      end
     end
   end
 end

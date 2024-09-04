@@ -6,20 +6,24 @@ import { PreviewModel } from '~/modules/survey/interfaces/questions/TextEntry'
 import useForceUpdate from '~/hooks/useUpdate'
 import { TextEntryCounter } from '~/modules/survey/components/modules/TextEntry/components/TextEntryCounter'
 
+const { I18n } = window
+
 interface Props {
   model: PreviewModel
   readOnly: boolean
   nextPage: () => {}
   singleQuestionFlow: boolean
+  errors: string[]
 }
 
 const SingleLinePreview: FC<Props> = ({
-  model, readOnly, nextPage, singleQuestionFlow,
+  model, readOnly, nextPage, singleQuestionFlow, errors,
 }) => {
   const forceUpdate = useForceUpdate()
   const {
     result,
     props: { type },
+    id: questionId,
   } = model
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,12 +47,15 @@ const SingleLinePreview: FC<Props> = ({
       <Row>
         <Col span={24}>
           <Input
+            aria-invalid={!!errors.length}
+            aria-describedby={`error-for-question-${questionId}`}
             autoComplete="off"
             disabled={readOnly}
             onChange={handleOnChange}
             onKeyDown={handleKeyDown}
             value={value}
             type={type === 'SingleLine' ? 'text' : 'password'}
+            aria-label={I18n.t('user_assessments.questions.single_line_answer_label')}
           />
         </Col>
       </Row>

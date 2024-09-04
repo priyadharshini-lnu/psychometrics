@@ -57,6 +57,9 @@ const state = {
     '1/0/0': { type: 'Block', props: { current: '3' } },
     '1/0/1': { type: 'Block', props: { current: '4' } },
     2: { type: 'Block', props: { current: '5' } },
+    3: { type: 'Group' },
+    '3/0': { type: 'Block', props: { current: '3' } },
+    '3/1': { type: 'Block', props: { current: '5' } },
   },
 }
 
@@ -67,7 +70,7 @@ test('next element id should return valid result', () => {
   expect(ElementProcessor.run(state, getNextElementId(state, '1/0/1'))).toStrictEqual({ element: '2', embeddedData: {} })
   expect(ElementProcessor.run(state, getNextElementId(state, '1/1'))).toStrictEqual({ element: '2', embeddedData: {} })
   expect(ElementProcessor.run(state, '2')).toStrictEqual({ element: '2', embeddedData: {} })
-  expect(ElementProcessor.run(state, getNextElementId(state, '2'))).toStrictEqual({embeddedData: {}})
+  expect(ElementProcessor.run(state, getNextElementId(state, '2'))).toStrictEqual({ element: '3/0' ,embeddedData: {}})
 })
 
 
@@ -160,4 +163,10 @@ const stateWithDeletedBlock = {
 test('element processor should ignore and skip invalid block type', () => {
   expect(ElementProcessor.run(stateWithDeletedBlock, '0')).toStrictEqual({ element: '0', embeddedData: {} })
   expect(ElementProcessor.run(stateWithDeletedBlock, '1')).toStrictEqual({ element: '2', embeddedData: {} })
+})
+
+test('element processor with group', () => {
+  expect(ElementProcessor.run(state, '3')).toStrictEqual({ element: '3/0', embeddedData: {} })
+  expect(ElementProcessor.run(state, getNextElementId(state, '3/0'))).toStrictEqual({ element: '3/1', embeddedData: {} })
+  expect(ElementProcessor.run(state, getNextElementId(state, '3/1'))).toStrictEqual({ embeddedData: {} })
 })

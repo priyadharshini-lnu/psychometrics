@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class ResultSerializer < ActiveModel::Serializer
+  class ResultSerializer < Panko::Serializer
     attributes :id, :subject_id, :created_at, :completed_at, :hash
 
     def subject_id

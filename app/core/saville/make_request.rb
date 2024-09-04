@@ -30,14 +30,14 @@ module Saville
 
     def all_attributes
       {
-        client_code: Rails.application.secrets.saville.dig(:credential, :client_code),
+        client_code: Settings.secrets.saville.dig(:credential, :client_code),
         provider: 'The Talent Enterprise'
       }.merge(attributes)
     end
 
     def client
       Savon.client(
-        wsdl: Rails.application.secrets.saville[:wsdl_url],
+        wsdl: Settings.secrets.saville[:wsdl_url],
         soap_version: 1,
         log_level: :debug,
         logger: Rails.logger,
@@ -48,8 +48,8 @@ module Saville
     def soap_header
       %(
         <AuthHeader xmlns="http://ws.sc-oasys.com/">
-          <Username>#{CGI.escape_html(Rails.application.secrets.saville.dig(:credential, :user_name))}</Username>
-          <Password>#{CGI.escape_html(Rails.application.secrets.saville.dig(:credential, :password))}</Password>
+          <Username>#{CGI.escape_html(Settings.secrets.saville.dig(:credential, :user_name))}</Username>
+          <Password>#{CGI.escape_html(Settings.secrets.saville.dig(:credential, :password))}</Password>
         </AuthHeader>
       )
     end

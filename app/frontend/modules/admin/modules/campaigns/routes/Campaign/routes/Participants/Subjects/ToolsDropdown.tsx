@@ -77,7 +77,8 @@ const getMenuProps = ({
 
 interface Props {
   campaignId: number
-  openModal(name: string, data?: { campaignId: number, user?: User, exportUsers: ExportUsers }): void
+  openModal(name: string, data?: {
+    campaignId: number, user?: User, exportUsers: ExportUsers, permissions: { exportSignInUrl: boolean} }): void
   exportCompletionStatuses(campaignId: number): Promise<void>
   exportUsers: ExportUsers
   exportCompactCompletionStatuses(campaignId: number): Promise<void>
@@ -107,11 +108,9 @@ const ToolsDropdown: React.FC<Props> = ({
   )
 
   const onUserExport = () => {
-    if (permissions.exportSignInUrl) {
-      openModal('ExportUsersModal', { campaignId, exportUsers: handleExportUsers })
-    } else {
-      handleExportUsers(campaignId, { exportSignInUrl: false })
-    }
+    openModal('ExportUsersModal', {
+      campaignId, exportUsers: handleExportUsers, permissions: { exportSignInUrl: permissions.exportSignInUrl },
+    })
   }
 
   const onCompactExport = () => {

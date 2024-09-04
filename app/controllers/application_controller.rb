@@ -2,10 +2,10 @@
 
 class ApplicationController < ::BaseController
   include AuthenticateAnonymousUser
+  include ActiveStorage::SetCurrent
   layout :layout_by_resource
 
   # Authentication user/manager
-  before_action :set_client_by_subdomain
   before_action :redirect_to_maintenance, if: -> { helpers.maintenance_started? }
   after_action :set_content_security_policy
   around_action :set_mobility_locale
@@ -83,35 +83,6 @@ class ApplicationController < ::BaseController
   def set_mobility_locale(&)
     Mobility.with_locale(ui_locale, &)
   end
-
-  # Detect Client by subdomain
-
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
-  # rubocop:disable Metrics/AbcSize
-  def set_client_by_subdomain
-    return if request.controller_class.to_s.start_with?('Administration')
-    return if request.controller_class.to_s.start_with?('Assessors')
-    return if request.controller_class.to_s.start_with?('Api::V1')
-    return if request.controller_class.to_s.start_with?('Webhooks')
-
-    @current_project = GetProjectBySubdomain.call!(request.subdomain)
-    return render_http_locked if @current_project&.disabled?
-
-    return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
-    return if @current_project.nil? && request.controller_class.to_s == 'Users::UnlocksController'
-    unless @current_project
-      return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
-    end
-
-    if current_user && current_user.project_id != @current_project.id
-      sign_out(current_user)
-      return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
-    end
-
-    @current_client = @current_project.client
-  end
-  # rubocop:enable all
 
   def user_not_authorized
     audit! :user_not_authorized, current_user, payload: params, outcome: :failed,

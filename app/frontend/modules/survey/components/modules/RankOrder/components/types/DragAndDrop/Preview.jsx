@@ -1,172 +1,130 @@
-/* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable react/no-find-dom-node */
 import _ from 'lodash'
-import { Component } from 'react'
-import PropTypes from 'prop-types'
-import { findDOMNode } from 'react-dom'
-import { DragSource, DropTarget } from 'react-dnd'
+import { useState } from 'react'
+import { createPortal } from 'react-dom'
+import {
+  DndContext, useSensor, useSensors, MouseSensor, TouchSensor, DragOverlay,
+  defaultDropAnimation, KeyboardSensor,
+} from '@dnd-kit/core'
+import {
+  SortableContext, arrayMove, verticalListSortingStrategy, sortableKeyboardCoordinates,
+} from '@dnd-kit/sortable'
 
-import { updateIn } from '~/utils/immutable'
-import DescriptionPreview from '../../DescriptionPreview'
+import { DragItem, DragItemSortable } from './DragItem'
 
 import styles from './DragAndDrop.less'
 
+export default function Preview ({ I18n, model }) {
+  const [activeId, setActiveId] = useState(null)
 
-const itemSource = {
-  beginDrag (props) {
-    return {
-      id: props.id,
-      index: props.index,
-      text: props.text,
-      description: props.description,
-      showDescription: props.showDescription,
-      number: props.number,
-    }
-  },
-
-  endDrag (props) {
-    props.endMoveItem()
-  },
-}
-
-const itemTarget = {
-  hover (props, monitor, component) {
-    const dragIndex = monitor.getItem().index
-    const hoverIndex = props.index
-    if (dragIndex === hoverIndex) {
-      return
-    }
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect()
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
-    const clientOffset = monitor.getClientOffset()
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top
-
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-      return
-    }
-
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-      return
-    }
-
-    props.moveItem(dragIndex, hoverIndex)
-    monitor.getItem().index = hoverIndex
-  },
-}
-
-let Item = class extends Component {
-  static propTypes = {
-    connectDragSource: PropTypes.func.isRequired,
-    connectDropTarget: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool.isRequired,
-    text: PropTypes.string.isRequired,
-    number: PropTypes.number,
-    showDescription: PropTypes.bool,
-    description: PropTypes.string,
-  }
-
-  render () {
-    const {
-      text, isDragging, connectDragSource, connectDropTarget, number, description, showDescription,
-    } = this.props
-    const opacity = isDragging ? 0 : 1
-    return (
-      connectDragSource(connectDropTarget(
-        <div className={styles.item} style={{ opacity }}>
-          <span className={`fa fa-arrows-v ${styles.icon}`} />
-          <div className={styles.number}>{number}</div>
-          <div>
-            <div className={styles.text}>{text}</div>
-            {showDescription && <DescriptionPreview description={description} />}
-          </div>
-        </div>,
-      ))
-    )
-  }
-}
-
-Item = DropTarget('Item', itemTarget, connect => ({
-  connectDropTarget: connect.dropTarget(),
-}))(Item)
-
-Item = DragSource('Item', itemSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  connectDragPreview: connect.dragPreview(),
-  isDragging: monitor.isDragging(),
-}))(Item)
-
-class Preview extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-  }
-
-  constructor (props) {
-    super(props)
-    this.state = this.dataForState(props.model)
-  }
-
-
-  componentWillReceiveProps (nextProps) {
-    this.setState(this.dataForState(nextProps.model))
-  }
-
-  dataForState = (model) => {
-    const { I18n } = this.props
-    return {
-      data: _.map(model.result.answers, answer => ({
-        id: answer.index,
-        text: I18n.tQuestion(model, `choicesTexts${answer.index + 1}`, { choice: answer.index })
+  const dataForState = model => ({
+    data: _.map(model.result.answers, answer => ({
+      id: answer.index,
+      text: I18n.tQuestion(model, `choicesTexts${answer.index + 1}`, { choice: answer.index })
                 || model.moduleConfig.defaultChoiceText(answer.index + 1),
-        showDescription: model.props.showDescription,
-        description: I18n.tQuestion(model, `descriptionTexts${answer.index + 1}`, { choice: answer.index }),
-      })),
+      showDescription: model.props.showDescription,
+      description: I18n.tQuestion(model, `descriptionTexts${answer.index + 1}`, { choice: answer.index }),
+    })),
+  })
+
+  const { data } = dataForState(model)
+  const currentActiveItem = activeId ? data.find(item => item.text === activeId) : null
+  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor), useSensor(KeyboardSensor, {
+    coordinateGetter: sortableKeyboardCoordinates,
+  }))
+  const dropAnimation = {
+    ...defaultDropAnimation,
+    dragSourceOpacity: 0.5,
+  }
+
+  const prefixedItemIds = data.map(item => item.text)
+
+  const handleDragItem = (activeId, overId) => {
+    const droppedItemId = data.find(item => item.text === activeId)?.id
+    const droppedItemIndex = data.findIndex(item => item.id === droppedItemId)
+    const droppedOntoItemId = data.find(item => item.text === overId)?.id
+    const itemDroppedOntoIndex = data.findIndex(item => item.id === droppedOntoItemId)
+    if (droppedItemIndex === undefined || itemDroppedOntoIndex === undefined) {
+      return null
     }
+
+    const rearrangedItems = arrayMove(data, droppedItemIndex, itemDroppedOntoIndex)
+
+    model.result.answer(rearrangedItems.map((item, i) => ({ index: item.id, value: i })))
   }
 
-  moveItem = (dragIndex, hoverIndex) => {
-    const { readOnly } = this.props
-    if (readOnly) { return }
-    const { data } = this.state
-    const dragItem = data[dragIndex]
+  const handleDragEnd = ({ active, over }) => {
+    setActiveId(null)
+    const activeId = active?.id
+    const overId = over?.id
+    if (!overId) {
+      return null
+    }
 
-    const updatedData = updateIn(
-      this.state,
-      ['data'], (data) => {
-        const dataCopy = [...data]
-        dataCopy.splice(dragIndex, 1)
-        dataCopy.splice(hoverIndex, 0, dragItem)
-        return dataCopy
-      },
-    )
-    this.setState(updatedData)
+    if (prefixedItemIds.includes(activeId) && overId) {
+      handleDragItem(activeId, overId)
+      return null
+    }
+
+    return null
   }
 
-  endMoveItem = () => {
-    const { data } = this.state
-    const { model } = this.props
-    model.result.answer(data.map((item, i) => ({ index: item.id, value: i })))
+  const handleDragStart = ({ active }) => {
+    const { id } = active
+    setActiveId(id)
+    return null
   }
 
-  render () {
-    const { data } = this.state
-    return (
-      <div className={styles.preview}>
-        {data.map((item, i) => (
-          <Item
-            key={item.id}
-            id={item.id}
-            index={i}
-            number={i + 1}
-            text={item.text}
-            showDescription={item.showDescription}
-            description={item.description}
-            moveItem={this.moveItem}
-            endMoveItem={this.endMoveItem}
-          />
-        ))}
-      </div>
-    )
+  const handleDragCancel = () => {
+    setActiveId(null)
   }
+
+
+  return (
+    <div className={styles.preview}>
+      <DndContext
+        measuring={{
+          droppable: {
+            strategy: verticalListSortingStrategy,
+          },
+        }}
+        sensors={sensors}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        onDragCancel={handleDragCancel}
+      >
+        <SortableContext
+          items={[...prefixedItemIds]}
+          strategy={verticalListSortingStrategy}
+        >
+          {data.map((item, index) => (
+            <DragItemSortable
+              key={item.id}
+              sortId={item.text}
+              number={index + 1}
+              text={item.text}
+              showDescription={item.showDescription}
+              description={item.description}
+            />
+          ))}
+        </SortableContext>
+        {createPortal(
+          <DragOverlay adjustScale={false} dropAnimation={dropAnimation}>
+            {
+              activeId && prefixedItemIds.includes(activeId) ? (
+                <div className={`${styles.preview} ${styles.dragging}`}>
+                  <DragItem
+                    number={currentActiveItem.id + 1}
+                    text={currentActiveItem.text}
+                    showDescription={currentActiveItem.showDescription}
+                    description={currentActiveItem.description}
+                  />
+                </div>
+              ) : null
+            }
+          </DragOverlay>,
+          document.body,
+        )}
+      </DndContext>
+    </div>
+  )
 }
-
-export default Preview

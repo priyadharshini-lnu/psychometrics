@@ -25,17 +25,19 @@ module Administration
         )
         total = managers.count
 
-        paginated_managers = paginated_managers.map do |m|
-          ::Threesixty::EvaluatorSerializer.new(
-            m,
+        paginated_managers = Panko::ArraySerializer.new(
+          paginated_managers,
+          each_serializer: ::Threesixty::EvaluatorSerializer,
+          context: {
             option: option,
-            nomination_requirement: nomination_requirement_by_user_id[m.user_id],
+            nomination_requirement: nomination_requirement_by_user_id[paginated_managers.pluck(:user_id)],
             counters: counters,
             subject_evaluator_counters: subject_evaluator_counters,
             current_user: current_user,
             project_id: threesixty_campaign.campaign.project_id
-          ).to_h
-        end
+          }
+        ).to_a
+
         render json: { managers: paginated_managers, total: total, permissions: permissions }
       end
 

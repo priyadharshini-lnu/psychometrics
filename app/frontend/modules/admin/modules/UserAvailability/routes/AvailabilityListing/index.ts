@@ -1,1 +1,3 @@
-export { AvailabilityListing } from './AvailabilityListing'
+import AvailabilityListing from './AvailabilityListing'
+
+export default AvailabilityListing

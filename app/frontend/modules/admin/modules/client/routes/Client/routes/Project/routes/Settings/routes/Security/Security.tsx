@@ -35,7 +35,7 @@ const securityComponent: React.FC<Props> = ({
   securitySetting, isSaving, isProjectLoading,
 }) => {
   const [form] = Form.useForm()
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
 
   useEffect(() => {
     form.setFieldsValue(securitySetting)

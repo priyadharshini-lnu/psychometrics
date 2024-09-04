@@ -1,16 +1,21 @@
 # frozen_string_literal: true
 
 module Reports
-  class ModuleSerializer < ActiveModel::Serializer
-    attributes :id, :name, :position, :props, :type, :assessment_id
-    attribute :meta, if: :builder?
+  class ModuleSerializer < Panko::Serializer
+    attributes :id, :name, :position, :props, :type, :assessment_id, :meta
+
+    def meta
+      return {} unless builder?
+
+      object.meta
+    end
 
     def props
-      return object.props if !@instance_options[:piped_text_context] || object.props['sourceType'] != 'Text'
+      return object.props if !context[:piped_text_context] || object.props['sourceType'] != 'Text'
 
       transformer = proc { |str| "<span style='direction: ltr; display: inline-block'>#{str}</span>" }
       text = Threesixty::PipedText::Perform.call!(
-        object.props['text'], @instance_options[:piped_text_context], transformer
+        object.props['text'], context[:piped_text_context], transformer
       )
 
       object.props.merge(
@@ -19,7 +24,7 @@ module Reports
     end
 
     def builder?
-      @instance_options[:builder]
+      context[:builder]
     end
   end
 end

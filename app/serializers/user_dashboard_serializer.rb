@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-class UserDashboardSerializer < ActiveModel::Serializer
-  attributes :id, :status, :campaign_id, :pdf, :is_self, :results
+class UserDashboardSerializer < Panko::Serializer
+  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :report
 
   has_one :user, method: :user
-  has_one :report, serializer: ReportSerializer
 
   delegate :campaign_id, to: :object
 
@@ -17,11 +16,11 @@ class UserDashboardSerializer < ActiveModel::Serializer
   end
 
   def results
-    instance_options[:results]
+    context[:results]
   end
 
   def options
-    instance_options[:options]
+    context[:options]
   end
 
   def module_overrides
@@ -31,10 +30,15 @@ class UserDashboardSerializer < ActiveModel::Serializer
   private
 
   def report
-    instance_options[:report]
+    ReportSerializer.new(
+      context: {
+        module_overrides: module_overrides,
+        include: '**'
+      }
+    ).serialize(context[:report])
   end
 
   def current_user
-    scope
+    context[:current_user]
   end
 end

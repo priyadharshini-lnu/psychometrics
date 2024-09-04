@@ -1,6 +1,6 @@
 import round from 'lodash/round'
 import { Col } from 'antd'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { TruncatedTitle } from '~/modules/endUser/modules/campaigns/components/TruncatedTitle'
 import { getTotalProgress } from '~/modules/endUser/modules/campaigns/core/campaign/selectors'
 import { DetailsCard } from '~/glint'
@@ -12,11 +12,11 @@ const { I18n } = window
 export const Threesixty = ({
   campaign, fetchCampaigns, campaignDisabled, scheduledForFuture,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const totalProgress = round(getTotalProgress(campaign))
 
   const handleClick = () => {
-    history.push(`/threesixty_campaigns/${campaign.id}`)
+    navigate(`/threesixty_campaigns/${campaign.id}`)
   }
 
   return (
@@ -28,6 +28,7 @@ export const Threesixty = ({
         }
         progressPercentage={totalProgress}
         buttonText={I18n.t('campaign.details')}
+        buttonAriaDescription={I18n.t('frontend.aria.campaign_name_description', { campaignName: campaign.name })}
         onButtonClick={handleClick}
         actionDisabled={campaignDisabled}
       />

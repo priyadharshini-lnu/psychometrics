@@ -8,50 +8,45 @@ RSpec.describe EndUser::IihtUserAssessmentsController, type: :controller do
     create(:user_assessment, evaluator: user, subject: user, iiht_user_assessment: build(:iiht_user_assessment))
   end
   let(:campaign) { user_assessment.campaign }
+  let(:async_request_uuid) { "#{uuid}|#{user.id}" }
+  let(:request_params) { { id: user_assessment.id, iiht_user_assessment: { id: user_assessment.id } } }
 
   before(:each) { login_user(user) }
   after(:each) { sign_out(user) }
 
-  describe 'GET pass' do
-    it 'redirects to campaign_path if user_assessment is completed' do
-      user_assessment.completed!
-      allow(user.user_profile).to receive(:photo) { 'test' }
-
-      get :pass, params: { id: user_assessment.id }
-
-      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
+  describe 'POST #pass' do
+    before do
+      allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(true)
+      allow(AsyncRequestHandlerJob).to receive(:perform_later)
     end
 
-    it "doesn't create IIHT assessment url if already created" do
-      url = 'https://tte-iiht.com'
-      user_assessment.iiht_user_assessment.update(url: url)
-      expect(Iiht::AddAssessment).to_not receive(:call!)
-
-      get :pass, params: { id: user_assessment.id }
-
-      expect(response).to redirect_to(url)
+    after(:each) do
+      $redis.flushdb # rubocop:disable Style/GlobalVars
     end
 
-    it 'adds IIHT assessment if assessment url is not present and marks user_assessment in progress' do
-      schedule_link = Faker::Internet.url
-      schedule_id = 123
-      config = { 'tenant_id' => '123' }
-      allow_any_instance_of(Iiht::AddAssessment).to receive(:config).and_return(config)
-      allow(Iiht::AllowAttempts).to receive(:call!)
-      allow(Iiht::GetAuthToken).to receive(:call!)
-      stub_request(:post, "#{Settings.iiht.base_api_url}/GetAssessmentURLAsync").
-        to_return({
-          body: {
-            'result' => { 'isSuccess' => true, 'scheduleLink' => schedule_link, 'scheduleId' => schedule_id }
-          }.to_json
-        })
+    it 'queues the request and sets status to in progress' do
+      post :pass, params: request_params
 
-      get :pass, params: { id: user_assessment.id }
+      expect(response).to have_http_status(:ok)
+      expect(AsyncRequestHandlerJob).to have_received(:perform_later)
 
-      expect(user_assessment.reload.in_progress?).to eq(true)
-      expect(user_assessment.iiht_user_assessment.schedule_id).to eq(schedule_id)
-      expect(user_assessment.iiht_user_assessment.url).to redirect_to(schedule_link)
-      expect(response).to redirect_to(schedule_link)
+      async_request_uuid = assigns(:async_request_uuid)
+      status, response = AsyncResponseRequest::GetAsyncResponse.call!(async_request_uuid)
+      expect(status).to eq('not_started')
+      expect(response).to be_an_instance_of(AsyncResponseRequest::AsyncResponse)
+      expect(response.processing_status).to eq('not_started')
+    end
+
+    context 'when user assessment cannot be started based on sequencing' do
+      before do
+        allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(false)
+      end
+
+      it 'returns the redirect URL to the campaign path' do
+        post :pass, params: request_params
+
+        expect(response).to redirect_to(campaign_path(user_assessment.campaign_id))
+      end
     end
   end
 

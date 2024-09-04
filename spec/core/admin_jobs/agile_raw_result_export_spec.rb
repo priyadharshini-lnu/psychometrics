@@ -34,7 +34,7 @@ describe AdminJobs::AgileRawResultExport do
 
       described_class.call!(job_record)
 
-      csv = CsvUtf8.to_array(job_record.file.path)
+      csv = CsvUtf8.to_array(active_storage_file_path(job_record.file))
       actual_first_row = csv[0]
 
       expected_first_row = [
@@ -68,7 +68,7 @@ describe AdminJobs::AgileRawResultExport do
 
       described_class.call!(job_record)
 
-      csv = Roo::CSV.new(job_record.file.path)
+      csv = Roo::CSV.new(active_storage_file_path(job_record.file))
       actual_second_row = csv.row(2)
       expected_second_row = [
         users_result.encoded_id,

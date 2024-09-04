@@ -28,6 +28,9 @@ module Users
         user_form = Campaigns::Users::CreateForm.new(form.attributes.slice(:first_name, :last_name, :email,
                                                                            :mobile_number, :mobile_verified))
         Campaigns::Users::Create.call(user_form, registration_code.campaign) do
+          on(:insufficient_license) do
+            raise Errors::LicenseError.new(client, nil, user, 'LicenseError')
+          end
           on(:ok) do
             increment_registration_code_usage(registration_code)
             update_license_use(user, client, registration_code)

@@ -1,4 +1,4 @@
 export const settings = {
-  urlPrefix: '/administration/report_approvals',
+  urlPrefix: '/admin/report_approvals',
   pageLimit: 25,
 }

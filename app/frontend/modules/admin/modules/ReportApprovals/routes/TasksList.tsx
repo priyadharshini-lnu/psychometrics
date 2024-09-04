@@ -5,12 +5,15 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import { SearchOutlined } from '@ant-design/icons'
 import _ from 'lodash'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import dayjs from '~/utils/dayjs'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { Campaign, User } from '../core'
+import { Tabs } from './Tabs'
 
 const { Column } = Table
 const { I18n } = window
@@ -119,7 +122,6 @@ const TasksListComponent: React.FC<Props> = ({
       filterIcon: () => <SearchOutlined style={{ color: value ? '#1BAF99' : undefined }} />,
     }
   }
-
 
   const TasksTable = (
     <>
@@ -235,12 +237,27 @@ const TasksListComponent: React.FC<Props> = ({
 
   return (
     <>
-      <TableLayout
-        table={TasksTable}
-        recordCount={meta.recordCount}
-        loading={tableLoading}
-        requestStatus={requests.fetch?.status}
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/admin',
+            label: () => I18n.t('administration.report_approval.dashboard'),
+          },
+          {
+            label: () => I18n.t('administration.report_approval.report_approvals'),
+          },
+        ]}
       />
+      <Tabs />
+      <div>
+        <TableLayout
+          table={TasksTable}
+          recordCount={meta.recordCount}
+          loading={tableLoading}
+          requestStatus={requests.fetch?.status}
+          failureMsg={getErrorMsgFromJsonApiRequests(requests)}
+        />
+      </div>
     </>
   )
 }

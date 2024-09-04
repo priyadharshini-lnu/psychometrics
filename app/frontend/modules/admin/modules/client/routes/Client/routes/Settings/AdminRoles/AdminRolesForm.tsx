@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import {
   Checkbox, Divider, Form, Input,
 } from 'antd'
@@ -6,7 +6,9 @@ import _ from 'lodash'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { AdminRole } from '~/modules/admin/modules/client/core/adminRole'
-import { ClientAdminGrants } from '~/modules/admin/modules/Admins/constants'
+import { useResources } from '~/hooks/useResources'
+import { Admin } from '~/modules/admin/modules/client/core/admin'
+import { AvailablePermissions } from '~/modules/admin/modules/Admins/core'
 
 interface Props {
   role?: AdminRole
@@ -19,7 +21,17 @@ export const AdminRolesForm: React.FC<Props> = ({
   role, close,
 }) => {
   const { resource } = useResourceContext<AdminRole>()
-  const grantsHash = (): {} => ClientAdminGrants
+  const [availablePermissions, setAvailablePermissions] = useState<AvailablePermissions>({})
+  const { collectionAction: membershipCollectionAction } = useResources<Admin>('memberships')
+
+  useEffect(() => {
+    membershipCollectionAction(
+      { action: 'available_permissions', method: 'get', body: { role: 'client_admin' } },
+    ).then((response: AvailablePermissions) => {
+      setAvailablePermissions(response)
+    })
+  }, [])
+
   const [form] = Form.useForm()
 
   return (
@@ -44,7 +56,7 @@ export const AdminRolesForm: React.FC<Props> = ({
             label={I18n.t('administration.settings.admin_roles.name')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="admin_role_name" />
           </Form.Item>
           <Form.Item
             name="description"
@@ -54,7 +66,7 @@ export const AdminRolesForm: React.FC<Props> = ({
             <Input.TextArea />
           </Form.Item>
 
-          {_.map(grantsHash(), (grants, grantFor) => (
+          {_.map(availablePermissions, (grants, grantFor) => (
             <Fragment key={grantFor}>
               <Form.Item
                 name={['permissions', `${grantFor}`]}

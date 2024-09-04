@@ -13,10 +13,13 @@ type DetailsCardProps = {
   title: string | React.ReactElement
   description?: string | React.ReactElement
   buttonText?: string
+  buttonAriaDescription?: string
   secondaryBtnText?: string
+  secondaryBtnAriaDescription?: string
   onButtonClick?: () => void
   onSecondaryBtnClick?: () => void
   progressPercentage?: number
+  progressLabelAria?: string
   status?: string | React.ReactElement
   subtitle?: string | React.ReactElement | null
   showStatusAtTop?: boolean
@@ -31,10 +34,13 @@ type DetailsCardProps = {
 export const DetailsCard: FC<DetailsCardProps> = ({
   title,
   buttonText,
+  buttonAriaDescription,
   secondaryBtnText,
+  secondaryBtnAriaDescription,
   onButtonClick,
   onSecondaryBtnClick,
   progressPercentage,
+  progressLabelAria,
   description,
   status,
   subtitle,
@@ -89,7 +95,12 @@ export const DetailsCard: FC<DetailsCardProps> = ({
       </Space>
       <Row className={styles.cardFooter}>
         <Col lg={progressBarSpanLg} md={8} xs={progressBarSpanXs}>
-          {progressPercentage !== undefined && <Progress percent={progressPercentage} />}
+          {progressPercentage !== undefined && (
+          <Progress
+            aria-label={progressLabelAria}
+            percent={progressPercentage}
+          />
+          )}
         </Col>
         {buttonText && (
           <Col
@@ -108,9 +119,10 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                   ghost
                   onClick={onSecondaryBtnClick}
                   className={styles.actionButton}
+                  aria-description={secondaryBtnAriaDescription || ''}
                 >
                   {secondaryBtnText}
-                  <DirectionalArrowIcon className={styles.buttonIcon} />
+                  <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
                 </Button>
               </ButtonWrapper>
               )}
@@ -122,9 +134,10 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                   size="small"
                   onClick={handleClick}
                   className={styles.actionButton}
+                  aria-description={buttonAriaDescription || ''}
                 >
                   {buttonText}
-                  <DirectionalArrowIcon className={styles.buttonIcon} />
+                  <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
                 </Button>
               </ButtonWrapper>
             </Space>

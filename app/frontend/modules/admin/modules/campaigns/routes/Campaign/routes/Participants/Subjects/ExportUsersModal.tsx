@@ -8,7 +8,10 @@ const { I18n } = window
 
 interface OwnProps {
   campaignId: number
-  exportUsers: (campaignId: number, params: { exportSignInUrl: boolean }) => Promise<void>
+  exportUsers: (campaignId: number, params: {
+    exportSignInUrl: boolean, filters: Record<string, (string | string[]) >
+  }) => Promise<void>
+  permissions: { exportSignInUrl: boolean},
   close(): void
 }
 
@@ -16,13 +19,18 @@ export const ExportUsersModal: React.FC<OwnProps> = ({
   close,
   campaignId,
   exportUsers,
+  permissions,
 }) => {
   const [exportSignInUrl, setexportSignInUrl] = useState(false)
+  const [includeInactiveUsers, setIncludeInactiveUsers] = useState(false)
   const [exportInProgress, setExportInProgress] = useState(false)
 
   const handleExportUsers = () => {
+    const filters = includeInactiveUsers
+      ? { campaignUsersActiveIn: ['true', 'false'] } : { campaignUsersActiveIn: ['true'] }
+
     setExportInProgress(true)
-    exportUsers(campaignId, { exportSignInUrl }).then(() => {
+    exportUsers(campaignId, { exportSignInUrl, filters }).then(() => {
       setExportInProgress(false)
       close()
     })
@@ -52,9 +60,16 @@ export const ExportUsersModal: React.FC<OwnProps> = ({
         </Button>,
       ]}
     >
-      <Checkbox onChange={({ target: { checked } }) => { setexportSignInUrl(checked) }}>
-        {I18n.t('user.modals.exports.export_sign_in_url')}
+      <Checkbox onChange={({ target: { checked } }) => { setIncludeInactiveUsers(checked) }}>
+        {I18n.t('user.modals.exports.include_inactive_users')}
       </Checkbox>
+      <br />
+
+      {permissions.exportSignInUrl && (
+        <Checkbox onChange={({ target: { checked } }) => { setexportSignInUrl(checked) }}>
+          {I18n.t('user.modals.exports.export_sign_in_url')}
+        </Checkbox>
+      )}
     </Modal>
   )
 }

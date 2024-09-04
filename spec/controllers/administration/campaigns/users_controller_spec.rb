@@ -4,7 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   let(:current_user) { create(:superadmin) }
-  let(:user) { create(:user, :with_project_membership, email: 'tester@gmail.com') }
+  let(:hogan_credential) { create(:hogan_credential) }
+  let(:user) do
+    create(:user, :with_project_membership, email: 'tester@gmail.com', hogan_credential: hogan_credential)
+  end
   let(:campaign) { create(:campaign, project_id: user.project_id) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let!(:proctoring_session) do
@@ -104,7 +107,9 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'bulk_download' => true,
         'view_workshop_details' => true
       },
-      'hogan_id' => nil
+      'manager' => {},
+      'hogan_id' => hogan_credential.participant_id,
+      'hogan_provider' => hogan_credential.provider
     })
   end
 

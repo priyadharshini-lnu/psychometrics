@@ -101,7 +101,7 @@ const CampaignList: React.FC<Props> = (
               sorter
               sortOrder={getSortOrder('name')}
               render={({ name, id }) => (
-                <Link to={`assessors/campaigns/${id}/users`}>{name}</Link>
+                <Link to={`/assessors/campaigns/${id}/users`}>{name}</Link>
               )}
             />
             <Column
@@ -167,4 +167,4 @@ const CampaignList: React.FC<Props> = (
   )
 }
 
-export default withEnhancedTable(connecter(CampaignList), 'assessorsCampaignList', { maintainHistory: true })
+export default withEnhancedTable<{}>(connecter(CampaignList), 'assessorsCampaignList', { maintainHistory: true })

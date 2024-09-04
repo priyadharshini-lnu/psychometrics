@@ -13,9 +13,10 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def search_admins
-    users = ::Users::Admin.search_query(params[:q]).map do |user|
-      ::Projects::SearchUserSerializer.new(user).to_h
-    end
+    users = Panko::ArraySerializer.new(
+      ::Users::Admin.search_query(params[:q]),
+      each_serializer: ::Projects::SearchUserSerializer
+    ).to_a
     render json: users
   end
 

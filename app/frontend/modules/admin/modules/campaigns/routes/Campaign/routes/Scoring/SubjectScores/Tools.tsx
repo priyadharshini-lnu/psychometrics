@@ -9,7 +9,8 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const { I18n } = window
 
 type Permissions = {
-  exportScorings?: boolean,
+  export: boolean,
+  import: boolean
 }
 
 type Props = {
@@ -35,10 +36,17 @@ export const Tools: React.FC<Props> = ({
 
 const getMenuProps = ({ onClick, permissions }: Props): MenuProps => {
   const menuItems:ItemType[] = []
-  if (permissions?.exportScorings) {
+  if (permissions?.export) {
     menuItems.push({
       key: 'export',
       label: I18n.t('administration.scoring.subject_list.export'),
+    })
+  }
+
+  if (permissions?.import) {
+    menuItems.push({
+      key: 'import_external_scores',
+      label: I18n.t('administration.scoring.subject_list.import_external_scores'),
     })
   }
 

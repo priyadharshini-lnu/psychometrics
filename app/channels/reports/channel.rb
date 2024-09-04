@@ -20,14 +20,7 @@ module Reports
 
     def subscribed
       report = Report.includes(pages: [:modules]).find(params['report_id'])
-      if Administration::ReportPolicy.new(current_user, report).edit?
-        transmit({
-          action: 'report_data',
-          data: ReportSerializer.new(report, builder: true).to_hash(include: '**')
-        })
-      else
-        reject
-      end
+      reject unless Administration::ReportPolicy.new(current_user, report).edit?
     end
 
     def pundit_user

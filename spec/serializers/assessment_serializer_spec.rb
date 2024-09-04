@@ -9,12 +9,12 @@ describe AssessmentSerializer do
     let(:campaign) { threesixty_campaign.campaign }
 
     describe '#relationships' do
-      it { expect(described_class.new(assessment).relationships).to eq [] }
+      it { expect(described_class.new(context: {}).serialize(assessment)['relationships']).to eq [] }
     end
 
     describe '#data_sheet_columns' do
       describe 'common assessment' do
-        it { expect(described_class.new(assessment).data_sheet_columns).to eq [] }
+        it { expect(described_class.new(context: {}).serialize(assessment)['data_sheet_columns']).to eq [] }
       end
 
       describe 'threesixty assessment' do
@@ -25,10 +25,11 @@ describe AssessmentSerializer do
         end
 
         it {
-          expect(described_class.new(assessment).data_sheet_columns).to eq [
-            { 'name' => 'field1', 'type' => 'Text' },
-            { 'name' => 'field2', 'type' => 'Number' }
-          ]
+          expect(described_class.new(context: {}).serialize(assessment)['data_sheet_columns']).
+            to eq [
+              { 'name' => 'field1', 'type' => 'Text' },
+              { 'name' => 'field2', 'type' => 'Number' }
+            ]
         }
       end
     end

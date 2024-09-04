@@ -4,48 +4,50 @@ import {
 import {
   Layout, Col, Input, message, Typography, Space, Button,
 } from 'antd'
-import { connect, ConnectedProps } from 'react-redux'
 import cs from 'classnames'
 import {
   PageHeader as GlintPageHeader,
 } from '~/glint'
 import styles from './UserAssessment.less'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
-import { HoganData, loginHogan } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import RedirectIcon from './RedirectIcon'
+import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
+import {
+  AsyncExternalAssessmentTR,
+  AsyncExternalAssessment,
+  HoganData,
+} from '~/modules/admin/modules/client/core/externalAssessments'
 
 const { I18n } = window
 const { Content } = Layout
 
-const connector = connect(
-  () => ({
-  }),
-  {
-    loginHogan,
-  },
-)
-
-type Props = ConnectedProps<typeof connector> & {
+type Props = {
+  userAssessmentId: string
   userAssessmentUrl: string,
   onCancel: () => void,
 }
 
-export const HoganStepComponent: FC<Props> = ({
-  userAssessmentUrl, loginHogan, onCancel,
+export const HoganStep: FC<Props> = ({
+  userAssessmentId, userAssessmentUrl, onCancel,
 }) => {
   const [hoganData, setHoganData] = useState<HoganData| null>(null)
-  const [timedOut, setTimedOut] = useState(false)
   const [loading, setLoading] = useState(false)
+  const {
+    makeAsyncRequest,
+  } = useAsyncRequestResponse<AsyncExternalAssessment>({
+    url: userAssessmentUrl,
+    data: { id: userAssessmentId },
+    responseType: AsyncExternalAssessmentTR,
+  })
+
   useEffect(() => {
-    loginHogan(userAssessmentUrl).then((data) => {
-      setHoganData(data.response)
+    makeAsyncRequest().then((response) => {
+      setHoganData(response.responseData)
     }).catch(() => {
       message.error(I18n.t('frontend.hogan.cannot_start'))
     })
-    setTimeout(() => {
-      setTimedOut(true)
-    }, 5000)
   }, [])
+
 
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -93,7 +95,7 @@ export const HoganStepComponent: FC<Props> = ({
                 <Button onClick={onCancel} danger>
                   {I18n.t('campaign.time_left.cancel')}
                 </Button>
-                <Button loading={loading} disabled={loading || !timedOut} type="primary" onClick={() => process()}>
+                <Button loading={loading} disabled={loading} type="primary" onClick={() => process()}>
                   {I18n.t('campaign.time_left.continue')}
                 </Button>
               </Space>
@@ -105,6 +107,3 @@ export const HoganStepComponent: FC<Props> = ({
     </>
   )
 }
-
-
-export const HoganStep = connector(HoganStepComponent)

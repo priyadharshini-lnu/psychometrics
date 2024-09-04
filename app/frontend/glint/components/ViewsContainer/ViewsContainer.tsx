@@ -12,6 +12,7 @@ import { MediaQueryContext } from '~/glint'
 import styles from './styles.less'
 
 const { Title } = Typography
+const { I18n } = window
 
 const VIEW_TYPE = {
   list: 'list',
@@ -54,16 +55,18 @@ export const ViewsContainer: FC<ViewsContainerProps> = ({
                 id={VIEW_TYPE.grid}
                 onClick={() => setView(VIEW_TYPE.grid)}
                 shape="circle"
-                icon={<AppstoreOutlined />}
+                icon={<AppstoreOutlined aria-label="" />}
                 size="middle"
+                aria-label={I18n.t('glint.views_container.aria_grid_view')}
               />
               <Button
                 className={view === VIEW_TYPE.list ? styles.activeButton : styles.inActiveButton}
                 id={VIEW_TYPE.list}
                 shape="circle"
                 onClick={() => setView(VIEW_TYPE.list)}
-                icon={<UnorderedListOutlined />}
+                icon={<UnorderedListOutlined aria-label="" />}
                 size="middle"
+                aria-label={I18n.t('glint.views_container.aria_list_view')}
               />
             </Space>
           </Col>

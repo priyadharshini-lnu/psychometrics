@@ -15,7 +15,7 @@ module Threesixty::Reports
     end
 
     def serialize_results
-      lookup_results.group_by { |result| result[:assessment_id] }
+      lookup_results.group_by { |result| result['assessment_id'] }
     end
 
     def lookup_results
@@ -26,9 +26,8 @@ module Threesixty::Reports
         includes(:evaluator, :assessment, :users_result).
         map do |user_assessment|
         ::Reports::ResultSerializer.new(
-          user_assessment.users_result,
-          campaign: campaign
-        ).to_h
+          context: { campaign: campaign }
+        ).serialize(user_assessment.users_result)
       end
     end
   end

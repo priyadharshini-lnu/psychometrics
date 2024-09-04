@@ -9,7 +9,7 @@ module Factors
     attribute :scoring_strategy, String
     attribute :factors_sub_factors_attributes, Object
     attribute :icon, Object
-    attribute :remove_icon, Boolean
+    attribute :purge_icon, Boolean
     attribute :use_percentage, Boolean
     attribute :use_sub_factor_norm_score, Boolean
     attribute :external_scoring, Array

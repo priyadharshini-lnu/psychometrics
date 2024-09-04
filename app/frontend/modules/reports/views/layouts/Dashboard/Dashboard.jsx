@@ -1,4 +1,7 @@
 import { Component } from 'react'
+import { normalize } from 'normalizr'
+import { message } from 'antd'
+import schema from '~/modules/reports/store/schema'
 import Library from '~/libs/library'
 import AppStore from '~/modules/reports/store/AppStore'
 import Modals from '~/modules/reports/components/modals'
@@ -9,13 +12,26 @@ import Header from '../Header'
 
 export class Dashboard extends Component {
   componentDidMount () {
+    const {
+      fetch, init, subscribeSocket, socketInitialized,
+    } = this.props
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
-    const { subscribeSocket, socketInitialized } = this.props
+    const urldata = location.pathname.match(/reports\/(\d+)/)
+    const id = urldata && urldata[1]
+
+    fetch(id).then(({ response }) => {
+      const normalizedData = normalize(response, schema)
+      AppStore.init(response)
+      init(normalizedData)
+    })
+
     if (!socketInitialized) {
-      const urldata = location.pathname.match(/reports\/(\d+)/)
-      const id = urldata && urldata[1]
       subscribeSocket('Reports::Channel', { report_id: id })
     }
+
+    message.config({
+      getContainer: () => document.getElementById('fixed_header') || document.body,
+    })
   }
 
   componentWillUnmount () {

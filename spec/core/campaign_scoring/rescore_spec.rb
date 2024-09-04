@@ -64,13 +64,31 @@ describe CampaignScoring::Rescore do
     expect(indexed_campaign_factor_values[cf_factor5.id].value).to eq(((2 + 4.8) / 2) + (10 * 0.5))
   end
 
-  it "doesn't remove already computed factor with type assessor_scoring" do
+  it "doesn't remove manually saved factor with type assessor_scoring " do
     cf_factor = create(
       :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
       factor_type: 'assessor_scoring', assessment_score_type: 'score'
     )
     campaign_factor_value = create(
-      :campaign_factor_value, campaign_factor: cf_factor, user: user, campaign: campaign, numeric_value: 100
+      :campaign_factor_value, campaign_factor: cf_factor, user: user, campaign: campaign, numeric_value: 100,
+      calculation_type: 'manual'
+    )
+
+    described_class.call!(campaign, user)
+
+    cfv = CampaignFactorValue.find_by(id: campaign_factor_value.id)
+    expect(cfv).to_not eq(nil)
+    expect(cfv.numeric_value).to eq(100)
+  end
+
+  it "doesn't remove factor with type external_score" do
+    cf_factor = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: 'external_score'
+    )
+    campaign_factor_value = create(
+      :campaign_factor_value, campaign_factor: cf_factor, user: user, campaign: campaign, numeric_value: 100,
+      calculation_type: 'manual'
     )
 
     described_class.call!(campaign, user)

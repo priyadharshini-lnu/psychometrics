@@ -1,12 +1,12 @@
 /* eslint-disable react/no-danger */
 import { CSSProperties } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import {
   Layout, Row, Col, Space, theme,
 } from 'antd'
 import { connect } from 'react-redux'
 import cs from 'classnames'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { isRtl } from '~/utils/locales'
 import routes from './routes'
 import styles from './styles.less'
@@ -63,17 +63,18 @@ export const LayoutComponent = ({ config }) => {
               <div className={styles.logoWrapper}>
                 <img src={config.client_logo || logo} className={styles.logo} />
               </div>
-              {config.id && <LangDropdown />}
+              {config.id && <LangDropdownWithChangeLocale />}
             </Layout.Header>
             <Layout.Content className={styles.content}>
-              {routes.map((route, i) => (
-                <Route
-                  key={i}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.main}
-                />
-              ))}
+              <Routes>
+                {routes.map((route, i) => (
+                  <Route
+                    key={i}
+                    path={route.path}
+                    element={<route.main />}
+                  />
+                ))}
+              </Routes>
             </Layout.Content>
             <Layout.Footer className={styles.footer}>
               <Space>

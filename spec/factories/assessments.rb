@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :assessment, class: 'Assessments::Common' do
+  factory :assessment, class: ::Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }
     description { Faker::Lorem.characters(number: 5) }
     dimension
@@ -14,7 +14,7 @@ FactoryBot.define do
       end
     end
 
-    factory :hogan_assessment, class: 'Assessments::Hogan' do
+    factory :hogan_assessment, class: '::Assessments::Hogan' do
       category { Assessment::CATEGORIES[:hogan] }
       type { ::Assessments::Hogan }
       external_settings { { assessment_id: 'assessmentId' } }
@@ -35,6 +35,12 @@ FactoryBot.define do
     trait :pearson do
       category { Assessment::CATEGORIES[:pearson] }
       type { ::Assessments::Pearson }
+      external_settings { { assessment_id: 'assessmentId' } }
+    end
+
+    trait :mettl do
+      category { Assessment::CATEGORIES[:mettl] }
+      type { ::Assessments::Mettl }
       external_settings { { assessment_id: 'assessmentId' } }
     end
   end

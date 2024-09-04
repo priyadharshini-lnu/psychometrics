@@ -1,30 +1,19 @@
 # frozen_string_literal: true
 
 class EndUser::HoganUserAssessmentsController < ApplicationController
+  include AsyncRequestHandler
+
   before_action :set_user_assessment, only: %i[pass redirect]
   before_action :can_start_based_on_sequencing, only: %i[pass]
+
+  async_request :pass, handler: ::Hogan::StartAssessment,
+    permit_params: ->(params) { params.require(:hogan_user_assessment).permit(:id) }
 
   def redirect
     @user_assessment.update(status: :completed, completed_at: Time.current) if params[:status] == 'Completed'
     Hogan::HandleAssessmentCompletion.call!(@user_assessment)
 
     redirect_to(assessment_completed_path(@user_assessment.campaign, user_assessment_id: @user_assessment.id))
-  end
-
-  def pass
-    user_assessment = @user_assessment
-    Hogan::StartAssessment.call(@user_assessment) do
-      on(:ok) do
-        hogan_credential = HoganCredential.find_by(user_id: current_user.id)
-        render json: ::EndUser::HoganCredentialSerializer.new(context: {
-          hogan_credential: hogan_credential, include: '**'
-        }).
-          serialize(user_assessment)
-      end
-      on(:invalid) do
-        render(json: { error: '412' }, status: :precondition_failed)
-      end
-    end
   end
 
   private

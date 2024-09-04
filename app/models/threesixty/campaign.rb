@@ -46,5 +46,9 @@ module Threesixty
     def log_attribute_for_delete
       slice(:campaign_id, :assessment_id, :report_id)
     end
+
+    def available_relationships
+      Relationship.where(campaign_id: [campaign.id, nil]).where.not(name: 'Assessor')
+    end
   end
 end

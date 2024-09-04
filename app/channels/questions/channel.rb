@@ -3,7 +3,6 @@
 module Questions
   class Channel < ApplicationCable::Channel
     include Questions::Actions::Question
-    include Questions::Actions::Comment
     include Pundit
     include Administration::Policies
 
@@ -13,7 +12,11 @@ module Questions
         transmit(
           {
             action: 'question_data',
-            data: QuestionSerializer.new(question).to_hash(include: '**')
+            data: QuestionSerializer.new(
+              context: {
+                include: '**'
+              }
+            ).serialize(question)
           }
         )
       else

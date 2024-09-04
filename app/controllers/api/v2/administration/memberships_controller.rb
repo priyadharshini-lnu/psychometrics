@@ -7,6 +7,10 @@ module Api
 
     before_action :set_resource, only: %i[spoof reset_password]
 
+    def available_permissions
+      render json: AllowedPermissions::PERMISSION_BY_ADMIN_TYPE[params[:role]]
+    end
+
     def spoof
       sign_in(@_resource.user)
       redirect_url ||= admin_path

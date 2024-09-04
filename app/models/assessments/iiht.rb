@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 module Assessments
-  class Iiht < Assessment
+  class Iiht < ::Assessment
     validates :owner_id, :project_id, presence: true
 
     before_create :init_default_state
 
     # Need for create right urls
     def self.model_name
-      Assessment.model_name
+      ::Assessment.model_name
     end
 
     private

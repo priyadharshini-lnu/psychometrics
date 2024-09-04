@@ -73,7 +73,7 @@ const AssessmentList: React.FC<Props> = ({
   openModal,
   rescore,
 }) => {
-  const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
+  const { campaignId, id } = useParams() as { campaignId: string, id: string }
   const { modal, message } = App.useApp()
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedAssessorId = parseInt(id, 10)

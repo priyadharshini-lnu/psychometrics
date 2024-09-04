@@ -57,7 +57,9 @@ describe Threesixty::Evaluators::CreateAll do
       relationship_name: 'peer',
       subject: first_subject,
       subject_email: 'smith@cc.com',
-      evaluator_locale: 'en'
+      evaluator_locale: 'en',
+      subject_user: first_subject.user,
+      relationship: relationship
     }], threesixty_campaign)
 
     expect(User.last.locale).to eq('en')
@@ -72,7 +74,9 @@ describe Threesixty::Evaluators::CreateAll do
         evaluator_email: 'daniel@cc.com',
         relationship_name: 'peer',
         subject: first_subject,
-        subject_email: 'smith@cc.com'
+        subject_user: first_subject.user,
+        subject_email: 'smith@cc.com',
+        relationship: relationship
       }], threesixty_campaign)
     end.to_not change(::Threesixty::Evaluator, :count)
   end
@@ -93,7 +97,8 @@ describe Threesixty::Evaluators::CreateAll do
         relationship_name: 'peer',
         subject: first_subject,
         subject_user: first_subject.user,
-        subject_email: 'smith@cc.com'
+        subject_email: 'smith@cc.com',
+        relationship: relationship
       }], threesixty_campaign)
     end.to_not change(::Threesixty::Participant, :count)
   end
@@ -109,7 +114,9 @@ describe Threesixty::Evaluators::CreateAll do
       evaluator_last_name: 'Smith',
       relationship_name: 'peer',
       subject: first_subject,
-      subject_email: 'caleb@cc.com'
+      subject_email: 'caleb@cc.com',
+      subject_user: first_subject.user,
+      relationship: relationship
     }], threesixty_campaign)
 
     user.reload

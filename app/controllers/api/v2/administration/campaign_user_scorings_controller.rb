@@ -111,6 +111,25 @@ module Api
       render json: :ok
     end
 
+    def import_external_campaign_scorings
+      form = Campaigns::ExternalCampaignScoresImport::ImportForm.new(
+        file: params[:file]
+      ).with_context(campaign: campaign)
+
+      return render json: { errors: form.errors.full_messages }, status: 422 unless form.valid?
+
+      AdminJob.call(:import_external_campaign_scoring, { campaign_id: campaign.id }, current_user, params[:file])
+
+      head :ok
+    end
+
+    def import_external_scorings_sample_file
+      send_file(
+        Rails.public_path.join('example_csv/import_external_campaign_scorings_sample_file.csv'),
+        type: 'text/csv'
+      )
+    end
+
     def find_user
       @user = User.find(params[:id])
     end

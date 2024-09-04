@@ -6,9 +6,6 @@ class Factor < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true
@@ -47,12 +44,7 @@ class Factor < ApplicationRecord
     custom_formula: 9
   }, _suffix: :strategy
 
-  mount_uploader :icon, Public::ImageUploader
-
-  has_one_image_attachment :as_icon, variants: [:icon]
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :icon
+  has_one_image_attachment :icon, variants: %i[icon medium]
 
   def attachment_storage_path(attribute_name, filename)
     "public/factor/#{id}/#{attribute_name}/#{filename}"
@@ -104,10 +96,10 @@ class Factor < ApplicationRecord
 
   def clone_and_save
     @cloned_factor = deep_clone include: [:factors_sub_factors] do |original, kopy|
-      kopy.icon = original.icon if original.is_a?(Factor)
+      kopy.icon.attach(original.icon.blob) if original.is_a?(Factor)
     end
     @cloned_factor.gen_uniq_name
-    @cloned_factor.icon = icon
+    @cloned_factor.icon = icon if icon.attached?
     @cloned_factor.save ? @cloned_factor : nil
   end
 

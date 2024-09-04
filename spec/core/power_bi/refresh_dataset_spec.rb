@@ -5,7 +5,7 @@ require 'rails_helper'
 describe PowerBi::RefreshDataset do
   let(:dataset_id) { 'pb_dataset_id' }
   let(:access_token) { 'pb_access_token' }
-  let(:config) { Rails.application.secrets.power_bi }
+  let(:config) { Settings.secrets.power_bi }
   before do
     stub_request(:post, "https://login.microsoftonline.com/#{config[:tenant_id]}/oauth2/token").
       with(body: {

@@ -28,7 +28,7 @@ export const DashboardReportComponent: React.FC<Props> = ({
 }) => {
   const INITIAL_SCALE = Math.max(Math.min(window.innerWidth / 1024, 1.5), 1)
   const SCALE_STEP = INITIAL_SCALE / 10
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const location = useLocation()
 
   const params = new URLSearchParams(location.search)

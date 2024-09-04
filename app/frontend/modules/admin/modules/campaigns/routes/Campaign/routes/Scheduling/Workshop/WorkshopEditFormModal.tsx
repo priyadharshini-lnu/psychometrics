@@ -29,8 +29,8 @@ export const WorkshopEditFormModal: FC<Props> = ({
   const [form] = Form.useForm()
   const [workshopManagers, setWorkshopManagers] = useState<UserDetails[]>([])
   const [workshopAssessors, setWorkshopAssessors] = useState<UserDetails[]>([])
-  const { campaignId } = useParams<{ campaignId: string }>()
-  const { projectId } = useParams<{ projectId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
+  const { projectId } = useParams() as { projectId: string }
 
   const {
     collectionAction,
@@ -87,7 +87,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
             label={I18n.t('administration.scheduling.assessment_center_form.name_label')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input name="workshop_name" />
           </Form.Item>
           <Form.Item
             label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_rescheduling')}
@@ -125,7 +125,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
                   message: I18n.t('administration.scheduling.errors.meeting_link_https'),
                 }]}
             >
-              <Input />
+              <Input name="workshop_meetinglink" />
             </Form.Item>
           )}
           <Form.Item

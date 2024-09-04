@@ -23,7 +23,7 @@ module Hogan
             format.html { render(:pass) }
             format.json do
               hogan_params = {
-                url: Rails.application.secrets.hogan[:login_url],
+                url: Settings.secrets.hogan[:login_url],
                 user_id: current_user.current_membership.hogan_credential&.participant_id,
                 password: current_user.current_membership.hogan_credential&.password,
                 unique_id: current_user.email,

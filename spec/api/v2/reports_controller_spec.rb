@@ -215,14 +215,27 @@ describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.js
       consumes 'application/vnd.api+json'
       security [basic: []]
       parameter name: :report_id, in: :path, type: :string
+      parameter name: :body, in: :body
 
       let(:report_id) { report.id }
+
+      let(:body) do
+        {
+          data: {
+            type: 'reports',
+            id: report.id.to_s,
+            attributes: {
+              name: 'Copy of First Report'
+            }
+          }
+        }
+      end
 
       response '200', 'Report Coppied' do
         run_test! do |response|
           report_response = JSON.parse(response.body)['data']
           expect(report_response).to have_key('id')
-          expect(report_response).to have_attribute(:name).with_value('First Report (1)')
+          expect(report_response).to have_attribute(:name).with_value('Copy of First Report')
         end
       end
     end

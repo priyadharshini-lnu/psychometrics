@@ -10,10 +10,11 @@ import {
   message,
   Pagination,
   App,
+  Typography,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import {
-  Link, useParams, useLocation, useHistory,
+  Link, useParams, useLocation, useNavigate,
 } from 'react-router-dom'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -67,11 +68,12 @@ interface Meta extends BaseMeta {
 const AdminsComponent: React.FC<Props> = ({
   adminType, campaignType, currentUser, openModal, currentCampaignId,
 }) => {
-  const params = useParams<{ campaignId: string; projectId: string; clientId: string }>()
+  const {
+    projectId,
+    clientId,
+    campaignId: campaignIdParam,
+  } = useParams() as { campaignId: string; projectId: string; clientId: string }
   const { modal } = App.useApp()
-  const { projectId } = params
-  const { clientId } = params
-  const campaignIdParam = params.campaignId
 
   const campaignId = campaignType === CampaignTypes.common ? campaignIdParam : currentCampaignId
 
@@ -121,7 +123,7 @@ const AdminsComponent: React.FC<Props> = ({
   const updateInProgress = isLoading(`update@${drawerAdminId}`)
   const createAdminInProgress = isLoading('add')
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const getIndividualAdminUrl = (
     mode: DrawerMode,
@@ -140,7 +142,7 @@ const AdminsComponent: React.FC<Props> = ({
 
   const handleEditAdminClick = (id: Admin['id']) => {
     const editUrl = getIndividualAdminUrl(DrawerMode.Edit, id)
-    history.push(editUrl)
+    navigate(editUrl)
   }
 
   const handleDeleteAdminClick = (
@@ -177,12 +179,12 @@ const AdminsComponent: React.FC<Props> = ({
     searchParams.delete(DRAWER_SEARCH_PARAMS.MODE)
     searchParams.delete(DRAWER_SEARCH_PARAMS.ADMIN_ID)
 
-    history.push(`${pathname}?${searchParams.toString()}`)
+    navigate(`${pathname}?${searchParams.toString()}`)
   }
 
   const handleAddAdminClick = () => {
     const addUrl = getIndividualAdminUrl(DrawerMode.Add)
-    history.push(addUrl)
+    navigate(addUrl)
   }
 
   return (
@@ -251,6 +253,11 @@ const AdminsComponent: React.FC<Props> = ({
               title={I18n.t('administration.administrators.list.columns.email')}
               sorter
               sortOrder={getSortOrder('user.email')}
+              render={(_, { email }) => (
+                <Typography.Paragraph copyable>
+                  {email}
+                </Typography.Paragraph>
+              )}
             />
             <Table.Column
               dataIndex="createdAt"

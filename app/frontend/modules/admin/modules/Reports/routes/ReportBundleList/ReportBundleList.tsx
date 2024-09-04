@@ -11,7 +11,7 @@ import { ReportBundle } from '~/modules/admin/modules/client/core/reports'
 
 const { I18n } = window
 
-export const ReportBundleList: React.FC = () => {
+const ReportBundleList: React.FC = () => {
   const [closed, closeModal] = useState(true)
   const [currentReportBundle, setCurrentReportBundle] = useState<ReportBundle | undefined>()
   const config = {
@@ -51,3 +51,5 @@ export const ReportBundleList: React.FC = () => {
     </>
   )
 }
+
+export default ReportBundleList

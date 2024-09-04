@@ -26,13 +26,12 @@ type FactorsMap = Record<string, Factor>;
 type WeightagesMap = Record<string, Record<string, number>>;
 
 type DataType = {
-  key: React.Key;
   assessmentName: string;
   [key: string]: string | number | null;
 }
 
 export function Weightages () {
-  const { campaignId } = useParams<{ projectId: string, campaignId: string }>()
+  const { campaignId } = useParams() as { projectId: string, campaignId: string }
 
   const {
     data: campaignAssessmentsData,

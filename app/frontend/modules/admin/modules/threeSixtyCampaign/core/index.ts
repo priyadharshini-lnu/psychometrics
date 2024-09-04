@@ -62,6 +62,14 @@ export const exportRawResults = (campaignId: number) => ({
   },
 })
 
+export const exportThreeSixtyScores = (campaignId: number) => ({
+  type: EXPORT_COMPLETION_STATUSES,
+  request: {
+    method: 'get',
+    url: `/administration/threesixty_campaigns/${campaignId}/export_threesixty_scores`,
+  },
+})
+
 export const removeUser = (campaignId: number, userId: number) => ({
   type: REMOVE_USER,
   request: {
@@ -77,11 +85,11 @@ function* genReloadCurrentParticipantTab () {
   const selectedTab = yield select(getSelectedTab)
   const campaignId = yield select(getCurrentCampaignId)
   switch (selectedTab) {
-    case 'subjects':
+    case '/participants/subjects':
       return yield put(fetchSubjects(campaignId))
-    case 'evaluators':
+    case '/participants/evaluators':
       return yield put(fetchEvaluators(campaignId))
-    case 'managers':
+    case '/participants/managers':
       return yield put(fetchManagers(campaignId))
     default:
       return null

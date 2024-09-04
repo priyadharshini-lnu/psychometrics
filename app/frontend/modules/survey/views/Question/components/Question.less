@@ -6,6 +6,7 @@
   display: flex;
   min-height: 175px;
   position: relative;
+  border-radius: 2px;
 
   input[type='radio']:after {
     width: 20px;
@@ -65,16 +66,18 @@
   left: -1px;
   border-right: 1px solid #CCC;
   background: #E6E6E6;
+}
+.questionMeta {
+  border-bottom: 1px solid #ccc;
+  padding: 2px 6px;
+  color: #777;
+  font-size: 0.9em;
+  background-color: #E6E6E6;
+  // margin-left: -1px;
+}
 
-  .editable{
-    line-height: 1;
-    max-height: 77px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 6px 0;
-    word-wrap: break-word;
-    //display: inline-block;
-  }
+.questionName  {
+  padding: 0;
 }
 
 .header{

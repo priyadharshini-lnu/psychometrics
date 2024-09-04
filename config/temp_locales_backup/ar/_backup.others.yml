@@ -1,0 +1,961 @@
+---
+ar:
+  activerecord:
+    attributes:
+      membership:
+        first_name: الاسم الاول
+        last_name: إسم العائلة
+      user:
+        email: البريد الإلكتروني
+        first_name: الاسم الاول
+        last_name: إسم العائلة
+      user_form:
+        email: البريد الإلكتروني
+        first_name: الاسم الاول
+        last_name: إسم العائلة
+        password: كلمه السر
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: كلمة المرور الحالية غير صحيحة
+  anonym:
+    continue: استمرار
+    copy:
+      archived: تمت أرشفتة
+      expired: انتهت صلاحيته
+      not_active: لم يعد نشط
+    labels:
+      archived: مؤرشف
+      expired: منتهي
+      not_active: غير نشط
+    notifications:
+      restart:
+        copy: كنت قد بدأت بالدراسة الإستقصائية. بإمكانك المتابعة أو إعادة البدء
+        title: تريد ان تستمر؟
+    restart: إعادة البدء
+  assessments:
+    actions:
+      back_to_campaign: العودة إلى الحملة
+      extend_time: تمديد الوقت
+      goto_dashboard: اضغط هنا للأستمرار
+      pending_tasks:
+        one: لديك مهمة واحدة معلقة
+        other: لديك %{count} مهام معلقة
+        two: لديك مهمتان معلقتان
+      rescore: إعادة التصحيح
+    audio_response:
+      permission_denied_message: الرجاء تمكين إذن الميكروفون في المتصفح للتمكن من تسجيل إجابتك
+      permission_text: الرجاء السماح بإستخدام الميكروفون لتسجيل الصوت
+    card_actions:
+      begin: ابدأ
+      continue: استمرار
+    categories:
+      '360': حملة 360
+      agile: AGILE- آجايل
+      case_study: دراسة حالة
+      hogan: " هوجان - Hogan"
+      mindmill: ميندميل-  Mindmill
+      organisational: استقصاء
+      psychometric: تقييم
+    decorator:
+      no_description: الوصف فارغ
+    file_upload:
+      select_file: اختر الملف
+    index:
+      managers_assessments_button: تخطيط العمل
+      managers_dashboard_button: لوحة معلومات المدراء
+      user_dashboard_button: لوحة معلومات المستخدم
+    instructions:
+      begin_assessment: ابدأ التقييم
+      cancel: إلغاء
+      default: هذا نشاط محدد بوقت ، بمجرد النقر فوق بدء التقييم ، سيكون لديك %{time} دقيقة لإكماله
+      title: تعليمات
+    messages:
+      finish: شكراً على وقتك الثمين. لقد تم تسجيل أجوبتك.
+    page:
+      back: عودة
+      confirm_message: |-
+        #### سيتم إرسال الردود الخاصة بك ولن تتمكن من تغييرها بعد ذلك.
+
+        إنقر على زر **العودة** لمراجعة ردودك للمرة الأخيرة أو إنقر على زر **إرسال** إذا كنت قد انتهيت.
+      next: التالي
+      read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
+      save: حفظ
+      submit: تسليم
+    pickgrouprank:
+      items: عناصر
+    proceed: سأُتابع على أي حال
+    resource:
+      assigned: التاريخ المعين %{date}
+      invite_users: دعوة المستخدمين
+      results: نتائج
+      status:
+        completed: تم إكماله
+        in_progress: استئناف
+        not_started: 'ابدأ '
+    unknown_error: حدث خطأ غير معروف
+    video_response:
+      delete: حذف
+      device: السماح
+      discard: تجاهل
+      media_recorder:
+        failure: هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو
+        success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
+      offline_message: يرجى التحقق من اتصالك بالإنترنت
+      retake: إعادة المحاولة
+      retry: إعادة المحاولة
+      save: حفظ
+      saved:
+        label: تم الحفظ
+        tooltip: تم اختيار هذا الفيديو للتقديم،  يمكنك أن  تأخذ  فيديو آخر إذا أردت.
+      saving: جاري الحفظ
+      selected: المختاره
+      start_recording: ابدأ التسجيل
+      status:
+        recording: جاري التسجيل
+      tracker:
+        backward: أنت قريب جداً من الشاشة، يرجى الإبتعاد قليلاً
+        forward: أنت بعيد جداً من الشاشة، يرجى الإقتراب قليلاً
+        frame: الرجاء التأكد من أن وجهك يحاذي الإطار المرسوم على الشاشه
+        ready: 'اضغط على زر التسجيل عندما تكون جاهزاً '
+      use_this: تسليم هذا
+    wait: انتظر
+  auth:
+    current_password: كلمة المرور الحالية
+    current_password_placeholder: إدخل كلمة السر الحالية
+    email: البريد الإلكتروني
+    email_placeholder: أدخل عنوان البريد الالكتروني
+    expired_password:
+      description: يرجى ملء جميع الحقول لإنشاء كلمة مرور جديدة
+      submit: إعادة تعيين كلمة السر
+      title: غير كلمة المرور الخاصة بك
+    login:
+      description: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
+      forgot_password: هل نسيت كلمة السر؟
+      login_btn: تسجيل الدخول
+      not_member: لم تسجل؟
+      or: أو
+      sso_btn: تسجيل الدخول باستخدام الدخول الموحد
+      title: مرحباً
+    logout: تسجيل خروج
+    mobile_number: رقم الجوال
+    new_password: كلمة السر الجديدة
+    otp:
+      code: رمز
+      code_placeholder: OTP
+      description: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
+      resend: إعادة إرسال OTP
+      resend_success: إعادة إرسال رمز التحقق
+      sms_description: الرجاء إدخال الرمز المؤقت الذي تم إرساله لهاتفك النقال
+      submit: تسليم
+      title: كلمة السر لمرة واحدة
+    password: كلمه السر
+    password_confirmation: تأكيد كلمة المرور
+    password_confirmation_placeholder: أدخل كلمة المرور الجديدة مرة أخرى
+    password_placeholder: أدخل كلمة مرور جديدة
+    registration:
+      description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
+      email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
+      first_name: الاسم الاول
+      first_name_placeholder: أدخل اسمك الأول
+      have_account: مسجل بالفعل؟
+      last_name: إسم العائلة
+      last_name_placeholder: أدخل اسم عائلتك
+      login_now: تسجيل الدخول الآن!
+      registration_code: رمز التسجيل
+      registration_code_placeholder: أدخل رمز التسجيل
+      terms_notice: بالتسجيل ، فإنك توافق على <a href="%{terms_url}"> بنود الخدمة وسياسة الخصوصية </a>
+      title: التسجيل
+    reset_password:
+      back_to_sign_in: العودة إلى صفحة تسجيل الدخول
+      description: أدخل البريد الإلكتروني المرتبط بتسجيلك
+      submit: إعادة تعيين كلمة المرور
+      title: هل نسيت كلمة السر؟
+    set_password:
+      description: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
+      submit: تسليم
+      title: أنشئ كلمة مرور
+    sign_in: تسجيل الدخول
+    sign_out: تسجيل خروج
+    sign_up: تسجيل
+    terms_link: <a href="%{terms_url}"> بيان الخصوصية</a>
+    verify_mobile_number:
+      error:
+        blocked: تم حظر رقم الجوال بسبب كثرة المحاولات.
+        failed: الرمز المدخل خاطئ الرجاء إدخال رمز التحقق من جديد
+        invalid_code: الرمز المدخل خاطئ
+        max_attempts_reached: تم إجراء أكثر من محاولة خاطئة الرجاء المحاولة من جديد بعد ١٠ دقائق.
+  campaign:
+    all_activities_are_completed: لقد أكملت الآن جميع الأنشطة
+    all_activities_are_completed_multiple: جميع الأنشطة لهذه الحملة قد اكتملت الآن. يرجى المتابعة إلى لوحة المعلومات والتحقق مما إذا كان لديك أي أنشطة أخرى تم تعيينها.
+    begin: ابدأ مهامك
+    campaigns: الحملات
+    closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة.
+    complete_all: أكمل جميع التقييمات ذات الصلة
+    complete_prev: " أكمل جميع التقييمات السابقة"
+    completed: تم إكماله
+    continue: الإستمرار في التقييم
+    dashboard_instructions: لقد تم تكليفك بعدد من الانشطة التي عليك انجازها. يرجى التأكد من اكمالها جميعا ضمن الاطر الزمنية المحددة لها عبر جميع الحملات.
+    dashboard_menu:
+      bookings: الحجوزات
+      campaign: الحملة
+      change_password: تغيير كلمة المرور
+      home: الصفحة الرئيسية
+      insights: البصائر
+      livechat: دعم مباشر
+      profile: تفاصيلي
+      profile_details: تفاصيل
+      tasks: مهامي
+    details: مشاهدة التفاصيل
+    edit_evaluation:
+      body: يرجى العلم أنه بمجرد النقر فوق إعادة التقييم ، سيتم توجيهك إلى بداية الاستبيان حيث يمكنك تعديل الردود. ستظل الردود السابقة متاحة ولكن يمكنك تغييرها حسب الحاجة. عند التحرير ، سيتعين عليك إعادة إرسال التقييم لإكمال العملية.
+      edit: إعادة التقييم
+      title: يتأكد
+      view: عرض الإجابات
+    goto_dashboard: الذهاب الى لوحة التعليمات
+    in_progress: قيد التنفيذ
+    inactive_campaign_message: حاليًا ، لم يتم تعيين أي أنشطة لك.
+    insights_reports: رؤى وتقارير
+    instruction_modal:
+      campaign_start_final_instructions: |
+        <p>
+        يرجى العلم أنه لا توجد طريقة لإيقاف المؤقت أو إيقافه تماماً. سيستمر مؤقت الحملة في العمل حتى عندما تغلق المتصفح ، لذا لا يجب أن تفكر في أي وقت في ترك المهام  للقيام بشيء آخر. تأكد من تقليل الانحرافات أثناء المهام. ابحث عن بيئة هادئة وأوقف تشغيل الإشعارات على أجهزتك وتجنب تعدد المهام. حافظ على تركيزك. بمجرد نفاد مؤقت الحملة ، لن تتمكن من المتابعة. إذا كنت قد قرأت التعليمات المذكورة أعلاه ، فيرجى النقر "إبدأ" لمتابعة المهام المعينة.
+        </p>
+      campaign_start_instruction: |
+        <h4>يرجى قراءة التعليمات التالية بشكل دقيق.</h4>
+        <p>
+        المهمة (المهام) التي أنت على وشك أن تبدأها محددة بوقت. بمجرد النقر فوق "ابدأ" ، سيبدأ مؤقت الحملة تلقائيًا. لديك %{minutes} دقيقة لإكمال جميع الأنشطة. يرجى أن تهدف إلى إكمال المهام في الإطار الزمني المحدد وإدارة الوقت بشكل فعال لتجنب التسرع في عملية التقييم. تأكد من إكمال المهام دفعة واحدة ، لذلك إذا كنت بحاجة إلى أخذ قسط من الراحة ، فقد حان الوقت الآن.
+        </p>
+      common_proctoring_instructions: |
+        <h4>مراقبة</h4>
+        <p>
+        عند النقر فوق الزر "ابدأ" ، ستتم إعادة توجيهك إلى نظام المراقبة الخاص بنا. ستراقب الكاميرا والميكروفون والشاشة أثناء جلستك. تتم مراقبة هذه الجلسات تلقائيًا بواسطة نظام الذكاء الاصطناعي المتطور لدينا ، مما يوفر تجربة مستخدم سلسة ومتواصلة. ومع ذلك ، يمكن أيضًا مراجعة الجلسات من قبل مراقبي البشر. سيتم الإبلاغ عن أي علامات لسوء السلوك أو المخالفات. يتم القيام بذلك للتأكد من عدم حدوث أي محاولات غش. إذا وجدت شكوكًا ، فسيتم إلغاء مهمتك (مهامك).
+        </p>
+      lockdown_browser_instruction: |
+        <h4>متصفح المراقبة</h4>
+        <p>
+        سيُطلب منك تنزيل متصفح خاص وتثبيته لإكمال المهام المراقبة. يرجى اتباع التعليمات في الشاشة التالية. يمكنك إلغاء تثبيت هذا بعد الانتهاء من جميع الأنشطة المطلوبة.
+        </p>
+      title: توجيهات
+    instructions:
+      heading: يرجى مراجعة الإرشادات أدناه قبل أن تبدأ.
+    interrupted: تمت مقاطعته
+    language:
+      cancel: إلغاء
+      content: هذا التقييم غير متوفر باللغة التي إخترتها. يرجى اختيار اللغة التي تريد أن تعطي التقييم
+      proceed: تقدم
+      single_lang: يتوفر هذا التقييم فقط باللغة ال %{lang}، وهو مختلف عن اللغة التي اخترتها
+      title: إختار اللغة
+    new: جديد
+    not_started: جديد
+    panels:
+      assessments: مهامك
+      reports: تقارير
+    profile:
+      complete_heading: ملف التعريف الخاص بك مكتمل
+      complete_profile_label: تحديث ملفك الشخصي
+      edit_profile_label: تحديث ملفك الشخصي
+      incomplete_heading: تحديث ملفك الشخصي
+      last_login_text: 'آخر مرة سجلت الدخول فيها :'
+      last_updated_text: 'تم تحديث ملف التعريف الخاص بك في آخر مرة:'
+      sub_heading: أكمل معلومات ملفك الشخصي الكامل
+      welcome_text: أهلا وسهلا
+    thank_you_for_time: شكراً لك على وقتك
+    time_left:
+      cancel: إلغاء
+      continue: إستمرار
+      notification: كان وقتك المخصص لهذه المهمة "%{assessmentName}" هو %{totalAssessmentTime} دقيقة فقط. نظراً للوقت المنقضي الإجمالي، لديك الآن %{remainingCampaignTime} دقيقة لإكمال هذه المهمة.
+      title: تحذير الوقت المتبقي
+    timer:
+      message: الوقت المتبقي لإكمال جميع المهام
+      notification: 'لديك %{minutes} و %{seconds} لإكمال التقييمات '
+    ungrouped: مهام غير مجمعة
+    welcome: مرحباً
+  campaign_assessment:
+    assessments_heading: مهامك
+    statuses:
+      completed: تم اكماله
+      in_progress: قيد التنفيذ
+      not_started: لم يبدأ بعد
+  change_password_page:
+    old_password: كلمة المرور القديمة
+    password: كلمة المرور
+    password_confirmation: تأكيد كلمة المرور
+    title: غيّر كلمة المرور
+  checking_wizard:
+    audio_check:
+      access: إذن الدخول
+      access_help: انقر هنا للحصول على مساعدة
+      allow: السماح
+      allow_title: يرجى السماح بإستخدام الميكروفون للتمكن من تسجيل الصوت
+      continue: متابعة
+      processing: "؟؟"
+      record_title: الرجاء التحدث وتكرار الجملة التالية 3 مرات
+      run_again: تشغيل مرة أخرى
+      speech_detection: الكشف عن الكلام
+      test_message: سُررت بالتحدث معك
+      title: نحن بحاجة للتأكد من أن النظام الخاص بك يمكنه تسجيل الصوت
+    network_check:
+      continue: استمرار
+      download: تحميل
+      levels:
+        '0': شبكة سيئة (إعادة الاتصال)
+        '1': 'شبكة سيئة جدا '
+        '2': شبكة سيئة
+        '3': شبكة متوسطة
+        '4': 'شبكة جيدة '
+        '5': شبكة جيدة جدا
+      network: شبكة
+      please_check_connection: " الرجاء التحقق من إتصالك بالإنترنت"
+      processing: "؟؟"
+      run_again: تشغيل مرة أخرى
+      run_again_title: وتشغيل هذا الاختبار مرة أخرى
+      start: ابدأ
+      title: انقر فوق زر ابدأ، لبدء اختبار سرعة الإنترنت
+      upload: تحميل
+    steps:
+      audio_check: إختبار الميكروفون
+      network_check: اختبار سرعة الإنترنت
+      system_check: اختبار النظام
+      video_check: اختبار الكاميرا
+    success:
+      start: ابدأ التقييم
+      title: 'قد أكملت جميع ال....؟؟  بنجاح '
+    system_check:
+      continue: استمرار
+      start: إبدأ
+      title: قبل بدأ هذا التقييم، يحتاج النظام الخاص بك إلى الخضوع لبعض الفحوصات
+    video_check:
+      access: الإذن بالدخول
+      access_help: انقر هنا للحصول على مساعدة
+      allow: السماح
+      allow_title: يرجى السماح بإستخدام الكاميرا لتسجيل الفيديو
+      ambient_light: الإضاءة المحيطة
+      continue: استمرار
+      description: لن يتم حفظ أو استخدام أي مقطع فيديو أو صورة تم التقاطها في هذه المرحلة. يتم استخدامه محليًا على جهازك لضمان عمل الكاميرا لسؤال قادم قد يتطلب تسجيل فيديو.
+      face_detection: الكشف عن الوجه
+      processing: "؟؟"
+      run_again: تشغيل مرة أخرى
+      title: " نحن بحاجة إلى التأكد من أن النظام الخاص بك يمكنه تسجيل الفيديو"
+  common:
+    actions:
+      add: إضافة
+      archive: أرشيف
+      cancel: إلغاء
+      close: إغلاق
+      copy: نسخ
+      delete: حذف
+      edit: تعديل
+      import: استيراد
+      remove: إزالة
+      reset: إعادة
+      resolve: حل
+      restore: استرجاع
+      save: حفظ
+      search: بحث
+      send: إرسال
+      start: ابدأ
+      unarchive: أخرج من الأرشيف
+      unresolve: إلغاء الحل
+      update: تحديث
+      upload: تحميل
+      verify: تحقق
+    column:
+      action: نشاط
+      category: فئة
+      created_at: تم إنشاؤها في
+      id: الهوية
+      status: حالة
+    model:
+      assessments: التقييمات
+      campaigns: الحملات
+      reports: التقييم
+    text:
+      cancel: إلغاء
+      confirm: تأكيد
+      continue: متابعة
+      default: الافتراضي
+      download: تحميل
+      na: N / A
+      ok: موافق
+      response: الإجابة
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: تسجيل الدخول
+    failure:
+      already_authenticated: مرحبا
+      inactive: لم يتم تنشيط حسابك بعد.
+      invalid: عنوان البريد الإلكتروني غير صحيح أو كلمة المرور غير صالحة
+      invited: لديك دعوة معلقة ، يرجى التحقق من بريدك الإلكتروني.
+      magic_link_invalid: رابط تسجيل الدخول غير صالح أو منتهي الصلاحية.
+      not_found_in_database: عنوان البريد الإلكتروني غير صحيح أو كلمة المرور غير صالحة
+      timeout: انتهت جلستك. الرجاء تسجيل الدخول مرة أخرى للمتابعة.
+      unauthenticated: تحتاج إلى تسجيل الدخول أو التسجيل قبل المتابعة.
+    invitations:
+      edit:
+        password_label: كلمه السر
+    registrations:
+      communication_not_setup_error: لم يتم إعداد مراسلة البريد الإلكتروني للتسجيل ، يرجى الاتصال بمسؤول هذا المشروع.
+      new:
+        email: البريد الإلكتروني
+        first_name: الاسم الاول
+        instruction: املأ التفاصيل أدناه للتسجيل وإنشاء حساب جديد
+        last_name: إسم العائلة
+        privacy_notice: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
+        registration_code: رمز التسجيل
+        submit: تسجيل
+        tabs:
+          register: تسجيل
+          sign_in: تسجيل الدخول
+        terms_notice: بالتسجيل ، فإنك توافق على <a href="%{terms_url}"> بنود الخدمة وسياسة الخصوصية </a>
+        title: التسجيل
+      success:
+        actions:
+          sign_in: تسجيل الدخول
+    sessions:
+      new:
+        email: البريد الإلكتروني
+        forgot_password: هل نسيت كلمة السر؟
+        instruction: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
+        password_placeholder: كلمه السر
+        submit: تسجيل الدخول
+        tabs:
+          register: تسجيل
+          sign_in: تسجيل الدخول
+        title: مرحباً
+    two_factor_authentication:
+      attempt: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
+      code_has_been_sent: تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل
+  errors:
+    error: الخطأ
+    error_500: هناك خطأ ما. تواصل مع مديرك.
+    forbidden: لم يكن لديك الوصول إلى هذه الصفحة
+    forbidden_action: ليس لديك أذونات لهذا الإجراء
+    invalid_token: هناك خطأ ما. يرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
+    messages:
+      already_confirmed: تم تأكيده بالفعل، يرجى محاولة تسجيل الدخول
+      carrierwave_direct_allowed_extensions: تم تحميل نوع ملف خاطئ. الامتدادات المسموح بها هي %{extensions}
+      carrierwave_direct_filename_invalid: ''
+      confirmation_period_expired: يجب التأكيد خلال %{period}، يرجى طلب تأكيد جديد
+      expired: انتهت صلاحيته، يرجى طلب واحدة جديدة
+      iiht_cannot_reset: لا يمكن إعادة تعيين هذا التقييم لأنه تم الوصول إلى الحد الأقصى لعدد مرات إعادة التعيين.
+      not_found: غير معثور عليه
+      not_locked: لم يكن مقفلا
+      not_saved:
+        one: 'خطأ واحد أدى إلى منع حفظ %{resource} هذا:'
+        other: "%{count} أخطاء منعت حفظ %{resource} هذا:"
+    module_error: حدث خطأ ما في هذه الوحدة، يرجى الاتصال بالإدارة.
+    module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
+    module_props_error: حدث خطأ ما في هذه الوحدة.
+    try_again: حاول مرة اخرى
+  frontend:
+    activate: تنشيط
+    are_you_sure: هل أنت متأكد؟
+    assessment: تقييم
+    assessment_groups:
+      create_success: تم إنشاء المجموعة بنجاح
+      update_success: تم تحديث المجموعة بنجاح
+    background_reading: قراءة الخلفية
+    bookings:
+      accept_invite_msg: لقد تلقيت دعوة. يرجى حجز الفتحة الخاصة بك.
+      add_to_calendar: إضافة إلى التقويم
+      add_to_calendar_tour_description: أضف هذا الحجز إلى التقويم الخاص بك
+      assessment_center_alert:
+        btn_title: حملة
+        message_part1: أكمل جميع الأعمال السابقة في هذا الشأن
+        message_part2: قبل حجز فتحة.
+      assessment_center_group_name: مركز التقييم
+      booking_failed_msg: 'فشل حجز الفتحة: %{error}'
+      buttons:
+        book: حجز
+        book_again: احجز مرة أخرى
+        cancel: إلغاء
+        cancel_booking: إلغاء الحجز
+        confirm_booking: تأكيد الحجز
+        confirm_reschedule: تأكيد إعادة الجدولة
+        modify: يُعدِّل
+        nevermind: لا يهم
+        no_text: لا
+        request_cancel: طلب إلغاء
+        request_reschedule: طلب إعادة جدولة
+        reschedule: إعادة جدولة
+        reserve_spot: احجز مكانك
+        yes_text: نعم
+      cancel_booking_confirmation: هل أنت متأكد أنك تريد إلغاء هذا الحجز؟
+      cancellation_failed: 'فشل في إلغاء الحجز: %{error}'
+      cancellation_success: لقد تم إلغاء حجزك بنجاح
+      comments_required_msg: الرجاء إدخال تعليقاتك
+      confirm_booking_description: يرجى التأكد من صحة هذه التفاصيل قبل إتمام الحجز.
+      confirm_booking_title: تأكيد هذا الحجز؟
+      default_failure_msg: غير قادر على معالجة طلبك. الرجاء معاودة المحاولة في وقت لاحق.
+      default_requires_msg: "%{name} مطلوب"
+      join_activity_meeting: انضم للاجتماع
+      join_workshop_meeting: انضم للاجتماع
+      language: لغة
+      language_placeholder: اختر لغة
+      language_preference_question: هل لديك تفضيل للغة؟
+      language_required_msg: يرجى تحديد لغة
+      meeting_start_text: 'سيبدأ اللقاء في:'
+      need_changes: هل تحتاج إلى إجراء التغييرات؟
+      neurodivergence_comment_placeholder: تعليقاتك
+      neurodivergence_question: هل تحتاج إلى أي تسهيلات أو تعديلات معقولة بسبب الاحتياجات الخاصة أو الإعاقات للمشاركة بشكل كامل في التقييم؟
+      other_invite: شاهد %{count} دعوة إضافية
+      other_invites: عرض %{count} من الدعوات الإضافية
+      reason: سبب
+      reason_for_cancel: سبب الالغاء
+      reason_for_reschedule: سبب إعادة الجدولة
+      request_cancellation_failed: فشل طلب الإلغاء:%{error}
+      request_cancellation_success: تم طلب الإلغاء بنجاح
+      request_reschedule_failed: 'فشل طلب إعادة الجدولة: %{error}'
+      request_reschedule_success: تم طلب إعادة الجدولة بنجاح
+      reschedule_failed_msg: فشل في إعادة الجدولة:%{error}
+      reschedule_reason_placeholder: للمتابعة، يرجى إدخال سبب إعادة الجدولة.
+      schedule_success: تمت إعادة جدولة هذا الحجز
+      schedule_success_msg: أرسلنا لك وللحضور الآخرين عبر البريد الإلكتروني دعوة تقويم تتضمن كافة التفاصيل.
+      starts_at: 'يبدأ عند: %{date}'
+      starts_in: 'يبدأ في:'
+      tab_label:
+        bookings: التحفظات
+        invites: الدعوات
+      what: ماذا
+      when: متى
+      workshop_start_text: سيبدأ مركز التقييم الخاص بك في
+    break_time: فترة إستراحة
+    campaign:
+      actions:
+        remove:
+          confirmation: 'أدخل الإسم الحالي للحملة في مربع النص أدناة لإزالة الحملة '
+          success: تمت إزالة الحملة بنجاح %{campaignName}
+      users:
+        completion_statuses:
+          completed: تم إكماله
+          in_progress: " على قيد التقدم"
+          interrupted: تمت مقاطعته
+          not_started: لم يبدأ بعد
+    change_password: تغيير كلمة السر
+    delete: " حذف"
+    edit: تعديل
+    login: تسجيل الدخول
+    manage: " إدارة"
+    'no': لا
+    resource:
+      create_success: تم إنشاؤه بنجاح %{resourceName}
+      update_success: "%{resourceName} تم تحديثه بنجاح"
+    update: تحديث
+    upload: تحميل
+    workshop_invited_subjects:
+      statuses:
+        cancelled: ألغيت
+        requested_cancellation: لقد تم طلب الإلغاء
+        requested_rescheduling: لقد تم طلب إعادة الجدولة
+    'yes': نعم
+  navigation:
+    logout: تسجيل خروج
+    profile: الملف الشخصى
+  profile:
+    add_photo: أضف صورتك
+    age: عمرك
+    change_password: غيّر كلمة المرور
+    change_photo: غير صورتك
+    email: البريد الإلكتروني
+    female: إناثا
+    first_name: الاسم الاول
+    gender: جنس
+    last_name: إسم العائلة
+    locale: لغة
+    male: رجل
+    not_disclosed: أنا أفضل عدم الإفصاح
+    password: كلمة المرور
+    password_confirmation: تأكيد كلمة المرور
+    success_update: تم حفظ التفاصيل الخاصة بك بنجاح
+    timezone: المنطقة الزمنية
+    title: تفاصيلي
+    update: حفظ
+  reports:
+    actions:
+      add: إضافة تقرير
+      download: تحميل التقرير
+      view: عرض التقرير
+    modules:
+      common:
+        almost_always: عادةً
+        less_typical: أقل نموذجية
+        moderate: معتدل
+        more_typical: أكثر نموذجية
+        rare: النادرة
+      cpi_occupations:
+        occupations: المهن
+        your_potential_suitability: الملائمة المحتملة الخاصة بك
+      factors_table:
+        description: الوصف
+        no_data: لا توجد بيانات متاحة لهذا القسم.
+        rank: المرتبة
+        score: الدرجة
+      gap_assessment:
+        gap: فجوة
+        item: مؤشر
+        negative_gap: " الفجوات السلبية"
+        no_negative_gaps: لا توجد فجوات سلبية
+        no_positive_gaps: لا توجد فجوات الإيجابية
+        positive_gap: " الفجوات الإيجابية"
+        rank: المرتبة
+        scoring_category: الكفاءة
+      highest_lowest:
+        average: متوسط
+        bottom_5: أدنى 5
+        category: فئة
+        email: البريد الإلكتروني
+        first_name: 'الاسم '
+        highest_scores: أعلى الدرجات
+        item: مؤشر
+        last_name: اسم العائلة
+        lowest_scores: " أدنى الدرجات"
+        mean_score: متوسط الدرجات
+        rank: المرتبة
+        result: " النتيجة"
+        score: الدرجة
+        scoring_category: الكفاءة
+        sub_competenties: الكفاءات الفرعية
+        top_5: الخمسة الأوائل
+      potential_career_full:
+        bachelors_or_masters_qualification: البكالوريوس أو الماجستير
+        career_strengths_and_results: قوة المؤهلات المهنية و نتائجك
+        career_sub_tracks: الوظيفي الفرعي
+        detailed_career_guide: دليل وظيفي مُفصل
+        diploma_qualification: 'دبلوم '
+        education_level: مستوى التعليم
+        high_school_entry_roles: أدوارك في المدرسة الثانوية
+        key_career_tracks_within: وفيما يلي قائمة بالأدوار الوظيفية المحتملة لكل مسار من المسارات المهنية. تذكر بأن هذه القائمة للدلالة فقط وأنها ليست شاملة. لاحظ أن الأدوار المخطوطة بالخط المائل تتطلب مستويات أعلى من التعليم و / أو الخبرة
+        potential_areas_of_study: 'المجالات المحتملة '
+        potential_roles: الأدوار المحتملة
+        strength_high: نقطة القوة
+        strength_low: القوة التنموية
+        strength_moderate: القوة المُحتملة
+        work_environment: بيئة عملك
+        your_suitability: ملاءمة
+      potential_career_short:
+        career: مهنة
+        for_this: لهذه
+        key: الرئيسية
+        strengths: القوة الرئيسية
+        your_scores: " درجاتك"
+      single_value:
+        factor_name: فئة الدرجات
+        question_name: أسئلة
+      single_value_cluster:
+        competency: الكفاءة
+        description: " الوصف"
+        developmental_rating: التقييم التطويري
+        questions: أسئلة
+      strength_clusters:
+        index_sub_factors_considered: عوامل فرعية للمؤشرات المزدهرة التي تم اعتبارها لتوفير النتيجة النهائية لبيئة العمل %{workstyle}
+        possible_roles: الأدوار المحتملة
+        work_environments: بيئات العمل المتوقعة
+      three_sixty_default:
+        factor:
+          items: اصناف
+          max: أقصى قيمة
+          mean: المتوسط
+          min: 'أدنى قيمة '
+          standardDeviation: الانحراف المعياري
+          sum: المجموع
+          totalResponses: إجمالي الردود
+          variance: التباين
+          weightedMean: المتوسط المرجح
+        question:
+          no_response: لا يوجد رد متاح
+        statistic: الاحصائيه
+        value: 'القيمة '
+      three_sixty_report_summary:
+        completed: مُكتمل
+        footnote: "* مستثناة بسبب الحد الأدنى للمتطلبات"
+        invited: المدعوين
+        number_of_evaluators_invited: عدد المقيّمين المدعوين
+        relationships: العلاقات
+        subject: الموضوع
+        title: ملخص التقرير
+        total: الاجمالى
+        total_evaluations: مجموع التقييمات لهذا التقييم
+      video_response:
+        no_results: لم يتم تسجيل مقاطع فيديو
+    show:
+      export_pdf: التصدير إلى PDF
+      header: تقرير
+    statuses:
+      approved: موافق عليه
+      available: متوفر
+      denied: تم رفضه
+      incomplete: غير مكتمل
+      not_available: غير متوفر
+      on_hold: في الانتظار
+      released: صدر
+  shared:
+    filters:
+      clear: امسح المُرشحات
+    internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
+    password_reset:
+      description: الرجاء إدخال عنوان بريدك الإلكتروني في المربع أدناه وانقر فوق زر "إعادة تعيين كلمة السر".
+      email_label: عنوان البريد الإلكتروني
+      instruction: أدخل البريد الإلكتروني المرتبط بحسابك
+      submit: إعادة تعيين كلمة السر
+      title: هل نسيت كلمة السر؟
+    terms_conditions_privacy: بيان الخصوصية
+    tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة TTE"
+  simple_form:
+    placeholders:
+      administrator:
+        email: البريد الإلكتروني
+        last_name: إسم العائلة
+      memebrship:
+        last_name: إسم العائلة
+      user:
+        email: البريد الإلكتروني
+        first_name: الاسم الاول
+        last_name: إسم العائلة
+        password: كلمه السر
+      user_form:
+        email: البريد الإلكتروني
+        first_name: الاسم الاول
+        last_name: إسم العائلة
+        password: كلمه السر
+  subjects:
+    statuses:
+      completed: تم اكماله
+      declined: رُفض
+      denied: تم رفضه
+      done: منجز
+      not_completed: لم يتم اكماله
+      waiting: منتظر
+  threesixty:
+    accept_privacy_modal:
+      accept: اقبل
+      checkbox: لقد قرأت وفهمت سياسة الخصوصية المذكورة أعلاه.
+      policy_link: انقر هنا لقراءة سياسة الخصوصية.
+      reject: ارفض
+      text: قبل المتابعة لإكمال المهام أدناه ، أؤكد أنني قد قرأت وأوافق على سياسة الخصوصية لـ The Talent Enterprise والمبادئ التوجيهية ذات الصلة فيما يتعلق باستخدام معلوماتي الشخصية.
+      title: موافقة معالجة البيانات
+    add: اضافة
+    and: و
+    approve_all: الموافقة على جميع ما سبق
+    approve_all_successful: الموافقة على جميع الترشيحات
+    approve_evaluations: الموافقة على التقييمات
+    approve_nominations: الموافقة على الترشيحات
+    approve_reports: الموافقة على التقارير
+    approved: تمت الموافقه
+    approving_mail_sent: تم إرسال بريد الموافقة على الترشيح إلى المدراء
+    as_my: "؟؟"
+    assessment: تقييم
+    back_to_tasks: الرجوع إلى المهام
+    begin: ابدأ
+    cancel: 'إلغاء '
+    close_evaluation_modal:
+      message: بمجرد عرض التقرير، لن تتمكن %{pronoun_or_name} من تلقي أية تقييمات أخرى
+      title: هل أنت متأكد بأنك تريد عرض التقرير؟
+    closed_campaign_message: تم إغلاق هذه الحملة 360. لا يمكنك ترشيح أو تقييم أي شخص لهذه الحملة.
+    completed: تم اكماله
+    confirm: هل أنت متأكد؟
+    confirmation_for_nomination_removal: هل أنت متأكد من أنك تريد إزالة الترشيح
+    confirmation_required: 'مطلوب منك التأكيد '
+    confirmation_text_incorrect: نص التأكيد غير صحيح
+    confirmation_text_placeholder: نص التأكيد هنا
+    continue: استمرار
+    dashboard_title: مرحباً  %{name}
+    decline: رفض
+    decline_invite: رفض الدعوة
+    denied: رفض
+    deny_all: رفض جميع ما سبق
+    deny_all_successful: رفض جميع الترشيحات
+    download_pdf: تحميل PDF
+    download_report: تحميل التقرير
+    download_reports: تحميل التقارير
+    edit_user: تحرير المستخدم
+    email_approve_request: طلب الموافقة على البريد الإلكتروني
+    email_schedules:
+      delete_successful: تم حذف جدول البريد الإلكتروني بنجاح
+    evaluate: تقييم
+    evaluation: التقييم
+    evaluation_all_closed_message: حالياً، جميع الترشيحات في انتظار الموافقة
+    evaluation_closed_nomination_message: لا يمكنك الترشيح لهذا الموضوع حيث قد تم إغلاق التقييم لهذا الموضوع
+    evaluation_help_modal:
+      title: مساعدة التقييم
+    evaluations: التقييمات
+    evaluator: مقييم
+    export_pdf: تصدير PDF
+    first_name: الإسم
+    first_name_error: رجاءً إطبع إسمك
+    help: مساعدة
+    helps:
+      main: "<h2>مساعدة</h2> <p> المحتوى الضروري للمساعدة مشروط</p>"
+    language: اللغة
+    last_name: اسم العائلة
+    last_name_error: يرجى إدخال اسم العائلة
+    load_results: 'تحميل النتائج '
+    mail_history:
+      statuses:
+        success: نجاح
+        undelivered: لم يتم تسليمها
+    mindmill_confirmation: بدء هذا التقييم سوف يفقدك النتائج "%{assessment}". انقر على زر "إلغاء الأمر" إذا كنت تريد ترك النتائج، وانقر فوق "موافق" إذا كنت تريد المتابعة
+    my_projects: مشاريعي
+    nominate: ترشح
+    nominate_evaluators: ترشيح المقيّمين إلى
+    nomination: ترشيح
+    nomination_help_modal:
+      title: مساعدة الترشيح
+    nominations: الترشيحات
+    options:
+      global:
+        cannot_re_edit: لا يمكن للمشاركين تحرير التقييمات
+    or: أو
+    page_title: Signify 360° مراجعة - مستوى التطبيق
+    participant_list:
+      actions:
+        approve_report: الموافقة على التقرير
+        download_report: تحميل التقرير
+        edit: تعديل
+        hold_report: "؟؟"
+        login: تسجيل الدخول
+        mark_as_done: وضع علامة " تم"
+        release_report: إصدار التقرير
+        remove_campaign: إزالتة من الحملة
+        remove_report_approval: إزالة الموافقة على التقرير
+        remove_report_hold_release_report: إزالة التقرير تعليق/إصدار
+        remove_subject: إزالة الموضوع
+        unmark_as_done: إلغاء وضع علامة " تم"
+        view_report: عرض التقرير
+        view_responses: عرض الاستجابات
+      confirmation_messages:
+        approve_report: هل أنت متأكد من أنك تريد الموافقة على التقرير؟
+        hold_report: هل أنت متأكد من أنك تريد الاحتفاظ بالتقرير؟
+        mark_evaluation_done: هل أنت متأكد من أنك تريد وضع علامة تقييم كما "تم"؟سيتم إغلاق التقييم بهذه الطريقه.
+        release_report: هل أنت متأكد من أنك تريد إصدار تقرير؟
+        remove_from_campaign: هل أنت متأكد من أنك تريد إزالة المستخدم من الحملة؟
+        remove_release_hold: هل أنت متأكد من أنك تريد إزالة حالة الإصدار/الانتظار؟
+        remove_report_approval: هل أنت متأكد من أنك تريد إزالة موافقة التقرير؟
+        remove_subject: هل أنت متأكد من أنك تريد إزالة الموضوع باستخدام البريد الإلكتروني من الحملة؟
+        umark_evaluation_as_complete: هل أنت متأكد من أنك تريد إلغاء تحديد التقييم كما "تم"؟
+      report_generation_message: يتم إنشاء التقرير حالياً. سنحيطك علماً عندما يكون تقريرك جاهزاً.
+    processing: "؟؟"
+    processing_report: "؟؟"
+    progress_text: "%{completed} من %{total}"
+    question:
+      chat_type:
+        input_placeholder: اكتب رسالتك…
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: تعديل
+        max_length_warning: "%{x} الأحرف المتبقية"
+        message: رسالتك
+        send: إرسال
+        subject: الموضوع
+        successful_message: لقد قمت بإرسال رسالة البريد الإلكتروني بنجاح
+        to: إلى
+    remind_all: تذكير الجميع
+    remind_mail_sent: إرسال رسائل تذكيرية إلى المقيّمين الذين لم يكملوا التقييم
+    report_for: تقرير عن
+    report_generation_in_progress: يتم إنشاء التقرير. سنحيطك علماً عندما يكون تقريرك جاهزاً.
+    reports: تقارير
+    reports_help_modal:
+      title: مساعدة التقارير
+    reset_campaign_confirmation: أدخل اسم الحملة الحالي في مربع النص أدناة لإعادة تعيين جميع المشاركين
+    reset_nomination_confirmation: أدخل اسم الحملة الحالي في مربع النص أدناة لإعادة تعيين كافة الترشيحات
+    save: حفظ
+    select_relationnship: حدد نوع العلاقة
+    select_relationship: حدد نوع العلاقة
+    self: النفس
+    set_name_for_evaluator: عيين اسم مقيم
+    setup_nominations: إعداد الترشيحات
+    subject: الموضوع
+    submit: تسليم
+    total_progress: مجموع التقدم المحرز
+    user_name_input_placeholder: اكتب اسمك أو بريدك الإلكتروني...
+    validation_errors: أخطاء التحقق من الصحة
+    view_my_report: عرض التقرير الخاص بي
+    view_nominations: عرض الترشيحات
+    view_reports: عرض التقارير
+    waiting: منتظر
+    you: أنت
+    yourself: نفسك
+  user:
+    fields:
+      email: البريد الإلكتروني
+      first_name: الاسم الاول
+      last_name: إسم العائلة
+  user_reports:
+    actions:
+      regenerate: تجديد
+    messages:
+      regenerate_successful: تقرير تجديد المهمة تم جدولتة بنجاح
+    modals:
+      remove:
+        content: هل أنت متأكد من أنك تريد إزالة التقرير %{userReportName}؟
+        successfully: تم إزالة تقرير %{userReportName} بنجاح
+    preview_report: تقرير المعاينة
+    statuses:
+      generating: توليد
+      not_prepared: غير متوفر
+      prepared: متوفر
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: تم تسجيل الصوت ولكن لم يتم حفظه
+        RECORDING: التسجيل الصوتي على قيد التنفيذ
+        SAVING: التسجيل الصوتي على قيد التحميل
+      required: الرجاء تسجيل الصوت وحفظه قبل المتابعة
+    FileUpload:
+      in_progress:
+        SAVING: جاري تحميل الملف
+      required: يرجى تحميل الملف
+    TextEntry:
+      Email:
+        character_range: يجب أن تكون رسالة البريد الإلكتروني التي تم إدخالها %{min} حرف على الأقل ولا تزيد عن %{max} حرف.
+        max_length: يجب ألا تكون رسالة البريد الإلكتروني التي تم إدخالها أكثر من %{max} حرفًا.
+        min_length: يجب أن تكون رسالة البريد الإلكتروني التي تم إدخالها على الأقل %{min} حرفاً.
+        subject:
+          min_length: يجب أن يكون الموضوع مكون من  10 أحرف كحد أدنى
+        to:
+          required: "؟؟"
+    VideoResponse:
+      in_progress:
+        recorded: تم تسجيل الفيديو ولكن لم يتم حفظه
+        recording: تسجيل الفيديو على قيد التنفيذ
+        saving: الفيديو المسجل على قيد التحميل
+      required: الرجاء تسجيل الفيديو وحفظه قبل المتابعة
+    actions_still_in_progress: الإجراءات أدناه على قيد التنفيذ. إذا تابعت فستفقد هذه البيانات.
+    blank: لا يمكن أن تكون فارغة
+    character_range: يجب على اجابتك أن تكون  %{min} حرف على الأقل و أن لا تزيد عن %{max} حرف.
+    date: يجب أن يكون تاريخ صالح (mm/dd/y)
+    each_group_contains: يجب أن تحتوي كل مجموعة على ما لا يقل عن %{min} عنصر ولا تزيد عن %{max} عنصر
+    email: يجب أن تعطينا بريدًا إلكترونيًا صالحًا
+    exact:
+      one: الرجاء تحديد واحد بالضبط
+      other: الرجاء التحديد بالضبط %{count}
+      two: الرجاء تحديد اثنين بالضبط
+    file_upload:
+      EntityTooLarge: يجب أن يكون حجم الملف أقل من %{maxFileSize} ميغابايت
+      WrongFileType: يجب أن يكون نوع الملف أحد %{allowedFileTypes}
+    issue: المسأله
+    least: الرجاء الإجابة على الأقل %{min} الاختيار (الخيارات).
+    least_hotspot: الرجاء الإجابة على الأقل %{min} الاختيار (الخيارات).
+    max_character: يجب ألا تتجاوز الاستجابة %{max} الأحرف.
+    max_word: يجب ألا تزيد إجابتك عن %{max}  كلمة.
+    min_character: يجب أن تكون الاستجابة على الأقل %{min} حرفاً.
+    min_word: الاجابه لا تقل عن %{min} كلمه
+    most:
+      one: الرجاء تحديد واحد على الأكثر
+      other: الرجاء تحديد %{max} على الأكثر
+      two: الرجاء تحديد اثنين على الأكثر
+    must_rank_between: الرجاء تعيين قيمة من %{min} إلى %{max} لكل عنصر. لا يسمح تكرار القيم.
+    must_select: الرجاء تحديد من %{min} إلى %{max} الاختيارات
+    number: يجب أن يكون ردك عباره عن رقم
+    range: الرجاء الإجابة على الأقل %{min} ولا تزيد عن %{max} الاختيار (الخيارات).
+    required: يرجى الإجابة على هذا السؤال
+    text: يجب ألا يحتوي ردك على أرقام
+    title:
+      one: هناك إجابة مفقودة، يرجى التحقق من إجابتك
+      other: هناك %{count} إجابات مفقودة، يرجى التحقق من إجاباتك
+      two: هناك إجابتان مفقودتان، يرجى التحقق من إجاباتك

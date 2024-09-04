@@ -18,7 +18,7 @@ interface Props {
 
 export const SubjectAddFormModal:React.FC<Props> = ({ close }) => {
   const { resource } = useResourceContext<WorkshopInvitedSubject>()
-  const { campaignId, inviteId } = useParams<{ campaignId: string, inviteId: string }>()
+  const { campaignId, inviteId } = useParams() as { campaignId: string, inviteId: string }
 
   const {
     data: users, fetch: fetchUsers, isLoading: isUsersLoading,

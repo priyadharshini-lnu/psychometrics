@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import '~/modules/admin/styles/common.less'
 import '~/styles/utils.less'
@@ -7,4 +7,5 @@ import { App as IndividualDashboard } from '~/modules/admin/modules/IndividualDa
 import initSentry from '~/libs/initSentry'
 
 initSentry()
-ReactDOM.render(<IndividualDashboard />, document.getElementById('individual-dashboard-container'))
+const root = createRoot(document.getElementById('individual-dashboard-container'))
+root.render(<IndividualDashboard />)

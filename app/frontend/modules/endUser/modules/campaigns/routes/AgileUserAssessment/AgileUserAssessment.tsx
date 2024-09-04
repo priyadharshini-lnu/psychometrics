@@ -4,7 +4,7 @@ import {
   Layout,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
-import { withRouter, RouteComponentProps, useHistory } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import qs from 'qs'
 
@@ -52,7 +52,7 @@ interface OwnProps {
   agileUserAssessmentUrl?: string
 }
 
-type Props = OwnProps & PropsFromRedux & RouteComponentProps<Params>
+type Props = OwnProps & PropsFromRedux
 
 const AgileUserAssessmentComponent: React.FC<Props> = ({
   agileAssetsUrl,
@@ -63,14 +63,14 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
   userAssessment,
   fetchAssessment,
   remainingCampaignTime,
-  match: { params },
   campaignOptions,
   resultsLoading,
 }) => {
   const campaignId = agileCampaign || userAssessment.campaignId
-  const history = useHistory()
-  const [assessmentLoading, setAssessmentLoading] = useState(true)
+  const navigate = useNavigate()
+  const params = useParams() as Params
 
+  const [assessmentLoading, setAssessmentLoading] = useState(true)
   const initializeAgile = () => {
     const { lang } = qs.parse(location.search.substr(1))
     const appOptions = {
@@ -136,7 +136,8 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
       )}
       <SubHeader
         title={assessment.name}
-        onBack={() => history.push(`/campaigns/${campaignId}`)}
+        onBack={() => navigate(`/campaigns/${campaignId}`)}
+        backButtonAriaLabel={I18n.t('frontend.aria.back_to_tasks')}
       />
       <Content className={styles.agileContent}>
         <div id="agile-container" className={styles.agileContainer} />
@@ -145,4 +146,4 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
   )
 }
 
-export const AgileUserAssessment = connector(withRouter(AgileUserAssessmentComponent))
+export const AgileUserAssessment = connector(AgileUserAssessmentComponent)

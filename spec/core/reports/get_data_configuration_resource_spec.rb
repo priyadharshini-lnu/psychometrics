@@ -15,6 +15,8 @@ describe Reports::GetDataConfigurationResources do
           'data' => [
             { 'type' => 'normed_factor', 'label' => 'Reasonify', 'factorId' => factor1.id },
             { 'type' => 'normed_factor', 'label' => 'Reasonify', 'factorId' => factor2.id },
+            { 'type' => 'campaign_factor', 'label' => 'Cognitive', 'code' => 'cognitive' },
+            { 'type' => 'campaign_factor', 'label' => 'Overall', 'code' => 'overall' },
             {
               'type' => 'formula',
               'formula' => {
@@ -47,5 +49,11 @@ describe Reports::GetDataConfigurationResources do
     expected = {}
     expected[question.id] = question
     expect(result[:questions]).to eq(expected)
+  end
+
+  it 'returns campaign factors indexed by code' do
+    result = described_class.call!(report)
+    expected = %w[cognitive overall]
+    expect(result[:campaign_factor_codes]).to eq(expected)
   end
 end

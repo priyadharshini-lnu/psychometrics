@@ -60,7 +60,7 @@ module Api
                       elsif campaign_id && user.has_permission?(:workshops, :view, campaign_id: campaign_id)
                         user.accessible_records(Workshop, 'workshops.view')
                       else
-                        Workshop.includes(:workshop_assessors).where(workshop_assessors: { user_id: user.id })
+                        Workshop.accessible_as_assessor_or_manager(user)
                       end
 
           return new_scope.where(campaign_id: campaign_id) if campaign_id

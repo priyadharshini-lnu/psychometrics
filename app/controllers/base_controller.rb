@@ -9,21 +9,14 @@ class BaseController < ActionController::Base
   add_flash_types :notice, :error, :success
 
   prepend_before_action :authenticate_user!, unless: -> { try(:skip_authentication?) }
+  prepend_before_action :set_client_by_subdomain
+  before_action :set_current_attributes
   before_action :detect_mobile
   before_action :set_sentry_context
   before_action :enforce_password_change
 
   rescue_from Rack::Timeout::RequestTimeoutException, with: :timeout
   rescue_from ActionController::InvalidAuthenticityToken, with: :handle_invalid_authenticity_token
-  rescue_from PankoOverride::Exceptions::Base, with: :panko_exception_handler
-
-  def panko_exception_handler(e)
-    Sentry.capture_exception(e)
-    Rails.logger.error(e.message)
-
-    render json: { type: e.class.name, message: e.message, meta: e.meta, exception: true },
-           status: :internal_server_error
-  end
 
   def change_password_required_path_for(_)
     if current_user.is?(:regular)
@@ -45,10 +38,33 @@ class BaseController < ActionController::Base
                 alert: I18n.t('devise.password_expired.password_policy_changed')
   end
 
+  # Detect Client by subdomain
+
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
+  def set_client_by_subdomain
+    return if request.controller_class.to_s.start_with?('Administration')
+    return if request.controller_class.to_s.start_with?('Assessors')
+    return if request.controller_class.to_s.start_with?('Api::V1')
+    return if request.controller_class.to_s.start_with?('Webhooks')
+
+    @current_project = GetProjectBySubdomain.call!(request.subdomain)
+    return render_http_locked if @current_project&.disabled?
+
+    return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
+    return if @current_project.nil? && request.controller_class.to_s == 'Users::UnlocksController'
+    unless @current_project
+      return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}", allow_other_host: true)
+    end
+
+    @current_client = @current_project.client
+  end
+  # rubocop:enable all
+
   def authenticate_user!
     return if @anonymous_user
 
-    Users::AuthenticateUser.call(params) do
+    Users::AuthenticateUser.call(params, @current_project) do
       on(:ok) { |user, found_by| handle_successful_authentication(user, found_by) }
       on(:invalid_sso_token) { |url| redirect_to(url) && return if url }
       on(:invalid_jwt_token) { |url| redirect_to(url) && return if url }
@@ -128,6 +144,10 @@ class BaseController < ActionController::Base
   def feature_flags
     # Some values can be null
     Settings.features.to_h.transform_values { |v| v == true }
+  end
+
+  def set_current_attributes
+    Current.user = @current_user
   end
 
   def detect_mobile

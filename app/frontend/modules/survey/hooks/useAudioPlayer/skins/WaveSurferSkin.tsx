@@ -2,7 +2,7 @@ import WaveSurfer from 'wavesurfer.js'
 import React, {
   useEffect, useRef, useCallback, useState,
 } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Button } from 'antd'
 
 import { AudioPlayerSkin } from '../interfaces'
@@ -57,7 +57,8 @@ const WaveSurferSkin: AudioPlayerSkin = {
     if (!audio) return
     const autoPlay = audio.getAttribute('autoplay') === 'autoplay'
     const src = audio.getAttribute('src') || ''
-    ReactDOM.render(<AudioPlayer src={src} autoplay={autoPlay} />, el)
+    const root = createRoot(el)
+    root.render(<AudioPlayer src={src} autoplay={autoPlay} />)
   },
 }
 

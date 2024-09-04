@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import '~/modules/admin/styles/common.less'
 import '~/styles/utils.less'
@@ -9,7 +9,5 @@ import DatasheetManagementApp from '~/modules/admin/modules/SheetManagement/App'
 
 initSentry()
 
-ReactDOM.render(
-  <DatasheetManagementApp />,
-  document.getElementById('datasheet-management-container'),
-)
+const root = createRoot(document.getElementById('datasheet-management-container'))
+root.render(<DatasheetManagementApp />)

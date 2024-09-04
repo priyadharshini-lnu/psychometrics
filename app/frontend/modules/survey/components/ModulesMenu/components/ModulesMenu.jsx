@@ -17,7 +17,7 @@ export class ModulesMenu extends Component {
 
   render () {
     let { className } = this.props
-    className = `dropdown-menu ${className} ${styles.menu}`
+    className = `${className} ${styles.menu}`
     return (
       <div className={className} role="menu">
         <div className={styles.moduleset}>

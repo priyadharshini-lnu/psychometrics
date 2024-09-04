@@ -2,7 +2,7 @@ import {
   render, screen, waitFor,
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import CampaignFactors from '~/components/CampaignFactorsModal'
+import { CampaignFactorsComponent as CampaignFactors } from '~/modules/reports/components/modals/ReportSettings/CampaignFactors'
 
 describe('CampaignFactors', () => {
   const columns = [
@@ -10,18 +10,17 @@ describe('CampaignFactors', () => {
     { name: 'Field2', code: 'field2', outputType: 'numeric' },
   ]
 
-  const saveCampaignFactorsMock = jest.fn()
-  const closeMock = jest.fn()
+  const saveCampaignFactorsMock = vi.fn()
+  const closeMock = vi.fn()
 
   it('should render the CampaignFactors component', () => {
     render(
       <CampaignFactors
         columns={columns}
-        close={closeMock}
         saveCampaignFactors={saveCampaignFactorsMock}
       />,
     )
-    expect(screen.getByText('Campaign factors')).toBeInTheDocument()
+    expect(screen.getByText('Campaign Factors')).toBeInTheDocument()
     expect(screen.getByText('Name')).toBeInTheDocument()
     expect(screen.getByText('Code')).toBeInTheDocument()
     expect(screen.getByText('Type')).toBeInTheDocument()
@@ -29,39 +28,21 @@ describe('CampaignFactors', () => {
     expect(screen.getAllByPlaceholderText('Code')).toHaveLength(2)
     expect(screen.getAllByRole('combobox')).toHaveLength(2)
     expect(screen.getByText('Add Field')).toBeInTheDocument()
-    expect(screen.getByText('Cancel')).toBeInTheDocument()
-    expect(screen.getByText('Save')).toBeInTheDocument()
-  })
-
-  // Checks if the close function is called when the Cancel button is clicked.
-  it('should call close when Cancel button is clicked', async () => {
-    render(
-      <CampaignFactors
-        columns={columns}
-        close={closeMock}
-        saveCampaignFactors={saveCampaignFactorsMock}
-      />,
-    )
-    userEvent.click(screen.getByText('Cancel'))
-    await waitFor(() => {
-    expect(closeMock).toHaveBeenCalled()
-    })
+    expect(screen.getByText('Update')).toBeInTheDocument()
   })
 
   // Checks if the saveCampaignFactors and close functions are called when the Save button is clicked with valid input.
-  it('should call saveCampaignFactors and close when submitting with valid input', async () => {
+  it('should call saveCampaignFactors when submitting with valid input', async () => {
     render(
       <CampaignFactors
         columns={columns}
-        close={closeMock}
         saveCampaignFactors={saveCampaignFactorsMock}
       />,
     )
 
-    userEvent.click(screen.getByText('Save'))
+    userEvent.click(screen.getByText('Update'))
     await waitFor(() => {
         expect(saveCampaignFactorsMock).toHaveBeenCalled()
-        expect(closeMock).toHaveBeenCalled()
     })
   })
 
@@ -72,7 +53,6 @@ describe('CampaignFactors', () => {
     render(
       <CampaignFactors
         columns={columns}
-        close={closeMock}
         saveCampaignFactors={saveCampaignFactorsMock}
       />,
     )

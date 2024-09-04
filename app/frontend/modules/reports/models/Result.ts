@@ -221,7 +221,7 @@ export default class Result<ExternalScoring = unknown> {
     return GetTopFactors.run(rank, rank, factorIds, TopFactorType.SubFactor, this.resultsByFilter, this.dimensionId)[0]
   }
 
-  getCampaignFactorValue = (code): {type: string, name: string, code: string} => {
+  getCampaignFactorValue = (code): {outputType: string, name: string, code: string} => {
     const factorNames = _.keyBy(AppStore.report.campaignFactors, 'code')
     return factorNames[code]
   }

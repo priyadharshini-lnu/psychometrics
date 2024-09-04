@@ -4,11 +4,17 @@ import { DropdownButton, MenuItem } from 'react-bootstrap'
 import LogicElement from '~/modules/survey/models/logic/LogicElement'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import LogicElementPreview from '~/modules/survey/components/LogicElement/Preview'
+import InlineEditor from '~/modules/survey/components/InlineEditor'
 import styles from './Question.less'
 
 class QuestionHeader extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
+  }
+
+  changeName = (value) => {
+    const { renameQuestion, model } = this.props
+    renameQuestion(model, value)
   }
 
   removeDisplayLogic = () => {
@@ -77,6 +83,9 @@ class QuestionHeader extends Component {
     const { model, block } = this.props
     return (
       <div className={styles.header}>
+        <div className={styles.questionMeta}>
+          <InlineEditor styles={styles.questionName} onChange={this.changeName} value={model.name} />
+        </div>
         {this.isTemplate(model) && !this.isTemplate(block) && this.renderTemplateWarning()}
         {model.display_logic && this.renderDisplayLogic()}
       </div>

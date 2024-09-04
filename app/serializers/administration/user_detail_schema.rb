@@ -51,7 +51,9 @@ module Administration
               required(:show_watermark).filled(:bool?)
               required(:watermark_content).maybe(:str?)
               required(:campaign_scoring_variables).maybe(:str?)
-              optional(:proctoring_type).maybe(:str?)
+              optional(:proctoring_type).value { str? | int? }
+              optional(:show_watermark).filled(:bool?)
+              optional(:watermark_content).maybe(:str?)
             end
           end
         end
@@ -61,6 +63,7 @@ module Administration
         required(:additional_time).maybe(:int?)
         required(:active).filled(:bool?)
         required(:hogan_id).maybe(:str?)
+        required(:hogan_provider).maybe(:str?)
         required(:permissions).hash do
           required(:add_report).filled(:bool?)
           required(:regenerate_report).filled(:bool?)
@@ -68,6 +71,11 @@ module Administration
           required(:remove).filled(:bool?)
           required(:bulk_download).filled(:bool?)
           required(:view_workshop_details).filled(:bool?)
+        end
+        required(:manager).hash do
+          optional(:id).maybe(:int?)
+          optional(:name).maybe(:str?)
+          optional(:email).maybe(:str?)
         end
         required(:completed_at).maybe(:str?)
         required(:user_assessments).array(Administration::UserAssessmentSchema.schema(_, _))

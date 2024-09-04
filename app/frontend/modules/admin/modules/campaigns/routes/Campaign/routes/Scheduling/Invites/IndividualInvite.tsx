@@ -1,6 +1,6 @@
 import { PageHeader } from '@ant-design/pro-layout'
 import { Space, Tabs } from 'antd'
-import { useHistory, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { MailOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
 import styles from './styles.less'
@@ -17,8 +17,8 @@ const { I18n } = window
 export const IndividualInvite = () => {
   const {
     inviteId, campaignId, projectId, tabName,
-  } = useParams<{ projectId: string, inviteId: string, campaignId: string, tabName: string }>()
-  const history = useHistory()
+  } = useParams() as { projectId: string, inviteId: string, campaignId: string, tabName: string }
+  const navigate = useNavigate()
   const { fetchSingle, getResource } = useResources<WorkshopInvite>(
     'workshop_invites',
     {
@@ -36,7 +36,7 @@ export const IndividualInvite = () => {
     <>
       <PageHeader
         className={styles.pageHeader}
-        onBack={() => history.push(
+        onBack={() => navigate(
           `/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites`,
         )}
         title={(
@@ -50,7 +50,7 @@ export const IndividualInvite = () => {
       <Tabs
         tabBarStyle={{ paddingInline: '10px' }}
         style={{ paddingInline: '20px' }}
-        onTabClick={tab => routeUtils.moveTo(history, prefixPath, `/${tab}`, true)}
+        onTabClick={tab => routeUtils.moveTo(navigate, prefixPath, `/${tab}`, true)}
         activeKey={tabName}
         destroyInactiveTabPane
         items={[

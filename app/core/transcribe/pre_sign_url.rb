@@ -9,7 +9,7 @@ module Transcribe
     }.freeze
 
     def call
-      aws_config = Rails.application.secrets.aws[:config]
+      aws_config = Settings.secrets.aws[:config]
       signer = Aws::Sigv4::Signer.new(
         access_key_id: aws_config[:access_key_id],
         secret_access_key: aws_config[:secret_access_key],

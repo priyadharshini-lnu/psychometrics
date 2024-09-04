@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
 import {
   Table, Space, Pagination, Button, MenuProps,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import {
   ReportApprovalSettings,
   ReportApprovalSettingsTR,
@@ -40,13 +41,13 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Params = {
   campaignId: string
 }
-type Props = PropsFromRedux & RouteComponentProps<Params>
+type Props = PropsFromRedux
 
 const ReportApprovalSettingComponent: React.FC<Props> = ({
   openModal,
   currentUser,
-  match: { params: { campaignId } },
 }) => {
+  const { campaignId } = useParams() as Params
   const {
     data, meta, createResource, fetch, isLoading, changePage,
     currentPage, pageSize, updateResource, removeResource, requests,
@@ -181,6 +182,7 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
         recordCount={meta.recordCount}
         loading={tableLoading}
         requestStatus={requests.fetch?.status}
+        failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />
       <Modals modals={MODALS} />
     </>

@@ -9,6 +9,7 @@ export default connect(
     selected: getSelected(report.builder),
     module: builder.selected.type === 'Module' && getModule(report, builder.selected.moduleId),
     page: builder.selected.type === 'Page' && report.pages[builder.selected.moduleId.id],
+    reportStyles: builder.styles,
   }),
   {
     updateModule,

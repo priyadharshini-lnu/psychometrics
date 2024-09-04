@@ -121,6 +121,7 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
           chart: {
             type: model.props.graphicalPosition === 'Vertical' ? 'column' : 'bar',
             options3d: get3DOptions(),
+            animation,
           },
           animation,
           legend: {

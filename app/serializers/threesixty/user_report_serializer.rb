@@ -1,19 +1,12 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class UserReportSerializer < ActiveModel::Serializer
+  class UserReportSerializer < Panko::Serializer
     attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status,
-               :evalaution_completed_for_subject, :report_data, :permissions
+               :evalaution_completed_for_subject, :report_data, :permissions, :campaign, :module_overrides, :options
 
-    attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
-    has_one :user, method: :user
+    has_one :user, serializer: UserSerializer
     has_one :report, serializer: ReportSerializer
-    has_one :options, serializer: Threesixty::CampaignOptionsSerializer
-    has_many :module_overrides, each_serializer: TextModuleOverrideSerializer
-
-    def user
-      UserSerializer.new.serialize(object.user)
-    end
 
     def campaign_id
       object.campaign.threesixty_campaign&.id || object.campaign_id
@@ -28,21 +21,29 @@ module Threesixty
     end
 
     def campaign
+      return unless context[:threesixty_campaign]
+
       Threesixty::CampaignDetailsSerializer.new(
-        instance_options[:threesixty_campaign], user_report: object
-      ).to_h
+        context: {
+          user_report: object
+        }
+      ).serialize(context[:threesixty_campaign])
     end
 
     def results
-      instance_options[:results]
+      context[:results]
     end
 
     def report_data
       UserReports::PrepareUserReportData.call!(object)
     end
 
+    def current_option
+      context[:options]
+    end
+
     def options
-      instance_options[:options]
+      CampaignOptionsSerializer.new.serialize(current_option)
     end
 
     def evalaution_completed_for_subject
@@ -50,7 +51,10 @@ module Threesixty
     end
 
     def module_overrides
-      TextModuleOverride.where(user_report_id: object.id)
+      Panko::ArraySerializer.new(
+        TextModuleOverride.where(user_report_id: object.id),
+        each_serializer: TextModuleOverrideSerializer
+      ).to_a
     end
 
     def permissions
@@ -69,11 +73,17 @@ module Threesixty
     private
 
     def report
-      instance_options[:report]
+      ReportSerializer.new(
+        context: {
+          module_overrides: module_overrides,
+          user_results: results,
+          piped_text_context: options
+        }
+      ).serialize(context[:report])
     end
 
     def current_user
-      scope
+      context[:current_user]
     end
   end
 end
