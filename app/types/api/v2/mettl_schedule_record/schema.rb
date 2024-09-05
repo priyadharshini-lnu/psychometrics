@@ -21,8 +21,17 @@ module Api
           json_api_attributes do
             required(:assessment_id).filled(:string)
             required(:schedule_name).filled(:string)
-            required(:proctoring_enabled).filled(:bool)
             required(:secure_browser_enabled).filled(:bool)
+            required(:visual_proctoring_settings).filled(:hash) do
+              required(:enabled).filled(:bool)
+              required(:candidate_screen_capture).filled(:bool)
+              required(:candidate_authorization).filled(:bool)
+            end
+            required(:web_proctoring_settings).filled(:hash) do
+              required(:enabled).filled(:bool)
+              required(:count).filled(:integer)
+              required(:show_remaining_counts).filled(:bool)
+            end
           end
         end
 
@@ -30,8 +39,17 @@ module Api
           json_api_attributes do
             required(:assessment_id).filled(:integer)
             required(:schedule_name).filled(:string)
-            required(:proctoring_enabled).filled(:bool)
             required(:secure_browser_enabled).filled(:bool)
+            required(:visual_proctoring_settings).filled(:hash) do
+              required(:enabled).filled(:bool)
+              optional(:candidate_screen_capture).filled(:bool)
+              optional(:candidate_authorization).filled(:bool)
+            end
+            required(:web_proctoring_settings).filled(:hash) do
+              required(:enabled).filled(:bool)
+              optional(:count).filled(:integer)
+              optional(:show_remaining_counts).filled(:bool)
+            end
           end
         end
       end

@@ -3000,7 +3000,9 @@ CREATE TABLE public.mettl_schedule_records (
     duplicated_from_id bigint,
     schedule_number integer DEFAULT 1,
     proctoring_enabled boolean DEFAULT false,
-    secure_browser_enabled boolean DEFAULT false
+    secure_browser_enabled boolean DEFAULT false,
+    visual_proctoring_settings jsonb DEFAULT '{"enabled": false, "candidate_authorization": false, "candidate_screen_capture": false}'::jsonb,
+    web_proctoring_settings jsonb DEFAULT '{"count": 5, "enabled": false, "show_remaining_counts": false}'::jsonb
 );
 
 
@@ -13813,10 +13815,12 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240905041021'),
+('20240904091820'),
 ('20240902131904'),
-('20240829113349'),
 ('20240902112318'),
 ('20240830062230'),
+('20240829113349'),
 ('20240827094045'),
 ('20240826085931'),
 ('20240826050104'),

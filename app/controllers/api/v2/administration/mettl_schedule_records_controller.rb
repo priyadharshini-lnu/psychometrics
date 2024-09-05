@@ -54,7 +54,8 @@ module Api
         :assessment_id,
         :schedule_name,
         :secure_browser_enabled,
-        :proctoring_enabled
+        web_proctoring_settings: %i[enabled count show_remaining_counts],
+        visual_proctoring_settings: %i[enabled candidate_screen_capture candidate_authorization]
       )
     end
   end

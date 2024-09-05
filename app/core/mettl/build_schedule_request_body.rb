@@ -12,13 +12,15 @@ module Mettl
       'scheduleType' => 'AlwaysOn'
     }.freeze
 
-    attr_reader :assessment, :schedule_name, :proctoring_enabled, :secure_browser_enabled
+    attr_reader :assessment, :schedule_name, :secure_browser_enabled, :visual_proctoring_settings,
+                :web_proctoring_settings
 
     def initialize(assessment:, attributes: {})
       @assessment = assessment
       @schedule_name = attributes[:schedule_name]
-      @proctoring_enabled = attributes[:proctoring_enabled]
       @secure_browser_enabled = attributes[:secure_browser_enabled]
+      @visual_proctoring_settings = attributes[:visual_proctoring_settings] || {}
+      @web_proctoring_settings = attributes[:web_proctoring_settings] || {}
     end
 
     def call
@@ -30,8 +32,19 @@ module Mettl
     def schedule_config
       DEFAULT_SCHEDULE_CONFIG.merge(
         'name' => schedule_name || default_schedule_name,
-        'webProctoring' => { 'enabled' => proctoring_enabled },
         'secureBrowser' => { 'enabled' => secure_browser_enabled },
+        'webProctoring' => {
+          'enabled' => web_proctoring_settings[:enabled] || false,
+          'count' => web_proctoring_settings[:count] || 0,
+          'showRemainingCounts' => web_proctoring_settings[:show_remaining_counts] || false
+        },
+        'visualProctoring' => {
+          'mode' => visual_proctoring_settings[:enabled] ? 'PHOTO' : 'OFF',
+          'options' => {
+            'candidateScreenCapture' => visual_proctoring_settings[:candidate_screen_capture] || false,
+            'candidateAuthorization' => visual_proctoring_settings[:candidate_authorization] || false
+          }
+        },
         'testFinishNotificationUrl' => assessment_completion_notification_url,
         'testGradedNotificationUrl' => assessment_result_notification_url
       )

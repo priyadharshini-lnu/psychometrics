@@ -10,14 +10,16 @@ RSpec.describe Mettl::BuildScheduleRequestBody, type: :model do
   end
 
   let(:schedule_name) { 'Test Schedule' }
-  let(:proctoring_enabled) { true }
+  let(:web_proctoring_settings) { { enabled: true, count: 5, show_remaining_counts: true } }
   let(:secure_browser_enabled) { true }
+  let(:visual_proctoring_settings) { { enabled: true, candidate_screen_capture: true, candidate_authorization: true } }
 
   subject do
     described_class.new(
       attributes: { schedule_name: schedule_name,
-                    proctoring_enabled: proctoring_enabled,
-                    secure_browser_enabled: secure_browser_enabled },
+                    web_proctoring_settings: web_proctoring_settings,
+                    secure_browser_enabled: secure_browser_enabled,
+                    visual_proctoring_settings: visual_proctoring_settings },
       assessment: assessment
     )
   end
@@ -50,8 +52,10 @@ RSpec.describe Mettl::BuildScheduleRequestBody, type: :model do
           'access' => { 'type' => 'OpenForAll' },
           'scheduleType' => 'AlwaysOn',
           'name' => schedule_name,
-          'webProctoring' => { 'enabled' => proctoring_enabled },
+          'webProctoring' => { 'count' => 5, 'enabled' => true, 'showRemainingCounts' => true },
           'secureBrowser' => { 'enabled' => secure_browser_enabled },
+          'visualProctoring' => { 'mode' => 'PHOTO',
+                                  'options' => { 'candidateAuthorization' => true, 'candidateScreenCapture' => true } },
           'testFinishNotificationUrl' => completion_notification_url,
           'testGradedNotificationUrl' => result_notification_url
         }
@@ -71,8 +75,10 @@ RSpec.describe Mettl::BuildScheduleRequestBody, type: :model do
           'access' => { 'type' => 'OpenForAll' },
           'scheduleType' => 'AlwaysOn',
           'name' => default_name,
-          'webProctoring' => { 'enabled' => proctoring_enabled },
+          'webProctoring' => { 'count' => 5, 'enabled' => true, 'showRemainingCounts' => true },
           'secureBrowser' => { 'enabled' => secure_browser_enabled },
+          'visualProctoring' => { 'mode' => 'PHOTO',
+                                  'options' => { 'candidateAuthorization' => true, 'candidateScreenCapture' => true } },
           'testFinishNotificationUrl' => completion_notification_url,
           'testGradedNotificationUrl' => result_notification_url
         }
