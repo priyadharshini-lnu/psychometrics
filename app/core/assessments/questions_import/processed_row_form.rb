@@ -49,6 +49,18 @@ module Assessments
       end
 
       def validate_scoring
+        unavailable_factors = scoring.keys - (context.allowed_factor_names || [])
+        if unavailable_factors.present?
+          errors.add(
+            :base,
+            I18n.t(
+              'administration.assessment_question_import.errors.unavailable_factors',
+              unavailable_factor_names: Utility::String.join_into_sentence(unavailable_factors)
+            )
+          )
+          return
+        end
+
         scoring.each do |factor_name, comma_separated_scores|
           next if comma_separated_scores.blank?
 

@@ -62,7 +62,10 @@ module Assessments
         return if errors.present?
 
         processed_rows.each_with_index do |row, index|
-          form = Assessments::QuestionsImport::ProcessedRowForm.new(row).with_context(assessment: context.assessment)
+          form = Assessments::QuestionsImport::ProcessedRowForm.new(row).with_context(
+            assessment: context.assessment,
+            allowed_factor_names: allowed_factor_names
+          )
           next if form.valid?
 
           form.errors.full_messages.each do |message|
@@ -77,13 +80,17 @@ module Assessments
 
       private
 
+      def allowed_factor_names
+        @allowed_factor_names ||= context.assessment.dimension.all_factors.pluck(:name)
+      end
+
       def allowed_sub_headers_for_header
         @allowed_sub_headers_for_header ||= {
           'Block' => %w[Name],
           'Question' => %w[Name Type],
           'Question Property' => [
             'type', 'questionText', 'answersType', 'choicesTexts', 'scalePointsTexts', 'randomization.type',
-            'randomization.questions'
+            'randomization.questions', 'notApplicable', 'notApplicableLabel'
           ],
           'Required Validation' => %w[Type],
           'Scoring' => %w[Factors]
