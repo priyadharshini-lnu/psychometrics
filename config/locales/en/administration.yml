@@ -2496,7 +2496,7 @@ en:
         schedule_name: Schedule Name
         search: Search
         secure_browser_enabled: Enable Secure Browser
-        show_remaining_counts: Enable Showing Remining count
+        show_remaining_counts: Enable Showing Remaining Count
         visual_proctoring_enabled: Enable Visual Proctoring
         web_proctoring_enabled: Enable Web Proctoring
       privacy_settings:
