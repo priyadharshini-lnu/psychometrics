@@ -39,7 +39,12 @@ module UsersResults::ControllerConcern
   end
 
   def upload_media_url
-    MediaResponses::GetUploadUrl.call(@users_result, params[:question_id], params[:file_name], params[:blob]) do
+    MediaResponses::GetUploadUrl.call(
+      result: @users_result,
+      question_id: params[:question_id],
+      file_name: params[:file_name],
+      blob_params: params[:blob]
+    ) do
       on(:ok) { |data| render json: data }
       on(:error) do |error|
         render json: {
