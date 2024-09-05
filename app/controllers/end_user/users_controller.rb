@@ -123,6 +123,14 @@ class EndUser::UsersController < ApplicationController
     end
   end
 
+  def redirect_to_user_assessment
+    user_assessment = UserAssessment.find_by!(
+      campaign_id: params[:campaign_id], subject_id: current_user.id, assessment_id: params[:assessment_id]
+    )
+
+    redirect_to(user_assessment_path(user_assessment))
+  end
+
   private
 
   def select_campaign_url(campaign)
