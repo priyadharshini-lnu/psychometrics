@@ -6,11 +6,11 @@ class LibrarySerializer < Panko::Serializer
   attributes :id, :name, :description, :thumb, :file, :icon, :type, :parent_id, :created_at
 
   def thumb
-    object.file.url(:thumb)
+    object.file_url(:icon)
   end
 
   def file
-    object.file&.url
+    object.file_url
   end
 
   def icon
