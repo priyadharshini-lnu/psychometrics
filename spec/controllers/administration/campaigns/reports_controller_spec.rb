@@ -166,6 +166,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         allow_multiple_responses
         require_scheduling
         auto_assign
+        mettl_schedule_name
+        mettl_schedule_record_id
       ]
     )
     expect(assessment_response).to include({

@@ -312,6 +312,7 @@ Rails.application.routes.draw do
             post :import_results
             get :norms
             post :update_norm
+            post :update_mettl_schedule
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
@@ -328,6 +329,7 @@ Rails.application.routes.draw do
         resources :user_assessments, only: [:destroy] do
           member do
             post :update_norm
+            post :update_mettl_schedule
             post :rescore_response
             post :reset
             post :reset_progress
@@ -1017,7 +1019,7 @@ Rails.application.routes.draw do
           get :pass
           get :begin
           get :validate_session
-          get :upload_user_verification_image_url
+          post :upload_user_verification_image_url
           put :user_verification_image_upload_callback
         end
       end

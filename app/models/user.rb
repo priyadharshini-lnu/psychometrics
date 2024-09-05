@@ -172,11 +172,14 @@ class User < ApplicationRecord
   end
 
   def authenticated_sign_in_url
+    token = encode_passwordless_token(
+      expires_at: applicable_security_setting.magic_link_expiry_in_seconds.seconds.from_now
+    )
     Utility::Url.generate(
       :users_sign_in_link_url,
       id: id,
       subdomain: subdomain,
-      user: { email: email, token: encode_passwordless_token, remember_me: false }
+      user: { email: email, token: token, remember_me: false }
     )
   end
 

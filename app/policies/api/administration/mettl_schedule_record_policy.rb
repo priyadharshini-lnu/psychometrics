@@ -7,6 +7,10 @@ module Api
         can_manage_integrations?
       end
 
+      def create?
+        can_manage_integrations?
+      end
+
       def update?
         can_manage_integrations?
       end

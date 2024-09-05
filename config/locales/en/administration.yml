@@ -2485,10 +2485,22 @@ en:
         save_changes: Save Changes
         sub_domain_label: Sub Domain
       mettl_schedule_records:
+        actions:
+          edit: Edit
+        add: Add Schedule
+        assessment_id: Assessment ID
+        assessment_name: Assessment Name
+        candidate_authorization: Enable Candidate Authorization
+        candidate_screen_capture: Enable Candidate Screen Capture
+        count: Browsing tolerance count
         created_at: Created At
         schedule_id: Schedule ID
         schedule_name: Schedule Name
         search: Search
+        secure_browser_enabled: Enable Secure Browser
+        show_remaining_counts: Enable Showing Remaining Count
+        visual_proctoring_enabled: Enable Visual Proctoring
+        web_proctoring_enabled: Enable Web Proctoring
       privacy_settings:
         dp_consent: Enable Data Processing consent
         dp_consent_custom: Customise Data Processing consent
@@ -2967,6 +2979,7 @@ en:
       enforce_strong: Enforce strong password
       expiration: Password expiration
       lock_account: Lock account
+      magic_link_expiry_duration: Magic link expiration duration
       min_length: Minimum password length
       never: Never
       restrict_sequences: Restrict sequential and repetitive characters

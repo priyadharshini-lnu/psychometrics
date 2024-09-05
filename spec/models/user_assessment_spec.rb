@@ -223,6 +223,49 @@ status: :in_progress)
     end
   end
 
+  describe '#update_mettl_schedule!' do
+    let!(:assessment) { create(:assessment, type: Assessments::Mettl) }
+    let!(:user_assessment) { create(:user_assessment, assessment: assessment) }
+    let!(:mettl_schedule_record) do
+      create(:mettl_schedule_record, project: assessment.project, assessment: assessment)
+    end
+    let!(:mettl_user_assessment) do
+      create(:mettl_user_assessment, user_assessment: user_assessment)
+    end
+    let(:mettl_schedule_record_id) { mettl_schedule_record.id }
+
+    context 'when user assessment is not started and is mettl type' do
+      it 'updates mettl schedule record id' do
+        user_assessment.update!(status: 'not_started')
+
+        user_assessment.update_mettl_schedule!(mettl_schedule_record_id)
+
+        expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(mettl_schedule_record_id)
+      end
+    end
+
+    context 'when user assessment is completed' do
+      it 'does not update mettl schedule record id' do
+        user_assessment.update!(status: 'completed')
+
+        user_assessment.update_mettl_schedule!(mettl_schedule_record_id)
+
+        expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(nil)
+      end
+    end
+
+    context 'when user assessment is not mettl type' do
+      it 'does not update mettl schedule record id' do
+        assessment.update!(type: Assessments::Hogan)
+        user_assessment.update!(status: 'not_started')
+
+        user_assessment.update_mettl_schedule!(mettl_schedule_record_id)
+
+        expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(nil)
+      end
+    end
+  end
+
   describe 'Calculate and save campaign scoring' do
     let(:campaign) { create(:campaign) }
     let(:assessment) { create(:assessment) }

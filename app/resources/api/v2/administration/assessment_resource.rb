@@ -6,7 +6,8 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
              :enable_network_check, :poster, :icon, :external_settings, :archived, :deleted, :extra, :default_language,
              :tag_list
 
-  ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq]
+  ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq
+                     project_id_eq]
 
   add_tag_filter
 

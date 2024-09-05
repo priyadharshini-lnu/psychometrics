@@ -934,7 +934,8 @@ CREATE TABLE public.campaign_assessments (
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
     require_scheduling boolean DEFAULT false,
-    auto_assign boolean DEFAULT true
+    auto_assign boolean DEFAULT true,
+    mettl_schedule_record_id bigint
 );
 
 
@@ -2997,7 +2998,11 @@ CREATE TABLE public.mettl_schedule_records (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     duplicated_from_id bigint,
-    schedule_number integer DEFAULT 1
+    schedule_number integer DEFAULT 1,
+    proctoring_enabled boolean DEFAULT false,
+    secure_browser_enabled boolean DEFAULT false,
+    visual_proctoring_settings jsonb DEFAULT '{"enabled": false, "candidate_authorization": false, "candidate_screen_capture": false}'::jsonb,
+    web_proctoring_settings jsonb DEFAULT '{"count": 5, "enabled": false, "show_remaining_counts": false}'::jsonb
 );
 
 
@@ -13810,7 +13815,11 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240905041021'),
+('20240904091820'),
 ('20240902131904'),
+('20240902112318'),
+('20240830062230'),
 ('20240829113349'),
 ('20240827094045'),
 ('20240826085931'),

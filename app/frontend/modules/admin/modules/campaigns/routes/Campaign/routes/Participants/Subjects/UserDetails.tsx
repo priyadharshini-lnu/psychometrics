@@ -26,6 +26,7 @@ import array from '~/utils/array'
 import UpdateTimeModal from './UpdateTimeModal'
 import AddReportModal from '../../AssessmentsReports/routes/AssessmentsReports/AddReportModal'
 import UpdateNormModal from './AssessmentsReports/UpdateNormModal'
+import UpdateMettlScheduleModal from './AssessmentsReports/UpdateMettlScheduleModal'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import UpdateCampaignTimeModal from './AssessmentsReports/UpdateCampaignTimeModal'
 import { SchedulingAssessmentModal } from './AssessmentsReports/AssessmentList/SchedulingAssessmentModal'
@@ -40,6 +41,7 @@ const { I18n } = window
 const MODALS = {
   AddReportModal,
   UpdateNormModal,
+  UpdateMettlScheduleModal,
   PushWebhookModal,
   UpdateCampaignTimeModal,
   SchedulingAssessmentModal,

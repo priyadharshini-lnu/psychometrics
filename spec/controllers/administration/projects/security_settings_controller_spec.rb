@@ -22,7 +22,8 @@ RSpec.describe Administration::Projects::SecuritySettingsController, type: :cont
       expected_response = security_setting.slice(
         :id, :project_id, :enforce_strong_password, :min_password_length,
         :enforce_password_policy, :disable_password_reuse, :password_expiration, :send_unlock_email,
-        :auto_unlock_time, :attempts_to_lock, :lock_account, :restrict_sequences, :tfa_enabled
+        :auto_unlock_time, :attempts_to_lock, :lock_account, :restrict_sequences, :tfa_enabled,
+        :magic_link_expiry_in_seconds
       )
       expect(parsed_response).to eq(expected_response)
       expect(security_setting.min_password_length).to eq(8)

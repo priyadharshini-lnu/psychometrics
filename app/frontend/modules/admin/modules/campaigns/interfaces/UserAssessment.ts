@@ -12,6 +12,7 @@ export default interface UserAssessment {
   normName: string
   status: string
   norms?: Norm[]
+  mettlScheduleRecordId?: string,
   reportIds: number[]
   permissions: {
     updateAdditionalTime: boolean
@@ -21,5 +22,6 @@ export default interface UserAssessment {
     rescoreResponse: boolean
     resetProgress: boolean
     pushWebhook: boolean
+    updateMettlSchedule: boolean
   }
 }

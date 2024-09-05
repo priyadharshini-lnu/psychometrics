@@ -168,7 +168,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'rescore_response' => policy.rescore_response?,
         'remove' => policy.destroy?,
         'reset_progress' => policy.reset_progress?,
-        'push_webhook' => true
+        'push_webhook' => true,
+        'update_mettl_schedule' => false
       },
       'norm_id' => nil,
       'additional_time' => nil,
@@ -177,7 +178,9 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'status' => 'not_started',
       'has_external_norm' => false,
       'schedule_time' => nil,
-      'require_scheduling' => false
+      'require_scheduling' => false,
+      'mettl_schedule_name' => nil,
+      'mettl_schedule_record_id' => nil
     })
   end
 end

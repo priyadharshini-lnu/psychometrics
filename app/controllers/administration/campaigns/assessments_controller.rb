@@ -2,7 +2,7 @@
 
 module Administration
   module Campaigns
-    class AssessmentsController < Administration::Projects::BaseController
+    class AssessmentsController < Administration::Projects::BaseController # rubocop:disable Metrics/ClassLength
       before_action :set_resource, except: [:other]
       before_action :pundit_authorize
 
@@ -204,6 +204,14 @@ module Administration
             campaign_id: campaign.id
           }
         ).serialize(campaign_assessment)
+      end
+
+      def update_mettl_schedule
+        campaign_assessment.update_mettl_schedule!(params[:mettl_schedule_record_id], params[:apply])
+
+        audit! :update_mettl_schedule, assessment, campaign: campaign
+
+        render json: { mettl_schedule_name: campaign_assessment.mettl_schedule_record&.schedule_name }
       end
 
       private

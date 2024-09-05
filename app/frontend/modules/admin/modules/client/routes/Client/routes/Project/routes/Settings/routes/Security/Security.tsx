@@ -13,6 +13,7 @@ import {
 import { FETCH_SINGLE as FETCH_PROJECT } from '~/modules/admin/modules/client/core/projects'
 import ResourceForm from '~/components/ResourceForm'
 import { isRequestInProgress } from '~/core/request'
+import InputDuration from '~/components/InputDuration'
 
 const connector = connect(
   (state: RootState) => ({
@@ -161,6 +162,13 @@ const securityComponent: React.FC<Props> = ({
                     </Form.Item>
                   </>
                 )}
+                <Form.Item
+                  name="magicLinkExpiryInSeconds"
+                  label={I18n.t('administration.security_setting.magic_link_expiry_duration')}
+                  required
+                >
+                  <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
+                </Form.Item>
                 <Button
                   type="primary"
                   htmlType="submit"
