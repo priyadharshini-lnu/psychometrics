@@ -20,7 +20,7 @@ module Mettl
       mettl_schedule_record = MettlScheduleRecord.find_by(
         schedule_number: next_schedule_number,
         project_id: project.id,
-        assessment_id: user_assessment.assessment_id
+        duplicated_from_id: default_mettl_schedule_record.id
       )
 
       return mettl_schedule_record if mettl_schedule_record.present?
@@ -29,7 +29,9 @@ module Mettl
     end
 
     def create_mettl_schedule_record
-      mettl_schedule_record = ::Mettl::CreateSchedule.call!(assessment, { name: retry_schedule_name })
+      schedule_request = Mettl::BuildScheduleRequestBody.call!(attributes: { schedule_name: retry_schedule_name },
+                                                               assessment: assessment)
+      mettl_schedule_record = ::Mettl::CreateSchedule.call!(assessment, schedule_request)
       mettl_schedule_record.update!(
         duplicated_from_id: default_mettl_schedule_record.id,
         schedule_number: next_schedule_number

@@ -2483,10 +2483,17 @@ en:
         save_changes: Save Changes
         sub_domain_label: Sub Domain
       mettl_schedule_records:
+        actions:
+          edit: Edit
+        add: Add Schedule
+        assessment_id: Assessment ID
+        assessment_name: Assessment Name
         created_at: Created At
+        proctoring_enabled: Enable Proctoring
         schedule_id: Schedule ID
         schedule_name: Schedule Name
         search: Search
+        secure_browser_enabled: Enable Secure Browser
       privacy_settings:
         dp_consent: Enable Data Processing consent
         dp_consent_custom: Customise Data Processing consent

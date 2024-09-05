@@ -3,6 +3,10 @@
 module Api
   module Administration
     class AssessmentPolicy < ::Administration::AssessmentPolicy
+      def index?
+        @user.admin?
+      end
+
       def show?
         @user.has_permission?(:assessments, :manage, project_id: record.owner_id)
       end

@@ -34,6 +34,11 @@ module Administration
       )) && (!record.assessment.pearson? || record.not_started?)
     end
 
+    def update_mettl_schedule?
+      has_permission?(:project_settings, :manage_users,
+                      project_id: project_id) && record.assessment.mettl? && record.not_started?
+    end
+
     def update_additional_time?
       !record&.assessment&.external? &&
         (@user.is?(:superadmin) || @user.has_permission?(

@@ -32,6 +32,7 @@ export interface ActionMenuData {
   exportScoringResults: AssessmentListProps['exportScoringResults']
   exportNormedResults: AssessmentListProps['exportNormedResults']
   exportRawFactorScores: AssessmentListProps['exportRawFactorScores']
+  updateMettlSchedule?: AssessmentListProps['updateMettlSchedule']
   exportExternalResults: AssessmentListProps['exportExternalResults']
   updateExternalConfig?: AssessmentListProps['updateExternalConfig']
 }
@@ -137,6 +138,10 @@ export const getActionsMenuProps = ({
   permissions.rescoreResponses && menuItems.push(...rescoreMenuItems)
   permissions.updateExternalConfig && actions.updateExternalConfig && menuItems.push(...configMenuItems)
   permissions.scheduleAssessment && menuItems.push({ key: 'schedule', label: 'Schedule' })
+  permissions.updateMettlSchedule && menuItems.push({
+    key: 'manage_mettl_schedule',
+    label: I18n.t('assessments.actions.manage_mettl_schedule'),
+  })
   permissions.remove && actions.remove && menuItems.push(...removeMenuItems)
 
   const handleMenuClick = ({ key }) => {
@@ -175,6 +180,10 @@ export const getActionsMenuProps = ({
     }
     if (key === 'schedule') {
       return openModal('SchedulingCampaignAssessmentModal', { projectId, campaignId, assessment })
+    }
+
+    if (key === 'manage_mettl_schedule') {
+      return openModal('UpdateMettlScheduleModal', { projectId, campaignId, campaignAssessmentId: id })
     }
   }
 

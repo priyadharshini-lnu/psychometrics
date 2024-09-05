@@ -797,6 +797,7 @@ en:
       export_raw_without_labels: Raw (without labels)
       extend_time: Extend time
       goto_dashboard: Click here to continue
+      manage_mettl_schedule: Manage Mettle Schedule
       moderate: Moderate Scores
       new_response: New Response
       next_assessment: Pass To Next Assessment
@@ -1291,6 +1292,11 @@ en:
         select_locales: Select Locales
         success_msg: Locales were updated successfully
         title: Update Available Locales
+      update_mettl_schedule:
+        select_schedule: Select Schedule
+        success_msg: Mettl Schedule were updated successfully
+        title: Update Mettl Schedule
+        update: Update
       update_norm:
         apply: Apply this change to existing users in this campaign
         cannot_remove_norm: Cannot remove norm for completed assessment.
@@ -1815,6 +1821,8 @@ en:
       json?: Should be valid JSON
       key?: can't be blank
       match_regexp?: invalid value
+      mettl_schedule_record_create:
+        uniq_schedule_name: Schedule name should be unique
       missed?: can't be blank
       not_in_the_list?: invalid value passed
       not_uniq_variable: variable '%{value}' redefined on line number %{row}

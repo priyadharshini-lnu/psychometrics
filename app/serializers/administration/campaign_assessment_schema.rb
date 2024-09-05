@@ -35,6 +35,7 @@ module Administration
           required(:remove).filled(:bool?)
           required(:schedule_assessment).filled(:bool?)
           required(:toggle_auto_assign).filled(:bool?)
+          required(:update_mettl_schedule).filled(:bool?)
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)
@@ -47,6 +48,8 @@ module Administration
         required(:allow_multiple_responses).filled(:bool?)
         required(:require_scheduling).filled(:bool?)
         required(:auto_assign).filled(:bool?)
+        required(:mettl_schedule_name).maybe(:str?)
+        required(:mettl_schedule_record_id).maybe(:str?)
       end
     end
   end

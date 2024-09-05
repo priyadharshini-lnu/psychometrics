@@ -12,7 +12,26 @@ module Api
           proc do
             required(:schedule_name).filled(:string)
             required(:schedule_id).filled(:string)
-            attribute[:created_at].filled(:string)
+            required(:created_at).filled(:string)
+            required(:assessment_id).filled(:integer)
+          end
+        end
+
+        def self.create_request
+          json_api_attributes do
+            required(:assessment_id).filled(:string)
+            required(:schedule_name).filled(:string)
+            required(:proctoring_enabled).filled(:bool)
+            required(:secure_browser_enabled).filled(:bool)
+          end
+        end
+
+        def self.update_request
+          json_api_attributes do
+            required(:assessment_id).filled(:integer)
+            required(:schedule_name).filled(:string)
+            required(:proctoring_enabled).filled(:bool)
+            required(:secure_browser_enabled).filled(:bool)
           end
         end
       end

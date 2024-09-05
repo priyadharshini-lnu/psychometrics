@@ -326,6 +326,13 @@ class UserAssessment < ApplicationRecord
     update!(fixed_norm: true) if norm_id.present?
   end
 
+  def update_mettl_schedule!(mettl_schedule_record_id)
+    return unless not_started?
+    return unless mettl?
+
+    mettl_user_assessment.update!(mettl_schedule_record_id: mettl_schedule_record_id)
+  end
+
   private
 
   def saville_norm_name

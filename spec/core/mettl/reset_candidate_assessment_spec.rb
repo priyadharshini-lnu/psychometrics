@@ -41,6 +41,7 @@ RSpec.describe Mettl::ResetCandidateAssessment, type: :service do
                                        project: project,
                                        assessment: assessment,
                                        schedule_name: retry_schedule_name,
+                                       duplicated_from_id: mettl_schedule_record.id,
                                        schedule_number: (user_assessment.reset_count + 1))
 
         expect(subject).to receive(:broadcast).with(:ok)
@@ -63,10 +64,11 @@ RSpec.describe Mettl::ResetCandidateAssessment, type: :service do
       end
 
       it 'creates a new mettl_schedule_record, updates the mettl_user_assessment and broadcasts :ok' do
-        expect(::Mettl::CreateSchedule).to receive(:call!).with(assessment,
-                                                                {
-                                                                  name: retry_schedule_name
-                                                                }).and_return(@new_mettl_schedule_record)
+        schedule_request = Mettl::BuildScheduleRequestBody.call!(assessment: assessment,
+                                                                 attributes: { schedule_name: retry_schedule_name })
+        expect(::Mettl::CreateSchedule).to receive(:call!).with(assessment, schedule_request).
+          and_return(@new_mettl_schedule_record)
+
         expect(subject).to receive(:broadcast).with(:ok)
         subject.call
 
