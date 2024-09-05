@@ -240,7 +240,8 @@
     "optionator": "0.9.3",
     "debug": "4.3.4",
     "rc-util": "^5.37.0",
-    "braces": "^3.0.3"
+    "braces": "^3.0.3",
+    "micromatch": "^4.0.8"
   },
   "cssnano": {
     "preset": [
