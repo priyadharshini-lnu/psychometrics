@@ -65,7 +65,10 @@ RSpec.describe Mettl::ResetCandidateAssessment, type: :service do
 
       it 'creates a new mettl_schedule_record, updates the mettl_user_assessment and broadcasts :ok' do
         schedule_request = Mettl::BuildScheduleRequestBody.call!(assessment: assessment,
-                                                                 attributes: { schedule_name: retry_schedule_name })
+                                                                 attributes: {
+                                                                   schedule_name: retry_schedule_name,
+                                                                   secure_browser_enabled: false
+                                                                 })
         expect(::Mettl::CreateSchedule).to receive(:call!).with(assessment, schedule_request).
           and_return(@new_mettl_schedule_record)
 
