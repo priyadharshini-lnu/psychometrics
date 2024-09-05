@@ -239,7 +239,8 @@
     "semver": "7.5.2",
     "optionator": "0.9.3",
     "debug": "4.3.4",
-    "rc-util": "^5.37.0"
+    "rc-util": "^5.37.0",
+    "braces": "^3.0.3"
   },
   "cssnano": {
     "preset": [
