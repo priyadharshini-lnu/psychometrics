@@ -1735,6 +1735,8 @@ en:
       image_upload_failed: Image upload failed.
       none: None
       refresh_success: Refresh of dataset was scheduled successfully.
+    datasheet:
+      threesixty_warning: You can’t upload datasheet columns for 360 report from here. For 360 report datasheet columns are loaded from the campaign to which this report is linked to
     dates:
       completed: Completed At
       end: End Date
