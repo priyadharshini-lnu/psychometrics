@@ -1,12 +1,11 @@
 .header {
   width: 100%;
   display: flex;
-  z-index: 2500;
+  z-index: 1000;
   height: 40px;
-  border-color: #bfbfbf;
   background: #f0f0f0;
-  border-width: 1px 0;
-  border-style: solid;
+  border-bottom: 1px solid #bfbfbf;
+  box-shadow: 0 1px 5px rgba(0,0,0, 0.15);
 }
 
 .components {
@@ -46,16 +45,17 @@
 
     &.plus {
       position: absolute;
-      top: -2px;
+      top: -3px;
       font-weight: bold;
 
-      left: -3px;
-      font-size: 10px;
-      background: #e0e0e0;
-      width: 7px;
-      height: 7px;
-      line-height: 0.75;
+      left: -6px;
+      font-size: 14px;
+      background: #f0f0f0;
+      width: 12px;
+      height: 12px;
+      line-height: 0.55;
       border-radius: 10px;
+      text-align: center;
     }
   }
 }
@@ -65,6 +65,8 @@
 }
 
 .rightSet {
+  margin: 6px 10px;
+  display: flex;
   a {
     flex: initial;
   }

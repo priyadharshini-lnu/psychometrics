@@ -1,7 +1,10 @@
 import { Component } from 'react'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
-import { message } from 'antd'
+import {
+  Space, Flex, Button, message, Dropdown,
+} from 'antd'
+import { ArrowLeftOutlined, SettingOutlined } from '@ant-design/icons'
 import headerStore from '~/modules/reports/store/HeaderStore'
 import AppStore from '~/modules/reports/store/AppStore'
 import Module from '~/modules/reports/models/Module'
@@ -19,6 +22,8 @@ export class FixedHeader extends Component {
     $(document).on('keydown', this.bodyKeyDown)
     $(document).on('copy', this.onCopy)
     $(document).on('paste', this.onPaste)
+    window.onbeforeunload = () => I18n.t('common.messages.leave_message')
+    window.onpopstate = () => I18n.t('common.messages.leave_message')
     this.listener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
@@ -27,6 +32,8 @@ export class FixedHeader extends Component {
     $(document).off('keydown', this.bodyKeyDown)
     $(document).off('copy', this.onCopy)
     $(document).off('paste', this.onPaste)
+    window.onbeforeunload = null
+    window.onpopstate = null
     this.listener.remove()
   }
 
@@ -219,68 +226,95 @@ export class FixedHeader extends Component {
       <div ref={(ref) => { this.menu = ref }} id="fixed_header" className={styles.header} style={style}>
         {richEditorOpened ? <div key="editor" id="froala-editor-toolbar" /> : (
           <div key="menu" className={styles.components}>
-            <div
-              ref={(ref) => { this.cktoolbar = ref }}
-              className={styles.ckContainer}
-              style={{ display: headerStore.showCK ? 'block' : 'none' }}
-            />
-            <div className={styles.set}>
-              <a onClick={this.addTable}>
-                <span className={styles.plus}>+</span>
-                <span className="fa fa-table" />
-                Table
-              </a>
-              <a onClick={this.addGraph}>
-                <span className={styles.plus}>+</span>
-                <span className="fa fa-bar-chart" />
-                Graph
-              </a>
-              <a onClick={this.addShape}>
-                <span className={styles.plus}>+</span>
-                <span className="fa fa-square-o" />
-                Shape
-              </a>
-              <a onClick={this.addText}>
-                <span className={styles.plus}>+</span>
-                <span className="fa fa-font" />
-                Text
-              </a>
-              <a onClick={this.addImage}>
-                <span className={styles.plus}>+</span>
-                <span className="fa fa-image" />
-                Image
-              </a>
-            </div>
-            <div className={`${styles.set} ${styles.rightSet}`}>
-              <button onClick={this.save} className={`btn btn-success ${styles.saveButton}`}>
-                <i className="fa fa-save" />
-                Save
-              </button>
-              <div className="dropdown">
-                <button
-                  className="btn btn-default dropdown-toggle"
-                  type="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="true"
+            <Flex align="center">
+              <Button type="link" href="/admin/reports">
+                <ArrowLeftOutlined />
+                Reprots List
+              </Button>
+              <div className={styles.set}>
+                <a onClick={this.addTable}>
+                  <span className={styles.plus}>+</span>
+                  <span className="fa fa-table" />
+                  Table
+                </a>
+                <a onClick={this.addGraph}>
+                  <span className={styles.plus}>+</span>
+                  <span className="fa fa-bar-chart" />
+                  Graph
+                </a>
+                <a onClick={this.addShape}>
+                  <span className={styles.plus}>+</span>
+                  <span className="fa fa-square-o" />
+                  Shape
+                </a>
+                <a onClick={this.addText}>
+                  <span className={styles.plus}>+</span>
+                  <span className="fa fa-font" />
+                  Text
+                </a>
+                <a onClick={this.addImage}>
+                  <span className={styles.plus}>+</span>
+                  <span className="fa fa-image" />
+                  Image
+                </a>
+              </div>
+            </Flex>
+
+            <div className={`${styles.rightSet}`}>
+              <Space>
+                <Button onClick={this.save} type="primary">
+                  Save
+                </Button>
+                <Dropdown
+                  trigger={['click']}
+                  menu={{
+                    items: [
+                      {
+                        key: 'settings_modal',
+                        label: 'Settings...',
+                        onClick: this.openSettingsModal,
+                      },
+                      {
+                        key: 'manage_filters',
+                        label: 'Manage Filters',
+                        onClick: this.openFilterModal,
+                      },
+                      {
+                        key: 'manage_data_sheets',
+                        label: 'Manage DataSheets',
+                        onClick: this.openDataSheetModal,
+                      },
+                      {
+                        key: 'preview',
+                        label: 'Preview',
+                        href: `/administration/reports/${_.result(AppStore.report, 'id')}/preview`,
+                      },
+                      {
+                        key: 'aliases',
+                        label: 'Aliases',
+                        onClick: this.openAliasModal,
+                      },
+                      {
+                        key: 'data_report_configuration',
+                        label: 'Data Report Configuration',
+                        onClick: this.openDataConfigurationModal,
+                      },
+                      {
+                        key: 'remap_assessment',
+                        label: 'Remap Assessment',
+                        onClick: this.openRemapAssessment,
+                      },
+                    ],
+                  }}
                 >
-                  <span className="fa fa-gear" />
-                  Report Options
-                  <span className="caret" />
-                </button>
-                <ul className="dropdown-menu">
-                  <li><a onClick={this.openSettingsModal}>Settings...</a></li>
-                  <li><a onClick={this.openFilterModal}>Manage Filters</a></li>
-                  <li><a onClick={this.openDataSheetModal}>Manage DataSheets</a></li>
-                  <li><a href={`/administration/reports/${_.result(AppStore.report, 'id')}/preview`}>Preview</a></li>
-                  <li><a onClick={this.openAliasModal}>Aliases</a></li>
-                  <li><a onClick={this.openDataConfigurationModal}>Data Report Configuration</a></li>
-                  <li><a onClick={this.openRemapAssessment}>Remap Assessment</a></li>
-                </ul>
-              </div>
-              <div>
-                <a href="/admin/reports" className={`btn btn-default ${styles.back}`}>Back</a>
-              </div>
+                  <Button block>
+                    <Space>
+                      Report Options
+                      <SettingOutlined />
+                    </Space>
+                  </Button>
+                </Dropdown>
+              </Space>
             </div>
           </div>
         )}
