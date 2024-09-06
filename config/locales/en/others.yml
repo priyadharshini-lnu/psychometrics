@@ -242,6 +242,10 @@ en:
               invalid: SMS Invite code is invalid
         saml_setting:
           invalid_cert: Invalid certificate
+        security_setting_forms:
+          attributes:
+            magic_link_expiry_in_seconds:
+              greater_than_or_equal_to: Duration should be minimum 5 minutes
         sheet:
           attributes:
             file:
@@ -730,6 +734,7 @@ en:
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report
+        remap_report_assessment: Remap Report Assessment
         rescore_assessment: Rescore Assessment
         rescore_user_assessment: Rescore User Assessment
         send_sms_invites: Send SMS invites
@@ -792,6 +797,7 @@ en:
       export_raw_without_labels: Raw (without labels)
       extend_time: Extend time
       goto_dashboard: Click here to continue
+      manage_mettl_schedule: Manage Mettle Schedule
       moderate: Moderate Scores
       new_response: New Response
       next_assessment: Pass To Next Assessment
@@ -1197,6 +1203,7 @@ en:
       export_result: Export Result
       export_scores: Export Scores
       export_scoring: Scoring
+      factor_benchmark_score: Factor Benchmark Score
       import_raw: Raw
       import_scoring: Scoring
       regenerate: Regenerate Reports
@@ -1263,6 +1270,11 @@ en:
         select_locales: Select Locales
         success_msg: Locales were updated successfully
         title: Update Available Locales
+      update_mettl_schedule:
+        select_schedule: Select Schedule
+        success_msg: Mettl Schedule were updated successfully
+        title: Update Mettl Schedule
+        update: Update
       update_norm:
         apply: Apply this change to existing users in this campaign
         cannot_remove_norm: Cannot remove norm for completed assessment.
@@ -1787,6 +1799,8 @@ en:
       json?: Should be valid JSON
       key?: can't be blank
       match_regexp?: invalid value
+      mettl_schedule_record_create:
+        uniq_schedule_name: Schedule name should be unique
       missed?: can't be blank
       not_in_the_list?: invalid value passed
       not_uniq_variable: variable '%{value}' redefined on line number %{row}
@@ -1799,6 +1813,7 @@ en:
       skill_alias:
         unique_alias: Alias should be unique
         unique_skill: Skill should be unique
+      uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
       uniq?: should be unique
       update_workshop:
         less_than_booked: The total seats must be greater than booked
@@ -2043,6 +2058,8 @@ en:
       last_week: Last Week
       today: Today
       yesterday: Yesterday
+    input_duration:
+      max_duration: Maximum duration is %{duration}
     schedule_availability:
       copy_to_all: Copy to all
       end_date: End Date

@@ -42,7 +42,7 @@ class Question extends Component {
 
     return (
       <div onClick={e => e.stopPropagation()}>
-        <div className={`${styles.left} ${up || ''}`}>
+        <div className={`${styles.left} ${up || ''}`} style={selected ? { left: 0 } : {}}>
           <Button
             size="small"
             type="primary"
@@ -58,7 +58,7 @@ class Question extends Component {
             className={cs(styles.moveBtn, styles.down)}
           />
         </div>
-        <div className={`${styles.right} ${up || ''}`} style={selected ? { right: 14 } : {}}>
+        <div className={`${styles.right} ${up || ''}`} style={selected ? { right: 19 } : {}}>
           <Button
             size="small"
             type="primary"

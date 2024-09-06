@@ -18,13 +18,9 @@ module UsersResults
       return broadcast(:invalid) if form.invalid?
 
       update_users_result
-      if users_result.completed?
-        if threesixty_campaign
-          send_necessary_emails
-        else
-          UserAssessments::Webhook.new(user_assessment).publish_results_available
-          generate_report
-        end
+
+      if users_result.completed? && threesixty_campaign
+        send_necessary_emails
       end
 
       broadcast(:ok)
@@ -34,7 +30,6 @@ module UsersResults
 
     # Sets new data to the users_result
     #   and increases the step of users_result
-    #
     # rubocop:disable Metrics/AbcSize
     def update_users_result
       attributes = form.attributes_with_values
@@ -46,16 +41,14 @@ module UsersResults
       users_result.update!(attributes.except(*user_assessment_attribute_names))
       user_assessment_form_attributes = attributes.slice(*user_assessment_attribute_names)
       user_assessment.update!(user_assessment_form_attributes.except(:norm_id))
+
       # Calculates scoring and sets time of completion
       if user_assessment.completed?
         norm_id = user_assessment.applicable_norm_id || user_assessment_form_attributes[:norm_id]
         user_assessment.update!(completed_at: Time.zone.now, norm_id: norm_id)
+
         users_result.answers = ::UsersResults::RemoveDirtyResults.call!(users_result.answers)
-        users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
-        users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
-        users_result.occupations = ::UsersResults::CalculateOccupations.call!(users_result)
-        users_result.innovation_styles = UsersResults::CalculateInnovationStyles.call!(users_result)
-        UserAssessments::Webhook.new(user_assessment).publish_assessment_completed
+        ::UsersResults::SaveScoringWithCallbacksJob.perform_later(users_result, current_user)
         if threesixty_campaign
           user_assessment_attrs = { evaluator_nomination_status: :completed }
           if user_assessment.relationship_id == Relationship.manager_relationship.id
@@ -72,10 +65,6 @@ module UsersResults
       users_result.save!
     end
     # rubocop:enable Metrics/AbcSize
-
-    def generate_report
-      ::UsersResults::GenerateReports.call!(users_result, current_user)
-    end
 
     def send_necessary_emails
       subject = users_result.threesixty_subject

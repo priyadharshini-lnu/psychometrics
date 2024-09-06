@@ -66,7 +66,9 @@ module Administration
     end
 
     def user_reports
-      user_reports = object.user_reports.where(campaign: campaign).includes(:report, :report_family)
+      user_reports = object.user_reports.with_attached_pdf_file.where(
+        campaign: campaign
+      ).includes(:report, :report_family)
       Panko::ArraySerializer.new(
         user_reports,
         each_serializer: Administration::UserReportSerializer,

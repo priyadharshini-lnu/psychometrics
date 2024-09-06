@@ -10,7 +10,7 @@ module Administration
 
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview
-                                          upload_data_sheet toggle_archive soft_delete restore]
+                                          upload_data_sheet toggle_archive soft_delete restore remap_assessment]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize, except: [:sidebar]
     render_entrypoint :index, element: 'reports', entry: 'admin/reports'
@@ -18,6 +18,15 @@ module Administration
     def upload_data_sheet
       @form = ::Sheets::SheetForm.from_params(params).with_context(sheet_type: 'Datasheet')
       render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
+    end
+
+    def remap_assessment
+      AdminJob.call(:remap_report_assessment,
+                    { report_id: resource.id,
+                      current_assessment_id: params[:current_assessment_id],
+                      new_assessment_id: params[:new_assessment_id] }, current_user)
+
+      render json: { success: true }
     end
 
     def show

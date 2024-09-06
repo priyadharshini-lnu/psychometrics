@@ -36,7 +36,7 @@ describe Api::V2::Administration::Campaigns::UsersController, swagger_doc: 'v2/s
   end
   let!(:assessors_user_assessment) do
     create(:user_assessment, evaluator: assessor, campaign: campaign, subject: user, assessment: lead_assessment,
-           relationship: Relationship.assessor_relationship, status: :completed)
+           relationship: Relationship.assessor_relationship, status: :completed, score_calculated: true)
   end
   let(:factor_id) { campaign_factor.id.to_s }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }

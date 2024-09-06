@@ -10,11 +10,6 @@ class Question extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  addNote = () => {
-    const { model, addNote } = this.props
-    addNote(model)
-  }
-
   invokeAdvanced = (element) => {
     const { model } = this.props
     _.invoke(model, element.callback)
@@ -53,10 +48,6 @@ class Question extends Component {
         title={<span className="icon fa fa-gear" />}
         id={`block_menu_${model.id}`}
       >
-        <MenuItem onSelect={this.addNote}>
-          <span className={`icon fa fa-pencil-square-o ${styles.menuicon}`} />
-          Add Note...
-        </MenuItem>
         {this.renderRandomMenuItem()}
       </DropdownButton>
     )

@@ -122,9 +122,11 @@ class UserReport < ApplicationRecord
             content_type: 'application/pdf'
           )
         else
-          pdf_file.attach(
-            ActiveStorageSupport::Base64Attach.attachment_from_data({ data: "data:application/pdf;base64,[#{data}]" })
-          )
+          data_to_attach = ActiveStorageSupport::Base64Attach.attachment_from_data({
+            data: "data:application/pdf;base64,[#{data}]"
+          })
+          data_to_attach[:filename] = filename if filename
+          pdf_file.attach(data_to_attach)
         end
       when File
         pdf_file.attach(
@@ -155,7 +157,7 @@ class UserReport < ApplicationRecord
     UserReports::GetUserResultsQuery.new(self, view_report_as).query
   end
 
-  def all_assessments_are_completed?(except_assessment_ids: [])
+  def all_assessments_are_scored?(except_assessment_ids: [])
     completed_assessment_ids = user_results.includes(:user_assessment).pluck('user_assessments.assessment_id')
 
     report.assessment_ids.all? { |id| except_assessment_ids.include?(id) || completed_assessment_ids.include?(id) }
@@ -166,7 +168,7 @@ class UserReport < ApplicationRecord
   end
 
   def publish_results_available?
-    all_assessments_are_completed? && has_report_data_config?
+    all_assessments_are_scored? && has_report_data_config?
   end
 
   def possible_webhook_events
@@ -183,7 +185,7 @@ class UserReport < ApplicationRecord
   def generatable?
     return false if provider_custom_upload?
 
-    generate = all_assessments_are_completed? && (external_report? || !report_modules_empty?)
+    generate = all_assessments_are_scored? && (external_report? || !report_modules_empty?)
     generate &&= approved? if has_approval_workflow?
     generate &&= campaign_user.campaign_scores_finalized? if report.campaign_factors.present?
     generate

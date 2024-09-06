@@ -4,6 +4,7 @@ import _ from 'lodash'
 import {
   showErrors, emptyErrors, showPage, changeElement, showEnd, hideQuestion, showQuestion,
   addPrevPage, setEmbeddedData, nextButtonPressed, showSubmitPage,
+  setDirtyResults,
 } from './actions'
 import { NEXT_PAGE } from './consts'
 import {
@@ -26,6 +27,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
       const questions = pageQuestions(preview)
       if (!DisplayLogicProcessor.run(displayLogic, preview)) {
         dispatch(hideQuestion(questions[0].id))
+        dispatch(setDirtyResults([questions[0].id]))
         if (questions.length === 1) {
           nextPage()
         }

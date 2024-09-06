@@ -16,6 +16,7 @@ interface Props {
   noOfItems: number | null
   gapCutoff: number | null
   precision?: number
+  allFactors?: boolean
 }
 
 export enum GapType {

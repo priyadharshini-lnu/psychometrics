@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Lint/UnderscorePrefixedVariableName
-
 class QuestionSchema < BaseSchema
   def self.schema(_, _)
     Dry::Schema.JSON do
@@ -20,9 +18,6 @@ class QuestionSchema < BaseSchema
       required(:skip_logic).maybe(:array?)
       required(:template_id).maybe(:int?)
       required(:assessment_id).maybe(:int?)
-      required(:comments).array(CommentSchema.schema(_, _))
     end
   end
 end
-
-# rubocop:enable Lint/UnderscorePrefixedVariableName

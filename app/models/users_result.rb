@@ -32,6 +32,7 @@ class UsersResult < ApplicationRecord
   delegate :subject_id, :evaluator_id, :assessment_id, :campaign_id, :norm_id, :status, :real_status,
            :norm_data, :completed_at, :started_at, :completion_reason, :user_reports, :available_locales,
            :user_reports, :user, :user_id, :campaign_user, :deemed_completed?, :completion_status_code,
+           :score_calculated,
            to: :user_assessment, allow_nil: true
   delegate(*UserAssessment.statuses.keys.map { |status| [:"#{status}?", :"#{status}!"] }.flatten,
            to: :user_assessment, allow_nil: true)
@@ -42,8 +43,7 @@ class UsersResult < ApplicationRecord
   def compute_external_scores
     return if external_results.blank? || assessment.internal?
 
-    update!(scoring: ::UsersResults::CalculateScoring.call!(self))
-    user_assessment.calculate_and_save_campaign_scoring
+    ::UsersResults::SaveScoringJob.set(wait: 10.seconds).perform_later(self)
   end
 
   def threesixty_subject

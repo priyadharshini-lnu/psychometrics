@@ -165,10 +165,6 @@ Rails.application.routes.draw do
 
     resources :imports, only: %i[new create]
 
-    concern :commentable do
-      resources :comments
-    end
-
     concern :client_editable do
       member do
         get :copy
@@ -316,6 +312,7 @@ Rails.application.routes.draw do
             post :import_results
             get :norms
             post :update_norm
+            post :update_mettl_schedule
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
@@ -332,6 +329,7 @@ Rails.application.routes.draw do
         resources :user_assessments, only: [:destroy] do
           member do
             post :update_norm
+            post :update_mettl_schedule
             post :rescore_response
             post :reset
             post :reset_progress
@@ -692,6 +690,7 @@ Rails.application.routes.draw do
       member do
         get :preview
         post :upload_data_sheet
+        put :remap_assessment
       end
       scope module: 'reports' do
         resource :builders, only: %i[show update]
@@ -907,7 +906,7 @@ Rails.application.routes.draw do
           get :pass
           get :begin
           get :validate_session
-          get :upload_user_verification_image_url
+          post :upload_user_verification_image_url
           put :user_verification_image_upload_callback
         end
       end
@@ -1166,6 +1165,8 @@ Rails.application.routes.draw do
             end
 
             jsonapi_resources :registration_settings, only: %i[index update]
+            jsonapi_resources :mettl_schedule_records, only: %i[index create update destroy]
+
             jsonapi_resources :assessments do
               scope module: :assessments do
                 jsonapi_resources :factors do
@@ -1195,6 +1196,13 @@ Rails.application.routes.draw do
 
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
+            scope module: :campaigns do
+              jsonapi_resources :factor_benchmark_scores do
+                collection do
+                  post :bulk_create
+                end
+              end
+            end
             jsonapi_resources :workshops, only: %i[index show update] do
               member do
                 post :change_status

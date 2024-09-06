@@ -112,7 +112,7 @@ describe JsonApi::AuditLogProcessor do
   end
 
   it 'logs create_to_many_relationships action' do
-    comment = Comment.create(text: 'Text')
+    comment = Dummy::Comment.create(text: 'Text')
     data = process_operations(
       'dummy/posts', 'create_relationship', user, {
         post_id: post.id, relationship: 'comments', data: [{ type: 'comments', id: comment.id }]

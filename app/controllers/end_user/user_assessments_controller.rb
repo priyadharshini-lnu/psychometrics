@@ -69,7 +69,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   end
 
   def upload_user_verification_image_url
-    UserAssessmentVerificationImages::GetImageUploadUrl.call(@user_assessment) do
+    UserAssessmentVerificationImages::GetImageUploadUrl.call(@user_assessment, params['blob']) do
       on(:ok) { |data| render json: data }
       on(:error) do |error|
         render json: {
@@ -81,7 +81,7 @@ class EndUser::UserAssessmentsController < ApplicationController
 
   def user_verification_image_upload_callback
     media = @user_assessment.user_assessment_verification_images.find(params[:media_id])
-    media.file_key = params[:asset_key]
+    media.file = params[:asset_key]
     if media.save
       render json: 'ok'
     else

@@ -6,6 +6,7 @@ import {
   Button, Card, Col, Space,
 } from 'antd'
 import { CheckOutlined, RightOutlined, RedoOutlined } from '@ant-design/icons'
+import { DirectUpload } from '@rails/activestorage'
 import axios from 'axios'
 import * as faceapi from 'face-api.js'
 import { BROWSER_NAME } from '~/utils/uaParser'
@@ -19,13 +20,6 @@ import { CheckListStatus } from '../interfaces'
 import styles from './styles.less'
 
 const { I18n, $ } = window
-
-// fix esbuild/rollup issue related to circluar dependency in tenserflow
-if (__DEV__) {
-  import('@mediapipe/face_mesh').then((mod) => {
-    window.FaceMesh = mod.FaceMesh
-  })
-}
 
 interface Props {
   nextStep: () => void
@@ -70,7 +64,6 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
 
   const track = async () => {
     if (!videoRef.current) return
-
     const options = new faceapi.TinyFaceDetectorOptions()
 
     const canvas = document.createElement('canvas')
@@ -96,26 +89,42 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     }, 'image/jpeg', 0.95)
   }
 
-  const upload = async () => {
-    const { data }: { data: {url: string} } = await axios.get(`${location.pathname}/upload_user_verification_image_url`)
-
-    axios.put(data.url, img, {
-      headers: {
-        'Content-Type': 'image/jpeg',
+  const imageUpload = async () => {
+    const upload = new DirectUpload(
+      img,
+      `${location.pathname}/upload_user_verification_image_url`,
+      {
+        directUploadWillStoreFileWithXHR: (xhr: XMLHttpRequest) => {
+          xhr.upload.addEventListener('progress', () => {
+            dispatch(updateUploading(CheckListStatus.InProgress))
+          })
+        },
       },
+    )
+
+    upload.create((error, blob) => {
+      if (error) {
+        dispatch(updateUploading(CheckListStatus.Failed))
+      } else {
+        onUploadDone(blob)
+      }
+    })
+
+    dispatch(updateUploading(CheckListStatus.InProgress))
+  }
+
+  const onUploadDone = (blob) => {
+    axios.put(`${location.pathname}/user_verification_image_upload_callback`, {
+      media_id: blob.media_id,
+      asset_key: blob.signed_id,
+    }, {
+      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
     }).then(() => {
       dispatch(updateUploading(CheckListStatus.Done))
-      axios.put(`${location.pathname}/user_verification_image_upload_callback`, data, {
-        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-      }).then(() => {
-        nextStep()
-      }).catch(() => {
-        dispatch(updateUploading(CheckListStatus.Failed))
-      })
+      nextStep()
     }).catch(() => {
       dispatch(updateUploading(CheckListStatus.Failed))
     })
-    dispatch(updateUploading(CheckListStatus.InProgress))
   }
 
   const rerun = async () => {
@@ -206,7 +215,7 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
                 size="middle"
                 type="primary"
                 className={styles.continueButton}
-                onClick={upload}
+                onClick={imageUpload}
                 disabled={state.access !== CheckListStatus.Done || state.faceDetection !== CheckListStatus.Done}
                 loading={state.uploading === CheckListStatus.InProgress}
               >

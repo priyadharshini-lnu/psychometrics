@@ -130,7 +130,6 @@ const AssessmentList: React.FC<Props> = ({
             }}
           />
 
-
           <Column
             title={I18n.t('common.column.status')}
             key="status"
@@ -251,6 +250,10 @@ const getActionsMenuProps = ({
   }
 
   const responseGroupItems: MenuItemType[] = []
+  permissions.updateMettlSchedule && responseGroupItems.push({
+    key: 'manage_mettl_schedule',
+    label: I18n.t('assessments.actions.manage_mettl_schedule'),
+  })
   permissions.resetResults && responseGroupItems.push({
     key: 'reset',
     label: I18n.t('common.actions.reset'),
@@ -259,6 +262,7 @@ const getActionsMenuProps = ({
     key: 'rescore',
     label: I18n.t('assessments.actions.rescore'),
   })
+
   const menuItems: ItemType[] = [
     {
       type: 'group',
@@ -310,6 +314,16 @@ const getActionsMenuProps = ({
     }
     if (key === 'resetProgress') {
       return handleResetProgress()
+    }
+
+    if (key === 'manage_mettl_schedule') {
+      return openModal('UpdateMettlScheduleModal',
+        {
+          projectId,
+          campaignId,
+          campaignAssessmentId: assessment.id,
+          userId,
+        })
     }
   }
 

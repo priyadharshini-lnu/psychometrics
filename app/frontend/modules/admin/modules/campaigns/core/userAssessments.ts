@@ -3,6 +3,7 @@ import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { takeEvery, put } from 'redux-saga/effects'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { createReducer, CustomAction } from '~/utils/redux'
+import { updateIn } from '~/utils/immutable'
 import {
   FETCH_SINGLE as FETCH_SINGLE_USER,
   REMOVE_ASSESSMENT,
@@ -17,6 +18,7 @@ const defaultState = {
 }
 
 export const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
+export const UPDATE_METTL_SCHEDULE = 'campaigns/userAssessments/UPDATE_METTL_SCHEDULE'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 export const SET_USER_ASSESSMENTS = 'campaigns/userAssessments/SET_USER_ASSESSMENTS'
 export const RESET_PROGRESS_OF_ASSESSMENT = 'campaigns/userAssessments/RESET_PROGRESS_OF_ASSESSMENT'
@@ -48,6 +50,16 @@ export const updateNorm = (campaignId, campaignAssessmentId: number, body) => ({
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_norm`,
+    body: { ...body, campaignAssessmentId },
+    loader: true,
+  },
+})
+
+export const updateMettlSchedule = (campaignId, campaignAssessmentId: number, body) => ({
+  type: UPDATE_METTL_SCHEDULE,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_mettl_schedule`,
     body: { ...body, campaignAssessmentId },
     loader: true,
   },
@@ -131,6 +143,7 @@ export interface State {
 
 type FetchType = ApiActionResponse<{userAssessments: UserAssessment[]}>
 type UpdateNormType = ApiActionResponse<{normName: string, normType: string}>
+type UpdateMettlScheduleType = ApiActionResponse<{mettlScheduleName: string}>
 
 const HANDLERS = {
   [SET_USER_ASSESSMENTS]: (state, { userAssessments }: CustomAction<{ userAssessments: UserAssessment[] }>) => (
@@ -147,6 +160,17 @@ const HANDLERS = {
       return { ...assessment, normId, ...response }
     })
     return { ...state, list }
+  },
+  [UPDATE_METTL_SCHEDULE]: (state, { response, requestAction: { request } }: UpdateMettlScheduleType) => {
+    const { campaignAssessmentId, mettlScheduleRecordId } = request.body
+
+    return updateIn(state, ['list'], (assessments: UserAssessment[]) => assessments.map(
+      (assessment: UserAssessment) => {
+        if (assessment.id !== campaignAssessmentId) return assessment
+
+        return { ...assessment, mettlScheduleRecordId, ...response }
+      },
+    ))
   },
 }
 

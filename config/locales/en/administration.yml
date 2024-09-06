@@ -106,6 +106,7 @@ en:
             bulk_regenerate_reports: Bulk Regenerate Reports
             manage: Manage
             manage_admins: Manage Admins
+            manage_factor_benchmark_scores: Manage Factor Benchmark Scores
             manage_messages: Manage Messages
             manage_options: Manage Options
             manage_report_approvals: Manage Report Approvals
@@ -1729,6 +1730,7 @@ en:
     integrations:
       actions:
         add: Integrations
+        back: Back to Integrations
         load_mettl_catalog: Load Mettl Assessment Catalog
       columns:
         active: Active
@@ -1766,6 +1768,7 @@ en:
           tenant_id_present: Tenant id is already present in other project
         mettl:
           public_key_present: Public key is already present in other project
+      view_all_schedules: View All Mettl Schedules
     invited_subject:
       add_btn: Add Subject
       column:
@@ -2178,6 +2181,23 @@ en:
         project_number_label: Project Number
         save_changes: Save Changes
         sub_domain_label: Sub Domain
+      mettl_schedule_records:
+        actions:
+          edit: Edit
+        add: Add Schedule
+        assessment_id: Assessment ID
+        assessment_name: Assessment Name
+        candidate_authorization: Enable Candidate Authorization
+        candidate_screen_capture: Enable Candidate Screen Capture
+        count: Browsing tolerance count
+        created_at: Created At
+        schedule_id: Schedule ID
+        schedule_name: Schedule Name
+        search: Search
+        secure_browser_enabled: Enable Secure Browser
+        show_remaining_counts: Enable Showing Remaining Count
+        visual_proctoring_enabled: Enable Visual Proctoring
+        web_proctoring_enabled: Enable Web Proctoring
       privacy_settings:
         dp_consent: Enable Data Processing consent
         dp_consent_custom: Customise Data Processing consent
@@ -2625,6 +2645,7 @@ en:
       enforce_strong: Enforce strong password
       expiration: Password expiration
       lock_account: Lock account
+      magic_link_expiry_duration: Magic link expiration duration
       min_length: Minimum password length
       never: Never
       restrict_sequences: Restrict sequential and repetitive characters
@@ -3095,6 +3116,7 @@ en:
           title: Report
       messages:
         email_messages: Email Messages
+        factor_benchmark_scores_updated: Factor Benchmark Scores updated successfully
         instruction_messages: Instruction Messages
         mail_history: Mail History
         options: Options

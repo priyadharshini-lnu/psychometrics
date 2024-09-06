@@ -17,11 +17,7 @@ module UsersResults
       recompute_pearson_assessment if user_assessment.pearson?
       recompute_mettl_assessment if user_assessment.mettl?
 
-      if user_result.assessment.agile?
-        compute_agile_assessment_scoring
-      else
-        compute_non_agile_scores
-      end
+      UserAssessments::SaveScores.call!(user_assessment)
 
       broadcast :ok, user_result
     end
@@ -38,20 +34,6 @@ module UsersResults
 
     def recompute_mettl_assessment
       ::Mettl::SaveScoresAndReport.call!(user_assessment)
-    end
-
-    def compute_non_agile_scores
-      user_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(user_result)
-      user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result) if user_result.completed?
-      user_result.occupations = UsersResults::CalculateOccupations.call!(user_result)
-      user_result.innovation_styles = UsersResults::CalculateInnovationStyles.call!(user_result)
-      user_result.save!
-    end
-
-    def compute_agile_assessment_scoring
-      user_result.update!(
-        scoring: ::UsersResults::CalculateAgileScoring.call!(user_result)
-      )
     end
   end
 end

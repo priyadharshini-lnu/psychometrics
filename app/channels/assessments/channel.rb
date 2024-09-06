@@ -15,7 +15,6 @@ module Assessments
     include Actions::Assessment
     include Actions::Block
     include Actions::Question
-    include Actions::Comment
     include Actions::Trash
     include Actions::Scoring
     include Actions::Geo

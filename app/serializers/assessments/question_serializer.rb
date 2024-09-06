@@ -5,8 +5,6 @@ module Assessments
     attributes :id, :name, :type, :position, :props, :deleted, :created_at,
                :validation, :required_validation, :display_logic, :skip_logic, :template_id, :block_id
 
-    has_many :comments, each_serializer: Assessments::CommentSerializer
-
     def deleted
       !!object.deleted_at
     end

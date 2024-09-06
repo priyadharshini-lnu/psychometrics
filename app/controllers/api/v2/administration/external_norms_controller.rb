@@ -15,6 +15,8 @@ module Api
     end
 
     def render_json_api_response(data)
+      return render json: { data: [] } if data.blank?
+
       response = {
         data: data.map do |attrs|
           {

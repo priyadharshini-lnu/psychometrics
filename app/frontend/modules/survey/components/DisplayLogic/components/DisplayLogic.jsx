@@ -40,6 +40,7 @@ export default class DisplayLogic extends Component {
             types={[
               'Question', 'DeviceType', 'EmbeddedData', 'GeoIP',
               'SubjectDataSheet', 'EvaluatorDataSheet', 'EvaluatorRelationship',
+              'UserType',
             ]}
             logic={logic}
           />

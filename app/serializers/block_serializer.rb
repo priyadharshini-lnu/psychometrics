@@ -5,7 +5,7 @@ class BlockSerializer < Panko::Serializer
 
   def questions
     Panko::ArraySerializer.new(
-      object.questions_ams.includes(:comments),
+      object.questions_ams,
       each_serializer: QuestionSerializer,
       context: {
         piped_text_context: context[:piped_text_context]

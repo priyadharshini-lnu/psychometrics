@@ -6,6 +6,7 @@ import EvaluatorDataSheet from './EvaluatorDataSheet'
 import DeviceType from './DeviceType'
 import EmbededData from './EmbededData'
 import GeoIP from './GeoIP'
+import UserType from './UserType'
 
 export default {
   Question,
@@ -16,4 +17,5 @@ export default {
   DeviceType,
   EmbededData,
   GeoIP,
+  UserType,
 }

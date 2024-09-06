@@ -88,12 +88,14 @@ describe('initializing base assessment from question with display logic', () => 
     const data = _.cloneDeep(assessment)
     data.blocks[0].questions.push({ ...data.blocks[0].questions[0], id: 4 })
 
-    store.dispatch({ type: INIT, data, result: { current_element: '2/0', current_page: 1, seedrandom: 1 } })
+    store.dispatch({ type: INIT, data, result: { current_element: '2/0', current_page: 1, seedrandom: 1, results: {2: {answers: []}} } })
     flow(next)({ type: NEXT_PAGE, testDisplayLogic: true })
     expect(store.getState().preview.currentElement).toBe('2/0')
     expect(store.getState().preview.currentPage).toBe(1)
     const questions = pageQuestions(store.getState().preview)
+    const results = store.getState().preview.results
     expect(questions[0].hidden).toBe(true)
+    expect(results[2].dirty).toBe(true)
     expect(questions[1].hidden).toBe(undefined)
     expect(questions[1].id).toBe(4)
     expect(pageQuestionsWithoutHidden(store.getState().preview).length).toBe(1)

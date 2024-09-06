@@ -8,6 +8,7 @@ class CampaignAssessment < ApplicationRecord
   belongs_to :norm
   belongs_to :assessor_form, class_name: 'Assessment'
   belongs_to :campaign_assessment_group
+  belongs_to :mettl_schedule_record, optional: true
 
   scope :ungrouped, -> { where(campaign_assessment_group_id: nil) }
 
@@ -22,6 +23,7 @@ class CampaignAssessment < ApplicationRecord
            :external?,
            :saville?,
            :iiht?,
+           :mettl?,
            :has_external_norm?,
            :external_assessment_id,
            :assessor_form?,
@@ -70,6 +72,19 @@ class CampaignAssessment < ApplicationRecord
     return update!(external_norm_id: norm_id) if has_external_norm?
 
     update!(norm_id: norm_id)
+  end
+
+  def update_mettl_schedule!(mettl_schedule_record_id, apply_to_existing_users = false)
+    return unless mettl_schedule_record_id
+    return unless mettl?
+
+    if update!(mettl_schedule_record_id: mettl_schedule_record_id) && apply_to_existing_users
+      not_started_assessments = user_assessments.where(status: :not_started).pluck(:id)
+
+      MettlUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
+        mettl_schedule_record_id: mettl_schedule_record_id
+      )
+    end
   end
 
   def user_assessments

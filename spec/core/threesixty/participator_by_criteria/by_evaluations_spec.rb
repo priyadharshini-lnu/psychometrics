@@ -20,7 +20,8 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id,
-        status: index <= 1 ? :completed : :in_progress
+        status: index <= 1 ? :completed : :in_progress,
+        score_calculated: index <= 1
       )
     end
 
@@ -41,7 +42,8 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id,
-        status: index == 0 ? :completed : :in_progress
+        status: index == 0 ? :completed : :in_progress,
+        score_calculated: index <= 1
       )
     end
 
@@ -63,7 +65,8 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id,
         manager_evaluation_status: :waiting,
-        status: :completed
+        status: :completed,
+        score_calculated: true
       )
     end
 
@@ -73,7 +76,8 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
       subject_id: threesixty_subjects[2].user_id,
       evaluator_id: threesixty_subjects[2].user_id,
       manager_evaluation_status: :approved,
-      status: :completed
+      status: :completed,
+      score_calculated: true
     )
 
     criteria_list = [{ 'field' => 'evaluations', 'value' => 'needs_approval' }]

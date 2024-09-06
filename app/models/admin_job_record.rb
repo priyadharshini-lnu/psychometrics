@@ -61,8 +61,9 @@ class AdminJobRecord < ApplicationRecord
     export_campaign_factors: 41,
     import_campaign_factors: 42,
     create_threesixty_campaign: 43,
-    threesixty_campaign_export_scores: 44,
-    import_external_campaign_scoring: 45
+    remap_report_assessment: 44,
+    threesixty_campaign_export_scores: 45,
+    import_external_campaign_scoring: 46
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

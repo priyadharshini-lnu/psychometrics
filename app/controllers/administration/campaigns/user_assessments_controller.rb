@@ -14,6 +14,14 @@ module Administration
         render json: { norm_name: resource.norm_name }
       end
 
+      def update_mettl_schedule
+        resource.update_mettl_schedule!(params[:mettl_schedule_record_id])
+
+        audit! :update_mettl_schedule, resource, campaign: resource.campaign
+
+        render json: { mettl_schedule_name: resource.mettl_user_assessment.schedule_name }
+      end
+
       def webhook_command
         @webhook_command ||= UserAssessments::Webhook.new(resource, params[:webhook_id])
       end

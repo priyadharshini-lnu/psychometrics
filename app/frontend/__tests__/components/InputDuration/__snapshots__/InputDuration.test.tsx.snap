@@ -2,12 +2,16 @@
 
 exports[`should match snapshot 1`] = `
 <DocumentFragment>
-  <input
-    class="ant-input css-dev-only-do-not-override-2i2tap user-defined-class"
-    placeholder="Enter as 4d 3h 2m 1s"
-    style="z-index: initial;"
-    type="text"
-    value=""
-  />
+  <div
+    class="ant-flex css-dev-only-do-not-override-2i2tap ant-flex-align-stretch ant-flex-vertical"
+  >
+    <input
+      class="ant-input css-dev-only-do-not-override-2i2tap user-defined-class"
+      placeholder="Enter as 4d 3h 2m 1s"
+      style="z-index: initial;"
+      type="text"
+      value=""
+    />
+  </div>
 </DocumentFragment>
 `;

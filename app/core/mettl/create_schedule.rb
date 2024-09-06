@@ -2,22 +2,12 @@
 
 module Mettl
   class CreateSchedule < Base
-    include Rails.application.routes.url_helpers
+    private_attr_reader :assessment, :project, :schedule_request
 
-    DEFAULT_SCHEDULE_CONFIG = {
-      'scheduleType' => 'AlwaysOn',
-      'access' => {
-        'type' => 'OpenForAll'
-      },
-      'sourceApp' => "lighthouse-#{ENV.fetch('REAL_ENV', 'dev')}"
-    }.freeze
-
-    private_attr_reader :assessment, :project, :schedule_config
-
-    def initialize(assessment, schedule_config = {})
+    def initialize(assessment, schedule_request = nil)
       @assessment = assessment
-      @schedule_config = schedule_config
       @project = assessment.project
+      @schedule_request = schedule_request || Mettl::BuildScheduleRequestBody.call!(assessment: assessment)
     end
 
     def call
@@ -63,13 +53,7 @@ module Mettl
     end
 
     def request_data
-      default_schedule_config = DEFAULT_SCHEDULE_CONFIG.merge(
-        name: "#{mettl_assessment.name} - #{ENV.fetch('SERVER_NAME', 'dev')} - #{assessment.id}",
-        testFinishNotificationUrl: assessment_completion_notification_url,
-        testGradedNotificationUrl: assessment_result_notification_url
-      )
-
-      default_schedule_config.merge!(schedule_config).to_json
+      schedule_request.to_json
     end
 
     def encoded_request
@@ -86,26 +70,6 @@ module Mettl
 
     def mettl_assessment
       MettlAssessment.find_by(product_id: assessment.external_assessment_id)
-    end
-
-    def assessment_completion_notification_url
-      webhooks_mettl_completion_notification_url(
-        project_id: project.id,
-        host: Settings.domain,
-        subdomain: assessment.project.subdomain,
-        protocol: Settings.protocol,
-        port: Settings.port
-      )
-    end
-
-    def assessment_result_notification_url
-      webhooks_mettl_results_notification_url(
-        project_id: project.id,
-        host: Settings.domain,
-        subdomain: assessment.project.subdomain,
-        protocol: Settings.protocol,
-        port: Settings.port
-      )
     end
   end
 end

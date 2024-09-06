@@ -8,6 +8,7 @@ import { Profile } from './Profile'
 import { SecuritySettings } from './Security'
 import { Privacy } from './Privacy'
 import { Registration } from './Registration'
+import { MettlScheduleRecords } from './MettlScheduleRecords'
 
 export const routes = [
   {
@@ -21,6 +22,10 @@ export const routes = [
   {
     path: '/integrations',
     component: <Integrations />,
+  },
+  {
+    path: 'integrations/mettl_schedule_records',
+    component: <MettlScheduleRecords />,
   },
   {
     path: '/security',

@@ -3,34 +3,43 @@ import {
 } from 'react'
 import { InputProps } from 'antd/lib/input/Input'
 
+import { Flex, Typography } from 'antd'
 import { MaskedInput } from '~/glint'
 
 const MINUTE = 60
 const HOUR = 60 * MINUTE
 const DAY = 24 * HOUR
 
+const { I18n } = window
 interface Props extends Omit<InputProps, 'value' | 'onChange'> {
-  value: string | number
-  onChange: (value: number) => void
+  value?: string | number
+  onChange?: (value: number) => void
   masked?: boolean
+  maxDuration?: number,
 }
 
 const InputDuration: FC<Props> = ({
   value = '',
   onChange,
   masked = false,
+  maxDuration,
   ...restInputProps
 }) => {
   const [inputValue, setInputValue] = useState(maskUp(value))
+  const [showWarning, setShowWarning] = useState(false)
 
   const maskAndReturnIntValue = () => {
-    const maskedValue = maskUp(inputValue)
+    let maskedValue = maskUp(inputValue)
+    if (maxDuration && convertToInt(maskedValue) > maxDuration) {
+      maskedValue = maskUp(maxDuration)
+      handleShowWarning()
+    }
 
     if (maskedValue !== inputValue) {
       setInputValue(maskedValue)
-      onChange(convertToInt(maskedValue))
+      onChange && onChange(convertToInt(maskedValue))
     } else {
-      onChange(convertToInt(inputValue))
+      onChange && onChange(convertToInt(inputValue))
     }
   }
 
@@ -38,7 +47,19 @@ const InputDuration: FC<Props> = ({
     const {
       target: { value },
     } = event
+    if (maxDuration && convertToInt(value) > maxDuration) {
+      setInputValue(maskUp(maxDuration))
+      handleShowWarning()
+    }
     setInputValue(value)
+  }
+
+  const handleShowWarning = () => {
+    setShowWarning(true)
+    const setTimeoutId = setTimeout(() => {
+      setShowWarning(false)
+      clearTimeout(setTimeoutId)
+    }, 5000)
   }
 
   const handleOnKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
@@ -53,7 +74,7 @@ const InputDuration: FC<Props> = ({
   }, [value])
 
   return (
-    <>
+    <Flex vertical>
       <MaskedInput
         masked={masked}
         onChange={handleOnChange}
@@ -62,7 +83,12 @@ const InputDuration: FC<Props> = ({
         value={inputValue}
         {...restInputProps}
       />
-    </>
+      {showWarning && maxDuration ? (
+        <Typography.Text type="danger">
+          {I18n.t('glint.input_duration.max_duration', { duration: maskUp(maxDuration) })}
+        </Typography.Text>
+      ) : null}
+    </Flex>
   )
 }
 

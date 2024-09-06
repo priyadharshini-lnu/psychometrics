@@ -20,7 +20,8 @@ module Threesixty::Reports
 
     def lookup_results
       participants = Threesixty::EvaluatorParticipantsBySubject.new(subject.user_id, campaign.id).query
-      UserAssessment.completed.
+      UserAssessment.
+        scored.
         where(campaign_id: campaign.id, evaluator_id: participants.map(&:evaluator_id), subject_id: subject.user_id).
         includes(:evaluator, :assessment, :users_result).
         map do |user_assessment|

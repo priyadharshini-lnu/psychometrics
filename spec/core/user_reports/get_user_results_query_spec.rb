@@ -12,7 +12,7 @@ describe UserReports::GetUserResultsQuery do
 
   it 'gets completed UsersResult for the UserReport from the campaign where UserReport is added' do
     completed_users_assessment = create(:user_assessment, :with_result, campaign: campaign,
-      assessment: assessments[0], subject: user, evaluator: user, status: :completed)
+      assessment: assessments[0], subject: user, evaluator: user, status: :completed, score_calculated: true)
     in_progress_users_assessment = create(:user_assessment, :with_result, campaign: campaign,
       assessment: assessments[1], subject: user, evaluator: user, status: :in_progress)
 
@@ -25,12 +25,13 @@ describe UserReports::GetUserResultsQuery do
   it 'it picks up latest UsersResult from different campaign if UsersResult for particular
     assessment is not present in same campaign' do
     same_campaign_users_assessment = create(:user_assessment, :with_result, campaign: campaign,
-      assessment: assessments[0], subject: user, evaluator: user, status: :completed)
+      assessment: assessments[0], subject: user, evaluator: user, status: :completed, score_calculated: true)
     different_campaign_user_assessment1 = create(:user_assessment, :with_result, campaign: create(:campaign),
-      assessment: assessments[1], subject: user, evaluator: user, status: :completed, completed_at: Time.zone.now)
+      assessment: assessments[1], subject: user, evaluator: user, status: :completed, completed_at: Time.zone.now,
+      score_calculated: true)
     different_campaign_user_assessment2 = create(:user_assessment, :with_result, campaign: create(:campaign),
       assessment: assessments[1], subject: user, evaluator: user, status: :completed,
-      completed_at: Time.zone.now.advance(days: 2))
+      completed_at: Time.zone.now.advance(days: 2), score_calculated: true)
 
     users_results = described_class.new(user_report, :admin).query
 
@@ -42,12 +43,13 @@ describe UserReports::GetUserResultsQuery do
   it "doesn't pick UsersResult for another campaign if UsersResult is present
     in the campaign where UserReport is added" do
     same_campaign_users_assessment1 = create(:user_assessment, :with_result, campaign: campaign,
-      assessment: assessments[0], subject: user, evaluator: user, status: :completed)
+      assessment: assessments[0], subject: user, evaluator: user, status: :completed, score_calculated: true)
     same_campaign_users_assessment2 = create(:user_assessment, :with_result, campaign: campaign,
-      assessment: assessments[1], subject: user, evaluator: user, status: :completed, completed_at: Time.zone.now)
+      assessment: assessments[1], subject: user, evaluator: user, status: :completed, completed_at: Time.zone.now,
+      score_calculated: true)
     different_campaign_user_assessment = create(:user_assessment, :with_result, campaign: create(:campaign),
       assessment: assessments[1], subject: user, evaluator: user, status: :completed,
-      completed_at: Time.zone.now.advance(days: 2))
+      completed_at: Time.zone.now.advance(days: 2), score_calculated: true)
 
     users_results = described_class.new(user_report, :admin).query
 
@@ -61,7 +63,7 @@ describe UserReports::GetUserResultsQuery do
       assessment: assessments[1], subject: user, evaluator: user, status: :not_started)
     different_campaign_user_result = create(:user_assessment, :with_result, campaign: create(:campaign),
       assessment: assessments[1], subject: user, evaluator: user, status: :completed,
-      completed_at: Time.zone.now.advance(days: 2))
+      completed_at: Time.zone.now.advance(days: 2), score_calculated: true)
 
     users_results = described_class.new(user_report, :admin).query
 
@@ -71,7 +73,7 @@ describe UserReports::GetUserResultsQuery do
 
   it "don't pick UsersResult for non lead assessor assessment" do
     same_campaign_users_assessment1 = create(:user_assessment, :with_result, campaign: campaign,
-      assessment: assessments[0], subject: user, evaluator: user, status: :completed)
+      assessment: assessments[0], subject: user, evaluator: user, status: :completed, score_calculated: true)
     same_campaign_users_assessment2 = create(:user_assessment, :with_result, campaign: campaign,
       assessment: lead_assessment, subject: user, evaluator: user, status: :in_progress, completed_at: Time.zone.now)
 
@@ -84,7 +86,7 @@ describe UserReports::GetUserResultsQuery do
   it 'pick UsersResult for lead assessor assessment' do
     report.assessments_reports.create(assessment_id: lead_assessment.id, report_id: report.id)
     same_campaign_users_assessment1 = create(:user_assessment, :with_result, campaign: campaign,
-      assessment: assessments[0], subject: user, evaluator: user, status: :completed)
+      assessment: assessments[0], subject: user, evaluator: user, status: :completed, score_calculated: true)
     same_campaign_users_assessment2 = create(:user_assessment, :with_result, campaign: campaign,
       assessment: lead_assessment, subject: user, evaluator: user, status: :in_progress, completed_at: Time.zone.now)
     users_results = described_class.new(user_report.reload, :lead_assessor).query

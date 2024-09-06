@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import cs from 'classnames'
 import {
   InputNumber, Row, Col, Radio, Checkbox, Slider,
+  Input, Space,
 } from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
@@ -10,7 +11,7 @@ import AppStore from '~/modules/reports/store/AppStore'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
-import { ColorPicker } from '~/glint'
+import { ColorPicker, HintCheckbox } from '~/glint'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
@@ -61,7 +62,7 @@ class Properties extends Component {
     return factors
   }
 
-  factor = f => ({ id: f.id, alias: `${f.alias.substring(0, 24)}` })
+  factor = f => ({ id: f.id, alias: `${(f.alias || f.name)?.substring(0, 24)}` })
 
   factorSelect = (factors) => {
     const { model } = this.props
@@ -111,6 +112,18 @@ class Properties extends Component {
     this.update()
   }
 
+  changeBenchmarkLabel = (e) => {
+    const { model } = this.props
+    model.props.benchmarksLabel = e.currentTarget.value
+    model.update()
+  }
+
+  changeAll = () => {
+    const { model } = this.props
+    model.props.allFactors = !model.props.allFactors
+    model.update()
+  }
+
   update = () => {
     const { model } = this.props
     model.props.group = null
@@ -144,19 +157,30 @@ class Properties extends Component {
   renderTopFactors () {
     const { model } = this.props
     return (
-      <div>
-        <span className={styles.label}>Factors</span>
-        <Select
-          name="form-field-name"
-          value={getValue(this.collectFactors(), _.result(model, 'props.source.factors', 'Choose factor'))}
-          options={this.collectFactors()}
-          getOptionValue={opt => opt.id}
-          getOptionLabel={opt => opt.alias}
-          autoFocus={false}
-          isMulti
-          onChange={this.factorSelect}
+      <Space direction="vertical">
+        <HintCheckbox
+          label="All Factors"
+          checked={model.props.allFactors}
+          onChange={this.changeAll}
+          hints={[
+            'When checked, all factors will be displayed.',
+            'When unchecked, only selected factors will be displayed.',
+          ]}
         />
-      </div>
+        <div>
+          <span className={styles.label}>Factors</span>
+          <Select
+            name="form-field-name"
+            value={getValue(this.collectFactors(), _.result(model, 'props.source.factors', 'Choose factor'))}
+            options={this.collectFactors()}
+            getOptionValue={opt => opt.id}
+            getOptionLabel={opt => opt.alias}
+            autoFocus={false}
+            isMulti
+            onChange={this.factorSelect}
+          />
+        </div>
+      </Space>
     )
   }
 
@@ -240,6 +264,7 @@ class Properties extends Component {
       { label: 'Icons', prop: 'showIcons', default: false },
       { label: 'Label', prop: 'showLabel', default: false },
       { label: 'Border', prop: 'showBorder', default: false },
+      { label: 'Show benchmark score', prop: 'showBenchmarks', default: false },
     ]
 
     return (
@@ -356,6 +381,16 @@ class Properties extends Component {
         <div className="margin-top-10">
           <div className={cs(styles.label, 'mbm mtl')}>Show Elements</div>
           {this.renderTableOptions()}
+          {model.props.showBenchmarks && (
+            <div>
+              <Input
+                placeholder="Benchmark label"
+                value={model.props.benchmarksLabel}
+                onChange={this.changeBenchmarkLabel}
+              />
+            </div>
+          )}
+
         </div>
         <hr className={styles.divider} />
         <div>

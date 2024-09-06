@@ -6,7 +6,8 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
              :enable_network_check, :poster, :icon, :external_settings, :archived, :deleted, :extra, :default_language,
              :tag_list
 
-  ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq]
+  ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq
+                     project_id_eq]
 
   add_tag_filter
 
@@ -41,7 +42,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   end
 
   def self.records(opts)
-    super(opts).includes(:dimension, :owner)
+    super(opts).with_attached_icon.with_attached_poster.includes(:dimension, :owner)
   end
 
   def icon_url
@@ -105,11 +106,11 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   end
 
   def poster
-    @model.poster&.url
+    @model.poster_url
   end
 
   def icon
-    @model.icon&.url
+    @model.icon_url
   end
 
   def meta_details

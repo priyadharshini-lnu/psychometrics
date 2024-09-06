@@ -223,6 +223,49 @@ status: :in_progress)
     end
   end
 
+  describe '#update_mettl_schedule!' do
+    let!(:assessment) { create(:assessment, type: Assessments::Mettl) }
+    let!(:user_assessment) { create(:user_assessment, assessment: assessment) }
+    let!(:mettl_schedule_record) do
+      create(:mettl_schedule_record, project: assessment.project, assessment: assessment)
+    end
+    let!(:mettl_user_assessment) do
+      create(:mettl_user_assessment, user_assessment: user_assessment)
+    end
+    let(:mettl_schedule_record_id) { mettl_schedule_record.id }
+
+    context 'when user assessment is not started and is mettl type' do
+      it 'updates mettl schedule record id' do
+        user_assessment.update!(status: 'not_started')
+
+        user_assessment.update_mettl_schedule!(mettl_schedule_record_id)
+
+        expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(mettl_schedule_record_id)
+      end
+    end
+
+    context 'when user assessment is completed' do
+      it 'does not update mettl schedule record id' do
+        user_assessment.update!(status: 'completed')
+
+        user_assessment.update_mettl_schedule!(mettl_schedule_record_id)
+
+        expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(nil)
+      end
+    end
+
+    context 'when user assessment is not mettl type' do
+      it 'does not update mettl schedule record id' do
+        assessment.update!(type: Assessments::Hogan)
+        user_assessment.update!(status: 'not_started')
+
+        user_assessment.update_mettl_schedule!(mettl_schedule_record_id)
+
+        expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(nil)
+      end
+    end
+  end
+
   describe 'Calculate and save campaign scoring' do
     let(:campaign) { create(:campaign) }
     let(:assessment) { create(:assessment) }
@@ -244,13 +287,29 @@ status: :in_progress)
         factor_type: 'assessment', assessment_score_type: 'score'
       )
       perform_enqueued_jobs do
-        users_result.user_assessment.update!(status: :completed)
+        users_result.user_assessment.update!(status: :completed, score_calculated: true,
+                                             score_calculated_at: Time.current)
       end
 
       campaign_factor = user.campaign_factor_values.find_by(
         campaign_factor: cf_factor1, numeric_value: 2, campaign: users_result.campaign
       )
       expect(campaign_factor).to_not eq nil
+    end
+
+    it 'ignore calculating campaign scoring if score_calculated is not true' do
+      cf_factor1 = create(
+        :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+        factor_type: 'assessment', assessment_score_type: 'score'
+      )
+      perform_enqueued_jobs do
+        users_result.user_assessment.update!(status: :completed)
+      end
+      campaign_factor = user.campaign_factor_values.find_by(
+        campaign_factor: cf_factor1, numeric_value: 10, campaign: users_result.campaign
+      )
+
+      expect(campaign_factor).to eq nil
     end
 
     it 'ignore calculating campaign scoring if user_assessment is not completed' do
@@ -309,7 +368,7 @@ status: :in_progress)
 
     it 'saves campaign factor values' do
       perform_enqueued_jobs do
-        assessor_user_assessment.update!(status: :completed)
+        assessor_user_assessment.update!(status: :completed, score_calculated: true)
       end
 
       expect(campaign_user.campaign_factor_values.first.numeric_value).to eq(3)

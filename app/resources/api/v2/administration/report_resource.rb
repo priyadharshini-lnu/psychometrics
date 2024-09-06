@@ -34,7 +34,7 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   end
 
   def self.records(opts)
-    super(opts).includes(:assessments, :owner)
+    super(opts).with_attached_icon.with_attached_poster.includes(:assessments, :owner)
   end
 
   def icon_url
@@ -83,11 +83,11 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   end
 
   def poster
-    @model.poster&.url
+    @model.poster_url
   end
 
   def icon
-    @model.icon&.url
+    @model.icon_url
   end
 
   def meta_details

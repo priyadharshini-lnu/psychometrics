@@ -12,7 +12,7 @@ module AdminJobs
 
     def generate_title_link
       {
-        href: "admin/projects/#{campaign.client.id}/new_campaigns/#{campaign.id}/scoring/subject_scores",
+        href: 'subject_scores',
         label: 'CampaignScorings'
       }
     end

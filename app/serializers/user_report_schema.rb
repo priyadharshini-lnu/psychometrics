@@ -37,7 +37,7 @@ class UserReportSchema < BaseSchema
       required(:report).hash(ReportSchema.schema(_, _))
       required(:user_report_events).array(UserReportEventSchema.schema(_, _))
       required(:user).hash(UserSchema.schema(_, _))
-      required(:options).hash(Threesixty::CampaignOptionsSchema.schema(_, _))
+      required(:options).maybe(Threesixty::CampaignOptionsSchema.schema(_, _))
     end
   end
 end
