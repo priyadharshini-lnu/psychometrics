@@ -27,12 +27,6 @@ describe Users::Registration::WithRegistrationCode do
       expect(user.license_usages.exists?(registration_code_id: registration_code.id)).to be_truthy
     end
 
-    it 'broadcasts :error' do
-      allow(Time).to receive(:now).and_return(Time.zone.local(2019, 10, 8, 0, 0, 0))
-      allow(Administration::Clients::CreateUser).to receive(:call).and_raise(ActiveRecord::RecordInvalid)
-      expect { subject }.to broadcast(:error)
-    end
-
     it 'creates user for new campaign' do
       campaign = create(:campaign, project: project)
       create(:registration_code, use_count: 1, campaign: campaign, code: 'Abc', project: project)

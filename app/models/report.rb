@@ -39,7 +39,6 @@ class Report < ApplicationRecord
   has_many :clients_reports, dependent: :restrict_with_error
   has_many :clients, through: :clients_reports
   has_many :translations, as: :resource, dependent: :destroy
-  has_many :assigns_reports, dependent: :restrict_with_error
   has_many :user_reports, dependent: :restrict_with_error
   has_many :campaign_reports, dependent: :restrict_with_error
   has_many :assessments_reports, dependent: :destroy

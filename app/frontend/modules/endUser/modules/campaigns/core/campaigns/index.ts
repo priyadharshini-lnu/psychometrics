@@ -4,7 +4,6 @@ import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import ApiAction from 'interfaces/ApiAction'
 
 export const FETCH = 'campaignList/FETCH'
-const ACCEPT_POLICY = 'campaignList/ACCEPT_POLICY'
 
 const CommonCampaignTR = t.type({
   id: t.number,
@@ -46,14 +45,6 @@ export const fetchCampaigns = (): ApiAction<Campaigns> => ({
     url: '/dashboard',
     typedResponse: CampaignsTR,
     loader: true,
-  },
-})
-
-export const acceptPolicy = () => ({
-  type: ACCEPT_POLICY,
-  request: {
-    method: 'POST',
-    url: '/assigns/accept_privacy',
   },
 })
 

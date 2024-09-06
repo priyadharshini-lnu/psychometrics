@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require js-cookie
 //= require lodash
-//= require common
 //= require managers/assessments
 //= require bootstrap-sprockets
 //= require bootstrap-select

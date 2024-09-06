@@ -54,7 +54,7 @@ export const prevPage = (preview) => {
     return { type: PREV_PAGE }
   }
   // TODO (atanych): Is used the same endpoint as for `saveResults` with empty resource to update last_activity_at field
-  const url = preview.resultsUrl || `/assigns/${preview.dbResult.id}`
+  const url = preview.resultsUrl
 
   return {
     type: PREV_PAGE,

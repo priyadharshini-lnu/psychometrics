@@ -1553,6 +1553,21 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 
 
 --
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
+
+
+--
 -- Name: communication_emails; Type: TABLE; Schema: public; Owner: -
 --
 
