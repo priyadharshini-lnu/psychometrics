@@ -15,7 +15,7 @@ module Threesixty
         required(:evaluators).filled(:array?) { each(:hash?) }
         required(:subject).filled(:hash?)
         required(:options).filled(:hash?)
-        required(:requirements).filled(:hash?)
+        required(:requirements).maybe(:hash?)
         required(:instructions).filled(:array?) { each(:hash?) }
       end
     end
