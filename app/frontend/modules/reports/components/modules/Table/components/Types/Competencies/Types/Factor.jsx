@@ -45,12 +45,16 @@ export default function Factor ({ model, filters }) {
     return enhancedFilters
   }
 
+  const factorIds = model.props.allFactors
+    ? AppStore.factorsByAssessmentId(model.assessment_id).map(f => f.id)
+    : model.props.factorIds
   const {
-    milestones, factorIds, mainHeaderColor, secondHeaderColor, showAsBarChart,
+    milestones, mainHeaderColor, secondHeaderColor, showAsBarChart,
     hideHeader, borderColor,
   } = model.props
 
   if (!filters.length || !factorIds.length) return null
+
   const filterIdsHavingResults = new Set()
   const filtersHavingResults = () => filters.filter(f => filterIdsHavingResults.has(f.id))
   const factorMap = getFactorMap()

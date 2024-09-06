@@ -166,6 +166,9 @@ _.extend(Module.prototype, {
           name: this.props.source.name,
         }
       case 'Factor':
+        if (this.props.source.allFactors) {
+          return AppStore.factorsByAssessmentId(this.assessment_id)
+        }
         return this.props.source.factors
       case 'Count':
       case 'Score':
