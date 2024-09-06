@@ -2,16 +2,17 @@
 
 module Factors
   class Copy < BaseCommand
-    private_attr_accessor :factor, :old_to_new_factor_mapping, :old_to_new_factor_mapping
+    private_attr_accessor :factor, :old_to_new_factor_mapping, :old_to_new_factor_mapping, :factors_to_copy
 
-    def initialize(factor, old_to_new_factor_mapping = {})
+    def initialize(factor, old_to_new_factor_mapping = {}, factors_to_copy = [])
       @factor = factor
+      @factors_to_copy = factors_to_copy
       @old_to_new_factor_mapping = old_to_new_factor_mapping.dup
     end
 
     def call
       old_to_new_factor_mapping[factor.id] ||= get_cloned_factor(factor)
-      factor.ancestors.each do |parent_factor|
+      factor.ancestors.where(id: factors_to_copy).each do |parent_factor|
         unless old_to_new_factor_mapping[parent_factor.id]
           new_factor = get_cloned_factor(parent_factor)
           old_to_new_factor_mapping[parent_factor.id] = new_factor
