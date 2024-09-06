@@ -20,7 +20,7 @@ module Communications
           end
 
           def magic_url
-            user.authenticated_sign_in_url
+            Utility::Url.add_query_params(user.authenticated_sign_in_url, params)
           end
 
           def magic_link

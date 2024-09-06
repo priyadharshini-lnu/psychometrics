@@ -50,5 +50,18 @@ module Utility
         generate(:shortened_url, id: unique_key)
       end
     end
+
+    def self.add_query_params(url, params = {})
+      query_params = params.slice('campaign_id', 'assessment_id')
+
+      return url if query_params.empty?
+
+      uri = URI.parse(url)
+      existing_query_params = Rack::Utils.parse_query(uri.query || '')
+      new_query_params = existing_query_params.merge(query_params)
+
+      uri.query = URI.encode_www_form(new_query_params)
+      uri.to_s
+    end
   end
 end

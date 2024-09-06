@@ -89,13 +89,18 @@ const FIELDS = [
     fields: [
       {
         name: 'Magic URL',
-        type: 'link',
-        value: '${u://User/Field/MagicURL}',
+        type: 'magic_url',
+        getValue: (campaignId, assessmentId) => (
+          `\${u://User/Field/MagicURL?campaign_id=${campaignId}&assessment_id=${assessmentId}}`
+        ),
       },
       {
         name: 'Magic Link',
-        type: 'link',
-        value: '${u://User/Field/MagicLink?text=Click here to login}',
+        type: 'magic_link',
+        getValue: (campaignId, assessmentId) => (
+          // eslint-disable-next-line max-len
+          `\${u://User/Field/MagicLink?campaign_id=${campaignId}&assessment_id=${assessmentId}&text=Click here to login}`
+        ),
       },
     ],
   },

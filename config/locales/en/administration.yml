@@ -2310,7 +2310,11 @@ en:
         sms_contacts: SMS Contacts
         subjects: Subjects
     piped_text_modal:
+      assessment_id: Assessment ID
+      campaign_id: Campaign ID
       join_link: Join Link
+      magic_link: Magic Link
+      magic_url: Magic URL
       profile_custom_field: Profile Custom Field
       title: Add Piped Text
     proctoring_sessions:

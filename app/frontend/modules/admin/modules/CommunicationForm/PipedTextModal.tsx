@@ -54,11 +54,14 @@ export const PipedTextModal: React.FC<Props> = ({ close, editorRef, communicatio
               {item.fields.map((field) => {
                 const Component = types[field.type]
                 return (
-                  <Component
-                    insert={insert}
-                    key={field.name}
-                    field={field}
-                  />
+                  <div key={field.name}>
+                    <Component
+                      insert={insert}
+                      key={field.name}
+                      field={field}
+                    />
+                    <br />
+                  </div>
                 )
               })}
             </Card>
