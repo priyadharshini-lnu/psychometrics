@@ -23,9 +23,10 @@ module Libraries
         ).to_a
 
         # Build breadcrumb
-        breadcrumbs = (folder.try(:path) || []).each do |f|
-          LibrarySerializer.new.serialize(f)
-        end
+        breadcrumbs = Panko::ArraySerializer.new(
+          folder.try(:path) || [],
+          each_serializer: LibrarySerializer
+        ).to_a
 
         { items: items, breadcrumbs: breadcrumbs }
       end
