@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react'
+import { Key, useEffect, useState } from 'react'
 import {
   Button,
   Flex,
   Form,
   Select,
+  Space,
   Tree,
   Typography,
 } from 'antd'
-import { SearchOutlined, ContainerOutlined, LoadingOutlined } from '@ant-design/icons'
+import {
+  SearchOutlined, ContainerOutlined, LoadingOutlined,
+} from '@ant-design/icons'
 import _ from 'lodash'
 import { useDebouncedCallback } from 'use-debounce'
 import { useResources } from '~/hooks/useResources'
@@ -195,9 +198,9 @@ const AdvancedSettingsForm = ({
     }
   }
 
-  const handleCheckForFactorsTree = (checkedKeys: string[]) => {
-    setCheckedFactors(checkedKeys)
-    handleFetchQuestions(checkedKeys, selectedAssessmentId)
+  const handleCheckForFactorsTree = ({ checked }: {checked: Key[], halfChecked: Key[]}) => {
+    setCheckedFactors(checked as string[])
+    handleFetchQuestions(checked as string[], selectedAssessmentId)
   }
 
   const handleFactorsExpand = (expandedKeys: string[]) => {
@@ -260,6 +263,17 @@ const AdvancedSettingsForm = ({
     } else {
       setCampaignTemplatesData(campaignTemplates)
     }
+  }
+
+  const handleFactorSelectAll = (checked, node: FactorForTree) => {
+    let newCheckedIds = checkedFactorsForFactorsTree.filter(
+      factorId => node.id !== factorId && !node.children.map(child => child.id).includes(factorId),
+    )
+    if (checked) {
+      newCheckedIds = [...checkedFactorsForFactorsTree, node.id, ...node.children.map(child => child.id)]
+    }
+    setCheckedFactors(newCheckedIds)
+    handleFetchQuestions(newCheckedIds, selectedAssessmentId)
   }
 
   const emptyRHS = (
@@ -382,7 +396,21 @@ const AdvancedSettingsForm = ({
               onExpand={handleFactorsExpand}
               expandedKeys={expandedKeysForFactorsTree}
               onCheck={handleCheckForFactorsTree}
+              titleRender={(node) => {
+                const checked = !checkedFactorsForFactorsTree.find(factorId => factorId === node.id)
+                return (node.children?.length > 0 ? (
+                  <Space size="large" className={styles.treeNode}>
+                    <span className={styles.treeLabel}>{node.title}</span>
+                    <a className={styles.treelink} onClick={() => handleFactorSelectAll(checked, node)}>
+                      {checked
+                        ? I18n.t('administration.common.select_all')
+                        : I18n.t('administration.common.unselect_all')}
+                    </a>
+                  </Space>
+                ) : node.title)
+              }}
               checkedKeys={checkedFactorsForFactorsTree}
+              checkStrictly
               treeData={selectedFactors}
             />
           </Flex>

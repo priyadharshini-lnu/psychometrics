@@ -2659,6 +2659,8 @@ en:
       next: Next
       reset: Reset
       save: Save
+      select_all: Select all
+      unselect_all: Unselect all
     communications:
       copy:
         error: 'Communication #%{id} was not copied.'
