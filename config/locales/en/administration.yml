@@ -335,6 +335,7 @@ en:
       map_norms: Map Norms
       menu:
         import_questions: Import Questions
+        managage_campaign_factors: Manage Campaign Factors
       new:
         header: New assessment
       preview: Assessment Preview

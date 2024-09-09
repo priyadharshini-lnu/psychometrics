@@ -30,6 +30,7 @@ export const TOGGLE_INSTRUCTIONS = 'builder/assessment/TOGGLE_INSTRUCTIONS'
 export const UPDATE_INSTRUCTIONS_CONTENT = 'builder/assessment/UPDATE_INSTRUCTIONS_CONTENT'
 export const UPDATE_LINKED_QUESTIONS = 'builder/assessment/UPDATE_LINKED_QUESTIONS'
 export const TOGGLE_ENABLE_SAVE = 'survey/assessment/TOGGLE_ENABLE_SAVE'
+export const SAVE_CAMPAIGN_FACTORS = 'builder/assessment/SAVE_CAMPAIGN_FACTORS'
 
 export const fetch = assessmentId => ({
   type: FETCH,
@@ -61,6 +62,7 @@ export const toggleEnableProgress = () => ({ type: TOGGLE_ENABLE_PROGRESS })
 export const toggleSingleQuestionPage = () => ({ type: TOGGLE_ENABLE_SINGLE_QUESTION })
 export const updateLinkedQuestions = (id, questions) => ({ type: UPDATE_LINKED_QUESTIONS, id, questions })
 export const toggleEnableSave = () => ({ type: TOGGLE_ENABLE_SAVE })
+export const saveCampaignFactors = data => ({ type: SAVE_CAMPAIGN_FACTORS, data })
 
 
 export const saveAssessment = (data) => {

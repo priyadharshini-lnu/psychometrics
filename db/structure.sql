@@ -491,7 +491,8 @@ CREATE TABLE public.assessments (
     external_settings jsonb DEFAULT '{}'::jsonb,
     linked_assessment_id integer,
     linked_questions json DEFAULT '{}'::json,
-    default_language character varying DEFAULT 'en'::character varying
+    default_language character varying DEFAULT 'en'::character varying,
+    campaign_factors_list jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -13830,6 +13831,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240904115105'),
 ('20240905041021'),
 ('20240904091820'),
 ('20240902131904'),
@@ -14525,4 +14527,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
