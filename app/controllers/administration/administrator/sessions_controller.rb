@@ -18,6 +18,7 @@ module Administration
       def after_sign_in_path_for(resource)
         stored_path_for_resource = stored_location_for(resource)
         return stored_path_for_resource if stored_path_for_resource.present?
+        return '/admin/clients' if resource.has_grant?(:clients, :view)
         return administration_dashboard_path if helpers.show_dashboard?
         return assessors_dashboard_path if resource.is?(:assessor)
 
