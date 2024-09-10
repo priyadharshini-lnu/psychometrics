@@ -84,7 +84,7 @@ namespace :activestorage do
   task rename_attributes: :environment do
     sql = <<-SQL.squish
       UPDATE active_storage_attachments
-      SET name = TRIM (leading 'as_' FROM name)
+      SET name = regexp_replace(name, '^as_', '')
     SQL
 
     ActiveRecord::Base.connection.execute(sql)

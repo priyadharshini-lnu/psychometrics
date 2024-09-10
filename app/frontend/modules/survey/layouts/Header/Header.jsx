@@ -33,8 +33,8 @@ export class Header extends Component {
   }
 
   openFlow = () => {
-    const { openFlow } = this.props
-    openFlow()
+    const { openFlow, assessment } = this.props
+    openFlow({ flow: assessment.flow })
   }
 
   createBlock = () => {

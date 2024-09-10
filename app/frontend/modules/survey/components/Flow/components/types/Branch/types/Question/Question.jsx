@@ -8,9 +8,11 @@ export class Question extends Component {
   }
 
   changeQuestionCondition = (cond) => {
-    const { condition } = this.props
-    Object.assign(condition, cond)
-    this.forceUpdate()
+    const {
+      model, onUpdate, index,
+    } = this.props
+    const conditions = model.props.conditions.map((c, i) => (i === index ? cond : c))
+    onUpdate({ ...model, props: { ...model.props, conditions } })
   }
 
   render () {
@@ -19,7 +21,7 @@ export class Question extends Component {
       <QuestionCondition
         questions={questions}
         onChange={this.changeQuestionCondition}
-        condition={condition}
+        condition={{ ...condition }}
       />
     )
   }

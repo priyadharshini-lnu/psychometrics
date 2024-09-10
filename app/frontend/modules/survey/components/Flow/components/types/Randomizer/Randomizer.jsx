@@ -11,10 +11,9 @@ class Randomizer extends Component {
   }
 
   changeField = (val) => {
-    const { model } = this.props
+    const { model, onUpdate } = this.props
     if (model.elements.length >= val) {
-      model.props.number = val
-      this.forceUpdate()
+      onUpdate({ ...model, props: { ...model.props, number: val } })
     }
   }
 

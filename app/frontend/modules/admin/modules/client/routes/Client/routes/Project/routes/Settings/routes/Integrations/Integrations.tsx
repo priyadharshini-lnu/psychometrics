@@ -145,13 +145,15 @@ const IntegrationsComponent: React.FC<Props> = ({
               render={integration => (
                 <Space size="middle">
                   {integration.name === 'mettl' && (
-                    <Tooltip title={I18n.t('administration.integrations.actions.load_mettl_catalog')}>
-                      <SyncOutlined onClick={handleMettlLoad} />
-                    </Tooltip>
+                    <>
+                      <Tooltip title={I18n.t('administration.integrations.actions.load_mettl_catalog')}>
+                        <SyncOutlined onClick={handleMettlLoad} />
+                      </Tooltip>
+                      <Tooltip title={I18n.t('administration.integrations.view_all_schedules')}>
+                        <EyeOutlined onClick={() => handleTabChange('integrations/mettl_schedule_records')} />
+                      </Tooltip>
+                    </>
                   )}
-                  <Tooltip title={I18n.t('administration.integrations.view_all_schedules')}>
-                    <EyeOutlined onClick={() => handleTabChange('integrations/mettl_schedule_records')} />
-                  </Tooltip>
                   <Tooltip title={I18n.t('common.actions.edit')}>
                     <EditOutlined onClick={() => openModal('IntegrationFormModal', { integration })} />
                   </Tooltip>

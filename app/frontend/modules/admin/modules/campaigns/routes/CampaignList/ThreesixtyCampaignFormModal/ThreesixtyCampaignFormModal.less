@@ -50,3 +50,27 @@
   padding: 16px;
   overflow: auto;
 }
+
+.treeNode {
+  .treeLabel {
+    display: inline-block;
+    min-width: 190px;
+  }
+
+  .treelink {
+    display: inline-block;
+    font-size: 0.8em;
+    white-space: nowrap;
+    text-align: right;
+    width: 63px;
+    opacity: 0;
+    transition: 0.4s;
+
+  }
+
+  &:hover {
+    .treelink {
+      opacity: 1;
+    }
+  }
+}

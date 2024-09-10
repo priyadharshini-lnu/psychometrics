@@ -21,17 +21,17 @@ module Reports
       }
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       broadcast :ok,
-                user: Reports::UserSerializer.new.serialize(user_report&.user || membership.user),
+                user: Reports::UserSerializer.new.serialize(user_report&.user || membership.user).to_json,
                 results: serialize_results.to_json,
                 data: ReportSerializer.new(
                   context: {
                     piped_text_context: piped_text_context, membership: membership,
                     module_overrides: user_report&.text_module_overrides
                   }
-                ).serialize(report),
+                ).serialize(report).to_json,
                 locales: translations(piped_text_context).to_json,
                 available_translations: available_translations,
-                campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }
+                campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json
     end
 
     def serialize_results

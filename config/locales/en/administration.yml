@@ -1299,6 +1299,8 @@ en:
       next: Next
       reset: Reset
       save: Save
+      select_all: Select all
+      unselect_all: Unselect all
     communications:
       create:
         successfully: Communication was created successfully.
@@ -2010,7 +2012,11 @@ en:
         sms_contacts: SMS Contacts
         subjects: Subjects
     piped_text_modal:
+      assessment_id: Assessment ID
+      campaign_id: Campaign ID
       join_link: Join Link
+      magic_link: Magic Link
+      magic_url: Magic URL
       profile_custom_field: Profile Custom Field
       title: Add Piped Text
     proctoring_sessions:

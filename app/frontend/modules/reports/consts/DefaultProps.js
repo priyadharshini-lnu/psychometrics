@@ -30,6 +30,7 @@ export default {
       width: 650,
       height: 200,
     },
+    sourceType: 'SimpleImage',
     style: {},
     url: '',
     zIndex: 3000,
