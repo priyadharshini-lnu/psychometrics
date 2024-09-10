@@ -20,6 +20,7 @@ import GraphicSlider, { GraphicSliderProperties } from './GraphicSlider'
 import { VideoResponse, VideoResponseProperties } from './VideoResponse'
 import FileUpload, { FileUploadProperties } from './FileUpload'
 import { AudioResponseProperties, AudioResponse } from './AudioResponse'
+import { FactorSelect, FactorSelectProperties } from './FactorSelect'
 import Previews from './Previews'
 
 const Modules = {
@@ -41,6 +42,7 @@ const Modules = {
   VideoResponse,
   FileUpload,
   AudioResponse,
+  FactorSelect,
 }
 
 const Scorings = {
@@ -70,6 +72,7 @@ const Properties = {
   VideoResponseProperties,
   FileUploadProperties,
   AudioResponseProperties,
+  FactorSelectProperties,
 }
 export {
   Modules, Previews, Properties, Scorings,

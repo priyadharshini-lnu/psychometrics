@@ -215,6 +215,13 @@ const DefaultProps = {
     questionText: 'Click to write the question text',
     duration: 10,
   },
+
+
+  FactorSelect: {
+    questionText: 'Click to write the question text',
+    type: 'Dropdown',
+    defaultValues: [],
+  },
 }
 
 export const TextEntryProps = {

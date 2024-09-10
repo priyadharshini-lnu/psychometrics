@@ -46,10 +46,27 @@ function FilterTable ({ filterId, model, questions }) {
   const getResults = () => {
     if (!ResultStore.realResults) return MOCK_RESULTS
 
+    if (question.type === 'FactorSelect') {
+      const answers = _.get(
+        ResultStore, ['results', model.assessment_id, 'resultsByFilter', filter.id, 'questions', question.id, 0],
+      )
+      if (!answers) return null
+
+      const assessment = AppStore.getAssessmentById(model.assessment_id)
+      const factors = AppStore.factors[assessment.dimensionId]
+
+      return _.compact(answers.map((id) => {
+        const factor = factors.find(f => f.id === id)
+        return factor?.name
+      }))
+    }
+
     const answers = _.get(
       ResultStore, ['results', model.assessment_id, 'resultsByFilter', filter.id, 'questions', question.id],
     )
+
     if (!answers) return null
+
     return _.compact(answers).map(answer => answer[0].value)
   }
 

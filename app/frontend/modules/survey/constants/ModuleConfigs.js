@@ -196,6 +196,15 @@ const ModuleConfigs = {
     icon: 'microphone',
     randomization: false,
   },
+
+  FactorSelect: {
+    moduleName: 'Factor Select',
+    icon: 'star-half-o',
+    validations: {
+      Dropdown: ['Least', 'Most', 'Range', 'Exact'],
+    },
+  },
+
 }
 
 export default ModuleConfigs

@@ -8,6 +8,7 @@ import GraphicSlider from './Selectors/GraphicSlider'
 import Captcha from './Selectors/Captcha'
 import StaticContent from './Selectors/StaticContent'
 import TextEntry from './Selectors/TextEntry'
+import FactorSelect from './Selectors/FactorSelect'
 
 export default {
   MultipleChoice,
@@ -20,4 +21,5 @@ export default {
   Captcha,
   StaticContent,
   TextEntry,
+  FactorSelect,
 }
