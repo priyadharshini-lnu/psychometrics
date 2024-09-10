@@ -7,16 +7,17 @@ module Threesixty
 
     def index
       result = participant.users_result
+      assessment = @campaign.assessment
+      authorize [:threesixty, assessment]
 
       piped_text_context = {
         evaluator: participant.evaluator,
         subject: participant.subject,
         threesixty_campaign: @campaign,
-        result: result
+        result: result,
+        assessment: assessment
       }
 
-      assessment = @campaign.assessment
-      authorize [:threesixty, assessment]
       @selected_locale = user_locale
       render json: AssessmentSerializer.new(
         context: {

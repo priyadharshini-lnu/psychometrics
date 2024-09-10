@@ -1871,6 +1871,9 @@ en:
       can_not_processed: can not be processed
       exists: already exists
       max_evaluators: you already have enough evaluators
+  factors:
+    description: Description
+    factor: Factor
   frontend:
     activate: Activate
     are_you_sure: Are you sure?

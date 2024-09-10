@@ -378,6 +378,9 @@ ar:
     module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
     module_props_error: حدث خطأ ما في هذه الوحدة.
     try_again: حاول مرة اخرى
+  factors:
+    description: الوصفx
+    factor: فئة الدرجات
   frontend:
     activate: تنشيط
     are_you_sure: هل أنت متأكد؟
