@@ -86,7 +86,11 @@ module CampaignScoring
         'zscore' => proc { |assessment_id, factor_id| assessment_factor_score(assessment_id, factor_id, 'zscore') },
         'percentage_answered' => proc { |assessment_id, factor_id|
           assessment_factor_score(assessment_id, factor_id, 'percentage')
-        }
+        },
+        'form_answer' => proc { |assessment_id, question_id, index_of_form_element|
+          form_answer(assessment_id, question_id, index_of_form_element)
+        },
+        'answer' => proc { |assessment_id, json_path| answer_from_json_path(assessment_id, json_path) }
       }
       lua.datasheet = {
         'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
@@ -110,6 +114,23 @@ module CampaignScoring
       return nil unless users_result
 
       users_result.scoring&.dig(factor_id.to_i.to_s, score_type)
+    end
+
+    def form_answer(assessment_id, question_id, index_of_form_element)
+      users_result = user_assessments[assessment_id.to_i]&.users_result
+      return nil unless users_result
+
+      answers = users_result.answers&.dig(question_id.to_s, 'answers')
+      return nil unless answers
+
+      answers.find { |answer| answer['index'] == index_of_form_element }&.dig('value')
+    end
+
+    def answer_from_json_path(assessment_id, json_path)
+      users_result = user_assessments[assessment_id.to_i]&.users_result
+      return nil unless users_result
+
+      JsonPath.new(json_path).on(users_result.answers).first
     end
 
     def campaign_scoring_variables_as_lua_table
