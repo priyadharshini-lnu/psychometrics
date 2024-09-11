@@ -9,7 +9,11 @@ import { getAllExternalAssessments } from './getAllExternalAssessments'
 
 const { I18n } = window
 
-export const HoganFields: React.FC<{ assessment: Assessment | undefined }> = ({ assessment }) => {
+export const HoganFields: React.FC<{
+  assessment: Assessment | undefined, handleAssessmentSelect(value: string): void
+}> = (
+  { assessment, handleAssessmentSelect },
+) => {
   useEffect(() => {
     fetch({ apiConfig: { filter: { type_eq: 'hogan' } } })
   }, [])
@@ -20,12 +24,19 @@ export const HoganFields: React.FC<{ assessment: Assessment | undefined }> = ({ 
     <>
       <Form.Item
         name={['externalSettings', 'assessmentId']}
-        label={I18n.t('assessments.column.external_settings.hogan_assessment_id')}
+        label={I18n.t('assessments.column.external_settings.hogan_assessment_name')}
         rules={[{ required: true }]}
       >
         <Select
           disabled={!!assessment}
           notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
+          onSelect={(value) => {
+            const selectedOption = externalAssessments.find(option => option.id === value)
+
+            if (selectedOption) {
+              handleAssessmentSelect(selectedOption.name)
+            }
+          }}
         >
           {getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>

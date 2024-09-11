@@ -844,13 +844,13 @@ en:
       enable_network_check: Enable Network Check
       enable_video_check: Enable Video Check
       external_settings:
-        hogan_assessment_id: Hogan Assessment ID
-        iiht_assessment_id: IIHT assessment ID
+        hogan_assessment_name: Hogan Assessment Name
+        iiht_assessment_name: IIHT assessment Name
         iiht_schedule_config: Schedule config
-        mettl_assessment_id: METTL assessment ID
-        pearson_assessment_id: Pearson assessment ID
+        mettl_assessment_name: METTL Assessment Name
+        pearson_assessment_name: Pearson Assessment Name
         pearson_norm_id: Pearson norm ID
-        saville_assessment_id: Saville assessment ID
+        saville_assessment_name: Saville assessment Name
     create: Create
     dashboard: Dashboard
     dictation:
