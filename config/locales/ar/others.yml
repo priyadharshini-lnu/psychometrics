@@ -74,7 +74,7 @@ ar:
       managers_dashboard_button: لوحة معلومات المدراء
       user_dashboard_button: لوحة معلومات المستخدم
     instructions:
-      begin_assessment: ابدأ التقييم
+      begin_assessment: ابدأ
       cancel: إلغاء
       default: هذا نشاط محدد بوقت ، بمجرد النقر فوق بدء التقييم ، سيكون لديك %{time} دقيقة لإكماله
       title: تعليمات
