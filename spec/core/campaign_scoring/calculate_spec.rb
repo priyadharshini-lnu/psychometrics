@@ -475,6 +475,23 @@ describe CampaignScoring::Calculate do
     expect(values[percentage].value).to eq(40)
   end
 
+  it 'can return lua table as calculated output' do
+    create(
+      :users_result, campaign: campaign, assessment: assessment,
+      subject: user, evaluator: user, status: :completed, score_calculated: true
+    )
+
+    score_and_label = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor, output_type: 'string',
+      factor_type: 'formula', formula: 'return { label = "Javascript", value = "Good" }'
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[score_and_label].value).to eq('Good')
+    expect(values[score_and_label].label).to eq('Javascript')
+  end
+
   it 'skip calculation of external score factor type' do
     create(
       :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,

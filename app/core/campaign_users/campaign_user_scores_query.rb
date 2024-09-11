@@ -66,8 +66,8 @@ module CampaignUsers
           SELECT * FROM crosstab(
             $$SELECT cu.user_id, cfv.campaign_factor_id::text,
               CASE
-                WHEN cf.output_type = 0 THEN cfv.numeric_value::text
-                ELSE cfv.string_value
+                WHEN cf.output_type = 0 THEN json_build_object('value', cfv.numeric_value::text, 'label', cfv.label)
+                ELSE json_build_object('value', cfv.string_value, 'label', cfv.label)
               END
              FROM campaign_users cu
              JOIN campaign_factor_values cfv ON cu.campaign_id = cfv.campaign_id AND cu.user_id = cfv.user_id

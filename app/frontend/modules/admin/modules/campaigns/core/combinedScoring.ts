@@ -53,6 +53,7 @@ export const CampaignScoresTR = t.type({
   campaignFactorValues: t.array(t.type({
     campaignFactorId: t.number,
     value: t.union([t.string, t.number, t.null]),
+    label: t.union([t.string, t.null, t.undefined]),
   })),
 })
 

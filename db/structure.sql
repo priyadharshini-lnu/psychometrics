@@ -1070,7 +1070,8 @@ CREATE TABLE public.campaign_factor_values (
     numeric_value double precision,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    calculation_type integer DEFAULT 0
+    calculation_type integer DEFAULT 0,
+    label character varying
 );
 
 
@@ -13837,6 +13838,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240902131904'),
 ('20240902112318'),
 ('20240830062230'),
+('20240903092308'),
 ('20240829113349'),
 ('20240827094045'),
 ('20240826085931'),

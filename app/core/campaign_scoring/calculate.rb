@@ -100,7 +100,9 @@ module CampaignScoring
         #{dependencies_as_lua_variable(campaign_factor)}
         #{campaign_factor.formula}
       )
-      LuaEvaluator.eval(lua_code, lua)
+      value = LuaEvaluator.eval(lua_code, lua)
+
+      value.is_a?(Lua::Table) ? value.to_hash.with_indifferent_access : value
     end
 
     def assessment_factor_score(assessment_id, factor_id, score_type)
@@ -143,22 +145,7 @@ module CampaignScoring
     end
 
     def validate_campaign_factor_value!(campaign_factor, factor_value)
-      return if factor_value == nil
-
-      if campaign_factor.string_output_type? && !factor_value.is_a?(String)
-        raise CampaignScoring::Exceptions::WrongOutputType,
-              "Expected factor value for '#{campaign_factor.code}' to be a string. Got #{factor_value.class.name}"
-      end
-
-      if factor_value.is_a?(Numeric) && factor_value.infinite?
-        raise CampaignScoring::Exceptions::WrongOutputType,
-              "Expected factor value for '#{campaign_factor.code}'. Got Infinity value"
-      end
-
-      if campaign_factor.numeric_output_type? && !factor_value.is_a?(Numeric)
-        raise CampaignScoring::Exceptions::WrongOutputType,
-              "Expected factor value for '#{campaign_factor.code}' to be a numeric. Got #{factor_value.class.name}"
-      end
+      CampaignScoring::CampaignFactorValueValidator.call!(campaign_factor, factor_value)
     end
 
     def campaign_factors_index_by_code
