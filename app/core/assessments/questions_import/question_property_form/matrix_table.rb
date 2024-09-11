@@ -10,6 +10,8 @@ module Assessments
         attribute :answersType, String
         attribute :choicesTexts, Array, default: []
         attribute :scalePointsTexts, Array, default: []
+        attribute :notApplicable, Boolean, default: false
+        attribute :notApplicableLabel, String, default: 'Not Applicable'
 
         validates :type, :answersType, presence: true
         validates :type, inclusion: { in: ['Likert'] }, if: -> { type.present? }

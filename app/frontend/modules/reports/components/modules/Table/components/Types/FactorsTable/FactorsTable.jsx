@@ -268,9 +268,9 @@ class FactorsTable extends Component {
         if (ResultStore.realResults) {
           for (let i = 0; i < conditions.length; i += 1) {
             conditionTitle = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
-              _.indexOf(module.textConditions, conditions[i]), 'title') || I18nStore.tFactorName(factor)
+              _.indexOf(module.textConditions, conditions[i]), 'title')
             conditionText = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
-              _.indexOf(module.textConditions, conditions[i]), 'text') || I18nStore.tFactor(factor, 'description')
+              _.indexOf(module.textConditions, conditions[i]), 'text')
             conditionStrengths = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
               _.indexOf(module.textConditions, conditions[i]), 'strengths')
             conditionBlindspots = _.invoke(conditions[i], 'getTextByCondition', normedOrRawMeanScore,
@@ -279,7 +279,11 @@ class FactorsTable extends Component {
               _.indexOf(module.textConditions, conditions[i]), 'label')
             conditionColor = _.invoke(conditions[i], 'getColorByCondition', normedOrRawMeanScore)
             conditionBaselineScore = _.invoke(conditions[i], 'getValueByCondition', normedOrRawMeanScore, 'baselineScore')
-            if (conditionText) { break }
+            if (conditionTitle || conditionText || conditionStrengths
+              || conditionBlindspots || conditionLabel || conditionColor
+              || conditionBaselineScore) {
+              break
+            }
           }
         } else {
           conditionText = factor.description
@@ -290,6 +294,8 @@ class FactorsTable extends Component {
           conditionBaselineScore = 3.5
         }
 
+        conditionTitle = conditionTitle ?? I18nStore.tFactorName(factor)
+        conditionText = conditionText ?? I18nStore.tFactor(factor, 'description')
         conditionColor = conditionColor ?? '#666666'
 
         const {

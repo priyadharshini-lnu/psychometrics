@@ -101,11 +101,19 @@ describe AdminJobs::ImportAssessmentQuestions do
     expect(q4.props['randomization']).to eq({ 'type' => 'No' })
     expect(q5.props['randomization']).to eq({ 'type' => 'Some', 'questions' => 1 })
     expect(q6.props['randomization']).to eq({ 'type' => 'All' })
+
+    expect(q4.props['notApplicable']).to eq(true)
+    expect(q5.props['notApplicable']).to eq(true)
+    expect(q6.props['notApplicable']).to eq(false)
+
+    expect(q4.props['notApplicableLabel']).to eq('N/A')
+    expect(q5.props['notApplicableLabel']).to eq('Not Applicable')
   end
 
   def verify_matrix_question(questions) # rubocop:disable Metrics/AbcSize
     q7 = questions.find { |q| q.name == 'Q7' }
     q8 = questions.find { |q| q.name == 'Q8' }
+    q10 = questions.find { |q| q.name == 'Q10' }
 
     expect(q7.type).to eq('MatrixTable')
     expect(q8.type).to eq('MatrixTable')
@@ -117,6 +125,11 @@ describe AdminJobs::ImportAssessmentQuestions do
     expect(q8.block.name).to eq('ETI')
     expect(q7.props['type']).to eq('Likert')
     expect(q8.props['type']).to eq('Likert')
+    expect(q7.props['notApplicable']).to eq(true)
+    expect(q8.props['notApplicable']).to eq(true)
+    expect(q10.props['notApplicable']).to eq(false)
+    expect(q7.props['notApplicableLabel']).to eq('N/A')
+    expect(q8.props['notApplicableLabel']).to eq('Not Applicable')
     expect(q7.props['choicesTexts']).to eq(%w[Commitment Agility])
     expect(q8.props['choicesTexts']).to eq(%w[Commitment Agility Resilience])
     expect(q7.props['scalePointsTexts']).to eq(['Does not Demonstrate',	'Sometimes Demonstrates',	'Often Demonstrates'])

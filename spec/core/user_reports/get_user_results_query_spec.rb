@@ -9,8 +9,9 @@ describe UserReports::GetUserResultsQuery do
   let(:user_report) { create(:user_report, report: report) }
   let(:campaign) { user_report.campaign }
   let(:user) { user_report.user }
+  let(:external_assessment) { create(:assessment, :hogan) }
 
-  it 'gets completed UsersResult for the UserReport from the campaign where UserReport is added' do
+  it 'gets completed and scored UsersResult for the UserReport from the campaign where UserReport is added' do
     completed_users_assessment = create(:user_assessment, :with_result, campaign: campaign,
       assessment: assessments[0], subject: user, evaluator: user, status: :completed, score_calculated: true)
     in_progress_users_assessment = create(:user_assessment, :with_result, campaign: campaign,
@@ -20,6 +21,19 @@ describe UserReports::GetUserResultsQuery do
 
     expect(users_results).to include(completed_users_assessment.users_result)
     expect(users_results).to_not include(in_progress_users_assessment.users_result)
+  end
+
+  it 'gets completed UsersResult for the UserReport from the campaign for external report' do
+    allow_any_instance_of(UserReport).to receive(:external_report?).and_return(true)
+
+    completed_users_assessment = create(:user_assessment, :with_result, campaign: campaign,
+      assessment: external_assessment, subject: user, evaluator: user, status: :completed)
+
+    report.update(assessments: [external_assessment])
+
+    users_results = described_class.new(user_report, :admin).query
+
+    expect(users_results).to include(completed_users_assessment.users_result)
   end
 
   it 'it picks up latest UsersResult from different campaign if UsersResult for particular
