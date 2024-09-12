@@ -11,7 +11,7 @@ module Administration
 
         required(:id).filled(:int?)
         required(:permissions).hash do
-          required(:update_additional_time).filled(:bool?)
+          required(:update_additional_time).maybe(:bool?)
           required(:update_norm).filled(:bool?)
           required(:update_mettl_schedule).filled(:bool?)
           required(:rescore_response).filled(:bool?)
@@ -32,7 +32,7 @@ module Administration
         required(:mettl_schedule_record_id).maybe(:str?)
         required(:norm_id).maybe(:int?)
         required(:additional_time).maybe(:int?)
-        required(:is_expired).filled(:bool?)
+        required(:is_expired).maybe(:bool?)
         required(:is_external).filled(:bool?)
         required(:has_external_norm).filled(:bool?)
         required(:schedule_time).maybe(:str?)

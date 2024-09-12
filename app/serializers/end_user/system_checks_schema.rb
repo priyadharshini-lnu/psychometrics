@@ -11,9 +11,9 @@ module EndUser
         required(:campaign_id).maybe(:int?)
         required(:transcribe_supported_locales).maybe(:array?).each(:str?)
         required(:checks).hash do
-          required(:video).filled(:bool?)
-          required(:audio).filled(:bool?)
-          required(:network).filled(:bool?)
+          required(:video).maybe(:bool?)
+          required(:audio).maybe(:bool?)
+          required(:network).maybe(:bool?)
         end
         required(:config).hash do
           required(:network).hash do
