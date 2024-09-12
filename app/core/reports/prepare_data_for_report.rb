@@ -20,7 +20,8 @@ module Reports
       }
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       broadcast :ok,
-                user: Reports::UserSerializer.new(user_report&.user || membership.user).to_json,
+                user: Reports::UserSerializer.new(user_report&.user || membership.user,
+                                                  campaign: user_report.campaign).to_json,
                 results: serialize_results.to_json,
                 data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership,
                                            module_overrides: user_report&.text_module_overrides).

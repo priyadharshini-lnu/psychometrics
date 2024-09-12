@@ -51,7 +51,13 @@ test('external scoring', () => {
 test('data sheet', () => {
     const res = new Result(190)
     res.init(results, user, filters)
-    expect(res.dataSheet).toStrictEqual({})
+    expect(res.dataSheet).toStrictEqual({
+        "No.": "3",
+        "Position": 3,
+        "Full Name": 3,
+        "Employee Number": 3,
+        "Competency 1 Score": 3
+    })
     expect(res.resultsByFilter[OTHER].dataSheet).toStrictEqual({
         "No.": "3",
         "Position": 3,

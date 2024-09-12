@@ -14,7 +14,7 @@ class UserReportSerializer < ActiveModel::Serializer
   has_many :user_report_events, each_serializer: UserReportEventSerializer
 
   def user
-    UserSerializer.new.serialize(object.user)
+    ::Reports::UserSerializer.new(object.user, campaign: object.campaign).to_h
   end
 
   def user_report_events
