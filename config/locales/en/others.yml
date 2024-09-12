@@ -3418,6 +3418,9 @@ en:
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
     text: Your response must not contain a numbers
+    title:
+      one: There is one error, please check your responses
+      other: There are %{count} errors, please check your responses
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
   'yes': 'Yes'

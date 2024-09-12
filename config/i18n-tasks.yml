@@ -123,6 +123,8 @@ ignore_unused:
   - 'administration'
   - 'checking_wizard.steps*'
   - 'assessments.actions.pending_tasks*'
+  - 'validations.title.*'
+
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:
