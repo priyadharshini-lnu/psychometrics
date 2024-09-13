@@ -158,8 +158,8 @@ class Report < ApplicationRecord
     @cloned_item = deep_clone(
       include: %i[assessments]
     )
-    @cloned_item.icon.attach(icon.blob) if icon.attached?
-    @cloned_item.poster.attach(poster.blob) if poster.attached?
+    @cloned_item.copy_and_upload(icon, :icon) if icon.attached?
+    @cloned_item.copy_and_upload(poster, :poster) if poster.attached?
     @cloned_item.gen_uniq_name
     @cloned_item
   end
