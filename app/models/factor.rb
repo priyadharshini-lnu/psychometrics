@@ -99,7 +99,7 @@ class Factor < ApplicationRecord
       kopy.icon.attach(original.icon.blob) if original.is_a?(Factor)
     end
     @cloned_factor.gen_uniq_name
-    @cloned_factor.icon = icon if icon.attached?
+    @cloned_factor.icon.attach(icon.blob) if icon.attached?
     @cloned_factor.save ? @cloned_factor : nil
   end
 

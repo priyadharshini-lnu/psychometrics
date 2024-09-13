@@ -267,8 +267,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   def clone
     @cloned_item = dup
     @cloned_item.gen_uniq_name
-    @cloned_item.icon = icon if icon.attached?
-    @cloned_item.poster = poster if poster.attached?
+    @cloned_item.icon.attach(icon.blob) if icon.attached?
+    @cloned_item.poster.attach(poster.blob) if poster.attached?
     @cloned_item
   end
 
