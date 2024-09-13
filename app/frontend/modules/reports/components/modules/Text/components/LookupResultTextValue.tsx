@@ -17,7 +17,7 @@ const LookupResultTextValue = {
         if (columnName) {
           const field = _.find(AppStore.report.dataSheetColumns, { name: columnName })
           if (!field) break
-          const text = _.get(ResultStore, ['results', model.assessment_id, 'dataSheet', columnName])
+          const text = _.get(ResultStore, ['user', 'datasheet', columnName])
 
           if (field.type === 'Number' && model.props.precision) {
             return parseFloat(text).toFixed(model.props.precision)

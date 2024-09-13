@@ -115,10 +115,10 @@ export default class Result<ExternalScoring = unknown> {
     campaignFactorResults: CampaignFactorResults = [],
   ): Result => {
     filters = this.addIndividualFilter(filters)
+    this.user = user
     _.each(filters, (filter: Filter) => {
       this.initResultsByFilter(results, filter)
     })
-    this.user = user
     this.rawResults = results
     this.userReportData = userReportData
     this.notFilteredResults = notFilteredResults
@@ -130,7 +130,7 @@ export default class Result<ExternalScoring = unknown> {
     this.questions = SetQuestions.run(this.rawResults)
     this.usersScoring = SetUsersScoring.run(this.rawResults)
     this.externalScoring = SetExternalScoring.run(this.rawResults)
-    this.dataSheet = SetDataSheet.run(this.rawResults)
+    this.dataSheet = SetDataSheet.run(this.user as {datasheet: object})
     this.campaignFactorResults = campaignFactorResults
     this.reportData = SetReportData.run(this.userReportData)
     this.groupedDataSheet = SetGroupedDataSheet.run(this.rawResults)
