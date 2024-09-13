@@ -418,25 +418,25 @@ providers:
     reports:
       - id: EcHPIDML
         name: HPI Data Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - HPI
       - id: EcHPILFPML
         name: HPI Potential Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - HPI
       - id: EcHPIINSRV2
         name: HPI Insight Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - HPI
       - id: EcHPIHDSMVPIFR
         name: Flash Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - HPI
@@ -444,31 +444,31 @@ providers:
           - MVPI
       - id: EcHDSDML
         name: HDS Data Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - HDS
       - id: EcHDSLFCML
         name: HDS Challenge Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - HDS
       - id: EcHDSINSRV2
         name: HDS Insight Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - HDS
       - id: EcMVPIDML
         name: MVPI Data Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - MVPI
       - id: EcMVPIINSRV2
         name: MVPI Insight Report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - MVPI
@@ -490,24 +490,24 @@ providers:
         language_id: en
         assessment_ids:
           - HBRIV1
-      - id:  EcHPIHDSMVPIBSML
+      - id: EcHPIHDSMVPIBSML
         name: Basis
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         suitability_id: Hogan - Leader
         assessment_ids:
           - HPI
           - HDS
           - MVPI
-      - id:  EcMVPILFVML
+      - id: EcMVPILFVML
         name: Values
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - MVPI
-      - id:  EcHPIHDSMVPIPESML
+      - id: EcHPIHDSMVPIPESML
         name: Summary
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         assessment_ids:
           - HPI
@@ -515,7 +515,7 @@ providers:
           - MVPI
       - id: EcEQHPIHDSEIR
         name: Hogan EQ report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         default_assessment_id: HPI
         assessment_ids:
@@ -523,7 +523,7 @@ providers:
           - HPI
       - id: EcHPIMVPILFR
         name: Hogan Leadership Focus report
-        norm_id: Global
+        norm_id: Global2023
         language_id: en
         default_assessment_id: HPI
         assessment_ids:

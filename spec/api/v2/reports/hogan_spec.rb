@@ -38,7 +38,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       parsed_response = JSON.parse(response.body)
       expect(response.status).to eq(201)
       expect(parsed_response['data']).to have_key('attributes')
-      expect(parsed_response.dig('data', 'attributes', 'external_settings', 'norm_id')).to eq('Global')
+      expect(parsed_response.dig('data', 'attributes', 'external_settings', 'norm_id')).to eq('Global2023')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'language_id')).to eq('en')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'report_id')).to eq('EcHPIDML')
     end

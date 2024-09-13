@@ -2273,7 +2273,8 @@ CREATE TABLE public.hogan_credentials (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
-    provider integer DEFAULT 0
+    provider integer DEFAULT 0,
+    norm character varying
 );
 
 
@@ -13832,13 +13833,14 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20240904115105'),
+('20240911121555'),
 ('20240905041021'),
+('20240904115105'),
 ('20240904091820'),
+('20240903092308'),
 ('20240902131904'),
 ('20240902112318'),
 ('20240830062230'),
-('20240903092308'),
 ('20240829113349'),
 ('20240827094045'),
 ('20240826085931'),
@@ -14529,3 +14531,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

@@ -44,6 +44,14 @@ describe Hogan::StartAssessment do
         expect(user_assessment.reload.status).to eq('in_progress')
       end
 
+      it 'sets the norm as Global2023' do
+        start_assessment.call
+
+        hogan_credential = HoganCredential.last
+
+        expect(hogan_credential.norm).to eq('Global2023')
+      end
+
       it 'creates hogan credentials' do
         start_assessment.call
 
