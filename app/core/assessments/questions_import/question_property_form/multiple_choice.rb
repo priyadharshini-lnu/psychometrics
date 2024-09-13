@@ -8,6 +8,8 @@ module Assessments
 
         attribute :type, String
         attribute :choicesTexts, Array, default: []
+        attribute :notApplicable, Boolean, default: false
+        attribute :notApplicableLabel, String, default: 'Not Applicable'
 
         validates :type, presence: true
         validates :type, inclusion: { in: %w[SingleAnswer MultipleAnswer Dropdown] }, if: -> { type.present? }

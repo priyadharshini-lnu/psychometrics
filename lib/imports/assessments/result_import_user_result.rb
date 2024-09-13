@@ -75,7 +75,7 @@ module Imports
             next
           end
 
-          user_result ||= find_user_result(data['subject_email'])
+          user_result ||= find_user_result(data)
 
           next unless user_result
 
@@ -150,16 +150,29 @@ module Imports
 
       private
 
-      def find_user_result(email)
-        user = Users::Regular.find_by(email: email.to_s.downcase, project_id: campaign.project_id)
-        unless user
+      def find_user_result(data)
+        subject = Users::Regular.find_by(email: data['subject_email'].to_s.downcase, project_id: campaign.project_id)
+        unless subject
           errors.add(
             :base,
-            I18n.t('administration.imports.errors.result.user.record_not_found', email: email)
+            I18n.t('administration.imports.errors.result.user.record_not_found', email: data['subject_email'])
           )
           return
         end
-        user_assessment = find_user_assessments(user)
+
+        if data['relationship'] == 'Assessor'
+          evaluator = User.find_by(email: data['evaluator_email'].to_s.downcase, project_id: nil)
+          unless evaluator
+            errors.add(
+              :base,
+              I18n.t('administration.imports.errors.result.user.record_not_found', email: data['evaluator_email'])
+            )
+            return
+          end
+        else
+          evaluator = subject
+        end
+        user_assessment = find_user_assessments(subject, evaluator)
 
         unless user_assessment
           errors.add(
@@ -175,10 +188,10 @@ module Imports
         user_assessment.users_result || user_assessment.users_result.new
       end
 
-      def find_user_assessments(user)
+      def find_user_assessments(subject, evaluator)
         UserAssessment.find_by(
-          subject_id: user.id,
-          evaluator_id: user.id,
+          subject: subject,
+          evaluator: evaluator,
           campaign_id: campaign.id,
           assessment_id: assessment.id
         )

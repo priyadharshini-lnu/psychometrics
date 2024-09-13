@@ -11,36 +11,56 @@ module UserReports
 
     def query
       assessment_ids = user_report.report.assessment_ids
-      user_assessments = UserAssessment.
-                         scored.
-                         where(
-                           assessment_id: assessment_ids,
-                           subject_id: user_report.user_id
-                           # Disabling this condition for the assessor form to work in the report
-                           # evaluator_id: user_report.user_id,
-                         ).order(completed_at: :desc)
+      user_assessments = fetch_user_assessments(assessment_ids)
+
+      user_assessments = user_assessments.scored unless user_report.external_report?
+
       if view_report_as == :lead_assessor
-        lead_form = UserAssessments::GetLeadUserAssessmentForSubject.call!(user_report.campaign, user_report.user)
-        if lead_form.present? && assessment_ids.include?(lead_form.assessment_id)
-          user_assessments = user_assessments.or(
-            UserAssessment.where(campaign_id: user_report.campaign_id, assessment_id: lead_form.assessment_id,
-                                 status: :in_progress, subject_id: user_report.user_id)
-          )
-        end
+        user_assessments = include_lead_assessor_form(user_assessments, assessment_ids)
       end
 
-      user_assessments = user_assessments.each_with_object({}) do |ua, hash|
+      user_assessments = filter_campaign_user_assessments(user_assessments)
+
+      UsersResult.where(id: user_assessments.map(&:users_result_id))
+    end
+
+    private
+
+    def fetch_user_assessments(assessment_ids)
+      UserAssessment.where(
+        assessment_id: assessment_ids,
+        subject_id: user_report.user_id,
+        status: :completed
+        # Disabling this condition for the assessor form to work in the report
+        # evaluator_id: user_report.user_id,
+      ).order(completed_at: :desc)
+    end
+
+    def include_lead_assessor_form(user_assessments, assessment_ids)
+      lead_form = UserAssessments::GetLeadUserAssessmentForSubject.call!(user_report.campaign, user_report.user)
+      if lead_form.present? && assessment_ids.include?(lead_form.assessment_id)
+        user_assessments.or(
+          UserAssessment.where(
+            campaign_id: user_report.campaign_id,
+            assessment_id: lead_form.assessment_id,
+            status: :in_progress,
+            subject_id: user_report.user_id
+          )
+        )
+      else
+        user_assessments
+      end
+    end
+
+    def filter_campaign_user_assessments(user_assessments)
+      user_assessments.each_with_object({}) do |ua, hash|
         next if campaign_user_assessment_ids.include?(ua.assessment_id) && ua.campaign_id != user_report.campaign_id
 
         next hash[ua.assessment_id] = ua unless hash[ua.assessment_id]
 
         next hash[ua.assessment_id] = ua if ua.campaign_id == user_report.campaign_id
       end.values
-
-      UsersResult.where(id: user_assessments.map(&:users_result_id))
     end
-
-    private
 
     def campaign_user_assessment_ids
       UserAssessment.where(

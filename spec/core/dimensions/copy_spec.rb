@@ -32,7 +32,7 @@ describe Dimensions::Copy do
   end
 
   it "doesn't copy same factor twice" do
-    new_dimension = described_class.call!(dimension, factors.map(&:id), client)[:new_dimension]
+    new_dimension = described_class.call!(dimension, factors.map(&:id) + [parent_factor.id], client)[:new_dimension]
     parent_factor_count = new_dimension.all_factors.where(name: parent_factor.name).count
 
     expect(parent_factor_count).to eq(1)

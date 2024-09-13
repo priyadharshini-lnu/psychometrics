@@ -11,14 +11,21 @@ describe Factors::Copy do
   end
 
   it 'duplicates factor' do
-    expect { described_class.call!(factor) }.to change { Factor.count }.by(2)
+    expect { described_class.call!(factor, {}, [parent_factor.id]) }.to change { Factor.count }.by(2)
     factors_count = factor.dimension.factors.where(name: 'sub_factor').count
 
     expect(factors_count).to eq(2)
   end
 
-  it 'duplicates ancestor factors' do
-    expect { described_class.call!(factor) }.to change { Factor.count }.by(2)
+  it 'do not duplicates ancestor factors' do
+    expect { described_class.call!(factor) }.to change { Factor.count }.by(1)
+    factors_count = factor.dimension.factors.where(name: 'parent_factor').count
+
+    expect(factors_count).to eq(1)
+  end
+
+  it 'duplicates ancestor factors only if passed id' do
+    expect { described_class.call!(factor, {}, [parent_factor.id]) }.to change { Factor.count }.by(2)
     factors_count = factor.dimension.factors.where(name: 'parent_factor').count
 
     expect(factors_count).to eq(2)

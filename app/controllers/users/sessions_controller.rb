@@ -9,8 +9,13 @@ module Users
     after_action :redirect_to_return_url, only: [:new]
     skip_before_action :ensure_user_profile_completed, only: [:destroy]
     after_action :set_user_flash_message, only: [:create]
+    after_action :set_return_url_for_redirect, only: [:new]
 
     private
+
+    def set_return_url_for_redirect
+      store_location_for(:user, params[:return_url]) if params[:return_url].present?
+    end
 
     def set_user_flash_message
       flash[:notice] = I18n.t('devise.sessions.signed_in')

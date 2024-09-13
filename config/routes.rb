@@ -820,6 +820,7 @@ Rails.application.routes.draw do
           get :join_with_code
           get :join_with_token
         end
+        get 'assessments/:assessment_id', to: 'users#redirect_to_user_assessment', as: :campaign_assessment
 
         get :insights
         put :reset_practice_campaign

@@ -9,9 +9,7 @@ export default {
   },
 
   getDataSheet () {
-    // TODO: remove datasheets relation on results
-    const assessment = _.first(AppStore.assessments)
-    return ResultStore.results[assessment.id].dataSheet
+    return ResultStore.user.datasheet
   },
 
   getAssessments () {
