@@ -528,6 +528,37 @@ describe CampaignScoring::Calculate do
     expect(values[skill_score_from_json_path].value).to eq(2.2)
   end
 
+  it 'can fetch user feedback results from user assessment' do
+    answers = {}
+    answers[question.id.to_s] = { 'dirty' => false,
+                                  'answers' => [
+                                    { 'code' => 'code1', 'value' => 'Good' },
+                                    { 'code' => 'code2' }
+                                  ] }
+
+    create(
+      :users_result, campaign: campaign, assessment: assessment,
+      answers: answers, subject: user, evaluator: user, status: :completed, score_calculated: true
+    )
+
+    feedback_question1 = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula', output_type: 'string',
+      formula: "return assessment.campaign_feedback_answer(#{assessment.id}, #{question.id}, 'code1')"
+    )
+
+    feedback_question2 = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula', output_type: 'string',
+      formula: "return assessment.campaign_feedback_answer(#{assessment.id}, #{question.id}, 'code2')"
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[feedback_question1].value).to eq('Good')
+    expect(values[feedback_question2].value).to eq(nil)
+  end
+
   it 'skip calculation of external score factor type' do
     create(
       :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
