@@ -29,7 +29,7 @@ module Reports
     end
 
     def user
-      UserSerializer.new.serialize(object.evaluator)
+      UserSerializer.new(context: { campaign: campaign }).serialize(object.evaluator)
     end
 
     def user_id
