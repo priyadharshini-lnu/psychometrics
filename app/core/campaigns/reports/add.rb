@@ -41,6 +41,8 @@ module Campaigns
             assessment_params = form.assessment_map[assessment.id] || {}
             attrs = { assessment: assessment, norm_id: assessment_params[:norm_id] }
             attrs[:external_norm_id] = assessment.external_settings[:norm_id] if assessment.has_external_norm?
+            attrs[:mettl_schedule_record_id] = default_mettl_schedule_record_id(assessment) if assessment.mettl?
+
             camapign_assessment = campaign.campaign_assessments.
                                   create_with(attrs).find_or_create_by!(assessment: assessment)
             AuditLogModule.audit!(
@@ -97,6 +99,10 @@ module Campaigns
                       end
 
         assessments.reject { |a| Assessment::NON_USER_ASSESSMENT_CATEGORY.include?(a.category) }
+      end
+
+      def default_mettl_schedule_record_id(assessment)
+        MettlScheduleRecord.parent_schedules.find_by(assessment_id: assessment.id)&.id
       end
     end
   end

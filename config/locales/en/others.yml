@@ -1216,10 +1216,16 @@ en:
       assessment_name: Assessment name
       assessor_form: Assessor Form
       auto_assign: Auto Assign
+      dimension_id: Dimension ID
+      id: Campaign Assessment ID
       locales: Locales
       norm: Norm
+      norm_id: Norm ID
       prework: Prework
       universal_link: Universal link
+    drawer:
+      mettl_schedule_name: Mettl Schedule Name
+      title: Assessment Details
     messages:
       export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
       export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
@@ -1273,7 +1279,6 @@ en:
       update_mettl_schedule:
         select_schedule: Select Schedule
         success_msg: Mettl Schedule were updated successfully
-        title: Update Mettl Schedule
         update: Update
       update_norm:
         apply: Apply this change to existing users in this campaign
@@ -3221,6 +3226,14 @@ en:
       export_reports_and_assessments: Export Reports and Assessments
       import: Import Users
       import_reports: Import Reports and Assessments
+  user_assessment:
+    column:
+      dimension_id: Dimension ID
+      id: User Assessment ID
+      norm_id: Norm ID
+    drawer:
+      mettl_schedule_name: Mettl Schedule Name
+      title: Assessment Details
   user_assessments:
     modals:
       actions:

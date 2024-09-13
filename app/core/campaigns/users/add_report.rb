@@ -103,12 +103,12 @@ module Campaigns
           completion_reason: existing_result&.completion_reason,
           require_scheduling: campaign_assessment&.require_scheduling&.present?
         )
-        create_external_user_assessment_record(user_assessment, assessment, existing_result)
+        create_external_user_assessment_record(user_assessment, assessment, existing_result, campaign_assessment)
 
         user_assessment
       end
 
-      def create_external_user_assessment_record(user_assessment, assessment, existing_result)
+      def create_external_user_assessment_record(user_assessment, assessment, existing_result, campaign_assessment)
         if assessment.saville?
           create_saville_assessment(user_assessment, existing_result)
         elsif assessment.pearson?
@@ -116,7 +116,7 @@ module Campaigns
         elsif assessment.iiht?
           create_iiht_assessment(user_assessment)
         elsif assessment.mettl?
-          create_mettl_assessment(user_assessment, existing_result)
+          create_mettl_assessment(user_assessment, existing_result, campaign_assessment)
         end
       end
 
@@ -141,11 +141,11 @@ module Campaigns
         user_assessment.create_iiht_user_assessment
       end
 
-      def create_mettl_assessment(user_assessment, existing_result)
+      def create_mettl_assessment(user_assessment, existing_result, campaign_assessment)
         existing_mettl_user_assessment = existing_result&.mettl_user_assessment
         user_assessment.create_mettl_user_assessment(
           email: existing_mettl_user_assessment&.url,
-          mettl_schedule_record_id: existing_mettl_user_assessment&.mettl_schedule_record_id,
+          mettl_schedule_record_id: existing_mettl_user_assessment&.mettl_schedule_record_id || campaign_assessment.mettl_schedule_record_id, # rubocop:disable Layout/LineLength
           url: existing_mettl_user_assessment&.url
         )
       end

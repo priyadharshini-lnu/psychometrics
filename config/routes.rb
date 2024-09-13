@@ -1166,7 +1166,7 @@ Rails.application.routes.draw do
             end
 
             jsonapi_resources :registration_settings, only: %i[index update]
-            jsonapi_resources :mettl_schedule_records, only: %i[index create update destroy]
+            jsonapi_resources :mettl_schedule_records
 
             jsonapi_resources :assessments do
               scope module: :assessments do
