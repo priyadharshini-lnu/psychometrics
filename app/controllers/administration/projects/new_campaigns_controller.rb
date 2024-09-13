@@ -28,9 +28,9 @@ module Administration
                         ransack(params[:filters]).
                         result.
                         includes(
-                          :project, :threesixty_campaign,
-                          assessments: { icon_attachment: :blob },
-                          reports: { icon_attachment: :blob }
+                          :project, :threesixty_campaign, :campaign_options,
+                          assessments: [:translations, { icon_attachment: { blob: :variant_records } }],
+                          reports: { icon_attachment: { blob: :variant_records } }
                         )
 
             serialized_campaigns = Panko::ArraySerializer.new(
