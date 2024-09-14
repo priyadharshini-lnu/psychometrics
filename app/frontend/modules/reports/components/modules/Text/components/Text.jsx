@@ -344,7 +344,9 @@ class Text extends Component {
         styles = model.getStylesByCondition()
       }
       if (styles) {
-        [style, outerStyle] = this.buildStyles(joinStyles(reportStyles, styles.styleIds), styles)
+        [style, outerStyle] = this.buildStyles(
+          joinStyles(reportStyles, styles.styleIds), { ...model.props.style, ...styles },
+        )
       }
     }
 

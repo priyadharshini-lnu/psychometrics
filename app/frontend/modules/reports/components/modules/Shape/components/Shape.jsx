@@ -54,7 +54,9 @@ const Shape = (props) => {
   if (module.textConditions.length > 0) {
     const styles = module.getStylesByCondition()
     if (styles) {
-      [style, outerStyle] = buildeStyles(joinStyles(reportStyles, styles.styleIds), styles)
+      [style, outerStyle] = buildeStyles(
+        joinStyles(reportStyles, styles.styleIds), { ...module.props.style, ...styles },
+      )
     }
   }
 
