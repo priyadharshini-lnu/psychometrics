@@ -3195,8 +3195,22 @@ en:
     yourself: Yourself
   time:
     formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: DD/MM/YYYY hh:mm A
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
       datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: DD/MM/YYYY
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
     active: Active
     allow_multiple_respones: Allow users to submit multiple responses
