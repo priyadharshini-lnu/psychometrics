@@ -10,7 +10,7 @@ import { APIKeysFilter } from './APIKeysFilter'
 const APIKeysList: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedApiKey, setSelectedApiKey] = useState<APIKey>()
-  const { adminId } = useParams<{ adminId: string }>()
+  const { adminId } = useParams() as { adminId: string }
   const config = {
     trackUrl: true,
     responseType: APIKeyTR,

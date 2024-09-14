@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Resource } from '~/modules/admin/components/Resource'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { ReportTable } from './ReportTable'
@@ -11,9 +12,12 @@ import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
 
 const { I18n } = window
 
-export const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
+const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
   const [drawerReport, setDrawerReport] = useState<Report | undefined>()
   const [closed, closeModal] = useState(true)
+  const [params] = useSearchParams()
+
+  const assessmentId = params.get('filter[assessments_id_in]')
   const config = {
     trackUrl: true,
     responseType: ReportTR,
@@ -21,7 +25,10 @@ export const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
       include: ['assessments', 'owner'],
       fields: { assessments: ['name', 'type'] },
       include_resource_meta: ['permissions'],
-      filter: { with_resource_state: reportTab },
+      filter: {
+        with_resource_state: reportTab,
+        ...(assessmentId ? { assessments_id_in: assessmentId } : {}),
+      },
     },
   }
 
@@ -54,3 +61,5 @@ export const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
     </>
   )
 }
+
+export default ReportList

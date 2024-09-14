@@ -1,17 +1,23 @@
 .block{
-  border: 1px solid #CCC;
   margin: 15px 0 0;
-  border-radius: 0;
-  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.2)
+  border-radius: 2px;
+  box-shadow: 0 1px 2px -1px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+
+  :global {
+    .ant-collapse-content-box {
+      padding: 0 !important;
+    }
+  }
 }
 
 .header{
   display: flex;
-  align-items: center;
+  align-items: center !important;
   background: linear-gradient(to bottom, #F2F2F2, #ECECEC);
-  border-bottom: 1px solid #CCC;
   justify-content: space-between;
-  padding: 5px;
 
   .expander{
     display: flex;
@@ -53,11 +59,6 @@
   width: 14px;
   margin-right: 5px;
 
-}
-
-.menu {
-  left: -323px !important;
-  top: 30px !important;
 }
 
 .content{
@@ -122,4 +123,20 @@
       margin-right: 63px;
     }
   }
+}
+
+.createQuestion {
+  display: flex;
+
+  .left {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 1px solid #ccc;
+  }
+
+  .right {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
 }

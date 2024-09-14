@@ -89,7 +89,7 @@ class Properties extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, reportStlyes } = this.props
     return (
       <div>
         <div className={styles.title}>Graph Options</div>
@@ -146,7 +146,7 @@ class Properties extends Component {
         </div>
         <hr className={styles.divider} />
         <div className="margin-top-10">Font</div>
-        <PropertyFonts model={model} />
+        <PropertyFonts model={model} reportStlyes={reportStlyes} />
         <div style={{ position: 'relative' }}>
           <div className="margin-top-10">Colors</div>
           <ColorSet model={model} />

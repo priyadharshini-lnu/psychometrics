@@ -2,6 +2,8 @@
 
 module AdminJobs
   class ExternalAssessmentExport < BaseExportXlsx
+    HAS_CSV_EXPORT = ['mettl'].freeze
+
     def valid?
       campaign.present? && assessment.present?
     end
@@ -17,7 +19,19 @@ module AdminJobs
       [[I18n.t('common.model.assessment'), file_link || assessment.name]]
     end
 
+    def call
+      return external_csv_export if HAS_CSV_EXPORT.include?(assessment.category)
+
+      super
+    end
+
     private
+
+    def external_csv_export
+      if assessment.mettl?
+        ::AdminJobs::MettlResultExport.call!(job_record)
+      end
+    end
 
     def xlsx
       if assessment.mindmill?

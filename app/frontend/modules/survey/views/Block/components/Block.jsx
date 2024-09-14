@@ -1,8 +1,9 @@
 import { Component, createRef } from 'react'
 import PropTypes from 'prop-types'
-import { Input } from 'antd'
+import {
+  Input, Dropdown, Collapse, Button,
+} from 'antd'
 import _ from 'lodash'
-import { DropdownButton, MenuItem } from 'react-bootstrap'
 import QuestionList from '~/modules/survey/views/QuestionList'
 import BlockModel from '~/modules/survey/models/Block'
 import InlineEditor from '~/modules/survey/components/InlineEditor'
@@ -24,7 +25,6 @@ class Block extends Component {
     super(props)
     this.questionContentRef = createRef(null)
     this.state = {
-      opened: true,
       showPrompt: false,
       showDeleteConfirmation: false,
       search: '',
@@ -91,8 +91,12 @@ class Block extends Component {
   }
 
   questionRandomization = () => {
-    const { model, openRandomization } = this.props
-    openRandomization({ id: model.id, entityName: 'question' })
+    const {
+      model, openRandomization, enableSingleQuestionPage, toggleSingleQuestionPage,
+    } = this.props
+    openRandomization({
+      id: model.id, entityName: 'question', enableSingleQuestionPage, toggleSingleQuestionPage,
+    })
   }
 
   blockSettings = () => {
@@ -127,70 +131,79 @@ class Block extends Component {
 
   isTemplate = model => model.templateId || model.saveAsTemplate
 
-  renderAddToTemplate () {
+  addToTemplateItem () {
     const { model } = this.props
     if (!model.templateId) {
-      return (
-        <MenuItem onSelect={this.saveAsTemplate}>
-          <span className={`icon fa fa-floppy-o ${styles.menuicon}`} />
-          Save as a Template
-        </MenuItem>
-      )
+      return [{
+        key: 'save_as_template',
+        icon: <span className={`icon fa fa-floppy-o ${styles.menuicon}`} />,
+        label: 'Save as a Template',
+        onClick: this.saveAsTemplate,
+      }]
     }
+    return []
   }
 
   renderOptions () {
     const { model } = this.props
     return (
-      <DropdownButton
-        onClick={e => e.stopPropagation(e)}
-        className={styles.dropdown}
-        bsStyle="default"
-        title={(
-          <span>
-            <span className="icon fa fa-gear" />
-            Block Options
-          </span>
-        )}
-        id={`block_menu_${model.id}`}
+      <Dropdown
+        trigger={['click']}
+        menu={{
+          items: [
+            {
+              key: 'background_settings',
+              icon: <span className={`icon fa fa-picture-o ${styles.menuicon}`} />,
+              label: 'Background Settings...',
+              onClick: this.blockSettings,
+            },
+            {
+              key: 'question_randomization',
+              icon: <span className={`icon fa fa-random ${styles.menuicon}`} />,
+              label: 'Randomization...',
+              onClick: this.questionRandomization,
+            },
+            {
+              key: 'copy',
+              icon: <span className={`icon fa fa-copy ${styles.menuicon}`} />,
+              label: 'Copy Block...',
+              onClick: this.copy,
+            },
+            ...(model.props.staticContent ? [{
+              key: 'remove_static_content',
+              icon: <span className={`icon fa fa-trash ${styles.menuicon}`} />,
+              label: 'Remove Static Content',
+              onClick: this.removeStaticContent,
+            }] : [{
+              key: 'add_static_content',
+              icon: <span className={`icon fa fa-list-alt ${styles.menuicon}`} />,
+              label: 'Add Static Content',
+              onClick: this.addStaticContent,
+            }]),
+            {
+              key: 'move_up',
+              icon: <span className={`icon fa fa-arrow-up ${styles.menuicon}`} />,
+              label: 'Move Up...',
+              onClick: this.moveUp,
+            },
+            {
+              key: 'move_down',
+              icon: <span className={`icon fa fa-arrow-down ${styles.menuicon}`} />,
+              label: 'Move Down...',
+              onClick: this.moveDown,
+            },
+            {
+              key: 'delete',
+              icon: <span className={`icon fa fa-trash ${styles.menuicon}`} />,
+              label: 'Delete Block...',
+              onClick: model.templateId ? this.openConfirmation : this.remove,
+            },
+            ...this.addToTemplateItem(),
+          ],
+        }}
       >
-        <MenuItem onSelect={this.blockSettings}>
-          <span className={`icon fa fa-picture-o ${styles.menuicon}`} />
-          Background Settings...
-        </MenuItem>
-        <MenuItem onSelect={this.questionRandomization}>
-          <span className={`icon fa fa-random ${styles.menuicon}`} />
-          Question Randomization...
-        </MenuItem>
-        <MenuItem onSelect={this.copy}>
-          <span className={`icon fa fa-copy ${styles.menuicon}`} />
-          Copy Block...
-        </MenuItem>
-        {model.props.staticContent ? (
-          <MenuItem onSelect={this.removeStaticContent}>
-            <span className={`icon fa fa-trash ${styles.menuicon}`} />
-            Remove Static Content
-          </MenuItem>
-        ) : (
-          <MenuItem onSelect={this.addStaticContent}>
-            <span className={`icon fa fa-list-alt ${styles.menuicon}`} />
-            Add Static Content
-          </MenuItem>
-        )}
-        <MenuItem onSelect={this.moveUp}>
-          <span className={`icon fa fa-arrow-up ${styles.menuicon}`} />
-          Move Up...
-        </MenuItem>
-        <MenuItem onSelect={this.moveDown}>
-          <span className={`icon fa fa-arrow-down ${styles.menuicon}`} />
-          Move Down...
-        </MenuItem>
-        <MenuItem onSelect={model.templateId ? this.openConfirmation : this.remove}>
-          <span className={`icon ${styles.menuicon}`} />
-          Delete Block...
-        </MenuItem>
-        {this.renderAddToTemplate()}
-      </DropdownButton>
+        <Button icon={<span className="icon fa fa-gear" />}>Block Options</Button>
+      </Dropdown>
     )
   }
 
@@ -225,61 +238,71 @@ class Block extends Component {
   render () {
     const { model, first } = this.props
     const {
-      opened, showPrompt, showDeleteConfirmation, search,
+      showPrompt, showDeleteConfirmation, search,
     } = this.state
-
-    const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
-      <div className={styles.block}>
-        <div className={styles.header}>
-          <div className={styles.expander}>
-            <span onClick={this.expand} className={iconClass} />
-            <InlineEditor value={model.name} onChange={this.changeName} />
-          </div>
-          {model.questions.length > 100 && (
-            <div className={styles.search}>
-              <Input.Search
-                placeholder="type to search question"
-                className={styles.input}
-                onChange={e => this.setState({ search: e.currentTarget.value })}
-                allowClear
-              />
+      <Collapse
+        className={styles.block}
+        defaultActiveKey={[model.id]}
+          // onChange={onChange}
+        items={[{
+          key: model.id,
+          label: (
+            <div className={styles.header}>
+              <div className={styles.expander}>
+                <InlineEditor value={model.name} onChange={this.changeName} />
+              </div>
+              {model.questions.length > 100 && (
+                <div className={styles.search}>
+                  <Input.Search
+                    placeholder="type to search question"
+                    className={styles.input}
+                    onChange={e => this.setState({ search: e.currentTarget.value })}
+                    allowClear
+                  />
+                </div>
+              )}
+              <div>
+                {this.renderRandomLabel()}
+                <div className={styles.options}>{this.renderOptions()}</div>
+              </div>
             </div>
-          )}
-          <div>
-            {this.renderRandomLabel()}
-            <div className={styles.options}>{this.renderOptions()}</div>
-          </div>
-
-        </div>
-        {this.isTemplate(model) && this.renderTemplateWarning()}
-        {(model.props.staticContent) && <StaticContent model={model} />}
-        <div
-          ref={first ? this.questionContentRef : undefined}
-          className={[styles.content]}
-          style={{ display: opened ? 'block' : 'none' }}
-        >
-          <QuestionList block={model} search={search} />
-          <Footer {...this.props} onMinimize={this.expand} />
-        </div>
-        <Prompt
-          title={`Copy Block - ${model.name}`}
-          show={showPrompt}
-          onConfirm={this.confirm}
-          onCancel={this.cancel}
-        >
-          <h4>Please type a brief name / description for the new block:</h4>
-        </Prompt>
-        {model.templateId && (
-          <Confirmation
-            show={showDeleteConfirmation}
-            onConfirm={this.remove}
-            onCancel={this.onCancelConfirm}
-          >
-            <p>Are you sure you want to remove? (with template)</p>
-          </Confirmation>
-        )}
-      </div>
+          ),
+          headerClass: styles.header,
+          className: styles.content,
+          collapsible: 'icon',
+          children: (
+            <>
+              {this.isTemplate(model) && this.renderTemplateWarning()}
+              {(model.props.staticContent) && <StaticContent model={model} />}
+              <div
+                ref={first ? this.questionContentRef : undefined}
+                className={[styles.content]}
+              >
+                <QuestionList block={model} search={search} />
+                <Footer {...this.props} onMinimize={this.expand} />
+              </div>
+              <Prompt
+                title={`Copy Block - ${model.name}`}
+                show={showPrompt}
+                onConfirm={this.confirm}
+                onCancel={this.cancel}
+              >
+                <h4>Please type a brief name / description for the new block:</h4>
+              </Prompt>
+              {model.templateId && (
+                <Confirmation
+                  show={showDeleteConfirmation}
+                  onConfirm={this.remove}
+                  onCancel={this.onCancelConfirm}
+                >
+                  <p>Are you sure you want to remove? (with template)</p>
+                </Confirmation>
+              )}
+            </>
+          ),
+        }]}
+      />
     )
   }
 }

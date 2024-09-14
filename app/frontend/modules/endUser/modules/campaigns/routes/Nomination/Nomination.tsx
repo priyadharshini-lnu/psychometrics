@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import _ from 'lodash'
 
+import { useNavigate, useParams } from 'react-router-dom'
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import {
   fetchNomination,
@@ -24,7 +25,7 @@ import {
   allowedRelationshipsForNewNominations,
 } from '~/modules/endUser/modules/campaigns/core/nomination/selectors'
 import { SafeHTML } from '~/components/SafeHTML'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { PageHeader as GlintHeader } from '~/glint'
 import { NominationForm } from './NominationForm/NominationForm'
 import { NominationTable } from './NominationTable/NominationTable'
@@ -59,9 +60,11 @@ const connector = connect((state: any) => ({
 const { Content } = Layout
 
 const NominationComponent = (props) => {
-  const { fetchNomination, match, history } = props
+  const { fetchNomination } = props
+  const params = useParams()
+  const navigate = useNavigate()
   useEffect(() => {
-    fetchNomination(match.params)
+    fetchNomination(params)
   }, [])
 
   const [showPrompt, setShowPrompt] = useState(false)
@@ -104,13 +107,14 @@ const NominationComponent = (props) => {
     <>
       <GlintHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown />
+          <LangDropdownWithChangeLocale />
         </Col>
       </GlintHeader>
       <Content className={styles.pageContent}>
         <SubHeader
           title={I18n.t('threesixty.nomination')}
-          onBack={() => history.push(`/threesixty_campaigns/${match.params.campaignId}`)}
+          onBack={() => navigate(`/threesixty_campaigns/${params.campaignId}`)}
+          backButtonAriaLabel={I18n.t('frontend.aria.back_to_tasks')}
         />
         <Row justify="center">
           <Col xs={24} lg={22} xl={20} xxl={14}>

@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import QuestionCenterContainer from '~/modules/survey/containers/QuestionCenterContainer'
 import initSentry from '~/libs/initSentry'
@@ -6,4 +6,5 @@ import initSentry from '~/libs/initSentry'
 initSentry()
 
 const ID = window.questionCenterDomElementId || 'psychometrics_question_center'
-ReactDOM.render(<QuestionCenterContainer />, document.getElementById(ID))
+const root = createRoot(document.getElementById(ID))
+root.render(<QuestionCenterContainer />)

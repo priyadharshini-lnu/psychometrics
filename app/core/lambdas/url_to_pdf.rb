@@ -11,25 +11,13 @@ module Lambdas
     def call
       make_request_to_lambda
 
-      broadcast :ok, s3_download_url
+      broadcast :ok
     end
 
     private
 
     def lambda_details
-      @lambda_details ||= Rails.application.secrets.aws.dig(:lambda, :url_to_pdf)
-    end
-
-    def s3_download_url
-      return if options[:async]
-
-      content_disposition = "attachment; filename=\"#{File.basename(options[:output_file_path])}\""
-      presigner = Aws::S3::Presigner.new
-      presigner.presigned_url(:get_object,
-                              bucket: Rails.application.secrets.s3_compatible_storage[:private_bucket],
-                              key: options[:output_file_path],
-                              expires_in: 10.minutes.to_i,
-                              response_content_disposition: content_disposition).to_s
+      @lambda_details ||= Settings.secrets.aws.dig(:lambda, :url_to_pdf)
     end
 
     def request_body
@@ -54,12 +42,9 @@ module Lambdas
     end
 
     def get_presigned_url
-      Aws::S3::Presigner.new.presigned_url(
-        :put_object,
-        bucket: Rails.application.secrets.s3_compatible_storage[:private_bucket],
-        key: options[:output_file_path],
-        expires_in: expiry_time.to_i
-      )
+      ActiveStorage::Blob.new(
+        key: options[:output_file_path], service_name: Settings.storage.private_storage_service
+      ).service_url_for_direct_upload(expires_in: expiry_time.to_i)
     end
   end
 end

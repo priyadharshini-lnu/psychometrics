@@ -62,4 +62,13 @@ describe Administration::Assessments::BuildExternalSettings do
       )
     end
   end
+
+  context 'when the assessment is mettl' do
+    let(:type) { ::Assessments::Mettl }
+    let(:external_settings) { { assessment_id: 'mettl_assessment_id' } }
+
+    it 'returns valid external_settings' do
+      expect(subject).to eql(assessment_id: 'mettl_assessment_id')
+    end
+  end
 end

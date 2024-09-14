@@ -6,7 +6,6 @@
 }
 .pastDate {
   background: @background-color-base;
-  color: @text-color-secondary;
   pointer-events: none;
 }
 .unavailableDate {
@@ -20,6 +19,9 @@
   width: 56px;
   border-radius: 4px;
   gap: 4px;
+  &:focus-visible {
+    outline: 4px solid var(--ant-primary-3) !important;
+  }
 }
 .calendar {
   max-width: 444px;

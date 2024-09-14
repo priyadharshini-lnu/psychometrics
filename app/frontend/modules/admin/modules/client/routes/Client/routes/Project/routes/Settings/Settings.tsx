@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { History } from 'history'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { useNavigate, useParams } from 'react-router-dom'
 import RouteList from '~/components/RouteList'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
 import routeUtils from '~/utils/route'
@@ -18,12 +18,11 @@ const connecter = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
-type OwnProps = {
-  history: History
-}
-type Props = PropsFromRedux & OwnProps
+type Props = PropsFromRedux
 
-export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
+export const SettingsComponent: FC<Props> = ({ currentUser }) => {
+  const navigate = useNavigate()
+  const { projectId } = useParams() as { projectId: string }
   const prefix = `${settings.urlPrefix}/:projectId/settings`
   const { permissions } = currentUser
   const modifiedRoutes = () => {
@@ -43,11 +42,11 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
     } else if (permissions.manageProjectPrivacySetting) {
       firstRoute = '/privacy'
     }
-    return [{ redirect: true, from: '', to: firstRoute }, ...routes]
+    return [{ redirect: true, from: '', to: `${settings.urlPrefix}/${projectId}/settings${firstRoute}` }, ...routes]
   }
 
   const onSelect = ({ key }) => {
-    routeUtils.moveTo(history, prefix, key)
+    routeUtils.moveTo(navigate, prefix, key)
   }
   const menuItems:ItemType[] = []
 
@@ -100,7 +99,7 @@ export const SettingsComponent: FC<Props> = ({ history, currentUser }) => {
         selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
         mode="horizontal"
       />
-      <RouteList routes={modifiedRoutes()} urlPrefix={prefix} />
+      <RouteList routes={modifiedRoutes()} urlPrefix="" />
     </div>
   )
 }

@@ -78,6 +78,11 @@ describe Api::V2::Administration::PrivacySettingsController, swagger_doc: 'v2/sw
           ).to have_attribute(
             :mask_identity_for_examus
           ).with_value(privacy_setting_recotrd.mask_identity_for_examus)
+          expect(
+            privacy_setting_response
+          ).to have_attribute(
+            :mask_identity_for_mettl
+          ).with_value(privacy_setting_recotrd.mask_identity_for_mettl)
         end
       end
     end

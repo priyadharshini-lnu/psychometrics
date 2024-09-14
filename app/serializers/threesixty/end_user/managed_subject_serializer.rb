@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 module Threesixty::EndUser
-  class ManagedSubjectSerializer < ActiveModel::Serializer
-    attributes :id, :campaign_id
+  class ManagedSubjectSerializer < Panko::Serializer
+    attributes :id, :campaign_id, :evaluators
 
-    has_one :user, method: :user
-    has_many :evaluators, serializer: Threesixty::EndUser::EvaluationSerializer
-
-    def user
-      UserSerializer.new.serialize(object.user)
-    end
+    has_one :user, serializer: UserSerializer
 
     def evaluators
-      object.evaluators.where(evaluator_nomination_status: :completed)
+      Panko::ArraySerializer.new(
+        object.evaluators.where(evaluator_nomination_status: :completed),
+        each_serializer: Threesixty::EndUser::EvaluationSerializer,
+        context: {
+          current_user: current_user
+        }
+      ).to_a
     end
 
     def campaign_id

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class CampaignDetailsSerializer < ActiveModel::Serializer
+  class CampaignDetailsSerializer < Panko::Serializer
     attributes :options, :evaluators
 
     def evaluators
@@ -17,7 +17,7 @@ module Threesixty
     end
 
     def user_id
-      instance_options[:user_report].user_id
+      context[:user_report].user_id
     end
 
     def options

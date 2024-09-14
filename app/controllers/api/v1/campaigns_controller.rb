@@ -45,7 +45,7 @@ module Api
             # rubocop:enable all
             audit! :assign_user, campaign, payload: campaign_attrs.permit!, campaign: campaign
             ::Campaigns::Users::Create.call(struct, campaign, current_user) do
-              on(:error) { raise Api::Errors::NotEnoughLicences, 'Not Enough Licenses' }
+              on(:insufficient_license) { raise Api::Errors::NotEnoughLicences, 'Not Enough Licenses' }
             end
           end
           render json: Api::V1::UserSerializer.new(

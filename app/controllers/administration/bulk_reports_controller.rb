@@ -31,7 +31,10 @@ module Administration
 
     def download
       index = params[:index].to_i || 0
-      if resource && resource.files[index].file.exists?
+
+      report_blob = resource.files[index]&.blob
+
+      if report_blob&.service&.exist?(report_blob.key)
         redirect_to resource.private_download_url(index)
       else
         redirect_to(admin_path, error: t('.removed'))

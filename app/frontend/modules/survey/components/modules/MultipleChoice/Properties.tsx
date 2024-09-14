@@ -145,7 +145,7 @@ interface AnswerTypeSelectProps {
 }
 
 const AnswerTypeSelect: FC<AnswerTypeSelectProps> = ({ value, onSelect }) => (
-  <div className="ms-4 me-4">
+  <div className="m-4">
     <Typography.Text strong>
       {I18n.t(
         'administration.survey_builder.property_panel.answer_type',

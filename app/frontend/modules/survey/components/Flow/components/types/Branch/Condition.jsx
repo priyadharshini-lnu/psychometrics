@@ -63,7 +63,7 @@ export class Condition extends Component {
     const { condition } = this.props
     const type = condition.conditionType
     const View = Types[type].Editor || Types.Question.Editor
-    return <View {...this.props} />
+    return <View {...this.props} condition={{ ...condition }} />
   }
 
   renderConditionTypeSelect () {

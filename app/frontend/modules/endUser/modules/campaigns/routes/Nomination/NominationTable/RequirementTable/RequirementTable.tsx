@@ -7,6 +7,7 @@ import {
   DownOutlined, CheckOutlined, ReloadOutlined, DeleteOutlined, PlusOutlined,
 } from '@ant-design/icons'
 
+import { useParams } from 'react-router-dom'
 import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
 import conditionPresenter from '~/presenters/condition'
@@ -27,9 +28,9 @@ export const RequirementTable = (props) => {
     nomination: { isSelf, options },
     canNominate,
     requirement: { condition, title, evaluators },
-    match: { params: { campaignId, id: nominationId } },
     currentUser,
   } = props
+  const { campaignId, id: nominationId } = useParams() as { campaignId: string, id: string}
   const { isMobile } = useContext(MediaQueryContext)
   const [showForm, setShowForm] = useState(false)
 

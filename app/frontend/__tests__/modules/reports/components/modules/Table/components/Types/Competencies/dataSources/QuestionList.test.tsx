@@ -5,13 +5,13 @@ import {
 } from '~/modules/reports/components/modules/Table/components/Types/Competencies/dataSources/QuestionList'
 
 const defaultQuestion = {
-  update: jest.fn(),
-  changeArrayProps: jest.fn(),
-  changeReqValidations: jest.fn(),
-  changeProps: jest.fn(),
-  resetDefaultValues: jest.fn(),
-  setChoices: jest.fn(),
-  setFormFields: jest.fn(),
+  update: vi.fn(),
+  changeArrayProps: vi.fn(),
+  changeReqValidations: vi.fn(),
+  changeProps: vi.fn(),
+  resetDefaultValues: vi.fn(),
+  setChoices: vi.fn(),
+  setFormFields: vi.fn(),
   id: 1,
   block_id: 2,
   name: 'example question text',

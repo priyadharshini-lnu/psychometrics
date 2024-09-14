@@ -11,12 +11,6 @@ import Result from './Preview/Result'
 import LogicElement from './logic/LogicElement'
 import Question from './Question'
 
-const loadComments = (question, comments) => {
-  _.each(comments, (comment) => {
-    question.comments.push(comment)
-  })
-}
-
 const loadConditions = (question, validations) => {
   question.validation.customValidations = _.map(validations, (validation) => {
     validation.conditions = _.map(validation.conditions, condition => new Condition(condition))
@@ -53,8 +47,6 @@ export class QuestionSerializer {
     question.templateId = attrs.template_id
     question.saveAsTemplate = attrs.save_as_template || false
     question.type = attrs.type || 'MultipleChoice'
-    question.comments = []
-    question.showComments = attrs.showComments || question.comments.length > 0
     question.props = _.cloneDeep(DefaultProps[question.type] || {})
     question.props.randomization = { type: 'No' }
     question.moduleConfig = ModuleConfigs[question.type] || {}
@@ -69,7 +61,6 @@ export class QuestionSerializer {
     if (question.skipLogic && question.skipLogic.length) {
       question.skipLogic = _.map(question.skipLogic, condition => new Condition(condition))
     }
-    loadComments(question, attrs.comments || [])
     if (question.validation.type === 'Custom') {
       loadConditions(question, attrs.validation.customValidations || [])
     }
@@ -97,7 +88,6 @@ export class QuestionSerializer {
       deleted_at: question.deletedAt,
       deleted: question.deleted,
       isNew: question.isNew,
-      comments: question.comments,
     }
   }
 

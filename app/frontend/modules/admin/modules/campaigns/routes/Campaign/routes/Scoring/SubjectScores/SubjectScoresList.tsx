@@ -12,6 +12,7 @@ import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { CampaignFactorGroup } from '../ScoringGroups/GroupCard'
 import { CampaignFactor } from '../ScoringGroups/Factor'
 import { ToolsDropdown } from './ToolsDropdown'
@@ -21,6 +22,7 @@ import { CampaignScores, CampaignScoresTR, type Error } from '~/modules/admin/mo
 import { formatedDate } from '~/utils/time'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
+import { ImportExternalScoringModal } from './ImportExternalScoringModal'
 
 const { I18n } = window
 const { Search } = Input
@@ -32,7 +34,6 @@ enum StackRank {
 }
 
 type DataType = {
-  key: React.Key;
   id: string;
   email: string;
   campaignScoresFinalized: boolean | null;
@@ -53,12 +54,13 @@ const connector = connect(
 )
 type Props = ConnectedProps<typeof connector>
 
-const SubjectScoresListComponent: React.FC<Props> = () => {
+const SubjectScoresListComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const { modal, message } = App.useApp()
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
   const [isCampaignFactorsLoading, setIsCampaignFactorsLoading] = useState(true)
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)
+  const [openImportExternalScoringModal, setopenImportExternalScoringModal] = useState(false)
 
   const {
     data: campaignFactorData,
@@ -167,6 +169,8 @@ const SubjectScoresListComponent: React.FC<Props> = () => {
       }).then(() => {
         message.success(I18n.t('administration.scoring.subject_list.export_success'))
       })
+    } else if (action === 'import_external_scores') {
+      setopenImportExternalScoringModal(true)
     }
   }
 
@@ -250,8 +254,15 @@ const SubjectScoresListComponent: React.FC<Props> = () => {
             onChange={({ target: { value } }) => { changeFilter('search_query', value) }}
           />
           <Tools
-            permissions={{ exportScorings: meta.permissions?.exportScorings }}
+            permissions={{
+              export: campaignPermissions.viewCampaignScoring,
+              import: campaignPermissions.manageCampaignScoring,
+            }}
             onClick={action => handleToolAction(action)}
+          />
+          <ImportExternalScoringModal
+            open={openImportExternalScoringModal}
+            close={() => setopenImportExternalScoringModal(false)}
           />
           <ToolsDropdown
             isBulk
@@ -287,6 +298,7 @@ const SubjectScoresListComponent: React.FC<Props> = () => {
             recordCount={meta.recordCount}
             loading={false}
             requestStatus={requests.fetch?.status}
+            failureMsg={getErrorMsgFromJsonApiRequests(requests)}
           />
           <Pagination
             current={currentPage}

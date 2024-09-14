@@ -48,7 +48,7 @@ module Users
         return false if mobile_verification_token.blank?
 
         begin
-          decoded = JWT.decode(mobile_verification_token, Rails.application.secrets.encrypted_key)
+          decoded = JWT.decode(mobile_verification_token, Settings.secrets.encrypted_key.to_s)
           if decoded[0]['data'] == mobile_number
             self.mobile_verified = true
 

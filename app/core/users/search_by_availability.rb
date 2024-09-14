@@ -70,11 +70,10 @@ module Users
       return if search_term.blank?
 
       sql = <<-SQL.squish
-      AND (
-        users.email ILIKE :search_term OR
-        users.first_name ILIKE :search_term OR
-        users.last_name ILIKE :search_term
-      )
+        AND (
+          CONCAT(users.first_name, ' ', users.last_name) ILIKE :search_term OR
+          users.email ILIKE :search_term
+        )
       SQL
 
       ApplicationRecord.sanitize_sql([sql, { search_term: "%#{search_term}%" }])

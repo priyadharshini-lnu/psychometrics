@@ -16,6 +16,8 @@ declare class I18nStore {
   tOccupation (occupation, key): string
 
   tSavilleFactorName (assessment_id: number, factor: { name: string, id: string }): string
+
+  exportReport(): any // eslint-disable-line  @typescript-eslint/no-explicit-any
 }
 
 export = new I18nStore()

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class ParticipantSerializer < ActiveModel::Serializer
-    attributes :id, :manager_nomination_status, :evaluation_status, :manager_evaluation_status, :subject, :evaluator
+  class ParticipantSerializer < Panko::Serializer
+    attributes :id, :manager_nomination_status, :evaluation_status, :manager_evaluation_status, :result, :subject,
+               :evaluator
 
     has_one :relationship, serializer: RelationshipSerializer
-    has_one :result, serializer: Threesixty::ResultSerializer
 
     def subject
       UserSerializer.new.serialize(object.subject)
@@ -16,17 +16,17 @@ module Threesixty
     end
 
     def evaluation_status
-      return :completed if result&.completed?
+      return :completed if object.users_result&.completed?
 
       return :declined if object.evaluator_nomination_declined?
 
       :waiting
     end
 
-    private
-
     def result
-      object.users_result
+      return unless object.users_result
+
+      Threesixty::ResultSerializer.new.serialize(object.users_result)
     end
   end
 end

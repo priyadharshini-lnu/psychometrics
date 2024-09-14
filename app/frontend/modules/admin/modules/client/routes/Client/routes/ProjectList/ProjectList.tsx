@@ -1,6 +1,7 @@
+import _ from 'lodash'
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import {
   Table,
   Input,
@@ -20,13 +21,13 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
-import _ from 'lodash'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import Modals from '~/modules/admin/components/Modals/'
 import { useResources } from '~/hooks/useResources'
+import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { Project, ProjectTR } from '~/modules/admin/modules/client/core/projects'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
@@ -58,10 +59,10 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & TableProps
 
 const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
-  const { clientId } = useParams<{ clientId: string }>()
+  const { clientId } = useParams() as { clientId: string }
   const { modal, message } = App.useApp()
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const {
     data, meta, fetch, isLoading, getSortOrder, handleTableChange, changePage,
@@ -135,7 +136,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
             id, logo, name, url,
           }) => (
             <div>
-              <Row gutter={40}>
+              <Row gutter={40} wrap={false}>
                 <Col span="4">
                   {
                     logo ? (
@@ -146,7 +147,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
                           className={styles.logoImageStyles}
                           placeholder={<Skeleton.Avatar className={styles.imageSkeleton} shape="square" active />}
                           onClick={() => {
-                            history.push(`/admin/projects/${id}/new_campaigns?filters[statusEq]=active`)
+                            navigate(`/admin/projects/${id}/new_campaigns?filters[statusEq]=active`)
                           }}
                         />
                       </>
@@ -293,6 +294,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal, currentUser }) => {
         recordCount={meta.recordCount}
         loading={tableLoading}
         requestStatus={requests.fetch?.status}
+        failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />
       <Modals modals={MODALS} />
     </>
@@ -332,7 +334,7 @@ const getActionsMenuProps = ({
   return ({ items: menuItems, onClick: handleMenuClick })
 }
 
-export const ProjectList = withEnhancedTable(
+export const ProjectList = withEnhancedTable<{}>(
   connector(ProjectListComponent),
   'projectList',
   {

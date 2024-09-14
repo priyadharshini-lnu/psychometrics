@@ -1,12 +1,11 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   FileOutlined, FolderOpenOutlined,
 } from '@ant-design/icons'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { useSelector } from 'react-redux'
-import { history } from '~/modules/admin/store'
 import { isSuperAdmin, get as getCurrentUser } from '~/core/currentUser'
 import settings from '../../settings'
 
@@ -14,8 +13,9 @@ const { I18n } = window
 
 export const FirstLevelTabs: React.FC = () => {
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/${key}`)
+    navigate(`${settings.urlPrefix}/${key}`)
   }
 
   const currentUser = useSelector(getCurrentUser)

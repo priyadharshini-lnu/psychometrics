@@ -31,6 +31,14 @@ module Api
         has_permission?(:results, :scores)
       end
 
+      def import_external_campaign_scorings?
+        has_permission?(:results, :external_score_import)
+      end
+
+      def import_external_scorings_sample_file?
+        has_permission?(:results, :external_score_import)
+      end
+
       class Scope < ::Api::Administration::BasePolicy::Scope
         def resolve
           if @user.has_permission?(:results, :scores)

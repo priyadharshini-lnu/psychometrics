@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
 module Reports
-  class ResultSerializer < ActiveModel::Serializer
+  class ResultSerializer < Panko::Serializer
     attributes :id, :status, :answers, :results, :scoring, :user_id, :assessment_id, :data_sheet, :relationship,
                :norm_id, :embedded_data, :manager_evaluation_status, :subject_datasheet, :external_scoring,
-               :occupations, :innovation_styles
-
-    has_one :user, serializer: UserSerializer
-    has_many :media_responses, method: :media_responses
+               :occupations, :innovation_styles, :user, :media_responses, :campaign_factor_results
 
     def status
       object.real_status
@@ -32,7 +29,7 @@ module Reports
     end
 
     def user
-      object.evaluator
+      UserSerializer.new(context: { campaign: campaign }).serialize(object.evaluator)
     end
 
     def user_id
@@ -48,11 +45,11 @@ module Reports
     end
 
     def data_sheet
-      campaign.datasheet_data(object.evaluator.email)
+      campaign&.datasheet_data(object.evaluator.email)
     end
 
     def subject_datasheet
-      campaign.datasheet_data(object.subject.email)
+      campaign&.datasheet_data(object.subject.email)
     end
 
     def external_scoring
@@ -75,8 +72,18 @@ module Reports
       {}
     end
 
+    def campaign_factor_results
+      object.campaign.campaign_factor_values.where(
+        user_id: object.user_id, campaign_factors: { public_visibility: true }
+      ).includes(:campaign_factor).map do |cfv|
+        {
+          code: cfv.campaign_factor.code,
+          value: cfv.value
+        }
+      end
+    end
+
     def media_responses
-      object.media_responses.order(:created_at)
       Panko::ArraySerializer.new(
         object.media_responses.order(:created_at),
         each_serializer: MediaResponseSerializer
@@ -86,7 +93,7 @@ module Reports
     private
 
     def campaign
-      instance_options[:campaign]
+      context[:campaign]
     end
 
     def normalize_hogan(items)

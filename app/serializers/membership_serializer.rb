@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MembershipSerializer < ActiveModel::Serializer
+class MembershipSerializer < Panko::Serializer
   attributes :id, :first_name, :last_name, :name, :role_name, :client_name
 
   def client_name

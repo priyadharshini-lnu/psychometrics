@@ -2,8 +2,10 @@ import {
   questionChoicesToTableValues
 } from '~/modules/reports/components/modules/Table/components/Types/Competencies/Types/Question'
 
-jest.mock('modules/reports/store/I18nStore', () => ({
-  tQuestion: jest.fn(() => 'Question'),
+vi.mock('~/modules/reports/store/I18nStore', () => ({
+  default: {
+    tQuestion: vi.fn(() => 'Question'),
+  }
 }))
 
 describe('Func questionChoicesToTableValues', () => {

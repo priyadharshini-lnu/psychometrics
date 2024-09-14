@@ -35,7 +35,7 @@ describe Reports::PrepareDataForReport do
         current_user: first_evaluator
       }
       results = described_class.new(args).serialize_results
-      expect(results[threesixty_campaign.assessment.id].pluck(:relationship)).to match_array %w[manager peer]
+      expect(results[threesixty_campaign.assessment.id].pluck('relationship')).to match_array %w[manager peer]
     end
   end
 

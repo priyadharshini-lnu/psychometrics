@@ -7,7 +7,9 @@ module Administration
     end
 
     def get_columns?
-      manage?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :datasheets, :view, project_id: project_id, campaign_id: campaign_id
+      )
     end
 
     def add_column?

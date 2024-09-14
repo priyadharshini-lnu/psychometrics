@@ -9,7 +9,7 @@ export const PageHeader: FC = () => {
     projectId,
     campaignId,
     clientId,
-  } = useParams<{ projectId: string, clientId: string, campaignId: string }>()
+  } = useParams() as { projectId: string, clientId: string, campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   return (
     <>

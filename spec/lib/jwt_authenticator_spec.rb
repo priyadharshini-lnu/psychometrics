@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe JwtAuthenticator do
   describe '.authenticate' do
-    let(:user) { create(:user) }
+    let(:project) { create(:project) }
+    let(:user) { create(:user, project: project) }
     let(:api_key) { create(:api_key, user: user) }
     let(:jwt_key) do
       JWT.encode({ 'sub' => user.id, 'exp' => Time.now.to_i + 20 }, api_key.token, 'HS256',
@@ -14,7 +15,7 @@ RSpec.describe JwtAuthenticator do
     context 'when the JWT key is valid' do
       context 'when user_id is passed as subject' do
         it 'returns the user' do
-          expect(JwtAuthenticator.authenticate(jwt_key)).to eq(user)
+          expect(JwtAuthenticator.authenticate(jwt_key, project)).to eq(user)
         end
       end
 
@@ -25,7 +26,15 @@ RSpec.describe JwtAuthenticator do
         end
 
         it 'returns the user' do
-          expect(JwtAuthenticator.authenticate(jwt_key)).to eq(user)
+          expect(JwtAuthenticator.authenticate(jwt_key, project)).to eq(user)
+        end
+      end
+
+      context 'when user is not part of project' do
+        let!(:new_project) { create(:project) }
+
+        it 'returns the nil' do
+          expect(JwtAuthenticator.authenticate(jwt_key, new_project)).to eq(nil)
         end
       end
     end
@@ -34,7 +43,7 @@ RSpec.describe JwtAuthenticator do
       let(:jwt_key) { 'invalid' }
 
       it 'returns nil' do
-        expect(JwtAuthenticator.authenticate(jwt_key)).to be_nil
+        expect(JwtAuthenticator.authenticate(jwt_key, project)).to be_nil
       end
     end
 
@@ -45,7 +54,7 @@ RSpec.describe JwtAuthenticator do
       end
 
       it 'returns nil' do
-        expect(JwtAuthenticator.authenticate(jwt_key)).to be_nil
+        expect(JwtAuthenticator.authenticate(jwt_key, project)).to be_nil
       end
     end
 
@@ -56,7 +65,7 @@ RSpec.describe JwtAuthenticator do
       end
 
       it 'returns nil' do
-        expect(JwtAuthenticator.authenticate(jwt_key)).to be_nil
+        expect(JwtAuthenticator.authenticate(jwt_key, project)).to be_nil
       end
     end
 
@@ -66,7 +75,7 @@ RSpec.describe JwtAuthenticator do
       end
 
       it 'returns nil' do
-        expect(JwtAuthenticator.authenticate(jwt_key)).to be_nil
+        expect(JwtAuthenticator.authenticate(jwt_key, project)).to be_nil
       end
     end
   end

@@ -25,6 +25,10 @@ FactoryBot.define do
       association :grants, factory: :membership_grants, data: AllowedPermissions::CAMPAIGN_ADMIN_PERMISSIONS
       campaign factory: :campaign
       role { Membership::CAMPAIGN_ADMIN_ROLE }
+
+      transient do
+        permissions { nil }
+      end
     end
 
     factory :manager_membership do

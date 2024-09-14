@@ -1,20 +1,26 @@
 import { denormalize } from 'normalizr'
+import { createSlice } from '@reduxjs/toolkit'
 import _ from 'lodash'
-import { createReducer } from '~/utils/redux'
-import { getIn, setIn, updateIn } from '~/utils/immutable'
+import { getIn } from '~/utils/immutable'
 import schema from '~/modules/survey/store/schema'
 import FlowElement from '~/modules/survey/models/FlowElement'
-import {
-  INIT, ADD_ELEMENT, DUPLICATE_ELEMENT, ADD_NEW_ELEMENT, UPDATE_TREE, REMOVE_ELEMENT, RESET, UPDATE_ELEMENT,
-} from './actions'
+import Flow from '~/modules/survey/models/Flow'
 
-const lookUpPath = (element) => {
+export const INIT = 'survey/assessment/INIT'
+
+const loadElements = children => _.map(children, item => ({
+  type: item.module.type,
+  props: item.module.props || {},
+  elements: loadElements(item.children),
+}))
+
+export const lookUpPath = (element) => {
   const path = _.flatten(element.path.map(i => ['elements', i]))
   path.pop()
   return path
 }
 
-const getRealPath = (state, path) => {
+export const getRealPath = (state, path) => {
   let p = ['elements']
   let strPath = ''
   return path.map((i) => {
@@ -26,59 +32,86 @@ const getRealPath = (state, path) => {
   })
 }
 
-const HANDLERS = {
-  [INIT]: (__, { data }) => {
-    const { flow } = denormalize(data.result, schema, data.entities)
-    return { elements: _.map((flow?.elements || { elements: [] }), (el, i) => new FlowElement(el, null, i)) }
-  },
-  [RESET]: (_, { flow }) => flow,
-  [UPDATE_TREE]: (_, { flow }) => flow,
-  [ADD_NEW_ELEMENT]: (state, { element }) => {
-    const path = lookUpPath(element)
-    const { parent } = element
-    let newState = state
-    if (parent.type === 'Randomizer' && parent.props.number + 1 === parent.elements.length) {
-      parent.props.number += 1
-      const path = lookUpPath(parent)
-      newState = setIn(newState, [...path, 'props', 'number'], getIn(parent, ['props', 'number']) + 1)
-    }
-
-    const realPath = getRealPath(state, path)
-    return updateIn(newState, realPath, elements => elements.concat(element))
-  },
-  [ADD_ELEMENT]: (state, { element, newElement }) => {
-    const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.uuid, element.uuid))
-    return updateIn(state, path, (elements) => {
-      const rightElements = elements.slice(index + 1, elements.length).map(
-        el => setIn(el, ['path', el.path.length - 1], el.path[el.path.length - 1] + 1),
-      )
-      return [...elements.slice(0, index + 1), newElement, ...rightElements]
-    })
-  },
-  [UPDATE_ELEMENT]: (state, { element }) => {
-    const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => (_.isEqual(el.uuid, element.uuid)))
-    if (index < 0) return state
-    return setIn(state, [...path, index], element)
-  },
-  [DUPLICATE_ELEMENT]: (state, { element, duplicate }) => {
-    const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => _.isEqual(el.uuid, element.uuid))
-    return updateIn(state, path, elements => elements.splice(index + 1, 0, duplicate) && elements)
-  },
-  [REMOVE_ELEMENT]: (state, { element }) => {
-    const path = lookUpPath(element)
-    const index = _.findIndex(getIn(state, path), el => (el.path
-      ? _.isEqual(el.uuid, element.uuid)
-      : _.isEqual(el.path, element.path)))
-    if (index < 0) return state
-    return updateIn(state, path, elements => elements.splice(index, 1) && elements)
-  },
-}
-
 export const defaultState = {
   elements: [],
 }
 
-export default createReducer(HANDLERS, defaultState)
+const flow = createSlice({
+  name: 'flow',
+  initialState: defaultState,
+  reducers: {
+    reset (state, { payload: flow }) {
+      state.elements = flow?.elements || []
+    },
+    updateElements (state, { payload }) {
+      const flow = new Flow({ elements: loadElements(payload) })
+
+      state.elements = flow.elements
+    },
+    addNewElement (state, { payload }) {
+      const element = new FlowElement({}, payload.path, payload.elements.length)
+      const path = lookUpPath(element)
+      const { parent } = element
+
+      if (parent.type === 'Randomizer' && parent.props.number + 1 === parent.elements.length) {
+        parent.props.number += 1
+        const path = lookUpPath(parent)
+        _.set(state, [...path, 'props', 'number'], _.get(parent, ['props', 'number']) + 1)
+      }
+
+      const realPath = getRealPath(state, path)
+
+      _.set(state, realPath, [..._.get(state, realPath), element])
+      state.update = Date.now() // trick to update tree
+    },
+
+    addElementBelow (state, { payload: { element, index } }) {
+      const path = _.take(element.path, element.path.length - 1)
+      const newElement = new FlowElement({}, path.length && path, index + 1)
+      const elpath = lookUpPath(element)
+
+      _.set(state, elpath, [
+        ..._.get(state, elpath).slice(0, index + 1),
+        newElement,
+        ..._.get(state, elpath).slice(index + 1),
+      ])
+      state.update = Date.now() // trick to update tree
+    },
+    updateElement (state, { payload: element }) {
+      const path = lookUpPath(element)
+      const index = _.findIndex(getIn(state, path), el => (_.isEqual(el.uuid, element.uuid)))
+      if (index < 0) return
+      _.set(state, [...path, index], element)
+      state.update = Date.now()
+    },
+
+    removeElement (state, { payload: element }) {
+      const path = lookUpPath(element)
+      const index = _.findIndex(getIn(state, path), el => (el.path
+        ? _.isEqual(el.uuid, element.uuid)
+        : _.isEqual(el.path, element.path)))
+
+      if (index < 0) return
+      _.set(state, path, _.get(state, path).filter((el, i) => i !== index))
+      state.update = Date.now() // trick to update tree
+    },
+
+    duplicateElement (state, { payload: element }) {
+      const duplicate = new FlowElement(_.cloneDeep(element), element.parent)
+      const path = lookUpPath(element)
+      const index = _.findIndex(getIn(state, path), el => _.isEqual(el.uuid, element.uuid))
+      _.set(state, path, [...getIn(state, path).slice(0, index + 1), duplicate, ...getIn(state, path).slice(index + 1)])
+      state.update = Date.now() // trick to update tree
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(INIT, (state, { data }) => {
+      const { flow } = denormalize(data.result, schema, data.entities)
+      state.elements = _.map((flow?.elements || { elements: [] }).elements, (el, i) => new FlowElement(el, null, i))
+    })
+  },
+})
+
+export const { actions } = flow
+
+export default flow.reducer

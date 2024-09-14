@@ -11,7 +11,7 @@ module Communications
       end
 
       def fetch_campaign_users(communication)
-        communication.selected_campaign_users.where(completion_status: :in_progress)
+        communication.campaign_users_not_recently_invited.where(completion_status: :in_progress)
       end
     end
   end

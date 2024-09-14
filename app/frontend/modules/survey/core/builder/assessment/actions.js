@@ -1,7 +1,10 @@
+import { normalize } from 'normalizr'
 import SerializeAssessment from './SerializeAssessment'
 import SerializeTrash from './SerializeTrash'
 import { trashItems } from './selectors'
+import schema from '~/modules/survey/store/schema'
 
+export const FETCH = 'survey/assessment/FETCH'
 export const INIT = 'survey/assessment/INIT'
 export const SELECT_QUESTION = 'survey/assessment/SELECT'
 export const UNSELECT_QUESTION = 'survey/assessment/UNSELECT'
@@ -27,6 +30,16 @@ export const TOGGLE_INSTRUCTIONS = 'builder/assessment/TOGGLE_INSTRUCTIONS'
 export const UPDATE_INSTRUCTIONS_CONTENT = 'builder/assessment/UPDATE_INSTRUCTIONS_CONTENT'
 export const UPDATE_LINKED_QUESTIONS = 'builder/assessment/UPDATE_LINKED_QUESTIONS'
 export const TOGGLE_ENABLE_SAVE = 'survey/assessment/TOGGLE_ENABLE_SAVE'
+
+export const fetch = assessmentId => ({
+  type: FETCH,
+  request: {
+    url: `/administration/assessments/${assessmentId}/builders`,
+    camelize: false,
+  },
+})
+
+export const init = data => ({ type: INIT, data: normalize(data, schema) })
 
 export const selectQuestion = (question, offset) => ({ type: SELECT_QUESTION, question, offset })
 

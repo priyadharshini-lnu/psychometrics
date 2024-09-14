@@ -40,27 +40,27 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => (
           label={I18n.t('user.form.first_name')}
           rules={[{ required: true }]}
         >
-          <Input />
+          <Input name="participant_firstname" />
         </Form.Item>
         <Form.Item
           name="lastName"
           label={I18n.t('user.form.last_name')}
           rules={[{ required: true }]}
         >
-          <Input />
+          <Input name="participant_lastname" />
         </Form.Item>
         <Form.Item
           name="email"
           label={I18n.t('user.form.email')}
           rules={[{ required: true }]}
         >
-          <Input />
+          <Input name="participant_email" />
         </Form.Item>
         <Form.Item
           name="locale"
           label={I18n.t('user.form.locale')}
         >
-          <Input />
+          <Input name="participant_locale" />
         </Form.Item>
         {!isEdit && (
           <Form.Item

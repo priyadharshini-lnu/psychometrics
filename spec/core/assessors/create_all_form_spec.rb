@@ -26,5 +26,14 @@ describe Assessors::CreateAllForm do
       form.validate
       expect(form.errors.messages[:assessors].first).to include('[Row 1] Assessor Email is invalid')
     end
+
+    it 'returns a validation error when the assessors array is empty' do
+      assessors = []
+      form = described_class.new(assessors: assessors)
+      form.with_context(campaign: campaign)
+      form.validate
+
+      expect(form.errors.messages[:assessors].first).to include('Select at least one assessor')
+    end
   end
 end

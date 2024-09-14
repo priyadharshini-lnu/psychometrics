@@ -1,1 +1,3 @@
-export { EditAssessment } from './EditAssessment'
+import { EditAssessment } from './EditAssessment'
+
+export default EditAssessment

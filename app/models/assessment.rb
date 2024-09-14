@@ -9,9 +9,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   include SoftDelete
   include OwnerValidations
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
+  include Taggable
 
   PSYCHOMETRIC = 'psychometric'
   ORGANISATIONAL = 'organisational'
@@ -25,6 +23,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   SAVILLE = 'saville'
   PEARSON = 'pearson'
   IIHT = 'iiht'
+  METTL = 'mettl'
   MEETING = 'meeting'
 
   CATEGORIES_TYPES = [
@@ -67,6 +66,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     saville: SAVILLE,
     pearson: PEARSON,
     iiht: IIHT,
+    mettl: METTL,
     meeting: MEETING
   }.freeze
 
@@ -77,7 +77,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     hogan: 'Assessments::Hogan',
     saville: 'Assessments::Saville',
     pearson: 'Assessments::Pearson',
-    iiht: 'Assessments::Iiht'
+    iiht: 'Assessments::Iiht',
+    mettl: 'Assessments::Mettl'
   }.freeze
 
   NON_USER_ASSESSMENT_CATEGORY = [
@@ -122,12 +123,14 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :saville_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :pearson_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :iiht_user_assessments, through: :user_assessments, dependent: :restrict_with_error
+  has_many :mettl_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
     class_name: 'CampaignAssessment', foreign_key: :assessor_form_id
   has_many :memberships, through: :assigns
   has_many :campaign_factors, dependent: :restrict_with_error
+  has_many :idp_template_skills, dependent: :restrict_with_error
 
   # HABTM Clients
   has_many :clients, through: :reports
@@ -155,20 +158,17 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   store_accessor :extra, %i[timer icon_color enable_video_check enable_audio_check enable_network_check]
 
-  mount_uploader :icon, Public::ImageUploader
-  mount_uploader :poster, Public::ImageUploader
-
-  has_one_image_attachment :as_icon, variants: [:thumb]
-  has_one_image_attachment :as_poster, variants: [:thumb]
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :icon, :poster
+  has_one_image_attachment :icon, variants: [:thumb]
+  has_one_image_attachment :poster, variants: [:thumb]
 
   translates :name, :description, :timing
 
   def attachment_storage_path(attribute_name, filename)
     "public/assessment/#{id}/#{attribute_name}/#{filename}"
   end
+
+  acts_as_taggable_on :tags
+  acts_as_taggable_tenant :owner_id
 
   delegate :config, :translations, to: :agile, prefix: true
 
@@ -181,6 +181,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :saville, -> { where(type: TYPES[:saville]) }
   scope :pearson, -> { where(type: TYPES[:pearson]) }
   scope :iiht, -> { where(type: TYPES[:iiht]) }
+  scope :mettl, -> { where(type: TYPES[:mettl]) }
   scope :external, -> { where.has { type.in([TYPES[:mindmill], TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
@@ -192,6 +193,16 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   }
 
   after_commit :sync_translated_columns, on: %i[update create]
+  after_commit -> { create_mettl_schedule }, if: :mettl?, on: %i[create]
+  after_commit -> { set_mettl_assessment_return_url }, if: :mettl?, on: %i[create]
+
+  def create_mettl_schedule
+    Mettl::CreateScheduleJob.perform_later(self)
+  end
+
+  def set_mettl_assessment_return_url
+    Mettl::SetMettlAssessmentReturnUrlJob.perform_later(external_assessment_id)
+  end
 
   def v2_pearson_assessment?
     v2_pearson_assessment_details.present?
@@ -219,6 +230,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
         Settings.providers.saville.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
       when 'pearson'
         PearsonAssessment.find_by(product_id: external_assessment_id)&.title
+      when 'mettl'
+        MettlAssessment.find_by(product_id: external_assessment_id)&.name
       when 'iiht'
         Iiht::GetAssessments.call!(project).find do |a|
           a['assessmentIdNumber'].include?(external_assessment_id)
@@ -254,8 +267,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   def clone
     @cloned_item = dup
     @cloned_item.gen_uniq_name
-    @cloned_item.icon = icon
-    @cloned_item.poster = poster
+    @cloned_item.copy_and_upload(icon, :icon) if icon.attached?
+    @cloned_item.copy_and_upload(poster, :poster) if poster.attached?
     @cloned_item
   end
 
@@ -295,8 +308,12 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     type == TYPES[:iiht]
   end
 
+  def mettl?
+    type == TYPES[:mettl]
+  end
+
   def external?
-    mindmill? || hogan? || saville? || pearson? || iiht?
+    mindmill? || hogan? || saville? || pearson? || iiht? || mettl?
   end
 
   def internal?
@@ -328,16 +345,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
 
   def log_attribute_for_delete
     slice(:name)
-  end
-
-  def sync_translated_columns
-    Mobility.with_locale(I18n.default_locale) do
-      if name_before_type_cast != name ||
-         description_before_type_cast != description ||
-         timing_before_type_cast != timing
-        update_columns(name:, description:, timing:)
-      end
-    end
   end
 
   def init_defaults

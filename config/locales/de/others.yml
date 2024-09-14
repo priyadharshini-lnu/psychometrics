@@ -75,6 +75,7 @@ de:
         first_name: Vorname
         last_name: Nachname
         password: Passwort
+  administration:
   anonym:
     notifications:
       restart:
@@ -82,10 +83,6 @@ de:
   assessments:
     actions:
       goto_dashboard: zum Dashboard gehen
-    categories:
-      organisational: Befragung
-    index:
-      managers_dashboard_button: Managern Dashboard
     messages:
       finish: |-
         Vielen Dank für Ihre Zeit.
@@ -100,24 +97,16 @@ de:
       submit: einreichen
     pickgrouprank:
       items: Elemente
-    resource:
-      results: Ergebnisse
-      status:
-        completed: abgeschlossen
-        not_started: starten
     video_response:
-      delete: lösch
       save: speich
     wait: wart
   campaign:
-    completed: abgeschlossen
     dashboard_menu:
       bookings: Buchungen
       campaign: Kampagne
       change_password: Kennwort ändern
       home: Heim
       insights: Einblicke
-      livechat: Live Unterstützung
       profile: Profil
       profile_details: Einzelheiten
       tasks: Aufgaben
@@ -127,7 +116,6 @@ de:
       edit: Neu bewerten
       title: Bestätigen
       view: Aussicht
-    in_progress: im Gange
     instruction_modal:
       campaign_start_final_instructions: |
         <p>
@@ -148,23 +136,16 @@ de:
         <p>
           Sie müssen einen speziellen Browser herunterladen und installieren, um die überwachten Aufgaben auszuführen. Bitte folgen Sie den Anweisungen im nächsten Bildschirm. Sie können dies deinstallieren, nachdem Sie alle erforderlichen Aktivitäten abgeschlossen haben.
         </p>
-      title: Anweisungen
     instructions:
       heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
     language:
-      cancel: Stornieren
       content: Diese Aufgabe ist in der aktuell ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine der verfügbaren Sprachen aus, um fortzufahren.
-      proceed: Weiter
       single_lang: Diese Aufgabe ist nur in %{lang} verfügbar. Klicken Sie auf "Weiter", um fortzufahren.
       title: Sprache auswählen
-    new: neues
-    not_started: neues
     panels:
-      assessments: Aufgaben
       reports: Berichte
     time_left:
       continue: fortfahren
-    welcome: Willkommen
   change_password_page:
     old_password: Altes Passwort
     password: Passwort
@@ -178,16 +159,9 @@ de:
       processing: verarbeitung
     network_check:
       continue: fortfahren
-      levels:
-        '3': durchschnittliche Netzwerk
-        '4': gut Netzwerk
-        '5': sehr gut Netzwerk
-      network: Netzwerk
       processing: verarbeitung
-      start: starten
     system_check:
       continue: fortfahren
-      start: starten
     video_check:
       access: Zugriff
       continue: fortfahren
@@ -197,11 +171,9 @@ de:
       add: Hinzufügen
       archive: Archiv
       cancel: Stornieren
-      close: Schließe
       copy: Kopieren
       delete: lösch
       edit: Bearbeiten
-      import: Importieren
       remove: Entfernen
       reset: Rücksetzen
       resolve: Beschließen
@@ -289,16 +261,6 @@ de:
     two_factor_authentication:
       attempt: Bitte geben Sie das OTP ein, das Sie an Ihrer registrierten E-Mail-Adresse erhalten haben
       code_has_been_sent: Ihr neues OTP wurde an Ihre registrierte E-Mail-Adresse gesendet
-  ecommerce:
-    users:
-      registrations:
-        new:
-          register: Registrieren
-          sign_in: Anmelden
-      sessions:
-        new:
-          register: Registrieren
-          sign_in: Anmelden
   frontend:
     campaign:
       users:
@@ -319,7 +281,6 @@ de:
           message: Bericht ist fertig
   navigation:
     logout: Ausloggen
-    profile: Profil
   profile:
     add_field: Feld hinzufügen
     add_photo: Foto hinzufügen
@@ -354,23 +315,13 @@ de:
         positive_gap: positiv lücken
         scoring_category: KOMPETENZ
       highest_lowest:
-        average: durchschnittliche
         category: Kategorie
-        email: E-Mail
-        first_name: Vorname
-        last_name: Nachname
-        result: Ergebnis
         scoring_category: KOMPETENZ
       potential_career_full:
         career_strengths_and_results: Karriere Stärken und Ihr Ergebnisse
-        potential_roles: potenzieller Rolle
         strength_low: ENTWICKLUNGSBEZOGENE STÄRKE
         strength_moderate: potenzieller Stärke
         work_environment: Arbeitsumfeld
-      potential_career_short:
-        career: Karriere
-        for_this: für diese
-        strengths: Stärken
       single_value:
         question_name: FRAGEN
       single_value_cluster:
@@ -390,10 +341,7 @@ de:
       three_sixty_report_summary:
         completed: abgeschlossen
         invited: einladen
-        number_of_evaluators_invited: Anzahl der eingeladenen Bewerter
         relationships: Beziehungen
-        subject: Betreff
-        title: Zusammenfassung des Berichts
         total: Gesamt
     show:
       header: Bericht
@@ -403,11 +351,6 @@ de:
       denied: verweigert
       not_available: nicht Verfügung
   shared:
-    password_reset:
-      email_label: E-Mail-Adresse
-      instruction: Geben Sie die mit Ihrem Konto verknüpfte E-Mail-Adresse ein
-      submit: Passwort zurücksetzen
-      title: Passwort vergessen?
     terms_conditions_privacy: Datenschutzerklärung
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
   simple_form:
@@ -448,9 +391,6 @@ de:
   threesixty:
     accept_privacy_modal:
       accept: Annehmen
-      policy_link: Klicken Sie hier, um die Datenschutzrichtlinie zu lesen.
-      reject: Ablehnen
-      text: Bevor ich mit der Ausführung der nachstehenden Aufgaben fortfahre, bestätige ich, dass ich die Datenschutzrichtlinie von The Talent Enterprise und die damit verbundenen Richtlinien zur Verwendung meiner personenbezogenen Daten gelesen habe und ihnen zustimme.
       title: Einwilligung zur Datenverarbeitung
     add: hinzufügen
     and: und
@@ -537,20 +477,11 @@ de:
     waiting: warten
     you: Sie
     yourself: ihne selbst
-  title:
-    one: Es gibt einen Fehler, bitte überprüfen Sie Ihre Antworten
-    other: Es gibt %{count} Fehler, bitte überprüfen Sie Ihre Antworten
-  update_profile:
-    cancel: Stornieren
-    title: Profil aktualisieren
-    update: Aktualisieren
-    updated_successfully: Profil erfolgreich aktualisiert
   user:
     fields:
       email: E-Mail-Addresse
       first_name: Vorname
       last_name: Nachname
-      password: Passwort
   user_reports:
     statuses:
       not_prepared: nicht Verfügung

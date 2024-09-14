@@ -26,7 +26,7 @@ module CampaignFactors
             user_id: params[:user_id]
           )
 
-          factor_value.update(numeric_value: score[:score])
+          factor_value.update(numeric_value: score[:score], calculation_type: :manual)
         end
       end
 

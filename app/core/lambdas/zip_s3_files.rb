@@ -11,7 +11,7 @@ module Lambdas
     private
 
     def lambda_details
-      @lambda_details ||= Rails.application.secrets.aws.dig(:lambda, :zip_s3_files)
+      @lambda_details ||= Settings.secrets.aws.dig(:lambda, :zip_s3_files)
     end
 
     def request_body

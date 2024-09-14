@@ -13,6 +13,14 @@ class CommunicationEmail < ApplicationRecord
   # I'm not certain this scope is used anymore
   scope :for_user, ->(user_id) { joins(:membership).where(memberships: { user_id: user_id }) }
   scope :sent, -> { where.not(sent_at: nil) }
+  scope :invitation_within_last_24_hrs, lambda { |project_id|
+                                          joins(:communication).
+                                            where(communication: {
+                                              kind: Communication.kinds[:invitation],
+                                              project_id: project_id
+                                            }).
+                                            where('sent_at > ? ', 24.hours.ago)
+                                        }
 
   private
 

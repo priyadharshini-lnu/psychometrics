@@ -17,7 +17,7 @@ module AdminJobs
             bulk_report.files.map.with_index do |file, index|
               content_tag(:li) do
                 url = Utility::Url.generate(:download_administration_bulk_report_url, id: bulk_report.id, index: index)
-                content_tag(:a, file.store_dir, href: url)
+                content_tag(:a, file.filename.to_s, href: url)
               end
             end.join.html_safe
           end

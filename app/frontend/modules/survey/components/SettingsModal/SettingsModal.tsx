@@ -1,17 +1,18 @@
 import {
-  Button, Modal, Space, Switch, Row, Col,
-  Tooltip,
+  Button, Modal, Space, Switch, Row, Col, Alert, Popconfirm, Tooltip,
 } from 'antd'
 import { QuestionCircleOutlined, FieldTimeOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { connect } from 'react-redux'
+import { setIn } from '~/utils/immutable'
 import InputDuration from '~/components/InputDuration'
 import { closeModal, getData } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/survey/core/rootReducers'
 import {
   toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage, saveAssessment, updateExtra,
-  toggleInstructions, toggleEnableSave,
+  toggleInstructions,
 } from '~/modules/survey/core/builder/assessment/actions'
+import { updateBlocks } from '~/modules/survey/core/builder/assessment/block/actions'
 import { TYPES as CAMPAIGN_TYPES } from '~/constants/campaign'
 
 const { I18n } = window
@@ -20,6 +21,7 @@ const connecter = connect(
   (state: RootState) => ({
     ...getData(state.survey).settings,
     assessment: state.survey.builder.assessment,
+    blocks: state.survey.builder.blocks,
   }),
   {
     close: () => closeModal('settings'),
@@ -29,17 +31,19 @@ const connecter = connect(
     saveAssessment,
     updateExtra,
     toggleInstructions,
-    toggleEnableSave,
+    updateBlocks,
   },
 )
 
 const SettingsModalComponent = ({
   assessment, close, toggleEnableBack, toggleEnableProgress, toggleSingleQuestionPage,
-  updateExtra, toggleInstructions, toggleEnableSave,
+  updateExtra, toggleInstructions, blocks, updateBlocks,
 }) => {
   const { extra } = assessment
   const isAssessmentTimerAdded = extra && Object.prototype.hasOwnProperty.call(extra, 'timer')
   const isThreeSixtyAssessment = assessment && assessment.category === CAMPAIGN_TYPES.THREESIXTY
+
+  const hasRandomizedBlockWithMultiQuestionsPerPage = checkRandomizedBlockWithMultiQuestionsPerPage(blocks)
 
   const toggleTimer = () => {
     if (isAssessmentTimerAdded) {
@@ -51,6 +55,19 @@ const SettingsModalComponent = ({
 
   const updateTimer = (timer) => {
     updateExtra({ ...extra, timer })
+  }
+
+  const handleToggleSingleQuestionPage = () => {
+    if (hasRandomizedBlockWithMultiQuestionsPerPage) {
+      const updatedBlocks = _.map(blocks, (block) => {
+        if (block.props.randomization.type === 'ByFactors' && block.props.randomization.perPage > 1) {
+          return setIn(block, ['props', 'randomization', 'perPage'], 1)
+        }
+        return block
+      })
+      updateBlocks(_.keyBy(updatedBlocks, 'id'))
+    }
+    toggleSingleQuestionPage()
   }
 
   return (
@@ -67,16 +84,12 @@ const SettingsModalComponent = ({
       ]}
     >
       <Row gutter={[0, 16]}>
+        {hasRandomizedBlockWithMultiQuestionsPerPage && !assessment.options.enable_single_question_page
+          && <Alert message={I18n.t('administration.assessments.settings.has_randomized_block_warning')} banner />}
         <Col span={24}>
           <Space>
             <Switch checked={assessment.enable_back} onChange={toggleEnableBack} />
             {I18n.t('administration.assessments.settings.enable_back')}
-          </Space>
-        </Col>
-        <Col span={24}>
-          <Space>
-            <Switch checked={assessment.options?.enable_save} onChange={toggleEnableSave} />
-            {I18n.t('administration.assessments.settings.enable_save')}
           </Space>
         </Col>
 
@@ -88,7 +101,19 @@ const SettingsModalComponent = ({
         </Col>
         <Col span={24}>
           <Space>
-            <Switch checked={assessment.options.enable_single_question_page} onChange={toggleSingleQuestionPage} />
+            <EnableSingleQuestionWrapper
+              hasRandomizedBlockWithMultiQuestionsPerPage={handleToggleSingleQuestionPage}
+              handleToggleSingleQuestionPage={handleToggleSingleQuestionPage}
+              renderSwitch={props => (
+                <Space>
+                  <Switch
+                    checked={assessment.options.enable_single_question_page}
+                    onChange={props?.handleToggleSingleQuestionPage}
+                  />
+                </Space>
+              )}
+              enableSingleQuestionPage={assessment.options.enable_single_question_page}
+            />
             {I18n.t('administration.assessments.settings.enable_single_question_page')}
           </Space>
         </Col>
@@ -129,6 +154,31 @@ const SettingsModalComponent = ({
       </Row>
     </Modal>
   )
+}
+
+const EnableSingleQuestionWrapper = ({
+  hasRandomizedBlockWithMultiQuestionsPerPage, enableSingleQuestionPage,
+  handleToggleSingleQuestionPage, renderSwitch,
+}) => {
+  if (hasRandomizedBlockWithMultiQuestionsPerPage && !enableSingleQuestionPage) {
+    return (
+      <Popconfirm
+        title={I18n.t('common.text.confirm')}
+        description={I18n.t('administration.assessments.settings.enable_single_question_page_confirm')}
+        onConfirm={() => handleToggleSingleQuestionPage(true)}
+      >
+        {renderSwitch()}
+      </Popconfirm>
+    )
+  }
+  return <>{renderSwitch({ handleToggleSingleQuestionPage })}</>
+}
+
+const checkRandomizedBlockWithMultiQuestionsPerPage = (blocks) => {
+  const block = _.find(
+    blocks, block => block.props.randomization.type === 'ByFactors' && block.props.randomization.perPage > 1,
+  )
+  return !!block
 }
 
 export const SettingsModal = connecter(SettingsModalComponent)

@@ -4,9 +4,7 @@ module EndUser
   class ReportSerializer < Panko::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :name, :mindmill, :hogan, :results_hogan_url,
-               :has_external_report, :generating, :pdf_url, :mindmill_report_url
-
-    attributes :external_report_url, if: -> { !!assigns_report&.external_report }
+               :has_external_report, :generating, :pdf_url, :mindmill_report_url, :external_report_url
 
     def mindmill
       object.mindmill?
@@ -25,6 +23,8 @@ module EndUser
     end
 
     def external_report_url
+      return unless has_external_report
+
       assigns_report.external_report.url
     end
 

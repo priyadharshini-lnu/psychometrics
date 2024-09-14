@@ -8,6 +8,21 @@ export const ExternalAssessmentTR = t.type({
 
 export type ExternalAssessment = t.TypeOf<typeof ExternalAssessmentTR>
 
+const HoganDataTR = t.type({
+  url: t.string,
+  userId: t.string,
+  password: t.string,
+  uniqueId: t.string,
+  firstName: t.string,
+  lastName: t.string,
+  directAssessmentId: t.string,
+  displayInformedConsent: t.string,
+  returnUrl: t.string,
+  languageId: t.string,
+})
+
+export type HoganData = t.TypeOf<typeof HoganDataTR>
+
 export const AsyncExternalAssessmentTR = t.type({
   status: t.string,
   response: t.type({

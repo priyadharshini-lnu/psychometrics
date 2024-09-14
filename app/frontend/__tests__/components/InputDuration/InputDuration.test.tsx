@@ -10,7 +10,7 @@ test('should match snapshot', () => {
       className="user-defined-class"
       placeholder="Enter as 4d 3h 2m 1s"
       value=""
-      onChange={jest.fn()}
+      onChange={vi.fn()}
     />,
   )
 
@@ -53,7 +53,7 @@ test("component should'nt allow invalid format initial values", async () => {
       <InputDuration
         placeholder={placeholder}
         value={inValidInputValue}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     )
     const inputWithIncorrectValue = await findByPlaceholderText(placeholder)
@@ -96,7 +96,7 @@ test('component should allow valid in-sequence format initial values', async () 
       <InputDuration
         placeholder={placeholder}
         value={validInputValue}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     )
     const inputWithCorrectValue = await findByPlaceholderText(placeholder)
@@ -152,7 +152,7 @@ test('component should format input time in seconds to valid format', async () =
       <InputDuration
         placeholder={placeholder}
         value={validTime}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     )
     const inputWithCorrectValue = await findByPlaceholderText(placeholder)
@@ -223,7 +223,7 @@ test('component should filter out invalid format given part valid and part inval
       <InputDuration
         placeholder={placeholder}
         value={mixedInputValue}
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     )
     const inputWithCorrectValue = await findByPlaceholderText(placeholder)
@@ -239,7 +239,7 @@ test('component should only allow correct values on blur or on enter', async () 
   const placeholder = 'inputWithBlurFiltering'
 
   render(
-    <InputDuration placeholder={placeholder} value="" onChange={jest.fn()} />,
+    <InputDuration placeholder={placeholder} value="" onChange={vi.fn()} />,
   )
 
   const inputElem = screen.getByPlaceholderText(placeholder)

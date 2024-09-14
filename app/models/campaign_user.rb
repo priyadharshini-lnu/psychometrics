@@ -26,6 +26,7 @@ class CampaignUser < ApplicationRecord
   has_many :campaign_factor_values, lambda {
     joins(:campaign_user).where('campaign_factor_values.campaign_id = campaign_users.campaign_id')
   }, primary_key: :user_id, foreign_key: :user_id
+  has_many :communication_emails
 
   scope :in_progress, -> { where(completion_status: :in_progress) }
   scope :completed, -> { where(completion_status: :completed) }

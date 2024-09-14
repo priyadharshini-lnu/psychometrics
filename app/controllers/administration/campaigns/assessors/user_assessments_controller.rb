@@ -52,19 +52,37 @@ module Administration
             campaign_id: campaign.id
           }, current_user)
           audit! :rescore_results, resource, campaign: resource.campaign
-          render json: :ok
+          render json: ::Administration::Campaigns::Assessors::UserAssessmentSerializer.new(
+            context: {
+              project_id: campaign.project_id,
+              campaign_id: campaign.id,
+              current_user: current_user
+            }
+          ).serialize(resource)
         end
 
         def reset
           ::UsersResults::Reset.call!(resource)
 
-          head :ok
+          render json: ::Administration::Campaigns::Assessors::UserAssessmentSerializer.new(
+            context: {
+              project_id: campaign.project_id,
+              campaign_id: campaign.id,
+              current_user: current_user
+            }
+          ).serialize(resource)
         end
 
         def reset_progress
           ::UserAssessments::ResetProgress.call!(resource, reset_flag: true)
 
-          head :ok
+          render json: ::Administration::Campaigns::Assessors::UserAssessmentSerializer.new(
+            context: {
+              project_id: campaign.project_id,
+              campaign_id: campaign.id,
+              current_user: current_user
+            }
+          ).serialize(resource)
         end
 
         private

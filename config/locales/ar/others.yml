@@ -26,30 +26,24 @@ ar:
           attributes:
             current_password:
               invalid: كلمة المرور الحالية غير صحيحة
+  administration:
   anonym:
+    close: يغلق
     continue: استمرار
-    copy:
-      archived: تمت أرشفتة
-      expired: انتهت صلاحيته
-      not_active: لم يعد نشط
-    labels:
-      archived: مؤرشف
-      expired: منتهي
-      not_active: غير نشط
     notifications:
       restart:
         copy: كنت قد بدأت بالدراسة الإستقصائية. بإمكانك المتابعة أو إعادة البدء
         title: تريد ان تستمر؟
+      retake:
+        copy: لقد أنجزت بالفعل هذا الاستطلاع. لاستعادتها، يرجى النقر على زر إعادة الالتقاط أدناه.
+        title: إعادة المحاولة؟
     restart: إعادة البدء
+    retake: إعادة الالتقاط
   assessments:
     actions:
       back_to_campaign: العودة إلى الحملة
       extend_time: تمديد الوقت
       goto_dashboard: اضغط هنا للأستمرار
-      pending_tasks:
-        one: لديك مهمة واحدة معلقة
-        other: لديك %{count} مهام معلقة
-        two: لديك مهمتان معلقتان
       rescore: إعادة التصحيح
     audio_response:
       permission_denied_message: الرجاء تمكين إذن الميكروفون في المتصفح للتمكن من تسجيل إجابتك
@@ -57,22 +51,6 @@ ar:
     card_actions:
       begin: ابدأ
       continue: استمرار
-    categories:
-      '360': حملة 360
-      agile: AGILE- آجايل
-      case_study: دراسة حالة
-      hogan: " هوجان - Hogan"
-      mindmill: ميندميل-  Mindmill
-      organisational: استقصاء
-      psychometric: تقييم
-    decorator:
-      no_description: الوصف فارغ
-    file_upload:
-      select_file: اختر الملف
-    index:
-      managers_assessments_button: تخطيط العمل
-      managers_dashboard_button: لوحة معلومات المدراء
-      user_dashboard_button: لوحة معلومات المستخدم
     instructions:
       begin_assessment: ابدأ
       cancel: إلغاء
@@ -93,40 +71,23 @@ ar:
     pickgrouprank:
       items: عناصر
     proceed: سأُتابع على أي حال
-    resource:
-      assigned: التاريخ المعين %{date}
-      invite_users: دعوة المستخدمين
-      results: نتائج
-      status:
-        completed: تم إكماله
-        in_progress: استئناف
-        not_started: 'ابدأ '
     unknown_error: حدث خطأ غير معروف
     video_response:
-      delete: حذف
       device: السماح
       discard: تجاهل
       media_recorder:
         failure: هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو
         success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
-      offline_message: يرجى التحقق من اتصالك بالإنترنت
-      retake: إعادة المحاولة
-      retry: إعادة المحاولة
       save: حفظ
       saved:
         label: تم الحفظ
-        tooltip: تم اختيار هذا الفيديو للتقديم،  يمكنك أن  تأخذ  فيديو آخر إذا أردت.
       saving: جاري الحفظ
-      selected: المختاره
       start_recording: ابدأ التسجيل
-      status:
-        recording: جاري التسجيل
       tracker:
         backward: أنت قريب جداً من الشاشة، يرجى الإبتعاد قليلاً
         forward: أنت بعيد جداً من الشاشة، يرجى الإقتراب قليلاً
         frame: الرجاء التأكد من أن وجهك يحاذي الإطار المرسوم على الشاشه
         ready: 'اضغط على زر التسجيل عندما تكون جاهزاً '
-      use_this: تسليم هذا
     wait: انتظر
   auth:
     current_password: كلمة المرور الحالية
@@ -184,14 +145,12 @@ ar:
       description: لإنشاء كلمة مرور جديدة ، يرجى إدخال كلمة المرور الجديدة في المربعات أدناه
       submit: تسليم
       title: أنشئ كلمة مرور
-    sign_in: تسجيل الدخول
     sign_out: تسجيل خروج
     sign_up: تسجيل
     terms_link: <a href="%{terms_url}"> بيان الخصوصية</a>
     verify_mobile_number:
       error:
         blocked: تم حظر رقم الجوال بسبب كثرة المحاولات.
-        failed: الرمز المدخل خاطئ الرجاء إدخال رمز التحقق من جديد
         invalid_code: الرمز المدخل خاطئ
         invalid_number: رقم الجوال المدخل غير صحيح. يرجى التحقق من رقم الهاتف المدخل
         max_attempts_reached: تم إجراء أكثر من محاولة خاطئة الرجاء المحاولة من جديد بعد ١٠ دقائق.
@@ -201,9 +160,7 @@ ar:
     begin: ابدأ مهامك
     campaigns: الحملات
     closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة.
-    complete_all: أكمل جميع التقييمات ذات الصلة
     complete_prev: " أكمل جميع التقييمات السابقة"
-    completed: تم إكماله
     continue: الإستمرار في التقييم
     dashboard_instructions: لقد تم تكليفك بعدد من الانشطة التي عليك انجازها. يرجى التأكد من اكمالها جميعا ضمن الاطر الزمنية المحددة لها عبر جميع الحملات.
     dashboard_menu:
@@ -212,7 +169,6 @@ ar:
       change_password: تغيير كلمة المرور
       home: الصفحة الرئيسية
       insights: البصائر
-      livechat: دعم مباشر
       profile: تفاصيلي
       profile_details: تفاصيل
       tasks: مهامي
@@ -223,7 +179,6 @@ ar:
       title: يتأكد
       view: عرض الإجابات
     goto_dashboard: الذهاب الى لوحة التعليمات
-    in_progress: قيد التنفيذ
     inactive_campaign_message: حاليًا ، لم يتم تعيين أي أنشطة لك.
     insights_reports: رؤى وتقارير
     instruction_modal:
@@ -246,20 +201,13 @@ ar:
         <p>
         سيُطلب منك تنزيل متصفح خاص وتثبيته لإكمال المهام المراقبة. يرجى اتباع التعليمات في الشاشة التالية. يمكنك إلغاء تثبيت هذا بعد الانتهاء من جميع الأنشطة المطلوبة.
         </p>
-      title: توجيهات
     instructions:
       heading: يرجى مراجعة الإرشادات أدناه قبل أن تبدأ.
-    interrupted: تمت مقاطعته
     language:
-      cancel: إلغاء
       content: هذا التقييم غير متوفر باللغة التي إخترتها. يرجى اختيار اللغة التي تريد أن تعطي التقييم
-      proceed: تقدم
       single_lang: يتوفر هذا التقييم فقط باللغة ال %{lang}، وهو مختلف عن اللغة التي اخترتها
       title: إختار اللغة
-    new: جديد
-    not_started: جديد
     panels:
-      assessments: مهامك
       reports: تقارير
     profile:
       complete_heading: ملف التعريف الخاص بك مكتمل
@@ -275,12 +223,8 @@ ar:
       cancel: إلغاء
       continue: إستمرار
       notification: كان وقتك المخصص لهذه المهمة "%{assessmentName}" هو %{totalAssessmentTime} دقيقة فقط. نظراً للوقت المنقضي الإجمالي، لديك الآن %{remainingCampaignTime} دقيقة لإكمال هذه المهمة.
-      title: تحذير الوقت المتبقي
     timer:
-      message: الوقت المتبقي لإكمال جميع المهام
       notification: 'لديك %{minutes} و %{seconds} لإكمال التقييمات '
-    ungrouped: مهام غير مجمعة
-    welcome: مرحباً
   campaign_assessment:
     assessments_heading: مهامك
     statuses:
@@ -302,46 +246,29 @@ ar:
       continue: متابعة
       processing: "؟؟"
       record_title: الرجاء التحدث وتكرار الجملة التالية 3 مرات
-      run_again: تشغيل مرة أخرى
       speech_detection: الكشف عن الكلام
       test_message: سُررت بالتحدث معك
       title: نحن بحاجة للتأكد من أن النظام الخاص بك يمكنه تسجيل الصوت
     network_check:
       continue: استمرار
       download: تحميل
-      levels:
-        '0': شبكة سيئة (إعادة الاتصال)
-        '1': 'شبكة سيئة جدا '
-        '2': شبكة سيئة
-        '3': شبكة متوسطة
-        '4': 'شبكة جيدة '
-        '5': شبكة جيدة جدا
-      network: شبكة
       please_check_connection: " الرجاء التحقق من إتصالك بالإنترنت"
       processing: "؟؟"
       run_again: تشغيل مرة أخرى
       run_again_title: وتشغيل هذا الاختبار مرة أخرى
-      start: ابدأ
       title: انقر فوق زر ابدأ، لبدء اختبار سرعة الإنترنت
       upload: تحميل
-    steps:
-      audio_check: إختبار الميكروفون
-      network_check: اختبار سرعة الإنترنت
-      system_check: اختبار النظام
-      video_check: اختبار الكاميرا
     success:
       start: ابدأ التقييم
       title: 'قد أكملت جميع ال....؟؟  بنجاح '
     system_check:
       continue: استمرار
-      start: إبدأ
       title: قبل بدأ هذا التقييم، يحتاج النظام الخاص بك إلى الخضوع لبعض الفحوصات
     video_check:
       access: الإذن بالدخول
       access_help: انقر هنا للحصول على مساعدة
       allow: السماح
       allow_title: يرجى السماح بإستخدام الكاميرا لتسجيل الفيديو
-      ambient_light: الإضاءة المحيطة
       continue: استمرار
       description: لن يتم حفظ أو استخدام أي مقطع فيديو أو صورة تم التقاطها في هذه المرحلة. يتم استخدامه محليًا على جهازك لضمان عمل الكاميرا لسؤال قادم قد يتطلب تسجيل فيديو.
       face_detection: الكشف عن الوجه
@@ -349,18 +276,15 @@ ar:
       retake: إعادة المحاولة
       run_again: تشغيل مرة أخرى
       title: " نحن بحاجة إلى التأكد من أن النظام الخاص بك يمكنه تسجيل الفيديو"
-      upload: تحميل
       uploading: جاري التحميل
   common:
     actions:
       add: إضافة
       archive: أرشيف
       cancel: إلغاء
-      close: إغلاق
       copy: نسخ
       delete: حذف
       edit: تعديل
-      import: استيراد
       remove: إزالة
       reset: إعادة
       resolve: حل
@@ -443,23 +367,13 @@ ar:
       attempt: الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل
       code_has_been_sent: تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل
   errors:
+    assessments:
+      timed_out: لن تتمكن من إجراء تقييم %{assessment_name} نظرًا لانتهاء المهلة المحددة له.
     error: الخطأ
     error_500: هناك خطأ ما. تواصل مع مديرك.
     forbidden: لم يكن لديك الوصول إلى هذه الصفحة
     forbidden_action: ليس لديك أذونات لهذا الإجراء
     invalid_token: هناك خطأ ما. يرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
-    messages:
-      already_confirmed: تم تأكيده بالفعل، يرجى محاولة تسجيل الدخول
-      carrierwave_direct_allowed_extensions: تم تحميل نوع ملف خاطئ. الامتدادات المسموح بها هي %{extensions}
-      carrierwave_direct_filename_invalid: ''
-      confirmation_period_expired: يجب التأكيد خلال %{period}، يرجى طلب تأكيد جديد
-      expired: انتهت صلاحيته، يرجى طلب واحدة جديدة
-      iiht_cannot_reset: لا يمكن إعادة تعيين هذا التقييم لأنه تم الوصول إلى الحد الأقصى لعدد مرات إعادة التعيين.
-      not_found: غير معثور عليه
-      not_locked: لم يكن مقفلا
-      not_saved:
-        one: 'خطأ واحد أدى إلى منع حفظ %{resource} هذا:'
-        other: "%{count} أخطاء منعت حفظ %{resource} هذا:"
     module_error: حدث خطأ ما في هذه الوحدة، يرجى الاتصال بالإدارة.
     module_error_editor: حدث خطأ ما في هذه الوحدة، يرجى التحقق من إعدادات الوحدة.
     module_props_error: حدث خطأ ما في هذه الوحدة.
@@ -546,7 +460,6 @@ ar:
         completion_statuses:
           completed: تم إكماله
           in_progress: " على قيد التقدم"
-          interrupted: تمت مقاطعته
           not_started: لم يبدأ بعد
     change_password: تغيير كلمة السر
     delete: " حذف"
@@ -567,7 +480,6 @@ ar:
     'yes': نعم
   navigation:
     logout: تسجيل خروج
-    profile: الملف الشخصى
   profile:
     add_photo: أضف صورتك
     age: عمرك
@@ -593,15 +505,6 @@ ar:
       download: تحميل التقرير
       view: عرض التقرير
     modules:
-      common:
-        almost_always: عادةً
-        less_typical: أقل نموذجية
-        moderate: معتدل
-        more_typical: أكثر نموذجية
-        rare: النادرة
-      cpi_occupations:
-        occupations: المهن
-        your_potential_suitability: الملائمة المحتملة الخاصة بك
       factors_table:
         description: الوصف
         no_data: لا توجد بيانات متاحة لهذا القسم.
@@ -617,50 +520,31 @@ ar:
         rank: المرتبة
         scoring_category: الكفاءة
       highest_lowest:
-        average: متوسط
         bottom_5: أدنى 5
         category: فئة
-        email: البريد الإلكتروني
-        first_name: 'الاسم '
         highest_scores: أعلى الدرجات
         item: مؤشر
-        last_name: اسم العائلة
         lowest_scores: " أدنى الدرجات"
         mean_score: متوسط الدرجات
         rank: المرتبة
-        result: " النتيجة"
-        score: الدرجة
         scoring_category: الكفاءة
         sub_competenties: الكفاءات الفرعية
         top_5: الخمسة الأوائل
       potential_career_full:
-        bachelors_or_masters_qualification: البكالوريوس أو الماجستير
         career_strengths_and_results: قوة المؤهلات المهنية و نتائجك
         career_sub_tracks: الوظيفي الفرعي
-        detailed_career_guide: دليل وظيفي مُفصل
-        diploma_qualification: 'دبلوم '
-        education_level: مستوى التعليم
-        high_school_entry_roles: أدوارك في المدرسة الثانوية
         key_career_tracks_within: وفيما يلي قائمة بالأدوار الوظيفية المحتملة لكل مسار من المسارات المهنية. تذكر بأن هذه القائمة للدلالة فقط وأنها ليست شاملة. لاحظ أن الأدوار المخطوطة بالخط المائل تتطلب مستويات أعلى من التعليم و / أو الخبرة
         potential_areas_of_study: 'المجالات المحتملة '
-        potential_roles: الأدوار المحتملة
         strength_high: نقطة القوة
         strength_low: القوة التنموية
         strength_moderate: القوة المُحتملة
         work_environment: بيئة عملك
         your_suitability: ملاءمة
-      potential_career_short:
-        career: مهنة
-        for_this: لهذه
-        key: الرئيسية
-        strengths: القوة الرئيسية
-        your_scores: " درجاتك"
       single_value:
         factor_name: فئة الدرجات
         question_name: أسئلة
       single_value_cluster:
         competency: الكفاءة
-        description: " الوصف"
         developmental_rating: التقييم التطويري
         questions: أسئلة
       strength_clusters:
@@ -686,12 +570,8 @@ ar:
         completed: مُكتمل
         footnote: "* مستثناة بسبب الحد الأدنى للمتطلبات"
         invited: المدعوين
-        number_of_evaluators_invited: عدد المقيّمين المدعوين
         relationships: العلاقات
-        subject: الموضوع
-        title: ملخص التقرير
         total: الاجمالى
-        total_evaluations: مجموع التقييمات لهذا التقييم
       video_response:
         no_results: لم يتم تسجيل مقاطع فيديو
     show:
@@ -709,12 +589,6 @@ ar:
     filters:
       clear: امسح المُرشحات
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
-    password_reset:
-      description: الرجاء إدخال عنوان بريدك الإلكتروني في المربع أدناه وانقر فوق زر "إعادة تعيين كلمة السر".
-      email_label: عنوان البريد الإلكتروني
-      instruction: أدخل البريد الإلكتروني المرتبط بحسابك
-      submit: إعادة تعيين كلمة السر
-      title: هل نسيت كلمة السر؟
     terms_conditions_privacy: بيان الخصوصية
     tte_terms_and_condition: " الشروط والأحكام وبيان الخصوصية الخاص بشركة TTE"
   simple_form:
@@ -746,9 +620,6 @@ ar:
     accept_privacy_modal:
       accept: اقبل
       checkbox: لقد قرأت وفهمت سياسة الخصوصية المذكورة أعلاه.
-      policy_link: انقر هنا لقراءة سياسة الخصوصية.
-      reject: ارفض
-      text: قبل المتابعة لإكمال المهام أدناه ، أؤكد أنني قد قرأت وأوافق على سياسة الخصوصية لـ The Talent Enterprise والمبادئ التوجيهية ذات الصلة فيما يتعلق باستخدام معلوماتي الشخصية.
       title: موافقة معالجة البيانات
     add: اضافة
     and: و
@@ -800,8 +671,6 @@ ar:
     first_name: الإسم
     first_name_error: رجاءً إطبع إسمك
     help: مساعدة
-    helps:
-      main: "<h2>مساعدة</h2> <p> المحتوى الضروري للمساعدة مشروط</p>"
     language: اللغة
     last_name: اسم العائلة
     last_name_error: يرجى إدخال اسم العائلة
@@ -925,8 +794,6 @@ ar:
     TextEntry:
       Email:
         character_range: يجب أن تكون رسالة البريد الإلكتروني التي تم إدخالها %{min} حرف على الأقل ولا تزيد عن %{max} حرف.
-        max_length: يجب ألا تكون رسالة البريد الإلكتروني التي تم إدخالها أكثر من %{max} حرفًا.
-        min_length: يجب أن تكون رسالة البريد الإلكتروني التي تم إدخالها على الأقل %{min} حرفاً.
         subject:
           min_length: يجب أن يكون الموضوع مكون من  10 أحرف كحد أدنى
         to:
@@ -967,7 +834,3 @@ ar:
     range: الرجاء الإجابة على الأقل %{min} ولا تزيد عن %{max} الاختيار (الخيارات).
     required: يرجى الإجابة على هذا السؤال
     text: يجب ألا يحتوي ردك على أرقام
-    title:
-      one: هناك إجابة مفقودة، يرجى التحقق من إجابتك
-      other: هناك %{count} إجابات مفقودة، يرجى التحقق من إجاباتك
-      two: هناك إجابتان مفقودتان، يرجى التحقق من إجاباتك

@@ -13,5 +13,6 @@ FactoryBot.define do
     attempts_to_lock { 3 }
     auto_unlock_time { 15 }
     send_unlock_email { false }
+    magic_link_expiry_in_seconds { 10.minutes.to_i }
   end
 end

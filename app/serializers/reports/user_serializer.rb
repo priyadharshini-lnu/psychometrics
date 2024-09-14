@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Reports
-  class UserSerializer < ActiveModel::Serializer
+  class UserSerializer < Panko::Serializer
     attributes :id, :first_name, :last_name, :email, :photo, :datasheet
 
     def photo
@@ -15,7 +15,7 @@ module Reports
     private
 
     def campaign
-      instance_options[:campaign]
+      context[:campaign]
     end
   end
 end

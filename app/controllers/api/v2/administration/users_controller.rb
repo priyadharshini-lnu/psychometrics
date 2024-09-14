@@ -48,8 +48,10 @@ module Api
     end
 
     def change_password
-      form = Users::ChangePasswordForm.from_params(change_password_params)
-      return render json: { errors: form.errors.messages }, status: 422 unless form.valid?
+      form = Users::ChangePasswordForm.from_params(params.dig(:data, :attributes))
+      unless form.valid?
+        return render json: convert_model_errors_to_json_api_standard(form.errors.messages), status: 422
+      end
 
       if current_user.update_with_password(form.attributes)
         sign_out(current_user)
@@ -66,7 +68,15 @@ module Api
       jsonapi_render json: user
     end
 
+    def current_user_details
+      jsonapi_render json: current_user, options: { resource: Api::V2::Administration::CurrentUserResource }
+    end
+
     private
+
+    def campaign_id
+      params[:campaign_id] || params.dig(:data, :attributes, :campaign_id)
+    end
 
     def context_for_schema_validation
       { current_user: current_user, project: project, campaign: campaign, user: @resource }
@@ -82,10 +92,6 @@ module Api
 
     def create_resource_params
       params.require(:data).require(:attributes).permit(:first_name, :last_name, :email)
-    end
-
-    def change_password_params
-      params.require(:data).require(:attributes).permit(:current_password, :password, :password_confirmation)
     end
   end
 end

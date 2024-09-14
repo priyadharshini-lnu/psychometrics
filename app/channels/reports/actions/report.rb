@@ -40,9 +40,10 @@ module Reports
             r.save
           end
         end
-        report.filters.reload.map do |filter|
-          ::Reports::FilterSerializer.new(filter).to_hash
-        end
+        Panko::ArraySerializer.new(
+          report.filters.reload,
+          each_serializer: ::Reports::FilterSerializer
+        ).to_a
       end
       # rubocop:enable Metrics/BlockLength
 

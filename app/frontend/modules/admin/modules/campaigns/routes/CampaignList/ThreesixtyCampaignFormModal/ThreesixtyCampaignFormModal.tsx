@@ -140,7 +140,6 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
       classNames={{ body: styles.modalBody, header: styles.modalHeader }}
     >
       <Flex vertical className="h-100">
-
         {showAdvancedSettingsForm ? (
           <AdvancedSettingsForm
             projectId={projectId}

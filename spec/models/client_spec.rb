@@ -54,4 +54,26 @@ describe Client, type: :model do
       expect(client.length).to eq(0)
     end
   end
+
+  describe '#hogan_provider' do
+    let(:project) { create(:project) }
+
+    context 'provider is set as mercer in integration' do
+      let!(:integration) { create(:integration, :hogan_integration, project: project) }
+
+      it 'creates hogan credentials with mercer as provider' do
+        expect(project.hogan_provider).to eq('mercer')
+      end
+    end
+
+    context 'default_provider is set as mercer in secrets' do
+      before do
+        allow(Settings.secrets.hogan).to receive(:default_provider).and_return('mercer')
+      end
+
+      it 'creates hogan credentials with mercer as provider' do
+        expect(project.hogan_provider).to eq('mercer')
+      end
+    end
+  end
 end

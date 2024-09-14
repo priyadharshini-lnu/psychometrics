@@ -28,9 +28,7 @@ module UsersResults
     end
 
     def remove_reports
-      user_assessment.user_reports.each do |ur|
-        ur.update!(remove_pdf: true, status: :generating)
-      end
+      user_assessment.user_reports.each(&:remove_report_pdf!)
     end
   end
 end

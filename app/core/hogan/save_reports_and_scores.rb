@@ -22,7 +22,9 @@ module Hogan
           next rerun_save_report_and_score(user_report) if participant_report.blank?
 
           user_report.update!(status: :generating)
-          user_report.update!(pdf: "data:application/pdf;base64,#{participant_report}", status: :prepared)
+          user_report.attach_pdf!(
+            participant_report, "#{user_report.report.name.parameterize}.pdf"
+          )
         end
 
         user_report.user_results.where("external_results::text = '{}'").each do |user_result|

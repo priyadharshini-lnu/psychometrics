@@ -1,11 +1,10 @@
 import { FC, useEffect } from 'react'
-import { useParams, useHistory, useLocation } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
   SettingOutlined,
   ShopOutlined,
   DatabaseOutlined,
-  // UserOutlined,
   SolutionOutlined,
 } from '@ant-design/icons'
 import some from 'lodash/some'
@@ -34,11 +33,11 @@ const connecter = connect(
 type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-export const ProjectComponent: FC<Props> = ({
+const Project: FC<Props> = ({
   currentUser, fetchProject,
 }) => {
-  const { projectId } = useParams<{ projectId: string }>()
-  const history = useHistory()
+  const { projectId } = useParams() as { projectId: string }
+  const navigate = useNavigate()
   const { pathname } = useLocation()
 
   useEffect(() => {
@@ -46,7 +45,7 @@ export const ProjectComponent: FC<Props> = ({
   }, [])
 
   const handleOnSelect = ({ key }) => {
-    history.push(`${settings.urlPrefix}/${projectId}/${key}`)
+    navigate(`${settings.urlPrefix}/${projectId}/${key}`)
   }
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
@@ -161,10 +160,10 @@ export const ProjectComponent: FC<Props> = ({
       />
       <RouteList
         routes={routes}
-        urlPrefix={`${settings.urlPrefix}/:projectId`}
+        urlPrefix=""
       />
     </div>
   )
 }
 
-export const Project = connecter(ProjectComponent)
+export default connecter(Project)

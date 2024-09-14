@@ -3,5 +3,5 @@
 class MindmillCredential < ApplicationRecord
   belongs_to :users_result
 
-  attr_encrypted :password, key: Base64.decode64(Rails.application.secrets.encrypted_key.to_s)
+  attr_encrypted :password, key: Base64.decode64(Settings.secrets.encrypted_key.to_s)
 end

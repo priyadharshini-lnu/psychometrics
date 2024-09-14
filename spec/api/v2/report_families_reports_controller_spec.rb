@@ -83,8 +83,15 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
             data: {
               type: 'report_families_reports',
               attributes: {
-                report_id: report.id.to_s,
                 external_package_id: 'RPInsightFlashPkg'
+              },
+              relationships: {
+                report: {
+                  data: {
+                    type: 'reports',
+                    id: report.id.to_s
+                  }
+                }
               }
             }
           }
@@ -97,6 +104,40 @@ describe Api::V2::Administration::ReportFamiliesReportsController, swagger_doc: 
 
           report_families_report = report.report_families_reports.last
           expect(report_families_report.external_package_id).to eq('RPInsightFlashPkg')
+        end
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:existing_report) { create(:report) }
+        let!(:existing_report_families_report) do
+          create(:report_families_report, report_family_id: report_family_id, report: existing_report)
+        end
+
+        let(:report_family_id) { report_family.id }
+
+        let(:body) do
+          {
+            data: {
+              type: 'report_families_reports',
+              attributes: {
+                external_package_id: 'RPInsightFlashPkg'
+              },
+              relationships: {
+                report: {
+                  data: {
+                    type: 'reports',
+                    id: existing_report.id.to_s
+                  }
+                }
+              }
+            }
+          }
+        end
+
+        run_test! do |response|
+          errors = JSON.parse(response.body)['errors']
+
+          expect(errors.first['title']).to eq('This Report is already a part of Report Bundle')
         end
       end
     end

@@ -19,7 +19,7 @@ module Administration
     end
 
     def report_url
-      object.pdf_download_url
+      object.pdf_file.url(disposition: 'attachment') if object.pdf_file.attached?
     end
 
     def all_assessments_are_completed

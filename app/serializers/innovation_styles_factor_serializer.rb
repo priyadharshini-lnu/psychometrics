@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class InnovationStylesFactorSerializer < ActiveModel::Serializer
+class InnovationStylesFactorSerializer < Panko::Serializer
   attributes :id, :predicate, :value, :position, :weight
 
   def id

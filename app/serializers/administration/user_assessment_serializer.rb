@@ -3,7 +3,8 @@
 module Administration
   class UserAssessmentSerializer < Panko::Serializer
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
-               :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling
+               :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling,
+               :mettl_schedule_name, :mettl_schedule_record_id
 
     delegate :name, :category, to: :assessment
 
@@ -27,6 +28,14 @@ module Administration
       assessment.has_external_norm?
     end
 
+    def mettl_schedule_name
+      mettl_schedule_record&.schedule_name
+    end
+
+    def mettl_schedule_record_id
+      mettl_schedule_record&.id&.to_s
+    end
+
     def is_external
       assessment.external?
     end
@@ -39,6 +48,7 @@ module Administration
         [
           'update_additional_time',
           'update_norm',
+          'update_mettl_schedule',
           'rescore_response',
           %w[remove destroy],
           'reset_progress',
@@ -51,8 +61,6 @@ module Administration
         }
       )
     end
-
-    private
 
     def campaign
       context[:campaign]
@@ -70,8 +78,14 @@ module Administration
       object.users_result
     end
 
-    def assessment
-      object.assessment
+    delegate :assessment, to: :object
+
+    private
+
+    def mettl_schedule_record
+      return nil if object.mettl_user_assessment.blank?
+
+      object.mettl_user_assessment&.mettl_schedule_record&.parent_or_self
     end
   end
 end

@@ -5,7 +5,7 @@ import { act } from 'react-dom/test-utils'
 import { InvitationTitle } from '~/glint/components/BookingCard/InvitationTitle'
 
 test('TimeZone selection should return value as expected', async () => {
-  const handleTimeZoneChange = jest.fn(zone => zone)
+  const handleTimeZoneChange = vi.fn(zone => zone)
 
   render(
     <div id="container">

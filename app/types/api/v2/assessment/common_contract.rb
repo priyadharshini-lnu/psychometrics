@@ -19,7 +19,7 @@ module Api
           assessment = ::Assessment.find(value[:data][:id])
 
           if assessment.linked_assessor_form && assessment.linked_assessor_form.id != _context[:params][:id].to_i
-            key.failure(:already_assigned?)
+            key.failure(:already_assigned?, linked_assessor_form_name: assessment.linked_assessor_form.name)
           end
         end
       end

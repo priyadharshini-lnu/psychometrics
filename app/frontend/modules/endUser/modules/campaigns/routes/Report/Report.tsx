@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import { SafeHTML } from '~/components/SafeHTML'
 import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
@@ -37,10 +38,12 @@ const ReportComponent = ({
       default_language: defaultLanguage,
       locales,
     }, report, results, user, campaign, approvalStatus, isSelf,
-  }, match: { params }, fetchReport, updateStatus, downloadReport, checkReport,
-  options: { approval: { managerApprovesReports }, access: { disableDownloadReport } }, history,
+  }, fetchReport, updateStatus, downloadReport, checkReport,
+  options: { approval: { managerApprovesReports }, access: { disableDownloadReport } },
 }) => {
   const { message } = App.useApp()
+  const navigate = useNavigate()
+  const params = useParams()
   useEffect(() => {
     fetchReport(params.campaignId, params.id)
   }, [])
@@ -81,9 +84,11 @@ const ReportComponent = ({
         <PageHeader
           className={styles.campaignHeader}
           backIcon={(
-            <DirectionalNavigateBackIcon
-              className={styles.backIcon}
-            />
+            <Button ghost type="text" size="small" aria-label={I18n.t('frontend.aria.back_to_tasks')}>
+              <DirectionalNavigateBackIcon
+                className={styles.backIcon}
+              />
+            </Button>
           )}
           title={(
             <Text className={styles.campaignDropdown}>
@@ -97,7 +102,7 @@ const ReportComponent = ({
             </Text>
           )}
           ghost={false}
-          onBack={() => history.push(`/threesixty_campaigns/${params.campaignId}`)}
+          onBack={() => navigate(`/threesixty_campaigns/${params.campaignId}`)}
           extra={!disableDownloadReport && [
             <Button
               key="download"

@@ -1,10 +1,11 @@
 import _ from 'lodash'
 import { Menu } from 'antd'
-import { withRouter } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import settings from '~/modules/admin/modules/threeSixtyCampaign/settings'
 import routeUtils from '~/utils/route'
 
-function TemplateMenu ({ history, emailTemplates, selectedId }) {
+function TemplateMenu ({ emailTemplates, selectedId }) {
+  const navigate = useNavigate()
   const groupedTemplate = _.groupBy(emailTemplates, 'category')
   const menuItems = [..._.map(groupedTemplate, (emailTemplates, category) => (
     {
@@ -25,10 +26,10 @@ function TemplateMenu ({ history, emailTemplates, selectedId }) {
     <Menu
       items={menuItems}
       selectedKeys={[selectedId.toString()]}
-      onClick={({ key }) => routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${key}`)}
+      onClick={({ key }) => routeUtils.moveTo(navigate, settings.urlPrefix, `/messages/email/${key}`)}
       style={{ height: 700 }}
       mode="inline"
     />
   )
 }
-export default withRouter(TemplateMenu)
+export default TemplateMenu

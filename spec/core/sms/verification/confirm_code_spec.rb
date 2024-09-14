@@ -80,7 +80,7 @@ describe Sms::Verification::ConfirmCode do
     private
 
     def mobile_verification_token(mobile_number)
-      JWT.encode({ data: mobile_number }, Rails.application.secrets.encrypted_key)
+      JWT.encode({ data: mobile_number }, Settings.secrets.encrypted_key.to_s)
     end
 
     def check_audit_log(params)

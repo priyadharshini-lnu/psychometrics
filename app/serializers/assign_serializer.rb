@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AssignSerializer < ActiveModel::Serializer
+class AssignSerializer < Panko::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
              :relationship, :available_translations, :selected_locale, :translations,
@@ -8,19 +8,8 @@ class AssignSerializer < ActiveModel::Serializer
              :current_element, :current_page, :seedrandom, :reset_count, :highlights,
              :subject_datasheet, :prev_pages, :remaining_assessment_time, :report_data
 
-  has_one :user, method: :user
-  has_many :media_responses, method: :media_responses
-
-  def user
-    UserSerializer.new.serialize(object.user)
-  end
-
-  def media_responses
-    Panko::ArraySerializer.new(
-      object.media_responses,
-      each_serializer: MediaResponseSerializer
-    ).to_a
-  end
+  has_one :user, serializer: UserSerializer
+  has_many :media_responses, each_serializer: MediaResponseSerializer
 
   def remaining_assessment_time
     return unless object.expiry_date
@@ -48,23 +37,25 @@ class AssignSerializer < ActiveModel::Serializer
   def highlights
     ids = [object.assessment_id]
     ids += object.assessment.resources.map { |r| r['assessmentId'] } if object.assessment.resources
-    Highlight.where(assessment_id: ids, user_id: user_id).map do |h|
-      HighlightSerializer.new(h)
-    end
+    highlights = Highlight.where(assessment_id: ids, user_id: user_id)
+    Panko::ArraySerializer.new(
+      highlights,
+      each_serializer: HighlightSerializer
+    ).to_a
   end
 
   def relationship
     if object.assessment.threesixty?
       participant =
         # For multi assigns we should pass participant map in order to avoid N+1 queries
-        if @instance_options[:participants_map]
-          @instance_options[:participants_map][object.evaluator_id]
+        if context[:participants_map]
+          context[:participants_map][object.evaluator_id]
         else
           Threesixty::Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
         end
       participant&.relationship&.name
-    elsif @instance_options[:membership]
-      object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship
+    elsif context[:membership]
+      object.membership.decorate(context: { current_membership: context[:membership] }).relationship
     end
   end
 
@@ -90,7 +81,7 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def norm_data
-    object.norm_data[:name] = @instance_options[:norm] if @object.norm_data
+    object.norm_data[:name] = context[:norm] if @object.norm_data
     object.norm_data
   end
 
@@ -123,8 +114,8 @@ class AssignSerializer < ActiveModel::Serializer
   def data_sheet
     row =
       # For multi assigns we should pass data sheet map in order to avoid N+1 queries
-      if @instance_options[:data_sheet_map]
-        @instance_options[:data_sheet_map][object.evaluator.email]
+      if context[:data_sheet_map]
+        context[:data_sheet_map][object.evaluator.email]
       else
         DatasheetRow.joins(:datasheet).
           find_by(datasheets: { project_id: object.membership.client_id }, email: object.membership.user.email)

@@ -26,18 +26,20 @@ class AssignsController < ApplicationController
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
       format.json do
-        render json: @assign, serializer: AssignSerializer
+        render json: ::AssignSerializer.new(context: {}).serialize(@assign)
       end
     end
   end
 
   def assessment
     @selected_locale = @assign.selected_locale || user_locale
-    render json: @assign.assessment,
-           serializer: AssessmentSerializer,
-           include: '**',
-           selected_locale: @selected_locale,
-           piped_text_context: build_piped_context
+    render json: AssessmentSerializer.new(
+      context: {
+        include: '**',
+        selected_locale: @selected_locale,
+        piped_text_context: build_piped_context
+      }
+    ).serialize(@assign.assessment)
   end
 
   def update
@@ -46,9 +48,11 @@ class AssignsController < ApplicationController
     @form = AssignForm.from_params(assign_params)
     UpdateAssign.call(@form, @assign, current_user)
 
-    render json: @assign,
-           serializer: AssignUpdateSerializer,
-           current_block_id: params[:current_block_id], piped_text_context: build_piped_context
+    render json: AssignUpdateSerializer.new(
+      context: {
+        current_block_id: params[:current_block_id], piped_text_context: build_piped_context
+      }
+    ).serialize(@assign)
   end
 
   def update_meta_data

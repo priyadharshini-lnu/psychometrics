@@ -44,6 +44,7 @@ module EndUser
       ).serialize(@campaign)
     end
 
+    # rubocop:disable Metrics/BlockLength
     def insights
       respond_to do |format|
         format.html { render 'campaigns/show' }
@@ -58,14 +59,17 @@ module EndUser
             piped_text_context = { subject: user_dashboard_report.user }
 
             results = user_dashboard_report.user_results.map do |result|
-              ::Reports::ResultSerializer.new(result, campaign: @campaign).to_h
-            end.group_by { |result| result[:assessment_id] }
+              ::Reports::ResultSerializer.new(context: { campaign: @campaign }).serialize(result)
+            end.group_by { |result| result['assessment_id'] }
 
-            user_dashboard = ::UserDashboardSerializer.new(user_dashboard_report, scope: current_user,
-              report: user_dashboard_report.report, results: results,
-              piped_text_context: piped_text_context).to_hash(include: '**')
+            user_dashboard = ::UserDashboardSerializer.new(
+              context: { scope: current_user, report: user_dashboard_report.report, results: results,
+                         piped_text_context: piped_text_context, current_user: current_user, include: '**' }
+            ).serialize(user_dashboard_report)
           end
-          user_reports = @campaign.user_reports.where(user_id: current_user, user_access: true).filter_map do |ur|
+          user_reports = @campaign.user_reports.where(user_id: current_user, user_access: true).includes(
+            report: { poster_attachment: :blob }
+          ).with_attached_pdf_file.filter_map do |ur|
             unless ur == user_dashboard_report
               ::EndUser::UserReportSerializer.new(context: { user_report: ur }).serialize(ur)
             end
@@ -75,6 +79,7 @@ module EndUser
         end
       end
     end
+    # rubocop:enable Metrics/BlockLength
 
     def join_with_code
       registration_code = @current_project.project_registration_codes.find_by(code: params[:code])

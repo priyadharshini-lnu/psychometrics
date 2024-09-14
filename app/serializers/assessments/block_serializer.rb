@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 module Assessments
-  class BlockSerializer < ActiveModel::Serializer
+  class BlockSerializer < Panko::Serializer
     attributes :id, :name, :position, :deleted, :props, :created_at, :template_id, :questions
 
     def questions
-      object.questions_ams.map do |q|
-        Assessments::QuestionSerializer.new(q)
-      end
+      Panko::ArraySerializer.new(
+        object.questions_ams,
+        each_serializer: Assessments::QuestionSerializer
+      ).to_a
     end
 
     def deleted

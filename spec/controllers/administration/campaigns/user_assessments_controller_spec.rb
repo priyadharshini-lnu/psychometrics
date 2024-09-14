@@ -70,7 +70,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     expect(parsed_response.dig('user_assessments', 0, 'id')).to eq(user_assessment.id)
     expect(parsed_response['id']).to eq(user.id)
     expect(parsed_response['user_reports'].class).to be(Array)
-    expect(user_report.reload.status).to eq('generating')
+    expect(user_report.reload.status).to eq('not_prepared')
   end
 
   it '[POST] rescore_responses' do
@@ -109,6 +109,61 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       expect(parsed_response['user_assessments']).to be_empty
       expect(parsed_response['id']).to eq(user.id)
       expect(parsed_response['user_reports'].class).to be(Array)
+    end
+  end
+
+  describe 'POST update_mettl_schedule' do
+    let(:mettl_schedule_record_id) { 10_000_024 }
+    let!(:mettl_schedule_record) { create(:mettl_schedule_record, project: assessment.project, assessment: assessment) }
+    let!(:mettl_user_assessment) do
+      create(:mettl_user_assessment, user_assessment: user_assessment)
+    end
+
+    it 'updates mettl schedule record id' do
+      assessment.update!(type: Assessments::Mettl)
+      user_assessment.update!(status: 'not_started')
+
+      post :update_mettl_schedule, params: {
+        mettl_schedule_record_id: mettl_schedule_record_id,
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(mettl_schedule_record_id)
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'does not update mettl schedule record id if user assessment is completed' do
+      assessment.update!(type: Assessments::Mettl)
+      user_assessment.update!(status: 'completed')
+      original_mettl_schedule_record_id = mettl_user_assessment.mettl_schedule_record_id
+
+      post :update_mettl_schedule, params: {
+        mettl_schedule_record_id: mettl_schedule_record_id,
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(original_mettl_schedule_record_id)
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it 'does not update mettl schedule record id if user assessment is not mettl' do
+      assessment.update!(type: Assessments::Hogan)
+      user_assessment.update!(status: 'not_started')
+      original_mettl_schedule_record_id = mettl_user_assessment.mettl_schedule_record_id
+
+      post :update_mettl_schedule, params: {
+        mettl_schedule_record_id: mettl_schedule_record_id,
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(mettl_user_assessment.reload.mettl_schedule_record_id).to eq(original_mettl_schedule_record_id)
+      expect(response).to have_http_status(:forbidden)
     end
   end
 end

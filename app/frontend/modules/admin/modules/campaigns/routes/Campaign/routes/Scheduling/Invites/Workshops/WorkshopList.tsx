@@ -23,7 +23,7 @@ const connector = connect(null, { openModal })
 type Props = ConnectedProps<typeof connector>
 
 export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
-  const { inviteId, campaignId } = useParams<{ inviteId: string, campaignId: string }>()
+  const { inviteId, campaignId } = useParams() as { inviteId: string, campaignId: string }
 
   return (
     <>

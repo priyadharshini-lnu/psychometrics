@@ -93,6 +93,12 @@ export default defineConfig({
     reportCompressedSize: false,
     cssCodeSplit: true,
     rollupOptions: {
+      onwarn(warning, warn) {
+        if (warning.code === 'MODULE_LEVEL_DIRECTIVE' || warning.code === 'EVAL') {
+          return
+        }
+        warn(warning)
+      },
       plugins: [
         gzipPlugin({
           customCompression: content => brotliPromise(Buffer.from(content)),

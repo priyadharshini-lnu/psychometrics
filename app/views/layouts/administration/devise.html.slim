@@ -1,5 +1,5 @@
 doctype html
-html.body-full-height
+html.body-full-height lang="#{I18n.locale}"
   head
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
@@ -21,7 +21,7 @@ html.body-full-height
     javascript:
       __INITIAL_STATE__ = {
         csrfToken: '#{form_authenticity_token}',
-        user: #{::Auth::CurrentUserSerializer.new(current_user || resource || User.new).to_json.html_safe},
+        user: #{::Auth::CurrentUserSerializer.new.serialize((current_user || resource || User.new)).to_json.html_safe},
         projectConfig: #{{background: image_url(randomized_background_image)}.to_json.html_safe},
         flash: #{flash_json_messages.to_json.html_safe}
       }

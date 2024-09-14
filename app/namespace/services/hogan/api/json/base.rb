@@ -8,7 +8,7 @@ module Services
           private_attr_reader :context
 
           TOKEN_ENDPOINT = 'Token'
-          API_BASE = Rails.application.secrets.hogan[:json_api_url].freeze
+          API_BASE = Settings.secrets.hogan[:json_api_url].freeze
 
           def initialize(args)
             @context = OpenStruct.new(args) # rubocop:disable Style/OpenStructUse
@@ -38,23 +38,23 @@ module Services
           alias client client_with_auth
 
           def get_client_id(provider)
-            provider ||= Rails.application.secrets.hogan[:default_provider]
-            Rails.application.secrets.hogan[:credentials][provider.to_sym][:client_id]
+            provider ||= Settings.secrets.hogan[:default_provider]
+            Settings.secrets.hogan[:credentials][provider.to_sym][:client_id]
           end
 
           def get_client_user_id(provider)
-            provider ||= Rails.application.secrets.hogan[:default_provider]
-            Rails.application.secrets.hogan[:credentials][provider.to_sym][:client_user_id]
+            provider ||= Settings.secrets.hogan[:default_provider]
+            Settings.secrets.hogan[:credentials][provider.to_sym][:client_user_id]
           end
 
           def get_client_password(provider)
-            provider ||= Rails.application.secrets.hogan[:default_provider]
-            Rails.application.secrets.hogan[:credentials][provider.to_sym][:client_password]
+            provider ||= Settings.secrets.hogan[:default_provider]
+            Settings.secrets.hogan[:credentials][provider.to_sym][:client_password]
           end
 
           def get_master_client_id(provider)
-            provider ||= Rails.application.secrets.hogan[:default_provider]
-            Rails.application.secrets.hogan[:credentials][provider.to_sym][:master_client_id]
+            provider ||= Settings.secrets.hogan[:default_provider]
+            Settings.secrets.hogan[:credentials][provider.to_sym][:master_client_id]
           end
 
           def fetch_access_token(provider)

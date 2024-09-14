@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Auth
-  class ProjectConfigSerializer < ActiveModel::Serializer
+  class ProjectConfigSerializer < Panko::Serializer
     attributes :id, :background_color, :login_box_position, :background, :saml_login_allowed,
                :saml_enforced, :client_logo, :secondary_logo, :primary_color,
                :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number
@@ -47,7 +47,7 @@ module Auth
     end
 
     def fallback_background
-      instance_options[:background] unless background_color
+      context[:background] unless background_color
     end
   end
 end

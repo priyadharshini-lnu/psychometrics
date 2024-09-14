@@ -10,6 +10,7 @@ export default interface Assessment {
   assessorFormName: string
   normId: number
   normName: string
+  mettlScheduleRecordId?: string,
   enableUniversalLinks: boolean
   isExternal: boolean
   universalLink: string | null
@@ -26,6 +27,7 @@ export default interface Assessment {
     updateExternalConfig: boolean
     scheduleAssessment: boolean
     toggleAutoAssign: boolean
+    updateMettlSchedule: boolean
   },
   externalConfig: object,
   campaignAssessmentId: number

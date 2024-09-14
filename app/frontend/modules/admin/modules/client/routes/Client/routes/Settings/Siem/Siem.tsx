@@ -17,7 +17,7 @@ const { I18n } = window
 const FILTERED_DATA = '<FILTERED>'
 
 export const Siem: React.FC<Props> = () => {
-  const { clientId } = useParams<{ clientId: string }>()
+  const { clientId } = useParams() as { clientId: string }
   const [isLoading, setIsLoading] = useState(false)
   const [settings, setSettings] = useState<ClientAuditlogExportSetting | null>(null)
   const [passwordToBeChanged, setPasswordToBeChanged] = useState(false)

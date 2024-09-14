@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class EmailScheduleSerializer < ActiveModel::Serializer
-    attributes :id, :status, :recipient, :subject, :scheduled_date, :emails_sent, :delivered_at
-
-    has_many :histories, serializer: Threesixty::EmailHistorySerializer
+  class EmailScheduleSerializer < Panko::Serializer
+    attributes :id, :status, :recipient, :subject, :scheduled_date, :emails_sent, :delivered_at, :histories
 
     # TODO: This will change
     def status
@@ -33,7 +31,10 @@ module Threesixty
     end
 
     def histories
-      object.email_histories
+      Panko::ArraySerializer.new(
+        object.email_histories,
+        each_serializer: Threesixty::EmailHistorySerializer
+      ).to_a
     end
 
     private
@@ -47,7 +48,7 @@ module Threesixty
     end
 
     def user_email(id)
-      instance_options[:users_hash][id]
+      context[:users_hash][id]
     end
   end
 end

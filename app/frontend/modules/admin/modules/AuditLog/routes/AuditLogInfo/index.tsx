@@ -1,9 +1,9 @@
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Descriptions, Collapse } from 'antd'
 import { UnControlled as CodeMirror } from 'react-codemirror2'
+import { useParams } from 'react-router-dom'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getCurrent, fetchCurrent } from '~/modules/admin/modules/AuditLog/core'
 import styles from './styles.less'
@@ -25,18 +25,19 @@ const connecter = connect(
   },
 )
 
-interface Params {
+type Params = {
   id: string
 }
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
-type Props = PropsFromRedux & RouteComponentProps<Params>
+type Props = PropsFromRedux
 const { I18n } = window
 
 const AuditLogList: React.FC<Props> = ({
-  single: record, match: { params: { id } },
+  single: record,
   fetchCurrent,
 }) => {
+  const { id } = useParams() as Params
   useEffect(() => {
     fetchCurrent(id)
   }, [])
@@ -198,4 +199,4 @@ const AuditLogList: React.FC<Props> = ({
 }
 
 
-export default connecter(withRouter(AuditLogList))
+export default connecter(AuditLogList)

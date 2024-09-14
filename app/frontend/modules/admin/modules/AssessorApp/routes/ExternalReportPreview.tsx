@@ -31,7 +31,7 @@ const ExternalReportPreviewComponent: FC<Props> = ({
   fetchExternalReportDetails, userReport,
 }) => {
   const [pdfLoadingComplete, setPdfLoadingComplete] = useState(false)
-  const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
+  const { campaignId, id } = useParams() as { campaignId: string, id: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserReportId = parseInt(id, 10)
   useEffect(() => {

@@ -84,8 +84,8 @@ class Page extends Component {
     const validationTitle = I18n.t('validations.title', { count: Object.keys(errors).length })
     const styleForTitle = this.addLtrStyleIfNeed(validationTitle)
     return (
-      <div className={styles.errors}>
-        <h1 style={styleForTitle}>{validationTitle}</h1>
+      <div className={styles.errors} style={styleForTitle}>
+        {validationTitle}
       </div>
     )
   }
@@ -118,7 +118,9 @@ class Page extends Component {
         <div className={this.getQuestionContainerClasses()}>
           {staticContent && <StaticContent key={blockId} />}
           <div className={cs(styles.questionsBlock, { staticBlockQuestionList: staticContent })}>
-            {!ignoreValidation && !_.isEmpty(errors) && this.renderErrors(page)}
+            <div aria-live="assertive" role="status">
+              {!ignoreValidation && !_.isEmpty(errors) && this.renderErrors(page)}
+            </div>
             <QuestionList
               readOnly={readOnly}
               page={page}

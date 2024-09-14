@@ -18,11 +18,12 @@ import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
 import { connect } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import { statusMenuItems } from '~/modules/endUser/modules/campaigns/common/menuItems'
-import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import store from '~/modules/endUser/store'
 import useAvoidMultipleEvaluation from '~/hooks/useAvoidMultipleEvaluation'
 import { validateSession } from '~/modules/endUser/modules/campaigns/core/userAssessment'
@@ -73,7 +74,6 @@ const EvaluationComponent = ({
       expiry_date,
     },
   }, fetchAssessment, clearEvaluation, updateStatus,
-  match: { params },
   preview: {
     enableProgress,
     type,
@@ -88,6 +88,7 @@ const EvaluationComponent = ({
     participants: { global: globalParticipantOptions },
   },
 }) => {
+  const params = useParams()
   const assessmentRef = createRef()
   const {
     edit, step, approve_evaluation, lang, read,
@@ -175,9 +176,9 @@ const EvaluationComponent = ({
           {availableTranslations
               && availableTranslations.length > 1
               && (
-              <Language
-                selectedLanguage={selectedLanguage}
-                availableTranslations={availableTranslations || []}
+              <LangDropdownWithChangeUrl
+                currentLocale={selectedLanguage.code}
+                locales={availableTranslations || []}
               />
               )
             }
@@ -194,9 +195,11 @@ const EvaluationComponent = ({
             className={styles.campaignHeader}
             backIcon={(
               <Space>
-                <DirectionalNavigateBackIcon
-                  className={styles.backIcon}
-                />
+                <Button ghost type="text" size="small" aria-label={I18n.t('frontend.aria.back_to_tasks')}>
+                  <DirectionalNavigateBackIcon
+                    className={styles.backIcon}
+                  />
+                </Button>
                 <CountdownTimer
                   notificationPoints={[{ completionPercentage: 30, type: 'info' },
                     { completionPercentage: 15, type: 'warning' },
@@ -205,7 +208,7 @@ const EvaluationComponent = ({
                   onFinish={() => markAssessmentTimedOut(preview)}
                 />
               </Space>
-        )}
+            )}
             ghost={false}
             title={titleElement}
             onBack={handleBackButtonClick}

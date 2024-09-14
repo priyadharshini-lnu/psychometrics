@@ -10,7 +10,7 @@ class BaseUploader < CarrierWave::Uploader::Base
   end
 
   def proxy_url(options = {})
-    storage_config = Rails.application.secrets.s3_compatible_storage
+    storage_config = Settings.secrets.s3_compatible_storage
     return url(options) unless storage_config[:proxy_endpoint]
 
     url(options).gsub(storage_config[:endpoint], storage_config[:proxy_endpoint])

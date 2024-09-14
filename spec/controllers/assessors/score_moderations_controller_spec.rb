@@ -46,6 +46,7 @@ RSpec.describe Assessors::ScoreModerationsController, type: :controller do
            assessment: report.assessments.first, status: :completed, score_calculated: true)
       get :reports, params: { campaign_id: assessors_campaign.id, id: subject_user.id }
       parsed_response = JSON.parse(response.body)
+
       expect(parsed_response['reports'].size).to eq(1)
       expect(parsed_response['reports'].first['id']).to eq(user_report2.id)
       expect(parsed_response['main_report_id']).to eq(user_report.id)

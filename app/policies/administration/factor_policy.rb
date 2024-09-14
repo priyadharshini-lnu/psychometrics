@@ -24,7 +24,7 @@ module Administration
 
     class Scope < Scope
       def resolve
-        scope = super
+        scope = super.with_attached_icon
         return scope if @user.is?(:superadmin)
 
         owner_ids =

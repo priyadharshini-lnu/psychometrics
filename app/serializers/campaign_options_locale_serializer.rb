@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class CampaignOptionsLocaleSerializer < ActiveModel::Serializer
+class CampaignOptionsLocaleSerializer < Panko::Serializer
   attributes :instructions, :locale
 
   def locale
-    instance_options[:locale]
+    context[:locale]
   end
 end

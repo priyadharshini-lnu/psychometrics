@@ -15,7 +15,7 @@ import {
 const { I18n } = window
 
 export const Privacy: React.FC = () => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const [form] = Form.useForm()
   const [customPrivacyConsentTexts, setCustomPrivacyConsentTexts] = useState<{
     locale: string, text: string | null
@@ -213,6 +213,12 @@ export const Privacy: React.FC = () => {
                 name="maskIdentityForExamus"
               >
                 <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_examus')}</Checkbox>
+              </Form.Item>
+              <Form.Item
+                valuePropName="checked"
+                name="maskIdentityForMettl"
+              >
+                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_mettl')}</Checkbox>
               </Form.Item>
               <Button
                 type="primary"

@@ -8,41 +8,45 @@ RSpec.describe EndUser::SavilleUserAssessmentsController, type: :controller do
     create(:user_assessment, evaluator: user, saville_user_assessment: build(:saville_user_assessment))
   end
   let(:campaign) { user_assessment.campaign }
+  let(:async_request_uuid) { "#{uuid}|#{user.id}" }
+  let(:request_params) { { id: user_assessment.id, saville_user_assessment: { id: user_assessment.id } } }
 
   before(:each) { login_user(user) }
   after(:each) { sign_out(user) }
 
-  describe 'GET pass' do
-    it 'redirects to campaign_path if user_assessment is completed' do
-      user_assessment.completed!
-      expect(::Saville::AssessmentOrderRequest).to_not receive(:call!)
-
-      get :pass, params: { id: user_assessment.id }
-
-      expect(response).to redirect_to(assessment_completed_path(campaign, user_assessment_id: user_assessment.id))
+  describe 'POST #pass' do
+    before do
+      allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(true)
+      allow(AsyncRequestHandlerJob).to receive(:perform_later)
     end
 
-    it "doesn't make AssessmentOrderRequest if assessment url is present" do
-      url = 'https://tte-saville.com'
-      user_assessment.saville_user_assessment.update(url: url)
-      expect(::Saville::AssessmentOrderRequest).to_not receive(:call!)
-
-      get :pass, params: { id: user_assessment.id }
-
-      expect(response).to redirect_to(url)
+    after(:each) do
+      $redis.flushdb # rubocop:disable Style/GlobalVars
     end
 
-    it 'makes AssessmentOrderRequest if assessment url is not present and marks user_assessment in progress' do
-      url = 'https://tte-saville.com'
-      expect(::Saville::MakeRequest).to receive(:call!).and_return({
-        'AssessmentOrderAcknowledgement' => {
-          'AccessPoint' => { 'InternetWebAddress' => url }
-        }
-      })
-      get :pass, params: { id: user_assessment.id }
+    it 'queues the request and sets status to in progress' do
+      post :pass, params: request_params
 
-      expect(user_assessment.reload.in_progress?).to eq(true)
-      expect(response).to redirect_to(url)
+      expect(response).to have_http_status(:ok)
+      expect(AsyncRequestHandlerJob).to have_received(:perform_later)
+
+      async_request_uuid = assigns(:async_request_uuid)
+      status, response = AsyncResponseRequest::GetAsyncResponse.call!(async_request_uuid)
+      expect(status).to eq('not_started')
+      expect(response).to be_an_instance_of(AsyncResponseRequest::AsyncResponse)
+      expect(response.processing_status).to eq('not_started')
+    end
+
+    context 'when user assessment cannot be started based on sequencing' do
+      before do
+        allow(UserAssessments::CanStartBasedOnSequencing).to receive(:call!).and_return(false)
+      end
+
+      it 'returns the redirect URL to the campaign path' do
+        post :pass, params: request_params
+
+        expect(response).to redirect_to(campaign_path(user_assessment.campaign_id))
+      end
     end
   end
 
@@ -60,6 +64,14 @@ RSpec.describe EndUser::SavilleUserAssessmentsController, type: :controller do
       get :redirect, params: { id: user_assessment.id }
 
       expect(user_assessment.reload.completed?).to eq(false)
+    end
+
+    it 'mark user_assessment as timed_out if saville assessment is return error and redirect to campaign' do
+      get :redirect, params: { id: user_assessment.id, error: 14 }
+
+      expect(user_assessment.reload.timed_out?).to eq(true)
+      expect(user_assessment.reload.completion_reason).to eq('time_out_offline')
+      expect(user_assessment.saville_user_assessment.error_code).to eq('14')
     end
   end
 end

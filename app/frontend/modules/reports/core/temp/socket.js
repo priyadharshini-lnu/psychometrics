@@ -2,9 +2,9 @@ import {
   select, takeEvery, take, put, call,
 } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
+import { message } from 'antd'
 import { createReducer } from '~/utils/redux'
 import { ENABLE, DISABLE } from '~/modules/reports/core/builder/actions'
-import NotificationDispatcher from '~/modules/reports/dispatchers/NotificationDispatcher'
 import { RequestsPool } from '~/modules/reports/middleware/Socket'
 import Socket from '../../cable/socket'
 
@@ -79,10 +79,11 @@ function* genSubsribeSocket ({ channel, data }) {
     if (payload.type === 'connected') {
       yield put(subscribed())
       yield put(enableApp())
+      message.info('Connection established')
     }
     if (payload.type === 'disconnect') {
       yield put(disableApp())
-      NotificationDispatcher.notify({ level: 'error', message: 'Connection lost' })
+      message.warning('Connection lost')
     }
     if (payload.type === 'message') {
       yield put(socketMessage(payload.data))

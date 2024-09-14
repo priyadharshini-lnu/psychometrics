@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class InstructionTemplateLocaleSerializer < ActiveModel::Serializer
+  class InstructionTemplateLocaleSerializer < Panko::Serializer
     attributes :id, :locale, :content
 
     def locale
-      instance_options[:locale]
+      context[:locale]
     end
   end
 end

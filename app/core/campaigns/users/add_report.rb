@@ -110,21 +110,44 @@ module Campaigns
 
       def create_external_user_assessment_record(user_assessment, assessment, existing_result)
         if assessment.saville?
-          existing_saville_user_assessment = existing_result&.saville_user_assessment
-          user_assessment.create_saville_user_assessment(
-            norm_id: existing_saville_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
-            data_seprator: existing_saville_user_assessment&.data_seprator
-          )
+          create_saville_assessment(user_assessment, existing_result)
         elsif assessment.pearson?
-          existing_pearson_user_assessment = existing_result&.pearson_user_assessment
-          user_assessment.create_pearson_user_assessment(
-            norm_id: existing_pearson_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
-            schedule_id: existing_pearson_user_assessment&.schedule_id,
-            url: existing_pearson_user_assessment&.url
-          )
+          create_pearson_assessment(user_assessment, existing_result)
         elsif assessment.iiht?
-          user_assessment.create_iiht_user_assessment
+          create_iiht_assessment(user_assessment)
+        elsif assessment.mettl?
+          create_mettl_assessment(user_assessment, existing_result)
         end
+      end
+
+      def create_saville_assessment(user_assessment, existing_result)
+        existing_saville_user_assessment = existing_result&.saville_user_assessment
+        user_assessment.create_saville_user_assessment(
+          norm_id: existing_saville_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
+          data_seprator: existing_saville_user_assessment&.data_seprator
+        )
+      end
+
+      def create_pearson_assessment(user_assessment, existing_result)
+        existing_pearson_user_assessment = existing_result&.pearson_user_assessment
+        user_assessment.create_pearson_user_assessment(
+          norm_id: existing_pearson_user_assessment&.norm_id || user_assessment.applicable_external_norm_id,
+          schedule_id: existing_pearson_user_assessment&.schedule_id,
+          url: existing_pearson_user_assessment&.url
+        )
+      end
+
+      def create_iiht_assessment(user_assessment)
+        user_assessment.create_iiht_user_assessment
+      end
+
+      def create_mettl_assessment(user_assessment, existing_result)
+        existing_mettl_user_assessment = existing_result&.mettl_user_assessment
+        user_assessment.create_mettl_user_assessment(
+          email: existing_mettl_user_assessment&.url,
+          mettl_schedule_record_id: existing_mettl_user_assessment&.mettl_schedule_record_id,
+          url: existing_mettl_user_assessment&.url
+        )
       end
 
       def existing_user_result_to_copy(assessment)

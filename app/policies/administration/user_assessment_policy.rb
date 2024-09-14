@@ -34,6 +34,11 @@ module Administration
       )) && (!record.assessment.pearson? || record.not_started?)
     end
 
+    def update_mettl_schedule?
+      has_permission?(:project_settings, :manage_users,
+                      project_id: project_id) && record.assessment.mettl? && record.not_started?
+    end
+
     def update_additional_time?
       !record&.assessment&.external? &&
         (@user.is?(:superadmin) || @user.has_permission?(
@@ -55,7 +60,10 @@ module Administration
     def reset?
       assessment = record.assessment
       has_permission_to_reset_assessment? &&
-        (assessment.common? || assessment.saville? || (assessment.iiht? && record.completed?))
+        (assessment.common? ||
+          assessment.saville? ||
+          (assessment.mettl? && record.reset_count < UserAssessment::MAX_RESET_COUNT && record.completed?) ||
+           (assessment.iiht? && record.completed?))
     end
 
     def reset_progress?

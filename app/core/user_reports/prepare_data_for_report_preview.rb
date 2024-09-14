@@ -15,16 +15,20 @@ module UserReports
       translations = Translation.to_hash_for_report(report.id, report.assessment_ids, options[:locale])
 
       broadcast :ok,
-                user: Reports::UserSerializer.new(user_report.user, campaign: user_report.campaign).to_json,
+                user: Reports::UserSerializer.new(
+                  context: { campaign: user_report.campaign }
+                ).serialize(user_report.user).to_json,
                 results: UserReports::GroupedResultsByAssessment.call!(user_report, view_report_as).to_json,
                 user_report_data: UserReports::PrepareUserReportData.call!(user_report).to_json,
-                data: ReportSerializer.new(
-                  report,
-                  user_results: user_report.user_results,
-                  module_overrides: user_report.text_module_overrides,
-                  piped_text_context: user_report.piped_text_context
-                ).to_json(include: '**'),
                 campaign_factor_results: campaign_factor_results.to_json,
+                data: ReportSerializer.new(
+                  context: {
+                    user_results: user_report.user_results,
+                    module_overrides: user_report.text_module_overrides,
+                    piped_text_context: user_report.piped_text_context,
+                    include: '**'
+                  }
+                ).serialize(report).to_json,
                 locales: translations.to_json
     end
 

@@ -2,7 +2,9 @@
 
 module Threesixty
   module EndUser
-    class BaseCampaignSerializer < ActiveModel::Serializer
+    class BaseCampaignSerializer < Panko::Serializer
+      attributes :assessment_name, :type, :nominations_counters, :evaluations_counters, :reports_counters
+
       def assessment_name
         object.assessment.name
       end
@@ -55,7 +57,7 @@ module Threesixty
       end
 
       def current_user
-        instance_options[:current_user]
+        context[:current_user]
       end
     end
   end

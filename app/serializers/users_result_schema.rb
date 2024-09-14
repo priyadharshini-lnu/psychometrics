@@ -11,8 +11,8 @@ class UsersResultSchema < BaseSchema
       required(:id).filled(:int?)
       required(:status).filled(:str?)
       required(:step).filled(:int?)
-      required(:answers).value { hash? | array? | nil? }
-      required(:results).value { hash? | array? | nil? }
+      optional(:answers).value { hash? | array? | nil? }
+      optional(:results).value { hash? | array? | nil? }
       optional(:end_date) { str? | time? }
       optional(:scoring).maybe(:hash?)
       required(:user_id).maybe(:int?)

@@ -6,6 +6,7 @@ import schema from '../store/schema'
 import { INIT } from '../core/builder/assessment/actions'
 import { INIT_QUESTION_CENTER } from '../core/builder/questionCenter'
 import NotificationDispatcher from '../dispatchers/NotificationDispatcher'
+import { captureSchemaValidationError } from '~/utils/schemaValidationError'
 
 export const RequestsPool = {}
 
@@ -14,14 +15,13 @@ const Socket = ({ dispatch }) => next => (action) => {
 
   const { data, notification } = action
 
+  data && captureSchemaValidationError(data)
+
   if (notification) {
     NotificationDispatcher.notify(notification)
   }
 
-  if (data.action === 'assessment_data') {
-    const normalizedData = normalize(data.data, schema)
-    dispatch({ type: INIT, data: normalizedData })
-  } else if (data.action === 'question_data') {
+  if (data.action === 'question_data') {
     dispatch({ type: INIT_QUESTION_CENTER, data: data.data })
   } else if (data.action === 'block_data') {
     const normalizedData = normalize({

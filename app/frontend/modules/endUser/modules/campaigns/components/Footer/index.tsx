@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Button, Space } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 
 
@@ -66,23 +67,31 @@ const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
   let privacyLink: JSX.Element | null = null
   if (privacyText && privacyPageLink) {
     privacyLink = (
-      <a href={privacyPageLink} target="_blank" rel="noopener noreferrer">
+      <Button
+        className="ps-0 pe-0"
+        type="link"
+        href={privacyPageLink}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {privacyText}
-      </a>
+      </Button>
     )
   }
 
   return (
-    <>
-      <a
+    <Space size="large">
+      <Button
+        className="ps-0 pe-0"
+        type="link"
         href="https://thetalententerprise.com/privacy-statement/"
         target="_blank"
         rel="noopener noreferrer"
       >
         {I18n.t('shared.tte_terms_and_condition')}
-      </a>
+      </Button>
       {privacyLink}
-    </>
+    </Space>
   )
 }
 

@@ -33,14 +33,32 @@
 }
 
 .input {
-  margin: 3px 7px !important;
   width: 12px;
+  position: absolute;
+  left: 30px;
+  &:focus-visible:after {
+    outline: 6px solid var(--ant-primary-3);
+  }
+}
+
+.input[type='checkbox']:after {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  top: -5px;
+  left: -4px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: '';
+  display: inline-block;
+  visibility: visible;
 }
 
 .label {
   display: flex;
   font-weight: normal;
   width: 100%;
+  position: relative
 }
 
 .ltr_direction {
@@ -50,9 +68,6 @@
 .liButton {
   padding: 0;
   align-items: center;
-  input {
-    display: none;
-  }
 }
 
 .buttonActive {
@@ -68,6 +83,7 @@
   }
 }
 .checkIcon {
+  z-index: 1;
   background-color: @white;
   border-radius: 50%;
   color: @white;
@@ -109,6 +125,9 @@
   .optionDescription {
     padding-inline-start: 8px;
   }
+  .input {
+    left: 5px;
+  }
 }
 
 .scoringRow {
@@ -121,12 +140,6 @@
 }
 
 :global(body .ltr) {
-  .list:not(.Horizontal) {
-    .checkIcon {
-      position: absolute;
-      right: 0;
-    }
-  }
   .Horizontal {
     .checkIcon {
       margin-right: 0.3em;
@@ -134,18 +147,26 @@
   }
 }
 :global(body .rtl) {
-  .list:not(.Horizontal) {
-    .checkIcon {
-      position: absolute;
-      left: 0;
-    }
-  }
   .Horizontal {
     .listItem {
       margin-left: 1.2em;
     }
     .checkIcon {
       margin-left: 0.4em;
+    }
+  }
+}
+
+:global(.rtl) {
+  & .input {
+    right: 30px;
+    left: 0;
+  }
+
+  & .Horizontal {
+    & .input {
+      right: 5px;
+      left: 0;
     }
   }
 }

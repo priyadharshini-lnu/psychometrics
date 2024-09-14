@@ -24,7 +24,7 @@ module Administration
 
     class Scope < Scope
       def resolve
-        scope = super
+        scope = super.with_attached_file
         return scope if @user.is?(:superadmin)
 
         owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids

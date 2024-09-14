@@ -19,7 +19,13 @@ module Administration
                    group(:relationship_id).
                    index_by(&:relationship_id)
 
-        render json: relationships, each_serializer: RelationshipWithUsageSerializer, counters: counters
+        render json: Panko::ArraySerializer.new(
+          relationships,
+          each_serializer: RelationshipWithUsageSerializer,
+          context: {
+            counters: counters
+          }
+        ).to_a
       end
 
       def destroy
@@ -37,18 +43,22 @@ module Administration
         relationship.update!(relationship_params)
         audit!(:update, relationship, campaign: threesixty_campaign.campaign, payload: params)
 
-        render json: relationship,
-               serializer: RelationshipWithUsageSerializer,
-               counters: calc_counters_for_relationship(relationship)
+        render json: RelationshipWithUsageSerializer.new(
+          context: {
+            counters: calc_counters_for_relationship(relationship)
+          }
+        ).serialize(relationship)
       end
 
       def create
         relationship = Relationship.create!(campaign_id: threesixty_campaign.campaign_id, type: :campaign)
         audit!(:create, relationship, campaign: threesixty_campaign.campaign)
 
-        render json: relationship,
-               serializer: RelationshipWithUsageSerializer,
-               counters: {}
+        render json: RelationshipWithUsageSerializer.new(
+          context: {
+            counters: {}
+          }
+        ).serialize(relationship)
       end
 
       private

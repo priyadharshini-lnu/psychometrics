@@ -15,7 +15,7 @@ module Users
         user.update_column(:invitation_sent_at, ::DateTime.current)
       end
       token = Rails.application.message_verifier(
-        Rails.application.secrets.secret_token_for_generate
+        Settings.secrets.secret_token_for_generate
       ).verify(user.encrypted_invitation_raw)
       broadcast :ok, token
     end

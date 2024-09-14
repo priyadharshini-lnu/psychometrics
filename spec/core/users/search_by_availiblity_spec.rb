@@ -330,6 +330,14 @@ describe Users::SearchByAvailability do
     ).query
     expect(result.length).to eq(2)
     expect(result.pluck(:id)).to match_array([user1.id, user2.id])
+
+    result = described_class.new(
+      Time.zone.parse('2023-07-19 09:00:00 +0400'),
+      Time.zone.parse('2023-07-19 9:30:00:00 +0400'),
+      search_term: 'John D'
+    ).query
+    expect(result.length).to eq(1)
+    expect(result.pluck(:id)).to match_array([user1.id])
   end
 
   it 'handles day change due to difference in timezone between saved availability and passed date' do

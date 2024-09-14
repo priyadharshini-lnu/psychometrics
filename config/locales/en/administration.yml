@@ -2,7 +2,6 @@
 en:
   administration:
     actions: Actions
-    active: Active
     active_record_audits:
       action: Action
       audit_id: Audit Id
@@ -14,38 +13,14 @@ en:
       old_diff:
         parse_error: Failed to parse JSON with old changes
       title: Audited Changes
-    admin_profile_edit:
-      old_password_doesnt_match: Old password didn't match
     administrator:
-      invitations:
-        edit:
-          confirm_password_label: Confirm Password
-          instruction: To create a new password, please enter your new password in the boxes below.
-          password_label: Password
-          submit: Set New Password
-          title: Create password
-      passwords:
-        edit:
-          confirm_password_label: Confirm Password
-          instruction: To change the password, please enter your new password in the boxes below.
-          password_label: Password
-          submit: Set New Password
-          title: Change your password
       sessions:
         new:
           forgot_password: Forgot your password?
           instruction: Please login with your personal account information
           password_placeholder: Password
-          submit: Login
           title: Welcome!
       shared:
-        links:
-          about: About
-          app_name: "© 2016 AppName"
-          contact_us: " Contact Us"
-          faqs: " FAQs"
-          privacy: Privacy Statement
-          terms_conditions: " Terms & Conditions"
         simple_design:
           design: Design
           or: Or
@@ -54,49 +29,15 @@ en:
         edit:
           admin_role_select: Select admin role
           admin_roles: Admin roles
-          can_download_report: Download Report
-          can_manage: Manage
-          can_manage_messages: Manage messages
-          can_manage_options: Manage options
-          can_manage_users: Manage users
-          can_rescore_responses: Rescore responses
-          can_reset_responses: Reset responses
-          can_view: View
-          can_view_raw_responses: View raw responses
-          can_view_report: View report
-          can_view_report_data: View report data
-          can_view_scores: View scores
-          create_failed: Unable to create Admin '%{name}', please contact your administrator
-          create_success: Admin '%{name}' created successfully
+          create_success: Admin '%{name}' was created successfully
           email: Email
           first_name: First name
           first_name_required: First name is required
           last_name: Last name
           last_name_required: Last name is required
-          manage_report_approvals: Manage Report Approvals
-          next: Next
           no_edit_permission: You do not have permission to edit admin '%{name}'
-          permission_assessment: Assessments
-          permission_assessors: Assessors
-          permission_campaigns: Campaigns
-          permission_client: Clients
-          permission_communication: Communication center
-          permission_datasheet: Datasheets
-          permission_dimension: Dimensions
-          permission_media: Media library
-          permission_norm: Norms
-          permission_project: Projects
-          permission_question: Questions
-          permission_regcode: Registration codes
-          permission_report: Reports
-          permission_results: Results
-          permission_sms_invites: SMS Invites
-          permissions: Permissions
           save: Save
-          search_placeholder: Enter email to edit an existing admin or add a new one
-          stats: View Stats
           update: Update
-          update_failed: Admin '%{name}' update failed
           update_success: Admin '%{name}' was updated successfully
         notes:
           threesixty_permission: Permissions specific to 360 campaigns
@@ -124,22 +65,17 @@ en:
           api_keys: API keys
           cancel_text: Cancel
           change_password: Reset password
-          delete: Delete
           edit: Edit
           login: Login
-          no_permission: Insufficient permissions
           send_email: Send email
           spoof:
             login_successful: Login successful.
         columns:
           actions: Actions
-          campaigns_list: Campaigns List
-          clients_list: Clients List
           created_at: Created at
           email: Email
           id: Id
           name: Name
-          projects_list: Projects List
         header:
           add_admin: Add admin
           search_admins: Search admins
@@ -148,16 +84,8 @@ en:
           cancelText: Cancel
           content: Are you sure you want to remove admin user with email '%{email}'?
           okText: Ok
-          onFailed: Unable to delete Admin with '%{email}', please contact your administrator
           onSuccess: Admin with email '%{email}' was removed successfully
           title: Confirm
-        resetPassword:
-          cancelText: Cancel
-          content: Are you sure you want to send a reset password link to '%{email}'?
-          okText: Yes, send
-          onFailed: Unable to send reset password link to '%{email}', please contact your administrator
-          onSuccess: Reset password link successfully sent to '%{email}'
-          title: Reset admin password
       permissions:
         labels:
           apiKeys:
@@ -206,6 +134,9 @@ en:
           dimensions:
             manage: Manage
             view: View
+          idpTemplates:
+            manage: Manage
+            view: View
           mediaLibraries:
             manage: Manage
             view: View
@@ -219,6 +150,7 @@ en:
           projectSettings:
             design: Design
             integrations: Integrations
+            privacy_settings: Privacy Settings
             saml: SAML
             security: Security
             smtp: SMTP
@@ -234,6 +166,8 @@ en:
           registrationCodes:
             manage: Manage
             view: View
+          registrationSettings:
+            manage: Manage
           reports:
             manage: Manage
             view: View
@@ -242,6 +176,7 @@ en:
             bulk_regenerate_reports: Bulk Regenerate Reports
             download_report: Download Report
             edit_report: Edit Report
+            external_score_import: External Score Import
             finalize_scores: Finalize Scores
             raw_responses: Raw Responses
             regenerate_report: Regenerate Report
@@ -252,6 +187,10 @@ en:
             reset_responses: Reset Responses
             scores: Scores
             view_report: View Report
+            view_stats: View Stats
+          smsHistories:
+            manage: Manage
+            view: View
           smsInvites:
             manage: Manage
             view: View
@@ -261,10 +200,8 @@ en:
             export_status: Export Status
             manage: Manage
             view: View
-    all: " - All - "
     any: " - Any - "
     api_keys:
-      api_keys: Api keys
       form:
         description: Description
         title: api key
@@ -285,7 +222,6 @@ en:
           description: Issue invitations to candidates by selecting multiple assessment centers. Candidates will then choose a single center from those available.
           neurodiversity: Include neurodiversity question
           preferred_language: Allowed Languages
-          preferred_language_placeholder: Select Preferred Language
           required_error: Can't be empty
           title: Basic Information
         confirm_message: Are you sure you want to delete an invitation?
@@ -304,7 +240,6 @@ en:
           add_language: Add Language
           description: Description
           input_label: Add Additional Language
-          input_placehodler: Select Preferred Language
           invitation_title: Invitation Title
           title: Invitation (%{lang})
         steps:
@@ -327,7 +262,6 @@ en:
           title: Subjects
           upload: Upload
           upload_csv: Upload CSV
-          upload_title: Import Subjects from CSV
         subjects_count_added: Subjects successfuly added
         success:
           continue: Continue
@@ -342,7 +276,7 @@ en:
           name: Name
           remove_confirm:
             content: Are you sure you want to remove Assessment Center with name '%{name}'?
-            success: Assessment Center was successfully removed.
+            success: Assessment Center was removed successfully.
             title: Confirm
       invite_request:
         accept: Accept
@@ -350,7 +284,7 @@ en:
         reject: Reject
         remove_confirm:
           content: Are you sure you want to %{action} %{status} from %{subjectName}?
-          success: "%{status} from %{subjectName} was successfully %{action}."
+          success: "%{status} from %{subjectName} was %{action} successfully."
           title: "%{action} %{status}"
         status: Status
         subject_name: Subject Name
@@ -379,7 +313,7 @@ en:
       modal:
         download_xls: Download Example XLSX file
         title: Import Questions
-      successfully_scheduled: Question Import scheduled successfully.
+      successfully_scheduled: Question Import was scheduled successfully.
     assessments:
       assessment: Assessment
       assigns:
@@ -397,82 +331,30 @@ en:
           not_selected_users: Not Selected Users
           selected_users: Selected Users
       copy:
-        error: 'Assessment #%{name} was not copied.'
-        successfully: Assessment %{name} was copied successfully.
+        copy: copy
+        copy_assessment: Copy Assessment
+        name: Name
+        successfully: Assessment "%{name}" was copied successfully.
       create:
-        successfully: Assessment %{name} was Created Successfully.
-      dashboard: Assessment Dashboard
+        successfully: Assessment "%{name}" was created successfully.
       destroy:
-        successfully: Assessment %{name} was Deleted Successfully.
+        successfully: Assessment "%{name}" was deleted successfully.
       edit:
         header: Assessment Settings
       errors:
         owner_validation: You don't have %{resource_name} %{permission} permission for %{client_name}
       flow: Flow
-      form:
-        categories:
-          '360': 360 Feedback
-          agile: AGILE
-          all: All Categories
-          assessor_form: Assessor Form
-          case_study: Case Studies
-          hogan: Hogan
-          iiht: IIHT
-          meeting: Meeting
-          mindmill: Mindmill
-          organisational: Org Surveys
-          pearson: Pearson
-          psychometric: Psychometrics
-          saville: Saville
-          threesixty: Threesixty
-        statuses:
-          finished: Finished
-          in_progress: In progress
-        timing:
-          hint: 'For Example: 30 minutes to complete'
-      index:
-        filterrific:
-          with_category:
-            '360': 360 Feedback
-            agile: AGILE
-            all: All Categories
-            assessor_form: Assessor Form
-            case_study: Case Studies
-            hogan: Hogan
-            iiht: IIHT
-            meeting: Meeting
-            mindmill: Mindmill
-            organisational: Org Surveys
-            pearson: Pearson
-            psychometric: Psychometrics
-            saville: Saville
-            threesixty: Threesixty
-        new: Add
-        owner: Owner
-        title: Assessments
-        tooltips:
-          create: Create
       linkedAssessment:
         assessment_title: Select Questions from %{name}
-        select_label: Linked Questions
         title: Select Linked Questions
-      list:
-        active: Active
-        created_at: Created date
-        dimension_id: Dimension Id
-        id: Id
-        name: Name
-        type: Type
-        updated_at: Modified date
       map_norms: Map Norms
       menu:
         import_questions: Import Questions
-      menus:
-        add_timer: Add timer
-        remove_timer: Remove timer
       new:
         header: New assessment
       preview: Assessment Preview
+      randomization:
+        single_question_page_warning: Current Assessment is configured to show one question per page. Setting more than one question per page here will automatically disable Single Question Per Page setting.
       reports: Reports
       resource:
         confirmations:
@@ -485,47 +367,25 @@ en:
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Assessment?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
-        in_progress:
-          copying: Copying
-          deleting: Deleting
-          restoring: Restoring
-        tooltips:
-          archive: Archive Assessment
-          copy: Copy Assessment
-          delete: Delete Assessment
-          edit: Edit Assessment
-          restore: Restore
-          soft_delete: Soft Delete Assessment
       restore:
-        successfully: Assessment %{name} was Restored Successfully.
+        successfully: Assessment %{name} was restored successfully.
       settings:
         enable_back: Enable back button
         enable_progress: Enable progress bar
-        enable_save: Enable save button
         enable_single_question_page: Show one question per page
+        enable_single_question_page_confirm: This will update block randomization per page to 1. Are you sure?
         enable_timer: Enable timer
+        has_randomized_block_warning: Current Assessment has randomized blocks with more than one question per page. Enabling "Show one question per page" will overwrite all randomization configuration to have only one question per page.
         instructions: Enable Instructions
         title: Assessment Settings
-      sidebar:
-        assign: Assign Assessment
-        builder: Questions Builder
-        copy: Copy Assessment
-        destroy: Delete Assessment
-        disable: Disable
-        edit: Assessment Settings
-        enable: Enable
-        export: Export Scoring
-        new: New Assessment
-        preview: Preview Assessment
-        title: Assessment's options
       soft_delete:
-        successfully: Assessment %{name} was moved to Trash Successfully.
+        successfully: Assessment %{name} was moved to trash successfully.
       toggle_archive:
         successfully: Assessment %{name} was %{status} successfully.
       toggle_status:
-        successfully: Assessment %{name} was Updated Successfully.
+        successfully: Assessment %{name} was updated successfully.
       update:
-        successfully: Assessment %{name} was Updated Successfully.
+        successfully: Assessment %{name} was updated successfully.
     assessor:
       add_subject_modal:
         assessment: Assessment
@@ -539,19 +399,17 @@ en:
           rescore: Rescore
           reset: Reset Evaluation
           reset_progress: Reset Progress
-        assessment_name: Assessment Name
         bulk_delete_confirmation: Are you sure you wan to delete selected records?
-        bulk_delete_successful: Assessor assessments deleted successfully
-        reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
-        reset_progress_confirmation: Are you sure you want to reset progress for subject with email %{subjectEmail}?
-        reset_progress_successfully: Reset progress for the subject with the email %{subjectEmail} was successful.
-        reset_successfully: Reset evaluation for the subject with the email %{subjectEmail} was successful.
+        bulk_delete_successful: Assessor assessments was deleted successfully
+        reset_confirmation: Are you sure you want to reset evaluation for subject with email "%{subjectEmail}"?
+        reset_progress_confirmation: Are you sure you want to reset progress for subject with email "%{subjectEmail}"?
+        reset_progress_successfully: Reset progress for the subject with the email "%{subjectEmail}" was successful.
+        reset_successfully: Reset evaluation for the subject with the email "%{subjectEmail}" was successful.
         subject_email: Subject Email
         subject_name: Subject Name
       completed_at: Completed At
       count: "%{count} Assessors"
       evaluations: Evaluations
-      home: Dashboard
       modals:
         create_assessor:
           add: Add
@@ -587,10 +445,7 @@ en:
         refresh: Refresh
         reports: Reports
         reports_count: "%{count} Reports"
-        user_exec_test: User Executive Test
       remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
-      saved_results: Answers successfully saved.
-      status: Status
       statuses:
         completed: Completed
         not_completed: Not Completed
@@ -616,11 +471,9 @@ en:
         not_started: Not started
     assigns:
       create:
-        successfully: New assign to assessment was successfully created
+        successfully: New assign to assessment was created successfully
       destroy:
-        successfully: Assign to assessment was successfully deleted
-      index:
-        title: Reports
+        successfully: Assign to assessment was deleted successfully
       new:
         header: Assign Assessment and Reports
       resource:
@@ -649,7 +502,6 @@ en:
       date_range: Date Range
       expand_filters: Expand Filters
       failure_reason: Failure Reason
-      id: Id
       interface: Interface
       log_date: Log Date
       outcome: Outcome
@@ -670,9 +522,7 @@ en:
       user_agent: User Agent
     back: Back
     base:
-      id: id
       top_sidebar:
-        search: Search...
         sign_out_message:
           body: "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>"
           title: Log <strong>Out</strong> ?
@@ -682,12 +532,10 @@ en:
         background_color: Background Color
         background_image: Background Image
         base_offse_speed: Base Offset Speed
-        color: Color
         confirm_msg: Are you sure to delete this layer?
         confirm_title: Delete the layer
         layers: Layers
         main_background_color: Main Background Color
-        name: Name
         select_from_lib: Select From Library
         speed: Speed
         title: Block Settings
@@ -695,9 +543,9 @@ en:
       copy:
         successfully: Block %{name} was successfully copied.
       create:
-        successfully: Block %{name} was successfully created.
+        successfully: Block %{name} was created successfully.
       destroy:
-        successfully: Block %{name} was successfully deleted.
+        successfully: Block %{name} was deleted successfully.
       edit:
         header: Edit Block
       new:
@@ -713,7 +561,6 @@ en:
     bookings:
       errors:
         already_booked: You have already booked a seat for it.
-        already_cancelled: You have already cancelled the booking.
         booking_deadline_passed: This date is no longer available, kindly select a different date from the previous screen.
         cancellation_deadline_passed: Cancellation deadline passed.
         cancelled_and_rebook_deadline_passed: Cancelled and deadline passed for book again.
@@ -835,7 +682,7 @@ en:
         question_unlink_template: Question was unlinked
         question_update: Question is updated
         report_change_aliases: Aliases are updated
-        report_change_data_configuration: Data Report Configuration was successfully updated
+        report_change_data_configuration: Data Report Configuration was updated successfully
         report_change_filters: Filters are updated
         report_update: Report is updated
         scoring_update: Scoring is updated
@@ -852,46 +699,36 @@ en:
         missing_factor_id: Factor id is required.
         name_already_exists: A factor with the same name '%{name}' already exists.
         name_size_exceded: Name should not exceed %{size} characters.
-        rank_not_allowed: Only factors with an output type of numeric can be ranked.
     campaign_factors_import:
       errors:
         invalid_headers: 'Following headers are invalid: %{headers}'
     campaign_templates:
-      base:
-        active: Active
-        archived: Archived
-        disable: Archive
-        enable: Unarchive
+      campaign_templates: Campaign Templates
+      column:
+        assessment: Assessment
+        owner: Owner
+        report: Report
       copy:
-        error: Client Tenancy %{name} was not copied.
         successfully: Client Tenancy %{name} was successfully copied.
       create:
-        successfully: Client Tenancy %{name} was successfully created.
-      designs:
-        form:
-          no_background: No Background yet
-          no_logo: No Logo yet
+        successfully: Client Tenancy %{name} was created successfully.
       destroy:
-        successfully: Client Tenancy %{name} was successfully deleted.
+        successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         header: Edit Client
-      export:
-        admin: Client admin
-        client_admins: Client admins
-        created_at: Created date
+      form:
+        assessment: Assessment
+        assessment_placeholder: Select an assessment
         name: Name
-        report_bundle: Report bundle
-        updated_at: Updated date
+        name_placeholder: Enter name
+        owner: Owner
+        owner_placeholder: Select an owner
+        report: report
+        report_placeholder: Select a report
+        title: Campaign Template
       index:
-        export: Export
         new: Add
         title: Campaign templates
-      license:
-        header: "%{name} - Edit license"
-      licenses:
-        update:
-          duplicate_licenses: You have duplicate licenses
-          successfully: Licenses successfully updated
       list:
         admin: Client admin
         client_admins: Client admins
@@ -901,55 +738,30 @@ en:
         updated_at: Updated date
       new:
         header: New Client
+      remove_confirm:
+        content: Are you sure you want to remove the campaign template '%{name}'?
+        success: Campaing template '%{name}'' was successfully removed.
+        title: Remove Campaign Template
       resource:
         confirmations:
           delete:
             body: "<p>Are you sure you want to delete this Campaign Template?</p>\n"
             title: Delete <strong>%{name}</strong> ?
-          disable:
-            body:
-              '0': "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>"
-              '1': "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>"
-              '2': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
-              '3': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
-            title: Archive <strong>%{name}</strong> ?
-          enable:
-            body:
-              '0': "<p>Are you sure you want to unarchive?</p>"
-              '1': "<p>Are you sure you want to unarchive?</p>"
-              '2': "<p>Are you sure you want to unarchive?</p>"
-              '3': "<p>Are you sure you want to unarchive?</p>"
-            title: Unarchive <strong>%{name}</strong> ?
         in_progress:
           deleting: Deleting
         tooltips:
-          copy: Copy Client
-          create_admin: Create Client Admin
           delete: Delete Client
-          disable: Disable Client
           edit: Edit Client
-          enable: Enable Client
-      sidebar:
-        copy: Copy Client
-        design: Edit Design
-        destroy: Delete Client
-        disable: Disable
-        edit: Edit Client
-        enable: Enable
-        licenses: Manage Licenses
-        new: New Client
-        title: Campaign options
       toggle_status:
-        successfully: Client Tenancy %{name} was successfully updated.
+        successfully: Client Tenancy %{name} was updated successfully.
       update:
-        successfully: Client Tenancy %{name} was successfully updated.
-      url: Url
+        successfully: Client Tenancy %{name} was updated successfully.
     campaigns:
       actions: Manage
       assessment_reports:
         report_approval:
           modal_title: Report Approval Settings
-          remove_modal_success: 'Successfully deleted approval setting for report id: %{reportId}'
+          remove_modal_success: 'Approval setting for report id: %{reportId} was deleted successfully '
           remove_modal_text: 'Are you sure you want to delete this setting for report id: %{reportId}?'
       assessors:
         spoof:
@@ -985,7 +797,6 @@ en:
             title: No Factors Found
           questions:
             select_all: Select All
-            sub_title: Select the questions and indicators to be included in the assessment
             title: Questions and Indicators
           search_factors:
             description: Please enter at least 3 characters to find the factors you're looking for.
@@ -997,7 +808,6 @@ en:
           name: Description
           save: Save Description
           save_success: Description saved successfully
-        duration: ''
         fixed_time: Fixed Time
         instructions:
           actions:
@@ -1049,128 +859,42 @@ en:
       validations:
         dates:
           end: must be after the start date
-    choose: " - Choose - "
+    campaigns_external_scores_import:
+      errors:
+        invalid_campaign_factor_codes: 'Following campaign factor_codes are invalid: %{codes}'
+        missing_users: 'Following emails are not existing: %{emails}'
+      import:
+        example_csv: Download Example csv
+        success_msg: Import was uploaded successfully
+      modal:
+        title: Import External Campaign Scores
     clear: Clear
     clients:
       api_keys:
-        create:
-          successfully: New API key was successfully created.
         index:
-          breadcrumb: "%{name}'s API keys"
           new: Create new API key
           title: "%{name}'s API keys"
-        list:
-          active: Active
-          created_at: Created
-          key: Key
-          token: Token
-          updated_at: Last modified
         resource:
-          confirmations:
-            create:
-              body: "<p>Are you sure you want to create a new API key?</p>\n"
-              title: "<strong>Create</strong> a new API key?"
-            toggle_status:
-              body: "<p>Are you sure you want to %{status} this API key?</p>\n"
-              title: "<strong>%{status}</strong> API key?"
           copy: Copy
           show_and_copy: Show and Copy
-        toggle_status:
-          successfully: API key was successfully updated.
       assessments:
-        assessment: Assessment
-        assigns:
-          form:
-            empty_client_ids: Select clients to continue
-        copy:
-          error: 'Assessment #%{name} was not copied.'
-          successfully: Assessment %{name} was copied successfully.
-        create:
-          successfully: Assessment %{name} was Created Successfully.
-        dashboard: Assessment Dashboard
         destroy:
-          successfully: Assessment %{name} was Deleted Successfully.
-        edit:
-          header: Assessment Settings
-        form:
-          categories:
-            '360': 360 Feedback
-            agile: AGILE
-            all: All Categories
-            assessor_form: Assessor Form
-            case_study: Case Studies
-            hogan: Hogan
-            iiht: IIHT
-            meeting: Meeting
-            mindmill: Mindmill
-            organisational: Org Surveys
-            pearson: Pearson
-            psychometric: Psychometrics
-            saville: Saville
-            threesixty: Threesixty
-          statuses:
-            finished: Finished
-            in_progress: In progress
-          timing:
-            hint: 'For Example: 30 minutes to complete'
+          successfully: Assessment '%{name}' was deleted successfully.
         index:
-          filterrific:
-            with_category:
-              '360': 360 Feedback
-              agile: AGILE
-              all: All Categories
-              assessor_form: Assessor Form
-              case_study: Case Studies
-              hogan: Hogan
-              iiht: IIHT
-              meeting: Meeting
-              mindmill: Mindmill
-              organisational: Org Surveys
-              pearson: Pearson
-              psychometric: Psychometrics
-              saville: Saville
-              threesixty: Threesixty
-          new: Add
-          owner: Owner
           title: Assessments
-          tooltips:
-            create: Create
         list:
-          active: Active
-          created_at: Created date
-          dimension_id: Dimension Id
-          id: Id
-          name: Name
-          type: Type
           universal_link: Universal link
-          updated_at: Modified date
-        new:
-          header: New assessment
         resource:
           activate_universal_link: Activate Universal Link
           confirmations:
-            delete:
-              body: "<p>Are you sure you want to delete this Assessment?</p>\n"
-              title: Delete <strong>Assessment</strong>?
-            soft_delete:
-              body: "<p>Are you sure you want to soft delete this Assessment?</p>\n"
-              title: Soft Delete <strong>Assessment</strong>?
-            toggle_status:
-              body: "<p>Are you sure you want to %{status} this Assessment?</p>\n"
-              title: "<strong>%{status}</strong> %{name}?"
             universal_links:
               regeneration:
                 body: Regenerating the Universal Link will cause the existing link to stop working.
                 title: Are you sure?
           deactivate_universal_link: Deactivate Universal Link
           export: Export
-          external_results: External Results
           generate_universal_link: Generate Universal Link
           import: Import
-          in_progress:
-            copying: Copying
-            deleting: Deleting
-            restoring: Restoring
           link: Link
           mindmill_results: Mindmill
           na: N/A
@@ -1181,495 +905,102 @@ en:
           regenerate_universal_link: Regenerate Universal Link
           scoring_results: Scoring results
           svg: SVG
-          tooltips:
-            archive: Archive Assessment
-            copy: Copy Assessment
-            delete: Delete Assessment
-            edit: Edit Assessment
-            restore: Restore
-            soft_delete: Soft Delete Assessment
-        restore:
-          successfully: Assessment %{name} was Restored Successfully.
         select_raw_export_type:
           export_with_labels: Export raw result with labels
           export_without_labels: Export raw result without labels
           select_type: Select Export Type
-        sidebar:
-          assign: Assign Assessment
-          builder: Questions Builder
-          copy: Copy Assessment
-          destroy: Delete Assessment
-          disable: Disable
-          edit: Assessment Settings
-          enable: Enable
-          export: Export Scoring
-          new: New Assessment
-          preview: Preview Assessment
-          title: Assessment's options
-        soft_delete:
-          successfully: Assessment %{name} was moved to Trash Successfully.
-        toggle_archive:
-          successfully: Assessment %{name} was %{status} successfully.
-        toggle_status:
-          successfully: Assessment %{name} was Updated Successfully.
-        update:
-          successfully: Assessment %{name} was Updated Successfully.
       assign_assessments:
         confirm_remove_dependent_reports:
           body: 'Removing assessment(s) will also remove the following reports: %{report_names}'
           title: Are you sure want to remove <b>Assessments</b>?
-        edit:
-          header: Manage assigned Assessments
-        form:
-          apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
         form_edit:
           apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
-          name: Assessment name
           remove: Remove
-        new:
-          header: Add Assessments
       assign_reports:
-        edit:
-          header: Add Reports
-        form:
-          access: Access
-          apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
-          reports: Reports
-          user_access: User Access
         form_edit:
-          access: Access
           added_reports: Already assigned Reports
           apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
           new_reports: Add new Reports
           remove: Remove
-          reports: Reports
           user_access: User Access
         form_new:
           access: Access
           apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
           reports: Reports
           user_access: User Access
-        new:
-          header: Add Reports
       base:
         active: Active
         archived: Archived
         disable: Archive
         enable: Unarchive
       campaigns:
-        archive:
-          successfully: Campaign %{name} was successfully archived.
-        copy:
-          error: Campaign %{name} was not copied.
-          successfully: Campaign %{name} was successfully copied.
-        create:
-          successfully: Campaign %{name} was successfully created.
-        destroy:
-          successfully: Campaign %{name} was successfully deleted.
-        edit:
-          header: Edit Campaign
-        export:
-          assessments: Assessments
-          assigned_user: Assigned users
-          completed_user: Completed users
-          created_at: Created date
-          header:
-            actions: Actions
-            actual_usage: Actual usage
-            assessments: Assessments
-            campaigns: Campaigns
-            name: Name
-            reports: Reports
-            sub_campaigns: Sub-Campaigns
-            tests_allocated: Tests allocated
-            users: Users
-          id: Id
-          name: Campaign name
-          reports: Reports
-          updated_at: Updated date
         index:
-          export: Export
-          new: Add
           title: Campaigns
         list:
           assessments: Assessments
           assigned_user: Assigned users
           completed_user: Completed users
-          created_at: Created date
-          header:
-            actions: Actions
-            actual_usage: Actual usage
-            assessments: Assessments
-            campaigns: Campaigns
-            name: Name
-            reports: Reports
-            sub_campaigns: Sub-Campaigns
-            tests_allocated: Tests allocated
-            users: Users
-          id: Id
-          name: Campaign name
           reports: Reports
-          updated_at: Updated date
-        new:
-          header: New Campaign
         resource:
-          sub_campaign:
-            create: Create New Sub-Campaign
           tooltips:
             copy: Copy Campaign
             create_report: Add New Report
-            create_user: Add New User
             delete: Delete Campaign
             edit: Edit Campaign
-            export: Export
         sidebar:
           archive: Archive campaign
           copy: Copy campaign
           destroy: Delete campaign
-          disable: Disable
           edit: Edit campaign
-          enable: Enable
-          new: New campaign
           title: Campaign's options
           view_licenses: View licenses
-        toggle_status:
-          successfully: Campaign %{name} was successfully updated.
-        update:
-          successfully: Campaign %{name} was successfully updated.
-      client_admins:
-        create:
-          successfully: User %{name} was successfully created.
-        destroy:
-          successfully: User %{name} was successfully deleted.
-        edit:
-          add: Add
-          grants: Privileges
-          hris_data: HRIS Data
-          key: Key
-          personal_data: Personal Data
-          remove: Remove
-          title: Edit user
-          value: Value
-        form:
-          choose: " - Choose - "
-          choose_admin: Choose Admin
-          create_admin: Create Admin
-        index:
-          breadcrumb: Client Admins
-          title: Client Admins
-        list:
-          active: Active
-          created_at: Created Date
-          email: Email
-          first_name: First name
-          id: Id
-          last_name: Last name
-          role: Role
-          updated_at: Modified Date
-        new:
-          header: New user
-        reset_password:
-          successfully: User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
-        resource:
-          confirmations:
-            change_password:
-              body: "<p>Are you sure you want to send instructions with link to change password?</p>\n"
-              title: Change password <strong>%{name}</strong> ?
-            delete:
-              body: "<p>Are you sure you want to delete this User?</p>\n"
-              title: Delete <strong>%{name}</strong> ?
-            membership:
-              delete:
-                body: "<p>Are you sure you want to delete?</p>\n"
-                title: Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?
-              toggle_status:
-                body: "<p>Are you sure you want to %{status} this Membership?</p>\n"
-                title: "<strong>%{status}</strong> %{name}'s Membership?"
-            toggle_status:
-              body: "<p>Are you sure you want to %{status} this User?</p>\n"
-              title: "<strong>%{status}</strong> %{name}?"
-          tooltips:
-            change_password: Change Password
-            chart: View user report
-            delete: Delete User
-            edit: Edit User
-            mail: Send Mail
-            sign_in: Login as user
-        sidebar:
-          api_keys: API keys
-          assessments_and_reports: Assessments and Reporting
-          destroy: Delete User
-          disable: Disable
-          edit_user: Edit User
-          email: Send Mail
-          enable: Enable
-          export_users: Export users
-          import_users: Import users
-          login_as_user: Login as User
-          new_user: New User
-          reset_password: Change Password
-          title: User's options
-        spoof:
-          successfully: You was successfully login as %{name}
-        toggle_status:
-          successfully: User %{name} was successfully updated.
-        update:
-          successfully: User %{name} was successfully updated.
-        user: User
       columns:
         country: Country
         project_manager: Project Manager
         type: Type
         year: Year
       copy:
-        error: Client Tenancy %{name} was not copied.
-        successfully: Client Tenancy %{name} was successfully copied.
+        error: Client Tenancy '%{name}' was not copied.
+        successfully: Client Tenancy '%{name}' was copied successfully.
       create:
-        successfully: Client Tenancy %{name} was successfully created.
-      datasheet_rows:
-        create:
-          successfully: New Datasheet was successfully uploaded.
-        destroy:
-          successfully: Datasheet Row %{name} was successfully deleted.
-        index:
-          new: Upload datasheet
-          title: "%{name} Datasheet"
-        list:
-          created_at: Created date
-          email: Email
-          updated_at: Updated date
-        new:
-          header: Upload datasheet
-        resource:
-          delete:
-            body: "<p>Are you sure you want to delete this Datasheet Row?</p>\n"
-            title: Delete <strong>%{name}</strong> ?
-          tooltips:
-            delete: Delete
+        successfully: Client Tenancy '%{name}' was created successfully.
       designs:
         form:
           no_background: No Background yet
           no_logo: No Logo yet
       destroy:
-        successfully: Client Tenancy %{name} was successfully deleted.
+        successfully: Client Tenancy %{name} was deleted successfully.
       edit:
-        enable_2fa: Enable Two Factor Authentication
         header: Edit Client
       export:
-        admin: Client Admin
-        client_admins: Client admins
-        end_date: End date
-        id: Id
-        location: Location
-        name: Name
-        number: Number
         project_admin: Project admin
-        project_manager_id: Project manager
-        report_bundle: Report bundle
-        start_date: Start date
-        type: Type
-        usage_percent: Usage %
-        used_license_number: Used license number
-        used_license_overuse_number: License overuse number
-        year: Year
-      index:
-        export: Export
-        new: Add
-        title: Client Tenancies
       license:
         header: "%{name} - Edit license"
-      license_usages:
-        index:
-          title: Usage Details
-        list:
-          actions: Actions
-          activated_at: Activated at
-          activated_by: Activated by
-          campaign_name: Campaign Name
-          created_at: Created at
-          id: Usage ID
-          subject_email: Subject Email
-          subject_name: Subject Name
-        resource:
-          tooltips:
-            deactivate: Deactivate license
-        toggle_status:
-          successfully: The license was %{status} successfully
       licenses:
-        create:
-          successfully: License was successfully created.
-        edit:
-          header: Edit License
-        form:
-          add_license: Add Another License
-          license_number: License Number
-          license_overuse_number: Over Use Allowance
-          report_family: Report Bundle
-        index:
-          new: Add License
-          report_family: Report Bundle
-          title: "%{client_name} - Manage Licenses"
-        list:
-          active: Active
-          date_expire: 'Date Of expiry: %{date}'
-          end_date: End date
-          header: "%{client_name} - Licenses usage"
-          license_has_expired: License package has expired
-          license_type: License type
-          report_family: Report bundle
-          start_date: Start date
-          type: Type
-          usage_percent: "% of Usage"
-          used_license_number: Used licenses
-          used_license_overuse_number: Over Use Allowance
-          used_out_of: "%{used_number} out of %{number}"
-        new:
-          header: Add License
-        overview:
-          date_expire: 'Date Of expiry: %{date}'
-          end_date: End date
-          header: "%{client_name} - Licenses usage"
-          license_has_expired: License package has expired
-          license_type: License type
-          name: Name
-          report_family: Report bundle
-          start_date: Start date
-          usage_percent: "% of Usage"
-          used_license_number: Used licenses
-          used_license_overuse_number: Over Use Allowance
-          used_out_of: "%{used_number} out of %{number}"
         resource:
           confirmations:
             toggle_status:
               body: "<p>Are you sure you want to %{status} this License?</p>\n"
               title: "<strong>%{status}</strong> License for %{name}?"
-          tooltips:
-            edit: Edit License
         show:
-          date_expire: 'Date Of expiry: %{date}'
-          end_date: End date
-          header: "%{client_name} - Licenses usage"
-          license_has_expired: License package has expired
-          license_type: License type
-          report_family: Report bundle
-          start_date: Start date
-          usage_percent: "% of Usage"
-          used_license_number: Used licenses
-          used_license_overuse_number: Over Use Allowance
           used_out_of: "%{used_number} out of %{number}"
-        toggle_status:
-          successfully: Status of License was successfully updated.
-        update:
-          duplicate_licenses: You have duplicate licenses
-          successfully: Licenses successfully updated
       list:
-        admin: Client Admin
         client_admins: Client admins
         end_date: End date
-        id: Id
-        location: Location
-        name: Name
-        number: Number
-        project_manager_id: Project manager
         report_bundle: Report bundle
         start_date: Start date
-        type: Type
         usage_percent: Usage %
         used_license_number: Used license number
         used_license_overuse_number: License overuse number
-        year: Year
       new:
         header: New Client
-      project_admins:
-        create:
-          successfully: User %{name} was successfully created.
-        destroy:
-          successfully: User %{name} was successfully deleted.
-        edit:
-          add: Add
-          grants: Privileges
-          hris_data: HRIS Data
-          key: Key
-          personal_data: Personal Data
-          remove: Remove
-          title: Edit user
-          value: Value
-        form:
-          choose: " - Choose - "
-          choose_admin: Choose Admin
-          create_admin: Create Admin
-        index:
-          breadcrumb: Project Admins
-          title: Project Admins
-        list:
-          active: Active
-          created_at: Created Date
-          email: Email
-          first_name: First name
-          id: Id
-          last_name: Last name
-          role: Role
-          updated_at: Modified Date
-        new:
-          header: New user
-        password:
-          guidelines:
-            error: 'Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
-        reset_password:
-          successfully: User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
-        resource:
-          confirmations:
-            change_password:
-              body: "<p>Are you sure you want to send instructions with link to change password?</p>\n"
-              title: Change password <strong>%{name}</strong> ?
-            delete:
-              body: "<p>Are you sure you want to delete this User?</p>\n"
-              title: Delete <strong>%{name}</strong> ?
-            membership:
-              delete:
-                body: "<p>Are you sure you want to delete?</p>\n"
-                title: Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?
-              toggle_status:
-                body: "<p>Are you sure you want to %{status} this Membership?</p>\n"
-                title: "<strong>%{status}</strong> %{name}'s Membership?"
-            toggle_status:
-              body: "<p>Are you sure you want to %{status} this User?</p>\n"
-              title: "<strong>%{status}</strong> %{name}?"
-          tooltips:
-            change_password: Change Password
-            chart: View user report
-            delete: Delete User
-            edit: Edit User
-            mail: Send Mail
-            sign_in: Login as user
-        sidebar:
-          api_keys: API keys
-          assessments_and_reports: Assessments and Reporting
-          destroy: Delete User
-          disable: Disable
-          edit_user: Edit User
-          email: Send Mail
-          enable: Enable
-          export_users: Export users
-          import_users: Import users
-          login_as_user: Login as User
-          new_user: New User
-          reset_password: Change Password
-          title: User's options
-        spoof:
-          successfully: You was successfully login as %{name}
-        toggle_status:
-          successfully: User %{name} was successfully updated.
-        update:
-          successfully: User %{name} was successfully updated.
-        user: User
       projects:
         actions:
           archive: Archive
           unarchive: Unarchive
         archive:
           content: Are you sure you want to archive '%{project_name}'?
-          success: Project '%{project_name}' was successfully archived.
+          success: Project '%{project_name}' was archived successfully.
           title: Archive Project
         assign_assessments:
           add_assessment: Add Assessment
@@ -1678,14 +1009,14 @@ en:
           add_report: Add Report
         campaigns:
           archive:
-            successfully: Campaign %{name} was successfully archived.
+            successfully: Campaign '%{name}' was archived successfully.
           copy:
-            error: Campaign %{name} was not copied.
-            successfully: Campaign %{name} was successfully copied.
+            error: Campaign '%{name}' was not copied.
+            successfully: Campaign '%{name}' was copied successfully.
           create:
-            successfully: Campaign %{name} was successfully created.
+            successfully: Campaign '%{name}' was created successfully.
           destroy:
-            successfully: Campaign %{name} was successfully deleted.
+            successfully: Campaign '%{name}' was deleted successfully.
           edit:
             header: Edit Campaign
           export:
@@ -1754,14 +1085,14 @@ en:
             view_licenses: View licenses
           sub_campaigns:
             archive:
-              successfully: Sub-Campaign %{name} was successfully archived.
+              successfully: Sub-Campaign %{name} was archived successfully.
             copy:
               error: Sub-Campaign %{name} was not copied.
               successfully: Sub-Campaign %{name} was successfully copied.
             create:
-              successfully: Sub-Campaign %{name} was successfully created.
+              successfully: Sub-Campaign %{name} was created successfully.
             destroy:
-              successfully: Sub-Campaign %{name} was successfully deleted.
+              successfully: Sub-Campaign %{name} was deleted successfully.
             edit:
               header: Edit Sub-Campaign
             export:
@@ -1824,20 +1155,20 @@ en:
               title: Sub-Campaign's options
               view_licenses: View licenses
             toggle_status:
-              successfully: Sub-Campaign %{name} was successfully updated.
+              successfully: Sub-Campaign %{name} was updated successfully.
             update:
-              successfully: Sub-Campaign %{name} was successfully updated.
+              successfully: Sub-Campaign %{name} was updated successfully.
           toggle_status:
-            successfully: Campaign %{name} was successfully updated.
+            successfully: Campaign %{name} was updated successfully.
           update:
-            successfully: Campaign %{name} was successfully updated.
+            successfully: Campaign %{name} was updated successfully.
         copy:
           error: Project %{name} was not copied.
           successfully: Project %{name} was successfully copied.
         create:
-          successfully: Project %{name} was successfully created.
+          successfully: Project %{name} was created successfully.
         destroy:
-          successfully: Project %{name} was successfully deleted.
+          successfully: Project %{name} was deleted successfully.
         edit:
           header: Edit Project
         export:
@@ -1950,17 +1281,17 @@ en:
             in_progress: In Progress
             not_started: Not Started
           copy:
-            error: Client Tenancy %{name} was not copied.
-            successfully: Client Tenancy %{name} was successfully copied.
+            error: Client Tenancy '%{name}' was not copied.
+            successfully: Client Tenancy '%{name}' was copied successfully.
           create:
-            successfully: Client Tenancy %{name} was successfully created.
+            successfully: Client Tenancy '%{name}' was created successfully.
           designs:
             form:
               no_background: No Background yet
               no_logo: No Logo yet
           destroy:
-            error: Can't delete %{name} because some dependent associations of subjects or evaluators exist.
-            successfully: Client Tenancy %{name} was successfully deleted.
+            error: Can't delete '%{name}' because some dependent associations of subjects or evaluators exist.
+            successfully: Client Tenancy '%{name}' was deleted successfully.
           edit:
             header: Edit 360 Campaign
           export:
@@ -1982,7 +1313,7 @@ en:
           licenses:
             update:
               duplicate_licenses: You have duplicate licenses
-              successfully: Licenses successfully updated
+              successfully: Licenses were updated successfully
           list:
             admin: Client Admin
             assessment: Assement
@@ -2032,195 +1363,61 @@ en:
               assessment_type: Assessment type
               title: Statistics
           toggle_status:
-            successfully: Client Tenancy %{name} was successfully updated.
+            successfully: Client Tenancy %{name} was updated successfully.
           update:
-            successfully: Client Tenancy %{name} was successfully updated.
+            successfully: Client Tenancy %{name} was updated successfully.
           url: Url
         toggle_status:
-          successfully: Project %{name} was successfully updated.
+          successfully: Project %{name} was updated successfully.
         unarchive:
           content: Are you sure you want to unarchive '%{project_name}'?
           success: Project '%{project_name}'' was successfully unarchived.
           title: Unarchive Project
         update:
-          successfully: Project %{name} was successfully updated.
+          successfully: Project %{name} was updated successfully.
       registration_codes:
-        create:
-          successfully: Registration code %{name} was successfully created.
         destroy:
-          successfully: Registration code %{name} was successfully deleted.
-        edit:
-          header: Edit Registration code
+          successfully: Registration code %{name} was deleted successfully.
         errors:
           count_invalid: cannot be less than the used_count = %{use_count}
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
           duplicate_code: is in use in this Project. Try another one.
-          in_use: "%{attribute} is already in use"
           incorrect_domain: Incorrect domain format.
-          invalid_attribute: "%{attribute} is invalid"
           invalid_end_date: has to be greater than the start date
           license_issue: Not enough licenses.
-          presence: "%{attribute} must be entered"
-          review: Please review the problems.
         form_fields:
           code: e.g TTE-conf-2019
         index:
           add: Add
           title: Registration Codes
-        list:
-          actions: Actions
-          active: Active
-          code: Code
-          end_date: End date
-          name: Name
-          start_date: Start date
-          usage_stats: Usage stats
         name: Registration Codes
-        new:
-          header: Add Registration code
         resource:
-          confirmations:
-            delete:
-              body: "<p>Are you sure you want to delete this Registration?</p>\n"
-              title: Delete <strong>%{name}</strong> ?
-            toggle_status:
-              body: "<p>Are you sure you want to %{status} this Report?</p>\n"
-              title: "<strong>%{status}</strong> %{name}?"
-          copy: Copy
           png: PNG
           qr_code: QR code
           svg: SVG
           tooltips:
             delete: Delete
             edit: Edit
-          url: URL
-        update:
-          successfully: Registration code %{name} was successfully updated.
       reports:
-        copy:
-          error: 'Report #%{id} was not copied.'
-        create:
-          successfully: Report %{name} was successfully created for Client.
         destroy:
-          successfully: Report %{name} was successfully deleted from Client.
-        edit:
-          header: Edit Report Name
-        form:
-          load_mindmill_report: Load from Mindmill
-          none_external: None - Use report builder
-          select_family: Select Report Bundle
-          types:
-            common: Any
-            eti: ETI
-            yti: YTI
+          successfully: Report %{name} was deleted successfully from Client.
         index:
           add: Add
-          assessment: Assessment
           bulk_download: Bulk Download
-          category: Category
-          families: Report Bundles
-          filterrific:
-            with_assessment_category:
-              '360': 360 Feedback
-              all: All
-              case_study: Case Studies
-              organisational: Org Surveys
-              psychometric: Psychometrics
-          owner: Owner
           regenerate: Regenerate Reports
-          report_family: Report Bundle
           title: Reports
-          tooltips:
-            create: Create
-        list:
-          active: Active
-          created_at: Created date
-          id: Id
-          name: Name
-          type: Type
-          updated_at: Modified date
-        name: Reports
-        new:
-          header: Select Report
-        preview:
-          export_pdf: Export to PDF
-          title: Preview
-        regenerate:
-          successfully: Report successfully sent for regeneration
         regenerates:
           create:
             successfully: Report(s) successfully sent for regeneration
         resource:
-          confirmations:
-            delete:
-              body: "<p>Are you sure you want to delete this Report?</p>\n"
-              title: Delete <strong>Report</strong> ?
-            detach:
-              body: "<p>Are you sure you want to detach this Report?</p>\n"
-              title: Detach <strong>Report</strong> ?
-            regenerate:
-              body: "<p>Are you sure you want to regenerate this Report for all Users?</p>"
-              title: Regenerate <strong>%{name}</strong>?
-            soft_delete:
-              body: "<p>Are you sure you want to soft delete this Report?</p>\n"
-              title: Soft Delete <strong>Report</strong>?
-            toggle_status:
-              body: "<p>Are you sure you want to %{status} this Report?</p>\n"
-              title: "<strong>%{status}</strong> %{name}?"
           export_data: Export Data
-          in_progress:
-            copying: Copying
-            deleting: Deleting
-            restoring: Restoring
-          tooltips:
-            copy: Copy Report
-            delete: Delete Report
-            edit: Edit Report
-            preview: Preview Report
-            restore: Restore
-            soft_delete: Soft Delete Assessment
-        restore:
-          successfully: Report %{name} was Restored Successfully.
-        sidebar:
-          copy: Copy Report
-          destroy: Delete Report
-          edit: Edit Report
-          regenerate: Regenerate Report
-          title: Report's options
-          view: View Report
-        soft_delete:
-          successfully: Report %{name} was moved to Trash Successfully.
-        toggle_archive:
-          successfully: Assessment %{name} was %{status} successfully.
-        toggle_status:
-          successfully: Report was successfully updated.
-        types:
-          common: Any
-          eti: ETI
-          yti: YTI
-        update:
-          successfully: Report %{name} was successfully updated.
       resource:
         confirmations:
           delete:
-            body:
-              '0': "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>"
-              '1': "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>"
-              '2': "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
             title: Delete <strong>%{name}</strong> ?
           disable:
-            body:
-              '0': "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>"
-              '1': "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>"
-              '2': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
-              '3': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
             title: Archive <strong>%{name}</strong> ?
           enable:
-            body:
-              '0': "<p>Are you sure you want to unarchive?</p>"
-              '1': "<p>Are you sure you want to unarchive?</p>"
-              '2': "<p>Are you sure you want to unarchive?</p>"
-              '3': "<p>Are you sure you want to unarchive?</p>"
             title: Unarchive <strong>%{name}</strong> ?
         in_progress:
           copying: Copying
@@ -2229,18 +1426,11 @@ en:
           copy: Copy Client
           create_admin: Create Client Admin
           delete: Delete Client
-          disable: Disable Client
           edit: Edit Client
-          enable: Enable Client
       sidebar:
         copy: Copy client
-        design: Edit Design
         destroy: Delete client
-        disable: Disable
         edit: Edit client
-        enable: Enable
-        licenses: Manage Licenses
-        new: New Client
         title: Client's options
         view_licenses: View licenses
       statistics:
@@ -2249,113 +1439,35 @@ en:
           assessment_type: Assessment type
           title: Statistics
       sub_campaigns:
-        archive:
-          successfully: Sub-Campaign %{name} was successfully archived.
-        copy:
-          error: Sub-Campaign %{name} was not copied.
-          successfully: Sub-Campaign %{name} was successfully copied.
-        create:
-          successfully: Sub-Campaign %{name} was successfully created.
-        destroy:
-          successfully: Sub-Campaign %{name} was successfully deleted.
-        edit:
-          header: Edit Sub-Campaign
-        export:
-          assessments: Assessments
-          assigned_user: Assigned users
-          completed_user: Completed users
-          created_at: Created date
-          header:
-            actions: Actions
-            actual_usage: Actual Usage
-            archive_status: Archive Status
-            name: Name
-            sub_campaign: Sub-Campaigns
-            tests_allocated: Tests Allocated
-            users: Users
-          id: Id
-          name: Sub-Campaign name
-          reports: Reports
-          updated_at: Updated date
-        header:
-          actions: Actions
         index:
-          export: Export
-          new: Add
           title: Sub Campaigns
         list:
           assessments: Assessments
           assigned_user: Assigned users
           completed_user: Completed users
-          created_at: Created date
-          header:
-            actions: Actions
-            actual_usage: Actual Usage
-            archive_status: Archive Status
-            name: Name
-            sub_campaign: Sub-Campaigns
-            tests_allocated: Tests Allocated
-            users: Users
-          id: Id
-          name: Sub-Campaign name
           reports: Reports
-          updated_at: Updated date
-        new:
-          header: New Sub-Campaign
         resource:
           tooltips:
             copy: Copy Sub Campaign
-            create_report: Add new Report
-            create_user: Add New User
             delete: Delete Sub Campaign
             edit: Edit Sub Campaign
         sidebar:
           archive: Archive Sub-Campaign
           copy: Copy Sub-Campaign
           destroy: Delete Sub-Campaign
-          disable: Disable
           edit: Edit Sub-Campaign
-          enable: Enable
-          new: New Sub-Campaign
           title: Sub-Campaign's options
           view_licenses: View licenses
-        toggle_status:
-          successfully: Sub-Campaign %{name} was successfully updated.
-        update:
-          successfully: Sub-Campaign %{name} was successfully updated.
       tenancies: Client Tenancies
       threesixty_campaign: Threesixty Campaign
-      threesixty_campaigns:
-        create:
-          successfully: Campaign %{name} was successfully created.
-        destroy:
-          successfully: Campaign '%{name}' was deleted successfully.
-        new:
-          header: New 360 Campaign
-        update:
-          successfully: Campaign '%{name}' was successfully updated.
       toggle_status:
-        successfully: Client Tenancy %{name} was successfully updated.
-      tooltips:
-        copy: Copy Campaign
-        create_report: Add New Report
-        create_user: Add New User
-        delete: Delete Campaign
-        edit: Edit Campaign
-        export: Export
+        successfully: Client Tenancy %{name} was updated successfully.
       update:
-        successfully: Client Tenancy %{name} was successfully updated.
-      url: Url
+        successfully: Client Tenancy %{name} was updated successfully.
       users:
-        admins:
-          breadcrumb: Admin Users
-          title: Admins
         assigns:
-          common:
-            detach_assessment: Assessment %{name} was successfully detached.
-            detach_report: Report %{name} was successfully detached.
           create:
-            successfully: Successfully Updated
+            successfully: Updated successfully
           destroy:
             successfully: "%{name} was successfully detached"
           edit:
@@ -2371,21 +1483,15 @@ en:
               preserve_user_access: Apply access settings only for the newly added report
               user: User
           index:
-            add_assessments: Add Assessments
             add_reports: Add Reports
             title: "%{name} - Assessments and Reporting"
           list:
             actions: Actions
             assessment_name: Assessment Name
             assessment_type: Assessment Type
-            completed_at: Completed at
             reports: Reports
             status: Status
             uniq_id: Uniq ID
-          new:
-            header: Assign Assessment and Reports
-          reset:
-            successfully: Result data was successfully reseted
           resource:
             confirms:
               assessment:
@@ -2421,205 +1527,42 @@ en:
                 remove_user_access: Remove user access
               delete: Detach Assessment
               reset: Reset result
-          update_additional_time:
-            successfully: Additional time was successfully added
         assigns_reports:
-          edit:
-            header: Add Reports
           form:
             access: Access
-            assessment: Assessment
-            detach: Detach
-            multiple_report_message: The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.
             reports: Reports
             user_access:
               access: Reports access
-              user: User
-          new:
-            header: Add Reports
           regenerate:
             failure: Report can't be generated. These assessments are not completed '%{assessment_names}'.
             successfully: Successfully sent to regenerate
-          update:
-            successfully: Successfully Updated
-        create:
-          successfully: User %{name} was successfully created.
         destroy:
-          successfully: User %{name} was successfully deleted.
+          successfully: User %{name} was deleted successfully.
         edit:
-          add: Add
-          grants: Privileges
           hris_data: HRIS Data
-          key: Key
           personal_data: Personal Data
-          remove: Remove
-          title: Edit user
-          value: Value
         edit_hris_data:
           add: Add
           key: Key
           remove: Remove
           value: Value
-        form:
-          choose: " - Choose - "
-        form_admin:
-          choose_admin: Choose Admin
-          create_admin: Create Admin
         index:
           breadcrumb: Users
-          client_tenancy: Client tenancy
           export: Export
           export_completion_status: Completion Status
           export_users: Users
-          filterrific:
-            with_role:
-              administration: Administrators
-              all: All
-              users: Users
           import: Import
           import_hris: HRIS Data
           import_users: Users
           new: Add
-          new_superadmin: Add SuperAdmin
           title: Users
-          tooltips:
-            create: Create
-            export: Export
-            import: Import
-        list:
-          active: Active
-          created_at: Created Date
-          email: Email
-          first_name: First name
-          id: Id
-          last_name: Last name
-          role: Role
-          updated_at: Modified Date
-        new:
-          header: New user
-        password:
-          guidelines:
-            error: 'Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
         reports:
-          copy:
-            error: 'Report #%{id} was not copied.'
-          create:
-            successfully: Report %{name} was successfully created.
-          destroy:
-            successfully: Report %{name} was successfully deleted.
-          edit:
-            header: Edit Report Name
-          form:
-            load_mindmill_report: Load from Mindmill
-            none_external: None - Use report builder
-            select_family: Select Report Bundle
-            types:
-              common: Any
-              eti: ETI
-              yti: YTI
-          index:
-            add: Add
-            assessment: Assessment
-            bulk_download: Bulk Download
-            category: Category
-            families: Report Bundles
-            filterrific:
-              with_assessment_category:
-                '360': 360 Feedback
-                all: All
-                case_study: Case Studies
-                organisational: Org Surveys
-                psychometric: Psychometrics
-            owner: Owner
-            regenerate: Regenerate Reports
-            report_family: Report Bundle
-            title: Reports
-            tooltips:
-              create: Create
-          list:
-            active: Active
-            created_at: Created date
-            id: Id
-            name: Name
-            type: Type
-            updated_at: Modified date
-          name: Reports
-          new:
-            header: Select Report
           preview:
             export_pdf: Export to PDF
             title: Preview
-          regenerate:
-            successfully: Report successfully sent for regeneration
-          resource:
-            confirmations:
-              delete:
-                body: "<p>Are you sure you want to delete this Report?</p>\n"
-                title: Delete <strong>Report</strong> ?
-              detach:
-                body: "<p>Are you sure you want to detach this Report?</p>\n"
-                title: Detach <strong>Report</strong> ?
-              regenerate:
-                body: "<p>Are you sure you want to regenerate this Report for all Users?</p>"
-                title: Regenerate <strong>%{name}</strong>?
-              soft_delete:
-                body: "<p>Are you sure you want to soft delete this Report?</p>\n"
-                title: Soft Delete <strong>Report</strong>?
-              toggle_status:
-                body: "<p>Are you sure you want to %{status} this Report?</p>\n"
-                title: "<strong>%{status}</strong> %{name}?"
-            in_progress:
-              copying: Copying
-              deleting: Deleting
-              restoring: Restoring
-            tooltips:
-              copy: Copy Report
-              delete: Delete Report
-              edit: Edit Report
-              preview: Preview Report
-              restore: Restore
-              soft_delete: Soft Delete Assessment
-          restore:
-            successfully: Report %{name} was Restored Successfully.
-          sidebar:
-            copy: Copy Report
-            destroy: Delete Report
-            edit: Edit Report
-            regenerate: Regenerate Report
-            title: Report's options
-            view: View Report
-          soft_delete:
-            successfully: Report %{name} was moved to Trash Successfully.
-          toggle_archive:
-            successfully: Assessment %{name} was %{status} successfully.
-          toggle_status:
-            successfully: Report was successfully updated.
-          types:
-            common: Any
-            eti: ETI
-            yti: YTI
-          update:
-            successfully: Report %{name} was successfully updated.
         reset_password:
           successfully: User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
         resource:
-          confirmations:
-            change_password:
-              body: "<p>Are you sure you want to send instructions with link to change password?</p>\n"
-              title: Change password <strong>%{name}</strong> ?
-            delete:
-              body: "<p>Are you sure you want to delete this User?</p>\n"
-              title: Delete <strong>%{name}</strong> ?
-            membership:
-              delete:
-                body: "<p>Are you sure you want to delete?</p>\n"
-                title: Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?
-              toggle_status:
-                body: "<p>Are you sure you want to %{status} this Membership?</p>\n"
-                title: "<strong>%{status}</strong> %{name}'s Membership?"
-            toggle_status:
-              body: "<p>Are you sure you want to %{status} this User?</p>\n"
-              title: "<strong>%{status}</strong> %{name}?"
           tooltips:
             change_password: Change Password
             chart: View user report
@@ -2628,26 +1571,17 @@ en:
             mail: Send Mail
             sign_in: Login as user
         sidebar:
-          api_keys: API keys
           assessments_and_reports: Assessments and Reporting
           destroy: Delete User
-          disable: Disable
           edit_user: Edit User
           email: Send Mail
-          enable: Enable
-          export_users: Export users
-          import_users: Import users
           login_as_user: Login as User
-          new_user: New User
           reset_password: Change Password
           title: User's options
         spoof:
           successfully: You was successfully login as %{name}
         toggle_status:
-          successfully: User %{name} was successfully updated.
-        update:
-          successfully: User %{name} was successfully updated.
-        user: User
+          successfully: User %{name} was updated successfully.
     clients_hierarchy: Project > Campaign > Sub Campaign
     close: Close
     common:
@@ -2662,12 +1596,10 @@ en:
       select_all: Select all
       unselect_all: Unselect all
     communications:
-      copy:
-        error: 'Communication #%{id} was not copied.'
       create:
-        successfully: Communication created successfully.
+        successfully: Communication was created successfully.
       destroy:
-        successfully: Communication %{name} was successfully deleted.
+        successfully: Communication %{name} was deleted successfully.
       edit:
         header: Edit Communication
       form:
@@ -2711,15 +1643,8 @@ en:
         workshop_upcoming_reminder: Assessment center upcoming reminder
       index:
         clients: Clients
-        completion: Completion
-        invitation: Invitation
         new: Add
-        other: Other
-        owner: Owner
-        reminder: Reminder
         title: Communication center
-        tooltips:
-          create: Create
         type: Type
       list:
         actions: Actions
@@ -2752,7 +1677,6 @@ en:
           copy: Copy Communication
           delete: Delete Communication
           download: Download Communication History
-          edit: Edit Communication
           view: View Communication
       show:
         assessment: 'Assessment:'
@@ -2761,7 +1685,6 @@ en:
         campaign: 'Campaign:'
         client: 'Client:'
         communication_type: 'Communication type:'
-        delivery_interval: 'Delivery interval:'
         delivery_rule: 'Delivery rule:'
         every_interval: Every %{interval}
         owner: 'Owner:'
@@ -2776,18 +1699,15 @@ en:
         copy: Copy Communication
         destroy: Delete Communication
         download: Download Communication History
-        edit: Edit Communication
-        new: New Communication
         title: Communication's options
         view: View Communication
       toggle_status:
-        successfully: Communication was successfully updated.
+        successfully: Communication was updated successfully.
     components:
       input_duration:
         placeholder: Enter as '1d 2h 3m'
-    copy: Copy
     create: Create
-    created: Successfully created
+    created: Created successfully
     created_by: Created By
     dashboard:
       capacity_name: Capacity Name
@@ -2808,7 +1728,6 @@ en:
         accesssheet: Accesssheet
         accesssheet_setting: Accesssheet Settings
         dashboard: Dashboard
-        preview: Preview
         settings: Settings
     dashboard_form:
       fields:
@@ -2819,22 +1738,19 @@ en:
         report_id: Report Id
       image_upload_failed: Image upload failed.
       none: None
-      refresh_success: Refresh of dataset scheduled successfully.
+      refresh_success: Refresh of dataset was scheduled successfully.
     dates:
       completed: Completed At
-      created: Created At
       end: End Date
-      ended: Ended At
       start: Start Date
       started: Started At
-      updated: Updated At
     dimensions:
       copy_scheduled:
         successfully: Copying scheduled for dimension %{name}
       create:
         successfully: "%{name} dimension was created successfully"
       destroy:
-        successfully: Dimension %{name} was successfully deleted.
+        successfully: Dimension %{name} was deleted successfully.
       edit:
         header: Edit Dimension Name
       form:
@@ -2844,8 +1760,6 @@ en:
         new: Add
         owner: Owner
         title: Dimensions
-        tooltips:
-          create: Create
       list:
         active: Active
         created_at: Created date
@@ -2870,37 +1784,30 @@ en:
           delete: Delete Dimension
           edit: Edit Dimension Name
       sidebar:
-        assign: Assign Dimension
         copy: Copy Dimension
         destroy: Delete Dimension
-        disable: Disable Dimension
         edit: Edit Dimension Name
-        enable: Enable Dimension
-        new: New Dimension
         title: Dimension's options
         view: View Dimension
       toggle_status:
-        successfully: Dimension was successfully updated.
+        successfully: Dimension was updated successfully.
       update:
         successfully: "%{name} dimension was updated successfully"
     disable: Disable
     document_titles:
       project_assessors: Assessors | %{project}
       project_participants: Participants | %{project}
-    edit: Edit
     enable: Enable
     errors:
-      attention: Attention
       error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     factors:
       copy:
-        error: "%{name} factor was not copied"
-        successfully: Factor %{name} was copied successfully
+        error: "'%{name}' factor was not copied"
+        successfully: Factor '%{name}' was copied successfully.
       create:
-        error: "%{name} factor was not created"
-        successfully: "%{name} factor was created successfully"
+        successfully: "'%{name}' factor was created successfully."
       destroy:
-        successfully: Factor %{name} was successfully deleted.
+        successfully: Factor "%{name}" was deleted successfully.
       edit:
         header: Edit Factor Name
       form:
@@ -2918,7 +1825,6 @@ en:
                 score: Score
                 zscore: Z Score
             title: JSON Paths for Scores
-        no_icon: No Logo yet
         scoring_strategies:
           custom_formula: Custom Formula
           external_score: External Score
@@ -2950,8 +1856,6 @@ en:
         scoring_strategy: Scoring strategy
         sub_factors: Sub factors
         title: Factors
-        tooltips:
-          create: Create
       list:
         active: Active
         created_at: Created date
@@ -2991,11 +1895,9 @@ en:
         destroy: Delete Factor
         edit: Edit Factor
         title: Factor's options
-        view: View Factor
       toggle_status:
-        successfully: Factor was successfully updated.
+        successfully: Factor was updated successfully.
       update:
-        error: "%{name} factor was not updated"
         successfully: "%{name} factor was updated successfully"
     genders:
       female: Female
@@ -3010,56 +1912,21 @@ en:
           accesssheet_manage: Accesssheet Manage
           accesssheet_settings: Accesssheet Settings
           accesssheet_view: Accesssheet View
-          settings: Settings
     hide: Hide
-    home:
-      index:
-        notifications: Notifications
     import: Import
     imports:
       assessments:
         results:
-          existing_users_whose_password_not_changed_modal_dialog:
-            header: The list of users whose passwords will be not changed
           form:
-            description: Refer to the Export functionality to extract a template that can be used to Import here.
             import: Import
       base:
         form:
           import: Import
-      errors:
-        error: "[Row %{row}] %{error}"
-        invalid_assign: Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty
-        invalid_format: There is no Email column
-        norm:
-          dimension_not_found: Dimension %{dimension_name} for %{client_name} was not found
-          factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"
-          factors_mismatch: "[#%{coords}] dimension %{dimension} does not have factor %{factor}"
-          not_set_dimension: The name of the Dimension should be written in A-1
-          sub_factors_mismatch: "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
-        result:
-          error: "[Row %{row}] %{error}"
-          invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
-          invalid_format: Invalid File format
-          question_mismatch: Question is not present in the assessment you are importing.
-          user:
-            record_not_found: Can't find existing user with email %{email}.
-          user_assessment:
-            record_not_found: Can't find record of assessment with id %{assessment_id} assigned to user .
-        translation:
-          error: "[Translation %{id}] %{error}"
-          invalid_format: Invalid File format
-        unknown_type: 'Unknown file type: %{filename}'
-        user:
-          not_found: "[Row %{row}] Couldn't find User with Email Address %{email}"
       form:
         description: Refer to the Export functionality to extract a template that can be used to Import here.
         import: Import
       hris:
-        existing_users_whose_password_not_changed_modal_dialog:
-          header: The list of users whose passwords will be not changed
         form:
-          description: Refer to the Export functionality to extract a template that can be used to Import here.
           import: Import
       new:
         header: Import
@@ -3091,26 +1958,19 @@ en:
     individual_invite:
       tabs:
         assessment_center: Assessment Center
-        cancellation_reschedule: Cancellation/Reschedule Requests
         subjects: Subjects
     innovation_styles:
-      copy:
-        error: 'Innovation Style #%{id} was not copied.'
       create:
-        successfully: Innovation Style %{name} was successfully created.
+        successfully: Innovation Style %{name} was created successfully.
       destroy:
-        successfully: Innovation Style %{name} was successfully deleted.
+        successfully: Innovation Style %{name} was deleted successfully.
       edit:
         header: Edit Innovation Style
       form:
-        hint:
-          key_career_tracks: '"+" - list, "*" - bold. Example: + *Biology* - some description...'
         no_icon: No icon
       index:
         new: Add
         title: Innovation Styles
-        tooltips:
-          create: Create
       list:
         created_at: Created date
         id: Id
@@ -3125,23 +1985,17 @@ en:
             body: "<p>Are you sure you want to delete this innovation style?</p>\n"
             title: Delete <strong>Innovation Style</strong> ?
         tooltips:
-          copy: Copy Innovation Style
           delete: Delete Innovation Style
           edit: Edit Innovation Style
       sidebar:
         copy: Copy Innovation Style
-        disable: Disable
         edit: Edit
-        enable: Enable
-        new: New Innovation Style
         title: Innovation Style's options
       toggle_status:
-        successfully: Innovation Style was successfully updated.
+        successfully: Innovation Style was updated successfully.
     innovation_styles_factors:
-      copy:
-        error: 'Factor #%{id} was not copied.'
       create:
-        successfully: Factor %{name} was successfully created.
+        successfully: Factor %{name} was created successfully.
       destroy:
         successfully: Factor %{name} was successfully detached.
       edit:
@@ -3149,8 +2003,6 @@ en:
       index:
         new: Add
         title: Factors
-        tooltips:
-          create: Create
       list:
         condition: Condition
         created_at: Created date
@@ -3171,37 +2023,52 @@ en:
           edit: Edit Factor
       sidebar:
         destroy: Destroy
-        disable: Disable
         edit: Edit
-        enable: Enable
-        new: Attach Factor
         title: Factor's options
       toggle_status:
-        successfully: Factor was successfully updated.
+        successfully: Factor was updated successfully.
     integrations:
       actions:
         add: Integrations
+        back: Back to Integrations
+        load_mettl_catalog: Load Mettl Assessment Catalog
       columns:
         active: Active
         details: Details
         name: Integration Name
       details:
+        provider: Provider Name
         webhookUrl: Webhook URL
+        webhookUrls: Webhook URLs
       integrations: Integrations
+      load_mettl_success: Load mettl assessments job is successfuly enqueued
       modal:
+        hogan:
+          provider: Provider
+          providers:
+            mercer: Mercer
+            phoenix: Phoenix
         iiht:
           password: Password
           tenancy_name: Tenancy name
           tenant_id: Tenant ID
           user: User
-          webhook_url: Webhook URL
-        title: Add
+        mettl:
+          privateKey: Private Key
+          privateKeyRequired: Private key is required.
+          publicKey: Public Key
+          publicKeyRequired: Public key is required.
       names:
+        hogan: HOGAN
         iiht: IIHT
+        mettl: METTL
       validations:
         iiht:
           tenancy_name_present: Tenancy name is already present in other project
           tenant_id_present: Tenant id is already present in other project
+        mettl:
+          public_key_present: Public key is already present in other project
+      view_all_schedules: View All Mettl Schedules
     invited_subject:
       add_btn: Add Subject
       column:
@@ -3222,9 +2089,9 @@ en:
       subject: Subject
     libraries:
       create:
-        successfully: Item %{name} was successfully created.
+        successfully: Item %{name} was created successfully.
       destroy:
-        successfully: Item %{name} was successfully deleted.
+        successfully: Item %{name} was deleted successfully.
       edit:
         header: Edit
       index:
@@ -3251,42 +2118,15 @@ en:
           delete: Delete
           edit: Edit
       update:
-        successfully: Item %{name} was successfully updated.
+        successfully: Item %{name} was updated successfully.
     membership: Membership
     memberships:
-      admin:
-        new:
-          header: New admin
       admin_chosen:
-        successfully: Admin users was successfully updated.
+        successfully: Admin users was updated successfully.
       create:
-        successfully: User %{name} was successfully created.
+        successfully: User %{name} was created successfully.
       destroy:
-        successfully: User %{name} was successfully deleted.
-      edit:
-        add: Add
-        hris_data: HRIS Data
-        key: Key
-        personal_data: Personal Data
-        remove: Remove
-        title: Edit user
-        value: Value
-      index:
-        export: Export
-        filterrific:
-          with_role:
-            administration: Administrators
-            all: All
-            users: Users
-        import: Import
-        import_hris: HRIS Data
-        import_users: Users
-        new: Add
-        title: Users
-        tooltips:
-          create: Create
-          export: Export
-          import: Import
+        successfully: User %{name} was deleted successfully.
       new:
         header: New user
       reset_password:
@@ -3294,11 +2134,11 @@ en:
       spoof:
         successfully: You was successfully login as %{name}
       toggle_membership_status:
-        successfully: Membership of %{name} was successfully updated.
+        successfully: Membership of %{name} was updated successfully.
       toggle_status:
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
       update:
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
     meta_title: Administration panel
     modified_by: Modified By
     navigation:
@@ -3310,73 +2150,48 @@ en:
       availability: Availability
       back_to_main: Main Menu
       campaign_templates: Campaign Templates
-      campaigns: Campaigns
       change_password: Change Password
-      client: Client Tenancy
       client_admins: Client Admins
       clients: Client Tenancies
       communication_center: Communication Center
-      create: Create
       dashboard: Dashboard
       datasheets: Datasheets
-      design: Design
-      dimension: Dimension
       dimensions: Dimensions
       factors: Factors
       innovation_styles: Innovation Styles
-      innovation_styles_factors: Factors
       libraries: Media Library
-      licenses: Licenses
       new_campaign: New Campaign
-      norm: Norm
       norms: Norms
-      norms_editor: Norm Editor
       occupations: Occupations
-      occupations_factors: Factors
       options: Options
       participants: Participants
-      products: Products
       profile: Profile
       profile_details: Details
       project_admins: Project Admins
-      projects: Projects
-      psychometrics: Psychometrics
       question_center: Question Center
       registration_codes: Registration codes
       report_approvals: Report Approvals
-      report_families: Report Bundles
       reports: Reports
       scheduling: Scheduling
       show_submenu: Show Sub Menu
       statistics: Statistics
-      sub_campaigns: Sub Campaigns
-      sub_factors: Sub-Factors
-      survey: Survey
-      surveys: Surveys
       users: Users
-      users_add: Add New
-      users_import: Import
-    new: New
     no_data_found: No data found
     norms:
       copy:
         error: 'Norm #%{id} was not copied.'
-        successfully: 'Norm #%{name} was copied successfully'
+        successfully: Norm "%{name}" was copied successfully.
       create:
-        successfully: Norm %{name} was successfully created.
+        successfully: Norm "%{name}" was created successfully.
       destroy:
-        successfully: Norm %{name} was successfully deleted.
+        successfully: Norm "%{name}" was deleted successfully.
       edit:
         header: Rename Norm
       editor:
         factors: Factors
         inplace_title: Enter value
-        sub_factors: Sub Factors
         title: Norm Editor
-        tooltips:
-          edit: Edit Title
       index:
-        export: Export
         import: Import
         new: Add
         owner: Owner
@@ -3407,33 +2222,24 @@ en:
           delete: Delete Norm
           edit: Rename Norm
       sidebar:
-        assign: Assign Norm
         copy: Copy Norm
         destroy: Delete Norm
-        disable: Disable
         edit: Rename Norm
         editor: Norm Editor
-        enable: Enable
         export: Export Norm
-        import: Import Norm
-        new: New Norm
-        surveys: Linked Surveys
         title: Norm's options
-        view: View Norm
       toggle_status:
-        successfully: Norm was successfully updated.
+        successfully: Norm was updated successfully.
       update:
-        successfully: Norm %{name} was successfully updated.
+        successfully: Norm %{name} was updated successfully.
     noty:
       error_408: This action takes too long. Please try to reload the page.
       error_500: Something went wrong. Contact your administrator.
     occupations:
-      copy:
-        error: 'Occupation #%{id} was not copied.'
       create:
-        successfully: Occupation %{name} was successfully created.
+        successfully: Occupation %{name} was created successfully.
       destroy:
-        successfully: Occupation %{name} was successfully deleted.
+        successfully: Occupation %{name} was deleted successfully.
       edit:
         header: Edit occupation
       form:
@@ -3443,8 +2249,6 @@ en:
       index:
         new: Add
         title: Occupations
-        tooltips:
-          create: Create
       list:
         created_at: Created Date
         id: Id
@@ -3458,32 +2262,24 @@ en:
             body: "<p>Are you sure you want to delete this occupation?</p>\n"
             title: Delete <strong>Occupation</strong> ?
         tooltips:
-          copy: Copy Occupation
           delete: Delete Occupation
           edit: Edit Occupation
       sidebar:
         copy: Copy Occupation
-        disable: Disable
         edit: Edit
-        enable: Enable
-        new: New Occupation
         title: Occupation's options
       toggle_status:
-        successfully: Occupation was successfully updated.
+        successfully: Occupation was updated successfully.
     occupations_factors:
-      copy:
-        error: 'Factor #%{id} was not copied.'
       create:
-        successfully: Factor %{name} was successfully created.
+        successfully: Factor %{name} was created successfully.
       destroy:
-        successfully: Factor %{name} was successfully detached.
+        successfully: Factor %{name} was detached successfully.
       edit:
         header: Edit Factor
       index:
         new: Add
         title: Factors
-        tooltips:
-          create: Create
       list:
         condition: Condition
         created_at: Created date
@@ -3504,19 +2300,16 @@ en:
           edit: Edit Factor
       sidebar:
         destroy: Destroy Factor
-        disable: Disable
         edit: Edit
-        enable: Enable
-        new: Attach Factor
         title: Factor's options
       toggle_status:
-        successfully: Factor was successfully updated.
+        successfully: Factor was updated successfully.
       update:
-        successfully: Factor %{name} was successfully updated.
+        successfully: Factor %{name} was updated successfully.
     participants:
       tabs:
         assessors: Assessors
-        sms_invites: SMS Invites
+        sms_contacts: SMS Contacts
         subjects: Subjects
     piped_text_modal:
       assessment_id: Assessment ID
@@ -3545,12 +2338,12 @@ en:
       profile: Profile
     profiles:
       edit:
-        success: Profile was successfully updated.
+        success: Profile was updated successfully.
         title: Profile Editor
     project:
       tools:
         workshop_status_export: Workshop Status Export
-        workshop_status_export_success: Workshop Status Export scheduled successfully.
+        workshop_status_export_success: Workshop Status Export was scheduled successfully.
     project_participants:
       cancel: Cancel
       column_actions: Actions
@@ -3633,12 +2426,6 @@ en:
         remove_webhook:
           content: Delete %{description}?
           title: Delete
-        send_test:
-          copy_payload_success: Payload copied to clipboard successfully.
-          event_dropdown:
-            placeholder: Select event
-          submit_button: Send Test
-          title: Send Webhook Event Test
         title: Webhooks
     project_users:
       cancel: Cancel
@@ -3653,7 +2440,7 @@ en:
       confirm_send: Yes, send
       delete: Delete
       delete_error: Could not delete assessor '%{name}'. Please contact your administrator.
-      delete_success: Assessor '%{name}' was successfully deleted.
+      delete_success: Assessor '%{name}' was deleted successfully.
       edit: Edit
       edit_assessor: Edit assessor
       filter_campaigns: With no campaigns
@@ -3681,9 +2468,8 @@ en:
         background_size_cover: Cover
         bg_upload: Upload
         client_logo_label: Client Logo
-        color_label: Color
+        contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
         error_color: Error Color
-        image_label: Image
         info_color: Info Color
         logo_upload: Upload
         position_auto: Auto
@@ -3698,14 +2484,29 @@ en:
         success_update: Design Settings were saved successfully
         warning_color: Warning Color
       general_settings:
-        2fa: Enable Two factor authentication
         live_chat: Enable Live Chat
         locales_label: Locales
         name_label: Name
-        password: Enable Strong password
         project_number_label: Project Number
         save_changes: Save Changes
         sub_domain_label: Sub Domain
+      mettl_schedule_records:
+        actions:
+          edit: Edit
+        add: Add Schedule
+        assessment_id: Assessment ID
+        assessment_name: Assessment Name
+        candidate_authorization: Enable Candidate Authorization
+        candidate_screen_capture: Enable Candidate Screen Capture
+        count: Browsing tolerance count
+        created_at: Created At
+        schedule_id: Schedule ID
+        schedule_name: Schedule Name
+        search: Search
+        secure_browser_enabled: Enable Secure Browser
+        show_remaining_counts: Enable Showing Remaining Count
+        visual_proctoring_enabled: Enable Visual Proctoring
+        web_proctoring_enabled: Enable Web Proctoring
       privacy_settings:
         dp_consent: Enable Data Processing consent
         dp_consent_custom: Customise Data Processing consent
@@ -3715,6 +2516,7 @@ en:
         mask_identity_for_examus: Mask data for Examus Proctoring
         mask_identity_for_hogan: Mask data for Hogan
         mask_identity_for_iiht: Mask data for IIHT
+        mask_identity_for_mettl: Mask data for METTL
         mask_identity_for_pearson: Mask data for Pearson
         mask_identity_for_saville: Mask data for Saville
         privacy_link: Enable Privacy Link
@@ -3723,18 +2525,10 @@ en:
         privacy_text: Privacy Text
         privacy_text_placeholder: Enter Privacy Text
       profile_settings:
-        age: Age
-        locked: Locked
-        month:
-          one: "{{count}} Month"
-          other: "{{count}} Months"
-        months: Months
         never: Never
-        required: Required
         update_in: Notify Profile Update in
         year: Year
       registration_settings:
-        name_label: Name
         require_mobile_number: Require Mobile Number
       webhook_settings:
         add: Add Webhook
@@ -3742,20 +2536,16 @@ en:
         column_created_date: Created Date
         column_description: Description
         column_manage: Manage
-        column_status: Status
         column_updated_date: Modified date
         column_url: URL
-        delete: Delete
-        edit: Edit
         search: Search Webhoook
-    psychometrics: Psychometrics
     questions:
       copy:
-        successfully: Question %{name} was copied successfully
+        successfully: Question "%{name}" was copied successfully.
       create:
-        successfully: Question %{name} was created successfully
+        successfully: Question "%{name}" was created successfully.
       destroy:
-        successfully: Question %{name} was successfully deleted.
+        successfully: Question "%{name}" was deleted successfully.
       edit:
         header: Edit Question
       index:
@@ -3771,9 +2561,8 @@ en:
             body: "<p>Are you sure you want to %{status} this Question?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
       toggle_status:
-        successfully: Successfully updated.
+        successfully: Updated successfully.
     report_approval:
-      campagin_search: Campaign search
       columns:
         actions: Actions
         approval_status: Approval Status
@@ -3783,46 +2572,28 @@ en:
         report_name: Report Name
         user_email: User Email
         user_name: User Name
+      dashboard: Dashboard
       download: Download
-      report_search: Report search
+      report_approvals: Report Approvals
       review: Review
-      user_search: User search
     report_families:
-      copy:
-        error: 'Report Bundle #%{id} was not copied.'
       create:
-        successfully: Report Bundle %{name} was successfully created.
+        successfully: Report Bundle %{name} was created successfully.
       destroy:
-        successfully: Report Bundle %{name} was successfully deleted.
+        successfully: Report Bundle %{name} was deleted successfully.
       edit:
         header: Edit Report Bundle Name
       index:
         add: Add
-        families: Families
         title: Report Bundles
-        tooltips:
-          create: Create
-      list:
-        created_at: Created date
-        id: ID
-        name: Name
-        updated_at: Modified date
       new:
         header: New Report Bundle
       reports:
         destroy:
-          successfully: Report successfully deleted from the report bundle
+          successfully: Report was deleted successfully from the report bundle
         index:
           add: Add new Report
           title: Reports in the Bundle
-          tooltips:
-            create: Create
-        list:
-          created_at: Created date
-          external_package_id: External Package Id
-          id: ID
-          name: Name
-          updated_at: Updated date
         resource:
           confirmations:
             delete:
@@ -3839,18 +2610,14 @@ en:
             body: "<p>Are you sure you want to %{status} this Report Bundle?</p>\n"
             title: "<strong>%{status}</strong> %{name}?"
         tooltips:
-          copy: Copy Report Bundle
           delete: Delete Report Bundle
           edit: Edit Report Bundle
-          preview: Preview Report Bundle
       sidebar:
-        copy: Copy Report Bundle
         destroy: Delete Report Bundle
         edit: Edit Report Bundle
         title: Report Bundle's options
-        view: View Report Bundle
       update:
-        successfully: Report Bundle %{name} was successfully updated.
+        successfully: Report Bundle %{name} was updated successfully.
     report_review:
       abort_qc: Abort QC
       approve: Approve
@@ -3867,49 +2634,27 @@ en:
         qc_in_progress: QC in Progress
     reports:
       copy:
-        error: 'Report #%{id} was not copied.'
-        successfully: Report %{name} was successfully copied.
+        copy: copy
+        copy_report: Copy Report
+        name: Name
+        successfully: Report '%{name}' was copied successfully.
       create:
-        successfully: Report %{name} was successfully created.
+        successfully: Report '%{name}' was created successfully.
       destroy:
-        successfully: Report %{name} was successfully deleted.
+        successfully: Report '%{name}' was deleted successfully.
       edit:
         header: Edit Report Name
       form:
         load_from_pearson: Load from Pearson
-        load_mindmill_report: Load from Mindmill
         none_external: None - Use report builder
-        select_family: Select Report Bundle
-        types:
-          common: Any
-          eti: ETI
-          yti: YTI
       index:
         add: Add
         assessment: Assessment
-        bulk_download: Bulk Download
         category: Category
         families: Report Bundles
-        filterrific:
-          with_assessment_category:
-            '360': 360 Feedback
-            all: All
-            case_study: Case Studies
-            organisational: Org Surveys
-            psychometric: Psychometrics
         owner: Owner
-        regenerate: Regenerate Reports
         report_family: Report Bundle
         title: Reports
-        tooltips:
-          create: Create
-      list:
-        active: Active
-        created_at: Created date
-        id: Id
-        name: Name
-        type: Type
-        updated_at: Modified date
       modals:
         remap_assessment:
           assesment_id: Assessment ID
@@ -3919,7 +2664,6 @@ en:
       new:
         header: Select Report
       preview:
-        export_pdf: Export to PDF
         title: Preview
       regenerate:
         successfully: Report successfully sent for regeneration
@@ -3933,9 +2677,6 @@ en:
           detach:
             body: "<p>Are you sure you want to detach this Report?</p>\n"
             title: Detach <strong>Report</strong> ?
-          regenerate:
-            body: "<p>Are you sure you want to regenerate this Report for all Users?</p>"
-            title: Regenerate <strong>%{name}</strong>?
           soft_delete:
             body: "<p>Are you sure you want to soft delete this Report?</p>\n"
             title: Soft Delete <strong>Report</strong>?
@@ -3954,26 +2695,19 @@ en:
           restore: Restore
           soft_delete: Soft Delete Assessment
       restore:
-        successfully: Report %{name} was Restored Successfully.
+        successfully: Report %{name} was restored successfully.
       sidebar:
-        copy: Copy Report
         destroy: Delete Report
         edit: Edit Report
-        regenerate: Regenerate Report
         title: Report's options
-        view: View Report
       soft_delete:
-        successfully: Report %{name} was moved to Trash Successfully.
+        successfully: Report %{name} was moved to trash Successfully.
       toggle_archive:
         successfully: Assessment %{name} was %{status} successfully.
       toggle_status:
-        successfully: Report was successfully updated.
-      types:
-        common: Any
-        eti: ETI
-        yti: YTI
+        successfully: Report was updated successfully.
       update:
-        successfully: Report %{name} was successfully updated.
+        successfully: Report %{name} was updated successfully.
     resource:
       remove_confirm:
         message: Are you sure you want to remove this resource?
@@ -3981,29 +2715,21 @@ en:
     saml_settings:
       after_signout_url: After Signout Url
       cert: Certificate
-      cert_fingerprint: Certificate Fingerprint
-      cert_fingerprint_algorithm: Cert Fingerprint Algorithm
       config_details:
         acs_url: Assertion Consumer Service URL
         copied: Copied %{element}
         issuer: Entity Id/Issuer
         title: Configure Idp with following info
-      design: Design
       enabled: Enabled
       enforced: Enforce SAML
       entity_id: Entity ID/Issuer
-      general: General
       saml: SAML
       saml_setting: SAML Setting
       sso_service_url: SSO Service Url
-      successfully_saved_msg: SAML Setting saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
+      successfully_saved_msg: SAML Setting was saved successfully. No verification is required as Enity Id/Issuer, SSO Service Url and Certificate is unchanged
       verify_and_save: Verify & Save Setting
-      webhooks: Webhooks
     save: Save
     scheduling:
-      actions:
-        remove:
-          success_message: Assessment Center subject %{subject_name}.
       add_activity: Add Activity
       add_assessment_center: Add Assessment Center
       add_assessor_form:
@@ -4022,16 +2748,13 @@ en:
         copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
         copy_to_all: Copy to other Assessment Centers
         create: Create
-        dates_error: You can only add up to 5 dates.
         dates_label: Dates
         duration_label: Duration
         duration_max_error: Cannot be greater than 16 hours
         duration_min_error: Cannot be less than 15 minutes
         duration_placeholder: E.g. 4h 30m
-        duration_required_error: Duration is required
         manager_ids_label: Center Managers
         meetings_and_resources: Meetings & Resources
-        name: Add Assessment Center
         name_label: Name
         next: Next
         required_error: Required
@@ -4080,17 +2803,8 @@ en:
         scheduling_status: Scheduling status
         seats: Seats
         start_time: Date & Time
-        status: Status
         subject: Subject
         title: Title
-      date_presets:
-        all_time: All time
-        current_month: Current month
-        current_week: Current week
-        custom: Custom range
-        last_month: Last month
-        last_week: Last week
-        today: Today
       errors:
         assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
         date_required: Please select a date
@@ -4115,17 +2829,12 @@ en:
         search_placehoder: Search by id, email or name
         timezone: Timezone
         total_seats: Total Seats
-      modal:
-        content: Are you sure you want to delete %{description}?
-        title: Delete subject
       resources:
-        back: Back
         confirm_message: Are you sure you want to delete the resource '%{resource_name}'?
         confirm_title: Confirmation Required
         create: Create Resource
         resource: Resource
-        successful_remove: Assessment Center resource %{resource_name} successfully deleted.
-        update: Update Resource
+        successful_remove: Assessment Center resource %{resource_name} was deleted successfully.
       schedule_assessments: Schedule Assessments
       scheduling_statuses:
         cancelled: Cancelled
@@ -4148,17 +2857,14 @@ en:
         activities: Activities
         add_assessor_form: Add Assessor Form
         assessments: Assessments
-        assessor_form: Assessor Form
         assessor_forms: Assessor Forms
         confirm_message: |
           Are you sure you want to cancel the participation of the subject with the email '%{subject_email}'?
           <br />
           Once marked as cancelled, this subject will not be able to participate in the assessment center.
         confirm_title: Confirmation required
-        copy_link_msg: Link Copied
         edit_assessor_form: Edit Assessor Form
         form_title: Schedule Assessments
-        import_job_scheduled: The uploaded file has been queued for import. Please check the status in the notifications
         language: Language
         language_not_selected: Not Selected
         mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
@@ -4170,13 +2876,10 @@ en:
         override_existing: Override existing schedules for subjects
         preworks: Prework
         schedule: Schedule
-        status_changed: Status successfully changed to %{status}
-        success_message: Subject with email %{subject_email} removed successfully.
         unschedule: Unschedule
       tabs:
         activities: Activities
         assessment_center: Assessment Center
-        assessors: Assessors
         invites: Invites
         resources: Resources
         subjects: Subjects
@@ -4189,7 +2892,6 @@ en:
       average: Average
       campaign_scoring_variables: Campaign Scoring Variables
       code: Code
-      delete_group: Delete Group
       description: Description
       dimension: Dimension
       edit_factor: Edit Factor
@@ -4197,12 +2899,12 @@ en:
         details: Campaign scorings
         factors: Export Campaign Factors
       factor: Factor
-      factor_group_removed_successfully: Campaign Factor group removed successfully
-      factor_removed_successfully: Campaign Factor removed successfully
+      factor_group_removed_successfully: Campaign Factor group was removed successfully
+      factor_removed_successfully: Campaign Factor was removed successfully
       factors_exported_successfully: Export campaign factors job was scheduled successfully
       factors_imported_successfully: Import campaign factors job was scheduled successfully
       final: Final
-      final_score_updated_successfully: Final score updated successfully
+      final_score_updated_successfully: Final score was updated successfully
       formula: Formula
       get_started: Get Started
       id: Id
@@ -4230,8 +2932,7 @@ en:
         score: Score
         zscore: Z Score
       scoring: Scoring
-      scoring_description: Campaign Scoring allows reporting accross assessments
-      select_assessment: Select Assessment or Diminsion
+      scoring_description: Campaign Scoring allows reporting across assessments
       select_assessment_first: Select Assessment First
       select_factor: Select Factor
       show_weightages: Show Weightages
@@ -4242,8 +2943,6 @@ en:
         bulk_mark_finalized_confirm: Finalizing score for selected users will generate the report which uses campaign factor for the users. Are you sure you want to proceed?”
         bulk_mark_not_finalized: Bulk Mark Not Finalized
         bulk_mark_not_finalized_confirm: Removing finalize from the selected users will remove the generated report which uses campaign factor for the users. Are you sure you want to proceed?
-        bulk_publish_results_available: Bulk Publish Campaign Results Available
-        bulk_publish_results_available_confirm: Are you sure you want to push campaign results available webhook for selected users?
         bulk_rescore: Bulk Rescore
         bulk_rescore_confirm: Rescoring the selected users. Are you sure you want to proceed?
         calculated_date: Calculated Date
@@ -4252,12 +2951,11 @@ en:
         export_success: Export scores job was scheduled successfully
         finalized: Finalized
         finalized_date: Finalized Date
+        import_external_scores: Import External Scorings
         mark_finalized: Mark Finalized
         mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?”
         mark_not_finalized: Mark Not Finalized
         mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
-        publish_results_available: Publish Campaign Results Available
-        publish_results_available_confirm: Are you sure you want to push campaign results available webhook for user '%{email}'?
         rank: Rank
         rescore: Rescore
         rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
@@ -4270,7 +2968,7 @@ en:
       variables: Variables
       weightages:
         assessorForms: Assessor Forms
-        successful_update: Weightages successfully updated
+        successful_update: Weightages were updated successfully
         tools: Tools
         weightages: Weightages
       weighted_average: Weighted Average
@@ -4287,25 +2985,21 @@ en:
       enforce_strong: Enforce strong password
       expiration: Password expiration
       lock_account: Lock account
-      max_length: Maximum password length
+      magic_link_expiry_duration: Magic link expiration duration
       min_length: Minimum password length
       never: Never
-      old_passwords_count: Old passwords count
       restrict_sequences: Restrict sequential and repetitive characters
       security: Security Settings
-      security_setting: Security settings
       send_unlock_email: Send unlock email
       tfa_enabled: Enable Two Factor Authentication
-      update_success_msg: Password settings was updated successfully
     settings:
       admin_roles:
         admin_role_single: Admin Role
         confirm_message: Are you sure you want to delete admin role '%{role_name}'?
-        confirm_title: Confirmation Required
         create: Add Admin Role
         description: Description
         name: Name
-        successful_remove: Admin role '%{role_name}' was successfully deleted.
+        successful_remove: Admin role '%{role_name}' was deleted successfully.
       siem:
         description: Description
         destination_type: Destination Type
@@ -4323,10 +3017,18 @@ en:
         send_test_log: Send Test Log
         send_test_log_error_message: Test log has not been sent to your bucket, check your settings
         send_test_log_success_message: Test log has been successfully sent to your bucket
+      skill_aliases:
+        alias: Alias
+        confirm_message: Are you sure you want to delete skill alias '%{skill_alias}'?
+        create: Add Skill Alias
+        select_skill: Select Skill
+        skill: Skill
+        skill_alias: Skill Alias
+        successful_remove: Skill alias '%{skill_alias}' was deleted successfully.
       tabs:
         admin_roles: Admin Roles
-        permissions: Permissions
         siem: SIEM
+        skill_aliases: Skill Aliases
     sheets:
       column:
         add_column: Add Column
@@ -4353,44 +3055,41 @@ en:
           project_title: Project level record
           title: Sheet Row record details
       list:
-        column_toggler:
-          title: Show/Hide columns
-          tool_tip: Show/Hide table columns
         header:
           add_record: Add record
           search_record: Search records
       modals:
         delete_records:
           cancelText: Cancel
-          content:
-            one: Are you sure you want to delete the record?
-            other: Are you sure you want to delete {{count}} records?
           okText: Yes, delete
-          successMessage:
-            one: Column and related data deleted
-            other: "{{columns}} and related data deleted"
-          title:
-            one: Delete record
-            other: Delete records
         remove_columns:
           cancelText: Cancel
-          content:
-            one: Deleting a column ({{columns}}) will remove the data in this column for all rows
-            other: Deleting a columns ({{columns}}) will remove the data in this column for all rows
           okText: Yes, delete
-          successMessage:
-            one: Columns deleted
-            other: "{{count}} records deleted"
-          title:
-            one: Delete column
-            other: Delete columns
       tabs:
         rows: Rows
         settings: Settings
-    show: Show
+    sms_histories:
+      columns:
+        first_name: First Name
+        last_name: Last Name
+        mobile_no: Mobile No
+        price: Price
+        segment_length: Segment Length
+        sent_at: Sent At
+      drawer:
+        title: SMS Details
+      history: History
+      statuses:
+        accepted: Accepted
+        delivered: Delivered
+        failed: Failed
+        queued: Queued
+        scheduled: Scheduled
+        sent: Sent
+        undelivered: Undelivered
     sms_invites:
       actions:
-        add: Add SMS Invite
+        add: Add SMS Contact
       columns:
         created_at: Created At
         created_by: Created By
@@ -4398,6 +3097,7 @@ en:
         first_name: First Name
         last_name: Last Name
         mobile_no: Mobile No
+      contacts: Contacts
       form_modal:
         first_name: First Name
         last_name: Last Name
@@ -4410,7 +3110,7 @@ en:
         title: SMS Invite import
       messages:
         delete_confirm_text: Are you sure you want to remove SMS Invite with mobile number %{mobile_no}?
-        delete_success: SMS Invite deleted successfully
+        delete_success: SMS Invite was deleted successfully
         failed_to_sent_invite: Failed to sent invite to mobile no %{mobile_no}
       send_sms:
         fields:
@@ -4430,7 +3130,6 @@ en:
           {{{invite_url}}} - Registration Link
         segment_length_msg: Estimated number of segments for this message is %{segment_length}.
         segment_length_range_msg: Estimated number of segments for this message is between %{min_segment_length} and %{max_segment_length}.
-        success_msg: You request to send SMS have been scheduled. Please check the status in the notifications.
       statuses:
         all: All
         failed: Failed
@@ -4438,9 +3137,13 @@ en:
         not_invited: Not Invited
         registered: Registered
       tools:
-        export: Export SMS Invites
-        import: Import SMS Invites
+        export: Export SMS Contacts
+        import: Import SMS Contacts
         send_sms: Send SMS
+    sms_records:
+      columns:
+        id: Id
+        message: Message
     smtp_settings:
       authentication: Authentication
       authentication_type: Authentication Type
@@ -4467,12 +3170,11 @@ en:
       test_email_modal:
         input_hint: Your email setting will not saved until test email was sent successfully.
         input_placeholder: Test Email ID
-        success_message: SMTP setting updated successfully.
         title: Test Email Id
       test_modal:
         success_message: Test Email sent to %{email_id}.
         title: Test SMTP setting
-      update_success_msg: SMTP setting updated successfully.
+      update_success_msg: SMTP setting was updated successfully.
       use_sender_verification: Use sender verification
       user_name: User Name
     stats:
@@ -4491,13 +3193,11 @@ en:
       top_metrics:
         completed: Completed
         in_progress: In Progress
-        ineligible: Ineligible
         interrupted: Interrupted
         not_started: Not started
         timed_out: Timed Out
         users: Users
       users:
-        completed: Completed
         date_presets:
           last_30_days: Last 30 days
           last_7_days: Last 7 days
@@ -4505,20 +3205,12 @@ en:
           last_week: Last week
           today: Today
           yesterday: Yesterday
-        started: Started
         y_title: Number of Users
     sub_factors:
-      copy:
-        error: 'Sub-Factor #%{id} was not copied.'
       destroy:
-        successfully: Sub-Factor %{name} was successfully deleted.
+        successfully: Sub-Factor %{name} was deleted successfully.
       edit:
         header: Edit Sub-Factor Name
-      index:
-        new: Add
-        title: Sub-Factors
-        tooltips:
-          create: Create
       new:
         header: New Sub-Factor
       resource:
@@ -4526,16 +3218,8 @@ en:
           delete:
             body: "<p>Are you sure you want to delete this Sub-Factor?</p>\n"
             title: Delete <strong>Sub-Factor</strong> ?
-        tooltips:
-          copy: Copy Sub-Factor
-          delete: Delete Sub-Factor
-          edit: Edit Sub-Factor Name
-      sidebar:
-        destroy: Delete Sub-Factor
-        edit: Edit Sub-Factor
-        title: Sub-Factor's options
       toggle_status:
-        successfully: Sub-Factor was successfully updated.
+        successfully: Sub-Factor was updated successfully.
     survey_builder:
       builder_area:
         options: Options
@@ -4543,6 +3227,7 @@ en:
         add_n_a_option: Add N/A option
         allow_content_copy: Allow content copying
         answer_type: Answer type
+        cant_change_type: Type can not be changed for saved question
         date_format: Date format
         date_format_options:
           dd_mm_yyy: DD-MM-YYYY
@@ -4572,8 +3257,6 @@ en:
         multiple_choice_types:
           dropdown: Dropdown
           multi_answer: Multiple answers
-          multi_select_box: Multiple select box
-          select_box: Select box
           single_answer: Single answer
         no_of_choices: No. of choices
         orientation:
@@ -4598,7 +3281,7 @@ en:
         copy:
           error: Block \#%{name} was not copied.
         destroy:
-          successfully: Block %{name} was successfully deleted.
+          successfully: Block %{name} was deleted successfully.
         edit:
           header: Edit Block
         index:
@@ -4639,7 +3322,7 @@ en:
         copy:
           error: Question
         destroy:
-          successfully: Question %{name} was successfully deleted.
+          successfully: Question %{name} was deleted successfully.
         edit:
           header: Edit Question
         index:
@@ -4761,8 +3444,6 @@ en:
         report: Report
         title: Manage
       menu:
-        assessment:
-          title: Assessment
         datasheet:
           title: Datasheet
         messages:
@@ -4773,8 +3454,6 @@ en:
           menu:
             report_options:
               title: Report Options
-            subject_report:
-              title: Subject Report
           title: Report
       messages:
         email_messages: Email Messages
@@ -4791,68 +3470,27 @@ en:
         new:
           header: Import Translations
       import:
-        successfully: Translations was successfully imported
-      questions:
-        new:
-          header: Import Translations
+        successfully: Translations were imported successfully
       reports:
-        new:
-          header: Import Translations
+        export: Export Translations
+        import: Import Translations
+        import_descr: Refer to the Export functionality to extract a template that can be used to Import here.
     tte: TTE
     uniq_id: Uniq ID
     update: Update
-    updated: Successfully updated
+    updated: Update successfully
     users:
       create:
-        successfully: User %{name} was successfully created.
+        successfully: User %{name} was created successfully.
       destroy:
-        successfully: User %{name} was successfully deleted.
+        successfully: User %{name} was deleted successfully.
       edit:
-        add: Add
-        grants: Privileges
         hris_data: HRIS Data
-        key: Key
         personal_data: Personal Data
-        remove: Remove
-        title: Edit user
-        value: Value
-      form:
-        choose: " - Choose - "
-      index:
-        breadcrumb: Users
-        client_tenancy: Client tenancy
-        export: Export
-        export_completion_status: Completion Status
-        export_users: Users
-        filterrific:
-          with_role:
-            administration: Administrators
-            all: All
-            users: Users
-        import: Import
-        import_hris: HRIS Data
-        import_users: Users
-        new: Add
-        new_superadmin: Add SuperAdmin
-        title: Users
-        tooltips:
-          create: Create
-          export: Export
-          import: Import
       list:
-        active: Active
-        created_at: Created Date
         email: Email
-        first_name: First name
-        id: Id
-        last_name: Last name
-        role: Role
-        updated_at: Modified Date
       new:
         header: New user
-      password:
-        guidelines:
-          error: 'Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
       reset_password:
         successfully: User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
       resource:
@@ -4878,23 +3516,11 @@ en:
             title: "<strong>%{status}</strong> %{name}?"
         tooltips:
           change_password: Change Password
-          chart: View user report
           delete: Delete User
-          edit: Edit User
           mail: Send Mail
-          sign_in: Login as user
       sidebar:
-        api_keys: API keys
-        assessments_and_reports: Assessments and Reporting
         destroy: Delete User
-        disable: Disable
-        edit_user: Edit User
         email: Send Mail
-        enable: Enable
-        export_users: Export users
-        import_users: Import users
-        login_as_user: Login as User
-        new_user: New User
         reset_password: Change Password
         title: User's options
       spoof:
@@ -4902,17 +3528,16 @@ en:
       toggle_enable_2fa:
         disable: Disable 2FA
         enable: Enable 2FA
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
       toggle_status:
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
       update:
-        successfully: User %{name} was successfully updated.
+        successfully: User %{name} was updated successfully.
       user: User
     webhook:
       connection_failure: Unable to connect to the webhook url. Please verify if webhook url is correct..
-      delete_success: Webhook settings deleted successfully
+      delete_success: Webhook settings was deleted successfully
       request_failure: Request failed with status code %{http_status_code}.
-      test_success: Webhook test successful.
     workshop:
       actions:
         remove_workshop: Workshop Removed Successfully
@@ -4924,7 +3549,3 @@ en:
     workshop_subjects:
       errors:
         update_assessor_for_failure: Meeting details cannot be added as there is no linked subject activity.
-    years:
-      one: 1 Year
-      other: "%{count} Years"
-      zero: 0 Years

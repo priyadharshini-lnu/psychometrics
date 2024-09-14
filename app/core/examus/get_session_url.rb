@@ -19,7 +19,7 @@ module Examus
 
       if proctoring_session
         jwt = Examus::JwtTokenizer.encode(payload(proctoring_session))
-        config = Rails.application.secrets.examus
+        config = Settings.secrets.examus
         url = "#{config[:url]}/integration/simple/#{config[:integration_name]}/start/?token=#{jwt}"
         broadcast :ok, url
       else

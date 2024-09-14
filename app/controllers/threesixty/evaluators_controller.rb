@@ -44,7 +44,7 @@ module Threesixty
         else
           send_evaluator_invite_email(result.threesixty_evaluator)
         end
-        render json: result, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
+        render json: Threesixty::EndUser::NomineeSerializer.new(context: { include: '**' }).serialize(result)
       else
         render json: { errors: form.error_messages }, status: 400
       end
@@ -63,7 +63,7 @@ module Threesixty
       elsif @nomination.manager_nomination_approved?
         send_evaluator_invite_email(@nomination.threesixty_evaluator)
       end
-      render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
+      render json: Threesixty::EndUser::NomineeSerializer.new(context: { include: '**' }).serialize(@nomination)
     end
 
     def destroy

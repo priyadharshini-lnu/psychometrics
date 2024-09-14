@@ -3,7 +3,7 @@
 class AsyncResponseRequest::AsyncResponse
   include ActiveAttr::Model
 
-  PROCESSING_STATUSES = %i[not_started in_progress completed].freeze
+  PROCESSING_STATUSES = %i[not_started in_progress completed failed].freeze
   RESPONSE_TYPES = %i[json redirect].freeze
 
   attribute :async_request_uuid

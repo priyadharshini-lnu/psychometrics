@@ -1,76 +1,70 @@
 import _ from 'lodash'
-import { Component } from 'react'
-import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { actions } from '~/modules/survey/core/builder/flow'
 import styles from './Flow.less'
 import Views from './types'
 import ButtonNew from './ButtonNew'
 import Settings from './Settings'
 
-export class FlowElement extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-  }
+const canAddMore = type => Settings[type].children
 
-  addNew = () => {
-    const { model, addNew } = this.props
-    if (model.type === 'Randomizer' && model.props.number + 1 === model.elements.length) {
-      model.props.number += 1
+const FlowElement = ({
+  model: element, index, parent, ...props
+}) => {
+  const dispatch = useDispatch()
+
+  const addNew = () => {
+    if (element.type === 'Randomizer' && element.props.number + 1 === element.elements.length) {
+      element.props.number += 1
     }
-    addNew(model)
+    dispatch(actions.addNewElement(element))
   }
 
-  addBelow = () => {
-    const { model, addElementBelow, index } = this.props
-    addElementBelow(model, index)
+  const addBelow = () => {
+    dispatch(actions.addElementBelow({ element, index }))
   }
 
-  duplicate = () => {
-    const { model, duplicateElement } = this.props
-    duplicateElement(model)
+  const duplicate = () => {
+    dispatch(actions.duplicateElement(element))
   }
 
-  update = (newModal) => {
-    const { model, updateElement } = this.props
-    updateElement(newModal || model)
-    this.forceUpdate()
+  const update = (newModal) => {
+    dispatch(actions.updateElement(newModal || element))
   }
 
-  canAddMore = type => Settings[type].children
-
-  remove = () => {
-    const { model, removeElement } = this.props
-    removeElement(model)
+  const remove = () => {
+    dispatch(actions.removeElement(element))
   }
 
-  selectType = (type) => {
-    const { model } = this.props
-    model.type = type
-    model.props = _.cloneDeep(Settings[type].defaults || {})
-    this.update()
+  const selectType = (type) => {
+    dispatch(actions.updateElement({ ...element, type, props: _.cloneDeep(Settings[type].defaults || {}) }))
   }
 
-  renderElement = (element, i) => (
-    <FlowElement key={i} model={element} onRemove={this.update} />
-  )
+  const allowAdd = (element) => {
+    const settings = Settings[parent.module?.type] || null
+    if (!settings || !settings.allowedChildren) { return true }
 
-  renderFlowType (model) {
+    return settings.allowedChildren.includes(element)
+  }
+
+  const renderFlowType = (model) => {
     const View = Views[model.type]
     return (
       <div>
         <div className={`${styles.element} ${styles[model.type]}`}>
           <View
-            {...this.props}
+            {...props}
             model={model}
-            onRemove={this.remove}
-            onAddBelow={this.addBelow}
-            onDuplicate={this.duplicate}
-            onUpdate={this.update}
+            onRemove={remove}
+            onAddBelow={addBelow}
+            onDuplicate={duplicate}
+            onUpdate={update}
           />
         </div>
         <div className={styles.row}>
-          {this.canAddMore(model.type) && (
+          {canAddMore(model.type) && (
             <div>
-              <ButtonNew onClick={this.addNew} />
+              <ButtonNew onClick={addNew} />
             </div>
           )}
         </div>
@@ -78,45 +72,54 @@ export class FlowElement extends Component {
     )
   }
 
-  renderVariants () {
-    return (
-      <div className={styles.elementSelect}>
-        <div className={styles.label}>
-          What do you want to add?
-          <a className="btn" onClick={this.remove}>Cancel</a>
-        </div>
-        <div className={styles.btns}>
-          <button onClick={() => this.selectType('Block')} className={`btn btn-default ${styles.btn}`}>
+  const renderVariants = () => (
+    <div className={styles.elementSelect}>
+      <div className={styles.label}>
+        What do you want to add?
+        <a className="btn" onClick={remove}>Cancel</a>
+      </div>
+      <div className={styles.btns}>
+        {allowAdd('Block') && (
+          <button onClick={() => selectType('Block')} className={`btn btn-default ${styles.btn}`}>
             <span className="fa fa-square" />
             Block
           </button>
-          <button onClick={() => this.selectType('Branch')} className={`btn btn-default ${styles.btn}`}>
+        )}
+        {allowAdd('Group') && (
+          <button onClick={() => selectType('Group')} className={`btn btn-default ${styles.btn}`}>
+            <span className="fa fa-object-group" />
+            Group
+          </button>
+        )}
+        {allowAdd('Branch') && (
+          <button onClick={() => selectType('Branch')} className={`btn btn-default ${styles.btn}`}>
             <span className="fa fa-code-fork fa-rotate-90" />
             Branch
           </button>
-          <button onClick={() => this.selectType('EmbeddedData')} className={`btn btn-default ${styles.btn}`}>
+        )}
+        {allowAdd('EmbeddedData') && (
+          <button onClick={() => selectType('EmbeddedData')} className={`btn btn-default ${styles.btn}`}>
             <span className="fa fa-database" />
             Embedded Data
           </button>
-          <button onClick={() => this.selectType('Randomizer')} className={`btn btn-default ${styles.btn}`}>
+        )}
+        {allowAdd('Randomizer') && (
+          <button onClick={() => selectType('Randomizer')} className={`btn btn-default ${styles.btn}`}>
             <span className="fa fa-random" />
             Randomizer
           </button>
-          <button onClick={() => this.selectType('EndOfAssessment')} className={`btn btn-default ${styles.btn}`}>
+        )}
+        {allowAdd('EndOfAssessment') && (
+          <button onClick={() => selectType('EndOfAssessment')} className={`btn btn-default ${styles.btn}`}>
             <span className="fa fa-exclamation-triangle" />
             End of Assessment
           </button>
-        </div>
+        )}
       </div>
-    )
-  }
+    </div>
+  )
 
-  render () {
-    const { model } = this.props
-    return (
-      model.type ? this.renderFlowType(model) : this.renderVariants(model)
-    )
-  }
+  return element.type ? renderFlowType(element) : renderVariants(element)
 }
 
 export default FlowElement

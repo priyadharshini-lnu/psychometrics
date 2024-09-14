@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import AccessSection from './AccessSection'
 import ApprovalSection from './ApprovalSection'
 import ReportAvailabilitySection from './ReportAvailabilitySection'
@@ -7,10 +8,8 @@ import styles from './styles.less'
 export default function Options ({
   fetchReportOptions,
   campaignReportPermissions,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const { campaignId } = useParams()
   useEffect(() => {
     fetchReportOptions(campaignId)
   }, [])

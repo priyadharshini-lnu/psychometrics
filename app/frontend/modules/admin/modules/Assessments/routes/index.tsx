@@ -1,24 +1,40 @@
-import { AssessmentList } from './AssessmentList'
-import { EditAssessment } from './EditAssessment'
+import { lazy } from 'react'
+import RouteList from '~/components/RouteList'
+
+const EditAssessment = lazy(() => import('./EditAssessment'))
+const AssessmentList = lazy(() => import('./AssessmentList'))
+
+const ActiveAssessment = () => <AssessmentList assessmentTab="active" />
+const ArchivedAssessment = () => <AssessmentList assessmentTab="archived" />
+const TrashAssessment = () => <AssessmentList assessmentTab="deleted" />
 
 const routes = [
-  { redirect: true, from: '', to: '/active' },
+  { redirect: true, from: '', to: 'active' },
   {
     path: '/active',
-    component: () => <AssessmentList assessmentTab="active" />,
+    component: <ActiveAssessment />,
   },
   {
     path: '/archived',
-    component: () => <AssessmentList assessmentTab="archived" />,
+    component: <ArchivedAssessment />,
   },
   {
     path: '/trash',
-    component: () => <AssessmentList assessmentTab="deleted" />,
+    component: <TrashAssessment />,
   },
   {
     path: '/:id/edit',
-    component: () => <EditAssessment />,
+    component: <EditAssessment />,
   },
 ]
 
-export default routes
+const Layout = () => <RouteList routes={routes} urlPrefix="" />
+
+const AssessmentRoutes = [
+  {
+    path: '/assessments/*',
+    component: <Layout />,
+  },
+]
+
+export default AssessmentRoutes

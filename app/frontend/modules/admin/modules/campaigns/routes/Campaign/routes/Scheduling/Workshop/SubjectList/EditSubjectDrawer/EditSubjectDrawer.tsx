@@ -77,7 +77,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
   const [, setFields] = useState({})
   const [errors, setErrors] = useState<Errors>()
   const [statusFormInstance] = Form.useForm()
-  const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
+  const { campaignId, id } = useParams() as { campaignId: string, id: string }
 
   const [assessments, setAssessments] = useState<SubjectUserAssessment[]>([])
   const [assessmentsMap, setAssessmentsMap] = useState<Map<string, SubjectUserAssessment> | null>(null)

@@ -6,7 +6,7 @@ import { Dashboard as DashboardType, DashboardTR } from '~/modules/admin/modules
 import { EmbeddedDashboard } from '~/modules/admin/modules/Dashboard/components/EmbeddedDashboard'
 
 export const Preview: React.FC = () => {
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const {
     fetch, data, isRequestSuccessful,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR })

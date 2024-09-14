@@ -27,7 +27,7 @@ interface Props extends ConnectedProps<typeof connector> {
 }
 
 export const MainReportComponent: FC<Props> = ({ userReport, reportId, fetchReport }) => {
-  const { campaignId } = useParams<{ id: string, campaignId: string }>()
+  const { campaignId } = useParams() as { id: string, campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
 
   useEffect(() => {

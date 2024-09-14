@@ -1,28 +1,45 @@
-import { UserList } from './UserList'
-import { APIKeysList } from './APIKeysList'
+import { lazy } from 'react'
+import RouteList from '~/components/RouteList'
 
-const routes = [
-  { redirect: true, from: '/users', to: '/users/users' },
+const UserList = lazy(() => import('./UserList'))
+const APIKeysList = lazy(() => import('./APIKeysList'))
+
+const RegularUserList = () => <UserList userTab="Users::Regular" />
+const AdminUserList = () => <UserList userTab="Users::Admin" />
+const SuperAdminUserList = () => <UserList userTab="Users::SuperAdmin" />
+const GlobalAssessorUserList = () => <UserList userTab="Users::GlobalAssessors" />
+
+export const routes = [
+  { redirect: true, from: '', to: 'users' },
   {
-    path: '/users/users',
-    component: () => <UserList userTab="Users::Regular" />,
+    path: '/users',
+    component: <RegularUserList />,
   },
   {
-    path: '/users/admins',
-    component: () => <UserList userTab="Users::Admin" />,
+    path: '/admins',
+    component: <AdminUserList />,
   },
   {
-    path: '/users/superadmins',
-    component: () => <UserList userTab="Users::SuperAdmin" />,
+    path: '/superadmins',
+    component: <SuperAdminUserList />,
   },
   {
-    path: '/users/global-assessors',
-    component: () => <UserList userTab="Users::GlobalAssessors" />,
+    path: '/global-assessors',
+    component: <GlobalAssessorUserList />,
   },
   {
-    path: '/users/admins/:adminId/api_keys',
-    component: () => <APIKeysList />,
+    path: '/admins/:adminId/api_keys',
+    component: <APIKeysList />,
   },
 ]
 
-export default routes
+const Layout = () => <RouteList routes={routes} urlPrefix="" />
+
+const UserRoutes = [
+  {
+    path: '/users/*',
+    component: <Layout />,
+  },
+]
+
+export default UserRoutes

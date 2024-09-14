@@ -1,35 +1,40 @@
 # frozen_string_literal: true
 
 class EndUser::SavilleUserAssessmentsController < ApplicationController
+  include AsyncRequestHandler
+
   before_action :set_user_assessment, only: %i[pass redirect]
   before_action :can_start_based_on_sequencing, only: %i[pass]
 
-  def pass
-    campaign = @user_assessment.campaign
-    if @user_assessment.completed?
-      return redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
-    end
-
-    @user_assessment.update!(started_at: Time.zone.now) if @user_assessment.started_at.nil?
-    @user_assessment.in_progress!
-    saville_user_assessment = @user_assessment.saville_user_assessment
-    return redirect_to(saville_user_assessment.url, allow_other_host: true) if saville_user_assessment&.url
-
-    ::Saville::AssessmentOrderRequest.call!(@user_assessment)
-
-    redirect_to(saville_user_assessment.url, allow_other_host: true)
-  end
+  async_request :pass, handler: ::Saville::StartAssessment,
+    permit_params: ->(params) { params.require(:saville_user_assessment).permit(:id) }
 
   def redirect
     campaign = @user_assessment.campaign
-    if Saville::GetAssessmentStatus.call!(@user_assessment) == 'Completed'
+
+    if params[:error]
+      Saville::HandleErrorCode.call!(params[:error], @user_assessment)
+    elsif assessment_completed?
       @user_assessment.update!(status: :completed, completed_at: Time.current)
     end
 
-    redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id))
+    redirect_to(assessment_completed_path(campaign.id, user_assessment_id: @user_assessment.id),
+                error: error_message)
   end
 
   private
+
+  def assessment_completed?
+    Saville::GetAssessmentStatus.call!(@user_assessment) == 'Completed'
+  end
+
+  def error_message
+    if params[:error] == Saville::HandleErrorCode::ALREADY_STARTED_ERROR_CODE
+      I18n.t('errors.assessments.timed_out',  assessment_name: @user_assessment.assessment.name)
+    elsif params[:error]
+      I18n.t('common.errors.something_wrong') if params[:error]
+    end
+  end
 
   def can_start_based_on_sequencing
     return if UserAssessments::CanStartBasedOnSequencing.call!(@user_assessment)

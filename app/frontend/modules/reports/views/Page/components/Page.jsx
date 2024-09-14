@@ -32,14 +32,14 @@ class Page extends Component {
     const { model: page } = this.props
 
     // NOTE: @fedor temporary kept update for connects
-    return <Module key={i} moduleId={module.id} page={page} />
+    return <Module key={i} moduleId={module.id} page={page} animation={false} />
   }
 
   renderShadowModule = (module, i) => {
     const { model: page } = this.props
     const model = new ModuleModel(module, page)
     const View = Modules[model.type]
-    return <View key={i} module={model} page={page} shadow />
+    return <View key={i} module={model} page={page} shadow animation={false} />
   }
 
   render () {

@@ -22,14 +22,14 @@ module DailyCo
       payload = {
         r: meeting_room.name,
         o: role == 'owner',
-        d: Rails.application.secrets.daily_co[:domain_id],
+        d: Settings.secrets.daily_co[:domain_id],
         u: current_user.decorate.display_name,
         ud: current_user.id,
         iat: Time.now.to_i
       }
       {
-        token: JWT.encode(payload, Rails.application.secrets.daily_co[:api_key], 'HS256'),
-        url: "https://#{Rails.application.secrets.daily_co[:subdomain]}.daily.co/#{meeting_room.name}"
+        token: JWT.encode(payload, Settings.secrets.daily_co[:api_key], 'HS256'),
+        url: "https://#{Settings.secrets.daily_co[:subdomain]}.daily.co/#{meeting_room.name}"
       }
     end
   end

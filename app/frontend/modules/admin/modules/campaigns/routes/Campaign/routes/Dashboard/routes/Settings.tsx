@@ -41,7 +41,7 @@ type Props = PropsFromRedux
 export const SettingsComponent: React.FC<Props> = ({
   uploadImage, uploadInProgress, refresh, refreshRequestInProgress,
 }) => {
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [form] = Form.useForm()
   const stateManager = useDashboardStore()
   const {
@@ -68,7 +68,7 @@ export const SettingsComponent: React.FC<Props> = ({
 
     const formData = new FormData()
     if (image.file.status === 'removed') {
-      formData.append('remove_image', '1')
+      formData.append('purge_image', '1')
     } else {
       formData.append('image', image.file as unknown as File, image.file.name)
     }
@@ -122,7 +122,7 @@ export const SettingsComponent: React.FC<Props> = ({
                 label={I18n.t('common.column.name')}
                 rules={[{ required: true }]}
               >
-                <Input />
+                <Input name="dashboard_tab_name" />
               </Form.Item>
               <Form.Item
                 name="datasetId"

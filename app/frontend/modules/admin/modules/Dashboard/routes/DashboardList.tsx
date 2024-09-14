@@ -3,7 +3,7 @@ import {
   Card, Col, Row, Skeleton,
 } from 'antd'
 import Meta from 'antd/lib/card/Meta'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import styles from './Dashboard.less'
 import { DashboardTR, Dashboard as DashboardType } from '../../campaigns/core/dashboard'
@@ -12,7 +12,7 @@ import { settings } from '../settings'
 const { I18n } = window
 
 export const DashboardList = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const {
     data, fetch, isLoading,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR })
@@ -38,7 +38,7 @@ export const DashboardList = () => {
             <Card
               hoverable
               cover={<CardCover imageUrl={dashboard.imageUrl} />}
-              onClick={() => history.push(`${settings.urlPrefix}/${dashboard.id}`)}
+              onClick={() => navigate(`${settings.urlPrefix}/${dashboard.id}`)}
             >
               <Meta title={dashboard.name} description={dashboard.campaign?.name} />
             </Card>

@@ -7,7 +7,7 @@ import {
   MOVE_QUESTION_DOWN, INSERT_BEFORE_QUESTION, INSERT_AFTER_QUESTION,
   UPDATE_POSITIONS, REMOVE, ADD_PAGE_BREAK, UPDATE_BLOCK_PROPS, COPY_QUESTION,
   CLONE_BLOCK, UPDATE_QUESTION_IDS, RENAME_BLOCK, PERMANENT_REMOVE, RESTORE_BLOCK,
-  RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE,
+  RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, UPDATE_BLOCKS,
 } from './actions'
 import { questionsWithoutDeleted, blocksWithoutDeleted } from '../selectors'
 
@@ -111,6 +111,7 @@ const HANDLERS = {
     return blocks
   },
   [UPDATE_BLOCK_PROPS]: (state, { block, props }) => setIn(state, [block.id, 'props'], { ...block.props, ...props }),
+  [UPDATE_BLOCKS]: (state, { blocks }) => (blocks),
   [COPY_QUESTION]: (state, { question, newQuestion }) => {
     const blocks = _.clone(state)
     const block = _.find(blocks, block => _.includes(block.questions, question.id))

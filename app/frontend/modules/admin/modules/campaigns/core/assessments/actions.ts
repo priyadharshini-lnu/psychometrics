@@ -22,6 +22,8 @@ const EXPORT_EXTERNAL_RESULTS = 'campaigns/userAssessments/EXPORT_EXTERNAL_RESUL
 export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/assessments/TOGGLE_REQUIRE_SCHEDULE'
 export const TOGGLE_AUTO_ASSIGN = 'campaigns/assessments/TOGGLE_AUTO_ASSIGN'
 
+export const UPDATE_METTL_SCHEDULE = 'campaigns/assessments/UPDATE_METTL_SCHEDULE'
+
 export const UPDATE_PREWORK = 'campaigns/assessments/UPDATE_PREWORK'
 export const updatePrework = (campaignId: number, id: number, prework: boolean) => ({
   type: UPDATE_PREWORK,
@@ -157,6 +159,16 @@ export const updateNorm = (campaignId: number, assessmentId: number, body) => ({
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_norm`,
+    body: { ...body, id: assessmentId },
+    loader: true,
+  },
+})
+
+export const updateMettlSchedule = (campaignId: number, assessmentId: number, body) => ({
+  type: UPDATE_METTL_SCHEDULE,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_mettl_schedule`,
     body: { ...body, id: assessmentId },
     loader: true,
   },

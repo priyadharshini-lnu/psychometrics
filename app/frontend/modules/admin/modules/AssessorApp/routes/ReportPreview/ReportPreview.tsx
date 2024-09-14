@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ArrowLeftOutlined, DownOutlined } from '@ant-design/icons'
-import { useParams, useLocation, useHistory } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import Report from '~/modules/reports/report'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import {
@@ -31,8 +31,8 @@ const ReportPreview: FC<Props> = ({
   userReport, fetchReport,
 }) => {
   const location = useLocation()
-  const history = useHistory()
-  const { campaignId, id } = useParams<{ id: string, campaignId: string }>()
+  const navigate = useNavigate()
+  const { campaignId, id } = useParams() as { id: string, campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedId = parseInt(id, 10)
   const params = new URLSearchParams(location.search)
@@ -69,7 +69,7 @@ const ReportPreview: FC<Props> = ({
 
   const onChangeView = ({ key }) => {
     params.set('skip_logic', `${key === 'all'}`)
-    history.replace(`${location.pathname}?${params.toString()}`)
+    navigate(`${location.pathname}?${params.toString()}`, { replace: true })
   }
 
   const { user } = userReport

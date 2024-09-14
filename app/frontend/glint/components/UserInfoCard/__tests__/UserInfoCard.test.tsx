@@ -26,7 +26,7 @@ test('Do not show Remove button when onRemove prop not passed', async () => {
 test('Remove button callback function should be called', async () => {
   const user = userEvent.setup()
   const id = 1
-  const handleRemove = jest.fn(id => id)
+  const handleRemove = vi.fn(id => id)
 
   const { findByTestId } = render(
     <div id="container">

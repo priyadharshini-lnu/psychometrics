@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require_relative './../concerns/filter_by_tags_shared_examples'
 
 describe Api::V2::Administration::AssessmentsController, type: :request do
   let!(:assessment) { create(:assessment) }
@@ -45,7 +46,8 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
               assessment_id: 'pearson_id',
               norm_id: 'n1'
             },
-            extra: { icon_color: 'color' }
+            extra: { icon_color: 'color' },
+            tag_list: ['pearson']
           },
           relationships: {
             dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
@@ -62,6 +64,7 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'norm_id')).to eq('n1')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_id')).to eq('pearson_id')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_language')).to eq('fr')
+      expect(parsed_response.dig('data', 'attributes', 'tag_list')).to eq(['pearson'])
     end
 
     context 'if norm_id is invalid' do
@@ -222,5 +225,9 @@ describe Api::V2::Administration::AssessmentsController, type: :request do
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_id')).to eq('pearson_id')
       expect(parsed_response.dig('data', 'attributes', 'external_settings', 'assessment_language')).to eq('no')
     end
+  end
+
+  describe 'Filter by tags' do
+    include_examples 'Filter by tags', Assessment
   end
 end

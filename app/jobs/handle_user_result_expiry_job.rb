@@ -12,7 +12,7 @@ class HandleUserResultExpiryJob < ApplicationJob
       end
 
     users_results_form = ::UsersResults::UpdatingForm.from_params(
-      status: :completed,
+      status: :timed_out,
       completion_reason: :time_out_offline
     )
     UsersResult.joins(:user_assessment).

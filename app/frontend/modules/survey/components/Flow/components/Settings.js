@@ -8,6 +8,7 @@ export default {
   },
   Branch: {
     children: true,
+    allowedChildren: ['Block', 'Branch', 'Group', 'EmbeddedData', 'EndOfAssessment', 'Randomizer'],
     defaults: { conditions: [] },
     defaultsConditions: {
       DeviceType: {
@@ -65,9 +66,14 @@ export default {
   },
   Randomizer: {
     children: true,
+    allowedChildren: ['Block', 'Branch', 'Group', 'EmbeddedData', 'Randomizer'],
     defaults: { number: 0 },
   },
   Reference: {
     children: false,
+  },
+  Group: {
+    allowedChildren: ['Block', 'Branch', 'Group', 'EmbeddedData', 'EndOfAssessment', 'Randomizer'],
+    children: true,
   },
 }

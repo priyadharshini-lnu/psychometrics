@@ -4,6 +4,8 @@ require 'rails_helper'
 
 describe Campaigns::Users::ImportForm do
   let(:campaign) { create(:campaign) }
+  let!(:manager) {  campaign.users.create!(email: 'james@cc.com', password: 'Password@168') }
+
   let(:valid_attrs) do
     {
       active: true,
@@ -11,6 +13,7 @@ describe Campaigns::Users::ImportForm do
       last_name: 'Ata',
       email: 'vlad@gmail.com',
       password: nil,
+      manager_email: 'james@cc.com',
       schedule_start_date: 1.day.from_now.to_s,
       schedule_end_date: 2.days.from_now.to_s,
       created_at: '11 Jul 2020 / 17:25'
@@ -64,5 +67,63 @@ describe Campaigns::Users::ImportForm do
   it 'passes all validations' do
     form = described_class.new(options).with_context(campaign: campaign, current_user: user)
     expect(form.valid?).to eq(true)
+  end
+
+  describe 'validate_manager_emails' do
+    let(:existing_email) { 'james@cc.com' }
+    let(:non_existing_email) { 'non_existing@cc.com' }
+    let(:invalid_email) { 'invalid_email' }
+
+    it 'adds an error if the manager email does not exist in the database or the import data' do
+      options = { import_data: [
+        UserDecorator.export_headers,
+        valid_attrs.merge(manager_email: non_existing_email)
+      ], operation: 'add_and_allow_new_response' }
+
+      form = described_class.new(options).with_context(campaign: campaign, current_user: user)
+
+      expect(form.valid?).to eq(false)
+      expect(form.errors.full_messages).to include(
+        'Import data Row 1: Manager with email non_existing@cc.com is not present in the campaign or in CSV'
+      )
+    end
+
+    it 'does not add an error if the manager email exists in the database' do
+      options = { import_data: [
+        UserDecorator.export_headers,
+        valid_attrs.merge(manager_email: existing_email)
+      ], operation: 'add_and_allow_new_response' }
+
+      form = described_class.new(options).with_context(campaign: campaign, current_user: user)
+
+      expect(form.valid?).to eq(true)
+    end
+
+    it 'does not add an error if the manager email does not exist in the database but exists in the import data' do
+      new_manager_email = 'new_manager@cc.com'
+      options = { import_data: [
+        UserDecorator.export_headers,
+        valid_attrs.merge(manager_email: new_manager_email),
+        valid_attrs.merge(email: new_manager_email)
+      ], operation: 'add_and_allow_new_response' }
+
+      form = described_class.new(options).with_context(campaign: campaign, current_user: user)
+
+      expect(form.valid?).to eq(true)
+    end
+
+    it 'adds an error if the manager email format is invalid' do
+      options = { import_data: [
+        UserDecorator.export_headers,
+        valid_attrs.merge(manager_email: invalid_email)
+      ], operation: 'add_and_allow_new_response' }
+
+      form = described_class.new(options).with_context(campaign: campaign, current_user: user)
+
+      expect(form.valid?).to eq(false)
+      expect(form.errors.full_messages).to include(
+        "Import data Row 1: Invalid email #{invalid_email}"
+      )
+    end
   end
 end

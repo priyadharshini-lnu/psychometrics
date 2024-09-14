@@ -47,7 +47,7 @@ module EndUser
     end
 
     def assessment_icon_url
-      object.assessment.icon.thumb.url
+      object.assessment.icon_url(:thumb)
     end
 
     def normalize_hogan_type(type)

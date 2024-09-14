@@ -33,16 +33,32 @@ RSpec.describe Administration::Campaigns::StatsController, type: :controller do
   end
 
   describe 'POST timeseries' do
-    it 'returns timeseries stats' do
-      get :timeseries,
-          params: {
-            new_campaign_id: campaign.id, range: ['2021-11-01T21:00:00.000Z', '2021-12-01T20:59:59.999Z']
-          }, format: :json
-      parsed_response = JSON.parse(response.body)
+    describe 'when range is more than 1 day' do
+      it 'returns timeseries stats in days' do
+        get :timeseries,
+            params: {
+              new_campaign_id: campaign.id, range: ['2021-11-01T21:00:00.000Z', '2021-12-01T20:59:59.999Z']
+            }, format: :json
+        parsed_response = JSON.parse(response.body)
 
-      expect(parsed_response.first).to eq({ 'dt' => '2021-11-01', 'started' => 1, 'completed' => 0 })
-      expect(parsed_response.second).to eq({ 'dt' => '2021-11-02', 'started' => 0, 'completed' => 1 })
-      expect(parsed_response.last).to eq({ 'dt' => '2021-11-30', 'started' => 0, 'completed' => 0 })
+        expect(parsed_response.first).to eq({ 'dt' => '2021-11-01T20:00:00.000Z', 'started' => 1, 'completed' => 0 })
+        expect(parsed_response.second).to eq({ 'dt' => '2021-11-02T20:00:00.000Z', 'started' => 0, 'completed' => 1 })
+        expect(parsed_response.last).to eq({ 'dt' => '2021-11-30T20:00:00.000Z', 'started' => 0, 'completed' => 0 })
+      end
+    end
+
+    describe 'when range is less than 1 day' do
+      it 'returns timeseries stats in days' do
+        get :timeseries,
+            params: {
+              new_campaign_id: campaign.id, range: ['2021-11-01T00:00:00.000Z', '2021-11-01T23:59:59.999Z']
+            }, format: :json
+        parsed_response = JSON.parse(response.body)
+
+        expect(parsed_response.first).to eq({ 'dt' => '2021-11-01T00:00:00.000Z', 'started' => 0, 'completed' => 0 })
+        expect(parsed_response.last).to eq({ 'dt' => '2021-11-01T23:00:00.000Z', 'started' => 0, 'completed' => 0 })
+        expect(parsed_response.length).to eq(24)
+      end
     end
   end
 end

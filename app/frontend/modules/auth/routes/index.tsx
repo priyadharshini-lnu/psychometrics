@@ -89,11 +89,11 @@ const routes = [
     exact: true,
   },
   {
-    path: '/administration/invitations*',
+    path: '/administration/invitations/*',
     main: Invitation,
   },
   {
-    path: '/users/invitation*',
+    path: '/users/invitation/*',
     main: Invitation,
   },
 ]

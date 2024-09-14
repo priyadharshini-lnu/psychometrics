@@ -47,7 +47,7 @@ module Api
     end
 
     def image_upload_params
-      params.permit(:image, :remove_image)
+      params.permit(:image, :purge_image)
     end
   end
 end

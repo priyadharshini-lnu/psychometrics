@@ -126,7 +126,7 @@ const getActionsMenuProps = ({
     {
       key: 'show',
       label: (
-        <Link to={`licenses/${license.id}/license_usages`}>
+        <Link to={`${license.id}/license_usages`}>
           {I18n.t('license_usage.usage_overview')}
         </Link>
       ),

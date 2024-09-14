@@ -21,7 +21,7 @@ interface Meta extends BaseMeta {
 }
 
 export const Profile: React.FC<{}> = () => {
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const {
     data, updateResource, fetch, isLoading, meta, setData,
   } = useResources<ProfileSettingsType, Meta>('profile_settings')

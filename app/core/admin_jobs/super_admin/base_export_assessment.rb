@@ -4,7 +4,7 @@ module AdminJobs
   module SuperAdmin
     class BaseExportAssessment < BaseExportCsv
       def valid?
-        assessment.present?
+        assessment.present? && assessment.dimension.present?
       end
 
       def generate_title_link

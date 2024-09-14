@@ -1,16 +1,20 @@
 import React from 'react'
 import { Menu } from 'antd'
-import { History } from 'history'
 import { connect, ConnectedProps } from 'react-redux'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
+import { useNavigate } from 'react-router-dom'
+import { Weightages } from './Weigthages'
 import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 
-export { ScoringGroups } from './ScoringGroups'
+import { ScoringGroups } from './ScoringGroups'
+import { SubjectScoresList } from './SubjectScores'
+
 export { SubjectScoresList } from './SubjectScores'
+export { ScoringGroups } from './ScoringGroups'
 
 const { I18n } = window
 
@@ -19,25 +23,28 @@ const connector = connect((state: RootState) => ({
   campaignPermissions: getCurrentCampaign(state).permissions,
 }))
 
-interface OwnProps {
-  routes: Array<{ path: string, components: JSX.Element }>,
-  history: History
-}
-
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-type Props = PropsFromRedux & OwnProps
+type Props = PropsFromRedux
 
-const ScoringComponent: React.FC<Props> = ({ history, routes, campaignPermissions }) => {
-  const prefix = `${settings.urlPrefix}/:campaignId`
-  const onSelect = ({ key }) => routeUtils.moveTo(history, prefix, key)
+const routes = [
+  { redirect: true, from: '', to: 'subject_scores' },
+  { path: '/subject_scores', component: <SubjectScoresList /> },
+  { path: '/settings', component: <ScoringGroups /> },
+  { path: '/settings/weightages', component: <Weightages /> },
+]
+
+const ScoringComponent: React.FC<Props> = ({ campaignPermissions }) => {
+  const navigate = useNavigate()
+  const prefix = `${settings.urlPrefix}/:campaignId/scoring`
+  const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
   const menuItems: ItemType[] = [
     ...(campaignPermissions.viewCampaignScoring ? [{
-      key: '/scoring/subject_scores',
+      key: '/subject_scores',
       label: I18n.t('administration.scoring.tabs.subject_scores'),
     }] : []),
     ...(campaignPermissions.viewCampaignScoringSetting ? [{
-      key: '/scoring/settings',
+      key: '/settings',
       label: I18n.t('administration.scoring.tabs.settings'),
     }] : [])]
 
@@ -49,7 +56,10 @@ const ScoringComponent: React.FC<Props> = ({ history, routes, campaignPermission
         selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
         mode="horizontal"
       />
-      <RouteList routes={routes} urlPrefix={prefix} />
+      <RouteList
+        routes={routes}
+        urlPrefix=""
+      />
     </div>
   )
 }

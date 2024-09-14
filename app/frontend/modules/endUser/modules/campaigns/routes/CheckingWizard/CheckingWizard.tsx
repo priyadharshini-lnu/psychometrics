@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { fetch } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { Checks, Config } from '~/modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { MediaQueryContext, PageHeader as GlintPageHeader } from '~/glint'
 import styles from './styles.less'
 import { SystemCheck } from './SystemCheck'
@@ -126,7 +126,7 @@ const CheckingWizardComponent: React.FC<Props> = ({
     <>
       <GlintPageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown />
+          <LangDropdownWithChangeLocale />
         </Col>
       </GlintPageHeader>
       {finish ? (

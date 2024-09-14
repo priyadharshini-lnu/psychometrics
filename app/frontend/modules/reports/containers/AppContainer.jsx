@@ -1,6 +1,6 @@
 /* eslint-disable react/no-find-dom-node */
 import { Component } from 'react'
-import ReactDOM from 'react-dom'
+import { findDOMNode } from 'react-dom'
 import _ from 'lodash'
 import { Provider } from 'react-redux'
 import HTML5Backend from 'react-dnd-html5-backend'
@@ -22,7 +22,7 @@ class AppContainer extends Component {
   redoListener = null
 
   componentDidMount () {
-    const parent = ReactDOM.findDOMNode(this).parentNode
+    const parent = findDOMNode(this).parentNode
     const assessmentIds = JSON.parse(parent.dataset.assessmentIds)
     _.each(assessmentIds, (id) => {
       ResultStore.results[id] = new Result(id)

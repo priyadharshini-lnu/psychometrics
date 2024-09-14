@@ -126,7 +126,7 @@ export const Translations: React.FC<Props> = ({ assessment, memberAction }) => {
             name="name"
             label={I18n.t('common.column.name')}
           >
-            <Input />
+            <Input name="assessment_locale_name" />
           </Form.Item>
           {refLocale && translations[refLocale] && <Alert message={translations[refLocale].name} />}
           <Divider />

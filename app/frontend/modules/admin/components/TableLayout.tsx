@@ -12,12 +12,13 @@ type Props = {
   requestStatus: string | undefined
   filters?: React.ReactChild
   table: React.ReactChild
+  failureMsg?: string
 }
 
 const { I18n } = window
 
 export const TableLayout: FC<Props> = ({
-  recordCount, loading, filters, table, requestStatus, disableHeader,
+  recordCount, loading, filters, table, requestStatus, disableHeader, failureMsg,
 }) => {
   const requestFailed = requestStatus === 'failed'
 
@@ -43,20 +44,20 @@ export const TableLayout: FC<Props> = ({
       )}
       <Row>
         <Col span={24}>
-          {requestFailed ? <RequestFailedMessage /> : table}
+          {requestFailed ? <RequestFailedMessage failureMsg={failureMsg} /> : table}
         </Col>
       </Row>
     </>
   )
 }
 
-const RequestFailedMessage = () => (
+const RequestFailedMessage = ({ failureMsg }) => (
   <div className="p-12">
     <Empty
       image={<IssuesCloseOutlined style={{ fontSize: 80 }} />}
       description={(
         <h3>
-          {I18n.t('frontend.request_failed_message_box.message')}
+          {failureMsg || I18n.t('frontend.request_failed_message_box.message')}
         </h3>
       )}
     >

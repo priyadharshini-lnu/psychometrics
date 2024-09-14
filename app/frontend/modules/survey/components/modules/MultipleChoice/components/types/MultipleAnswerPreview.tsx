@@ -157,8 +157,9 @@ const TextChoices: FC<TextChoicesProps> = ({
                 value={choiceId}
                 checked={choiceAnswer}
                 onChange={handleChoiceChange}
+                aria-labelledby={`answer-desc-${choiceId}`}
               />
-              <div className={styles.optionDescription}>
+              <div id={`answer-desc-${choiceId}`} className={styles.optionDescription}>
                 {I18n.tQuestion(model, `choicesTexts${choiceId + 1}`, {
                   choice: choiceId,
                 }) || defaultChoiceText(choiceId + 1)}
@@ -212,8 +213,9 @@ const NotApplicableTextChoice: FC<NotApplicableTextChoiceProps> = ({
         name={`${id}`}
         value=""
         onClick={onChange}
+        aria-labelledby={`not-applicable-${id}`}
       />
-      <span>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
+      <span id={`not-applicable-${id}`}>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
     </label>
   </li>
 )

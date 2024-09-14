@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`initializing base assessment init action should init assessment data: init_assessment 1`] = `
+exports[`initializing base assessment > init action should init assessment data > init_assessment 1`] = `
 {
   "connection": {
     "connected": true,
@@ -452,7 +452,7 @@ exports[`initializing base assessment init action should init assessment data: i
 }
 `;
 
-exports[`initializing base assessment middleware should call next if is not NEXT_PAGE: default_store 1`] = `
+exports[`initializing base assessment > middleware should call next if is not NEXT_PAGE > default_store 1`] = `
 {
   "connection": {
     "connected": true,

@@ -32,7 +32,7 @@ const SamlComponent: React.FC<Props> = ({
   samlSetting, isSaving,
 }) => {
   const [form] = Form.useForm()
-  const { projectId } = useParams<{ projectId: string }>()
+  const { projectId } = useParams() as { projectId: string }
   const { message } = App.useApp()
 
   const handleSuccessfullSave = ({ response: { samlSigninUrl } }: ApiActionResponse<{ samlSigninUrl?: string }>) => {

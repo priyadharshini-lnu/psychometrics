@@ -2,6 +2,8 @@
 
 module CampaignReports
   class BulkDownload < BaseCommand
+    include Rails.application.routes.url_helpers
+
     private_attr_reader :user_reports, :campaign_reports, :current_user, :bulk_report, :job_record
 
     def initialize(current_user:, job_record:, user_reports: nil, campaign_reports: nil)
@@ -27,17 +29,16 @@ module CampaignReports
     def bulk_download_with_lambda
       file_details = user_reports_with_pdf.each_with_object([]) do |ur, acc|
         acc << {
-          s3FilePath: ur.pdf.path,
+          s3FilePath: ur.pdf_file.key,
           zipOutputFilePath: "#{ur.user.email}/#{ur.report.name.parameterize(preserve_case: true)}-#{ur.campaign_id}.pdf" # rubocop:disable Layout/LineLength
         }
       end
       file_name = "bulk-report-#{Time.zone.today.strftime('%F')}"
-      zip_file_key = "#{bulk_report.store_dir}/#{file_name}"
       webhook_message = { bulk_report_id: bulk_report.id, file_name: file_name, admin_job_record_id: job_record.id }
       job_record.update!(total_tasks: file_details.length)
       Lambdas::ZipS3Files.call!(
         file_details: file_details,
-        zip_file_key: zip_file_key,
+        zip_file_key: bulk_report.attachment_storage_path('files', "#{file_name}.zip"),
         webhook_message: webhook_message
       )
     end
@@ -71,7 +72,7 @@ module CampaignReports
     end
 
     def download_report(user_report)
-      url = URI(user_report.pdf.url)
+      url = URI(user_report.pdf_file.url)
       IO.copy_stream(URI(url.to_s).open, download_path(user_report))
     rescue OpenURI::HTTPError
       Rails.logger.error "Download failed for UserReport with id #{user_report.id}"
@@ -98,8 +99,10 @@ module CampaignReports
         user_report_ids = ::Reports::BulkDownloadsQuery.new(campaign_reports,
                                                             { start_date: start_date,
                                                               end_date: end_date }).query.pluck(:id)
-
-        UserReport.where(id: user_report_ids).where.not(pdf: nil).includes(:user, :report)
+        UserReport.
+          joins(:pdf_file_attachment).
+          includes(:user, :report).
+          where(id: user_report_ids)
       end
     end
   end

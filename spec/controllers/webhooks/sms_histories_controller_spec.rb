@@ -7,7 +7,7 @@ describe Webhooks::SmsHistoriesController, type: :controller do
   let(:sms_history_token) do
     JWT.encode(
       { data: sms_history.id, exp: 1.day.from_now.to_i },
-      Rails.application.secrets.webhook_jwt_secret
+      Settings.secrets.webhook_jwt_secret
     )
   end
   let(:price) { '-0.003' }

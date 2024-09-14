@@ -12,8 +12,8 @@ const DAY = 24 * HOUR
 
 const { I18n } = window
 interface Props extends Omit<InputProps, 'value' | 'onChange'> {
-  value: string | number
-  onChange: (value: number) => void
+  value?: string | number
+  onChange?: (value: number) => void
   masked?: boolean
   maxDuration?: number,
 }
@@ -37,9 +37,9 @@ const InputDuration: FC<Props> = ({
 
     if (maskedValue !== inputValue) {
       setInputValue(maskedValue)
-      onChange(convertToInt(maskedValue))
+      onChange && onChange(convertToInt(maskedValue))
     } else {
-      onChange(convertToInt(inputValue))
+      onChange && onChange(convertToInt(inputValue))
     }
   }
 

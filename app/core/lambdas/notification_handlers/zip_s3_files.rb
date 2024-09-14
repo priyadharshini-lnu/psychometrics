@@ -5,6 +5,7 @@ module Lambdas
     class ZipS3Files < Base
       include ActionView::Helpers::TagHelper
       include ActionView::Context
+      include Rails.application.routes.url_helpers
 
       def call
         bulk_report = BulkReport.find_by(id: data['bulk_report_id'])
@@ -18,7 +19,21 @@ module Lambdas
         admin_job.update!(completed_tasks: data['completed_tasks']) if admin_job && data['completed_tasks']
 
         if data['status'] == 'completed'
-          bulk_report.update_columns(files: [data['file_name']])
+          blob = ActiveStorage::Blob.create_before_direct_upload!(
+            key: bulk_report.attachment_storage_path('files', "#{data['file_name']}.zip"),
+            filename: "#{data['file_name']}.zip",
+            byte_size: data['file_size'],
+            checksum: data['checksum'],
+            content_type: 'application/zip',
+            service_name: Settings.storage.private_storage_service
+          )
+
+          ActiveStorage::Attachment.create!(
+            record: bulk_report,
+            blob: blob,
+            name: 'files'
+          )
+
           BulkReportMailer.notify(bulk_report).deliver_later
           if admin_job
             url = Utility::Url.generate(:download_administration_bulk_report_url, id: bulk_report.id)

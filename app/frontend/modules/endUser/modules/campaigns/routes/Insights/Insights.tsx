@@ -5,7 +5,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Layout, Typography, Tabs,
 } from 'antd'
-import { RouteComponentProps, useHistory } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import _ from 'lodash'
 import { useReportDimensions } from '~/hooks/useReportDimensions'
@@ -16,7 +16,7 @@ import {
 import Report from '~/modules/reports/report'
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { isRequestInProgress } from '~/core/request'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { MediaQueryContext, PageHeader } from '~/glint'
 import { ReportList } from './ReportList'
 
@@ -39,24 +39,25 @@ const connector = connect(
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Params = {
-  url: string
+  campaignId: string
 }
-type Props = RouteComponentProps<Params> & PropsFromRedux
+type Props = PropsFromRedux
 
 const InsightsComponent: FC<Props> = ({
-  match, userDashboard, fetchInsights, isUserReportAvailable, isInsightLoading,
+  userDashboard, fetchInsights, isUserReportAvailable, isInsightLoading,
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
+  const { campaignId } = useParams() as Params
 
   useEffect(() => {
-    fetchInsights(match.url)
-  }, [match.url])
+    fetchInsights(`/campaigns/${campaignId}/insights`)
+  }, [campaignId])
 
   return (
     <>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdown />
+          <LangDropdownWithChangeLocale />
         </Col>
       </PageHeader>
       <Content className={styles.pageContent}>
@@ -64,7 +65,8 @@ const InsightsComponent: FC<Props> = ({
           <>
             <SubHeader
               title={I18n.t('campaign.dashboard_menu.insights')}
-              onBack={() => history.push('/dashboard')}
+              onBack={() => navigate('/dashboard')}
+              backButtonAriaLabel={I18n.t('frontend.aria.back_to_dashboard')}
             />
             <InsightsBody userDashboard={userDashboard} isUserReportAvailable={isUserReportAvailable} />
           </>

@@ -237,12 +237,12 @@ class Properties extends Component {
               </div>
             </Space.Compact>
             <div className={styles.block} style={{ position: 'relative' }}>
-              Border Color
               <ColorPicker value={rgba2hex(borderColor)} onChange={this.changeBorderColor} />
+              Border Color
             </div>
           </>
         )}
-        <hr className={styles.divider} />
+
         <div className={styles.block}>
           Rounded Corners
           <ChoicesInput value={borderRadius || 0} onChange={this.changeBorderRadius} maxValue={1000} />

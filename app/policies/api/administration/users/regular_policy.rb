@@ -6,7 +6,7 @@ module Api
       class RegularPolicy < Api::Administration::UserPolicy
         class Scope < BasePolicy::Scope
           def resolve
-            return scope if @user.is?(:superadmin)
+            return scope.includes(user_profile: { photo_attachment: :blob }) if @user.is?(:superadmin)
 
             permitted_client_admin_project_ids = @user.client_admin_project_ids.select do |project_id|
               @user.has_permission?(:projects, :manage_users, project_id: project_id)

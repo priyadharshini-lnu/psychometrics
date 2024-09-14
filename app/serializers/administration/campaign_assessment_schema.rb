@@ -35,10 +35,11 @@ module Administration
           required(:remove).filled(:bool?)
           required(:schedule_assessment).filled(:bool?)
           required(:toggle_auto_assign).filled(:bool?)
+          required(:update_mettl_schedule).filled(:bool?)
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)
-        required(:all_locales).maybe(:array?)
+        required(:all_locales).maybe(:array?).each(:str?)
         required(:external_config).maybe(:hash?)
         required(:campaign_assessment_id).filled(:int?)
         required(:prework).filled(:bool?)
@@ -47,6 +48,8 @@ module Administration
         required(:allow_multiple_responses).filled(:bool?)
         required(:require_scheduling).filled(:bool?)
         required(:auto_assign).filled(:bool?)
+        required(:mettl_schedule_name).maybe(:str?)
+        required(:mettl_schedule_record_id).maybe(:str?)
       end
     end
   end

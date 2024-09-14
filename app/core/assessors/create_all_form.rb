@@ -17,6 +17,8 @@ module Assessors
     end
 
     def assessor_fields
+      return errors.add(:assessors, :blank) if assessors.blank?
+
       assessors.each.with_index do |assessor, index|
         form = CreateOneForm.new(assessor).with_context(context)
         errors.add(:assessors, "[Row #{index + 1}] #{form.errors.messages.values.first.first}") if form.invalid?

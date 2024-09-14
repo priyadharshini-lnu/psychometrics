@@ -3,7 +3,8 @@
 # rubocop:disable Metrics/ClassLength
 class UserAssessment < ApplicationRecord
   audited
-  DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
+  DEEMED_COMPLETED_STATUS = %w[completed ineligible].freeze
+  MAX_RESET_COUNT = 3
 
   belongs_to :assessment
   belongs_to :campaign
@@ -18,6 +19,7 @@ class UserAssessment < ApplicationRecord
   has_one :saville_user_assessment, dependent: :destroy
   has_one :pearson_user_assessment, dependent: :destroy
   has_one :iiht_user_assessment, dependent: :destroy
+  has_one :mettl_user_assessment, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
   has_one :project, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
@@ -32,7 +34,7 @@ class UserAssessment < ApplicationRecord
 
   has_one :threesixty_campaign, through: :campaign
 
-  delegate :saville?, :iiht?, :pearson?, :assessor_form?, :external?, to: :assessment
+  delegate :saville?, :iiht?, :pearson?, :mettl?, :assessor_form?, :external?, to: :assessment
   delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
 
@@ -106,10 +108,8 @@ class UserAssessment < ApplicationRecord
   def calculate_and_save_campaign_scoring
     return unless CampaignUser.exists?(campaign_id: campaign_id, user_id: subject_id)
 
-    if self_assessment? || assessment.lead_assessor_form?
-      # TODO: Investigate why users_result.scoring is nil if we don't add delay of 30 seconds
-      CampaignScoring::CalculateAndSaveJob.set(wait: 30.seconds).perform_later(campaign, subject)
-    end
+    # TODO: Investigate why users_result.scoring is nil if we don't add delay of 30 seconds
+    CampaignScoring::CalculateAndSaveJob.set(wait: 30.seconds).perform_later(campaign, subject)
   end
 
   def sync_assessor_form_status_to_subject_meeting
@@ -324,6 +324,13 @@ class UserAssessment < ApplicationRecord
       update!(norm_id: norm_id)
     end
     update!(fixed_norm: true) if norm_id.present?
+  end
+
+  def update_mettl_schedule!(mettl_schedule_record_id)
+    return unless not_started?
+    return unless mettl?
+
+    mettl_user_assessment.update!(mettl_schedule_record_id: mettl_schedule_record_id)
   end
 
   private

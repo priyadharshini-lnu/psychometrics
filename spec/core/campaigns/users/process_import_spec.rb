@@ -22,7 +22,8 @@ describe Campaigns::Users::ProcessImport do
         gender: 'male',
         profile_locale: 'en',
         custom_field: '1111',
-        custom_field2: '1111'
+        custom_field2: '1111',
+        manager_email: 'namu@gmail.com'
       },
       {
         active: false,
@@ -33,7 +34,8 @@ describe Campaigns::Users::ProcessImport do
         password: 'asdfd',
         age: 35,
         created_at: '11 Jul 2020 / 17:25',
-        custom_field: '1111'
+        custom_field: '1111',
+        manager_email: 'fedor@gmail.com'
       },
       {
         active: nil,
@@ -43,7 +45,8 @@ describe Campaigns::Users::ProcessImport do
         mobile_number: nil,
         password: 'AAA',
         created_at: '11 Jul 2020 / 17:25',
-        custom_field: '1111'
+        custom_field: '1111',
+        manager_email: nil
       }
     ]
   end
@@ -184,6 +187,34 @@ describe Campaigns::Users::ProcessImport do
       expect(fedor_user.user_profile).to have_attributes(age: 32)
       expect(fedor_user.user_profile).to have_attributes(custom_fields: { question.id.to_s => '1111' })
       expect(vlad_user.user_profile).to have_attributes(age: 35)
+    end
+  end
+
+  describe 'with manager emails' do
+    it 'create new users with manager id' do
+      _data, imported_users = described_class.call!(
+        campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+      )
+      fedor_user = campaign.users.find_by(email: 'fedor@gmail.com')
+      vlad_user = campaign.users.find_by(email: 'vlad@gmail.com')
+      namu_user = campaign.users.find_by(email: 'namu@gmail.com')
+
+      expect(imported_users.size).to eq(3)
+      expect(fedor_user.manager_email).to eq('namu@gmail.com')
+      expect(vlad_user.manager_email).to eq('fedor@gmail.com')
+      expect(namu_user.manager_email).to eq(nil)
+    end
+
+    it 'update users with manager id' do
+      campaign.users.create!(email: 'fedor@gmail.com', password: 'A!sdasd129431')
+
+      described_class.call!(
+        campaign, current_user, import_data, 'add_with_existing_response', admin_job_record
+      )
+
+      fedor_user = campaign.users.find_by(email: 'fedor@gmail.com')
+
+      expect(fedor_user.manager_email).to eq('namu@gmail.com')
     end
   end
 

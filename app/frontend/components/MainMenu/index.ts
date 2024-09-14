@@ -1,1 +1,2 @@
-export { PortalMenu, MainMenu } from './MainMenu'
+export { MainMenu } from './MainMenu'
+export { PortalMenu } from './PortalMenu'

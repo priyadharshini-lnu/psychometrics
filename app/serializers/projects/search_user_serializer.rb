@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Projects
-  class SearchUserSerializer < ActiveModel::Serializer
+  class SearchUserSerializer < Panko::Serializer
     attributes :id, :email, :first_name, :last_name, :locale
 
     def locale

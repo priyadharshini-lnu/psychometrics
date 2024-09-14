@@ -43,6 +43,7 @@ describe CampaignReports::BulkDownload do
     user_reports_with_pdf = create_list(
       :user_report,
       2,
+      :with_pdf,
       campaign: campaign,
       report: report,
       pdf: File.open('spec/fixtures/files/reports/test.pdf'),

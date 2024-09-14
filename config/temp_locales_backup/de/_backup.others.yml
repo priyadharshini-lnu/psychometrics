@@ -1,0 +1,574 @@
+---
+de:
+  activemodel:
+    errors:
+      models:
+        admin_edit:
+          attributes:
+            first_name:
+              blank: Der Vorname darf nicht leer sein
+            last_name:
+              blank: Nachname darf nicht leer sein
+        create_one:
+          attributes:
+            evaluator_first_name:
+              blank: Der Vorname des Bewerter darf nicht leer sein
+            evaluator_last_name:
+              blank: Der Nachname des Bewerter darf nicht leer sein
+            first_name:
+              blank: Der Vorname darf nicht leer sein
+            last_name:
+              blank: Nachname darf nicht leer sein
+        import_one:
+          attributes:
+            first_name:
+              blank: Der Vorname darf nicht leer sein
+            last_name:
+              blank: Nachname darf nicht leer sein
+        password_reset:
+          attributes:
+            email:
+              wrong_email: Wir konnten keinen Benutzer mit der von Ihnen angegebenen E-Mail finden.
+        profile:
+          attributes:
+            first_name:
+              blank: Der Vorname darf nicht leer sein
+            last_name:
+              blank: Nachname darf nicht leer sein
+            password:
+              too_short: Das Passwort ist zu kurz. Mindestens %{count} Zeichen erforderlich
+              too_weak: 'Das Passwort muss enthalten: Mindestens 8 Zeichen, 1 Kleinbuchstabe, 1 Großbuchstabe, 1 Zahl und 1 Sonderzeichen.'
+        register:
+          attributes:
+            email:
+              blank: Die E-Mail-Adresse muss ausgefüllt werden
+              in_use: Diese E-Mail-Adresse wird verwendet. Wenn Sie bereits ein Konto haben, melden Sie sich bitte an
+              invalid: E-mail Adresse ist nicht korrekt
+              too_long: E-Mail-Adresse ist zu lang
+            first_name:
+              blank: Der Vorname muss ausgefüllt werden
+              too_long: Vorname ist zu lang
+            last_name:
+              blank: Nachname muss ausgefüllt werden
+              too_long: Nachname ist zu lang
+            registration_code:
+              blank: Registrierungscode ist erforderlich
+              invalid: Der Registrierungscode ist ungültig
+        super_admin_edit:
+          attributes:
+            first_name:
+              blank: Der Vorname darf nicht leer sein
+            last_name:
+              blank: Nachname darf nicht leer sein
+  activerecord:
+    attributes:
+      membership:
+        first_name: Vorname
+        last_name: Nachname
+      user:
+        email: E-Mail-Addresse
+        first_name: Vorname
+        last_name: Nachname
+        password: Passwort
+      user_form:
+        email: E-Mail-Addresse
+        first_name: Vorname
+        last_name: Nachname
+        password: Passwort
+  anonym:
+    notifications:
+      restart:
+        title: fortfahren?
+  assessments:
+    actions:
+      goto_dashboard: zum Dashboard gehen
+    categories:
+      organisational: Befragung
+    index:
+      managers_dashboard_button: Managern Dashboard
+    messages:
+      finish: |-
+        Vielen Dank für Ihre Zeit.
+        Ihre Antworten wurden jetzt aufgezeichnet.
+    page:
+      back: zurück
+      confirm_message: |-
+        #### Ihre Antworten werden übermittelt und können danach nicht mehr geändert werden.
+
+        Klicken Sie auf **Zurück**, um Ihre Antworten ein letztes Mal zu überprüfen, oder klicken Sie auf **Senden**, wenn Sie fertig sind.
+      next: weiter
+      submit: einreichen
+    pickgrouprank:
+      items: Elemente
+    resource:
+      results: Ergebnisse
+      status:
+        completed: abgeschlossen
+        not_started: starten
+    video_response:
+      delete: lösch
+      save: speich
+    wait: wart
+  campaign:
+    completed: abgeschlossen
+    dashboard_menu:
+      bookings: Buchungen
+      campaign: Kampagne
+      change_password: Kennwort ändern
+      home: Heim
+      insights: Einblicke
+      livechat: Live Unterstützung
+      profile: Profil
+      profile_details: Einzelheiten
+      tasks: Aufgaben
+    details: Einzelheiten
+    edit_evaluation:
+      body: Bitte beachten Sie, dass Sie nach dem Klicken auf "Neu bewerten" zum Beginn der Umfrage weitergeleitet werden, wo Sie die Antworten bearbeiten können. Die vorherigen Antworten sind weiterhin verfügbar, können jedoch nach Bedarf geändert werden. Nach der Bearbeitung müssen Sie die Bewertung erneut einreichen, um den Vorgang abzuschließen.
+      edit: Neu bewerten
+      title: Bestätigen
+      view: Aussicht
+    in_progress: im Gange
+    instruction_modal:
+      campaign_start_final_instructions: |
+        <p>
+          Bitte beachten Sie, dass es keine Möglichkeit gibt, den Timer zu stoppen oder anzuhalten. Der Kampagnen-Timer läuft auch dann weiter, wenn Sie den Browser schließen. Sie sollten also zu keinem Zeitpunkt daran denken, die Aufgaben zwischendurch zu verlassen, um etwas anderes zu erledigen. Achten Sie darauf, Ablenkungen während der Aufgaben so gering wie möglich zu halten. Suchen Sie sich eine ruhige Umgebung, schalten Sie Benachrichtigungen auf Ihren Geräten aus und vermeiden Sie Multitasking. Behalten Sie Ihre Konzentration bei und bleiben Sie konzentriert. Sobald der Kampagnen-Timer abgelaufen ist, können Sie nicht mehr fortfahren. Wenn Sie die obigen Anweisungen gelesen haben, klicken Sie bitte auf Start, um mit den zugewiesenen Aufgaben fortzufahren.
+        </p>
+      campaign_start_instruction: |
+        <h4>Bitte lesen Sie die folgenden Anweisungen sorgfältig durch.</h4>
+        <p>
+          Die Aufgaben, mit denen Sie gerade beginnen, sind zeitlich festgelegt. Sobald Sie auf „Start“ klicken, startet der Kampagnen-Timer automatisch. Sie haben %{minutes} Minuten Zeit, um alle Aktivitäten abzuschließen. Versuchen Sie bitte, die Aufgaben innerhalb des vorgegebenen Zeitrahmens zu erledigen und die Zeit effektiv einzuteilen, um eine Eile durch den Bewertungsprozess zu vermeiden. Stellen Sie sicher, dass Sie die Aufgaben auf einmal erledigen. Wenn Sie also eine Pause brauchen, ist jetzt der richtige Zeitpunkt dafür.
+        </p>
+      common_proctoring_instructions: |
+        <h4>Überwachung</h4>
+        <p>
+          Wenn Sie auf die Schaltfläche „Start“ klicken, werden Sie zu unserem Überwachungssystem weitergeleitet. Es überwacht Ihre Kamera, Ihr Mikrofon und Ihren Bildschirm während Ihrer Sitzung. Diese Sitzungen werden automatisch von unserem hochentwickelten KI-System überwacht und sorgen so für ein unterbrechungsfreies und reibungsloses Benutzererlebnis. Allerdings können Sitzungen auch von menschlichen Aufsichtspersonen überprüft werden. Alle Anzeichen von Fehlverhalten oder Unregelmäßigkeiten werden gemeldet. Dies geschieht, um sicherzustellen, dass keine Betrugsversuche unternommen werden. Wenn ein Verdacht vorliegt, werden Ihre Aufgaben abgebrochen.
+        </p>
+      lockdown_browser_instruction: |
+        <h4>Überwachungsbrowser</h4>
+        <p>
+          Sie müssen einen speziellen Browser herunterladen und installieren, um die überwachten Aufgaben auszuführen. Bitte folgen Sie den Anweisungen im nächsten Bildschirm. Sie können dies deinstallieren, nachdem Sie alle erforderlichen Aktivitäten abgeschlossen haben.
+        </p>
+      title: Anweisungen
+    instructions:
+      heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
+    language:
+      cancel: Stornieren
+      content: Diese Aufgabe ist in der aktuell ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine der verfügbaren Sprachen aus, um fortzufahren.
+      proceed: Weiter
+      single_lang: Diese Aufgabe ist nur in %{lang} verfügbar. Klicken Sie auf "Weiter", um fortzufahren.
+      title: Sprache auswählen
+    new: neues
+    not_started: neues
+    panels:
+      assessments: Aufgaben
+      reports: Berichte
+    time_left:
+      continue: fortfahren
+    welcome: Willkommen
+  change_password_page:
+    old_password: Altes Passwort
+    password: Passwort
+    password_confirmation: Password Confirmation
+    title: Kennwort ändern
+  checking_wizard:
+    audio_check:
+      access: Zugriff
+      continue: fortfahren
+      processing: verarbeitung
+    network_check:
+      continue: fortfahren
+      levels:
+        '3': durchschnittliche Netzwerk
+        '4': gut Netzwerk
+        '5': sehr gut Netzwerk
+      network: Netzwerk
+      processing: verarbeitung
+      start: starten
+    system_check:
+      continue: fortfahren
+      start: starten
+    video_check:
+      access: Zugriff
+      continue: fortfahren
+      processing: verarbeitung
+  common:
+    actions:
+      add: Hinzufügen
+      archive: Archiv
+      cancel: Stornieren
+      close: Schließe
+      copy: Kopieren
+      delete: lösch
+      edit: Bearbeiten
+      import: Importieren
+      remove: Entfernen
+      reset: Rücksetzen
+      resolve: Beschließen
+      restore: Wiederherstellen
+      save: sparen
+      search: Suchen
+      send: Schicken
+      start: Starten
+      unarchive: Dearchivieren
+      unresolve: Unresolve
+      update: Aktualisieren
+      upload: Hochladen
+    column:
+      action: Aktion
+      category: Kategorie
+      status: Status
+    model:
+      reports: Berichte
+    text:
+      confirm: bestätigen
+      continue: fortfahren
+      response: Antwort
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: Anmelden
+    failure:
+      already_authenticated: Herzlich willkommen
+      inactive: Dein Benutzerkonto ist noch nicht aktiviert.
+      invalid: Ungültige E-Mail-Adresse oder ungültiges Passwort
+      invited: Sie haben eine ausstehende Einladung. Bitte akzeptieren Sie diese, um die Erstellung Ihres Kontos abzuschließen.
+      last_attempt: Sie haben noch einen Versuch, bevor Ihr Konto gesperrt wird.
+      locked: Ihr Konto ist gesperrt.
+      not_found_in_database: Ungültige E-Mail-Adresse oder ungültiges Passwort
+      timeout: Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an, um fortzufahren.
+      unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
+      unconfirmed: Sie müssen Ihre E-Mail-Adresse bestätigen, bevor Sie fortfahren können.
+    invitations:
+      edit:
+        password_label: Passwort
+    mailer:
+      reset_password_instructions:
+        body: |
+          Hallo %{name}!
+
+          Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Sie können dies über den unten stehenden Link tun.
+
+          <a href="%{change_password_link}">Passwort ändern</a>
+
+          Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren. Ihr Passwort ändert sich erst, wenn Sie auf den obigen Link zugreifen und ein neues erstellen.
+
+          Grüße,
+          Lighthouse-Team
+        subject: Anweisungen zum Zurücksetzen Ihres Passworts
+    registrations:
+      new:
+        email: E-Mail-Addresse
+        first_name: Vorname
+        instruction: Füllen Sie die folgenden Details aus, um sich zu registrieren und ein neues Konto zu erstellen
+        last_name: Nachname
+        privacy_notice: Wir respektieren Ihre Privatsphäre und tolerieren keinen Spam. Wir werden Ihre Daten niemals an Dritte weitergeben.
+        registration_code: Registrierungscode
+        submit: Anmeldung
+        tabs:
+          register: Registrieren
+          sign_in: Anmelden
+        terms_notice: Mit Ihrer Registrierung stimmen Sie unseren <a href="%{terms_url}"> Nutzungsbedingungen und Datenschutzbestimmungen </a> zu
+        title: Jetzt registrieren
+      signed_up: Herzlich willkommen!
+      success:
+        actions:
+          sign_in: Anmelden
+    sessions:
+      new:
+        email: E-Mail-Addresse
+        forgot_password: Passwort vergessen?
+        instruction: Bitte melden Sie sich mit Ihren persönlichen Kontodaten an
+        password_placeholder: Passwort
+        submit: Anmelden
+        tabs:
+          register: Registrieren
+          sign_in: Anmelden
+        title: Herzlich willkommen!
+    two_factor_authentication:
+      attempt: Bitte geben Sie das OTP ein, das Sie an Ihrer registrierten E-Mail-Adresse erhalten haben
+      code_has_been_sent: Ihr neues OTP wurde an Ihre registrierte E-Mail-Adresse gesendet
+  ecommerce:
+    users:
+      registrations:
+        new:
+          register: Registrieren
+          sign_in: Anmelden
+      sessions:
+        new:
+          register: Registrieren
+          sign_in: Anmelden
+  frontend:
+    campaign:
+      users:
+        completion_statuses:
+          completed: abgeschlossen
+    change_password: Veränderung Passwort
+    delete: lösch
+    login: Anmelden
+    update: aktualisieren
+    'yes': Ja
+  jobs:
+    threesixty:
+      reports:
+        download:
+          description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''%{url}'' target=''_blank''>Herunterladen</a>'
+          error: Ein Fehler ist aufgetreten
+          error_description: Die Berichterstellung ist fehlgeschlagen. Bitte wenden Sie sich an den Administrator oder versuchen Sie erneut, <strong> herunterzuladen </strong>.
+          message: Bericht ist fertig
+  navigation:
+    logout: Ausloggen
+    profile: Profil
+  profile:
+    add_field: Feld hinzufügen
+    add_photo: Foto hinzufügen
+    age: Alter
+    change_password: Kennwort ändern
+    change_photo: Foto ändern
+    email: Email
+    female: Weiblich
+    first_name: Vorname
+    gender: Geschlecht
+    incomplete: Ihre Profildaten sind unvollständig. Bitte vervollständigen Sie Ihre Profildaten
+    last_name: Familienname, Nachname
+    locale: Bevorzugte Sprache
+    male: Männlich
+    not_disclosed: Lieber nichts preisgeben
+    old_data: Ihre Profildaten sind %{months} ​​Monate alt. Bitte bestätigen Sie die Details, um fortzufahren
+    password: Passwort
+    password_confirmation: Passwort Bestätigung
+    success_update: Profil wurde erfolgreich gespeichert
+    timezone: Zeitzone
+    title: Mein Profil
+    update: Aktualisieren
+    update_required: Profilaktualisierungen erforderlich
+  reports:
+    actions:
+      add: hinzufügen Bericht
+      view: Ansicht Bericht
+    modules:
+      gap_assessment:
+        gap: lück
+        negative_gap: negativ lücken
+        positive_gap: positiv lücken
+        scoring_category: KOMPETENZ
+      highest_lowest:
+        average: durchschnittliche
+        category: Kategorie
+        email: E-Mail
+        first_name: Vorname
+        last_name: Nachname
+        result: Ergebnis
+        scoring_category: KOMPETENZ
+      potential_career_full:
+        career_strengths_and_results: Karriere Stärken und Ihr Ergebnisse
+        potential_roles: potenzieller Rolle
+        strength_low: ENTWICKLUNGSBEZOGENE STÄRKE
+        strength_moderate: potenzieller Stärke
+        work_environment: Arbeitsumfeld
+      potential_career_short:
+        career: Karriere
+        for_this: für diese
+        strengths: Stärken
+      single_value:
+        question_name: FRAGEN
+      single_value_cluster:
+        competency: KOMPETENZ
+        developmental_rating: ENTWICKLUNGSBEZOGENE EINSTUFUNG
+        questions: FRAGEN
+      strength_clusters:
+        possible_roles: möglich Rolle
+      three_sixty_default:
+        factor:
+          items: Elemente
+          max: Max Wert
+          mean: bedeute
+          min: Mindestwert
+          totalResponses: Gesamtantwort
+        value: Wert
+      three_sixty_report_summary:
+        completed: abgeschlossen
+        invited: einladen
+        number_of_evaluators_invited: Anzahl der eingeladenen Bewerter
+        relationships: Beziehungen
+        subject: Betreff
+        title: Zusammenfassung des Berichts
+        total: Gesamt
+    show:
+      header: Bericht
+    statuses:
+      approved: genehmigt
+      available: Verfügung
+      denied: verweigert
+      not_available: nicht Verfügung
+  shared:
+    password_reset:
+      email_label: E-Mail-Adresse
+      instruction: Geben Sie die mit Ihrem Konto verknüpfte E-Mail-Adresse ein
+      submit: Passwort zurücksetzen
+      title: Passwort vergessen?
+    terms_conditions_privacy: Datenschutzerklärung
+    tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
+  simple_form:
+    placeholders:
+      administrator:
+        email: E-Mail-Addresse
+        first_name: Vorname
+        last_name: Nachname
+        password: Passwort
+      memebrship:
+        first_name: Vorname
+        last_name: Nachname
+      user:
+        email: E-Mail-Addresse
+        first_name: Vorname
+        last_name: Nachname
+        password: Passwort
+      user_form:
+        email: E-Mail-Addresse
+        first_name: Vorname
+        last_name: Nachname
+        password: Passwort
+  subjects:
+    approval_statuses:
+      approved: genehmigt
+      denied: verweigert
+      waiting: eine Genehmigung brauchen
+    report_statuses:
+      failed: Gescheitert
+      generating: Derzeit wird generiert
+      not_prepared: Nicht bereit
+      prepared: Bereit
+    statuses:
+      completed: abgeschlossen
+      denied: verweigert
+      not_completed: nicht abgeschlossen
+      waiting: warten
+  threesixty:
+    accept_privacy_modal:
+      accept: Annehmen
+      policy_link: Klicken Sie hier, um die Datenschutzrichtlinie zu lesen.
+      reject: Ablehnen
+      text: Bevor ich mit der Ausführung der nachstehenden Aufgaben fortfahre, bestätige ich, dass ich die Datenschutzrichtlinie von The Talent Enterprise und die damit verbundenen Richtlinien zur Verwendung meiner personenbezogenen Daten gelesen habe und ihnen zustimme.
+      title: Einwilligung zur Datenverarbeitung
+    add: hinzufügen
+    and: und
+    approve: Genehmigen
+    approve_all: Alle genehmigen
+    approve_all_successful: Alle genehmigen Benennungen
+    approve_evaluations: genehmigen Bewertungen
+    approve_nominations: BENENNUNGEN GENEHMIGEN
+    approve_reports: genehmige Berichten
+    approved: genehmigt
+    as_my: als meinen
+    back_to_tasks: zurück zu den Aufgaben
+    begin: beginnen
+    close_evaluation_modal:
+      message: Sobald Sie den Bericht angezeigt haben, kann %{pronoun_or_name} keine weiteren Bewertungen erhalten
+      title: Möchten Sie den Bericht wirklich anzeigen?
+    completed: abgeschlossen
+    confirmation_for_nomination_removal: Möchten Sie die Nominierung wirklich entfernen?
+    continue: fortfahren
+    dashboard_title: Willkommen %{name}
+    decline_invite: Einladung ablehnen
+    denied: verweigert
+    deny: Ablehnen
+    deny_all: Alle ablehnen
+    deny_all_successful: Abgelehnt alle Benennung
+    download_pdf: PDF Herunterladen
+    email_approve_request: E-Mail-Genehmigungsanfrage
+    evaluate: bewerten
+    evaluation: Bewertu
+    evaluation_closed_message: Die Bewertung ist für dieses Thema geschlossen
+    evaluation_closed_nomination_message: Sie können für diese Person keine Nominierung vornehmen, da die Überprüfung für diese Person geschlossen ist
+    evaluations: Bewertungen
+    evaluator: Bewerter
+    first_name: Vorname
+    first_name_error: Bitte geben Sie den Vornamen ein
+    help: helfen
+    last_name: Nachname
+    last_name_error: Bitte geben Sie einen Nachnamen ein
+    mail_history:
+      statuses:
+        success: Erfolg
+    my_projects: Mein projekten
+    nominate: Nominieren
+    nominate_evaluators: Nominiere nominieren für
+    nomination: Benennung
+    nomination_predicates:
+      atleast: Mindestens %{count}
+      atmost: Höchstens %{count}
+      exactly: Genau %{count}
+    nominations: Benennungen
+    or: oder
+    participant_list:
+      actions:
+        approve_report: Bericht genehmigen
+        login: Anmelden
+        remove_report_approval: Entfernen Bericht Genehmigung
+        remove_subject: Entfernen Betreff
+        view_report: Ansicht Bericht
+        view_responses: Ansicht Antworten
+      report_generation_message: Bericht wird generiert. Wir werden Sie informieren, wenn der Bericht fertig ist.
+    processing: verarbeitung
+    processing_report: verarbeitung Bericht
+    question:
+      email_type:
+        send: gesenden
+        subject: Betreff
+        to: zu
+    remind_all: alle erinnern
+    remind_mail_sent: Erinnerungen wurden an Prüfer gesendet, die die Prüfung noch nicht abgeschlossen haben
+    report_for: Bericht für
+    report_generation_in_progress: Bericht wird generiert. Wir werden Sie informieren, wenn der Bericht fertig ist.
+    reports: Berichte
+    save: speich
+    select_relationnship: wählen Beziehung
+    select_relationship: wählen Beziehung
+    self: Selbst
+    setup_nominations: BENENNUNGEN FESTLEGEN
+    subject: Betreff
+    total_progress: Gesamtfortschritt
+    user_name_input_placeholder: geben Sie Namen oder E-Mail…
+    view_my_report: Ansicht Mein Bericht
+    view_nominations: Ansicht Benennungen
+    view_reports: Ansicht Bericht
+    waiting: warten
+    you: Sie
+    yourself: ihne selbst
+  title:
+    one: Es gibt einen Fehler, bitte überprüfen Sie Ihre Antworten
+    other: Es gibt %{count} Fehler, bitte überprüfen Sie Ihre Antworten
+  update_profile:
+    cancel: Stornieren
+    title: Profil aktualisieren
+    update: Aktualisieren
+    updated_successfully: Profil erfolgreich aktualisiert
+  user:
+    fields:
+      email: E-Mail-Addresse
+      first_name: Vorname
+      last_name: Nachname
+      password: Passwort
+  user_reports:
+    statuses:
+      not_prepared: nicht Verfügung
+      prepared: Verfügung
+  validations:
+    VideoResponse:
+      required: Bitte nehmen Sie das Video auf und speichern Sie es, bevor Sie fortfahren
+    character_range: Ihre Antwort muss mindestens %{min} und darf nicht mehr als %{max} Zeichen enthalten.
+    date: Ihre Antwort muss ein gültiges Datum sein (TT/MM/JJJJ)
+    each_group_contains: Jede Gruppe darf nicht weniger als %{min} und nicht mehr als %{max} Elemente enthalten
+    email: Ihre Antwort muss eine gültige E-Mail-Adresse sein
+    issue: Problem
+    least: Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).
+    least_hotspot: Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).
+    max_character: Ihre Antwort darf nicht mehr als %{max} Zeichen enthalten.
+    min_character: Ihre Antwort muss mindestens %{min} Zeichen enthalten.
+    must_rank_between: Bitte weisen Sie für jedes Element einen Wert von %{min} bis %{max} zu. Die Werte dürfen nicht mehrfach vergeben werden.
+    must_select: Bitte wählen Sie von %{min} bis %{max} Auswahlmöglichkeiten
+    number: Ihre Antwort muss eine Zahl sein
+    range: Bitte wählen Sie mindestens %{min} und nicht mehr als %{max} Auswahlmöglichkeit(en).
+    required: Bitte beantworten Sie diese Frage
+    text: Ihre Antwort darf keine Zahlen enthalten

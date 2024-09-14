@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::Campaigns::UserResource < Api::V2::Administration::BaseResource
-  attributes :id, :name, :email
+  attributes :name, :email
 
   has_one :user_profile, foreign_key_on: :related
 

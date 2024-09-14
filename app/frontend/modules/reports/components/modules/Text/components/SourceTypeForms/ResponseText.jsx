@@ -121,12 +121,12 @@ export default class ResponseText extends Component {
     const currentQuestion = this.lookupQuestionById(question)
     if (!currentQuestion || currentQuestion.type !== 'TextEntry'
       || currentQuestion.props.type !== 'Form') { return false }
-    const { choices } = currentQuestion.props
+    const { choices, choicesTexts } = currentQuestion.props
     return (
       <div>
-        <div>Answer No.</div>
+        <div>TextEntry form field</div>
         <select className="form-control" value={answerIndex} onChange={this.onChangeTextEntryFormAnswerIndex}>
-          {_.times(choices, i => (<option key={i} value={i}>{i + 1}</option>))}
+          {_.times(choices, i => (<option key={i} value={i}>{choicesTexts[i]}</option>))}
         </select>
       </div>
     )

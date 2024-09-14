@@ -6,7 +6,7 @@ import {
 import { ConnectedProps, connect } from 'react-redux'
 import _ from 'lodash'
 import { Admin } from 'modules/admin/modules/client/core/admin'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { isSuperAdmin } from '~/core/currentUser'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
@@ -143,7 +143,7 @@ interface ActionMenuData extends DropdownProps {
 const getActionsMenuProps = ({
   setConfirmation, user, openResetPasswordModal, userTab, currentUser,
 }: ActionMenuData):MenuProps => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { resource } = useResourceContext<User>()
 
   const toggle2FA = (user) => {
@@ -156,7 +156,7 @@ const getActionsMenuProps = ({
   }
 
   const handleAPIKeysClick = (userId: Admin['userId']) => {
-    history.push(`/admin/users/admins/${userId}/api_keys`)
+    navigate(`/admin/users/admins/${userId}/api_keys`)
   }
 
   const menuItems = [
@@ -192,7 +192,7 @@ const getActionsMenuProps = ({
         </Button>
       ),
     },
-    (isSuperAdmin(currentUser) && userTab !== 'Users::SuperAdmin') && {
+    user.meta.permissions.loginAs && {
       key: 'loginAs',
       label: (
         <Button

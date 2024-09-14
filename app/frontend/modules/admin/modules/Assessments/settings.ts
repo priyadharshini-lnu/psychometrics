@@ -1,5 +1,5 @@
 const settings = {
-  urlPrefix: '/administration/assessments',
+  urlPrefix: '/admin/assessments',
   pageLimit: 25,
   categories: [
     'psychometric',
@@ -14,6 +14,7 @@ const settings = {
     'pearson',
     'iiht',
     'mindmill',
+    'mettl',
   ],
 }
 

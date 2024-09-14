@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   get '/maintenance', to: 'maintenance#index', as: :maintenance
 
-  get '/admin', to: 'admin_app#dashboard', as: :admin
-  get '/admin/meet/:room_id', to: 'admin_app#dashboard', as: :admin_meeting
+  get '/admin', to: 'administration/app#dashboard', as: :admin
+  get '/admin/meet/:room_id', to: 'administration/app#dashboard', as: :admin_meeting
 
   # TODO: remove this once we move Threesixty use common campaign type route
   # rubocop:disable Style/FormatStringToken
@@ -30,17 +30,23 @@ Rails.application.routes.draw do
       to: redirect('/administration/clients/%{clientId}/projects/%{projectId}/threesixty_campaigns/%{id}')
   # rubocop:enable Style/FormatStringToken
 
-  get '/admin/*all', to: 'admin_app#dashboard'
+  get '/admin/*all', to: 'administration/app#dashboard'
+  get '/global_config', to: 'apps#global_config'
 
   concern :media_uploades do
     member do
-      get :upload_media_url
+      match :upload_media_url, via: %i[post get]
       put :upload_callback
       delete :remove_media
       put :complete_multipart_upload
       put :mark_as_user_selected_take
       put :update_meta_data
     end
+  end
+
+  concern :taggable do
+    post :add_tag
+    post :remove_tag
   end
 
   concern :sheet_management do
@@ -158,10 +164,6 @@ Rails.application.routes.draw do
     end
 
     resources :imports, only: %i[new create]
-
-    concern :commentable do
-      resources :comments
-    end
 
     concern :client_editable do
       member do
@@ -310,6 +312,7 @@ Rails.application.routes.draw do
             post :import_results
             get :norms
             post :update_norm
+            post :update_mettl_schedule
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
@@ -326,6 +329,7 @@ Rails.application.routes.draw do
         resources :user_assessments, only: [:destroy] do
           member do
             post :update_norm
+            post :update_mettl_schedule
             post :rescore_response
             post :reset
             post :reset_progress
@@ -335,6 +339,7 @@ Rails.application.routes.draw do
             put :toggle_require_scheduling
           end
         end
+
         resources :campaign_assessment_groups, only: %i[index create update destroy] do
           collection do
             post :update_positions
@@ -367,7 +372,11 @@ Rails.application.routes.draw do
           end
         end
         resources :security_settings, only: %i[update]
-        resources :integrations, only: %i[index create update destroy]
+        resources :integrations, only: %i[index create update destroy] do
+          collection do
+            post :load_mettl_assessments
+          end
+        end
       end
 
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
@@ -612,6 +621,7 @@ Rails.application.routes.draw do
         end
       end
       member do
+        get :export_threesixty_scores
         get :export_results
         get :export_completion_status
         delete :reset
@@ -666,7 +676,7 @@ Rails.application.routes.draw do
             post :not_selected_users
           end
         end
-        resource :builders, only: [:update]
+        resource :builders, only: %i[show update]
         resource :scoring, only: [:update], controller: :scoring
         resource :agiles, only: %i[show update]
       end
@@ -783,7 +793,7 @@ Rails.application.routes.draw do
         put :remap_assessment
       end
       scope module: 'reports' do
-        resource :builders, only: [:update]
+        resource :builders, only: %i[show update]
       end
     end
 
@@ -858,6 +868,9 @@ Rails.application.routes.draw do
     post '/saville/results', to: 'saville#results', as: :saville
     post 'sms_histories', to: 'sms_histories#status', as: :sms_histories
     post '/:project_id/iiht/results', to: 'iiht#results', as: :iiht
+    post '/:project_id/mettl/completion_notification', to: 'mettl#completion_notification',
+                                                            as: :mettl_completion_notification
+    post '/:project_id/mettl/results', to: 'mettl#results', as: :mettl_results_notification
   end
 
   devise_scope :user do
@@ -931,6 +944,7 @@ Rails.application.routes.draw do
       get :workshop_bookings, to: 'workshop_invited_subjects#bookings', defaults: { format: :json }
 
       get 'iiht/:campaign_id/:assessment_id', to: 'iiht_user_assessments#redirect', as: :iiht_assessment_redirect
+      get 'mettl/assessment/:mettl_assessment_id', to: 'mettl_user_assessments#redirect', as: :mettl_assessment_redirect
 
       resources :meeting_rooms, only: [] do
         get :token, on: :member
@@ -949,7 +963,7 @@ Rails.application.routes.draw do
       resources :hogan_user_assessments, only: [] do
         member do
           get :redirect
-          put :pass
+          post :pass
         end
       end
 
@@ -968,21 +982,27 @@ Rails.application.routes.draw do
 
       resources :saville_user_assessments, only: [] do
         member do
-          get :pass
+          post :pass
           get :redirect
         end
       end
 
       resources :pearson_user_assessments, only: [] do
         member do
-          get :pass
+          post :pass
           get :redirect
         end
       end
 
       resources :iiht_user_assessments, only: [] do
         member do
-          get :pass
+          post :pass
+        end
+      end
+
+      resources :mettl_user_assessments, only: [] do
+        member do
+          post :pass
         end
       end
 
@@ -1000,8 +1020,14 @@ Rails.application.routes.draw do
           get :pass
           get :begin
           get :validate_session
-          get :upload_user_verification_image_url
+          post :upload_user_verification_image_url
           put :user_verification_image_upload_callback
+        end
+      end
+
+      resource :async_requests, only: [] do
+        collection do
+          get :status
         end
       end
 
@@ -1025,6 +1051,21 @@ Rails.application.routes.draw do
           patch :update_details
           patch :upload_photo
           patch :change_password
+        end
+      end
+
+      resources :user_idp_development_actions, only: %i[index] do
+        collection do
+          get :user_idp_skills
+          get :available_development_actions
+          post :save_plan
+          put :update_progress
+        end
+      end
+
+      resources :user_idp_plans, only: [] do
+        collection do
+          get :summary
         end
       end
     end
@@ -1099,6 +1140,15 @@ Rails.application.routes.draw do
     end
     resource :profiles, only: %i[update edit]
 
+    resources :job_roles, only: %i[index], controller: 'end_user/job_roles'
+    resources :skills, only: %i[index], controller: 'end_user/skills'
+    resources :idp_template_skills, only: %i[index], controller: 'end_user/idp_template_skills'
+    resources :skill_gap_reports, only: %i[show], controller: 'end_user/skill_gap_reports'
+    resources :user_idp_skills, only: %i[index create update], controller: 'end_user/user_idp_skills'
+    resources :direct_reports, only: %i[index], controller: 'end_user/direct_reports' do
+      put :update_status, on: :member
+    end
+
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify', as: :identify
@@ -1112,6 +1162,7 @@ Rails.application.routes.draw do
     get 'invites/:id/booking', to: 'end_user/users#dashboard'
     get 'invites/:id/success', to: 'end_user/users#dashboard'
     get 'invites/:id/details', to: 'end_user/users#dashboard'
+    get 'idp/*path', to: 'end_user/users#dashboard'
     get 'evaluation_session_exists', to: 'end_user/users#dashboard'
     root to: 'end_user/users#dashboard'
   end
@@ -1182,6 +1233,7 @@ Rails.application.routes.draw do
               end
             end
             jsonapi_resources :admin_roles
+            jsonapi_resources :skill_aliases
             jsonapi_resources :projects, only: %i[index create update]
             jsonapi_resources :licenses, only: %i[index create update] do
               jsonapi_resources :license_usages, only: %i[index] do
@@ -1190,6 +1242,7 @@ Rails.application.routes.draw do
                 end
               end
             end
+            jsonapi_resources :idp_templates, only: %i[index], controller: 'clients/idp_templates'
           end
           jsonapi_resources :report_families do
             jsonapi_resources :report_families_reports
@@ -1198,11 +1251,16 @@ Rails.application.routes.draw do
             jsonapi_resources :privacy_settings, only: %i[index update]
             member do
               get :workshop_status_export
+              get :seach_user
+              put :add_manager
             end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
             get :reset_password
+            collection do
+              get :available_permissions
+            end
           end
           jsonapi_resources :users do
             post :reset_password
@@ -1214,11 +1272,12 @@ Rails.application.routes.draw do
               post :create_superadmin
               post :create_global_assessor
               post :change_password
+              get :current_user_details
             end
             jsonapi_resources :api_keys, only: %i[index create update]
           end
-
-          jsonapi_resources :assessments do
+          jsonapi_resources :campaign_templates
+          jsonapi_resources :assessments, concerns: :taggable do
             post :toggle_archive
             post :copy
             post :restore
@@ -1227,8 +1286,12 @@ Rails.application.routes.draw do
             scope module: :assessments do
               resource :uploads, only: %i[update]
             end
+            get :export_raw_factor_scores
+            get :export_raw_results
+            get :export_normed_results
           end
           jsonapi_resources :dimensions
+          jsonapi_resources :tags
           jsonapi_resources :external_assessments
           jsonapi_resources :external_reports
           jsonapi_resources :external_norms
@@ -1249,6 +1312,8 @@ Rails.application.routes.draw do
             end
 
             jsonapi_resources :registration_settings, only: %i[index update]
+            jsonapi_resources :mettl_schedule_records, only: %i[index create update destroy]
+
             jsonapi_resources :assessments do
               scope module: :assessments do
                 jsonapi_resources :factors do
@@ -1271,7 +1336,11 @@ Rails.application.routes.draw do
             end
           end
 
-          resources :campaigns, only: [] do
+          resources :campaigns, only: %i[update show] do
+            scope module: :campaigns do
+              jsonapi_resources :sms_histories, only: %i[index]
+            end
+
             jsonapi_resources :report_approval_settings, only: %i[index create update destroy]
             jsonapi_resources :campaign_assessor_assessments, only: %i[index create update destroy]
             scope module: :campaigns do
@@ -1328,6 +1397,7 @@ Rails.application.routes.draw do
             jsonapi_resources :users, only: %i[index show], controller: 'campaigns/users' do
               member do
                 get :assessors_scores
+                get :active_idp_template
               end
             end
 
@@ -1363,6 +1433,8 @@ Rails.application.routes.draw do
                 get :export_scorings
                 post :rescore_bulk
                 post :change_finalized_campaign_score_bulk
+                post :import_external_campaign_scorings
+                get :import_external_scorings_sample_file
               end
             end
             jsonapi_resources :campaign_factor_values, only: %i[index] do
@@ -1405,6 +1477,8 @@ Rails.application.routes.draw do
               get :search_managers
             end
           end
+          resources :user_idp_plans, only: %i[create]
+          jsonapi_resources :skills, only: %i[index]
         end
       end
     end

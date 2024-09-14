@@ -7,9 +7,9 @@ const routeUtils = {
     const re = pathToRegexp(`(${prefix})(/*){0,1}`)
     return re.exec(location.pathname)[1]
   },
-  moveTo (history, prefix, path, replace = false, state = {}) {
+  moveTo (navigate, prefix, path, replace = false, state = {}) {
     const url = `${this.getBasePath(prefix)}${path}`
-    replace ? history.replace(url) : history.push(url, state)
+    replace ? navigate(url, { replace: true }) : navigate(url, { state })
   },
   getActiveRoutePath (routes) {
     const route = _.find(routes, route => location.pathname.includes(route.path))

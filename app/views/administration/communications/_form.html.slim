@@ -2,40 +2,48 @@
   as: :resource, url: { action: @communication_facade.communication.new_record? ? :create : :update },
   remote: true,
   data: { behavior: 'communications-form', form_url: @communication_facade.communication.decorate.form_url }) do |f|
+  = f.hidden_field :copying_communication, value: @copying_communication
   .modal-body
     = render_error_notification(resource, full_messages: false)
     .form-inputs.clearfix
       h3 Settings
       - if current_user.is?(:superadmin)
+        = f.hidden_field :owner_id if @copying_communication
         = f.association :owner, collection: @communication_facade.owners, include_blank: t('administration.tte'),
-          input_html: { data: { live_search: true, behavior: @communication_facade.owner_behavior } }
+          input_html: { data: { live_search: true, behavior: @communication_facade.owner_behavior }, disabled: @copying_communication }
       - unless current_user.is?(:superadmin) && @communication_facade.communication.owner_id.present?
+        = f.hidden_field :client_id if @copying_communication
         = f.association :client,
           collection: @communication_facade.owners,
-          input_html: { data: { live_search: true, behavior: @communication_facade.client_behavior } }
+          input_html: { data: { live_search: true, behavior: @communication_facade.client_behavior }, disabled: @copying_communication }
+
       - if @communication_facade.show_projects?
+        = f.hidden_field :project_id if @copying_communication
         = f.association :project,
           collection: @communication_facade.projects,
           input_html: { data: { live_search: true,
-            behavior: @communication_facade.project_behavior } }
+            behavior: @communication_facade.project_behavior }, disabled: @copying_communication }
       - if @communication_facade.show_campaigns?
+        = f.hidden_field :campaign_id if @copying_communication
         = f.association :campaign,
           collection: @communication_facade.campaigns,
           input_html: { data: { live_search: true,
-            behavior: @communication_facade.campaign_behavior } }
+            behavior: @communication_facade.campaign_behavior }, disabled: @copying_communication}
       - if @communication_facade.show_sub_campaigns?
+        = f.hidden_field :sub_campaign_id if @copying_communication
         = f.association :sub_campaign,
           collection: @communication_facade.sub_campaigns,
           input_html: { data: { live_search: true,
-            behavior: @communication_facade.sub_campaign_behavior } }
+            behavior: @communication_facade.sub_campaign_behavior }, disabled: @copying_communication }
       - if @communication_facade.show_kind?
+        = f.hidden_field :kind, value: @communication_facade.form.kind if @copying_communication
         = f.input :kind,
           as: :select,
           collection: Communication.kinds,
           value_method: :first,
           label_method: proc { |rec| t(".#{rec.first}") },
           input_html: { data: { live_search: true,
-            behavior: 'communication-changeable' } },
+            behavior: 'communication-changeable' }, disabled: @copying_communication },
           label: t('.kind')
       - if @communication_facade.show_assessments?
         = f.association :assessment,

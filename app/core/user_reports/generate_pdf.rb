@@ -42,18 +42,25 @@ module UserReports
     end
 
     def export_pdf_using_lambda # rubocop:disable Metrics/AbcSize
-      file_path =  "#{options[:file_path] || user_report.pdf.store_dir}/#{report_file_name}"
+      file_path = if options[:file_path]
+                    "#{options[:file_path]}/#{report_file_name}"
+                  else
+                    user_report.attachment_storage_path('pdf_file', report_file_name)
+                  end
+
       webhook_message = { user_report_id: user_report.id, file_name: report_file_name, file_path: file_path }
       webhook_message[:notify_user_id] = current_user.id if options[:notify_user]
       webhook_message[:update_record] = options[:update_record] != false
       webhook_message[:admin_job_record_id] = options[:admin_job_record_id] if options[:admin_job_record_id]
 
       lambda_option = default_report_export_options.merge(
-        output_file_path: "#{options[:file_path] || user_report.pdf.store_dir}/#{report_file_name}",
+        output_file_path: file_path,
+        file_name: report_file_name,
         webhook_message: webhook_message,
         async: options[:async],
         low_priority: options[:low_priority],
         meta: {
+          project_id: campaign.project.id,
           campaign_id: campaign.id,
           report_id: report.id,
           user_id: user.id
@@ -68,8 +75,8 @@ module UserReports
         options: options
       )
 
-      file_url = Lambdas::UrlToPdf.call!(lambda_option)
-      { file_url: file_url, file_name: report_file_name }
+      Lambdas::UrlToPdf.call!(lambda_option)
+      { file_name: report_file_name }
     end
 
     def default_report_export_options

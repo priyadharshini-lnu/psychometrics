@@ -5,6 +5,7 @@ export default connect(
   ({ report: { builder } }) => ({
     pageSize: builder.props.sizes,
     questions: builder.questions,
+    reportStyles: builder.styles,
   }),
   {
     openConditionalImage: data => openModal('conditionalImage', data),

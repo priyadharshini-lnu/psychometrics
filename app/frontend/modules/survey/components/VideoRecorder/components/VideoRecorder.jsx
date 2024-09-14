@@ -414,6 +414,9 @@ class VideoRecorder extends Component {
         media_id: this.urlDetails.media_id,
         asset_key: this.urlDetails.asset_key,
         upload_id: this.urlDetails.upload_id,
+        file_size: this.player.recordedData.size,
+        checksum: this.urlDetails.checksum,
+        content_type: this.supportedMimeType,
       },
       {
         headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },

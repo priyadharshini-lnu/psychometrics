@@ -12,6 +12,11 @@ RSpec.configure do |config|
   config.extend(WithModel)
   config.include(MailerMacros)
   config.before(:each) { reset_email }
+
+  config.before do
+    ActiveStorage::Current.url_options = { host: 'example.com' }
+  end
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProfileFieldSerializer < ActiveModel::Serializer
+class ProfileFieldSerializer < Panko::Serializer
   attributes :required, :half_size, :position, :name, :question_id, :question, :locked, :translations
 
   delegate :question, to: :object
@@ -8,14 +8,14 @@ class ProfileFieldSerializer < ActiveModel::Serializer
   has_one :question, serializer: QuestionSerializer
 
   def translations
-    Translation.to_hash_for_question(object.question_id, @instance_options[:selected_locale] || 'en')
+    Translation.to_hash_for_question(object.question_id, context[:selected_locale] || 'en')
   end
 
   def name
     object.question.name
   end
 
-  class QuestionSerializer < ActiveModel::Serializer
+  class QuestionSerializer < Panko::Serializer
     attributes :type, :props
   end
 end

@@ -19,6 +19,7 @@ export interface User {
   additionalTime: number | null
 }
 
+
 const defaultState = {
   list: [],
   total: 0,
@@ -56,6 +57,7 @@ export const EXPORT_COMPACT_COMPLETION_STATUSES = 'resource/campaigns/users/EXPO
 export const EXPORT_USERS = 'resource/campaigns/users/EXPORT_USERS'
 export const ASSIGN_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/ASSIGN_REPORTS_AND_ASSESSMENTS'
 export const EXPORT_REPORTS_AND_ASSESSMENTS = 'resource/campaigns/users/EXPORT_REPORTS_AND_ASSESSMENTS'
+export const ADD_MANAGER = 'users/ADD_MANAGER'
 
 export interface ShortUser {
   firstName: string
@@ -174,6 +176,15 @@ export const setUserDetails = (userDetails: UserDetails) => ({
   userDetails,
 })
 
+export const addManager = (projectId: number, UserId: number, managerId: number) => ({
+  type: ADD_MANAGER,
+  request: {
+    method: 'put',
+    url: `/api/v2/administration/projects/${projectId}/add_manager`,
+    body: { UserId, managerId },
+  },
+})
+
 export interface UserDetails {
   id: number
   fullName: string
@@ -195,7 +206,13 @@ export interface UserDetails {
     bulkDownload: boolean
     viewWorkshopDetails: boolean
   }
+  manager: {
+    id: number | null
+    name: string | null
+    email: string | null
+  }
   hoganId: string | null
+  hoganProvider: string | null
 }
 
 export interface State {
@@ -224,6 +241,17 @@ type FetchType = ApiActionResponse<{
     edit: boolean
   }
 }>
+
+export type AddManagerActionType = ApiActionResponse<{
+  data: {
+    id: number | null
+    attributes: {
+      name: string | null
+      email: string | null
+    }
+  }
+}>
+
 type FetchSingleType = ApiActionResponse<UserDetails & {
   userAssessments: UserAssessment[],
   userReports: UserReport[],
@@ -231,7 +259,7 @@ type FetchSingleType = ApiActionResponse<UserDetails & {
 type CreateType = ApiActionResponse<User>
 type UpdateType = ApiActionResponse<User>
 type RemoveType = ApiActionResponse<number>
-type ToggleStatusType = ApiActionResponse<{id: number, options: { updateInListing: boolean }}>
+type ToggleStatusType = ApiActionResponse<{ id: number, options: { updateInListing: boolean } }>
 
 const HANDLERS = {
   [FETCH]: (_: State, { response }: FetchType) => response,
@@ -261,10 +289,21 @@ const HANDLERS = {
     }
     return setIn(state, ['current', 'active'], !_.get(state, ['current', 'active']))
   },
-  // eslint-disable-next-line max-len
   [EXTEND_TIME]: (state: State, { response }: FetchSingleType) => ({
     ...state, current: response,
   }),
+  [ADD_MANAGER]: (state: State, { response }: AddManagerActionType) => {
+    const { name, email } = response.data.attributes
+    const manager = { id: response.data.id, name, email }
+
+    return {
+      ...state,
+      current: {
+        ...state.current,
+        manager,
+      },
+    } as State
+  },
 }
 
 export default createReducer(HANDLERS, defaultState)

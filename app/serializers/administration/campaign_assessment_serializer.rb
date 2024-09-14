@@ -6,7 +6,7 @@ module Administration
                :universal_link, :norms, :is_external, :assessor_form_name, :permissions,
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
                :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses,
-               :require_scheduling, :auto_assign
+               :require_scheduling, :auto_assign, :mettl_schedule_name, :mettl_schedule_record_id
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
@@ -39,6 +39,14 @@ module Administration
       assessment.external?
     end
 
+    def mettl_schedule_name
+      mettl_schedule_record&.schedule_name
+    end
+
+    def mettl_schedule_record_id
+      mettl_schedule_record&.id&.to_s
+    end
+
     def permissions
       GetPermissionsHash.call!(
         Administration::CampaignAssessmentPolicy,
@@ -55,7 +63,8 @@ module Administration
           'update_external_config',
           %w[remove destroy],
           'schedule_assessment',
-          'toggle_auto_assign'
+          'toggle_auto_assign',
+          'update_mettl_schedule'
         ],
         {
           project_id: context[:project_id],
@@ -80,6 +89,12 @@ module Administration
 
     def assessment
       object.assessment
+    end
+
+    def mettl_schedule_record
+      return nil if object.mettl_schedule_record.blank?
+
+      object.mettl_schedule_record&.parent_or_self
     end
   end
 end

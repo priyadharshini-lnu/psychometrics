@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { CalendarOutlined, LoadingOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 
 import { DetailsCard, FullWidthSkeleton } from '~/glint'
@@ -50,11 +50,11 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
 }) => {
   const [invites, setInvites] = useState<Invite[]|[]>([])
   const [bookings, setBookings] = useState<Booking[] | []>([])
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
 
   const handleClickInvite = (id: number) => {
-    history.push(`${location.pathname}/${id}/details?type=invite`)
+    navigate(`${location.pathname}/${id}/details?type=invite`)
   }
 
   const tabItems = [
@@ -89,7 +89,7 @@ export const BookingsAndInvitesListComponent:FC<PropsFromRedux> = ({
 
   return (
     <Layout.Content className={styles.pageContent}>
-      <Col lg={12} xs={24} sm={24} className={styles.containerColumn}>
+      <Col xs={24} sm={24} className={styles.containerColumn}>
         <Tabs
           tabBarStyle={{ marginBottom: '2rem' }}
           items={tabItems}
@@ -137,7 +137,7 @@ type BookingsListProps = {
 }
 
 const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
   return (
     <Row gutter={[0, 12]}>
@@ -171,7 +171,7 @@ const BookingsList: FC<BookingsListProps> = ({ bookings, loading }) => {
                   const workshopId = booking.workshopInviteId
                   const path = allowBookAgain ? `${location.pathname}/${workshopId}/details?type=booking`
                     : `${location.pathname}/${workshopId}/success`
-                  history.push(path)
+                  navigate(path)
                 }}
                 buttonText={buttonText || undefined}
                 subtitle={(

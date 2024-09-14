@@ -1,17 +1,14 @@
-import {
-  useEffect, FC, useContext,
-} from 'react'
+import { useEffect, FC, useContext } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Redirect, RouteComponentProps } from 'react-router-dom'
-import { push } from 'connected-react-router'
+import { useParams, useNavigate } from 'react-router-dom'
 import {
-  Watermark,
-  Layout, Col, Progress, Space, ProgressProps, Modal,
+  Watermark, Layout, Col, Progress, Space, ProgressProps, Button, Modal,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-layout'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import qs from 'qs'
-import { Language } from '~/modules/endUser/modules/campaigns/components/Language'
+
+import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import store from '~/modules/endUser/store'
 import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/ResourcesTabs'
@@ -42,7 +39,6 @@ const connector = connect((state: RootState) => ({
   fetchAssessment,
   validateSession,
   markAssessmentTimedOut,
-  push,
   setInvalidated,
 })
 
@@ -50,7 +46,7 @@ type Params = {
   userAssessmentId: string
 }
 type PropsFromRedux = ConnectedProps<typeof connector>
-type UserAssessmentProps = PropsFromRedux & RouteComponentProps<Params>
+type UserAssessmentProps = PropsFromRedux
 
 const { Content } = Layout
 const { I18n } = window
@@ -71,8 +67,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       evaluation_session_id: evaluationSessionId,
       campaign_options: campaignOptions,
     },
-  }, fetchAssessment, validateSession,
-  match: { params },
+  }, fetchAssessment,
   preview: {
     initialized,
     enableProgress,
@@ -83,6 +78,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   markAssessmentTimedOut,
   progress,
 }) => {
+  const params = useParams() as Params
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)
@@ -93,11 +89,14 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   )
 
   const { isMobile } = useContext(MediaQueryContext)
+  const navigate = useNavigate()
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
 
   const needsProctoring = proctoringEnabled && !prework && !isProctored()
-  if (needsProctoring) return <Redirect to={`/campaigns/${campaignId}`} />
+  if (needsProctoring) {
+    navigate(`/campaigns/${campaignId}`)
+  }
 
   const enableBackButton = !isProctored() || proctoringEnabled
   const notificationDurations: Notification[] = [
@@ -108,6 +107,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const notificationMessage = (minutes: number, seconds: number) => (
     I18n.t('campaign.timer.notification', { minutes, seconds })
   )
+
   return (
 
     <>
@@ -150,9 +150,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
           {availableTranslations
               && availableTranslations.length > 1
               && (
-              <Language
-                selectedLanguage={selectedLanguage}
-                availableTranslations={availableTranslations || []}
+              <LangDropdownWithChangeUrl
+                currentLocale={selectedLanguage.code}
+                locales={availableTranslations || []}
               />
               )
             }
@@ -172,7 +172,11 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                 className={styles.campaignHeader}
                 onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
                 backIcon={enableBackButton
-              && <DirectionalNavigateBackIcon className={styles.backIcon} />
+                && (
+                <Button size="small" type="text" ghost aria-label={I18n.t('frontend.aria.back_to_tasks')}>
+                  <DirectionalNavigateBackIcon className={styles.backIcon} />
+                </Button>
+                )
               }
                 ghost={false}
                 title={(
@@ -181,50 +185,51 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                   </div>
               )}
                 extra={type !== 'preview_block' && enableProgress && started && (
-                  <Progress
-                    strokeColor="#fff"
-                    className={styles.progressStatus}
-                    key="3"
-                    percent={progress}
-                    {...progressBarProps}
-                  />
+                <Progress
+                  strokeColor="#fff"
+                  className={styles.progressStatus}
+                  key="3"
+                  percent={progress}
+                  aria-label={I18n.t('user_assessments.progress_label')}
+                  {...progressBarProps}
+                />
                 )}
               />
               <div className={styles.assessmentContainer}>
                 {showInvalidSession && (
-                  <Modal
-                    title={I18n.t('errors.invalid_session_title')}
-                    open={showInvalidSession}
-                    cancelText={I18n.t('common.actions.close')}
-                    okText={I18n.t('common.actions.back_to_dashboard')}
-                    closable={false}
-                    maskClosable={false}
-                    onCancel={() => {
-                      setShowInvalidSession(false)
-                    }}
-                    onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
-                    centered
-                  >
-                    {I18n.t('assessments.page.invalid_session.description')}
-                  </Modal>
+                <Modal
+                  title={I18n.t('errors.invalid_session_title')}
+                  open={showInvalidSession}
+                  cancelText={I18n.t('common.actions.close')}
+                  okText={I18n.t('common.actions.back_to_dashboard')}
+                  closable={false}
+                  maskClosable={false}
+                  onCancel={() => {
+                    setShowInvalidSession(false)
+                  }}
+                  onOk={() => { window.location.href = `/campaigns/${campaignId}` }}
+                  centered
+                >
+                  {I18n.t('assessments.page.invalid_session.description')}
+                </Modal>
                 )}
                 {loaded && !error && (
-                  <ResourcesTabs assessmentStarted={started} assessment={assessment}>
-                    <PassAssessment
-                      id="pass_assessment"
-                      type="pass_assessment"
-                      initialized={initialized}
-                      data={assessment}
-                      result={results}
-                      locales={translations}
-                      dashboardUrl={`/assessment_completed/${campaignId}`}
-                      resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
-                      selectedLocale={selectedLanguage && selectedLanguage.code}
-                      rstore={store}
-                      evaluationSessionId={evaluationSessionId}
-                      renderedByEnduser
-                    />
-                  </ResourcesTabs>
+                <ResourcesTabs assessmentStarted={started} assessment={assessment}>
+                  <PassAssessment
+                    id="pass_assessment"
+                    type="pass_assessment"
+                    initialized={initialized}
+                    data={assessment}
+                    result={results}
+                    locales={translations}
+                    dashboardUrl={`/assessment_completed/${campaignId}`}
+                    resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
+                    selectedLocale={selectedLanguage && selectedLanguage.code}
+                    rstore={store}
+                    valuationSessionId={evaluationSessionId}
+                    renderedByEnduser
+                  />
+                </ResourcesTabs>
                 )}
               </div>
             </>

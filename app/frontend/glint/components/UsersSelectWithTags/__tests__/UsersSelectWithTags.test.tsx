@@ -6,7 +6,7 @@ import { act } from 'react-dom/test-utils'
 
 import { UsersSelectWithTags } from '~/glint'
 
-jest.mock('use-debounce', () => ({
+vi.mock('use-debounce', () => ({
   useDebouncedCallback: fn => str => fn(str),
 }))
 
@@ -29,7 +29,7 @@ describe('onChange Should return correct values', () => {
   const user = userEvent.setup()
 
   test('when a user is selected from the list', async () => {
-    const handleChangeMockFn = jest.fn(ids => ids)
+    const handleChangeMockFn = vi.fn(ids => ids)
 
     render(
       <div id="container">
@@ -68,7 +68,7 @@ describe('onChange Should return correct values', () => {
   })
 
   test('when a user is removed from the list', async () => {
-    const handleChangeMockFn = jest.fn(ids => ids)
+    const handleChangeMockFn = vi.fn(ids => ids)
 
     render(
       <div id="container">
@@ -85,7 +85,7 @@ describe('onChange Should return correct values', () => {
     await waitFor(async () => {
       await user.click(inputBox)
       await user.type(inputBox, 'j')
-    })
+    }, { timeout: 3000 })
 
     const user1 = screen.getByText(users[0].fullName)
     user1.style['pointer-events'] = 'auto'
@@ -96,7 +96,7 @@ describe('onChange Should return correct values', () => {
     await waitFor(async () => {
       await user.click(inputBox)
       await user.type(inputBox, 'j')
-    })
+    }, {timeout: 3000})
     const user2 = screen.getByText(users[1].fullName)
     user2.style['pointer-events'] = 'auto'
     await act(async () => {
@@ -121,7 +121,7 @@ describe('Dropdown should be hidden after user', () => {
   const user = userEvent.setup()
 
   test('selects an item from the dropdown', async () => {
-    const handleChangeMockFn = jest.fn(ids => ids)
+    const handleChangeMockFn = vi.fn(ids => ids)
 
     render(
       <div id="container">
@@ -138,7 +138,7 @@ describe('Dropdown should be hidden after user', () => {
     await waitFor(async () => {
       await user.click(inputBox)
       await user.type(inputBox, 'j')
-    })
+    }, { timeout: 3000 })
     let hiddenDropdown = document.querySelector('.ant-select-dropdown-hidden')
     expect(hiddenDropdown).not.toBeInTheDocument()
 
@@ -152,7 +152,7 @@ describe('Dropdown should be hidden after user', () => {
   })
 
   test('clicks outside the dropdown', async () => {
-    const handleChangeMockFn = jest.fn(ids => ids)
+    const handleChangeMockFn = vi.fn(ids => ids)
 
     render(
       <div id="container">
@@ -169,7 +169,7 @@ describe('Dropdown should be hidden after user', () => {
     await waitFor(async () => {
       await user.click(inputBox)
       await user.type(inputBox, 'j')
-    })
+    }, { timeout: 3000 })
     let hiddenDropdown = document.querySelector('.ant-select-dropdown-hidden')
     expect(hiddenDropdown).not.toBeInTheDocument()
 
@@ -185,7 +185,7 @@ describe('Input text should be cleared after user', () => {
   const user = userEvent.setup()
 
   test('selects an item from the dropdown', async () => {
-    const handleChangeMockFn = jest.fn(ids => ids)
+    const handleChangeMockFn = vi.fn(ids => ids)
 
     render(
       <div id="container">
@@ -202,7 +202,7 @@ describe('Input text should be cleared after user', () => {
     await waitFor(async () => {
       await user.click(inputBox)
       await user.type(inputBox, 'search')
-    })
+    }, { timeout: 3000 })
     expect(inputBox).toHaveValue('search')
 
     const user1 = screen.getByText(users[0].fullName)
@@ -214,7 +214,7 @@ describe('Input text should be cleared after user', () => {
   })
 
   test('clicks outside the dropdown', async () => {
-    const handleChangeMockFn = jest.fn(ids => ids)
+    const handleChangeMockFn = vi.fn(ids => ids)
 
     const {} = render(
       <div id="container">
@@ -231,7 +231,7 @@ describe('Input text should be cleared after user', () => {
     await waitFor(async () => {
       await user.click(inputBox)
       await user.type(inputBox, 'search')
-    })
+    }, { timeout: 3000 })
     expect(inputBox).toHaveValue('search')
 
     await act(async () => {
@@ -242,7 +242,7 @@ describe('Input text should be cleared after user', () => {
 })
 
 test('onSearch should be called with correct values when user types some value in input box', async () => {
-  const handleSearchMockFn = jest.fn(text => text)
+  const handleSearchMockFn = vi.fn(text => text)
   const user = userEvent.setup()
 
   render(
@@ -260,6 +260,6 @@ test('onSearch should be called with correct values when user types some value i
     await user.click(inputBox)
     await user.type(inputBox, 'search')
     expect(inputBox).toHaveValue('search')
-  })
+  }, { timeout: 3000 })
   expect(handleSearchMockFn).toHaveBeenLastCalledWith('search')
 })

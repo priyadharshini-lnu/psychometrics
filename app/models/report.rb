@@ -9,9 +9,6 @@ class Report < ApplicationRecord
   include SoftDelete
   include OwnerValidations
   include ActiveStorageAttachable
-  # temporary include syncable library to keep sync between CarrierWave and ActiveStorage
-  # TODO: remove after migration to ActiveStorage
-  include ActiveStorageSync
 
   PROVIDERS = {
     internal: 0,
@@ -19,7 +16,8 @@ class Report < ApplicationRecord
     hogan: 2,
     saville: 3,
     pearson: 4,
-    custom_upload: 5
+    custom_upload: 5,
+    mettl: 6
   }.freeze
 
   MAX_ASSESSMENT_COUNT = 10
@@ -92,6 +90,7 @@ class Report < ApplicationRecord
   #   CALLBACKS
   #
   before_validation :set_assessment, unless: :assessment_not_applicable?
+  before_create :create_default_styles
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
   after_save :delete_assessments_reports, if: :assessment_not_applicable?
 
@@ -101,15 +100,8 @@ class Report < ApplicationRecord
 
   serialize :external_settings, coder: PsyJsonbSerializer
 
-  mount_uploader :icon, Public::ImageUploader
-  mount_uploader :poster, Public::ImageUploader
-
-  has_one_image_attachment :as_icon, variants: [:thumb]
-  has_one_image_attachment :as_poster, variants: [:thumb]
-
-  # TODO: remove after migration to ActStor
-  # list of CarrierWave attributes to be synced to ActiveStorage
-  sync_to_active_storage :icon, :poster
+  has_one_image_attachment :icon, variants: [:thumb]
+  has_one_image_attachment :poster, variants: [:thumb]
 
   def attachment_storage_path(attribute_name, filename)
     "public/report/#{id}/#{attribute_name}/#{filename}"
@@ -166,8 +158,8 @@ class Report < ApplicationRecord
     @cloned_item = deep_clone(
       include: %i[assessments]
     )
-    @cloned_item.icon = icon
-    @cloned_item.poster = poster
+    @cloned_item.copy_and_upload(icon, :icon) if icon.attached?
+    @cloned_item.copy_and_upload(poster, :poster) if poster.attached?
     @cloned_item.gen_uniq_name
     @cloned_item
   end
@@ -267,6 +259,12 @@ class Report < ApplicationRecord
   end
 
   private
+
+  def create_default_styles
+    Settings.default_styles.each do |style|
+      styles[style.id] = style.to_h
+    end
+  end
 
   def max_assessments_count
     return if assessments.size <= MAX_ASSESSMENT_COUNT

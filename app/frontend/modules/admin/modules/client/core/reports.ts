@@ -40,7 +40,6 @@ export const ReportTR = t.type({
   description: t.union([t.string, t.null]),
   defaultLanguage: t.union([t.string, t.null]),
   disabled: t.boolean,
-  active: t.boolean,
   archived: t.boolean,
   deleted: t.boolean,
   dataOnly: t.boolean,

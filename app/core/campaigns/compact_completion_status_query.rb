@@ -2,12 +2,14 @@
 
 module Campaigns
   class CompactCompletionStatusQuery < Rectify::Query
-    private_attr_reader :campaign_id
+    private_attr_reader :campaign_id, :limit, :offset
 
     DEFAULT_COLUMN_NAMES = ['Email', 'First Name', 'Last Name'].freeze
 
-    def initialize(campaign_id)
+    def initialize(campaign_id, limit: nil, offset: nil)
       @campaign_id = campaign_id
+      @limit = limit
+      @offset = offset
     end
 
     def query
@@ -24,7 +26,16 @@ module Campaigns
               #{column_names}
             )
       SQL
-      ActiveRecord::Base.connection.execute(sql)
+
+      if limit && offset
+        sql += ' LIMIT :limit OFFSET :offset'
+      end
+
+      ActiveRecord::Base.connection.execute(ApplicationRecord.sanitize_sql([sql, params]))
+    end
+
+    def params
+      { limit: limit, offset: offset }
     end
 
     def status_case_statement_sql

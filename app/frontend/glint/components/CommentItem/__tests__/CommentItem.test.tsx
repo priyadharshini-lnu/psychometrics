@@ -18,13 +18,13 @@ describe('CommentItem', () => {
     },
   }
 
-  const mockCommentRemove = jest.fn()
-  const mockCommentEditSave = jest.fn(() => Promise.resolve())
-  const mockCommentResolve = jest.fn()
-  const mockCommentRead = jest.fn()
+  const mockCommentRemove = vi.fn()
+  const mockCommentEditSave = vi.fn(() => Promise.resolve())
+  const mockCommentResolve = vi.fn()
+  const mockCommentRead = vi.fn()
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('renders comment text correctly', () => {
@@ -52,10 +52,14 @@ describe('CommentItem', () => {
     await user.click(screen.getByTestId(/more-options/i))
 
     // click remove menu item
-    await user.click(screen.getByText(/remove/i))
+    await user.click(screen.getByText(/Remove/i))
+
+    // wait for modal to appear
+    await screen.findByText(/Are you sure you want to delete this comment?/i)
 
     // click modal delete button
     await user.click(screen.getByRole('button', { name: /delete/i }))
+
     expect(mockCommentRemove).toHaveBeenCalledWith('1')
   })
 
@@ -133,7 +137,6 @@ describe('CommentItem', () => {
         onRead={mockCommentRead}
       />,
     )
-
     expect(screen.getByTestId(/comment-item/i)).toHaveClass('new')
 
     await user.hover(screen.getByTestId(/comment-item/i))

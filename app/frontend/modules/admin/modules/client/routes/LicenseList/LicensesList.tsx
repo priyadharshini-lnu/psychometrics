@@ -34,10 +34,10 @@ const connecter = connect(
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
-const LicenseListComponent: React.FC<Props> = ({
+const LicenseList: React.FC<Props> = ({
   currentUser, openModal,
 }) => {
-  const { clientId } = useParams<{ clientId: string }>()
+  const { clientId } = useParams() as { clientId: string }
   const config = {
     trackUrl: true,
     responseType: LicenseTR,
@@ -95,4 +95,4 @@ const LicenseListComponent: React.FC<Props> = ({
   )
 }
 
-export const LicenseList = connecter(LicenseListComponent)
+export default connecter(LicenseList)

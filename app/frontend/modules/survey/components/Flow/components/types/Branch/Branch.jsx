@@ -12,9 +12,8 @@ class Branch extends Component {
   }
 
   initConditions = () => {
-    const { model } = this.props
-    model.props.conditions.push(new FlowCondition())
-    this.forceUpdate()
+    const { model, onUpdate } = this.props
+    onUpdate({ ...model, props: { ...model.props, conditions: [...model.props.conditions, new FlowCondition()] } })
   }
 
   update = () => {
@@ -31,11 +30,11 @@ class Branch extends Component {
   }
 
   renderConditions () {
-    const { model } = this.props
+    const { model, onUpdate } = this.props
     return (
       <div className={styles.listWrapper}>
         <span className={styles.label}>Then Branch If:</span>
-        <ConditionList model={model} onRemove={this.update} />
+        <ConditionList model={model} onRemove={this.update} onUpdate={onUpdate} />
       </div>
     )
   }

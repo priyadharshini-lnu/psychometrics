@@ -179,7 +179,7 @@ const InputFile = ({ value, onChange }) => (
       </div>
     )}
     <Checkbox
-      name="remove_icon"
+      name="purge_icon"
       onChange={({ target }) => onChange({ currentTarget: { name: target.name, value: target.checked ? 1 : 0 } })}
     >
       Remove icon

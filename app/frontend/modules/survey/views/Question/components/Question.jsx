@@ -63,7 +63,7 @@ class Question extends Component {
         className={`${styles.question} ${buttons.buttons} ${selected ? styles.selected : ''}`}
         style={style}
       >
-        <QuestionInfoBar {...this.props} select={this.update} />
+        <QuestionInfoBar {...this.props} select={this.update} remove={this.remove} />
         <div className={styles.content}>
           <Header {...this.props} />
           <QuestionRenderer {...this.props} />

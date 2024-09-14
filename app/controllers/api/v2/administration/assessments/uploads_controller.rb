@@ -17,7 +17,7 @@ module Api
     end
 
     def assessment_params
-      params.permit(%i[poster icon remove_poster remove_icon])
+      params.permit(%i[poster icon purge_poster purge_icon])
     end
   end
 end

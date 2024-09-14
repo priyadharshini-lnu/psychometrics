@@ -24,6 +24,7 @@ import {
   SCHEDULE_ASSESSMENT,
   TOGGLE_REQUIRE_SCHEDULE,
   TOGGLE_AUTO_ASSIGN,
+  UPDATE_METTL_SCHEDULE,
 } from './actions'
 
 const defaultState: State = {
@@ -76,6 +77,7 @@ type FetchType = ApiActionResponse<{
 
 type FetchNormsType = ApiActionResponse<Norm[]>
 type UpdateNormType = ApiActionResponse<{normName: string}>
+type UpdateMettlScheduleType = ApiActionResponse<{mettlScheduleName: string}>
 type UpdateAssessorForm = ApiActionResponse<{assessorFormName: string, assessorFormId: number | undefined}>
 type UpdateAvailableLocales = ApiActionResponse<{ availableLocales: string[] }>
 type RemoveType = ApiActionResponse<number>
@@ -136,6 +138,15 @@ const HANDLERS = {
       return { ...assessment, normId, ...response }
     })
     return setIn(state, ['list'], assessments)
+  },
+  [UPDATE_METTL_SCHEDULE]: (state, { response, requestAction: { request } }: UpdateMettlScheduleType) => {
+    const { id: requestId, mettlScheduleRecordId } = request.body
+
+    return updateIn(state, ['list'], (assessments: Assessment[]) => assessments.map((assessment: Assessment) => {
+      if (assessment.id !== requestId) return assessment
+
+      return { ...assessment, mettlScheduleRecordId, ...response }
+    }))
   },
   [SCHEDULE_ASSESSMENT]: (state, { response }: ApiActionResponse<Assessment>) => (
     updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (

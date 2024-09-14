@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Users::Registration::WithRegistrationCodeForm do
   let(:project) { create(:project) }
+  let(:campaign) { create(:campaign, project: project) }
   let(:valid_attrs) do
     {
       first_name: 'James',
@@ -11,6 +12,19 @@ describe Users::Registration::WithRegistrationCodeForm do
       email: "#{Faker::Internet.user_name}@cc.com",
       registration_code: 'abc'
     }
+  end
+
+  let!(:reg_code) do
+    create(
+      :registration_code, project: project, campaign: campaign, code: 'abc',
+    start_date: 1.day.ago, end_date: 2.days.from_now
+    )
+  end
+
+  let!(:communication) do
+    create(
+      :communication, kind: :invitation, recipients: :new_users, project_campaign: reg_code.campaign
+    )
   end
 
   it 'validates if registration_code is provided' do
@@ -28,21 +42,14 @@ describe Users::Registration::WithRegistrationCodeForm do
   end
 
   it 'only allows email from the restricted_domains' do
-    create(:registration_code, project: project, code: 'abc', start_date: 1.day.ago, end_date: 2.days.from_now,
-    restricted_domains: ['abc.com'])
+    reg_code.update!(restricted_domains: ['abc.com'])
+
     form = described_class.new(valid_attrs.merge(registration_code: 'abc')).with_context(project: project)
 
     expect(form.valid?).to eq(false)
   end
 
   it 'valid? returns true if passed registration_code exsits in the database' do
-    reg_code = create(
-      :registration_code, project: project, campaign: create(:campaign), code: 'abc',
-      start_date: 1.day.ago, end_date: 2.days.from_now
-    )
-    create(
-      :communication, kind: :invitation, recipients: :new_users, project_campaign: reg_code.campaign
-    )
     form = described_class.new(valid_attrs.merge(registration_code: 'abc')).with_context(project: project)
 
     expect(form.valid?).to eq(true)
@@ -58,19 +65,6 @@ describe Users::Registration::WithRegistrationCodeForm do
         mobile_number: '+911234567890',
         mobile_verification_token: mobile_verification_token('+911234567890')
       }
-    end
-
-    let!(:reg_code) do
-      create(
-        :registration_code, project: project, campaign: create(:campaign), code: 'abc',
-      start_date: 1.day.ago, end_date: 2.days.from_now
-      )
-    end
-
-    let!(:communication) do
-      create(
-        :communication, kind: :invitation, recipients: :new_users, project_campaign: reg_code.campaign
-      )
     end
 
     before(:each) do
@@ -113,7 +107,7 @@ describe Users::Registration::WithRegistrationCodeForm do
     private
 
     def mobile_verification_token(mobile_number)
-      JWT.encode({ data: mobile_number }, Rails.application.secrets.encrypted_key)
+      JWT.encode({ data: mobile_number }, Settings.secrets.encrypted_key.to_s)
     end
   end
 end

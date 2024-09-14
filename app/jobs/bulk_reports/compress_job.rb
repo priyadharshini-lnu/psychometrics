@@ -35,7 +35,13 @@ module BulkReports
         Pathname.new(File.join(report.output_dir, filename)).open
       end
 
-      report.files = files
+      files.each do |file|
+        report.files.attach(
+          io: file,
+          content_type: 'application/zip',
+          filename: File.basename(file)
+        )
+      end
       report.save!
     end
   end

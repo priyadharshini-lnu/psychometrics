@@ -4,6 +4,7 @@ import SerializeReport from './SerializeReport'
 import PageInterface from '../interfaces/Page'
 import ModuleInterface from '../interfaces/Module'
 
+export const FETCH = 'report/FETCH'
 export const INIT = 'report/INIT'
 export const ENABLE = 'report/ENABLE'
 export const DISABLE = 'report/DISABLE'
@@ -27,6 +28,10 @@ export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 export const SAVE_CAMPAIGN_FACTORS = 'report/SAVE_CAMPAIGN_FACTORS'
 export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 export const CHANGE_SKIP_LOGIC = 'report/CHANGE_SKIP_LOGIC'
+export const IMPORT_TRANSLATIONS = 'report/IMPORT_TRANSLATIONS'
+export const ADD_STYLE = 'report/ADD_STYLE'
+export const UPDATE_STYLE = 'report/UPDATE_STYLE'
+export const REMOVE_STYLE = 'report/REMOVE_STYLE'
 export const REMAP_ASSESSMENT = 'report/REMAP_ASSESSMENT'
 
 export enum SelectedTypes {
@@ -34,6 +39,14 @@ export enum SelectedTypes {
   'Page'= 'Page',
   'Report'= 'Report'
 }
+
+export const fetch = id => ({
+  type: FETCH,
+  request: {
+    url: `/administration/reports/${id}/builders`,
+    camelize: false,
+  },
+})
 
 export const init = (data, userReport = null, campaignId = null) => ({
   type: INIT, data, userReport, campaignId,
@@ -62,12 +75,23 @@ export const pasteModule = (pageId: number, module: ModuleInterface) => ({
 
 export const saveDataSheet = (data: object[]) => ({ type: SAVE_DATA_SHEET, data })
 export const saveCampaignFactors = (data: object[]) => ({ type: SAVE_CAMPAIGN_FACTORS, data })
+
 export const uploadDataSheet = (id: number, body: { file: File }) => ({
   type: UPLOAD_DATA_SHEET,
   request: {
     method: 'post',
     url: `/administration/reports/${id}/upload_data_sheet`,
     body,
+    contentType: 'multipart/form-data;' as const,
+  },
+})
+
+export const importTranslations = (reportId, formdata) => ({
+  type: IMPORT_TRANSLATIONS,
+  request: {
+    method: 'post',
+    url: `/administration/translations/reports/${reportId}/import`,
+    body: formdata,
     contentType: 'multipart/form-data;' as const,
   },
 })
@@ -106,7 +130,13 @@ export const save = (report: any) => {
   }
 }
 
+export const addStyle = style => ({ type: ADD_STYLE, style })
+export const updateStyle = style => ({ type: UPDATE_STYLE, style })
+export const removeStyle = style => ({ type: REMOVE_STYLE, style })
 
+export type AddStyleType = ReturnType<typeof addStyle>
+export type UpdateStyleType = ReturnType<typeof updateStyle>
+export type RemoveStleType = ReturnType<typeof removeStyle>
 export type CopyPageType = ReturnType<typeof copyPage>
 export type CopyModuleType = ReturnType<typeof copyModule>
 export type PastePageType = ReturnType<typeof pastePage>
@@ -124,3 +154,4 @@ export type ChangeSkipLogic = ReturnType<typeof changeSkipLogic>
 export type UpdatePagePositionType = ReturnType<typeof updatePagePositions>
 export type SetPagePositionType = ReturnType<typeof setPagePositions>
 export type SaveDataSheetType = ApiActionResponse<{data: {}}>
+export type SaveCampaignFactorsType = ApiActionResponse<{data: {}}>

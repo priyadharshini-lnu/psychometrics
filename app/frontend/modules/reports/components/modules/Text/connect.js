@@ -7,6 +7,7 @@ export default connect(
   (state, { module, model }) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
     questions: state.report.builder.loaded ? getQuestions(state.report, (module || model).assessment_id) || {} : {},
+    reportStyles: state.report.builder.styles,
   }),
   dispatch => ({
     openConditionalText: data => dispatch(openModal('conditionalText', data)),

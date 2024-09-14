@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseResource
   attributes :name, :description, :created_at, :updated_at, :created_by, :modified_by, :archived, :deleted,
-             :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon, :active,
+             :default_language, :disabled, :data_only, :icon_url, :icon_color, :poster, :icon,
              :external_settings, :external_report, :provider, :hogan_report_packages
 
   ransack_filters %i[name_cont filterable_fields with_resource_state provider_in assessments_id_in]
@@ -34,19 +34,15 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   end
 
   def self.records(opts)
-    super(opts).includes(:assessments, :owner)
+    super(opts).with_attached_icon.with_attached_poster.includes(:assessments, :owner)
   end
 
   def icon_url
-    @model.icon&.url(:thumb)
+    @model.icon_url(:thumb)
   end
 
   def deleted
     @model.deleted?
-  end
-
-  def active
-    !@model.disabled
   end
 
   def external_settings
@@ -87,11 +83,11 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   end
 
   def poster
-    @model.poster&.url
+    @model.poster_url
   end
 
   def icon
-    @model.icon&.url
+    @model.icon_url
   end
 
   def meta_details

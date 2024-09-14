@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import _ from 'lodash'
 import {
-  Divider, Checkbox, Space, ConfigProvider,
+  Divider, Checkbox, Space, ConfigProvider, Alert, Popover,
   Flex, Button,
 } from 'antd'
 import {
@@ -21,10 +21,11 @@ const QUESTION_BLOCK_BOTTOM_OFFSET = QUESTION_BLOCK_BOTTOM_MARGIN + QUESTION_BLO
 
 const PropertyPanelComponent = (props) => {
   const {
-    question, offset, addPageBreak, addSkipLogic, copyQuestion, addNote, restricted,
+    question, offset, addPageBreak, addSkipLogic, copyQuestion, restricted,
     openDisplayLogic, changeType, openPreview, firstBlockContentOffset, unselectQuestion,
   } = props
   const panelRef = useRef(null)
+  const [showMenu, setShowMenu] = useState(false)
   const [isOverflown, setIsOverflown] = useState(false)
   const style = {
     top: isOverflown ? 'unset' : offset,
@@ -49,6 +50,7 @@ const PropertyPanelComponent = (props) => {
     if (question.type === type && _.isEmpty(props)) { return }
     Action('QuestionChangeType', question, { oldType: question.type, newType: type })
     changeType(question, type, props)
+    setShowMenu(false)
   }
 
   const questiontypeBtn = (
@@ -57,12 +59,36 @@ const PropertyPanelComponent = (props) => {
         <span className={styles.label}>Change Question Type</span>
         <Button shape="circle" type="text" onClick={unselectQuestion} icon={<CloseOutlined />} />
       </Flex>
-      <button type="button" data-toggle="dropdown" className={`btn btn-success dropdown-toggle ${styles.menuButton}`}>
-        <span className={`fa fa-${serializedQuestion.moduleConfig.icon} ${styles.icon}`} />
-        <span>{serializedQuestion.moduleConfig.moduleName}</span>
-        <span className="caret" />
-      </button>
-      <Menu onSelect={changeQuestionType} />
+      {question.isNew ? (
+        <>
+          <Popover
+            overlayInnerStyle={{ padding: 0 }}
+            trigger="click"
+            placement="leftBottom"
+            open={showMenu}
+            onClick={() => setShowMenu(true)}
+            onOpenChange={() => setShowMenu(false)}
+            content={<Menu onSelect={changeQuestionType} />}
+          >
+            <Button
+              type="primary"
+              size="large"
+              className={`${styles.menuButton}`}
+            >
+              <span className={`fa fa-${serializedQuestion.moduleConfig.icon} ${styles.icon}`} />
+              <span>{serializedQuestion.moduleConfig.moduleName}</span>
+              <span className="caret" />
+            </Button>
+          </Popover>
+
+        </>
+      ) : (
+        <Alert
+          className={styles.alert}
+          type="warning"
+          message={I18n.t('administration.survey_builder.property_panel.cant_change_type')}
+        />
+      )}
     </div>
   )
 
@@ -98,10 +124,6 @@ const PropertyPanelComponent = (props) => {
           >
             <span className={`fa fa-check-circle-o ${styles.icon}`} />
             <span>Copy Question</span>
-          </a>
-          <a onClick={() => addNote(question)} className={styles.menuitem}>
-            <span className={`fa fa-pencil-square-o ${styles.icon}`} />
-            <span>Add Note</span>
           </a>
         </>
       )}

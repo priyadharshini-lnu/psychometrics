@@ -14,8 +14,14 @@ module Facades
       def serialize_assigns(assigns, membership)
         norms = norms_used(assigns)
         assigns.group_by(&:assessment_id).transform_values do |group|
-          group.map { |a| ::AssignSerializer.new(a, membership: membership, norm: norms[a.assessment_id]) }
-        end.to_json
+          Panko::ArraySerializer.new(
+            group,
+            each_serializer: ::AssignSerializer,
+            context: {
+              membership: membership, norm: norms[a.assessment_id]
+            }
+          ).to_a
+        end
       end
 
       def norms_used(assigns)

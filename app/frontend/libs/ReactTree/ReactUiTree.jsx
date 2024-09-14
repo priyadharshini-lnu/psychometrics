@@ -25,7 +25,7 @@ export default class UITree extends Component {
     if (!this._updated) {
       this.setState(this.init(nextProps))
     } else {
-      this._updated = false
+      this._updated = true
     }
   }
 
@@ -99,7 +99,7 @@ export default class UITree extends Component {
     if (e.button !== 0) return
     if (this.props.handleClass) {
       const re = new RegExp(this.props.handleClass, 'i')
-      if (!e.target.className.match(re)) {
+      if (!e.target.className?.match?.(re)) {
         return
       }
     }
@@ -135,6 +135,7 @@ export default class UITree extends Component {
     const { paddingLeft } = this.props
     let newIndex = null
     let index = tree.getIndex(dragging.id)
+    if (!index) return
     const { collapsed } = index.node
 
     const { _startX } = this

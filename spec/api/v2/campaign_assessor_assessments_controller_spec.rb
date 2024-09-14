@@ -141,7 +141,8 @@ subject_assessor_assessments" do
           create(:user_assessment, relationship: relationship,
                                    subject: workshop_subject.user,
                                    campaign: campaign,
-                                   assessment: assessment)
+                                   assessment: assessment,
+                                   meeting_type: :not_available)
         end
         let!(:subject_user_assessment) do
           create(:user_assessment, relationship: Relationship.self_relationship,

@@ -4,13 +4,13 @@ import {
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
-import { RouteComponentProps } from 'react-router-dom'
 
+import { useLocation } from 'react-router-dom'
 import { fetchCampaign, reset as resetCampaign } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
-import LangDropdown from '~/components/LangDropdown'
+import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { PageHeader, CountdownTimer } from '~/glint'
 import { Common } from './Common'
 import { Threesixty } from './Threesixty'
@@ -38,27 +38,21 @@ const connector = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>
-type Params = {
-  url: string
-}
-
-type CampaignComponentProps = RouteComponentProps<Params> & PropsFromRedux
+type CampaignComponentProps = PropsFromRedux
 
 const CampaignComponent: FC<CampaignComponentProps> = ({
-  history,
-  match,
   fetchCampaign,
   campaign,
   loaded,
   resetCampaign,
 }) => {
+  const location = useLocation()
   useEffect(() => {
-    fetchCampaign(match.url)
-
+    fetchCampaign(location.pathname)
     return () => {
       resetCampaign()
     }
-  }, [match.url])
+  }, [location.pathname])
 
   const notificationDurations: Notification[] = [
     { completionPercentage: 50, type: 'info' },
@@ -89,11 +83,11 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
               notificationPoints={notificationDurations}
               notificationTemplate={notificationMessage}
               seconds={remainingCampaignTime}
-              onFinish={() => fetchCampaign(match.url)}
+              onFinish={() => fetchCampaign(location.pathname)}
             />
           ) : <div className="p-1" />}
         </Flex>
-        <LangDropdown />
+        <LangDropdownWithChangeLocale />
       </Flex>
     </>
 
@@ -104,7 +98,7 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
     <>
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
-        { loaded ? <Campaign history={history} match={match} />
+        { loaded ? <Campaign />
           : (
             <PageContentSkeleton />
           )}

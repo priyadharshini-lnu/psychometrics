@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import ReactDOM from 'react-dom'
+import { findDOMNode } from 'react-dom'
 import PropTypes from 'prop-types'
 import mediumZoom from 'medium-zoom'
 import cs from 'classnames'
@@ -48,7 +48,7 @@ class Question extends Component {
 
   initImageZoom () {
     // eslint-disable-next-line react/no-find-dom-node
-    const node = ReactDOM.findDOMNode(this.question)
+    const node = findDOMNode(this.question)
     const images = node.querySelectorAll('img.zoom-image')
     this.zoom = mediumZoom(images)
   }
@@ -66,13 +66,22 @@ class Question extends Component {
   }
 
   renderError () {
-    const { errors } = this.props
+    const { errors, model } = this.props
     return (
-      errors.map((err, i) => (
-        <div key={i} className={styles.error} style={this.addLtrStyleIfNeed(err.message || '')}>
-          <SafeHTML as="div" html={err.message} config="error" />
-        </div>
-      ))
+      <div id={`error-for-question-${model.id}`}>
+        {
+        errors.map((err, i) => (
+          <div
+            key={i}
+            className={styles.error}
+            style={this.addLtrStyleIfNeed(err.message || '')}
+          >
+            <SafeHTML as="div" html={err.message} config="error" />
+          </div>
+        ))
+      }
+      </div>
+
     )
   }
 
@@ -116,8 +125,8 @@ class Question extends Component {
         onClick={this.onClick}
       >
         <div className={`${styles.content} ${isRtl(defaultLanguage) ? 'rtl' : ''}`}>
-          {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
           <div className={styles.contentOuter}>
+            {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
             <div className={styles.previewContainer}>
               {this.renderPreview()}
             </div>

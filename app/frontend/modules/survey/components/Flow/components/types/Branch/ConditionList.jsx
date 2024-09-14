@@ -31,17 +31,19 @@ class ConditionList extends Component {
   }
 
   render () {
-    const { model, safeFirstElement } = this.props
+    const { model, safeFirstElement, onUpdate } = this.props
     const { conditions } = model.props
     return (
       <div className={styles.logicList}>
         {_.map(conditions, (condition, i) => (
           <Condition
             key={i}
+            index={i}
             model={model}
             condition={condition}
             onAdd={this.addCondition}
             onRemove={this.removeCondition}
+            onUpdate={onUpdate}
             disableRemove={safeFirstElement && i === 0 && model.props.conditions.length === 1}
           />
         ))}

@@ -53,6 +53,8 @@ RSpec.configure do |config|
   config.include SamlHelper
   config.include JsonApiHelper
   config.include CommandHelper
+  config.include CurrentUserHelper
+  config.include ActiveStorageHelper
   config.render_views
 
   config.infer_spec_type_from_file_location!

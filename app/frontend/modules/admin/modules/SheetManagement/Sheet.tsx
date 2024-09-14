@@ -121,8 +121,8 @@ const SheetComponent: FC<Props> = ({
           }
         }
         return {
-          title: toReadableString(filteredColumn.name),
-          dataIndex: filteredColumn.name,
+          title: toReadableString(filteredColumn.name || ''),
+          dataIndex: filteredColumn.name || '',
         }
       }),
     [columnDefinitions],

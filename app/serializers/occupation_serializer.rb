@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-class OccupationSerializer < ActiveModel::Serializer
+class OccupationSerializer < Panko::Serializer
   attributes :id, :name, :description, :factors, :full_description, :potential_areas_of_study, :icon,
              :key_career_tracks, :high_school_entry_roles, :diploma_qualification, :bachelors_or_masters_qualification,
              :work_environment, :alternative_icon, :indicative_roles_image, :key_career_tracks_image, :color
 
   def factors
-    object.occupations_factors.map do |obj|
-      OccupationsFactorSerializer.new(obj)
-    end
+    Panko::ArraySerializer.new(
+      object.occupations_factors,
+      each_serializer: OccupationsFactorSerializer
+    ).to_a
   end
 
   def icon

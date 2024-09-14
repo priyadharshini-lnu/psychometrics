@@ -20,12 +20,16 @@ module Reports
       }
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       broadcast :ok,
-                user: Reports::UserSerializer.new(user_report&.user || membership.user,
-                                                  campaign: user_report.campaign).to_json,
+                user: Reports::UserSerializer.new(
+                  context: { campaign: user_report.campaign }
+                ).serialize(user_report&.user || membership.user).to_json,
                 results: serialize_results.to_json,
-                data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership,
-                                           module_overrides: user_report&.text_module_overrides).
-                  to_json(include: '**'),
+                data: ReportSerializer.new(
+                  context: {
+                    piped_text_context: piped_text_context, membership: membership,
+                    module_overrides: user_report&.text_module_overrides
+                  }
+                ).serialize(report).to_json,
                 locales: translations(piped_text_context).to_json,
                 available_translations: available_translations,
                 campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json
@@ -42,20 +46,30 @@ module Reports
     def campaign_details
       return {} unless report.category_threesixty?
 
-      Threesixty::CampaignDetailsSerializer.new(user_report.threesixty_campaign,
-                                                user_report: user_report).to_h
+      Threesixty::CampaignDetailsSerializer.new(
+        context: {
+          user_report: user_report
+        }
+      ).serialize(user_report.threesixty_campaign)
     end
 
     def lookup_results
-      Assign.
-        completed.
-        includes(:membership, :user, :assessment).
-        where(
-          memberships: { client_id: project.id, user_id: membership.user_id },
-          assessment_id: report.assessment_ids
-        ).
-        references(:membership).
-        map { |a| ::AssignSerializer.new(a, membership: membership) }
+      assign = Assign.
+               completed.
+               includes(:membership, :user, :assessment).
+               where(
+                 memberships: { client_id: project.id, user_id: membership.user_id },
+                 assessment_id: report.assessment_ids
+               ).
+               references(:membership)
+
+      Panko::ArraySerializer.new(
+        assign,
+        each_serializer: ::AssignSerializer,
+        context: {
+          membership: membership
+        }
+      ).to_a
     end
 
     def translations(piped_text_context)

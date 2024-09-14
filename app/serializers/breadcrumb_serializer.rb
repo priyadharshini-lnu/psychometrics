@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-class BreadcrumbSerializer < ActiveModel::Serializer
-  attribute :client, if: -> { instance_options[:fields].include?('client') }
-  attribute :project, if: -> { instance_options[:fields].include?('project') }
-  attribute :campaign, if: -> { instance_options[:fields].include?('campaign') }
-  attribute :threesixty, if: -> { instance_options[:fields].include?('threesixty') }
+class BreadcrumbSerializer < Panko::Serializer
+  attributes :client, :project, :campaign, :threesixty
 
   def client
     {

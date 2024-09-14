@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  useParams, useLocation, useHistory, Link,
+  useParams, useLocation, useNavigate, Link,
 } from 'react-router-dom'
 import cs from 'classnames'
 import qs from 'qs'
@@ -54,8 +54,8 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const [selectedDateTime, setSelectedDateTime] = useState<TimeSlot | null>(bookedDateMomentObject)
   const [book, setBook] = useState(false)
   const [questionForm] = Form.useForm()
-  const history = useHistory()
-  const { inviteOrBookingId } = useParams<{ inviteOrBookingId: string }>()
+  const navigate = useNavigate()
+  const { inviteOrBookingId } = useParams() as { inviteOrBookingId: string }
   const location = useLocation()
   const questionResponseValueRef = useRef<Store>({})
   const { message } = App.useApp()
@@ -125,7 +125,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
     }
     if (inviteOrBookingDetails?.id) {
       bookSlot(inviteOrBookingDetails.id.toString(), bookingData).then(() => {
-        history.push(`/invites/${inviteOrBookingId}/success?tour=true`)
+        navigate(`/invites/${inviteOrBookingId}/success?tour=true`)
       }).catch((errors) => {
         const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
         message.error(I18n.t('frontend.bookings.booking_failed_msg', { error }))
@@ -143,7 +143,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
     }
     if (inviteOrBookingDetails?.id) {
       rescheduleBooking(inviteOrBookingDetails.id.toString(), rescheduleData).then(() => {
-        history.push(`/invites/${inviteOrBookingId}/success?tour=true`)
+        navigate(`/invites/${inviteOrBookingId}/success?tour=true`)
       }).catch((errors) => {
         const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
         message.error(I18n.t('frontend.bookings.reschedule_failed_msg', { error }))
@@ -161,7 +161,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
       }
       requestRescheduleBooking(bookingId, requestData).then(() => {
         message.success(I18n.t('frontend.bookings.request_reschedule_success'))
-        history.push('/invites')
+        navigate('/invites')
       }).catch((errors) => {
         const error = errors ? _.join(errors, ', ') : I18n.t('frontend.bookings.default_failure_msg')
         message.error(I18n.t('frontend.bookings.request_reschedule_failed', { error }))
@@ -249,6 +249,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
                       label={I18n.t('frontend.bookings.buttons.book')}
                       type="primary"
                       onClick={handleBook}
+                      aria-description={selectedDateTime.date.format('D, MMMM, YYYY, hh:mm A')}
                     />
                   </div>
                   )}

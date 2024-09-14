@@ -1,0 +1,49 @@
+{
+  "name": "psychometrics-storybook",
+  "version": "1.0.0",
+  "description": "Psychometrics storybook",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "NODE_OPTIONS=--max-old-space-size=8192 storybook build"
+  },
+  "engines": {
+    "node": ">=18.16.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/tte-lighthouse/psychometrics.git"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/tte-lighthouse/psychometrics/issues"
+  },
+  "homepage": "https://gitlab.com/tte-lighthouse/psychometrics#readme",
+  "dependencies": {
+    "@babel/eslint-plugin": "^7.14.5",
+    "@storybook/addon-essentials": "^7.0.12",
+    "@storybook/addon-interactions": "^7.0.12",
+    "@storybook/addon-links": "^7.0.12",
+    "@storybook/blocks": "^7.0.12",
+    "@storybook/builder-vite": "^7.0.12",
+    "@storybook/react": "^7.0.12",
+    "@storybook/react-vite": "^7.0.12",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "eslint-plugin-storybook": "^0.6.12",
+    "storybook": "^7.0.12",
+    "vite-tsconfig-paths": "^4.3.1"
+  },
+  "resolutions": {
+    "jackspeak": "2.1.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
+}

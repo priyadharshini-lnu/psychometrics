@@ -1,5 +1,6 @@
 import React, { useContext, FC, useState } from 'react'
 import { Layout, Menu, Drawer } from 'antd'
+import { Link } from 'react-router-dom'
 import { SelectInfo } from 'rc-menu/lib/interface'
 import cs from 'classnames'
 
@@ -74,7 +75,9 @@ export const PageSider: FC<PageSiderProps> = ({
 
   const logoEle = (
     <div className={styles.logoContainer}>
-      <img src={logo} className={styles.sidebarLogo} alt={logoAltText} />
+      <Link to="/">
+        <img src={logo} className={styles.sidebarLogo} alt={logoAltText} />
+      </Link>
     </div>
   )
   const siderTrigger = (
@@ -111,7 +114,15 @@ export const PageSider: FC<PageSiderProps> = ({
           </Drawer>
         </>
       ) : (
-        <Sider trigger={null} collapsible collapsed={menuCollapsed} theme="light" style={{ position: 'relative' }}>
+        <Sider
+          width="12.5rem"
+          collapsedWidth="5rem"
+          trigger={null}
+          collapsible
+          collapsed={menuCollapsed}
+          theme="light"
+          style={{ position: 'relative' }}
+        >
           {siderTrigger}
           <div
             className={cs({

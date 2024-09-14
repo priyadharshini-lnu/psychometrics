@@ -13,6 +13,7 @@ export default connect(
     showOnAllPages: getModulesShowOnAll(state.report),
     questions: assessmentId => getQuestions(state.report, assessmentId),
     renderMoudles: getRenderModules(state.report, props.model.id),
+    reportStyles: state.report.builder.styles,
   }),
   {
     addPage,

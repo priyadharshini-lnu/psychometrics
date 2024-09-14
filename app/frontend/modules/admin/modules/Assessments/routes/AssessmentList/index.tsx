@@ -1,1 +1,3 @@
-export { AssessmentList } from './AssessmentList'
+import { AssessmentList } from './AssessmentList'
+
+export default AssessmentList

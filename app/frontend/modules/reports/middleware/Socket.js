@@ -1,15 +1,11 @@
-import { normalize } from 'normalizr'
-import AppStore from '~/modules/reports/store/AppStore'
 import {
   SOCKET_MESSAGE,
 } from '~/modules/reports/core/temp/socket'
-import schema from '../store/schema'
-import { INIT } from '../core/builder/actions'
 import NotificationDispatcher from '../dispatchers/NotificationDispatcher'
 
 export const RequestsPool = {}
 
-const Socket = ({ dispatch }) => next => (action) => {
+const Socket = () => next => (action) => {
   if (action.type !== SOCKET_MESSAGE) { return next(action) }
 
   const { data, notification } = action
@@ -18,11 +14,7 @@ const Socket = ({ dispatch }) => next => (action) => {
     NotificationDispatcher.notify(notification)
   }
 
-  if (data.action === 'report_data') {
-    const normalizedData = normalize(data.data, schema)
-    AppStore.init(data.data)
-    dispatch({ type: INIT, data: normalizedData })
-  } else if (RequestsPool[data.request_id]) {
+  if (RequestsPool[data.request_id]) {
     RequestsPool[data.request_id](data.data)
     delete RequestsPool[data.request_id]
   } else {

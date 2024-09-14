@@ -7,7 +7,10 @@ module AdminJobs
 
     def call
       write_csv
-      record.update!(file: File.open(file_path))
+      record.file.attach(
+        io: File.open(file_path),
+        filename: File.basename(file_path)
+      )
       job_record.complete!
       FileUtils.rm_f(file_path)
 
@@ -67,7 +70,7 @@ module AdminJobs
     end
 
     def file_link
-      content_tag(:a, record.file.real_filename, href: record.file.url) if record.file.present?
+      content_tag(:a, record.file.filename.to_s, href: record.file.url) if record.file.present?
     end
 
     def file_name

@@ -52,7 +52,7 @@ module Administration
       end
 
       def reset_password?
-        has_permission?(:users, :reset_password, project_id: @record.project_id)
+        has_permission?(:users, :reset_password, project_id: @record.project_id, campaign_id: campaign_id)
       end
 
       def spoof?

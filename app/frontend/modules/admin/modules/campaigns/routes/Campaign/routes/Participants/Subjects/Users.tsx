@@ -7,7 +7,7 @@ import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import { FilterValue } from 'antd/lib/table/interface'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
@@ -34,6 +34,7 @@ const MODALS = {
 export const FILTER_PREDICATES = {
   campaignUsersCompletionStatus: 'In',
   campaignUsersStatus: 'In',
+  campaignUsersActive: 'In',
 }
 
 const { Column } = Table
@@ -46,12 +47,6 @@ interface Props {
   remove(campaignId: string, id: number): void
   toggleActive(campaignId: string, id: number, options: { updateInListing: boolean }): void
   users: UserState
-  match: {
-    params: {
-      projectId: string
-      campaignId: string
-    }
-  }
   tableConfig: TableConfig
   changeFilter(filterName: string, filterValue: string): void
   getFilteredValue(filterName: string): FilterValue
@@ -81,7 +76,6 @@ const UserList: React.FC<Props> = ({
     total,
     permissions,
   },
-  match: { params: { projectId, campaignId } },
   tableConfig: {
     filters,
     page,
@@ -102,9 +96,16 @@ const UserList: React.FC<Props> = ({
   exportReportsAndAssessments,
   exportUsers,
 }) => {
+  const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const { modal, message } = App.useApp()
   useEffect(() => {
-    fetch(campaignId, tableConfig)
+    fetch(campaignId, {
+      ...tableConfig,
+      filters: {
+        ...tableConfig.filters,
+        campaignUsersActiveIn: filters.campaignUsersActiveIn || 'true',
+      },
+    })
   }, [tableConfig])
 
   const handleUserTypeFilterChange = (value: string): void => {
@@ -172,7 +173,7 @@ const UserList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
-                <Link to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/users/${id}`}>
+                <Link to={`${id}`}>
                   {id}
                 </Link>
               )}
@@ -181,7 +182,12 @@ const UserList: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('administration.campaigns.users.is_active')}
-              key="enable"
+              key="campaignUsersActive"
+              filters={[
+                { text: 'Active', value: true },
+                { text: 'Inactive', value: false },
+              ]}
+              filteredValue={getFilteredValue('campaignUsersActive') || [true]}
               render={
                 ({
                   active, id,
@@ -267,8 +273,9 @@ const UserList: React.FC<Props> = ({
               filters={[
                 { text: 'Not Started', value: '0' },
                 { text: 'In Progress', value: '1' },
-                { text: 'Interrupted', value: '2' },
-                { text: 'Timed Out', value: '3' },
+                { text: 'Completed', value: '2' },
+                { text: 'Interrupted', value: '3' },
+                { text: 'Timed Out', value: '4' },
               ]}
               filteredValue={getFilteredValue('campaignUsersStatus')}
               render={status => (
@@ -395,7 +402,7 @@ const getActionsMenuProps = ({
       return onEdit()
     }
     if (key === 'changePassword') {
-      return openModal('ResetPasswordModal', { user })
+      return openModal('ResetPasswordModal', { user, campaignId })
     }
     if (key === 'remove') {
       return handleDelete()

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class JwtAuthenticator
-  def self.authenticate(jwt_key)
+  def self.authenticate(jwt_key, project)
     _, header = JWT.decode(jwt_key, nil, false)
     api_key = ApiKey.active.find_by(key: header['api_key'])
 
@@ -11,7 +11,7 @@ class JwtAuthenticator
 
       check_expiration(decoded_jwt[0]['exp'])
 
-      find_user_from_subject(decoded_jwt[0]['sub'])
+      find_user_from_subject(decoded_jwt[0]['sub'], project)
     end
   rescue JWT::DecodeError, JWT::VerificationError, JWT::InvalidPayload => e
     Rails.logger.error "JWT authentication failed: #{e.message}"
@@ -26,11 +26,11 @@ class JwtAuthenticator
     end
   end
 
-  def self.find_user_from_subject(subject)
+  def self.find_user_from_subject(subject, project)
     if subject.to_s&.match?(Devise.email_regexp)
-      Users::Regular.find_by(email: subject)
+      Users::Regular.find_by(email: subject, project_id: project.id)
     else
-      Users::Regular.find_by(id: subject)
+      Users::Regular.find_by(id: subject, project_id: project.id)
     end
   end
 end

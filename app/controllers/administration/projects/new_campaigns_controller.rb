@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
+
 module Administration
   module Projects
     class NewCampaignsController < Administration::Projects::BaseController
@@ -25,7 +27,11 @@ module Administration
             campaigns = policy_scope(resource_class).where(project_id: project.id).
                         ransack(params[:filters]).
                         result.
-                        includes(:reports, :assessments, :project, :threesixty_campaign)
+                        includes(
+                          :project, :threesixty_campaign, :campaign_options,
+                          assessments: [:translations, { icon_attachment: { blob: :variant_records } }],
+                          reports: { icon_attachment: { blob: :variant_records } }
+                        )
 
             serialized_campaigns = Panko::ArraySerializer.new(
               campaigns.page(params[:page]).per(params[:size] || 25),
@@ -122,7 +128,11 @@ module Administration
       def fetch_campaign_instructions
         list = params[:locales].map do |locale|
           Mobility.with_locale(locale) do
-            CampaignOptionsLocaleSerializer.new(@campaign.campaign_options, locale: locale).to_h
+            CampaignOptionsLocaleSerializer.new(
+              context: {
+                locale: locale
+              }
+            ).serialize(@campaign.campaign_options)
           end
         end
         available_locales = @campaign.campaign_options.translations.pluck(:locale)
@@ -132,7 +142,7 @@ module Administration
       def fetch_descriptions
         list = params[:locales].map do |locale|
           Mobility.with_locale(locale) do
-            { description: @campaign.campaign_options.description, locale:  locale }
+            { description: @campaign.campaign_options.description, locale: locale }
           end
         end
         available_locales = @campaign.campaign_options.translations.pluck(:locale)
@@ -178,7 +188,10 @@ module Administration
       end
 
       def set_campaign
-        @campaign = policy_scope(Campaign).find_by(project_id: params[:project_id], id: params[:id])
+        @campaign = policy_scope(Campaign).includes(
+          assessments: { icon_attachment: { blob: :variant_records } },
+          reports: { icon_attachment: { blob: :variant_records } }
+        ).find_by(project_id: params[:project_id], id: params[:id])
       end
 
       def create_common_campaign
@@ -229,3 +242,4 @@ module Administration
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

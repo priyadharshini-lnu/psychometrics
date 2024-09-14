@@ -142,8 +142,12 @@ class EndUser::UsersController < ApplicationController
   end
 
   def serializer_campaign(campaigns, serializer)
-    campaigns.map do |campaign|
-      serializer.new(campaign, current_user: current_user, include: '**').to_h
-    end
+    Panko::ArraySerializer.new(
+      campaigns,
+      each_serializer: serializer,
+      context: {
+        current_user: current_user, include: '**'
+      }
+    ).to_a
   end
 end

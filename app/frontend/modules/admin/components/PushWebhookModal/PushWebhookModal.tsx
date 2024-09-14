@@ -84,6 +84,11 @@ const PushWebhookModal: React.FC<Props> = ({
       basePath: `projects/${projectId}`,
       trackUrl: true,
       responseType: WebhookTR,
+      apiConfig: {
+        filter: {
+          active_true: 'true',
+        },
+      },
     },
   )
 
@@ -148,6 +153,11 @@ const PushWebhookModal: React.FC<Props> = ({
     }
   }
 
+  const transformValues = values => ({
+    ...values,
+    payload: JSON.stringify(values.payloadData),
+  })
+
   return (
     <>
       <ResourceFormModal
@@ -169,6 +179,7 @@ const PushWebhookModal: React.FC<Props> = ({
         request={{
           submit: pushWebhookTest,
         }}
+        transformValues={transformValues}
         onSuccessfulSubmission={setSuccessReponse}
         hideOkButton={responseVisible}
       >
@@ -212,7 +223,7 @@ const PushWebhookModal: React.FC<Props> = ({
                         key={topic}
                         value={topic}
                       >
-                        {topic}
+                        {_.startCase(topic)}
                       </Option>
                     ))}
                   </Select>
@@ -239,7 +250,7 @@ const PushWebhookModal: React.FC<Props> = ({
                   </div>
                 </Form.Item>
                 <CopyToClipboard
-                  text={requestData}
+                  text={JSON.stringify(requestData)}
                   onCopy={() => message.info(
                     I18n.t('user_assessments.modals.push_test_webhook.copy_request_data_success'),
                   )}
@@ -270,7 +281,7 @@ const PushWebhookModal: React.FC<Props> = ({
                     />
                   </div>
                   <CopyToClipboard
-                    text={responseHeaders}
+                    text={JSON.stringify(responseHeaders, null, 2)}
                     onCopy={() => message.info(
                       I18n.t('user_assessments.modals.push_test_webhook.copy_response_headers_success'),
                     )}

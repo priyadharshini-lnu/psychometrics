@@ -20,6 +20,9 @@
 .icon {
   font-size: 1.5em;
   color: #ccc;
+  &:focus-visible {
+    outline: 4px solid var(--ant-primary-3) !important;
+  }
 }
 
 .preview {
@@ -50,8 +53,12 @@
     }
 
     &:hover {
-      background: rgba(0, 0, 0, .05);
+        background: rgba(0, 0, 0, .05);
+      }
+  }
+  &.dragging {
+    .item {
+      background: white;
     }
   }
-
 }

@@ -15,7 +15,7 @@ module Administration
       def show
         list = params[:locales].map do |locale|
           Mobility.with_locale(locale) do
-            ::Threesixty::EmailTemplateLocaleSerializer.new(resource, locale: locale).to_h
+            ::Threesixty::EmailTemplateLocaleSerializer.new(context: { locale: locale }).serialize(resource)
           end
         end
         render json: { list: list, available_locales: resource.translations.map(&:locale) }

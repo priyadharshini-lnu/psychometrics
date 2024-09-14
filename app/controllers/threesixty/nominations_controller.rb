@@ -13,7 +13,12 @@ module Threesixty
       respond_to do |format|
         format.html { render 'end_user/users/dashboard' }
         format.json do
-          render json: @subject, serializer: Threesixty::NominationSerializer, include: '**'
+          render json: Threesixty::NominationSerializer.new(
+            include: '**',
+            context: {
+              current_user: current_user
+            }
+          ).serialize(@subject)
         end
       end
     end
@@ -62,7 +67,9 @@ module Threesixty
         send_nomination_denied_email(participant) if params[:status] == 'denied'
       end
 
-      render json: @subject, serializer: Threesixty::NominationSerializer, include: '**'
+      render json: Threesixty::NominationSerializer.new(
+        include: '**'
+      ).serialize(@subject)
     end
 
     private

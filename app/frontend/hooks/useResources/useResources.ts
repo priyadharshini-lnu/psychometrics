@@ -5,7 +5,7 @@ import * as t from 'io-ts'
 import { isRight } from 'fp-ts/Either'
 import { PathReporter } from 'io-ts/PathReporter'
 import { useDispatch } from 'react-redux'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import humps from 'humps'
 import qs from 'qs'
 import { FilterValue, SorterResult, TablePaginationConfig } from 'antd/lib/table/interface'
@@ -24,6 +24,7 @@ import {
 } from './interfaces'
 import { formatErrors, defaultState } from './utils'
 import { isLiveEnvironment } from '~/utils/isLiveEnvironment'
+import { captureSchemaValidationError } from '~/utils/schemaValidationError'
 
 export function useResources<R extends {id: string}, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
@@ -36,7 +37,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const client = useClient()
   const dispatch = useDispatch()
   const location = useLocation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const queryString = qs.parse(location.search.substring(1))
   const schema = Schema[resourceName]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -90,6 +91,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     if (responseType) {
       const decoded = t.array(responseType).decode([data])
       const dataIsValid = isRight(decoded)
+
       if (!dataIsValid) {
         const errors = PathReporter.report(responseType.decode(data))
         dispatch(setResponseDataMismatched(resourceName, errors, data))
@@ -120,6 +122,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('fetch', formattedErrors) === RequestStatus.Success && response) {
+        captureSchemaValidationError(response)
         const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         const camelizedMeta = humps.camelizeKeys(meta)
         setState((previousState: ResourceState<R[], M>) => (
@@ -190,6 +193,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const { data, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success) {
+        captureSchemaValidationError(data)
         if (typeof data !== 'object') {
           responseTypeValidation(memberResponseType, response)
           resolve(response)
@@ -238,6 +242,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const { data: responseData, error, errors } = response
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
+        captureSchemaValidationError(data)
         if (typeof data !== 'object') {
           responseTypeValidation(memberResponseType, response)
           resolve(response)
@@ -307,6 +312,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && response) {
+        captureSchemaValidationError(response)
         const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         updateIndividualRecord(camelizedResponse)
         resolve(camelizedResponse)
@@ -336,6 +342,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus('add', formattedErrors) === RequestStatus.Success && response) {
+        captureSchemaValidationError(response)
         const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         setData([camelizedResponse, ...data])
         if (meta.recordCount) setMeta({ ...meta, recordCount: meta.recordCount + 1 })
@@ -361,6 +368,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
 
       const formattedErrors = formatErrors(errors || error, schema)
       if (getRequestStatus(requestKey, formattedErrors) === RequestStatus.Success && data && response) {
+        captureSchemaValidationError(response)
         const camelizedResponse = camelizeKeys(response, { except: camelizeExcept, only: camelizeOnly })
         setData(data.map(r => (r.id === response.id ? camelizedResponse : r)))
         resolve(camelizedResponse)
@@ -447,7 +455,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     const newQuery = { ...queryString, q: { ...query } }
     setQueryState(query)
     if (trackUrl) {
-      history.push({ search: `?${qs.stringify(newQuery)}` })
+      navigate({ search: `?${qs.stringify(newQuery)}` })
     }
   })
 

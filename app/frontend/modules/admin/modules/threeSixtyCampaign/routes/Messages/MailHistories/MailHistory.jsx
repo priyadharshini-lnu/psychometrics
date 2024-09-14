@@ -3,6 +3,7 @@ import {
   Table, Dropdown, Tag, message,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
+import { useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import { STATUSES } from '~/modules/admin/constants/mailHistory'
 import styles from './styles.less'
@@ -15,11 +16,8 @@ export default function MailHistory ({
   openModal,
   remove,
   mailHistories: { list, total },
-  match,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const { campaignId } = useParams()
   useEffect(() => {
     fetch(campaignId, page)
   }, [page])
@@ -88,7 +86,7 @@ export default function MailHistory ({
           path="/messages/mail_histories"
         />
       </div>
-      <EmailScheduleModal match={match} onSave={() => fetch(campaignId, page)} />
+      <EmailScheduleModal onSave={() => fetch(campaignId, page)} />
     </div>
   )
 }

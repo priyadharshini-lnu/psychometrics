@@ -5,7 +5,7 @@ import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { ItemType } from 'antd/lib/menu/hooks/useItems'
 import {
-  useParams, useLocation, useHistory, Link,
+  useParams, useLocation, useNavigate, Link,
 } from 'react-router-dom'
 import { WorkshopInvite } from 'modules/admin/modules/campaigns/core/invites'
 import { PlusOutlined } from '@ant-design/icons'
@@ -16,14 +16,14 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const { I18n } = window
 
 export const InvitesTable = () => {
-  const { campaignId } = useParams<{campaignId: string}>()
+  const { campaignId } = useParams() as { campaignId: string }
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const location = useLocation()
   const { modal, message } = App.useApp()
 
   const openForm = () => {
-    history.push(`${location.pathname}/add_invite`)
+    navigate(`${location.pathname}/add_invite`)
   }
 
   return (

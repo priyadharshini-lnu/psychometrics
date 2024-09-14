@@ -10,12 +10,14 @@ import { DATE_FORMAT_OPTIONS } from '~/modules/survey/components/modules/TextEnt
 interface Props {
   model: PreviewModel
   readOnly: boolean
+  errors: string[]
 }
 
-const DateEntryPreview: FC<Props> = ({ model, readOnly }) => {
+const DateEntryPreview: FC<Props> = ({ model, readOnly, errors }) => {
   const {
     result: { answers },
     props: { dateFormat },
+    id: questionId,
   } = model
 
   const handleAnswerChange = (value: dayjs.Dayjs | null) => {
@@ -39,6 +41,8 @@ const DateEntryPreview: FC<Props> = ({ model, readOnly }) => {
       picker={pickerMode}
       value={value ? dayjs(value, dateFormat) : null}
       onChange={handleAnswerChange}
+      aria-invalid={!!errors.length}
+      aria-describedby={`error-for-question-${questionId}`}
     />
   )
 }

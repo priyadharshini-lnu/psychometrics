@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
 import store from '~/modules/admin/store'
 import { PortalMenu } from '~/components/MainMenu'
@@ -12,4 +12,5 @@ const MenuApp = () => (
   </div>
 )
 
-ReactDOM.render(<MenuApp />, document.getElementById('main_menu'))
+const root = createRoot(document.getElementById('main_menu'))
+root.render(<MenuApp />)

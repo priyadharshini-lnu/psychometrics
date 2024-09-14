@@ -1,9 +1,13 @@
+import _ from 'lodash'
 import humps from 'humps'
 import { StringMap } from '@thetalententerprise/jsonapi-react'
 import { devtools } from 'zustand/middleware'
 import create from 'zustand'
-import { BaseMeta, ResourceState, StateManager } from './interfaces'
+import {
+  BaseMeta, ResourceState, StateManager, Requests, RequestType,
+} from './interfaces'
 
+const { I18n } = window
 interface Error {
   [key: string]: string[] | string
 }
@@ -59,6 +63,7 @@ export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = n
 
 export const formatErrors = (errors: StringMap | undefined, schema: Schema) => {
   if (errors === undefined) return null
+  if (errors.status === '500') return { base: I18n.t('errors.error_500') }
 
   errors = [errors].flat().map((error) => {
     const pointer = error.source?.pointer ? humps.camelize(error.source.pointer) : null
@@ -87,3 +92,14 @@ export const createZutandStoreForJsonApi = <D, M extends BaseMeta = BaseMeta>(na
     ),
   )
 )
+
+export const getErrorMsgFromJsonApiRequests = (requests: Requests, requestType: RequestType = 'fetch'): string => {
+  const errors = requests[requestType]?.errors
+  if (!errors) {
+    return ''
+  }
+  const errorTitle = _.get(errors, '[0].base[0].title') || ''
+  const errorDescription = _.get(errors, '[0].base[0].detail') || ''
+
+  return errorTitle + errorDescription
+}

@@ -75,7 +75,7 @@ test('Selected time should be displayed on top', async () => {
 })
 
 test('On Desktop - Back icon should be shown only after a time-slot is selected and clicking on it executes the callback', async () => {
-  const handleTimeSelection = jest.fn(date => date)
+  const handleTimeSelection = vi.fn(date => date)
 
   render(
     <div id="container">
@@ -102,7 +102,7 @@ test('On Desktop - Back icon should be shown only after a time-slot is selected 
 })
 
 test('On Mobile - Back icon should be shown before selecting a time-slot', async () => {
-  const handleTimeSelection = jest.fn(date => date)
+  const handleTimeSelection = vi.fn(date => date)
   resizeScreenSize(400)
 
   render(
@@ -132,8 +132,8 @@ test('On Mobile - Back icon should be shown before selecting a time-slot', async
 })
 
 test('On Mobile - Clicking on Back icon before selecting a time-slot should call only onCancelDateSelection handler', async () => {
-  const handleTimeSelection = jest.fn(date => date)
-  const handleOnCancelDateSelection = jest.fn(() => null)
+  const handleTimeSelection = vi.fn(date => date)
+  const handleOnCancelDateSelection = vi.fn(() => null)
   resizeScreenSize(400)
 
   render(
@@ -160,8 +160,8 @@ test('On Mobile - Clicking on Back icon before selecting a time-slot should call
 })
 
 test('On Mobile - Clicking on Back button after selecting a time-slot should call only onTimeSelection handler', async () => {
-  const handleTimeSelection = jest.fn(date => date)
-  const handleOnCancelDateSelection = jest.fn(() => null)
+  const handleTimeSelection = vi.fn(date => date)
+  const handleOnCancelDateSelection = vi.fn(() => null)
   resizeScreenSize(400)
 
   render(
@@ -193,8 +193,8 @@ test('On Mobile - Clicking on Back button after selecting a time-slot should cal
 })
 
 test('Questionnaire should be displayed only when date is selected', async () => {
-  const handleTimeSelection = jest.fn(date => date)
-  const handleOnCancelDateSelection = jest.fn(() => null)
+  const handleTimeSelection = vi.fn(date => date)
+  const handleOnCancelDateSelection = vi.fn(() => null)
 
   const { rerender } = render(
     <div id="container">

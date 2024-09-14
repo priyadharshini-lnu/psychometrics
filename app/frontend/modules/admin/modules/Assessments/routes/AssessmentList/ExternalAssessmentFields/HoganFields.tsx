@@ -24,6 +24,7 @@ export const HoganFields: React.FC<{ assessment: Assessment | undefined }> = ({ 
         rules={[{ required: true }]}
       >
         <Select
+          disabled={!!assessment}
           notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}
         >
           {getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(({ id, name }) => (

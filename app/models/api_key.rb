@@ -11,5 +11,5 @@ class ApiKey < ApplicationRecord
 
   validates :token, :key, presence: true
 
-  attr_encrypted :token, key: Base64.decode64(Rails.application.secrets.encrypted_key.to_s)
+  attr_encrypted :token, key: Base64.decode64(Settings.secrets.encrypted_key.to_s)
 end

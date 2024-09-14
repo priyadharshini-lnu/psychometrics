@@ -140,7 +140,8 @@ module Administration
         client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
         client_ids = [] if client_ids.nil?
         ancestor_ids = ancestors.nil? ? [] : ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
-        scope.where('id in (?) or ancestry ~ ?', ancestor_ids + client_ids, "(^|\\D)(#{client_ids.join('|')})(/|$)")
+        scope.where('clients.id in (?) or ancestry ~ ?', ancestor_ids + client_ids,
+                    "(^|\\D)(#{client_ids.join('|')})(/|$)")
       end
     end
   end

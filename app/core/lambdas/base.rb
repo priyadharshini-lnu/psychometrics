@@ -21,7 +21,7 @@ module Lambdas
     end
 
     def send_message_to_sqs
-      aws_config = Rails.application.secrets.aws[:config]
+      aws_config = Settings.secrets.aws[:config]
       Aws::SQS::Client.new(
         credentials: Aws::Credentials.new(
           aws_config[:access_key_id],
@@ -74,7 +74,7 @@ module Lambdas
     end
 
     def signing_secret
-      @signing_secret ||= Rails.application.secrets.aws.dig(:lambda, :signing_secret)
+      @signing_secret ||= Settings.secrets.aws.dig(:lambda, :signing_secret)
     end
 
     def lambda_details

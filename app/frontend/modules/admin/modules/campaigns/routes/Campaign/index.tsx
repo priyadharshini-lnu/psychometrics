@@ -29,9 +29,8 @@ interface OwnProps {
 
 type Props = PropsFromRedux & OwnProps
 
-const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions }) => {
-  const { campaignId } = useParams<{ campaignId: string }>()
-  const { projectId } = useParams<{ projectId: string }>()
+const Campaign: React.FC<Props> = ({ fetch, campaignPermissions }) => {
+  const { campaignId, projectId } = useParams() as { projectId: string, campaignId: string }
 
   useEffect(() => {
     fetch(parseInt(campaignId, 10), parseInt(projectId, 10))
@@ -73,11 +72,11 @@ const CampaignComponent: React.FC<Props> = ({ fetch, campaignPermissions }) => {
       <section data-testid="admin_campaign_section">
         <RouteList
           routes={routes}
-          urlPrefix={`${settings.urlPrefix}/:campaignId`}
+          urlPrefix=""
         />
       </section>
     </div>
   )
 }
 
-export const Campaign = connector(CampaignComponent)
+export default connector(Campaign)

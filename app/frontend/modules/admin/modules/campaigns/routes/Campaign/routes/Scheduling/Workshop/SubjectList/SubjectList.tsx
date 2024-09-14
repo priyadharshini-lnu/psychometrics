@@ -63,7 +63,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux & OwnProps
 
 export const SubjectListComponent: React.FC<Props> = ({ workshop, currentUser }) => {
-  const { id, campaignId } = useParams<{ id: string, campaignId: string }>()
+  const { id, campaignId } = useParams() as { id: string, campaignId: string }
   const [openEditDrawer, setOpenEditDrawer] = useState(false)
   const [currentSubjectId, setCurrentSubjectId] = useState('')
   const [currentUserId, setCurrentUserId] = useState('')
@@ -119,7 +119,7 @@ const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {
 
 const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubject, currentUser }) => {
   const { resource } = useResourceContext<WorkshopSubject>()
-  const { campaignId } = useParams<{ campaignId: string }>()
+  const { campaignId } = useParams() as { campaignId: string }
   const [openForm, setOpenForm] = useState(false)
   const [selectedSubjects, setSelectedSubjects] = useState<WorkshopSubject[]>([])
   const { memberAction } = useResources('workshops', { basePath: `campaigns/${campaignId}/` })

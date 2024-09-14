@@ -15,6 +15,7 @@ module UsersResults
 
       recompute_saville_assessment if user_assessment.saville?
       recompute_pearson_assessment if user_assessment.pearson?
+      recompute_mettl_assessment if user_assessment.mettl?
 
       UserAssessments::SaveScores.call!(user_assessment)
 
@@ -29,6 +30,10 @@ module UsersResults
 
     def recompute_pearson_assessment
       Pearson::SaveScoresAndReports.call!(user_assessment)
+    end
+
+    def recompute_mettl_assessment
+      ::Mettl::SaveScoresAndReport.call!(user_assessment)
     end
   end
 end
