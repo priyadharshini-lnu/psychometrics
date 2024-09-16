@@ -175,7 +175,8 @@ module Administration
                with_context(campaign: campaign, current_campaign_user_id: resource.id)
         if form.valid?
           audit! :update_campaign_user, campaign, payload: resource_params.permit!, campaign: campaign
-          resource.update(form.attributes)
+          resource.update(form.attributes.except(:locale))
+          resource.user_profile.update(locale: form.attributes[:locale])
           render json: Administration::Campaigns::UserSerializer.new(
             context: {
               current_user: current_user,
