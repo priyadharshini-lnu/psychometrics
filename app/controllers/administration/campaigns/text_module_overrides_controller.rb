@@ -13,7 +13,7 @@ module Administration
           result = TextModuleOverride.create!(form.attributes)
           audit! :create, result, payload: params, campaign: campaign
           create_event(@user_report, 'created_text', { module: result.module_id, content: result.content })
-          render json: result
+          render json: TextModuleOverrideSerializer.new.serialize(result)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -26,7 +26,7 @@ module Administration
           override.update!(form.attributes.merge(approved: false))
           audit! :update, override, payload: params, campaign: campaign
           create_event(@user_report, 'updated_text', { module: override.module_id, content: override.content })
-          render json: override
+          render json: TextModuleOverrideSerializer.new.serialize(override)
         else
           render json: { errors: form.errors.messages }, status: 422
         end
@@ -36,7 +36,7 @@ module Administration
         result = ::Campaigns::TextModuleOverrides::Approve.call!(params, current_user)
         audit! :approve, result, payload: params, campaign: campaign
         create_event(result.user_report, 'approved_text', { module: result.module_id })
-        render json: result
+        render json: TextModuleOverrideSerializer.new.serialize(result)
       end
 
       def disapprove
@@ -44,7 +44,7 @@ module Administration
         text_overrider.update(approved: false)
         audit! :disapprove, text_overrider, payload: params, campaign: campaign
         create_event(text_overrider.user_report, 'disapproved_text', { module: text_overrider.module_id })
-        render json: text_overrider
+        render json: TextModuleOverrideSerializer.new.serialize(text_overrider)
       end
 
       def destroy
