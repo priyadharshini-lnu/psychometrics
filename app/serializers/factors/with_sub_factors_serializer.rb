@@ -20,7 +20,7 @@ module Factors
     def alias
       return if context[:alias].blank?
 
-      context[:alias][object.id].first&.name
+      context[:alias][object.id]&.first&.name
     end
   end
 end
