@@ -29,10 +29,10 @@ const buildeStyles = (styles, overrides) => {
   }
   outerStyle.borderRadius = style.borderRadius || borderRadius
 
-  if (style.boxShadow?.enabled) {
+  if (style.boxShadow?.enabled || shadow) {
     const {
       x = offsetX, y = offsetY, blur = shadow, spread = 0, color = '#000000',
-    } = style.boxShadow
+    } = (style.boxShadow || {})
     // eslint-disable-next-line max-len
     outerStyle.boxShadow = `${offsetX || x || 0}px ${offsetY || y || 0}px ${shadow || blur || 0}px ${spread || 0}px ${color}`
   }
