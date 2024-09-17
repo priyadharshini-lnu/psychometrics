@@ -35,7 +35,7 @@ export const getSelected = (): string => {
     return 'norms'
   }
 
-  if (location.href.match(/\/administration(\/)(dashboards)/)) {
+  if (location.href.match(/\/admin(\/)(dashboards)/)) {
     return 'dashboards'
   }
 
