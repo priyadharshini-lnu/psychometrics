@@ -46,7 +46,7 @@ module Hogan
 
       Services::Hogan::Api::Json::AddParticipantReport.call({
         group: hogan_group_name,
-        norm_id: report.external_settings[:norm_id],
+        norm_id: hogan_norm_id(report),
         language_id: report.external_settings[:language_id],
         assessment_id: assessment_id_for_report(user_report.external_report_id, package_id),
         participant_id: credentials.participant_id,
@@ -54,6 +54,14 @@ module Hogan
         report_id: package_id || user_report.external_report_id,
         suitability_id: report.external_settings[:suitability_id]&.to_s
       }, &)
+    end
+
+    def hogan_norm_id(report)
+      norm_from_report = report.external_settings&.dig(:norm_id)
+
+      return norm_from_report if norm_from_report.present? && norm_from_report != HoganCredential::DEFAULT_NORM
+
+      credentials.norm
     end
 
     def assessment_id_for_report(report_id, package_id)

@@ -237,6 +237,7 @@ class UserAssessment < ApplicationRecord
   def norm_name
     return pearson_norm_name if assessment.pearson?
     return saville_norm_name if assessment.saville?
+    return hogan_norm_name if assessment.hogan?
 
     norm&.name
   end
@@ -343,6 +344,10 @@ class UserAssessment < ApplicationRecord
   def pearson_norm_name
     Assessments::PearsonSettings.norms(assessment.external_assessment_id, pearson_user_assessment.norm_id)&.
       find { |norm| norm[:id] == pearson_user_assessment.norm_id }&.dig(:name)
+  end
+
+  def hogan_norm_name
+    user&.hogan_credential&.norm
   end
 end
 # rubocop:enable Metrics/ClassLength

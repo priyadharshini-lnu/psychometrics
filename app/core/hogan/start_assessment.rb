@@ -48,7 +48,8 @@ module Hogan
           password: password,
           participant_id: participant_id,
           user_id: current_user.id,
-          provider: project.hogan_provider
+          provider: project.hogan_provider,
+          norm: HoganCredential::DEFAULT_NORM
         )
       end
     end
