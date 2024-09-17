@@ -23,6 +23,7 @@ const PropertyPanelComponent = (props) => {
   const {
     question, offset, addPageBreak, addSkipLogic, copyQuestion, restricted,
     openDisplayLogic, changeType, openPreview, firstBlockContentOffset, unselectQuestion,
+    allowChange,
   } = props
   const panelRef = useRef(null)
   const [showMenu, setShowMenu] = useState(false)
@@ -59,7 +60,7 @@ const PropertyPanelComponent = (props) => {
         <span className={styles.label}>Change Question Type</span>
         <Button shape="circle" type="text" onClick={unselectQuestion} icon={<CloseOutlined />} />
       </Flex>
-      {question.isNew ? (
+      {allowChange || question.isNew ? (
         <>
           <Popover
             overlayInnerStyle={{ padding: 0 }}
