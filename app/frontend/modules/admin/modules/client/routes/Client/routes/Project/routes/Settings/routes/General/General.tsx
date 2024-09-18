@@ -9,8 +9,8 @@ import {
 import ResourceForm from '~/components/ResourceForm'
 import { useResources } from '~/hooks/useResources/useResources'
 
-const { Option } = Select
 const { I18n } = window
+const { availableLocales } = I18n
 
 export const General: React.FC = () => {
   const { projectId } = useParams() as { projectId: string }
@@ -87,24 +87,9 @@ export const General: React.FC = () => {
 
               <Form.Item name="locales" label={I18n.t('administration.projects.general_settings.locales_label')}>
                 <Select mode="multiple">
-                  <Option value="en">
-                    {I18n.t('languages.en')}
-                  </Option>
-                  <Option value="ar">
-                    {I18n.t('languages.ar')}
-                  </Option>
-                  <Option value="de">
-                    {I18n.t('languages.de')}
-                  </Option>
-                  <Option value="pl">
-                    {I18n.t('languages.pl')}
-                  </Option>
-                  <Option value="pt">
-                    {I18n.t('languages.pt')}
-                  </Option>
-                  <Option value="es-ES">
-                    {I18n.t('languages.es-ES')}
-                  </Option>
+                  {availableLocales.map(locale => (
+                    <Select.Option key={locale} value={locale}>{I18n.t(`languages.${locale}`)}</Select.Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item name="enableLiveChat" valuePropName="checked">

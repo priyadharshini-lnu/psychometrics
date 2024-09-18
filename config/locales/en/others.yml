@@ -2288,7 +2288,7 @@ en:
     hu: Hungarian
     id: Bahasa Indonesia
     it: Italian
-    ja: Japanese
+    ja: 日本語
     km: Khmer
     ko: Korean
     lt: Lithuanian
@@ -2321,11 +2321,11 @@ en:
     uk: Ukrainian
     ur: Urdu
     vi: Vietnamese
-    zh: 汉语
-    zh-CN: Chinese (Simplified)
-    zh-HK: Chinese (Hong Kong)
+    zh: 简体中文
+    zh-CN: 简体中文
+    zh-HK: 繁體中文 (香港特別行政区)
     zh-TW: 漢語
-    zh_CN: Chinese (Simplified)
+    zh_CN: 简体中文
     zh_TW: Chinese (Traditional)
   license_usage:
     active: Active

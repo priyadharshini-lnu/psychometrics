@@ -7,6 +7,9 @@ enduser_locales:
   - es-ES
   - pl
   - pt
+  - zh
+  - zh-HK
+  - ja
 timezone: Abu Dhabi
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
 subdomain: <%= ENV["APP_SUB_DOMAIN"] %> # subdomain
