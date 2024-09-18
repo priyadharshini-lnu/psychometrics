@@ -80,7 +80,7 @@ export const CampaignFactorsComponent = ({ columns, saveCampaignFactors }: Props
   }
 
   return (
-    <>
+    <div className={styles.main}>
       <Typography.Title level={4}>Campaign Factors</Typography.Title>
       <Form
         form={form}
@@ -170,7 +170,7 @@ export const CampaignFactorsComponent = ({ columns, saveCampaignFactors }: Props
           )}
         </Form.List>
       </Form>
-    </>
+    </div>
   )
 }
 
