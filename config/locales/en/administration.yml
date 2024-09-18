@@ -2657,8 +2657,8 @@ en:
         title: Reports
       modals:
         remap_assessment:
-          assesment_id: Assessment ID
-          new_assessment_id: New Assessment ID
+          new_assessment_name: New Assessment Name
+          old_assessment_name: Old Assessment Name
           success_message: Remaping of assessment was scheduled, please refresh after some time. Do not edit the report and do not save any new changes until remapping is done.
       name: Reports
       new:
