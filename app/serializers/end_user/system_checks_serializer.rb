@@ -7,11 +7,7 @@ module EndUser
     attributes :campaign_id
 
     def url
-      if object.assessment.agile?
-        return object.is_a?(Assign) ? agile_assign_path(object) : agile_user_assessment_path(object)
-      end
-
-      return pass_assign_path(object) if object.is_a?(Assign)
+      return agile_user_assessment_path(object) if object.assessment.agile?
 
       return pass_user_assessment_path(object) if object.campaign.common?
 
