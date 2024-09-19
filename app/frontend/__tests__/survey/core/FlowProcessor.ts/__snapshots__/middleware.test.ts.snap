@@ -79,6 +79,7 @@ exports[`initializing base assessment > init action should init assessment data 
         "template_id": null,
       },
     },
+    "campaignFactorList": [],
     "campaignUser": undefined,
     "currentElement": null,
     "currentPage": 0,

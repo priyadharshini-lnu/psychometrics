@@ -126,6 +126,10 @@ class AnswerManager {
     }]
   }
 
+  customConditionCampaignFactorFeedback () {
+    return []
+  }
+
   getAnswers () {
     if (!this.config || !this.config.conditions) {
       return
@@ -159,6 +163,9 @@ class AnswerManager {
           return this.customConditionTextEntryDates()
         }
         break
+      }
+      case 'CampaignFactorFeedback': {
+        return this.customConditionCampaignFactorFeedback()
       }
       default:
     }

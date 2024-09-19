@@ -196,6 +196,12 @@ const ModuleConfigs = {
     icon: 'microphone',
     randomization: false,
   },
+  CampaignFactorFeedback: {
+    moduleName: 'Campaign Factor Feedback',
+    icon: 'pencil-square-o',
+    randomization: false,
+    validations: ['MinLength', 'MaxLength', 'CharacterRange', 'MinWords', 'MaxWords', 'WordsRange'],
+  },
 
   FactorSelect: {
     moduleName: 'Factor Select',

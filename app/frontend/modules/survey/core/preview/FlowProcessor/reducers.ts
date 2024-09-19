@@ -185,6 +185,7 @@ const HANDLERS = {
       otherPendingAssessmentCount: result.other_pending_assessments_count,
       linkedQuestions: data.linked_questions,
       evaluationSessionId: data.evaluationSessionId || result.evaluation_session_id,
+      campaignFactorList: data.campaign_factors_list || [],
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

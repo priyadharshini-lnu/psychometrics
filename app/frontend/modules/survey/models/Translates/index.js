@@ -14,6 +14,7 @@ import TextEntry from './TextEntry'
 import VideoResponse from './VideoResponse'
 import FileUpload from './FileUpload'
 import AudioResponse from './AudioResponse'
+import CampaignFactorFeedback from './CampaignFactorFeedback'
 import FactorSelect from './FactorSelect'
 
 export default {
@@ -33,5 +34,6 @@ export default {
   VideoResponse,
   FileUpload,
   AudioResponse,
+  CampaignFactorFeedback,
   FactorSelect,
 }

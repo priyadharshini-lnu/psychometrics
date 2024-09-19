@@ -76,7 +76,12 @@ const PropertyPanelComponent = (props) => {
               className={`${styles.menuButton}`}
             >
               <span className={`fa fa-${serializedQuestion.moduleConfig.icon} ${styles.icon}`} />
-              <span>{serializedQuestion.moduleConfig.moduleName}</span>
+              <span
+                title={serializedQuestion.moduleConfig.moduleName}
+                className={styles.questionType}
+              >
+                {serializedQuestion.moduleConfig.moduleName}
+              </span>
               <span className="caret" />
             </Button>
           </Popover>
@@ -157,6 +162,7 @@ const PropertyPanelComponent = (props) => {
           split={<Divider style={{ margin: 0 }} />}
           size={1}
           ref={panelRef}
+          wrap={false}
         >
           {questiontypeBtn}
           {customProperties}

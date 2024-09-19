@@ -2019,6 +2019,13 @@ en:
     'no': 'No'
     passwordSetting:
       update_success: Security settings was updated successfully
+    questions:
+      campaign_factor_feedback:
+        add_skill: Add skill
+        feedback: Feedback
+        max_factors: Max factors
+        min_factors: Min factors
+        skill_factor: Skill factor
     report_error: Oops, something went wrong with your report. Please contact the support.
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
@@ -3397,6 +3404,7 @@ en:
     max_character: Your response must be no more than %{max} characters.
     max_word: Your response must not be more than %{max} words.
     min_character: Your response must contain at least %{min} characters.
+    min_factor: Your response must contain at least %{min} factor feedbacks.
     min_word: Your response must be atleast %{min} words
     most: Please select at most %{max} choice(s)
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.

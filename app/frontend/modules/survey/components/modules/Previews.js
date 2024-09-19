@@ -17,6 +17,7 @@ import { GraphicSliderPreview } from './GraphicSlider/components/Preview'
 import { VideoResponsePreview } from './VideoResponse'
 import FileUploadPreview from './FileUpload/components/Preview'
 import { AudioResponsePreview } from './AudioResponse'
+import { CampaignFactorFeedbackPreview } from './CampaignFactorFeedback'
 
 export default {
   StaticContentPreview,
@@ -37,5 +38,6 @@ export default {
   VideoResponsePreview,
   FileUploadPreview,
   AudioResponsePreview,
+  CampaignFactorFeedbackPreview,
   FactorSelectPreview,
 }

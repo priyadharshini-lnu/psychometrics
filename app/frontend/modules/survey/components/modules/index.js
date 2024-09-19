@@ -20,6 +20,7 @@ import GraphicSlider, { GraphicSliderProperties } from './GraphicSlider'
 import { VideoResponse, VideoResponseProperties } from './VideoResponse'
 import FileUpload, { FileUploadProperties } from './FileUpload'
 import { AudioResponseProperties, AudioResponse } from './AudioResponse'
+import CampaignFactorFeedback, { CampaignFactorFeedbackProperties } from './CampaignFactorFeedback'
 import { FactorSelect, FactorSelectProperties } from './FactorSelect'
 import Previews from './Previews'
 
@@ -42,6 +43,7 @@ const Modules = {
   VideoResponse,
   FileUpload,
   AudioResponse,
+  CampaignFactorFeedback,
   FactorSelect,
 }
 
@@ -72,6 +74,7 @@ const Properties = {
   VideoResponseProperties,
   FileUploadProperties,
   AudioResponseProperties,
+  CampaignFactorFeedbackProperties,
   FactorSelectProperties,
 }
 export {

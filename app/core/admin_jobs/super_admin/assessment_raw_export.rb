@@ -6,7 +6,7 @@ module AdminJobs
       QUESTIONS = %w[ConstantSum GapAnalysis GraphicSlider HotSpot
                      MatrixTable MetaInfo MultipleChoice PickGroupRank
                      RankOrder SideBySide Slider TextEntry Timing FileUpload
-                     AudioResponse VideoResponse FactorSelect].freeze
+                     AudioResponse VideoResponse FactorSelect CampaignFactorFeedback].freeze
 
       def initialize(_)
         super

@@ -107,6 +107,10 @@ export class ModulesMenu extends Component {
               <span className={`fa fa-microphone ${styles.icon}`} />
               Audio Response
             </a>
+            <a onClick={this.click} type="CampaignFactorFeedback" className={`col-sm-6 ${styles.button}`}>
+              <span className={`fa fa-pencil-square-o ${styles.icon}`} />
+              Campaign Factor Feedback
+            </a>
             <a onClick={this.click} type="FactorSelect" className={`col-sm-6 ${styles.button}`}>
               <span className={`fa fa-star-half-o ${styles.icon}`} />
               Factor Selection
