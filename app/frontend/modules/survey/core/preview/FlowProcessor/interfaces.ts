@@ -180,6 +180,7 @@ export interface DefaultState {
   evaluationSessionId: string | null
   invalidSession: boolean
   answersSaved: boolean
+  extraOptions: {}
 }
 
 export interface MediaResponse {
@@ -253,6 +254,7 @@ export interface InitData {
   isAssessor: boolean
   linked_questions: {[key:string]: number[]}
   evaluationSessionId: string
+  extra: {}
 }
 export interface Result {
   id: number
