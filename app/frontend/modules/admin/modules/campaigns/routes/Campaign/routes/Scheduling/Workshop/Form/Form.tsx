@@ -31,7 +31,7 @@ interface BasicInfoData {
   video_call_type: number,
   meeting_link: string,
   cancellation_lead_time: number,
-  reschedule_lead_time: number,
+  scheduling_lead_time: number,
   allow_late_cancellation_and_rescheduling: boolean,
   workshop_resources: {
     key: number,
@@ -58,7 +58,7 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
     meeting_link: workshop?.meetingLink || '',
     workshop_resources: workshop?.workshopResources || [{ key: 1, name: '', url: '' }],
     cancellation_lead_time: workshop?.cancellationLeadTime,
-    reschedule_lead_time: workshop?.rescheduleLeadTime,
+    scheduling_lead_time: workshop?.schedulingLeadTime,
     allow_late_cancellation_and_rescheduling: workshop?.allowLateCancellationAndRescheduling,
   })
   const navigate = useNavigate()

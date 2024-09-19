@@ -6,7 +6,7 @@ RSpec::Matchers.define_negated_matcher :not_change, :change
 
 describe Workshops::Booking::RescheduleSlot do
   let!(:user) { create(:user) }
-  let!(:workshop) { create(:workshop, total_seats: 10, booked_seats: 1, reschedule_lead_time: 3600) }
+  let!(:workshop) { create(:workshop, total_seats: 10, booked_seats: 1, scheduling_lead_time: 3600) }
   let!(:new_workshop) { create(:workshop, total_seats: 10, booked_seats: 1) }
   let(:workshop_invite) { create(:workshop_invite, workshops: [workshop]) }
   let!(:workshop_invited_subject) do
@@ -69,8 +69,8 @@ describe Workshops::Booking::RescheduleSlot do
         expect(workshop_subject.reload.scheduling_status).to eq('scheduled')
       end
 
-      it 'allows requested_reschedule even if reschedule_lead_time passed' do
-        frozen_time = workshop.start_time - workshop.reschedule_lead_time.hours + 1.hour
+      it 'allows requested_reschedule even if scheduling_lead_time passed' do
+        frozen_time = workshop.start_time - workshop.scheduling_lead_time.hours + 1.hour
 
         allow(Time).to receive(:now).and_return(frozen_time)
 

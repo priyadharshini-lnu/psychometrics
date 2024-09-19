@@ -82,7 +82,7 @@ export const BookingsSuccessComponent: FC<PropsFromRedux> = ({
   const deadlineToAllowCancelByUser = bookedDateTimeMomentObjectTz?.clone()
     .subtract(bookingDetails?.cancellationLeadTime || 0, 's')
   const deadlineToAllowRescheduleByUser = bookedDateTimeMomentObjectTz?.clone()
-    .subtract(bookingDetails?.rescheduleLeadTime || 0, 's')
+    .subtract(bookingDetails?.schedulingLeadTime || 0, 's')
   const bookingEndTime = bookedDateTimeMomentObjectTz?.clone().add(duration, 's')
   const meetingTime = `${bookedDateTimeMomentObjectTz?.clone().format('hh:mmA')} - ${bookingEndTime?.format('hh:mmA')}`
   const allowCancelByUser = !!deadlineToAllowCancelByUser && currentTime.isSameOrBefore(deadlineToAllowCancelByUser)

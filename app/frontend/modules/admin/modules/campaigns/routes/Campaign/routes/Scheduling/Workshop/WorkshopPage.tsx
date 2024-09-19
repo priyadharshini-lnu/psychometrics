@@ -129,9 +129,9 @@ export const WorkshopPage: FC = () => {
             <ResourcesTag resources={workshop.workshopManagers} />
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('administration.scheduling.info.reschedule_lead_time')}
+            label={I18n.t('administration.scheduling.info.scheduling_lead_time')}
           >
-            {secondsToDayHoursAndMinutes(workshop.rescheduleLeadTime)}
+            {secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.link')}>
             { workshop.meetingLink ? (

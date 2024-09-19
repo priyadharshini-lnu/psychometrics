@@ -6317,7 +6317,7 @@ CREATE TABLE public.workshops (
     total_seats integer DEFAULT 0 NOT NULL,
     booked_seats integer DEFAULT 0 NOT NULL,
     cancellation_lead_time integer DEFAULT 0,
-    reschedule_lead_time integer DEFAULT 0,
+    scheduling_lead_time integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     name character varying,
@@ -13833,9 +13833,10 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240912114619'),
+('20240904115105'),
 ('20240911121555'),
 ('20240905041021'),
-('20240904115105'),
 ('20240904091820'),
 ('20240903092308'),
 ('20240902131904'),

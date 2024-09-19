@@ -80,7 +80,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
       expect(parsed_response['timezone']).to eq(workshop.timezone)
       expect(parsed_response['duration']).to eq(workshop.duration)
       expect(parsed_response['allow_language_preference']).to eq(workshop_invite.allow_language_preference)
-      expect(parsed_response['reschedule_lead_time']).to eq(workshop.reschedule_lead_time)
+      expect(parsed_response['scheduling_lead_time']).to eq(workshop.scheduling_lead_time)
       expect(parsed_response['cancellation_lead_time']).to eq(workshop.cancellation_lead_time)
       expect(parsed_response['allow_neurodiversity_option']).to eq(workshop_invite.allow_neurodiversity_option)
       expect(parsed_response['available_dates'].count).to eq(workshop_invite.available_workshops_date_and_id.count)
@@ -142,7 +142,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
     end
 
     it 'returns error is passed reschedule deadline' do
-      workshop.update!(booked_seats: 1, total_seats: 2, reschedule_lead_time: 0)
+      workshop.update!(booked_seats: 1, total_seats: 2, scheduling_lead_time: 0)
 
       frozen_time = workshop.start_time + 1.hour
 
@@ -323,7 +323,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
     context 'reschedule a seat' do
       it 'returns success' do
         workshop_invited_subject.update!(status: 'accepted')
-        workshop.update!(reschedule_lead_time: 3600, booked_seats: 1)
+        workshop.update!(scheduling_lead_time: 3600, booked_seats: 1)
         create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
 
@@ -347,7 +347,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         workshop_invited_subject.update!(status: 'accepted')
         create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
-        workshop.update!(reschedule_lead_time: 0)
+        workshop.update!(scheduling_lead_time: 0)
 
         frozen_time = workshop.start_time + 1.hour
 
@@ -375,7 +375,7 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         workshop_invited_subject.update!(status: 'accepted')
         create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
-        workshop.update!(reschedule_lead_time: 0)
+        workshop.update!(scheduling_lead_time: 0)
 
         frozen_time = workshop.start_time + 1.hour
 
@@ -400,10 +400,10 @@ RSpec.describe EndUser::WorkshopInvitesController, type: :controller do
         workshop_invited_subject.update!(status: 'accepted')
         workshop_subject = create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
         new_workshop = create(:workshop, start_time: workshop.start_time + 1.day)
-        workshop.update!(reschedule_lead_time: 0, allow_late_cancellation_and_rescheduling: true)
+        workshop.update!(scheduling_lead_time: 0, allow_late_cancellation_and_rescheduling: true)
         workshop_booked_seats = workshop.booked_seats
 
-        frozen_time = workshop.start_time - workshop.reschedule_lead_time.hours + 1.hour
+        frozen_time = workshop.start_time - workshop.scheduling_lead_time.hours + 1.hour
 
         allow(Time).to receive(:current).and_return(frozen_time)
 

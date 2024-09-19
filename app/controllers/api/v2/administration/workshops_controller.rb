@@ -68,7 +68,7 @@ module Api
           :meeting_link,
           :duration,
           :cancellation_lead_time,
-          :reschedule_lead_time,
+          :scheduling_lead_time,
           :video_call_type,
           :start_time,
           :timezone,

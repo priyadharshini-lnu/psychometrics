@@ -228,8 +228,8 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             </Col>
             <Col xs={12} lg={8}>
               <Form.Item
-                name="reschedule_lead_time"
-                label={I18n.t('administration.scheduling.assessment_center_form.reschedule_lead_time_label')}
+                name="scheduling_lead_time"
+                label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
                 {...fieldLayout}
                 rules={[
                   {
