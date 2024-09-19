@@ -36,8 +36,6 @@ class Report < ApplicationRecord
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :modules, through: :pages, dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
-  has_many :clients_reports, dependent: :restrict_with_error
-  has_many :clients, through: :clients_reports
   has_many :translations, as: :resource, dependent: :destroy
   has_many :user_reports, dependent: :restrict_with_error
   has_many :campaign_reports, dependent: :restrict_with_error
@@ -134,9 +132,6 @@ class Report < ApplicationRecord
   scope :available_to_view, lambda {
     joins(:assessments).where.
       has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.zone.now) }
-  }
-  scope :for_clients, lambda { |client_ids|
-    joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }
   }
   scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
   scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }

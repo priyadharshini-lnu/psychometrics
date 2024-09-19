@@ -852,13 +852,6 @@ en:
       modal:
         title: Import External Campaign Scores
     clients:
-      assessments:
-        resource:
-          confirmations:
-            universal_links:
-              regeneration:
-                body: Regenerating the Universal Link will cause the existing link to stop working.
-                title: Are you sure?
       base:
         active: Active
         archived: Archived

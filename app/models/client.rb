@@ -64,9 +64,6 @@ class Client < ApplicationRecord
   has_many :license_usages, dependent: :destroy
   has_many :licenses, inverse_of: :client, dependent: :destroy
   has_many :active_licenses, -> { active }, class_name: 'License'
-  # Reports
-  has_many :clients_reports # on delete cascade
-  has_many :reports, through: :clients_reports, source: :report
   has_many :report_families, through: :active_licenses, source: :report_family
   has_many :available_reports, through: :report_families, source: :reports
   has_many :available_assessments, through: :report_families, source: :assessments

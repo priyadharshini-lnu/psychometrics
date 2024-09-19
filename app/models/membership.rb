@@ -34,14 +34,9 @@ class Membership < ApplicationRecord
   accepts_nested_attributes_for :user
 
   has_and_belongs_to_many :communications, join_table: :communications_memberships
-  has_many :assigns, inverse_of: :membership # on delete cascade
-  has_many :reports, through: :assigns
-  has_many :assessments, through: :assigns
   has_many :communication_emails,
            inverse_of: :membership, class_name: 'CommunicationEmail' # on delete cascade
   has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
-  has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
-  has_many :clients_reports, through: :clients_assigns, source: :reports
   has_many :memberships_admin_roles, dependent: :destroy
   has_many :admin_roles, through: :memberships_admin_roles, dependent: :destroy
 
@@ -67,8 +62,8 @@ class Membership < ApplicationRecord
   has_ancestry
 
   scope :enabled, -> { where.not(disabled: true) }
-  scope :assigned, -> { joins(:assigns) }
-  scope :completed, -> { where(assigns_completed: true) }
+  # scope :assigned, -> { joins(:assigns) }
+  # scope :completed, -> { where(assigns_completed: true) }
   scope :client_admin_role, -> { where(role: CLIENT_ADMIN_ROLE) }
   scope :project_admin_role, -> { where(role: PROJECT_ADMIN_ROLE) }
   scope :campaign_admin_role, -> { where(role: CAMPAIGN_ADMIN_ROLE) }
@@ -76,7 +71,6 @@ class Membership < ApplicationRecord
   scope :with_role, ->(role) { where(role: role) }
   scope :project_id_eq, ->(project_id) { where(client_id: project_id) }
   scope :user_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
-  scope :member_or_manager, -> { where(role: %i[member manager]) }
   scope :filterable_fields, lambda { |query|
     if (query !~ /\D/) && query.present?
       joins(:user).where('users.id = ? OR users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
@@ -85,13 +79,6 @@ class Membership < ApplicationRecord
       joins(:user).where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
                          "%#{query}%", "%#{query}%", "%#{query}%")
     end
-  }
-  scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
-    joining do
-      assigns.on(assigns.membership_id.eq(id) &
-                   assigns.assessment_id.eq(assessment_id) &
-                   assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]]))
-    end.where.has { |m| m.client_id.eq(client_id) }
   }
   scope :join_user, lambda {
     joining { user }.selecting do
@@ -119,12 +106,6 @@ class Membership < ApplicationRecord
         joins(:user).where(users: { is_anonym: true })
     end
   }
-  # Search users with specified Assign id (hashed)
-  scope :assigns_hash_id_eq, lambda { |hash_id|
-    decoded_id = Assign.decode_id(hash_id.to_s).first
-    joins(:assigns).where(assigns: { id: decoded_id })
-  }
-
   attr_accessor :through_registration
 
   # Save HRIS data from form
@@ -225,7 +206,7 @@ class Membership < ApplicationRecord
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      %i[hris_data_cont role_scope_in user_type_eq assigns_hash_id_eq filterable_fields with_role project_id_eq]
+      %i[hris_data_cont role_scope_in user_type_eq filterable_fields with_role project_id_eq]
     end
   end
 end
