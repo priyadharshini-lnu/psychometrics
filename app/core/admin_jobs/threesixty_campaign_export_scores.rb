@@ -62,28 +62,33 @@ module AdminJobs
       end
     end
 
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
     def calculate_scores(user_assessments, factors, scores_by_factor_relationships, factors_by_id)
       user_assessments.group_by { |user_assessment| user_assessment['relationship_id'] }.each do |relationship_id, rows|
         rows.each do |row|
           factor_scores = row.scoring.filter_map do |factor_id, score|
-            factors_by_id[factor_id.to_i] && { id: factor_id, name: factors_by_id[factor_id.to_i],
-                                               score: score['score'] }
+            factors_by_id[factor_id.to_i] && score.present? && {
+              id: factor_id, name: factors_by_id[factor_id.to_i],
+              score: score['score']
+            }
           end
 
           factors.each do |id, _factor_name|
-            collected_scores = factor_scores.select do |score|
+            collected_score = factor_scores.find do |score|
               score[:id] == id.to_s
-            end.pluck(:score)
+            end&.fetch(:score, nil)
 
-            scores_by_factor_relationships[id][relationship_id] += collected_scores
+            next unless collected_score
+
+            scores_by_factor_relationships[id][relationship_id].push(collected_score)
             if relationship_hash[relationship_id] != 'Self'
-              scores_by_factor_relationships[id][:others] +=
-                collected_scores
+              scores_by_factor_relationships[id][:others].push(collected_score)
             end
           end
         end
       end
     end
+    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
     def append_row_values(row_values, factors, relationships, scores_by_factor_relationships)
       factors.each do |id, _factor_name|
