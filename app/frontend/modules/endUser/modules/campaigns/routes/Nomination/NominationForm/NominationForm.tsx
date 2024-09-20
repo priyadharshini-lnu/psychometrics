@@ -24,7 +24,7 @@ export const NominationForm = (props) => {
     autocomplete: { users },
     requirements,
   } = props
-  const { campaignId, nominationId } = useParams() as { campaignId: string, nominationId: string }
+  const { campaignId, id: nominationId } = useParams() as { campaignId: string, id: string }
 
   const [requestApprovalButtonDisabled, setRequestApprovalButtonDisabled] = useState(false)
 

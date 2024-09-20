@@ -3,6 +3,7 @@ import '~/modules/survey/styles/globals.less'
 import { Provider } from 'react-redux'
 import BlockCenter from '~/modules/survey/layouts/BlockCenter'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
+import { DefaultAntThemeWrapper } from '~/glint'
 
 import { setStore } from '~/modules/survey/store/StoreWatchman'
 import store from '../store'
@@ -29,9 +30,11 @@ class BlockCenterContainer extends Component {
 
   render () {
     return (
-      <Provider store={store}>
-        <BlockCenter />
-      </Provider>
+      <DefaultAntThemeWrapper>
+        <Provider store={store}>
+          <BlockCenter />
+        </Provider>
+      </DefaultAntThemeWrapper>
     )
   }
 }

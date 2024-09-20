@@ -10,6 +10,7 @@ module ActiveStorageAttachable
     icon: { resize_to_fit: [50, 50] }
   }.freeze
 
+  # rubocop:disable Metrics/BlockLength
   included do
     def attachment_url(attribute, variant = nil)
       attachment = send(attribute)
@@ -32,10 +33,19 @@ module ActiveStorageAttachable
       )
     end
 
+    def copy_and_upload(attachment, attribute)
+      send(attribute).attach(
+        io: StringIO.new(attachment.download),
+        filename: attachment.filename,
+        content_type: attachment.content_type
+      )
+    end
+
     after_create do
       customize_attachment_path
     end
   end
+  # rubocop:enable Metrics/BlockLength
 
   def customize_attachment_path
     self.class.attachment_reflections.each_key do |attribute|

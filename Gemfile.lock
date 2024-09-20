@@ -35,7 +35,7 @@ GIT
 
 GIT
   remote: https://github.com/TheTalentEnterprise/webhook_system.git
-  revision: 30c8426399ff93182c680ea40253ecef6a7c82fe
+  revision: 8a1f458deb95cba2b44f9b4a4189b29cc6ef5a2e
   branch: tte-master
   specs:
     webhook_system (2.2.0)
@@ -449,7 +449,7 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-em_http (1.0.0)
     faraday-em_synchrony (1.0.0)
-    faraday-encoding (0.0.5)
+    faraday-encoding (0.0.6)
       faraday
     faraday-excon (1.1.0)
     faraday-httpclient (1.0.1)

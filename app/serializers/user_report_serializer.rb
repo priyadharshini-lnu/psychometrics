@@ -8,7 +8,7 @@ class UserReportSerializer < Panko::Serializer
   has_one :report, serializer: ReportSerializer
 
   def user
-    ::Reports::UserSerializer.new(context: { campaign: object.campaign }).serialize(object.user).to_h
+    ::Reports::UserSerializer.new(context: { campaign: object.campaign }).serialize(object.user)
   end
 
   def user_report_events

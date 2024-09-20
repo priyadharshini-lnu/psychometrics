@@ -73,7 +73,7 @@ export class BlockCenter extends Component {
                 {block && <Block model={BlockSerializer.wrap(block)} />}
               </div>
             </div>
-            <PropertyPanel restricted />
+            <PropertyPanel restricted allowChange />
             <Trash />
             <Modals />
           </div>

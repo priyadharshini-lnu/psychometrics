@@ -20,8 +20,21 @@
     bottom: 30px;
   }
 
-  .ant-collapse-header:focus-visible,a:focus-visible,.ant-select-item-option.ant-select-item-option-active,.ant-select-selection-search-input:focus-visible {
+  .ant-collapse-header:focus-visible,a:focus-visible {
     outline-offset: 2px;
     outline: 4px solid var(--ant-primary-3) !important;
+  }
+
+  .rc-virtual-list:not(:hover) .ant-select-item-option.ant-select-item-option-active .ant-select-item-option-content {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 2px solid var(--ant-primary-3);
+      border-radius: 2px;
+    }
   }
 }

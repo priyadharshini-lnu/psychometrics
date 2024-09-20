@@ -1,0 +1,805 @@
+---
+zh-HK:
+  activerecord:
+    attributes:
+      membership:
+        first_name: 名字
+        last_name: 姓氏
+      user:
+        email: 電郵地址
+        first_name: 名字
+        last_name: 姓氏
+      user_form:
+        email: 電郵地址
+        first_name: 名字
+        last_name: 姓氏
+        password: 密碼
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: 目前密碼不正確
+  anonym:
+    continue: 繼續
+    notifications:
+      restart:
+        copy: 您已開始此問卷調查。您可以選擇「繼續」或「重新開始」。
+        title: 繼續 ？
+    restart: 重新開始
+  assessments:
+    actions:
+      back_to_campaign: 返回市場推廣
+      extend_time: 延長時間
+      goto_dashboard: 點擊此處繼續
+      pending_tasks:
+        other: 您有一個待處理任務
+      rescore: 重新安排
+    audio_response:
+      permission_denied_message: 請在瀏覽器中啟用咪高峰權限以錄製您的回答。
+      permission_text: 請允許使用咪高峰錄音
+    card_actions:
+      begin: 開始
+      continue: 繼續
+    instructions:
+      begin_assessment: 開始
+      cancel: 取消
+      default: 這是一項計時活動，按一下「開始評估」後，您將有 %{time} 分鐘完成。
+      title: 指引
+    messages:
+      finish: |-
+        感謝您的寶貴時間。
+        我們已記錄您的回覆。
+    page:
+      back: 返回
+      confirm_message: |-
+        ####我們將提交您的回覆，提交後將無法更改。
+
+        按一下**返回**以最後一次檢查您的回覆，或在完成後按一下**提交**。
+      next: 下一步
+      read_only: 是唯讀模式，您無法更改任何結果。
+      save: 儲存
+      submit: 提交
+    pickgrouprank:
+      items: 項目
+    proceed: 繼續進行
+    unknown_error: 發生未知錯誤。
+    video_response:
+      device: 允許
+      discard: 放棄
+      media_recorder:
+        failure: 此瀏覽器不支援錄影。請使用 Chrome 或 Firefox 錄影
+        success: 請允許使用相機和咪高峰錄音及錄影
+      save: 儲存
+      saved:
+        label: 已儲存
+      saving: 正在儲存......
+      start_recording: 開始錄影
+      tracker:
+        backward: 您距離螢幕太近。請後退一點
+        forward: 您距離螢幕太遠。請靠近一點
+        frame: 請確保您的臉部與邊框對齊
+        ready: 準備好錄影時請按「錄影」按鈕
+    wait: 等等
+  auth:
+    current_password: 目前密碼
+    current_password_placeholder: 輸入目前密碼
+    email: 電郵
+    email_placeholder: 輸入電郵地址
+    expired_password:
+      description: 請填寫所有欄位以輸入新密碼
+      submit: 提交
+      title: 更新您的密碼
+    login:
+      description: 請使用您的個人帳戶資料登入
+      forgot_password: 忘記密碼？
+      login_btn: 登入
+      not_member: 還不是會員？
+      or: 或
+      sso_btn: 使用單次登入
+      title: 歡迎！
+    logout: 登出
+    new_password: 新密碼
+    otp:
+      code: 代碼
+      code_placeholder: 單次密碼
+      description: 請輸入發送至您註冊電郵地址的單次密碼。
+      resend: 重新傳送單次密碼
+      submit: 驗證
+      title: 單次密碼
+    password: 密碼
+    password_confirmation: 確認密碼
+    password_confirmation_placeholder: 輸入密碼確認
+    password_placeholder: 輸入密碼
+    registration:
+      description: 填寫以下詳情註冊並建立新帳戶
+      email_hint: 我們尊重您的私隱，絕不容忍垃圾郵件。我們絕不會將您的資料提供給任何第三方
+      first_name: 名字
+      first_name_placeholder: 輸入名字
+      have_account: 已經有帳戶？
+      last_name: 姓氏
+      last_name_placeholder: 輸入姓氏
+      login_now: 現在登入！
+      registration_code: 註冊代碼
+      registration_code_placeholder: 輸入註冊代碼
+      terms_notice: 註冊即表示您同意我們的<a href="%{terms_url}">服務條款和私隱政策</a>
+      title: 註冊
+    reset_password:
+      back_to_sign_in: 返回登入
+      description: 輸入與您帳戶綁定的電郵地址
+      submit: 重設密碼
+      title: 忘記密碼？
+    set_password:
+      description: 要建立新密碼，請在下面的方框中輸入您的新密碼
+      submit: 提交
+      title: 創立密碼
+    sign_out: 以其他用戶登入
+    sign_up: 註冊
+    terms_link: <a href="%{terms_url}">條款和私隱聲明</a>
+  campaign:
+    all_activities_are_completed: 所有活動現已完成。
+    all_activities_are_completed_multiple: 此活動的所有市場推廣已完成。請前往管理台，查看您是否獲分配其他活動。
+    begin: 開始您的任務
+    campaigns: 市場推廣
+    closed_campaign_message: 此活動已結束。您無法參加此活動的任何評估。
+    complete_prev: 完成所有先前的評估
+    continue: 繼續您的任務
+    dashboard_instructions: 您有多個需要完成的活動。請確保所有活動中的分配任務都已完成。
+    dashboard_menu:
+      bookings: 訂單
+      campaign: 市場推廣
+      change_password: 更改密碼
+      home: 主頁
+      insights: 分析
+      profile: 個人資料
+      profile_details: 詳情
+      tasks: 任務
+    details: 詳情
+    edit_evaluation:
+      body: 請注意，當您點擊重新評估後，系統將您轉至問卷的開頭，您可以在該處編輯答案。您仍可查看先前的回覆，亦可以根據喜好更改。編輯後，您將必須重新提交評估完成程序。
+      edit: 重新評估
+      title: 確認
+      view: 查看評估
+    goto_dashboard: 前往管理台
+    inactive_campaign_message: 您目前尚未被分配任何活動。
+    insights_reports: 分析和報告
+    instruction_modal:
+      campaign_start_final_instructions: |
+        <p>
+          請注意，無法停止或暫停計時器。即使您關閉了瀏覽器，市場推廣計時器也會繼續運作，因此您不應該在任務期間離開去做其他事情。請確保在任務期間不要分心。找一個安靜的環境，關閉裝置上的通知，避免同時處理其他事情。保持集中精神及專注。市場推廣計時器結束後，您將無法繼續。如果您已閱讀上述說明，請點擊「開始」繼續已分配的任務。
+        </p>
+      campaign_start_instruction: |
+        <h4>請正確閱讀以下指引。</h4>
+        <p>
+          您即將開始的任務已計時。點擊「開始」後，市場推廣計時器將自動開始。您有 %{minutes} 分鐘完成所有活動。請盡力在指定時間範圍內完成任務，並好好管理時間，避免匆忙完成評估程序。請務必一次過完成任務，如果您需要休息，現在是時候了。
+        </p>
+      common_proctoring_instructions: |
+        <h4>監察</h4>
+        <p>
+          點擊開始按鈕後，您將被重新轉向我們的監察系統。在會話期間，它將監控您的鏡頭、咪高峰和螢幕。這些會話由我們先進的人工智能系統自動監督，提供不間斷和順暢的用戶體驗。然而，會話也可能由人工監察審查。任何不當行為或違規行為跡象都將被標記。這樣做是為了確保沒有作弊企圖。如果發現可疑情況，您的任務將被取消。
+        </p>
+      lockdown_browser_instruction: |
+        <h4>監察瀏覽器</h4>
+        <p>
+          您將需要下載並安裝特殊瀏覽器以完成監察任務。請按照下一個畫面中的指引操作。完成所有必要活動後，您可以卸載此功能。
+        </p>
+    instructions:
+      collapse_link_text: 顯示更少。
+      expand_link_text: 顯示更多。
+      heading: 開始之前，請查看以下準則。祝您一切順利！
+    language:
+      content: 此任務無法使用目前所選語言。請選擇其中一種可用語言繼續。
+      single_lang: 此任務僅能使用%{lang}。點擊「繼續」以繼續。
+      title: 選擇語言
+    panels:
+      reports: 報告
+    profile:
+      complete_heading: 您的個人資料已完成
+      complete_profile_label: 現在完成
+      edit_profile_label: 編輯個人資料
+      incomplete_heading: 完成您的個人資料
+      last_login_text: 上次登入時間：
+      last_updated_text: 個人資料上次更新時間：
+      sub_heading: 完成您的完整個人資料
+      welcome_text: 歡迎，
+    thank_you_for_time: 感謝您的寶貴時間。
+    time_left:
+      cancel: 取消
+      continue: 繼續
+      notification: 您為此任務「%{assessmentName}」分配的時間為 %{totalAssessmentTime}。由於總耗時過長，您現在只有 %{remainingCampaignTime} 的已調整時間來完成這項任務。
+    timer:
+      notification: 您有 %{minutes} 分 %{seconds} 秒完成
+  campaign_assessment:
+    assessments_heading: 您的任務
+    statuses:
+      completed: 已完成
+      in_progress: 進行中
+      not_started: 未開始
+  change_password_page:
+    old_password: 舊密碼
+    password: 密碼
+    password_confirmation: 密碼確認
+    title: 更改密碼
+  checking_wizard:
+    audio_check:
+      access: 存取
+      access_help: 點擊此處獲得協助。
+      allow: 允許
+      allow_title: 請允許使用咪高峰錄音
+      continue: 繼續
+      processing: 處理中
+      record_title: 請讀出並重複以下句子 3 次。
+      speech_detection: 語音偵測
+      test_message: 很高興與您交談
+      title: 我們需要確保您的系統可以錄音。
+    network_check:
+      continue: 繼續
+      download: 下載
+      please_check_connection: 請檢查您的互聯網連接
+      processing: 正在處理
+      run_again: 再次執行
+      run_again_title: 並再次執行此測試
+      title: 點擊開始以開始互聯網速度測試。
+      upload: 上載
+    steps:
+      audio_check: 咪高峰測試
+      network_check: 互聯網速度測試
+      system_check: 系統檢查
+      video_check: 攝錄機測試
+    success:
+      start: 開始評估
+      title: 您已成功完成所有檢查。
+    system_check:
+      continue: 繼續
+      title: 在開始此評估之前，您的系統需要進行一些檢查。
+    video_check:
+      access: 存取
+      access_help: 點擊此處獲得協助。
+      allow: 允許
+      allow_title: 請允許使用相機錄影
+      continue: 繼續
+      description: 在此階段拍攝的任何影片或相片都不會被儲存或使用。它會在您的裝置上本地使用，以確保相機正常運作，因為即將有需要錄製影片的問題。
+      face_detection: 面孔偵測
+      processing: 處理中
+      run_again: 再次執行
+      title: 我們需要確保您的系統可以錄影
+  common:
+    actions:
+      add: 添加
+      archive: 存檔
+      cancel: 取消
+      copy: 複製
+      delete: 刪除
+      edit: 編輯
+      remove: 刪除
+      reset: 重設
+      resolve: 解決
+      restore: 恢復
+      save: 儲存
+      search: 搜尋
+      send: 發送
+      start: 開始
+      unarchive: 取消存檔
+      unresolve: 未解決
+      update: 更新
+      upload: 上載
+    column:
+      action: 操作
+      category: 類別
+      created_at: 建立時間
+      id: ID
+      status: 狀態
+    model:
+      assessments: 評估
+      campaigns: 市場推廣
+      reports: 報告
+    text:
+      cancel: 取消
+      confirm: 確認
+      continue: 繼續
+      default: 預設
+      download: 下載
+      na: 不適用
+      ok: 好
+      response: 回應
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: 登入
+    failure:
+      already_authenticated: 您已經登入。
+      inactive: 您的帳戶尚未啟用。
+      invalid: 無效的電郵或密碼。
+      invited: 您有一封有待處理的邀請函，請接受邀請完成建立帳戶。
+      magic_link_invalid: 無效或過期的登入連結。
+      not_found_in_database: 無效的電郵或密碼。
+      timeout: 您的會話已過期。請重新登入以繼續。
+      unauthenticated: 您需要登入或註冊才能繼續。
+    invitations:
+      edit:
+        password_label: 密碼
+    registrations:
+      communication_not_setup_error: 註冊電郵通訊尚未設定，請聯絡此項目的管理員。
+      new:
+        email: 電郵地址
+        first_name: 名字
+        instruction: 填寫以下詳情註冊並建立新帳戶
+        last_name: 姓氏
+        privacy_notice: 我們尊重您的私隱，絕不容忍垃圾郵件。我們絕不會將您的資料提供給任何第三方。
+        registration_code: 註冊代碼
+        submit: 註冊
+        tabs:
+          register: 註冊
+          sign_in: 登入
+        terms_notice: 註冊即表示您同意我們的<a href="%{terms_url}">服務條款和私隱政策</a>
+        title: 現在註冊
+      success:
+        actions:
+          sign_in: 登入
+    sessions:
+      new:
+        email: 電郵地址
+        forgot_password: 忘記密碼？
+        instruction: 請使用您的個人帳戶資料登入
+        password_placeholder: 密碼
+        submit: 登入
+        tabs:
+          register: 註冊
+          sign_in: 登入
+        title: 歡迎！
+    two_factor_authentication:
+      attempt: 請輸入您在已註冊電郵地址收到的單次密碼
+      code_has_been_sent: 您的新單次密碼已發送至您已註冊的電郵地址
+  frontend:
+    activate: 啟用
+    are_you_sure: 您確定嗎？
+    assessment: 評估
+    assessment_groups:
+      create_success: 已成功建立群組
+      update_success: 已成功更新群組
+    background_reading: 背景資料
+    bookings:
+      accept_invite_msg: 您已收到邀請。請預留您的位置。
+      add_to_calendar: 添加到日曆
+      add_to_calendar_tour_description: 將此預訂新增至日曆
+      assessment_center_alert:
+        btn_title: 市場推廣
+        message_part1: 在此處完成所有預備工作
+        message_part2: 方可預訂位置。
+      assessment_center_group_name: 評估中心
+      booking_failed_msg: 預訂位置失敗：%{error}
+      buttons:
+        book: 預訂
+        book_again: 再次預訂
+        cancel: 取消
+        cancel_booking: 取消預訂
+        confirm_booking: 確認預訂
+        confirm_reschedule: 確認改期
+        modify: 修改
+        nevermind: 沒關係
+        no_text: 否
+        request_cancel: 申請取消
+        request_reschedule: 申請改期
+        reschedule: 改期
+        reserve_spot: 預訂您的位置
+        yes_text: 是
+      cancel_booking_confirmation: 您確定要取消此預訂嗎？
+      cancellation_failed: 取消預訂失敗：%{error}
+      cancellation_success: 已成功取消預訂
+      comments_required_msg: 請輸入您的留言
+      confirm_booking_description: 在完成預訂前，請確認這些資料正確無誤。
+      confirm_booking_title: 確認此預訂？
+      default_failure_msg: 無法處理您的申請。 請稍後再試一次。
+      default_requires_msg: "%{name}是必填"
+      join_activity_meeting: 加入會議
+      join_workshop_meeting: 加入會議
+      language: 語言
+      language_placeholder: 選擇語言
+      language_preference_question: 您有語言偏好嗎？
+      language_required_msg: 請選擇語言
+      meeting_start_text: 會議將於以下時間開始：
+      need_changes: 需要更改嗎？
+      neurodivergence_comment_placeholder: 您的留言
+      neurodivergence_question: 您是否因特殊需求或殘疾需要任何合理的便利或調整，以便能夠完全參與評估？
+      other_invite: 查看 %{count} 個更多邀請
+      other_invites: 查看 %{count} 個更多邀請
+      reason: 原因
+      reason_for_cancel: 取消原因
+      reason_for_reschedule: 改期原因
+      request_cancellation_failed: 申請取消失敗：%{error}
+      request_cancellation_success: 已成功申請取消
+      request_reschedule_failed: 申請改期失敗：%{error}
+      request_reschedule_success: 已成功申請改期
+      reschedule_failed_msg: 改期失敗：%{error}
+      reschedule_reason_placeholder: 要繼續，請輸入改期原因。
+      schedule_success: 此預訂已安排好
+      schedule_success_msg: 我們已透過電郵向您和其他參加者發送日曆邀請，其中包括所有詳情。
+      starts_at: 開始日期：%{date}
+      starts_in: 開始日期：
+      tab_label:
+        bookings: 預訂
+        invites: 邀請
+      what: 甚麼
+      when: 何時
+      workshop_start_text: 您的評估中心將於以下時間開始：
+    break_time: 休息時間
+    campaign:
+      actions:
+        remove:
+          confirmation: 在下面的文本框中輸入目前活動名稱以刪除
+          success: 已成功刪除%{campaignName}。
+      users:
+        completion_statuses:
+          completed: 已完成
+          in_progress: 進行中
+          not_started: 未開始
+    change_password: 更改密碼
+    delete: 刪除
+    edit: 編輯
+    login: 登入
+    manage: 管理
+    'no': 否
+    resource:
+      create_success: 已成功添加%{readableResourceName}
+      update_success: 已成功更新%{readableResourceName}
+    update: 更新
+    upload: 上載
+    workshop_invited_subjects:
+      statuses:
+        cancelled: 已取消
+        requested_cancellation: 已申請取消
+        requested_rescheduling: 已申請改期
+    'yes': 是
+  navigation:
+    logout: 登出
+  profile:
+    add_photo: 新增相片
+    age: 年齡
+    change_password: 更改密碼
+    change_photo: 更改相片
+    email: 電郵
+    female: 女性
+    first_name: 名字
+    gender: 性別
+    last_name: 姓氏
+    locale: 首選語言
+    male: 男性
+    not_disclosed: 不願透露
+    password: 密碼
+    password_confirmation: 密碼確認
+    success_update: 已成功儲存個人資料
+    timezone: 時區
+    title: 我的個人資料
+    update: 更新
+  reports:
+    actions:
+      add: 添加報告
+      download: 下載報告
+      view: 查看報告
+    modules:
+      factors_table:
+        description: 說明
+        no_data: 此部分沒有可用的數據。
+        rank: 排名
+        score: 分數
+      gap_assessment:
+        gap: 差距
+        item: 指標
+        negative_gap: 負差距
+        no_negative_gaps: 沒有負差距
+        no_positive_gaps: 沒有正差距
+        positive_gap: 正差距
+        rank: 排名
+        scoring_category: 能力
+      highest_lowest:
+        bottom_5: 最後 5 名
+        category: 類別
+        highest_scores: 最高分數
+        item: 指示器
+        lowest_scores: 最低分數
+        mean_score: 平均分數
+        rank: 排名
+        scoring_category: 能力
+        sub_competenties: 子競爭力
+        top_5: 前 5 名
+      potential_career_full:
+        career_strengths_and_results: 職業優勢和結果
+        career_sub_tracks: 職業子路徑
+        key_career_tracks_within: 以下是每個職業路徑的潛在工作角色清單。請記住，此清單僅供參考，並非詳盡無遺。請注意，斜體部分的職位要求更高的教育水平和／或經驗。
+        potential_areas_of_study: 潛在的研究領域
+        strength_high: 特色優勢
+        strength_low: 發展優勢
+        strength_moderate: 潛在優勢
+        work_environment: 工作環境
+        your_suitability: 您的適合度
+      single_value:
+        factor_name: 分數類別
+        question_name: 問題
+      single_value_cluster:
+        competency: 能力
+        developmental_rating: 發展評分
+        questions: 問題
+      strength_clusters:
+        index_sub_factors_considered: 蓬勃發展指數子因素已被考慮為您提供%{workstyle}工作環境的最終分數
+        possible_roles: 潛在職位
+        work_environments: 預期工作環境
+      three_sixty_default:
+        factor:
+          items: 項目
+          max: 最大值
+          mean: 平均值
+          min: 最小值
+          standardDeviation: 標準差
+          sum: 總和
+          totalResponses: 總回應數
+          variance: 變異數
+          weightedMean: 加權平均值
+        question:
+          no_response: 暫無回應
+        statistic: 統計數據
+        value: 價值
+      three_sixty_report_summary:
+        completed: 已完成
+        footnote: "* 由於最低閾值要求，不包括在內"
+        invited: 已邀請
+        relationships: 關係
+        total: 總數
+      video_response:
+        no_results: 暫無錄製影片
+    show:
+      export_pdf: 匯出到 PDF
+      header: 報告
+    statuses:
+      approved: 已批准
+      available: 可用
+      denied: 已拒絕
+      incomplete: 未完成
+      not_available: 無法使用
+      on_hold: 擱置中
+      released: 已發佈
+  shared:
+    filters:
+      clear: 清除篩選器
+    internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
+    terms_conditions_privacy: 私隱聲明
+    tte_terms_and_condition: 條款和私隱
+  simple_form:
+    placeholders:
+      administrator:
+        email: 電郵地址
+        last_name: 姓氏
+      memebrship:
+        last_name: 姓氏
+      user:
+        email: 電郵地址
+        first_name: 名字
+        last_name: 姓氏
+        password: 密碼
+      user_form:
+        email: 電郵地址
+        first_name: 名字
+        last_name: 姓氏
+        password: 密碼
+  subjects:
+    statuses:
+      completed: 已完成
+      declined: 已拒絕
+      denied: 已拒絕
+      done: 完成
+      not_completed: 未完成
+      waiting: 正在等待
+  threesixty:
+    accept_privacy_modal:
+      accept: 接受
+      checkbox: 我已閱讀並理解上述私隱政策
+      title: 數據處理同意書
+    add: 添加
+    and: 及
+    approve_all: 全部批准
+    approve_all_successful: 已批准所有提名
+    approve_evaluations: 批准評估
+    approve_nominations: 批准提名
+    approve_reports: 批准報告
+    approved: 已批准
+    approving_mail_sent: 批准提名的郵件已發送給管理人員
+    as_my: 作為我的
+    assessment: 評估
+    back_to_tasks: 返回任務
+    begin: 開始
+    cancel: 取消
+    close_evaluation_modal:
+      message: 查看報告後，%{pronoun_or_name}將無法接收任何後續評估
+      title: 您確定要查看報告嗎？
+    closed_campaign_message: 此 360 活動已結束。您不能提名或評估任何人參加這個活動。
+    completed: 已完成
+    confirm: 您確定要關閉嗎？
+    confirmation_for_nomination_removal: 您確定要刪除提名嗎
+    confirmation_required: 需要確認
+    confirmation_text_incorrect: 確認文字不正確
+    confirmation_text_placeholder: 此處的確認文字
+    continue: 繼續
+    dashboard_title: 歡迎 %{name}
+    decline: 拒絕
+    decline_invite: 拒絕邀請
+    denied: 已拒絕
+    deny_all: 全部拒絕
+    deny_all_successful: 已拒絕所有提名
+    download_pdf: 下載 PDF
+    download_report: 下載報告
+    download_reports: 下載報告
+    edit_user: 編輯用戶
+    email_approve_request: 電郵批准請求
+    email_schedules:
+      delete_successful: 已成功刪除電郵排程
+    evaluate: 評估
+    evaluation: 評估
+    evaluation_all_closed_message: 目前所有提名均待批准
+    evaluation_closed_nomination_message: 因為此主題的評估已關閉，您無法提名此主題
+    evaluation_help_modal:
+      title: 評估幫助
+    evaluations: 評估
+    evaluator: 評估者
+    export_pdf: 匯出 PDF
+    first_name: 名字
+    first_name_error: 請輸入名字
+    help: 說明
+    language: 語言
+    last_name: 姓氏
+    last_name_error: 請輸入姓氏
+    load_results: 載入結果
+    mail_history:
+      statuses:
+        success: 成功
+        undelivered: 未送達
+    mindmill_confirmation: 開始此評估時，您將失去結果「%{assessment}」。如要離開結果，請點擊「取消」；如要繼續，請點擊「確定」
+    my_projects: 我的項目
+    nominate: 提名
+    nominate_evaluators: 提名評估者至
+    nomination: 提名
+    nomination_help_modal:
+      title: 提名幫助
+    nominations: 提名
+    options:
+      global:
+        cannot_re_edit: 參與者無法編輯評估
+    or: 或者
+    page_title: Signify 360° 評論：應用級別
+    participant_list:
+      actions:
+        approve_report: 批准報告
+        download_report: 下載報告
+        edit: 編輯
+        hold_report: 保留報告
+        login: 登入
+        mark_as_done: 標記為已完成
+        release_report: 發佈報告
+        remove_campaign: 從活動中刪除
+        remove_report_approval: 刪除報告批准
+        remove_report_hold_release_report: 移除報告保留／發佈
+        remove_subject: 刪除主題
+        unmark_as_done: 取消已完成標記
+        view_report: 查看報告
+        view_responses: 查看回應
+      confirmation_messages:
+        approve_report: 您確定批准報告嗎？
+        hold_report: 您確定保留報告嗎？
+        mark_evaluation_done: 您確定將評估標記為已完成嗎？此主題的評估將關閉。
+        release_report: 您確定發佈報告嗎？
+        remove_from_campaign: 您確定從活動中刪除用戶嗎？
+        remove_release_hold: 您確定刪除發佈／保留狀態嗎？
+        remove_report_approval: 您確定刪除報告批准嗎？
+        remove_subject: 您確定從活動中刪除電郵的主題嗎？
+        umark_evaluation_as_complete: 您確定將評估取消標記為已完成嗎？
+      report_generation_message: 正在產生報告。當報告準備好時，我們會通知您。
+    processing: 處理中
+    processing_report: 正在處理報告
+    progress_text: 已完成 %{completed} 份，共 %{total} 份
+    question:
+      chat_type:
+        input_placeholder: 輸入您的訊息...
+      email_type:
+        bcc: 暗抄送
+        cc: 抄送
+        edit: 編輯
+        max_length_warning: 剩餘 %{x} 字元
+        message: 您的訊息
+        send: 發送
+        subject: 主題
+        successful_message: 您已成功發送電郵
+        to: 致
+    remind_all: 全部提醒
+    remind_mail_sent: 已傳送提醒給尚未完成評估的評估者
+    report_for: 報告
+    report_generation_in_progress: 正在產生報告。當報告準備好時，我們會通知您。
+    reports: 報告
+    reports_help_modal:
+      title: 報告幫助
+    reset_campaign_confirmation: 在下面的文字方格中輸入目前市場推廣活動名稱，以重置所有參與者
+    reset_nomination_confirmation: 在下面的文字方格中輸入目前市場推廣活動名稱，以重置所有提名
+    save: 儲存
+    select_relationnship: 選擇關係
+    select_relationship: 選擇關係
+    self: 自己
+    set_name_for_evaluator: 設定評估者名稱
+    setup_nominations: 設定提名
+    subject: 主題
+    submit: 提交
+    total_progress: 總進度
+    user_name_input_placeholder: 輸入姓名或電郵...
+    validation_errors: 驗證錯誤
+    view_my_report: 查看我的報告
+    view_nominations: 查看提名
+    view_reports: 查看報告
+    waiting: 等待中
+    you: 您
+    yourself: 您自己
+  user:
+    fields:
+      email: 電郵地址
+      first_name: 名字
+      last_name: 姓氏
+  user_reports:
+    actions:
+      regenerate: 重新生成
+    messages:
+      regenerate_successful: 報告重生成功安排
+    modals:
+      remove:
+        content: 您確定刪除報告 %{userReportName} 嗎？
+        successfully: 已成功移除 %{userReportName} 報告
+    preview_report: 預覽報告
+    statuses:
+      generating: 正在生成
+      not_prepared: 無法使用
+      prepared: 可用
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: 音訊已錄製但未儲存
+        RECORDING: 正在錄音
+        SAVING: 正在上載錄音
+      required: 繼續之前，請錄音並儲存音訊
+    FileUpload:
+      in_progress:
+        SAVING: 正在上載文件
+      required: 請上載檔案
+    TextEntry:
+      Email:
+        character_range: 輸入的電郵訊息必須至少 %{min} 或超過 %{max} 個字元。
+        subject:
+          min_length: 主旨欄位應至少 10 個字元
+        to:
+          required: "「收件人」欄位為必填項"
+    VideoResponse:
+      in_progress:
+        recorded: 影片已錄製但未儲存
+        recording: 正在錄影
+        saving: 正在上載已錄製的影片
+      required: 繼續之前，請錄影並儲存影片
+    actions_still_in_progress: 以下操作正在進行。如果繼續，您將丟失這些數據。
+    blank: 不能空白
+    character_range: 您的回覆不得少於 %{min} 或超過 %{max} 個字元。
+    date: 您的回覆必須是有效日期 （月／日／年）
+    each_group_contains: 每組需要包含不少於 %{min} 或不多於 %{max} 個項目
+    email: 您的回覆必須是有效的電郵
+    exact: 請準確選擇 %{count} 個選項
+    file_upload:
+      EntityTooLarge: 檔案大小應小於 %{maxFileSize}MB
+      WrongFileType: 檔案類型應為以下其中一種 %{allowedFileTypes}
+    issue: 問題
+    least: 請至少回答 %{min} 個選項。
+    least_hotspot: 請至少回答 %{min} 個選項。
+    max_character: 您的回覆不得超過 %{max} 個字元。
+    max_word: 您的回覆不得超過 %{max} 字數。
+    min_character: 您的回覆必須至少 %{min} 個字元。
+    min_word: 您的回覆不得少於 %{min} 個字
+    most: 請選擇最多 %{max} 個選項
+    must_rank_between: 請為每個項目分配從 %{min} 到 %{max} 的值。不得重複數值。
+    must_select: 請從 %{min} 到 %{max} 個選項中選擇
+    number: 您的回覆必須是數字
+    range: 請至少回答 %{min}，不得超過 %{max} 個選項。
+    required: 請回答此問題
+    text: 您的回覆不得包含數字
+    title:
+      other: 有一個錯誤，請檢查您的回覆

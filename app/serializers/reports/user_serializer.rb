@@ -15,7 +15,7 @@ module Reports
     private
 
     def campaign
-      context[:campaign]
+      context&.dig(:campaign)
     end
   end
 end

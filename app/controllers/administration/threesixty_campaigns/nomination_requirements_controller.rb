@@ -12,7 +12,7 @@ module Administration
             policy_scope(::Threesixty::NominationRequirement).
             where(threesixty_campaign_id: threesixty_campaign.id).
             order(:position),
-            each_serializer: Threesixty::EndUser::NominationRequirementSerializer
+            each_serializer: ::Threesixty::EndUser::NominationRequirementSerializer
           ).to_a
         )
       end

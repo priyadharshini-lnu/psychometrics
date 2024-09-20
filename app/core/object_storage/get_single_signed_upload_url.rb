@@ -13,11 +13,11 @@ module ObjectStorage
     end
 
     def call
-      asset_key = model.attachment_storage_path(field, file_name)
-
+      escaped_file_name = (blob_params['filename'] || file_name).gsub(/[^a-z0-9A-Z._-]/, '_')
+      asset_key = model.attachment_storage_path(field, escaped_file_name)
       blob = ActiveStorage::Blob.create_before_direct_upload!(
         key: asset_key,
-        filename: blob_params['filename'] || file_name,
+        filename: escaped_file_name,
         byte_size: blob_params['byte_size'],
         checksum: blob_params['checksum'],
         content_type: blob_params['content_type'],
