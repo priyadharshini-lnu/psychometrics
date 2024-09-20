@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { Modal } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { CampaignFactorsForm } from '~/components/CampaignFactorsForm'
@@ -19,7 +20,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 type Props = PropsFromRedux
 
-export const CampaignFactorsModalComponent = ({ columns, saveCampaignFactors, closeModal }: Props) => (
+export const CampaignFactorsModalComponent:FC<Props> = ({ columns, saveCampaignFactors, closeModal }) => (
   <Modal
     width={700}
     title="Campaign Factors"
@@ -31,6 +32,7 @@ export const CampaignFactorsModalComponent = ({ columns, saveCampaignFactors, cl
     <CampaignFactorsForm
       factors={columns}
       saveCampaignFactors={saveCampaignFactors}
+      onSaveCampaignFactors={closeModal}
     />
   </Modal>
 
