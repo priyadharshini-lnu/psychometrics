@@ -180,6 +180,8 @@ pt:
           Para concluir as tarefas supervisionadas, ser-lhe-á solicitado que descarregue e instale um navegador especial. Siga as instruções no ecrã a seguir. Pode desinstalar depois de concluir todas as atividades necessárias.
         </p>
     instructions:
+      collapse_link_text: Mostrar menos
+      expand_link_text: Mostrar mais
       heading: Consulte as orientações abaixo antes de começar. Desejamos-lhe sucesso!
     language:
       content: Esta tarefa não está disponível no idioma atualmente selecionado. Selecione um dos idiomas disponíveis para prosseguir.

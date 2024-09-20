@@ -32,14 +32,14 @@ export const CampaignFactorsComponent = ({ columns, saveCampaignFactors }: Props
   }
 
   return (
-    <>
+    <div>
       <Typography.Title level={4}>Campaign Factors</Typography.Title>
       <CampaignFactorsForm
         factors={columns}
         saveCampaignFactors={saveCampaignFactors}
         onSaveCampaignFactors={handleSaveCampaignFactors}
       />
-    </>
+    </div>
   )
 }
 

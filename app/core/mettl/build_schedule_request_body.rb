@@ -5,7 +5,6 @@ module Mettl
     include Rails.application.routes.url_helpers
 
     DEFAULT_SCHEDULE_CONFIG = {
-      'sourceApp' => "lighthouse-#{ENV.fetch('REAL_ENV', 'dev')}",
       'access' => {
         'type' => 'OpenForAll'
       },
@@ -31,6 +30,7 @@ module Mettl
 
     def schedule_config
       DEFAULT_SCHEDULE_CONFIG.merge(
+        'sourceApp' => source_app,
         'name' => schedule_name || default_schedule_name,
         'secureBrowser' => { 'enabled' => secure_browser_enabled },
         'webProctoring' => {
@@ -76,6 +76,10 @@ module Mettl
         protocol: Settings.protocol,
         port: Settings.port
       )
+    end
+
+    def source_app
+      ENV.fetch('REAL_ENV', 'local').starts_with?('production') ? 'lighthouse-production' : 'lighthouse-testing'
     end
   end
 end

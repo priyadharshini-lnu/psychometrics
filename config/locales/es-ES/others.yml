@@ -182,6 +182,8 @@ es-ES:
           Se le pedirá que descargue e instale un navegador especial para completar las tareas evaluadas de forma remota. Siga las instrucciones de la pantalla siguiente. Podrá desinstalarlo cuando complete las actividades asignadas.
         </p>
     instructions:
+      collapse_link_text: Mostrar menos
+      expand_link_text: Mostrar más
       heading: Consulte las directrices a continuación antes de empezar. Le deseamos los mejores resultados.
     language:
       content: Esta tarea no está disponible en el idioma que ha seleccionado. Seleccione uno de los idiomas disponibles para proceder.

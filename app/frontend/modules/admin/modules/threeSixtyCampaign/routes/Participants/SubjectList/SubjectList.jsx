@@ -4,7 +4,7 @@ import {
   Table, Row, Col, App,
 } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import userPresenter from '~/presenters/user'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
@@ -32,14 +32,16 @@ export default function SubjectList ({
   regenerateReport,
   total,
   permissions,
-  page,
   searchTerm,
   editUser,
   currentCampaignId,
 }) {
   const { campaignId } = useParams()
+  const [params] = useSearchParams()
+  const page = params.get('page') || 1
   const { message } = App.useApp()
   const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
+
   useEffect(() => {
     fetchSubjects(campaignId, page, searchTerm)
   }, [page, searchTerm])

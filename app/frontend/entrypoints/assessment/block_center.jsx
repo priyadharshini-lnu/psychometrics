@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 
 import BlockCenter from '~/modules/survey/containers/BlockCenterContainer'
 import initSentry from '~/libs/initSentry'
+import '~/styles/utils.less'
 
 initSentry()
 

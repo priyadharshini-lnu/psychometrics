@@ -41,11 +41,11 @@ const RemapAssessment = ({
       <div className={styles.body}>
         <Space direction="vertical" className={styles.content}>
           <div className={styles.input}>
-            <label>{I18n.t('administration.reports.modals.remap_assessment.assesment_id')}</label>
+            <label>{I18n.t('administration.reports.modals.remap_assessment.old_assessment_name')}</label>
             <Select className="w-100" options={options} value={assessmentId} onChange={setAssessmentId} />
           </div>
           <div className={styles.input}>
-            <label>{I18n.t('administration.reports.modals.remap_assessment.new_assessment_id')}</label>
+            <label>{I18n.t('administration.reports.modals.remap_assessment.new_assessment_name')}</label>
             <Select className="w-100" options={options} value={newAssessmentId} onChange={setNewAssessmentId} />
           </div>
         </Space>

@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 
 import QuestionCenterContainer from '~/modules/survey/containers/QuestionCenterContainer'
 import initSentry from '~/libs/initSentry'
+import '~/styles/utils.less'
 
 initSentry()
 

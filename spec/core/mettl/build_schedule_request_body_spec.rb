@@ -48,7 +48,7 @@ RSpec.describe Mettl::BuildScheduleRequestBody, type: :model do
     context 'when name is passed' do
       it 'returns the correct representation with the passed name' do
         expected_config = {
-          'sourceApp' => "lighthouse-#{ENV.fetch('REAL_ENV', 'dev')}",
+          'sourceApp' => 'lighthouse-testing',
           'access' => { 'type' => 'OpenForAll' },
           'scheduleType' => 'AlwaysOn',
           'name' => schedule_name,
@@ -71,7 +71,7 @@ RSpec.describe Mettl::BuildScheduleRequestBody, type: :model do
         default_name = "#{mettl_assessment.name} - #{ENV.fetch('SERVER_NAME', 'dev')} - #{assessment.id}"
 
         expected_config = {
-          'sourceApp' => "lighthouse-#{ENV.fetch('REAL_ENV', 'dev')}",
+          'sourceApp' => 'lighthouse-testing',
           'access' => { 'type' => 'OpenForAll' },
           'scheduleType' => 'AlwaysOn',
           'name' => default_name,

@@ -1451,6 +1451,7 @@ en:
       back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
+      close: Close
       continue: Continue
       copy: Copy
       create: Create
@@ -2280,7 +2281,7 @@ en:
     hu: Hungarian
     id: Bahasa Indonesia
     it: Italian
-    ja: Japanese
+    ja: 日本語
     km: Khmer
     ko: Korean
     lt: Lithuanian
@@ -2313,11 +2314,11 @@ en:
     uk: Ukrainian
     ur: Urdu
     vi: Vietnamese
-    zh: 汉语
-    zh-CN: Chinese (Simplified)
-    zh-HK: Chinese (Hong Kong)
+    zh: 简体中文
+    zh-CN: 简体中文
+    zh-HK: 繁體中文 (香港特別行政区)
     zh-TW: 漢語
-    zh_CN: Chinese (Simplified)
+    zh_CN: 简体中文
     zh_TW: Chinese (Traditional)
   license_usage:
     active: Active
@@ -3183,8 +3184,22 @@ en:
     yourself: Yourself
   time:
     formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: DD/MM/YYYY hh:mm A
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
       datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: DD/MM/YYYY
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
     active: Active
     allow_multiple_respones: Allow users to submit multiple responses
@@ -3415,6 +3430,9 @@ en:
     range: Please answer at least %{min} and no more than %{max} choice(s).
     required: Please answer this question
     text: Your response must not contain a numbers
+    title:
+      one: There is one error, please check your responses
+      other: There are %{count} errors, please check your responses
     word_count: 'Word count '
     word_range: Your response must be at least %{min} and no more than %{max} words.
   'yes': 'Yes'

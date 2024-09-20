@@ -392,6 +392,7 @@ en:
         reset_progress_confirmation: Are you sure you want to reset progress for subject with email "%{subjectEmail}"?
         reset_progress_successfully: Reset progress for the subject with the email "%{subjectEmail}" was successful.
         reset_successfully: Reset evaluation for the subject with the email "%{subjectEmail}" was successful.
+        subject_email: Subject Email
         subject_name: Subject Name
       completed_at: Completed At
       count: "%{count} Assessors"
@@ -2339,6 +2340,11 @@ en:
         successfully: Report '%{name}' was deleted successfully.
       edit:
         header: Edit Report Name
+      modals:
+        remap_assessment:
+          new_assessment_name: New Assessment Name
+          old_assessment_name: Old Assessment Name
+          success_message: Remaping of assessment was scheduled, please refresh after some time. Do not edit the report and do not save any new changes until remapping is done.
       name: Reports
       new:
         header: Select Report

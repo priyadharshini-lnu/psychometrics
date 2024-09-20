@@ -24,9 +24,9 @@ module Hogan
     private
 
     def create_group
-      Services::Hogan::Api::Json::GroupDetails.call(group: hogan_group_name, provider: credentials&.provider) do
+      Services::Hogan::Api::Json::GroupDetails.call(group: hogan_group_name, provider: hogan_provider) do
         on(:error) do
-          Services::Hogan::Api::Json::CreateGroup.call!(group: hogan_group_name, provider: credentials&.provider)
+          Services::Hogan::Api::Json::CreateGroup.call!(group: hogan_group_name, provider: hogan_provider)
         end
       end
     end
@@ -41,7 +41,7 @@ module Hogan
       lock_manager.lock!(lock_key, 2.minutes.in_milliseconds) do
         password = Devise.friendly_token.first(10)
         participant_id = Services::Hogan::Api::Json::AddParticipantToGroup.call!(
-          group: hogan_group_name, password: password, provider: credentials&.provider
+          group: hogan_group_name, password: password, provider: hogan_provider
         )
 
         @credentials = HoganCredential.create!(
@@ -60,7 +60,7 @@ module Hogan
         group: hogan_group_name,
         assessment_id: user_assessment.assessment.external_settings[:assessment_id],
         form_id: user_assessment.assessment.external_settings[:form_id],
-        provider: credentials.provider
+        provider: hogan_provider
       )
     end
 
@@ -96,6 +96,10 @@ module Hogan
       ::HoganCredentialSerializer.new(context: {
         hogan_credential: hogan_credential, include: '**'
       }).serialize(user_assessment)
+    end
+
+    def hogan_provider
+      credentials&.provider || project.hogan_provider
     end
   end
 end
