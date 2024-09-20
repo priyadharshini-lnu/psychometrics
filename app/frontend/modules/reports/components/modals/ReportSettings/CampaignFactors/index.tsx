@@ -6,6 +6,8 @@ import { saveCampaignFactors } from '~/modules/reports/core/builder/actions'
 import { RootState } from '~/modules/reports/core/rootReducers'
 import AppStore from '~/modules/reports/store/AppStore'
 
+import styles from './styles.less'
+
 const connecter = connect(
   ({ report: { builder } }: RootState) => ({
     columns: builder.campaign_factors, id: builder.id,
@@ -32,7 +34,7 @@ export const CampaignFactorsComponent = ({ columns, saveCampaignFactors }: Props
   }
 
   return (
-    <div>
+    <div className={styles.main}>
       <Typography.Title level={4}>Campaign Factors</Typography.Title>
       <CampaignFactorsForm
         factors={columns}
