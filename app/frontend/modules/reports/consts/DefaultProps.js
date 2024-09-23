@@ -18,6 +18,12 @@ export default {
       textAlign: '',
       alignItems: '',
       color: '#333333',
+      borderColor: {
+        r: '170',
+        g: '170',
+        b: '170',
+        a: '1',
+      },
     },
     zIndex: 3000,
     text: 'Double Click to Edit Text...',
@@ -46,6 +52,18 @@ export default {
       height: 200,
     },
     style: {
+      borderColor: {
+        r: '170',
+        g: '170',
+        b: '170',
+        a: '1',
+      },
+      backgroundColor: {
+        r: '238',
+        g: '238',
+        b: '238',
+        a: '1',
+      },
     },
     zIndex: 3000,
     showOnAllPages: false,

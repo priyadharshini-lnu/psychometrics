@@ -11,10 +11,13 @@ export default interface Assessment {
   normId: number
   normName: string
   mettlScheduleRecordId?: string,
+  mettlScheduleName?: string,
   enableUniversalLinks: boolean
   isExternal: boolean
   universalLink: string | null
   norms?: Norm[]
+  iconUrl: string | null
+  iconColor: string | null
   permissions: {
     exportRawResults: boolean
     exportScoringResults: boolean
@@ -33,4 +36,5 @@ export default interface Assessment {
   campaignAssessmentId: number
   scheduleTime: string
   autoAssign: boolean
+  dimensionId: string
 }

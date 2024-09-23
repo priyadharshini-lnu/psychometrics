@@ -66,6 +66,7 @@ const AssessmentSerializer = (data: any): AssessmentInterface => ({
   instructions: data.instructions,
   linked_questions: data.linkedQuestions,
   default_language: data.defaultLanguage,
+  campaign_factors_list: data.campaign_factors_list,
 })
 
 

@@ -21,6 +21,7 @@ interface Props {
   assessment?: Assessment
   form: FormInstance
   showTranslatableFields?: boolean
+  handleAssessmentSelect?(value: string) : void
 }
 
 type OptionsType = {
@@ -28,7 +29,9 @@ type OptionsType = {
   name: string
 }
 
-export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslatableFields }) => {
+export const BaseFormFields: React.FC<Props> = ({
+  assessment, form, showTranslatableFields, handleAssessmentSelect,
+}) => {
   const { availableLocales } = I18n
   const {
     data: dimensions, fetch: fetchDimensions, isLoading: isDimensionsLoading,
@@ -106,7 +109,13 @@ export const BaseFormFields: React.FC<Props> = ({ assessment, form, showTranslat
           ))}
         </Select>
       </Form.Item>
-      {ExternalAssessmentFieldsComponent && <ExternalAssessmentFieldsComponent form={form} assessment={assessment} />}
+      {ExternalAssessmentFieldsComponent && (
+      <ExternalAssessmentFieldsComponent
+        form={form}
+        assessment={assessment}
+        handleAssessmentSelect={handleAssessmentSelect}
+      />
+      )}
       {showTranslatableFields
         && (
           <>

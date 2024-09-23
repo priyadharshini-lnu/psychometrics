@@ -15,6 +15,7 @@ interface Props {
   source: {
     type: string
     id: string
+    allFactors?: boolean
   }
   showLegend: boolean
   hideEmptyColumns: boolean

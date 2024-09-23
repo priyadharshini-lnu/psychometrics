@@ -12,7 +12,7 @@ export const InlineInput = ({
   relationship, handleAddNomination, searchEvaluators, hideForm,
   autocomplete: { users },
 }) => {
-  const { campaignId, nominationId } = useParams() as { campaignId: string, nominationId: string }
+  const { campaignId, id: nominationId } = useParams() as { campaignId: string, id: string }
   const [email, setEmail] = useState(null)
   const [hasErrors, setHasErrors] = useState<{email: boolean, user?: boolean, relationship?: boolean}>(
     { email: false, user: false },

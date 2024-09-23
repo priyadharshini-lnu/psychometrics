@@ -6,7 +6,6 @@ class LicenseUsage < ApplicationRecord
   include RansackSearchableJsonField
 
   belongs_to :license,           inverse_of: :license_usages
-  belongs_to :assigns_report,    inverse_of: :license_usages
   belongs_to :client,            inverse_of: :license_usages
   belongs_to :campaign,          inverse_of: :license_usages
   belongs_to :user,              inverse_of: :license_usages

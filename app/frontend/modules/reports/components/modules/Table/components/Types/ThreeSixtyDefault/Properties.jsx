@@ -10,6 +10,8 @@ import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 
+const ALLOWED_QUESTION = ['TextEntry', 'FactorSelect']
+
 function FactorList ({ model, onChange }) {
   const assessment = AppStore.getAssessmentById(model.assessment_id)
   const options = _.map(AppStore.factors[assessment.dimensionId] || [],
@@ -32,7 +34,7 @@ function FactorList ({ model, onChange }) {
 }
 
 function QuestionList ({ model, onChange, questions }) {
-  const textQuestions = _.filter(questions || [], q => q.type === 'TextEntry')
+  const textQuestions = _.filter(questions || [], q => ALLOWED_QUESTION.includes(q.type))
   const options = _.map(textQuestions, question => ({ label: question.name, value: question.id }))
 
   return (

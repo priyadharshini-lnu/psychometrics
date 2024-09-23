@@ -844,13 +844,13 @@ en:
       enable_network_check: Enable Network Check
       enable_video_check: Enable Video Check
       external_settings:
-        hogan_assessment_id: Hogan Assessment ID
-        iiht_assessment_id: IIHT assessment ID
+        hogan_assessment_name: Hogan Assessment Name
+        iiht_assessment_name: IIHT assessment Name
         iiht_schedule_config: Schedule config
-        mettl_assessment_id: METTL assessment ID
-        pearson_assessment_id: Pearson assessment ID
+        mettl_assessment_name: METTL Assessment Name
+        pearson_assessment_name: Pearson Assessment Name
         pearson_norm_id: Pearson norm ID
-        saville_assessment_id: Saville assessment ID
+        saville_assessment_name: Saville assessment Name
     create: Create
     dashboard: Dashboard
     dictation:
@@ -1016,30 +1016,8 @@ en:
     report_not_found: Report with id %{report_id} is not found
     report_not_in_bundle: Report with id %{report_id} is not part of report bundle with id %{bundle_id}
   assigns:
-    assign:
-      accept_privacy_modal:
-        accept: Accept
-        reject: Reject
-        text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
-        title: Data processing consent
-    assigns_reports:
-      download: Download
-      duration: Duration
-      progress: Progress
-      summary_report: Summary report
     decorator:
-      completed: Completed %{date}
       no_description: Description is empty
-      not_completed: Not Completed
-    multiple_report:
-      results: Results
-    notifications:
-      completed: '%{user_name} finished assessment "%{assessment_name}"'
-      in_progress: '%{user_name} started to take assessment "%{assessment_name}"'
-    reports:
-      load_results: 'Load Results: %{report}'
-      processing: Processing...
-      results: Results
   audit_log_failures:
     invalid_sso_token: Invalid SSO Token
     record_not_found: Record Not Found
@@ -1238,10 +1216,16 @@ en:
       assessment_name: Assessment name
       assessor_form: Assessor Form
       auto_assign: Auto Assign
+      dimension_id: Dimension ID
+      id: Campaign Assessment ID
       locales: Locales
       norm: Norm
+      norm_id: Norm ID
       prework: Prework
       universal_link: Universal link
+    drawer:
+      mettl_schedule_name: Mettl Schedule Name
+      title: Assessment Details
     messages:
       export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
       export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
@@ -1295,7 +1279,6 @@ en:
       update_mettl_schedule:
         select_schedule: Select Schedule
         success_msg: Mettl Schedule were updated successfully
-        title: Update Mettl Schedule
         update: Update
       update_norm:
         apply: Apply this change to existing users in this campaign
@@ -1468,6 +1451,7 @@ en:
       back_to_responses: Back To Responses
       cancel: Cancel
       change: Change
+      close: Close
       continue: Continue
       copy: Copy
       create: Create
@@ -1893,6 +1877,9 @@ en:
       can_not_processed: can not be processed
       exists: already exists
       max_evaluators: you already have enough evaluators
+  factors:
+    description: Description
+    factor: Factor
   frontend:
     activate: Activate
     are_you_sure: Are you sure?
@@ -2033,6 +2020,13 @@ en:
     'no': 'No'
     passwordSetting:
       update_success: Security settings was updated successfully
+    questions:
+      campaign_factor_feedback:
+        add_skill: Add skill
+        feedback: Feedback
+        max_factors: Max factors
+        min_factors: Min factors
+        skill_factor: Skill factor
     report_error: Oops, something went wrong with your report. Please contact the support.
     request_failed_message_box:
       message: Last Request failed. Please refresh the page and if issue persist contact your administrator.
@@ -2287,7 +2281,7 @@ en:
     hu: Hungarian
     id: Bahasa Indonesia
     it: Italian
-    ja: Japanese
+    ja: 日本語
     km: Khmer
     ko: Korean
     lt: Lithuanian
@@ -2320,11 +2314,11 @@ en:
     uk: Ukrainian
     ur: Urdu
     vi: Vietnamese
-    zh: 汉语
-    zh-CN: Chinese (Simplified)
-    zh-HK: Chinese (Hong Kong)
+    zh: 简体中文
+    zh-CN: 简体中文
+    zh-HK: 繁體中文 (香港特別行政区)
     zh-TW: 漢語
-    zh_CN: Chinese (Simplified)
+    zh_CN: 简体中文
     zh_TW: Chinese (Traditional)
   license_usage:
     active: Active
@@ -2353,7 +2347,6 @@ en:
       threesixty: Threesixty
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
-  loading: Processing...
   mailer:
     from: The Talent Enterprise
     license:
@@ -2378,10 +2371,6 @@ en:
         weekly_stats: 'Past week license usage stats :'
   maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
-  mindmill:
-    assigns:
-      results:
-        successfully: Mindmill Assessment was successfully pass
   my: My
   myself: Myself
   navigation:
@@ -3195,8 +3184,22 @@ en:
     yourself: Yourself
   time:
     formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: DD/MM/YYYY hh:mm A
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
       datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: DD/MM/YYYY
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
+      with_time_zone: "%d %b %Y %I:%M %p %:z"
+      workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
     active: Active
     allow_multiple_respones: Allow users to submit multiple responses
@@ -3245,6 +3248,14 @@ en:
       export_reports_and_assessments: Export Reports and Assessments
       import: Import Users
       import_reports: Import Reports and Assessments
+  user_assessment:
+    column:
+      dimension_id: Dimension ID
+      id: User Assessment ID
+      norm_id: Norm ID
+    drawer:
+      mettl_schedule_name: Mettl Schedule Name
+      title: Assessment Details
   user_assessments:
     modals:
       actions:
@@ -3408,6 +3419,7 @@ en:
     max_character: Your response must be no more than %{max} characters.
     max_word: Your response must not be more than %{max} words.
     min_character: Your response must contain at least %{min} characters.
+    min_factor: Your response must contain at least %{min} factor feedbacks.
     min_word: Your response must be atleast %{min} words
     most: Please select at most %{max} choice(s)
     must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.

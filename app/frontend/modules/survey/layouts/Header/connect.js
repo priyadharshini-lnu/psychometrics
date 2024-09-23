@@ -32,5 +32,6 @@ export default connect(
     saveAssessment,
     updateExtra,
     toggleInstructions,
+    openCampaignFactorsModal: data => openModal('campaignFactorsModal', data),
   },
 )

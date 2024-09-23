@@ -96,6 +96,13 @@ RSpec.describe UserAssessment, type: :model do
       expect(user_assessment.norm_name).to eq('pearson_norm_name')
     end
 
+    it 'returns hogan_norm_name is assessment is hogan' do
+      user_assessment = create(:user_assessment, :with_hogan_assessment)
+      create(:hogan_credential, norm: 'Global', user: user_assessment.user)
+
+      expect(user_assessment.norm_name).to eq('Global')
+    end
+
     it 'returns regular norm name using norm_id column' do
       norm = create(:norm)
       user_assessment = build(:user_assessment, norm: norm)

@@ -75,10 +75,14 @@ describe Campaigns::Users::AddReport do
 
   it 'create mettl_user_assessment if assessment is of type mettl' do
     assessment = create(:assessment, :mettl)
+    camapign_assessment = create(:campaign_assessment, campaign: campaign, assessment: assessment)
     report = create(:report, assessments: [assessment])
     described_class.call!(campaign_user, report, assessments: report.assessments)
 
     expect(assessment.mettl_user_assessments.exists?).to eq(true)
+    expect(assessment.mettl_user_assessments.first.mettl_schedule_record_id).to eq(
+      camapign_assessment.mettl_schedule_record_id
+    )
   end
 
   it 'create saville_user_assessment if assessment is of type saville' do

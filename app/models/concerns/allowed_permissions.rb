@@ -63,7 +63,7 @@ module AllowedPermissions
     'registration_codes' => %w[view manage],
     'datasheets' => %w[view manage],
     'auditLogs' => ['view'],
-    'workshops' => %w[view manage],
+    'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage]
   }.freeze
 
@@ -123,7 +123,7 @@ module AllowedPermissions
     'assessors' => %w[view manage],
     'reports' => ['manage'],
     'datasheets' => %w[view manage],
-    'workshops' => %w[view manage],
+    'workshops' => %w[view manage export_status],
     'idp_templates' => %w[view manage]
   }.freeze
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import cs from 'classnames'
 import {
   InputNumber, Row, Col, Radio, Checkbox, Slider,
-  Input,
+  Input, Space,
 } from 'antd'
 import _ from 'lodash'
 import Select from 'react-select'
@@ -11,7 +11,7 @@ import AppStore from '~/modules/reports/store/AppStore'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import PropertyFonts from '~/modules/reports/components/PropertyFonts'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
-import { ColorPicker } from '~/glint'
+import { ColorPicker, HintCheckbox } from '~/glint'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
 import ScoreRangeList from './ScoreRangeList'
@@ -118,6 +118,12 @@ class Properties extends Component {
     model.update()
   }
 
+  changeAll = () => {
+    const { model } = this.props
+    model.props.allFactors = !model.props.allFactors
+    model.update()
+  }
+
   update = () => {
     const { model } = this.props
     model.props.group = null
@@ -151,19 +157,30 @@ class Properties extends Component {
   renderTopFactors () {
     const { model } = this.props
     return (
-      <div>
-        <span className={styles.label}>Factors</span>
-        <Select
-          name="form-field-name"
-          value={getValue(this.collectFactors(), _.result(model, 'props.source.factors', 'Choose factor'))}
-          options={this.collectFactors()}
-          getOptionValue={opt => opt.id}
-          getOptionLabel={opt => opt.alias}
-          autoFocus={false}
-          isMulti
-          onChange={this.factorSelect}
+      <Space direction="vertical">
+        <HintCheckbox
+          label="All Factors"
+          checked={model.props.allFactors}
+          onChange={this.changeAll}
+          hints={[
+            'When checked, all factors will be displayed.',
+            'When unchecked, only selected factors will be displayed.',
+          ]}
         />
-      </div>
+        <div>
+          <span className={styles.label}>Factors</span>
+          <Select
+            name="form-field-name"
+            value={getValue(this.collectFactors(), _.result(model, 'props.source.factors', 'Choose factor'))}
+            options={this.collectFactors()}
+            getOptionValue={opt => opt.id}
+            getOptionLabel={opt => opt.alias}
+            autoFocus={false}
+            isMulti
+            onChange={this.factorSelect}
+          />
+        </div>
+      </Space>
     )
   }
 

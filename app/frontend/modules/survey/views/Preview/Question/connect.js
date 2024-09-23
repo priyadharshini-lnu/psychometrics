@@ -6,15 +6,21 @@ import {
 } from '~/modules/survey/core/preview/FlowProcessor/actions'
 
 export default connect(
-  ({ preview }, { model }) => ({
-    hideHiddenQuestions: preview.hideHiddenQuestions,
-    randomseed: preview.randomseed,
-    isAssessor: preview.isAssessor,
-    linkedQuestions: preview.linkedQuestions?.[model.id],
-    moduleConfig: moduleConfig(preview, model.id),
-    errors: getQuestionErrors(preview, model.id),
-    result: getQuestionResults(preview, model.id),
-  }),
+  (state, ownprops) => {
+    const { preview } = state
+    const { model } = ownprops
+
+    return ({
+      hideHiddenQuestions: preview.hideHiddenQuestions,
+      randomseed: preview.randomseed,
+      isAssessor: preview.isAssessor,
+      linkedQuestions: preview.linkedQuestions?.[model.id],
+      moduleConfig: moduleConfig(preview, model.id),
+      errors: getQuestionErrors(preview, model.id),
+      result: getQuestionResults(preview, model.id),
+      campaignFactorList: preview.campaignFactorList,
+    })
+  },
   {
     nextPage,
   },

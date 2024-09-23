@@ -14,6 +14,8 @@ module Workshops
         @workshop.update!(params.slice(:name,
                                        :total_seats,
                                        :video_call_type,
+                                       :scheduling_lead_time,
+                                       :cancellation_lead_time,
                                        :allow_late_cancellation_and_rescheduling,
                                        :meeting_link))
 

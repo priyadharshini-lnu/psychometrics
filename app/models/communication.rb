@@ -70,19 +70,11 @@ class Communication < ApplicationRecord
     WORKSHOP_COMMUNICATION_KINDS.include?(kind)
   end
 
-  def selected_memberships
-    ::Queries::Memberships::ForCommunication.call(self).join_user
-  end
-
   def selected_campaign_users
     communication_users = project_campaign.campaign_users.joins(:user).where(users: { disabled: false }, active: true)
     return communication_users.where(user_id: user_ids) if selected_recipients?
 
     communication_users
-  end
-
-  def selected_memberships_ids
-    ::Queries::Memberships::ForCommunication.call(self).pluck(:id)
   end
 
   # If Delivery Rule is specific date time then delivery_interval set to nil
@@ -121,16 +113,6 @@ class Communication < ApplicationRecord
     sub_campaign || campaign || project || client || owner
   end
 
-  def current_memberships_ids
-    return selected_memberships_ids if end_level.end_level?
-
-    selected_memberships_ids - low_level_ids
-  end
-
-  def current_memberships
-    Membership.where(id: current_memberships_ids).join_user
-  end
-
   def delivery_interval_duration
     valid_methods = %w[hour hours day days week weeks month months]
     valid_methods.unshift('minute', 'minutes') unless Rails.env.production?
@@ -148,24 +130,13 @@ class Communication < ApplicationRecord
   end
 
   def emails_creating
-    if project&.migrated?
-      selected_campaign_users.find_each(batch_size: 100) do |campaign_user|
-        emails.create(campaign_user: campaign_user)
-      end
-    else
-      selected_memberships.find_each(batch_size: 100) do |membership|
-        emails.create(membership: membership)
-      end
+    selected_campaign_users.find_each(batch_size: 100) do |campaign_user|
+      emails.create(campaign_user: campaign_user)
     end
   end
 
   def not_invited_to_project_current_memberships
-    if project.migrated?
-      return selected_campaign_users.
-             where(users: { already_invited: false })
-    end
-
-    current_memberships.distinct.reject(&:already_invited?)
+    selected_campaign_users.where(users: { already_invited: false })
   end
 
   def log_attribute_for_delete
@@ -186,9 +157,5 @@ class Communication < ApplicationRecord
     return unless other? && send_now?
 
     emails_creating
-  end
-
-  def low_level_ids
-    Communication.lower_communications(self).flat_map(&:selected_memberships_ids).uniq
   end
 end

@@ -3,6 +3,8 @@
 class HoganCredential < ApplicationRecord
   audited except: %i[encrypted_password encrypted_password_iv]
 
+  DEFAULT_NORM = 'Global2023'
+
   belongs_to :membership
   belongs_to :user
   has_many :hogan_logs, foreign_key: :participant_id, primary_key: :participant_id

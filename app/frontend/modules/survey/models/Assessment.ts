@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+import type { CampaignFactor } from '~/components/CampaignFactorsForm'
+
 export default interface AssessmentInterface {
   id: number
   name: string
@@ -17,4 +20,5 @@ export default interface AssessmentInterface {
   }
   linked_questions: {[key:number]: number[]}
   default_language: string
+  campaign_factors_list: CampaignFactor[] | []
 }

@@ -29,12 +29,6 @@
           collection: @communication_facade.campaigns,
           input_html: { data: { live_search: true,
             behavior: @communication_facade.campaign_behavior }, disabled: @copying_communication}
-      - if @communication_facade.show_sub_campaigns?
-        = f.hidden_field :sub_campaign_id if @copying_communication
-        = f.association :sub_campaign,
-          collection: @communication_facade.sub_campaigns,
-          input_html: { data: { live_search: true,
-            behavior: @communication_facade.sub_campaign_behavior }, disabled: @copying_communication }
       - if @communication_facade.show_kind?
         = f.hidden_field :kind, value: @communication_facade.form.kind if @copying_communication
         = f.input :kind,

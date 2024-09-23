@@ -10,8 +10,10 @@ import { getAllExternalAssessments } from './getAllExternalAssessments'
 
 const { I18n } = window
 
-export const PearsonFields: React.FC<{ form: FormInstance, assessment: Assessment | undefined }> = (
-  { form, assessment },
+export const PearsonFields: React.FC<{
+  form: FormInstance, assessment: Assessment | undefined, handleAssessmentSelect(value: string): void
+}> = (
+  { form, assessment, handleAssessmentSelect },
 ) => {
   const assessmentId = Form.useWatch(['externalSettings', 'assessmentId'], form)
 
@@ -34,7 +36,7 @@ export const PearsonFields: React.FC<{ form: FormInstance, assessment: Assessmen
     <>
       <Form.Item
         name={['externalSettings', 'assessmentId']}
-        label={I18n.t('assessments.column.external_settings.pearson_assessment_id')}
+        label={I18n.t('assessments.column.external_settings.pearson_assessment_name')}
         rules={[{ required: true }]}
       >
         <Select
@@ -47,6 +49,12 @@ export const PearsonFields: React.FC<{ form: FormInstance, assessment: Assessmen
           }}
           notFoundContent={assessmentIsLoading('fetch') ? <Spin size="small" /> : null}
           filterOption={false}
+          onSelect={(value) => {
+            const selectedOption = externalAssessments.find(option => option.id === value)
+            if (selectedOption) {
+              handleAssessmentSelect(selectedOption.name)
+            }
+          }}
         >
           {getAllExternalAssessments(externalAssessments, assessment?.externalSettings).map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>

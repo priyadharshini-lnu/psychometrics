@@ -97,3 +97,7 @@ type QuestionTypes =
   | 'MultiSelectBox'
   | 'SideBySide'
   | 'MatrixTable'
+
+export interface Answers {
+    [index: number|string]: { value: string }
+  }

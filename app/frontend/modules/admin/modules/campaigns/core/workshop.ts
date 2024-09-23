@@ -27,7 +27,7 @@ export const WorkshopTR = t.type({
   videoCallType: t.string,
   cancellationLeadTime: t.number,
   allowLateCancellationAndRescheduling: t.boolean,
-  rescheduleLeadTime: t.number,
+  schedulingLeadTime: t.number,
   meetingLink: t.union([t.string, t.null]),
   workshopManagers: t.array(userDetailsTR),
   workshopAssessors: t.array(userDetailsTR),

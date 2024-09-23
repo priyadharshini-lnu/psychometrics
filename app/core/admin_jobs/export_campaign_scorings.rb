@@ -60,7 +60,8 @@ module AdminJobs
         score['last_name']
       ]
       row += campaign_factors.map do |cf|
-        score[cf.id.to_s]
+        factor_value = score[cf.id.to_s]
+        factor_value.present? ? JSON.parse(factor_value)['value'] : nil
       end
       row << score['stack_rank'] if rank_by_column_exist
       row + [

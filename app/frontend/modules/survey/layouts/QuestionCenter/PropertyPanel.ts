@@ -13,6 +13,7 @@ export default connect(
       socketInitialized: survey.ui.socket.initialized,
       question: survey.builder.questions[survey.builder.questionCenter.id],
       offset: 20,
+      allowChange: true,
     }
   },
   {

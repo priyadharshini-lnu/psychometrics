@@ -1,9 +1,0 @@
-= simple_form_for(@form, as: :resource, url: { action: :update_additional_time }, remote: true, html: { method: :put, id: :assigns_edit_form }) do |f|
-  .modal-body
-    = render_error_notification @form
-    .form-inputs.clearfix
-      = f.input :additional_time, label: t('.additional_time_label')
-  .modal-footer
-    .btn-group
-      = f.button :submit, t('.submit'), class: 'btn-info'
-      a.btn.btn-default data-dismiss='modal' = t 'administration.close'

@@ -75,6 +75,13 @@ module Threesixty
             class_name: 'Threesixty::PipedText::Branches::NominationBranch',
             required_context: %i[subject threesixty_campaign],
             allow_html: true
+          },
+          {
+            key: 'f',
+            name: 'factor',
+            class_name: 'Threesixty::PipedText::Branches::Factor',
+            required_context: %i[assessment],
+            allow_html: true
           }
         ].freeze
       end

@@ -86,7 +86,14 @@ module CampaignScoring
         'zscore' => proc { |assessment_id, factor_id| assessment_factor_score(assessment_id, factor_id, 'zscore') },
         'percentage_answered' => proc { |assessment_id, factor_id|
           assessment_factor_score(assessment_id, factor_id, 'percentage')
-        }
+        },
+        'form_answer' => proc { |assessment_id, question_id, index_of_form_element|
+          form_answer(assessment_id, question_id, index_of_form_element)
+        },
+        'campaign_feedback_answer' => proc { |assessment_id, question_id, code|
+          campaign_feedback_answer(assessment_id, question_id, code)
+        },
+        'answer' => proc { |assessment_id, json_path| answer_from_json_path(assessment_id, json_path) }
       }
       lua.datasheet = {
         'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
@@ -100,7 +107,9 @@ module CampaignScoring
         #{dependencies_as_lua_variable(campaign_factor)}
         #{campaign_factor.formula}
       )
-      LuaEvaluator.eval(lua_code, lua)
+      value = LuaEvaluator.eval(lua_code, lua)
+
+      value.is_a?(Lua::Table) ? value.to_hash.with_indifferent_access : value
     end
 
     def assessment_factor_score(assessment_id, factor_id, score_type)
@@ -108,6 +117,34 @@ module CampaignScoring
       return nil unless users_result
 
       users_result.scoring&.dig(factor_id.to_i.to_s, score_type)
+    end
+
+    def form_answer(assessment_id, question_id, index_of_form_element)
+      answers = answer_for_question(assessment_id, question_id)
+      return nil unless answers
+
+      answers.find { |answer| answer['index'] == index_of_form_element }&.dig('value')
+    end
+
+    def campaign_feedback_answer(assessment_id, question_id, code)
+      answers = answer_for_question(assessment_id, question_id)
+      return nil unless answers
+
+      answers.find { |answer| answer['code'] == code }&.dig('value')
+    end
+
+    def answer_from_json_path(assessment_id, json_path)
+      users_result = user_assessments[assessment_id.to_i]&.users_result
+      return nil unless users_result
+
+      JsonPath.new(json_path).on(users_result.answers).first
+    end
+
+    def answer_for_question(assessment_id, question_id)
+      users_result = user_assessments[assessment_id.to_i]&.users_result
+      return nil unless users_result
+
+      users_result.answers&.dig(question_id.to_s, 'answers')
     end
 
     def campaign_scoring_variables_as_lua_table
@@ -143,22 +180,7 @@ module CampaignScoring
     end
 
     def validate_campaign_factor_value!(campaign_factor, factor_value)
-      return if factor_value == nil
-
-      if campaign_factor.string_output_type? && !factor_value.is_a?(String)
-        raise CampaignScoring::Exceptions::WrongOutputType,
-              "Expected factor value for '#{campaign_factor.code}' to be a string. Got #{factor_value.class.name}"
-      end
-
-      if factor_value.is_a?(Numeric) && factor_value.infinite?
-        raise CampaignScoring::Exceptions::WrongOutputType,
-              "Expected factor value for '#{campaign_factor.code}'. Got Infinity value"
-      end
-
-      if campaign_factor.numeric_output_type? && !factor_value.is_a?(Numeric)
-        raise CampaignScoring::Exceptions::WrongOutputType,
-              "Expected factor value for '#{campaign_factor.code}' to be a numeric. Got #{factor_value.class.name}"
-      end
+      CampaignScoring::CampaignFactorValueValidator.call!(campaign_factor, factor_value)
     end
 
     def campaign_factors_index_by_code

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import {
-  Drawer, Row, Descriptions,
+  Drawer, Row, Descriptions, Typography, Space,
 } from 'antd'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 import { ResourceAvatar } from '~/glint'
@@ -19,6 +19,7 @@ export const DetailsDrawer: FC<Props> = ({
   if (!assessment) {
     return null
   }
+  const { dimension } = assessment
 
   return (
     <Drawer
@@ -56,7 +57,22 @@ export const DetailsDrawer: FC<Props> = ({
             {assessment.name}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.dimension')} key="dimension" className="va-t">
-            {assessment.dimension?.name}
+            {dimension && (
+            <Space direction="vertical">
+              <Typography.Text>
+                {I18n.t('common.column.name')}
+                :
+                {' '}
+                {dimension.name}
+              </Typography.Text>
+              <Typography.Text>
+                {I18n.t('common.column.id')}
+                :
+                {' '}
+                {dimension.id}
+              </Typography.Text>
+            </Space>
+            )}
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('common.column.owner')} key="owner" className="va-t">
             {assessment.owner?.name}

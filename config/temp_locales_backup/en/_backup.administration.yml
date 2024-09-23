@@ -4017,9 +4017,9 @@ en:
         name_label: Name
         next: Next
         required_error: Required
-        reschedule_duration_max_error: Cannot be greater than 30 days
-        reschedule_duration_min_error: Cannot be less than 1 minute
-        reschedule_lead_time_label: Lead time for rescheduling
+        scheduling_duration_max_error: Cannot be greater than 30 days
+        scheduling_duration_min_error: Cannot be less than 1 minute
+        scheduling_lead_time_label: Lead time for scheduling
         resources_panel:
           description: Add the links to any resources you would like the facilitators to have access to.
           title: Resources
@@ -4092,7 +4092,7 @@ en:
         none: None
         not_allowed: Not Allowed
         remaining: Seats Remaining
-        reschedule_lead_time: Reschedule Lead Time
+        scheduling_lead_time: Scheduling Lead Time
         search_placehoder: Search by id, email or name
         timezone: Timezone
         total_seats: Total Seats

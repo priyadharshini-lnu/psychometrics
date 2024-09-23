@@ -11,7 +11,7 @@ RSpec.describe Workshops::CreateAll do
         timezone: 'Pacific/Midway',
         duration: 3600,
         cancellation_lead_time: 3600,
-        reschedule_lead_time: 3600,
+        scheduling_lead_time: 3600,
         video_call_type: 0,
         workshop_resources: [
           {
@@ -36,7 +36,7 @@ RSpec.describe Workshops::CreateAll do
         timezone: 'Pacific/Midway',
         duration: '',
         cancellation_lead_time: 3600,
-        reschedule_lead_time: 3600,
+        scheduling_lead_time: 3600,
         video_call_type: 0,
         workshop_resources: [
           {

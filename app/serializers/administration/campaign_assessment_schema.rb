@@ -50,6 +50,7 @@ module Administration
         required(:auto_assign).filled(:bool?)
         required(:mettl_schedule_name).maybe(:str?)
         required(:mettl_schedule_record_id).maybe(:str?)
+        required(:dimension_id).maybe(:int?)
       end
     end
   end

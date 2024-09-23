@@ -1,4 +1,4 @@
 export const settings = {
-  urlPrefix: '/administration/dashboards',
+  urlPrefix: '/admin/dashboards',
   pageLimit: 25,
 }

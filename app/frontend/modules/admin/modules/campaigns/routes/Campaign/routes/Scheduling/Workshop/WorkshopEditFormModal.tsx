@@ -4,6 +4,8 @@ import {
   Form, Typography, InputNumber, Input, Radio, Switch,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import { durationValidator } from './utils'
+import InputDuration from '~/components/InputDuration'
 import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import {
@@ -19,6 +21,11 @@ type Props = {
   close: () => void
   workshop: Workshop
   updateWorkshop: (data) => Promise<Workshop>
+}
+
+const fieldLayout = {
+  labelCol: { span: 24 },
+  wrapperCol: { span: 24 },
 }
 
 export const WorkshopEditFormModal: FC<Props> = ({
@@ -128,6 +135,54 @@ export const WorkshopEditFormModal: FC<Props> = ({
               <Input name="workshop_meetinglink" />
             </Form.Item>
           )}
+          <Form.Item
+            name="schedulingLeadTime"
+            label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
+            {...fieldLayout}
+            rules={[
+              {
+                validator: durationValidator({
+                  minMinutes: 1,
+                  maxMinutes: 24 * 60 * 30, // 30 days
+                  // eslint-disable-next-line max-len
+                  minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
+                  // eslint-disable-next-line max-len
+                  maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
+                  requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                }),
+              },
+            ]}
+          >
+            <InputDuration
+              value={60}
+              onChange={() => {}}
+              placeholder={I18n.t('administration.components.input_duration.placeholder')}
+            />
+          </Form.Item>
+          <Form.Item
+            name="cancellationLeadTime"
+            label={I18n.t('administration.scheduling.assessment_center_form.cancellation_lead_time_label')}
+            {...fieldLayout}
+            rules={[
+              {
+                validator: durationValidator({
+                  minMinutes: 1,
+                  maxMinutes: 24 * 60 * 30,
+                  // eslint-disable-next-line max-len
+                  minError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_min_error'),
+                  // eslint-disable-next-line max-len
+                  maxError: I18n.t('administration.scheduling.assessment_center_form.reschedule_duration_max_error'),
+                  requiredError: I18n.t('administration.scheduling.assessment_center_form.required_error'),
+                }),
+              },
+            ]}
+          >
+            <InputDuration
+              value={60}
+              onChange={() => {}}
+              placeholder={I18n.t('administration.components.input_duration.placeholder')}
+            />
+          </Form.Item>
           <Form.Item
             name="workshopManagersIds"
             label={<Text className="font-normal">{I18n.t('administration.scheduling.info.managers')}</Text>}

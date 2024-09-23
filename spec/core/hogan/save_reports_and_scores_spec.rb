@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Hogan::SaveReportsAndScores do
   let(:assessment) { create(:hogan_assessment) }
   let(:report) { create(:report, :hogan, assessments: [assessment]) }
-  let(:user) { create(:user, hogan_credential: build(:hogan_credential)) }
+  let(:user) { create(:user, hogan_credential: build(:hogan_credential, norm: 'Global')) }
   let(:project) { create(:project) }
   let!(:users_result) { create(:users_result, without_user_assessment: true) }
   let(:campaign) { create(:campaign) }
@@ -25,7 +25,7 @@ describe Hogan::SaveReportsAndScores do
     )
   end
 
-  it 'calls  Hogan::AddReports with user report that are not externally added' do
+  it 'calls Hogan::AddReports with user report that are not externally added' do
     expect(Services::Hogan::Api::Json::ParticipantReport).to receive(:call!)
     not_externally_added_report = create(
       :user_report, external_added: false, report: report, campaign: campaign, user: user
@@ -56,5 +56,23 @@ describe Hogan::SaveReportsAndScores do
     expect(users_result.reload.external_results).to eq({ 'some_score' => 1 })
     expect(user_report.reload.status).to eq('prepared')
     expect(user_report.pdf_file.attached?).to eq(true)
+  end
+
+  describe '#hogan_norm_id' do
+    context 'when norm_id is present and not default' do
+      it 'returns the norm_id from the report' do
+        report.update!(external_settings: { 'norm_id' => 'GlobalTimed' })
+
+        expect(described_class.new([user_report]).hogan_norm_id(users_result)).to eq('GlobalTimed')
+      end
+    end
+
+    context 'when norm_id is present but is the default norm' do
+      it 'returns the credential norm' do
+        report.update!(external_settings: { 'norm_id' => HoganCredential::DEFAULT_NORM })
+
+        expect(described_class.new([user_report]).hogan_norm_id(users_result)).to eq('Global')
+      end
+    end
   end
 end

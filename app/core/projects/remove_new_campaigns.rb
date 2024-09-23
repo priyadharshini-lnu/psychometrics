@@ -65,8 +65,6 @@ module Projects
         media_response.asset&.purge_later
       end
       media_responses.delete_all
-      MindmillCredential.joins(users_result: :user_assessment).
-        where(user_assessments: { campaign_id: campaign.id }).delete_all
       AgileEvent.joins(users_result: :user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
       UsersResult.joins(:user_assessment).where(user_assessments: { campaign_id: campaign.id }).delete_all
     end

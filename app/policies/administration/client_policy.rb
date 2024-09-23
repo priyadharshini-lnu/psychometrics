@@ -61,10 +61,6 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
     end
 
-    def sub_campaigns?
-      @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
-    end
-
     def manage_project_admins?
       @user.is?(:superadmin) || @user.has_permission?(:projects, :manage_admins, project_id: project_id)
     end

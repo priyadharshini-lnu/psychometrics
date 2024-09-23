@@ -25,7 +25,7 @@ module Administration
           context: {
             users_hash: users_hash
           }
-        ).to_A
+        ).to_a
 
         render json: { email_schedules: email_schedules, total: total }
       end

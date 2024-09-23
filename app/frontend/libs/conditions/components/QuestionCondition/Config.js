@@ -181,6 +181,10 @@ const Config = {
     conditions: {},
   },
 
+  CampaignFactorFeedback: {
+    conditions: {},
+  },
+
 }
 
 export default Config

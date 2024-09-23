@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Select } from 'antd'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { TYPES } from '~/modules/admin/modules/client/core/assessments'
@@ -13,6 +13,8 @@ interface Props {
 const { I18n } = window
 
 export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
+  const [assessmentName, setAssessmentName] = useState('')
+
   const { resource } = useResourceContext()
   const [form] = Form.useForm()
   const type = Form.useWatch('type', form)
@@ -23,6 +25,14 @@ export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
     form.setFieldValue(['externalSettings', 'scheduleConfig'], null)
     form.setFieldValue('category', ExternalAssessmentFields[type] ? type : null)
   }, [type])
+
+  const handleAssessmentSelect = (value: string) => {
+    setAssessmentName(value)
+  }
+
+  useEffect(() => {
+    form.setFieldsValue({ name: assessmentName })
+  }, [assessmentName])
 
   return (
     <ResourceFormModal
@@ -48,7 +58,7 @@ export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
               )}
             </Select>
           </Form.Item>
-          <BaseFormFields form={form} showTranslatableFields />
+          <BaseFormFields form={form} showTranslatableFields handleAssessmentSelect={handleAssessmentSelect} />
         </>
       )}
     </ResourceFormModal>

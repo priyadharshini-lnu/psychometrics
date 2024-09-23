@@ -100,7 +100,8 @@ module Threesixty
         evaluator: @users_result.evaluator,
         subject: @users_result.subject,
         threesixty_campaign: @campaign,
-        result: @users_result
+        result: @users_result,
+        assessment: @campaign.assessment
       }
     end
   end

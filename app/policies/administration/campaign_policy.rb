@@ -77,10 +77,6 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:clients, :manage, project_id: project_id)
     end
 
-    def sub_campaigns?
-      @user.is?(:superadmin) || @user.has_permission?(:clients, :manage, project_id: project_id)
-    end
-
     def client_admins?
       @user.is?(:superadmin) || (@user.is?(:client_admin) && record.client_admins.exists?(@user.id))
     end

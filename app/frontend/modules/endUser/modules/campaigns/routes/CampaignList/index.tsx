@@ -15,7 +15,6 @@ import { ProfileCardTitle } from '~/modules/endUser/modules/campaigns/components
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   fetchCampaigns,
-  acceptPolicy,
   FETCH,
 } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
@@ -38,7 +37,6 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
   fetchCampaigns,
-  acceptPolicy,
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps)
@@ -47,7 +45,6 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 const CampaignListComponent: FC<PropsFromRedux> = ({
   campaigns,
   fetchCampaigns,
-  acceptPolicy,
   profileCompletionPercentage,
   profileLastUpdatedAt,
   isLoading,
@@ -136,7 +133,6 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
                 <Component
                   key={campaign.id}
                   campaign={campaign}
-                  acceptPolicy={acceptPolicy}
                   history={history}
                   fetchCampaigns={fetchCampaigns}
                   scheduledForFuture={scheduledForFuture}

@@ -75,7 +75,7 @@ module Administration
     end
 
     def bulk_download?
-      has_permission?(:results, :bulk_download)
+      has_permission?(:results, :download_report)
     end
 
     def destroy?

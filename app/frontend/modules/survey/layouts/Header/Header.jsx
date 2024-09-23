@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { Button, Space, Dropdown } from 'antd'
 import {
   EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined, DownOutlined,
-  TranslationOutlined, PlusOutlined, CopyOutlined, TableOutlined, ImportOutlined,
+  TranslationOutlined, PlusOutlined, CopyOutlined, TableOutlined, ImportOutlined, EditOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
@@ -119,6 +119,11 @@ export class Header extends Component {
     })
   }
 
+  openCampaignFactors = () => {
+    const { openCampaignFactorsModal, assessment } = this.props
+    openCampaignFactorsModal({ assessmentId: assessment.id })
+  }
+
   render () {
     const {
       assessment, assessment: { extra, saving },
@@ -224,6 +229,12 @@ export class Header extends Component {
                     icon: <ImportOutlined />,
                     label: I18n.t('administration.assessments.menu.import_questions'),
                     onClick: this.openImportQuestionsModal,
+                  },
+                  {
+                    key: 'campaign-factors',
+                    icon: <EditOutlined />,
+                    label: I18n.t('administration.assessments.menu.managage_campaign_factors'),
+                    onClick: this.openCampaignFactors,
                   },
                 ],
               }}

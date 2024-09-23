@@ -1,0 +1,804 @@
+---
+ja:
+  activerecord:
+    attributes:
+      membership:
+        first_name: 名
+        last_name: 姓
+      user:
+        email: メールアドレス
+        first_name: 名
+        last_name: 姓
+      user_form:
+        email: メールアドレス
+        first_name: 名
+        last_name: 姓
+        password: パスワード
+    errors:
+      models:
+        user:
+          attributes:
+            current_password:
+              invalid: パスワードが間違っています
+  anonym:
+    continue: 続行
+    notifications:
+      restart:
+        copy: このアンケートはすでに開始されています。続行または再スタートを選択してください。
+        title: 続行しますか？
+    restart: 再スタート
+  assessments:
+    actions:
+      back_to_campaign: キャンペーンに戻る
+      extend_time: 時間を延長する
+      goto_dashboard: こちらをクリックして続行する
+      pending_tasks:
+        other: 保留中のタスクが1件あります
+      rescore: 再得点する
+    audio_response:
+      permission_denied_message: 回答を録音するには、ブラウザでマイクへのアクセスを許可してください
+      permission_text: 音声を録音するには、マイクの使用を許可してください
+    card_actions:
+      begin: 開始
+      continue: 続行
+    instructions:
+      begin_assessment: 開始
+      cancel: キャンセル
+      default: このアクティビティには時間制限があります。[アセスメントを開始]をクリックすると、%{time}分以内に完了する必要があります。
+      title: 手順
+    messages:
+      finish: |-
+        お時間をいただきありがとうございました。
+        回答が記録されました。
+    page:
+      back: 戻る
+      confirm_message: |-
+        #### 回答が送信され、その後は変更できなくなります。
+
+        [**戻る**]をクリックして最後にもう一度回答を確認するか、終了する場合は[**送信**]をクリックしてください。
+      next: 次へ
+      read_only: 読み取り専用モードです。結果を変更することはできません。
+      save: 保存
+      submit: 送信
+    pickgrouprank:
+      items: 項目
+    proceed: このまま続行する
+    unknown_error: 不明なエラーが発生しました。
+    video_response:
+      device: 許可
+      discard: 破棄
+      media_recorder:
+        failure: このブラウザはビデオ録画をサポートしていません。ビデオ録画にはChromeまたはFirefoxをお使いください
+        success: 音声付きビデオを録画するには、カメラとマイクの使用を許可してください
+      save: 保存
+      saved:
+        label: 保存済み
+      saving: 保存中...
+      start_recording: 録画を開始
+      tracker:
+        backward: 画面に近づきすぎています。少し後ろに下がってください
+        forward: 画面から離れすぎています。少し近づいてください
+        frame: 顔がフレームに合っていることを確認してください
+        ready: 録画の準備ができたら、[録画]ボタンを押してください
+    wait: 待機
+  auth:
+    current_password: 現在のパスワード
+    current_password_placeholder: 現在のパスワードを入力してください
+    email: Eメール
+    email_placeholder: メールアドレスを入力してください
+    expired_password:
+      description: 新しいパスワードを作成するには、すべての項目を記入してください
+      submit: 送信
+      title: パスワードを更新
+    login:
+      description: 個人アカウント情報でログインしてください
+      forgot_password: パスワードをお忘れですか？
+      login_btn: ログイン
+      not_member: メンバーではありませんか？
+      or: または
+      sso_btn: シングルサインオンでログイン
+      title: ようこそ！
+    logout: ログアウト
+    new_password: 新しいパスワード
+    otp:
+      code: コード
+      code_placeholder: ワンタイムパスワード
+      description: ご登録のメールアドレスに送信されたOTPを入力してください。
+      resend: OTPを再送信
+      submit: 認証する
+      title: ワンタイムパスワード
+    password: パスワード
+    password_confirmation: パスワードを確認
+    password_confirmation_placeholder: パスワードを再入力してください
+    password_placeholder: パスワードを入力してください
+    registration:
+      description: 登録して新規アカウントを作成するには、以下の詳細を入力してください
+      email_hint: 当社は利用者のプライバシーを尊重し、スパムを容認しません。当社が利用者の情報を第三者に提供することはありません
+      first_name: 名
+      first_name_placeholder: 名を入力してください
+      have_account: すでにアカウントをお持ちですか？
+      last_name: 姓
+      last_name_placeholder: 姓を入力してください
+      login_now: 今すぐログインしてください。
+      registration_code: 登録コード
+      registration_code_placeholder: 登録コードを入力してください
+      terms_notice: 登録することで、<a href="%{terms_url}">利用規約とプライバシーポリシー</a>に同意したものとみなされます
+      title: 新規登録
+    reset_password:
+      back_to_sign_in: サインインに戻る
+      description: アカウントに関連付けられているメールアドレスを入力してください
+      submit: パスワードをリセット
+      title: パスワードをお忘れですか？
+    set_password:
+      description: 新しいパスワードを作成するには、以下のボックスに新しいパスワードを入力してください
+      submit: 送信
+      title: パスワードを作成
+    sign_out: 別のユーザーでログイン
+    sign_up: 新規登録
+    terms_link: <a href="%{terms_url}">利用規約とプライバシーに関する声明</a>
+  campaign:
+    all_activities_are_completed: これですべてのアクティビティが完了しました。
+    all_activities_are_completed_multiple: これでこのキャンペーンのアクティビティはすべて完了しました。ダッシュボードに進み、その他のアクティビティが割り当てられているかどうかを確認してください。
+    begin: タスクを開始してください
+    campaigns: キャンペーン
+    closed_campaign_message: このキャンペーンは終了しました。このキャンペーン内のアセスメントを受けることはできません。
+    complete_prev: 以前のアセスメントをすべて完了する
+    continue: タスクを続行してください
+    dashboard_instructions: 完了すべき複数のアクティビティが割り当てられています。すべてのキャンペーンで割り当てられたアクティビティがすべて完了していることを確認してください。
+    dashboard_menu:
+      bookings: 予約
+      campaign: キャンペーン
+      change_password: パスワードを変更
+      home: ホーム
+      insights: インサイト
+      profile: プロフィール
+      profile_details: 詳細
+      tasks: タスク
+    details: 詳細
+    edit_evaluation:
+      body: "[再評価]をクリックすると、アンケートの開始に移動して回答を編集できるようになります。以前の回答を引き続き利用できますが、必要に応じて変更できます。編集後に、アセスメントを再送信してプロセスを完了する必要があります。"
+      edit: 再評価
+      title: 確認
+      view: アセスメントを表示
+    goto_dashboard: ダッシュボードに移動
+    inactive_campaign_message: 現在、割り当てられたアクティビティはありません。
+    insights_reports: インサイトとレポート
+    instruction_modal:
+      campaign_start_final_instructions: |
+        <p>
+        タイマーを停止または一時停止する方法はありませんのでご注意ください。ブラウザを閉じてもキャンペーンタイマーは進み続けるため、他の作業のためにタスクを離れることがないようにしてください。タスク中の邪魔は最小限に抑えるようにしてください。静かな環境を見つけて、お使いのデバイスの通知をオフにして、マルチタスクを避けてください。集中力を維持して専念しましょう。キャンペーンタイマーが時間切れになると、続行できなくなります。上記の手順をお読みになった上で、[開始]をクリックして割り当てられたタスクを続けてください。
+        </p>
+      campaign_start_instruction: |
+        <h4>以下の手順をよくお読みください。</h4>
+        <p>
+        あなたが始めようとしているタスクには、時間制限があります。「開始」をクリックすると、キャンペーンタイマーが自動的に開始します。すべてのアクティビティを完了するための制限時間は%{minutes}分です。指定時間内にタスクの完了を目指し、評価プロセスを急いで終わらせることのないよう、時間を効果的に管理してください。タスクはすべて一度に完了することをお勧めします。休憩が必要な場合は、今がその時です。</p>
+      common_proctoring_instructions: |
+        <h4>監督</h4>
+        <p>
+        [開始]ボタンをクリックすると、監督システムにリダイレクトされます。セッション中にカメラ、マイク、画面を監視します。高度なAIシステムによってセッションを自動的に監督し、中断のないスムーズなユーザーエクスペリエンスを提供します。ただし、セッションは人間の監督によって検査される場合もあります。不正行為や異常な行動の徴候にはフラグが立てられます。これは、反則行為を防止するために行われます。疑わしい行為があった場合、タスクはキャンセルされます。
+        </p>
+      lockdown_browser_instruction: |
+        <h4>ブラウザの監督</h4>
+        <p>
+        監督タスクを完了するには、特殊なブラウザをダウンロードしてインストールする必要があります。次の画面の指示に従ってください。すべての必須アクティビティを完了した後に、アンインストールできます。
+        </p>
+    instructions:
+      collapse_link_text: 表示を減らす
+      expand_link_text: もっと見る
+      heading: 開始前に、以下のガイドラインを確認してください。ご健闘をお祈りします。
+    language:
+      content: このタスクは、現在選択されている言語ではご利用いただけません。利用可能な言語の中から1つ選択して続行してください。
+      single_lang: このタスクは%{lang}でのみご利用いただけます。「続行」をクリックして次に進みます。
+      title: 言語の選択
+    panels:
+      reports: レポート
+    profile:
+      complete_heading: プロフィール登録は完了しています
+      complete_profile_label: 今すぐ完了
+      edit_profile_label: プロフィールを編集
+      incomplete_heading: プロフィール登録を完了してください
+      last_login_text: 最終ログイン日：
+      last_updated_text: プロフィールの最終更新日：
+      sub_heading: 完全なプロフィール情報を入力してください
+      welcome_text: ようこそ！
+    thank_you_for_time: お時間を割いていただきありがとうございます
+    time_left:
+      cancel: キャンセル
+      continue: 続行
+      notification: このタスク「%{assessmentName}」に当てられた時間は%{totalAssessmentTime}でした。全体的な経過時間により、このタスクを完了するための調整後の時間は、%{remainingCampaignTime}しかありません。
+    timer:
+      notification: 完了までの残り時間は%{minutes}分%{seconds}秒です
+  campaign_assessment:
+    assessments_heading: あなたのタスク
+    statuses:
+      completed: 完了
+      in_progress: 進行中
+      not_started: 開始していません
+  change_password_page:
+    old_password: 古いパスワード
+    password: パスワード
+    password_confirmation: パスワード確認
+    title: パスワードを変更
+  checking_wizard:
+    audio_check:
+      access: アクセス
+      access_help: こちらをクリックしてヘルプをご覧ください。
+      allow: 許可
+      allow_title: 音声を録音するには、マイクの使用を許可してください
+      continue: 続行
+      processing: 処理中
+      record_title: 以下の文章を3回繰り返して言ってください。
+      speech_detection: 音声検出
+      test_message: お話しできて嬉しいです
+      title: あなたのシステムがオーディオを録音できることを確認する必要があります。
+    network_check:
+      continue: 続行
+      download: ダウンロード
+      please_check_connection: インターネット接続を確認してください
+      processing: 処理中
+      run_again: 再実行
+      run_again_title: このテストをもう一度実行してください
+      title: "[開始]をクリックしてインターネット速度テストを始めてください。"
+      upload: アップロード
+    steps:
+      audio_check: マイクテスト
+      network_check: インターネット速度テスト
+      system_check: システムチェック
+      video_check: ビデオカメラテスト
+    success:
+      start: アセスメントを開始
+      title: すべてのチェックを正常に完了しました。
+    system_check:
+      continue: 続行
+      title: このアセスメントの開始前に、システムでいくつかのチェックを行う必要があります。
+    video_check:
+      access: アクセス
+      access_help: こちらをクリックしてヘルプをご覧ください。
+      allow: 許可
+      allow_title: ビデオを録画するには、カメラの使用を許可してください
+      continue: 続行
+      description: この段階でキャプチャされたビデオや写真は、保存または使用されることはありません。ビデオ録画を必要とする可能性のある今後の質問のために、デバイスでローカルに使用してカメラが機能していることを確認します。
+      face_detection: 顔検出
+      processing: 処理中
+      run_again: 再実行
+      title: お使いのシステムでビデオの録画をできるようにする必要があります
+  common:
+    actions:
+      add: 追加
+      archive: アーカイブ
+      cancel: キャンセル
+      copy: コピー
+      delete: 削除
+      edit: 編集
+      remove: 削除
+      reset: リセット
+      resolve: 解決
+      restore: 復元
+      save: 保存
+      search: 検索
+      send: 送信
+      start: 開始
+      unarchive: アーカイブを解除
+      unresolve: 未解決にする
+      update: 更新
+      upload: アップロード
+    column:
+      action: アクション
+      category: カテゴリー
+      created_at: 作成日時：
+      id: ID
+      status: ステータス
+    model:
+      assessments: アセスメント
+      campaigns: キャンペーン
+      reports: レポート
+    text:
+      cancel: キャンセル
+      confirm: 確認
+      continue: 続行
+      default: デフォルト
+      download: ダウンロード
+      na: 該当なし
+      ok: OK
+      response: 回答
+  devise:
+    administrators:
+      sessions:
+        new:
+          submit: ログイン
+    failure:
+      already_authenticated: すでにサインインしています。
+      inactive: アカウントはまだ有効ではありません。
+      invalid: 無効なメールアドレスまたはパスワードです。
+      invited: 保留中の招待状があります。承認してアカウントの作成を完了してください。
+      magic_link_invalid: 無効または期限切れのログインリンクです。
+      not_found_in_database: 無効なメールアドレスまたはパスワードです。
+      timeout: セッションの期限切れです。続行するにはもう一度ログインしてください。
+      unauthenticated: 続行するには、ログインまたは登録する必要があります。
+    invitations:
+      edit:
+        password_label: パスワード
+    registrations:
+      communication_not_setup_error: 登録メールの通信が設定されていません。このプロジェクトの管理者にお問い合わせください。
+      new:
+        email: メールアドレス
+        first_name: 名
+        instruction: 登録して新規アカウントを作成するには、以下の詳細を入力してください
+        last_name: 姓
+        privacy_notice: 当社は利用者のプライバシーを尊重し、スパムを容認しません。当社が利用者の情報を第三者に提供することはありません。
+        registration_code: 登録コード
+        submit: 新規登録
+        tabs:
+          register: 新規登録
+          sign_in: サインイン
+        terms_notice: 登録することで、<a href="%{terms_url}">利用規約とプライバシーポリシー</a>に同意したものとみなされます
+        title: 今すぐ登録
+      success:
+        actions:
+          sign_in: サインイン
+    sessions:
+      new:
+        email: メールアドレス
+        forgot_password: パスワードをお忘れですか？
+        instruction: 個人アカウント情報でログインしてください
+        password_placeholder: パスワード
+        submit: ログイン
+        tabs:
+          register: 新規登録
+          sign_in: ログイン
+        title: ようこそ！
+    two_factor_authentication:
+      attempt: ご登録のメールアドレス宛てに届いたOTPを入力してください
+      code_has_been_sent: ご登録のメールアドレス宛てに新しいOTPが送信されました
+  frontend:
+    activate: 有効にする
+    are_you_sure: 本当によろしいですか？
+    assessment: アセスメント
+    assessment_groups:
+      create_success: グループが正常に作成されました
+      update_success: グループが正常に更新されました
+    background_reading: バックグラウンドリーディング
+    bookings:
+      accept_invite_msg: 招待状が届いています。時間枠を予約してください。
+      add_to_calendar: カレンダーに追加
+      add_to_calendar_tour_description: この予約をカレンダーに追加
+      assessment_center_alert:
+        btn_title: キャンペーン
+        message_part1: 時間枠を予約する前に
+        message_part2: この中の事前作業をすべて完了してください。
+      assessment_center_group_name: アセスメントセンター
+      booking_failed_msg: 時間枠を予約できませんでした：%{error}
+      buttons:
+        book: 予約
+        book_again: 再予約
+        cancel: キャンセル
+        cancel_booking: 予約をキャンセル
+        confirm_booking: 予約を確定
+        confirm_reschedule: スケジュール変更を確定
+        modify: 変更
+        nevermind: 取り消す
+        no_text: いいえ
+        request_cancel: キャンセルをリクエスト
+        request_reschedule: スケジュール変更をリクエスト
+        reschedule: スケジュール変更
+        reserve_spot: 時間枠を予約
+        yes_text: はい
+      cancel_booking_confirmation: 本当にこの予約をキャンセルしてもよろしいですか？
+      cancellation_failed: 予約をキャンセルできませんでした：%{error}
+      cancellation_success: 予約が正常にキャンセルされました
+      comments_required_msg: コメントを入力してください
+      confirm_booking_description: 予約を確定する前に、これらの情報が正しいことを確認してください。
+      confirm_booking_title: この予約を確定しますか？
+      default_failure_msg: リクエストを処理できませんでした。後ほど、もう一度お試しください。
+      default_requires_msg: "%{name}は必須です"
+      join_activity_meeting: ミーティングに参加する
+      join_workshop_meeting: ミーティングに参加する
+      language: 言語
+      language_placeholder: 言語を選択する
+      language_preference_question: ご希望の言語がありますか？
+      language_required_msg: 言語を選択してください
+      meeting_start_text: ミーティング開始まで：
+      need_changes: 変更が必要ですか？
+      neurodivergence_comment_placeholder: コメント
+      neurodivergence_question: アセスメントに十分に参加するために、特別なニーズや障害に対する、相応の便宜や調整が必要ですか？
+      other_invite: あと%{count}件の招待状を見る
+      other_invites: あと%{count}件の招待状を見る
+      reason: 理由
+      reason_for_cancel: キャンセルの理由
+      reason_for_reschedule: スケジュール変更の理由
+      request_cancellation_failed: キャンセルをリクエストできませんでした：%{error}
+      request_cancellation_success: キャンセルが正常にリクエストされました
+      request_reschedule_failed: スケジュール変更をリクエストできませんでした： %{error}
+      request_reschedule_success: スケジュール変更が正常にリクエストされました
+      reschedule_failed_msg: スケジュール変更できませんでした：%{error}
+      reschedule_reason_placeholder: 続行するには、スケジュール変更の理由を入力してください。
+      schedule_success: この予約は予定されています
+      schedule_success_msg: すべての詳細を記載したカレンダーの招待状をあなたと他の参加者にメールで送信しました。
+      starts_at: 開始日時：%{date}
+      starts_in: 開始まで：
+      tab_label:
+        bookings: 予約
+        invites: 招待
+      what: 内容
+      when: 日時
+      workshop_start_text: アセスメントセンターの開始まで：
+    break_time: 休憩時間
+    campaign:
+      actions:
+        remove:
+          confirmation: キャンペーンを削除するには、以下のテキストボックスに現在のキャンペーン名を入力してください
+          success: "%{campaignName}が正常に削除されました。"
+      users:
+        completion_statuses:
+          completed: 完了済み
+          in_progress: 進行中
+          not_started: 開始していません
+    change_password: パスワードを変更
+    delete: 削除
+    edit: 編集
+    login: ログイン
+    manage: 管理
+    'no': いいえ
+    resource:
+      create_success: "%{readableResourceName}が正常に追加されました"
+      update_success: "%{readableResourceName}が正常に更新されました"
+    update: 更新
+    upload: アップロード
+    workshop_invited_subjects:
+      statuses:
+        cancelled: キャンセル済み
+        requested_cancellation: キャンセルをリクエスト済み
+        requested_rescheduling: スケジュール変更をリクエスト済み
+    'yes': はい
+  navigation:
+    logout: ログアウト
+  profile:
+    add_photo: 写真を追加
+    age: 年齢
+    change_password: パスワードを変更
+    change_photo: 写真を変更
+    email: Eメール
+    female: 女性
+    first_name: 名
+    gender: 性別
+    last_name: 姓
+    locale: 希望言語
+    male: 男性
+    not_disclosed: 開示したくない
+    password: パスワード
+    password_confirmation: パスワード確認
+    success_update: プロフィールが正常に保存されました
+    timezone: タイムゾーン
+    title: マイプロフィール
+    update: 更新
+  reports:
+    actions:
+      add: レポートを追加
+      download: レポートをダウンロード
+      view: レポートを表示
+    modules:
+      factors_table:
+        description: 説明
+        no_data: このセクションで利用できるデータはありません。
+        rank: ランク
+        score: スコア
+      gap_assessment:
+        gap: ギャップ
+        item: 指標
+        negative_gap: マイナスのギャップ
+        no_negative_gaps: マイナスのギャップはありません
+        no_positive_gaps: プラスのギャップはありません
+        positive_gap: プラスのギャップ
+        rank: ランク
+        scoring_category: コンピテンシー
+      highest_lowest:
+        bottom_5: 下位5位
+        category: カテゴリー
+        highest_scores: 最高スコア
+        item: 指標
+        lowest_scores: 最低スコア
+        mean_score: 中間スコア
+        rank: ランク
+        scoring_category: コンピテンシー
+        sub_competenties: サブコンピテンシー
+        top_5: 上位5位
+      potential_career_full:
+        career_strengths_and_results: キャリアの強みと結果
+        career_sub_tracks: キャリアのサブトラック
+        key_career_tracks_within: 以下は、各キャリアトラックの潜在的な職務リストです。このリストはあくまでも目安であり、すべてを網羅しているわけではないことにご注意ください。イタリック体の役割には、より高いレベルの教育または経験が必要です。
+        potential_areas_of_study: 潜在的な研究領域
+        strength_high: 特徴的な強み
+        strength_low: 成長の強み
+        strength_moderate: 潜在的な強み
+        work_environment: 仕事環境
+        your_suitability: 適合性
+      single_value:
+        factor_name: スコアカテゴリー
+        question_name: 質問
+      single_value_cluster:
+        competency: コンピテンシー
+        developmental_rating: 成長評価
+        questions: 質問
+      strength_clusters:
+        index_sub_factors_considered: "%{workstyle}の職場環境向けの最終スコアを提供するために考慮されたThriving Indexのサブ要因"
+        possible_roles: 潜在的な役割
+        work_environments: 予想される職場環境
+      three_sixty_default:
+        factor:
+          items: アイテム
+          max: 最大値
+          mean: 平均
+          min: 最小値
+          standardDeviation: 標準偏差
+          sum: 合計
+          totalResponses: 総回答数
+          variance: 差異
+          weightedMean: 加重平均
+        question:
+          no_response: 回答がありません
+        statistic: 統計
+        value: 値
+      three_sixty_report_summary:
+        completed: 完了
+        footnote: "*最低限の基準要件により除外"
+        invited: 招待済み
+        relationships: 関係
+        total: 合計
+      video_response:
+        no_results: 録画ビデオはありません
+    show:
+      export_pdf: PDFにエクスポート
+      header: レポート
+    statuses:
+      approved: 承認済み
+      available: 利用可能
+      denied: 却下されました
+      incomplete: 未完成
+      not_available: 利用できません
+      on_hold: 保留中
+      released: 公開済み
+  shared:
+    filters:
+      clear: 絞り込みをクリア
+    internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
+    terms_conditions_privacy: プライバシーに関する声明
+    tte_terms_and_condition: 利用規約とプライバシー
+  simple_form:
+    placeholders:
+      administrator:
+        email: メールアドレス
+        last_name: 姓
+      memebrship:
+        last_name: 姓
+      user:
+        email: メールアドレス
+        first_name: 名
+        last_name: 姓
+        password: パスワード
+      user_form:
+        email: メールアドレス
+        first_name: 名
+        last_name: 姓
+        password: パスワード
+  subjects:
+    statuses:
+      completed: 完了済み
+      declined: 辞退済み
+      denied: 却下
+      done: 完了
+      not_completed: 未完了
+      waiting: 待機中
+  threesixty:
+    accept_privacy_modal:
+      accept: 同意する
+      checkbox: 私は上記のプライバシーポリシーを読み、理解しました
+      title: データ処理に関する同意
+    add: 追加
+    and: および
+    approve_all: すべて承認する
+    approve_all_successful: すべての推薦を承認しました
+    approve_evaluations: 評価を承認する
+    approve_nominations: 推薦を承認する
+    approve_reports: レポートを承認する
+    approved: 承認済み
+    approving_mail_sent: 推薦を承認するためのメールがマネージャー宛てに送信されました
+    as_my: 私の
+    assessment: アセスメント
+    back_to_tasks: タスクに戻る
+    begin: 開始
+    cancel: キャンセル
+    close_evaluation_modal:
+      message: レポートを表示すると、%{pronoun_or_name}はそれ以上の評価を受け取ることができなくなります
+      title: 本当にレポートを表示してもよろしいですか？
+    closed_campaign_message: この360キャンペーンは終了しました。このキャンペーンに参加する人を推薦または評価することはできません。
+    completed: 完了済み
+    confirm: 本当に実行しますか？
+    confirmation_for_nomination_removal: 本当に推薦を削除してもよろしいですか？
+    confirmation_required: 確認が必要です
+    confirmation_text_incorrect: 確認テキストが間違っています
+    confirmation_text_placeholder: ここに確認テキストを入力してください
+    continue: 続行
+    dashboard_title: "%{name}さん、ようこそ"
+    decline: 辞退する
+    decline_invite: 招待を辞退する
+    denied: 却下されました
+    deny_all: すべて却下する
+    deny_all_successful: すべての推薦を却下しました
+    download_pdf: PDFをダウンロード
+    download_report: レポートをダウンロード
+    download_reports: レポートをダウンロード
+    edit_user: ユーザーを編集
+    email_approve_request: 承認リクエストをメールで送信する
+    email_schedules:
+      delete_successful: メールスケジュールが正常に削除されました
+    evaluate: 評価する
+    evaluation: 評価
+    evaluation_all_closed_message: 現在、すべての推薦が承認待ちです
+    evaluation_closed_nomination_message: この課題の評価は終了しているため、この課題の参加者を推薦できません
+    evaluation_help_modal:
+      title: 評価のヘルプ
+    evaluations: 評価
+    evaluator: 評価者
+    export_pdf: PDFにエクスポート
+    first_name: 名
+    first_name_error: お名前（名）を入力してください
+    help: ヘルプ
+    language: 言語
+    last_name: 姓
+    last_name_error: お名前（姓）を入力してください
+    load_results: 結果を読み込む
+    mail_history:
+      statuses:
+        success: 成功
+        undelivered: 未配信
+    mindmill_confirmation: このアセスメントを開始すると、「%{assessment}」の結果が失われます。結果を残す場合は「キャンセル」をクリックし、続行する場合は「OK」をクリックしてください
+    my_projects: マイプロジェクト
+    nominate: 推薦する
+    nominate_evaluators: 評価者の推薦先：
+    nomination: 推薦
+    nomination_help_modal:
+      title: 推薦のヘルプ
+    nominations: 推薦
+    options:
+      global:
+        cannot_re_edit: 参加者は評価を編集できません
+    or: または
+    page_title: 360°のレビューを示す - レベルを適用
+    participant_list:
+      actions:
+        approve_report: レポートを承認
+        download_report: レポートをダウンロード
+        edit: 編集
+        hold_report: レポートを保留にする
+        login: ログイン
+        mark_as_done: 完了としてマークする
+        release_report: レポートを公開する
+        remove_campaign: キャンペーンから削除する
+        remove_report_approval: レポートの承認を削除する
+        remove_report_hold_release_report: レポートの保留/公開を削除する
+        remove_subject: 課題を削除する
+        unmark_as_done: 完了としてマークを外す
+        view_report: レポートを表示
+        view_responses: 回答を表示
+      confirmation_messages:
+        approve_report: 本当にレポートを承認してもよろしいですか？
+        hold_report: 本当にレポートを保留にしてもよろしいですか？
+        mark_evaluation_done: 本当に評価を完了としてマークしてもよろしいですか？ この課題の評価は終了します。
+        release_report: 本当にレポートを公開してもよろしいですか？
+        remove_from_campaign: 本当にキャンペーンからユーザーを削除してもよろしいですか？
+        remove_release_hold: 本当に公開/保留のステータスを削除してもよろしいですか？
+        remove_report_approval: 本当にレポートの承認を削除してもよろしいですか？
+        remove_subject: 本当にキャンペーンからメールとともに課題を削除してもよろしいですか？
+        umark_evaluation_as_complete: 本当に評価を完了としてマークを外してもよろしいですか？
+      report_generation_message: レポートを生成しています。レポートの準備が整い次第お知らせします。
+    processing: 処理中
+    processing_report: レポートの処理中
+    progress_text: "%{completed}／%{total}"
+    question:
+      chat_type:
+        input_placeholder: ここにメッセージを書いてください...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: 編集
+        max_length_warning: 残り%{x}文字です
+        message: あなたのメッセージ
+        send: 送信
+        subject: 件名
+        successful_message: メールを正常に送信しました
+        to: 宛先
+    remind_all: 全員にリマインドする
+    remind_mail_sent: 評価を完了していない評価者にリマインダーを送信しました
+    report_for: レポートの対象者：
+    report_generation_in_progress: レポートを生成しています。レポートの準備が整い次第お知らせします。
+    reports: レポート
+    reports_help_modal:
+      title: レポートのヘルプ
+    reset_campaign_confirmation: すべての参加者をリセットするには、以下のテキストボックスに現在のキャンペーン名を入力してください
+    reset_nomination_confirmation: すべての推薦をリセットするには、以下のテキストボックスに現在のキャンペーン名を入力してください
+    save: 保存
+    select_relationnship: 関係を選択
+    select_relationship: 関係を選択
+    self: 本人
+    set_name_for_evaluator: 評価者の名前を設定する
+    setup_nominations: 推薦を設定する
+    subject: 課題
+    submit: 送信
+    total_progress: 全体の進捗状況
+    user_name_input_placeholder: ユーザー名またはメールアドレスを入力...
+    validation_errors: 検証エラー
+    view_my_report: マイレポートを表示
+    view_nominations: 推薦を表示
+    view_reports: レポートを表示
+    waiting: 待機中
+    you: あなた
+    yourself: あなた自身
+  user:
+    fields:
+      email: メールアドレス
+      first_name: 名
+      last_name: 姓
+  user_reports:
+    actions:
+      regenerate: 再生成
+    messages:
+      regenerate_successful: レポートの再生成ジョブが正常にスケジュールされました
+    modals:
+      remove:
+        content: 本当に%{userReportName}のレポートを削除してもよろしいですか？
+        successfully: "%{userReportName}のレポートが正常に削除されました"
+    preview_report: レポートのプレビュー
+    statuses:
+      generating: 生成中
+      not_prepared: 利用不可
+      prepared: 利用可能
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: 音声は録音されていますが、保存されていません
+        RECORDING: 音声の録音中です
+        SAVING: 録音された音声をアップロード中です
+      required: 音声を録音し、保存してから続行してください
+    FileUpload:
+      in_progress:
+        SAVING: ファイルのアップロード中です
+      required: ファイルをアップロードしてください
+    TextEntry:
+      Email:
+        character_range: メールメッセージの入力は、%{min}文字以上%{max}文字以下にしてください。
+        subject:
+          min_length: 件名フィールドは10文字以上にしてください
+        to:
+          required: 宛先フィールドは必須項目です
+    VideoResponse:
+      in_progress:
+        recorded: ビデオは録画されていますが、保存されていません
+        recording: ビデオの録画中です
+        saving: 録画されたビデオをアップロード中です
+      required: ビデオを録画し、保存してから続行してください
+    actions_still_in_progress: 以下のアクションが進行中です。続行すると、これらのデータは失われます。
+    blank: 必須項目です
+    character_range: 回答は、%{min}文字以上%{max}文字以下にしてください。
+    date: 回答は有効な日付（MM/DD/YYYY）にしてください
+    each_group_contains: 各グループには、%{min}以上%{max}以下の項目が含まれている必要があります
+    email: 回答は有効なメールアドレスにしてください
+    exact: 選択肢を正確に%{count}個選んでください
+    file_upload:
+      EntityTooLarge: ファイルサイズは%{maxFileSize}MB未満にしてください
+      WrongFileType: ファイルタイプは次のいずれかにしてください：%{allowedFileTypes}
+    issue: 問題
+    least: 少なくとも%{min}個の選択肢に回答してください。
+    least_hotspot: 少なくとも%{min}個の選択肢に回答してください。
+    max_character: 回答は、%{max}文字以下にしてください。
+    max_word: 回答は、%{max}語以下にしてください。
+    min_character: 回答は、%{min}文字以上にしてください。
+    min_word: 回答は、%{min}語以上にしてください
+    most: 選択肢を最大%{max}個まで選んでください
+    must_rank_between: 各項目に%{min}から%{max}までの値を割り当ててください。値を繰り返すことはできません。
+    must_select: "%{min}～%{max}個の選択肢を選んでください"
+    number: 回答は数字にしてください
+    range: "%{min}個以上%{max}個以下の選択肢に回答してください。"
+    required: この質問に答えてください
+    text: 回答に数字を含めることはできません
+    title:
+      other: エラーが1つあります。回答を確認してください

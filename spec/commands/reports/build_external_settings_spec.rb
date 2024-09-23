@@ -13,7 +13,7 @@ describe Administration::Reports::BuildExternalSettings do
     it 'extend hogan external settings' do
       result = described_class.call!(report, { report_id: 'EcHPIHDSMVPIBSML' }, 'hogan')
       expect(result).to eq(
-        norm_id: 'Global',
+        norm_id: 'Global2023',
         report_id: 'EcHPIHDSMVPIBSML',
         language_id: 'en',
         suitability_id: 'Hogan - Leader'

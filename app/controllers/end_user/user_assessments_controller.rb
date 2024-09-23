@@ -115,7 +115,8 @@ class EndUser::UserAssessmentsController < ApplicationController
       subject: current_user,
       threesixty_campaign: {},
       campaign: @user_assessment.campaign,
-      result: @user_assessment.users_result
+      result: @user_assessment.users_result,
+      assessment: @user_assessment.assessment
     }
   end
 

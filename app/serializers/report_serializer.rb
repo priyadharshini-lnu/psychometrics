@@ -144,17 +144,6 @@ class ReportSerializer < Panko::Serializer
     end
   end
 
-  def assigns
-    return [] unless context[:membership]
-
-    Assign.includes(:membership).joins(:membership).
-      where(assessment_id: object.assessment_ids,
-            memberships: {
-              client_id: context[:membership].client_id,
-              user_id: context[:membership].user_id
-            })
-  end
-
   def factor_norms
     norms = Norm.includes(:factors_norms).where(dimension_id: object.assessments.pluck(:dimension_id)).distinct
     norms.each_with_object({}) do |norm, hash|
@@ -213,7 +202,7 @@ class ReportSerializer < Panko::Serializer
   private
 
   def results
-    user_results || assigns
+    user_results || []
   end
 
   def user_results

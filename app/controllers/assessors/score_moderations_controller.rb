@@ -110,7 +110,8 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
       evaluator: user_assessment.evaluator,
       subject: user_assessment.subject,
       campaign: user_assessment.campaign,
-      result: user_assessment.users_result
+      result: user_assessment.users_result,
+      assessment: user_assessment.assessment
     }
   end
 
