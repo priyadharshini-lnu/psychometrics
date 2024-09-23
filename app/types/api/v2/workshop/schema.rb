@@ -47,6 +47,8 @@ module Api
             required(:allow_late_cancellation_and_rescheduling).filled(:bool)
             required(:workshop_assessors_ids).array(:string)
             required(:workshop_managers_ids).array(:string)
+            required(:scheduling_lead_time).filled(:integer)
+            required(:cancellation_lead_time).filled(:integer)
           end
         end
 

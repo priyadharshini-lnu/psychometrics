@@ -41,6 +41,8 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
     %i[workshop_assessors_ids
        workshop_managers_ids
        total_seats
+       scheduling_lead_time
+       cancellation_lead_time
        allow_late_cancellation_and_rescheduling
        name
        video_call_type meeting_link status]
