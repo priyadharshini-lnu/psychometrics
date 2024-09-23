@@ -39,7 +39,7 @@ module Threesixty
     end
 
     def current_option
-      context[:options]
+      context[:current_option]
     end
 
     def options
