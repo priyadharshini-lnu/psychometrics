@@ -370,6 +370,8 @@ en:
       restore:
         successfully: Assessment %{name} was restored successfully.
       settings:
+        disable_continue_to_dashboard: Disable "Continue to Dashboard" Button
+        disable_nav_btn: Disable Navigation Back Button
         enable_back: Enable back button
         enable_progress: Enable progress bar
         enable_single_question_page: Show one question per page

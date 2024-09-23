@@ -26,7 +26,7 @@ const connector = connect(({ preview }: RootState) => ({
   otherPendingAssessmentCount: preview.otherPendingAssessmentCount,
   assessmentId: preview.id,
   invalidSession: preview.invalidSession,
-
+  extra: preview.extraOptions,
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
@@ -47,6 +47,7 @@ const EndPage: FC<Props> = ({
   allowMultipleResponses,
   assessmentId,
   invalidSession,
+  extra,
 }) => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -66,6 +67,7 @@ const EndPage: FC<Props> = ({
     message = endOfAssessmentElementProps?.message
   }
   const getViewPath = () => `?tab=${assessmentId}&read=true`
+
   return (
     <div className={styles.page}>
       <div className={styles.logo}>{/* <img src={Logo} /> */}</div>
@@ -87,7 +89,7 @@ const EndPage: FC<Props> = ({
           </Space>
         ) : (
           <Space direction="vertical" align="center">
-            {!showScoringOnEndPage && !isAnonymousAssessment && (
+            {!showScoringOnEndPage && !isAnonymousAssessment && !extra.disable_continue_to_dashboard && (
               <>
                   {otherPendingAssessmentCount > 0 && (
                   <Typography.Title level={3}>
