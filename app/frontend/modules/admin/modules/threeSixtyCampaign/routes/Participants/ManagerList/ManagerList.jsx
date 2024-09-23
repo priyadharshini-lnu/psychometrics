@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { useEffect } from 'react'
 import { Col, Row } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ToolsDropdown from '../ToolsDropdown'
 import { Manage } from '../Manage'
@@ -18,10 +18,12 @@ export default function ManagerList ({
   removeUser,
   total,
   permissions,
-  page,
   searchTerm,
 }) {
   const { campaignId } = useParams()
+  const [params] = useSearchParams()
+  const page = params.get('page') || 1
+
   useEffect(() => {
     fetchManagers(campaignId, page, searchTerm)
   }, [page])

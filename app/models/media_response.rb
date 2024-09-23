@@ -11,14 +11,12 @@ class MediaResponse < ApplicationRecord
   has_one_attachment :asset, service: Settings.storage.private_storage_service
 
   def attachment_storage_path(attribute_name, filename)
-    project_id = users_result ? users_result.campaign.project_id : assign.membership.project_membership.client_id
-
-    "private/projects/#{project_id}/media_response/#{users_result_id || assign_id}/#{question_id}/#{id}/#{attribute_name}/#{filename}" # rubocop:disable Layout/LineLength
+    project_id = users_result.campaign.project_id
+    "private/projects/#{project_id}/media_response/#{users_result_id}/#{question_id}/#{id}/#{attribute_name}/#{filename}" # rubocop:disable Layout/LineLength
   end
 
   belongs_to :users_assessment
   belongs_to :question
-  belongs_to :assign
   belongs_to :users_result
 
   validate :verify_multiple_take_limit, on: :create
@@ -41,7 +39,7 @@ class MediaResponse < ApplicationRecord
     return if maximum_takes.blank?
 
     media_responses_count = question.media_responses.
-                            where(assign_id: assign&.id, users_result_id: users_result&.id).count
+                            where(users_result_id: users_result&.id).count
 
     errors.add(:base, :max_takes_limit_reached) if media_responses_count >= maximum_takes
   end
@@ -49,7 +47,7 @@ class MediaResponse < ApplicationRecord
   def set_user_selected
     return unless question.type == 'VideoResponse'
 
-    media_responses_exists = question.media_responses.exists?(assign_id: assign&.id, users_result_id: users_result&.id)
+    media_responses_exists = question.media_responses.exists?(users_result_id: users_result&.id)
 
     self.user_selected = true unless media_responses_exists
   end

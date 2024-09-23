@@ -1,9 +1,0 @@
-.btn-group role="group"
-  - if policy(:membership).can_manage_client_admins?
-    = active_link_to(t('administration.navigation.client_admins'), administration_client_client_admins_path(client), class: 'btn btn-default')
-  - if current_user.is?(:superadmin)
-    = link_to 'Projects', administration_client_projects_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'projects',action: :index)}"
-  - if client.campaigns.any? && current_user.is?(:superadmin)
-    = link_to 'Campaigns', administration_client_campaigns_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'campaigns',action: :index)}"
-  - if client.sub_campaigns.any? && current_user.is?(:superadmin)
-    = link_to 'Sub Campaigns', administration_client_sub_campaigns_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'sub_campaigns',action: :index)}"

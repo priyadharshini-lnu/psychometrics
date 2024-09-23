@@ -10,6 +10,7 @@ export default interface UserAssessment {
   additionalTime: number | null
   normId: number
   normName: string
+  dimensionId: number
   status: string
   norms?: Norm[]
   mettlScheduleRecordId?: string,

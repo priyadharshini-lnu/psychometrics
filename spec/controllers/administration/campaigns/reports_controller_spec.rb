@@ -168,6 +168,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         auto_assign
         mettl_schedule_name
         mettl_schedule_record_id
+        dimension_id
       ]
     )
     expect(assessment_response).to include({

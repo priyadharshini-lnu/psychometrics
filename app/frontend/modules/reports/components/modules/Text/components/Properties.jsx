@@ -379,7 +379,6 @@ class Properties extends Component {
           <Space.Compact block className={localStyles.flexCenter}>
             <ColorPicker
               swatchClassName={localStyles.swatch}
-              defaultColor="#ffffff"
               value={_.isObject(backgroundColor) ? rgba2hex(backgroundColor) : backgroundColor}
               onChange={this.changeBg}
             />
@@ -400,7 +399,6 @@ class Properties extends Component {
           <Space.Compact block className={localStyles.flexCenter}>
             <ColorPicker
               swatchClassName={localStyles.swatch}
-              defaultColor="#cccccc"
               value={_.isObject(borderColor) ? rgba2hex(borderColor) : borderColor}
               onChange={this.changeBorder}
             />

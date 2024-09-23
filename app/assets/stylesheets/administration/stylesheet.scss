@@ -204,16 +204,6 @@ body {
   }
 }
 
-#assigns_list {
-  .actions-cell {
-    .report {
-      display: flex !important;
-      .control {
-        margin-left: auto !important;
-      }
-    }
-  }
-}
 .encrypted:before {
   content: '****************************************************************';
 }

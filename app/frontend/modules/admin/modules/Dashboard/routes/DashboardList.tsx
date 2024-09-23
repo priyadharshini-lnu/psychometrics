@@ -58,3 +58,5 @@ const CardCover: React.FC<CardCoverProps> = ({ imageUrl }) => (
     {!imageUrl && <Skeleton.Image className={styles.imageSkeleton} />}
   </div>
 )
+
+export default DashboardList

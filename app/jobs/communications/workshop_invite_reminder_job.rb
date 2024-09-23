@@ -13,7 +13,7 @@ module Communications
         where(%{
           workshops.total_seats > workshops.booked_seats AND
           NOW() < (
-            workshops.start_time - (workshops.reschedule_lead_time * '1 second'::INTERVAL) - '8 hours'::INTERVAL
+            workshops.start_time - (workshops.scheduling_lead_time * '1 second'::INTERVAL) - '8 hours'::INTERVAL
           )
         }).distinct
       # rubocop:enable Layout/MultilineMethodCallIndentation

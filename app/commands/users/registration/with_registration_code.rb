@@ -14,8 +14,7 @@ module Users
 
       def call
         transaction do
-          user = registration_code.campaign ? create_user : legacy_create_user
-          broadcast(:ok, user)
+          broadcast(:ok, create_user)
         end
       rescue ActiveRecord::RecordInvalid, Errors::LicenseError => e
         form.errors.add(:base, e.message)
@@ -31,23 +30,6 @@ module Users
           on(:insufficient_license) do
             raise Errors::LicenseError.new(client, nil, user, 'LicenseError')
           end
-          on(:ok) do
-            increment_registration_code_usage(registration_code)
-            update_license_use(user, client, registration_code)
-          end
-        end
-      end
-
-      # TODO: Remove once migration to new campaign structure is complete
-      def legacy_create_user
-        attributes = form.attributes.except(:registration_code, :mobile_verification_token)
-        attributes[:project_id] = project.id
-        attributes[:terms] = true
-        attributes[:create_by_invite] = true
-        user = User.create!(attributes)
-
-        Administration::Clients::CreateUser.call(user, [client]) do
-          on(:license_error) { |_form, e| raise e }
           on(:ok) do
             increment_registration_code_usage(registration_code)
             update_license_use(user, client, registration_code)

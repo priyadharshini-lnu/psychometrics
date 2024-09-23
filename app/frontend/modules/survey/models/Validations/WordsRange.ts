@@ -3,7 +3,7 @@ import wordsCount from 'words-count'
 import { Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 import { I18n } from '~/modules/survey/store/StoreWatchman'
-import { getAnswer, getValidationKey } from '~/modules/survey/utils/question'
+import { getAnswersByLength, getValidationKey } from '~/modules/survey/utils/question'
 
 class WordsRange {
   minLength: number
@@ -25,9 +25,10 @@ class WordsRange {
   }
 
   validate (answers: { message: string }) {
-    const answerLength = wordsCount(getAnswer(this.question, answers))
+    const shortestAnswerLength = wordsCount(getAnswersByLength(this.question, answers).shortest)
+    const longestAnswerLength = wordsCount(getAnswersByLength(this.question, answers).longest)
 
-    if (answerLength < this.minLength || answerLength > this.maxLength) {
+    if (shortestAnswerLength < this.minLength || longestAnswerLength > this.maxLength) {
       return {
         type: 'WordsRange',
         message: I18n().t(`${getValidationKey(this.question)}.word_range`, {

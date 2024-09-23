@@ -7,7 +7,7 @@ module Administration
     included do
       helper_method :i18n
       helper_method :client, :project, :campaign, :resource, :resources, :resource_class, :filter_form
-      helper_method :membership, :project_membership, :project_assign
+      helper_method :membership, :project_membership
       helper_method :user, :users
     end
 
@@ -61,14 +61,6 @@ module Administration
 
     def project_membership
       @project_membership ||= membership.project_membership || membership
-    end
-
-    def assign
-      @assign
-    end
-
-    def project_assign
-      @project_assign ||= assign.project_assign || assign
     end
 
     def user

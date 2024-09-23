@@ -64,7 +64,7 @@ const BookingsAndInvitesDetailsComponet:FC<Props> = ({
   const bookedDateTimeMomentObjectTz = bookedDateMomentObject
     ? bookedDateMomentObject.date.clone().tz(currentTimezone) : null
   const deadlineToAllowRescheduleByUser = bookedDateTimeMomentObjectTz?.clone()
-    .subtract(inviteOrBookingDetails?.rescheduleLeadTime || 0, 's')
+    .subtract(inviteOrBookingDetails?.schedulingLeadTime || 0, 's')
   const allowRescheduleByUser = currentTime.isSameOrBefore(deadlineToAllowRescheduleByUser)
   const workshopId = bookedDateMomentObject?.id
   const bookingId = inviteOrBookingDetails?.id?.toString()

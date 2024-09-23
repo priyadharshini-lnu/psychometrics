@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This command is only used for 360 report. Maybe we need to remove this and PrepareDataForReportPreview command
 module Reports
   class PrepareDataForReport < BaseCommand
     attr_reader :project, :membership, :user_report, :report, :locale, :evaluator, :current_user
@@ -20,9 +21,8 @@ module Reports
       }
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       broadcast :ok,
-                user: Reports::UserSerializer.new(
-                  context: { campaign: user_report.campaign }
-                ).serialize(user_report&.user || membership.user).to_json,
+                user: Reports::UserSerializer.new(context: { campaign: user_report.campaign }).
+                  serialize(user_report&.user || membership.user).to_json,
                 results: serialize_results.to_json,
                 data: ReportSerializer.new(
                   context: {
@@ -38,8 +38,6 @@ module Reports
     def serialize_results
       if report.category_threesixty?
         Threesixty::Reports::ResultsForSubject.call!(user_report, current_user)
-      else
-        lookup_results.group_by { |result| result.object.assessment_id }
       end
     end
 
@@ -51,25 +49,6 @@ module Reports
           user_report: user_report
         }
       ).serialize(user_report.threesixty_campaign)
-    end
-
-    def lookup_results
-      assign = Assign.
-               completed.
-               includes(:membership, :user, :assessment).
-               where(
-                 memberships: { client_id: project.id, user_id: membership.user_id },
-                 assessment_id: report.assessment_ids
-               ).
-               references(:membership)
-
-      Panko::ArraySerializer.new(
-        assign,
-        each_serializer: ::AssignSerializer,
-        context: {
-          membership: membership
-        }
-      ).to_a
     end
 
     def translations(piped_text_context)

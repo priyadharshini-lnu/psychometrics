@@ -137,6 +137,8 @@ de:
           Sie müssen einen speziellen Browser herunterladen und installieren, um die überwachten Aufgaben auszuführen. Bitte folgen Sie den Anweisungen im nächsten Bildschirm. Sie können dies deinstallieren, nachdem Sie alle erforderlichen Aktivitäten abgeschlossen haben.
         </p>
     instructions:
+      collapse_link_text: Details verbergen
+      expand_link_text: Mehr Details
       heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
     language:
       content: Diese Aufgabe ist in der aktuell ausgewählten Sprache nicht verfügbar. Bitte wählen Sie eine der verfügbaren Sprachen aus, um fortzufahren.

@@ -11,6 +11,7 @@ module Lambdas
         end
 
         if data['update_record']
+          user_report.pdf_file&.purge_later
           blob = ActiveStorage::Blob.create_before_direct_upload!(
             key: data['file_path'],
             filename: data['file_name'],

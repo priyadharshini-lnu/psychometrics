@@ -103,7 +103,6 @@ class Properties extends Component {
           Background Color
           <Space.Compact block className={styles.flexCenter}>
             <ColorPicker
-              defaultColor="#cccccc"
               value={_.isObject(backgroundColor) ? rgba2hex(backgroundColor) : backgroundColor}
               onChange={this.changeBg}
             />

@@ -239,6 +239,16 @@ const FIELDS = [
       },
     ],
   },
+  {
+    branch: 'Factors',
+    fields: [
+      {
+        name: 'Factor Table',
+        type: 'link',
+        value: '{{f://Factor/Table}}',
+      },
+    ],
+  },
 ]
 
 export default FIELDS

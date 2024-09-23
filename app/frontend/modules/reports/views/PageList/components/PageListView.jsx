@@ -2,7 +2,6 @@ import { Component } from 'react'
 import _ from 'lodash'
 import store from '~/modules/reports/store/PageList'
 import Page from '~/modules/reports/views/Page'
-import LabelEditor from '~/modules/reports/components/LabelEditor'
 import styles from './PageListView.less'
 
 export class PageListView extends Component {
@@ -35,7 +34,7 @@ export class PageListView extends Component {
     return (
       <div className={styles.main} onClick={this.unselectAllModules}>
         <div className={styles.reportName}>
-          <LabelEditor value={report.name || ''} onChange={this.changeName} width={650} />
+          {report.name}
         </div>
         {_.map(pages, model => !model.removed && (
           <Page

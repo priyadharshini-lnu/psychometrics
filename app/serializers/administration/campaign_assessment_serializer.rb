@@ -6,9 +6,9 @@ module Administration
                :universal_link, :norms, :is_external, :assessor_form_name, :permissions,
                :has_external_norm, :available_locales, :all_locales, :external_config, :campaign_assessment_id,
                :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses,
-               :require_scheduling, :auto_assign, :mettl_schedule_name, :mettl_schedule_record_id
+               :require_scheduling, :auto_assign, :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id
 
-    delegate :id, :name, :category, to: :assessment
+    delegate :id, :name, :dimension_id, :category, to: :assessment
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
 
     def campaign_assessment_id

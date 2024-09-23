@@ -37,7 +37,6 @@ module ProjectInitialState
       config: {
         availableLocales: I18n.available_locales,
         features: feature_flags,
-        isProjectMigrated: project.migrated?,
         timezone: ActiveSupport::TimeZone::MAPPING[Time.zone.name]
       }
     })

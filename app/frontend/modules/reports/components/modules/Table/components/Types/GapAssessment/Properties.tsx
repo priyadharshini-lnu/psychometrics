@@ -4,8 +4,8 @@ import {
   InputNumber,
 } from 'antd'
 
+import { HintCheckbox } from '~/glint'
 import { PropertiesModel, GapType } from '~/modules/reports/interfaces/tables/Gap'
-
 import PropertyFilter from '~/modules/reports/components/PropertyFilter/components/PropertyFilter'
 import PropertyNumber from '~/modules/reports/components/PropertyNumber'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
@@ -35,6 +35,7 @@ export const Properties: FC<Props> = ({ model }) => {
   const {
     props: {
       gapType, sourceType, questionsChoices, factorIds, hideValues = false, noOfItems, gapCutoff, precision,
+      allFactors,
     },
     assessment_id,
   } = model
@@ -44,15 +45,33 @@ export const Properties: FC<Props> = ({ model }) => {
     model.update()
   }
 
+  const changeAll = () => {
+    model.props.allFactors = !allFactors
+    model.update()
+  }
+
   return (
     <Space direction="vertical" size="small">
       <SourceTypeButtonGroup model={model} onChange={onChange} />
       {sourceType === 'Factor' && (
-        <FactorsList
-          assessmentId={assessment_id}
-          value={factorIds}
-          onChange={onChange}
-        />
+        <>
+          <HintCheckbox
+            label="All Factors"
+            checked={!!allFactors}
+            onChange={changeAll}
+            hints={[
+              'When checked, all factors will be displayed.',
+              'When unchecked, only selected factors will be displayed.',
+            ]}
+          />
+          {!allFactors && (
+            <FactorsList
+              assessmentId={assessment_id}
+              value={factorIds}
+              onChange={onChange}
+            />
+          )}
+        </>
       )}
       {sourceType === 'Question' && (
         <QuestionList

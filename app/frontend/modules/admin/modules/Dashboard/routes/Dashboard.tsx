@@ -52,3 +52,4 @@ export const DashboardComponent = ({ collapsed, triggerCollapse }) => {
 
 
 export const Dashboard = connecter(DashboardComponent)
+export default Dashboard

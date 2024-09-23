@@ -49,7 +49,6 @@ module UsersResults
 
         users_result.answers = ::UsersResults::RemoveDirtyResults.call!(users_result.answers)
         ::UsersResults::SaveScoringWithCallbacksJob.perform_later(users_result, current_user)
-
         if threesixty_campaign
           user_assessment_attrs = { evaluator_nomination_status: :completed }
           if user_assessment.relationship_id == Relationship.manager_relationship.id

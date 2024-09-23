@@ -2,10 +2,11 @@
 
 module CampaignScoring
   class FactorValue
-    attr_reader :value, :error
+    attr_reader :value, :label, :error
 
     def initialize(value, error = nil)
-      @value = value
+      @value = value.is_a?(Hash) ? value[:value] : value
+      @label = value.is_a?(Hash) ? value[:label] : nil
       @error = error
     end
 

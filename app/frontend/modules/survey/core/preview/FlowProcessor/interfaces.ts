@@ -11,6 +11,7 @@ import {
   addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation,
   showErrorWarning, setSubmissionInProgress, setAnswersSaved,
 } from './actions'
+import type { CampaignFactor } from '~/components/CampaignFactorsForm'
 
 export interface Question {
   id: number
@@ -255,6 +256,7 @@ export interface InitData {
   linked_questions: {[key:string]: number[]}
   evaluationSessionId: string
   extra: {}
+  campaign_factors_list: CampaignFactor[]
 }
 export interface Result {
   id: number

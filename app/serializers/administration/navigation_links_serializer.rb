@@ -13,7 +13,7 @@ module Administration
     # rubocop:disable Metrics/BlockLength:
     def links
       {}.tap do |links|
-        links['dashboards'] = administration_dashboard_path if show_dashboard?
+        links['dashboards'] = "#{admin_path}/dashboards" if show_dashboard?
         links['profile_details'] = "#{admin_path}/profile/details"
         links['profile'] = "#{admin_path}/profile"
         links['change_password'] = "#{admin_path}/profile/change_password"

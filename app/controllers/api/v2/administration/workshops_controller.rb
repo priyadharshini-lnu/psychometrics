@@ -68,7 +68,7 @@ module Api
           :meeting_link,
           :duration,
           :cancellation_lead_time,
-          :reschedule_lead_time,
+          :scheduling_lead_time,
           :video_call_type,
           :start_time,
           :timezone,
@@ -109,7 +109,9 @@ module Api
     def workshop_update_params
       params.require(:data).require(:attributes).permit(:name, :meeting_link, :total_seats, :video_call_type,
                                                         :allow_late_cancellation_and_rescheduling,
-                                                        workshop_managers_ids: [], workshop_assessors_ids: [])
+                                                        :scheduling_lead_time, :cancellation_lead_time,
+                                                        workshop_managers_ids: [],
+                                                        workshop_assessors_ids: [])
     end
 
     def bulk_subject_params

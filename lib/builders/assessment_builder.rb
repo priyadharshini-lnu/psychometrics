@@ -25,7 +25,7 @@ module Builders
         @assessment.update!(@assessment_params.slice(
                               :flow, :norm_rules, :enable_back, :enable_progress, :extra,
                               :data_sheet_columns, :instructions, :options, :default_norm_id,
-                              :linked_questions
+                              :linked_questions, :campaign_factors_list
                             ))
         @assessment_params[:blocks].each do |block_params|
           id = block_params.delete(:id)

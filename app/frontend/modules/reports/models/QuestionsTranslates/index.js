@@ -11,6 +11,7 @@ import PickGroupRank from './PickGroupRank'
 import RankOrder from './RankOrder'
 import Slider from './Slider'
 import TextEntry from './TextEntry'
+import FactorSelect from './FactorSelect'
 
 export default {
   MultipleChoice,
@@ -26,4 +27,5 @@ export default {
   RankOrder,
   Slider,
   TextEntry,
+  FactorSelect,
 }

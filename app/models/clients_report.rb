@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
+# This model is not in use. Remove it
 class ClientsReport < ApplicationRecord
   audited
 
-  belongs_to :client, inverse_of: :clients_reports
-  belongs_to :report, inverse_of: :clients_reports
   belongs_to :report_family
 
   scope :report_filterable_fields, lambda { |query|

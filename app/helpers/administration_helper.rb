@@ -75,22 +75,6 @@ module AdministrationHelper
     Time.current.strftime('%I:%M %p')
   end
 
-  def assessments_options_for_select(assessments, report = nil)
-    assessments = Assessment.where(id: assessments.ids | report.assessments.ids) if report && !report.new_record?
-    assessments.all.map do |a|
-      disabled = report && (report.assigns_reports.any? || report.clients_reports.any?)
-      data = { mindmill: a.mindmill?, hogan: a.hogan?,
-               psychometric: a.psychometric?, saville: a.saville?, pearson: a.pearson? }
-      [a.decorate.display_name, a.id, { disabled: disabled, data: data }]
-    end
-  end
-
-  def hogan_reports_for_assessment(assessment)
-    client.reports.joins(assessments_reports: :report).
-      where(assessments_reports: { assessment_id: assessment.id, reports: { provider: Report::PROVIDERS[:hogan] } }).
-      distinct
-  end
-
   def labels_based_on(status)
     status_active = status == LicenseUsage.statuses[:active]
     {

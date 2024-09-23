@@ -4,7 +4,8 @@ module AdminJobs
   class AssessmentRawExport < BaseExportAssessment
     QUESTIONS = %w[ConstantSum GapAnalysis GraphicSlider HotSpot
                    MatrixTable MetaInfo MultipleChoice PickGroupRank
-                   RankOrder SideBySide Slider TextEntry Timing FileUpload AudioResponse VideoResponse].freeze
+                   RankOrder SideBySide Slider TextEntry Timing FileUpload
+                   AudioResponse VideoResponse FactorSelect CampaignFactorFeedback].freeze
 
     def initialize(_)
       super

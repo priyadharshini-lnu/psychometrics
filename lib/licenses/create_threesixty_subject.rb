@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
 module Licenses
-  class CreateThreesixtySubject < AssignReportBase
+  class CreateThreesixtySubject < BaseCommand
     attr_reader :client, :user, :campaign
 
     def initialize(context)
       @client       = context[:campaign].client
       @user         = context[:user]
       @campaign     = context[:campaign]
+    end
 
+    def call
       build_license
+
+      broadcast :ok
     end
 
     def build_license

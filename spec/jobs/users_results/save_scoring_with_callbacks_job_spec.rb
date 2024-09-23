@@ -36,8 +36,8 @@ RSpec.describe UsersResults::SaveScoringWithCallbacksJob, type: :job do
     before do
       allow(::UsersResults::ExpandAnswersByRecoding).to receive(:call!).and_return({})
       allow(::UsersResults::CalculateScoring).to receive(:call!).and_return({})
-      allow(::Assigns::CalculateOccupations).to receive(:call!).and_return([])
-      allow(Assigns::CalculateInnovationStyles).to receive(:call!).and_return([])
+      allow(::UsersResults::CalculateOccupations).to receive(:call!).and_return([])
+      allow(::UsersResults::CalculateInnovationStyles).to receive(:call!).and_return([])
       allow(::UsersResults::GenerateReports).to receive(:call!)
       allow(UserAssessments::Webhook).to receive(:new).and_return(double(publish_assessment_completed: true,
                                                                          publish_results_available: true))
@@ -51,8 +51,8 @@ RSpec.describe UsersResults::SaveScoringWithCallbacksJob, type: :job do
 
       expect(::UsersResults::ExpandAnswersByRecoding).to have_received(:call!).with(user_result)
       expect(::UsersResults::CalculateScoring).to have_received(:call!).with(user_result)
-      expect(::Assigns::CalculateOccupations).to have_received(:call!).with(user_result)
-      expect(Assigns::CalculateInnovationStyles).to have_received(:call!).with(user_result)
+      expect(::UsersResults::CalculateOccupations).to have_received(:call!).with(user_result)
+      expect(::UsersResults::CalculateInnovationStyles).to have_received(:call!).with(user_result)
 
       expect(user_result.user_assessment).to have_received(:update!).with(score_calculated: true,
                                                                           score_calculated_at: Time.zone.now)
@@ -70,8 +70,8 @@ RSpec.describe UsersResults::SaveScoringWithCallbacksJob, type: :job do
 
         expect(::UsersResults::ExpandAnswersByRecoding).not_to have_received(:call!)
         expect(::UsersResults::CalculateScoring).not_to have_received(:call!)
-        expect(::Assigns::CalculateOccupations).not_to have_received(:call!)
-        expect(Assigns::CalculateInnovationStyles).not_to have_received(:call!)
+        expect(::UsersResults::CalculateOccupations).not_to have_received(:call!)
+        expect(::UsersResults::CalculateInnovationStyles).not_to have_received(:call!)
 
         expect(::UsersResults::GenerateReports).not_to have_received(:call!)
         expect(UserAssessments::Webhook).not_to have_received(:new)

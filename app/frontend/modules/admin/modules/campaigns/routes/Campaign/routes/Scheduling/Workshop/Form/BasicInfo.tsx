@@ -5,10 +5,11 @@ import {
 import { Store } from 'antd/lib/form/interface'
 import dayjs from '~/utils/dayjs'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
-import InputDuration, { convertToInt } from '~/components/InputDuration'
+import InputDuration from '~/components/InputDuration'
 import { Panel } from '~/glint/components/Panel/Panel'
 import styles from './Form.less'
 import { ResourcesItems } from './ResourcesItems'
+import { durationValidator } from '../utils'
 
 const fieldLayout = {
   labelCol: { span: 24 },
@@ -25,17 +26,6 @@ interface Props {
   }
   onNext: (values: Store) => void
   onCancel?: () => void
-}
-
-interface DurationValidator {
-  (options: {
-    minMinutes: number
-    maxMinutes: number
-    minError: string
-    maxError: string
-    requiredError: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  }): (rule: any, value: any) => Promise<void>
 }
 
 export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel }) => {
@@ -79,22 +69,6 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
     const updatedDates = selectedDates.filter(date => date !== closedDate)
     setDateFieldStatus(updatedDates.length ? 'success' : 'error')
     setSelectedDates(updatedDates)
-  }
-
-  const durationValidator: DurationValidator = ({
-    minMinutes, maxMinutes, minError, maxError, requiredError,
-  }) => (_, value) => {
-    if (!value) {
-      return Promise.reject(new Error(requiredError))
-    }
-    const minutes = convertToInt(value) / 60
-    if (minutes > maxMinutes) {
-      return Promise.reject(new Error(maxError))
-    }
-    if (minutes < minMinutes) {
-      return Promise.reject(new Error(minError))
-    }
-    return Promise.resolve()
   }
 
   return (
@@ -228,8 +202,8 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             </Col>
             <Col xs={12} lg={8}>
               <Form.Item
-                name="reschedule_lead_time"
-                label={I18n.t('administration.scheduling.assessment_center_form.reschedule_lead_time_label')}
+                name="scheduling_lead_time"
+                label={I18n.t('administration.scheduling.assessment_center_form.scheduling_lead_time_label')}
                 {...fieldLayout}
                 rules={[
                   {

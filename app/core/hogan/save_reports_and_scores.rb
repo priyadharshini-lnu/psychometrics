@@ -80,10 +80,11 @@ module Hogan
     end
 
     def hogan_norm_id(user_result)
-      norm_from_report = user_result.user_reports(:hogan).first&.report&.external_settings&.dig(:norm_id)
-      return norm_from_report if norm_from_report
+      norm_from_report = user_result.user_reports(:hogan).first&.report&.external_settings&.dig('norm_id')
 
-      user_result.assessment.external_settings[:norm_id]
+      return norm_from_report if norm_from_report.present? && norm_from_report != HoganCredential::DEFAULT_NORM
+
+      credentials.norm
     end
 
     def rerun_save_report_and_score(user_report)

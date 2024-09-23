@@ -491,7 +491,8 @@ CREATE TABLE public.assessments (
     external_settings jsonb DEFAULT '{}'::jsonb,
     linked_assessment_id integer,
     linked_questions json DEFAULT '{}'::json,
-    default_language character varying DEFAULT 'en'::character varying
+    default_language character varying DEFAULT 'en'::character varying,
+    campaign_factors_list jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -1069,7 +1070,8 @@ CREATE TABLE public.campaign_factor_values (
     numeric_value double precision,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    calculation_type integer DEFAULT 0
+    calculation_type integer DEFAULT 0,
+    label character varying
 );
 
 
@@ -1550,6 +1552,21 @@ CREATE SEQUENCE public.clients_reports_id_seq
 --
 
 ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
+
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
 
 
 --
@@ -2052,6 +2069,40 @@ ALTER SEQUENCE public.factor_benchmark_scores_id_seq OWNED BY public.factor_benc
 
 
 --
+-- Name: factor_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.factor_translations (
+    id bigint NOT NULL,
+    locale character varying NOT NULL,
+    name character varying,
+    description character varying,
+    factor_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: factor_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.factor_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: factor_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.factor_translations_id_seq OWNED BY public.factor_translations.id;
+
+
+--
 -- Name: factors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2256,7 +2307,8 @@ CREATE TABLE public.hogan_credentials (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
-    provider integer DEFAULT 0
+    provider integer DEFAULT 0,
+    norm character varying
 );
 
 
@@ -6299,7 +6351,7 @@ CREATE TABLE public.workshops (
     total_seats integer DEFAULT 0 NOT NULL,
     booked_seats integer DEFAULT 0 NOT NULL,
     cancellation_lead_time integer DEFAULT 0,
-    reschedule_lead_time integer DEFAULT 0,
+    scheduling_lead_time integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     name character varying,
@@ -6677,6 +6729,13 @@ ALTER TABLE ONLY public.email_templates ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.factor_benchmark_scores ALTER COLUMN id SET DEFAULT nextval('public.factor_benchmark_scores_id_seq'::regclass);
+
+
+--
+-- Name: factor_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_translations ALTER COLUMN id SET DEFAULT nextval('public.factor_translations_id_seq'::regclass);
 
 
 --
@@ -7897,6 +7956,14 @@ ALTER TABLE ONLY public.email_templates
 
 ALTER TABLE ONLY public.factor_benchmark_scores
     ADD CONSTRAINT factor_benchmark_scores_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: factor_translations factor_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_translations
+    ADD CONSTRAINT factor_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -9822,6 +9889,27 @@ CREATE INDEX index_factor_benchmark_scores_on_campaign_id ON public.factor_bench
 --
 
 CREATE INDEX index_factor_benchmark_scores_on_factor_id ON public.factor_benchmark_scores USING btree (factor_id);
+
+
+--
+-- Name: index_factor_translations_on_description_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factor_translations_on_description_and_locale ON public.factor_translations USING btree (description, locale);
+
+
+--
+-- Name: index_factor_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factor_translations_on_locale ON public.factor_translations USING btree (locale);
+
+
+--
+-- Name: index_factor_translations_on_name_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factor_translations_on_name_and_locale ON public.factor_translations USING btree (name, locale);
 
 
 --
@@ -12665,6 +12753,14 @@ ALTER TABLE ONLY public.factors
 
 
 --
+-- Name: factor_translations fk_rails_7bc93eacca; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factor_translations
+    ADD CONSTRAINT fk_rails_7bc93eacca FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
+
+
+--
 -- Name: iiht_user_assessments fk_rails_7c920335f3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13815,8 +13911,13 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240912114619'),
+('20240911121555'),
+('20240910083932'),
 ('20240905041021'),
+('20240904115105'),
 ('20240904091820'),
+('20240903092308'),
 ('20240902131904'),
 ('20240902112318'),
 ('20240830062230'),
