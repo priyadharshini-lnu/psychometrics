@@ -31,7 +31,7 @@ module Threesixty
             user_id: user_reports.map(&:user_id), campaign_id: object.campaign_id, report_approval_status: :approved
           ).count
         else
-          completed_reports = reports.count
+          completed_reports = user_reports.count
         end
         {
           total_reports: user_reports.count,
