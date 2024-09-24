@@ -21,6 +21,8 @@ module EndUser
           optional(:enable_video_check).maybe(:bool?)
           optional(:enable_audio_check).maybe(:bool?)
           optional(:enable_network_check).maybe(:bool?)
+          optional(:disable_navigation_back).maybe(:bool?)
+          optional(:disable_continue_to_dashboard).maybe(:bool?)
         end
         required(:assessment_id).filled(:int?)
         required(:status).filled(:str?)
