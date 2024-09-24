@@ -1,8 +1,6 @@
-import { denormalize } from 'normalizr'
 import { createSlice } from '@reduxjs/toolkit'
 import _ from 'lodash'
 import { getIn } from '~/utils/immutable'
-import schema from '~/modules/survey/store/schema'
 import FlowElement from '~/modules/survey/models/FlowElement'
 import Flow from '~/modules/survey/models/Flow'
 
@@ -104,12 +102,12 @@ const flow = createSlice({
       state.update = Date.now() // trick to update tree
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(INIT, (state, { data }) => {
-      const { flow } = denormalize(data.result, schema, data.entities)
-      state.elements = _.map((flow?.elements || { elements: [] }).elements, (el, i) => new FlowElement(el, null, i))
-    })
-  },
+  // extraReducers: (builder) => {
+  //   builder.addCase(INIT, (state, { data }) => {
+  //     const { flow } = denormalize(data.result, schema, data.entities)
+  //     state.elements = _.map((flow?.elements || { elements: [] }).elements, (el, i) => new FlowElement(el, null, i))
+  //   })
+  // },
 })
 
 export const { actions } = flow

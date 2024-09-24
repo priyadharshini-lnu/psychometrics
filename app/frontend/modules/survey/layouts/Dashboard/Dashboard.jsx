@@ -17,7 +17,7 @@ export class Dashboard extends Component {
 
   componentDidMount () {
     const {
-      fetch, init, subscribeSocket, socketInitialized,
+      fetch, init, subscribeSocket, socketInitialized, resetFlow,
     } = this.props
     if (!socketInitialized) {
       const urldata = location.pathname.match(/assessments\/(\d+)/)
@@ -25,6 +25,7 @@ export class Dashboard extends Component {
       subscribeSocket('Assessments::Channel', { assessment_id: id })
       fetch(id).then(({ response }) => {
         init(response)
+        resetFlow(response.flow)
       })
     }
   }

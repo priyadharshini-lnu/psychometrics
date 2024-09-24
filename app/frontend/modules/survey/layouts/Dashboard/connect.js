@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { subscribeSocket } from '~/modules/survey/core/temp/socket'
 import { fetch, init } from '~/modules/survey/core/builder/assessment/actions'
+import { actions } from '~/modules/survey/core/builder/flow'
 
 export default connect(
   ({ survey }) => ({
@@ -12,5 +13,6 @@ export default connect(
     subscribeSocket,
     fetch,
     init,
+    resetFlow: actions.reset,
   },
 )
