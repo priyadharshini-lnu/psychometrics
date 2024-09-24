@@ -4,6 +4,17 @@ module Users
   class MagicLinksController < Devise::MagicLinksController
     layout 'devise'
 
+    def send_magic_link
+      if request.post?
+        @form = ::Users::MagicLinkLoginForm.from_params(params[:user].permit(:email))
+        if @form.valid?
+          ::Users::SendMagicLinkLogin.call!(@current_project, @form.email)
+          flash[:notice] = t('auth.magic_link.success', email: @form.email)
+        end
+      end
+      render(html: nil, layout: true)
+    end
+
     def show
       super do
         session[:login_via_magic_link] = true

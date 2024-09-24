@@ -4,7 +4,8 @@ module Auth
   class ProjectConfigSerializer < Panko::Serializer
     attributes :id, :background_color, :login_box_position, :background, :saml_login_allowed,
                :saml_enforced, :client_logo, :secondary_logo, :primary_color,
-               :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number
+               :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number,
+               :magic_link_enabled, :disallow_password_login
 
     DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
 
@@ -15,6 +16,7 @@ module Auth
     end
 
     delegate :background_color, :login_box_position, :background_size, to: :design_setting
+    delegate :magic_link_enabled, :disallow_password_login, to: :security_setting
 
     def client_logo
       design_setting.logo&.url
@@ -41,6 +43,10 @@ module Auth
     end
 
     private
+
+    def security_setting
+      object.security_setting
+    end
 
     def design_setting
       object.design_setting

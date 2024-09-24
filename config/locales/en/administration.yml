@@ -1329,6 +1329,7 @@ en:
           specific_datetime: Send at
         invitation: Invitation
         kind: Communication Types
+        magic_link_email: Magic Link Email
         new_assignment: New Assignment
         new_users: New Users
         other: Other
@@ -2653,6 +2654,8 @@ en:
       attempts_to_lock: Attempts to lock
       auto_unlock_time: Auto unlock time
       disable_password_reuse: Disable password reuse
+      disallow_password_login: Disallow password login
+      enable_login_with_magic_link: Enable Login with magic link
       enforce_password_policy: Enforce password policy at next sign-in
       enforce_strong: Enforce strong password
       expiration: Password expiration

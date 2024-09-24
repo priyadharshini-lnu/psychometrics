@@ -1035,11 +1035,18 @@ en:
       description: Please login with your personal account information
       forgot_password: Forgot Password?
       login_btn: Login
+      magic_link_btn: Email me login link
       not_member: Not a member?
       or: OR
       sso_btn: Login with Single Sign-On
       title: Welcome!
     logout: Logout
+    magic_link:
+      description: Please enter your email address to receive a login link
+      invalid_email: Email is invalid
+      login_with_password: Login with password
+      send_me_login_link: Send me the login link
+      success: We have send you a login link to '%{email}'. Click the link in the email that you would have received to login
     mobile_number: Mobile Number
     new_password: New Password
     otp:
@@ -2369,6 +2376,13 @@ en:
         notice: Note - You can unsubscribe to this weekly email from your profile page.
         subject: Weekly license usage stats
         weekly_stats: 'Past week license usage stats :'
+    magic_link:
+      body:
+        dear: Dear %{name},
+        greetings: Greetings for the day!
+        instructions: Click below link to signin to lighthouse.
+        signin_link: Signin Link
+      subject: Signin link for Lighthouse
   maintenance_message: Lighthouse will be down for scheduled maintenance on %{start_date} and will be unavailable for %{duration} hours
   maintenance_submessage: Please refresh the page after the maintenance is complete. You will be redirected to login page
   my: My

@@ -1,0 +1,14 @@
+container.email-container
+  row
+    columns.email-content
+      p = I18n.t('mailer.magic_link.body.dear', name: @user.decorate.display_name)
+      
+      spacer[size="16"]
+      p = I18n.t('mailer.magic_link.body.greetings')
+      p = I18n.t('mailer.magic_link.body.instructions')
+
+  row
+    columns
+      p 
+        a href=@magic_link_url target="_blank"
+          = I18n.t('mailer.magic_link.body.signin_link')

@@ -776,6 +776,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/sign_up/success', to: 'users/registrations#success'
     get 'users/sign_in_link', to: 'users/magic_links#sign_in_link'
+    get 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
+    post 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
   end
 
   devise_for :users,

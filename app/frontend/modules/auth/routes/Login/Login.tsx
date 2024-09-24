@@ -15,6 +15,11 @@ const { I18n } = window
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
+const isSowDivider = (projectConfig) => {
+  if (projectConfig.disallow_password_login) { return false }
+  return (projectConfig.magic_link_enabled || (projectConfig.saml_login_allowed && !projectConfig.saml_enforced))
+}
+
 const LoginComponent: React.FC<Props> = ({
   projectConfig, csrfToken, user,
 }) => (
@@ -33,15 +38,28 @@ const LoginComponent: React.FC<Props> = ({
           label={I18n.t('auth.login.sso_btn')}
           block
         />
-        {!projectConfig.saml_enforced && (
-          <div className={styles.divider}>
-            <hr />
-            <div className={styles.label}><span>{I18n.t('auth.login.or')}</span></div>
-          </div>
-        )}
       </>
     )}
-    {!projectConfig.saml_enforced && (
+
+    {projectConfig.magic_link_enabled && (
+      <Link to="/users/magic_links/sign_in">
+        <ButtonWithArrow
+          size="large"
+          type="default"
+          label={I18n.t('auth.login.magic_link_btn')}
+          block
+        />
+      </Link>
+    )}
+
+    {isSowDivider(projectConfig) ? (
+      <div className={styles.divider}>
+        <hr />
+        <div className={styles.label}><span>{I18n.t('auth.login.or')}</span></div>
+      </div>
+    ) : null}
+
+    {!projectConfig.saml_enforced && !projectConfig.disallow_password_login && (
       <>
         <Flash />
         <Form
