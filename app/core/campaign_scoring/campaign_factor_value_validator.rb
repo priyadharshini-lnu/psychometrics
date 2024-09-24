@@ -15,6 +15,8 @@ module CampaignScoring
       validate_hash_value
       @factor_value = extract_value(factor_value)
 
+      return if factor_value.nil?
+
       validate_string_type
       validate_numeric_type
       validate_not_infinite
@@ -23,7 +25,7 @@ module CampaignScoring
     private
 
     def validate_hash_value
-      if factor_value.is_a?(Hash) && factor_value[:value].nil?
+      if factor_value.is_a?(Hash) && !factor_value.key?(:value)
         raise CampaignScoring::Exceptions::WrongOutputType,
               'Expected factor value with type Hash to have a key :value. Got nil'
       end
