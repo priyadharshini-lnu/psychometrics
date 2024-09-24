@@ -4,12 +4,14 @@ import {
   useNavigate, useParams,
 } from 'react-router-dom'
 import {
-  Space, Descriptions, Avatar, Skeleton, Divider, Radio, message, Button, Tag,
+  Space, Descriptions, Avatar, Skeleton, Divider,
+  Radio, message, Button, Tag, Tooltip, Flex,
 } from 'antd'
 import {
-  ArrowLeftOutlined, CopyOutlined, EditOutlined,
+  ArrowLeftOutlined, CopyOutlined, EditOutlined, InfoCircleOutlined,
 } from '@ant-design/icons'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import dayjs from '~/utils/dayjs'
 import { WorkshopEditFormModal } from './WorkshopEditFormModal'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
@@ -67,6 +69,18 @@ export const WorkshopPage: FC = () => {
 
   useEffect(() => { fetchSingle({ id }) }, [])
   const workshop = getResource(id)
+
+  const cancellationTooltip = (workshop: Workshop) => {
+    const date = dayjs(workshop.startTime).subtract(workshop.cancellationLeadTime, 's')
+    return (I18n.t('administration.scheduling.info.cancellation_tooltip',
+      { date: `${date.format('DD/MM/YYYY HH:mm')} ${date.format(' (z)')}` }))
+  }
+
+  const schedulingTooltip = (workshop: Workshop) => {
+    const date = dayjs(workshop.startTime).subtract(workshop.schedulingLeadTime, 's')
+    return (I18n.t('administration.scheduling.info.scheduling_tooltip',
+      { date: `${date.format('DD/MM/YYYY HH:mm')} ${date.format(' (z)')}` }))
+  }
 
   if (!workshop) {
     return (
@@ -131,10 +145,19 @@ export const WorkshopPage: FC = () => {
           <Descriptions.Item
             label={I18n.t('administration.scheduling.info.scheduling_lead_time')}
           >
-            {secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)}
+            <Flex gap={4}>
+              <span>
+                {secondsToDayHoursAndMinutes(workshop.schedulingLeadTime)}
+              </span>
+              <Tooltip
+                title={schedulingTooltip(workshop)}
+              >
+                <InfoCircleOutlined />
+              </Tooltip>
+            </Flex>
           </Descriptions.Item>
           <Descriptions.Item label={I18n.t('administration.scheduling.info.link')}>
-            { workshop.meetingLink ? (
+            {workshop.meetingLink ? (
               <Space>
                 <a href={workshop.meetingLink} target="_blank" rel="noreferrer">
                   {I18n.t('administration.scheduling.info.join_meeting')}
@@ -172,7 +195,16 @@ export const WorkshopPage: FC = () => {
           <Descriptions.Item
             label={I18n.t('administration.scheduling.info.cancellation_lead_time')}
           >
-            {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
+            <Flex gap={4}>
+              <span>
+                {secondsToDayHoursAndMinutes(workshop.cancellationLeadTime)}
+              </span>
+              <Tooltip
+                title={cancellationTooltip(workshop)}
+              >
+                <InfoCircleOutlined />
+              </Tooltip>
+            </Flex>
           </Descriptions.Item>
         </Descriptions>
         <Divider />
