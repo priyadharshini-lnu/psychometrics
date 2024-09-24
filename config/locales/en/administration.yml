@@ -2098,7 +2098,7 @@ en:
             label: Password
             name: password
           topics:
-            label: Topics
+            label: Events
             list:
               assessment_completed: Assessment Completed
               assessment_started: Assessment Started
