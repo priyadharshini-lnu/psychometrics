@@ -140,7 +140,8 @@ export default class ResponseText extends Component {
     return (
       <div>
         <div>Campaign factor feedback</div>
-        <select className="form-control" value={answerIndex} onChange={this.onChangeTextEntryFormAnswerIndex}>
+        <select className="form-control" value={answerIndex || ''} onChange={this.onChangeTextEntryFormAnswerIndex}>
+          {!answerIndex ? <option value="" /> : null}
           {campaignFactorsList.map(({ code }) => (<option key={code} value={code}>{code}</option>))}
         </select>
       </div>
@@ -150,7 +151,7 @@ export default class ResponseText extends Component {
   render () {
     const { props: { question } } = this.props.model
     return (
-      <Space direction="vertical">
+      <Space className="w-100" direction="vertical">
         <Select
           name="form-field-name"
           value={getValue(this.getFilteredQuestions(), question)}
