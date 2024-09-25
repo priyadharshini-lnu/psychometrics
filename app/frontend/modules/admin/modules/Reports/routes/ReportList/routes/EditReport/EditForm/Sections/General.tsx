@@ -35,7 +35,7 @@ export const General: React.FC<Props> = ({ report }) => {
     <ResourceForm
       resourceName="reports"
       readableResourceName={I18n.t('reports.report')}
-      resource={report}
+      resource={{ ...report, active: !report.disabled }}
       showSuccessMessages
       storeManager={{ form }}
       formProps={{ labelAlign: 'left', id: 'edit_', preserve: false }}

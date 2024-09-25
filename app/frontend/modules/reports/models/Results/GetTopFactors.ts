@@ -14,9 +14,10 @@ export default {
     dimensionId: number,
     minValue = -Infinity,
     maxValue = Infinity,
+    relationship = 'individual',
   ): TopFactor[] => {
-    if (!resultsByFilter.individual) { return [] }
-    const filtered = _.pick(resultsByFilter.individual.scoring, factorIds)
+    if (!resultsByFilter[relationship]) { return [] }
+    const filtered = _.pick(resultsByFilter[relationship].scoring, factorIds)
     const factors = _.reduce(filtered, (factors: TopFactor[], d: ScoringData, factorId: string) => {
       const factorData = AppStore.mapFactors[dimensionId][factorId]
       const isSubFactor = AppStore.isSubfactor(parseInt(factorId, 10))

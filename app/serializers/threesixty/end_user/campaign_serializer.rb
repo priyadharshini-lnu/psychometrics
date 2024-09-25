@@ -19,7 +19,7 @@ module Threesixty
 
       def reports
         Panko::ArraySerializer.new(
-          super,
+          user_reports,
           each_serializer: Threesixty::UserReportSerializer,
           context: {
             current_user: current_user,

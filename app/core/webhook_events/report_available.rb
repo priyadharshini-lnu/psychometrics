@@ -17,8 +17,8 @@ module WebhookEvents
           name: ctx[:report]&.name
         },
         report_pdf: {
-          url: ctx[:user_report]&.pdf&.url,
-          expiry_time: ctx[:user_report]&.pdf&.fog_authenticated_url_expiration&.from_now
+          url: ctx[:user_report]&.pdf_file&.url(expires_in: 10.minutes),
+          expiry_time: 10.minutes.from_now
         }
       }
     end

@@ -28,13 +28,13 @@ module Threesixty
       def reports_counters
         if object.option.reports.dig('approval', 'manager_approves_reports')
           completed_reports = Threesixty::Subject.where(
-            user_id: reports.map(&:user_id), campaign_id: object.campaign_id, report_approval_status: :approved
+            user_id: user_reports.map(&:user_id), campaign_id: object.campaign_id, report_approval_status: :approved
           ).count
         else
-          completed_reports = reports.count
+          completed_reports = user_reports.count
         end
         {
-          total_reports: reports.count,
+          total_reports: user_reports.count,
           completed_reports: completed_reports
         }
       end
@@ -47,7 +47,7 @@ module Threesixty
         ::Threesixty::EvaluationsByUserQuery.new(object, current_user)
       end
 
-      def reports
+      def user_reports
         ::Threesixty::UsersReportsQuery.new(object, all_managed_subjects, current_user)
       end
 
