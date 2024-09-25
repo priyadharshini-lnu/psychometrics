@@ -1454,9 +1454,14 @@ en:
         successfully: Dimension %{name} was deleted successfully.
       edit:
         header: Edit Dimension Name
+      export_translations_scheduled:
+        successfully: Export translations scheduled for dimension %{name}.
       form:
         enable_innovation_styles: Enable Innovation Styles
         enable_occupations: Enable Occupations
+      import_translations:
+        error: Error while importing translations for dimension %{name}.
+        successfully: Import translations scheduled for dimension %{name}.
       index:
         new: Add
         owner: Owner
@@ -1492,6 +1497,10 @@ en:
         view: View Dimension
       toggle_status:
         successfully: Dimension was updated successfully.
+      translations:
+        export: Export All
+        header: Factor translations
+        import: Import
       update:
         successfully: "%{name} dimension was updated successfully"
     disable: Disable

@@ -25,6 +25,18 @@ class Administration::DimensionPolicy < Administration::BasePolicy
     @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
   end
 
+  def translations?
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
+  end
+
+  def export_translations?
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
+  end
+
+  def import_translations?
+    @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
+  end
+
   def actions?
     edit? & copy? & destroy?
   end

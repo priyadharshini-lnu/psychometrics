@@ -2,10 +2,13 @@
 
 class Factor < ApplicationRecord
   audited
+  extend Mobility
 
   include Copyable
   include RansackSearchableFields
   include ActiveStorageAttachable
+
+  translates :name, :description
 
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true

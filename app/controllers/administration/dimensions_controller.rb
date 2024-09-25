@@ -2,7 +2,8 @@
 
 class Administration::DimensionsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar]
+  before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar
+                                        export_translations import_translations]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -72,6 +73,24 @@ class Administration::DimensionsController < Administration::BaseController
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end
       format.js
+    end
+  end
+
+  def export_translations
+    audit! :export_translations, resource, payload: { source_id: resource.id }
+    AdminJob.call(:export_factor_translations, { dimension_id: params[:id] }, current_user)
+  end
+
+  def import_translations
+    if params.dig(:dimension, :file).present?
+      audit! :import_translations, resource, payload: { source_id: resource.id }
+      AdminJob.call(:import_factor_translations, { dimension_id: params[:id] },
+                    current_user, params[:dimension][:file])
+      redirect_back(fallback_location: root_path,
+                    success: t('.successfully', name: resource.decorate.display_name))
+    else
+      redirect_back(fallback_location: root_path,
+                    error: t('.error', name: resource.decorate.display_name))
     end
   end
 

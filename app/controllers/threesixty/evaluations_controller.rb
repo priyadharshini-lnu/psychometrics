@@ -4,6 +4,7 @@ module Threesixty
   class EvaluationsController < ApplicationController
     include ::Threesixty::InitialState
     include ::Threesixty::SetAssessmentLocale
+    include SetLocale
 
     layout 'layouts/end_user'
     before_action :set_campaign
@@ -12,13 +13,14 @@ module Threesixty
 
     def show
       params[:approve_evaluation] ? authorize(@participant, :approve_evaluation?) : authorize(@participant)
+      set_locale_for_user_assessment(@participant)
+      set_locale
       respond_to do |format|
         format.html { render 'end_user/users/dashboard' }
         format.json do
           @users_result = find_user_result_or_create
           @participant.update(evaluation_session_id: Devise.friendly_token)
 
-          set_locale_for_user_assessment(@participant)
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
 

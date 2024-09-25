@@ -6,11 +6,15 @@
       .panel-heading
         h3.panel-title.prm = "#{@dimension.name}: #{t('.title')}"
         = render 'administration/dimensions/nav'
-        .pull-right
+        .pull-right.text-right
           - if policy(resource_class).create?
             = link_to [:new, :administration, :dimension, resource_class.model_name.singular.to_sym], remote: true, class: 'btn btn-default'
               span.fa.fa-plus
               = t('.new')
+
+          = link_to translations_administration_dimension_path(params[:dimension_id]), remote: true, class: 'btn btn-default'
+            ' Translations
+
         = search_form_for(filter_form,
                 url: {action: :index},
                 html: {id: 'filter', class: 'list-filter'},
