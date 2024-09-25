@@ -29,15 +29,16 @@ Warden::Manager.after_set_user do |user, auth, _opts|
 
   unless session.dig('warden.user.user.session', 'need_two_factor_authentication')
 
-    flash['notice'] += if user.last_unsuccessful_attempt.present?
-                         "  #{I18n.t('devise.sessions.unsuccessful_sign_in_time',
+    if user.last_unsuccessful_attempt.present?
+      flash['notice'] += "  #{I18n.t('devise.sessions.unsuccessful_sign_in_time',
                                      date_time: I18n.l(user.last_unsuccessful_attempt.in_time_zone(Time.zone),
                                                        format: :short))}"
-                       else
-                         "  #{I18n.t('devise.sessions.signed_in_time',
+    elsif user.last_sign_in_at.present?
+      flash['notice'] += "  #{I18n.t('devise.sessions.signed_in_time',
                                      date_time: I18n.l(user.last_sign_in_at.in_time_zone(Time.zone),
                                                        format: :short))}"
-                       end
+    end
+
     user.update(last_unsuccessful_attempt: nil) if user.last_unsuccessful_attempt
   end
 end
