@@ -11,6 +11,7 @@ class DesignSetting < ApplicationRecord
 
   has_one_image_attachment :logo, variants: [:thumb]
   has_one_image_attachment :background, variants: [:thumb]
+  has_one_image_attachment :background_overlay, variants: [:thumb]
   has_one_image_attachment :secondary_logo, variants: [:thumb]
 
   def attachment_storage_path(attribute_name, filename)
