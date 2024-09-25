@@ -81,7 +81,7 @@ module Threesixty
           message: I18n.t('jobs.threesixty.reports.download.message'),
           description: I18n.t(
             'jobs.threesixty.reports.download.description',
-            url: @user_report.pdf_file.url
+            url: @user_report.pdf_download_url
           )
         }
       else

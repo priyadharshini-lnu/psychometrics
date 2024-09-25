@@ -15,7 +15,7 @@ module Administration
     end
 
     def pdf_url
-      object.pdf_file.url(disposition: 'attachment')
+      object.pdf_download_url
     end
 
     def can_download_report

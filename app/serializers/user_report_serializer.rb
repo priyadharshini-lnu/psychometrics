@@ -20,7 +20,7 @@ class UserReportSerializer < Panko::Serializer
 
   def pdf
     {
-      url: object.pdf_file.url
+      url: object.pdf_download_url
     }
   end
 

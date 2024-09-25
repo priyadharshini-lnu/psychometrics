@@ -223,10 +223,15 @@ class UserReport < ApplicationRecord
     }
   end
 
+  def report_name_for_download
+    report_name = Utility::String.remove_non_ascii_chars(report.name).strip.presence || 'report'
+    "#{user.decorate.full_name}-#{report_name}-#{user.id}.pdf"
+  end
+
   def pdf_download_url
     return unless pdf_exists?
 
-    pdf_file.url(disposition: 'attachment')
+    pdf_file.url(disposition: 'attachment', filename: report_name_for_download)
   end
 
   def remove_pdf_and_update_status!
