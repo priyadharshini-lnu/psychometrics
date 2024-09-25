@@ -17,16 +17,6 @@
           collection: @communication_facade.owners,
           input_html: { data: { live_search: true, behavior: @communication_facade.client_behavior }, disabled: @copying_communication }
 
-      - if @communication_facade.show_kind?
-        = f.hidden_field :kind, value: @communication_facade.form.kind if @copying_communication
-        = f.input :kind,
-          as: :select,
-          collection: Communication.kinds,
-          value_method: :first,
-          label_method: proc { |rec| t(".#{rec.first}") },
-          input_html: { data: { live_search: true,
-            behavior: 'communication-changeable' }, disabled: @copying_communication },
-          label: t('.kind')
       - if @communication_facade.show_projects?
         = f.hidden_field :project_id if @copying_communication
         = f.association :project,
