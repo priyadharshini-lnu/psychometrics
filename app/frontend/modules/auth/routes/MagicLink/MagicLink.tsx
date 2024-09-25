@@ -16,11 +16,55 @@ const { I18n } = window
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
+const isShowOtherOptions = projectConfig => (
+  !projectConfig.disallow_password_login || (projectConfig.saml_login_allowed)
+)
+
 const MagicLinkComponent: React.FC<Props> = ({
   projectConfig, csrfToken, user, errors, clearFlashMessage,
 }) => (
   <div className={styles.container}>
     <Typography.Title level={3}>{I18n.t('auth.login.title')}</Typography.Title>
+
+    {isShowOtherOptions(projectConfig) ? (
+      <Typography.Paragraph className={styles.description}>
+        {I18n.t('auth.login.description')}
+      </Typography.Paragraph>
+    ) : null}
+
+    {projectConfig.saml_login_allowed && (
+      <Link to="/users/saml/sign_in">
+        <ButtonWithArrow
+          onClick={() => { clearFlashMessage() }}
+          size="large"
+          type={projectConfig.saml_enforced ? 'primary' : 'default'}
+          label={I18n.t('auth.login.sso_btn')}
+          block
+          style={{ marginBottom: 16 }}
+        />
+      </Link>
+    )}
+
+    {!projectConfig.disallow_password_login && (
+      <Link to="/users/sign_in" className="mt-2">
+        <ButtonWithArrow
+          onClick={() => { clearFlashMessage() }}
+          size="large"
+          type="default"
+          label={I18n.t('auth.magic_link.login_with_password')}
+          block
+
+        />
+      </Link>
+    )}
+
+    {isShowOtherOptions(projectConfig) ? (
+      <div className={styles.divider}>
+        <hr />
+        <div className={styles.label}><span>{I18n.t('auth.login.or')}</span></div>
+      </div>
+    ) : null}
+
     <Typography.Paragraph className={styles.description}>
       {I18n.t('auth.magic_link.description')}
     </Typography.Paragraph>
@@ -57,15 +101,6 @@ const MagicLinkComponent: React.FC<Props> = ({
           className={styles.submit}
           block
         />
-        {!projectConfig.disallow_password_login
-          && (
-          <div>
-            <Link to="/users/sign_in" onClick={() => { clearFlashMessage() }}>
-              {I18n.t('auth.magic_link.login_with_password')}
-            </Link>
-          </div>
-          )
-        }
       </Form>
     </>
   </div>
