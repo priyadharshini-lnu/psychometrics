@@ -57,7 +57,7 @@ const getMenuItems = (
 ...showCampaign ? [{
   key: 'campaign',
   label: I18n.t('campaign.dashboard_menu.campaign'),
-  icon: <CampaignIcon className={styles.siderIcon} />,
+  icon: <CampaignIcon aria-label="campaign" className={styles.siderIcon} />,
   children: showInsights !== false ? [
     { label: I18n.t('campaign.dashboard_menu.tasks'), key: 'tasks' },
     { label: I18n.t('campaign.dashboard_menu.insights'), key: 'insights' },

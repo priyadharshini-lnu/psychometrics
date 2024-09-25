@@ -1889,6 +1889,8 @@ en:
       back_to_dashboard: Back to Dashboard
       back_to_tasks: Back to Tasks
       campaign_name_description: ', for campaign "%{campaignName}"'
+      collapse_menu: Collapse menu
+      expand_menu: Expand menu
       lang_dropdown_description: ",change language"
       profile_progress: Profile completion is
       task_btn_description: task %{assessmentName}

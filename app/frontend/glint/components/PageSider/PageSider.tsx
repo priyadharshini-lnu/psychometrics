@@ -1,5 +1,7 @@
 import React, { useContext, FC, useState } from 'react'
-import { Layout, Menu, Drawer } from 'antd'
+import {
+  Layout, Menu, Drawer, Button,
+} from 'antd'
 import { Link } from 'react-router-dom'
 import { SelectInfo } from 'rc-menu/lib/interface'
 import cs from 'classnames'
@@ -9,6 +11,7 @@ import { MenuTriggerIcon } from '~/glint/icons'
 import styles from './styles.less'
 
 const { Sider } = Layout
+const { I18n } = window
 
 type MenuItem = {
   key: string
@@ -85,13 +88,24 @@ export const PageSider: FC<PageSiderProps> = ({
       className={cs({ [styles['sider-trigger']]: true, [styles['sider-trigger--collapsed']]: menuCollapsed })}
       onClick={handleTrigger}
     >
-      <MenuTriggerIcon className={styles.triggerIcon} />
+      <Button
+        aria-label={menuCollapsed ? I18n.t('frontend.aria.expand_menu') : I18n.t('frontend.aria.collapse_menu')}
+        type="link"
+        className="ps-0"
+        icon={<MenuTriggerIcon className={styles.triggerIcon} />}
+      />
     </div>
   )
 
   const drawerTrigger = (
     <div className={styles['drawer-trigger']} onClick={handleDrawerVisibility}>
-      <MenuTriggerIcon />
+      <Button
+        aria-label={menuCollapsed ? I18n.t('frontend.aria.expand_menu') : I18n.t('frontend.aria.collapse_menu')}
+        type="link"
+        className="ps-0"
+      >
+        <MenuTriggerIcon />
+      </Button>
     </div>
   )
 
