@@ -33,6 +33,8 @@ module Threesixty
     def requirements
       requirements = Threesixty::NominationRequirements::FindForUsers.
                      call!(object.user, object.campaign.threesixty_campaign)[object.user_id]
+      return {} unless requirements
+
       Threesixty::EndUser::NominationRequirementSerializer.new.serialize(requirements)
     end
 

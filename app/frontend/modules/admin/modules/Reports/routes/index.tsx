@@ -6,9 +6,9 @@ const EditReport = lazy(() => import('./ReportList/routes/EditReport'))
 const ReportBundleList = lazy(() => import('./ReportBundleList'))
 const ReportBundleReportList = lazy(() => import('./ReportBundleReportList'))
 
-const ActiveReportList = () => <ReportList reportTab="Active" />
-const ArchivedReportList = () => <ReportList reportTab="Archived" />
-const TrashReportList = () => <ReportList reportTab="Trash" />
+const ActiveReportList = () => <ReportList reportTab="active" />
+const ArchivedReportList = () => <ReportList reportTab="archived" />
+const TrashReportList = () => <ReportList reportTab="deleted" />
 
 const routes = [
   { redirect: true, from: '', to: 'active' },
