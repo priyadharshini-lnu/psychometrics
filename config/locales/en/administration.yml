@@ -1625,6 +1625,10 @@ en:
       base:
         form:
           import: Import
+      errors:
+        translation:
+          error: "[Translation %{id}] %{error}"
+          invalid_format: Invalid File format
       form:
         description: Refer to the Export functionality to extract a template that can be used to Import here.
         import: Import
