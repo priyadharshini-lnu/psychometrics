@@ -29,7 +29,7 @@ module Forms
       validates :owner_id, :owner, presence: true, allow_nil: true
 
       validates :project, presence: true, if: proc { project_id.present? }
-      validates :campaign, presence: true, if: proc { campaign_id.present? || project&.migrated? }
+      validates :campaign, presence: true, if: :campaign_validation_required?
       validates :sub_campaign, presence: true, if: proc { sub_campaign_id.present? }
       validates :assessment_id, presence: true, if: proc { kind == 'completion' }
       validates :assessment, presence: true, if: proc { assessment_id.present? }
@@ -146,6 +146,14 @@ module Forms
 
       def other?
         kind == 'other'
+      end
+
+      def project_level_communication?
+        %w[magic_link_email].include?(kind)
+      end
+
+      def campaign_validation_required?
+        !project_level_communication? && (campaign_id.present? || project&.migrated?)
       end
 
       def specified_date_and_time_invitation?
