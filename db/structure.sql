@@ -1549,6 +1549,21 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 
 
 --
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
+
+
+--
 -- Name: communication_emails; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3654,6 +3669,39 @@ ALTER SEQUENCE public.profile_settings_id_seq OWNED BY public.profile_settings.i
 
 
 --
+-- Name: project_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_assessments (
+    id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    normalize_factor_scores boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_assessments_id_seq OWNED BY public.project_assessments.id;
+
+
+--
 -- Name: question_recoding; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5317,6 +5365,39 @@ CREATE SEQUENCE public.translations_id_seq
 --
 
 ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
+
+
+--
+-- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_factor_scores (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    scores jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_assessment_factor_scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_assessment_factor_scores_id_seq OWNED BY public.user_assessment_factor_scores.id;
 
 
 --
@@ -7018,6 +7099,13 @@ ALTER TABLE ONLY public.profile_settings ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: project_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments ALTER COLUMN id SET DEFAULT nextval('public.project_assessments_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7337,6 +7425,13 @@ ALTER TABLE ONLY public.threesixty_subjects ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.translations ALTER COLUMN id SET DEFAULT nextval('public.translations_id_seq'::regclass);
+
+
+--
+-- Name: user_assessment_factor_scores id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores ALTER COLUMN id SET DEFAULT nextval('public.user_assessment_factor_scores_id_seq'::regclass);
 
 
 --
@@ -8305,6 +8400,14 @@ ALTER TABLE ONLY public.profile_settings
 
 
 --
+-- Name: project_assessments project_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT project_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8678,6 +8781,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.translations
     ADD CONSTRAINT translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_assessment_factor_scores user_assessment_factor_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT user_assessment_factor_scores_pkey PRIMARY KEY (id);
 
 
 --
@@ -10486,6 +10597,20 @@ CREATE INDEX index_profile_settings_on_project_id ON public.profile_settings USI
 
 
 --
+-- Name: index_project_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_assessments_on_assessment_id ON public.project_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_project_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_assessments_on_project_id ON public.project_assessments USING btree (project_id);
+
+
+--
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11120,6 +11245,20 @@ CREATE INDEX index_translations_on_resource_type_and_resource_id ON public.trans
 --
 
 CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON public.translations USING btree (translateable_type, translateable_id);
+
+
+--
+-- Name: index_user_assessment_factor_scores_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_factor_scores_on_factor_id ON public.user_assessment_factor_scores USING btree (factor_id);
+
+
+--
+-- Name: index_user_assessment_factor_scores_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_factor_scores_on_user_assessment_id ON public.user_assessment_factor_scores USING btree (user_assessment_id);
 
 
 --
@@ -12419,6 +12558,14 @@ ALTER TABLE ONLY public.dashboards
 
 
 --
+-- Name: project_assessments fk_rails_4e1aa7f7d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT fk_rails_4e1aa7f7d5 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: privacy_setting_translations fk_rails_4f38fd7ce2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12672,6 +12819,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.skills_development_actions
     ADD CONSTRAINT fk_rails_70b2e78217 FOREIGN KEY (development_action_id) REFERENCES public.development_actions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_assessment_factor_scores fk_rails_71d3d729a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT fk_rails_71d3d729a1 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13779,6 +13934,14 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 
 
 --
+-- Name: project_assessments fk_rails_f36f27136e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT fk_rails_f36f27136e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: api_keys fk_rails_f435faf77d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13867,6 +14030,14 @@ ALTER TABLE ONLY public.user_idp_development_actions
 
 
 --
+-- Name: user_assessment_factor_scores fk_rails_fceff3a97b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT fk_rails_fceff3a97b FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: factors_sub_factors fk_rails_fe8dca5bf7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13913,6 +14084,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240809081127'),
 ('20240808093057'),
 ('20240806160845'),
+('20240801132558'),
+('20240801121907'),
 ('20240801093652'),
 ('20240721171706'),
 ('20240721171655'),

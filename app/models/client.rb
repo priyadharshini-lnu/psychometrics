@@ -93,6 +93,7 @@ class Client < ApplicationRecord
   has_many :project_users, class_name: 'User', foreign_key: 'project_id', dependent: :destroy
   has_many :integrations, dependent: :destroy, foreign_key: :project_id
   has_many :communications, dependent: :destroy, foreign_key: :sub_campaign_id
+  has_many :project_assessments, dependent: :destroy, foreign_key: 'project_id'
 
   # TODO: use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },

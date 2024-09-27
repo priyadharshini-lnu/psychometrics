@@ -22,6 +22,9 @@ class UserAssessment < ApplicationRecord
   has_one :mettl_user_assessment, dependent: :destroy
   has_one :project, through: :campaign
   has_one :meeting_room, as: :meetable, dependent: :destroy
+  has_one :threesixty_campaign, through: :campaign
+  has_many :project_assessments, through: :project
+  has_many :user_assessment_factor_scores, dependent: :destroy
   has_many :user_assessment_verification_images, dependent: :destroy
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3, timed_out: 4, ineligible: 5 }
@@ -31,11 +34,10 @@ class UserAssessment < ApplicationRecord
   enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
   enum meeting_type: { not_available: 0, internal: 1, custom: 2 }, _prefix: :meeting
 
-  has_one :threesixty_campaign, through: :campaign
-
   delegate :saville?, :iiht?, :pearson?, :mettl?, :assessor_form?, :external?, to: :assessment
   delegate :prework?, :prework, :workshop_activity?, :workshop_activity, :workshop_activity_duration,
            to: :campaign_assessment, allow_nil: true
+  delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true
 
   scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
   scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
@@ -324,6 +326,10 @@ class UserAssessment < ApplicationRecord
       update!(norm_id: norm_id)
     end
     update!(fixed_norm: true) if norm_id.present?
+  end
+
+  def project_assessment
+    project_assessments.find_by(assessment_id: assessment_id)
   end
 
   def update_mettl_schedule!(mettl_schedule_record_id)
