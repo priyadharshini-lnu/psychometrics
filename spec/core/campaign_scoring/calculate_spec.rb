@@ -6,6 +6,7 @@ describe CampaignScoring::Calculate do
   let(:campaign) { create(:campaign) }
   let(:assessment) { create(:assessment) }
   let(:factor) { create(:factor, dimension: assessment.dimension) }
+  let(:question) { create(:question, assessment: assessment) }
   let(:user) { create(:user) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
 
@@ -467,12 +468,95 @@ describe CampaignScoring::Calculate do
       :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
       factor_type: 'formula', formula: "return assessment.percentage_answered(#{assessment.id}, #{factor.id})"
     )
+
     values = described_class.call!(campaign, user)
 
     expect(values[norm_score].value).to eq(1)
     expect(values[raw_score].value).to eq(2)
     expect(values[zscore].value).to eq(3.3)
     expect(values[percentage].value).to eq(40)
+  end
+
+  it 'can return lua table as calculated output' do
+    create(
+      :users_result, campaign: campaign, assessment: assessment,
+      subject: user, evaluator: user, status: :completed, score_calculated: true
+    )
+
+    score_and_label = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor, output_type: 'string',
+      factor_type: 'formula', formula: 'return { label = "Javascript", value = "Good" }'
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[score_and_label].value).to eq('Good')
+    expect(values[score_and_label].label).to eq('Javascript')
+  end
+
+  it 'can use user answers from user assessment' do
+    answers = {}
+    answers[question.id.to_s] = { 'dirty' => false,
+                                  'answers' => [{ 'index' => 0, 'value' => 2.2 },
+                                                { 'index' => 1, 'value' => 'Javascript' }] }
+
+    create(
+      :users_result, campaign: campaign, assessment: assessment,
+      answers: answers, subject: user, evaluator: user, status: :completed, score_calculated: true
+    )
+
+    skill = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor, output_type: 'string',
+      factor_type: 'formula', formula: "return assessment.form_answer(#{assessment.id}, #{question.id}, 1)"
+    )
+
+    skill_score = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula', formula: "return assessment.form_answer(#{assessment.id}, #{question.id}, 0)"
+    )
+
+    skill_score_from_json_path = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula',
+      formula: "return assessment.answer(#{assessment.id},  \"$.#{question.id}['answers'][0].value\")"
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[skill].value).to eq('Javascript')
+    expect(values[skill_score].value).to eq(2.2)
+    expect(values[skill_score_from_json_path].value).to eq(2.2)
+  end
+
+  it 'can fetch user feedback results from user assessment' do
+    answers = {}
+    answers[question.id.to_s] = { 'dirty' => false,
+                                  'answers' => [
+                                    { 'code' => 'code1', 'value' => 'Good' },
+                                    { 'code' => 'code2' }
+                                  ] }
+
+    create(
+      :users_result, campaign: campaign, assessment: assessment,
+      answers: answers, subject: user, evaluator: user, status: :completed, score_calculated: true
+    )
+
+    feedback_question1 = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula', output_type: 'string',
+      formula: "return assessment.campaign_feedback_answer(#{assessment.id}, #{question.id}, 'code1')"
+    )
+
+    feedback_question2 = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula', output_type: 'string',
+      formula: "return assessment.campaign_feedback_answer(#{assessment.id}, #{question.id}, 'code2')"
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[feedback_question1].value).to eq('Good')
+    expect(values[feedback_question2].value).to eq(nil)
   end
 
   it 'skip calculation of external score factor type' do

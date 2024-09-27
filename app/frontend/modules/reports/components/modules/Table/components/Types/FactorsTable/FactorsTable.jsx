@@ -181,7 +181,8 @@ class FactorsTable extends Component {
     const sourceFactors = _.get(props, ['source', 'factors'], [])
     const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
     const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
-    const factorIds = sourceFactors.map(f => f.id)
+    const factorIds = (props.allFactors ? AppStore.factorsByAssessmentId(module.assessment_id) : sourceFactors)
+      .map(f => f.id)
     if (ResultStore.realResults) {
       if (props.mode === 'topFactors') {
         const { category } = assessments[module.assessment_id]

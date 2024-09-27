@@ -215,6 +215,20 @@ const DefaultProps = {
     questionText: 'Click to write the question text',
     duration: 10,
   },
+  CampaignFactorFeedback: {
+    questionText: 'Click to write the question text',
+    minFactors: 3,
+    maxFactors: 3,
+    skillLabel: 'Skill {{index}}',
+    feedbackLabel: 'Feedback',
+    factorLabel: 'Skill factor',
+  },
+
+  FactorSelect: {
+    questionText: 'Click to write the question text',
+    type: 'Dropdown',
+    defaultValues: [],
+  },
 }
 
 export const TextEntryProps = {

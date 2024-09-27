@@ -8,7 +8,6 @@ import Modals from '~/modules/reports/components/modals'
 import Prompt from '~/modules/reports/components/Prompt'
 import PageEditor from '~/modules/reports/views/PageEditor'
 import styles from './Dashboard.less'
-import Header from '../Header'
 
 export class Dashboard extends Component {
   componentDidMount () {
@@ -83,7 +82,6 @@ export class Dashboard extends Component {
     return (
       <div>
         <div>
-          <Header />
           <div style={{ position: 'relative' }}>
             <div className={`${styles.mainContainer}`}>
               {!AppStore.loaded && !reportLoaded && this.loading()}

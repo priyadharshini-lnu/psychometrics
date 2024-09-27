@@ -86,14 +86,6 @@ module Administration
       end
     end
 
-    def copy
-      audit! :copy, resource, client: resource, payload: { source_id: resource.id }
-      ::Clients::CopyClient.call(resource) do
-        on(:invalid) { render(:error, locals: { message: t('.error', name: resource.decorate.display_name) }) }
-        on(:ok) { |cloned_resource| render :copy, locals: { cloned_resource: cloned_resource } }
-      end
-    end
-
     def export
       @_resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :project_admins)
 

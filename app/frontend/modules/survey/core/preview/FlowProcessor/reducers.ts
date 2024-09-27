@@ -187,6 +187,7 @@ const HANDLERS = {
       linkedQuestions: data.linked_questions,
       evaluationSessionId: data.evaluationSessionId || result.evaluation_session_id,
       extraOptions: data.extra || {},
+      campaignFactorList: data.campaign_factors_list || [],
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

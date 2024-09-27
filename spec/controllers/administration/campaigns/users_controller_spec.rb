@@ -180,7 +180,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'schedule_time' => nil,
       'require_scheduling' => false,
       'mettl_schedule_name' => nil,
-      'mettl_schedule_record_id' => nil
+      'mettl_schedule_record_id' => nil,
+      'dimension_id' => assessment.dimension_id
     })
   end
 end

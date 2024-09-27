@@ -12,10 +12,12 @@ import PickGroupRankPreview from './PickGroupRank/components/Preview'
 import TimingPreview from './Timing/components/Preview'
 import CaptchaPreview from './Captcha/components/Preview'
 import HotSpotPreview from './HotSpot/components/Preview'
+import { FactorSelectPreview } from './FactorSelect'
 import { GraphicSliderPreview } from './GraphicSlider/components/Preview'
 import { VideoResponsePreview } from './VideoResponse'
 import FileUploadPreview from './FileUpload/components/Preview'
 import { AudioResponsePreview } from './AudioResponse'
+import { CampaignFactorFeedbackPreview } from './CampaignFactorFeedback'
 
 export default {
   StaticContentPreview,
@@ -36,4 +38,6 @@ export default {
   VideoResponsePreview,
   FileUploadPreview,
   AudioResponsePreview,
+  CampaignFactorFeedbackPreview,
+  FactorSelectPreview,
 }

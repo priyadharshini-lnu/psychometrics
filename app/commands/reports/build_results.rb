@@ -14,7 +14,6 @@ module Reports
       formula: 'Reports::ResultTypes::Formula',
       ranked_occupations: 'Reports::ResultTypes::RankedOccupations',
       survey_response: 'Reports::ResultTypes::Survey',
-      assign: 'Reports::ResultTypes::Assign',
       mapped_value: 'Reports::ResultTypes::MappedValue',
       zscore_to_percentile: 'Reports::ResultTypes::ZscoreToPercentile',
       ref: 'Reports::ResultTypes::Ref',
@@ -76,8 +75,8 @@ module Reports
     end
 
     def find_user_result_by(assessment_id)
-      @assigns_by_assessment_id ||= users_results.index_by(&:assessment_id)
-      @assigns_by_assessment_id[assessment_id]
+      @user_result_by_assessment_id ||= users_results.index_by(&:assessment_id)
+      @user_result_by_assessment_id[assessment_id]
     end
   end
 end

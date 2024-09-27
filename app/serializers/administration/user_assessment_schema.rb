@@ -37,6 +37,7 @@ module Administration
         required(:has_external_norm).filled(:bool?)
         required(:schedule_time).maybe(:str?)
         required(:require_scheduling).maybe(:bool?)
+        required(:dimension_id).maybe(:int?)
       end
     end
   end

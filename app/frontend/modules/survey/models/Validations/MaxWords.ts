@@ -3,7 +3,7 @@ import wordsCount from 'words-count'
 import { Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 import { I18n } from '~/modules/survey/store/StoreWatchman'
-import { getAnswer, getValidationKey } from '~/modules/survey/utils/question'
+import { getAnswersByLength, getValidationKey } from '~/modules/survey/utils/question'
 
 class MaxWords {
   maxLength: number
@@ -19,7 +19,7 @@ class MaxWords {
   }
 
   validate (answers: { message: string }) {
-    if (wordsCount(getAnswer(this.question, answers)) > this.maxLength) {
+    if (wordsCount(getAnswersByLength(this.question, answers).longest) > this.maxLength) {
       return {
         type: 'MaxWords',
         message: I18n().t(`${getValidationKey(this.question)}.max_word`, {

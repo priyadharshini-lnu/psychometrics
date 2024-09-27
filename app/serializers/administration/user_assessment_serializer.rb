@@ -4,9 +4,9 @@ module Administration
   class UserAssessmentSerializer < Panko::Serializer
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling,
-               :mettl_schedule_name, :mettl_schedule_record_id
+               :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id
 
-    delegate :name, :category, to: :assessment
+    delegate :name, :category, :dimension_id, to: :assessment
 
     def status
       return :not_started if user_result.nil?

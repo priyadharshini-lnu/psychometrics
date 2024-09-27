@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Table, MenuProps, Row, Col, App, Button, Switch,
 } from 'antd'
@@ -15,6 +15,7 @@ import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAss
 import { PropsFromRedux } from './connect'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 import { formatedDate } from '~/utils/time'
+import { DetailsDrawer } from './DetailsDrawer'
 
 const { Column } = Table
 const { I18n } = window
@@ -44,7 +45,10 @@ const AssessmentList: React.FC<Props> = ({
   remove,
   resetProgress,
   toggleRequireScheduling,
+  updateMettlSchedule,
 }) => {
+  const [drawerAssessment, setDrawerAssessment] = useState<UserAssessment | undefined>()
+
   const { projectId, campaignId, id } = useParams() as { projectId: string, campaignId: string, id: string }
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -64,6 +68,9 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessment_name')}
             key="name"
             dataIndex="name"
+            render={(text, record: UserAssessment) => (
+              <a onClick={() => setDrawerAssessment(record)}>{text}</a>
+            )}
           />
           <Column
             title={I18n.t('common.column.require_scheduling')}
@@ -168,6 +175,14 @@ const AssessmentList: React.FC<Props> = ({
             )}
           />
         </Table>
+        {drawerAssessment ? (
+          <DetailsDrawer
+            close={() => setDrawerAssessment(undefined)}
+            assessment={drawerAssessment}
+            campaignId={parsedCampaignId}
+            updateMettlSchedule={updateMettlSchedule}
+          />
+        ) : null}
       </Col>
     </Row>
   )
@@ -254,10 +269,6 @@ const getActionsMenuProps = ({
   }
 
   const responseGroupItems: MenuItemType[] = []
-  permissions.updateMettlSchedule && responseGroupItems.push({
-    key: 'manage_mettl_schedule',
-    label: I18n.t('assessments.actions.manage_mettl_schedule'),
-  })
   permissions.resetResults && responseGroupItems.push({
     key: 'reset',
     label: I18n.t('common.actions.reset'),
@@ -318,16 +329,6 @@ const getActionsMenuProps = ({
     }
     if (key === 'resetProgress') {
       return handleResetProgress()
-    }
-
-    if (key === 'manage_mettl_schedule') {
-      return openModal('UpdateMettlScheduleModal',
-        {
-          projectId,
-          campaignId,
-          campaignAssessmentId: assessment.id,
-          userId,
-        })
     }
   }
 

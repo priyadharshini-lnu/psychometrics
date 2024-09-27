@@ -45,7 +45,6 @@ class Client < ApplicationRecord
   has_many :profile_fields, through: :profile_setting
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :assigns, through: :memberships, source: :assigns, dependent: :destroy
   has_many :end_users, class_name: 'Users::Regular', foreign_key: :project_id
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
            class_name: 'Membership'
@@ -65,9 +64,6 @@ class Client < ApplicationRecord
   has_many :license_usages, dependent: :destroy
   has_many :licenses, inverse_of: :client, dependent: :destroy
   has_many :active_licenses, -> { active }, class_name: 'License'
-  # Reports
-  has_many :clients_reports # on delete cascade
-  has_many :reports, through: :clients_reports, source: :report
   has_many :report_families, through: :active_licenses, source: :report_family
   has_many :available_reports, through: :report_families, source: :reports
   has_many :available_assessments, through: :report_families, source: :assessments
@@ -85,8 +81,6 @@ class Client < ApplicationRecord
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) },
            foreign_key: :tte_id, class_name: 'Client'
   has_many :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) },
-           foreign_key: :tte_id, class_name: 'Client', dependent: :destroy
-  has_many :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) },
            foreign_key: :tte_id, class_name: 'Client', dependent: :destroy
   has_many :project_campaigns, class_name: 'Campaign', foreign_key: :project_id, dependent: :destroy
   has_many :sms_invites, through: :project_campaigns, dependent: :destroy
@@ -176,17 +170,9 @@ class Client < ApplicationRecord
   scope :campaigns_of, lambda { |client_id|
                          find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign])
                        }
-  scope :sub_campaigns_of, lambda { |client_id|
-                             find_by(id: client_id).descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign])
-                           }
-  scope :campaigns_and_sub_campaigns_of, lambda { |client_id|
-                                           Client.campaigns_of(client_id).
-                                             or(Client.sub_campaigns_of(client_id))
-                                         }
   scope :descendants_of_arr, ->(client_ids) { where('clients.ancestry ~ ?', "(/|^)(#{client_ids.join('|')})(/|$)") }
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
-  scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
 
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
@@ -218,10 +204,6 @@ class Client < ApplicationRecord
     return locales if locales.any?
 
     [I18n.default_locale]
-  end
-
-  def assign_by_membership_and_assessment(membership_id, assessment_id)
-    memberships.find(membership_id).assigns.find_by(assessment_id: assessment_id)
   end
 
   def license_msg

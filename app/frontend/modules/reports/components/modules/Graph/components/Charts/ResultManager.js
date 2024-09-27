@@ -8,7 +8,9 @@ import AppStore from '~/modules/reports/store/AppStore'
   */
 export const getCorrectResults = (model, mockFactorIds = []) => {
   if (!ResultStore.realResults) {
-    let factors = model.props.source.factors || []
+    let factors = model.props.source.allFactors
+      ? AppStore.factorsByAssessmentId(model.assessment_id)
+      : model.props.source.factors
     if (mockFactorIds.length) {
       factors = AppStore.factorsByAssessmentId(model.assessment_id).filter(f => mockFactorIds.includes(f.id))
     }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Table, Row, Col, Switch, Typography, App,
 } from 'antd'
@@ -11,6 +11,7 @@ import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
+import { DetailsDrawer } from './DetailsDrawer'
 
 const { Column } = Table
 const { I18n } = window
@@ -37,6 +38,8 @@ const AssessmentList: React.FC<Props> = ({
   toggleRequireScheduling,
   toggleAutoAssign,
 }) => {
+  const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
+
   const { projectId, campaignId } = useParams() as { projectId: string, campaignId: string }
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -65,6 +68,9 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.assessment_name')}
             key="name"
             dataIndex="name"
+            render={(text, record: Assessment) => (
+              <a onClick={() => setDrawerAssessment(record)}>{text}</a>
+            )}
           />
           <Column
             title={I18n.t('campaign_assessment.column.auto_assign')}
@@ -228,7 +234,6 @@ const AssessmentList: React.FC<Props> = ({
                     exportScoringResults,
                     exportNormedResults,
                     exportRawFactorScores,
-                    updateMettlSchedule,
                     exportExternalResults,
                     updateExternalConfig,
                     message,
@@ -243,6 +248,14 @@ const AssessmentList: React.FC<Props> = ({
             )}
           />
         </Table>
+        {drawerAssessment ? (
+          <DetailsDrawer
+            close={() => setDrawerAssessment(undefined)}
+            assessment={drawerAssessment}
+            campaignId={campaignId}
+            updateMettlSchedule={updateMettlSchedule}
+          />
+        ) : null}
       </Col>
     </Row>
   )

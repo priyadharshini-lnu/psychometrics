@@ -16,7 +16,11 @@ type OptionsType = {
   name: string
 }
 
-export const MettlFields: React.FC<{ form: FormInstance, assessment: Assessment }> = ({ form, assessment }) => {
+export const MettlFields: React.FC<{
+  form: FormInstance, assessment: Assessment, handleAssessmentSelect(value: string): void
+}> = (
+  { form, assessment, handleAssessmentSelect },
+) => {
   const projectId = Form.useWatch(['projectId'], form)
   const ownerId = Form.useWatch(['ownerId'], form)
 
@@ -66,7 +70,7 @@ export const MettlFields: React.FC<{ form: FormInstance, assessment: Assessment 
       </Form.Item>
       <Form.Item
         name={['externalSettings', 'assessmentId']}
-        label={I18n.t('assessments.column.external_settings.mettl_assessment_id')}
+        label={I18n.t('assessments.column.external_settings.mettl_assessment_name')}
         rules={[{ required: true }]}
       >
         <Select
@@ -76,6 +80,13 @@ export const MettlFields: React.FC<{ form: FormInstance, assessment: Assessment 
             fetchAssessments({
               apiConfig: { filter: { type_eq: 'mettl', filterable_fields: value, project_id_eq: projectId } },
             })
+          }}
+          onSelect={(value) => {
+            const selectedOption = externalAssessments.find(option => option.id === value)
+
+            if (selectedOption) {
+              handleAssessmentSelect(selectedOption.name)
+            }
           }}
           notFoundContent={assessmentIsLoading('fetch') ? <Spin size="small" /> : null}
           filterOption={false}

@@ -24,6 +24,7 @@ module CampaignScoring
                                 cf.campaign_factor_values.new(user_id: user.id, campaign_id: campaign.id)
 
         campaign_factor_value.value = factor_value.value
+        campaign_factor_value.label = factor_value.label
         campaign_factor_value.save!
         campaign_factor_value
       end

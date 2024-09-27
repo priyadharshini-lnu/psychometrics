@@ -11,6 +11,7 @@ module Reports
         required(:last_name).filled(:str?)
         required(:email).filled(:str?)
         required(:photo).maybe(:str?)
+        required(:datasheet).maybe(:hash?)
       end
     end
   end

@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require js-cookie
-//= require common
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require bootstrap-colorpicker
@@ -26,7 +25,6 @@
 //= require filterrific/filterrific-jquery
 //= require administration/overrides/filterrific
 //= require js-routes
-//= require views/assigns/_assign
 
 //= require cable
 
@@ -35,5 +33,3 @@
 //= require i18n/translations
 
 //= require file_downloader
-
-//= require_tree ./application

@@ -18,7 +18,7 @@ module Threesixty
             if assessment.threesixty?
               Threesixty::Participant.find(params[:id])
             else
-              params[:type] == 'legacy' ? Assign.find(params[:id]) : UserAssessment.find(params[:id])
+              UserAssessment.find(params[:id])
             end
 
           render json: ::EndUser::SystemChecksSerializer.new.serialize(entity)

@@ -17,7 +17,7 @@ describe Communications::WorkshopInviteReminderJob, type: :job do
   end
 
   it 'creates communication_email if current time is less than workshop start time minus
-    reschedule_lead_time minus 8 hours' do
+    scheduling_lead_time minus 8 hours' do
     workshop_invite, = create_workshop__with_invite(1.day.from_now + 8.1.hours)
     described_class.perform_now(communication)
 
@@ -30,7 +30,7 @@ describe Communications::WorkshopInviteReminderJob, type: :job do
   it 'should creates only one communication_email per invited_subject' do
     workshop_invite, = create_workshop__with_invite(1.day.from_now + 8.1.hours)
     workshop2 = create(:workshop, start_time: 2.days.from_now + 8.1.hours,
-                       campaign: campaign, reschedule_lead_time: 1.day)
+                       campaign: campaign, scheduling_lead_time: 1.day)
     workshop_invite.workshops << workshop2
 
     described_class.perform_now(communication)
@@ -54,7 +54,7 @@ describe Communications::WorkshopInviteReminderJob, type: :job do
   end
 
   it "doesn't create communication_email if current time is more than
-    workshop start time minus reschedule_lead_time minus 8 hours" do
+    workshop start time minus scheduling_lead_time minus 8 hours" do
     workshop_invite, = create_workshop__with_invite(1.day.from_now + 7.hours)
     described_class.perform_now(communication)
 
@@ -65,7 +65,7 @@ describe Communications::WorkshopInviteReminderJob, type: :job do
   end
 
   def create_workshop__with_invite(start_time)
-    workshop = create(:workshop, start_time: start_time, campaign: campaign, reschedule_lead_time: 1.day)
+    workshop = create(:workshop, start_time: start_time, campaign: campaign, scheduling_lead_time: 1.day)
     workshop_invite = create(:workshop_invite, workshops: [workshop], campaign: campaign)
     workshop_invited_subject = create(
       :workshop_invited_subject, workshop_invite: workshop_invite, user: user, status: :pending

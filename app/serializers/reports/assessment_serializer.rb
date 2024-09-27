@@ -3,7 +3,8 @@
 module Reports
   class AssessmentSerializer < Panko::Serializer
     attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules,
-               :dimension_id, :factors, :factor_scoring_counters, :blocks, :factor_benchmark_scores
+               :dimension_id, :factors, :factor_scoring_counters, :blocks, :factor_benchmark_scores,
+               :campaign_factors_list
 
     def blocks
       blocks = object.blocks.

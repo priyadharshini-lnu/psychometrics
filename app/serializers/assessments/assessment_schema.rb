@@ -35,6 +35,7 @@ module Assessments
         required(:linked_assessment).maybe do
           hash(Assessments::LinkedAssessmentSchema.schema(_, _))
         end
+        required(:campaign_factors_list).maybe(:array?)
       end
     end
   end

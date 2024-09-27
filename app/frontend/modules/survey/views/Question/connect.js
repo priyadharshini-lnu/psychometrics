@@ -11,13 +11,25 @@ import {
 } from '~/modules/survey/core/builder/assessment/block/actions'
 
 export default connect(
-  ({ survey: { builder, builder: { assessment, assessment: { timestamp, propPanel } } } }, props) => ({
+  ({
+    survey: {
+      builder, builder: {
+        factors,
+        assessment, assessment: {
+          timestamp, propPanel,
+          campaign_factors_list,
+        },
+      },
+    },
+  }, props) => ({
     selectedModel: propPanel.question,
     blocksOrder: assessment.blocks,
     moduleConfig: moduleConfig(builder, props.model.id),
     linkedAssessment: assessment.linkedAssessment,
     assessmentDefaultLanguage: assessment.defaultLanguage,
+    factors: factors.factors,
     timestamp, // NOTE: @fedor used to fake update
+    campaignFactors: campaign_factors_list,
   }),
   {
     select: selectQuestion,

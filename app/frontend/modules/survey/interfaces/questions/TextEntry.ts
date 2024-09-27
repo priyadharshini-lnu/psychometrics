@@ -66,3 +66,7 @@ interface ModuleConfig {
 }
 
 type EmailContactType = 'to' | 'cc' | 'bcc'
+
+export interface EmailTextEntryAnswer {
+  message: string
+}

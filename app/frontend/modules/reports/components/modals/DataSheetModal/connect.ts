@@ -6,6 +6,7 @@ import { RootState } from '~/modules/reports/core/rootReducers'
 export default connect(
   (state: RootState) => ({
     ...getData(state.report).dataSheetModal,
+    threesixty: state.report.builder.category === 'threesixty',
   }),
   {
     close: () => closeModal('dataSheetModal'),

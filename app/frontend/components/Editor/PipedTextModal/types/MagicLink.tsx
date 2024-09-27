@@ -10,30 +10,34 @@ const MagicLink = ({ field: { getValue }, insert }) => {
   const [form] = Form.useForm()
 
   const onOk = () => {
-    form.validateFields().then(() => {
-      const { campaignId, assessmentId } = form.getFieldsValue()
+    const { campaignId, assessmentId } = form.getFieldsValue()
 
-      let baseValue = getValue('', '')
+    let baseValue = getValue('', '')
 
-      if (campaignId && assessmentId) {
-        baseValue = getValue(campaignId, assessmentId)
-      } else if (campaignId) {
-        baseValue = getValue(campaignId, '')
-      } else if (assessmentId) {
-        baseValue = getValue('', assessmentId)
-      }
+    if (campaignId && assessmentId) {
+      baseValue = getValue(campaignId, assessmentId)
+    } else if (campaignId) {
+      baseValue = getValue(campaignId, '')
+    } else if (assessmentId) {
+      baseValue = getValue('', assessmentId)
+    }
 
-      insert(baseValue)
-      setOpen(false)
-    })
+    insert(baseValue)
+    setOpen(false)
   }
 
   const content = (
-    <Form form={form} labelCol={{ span: 8 }} wrapperCol={{ span: 16, style: { paddingLeft: '10px' } }}>
+    <Form
+      onFinish={onOk}
+      form={form}
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16, style: { paddingLeft: '10px' } }}
+    >
       <Space direction="vertical">
         <Form.Item
           name="campaignId"
           label={I18n.t('administration.piped_text_modal.campaign_id')}
+          rules={[{ required: true, message: I18n.t('validations.blank') }]}
         >
           <InputNumber style={{ width: 200 }} />
         </Form.Item>
@@ -44,7 +48,7 @@ const MagicLink = ({ field: { getValue }, insert }) => {
           <InputNumber style={{ width: 200 }} />
         </Form.Item>
         <Space>
-          <Button onClick={onOk} type="primary">
+          <Button htmlType="submit" type="primary">
             {I18n.t('common.actions.insert')}
           </Button>
           <Button onClick={() => setOpen(false)}>

@@ -57,6 +57,7 @@ const Module = function (attrs = {}, page) {
   } else {
     this.textConditions = []
   }
+  this.campaignFactorsList = AppStore.getAssessmentById(this.assessment_id).campaignFactorsList || []
 }
 
 Module.prototype = new EventEmitter()
@@ -166,6 +167,9 @@ _.extend(Module.prototype, {
           name: this.props.source.name,
         }
       case 'Factor':
+        if (this.props.source.allFactors) {
+          return AppStore.factorsByAssessmentId(this.assessment_id)
+        }
         return this.props.source.factors
       case 'Count':
       case 'Score':

@@ -38,7 +38,7 @@ module Workshops
 
     def create_workshop(workshop_data)
       data = workshop_data.slice(
-        :timezone, :duration, :cancellation_lead_time, :reschedule_lead_time, :name,
+        :timezone, :duration, :cancellation_lead_time, :scheduling_lead_time, :name,
         :video_call_type, :start_time, :campaign_id, :total_seats, :meeting_link,
         :allow_late_cancellation_and_rescheduling
       )

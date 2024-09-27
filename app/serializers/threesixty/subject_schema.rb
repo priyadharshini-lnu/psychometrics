@@ -2,6 +2,7 @@
 
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Lint/UnderscorePrefixedVariableName
+# rubocop:disable Metrics/BlockLength
 
 module Threesixty
   class SubjectSchema < BaseSchema
@@ -31,6 +32,7 @@ module Threesixty
           required(:remove_subject).filled(:bool?)
           required(:remove_from_campaign).filled(:bool?)
           required(:regenerate_report).filled(:bool?)
+          required(:reset_password).filled(:bool?)
         end
         required(:user).hash(UserSchema.schema(_, _))
       end
@@ -40,3 +42,4 @@ end
 
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Lint/UnderscorePrefixedVariableName
+# rubocop:enable Metrics/BlockLength

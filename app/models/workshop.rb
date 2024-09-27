@@ -59,7 +59,7 @@ class Workshop < ApplicationRecord
   end
 
   def scheduling_lead_time_passed?
-    Time.current > (start_time - reschedule_lead_time)
+    Time.current > (start_time - scheduling_lead_time)
   end
 
   def seats_available?

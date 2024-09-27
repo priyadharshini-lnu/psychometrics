@@ -3,7 +3,7 @@ import wordsCount from 'words-count'
 import { Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 import { I18n } from '~/modules/survey/store/StoreWatchman'
-import { getAnswer, getValidationKey } from '~/modules/survey/utils/question'
+import { getAnswersByLength, getValidationKey } from '~/modules/survey/utils/question'
 
 class MinWords {
   minLength: number
@@ -19,7 +19,7 @@ class MinWords {
   }
 
   validate (answers: { message: string }) {
-    if (wordsCount(getAnswer(this.question, answers)) < this.minLength) {
+    if (wordsCount(getAnswersByLength(this.question, answers).shortest) < this.minLength) {
       return {
         type: 'MinWords',
         message: I18n().t(`${getValidationKey(this.question)}.min_word`, {

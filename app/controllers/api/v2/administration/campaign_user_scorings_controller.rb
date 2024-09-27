@@ -4,7 +4,7 @@ module Api
   class V2::Administration::CampaignUserScoringsController < Api::V2::Administration::BaseController
     before_action :find_user, only: %i[change_finalized_campaign_score rescore]
 
-    def index
+    def index # rubocop:disable Metrics/AbcSize
       sort = @request.parse_sort_criteria(params[:sort])&.first || { field: 'email', direction: :asc }
       limit = limit_and_offset[:limit]
       query_object = CampaignUsers::CampaignUserScoresQuery.new(
@@ -23,7 +23,8 @@ module Api
       modified_scores = campaign_user_scores.map do |score|
         campaign_factor_values = score.select { |key, _value| campaign_factor_ids.include?(key) }.
                                  map do |key, value|
-          { campaign_factor_id: key.to_i, value: value }
+          parsed_value = value ? JSON.parse(value) : {}
+          { campaign_factor_id: key.to_i, value: parsed_value['value'], label: parsed_value['label'] }
         end
         errors = score['campaign_scores_errors']
         {

@@ -1,0 +1,1 @@
+export { MagicLink } from './MagicLink'

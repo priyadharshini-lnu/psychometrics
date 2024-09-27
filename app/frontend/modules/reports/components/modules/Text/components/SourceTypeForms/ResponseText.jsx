@@ -1,6 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import _ from 'lodash'
 import { Component } from 'react'
+import { Space } from 'antd'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
 import * as QuestionPresenter from '~/modules/reports/presenters/QuestionPresenter'
@@ -132,10 +133,25 @@ export default class ResponseText extends Component {
     )
   }
 
+  renderCampaignFactorFeedbackAnswerIndex () {
+    const { props: { question, answerIndex }, campaignFactorsList } = this.props.model
+    const currentQuestion = this.lookupQuestionById(question)
+    if (!currentQuestion || currentQuestion.type !== 'CampaignFactorFeedback') { return null }
+    return (
+      <div>
+        <div>Campaign factor feedback</div>
+        <select className="form-control" value={answerIndex || ''} onChange={this.onChangeTextEntryFormAnswerIndex}>
+          {!answerIndex ? <option value="" /> : null}
+          {campaignFactorsList.map(({ code }) => (<option key={code} value={code}>{code}</option>))}
+        </select>
+      </div>
+    )
+  }
+
   render () {
     const { props: { question } } = this.props.model
     return (
-      <div>
+      <Space className="w-100" direction="vertical">
         <Select
           name="form-field-name"
           value={getValue(this.getFilteredQuestions(), question)}
@@ -146,7 +162,8 @@ export default class ResponseText extends Component {
         />
         {this.renderFormats()}
         {this.renderTextEntryFormAnswerIndex()}
-      </div>
+        {this.renderCampaignFactorFeedbackAnswerIndex()}
+      </Space>
     )
   }
 }

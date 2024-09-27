@@ -19,17 +19,7 @@ class CommunicationDecorator < BaseDecorator
   end
 
   def campaigns
-    return object.project_campaign&.name if object.project&.migrated?
-    return object.campaign.name if object.campaign.present?
-
-    Client.campaigns_of(object.end_level_id).pluck(:name).join(', ')
-  end
-
-  def sub_campaigns
-    return nil if object.project&.migrated?
-    return object.sub_campaign.name if object.sub_campaign.present?
-
-    Client.sub_campaigns_of(object.end_level_id).pluck(:name).join(', ')
+    object.project_campaign&.name
   end
 
   def form_url

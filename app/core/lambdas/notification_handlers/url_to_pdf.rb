@@ -31,14 +31,14 @@ module Lambdas
           user_report.save!
         end
         update_admin_job_progress(data)
-        notify_user(data) if data['notify_user_id']
+        notify_user(data, user_report) if data['notify_user_id']
 
         broadcast :ok
       end
 
       private
 
-      def notify_user(data)
+      def notify_user(data, user_report)
         blob = ActiveStorage::Blob.new(
           key: data['file_path'],
           filename: data['file_name'],
@@ -55,7 +55,9 @@ module Lambdas
             message: I18n.t('jobs.threesixty.reports.download.message'),
             description: I18n.t(
               'jobs.threesixty.reports.download.description',
-              url: blob.url(expires_in: 10.minutes.to_i, disposition: 'attachment', filename: data['file_name'])
+              url: blob.url(
+                expires_in: 10.minutes.to_i, disposition: 'attachment', filename: user_report.report_name_for_download
+              )
             )
           }
       end

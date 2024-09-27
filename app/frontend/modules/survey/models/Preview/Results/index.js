@@ -12,6 +12,8 @@ import Timing from './Timing'
 import MetaInfo from './MetaInfo'
 import Captcha from './Captcha'
 import PickGroupRank from './PickGroupRank'
+import FactorSelect from './FactorSelect'
+import CampaignFactorFeedback from './CampaignFactorFeedback'
 
 export default {
   MultipleChoice,
@@ -28,4 +30,6 @@ export default {
   MetaInfo,
   Captcha,
   PickGroupRank,
+  FactorSelect,
+  CampaignFactorFeedback,
 }

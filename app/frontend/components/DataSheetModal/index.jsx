@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import _ from 'lodash'
 import { Modal } from 'react-bootstrap'
+import { Alert } from 'antd'
 import { setIn } from '~/utils/immutable'
 import { DATA_SHEET_COLUMN_TYPES } from './constants'
 import styles from './styles.less'
@@ -9,6 +10,8 @@ import Column from './Column'
 const {
   Header, Body, Footer, Title,
 } = Modal
+
+const { I18n } = window
 
 export default class DataSheetModal extends Component {
   state = {
@@ -60,8 +63,10 @@ export default class DataSheetModal extends Component {
   }
 
   render () {
-    const { close } = this.props
+    const { close, threesixty } = this.props
+
     const { columns } = this.state
+
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -69,15 +74,22 @@ export default class DataSheetModal extends Component {
         </Header>
         <Body>
           <div>
-            <div className={styles.fileContainer}>
-              <input type="file" onChange={this.onChangeFile} />
-              <button className="btn btn-info" onClick={this.sendFile}>
-                Import
-              </button>
-              <button className="btn btn-default mlx" onClick={this.addColumn}>
-                Add Field
-              </button>
-            </div>
+            {threesixty
+              ? (
+                <div>
+                  <Alert type="warning" message={I18n.t('administration.datasheet.threesixty_warning')} />
+                </div>
+              ) : (
+                <div className={styles.fileContainer}>
+                  <input type="file" onChange={this.onChangeFile} />
+                  <button className="btn btn-info" onClick={this.sendFile}>
+                    Import
+                  </button>
+                  <button className="btn btn-default mlx" onClick={this.addColumn}>
+                    Add Field
+                  </button>
+                </div>
+              )}
             <div className={styles.columnContainer}>
               {columns.map((column, index) => (
                 <Column
@@ -86,6 +98,7 @@ export default class DataSheetModal extends Component {
                   column={column}
                   remove={column => this.removeColumn(column)}
                   update={this.updateColumn}
+                  disabled={threesixty}
                 />
               ))}
             </div>

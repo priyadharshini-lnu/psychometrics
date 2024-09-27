@@ -10,8 +10,7 @@ module MediaResponses
 
     def call
       media_response.question.media_responses.where(
-        assign_id: media_response.assign_id,
-        users_result_id:  media_response.users_result_id
+        users_result_id: media_response.users_result_id
       ).update_all(user_selected: false)
       media_response.update_column(:user_selected, true)
     end

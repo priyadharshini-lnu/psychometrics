@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This model is not in use. Remove it.
 class ReportsAccess < ApplicationRecord
   audited
 

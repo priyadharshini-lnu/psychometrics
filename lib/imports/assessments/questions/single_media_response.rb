@@ -9,11 +9,7 @@ module Imports
           return nil if data[1].blank?
 
           media_record = MediaResponse.find_by_encoded_id(data[1]) # rubocop:disable Rails/DynamicFindBy
-          if assign.is_a?(Assign)
-            MediaResponses::FindOrCreateMediaResponse.call!(media_record, assign, question)
-          else
-            MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question)
-          end
+          MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question)
 
           {
             duration: duration

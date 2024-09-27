@@ -5,7 +5,8 @@ module Assessments
     attributes :id, :name, :category, :disabled, :created_at,
                :flow, :norm_rules, :factors, :enable_back, :enable_progress, :question_recoding,
                :data_sheet_columns, :relationships, :extra, :resources, :resources_data, :options,
-               :instructions, :default_norm_id, :owner_id, :linked_questions, :blocks, :default_language
+               :instructions, :default_norm_id, :owner_id, :linked_questions, :blocks, :default_language,
+               :campaign_factors_list
 
     has_one :linked_assessment, serializer: Assessments::LinkedAssessmentSerializer
 

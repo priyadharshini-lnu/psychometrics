@@ -3,7 +3,7 @@
 module Facades
   module Administration
     class Communication
-      attr_reader :owners, :projects, :campaigns, :sub_campaigns, :communication, :memberships, :form, :delivery_rules,
+      attr_reader :owners, :projects, :campaigns, :communication, :memberships, :form, :delivery_rules,
                   :assessments
 
       include EmailDelivery
@@ -15,7 +15,6 @@ module Facades
         @owners = fetch_owners(current_user)
         @projects = fetch_projects(current_user)
         @campaigns = fetch_campaigns(current_user)
-        @sub_campaigns = fetch_sub_campaigns(current_user)
         @delivery_rules = fetch_delivery_rules
         @memberships = fetch_memberships
         @assessments = fetch_assessments
@@ -25,16 +24,18 @@ module Facades
         form.client_id.present?
       end
 
+      def project_level_email?
+        %w[magic_link_email].include?(form.kind)
+      end
+
       def show_campaigns?
+        return false if project_level_email?
+
         show_projects? && form.project_id.present? && !form.project.end_level?
       end
 
-      def show_sub_campaigns?
-        show_campaigns? && !form.project.migrated? && form.campaign_id.present? && !form.campaign.end_level?
-      end
-
       def show_recipients?
-        return false if workshop_communication?
+        return false if workshop_communication? || project_level_email?
 
         form.end_level_id.present?
       end
@@ -48,7 +49,7 @@ module Facades
       end
 
       def show_delivery_rules?
-        return false if workshop_communication?
+        return false if workshop_communication? || project_level_email?
 
         form.kind.present? &&
           %w[new_users new_assignment].exclude?(form.recipients) &&
@@ -142,12 +143,6 @@ module Facades
         ::Administration::CampaignPolicy::Scope.new(user, Campaign).resolve.where(project_id: form.project_id)
       end
 
-      def fetch_sub_campaigns(user)
-        return Client.none if form.campaign_id.blank? || form.project.migrated?
-
-        client_policy_scope(user).sub_campaigns_of(form.campaign_id).enabled
-      end
-
       def client_policy_scope(user)
         @client_policy_scope ||= ::Administration::ClientPolicy::Scope.new(user, Client).resolve
       end
@@ -155,17 +150,13 @@ module Facades
       def fetch_assessments
         return Assessment.none if form.end_level.blank?
 
-        return form.campaign.assessments if form.project&.migrated? && form.campaign
-
-        ::Queries::Assessments::ByClientSubtree.call(form.model.end_level)
+        form.campaign&.assessments
       end
 
       def fetch_memberships
         return User.none if form.end_level.blank? || !form.model.selected_recipients?
 
-        return form.campaign.users if form.project.migrated?
-
-        ::Queries::Users::MembersSubtreeByClient.call(form.model.end_level)
+        form.campaign.users
       end
 
       def fetch_delivery_rules

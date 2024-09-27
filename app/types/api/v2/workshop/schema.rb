@@ -47,6 +47,8 @@ module Api
             required(:allow_late_cancellation_and_rescheduling).filled(:bool)
             required(:workshop_assessors_ids).array(:string)
             required(:workshop_managers_ids).array(:string)
+            required(:scheduling_lead_time).filled(:integer)
+            required(:cancellation_lead_time).filled(:integer)
           end
         end
 
@@ -63,7 +65,7 @@ module Api
               required(:timezone).filled(:string)
               required(:duration).filled(:integer)
               required(:cancellation_lead_time).filled(:integer)
-              required(:reschedule_lead_time).filled(:integer)
+              required(:scheduling_lead_time).filled(:integer)
               required(:video_call_type).filled(:int?, included_in?: [0, 1, 2]) # Adjust the range as needed
               required(:workshop_resources).array(:hash) do
                 required(:name).filled(:string)

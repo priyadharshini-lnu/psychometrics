@@ -62,7 +62,7 @@ const fetchSingleInviteResponseTR = t.type({
   duration: t.union([t.number, t.null]),
   allowNeurodiversityOption: t.boolean,
   cancellationLeadTime: t.union([t.number, t.null]),
-  rescheduleLeadTime: t.union([t.number, t.null]),
+  schedulingLeadTime: t.union([t.number, t.null]),
   bookingPreworkConditionUnsatisfied: t.union([t.boolean, t.null]),
   campaignId: t.number,
 })

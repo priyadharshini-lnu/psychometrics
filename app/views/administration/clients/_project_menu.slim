@@ -1,8 +1,0 @@
-- if policy(:membership, { project_id: project.id }).can_manage_project_admins?
-  = active_link_to(t('administration.navigation.project_admins'), administration_client_project_admins_path(project), class: 'btn btn-default')
-- if policy(:datasheet, { project_id: project.id }).index?
-  = active_link_to(t('administration.navigation.datasheets'), administration_project_sheet_rows_path(project), class: 'btn btn-default')
-
-= link_to '360 Campaigns', administration_client_project_threesixty_campaigns_path(client, project), class: "btn btn-default #{'active' if current_page?(controller: 'threesixty_campaigns',action: :index)}"
-- if Settings.features.new_campaign
-  = link_to t('administration.navigation.new_campaign'), administration_project_new_campaigns_path(project), class: "btn btn-default"

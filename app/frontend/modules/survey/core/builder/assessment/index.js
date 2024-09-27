@@ -12,6 +12,7 @@ import {
   TOGGLE_INSTRUCTIONS, UPDATE_INSTRUCTIONS_CONTENT,
   UPDATE_LINKED_QUESTIONS,
   TOGGLE_ENABLE_SAVE,
+  SAVE_CAMPAIGN_FACTORS,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -146,6 +147,9 @@ const HANDLERS = {
   ),
   [UPDATE_LINKED_QUESTIONS]: (state, { id, questions }) => setIn(
     state, ['linkedQuestions', id], questions,
+  ),
+  [SAVE_CAMPAIGN_FACTORS]: (state, { data }) => setIn(
+    state, ['campaign_factors_list'], data,
   ),
 }
 

@@ -21,7 +21,7 @@ module EndUser
         required(:duration).filled(:int?)
         required(:allow_neurodiversity_option).filled(:bool?)
         required(:cancellation_lead_time).filled(:int?)
-        required(:reschedule_lead_time).filled(:int?)
+        required(:scheduling_lead_time).filled(:int?)
         required(:booking_prework_condition_unsatisfied).filled(:bool?)
         required(:campaign_id).maybe(:int?)
       end

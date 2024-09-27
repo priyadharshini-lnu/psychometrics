@@ -435,75 +435,8 @@ Rails.application.routes.draw do
         get :export
       end
       scope module: :clients do
-        resources :users do
-          # user_id means membership_id in this case
-          scope module: :users do
-            resources :assigns, only: %i[index new create edit destroy] do
-              get :reports, on: :collection
-              put :reset, on: :member
-              put :update_additional_time, on: :member
-            end
-            resources :reports, only: [:destroy] do
-              get :preview, on: :member
-            end
-            resources :assigns_reports, only: %i[new create destroy] do
-              put :regenerate, on: :member
-              put :toggle_user_access, on: :member
-            end
-            resources :assign_assessments, only: %i[new create]
-          end
-
-          member do
-            patch :toggle_status
-            patch :toggle_membership_status
-            get :sidebar
-            get :reset_password
-            get :spoof
-          end
-          collection do
-            get :admins
-            get :export
-            get :export_completion_status
-            post :assign_multiple
-          end
-
-          resources :api_keys, except: %i[destroy edit update show] do
-            member do
-              patch :toggle_status
-            end
-          end
-        end
-        resources :reports, only: %i[index]
-        namespace :reports do
-          resources :regenerates, only: %i[new create]
-        end
-        resource :assign_reports, only: %i[new create edit update]
-        resource :assign_assessments, only: %i[new create edit update]
-        resources :registration_codes do
-          patch :toggle_status, on: :member
-          get :download_qrcode, on: :member
-        end
-        resources :statistics, only: [:index]
-
         resources :projects, concerns: :client_editable do
-          collection do
-            get :export
-          end
-          # resource :designs, only: [:edit, :update]
           scope module: :projects do
-            resources :campaigns, concerns: :client_editable do
-              collection do
-                get :export
-              end
-              scope module: :campaigns do
-                resources :sub_campaigns, concerns: :client_editable do
-                  collection do
-                    get :export
-                  end
-                end
-              end
-            end
-
             resources :new_campaigns
 
             resources :threesixty_campaigns, concerns: :client_editable do
@@ -513,32 +446,9 @@ Rails.application.routes.draw do
             end
           end
         end
-        resources :campaigns, concerns: :client_editable, only: %i[index edit update destroy]
         get '/projects/:project_id/threesixty_campaigns/:id/*all',
             to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
         get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
-
-        resources :sub_campaigns, concerns: :client_editable, only: %i[index edit update destroy]
-
-        resources :licenses, only: %i[index show new create edit update] do
-          resources :license_usages, only: [:index] do
-            member do
-              patch :toggle_activation_status
-            end
-          end
-          patch :toggle_status, on: :member
-          get :overview, on: :collection
-        end
-        resources :assessments, only: %i[index destroy] do
-          get :select_raw_export_type
-          get :export_results
-          get :export_normed_results
-          get :export_hogan_results
-          put :enable_universal_links
-          put :disable_universal_links
-          get :download_qrcode
-          post :generate_universal_link
-        end
         resources :sheet_rows, except: %i[show edit update]
       end
     end
@@ -666,16 +576,6 @@ Rails.application.routes.draw do
       end
 
       scope module: 'assessments' do
-        resources :assigns, only: %i[new create] do
-          collection do
-            get :step1
-            get :step2
-            post :finish
-            post :form
-            post :selected_users
-            post :not_selected_users
-          end
-        end
         resource :builders, only: %i[show update]
         resource :scoring, only: [:update], controller: :scoring
         resource :agiles, only: %i[show update]
@@ -876,6 +776,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/sign_up/success', to: 'users/registrations#success'
     get 'users/sign_in_link', to: 'users/magic_links#sign_in_link'
+    get 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
+    post 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
   end
 
   devise_for :users,
@@ -903,12 +805,6 @@ Rails.application.routes.draw do
   get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
   constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
-    resources :assigns, only: %i[index update], concerns: :media_uploades do
-      get :pass, on: :member
-      get :assessment, on: :member
-      post :accept_privacy, on: :collection
-    end
-
     scope module: :users do
       resources :mobile_number_verifications, only: [] do
         collection do
@@ -970,13 +866,6 @@ Rails.application.routes.draw do
       resources :user_reports do
         member do
           get :pdf_preview
-        end
-      end
-
-      resources :mindmill_user_assessments, only: [] do
-        member do
-          get :pass
-          get :redirect
         end
       end
 
@@ -1100,39 +989,6 @@ Rails.application.routes.draw do
         end
       end
       get 'system_checks/:assessment_id/:id', to: 'campaigns#system_checks'
-    end
-
-    namespace :mindmill do
-      resources :assigns, only: [] do
-        member do
-          get :pass
-          get :redirect
-        end
-      end
-    end
-    namespace :hogan do
-      resources :assigns, only: [] do
-        member do
-          get :redirect
-          put :pass
-        end
-      end
-    end
-
-    concern :agile_assigns do
-      resources :assigns, only: %i[show update] do
-        member do
-          post :events
-          put :set_language
-        end
-      end
-    end
-
-    namespace :agile do
-      namespace :anonym do
-        concerns :agile_assigns
-      end
-      concerns :agile_assigns
     end
 
     resources :reports, only: %i[show] do
@@ -1312,7 +1168,7 @@ Rails.application.routes.draw do
             end
 
             jsonapi_resources :registration_settings, only: %i[index update]
-            jsonapi_resources :mettl_schedule_records, only: %i[index create update destroy]
+            jsonapi_resources :mettl_schedule_records
 
             jsonapi_resources :assessments do
               scope module: :assessments do

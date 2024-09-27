@@ -93,6 +93,7 @@ interface Props {
   noOfItems: number | null
   gapCutoff: number | null
   precision?: number
+  showAllFactors?: boolean
 }
 
 const Factor: FC<Props> = ({
@@ -104,6 +105,7 @@ const Factor: FC<Props> = ({
   noOfItems,
   gapCutoff,
   precision,
+  showAllFactors,
 }) => {
   const calculateGaps = (
     assessmentId: PropertiesModel['assessment_id'],
@@ -143,7 +145,9 @@ const Factor: FC<Props> = ({
       [],
     )
 
-    const allowedFactors = allFactors.filter(factor => factorIds.includes(parseInt(factor.id, 10)))
+    const allowedFactors = showAllFactors
+      ? allFactors
+      : allFactors.filter(factor => factorIds.includes(parseInt(factor.id, 10)))
     const sortedFactors = allowedFactors.sort(
       (firstFactor, secondFactor) => secondFactor.diff - firstFactor.diff,
     )
@@ -173,7 +177,12 @@ const Factor: FC<Props> = ({
   const mockedResult = (data) => {
     const dimensionId = AppStore.getAssessmentById(assessment_id)?.dimensionId ?? ''
     const allFactors: Array<{ id: number; name: string }> = AppStore.factors?.[dimensionId] ?? []
-
+    if (showAllFactors) {
+      return data.map((d, i) => ({
+        ...d,
+        name: allFactors[i]?.name ?? '',
+      }))
+    }
     return factorIds.map((id, i) => ({
       ...data[i],
       name: allFactors.find(factor => factor.id === id)?.name ?? '',

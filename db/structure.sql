@@ -1582,7 +1582,8 @@ CREATE TABLE public.communication_emails (
     sent_at timestamp without time zone,
     campaign_user_id bigint,
     workshop_id bigint,
-    workshop_invite_id bigint
+    workshop_invite_id bigint,
+    user_id bigint
 );
 
 
@@ -4324,7 +4325,9 @@ CREATE TABLE public.security_settings (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     tfa_enabled boolean DEFAULT false,
-    magic_link_expiry_in_seconds integer DEFAULT 604800 NOT NULL
+    magic_link_expiry_in_seconds integer DEFAULT 604800 NOT NULL,
+    magic_link_enabled boolean DEFAULT false,
+    disallow_password_login boolean DEFAULT false
 );
 
 
@@ -6351,7 +6354,7 @@ CREATE TABLE public.workshops (
     total_seats integer DEFAULT 0 NOT NULL,
     booked_seats integer DEFAULT 0 NOT NULL,
     cancellation_lead_time integer DEFAULT 0,
-    reschedule_lead_time integer DEFAULT 0,
+    scheduling_lead_time integer DEFAULT 0,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     name character varying,
@@ -13911,6 +13914,9 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20240920142940'),
+('20240920083324'),
+('20240912114619'),
 ('20240911121555'),
 ('20240910083932'),
 ('20240905041021'),

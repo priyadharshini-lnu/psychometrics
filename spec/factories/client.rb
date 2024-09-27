@@ -46,7 +46,6 @@ FactoryBot.define do
         assessments = evaluator.with_assessments
         report_family = client.root.report_families.take
         report = create(:report, report_families: [report_family], assessments: assessments)
-        create :clients_report, client: client, report: report, report_family: report_family
         client.assessments = report.assessments
       end
     end

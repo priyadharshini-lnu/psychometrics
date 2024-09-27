@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
+import { MediaQueryContext } from '~/glint'
 import QuestionList from '~/modules/survey/views/Preview/QuestionList'
 import Utils from '~/modules/survey/utils/Utils'
 import StaticContent from '~/modules/survey/views/Preview/StaticContent'
@@ -15,6 +16,8 @@ class Page extends Component {
     page: PropTypes.object.isRequired,
     defaultLanguage: PropTypes.string,
   }
+
+  static contextType = MediaQueryContext
 
   componentDidMount () {
     const path = location.pathname.match('threesixty_campaigns/(.*)/evaluations')
@@ -51,9 +54,10 @@ class Page extends Component {
   }
 
   getQuestionContainerClasses () {
+    const { isMobile } = this.context
     const { block: { props: { staticContent } } } = this.props
 
-    if (!staticContent) return
+    if (isMobile || !staticContent) return ''
     const { layout } = staticContent
     return cs({
       [styles.sideStaticContent]: (layout === LEFT || layout === RIGHT),
