@@ -30,7 +30,7 @@ module Factors
       return old_to_new_factor_mapping[factor.id] if old_to_new_factor_mapping[factor.id]
 
       new_factor = factor.dup
-      new_factor.icon.attach(factor.icon.blob) if factor.icon.attached?
+      new_facor.copy_and_upload(factor.icon, :icon) if factor.icon.attached?
       new_factor.save!
       new_factor
     end

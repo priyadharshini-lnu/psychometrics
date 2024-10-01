@@ -44,8 +44,14 @@ class Dimension < ApplicationRecord
       ],
       use_dictionary: true
     ) do |original, copied|
-      original.class.uploaders.each_key do |image_column|
-        copied.public_send("#{image_column}=", original.public_send(image_column))
+      original.class.reflect_on_all_attachments.map(&:name).each do |attachment_name|
+        attachment = original.public_send(attachment_name)
+        next unless attachment.attached?
+
+        copied.copy_and_upload(
+          attachment,
+          attachment_name
+        )
       end
     end
 

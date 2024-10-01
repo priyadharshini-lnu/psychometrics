@@ -104,7 +104,7 @@ class Factor < ApplicationRecord
 
   def clone_and_save
     @cloned_factor = deep_clone include: [:factors_sub_factors] do |original, kopy|
-      kopy.icon.attach(original.icon.blob) if original.is_a?(Factor)
+      kopy.copy_and_upload(original.icon, :icon) if original.is_a?(Factor) && original.icon&.attached?
     end
     @cloned_factor.gen_uniq_name
     @cloned_factor.icon.attach(icon.blob) if icon.attached?
