@@ -17,4 +17,8 @@ class DesignSetting < ApplicationRecord
   def attachment_storage_path(attribute_name, filename)
     "public/projects/#{project.id}/design_setting/#{attribute_name}/#{filename}"
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id project_id]
+  end
 end

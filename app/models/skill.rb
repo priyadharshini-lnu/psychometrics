@@ -17,6 +17,14 @@ class Skill < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[job_roles]
+  end
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[search_query]
   end

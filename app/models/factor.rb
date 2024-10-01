@@ -91,6 +91,10 @@ class Factor < ApplicationRecord
     where(dimension_id: dimension_id)
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name scoring_strategy dimension_id created_at updated_at]
+  end
+
   #
   # Returns hash: ass_name
   #

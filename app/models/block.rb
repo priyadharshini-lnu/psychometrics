@@ -30,6 +30,10 @@ class Block < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name created_at]
+  end
+
   def clone_with_params(params = {})
     cloned_block = deep_clone(include: [:questions])
     cloned_block.position = params[:position] if params[:position]

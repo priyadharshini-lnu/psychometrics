@@ -46,6 +46,10 @@ class CampaignUser < ApplicationRecord
   delegate :proctoring_enabled?, to: :campaign
   delegate :pending_assessments, to: :user_assessments
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id active started_at completed_at]
+  end
+
   def publish_campaign_user_status
     CampaignUsers::Webhook.new(self).publish_campaign_user_status
   end

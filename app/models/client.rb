@@ -179,6 +179,10 @@ class Client < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name applicable_level disabled]
+  end
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields projects_of resource_disabled search_query has_integration]
   end

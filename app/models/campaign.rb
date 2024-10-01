@@ -101,6 +101,10 @@ class Campaign < ApplicationRecord
   }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name status type start_date end_date]
+  end
+
   def proctoring_license_with_enough_credits
     credits = Campaigns::Proctoring::GetProctoringCredits.call!(self)
     client.active_licenses.where(type: :proctoring).order(end_date: :asc).find do |license|

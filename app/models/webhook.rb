@@ -36,6 +36,10 @@ class Webhook < WebhookSystem::Subscription
     %i[filterable_fields]
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id active]
+  end
+
   scope :filterable_fields, lambda { |query|
     where(
       'webhook_subscriptions.description ILIKE :query OR webhook_subscriptions.url ILIKE :query',

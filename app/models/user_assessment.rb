@@ -106,6 +106,14 @@ class UserAssessment < ApplicationRecord
 
   alias result users_result
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id subject_id campaign_id]
+  end
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filter_by_subject_or_assessment preworks workshop_activities]
+  end
+
   def calculate_and_save_campaign_scoring
     return unless CampaignUser.exists?(campaign_id: campaign_id, user_id: subject_id)
 
@@ -138,10 +146,6 @@ class UserAssessment < ApplicationRecord
 
   def complete!
     update!(status: :completed, completed_at: Time.current)
-  end
-
-  def self.ransackable_scopes(_auth_object = nil)
-    %i[filter_by_subject_or_assessment preworks workshop_activities]
   end
 
   def saville_norm_id

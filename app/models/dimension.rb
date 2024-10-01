@@ -27,6 +27,10 @@ class Dimension < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name created_at updated_at]
+  end
+
   def log_attribute_for_delete
     slice(:owner_id, :name)
   end

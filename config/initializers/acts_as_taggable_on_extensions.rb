@@ -15,8 +15,4 @@ ActsAsTaggableOn::Tag.instance_eval do
   def ransackable_attributes(_auth_object = nil)
     %w[name]
   end
-
-  def ransackable_associations(_auth_object = nil)
-    []
-  end
 end

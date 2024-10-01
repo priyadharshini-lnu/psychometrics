@@ -31,6 +31,10 @@ class WorkshopInvitedSubject < ApplicationRecord
   }
   scope :filterable_fields, ->(query) { joins(:user).merge(User.filterable_fields(query)) }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id workshop_invite_campaign user_id]
+  end
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields]
   end

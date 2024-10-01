@@ -190,6 +190,10 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     where(category: category)
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name category archived]
+  end
+
   after_commit :sync_translated_columns, on: %i[update create]
   after_commit -> { create_mettl_schedule }, if: :mettl?, on: %i[create]
   after_commit -> { set_mettl_assessment_return_url }, if: :mettl?, on: %i[create]

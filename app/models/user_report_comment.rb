@@ -11,4 +11,8 @@ class UserReportComment < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   has_one :campaign, through: :user_report
   has_many :replies, foreign_key: :parent_id, class_name: 'UserReportComment'
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id parent_id]
+  end
 end
