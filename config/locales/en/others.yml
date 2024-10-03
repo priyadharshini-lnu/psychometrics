@@ -2524,6 +2524,7 @@ en:
           positionTopLeft: Top Left
           positionTopMiddle: Top Middle
           positionTopRight: Top Right
+          reverse: Reverse
           showLegend: Show Legend
     columns:
       data_only: Data Only
