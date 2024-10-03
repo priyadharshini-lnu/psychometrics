@@ -168,7 +168,7 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id full_name first_name last_name name email role global_assessor]
+    %w[id full_name first_name last_name name email role global_assessor is_anonym]
   end
 
   def self.ransackable_associations(_auth_object = nil)
