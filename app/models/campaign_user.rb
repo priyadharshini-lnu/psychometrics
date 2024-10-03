@@ -47,7 +47,7 @@ class CampaignUser < ApplicationRecord
   delegate :pending_assessments, to: :user_assessments
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id active started_at completed_at]
+    %w[id active status completion_status started_at completed_at]
   end
 
   def publish_campaign_user_status
