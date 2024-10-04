@@ -22,6 +22,7 @@ export const WorkshopSubjectTR = t.type({
   preworks: t.string,
   attended: t.boolean,
   workshopActivities: t.string,
+  createdAt: t.union([t.null, t.string]),
   user: t.union([
     t.type({
       id: t.string,

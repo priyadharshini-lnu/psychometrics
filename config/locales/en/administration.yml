@@ -1780,6 +1780,8 @@ en:
       view_all_schedules: View All Mettl Schedules
     invited_subject:
       add_btn: Add Subject
+      assessment_center: 'Assessment center:'
+      booked_at: 'Booked At:'
       column:
         participant: Participant
       remove_confirm:
@@ -2470,6 +2472,7 @@ en:
         assessors: Assessors
         attendance: Attendance
         attended: Attended
+        booked_at: Booked At
         campaign_name: Campaign Name
         duration: Duration
         managers: Mangers

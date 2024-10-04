@@ -8,6 +8,7 @@ class WorkshopInvitedSubject < ApplicationRecord
   belongs_to :reschedule_workshop, class_name: 'Workshop', optional: true
 
   has_one :workshop_subject, dependent: :nullify
+  has_many :workshop_subjects, dependent: :nullify
   has_many :workshops, through: :workshop_invite
   has_one :campaign, through: :workshop_invite
 
@@ -48,6 +49,10 @@ class WorkshopInvitedSubject < ApplicationRecord
     return unless communication
 
     communication.emails.create!(campaign_user: campaign_user, workshop_invite: workshop_invite)
+  end
+
+  def scheduled_workshop_subject
+    workshop_subjects.find_by(scheduling_status: :scheduled)
   end
 
   def publish_scheduling_invited
