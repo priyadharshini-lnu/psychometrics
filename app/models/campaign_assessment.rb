@@ -36,6 +36,10 @@ class CampaignAssessment < ApplicationRecord
     %w[id name category archived campaign_id workshop_activity]
   end
 
+  def self.ransackable_associations(_auth_object = nil)
+    %w[assessment]
+  end
+
   def validate_external_config
     return unless external_config.presence.is_a?(String)
 
