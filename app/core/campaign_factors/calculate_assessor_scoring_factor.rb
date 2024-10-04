@@ -27,11 +27,11 @@ module CampaignFactors
     private
 
     def calculate_factor_scores(campaign_factor)
-      assessor_scores = assessor_user_assessments.each_with_object([]) do |assessor_user_assessment, scores|
-        factor_scoring = assessor_user_assessment.users_result.scoring[campaign_factor.factor_id.to_s]
+      assessor_scores = assessor_user_assessments(campaign_factor).each_with_object([]) do |assessor_ua, scores|
+        factor_scoring = assessor_ua.users_result.scoring[campaign_factor.factor_id.to_s]
         factor_score = factor_scoring&.dig(campaign_factor.assessment_score_type)
 
-        weight = factor_weight(assessor_user_assessment.assessment_id, campaign_factor.factor_id)&.weight || 1.0
+        weight = factor_weight(assessor_ua.assessment_id, campaign_factor.factor_id)&.weight || 1.0
 
         scores << (factor_score * weight) if factor_score
       end
@@ -45,10 +45,11 @@ module CampaignFactors
       CampaignFactors::CanCalculateAssessorScoringFactor.call!(campaign_factor, user)
     end
 
-    def assessor_user_assessments
+    def assessor_user_assessments(campaign_factor)
       @assessor_user_assessments ||= campaign.user_assessments.
-                                     joins(:assessment).
+                                     joins(assessment: :factors_scoring).
                                      includes(:users_result).
+                                     where(factors_scoring: { factor_id: campaign_factor.factor_id }).
                                      where(assessments: { category: Assessment::CATEGORIES[:assessor_form] }).
                                      where(subject_id: user.id)
     end
