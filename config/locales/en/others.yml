@@ -796,6 +796,7 @@ en:
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Raw (without labels)
       extend_time: Extend time
+      external_scores_export: External Scores
       goto_dashboard: Click here to continue
       manage_mettl_schedule: Manage Mettle Schedule
       moderate: Moderate Scores
@@ -911,6 +912,7 @@ en:
       default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
       title: Instructions
     messages:
+      external_scores_export_scheduled: Assessment Scores export job was scheduled successfully
       finish: "Thank you for your time. \nYour responses have now been recorded."
       norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully

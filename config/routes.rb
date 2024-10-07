@@ -1145,6 +1145,7 @@ Rails.application.routes.draw do
             get :export_raw_factor_scores
             get :export_raw_results
             get :export_normed_results
+            get :external_scores
           end
           jsonapi_resources :dimensions
           jsonapi_resources :tags
