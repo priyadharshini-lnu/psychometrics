@@ -27,7 +27,9 @@ module Api
 
     def copy
       result = ::Reports::CopyReport.call!(
-        resource.id, current_user, new_report_name: params[:data][:attributes][:name]
+        resource.id, current_user,
+        params.dig(:data, :relationships, :owner, :data, :id),
+        new_report_name: params.dig(:data, :attributes, :name)
       )
       jsonapi_render json: result
     end

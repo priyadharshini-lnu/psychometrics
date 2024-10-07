@@ -1,3 +1,9 @@
 .icon {
   display: block;
 }
+.link:focus-visible {
+  & .container {
+    outline-offset: -2px;
+    outline: 4px solid var(--ant-primary-3);
+  }
+}

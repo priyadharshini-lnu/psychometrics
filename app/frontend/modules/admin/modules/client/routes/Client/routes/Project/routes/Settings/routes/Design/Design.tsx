@@ -39,6 +39,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
   const { message } = App.useApp()
   const logo = Form.useWatch('logo', form)
   const background = Form.useWatch('background', form)
+  const backgroundOverlay = Form.useWatch('backgroundOverlay', form)
   const secondaryLogo = Form.useWatch('secondaryLogo', form)
 
   const colors = _.pick(designSettings,
@@ -99,6 +100,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
     const files: Files = {
       ..._.pick(values, ['logo', 'background']),
       secondary_logo: values.secondaryLogo,
+      background_overlay: values.backgroundOverlay,
     }
 
     if (_.some(files, f => f && !!f.file)) {
@@ -160,7 +162,7 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               listType="picture"
               maxCount={1}
               // eslint-disable-next-line max-len
-              accept=".jpeg, .jpg, .png, .svg, .mp4, .gif, .bmp, image/jpeg, image/png, image/svg+xml, video/mp4, image/gif"
+              accept=".jpeg, .jpg, .png, .svg, .gif, image/jpeg, image/png, image/svg+xml, image/gif"
               fileList={background && typeof background === 'string' ? [{
                 uid: '1', name: 'background', status: 'done', url: background,
               }] : undefined}
@@ -176,6 +178,25 @@ export const DesignComponent: React.FC<Props> = ({ uploadFiles }) => {
               <Radio value="cover">{I18n.t('administration.projects.design_settings.background_size_cover')}</Radio>
               <Radio value="contain">{I18n.t('administration.projects.design_settings.background_size_contain')}</Radio>
             </Radio.Group>
+          </Form.Item>
+          <Form.Item
+            name="backgroundOverlay"
+            label={I18n.t('administration.projects.design_settings.background_overlay_label')}
+          >
+            <Upload
+              listType="picture"
+              maxCount={1}
+              // eslint-disable-next-line max-len
+              accept=".jpeg, .jpg, .png, .svg, .mp4, .gif, image/jpeg, image/png, image/svg+xml, image/gif"
+              fileList={backgroundOverlay && typeof backgroundOverlay === 'string' ? [{
+                uid: '1', name: 'background_overlay', status: 'done', url: backgroundOverlay,
+              }] : undefined}
+              beforeUpload={() => false}
+            >
+              <Button icon={<UploadOutlined />}>
+                {I18n.t('administration.projects.design_settings.bg_upload')}
+              </Button>
+            </Upload>
           </Form.Item>
           <Form.Item name="secondaryLogo" label={I18n.t('administration.projects.design_settings.sec_logo_label')}>
             <Upload

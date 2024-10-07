@@ -55,6 +55,14 @@ class AuditLog < ApplicationRecord
     I18n.t("audit_log.action.#{action}", default: action)
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id action record_id record_type created_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[user client project campaign]
+  end
+
   def self.ransackable_scopes(_auth_object = nil)
     # returns an array of whitelisted scopes that can be used by ransack gem
     %i[client_search project_search campaign_search user_search]

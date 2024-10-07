@@ -22,11 +22,8 @@ export default class UITree extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!this._updated) {
       this.setState(this.init(nextProps))
-    } else {
-      this._updated = true
-    }
+
   }
 
   init = (props) => {
@@ -245,7 +242,5 @@ export default class UITree extends Component {
     this.setState({
       tree,
     })
-
-    this.change(tree)
   };
 }

@@ -716,6 +716,7 @@ en:
         create_threesixty_campaign: Create Threesixty Campaign
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_factor_translations: Export Factor Translations
         export_report_data: Export report data
         export_reports_and_assessments: Export Reports and Assessments
         export_users: Campaign Users Export
@@ -726,6 +727,7 @@ en:
         import_campaign_factors: Import Campaign Factors
         import_datasheet: Import Datasheet
         import_external_campaign_scoring: Import External Campaign Scoring
+        import_factor_translations: Import Factor Translations
         import_question_translations: Import Question Translations
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
@@ -1894,6 +1896,8 @@ en:
       back_to_dashboard: Back to Dashboard
       back_to_tasks: Back to Tasks
       campaign_name_description: ', for campaign "%{campaignName}"'
+      collapse_menu: Collapse menu
+      expand_menu: Expand menu
       lang_dropdown_description: ",change language"
       profile_progress: Profile completion is
       task_btn_description: task %{assessmentName}
@@ -2534,6 +2538,7 @@ en:
           positionTopLeft: Top Left
           positionTopMiddle: Top Middle
           positionTopRight: Top Right
+          reverse: Reverse
           showLegend: Show Legend
     columns:
       data_only: Data Only

@@ -21,6 +21,10 @@ class CampaignFactor < ApplicationRecord
 
   validate :validate_cyclic_path!
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id factor_type]
+  end
+
   def set_position
     self.position = (
       campaign.campaign_factor_groups.

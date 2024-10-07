@@ -23,4 +23,8 @@ class Occupation < ApplicationRecord
   def log_attribute_for_delete
     slice(:name, :dimension_id)
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name created_at updated_at]
+  end
 end

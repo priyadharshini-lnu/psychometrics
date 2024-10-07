@@ -8,6 +8,7 @@ interface State {
   client_logo: null | string,
   secondary_logo: null | string,
   background: null | string,
+  background_overlay: null | string,
   background_color?: string,
   login_box_position: LoginBoxPosition,
   saml_login_allowed: boolean
@@ -27,6 +28,7 @@ export const defaultState: State = {
   client_logo: null,
   secondary_logo: null,
   background: null,
+  background_overlay: null,
   login_box_position: 'auto',
   saml_login_allowed: false,
   require_mobile_number: false,

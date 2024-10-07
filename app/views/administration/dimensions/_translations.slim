@@ -1,0 +1,15 @@
+.modal-body
+  .row
+    = link_to export_translations_administration_dimension_path(params[:id]), remote: true, method: :post, class: 'btn btn-primary', id: 'export_translations'
+      = t('.export')
+
+  .row style='margin-top: 10px;border: 1px solid #ccc; padding: 10px;'
+    label Import Translations:
+    = form_for(:dimension, url: import_translations_administration_dimension_path(params[:id])) do |f|
+      div style="width: 300px; display: flex;"
+        = f.file_field :file, class: 'form-control'
+        = f.submit t('.import'), class: 'btn btn-default'
+
+.modal-footer
+  .btn-group
+    a.btn.btn-default data-dismiss='modal' = t 'administration.close'

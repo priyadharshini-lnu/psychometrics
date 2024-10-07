@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -642,16 +635,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -850,7 +843,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -931,9 +925,9 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -2883,7 +2877,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -3676,6 +3670,39 @@ ALTER SEQUENCE public.profile_settings_id_seq OWNED BY public.profile_settings.i
 
 
 --
+-- Name: project_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_assessments (
+    id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    normalize_factor_scores boolean DEFAULT false,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_assessments_id_seq OWNED BY public.project_assessments.id;
+
+
+--
 -- Name: question_recoding; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3974,12 +4001,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -5080,8 +5107,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -5342,6 +5368,39 @@ CREATE SEQUENCE public.translations_id_seq
 --
 
 ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
+
+
+--
+-- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_factor_scores (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    scores jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_assessment_factor_scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_assessment_factor_scores_id_seq OWNED BY public.user_assessment_factor_scores.id;
 
 
 --
@@ -5893,10 +5952,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -7043,6 +7102,13 @@ ALTER TABLE ONLY public.profile_settings ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: project_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments ALTER COLUMN id SET DEFAULT nextval('public.project_assessments_id_seq'::regclass);
+
+
+--
 -- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7362,6 +7428,13 @@ ALTER TABLE ONLY public.threesixty_subjects ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.translations ALTER COLUMN id SET DEFAULT nextval('public.translations_id_seq'::regclass);
+
+
+--
+-- Name: user_assessment_factor_scores id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores ALTER COLUMN id SET DEFAULT nextval('public.user_assessment_factor_scores_id_seq'::regclass);
 
 
 --
@@ -8330,6 +8403,14 @@ ALTER TABLE ONLY public.profile_settings
 
 
 --
+-- Name: project_assessments project_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT project_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8703,6 +8784,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.translations
     ADD CONSTRAINT translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_assessment_factor_scores user_assessment_factor_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT user_assessment_factor_scores_pkey PRIMARY KEY (id);
 
 
 --
@@ -10511,6 +10600,20 @@ CREATE INDEX index_profile_settings_on_project_id ON public.profile_settings USI
 
 
 --
+-- Name: index_project_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_assessments_on_assessment_id ON public.project_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_project_assessments_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_assessments_on_project_id ON public.project_assessments USING btree (project_id);
+
+
+--
 -- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11145,6 +11248,20 @@ CREATE INDEX index_translations_on_resource_type_and_resource_id ON public.trans
 --
 
 CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON public.translations USING btree (translateable_type, translateable_id);
+
+
+--
+-- Name: index_user_assessment_factor_scores_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_factor_scores_on_factor_id ON public.user_assessment_factor_scores USING btree (factor_id);
+
+
+--
+-- Name: index_user_assessment_factor_scores_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_assessment_factor_scores_on_user_assessment_id ON public.user_assessment_factor_scores USING btree (user_assessment_id);
 
 
 --
@@ -12444,6 +12561,14 @@ ALTER TABLE ONLY public.dashboards
 
 
 --
+-- Name: project_assessments fk_rails_4e1aa7f7d5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT fk_rails_4e1aa7f7d5 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: privacy_setting_translations fk_rails_4f38fd7ce2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12697,6 +12822,14 @@ ALTER TABLE ONLY public.user_assessments
 
 ALTER TABLE ONLY public.skills_development_actions
     ADD CONSTRAINT fk_rails_70b2e78217 FOREIGN KEY (development_action_id) REFERENCES public.development_actions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_assessment_factor_scores fk_rails_71d3d729a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT fk_rails_71d3d729a1 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13804,6 +13937,14 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 
 
 --
+-- Name: project_assessments fk_rails_f36f27136e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_assessments
+    ADD CONSTRAINT fk_rails_f36f27136e FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: api_keys fk_rails_f435faf77d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13892,6 +14033,14 @@ ALTER TABLE ONLY public.user_idp_development_actions
 
 
 --
+-- Name: user_assessment_factor_scores fk_rails_fceff3a97b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_assessment_factor_scores
+    ADD CONSTRAINT fk_rails_fceff3a97b FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: factors_sub_factors fk_rails_fe8dca5bf7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13940,6 +14089,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240809081127'),
 ('20240808093057'),
 ('20240806160845'),
+('20240801132558'),
+('20240801121907'),
 ('20240801093652'),
 ('20240721171706'),
 ('20240721171655'),
@@ -14616,4 +14767,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

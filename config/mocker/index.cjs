@@ -23,6 +23,11 @@ const proxy = {
     const data = retrieveJSONFrom('./responses/bookings/index.json')
     return res.json(data)
   },
+
+  'GET /api/v2/administration/clients': (_, res) => {
+    const data = retrieveJSONFrom('./responses/client/index.json')
+    return res.json(data)
+  },
   'GET /campaigns/10146.json': (_, res) => {
     const data = retrieveJSONFrom('./responses/campaign/campaign_with_booking.json')
     // const data = retrieveJSONFrom('./responses/campaign/campaign_with_invite.json')

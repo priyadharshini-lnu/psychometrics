@@ -1,12 +1,22 @@
 import React from 'react'
 import {
   Form, Input, App,
+  Select,
+  Spin,
 } from 'antd'
 
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 
 import ResourceFormModal from '~/components/ResourceFormModal'
+import { useResources } from '~/hooks/useResources'
+import { Client } from '~/modules/admin/modules/client/core/clients'
+
+
+type OptionsType = {
+  id: string
+  name: string
+}
 
 const { I18n } = window
 
@@ -37,6 +47,18 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
     message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
   })
 
+  const {
+    data: clients, fetch: fetchClients, isLoading: isClientsLoading,
+  } = useResources<Client>('clients')
+
+  const getClients = (): OptionsType[] => {
+    if (!assessment || !assessment.owner || clients.find(d => assessment?.owner?.id === d.id)) {
+      return clients
+    }
+
+    return [...clients, assessment.owner]
+  }
+
   return (
     <ResourceFormModal
       resourceName="assessments"
@@ -46,7 +68,12 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
       scrollToFirstError
       request={{ createResource: copy }}
       modalProps={{ width: 550 }}
-      formProps={{ initialValues: { name: `${assessment.name} - ${I18n.t('administration.assessments.copy.copy')}` } }}
+      formProps={{
+        initialValues: {
+          name: `${assessment.name} - ${I18n.t('administration.assessments.copy.copy')}`,
+          ownerId: assessment?.owner?.id,
+        },
+      }}
     >
       {() => (
         <>
@@ -56,6 +83,26 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
             rules={[{ required: true, transform: value => value.trim() }]}
           >
             <Input name="assessment_name" />
+          </Form.Item>
+          <Form.Item
+            name="ownerId"
+            label={I18n.t('common.column.owner')}
+          >
+            <Select
+              showSearch
+              onSearch={(value) => {
+                fetchClients({
+                  apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
+                })
+              }}
+              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
+              filterOption={false}
+            >
+              <Select.Option>TTE</Select.Option>
+              {getClients().map(({ id, name }) => (
+                <Select.Option key={id} value={id}>{name}</Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         </>
       )}

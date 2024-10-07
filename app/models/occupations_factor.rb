@@ -28,4 +28,12 @@ class OccupationsFactor < ApplicationRecord
   def log_attribute_for_delete
     slice(:factor_id, :occupation_id)
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[factor]
+  end
 end

@@ -22,6 +22,14 @@ class LicenseUsage < ApplicationRecord
     parent.table[:status]
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id subject_name campaign_name subject_email status]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[client campaign user]
+  end
+
   def increase_license_used_number
     license.increment!(:used_number)
     if license.in_overuse?
