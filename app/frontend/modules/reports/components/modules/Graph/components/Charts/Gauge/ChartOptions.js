@@ -17,7 +17,9 @@ export default function ChartOptions (model) {
       min: 0,
       max: model.props.maxValue || 6,
       lineWidth: 0,
-      tickInterval: Math.round(model.props.maxValue / 6),
+      tickWidth: 0,
+      tickAmount: 0,
+      tickInterval: model.props.hideMarkers ? 0 : Math.round(model.props.maxValue / 6),
       tickPositions: model.props.maxValue > 12
         ? [..._.times(Math.round(model.props.maxValue / 6), i => i * 6), model.props.maxValue || 6]
         : [..._.times(Math.round(model.props.maxValue), i => i), model.props.maxValue || 6],
@@ -34,6 +36,7 @@ export default function ChartOptions (model) {
           borderWidth: 0,
           useHTML: true,
         },
+        rounded: true,
       },
     },
     pane: {
@@ -41,9 +44,10 @@ export default function ChartOptions (model) {
       startAngle: -90,
       endAngle: 90,
       background: {
-        innerRadius: '60%',
-        outerRadius: '100%',
+        innerRadius: '66%',
+        outerRadius: '95%',
         shape: 'arc',
+        borderWidth: model.props.gaugeBorder,
       },
     },
   }

@@ -33,6 +33,18 @@ class Properties extends Component {
     this.update()
   }
 
+  changeWidthValue = (val) => {
+    const { model } = this.props
+    model.props.gaugeWidth = val
+    this.update()
+  }
+
+  changeBorderValue = (val) => {
+    const { model } = this.props
+    model.props.gaugeBorder = val
+    this.update()
+  }
+
   changeColorProperty = (propertyName, color) => {
     const { model } = this.props
     model.props[propertyName] = color
@@ -42,7 +54,8 @@ class Properties extends Component {
   render () {
     const { model } = this.props
     const {
-      speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize, maxValue,
+      speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize, maxValue, gaugeWidth,
+      gaugeBorder,
     } = model.props
     return (
       <div>
@@ -87,6 +100,27 @@ class Properties extends Component {
             maxValue={1000}
           />
         </div>
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          width
+          <ChoicesInput
+            value={gaugeWidth}
+            onChange={this.changeWidthValue}
+            minValue={0}
+            maxValue={1000}
+          />
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          Border
+          <ChoicesInput
+            value={gaugeBorder}
+            onChange={this.changeBorderValue}
+            minValue={0}
+            maxValue={1000}
+          />
+        </div>
+        <hr className={styles.divider} />
       </div>
     )
   }

@@ -12,6 +12,8 @@ interface Props {
   barBorderRadius: string
   barBorderRadiusType: boolean
   maxValue: string | null
+  gaugeWidth:number | null
+  gaugeBorder:number | null
   source: {
     type: string
     id: string
@@ -27,4 +29,7 @@ interface Props {
   yAxisLabelHide: boolean
   transparentBackground: boolean
   precision?: number
+  hideLabel:boolean
+  hideMarkers:boolean
+  gaugepercentage: boolean
 }
