@@ -20,7 +20,6 @@ module EndUser
             required(:upload).filled(:int?)
             required(:download).filled(:int?)
           end
-          required(:speed_of_me_api_token).filled(:str?)
         end
       end
     end

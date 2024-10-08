@@ -37,7 +37,7 @@ unless Rails.env.test?
     websocket_protocol = protocol == 'https' ? 'wss' : 'ws'
 
     script_src = [
-      :self, :unsafe_eval, :unsafe_inline, 'https://speedof.me', 'https://chatwoot.tte-work.com',
+      :self, :unsafe_eval, :unsafe_inline, 'https://chatwoot.tte-work.com',
       'https://svc.webspellchecker.net'
     ]
 
@@ -62,7 +62,7 @@ unless Rails.env.test?
     policy.script_src(*script_src)
     policy.style_src(*style_src)
     policy.connect_src(
-      :self, 'https://speedof.me', 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
+      :self, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
       'wss://*.amazonaws.com:8443'
     )
 
