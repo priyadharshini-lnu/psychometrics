@@ -15,7 +15,7 @@ import {
   get as getUser,
   uploadPhoto,
 } from '~/core/currentUser'
-import { DirectionalArrowIcon, PageHeader } from '~/glint'
+import { DirectionalArrowIcon, PageHeader, FontsizeModifier } from '~/glint'
 import array from '~/utils/array'
 import { CustomField } from './fields/CustomField'
 
@@ -106,7 +106,10 @@ function ProfileComponent ({
 
   const headerElement = (
     <Col flex="auto" span={24} className="ta-e">
-      <LangDropdownWithChangeLocale />
+      <Space>
+        <FontsizeModifier />
+        <LangDropdownWithChangeLocale />
+      </Space>
     </Col>
   )
 

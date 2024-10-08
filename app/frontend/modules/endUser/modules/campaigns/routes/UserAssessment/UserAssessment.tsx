@@ -24,7 +24,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { isProctored } from '~/utils/isProctored'
 import { Notification } from '~/glint/components/CountdownTimer'
 import {
-  PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon,
+  PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon, FontsizeModifier,
 } from '~/glint'
 
 import styles from './UserAssessment.less'
@@ -147,7 +147,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
           </Space>
         </Col>
         <Col span={4} className="ta-e">
-          {availableTranslations
+          <Space>
+            <FontsizeModifier />
+            {availableTranslations
               && availableTranslations.length > 1
               && (
               <LangDropdownWithChangeUrl
@@ -156,6 +158,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               />
               )
             }
+          </Space>
         </Col>
       </GlintPageHeader>
 

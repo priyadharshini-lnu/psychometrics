@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Layout, Col, ConfigProvider, Progress, Watermark,
+  Layout, Col, ConfigProvider, Progress, Watermark, Space,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { ClockCircleOutlined } from '@ant-design/icons'
@@ -15,7 +15,7 @@ import PassAssessment from '~/modules/survey/containers/AssessmentContainer'
 import store from '~/modules/endUser/store'
 import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/ResourcesTabs'
 import { useMedia } from '~/modules/endUser/rootHooks'
-import { PageHeader as GlintPageHeader, CountdownTimer } from '~/glint'
+import { PageHeader as GlintPageHeader, CountdownTimer, FontsizeModifier } from '~/glint'
 import Confirm from './Confirm'
 import AreadyCompletedModal from './AreadyCompletedModal'
 
@@ -102,7 +102,9 @@ const CommonComponent: React.FC<Props> = ({
           ) : null}
         </Col>
         <Col span={4} className="ta-e">
-          {availableTranslations
+          <Space>
+            <FontsizeModifier />
+            {availableTranslations
               && availableTranslations.length > 1
               && (
               <LangDropdownWithChangeUrl
@@ -111,6 +113,8 @@ const CommonComponent: React.FC<Props> = ({
               />
               )
             }
+          </Space>
+
         </Col>
       </GlintPageHeader>
       <Content className={styles.pageContent}>

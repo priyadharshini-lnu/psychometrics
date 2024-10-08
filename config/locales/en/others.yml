@@ -2078,6 +2078,11 @@ en:
       last_week: Last Week
       today: Today
       yesterday: Yesterday
+    fontsize_modifier:
+      change_font: Change font size
+      decrease_font: Decrease font size
+      increase_font: Increase font size
+      reset_font: Reset font size
     input_duration:
       max_duration: Maximum duration is %{duration}
     schedule_availability:

@@ -1,6 +1,6 @@
 import { Col, Layout } from 'antd'
 
-import { PageHeader as GlintPageHeader } from '~/glint'
+import { PageHeader as GlintPageHeader, FontsizeModifier } from '~/glint'
 import RouteList from '~/components/RouteList'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { routes } from './routes'
@@ -11,6 +11,7 @@ export const Bookings = () => (
   <>
     <GlintPageHeader>
       <Col flex="auto" span={24} className="ta-e">
+        <FontsizeModifier />
         <LangDropdownWithChangeLocale />
       </Col>
     </GlintPageHeader>

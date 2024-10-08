@@ -1,6 +1,6 @@
 import { useEffect, FC } from 'react'
 import {
-  Layout, Flex,
+  Layout, Flex, Space,
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -11,7 +11,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
-import { PageHeader, CountdownTimer } from '~/glint'
+import { PageHeader, CountdownTimer, FontsizeModifier } from '~/glint'
 import { Common } from './Common'
 import { Threesixty } from './Threesixty'
 import { secondsLeftFromNow } from '~/utils/time'
@@ -87,7 +87,10 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
             />
           ) : <div className="p-1" />}
         </Flex>
-        <LangDropdownWithChangeLocale />
+        <Space>
+          <FontsizeModifier />
+          <LangDropdownWithChangeLocale />
+        </Space>
       </Flex>
     </>
 
