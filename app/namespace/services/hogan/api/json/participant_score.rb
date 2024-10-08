@@ -20,7 +20,7 @@ module Services
               provider: context.provider
             )
             add_hogan_logs(response)
-            response[:status] == 200 ? broadcast(:ok, response[:body]) : broadcast(:error, response)
+            success_response?(response) ? broadcast(:ok, response[:body]) : broadcast(:error, response)
           end
 
           def add_hogan_logs(response)

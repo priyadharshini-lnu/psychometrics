@@ -77,6 +77,10 @@ module Services
             end
           end
 
+          def success_response?(response)
+            response[:status] == 200 && response[:body]['messageType'] == 'Information'
+          end
+
           private
 
           def get(endpoint:, provider:, request: {})
