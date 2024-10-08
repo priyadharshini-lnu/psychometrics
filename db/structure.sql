@@ -1555,21 +1555,6 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.comments (
-    id integer NOT NULL,
-    text character varying,
-    created_by integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    commentable_id integer,
-    commentable_type character varying
-);
-
-
---
 -- Name: communication_emails; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2070,40 +2055,6 @@ ALTER SEQUENCE public.factor_benchmark_scores_id_seq OWNED BY public.factor_benc
 
 
 --
--- Name: factor_translations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.factor_translations (
-    id bigint NOT NULL,
-    locale character varying NOT NULL,
-    name character varying,
-    description character varying,
-    factor_id bigint NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: factor_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.factor_translations_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: factor_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.factor_translations_id_seq OWNED BY public.factor_translations.id;
-
-
---
 -- Name: factors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2125,6 +2076,7 @@ CREATE TABLE public.factors (
     scale_min double precision,
     scale_max double precision,
     custom_formula character varying,
+    owner_id bigint,
     "precision" integer
 );
 
@@ -3673,6 +3625,36 @@ CREATE SEQUENCE public.profile_settings_id_seq
 --
 
 ALTER SEQUENCE public.profile_settings_id_seq OWNED BY public.profile_settings.id;
+
+
+--
+-- Name: public_ip_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.public_ip_logs (
+    id bigint NOT NULL,
+    ip character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: public_ip_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.public_ip_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: public_ip_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.public_ip_logs_id_seq OWNED BY public.public_ip_logs.id;
 
 
 --
@@ -6735,13 +6717,6 @@ ALTER TABLE ONLY public.factor_benchmark_scores ALTER COLUMN id SET DEFAULT next
 
 
 --
--- Name: factor_translations id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factor_translations ALTER COLUMN id SET DEFAULT nextval('public.factor_translations_id_seq'::regclass);
-
-
---
 -- Name: factors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7040,6 +7015,13 @@ ALTER TABLE ONLY public.profile_fields ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.profile_settings ALTER COLUMN id SET DEFAULT nextval('public.profile_settings_id_seq'::regclass);
+
+
+--
+-- Name: public_ip_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.public_ip_logs ALTER COLUMN id SET DEFAULT nextval('public.public_ip_logs_id_seq'::regclass);
 
 
 --
@@ -7962,14 +7944,6 @@ ALTER TABLE ONLY public.factor_benchmark_scores
 
 
 --
--- Name: factor_translations factor_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factor_translations
-    ADD CONSTRAINT factor_translations_pkey PRIMARY KEY (id);
-
-
---
 -- Name: factors_aliases factors_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8327,6 +8301,14 @@ ALTER TABLE ONLY public.profile_fields
 
 ALTER TABLE ONLY public.profile_settings
     ADD CONSTRAINT profile_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: public_ip_logs public_ip_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.public_ip_logs
+    ADD CONSTRAINT public_ip_logs_pkey PRIMARY KEY (id);
 
 
 --
@@ -9895,27 +9877,6 @@ CREATE INDEX index_factor_benchmark_scores_on_factor_id ON public.factor_benchma
 
 
 --
--- Name: index_factor_translations_on_description_and_locale; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_factor_translations_on_description_and_locale ON public.factor_translations USING btree (description, locale);
-
-
---
--- Name: index_factor_translations_on_locale; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_factor_translations_on_locale ON public.factor_translations USING btree (locale);
-
-
---
--- Name: index_factor_translations_on_name_and_locale; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_factor_translations_on_name_and_locale ON public.factor_translations USING btree (name, locale);
-
-
---
 -- Name: index_factors_aliases_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9955,6 +9916,13 @@ CREATE INDEX index_factors_norms_on_norm_id ON public.factors_norms USING btree 
 --
 
 CREATE INDEX index_factors_on_dimension_id ON public.factors USING btree (dimension_id);
+
+
+--
+-- Name: index_factors_on_owner_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_on_owner_id ON public.factors USING btree (owner_id);
 
 
 --
@@ -10508,6 +10476,13 @@ CREATE INDEX index_profile_fields_on_question_id ON public.profile_fields USING 
 --
 
 CREATE INDEX index_profile_settings_on_project_id ON public.profile_settings USING btree (project_id);
+
+
+--
+-- Name: index_public_ip_logs_on_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_public_ip_logs_on_ip ON public.public_ip_logs USING btree (ip);
 
 
 --
@@ -12076,6 +12051,14 @@ ALTER TABLE ONLY public.skill_aliases
 
 
 --
+-- Name: factors fk_rails_225e7dce0c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors
+    ADD CONSTRAINT fk_rails_225e7dce0c FOREIGN KEY (owner_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12753,14 +12736,6 @@ ALTER TABLE ONLY public.communications_users
 
 ALTER TABLE ONLY public.factors
     ADD CONSTRAINT fk_rails_7b28110d6b FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE CASCADE;
-
-
---
--- Name: factor_translations fk_rails_7bc93eacca; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factor_translations
-    ADD CONSTRAINT fk_rails_7bc93eacca FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
 
 
 --
@@ -13914,11 +13889,11 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241008100312'),
 ('20240920142940'),
 ('20240920083324'),
 ('20240912114619'),
 ('20240911121555'),
-('20240910083932'),
 ('20240905041021'),
 ('20240904115105'),
 ('20240904091820'),
@@ -13943,6 +13918,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240801093652'),
 ('20240721171706'),
 ('20240721171655'),
+('20240712125111'),
 ('20240703110220'),
 ('20240628111224'),
 ('20240621084730'),
@@ -13968,6 +13944,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240417083055'),
 ('20240416093121'),
 ('20240415123000'),
+('20240405101155'),
 ('20240403123008'),
 ('20240401134614'),
 ('20240401112155'),

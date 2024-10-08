@@ -34,8 +34,7 @@ module EndUser
 
     def config
       {
-        network: Settings.checking_wizard.network.to_h,
-        speed_of_me_api_token: Settings.checking_wizard.speed_of_me_api_token
+        network: Settings.checking_wizard.network.to_h
       }
     end
   end

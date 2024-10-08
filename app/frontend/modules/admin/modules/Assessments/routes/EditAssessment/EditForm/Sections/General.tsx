@@ -86,13 +86,13 @@ export const General: React.FC<Props> = ({ assessment }) => {
           >
             <Switch />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             valuePropName="checked"
             name="enableNetworkCheck"
             label={I18n.t('assessments.column.enable_network_check')}
           >
             <Switch />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item label={I18n.t('common.column.icon_color')}>
             <div className={styles.iconColorContainer}>
               <Form.Item name="iconColor">
