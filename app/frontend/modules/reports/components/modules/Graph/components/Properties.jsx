@@ -124,10 +124,10 @@ class Properties extends Component {
         </div>
         <hr className={styles.divider} />
         <HintCheckbox
-            label="Transparent Background"
-            checked={model.props.transparentBackground}
-            onChange={() => this.handleCheckControl("transparentBackground")}
-            hints={['make the background color transparent']}
+          label="Transparent Background"
+          checked={model.props.transparentBackground}
+          onChange={() => this.handleCheckControl('transparentBackground')}
+          hints={['make the background color transparent']}
         />
         {model.props.type === 'Gauge' ? (
           <>
@@ -135,7 +135,7 @@ class Properties extends Component {
               <HintCheckbox
                 label="Hide Label"
                 checked={model.props.hideLabel}
-                onChange={() => this.handleCheckControl("hideLabel")}
+                onChange={() => this.handleCheckControl('hideLabel')}
                 hints={['label are hidden']}
               />
             </div>
@@ -143,7 +143,7 @@ class Properties extends Component {
               <HintCheckbox
                 label="Hide Markers"
                 checked={model.props.hideMarkers}
-                onChange={() => this.handleCheckControl("hideMarkers")}
+                onChange={() => this.handleCheckControl('hideMarkers')}
                 hints={['markers are hidden']}
               />
             </div>
@@ -151,7 +151,7 @@ class Properties extends Component {
               <HintCheckbox
                 label="Percentage"
                 checked={model.props.gaugePercentage}
-                onChange={() => this.handleCheckControl("gaugePercentage")}
+                onChange={() => this.handleCheckControl('gaugePercentage')}
                 hints={['shows value in percentage']}
               />
             </div>
