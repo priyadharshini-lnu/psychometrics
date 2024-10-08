@@ -46,7 +46,7 @@ export default {
     speedometerMainColor: '#639cd3',
     labelVerticalPosition: -70,
     speedometerSize: '100%',
-    gaugeWidth: 74,
+    gaugeWidth: 50,
     gaugeBorder: 0,
   },
   RadarA: {

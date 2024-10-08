@@ -149,7 +149,7 @@ class Properties extends Component {
             value={gaugeWidth}
             onChange={this.changeWidthValue}
             minValue={0}
-            maxValue={1000}
+            maxValue={100}
           />
         </div>
         <hr className={styles.divider} />

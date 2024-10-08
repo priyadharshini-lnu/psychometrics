@@ -83,8 +83,8 @@ class Gauge extends Component {
         data: model.props.gaugePercentage
           ? [_.round((series / (model.props.maxValue || 6)) * 100, 2)]
           : [_.round(series, 2)],
-        radius: '86%',
-        innerRadius: `${model.props.gaugeWidth}%`,
+        radius: `${95 - ((100 - model.props.gaugeWidth) / 100 * 29) / 2}%`,
+        innerRadius: `${66 + ((100 - model.props.gaugeWidth) / 100 * 29) / 2}%`,
         dataLabels: {
           // eslint-disable-next-line max-len
           format: `<div style="text-align:center"><span style="font-size:${parseInt(fontSize, 10) * 3}%;color:${color}">{y}${model.props.gaugePercentage ? '%' : ''}</span>`,
