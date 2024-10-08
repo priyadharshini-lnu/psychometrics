@@ -12,6 +12,7 @@ interface Props {
   barBorderRadius: string
   barBorderRadiusType: boolean
   maxValue: string | null
+  oldMaxValue: string | null
   gaugeWidth:number | null
   gaugeBorder:number | null
   source: {
@@ -31,5 +32,5 @@ interface Props {
   precision?: number
   hideLabel:boolean
   hideMarkers:boolean
-  gaugepercentage: boolean
+  gaugePercentage: boolean
 }

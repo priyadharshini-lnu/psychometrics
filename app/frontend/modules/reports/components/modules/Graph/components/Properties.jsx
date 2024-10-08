@@ -34,6 +34,15 @@ class Properties extends Component {
 
   handleCheckControl = (type) => {
     const { model } = this.props
+    if (type === 'gaugePercentage') {
+      if (model.props[type]) {
+        model.props.maxValue = model.props.oldMaxValue
+        model.props.oldMaxValue = null
+      } else {
+        model.props.oldMaxValue = model.props.maxValue
+        model.props.maxValue = 100
+      }
+    }
     model.props[type] = !model.props[type]
     model.update()
   }
@@ -141,8 +150,8 @@ class Properties extends Component {
             <div className="margin-top-10">
               <HintCheckbox
                 label="Percentage"
-                checked={model.props.gaugepercentage}
-                onChange={() => this.handleCheckControl("gaugepercentage")}
+                checked={model.props.gaugePercentage}
+                onChange={() => this.handleCheckControl("gaugePercentage")}
                 hints={['shows value in percentage']}
               />
             </div>

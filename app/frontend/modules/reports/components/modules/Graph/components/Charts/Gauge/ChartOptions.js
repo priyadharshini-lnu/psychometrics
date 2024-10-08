@@ -20,7 +20,7 @@ export default function ChartOptions (model) {
       tickWidth: 0,
       tickAmount: 0,
       tickInterval: model.props.hideMarkers ? 0 : Math.round(model.props.maxValue / 6),
-      tickPositions: model.props.maxValue > 12
+      tickPositions: model.props.hideMarkers ? '' : model.props.maxValue > 12
         ? [..._.times(Math.round(model.props.maxValue / 6), i => i * 6), model.props.maxValue || 6]
         : [..._.times(Math.round(model.props.maxValue), i => i), model.props.maxValue || 6],
       labels: {
