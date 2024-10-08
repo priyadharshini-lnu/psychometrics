@@ -46,6 +46,10 @@ class Workshop < ApplicationRecord
 
   after_save :create_meeting_room, if: -> { video_call_internal? && meeting_room.blank? }
 
+  def self.ransackable_associations(_auth_object = nil)
+    %i[workshop_invited_subjects]
+  end
+
   def self.ransackable_scopes(_)
     %i[search_query]
   end

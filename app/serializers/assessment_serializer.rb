@@ -13,20 +13,23 @@ class AssessmentSerializer < Panko::Serializer
        coalesce(template.name, name).as('name')]
     end.joining { template.outer }.
              includes(:questions_ams).where.has { (template.disabled == false) | (template.id == nil) }
-    Panko::ArraySerializer.new(
-      blocks,
-      each_serializer: BlockSerializer,
-      context: {
-        piped_text_context: piped_text_context
-      }
-    ).to_a
+    I18n.with_locale(context[:selected_locale]) do
+      Panko::ArraySerializer.new(
+        blocks,
+        each_serializer: BlockSerializer,
+        context: {
+          piped_text_context: piped_text_context,
+          selected_locale: context[:selected_locale]
+        }
+      ).to_a
+    end
   end
 
   def factors
     return [] unless object.dimension
 
     Panko::ArraySerializer.new(
-      object.dimension.all_factors.with_attached_icon.includes(:sub_factors),
+      object.dimension.all_factors.with_attached_icon.includes(:sub_factors, :translations),
       each_serializer: Factors::WithSubFactorsSerializer,
       context: {
         assessment_id: object.id

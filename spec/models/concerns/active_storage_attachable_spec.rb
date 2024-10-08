@@ -13,6 +13,23 @@ describe ActiveStorageAttachable do
     Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/archives/archive.zip'))
   end
 
+  context '#copy_and_upload' do
+    before do
+      allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)
+      @media_response = create(:media_response)
+      @media_response.asset.attach(image)
+      @media_response_copy = @media_response.dup
+      @media_response_copy.copy_and_upload(@media_response.asset, :asset)
+    end
+
+    it 'copies and uploads attachment' do
+      expect(@media_response_copy.asset.attached?).to be_truthy
+      expect(@media_response_copy.asset.key).to eq(
+        @media_response_copy.attachment_storage_path(:asset, @media_response.asset.blob.filename)
+      )
+    end
+  end
+
   context 'with .has_one_image_attachment' do
     before do
       allow_any_instance_of(ActiveStorageAttachable).to receive(:disk_service?).and_return(false)

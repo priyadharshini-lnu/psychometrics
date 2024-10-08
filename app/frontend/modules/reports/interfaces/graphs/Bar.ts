@@ -27,4 +27,5 @@ interface Props {
   yAxisLabelHide: boolean
   transparentBackground: boolean
   precision?: number
+  reverse: boolean
 }

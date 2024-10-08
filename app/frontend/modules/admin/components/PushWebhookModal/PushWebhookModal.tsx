@@ -186,7 +186,12 @@ const PushWebhookModal: React.FC<Props> = ({
         {({ form }) => (
           <>
             {!testMode && !responseVisible && (
-              <Form.Item name="webhookId">
+              <Form.Item
+                name="webhookId"
+                rules={[
+                  { required: true },
+                ]}
+              >
                 <Select
                   className={styles.eventName}
                   placeholder="webhook url"
@@ -213,7 +218,13 @@ const PushWebhookModal: React.FC<Props> = ({
             )}
             {!responseVisible && topics().length > 0 && (
               <>
-                <Form.Item name="event_name" className={styles.eventName}>
+                <Form.Item
+                  name="event_name"
+                  className={styles.eventName}
+                  rules={[
+                    { required: true },
+                  ]}
+                >
                   <Select
                     placeholder={I18n.t('user_assessments.modals.push_test_webhook.event_name_placeholder')}
                     onChange={handlefetchPayload}

@@ -11,4 +11,8 @@ class RegistrationCode < ApplicationRecord
   def log_attribute_for_delete
     slice(:campaign_id, :project_id, :code)
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name]
+  end
 end

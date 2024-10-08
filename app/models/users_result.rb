@@ -39,6 +39,8 @@ class UsersResult < ApplicationRecord
 
   before_create :generate_randomseed
   after_commit :compute_external_scores, if: -> { external_results_previously_changed? }, on: %i[update]
+  after_commit -> { UserAssessments::NormalizeFactorScoresJob.perform_later(user_assessment) },
+               if: proc { scoring_previously_changed? }, on: %i[update]
 
   def compute_external_scores
     return if external_results.blank? || assessment.internal?

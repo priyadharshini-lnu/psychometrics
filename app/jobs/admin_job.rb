@@ -55,7 +55,9 @@ class AdminJob < ApplicationJob
     create_threesixty_campaign: AdminJobs::CreateThreesixtyCampaign,
     remap_report_assessment: AdminJobs::RemapReportAssessment,
     threesixty_campaign_export_scores: AdminJobs::ThreesixtyCampaignExportScores,
-    import_external_campaign_scoring: AdminJobs::ImportExternalCampaignScoring
+    import_external_campaign_scoring: AdminJobs::ImportExternalCampaignScoring,
+    export_factor_translations: AdminJobs::ExportFactorTranslations,
+    import_factor_translations: AdminJobs::ImportFactorTranslations
   }.freeze
 
   def perform(record)

@@ -35,6 +35,14 @@ class WorkshopSubject < ApplicationRecord
     )
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id user_id campaign_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[user]
+  end
+
   def publish_scheduling_scheduled
     WorkshopSubjects::Webhook.new(self).publish_scheduling_scheduled
   end

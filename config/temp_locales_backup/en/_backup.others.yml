@@ -3683,7 +3683,7 @@ en:
           name: Reset Progress
           success_message: Assessment %{name} is ready for edit
       push_test_webhook:
-        copy_request_data_success: Rquest Payload copied to clipboard successfully.
+        copy_request_data_success: Request Payload copied to clipboard successfully.
         copy_response_body_success: Response body copied to clipboard successfully.
         copy_response_headers_success: Response headers copied to clipboard successfully.
         event_name_placeholder: Event Name

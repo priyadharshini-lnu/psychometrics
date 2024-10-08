@@ -30,6 +30,16 @@ module UserAssessments
       )
     end
 
+    def publish_assessment_timeout
+      WebhookSubscriptions::Publish.call(
+        project,
+        :assessment_timeout,
+        assessment_timeout_data,
+        webhook_id: webhook_id,
+        record: user_assessment
+      )
+    end
+
     def publish_results_available
       user_assessment.user_reports.each do |user_report|
         next unless user_report.all_assessments_are_scored?
@@ -50,8 +60,6 @@ module UserAssessments
       end
     end
 
-    private
-
     def assessment_started_data
       {
         campaign: user_assessment.campaign,
@@ -62,6 +70,15 @@ module UserAssessments
     end
 
     def assessment_completed_data
+      {
+        campaign: user_assessment.campaign,
+        assessment: user_assessment.assessment,
+        evaluator: user_assessment.evaluator,
+        subject: user_assessment.subject
+      }
+    end
+
+    def assessment_timeout_data
       {
         campaign: user_assessment.campaign,
         assessment: user_assessment.assessment,

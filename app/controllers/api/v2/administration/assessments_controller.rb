@@ -57,7 +57,10 @@ module Api
     def copy
       audit! :copy, resource, payload: { source_id: resource.id }
       result = ::Assessments::CopyAssessment.call!(
-        resource.id, current_user, new_assessment_name: params[:data][:attributes][:name]
+        resource.id,
+        current_user,
+        params.dig(:data, :relationships, :owner, :data, :id),
+        new_assessment_name: params.dig(:data, :attributes, :name)
       )
       jsonapi_render json: result[:assessment]
     end

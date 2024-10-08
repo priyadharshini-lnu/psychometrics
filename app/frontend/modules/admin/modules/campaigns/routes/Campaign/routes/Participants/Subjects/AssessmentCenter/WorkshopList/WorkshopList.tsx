@@ -3,11 +3,12 @@ import React from 'react'
 import {
   useParams,
 } from 'react-router-dom'
-import { Tag } from 'antd'
+import { Tag, Typography } from 'antd'
 import { Resource } from '~/modules/admin/components/Resource'
 import { WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { WorkshopSubjectTR } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { formatWorkshopDate } from '~/utils/workshop'
+import dayjs from '~/utils/dayjs'
 
 const { I18n } = window
 
@@ -32,6 +33,7 @@ const ResponseTR = t.type({
   attendanceStatus: WorkshopSubjectTR.props.attendanceStatus,
   schedulingStatus: WorkshopSubjectTR.props.schedulingStatus,
   attended: WorkshopSubjectTR.props.attended,
+  createdAt: WorkshopSubjectTR.props.createdAt,
   workshop: t.type({
     id: WorkshopTR.props.id,
     name: WorkshopTR.props.name,
@@ -105,6 +107,18 @@ const WorkshopList: React.FC = () => {
               {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
             </Tag>
           )}
+        />
+        <Resource.Column<Response>
+          title={I18n.t('administration.scheduling.columns.booked_at')}
+          id="bookedAt"
+          render={(_, { createdAt }) => {
+            const bookedAt = dayjs(createdAt)
+            return (
+              <Typography.Text>
+                {`${bookedAt.format('DD MMM, HH:mm')} ${bookedAt.format(' (z)')}`}
+              </Typography.Text>
+            )
+          }}
         />
         <Resource.Column<Response>
           title={I18n.t('administration.scheduling.columns.scheduling_status')}
