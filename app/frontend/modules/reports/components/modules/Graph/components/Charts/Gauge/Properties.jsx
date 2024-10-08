@@ -114,7 +114,7 @@ class Properties extends Component {
             label="Rounded"
             checked={model.props.rounded}
             onChange={() => this.handleCheckControl('rounded')}
-            hints={['']}
+            hints={['shows rounded corners']}
           />
         </div>
         <hr className={styles.divider} />
