@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Button } from 'antd'
 import { RightOutlined } from '@ant-design/icons'
@@ -15,7 +14,7 @@ interface Props {
   config: Config
 }
 
-const { I18n, SomApi } = window
+const { I18n } = window
 
 export const NetworkCheck: React.FC<Props> = ({ nextStep, config }) => {
   const [download, setDownload] = useState(null)
@@ -126,51 +125,25 @@ interface Progress {
 type InProgressViewProps = {
   nextStep: () => void
   resetMetrics: () => void
-  updateMetrics: (data: Metrics) => void
+  // updateMetrics: (data: Metrics) => void
 } & Omit<FailedViewProps, 'updateStatus'>
 
-const PASSES = {
-  download: 7,
-  upload: 4,
-}
+// const PASSES = {
+//   download: 7,
+//   upload: 4,
+// }
 
 const InProgressView: React.FC<InProgressViewProps> = ({
-  nextStep, measures, resetMetrics, updateMetrics, config: { network, speedOfMeApiToken },
+  nextStep, measures, resetMetrics, config: { network },
 }) => {
-  const [progress, setProgress] = useState(0)
+  const [progress] = useState(0)
 
   useEffect(() => {
     resetMetrics()
 
-    SomApi.account = speedOfMeApiToken
-    SomApi.domainName = location.hostname
-    SomApi.onTestCompleted = (data: Metrics) => {
-      updateMetrics(data)
-      setProgress(100)
-    }
-
-    SomApi.onProgress = updateProgress
-    SomApi.config = {
-      sustainTime: 2,
-      testServerEnabled: false,
-      uploadTestEnabled: true,
-      progress: {
-        enabled: true,
-      },
-    }
-
-    SomApi.startTest()
+    // TODO: Implement the speed test
   }, [])
 
-  const updateProgress = ({ pass, type, percentDone }: Progress) => {
-    if (type === 'latency') return
-
-    const currentPass = type === 'download' ? pass : PASSES.download + pass
-    const allPasses = PASSES.download + PASSES.upload
-    const percentForStep = 100 / allPasses
-    const currentProgress = (currentPass - 1) * percentForStep + percentForStep * percentDone / 100
-    setProgress(_.round(currentProgress))
-  }
 
   return (
     <>
