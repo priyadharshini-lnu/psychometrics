@@ -107,7 +107,7 @@ class Factor < ApplicationRecord
       kopy.copy_and_upload(original.icon, :icon) if original.is_a?(Factor) && original.icon&.attached?
     end
     @cloned_factor.gen_uniq_name
-    @cloned_factor.icon.attach(icon.blob) if icon.attached?
+    @cloned_factor.copy_and_upload(icon, :icon) if icon.attached?
     @cloned_factor.save ? @cloned_factor : nil
   end
 
