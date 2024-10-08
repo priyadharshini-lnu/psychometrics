@@ -15,7 +15,7 @@ export default function ChartOptions (model) {
     },
     yAxis: {
       min: 0,
-      max: model.props.maxValue || 6,
+      max: model.props.gaugePercentage ? 100 : (model.props.maxValue || 6),
       lineWidth: 0,
       tickWidth: 0,
       tickAmount: 0,
@@ -37,7 +37,7 @@ export default function ChartOptions (model) {
           borderWidth: 0,
           useHTML: true,
         },
-        rounded: true,
+        rounded: model.props.rounded,
       },
     },
     pane: {

@@ -11,7 +11,6 @@ import iconsStyles from './Graph.less'
 import Menu from './ChartsMenu'
 import connect from '../connect'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
-import { HintCheckbox } from '~/glint'
 
 class Properties extends Component {
   static propTypes = {
@@ -32,20 +31,6 @@ class Properties extends Component {
     this.forceUpdate()
   }
 
-  handleCheckControl = (type) => {
-    const { model } = this.props
-    if (type === 'gaugePercentage') {
-      if (model.props[type]) {
-        model.props.maxValue = model.props.oldMaxValue
-        model.props.oldMaxValue = null
-      } else {
-        model.props.oldMaxValue = model.props.maxValue
-        model.props.maxValue = 100
-      }
-    }
-    model.props[type] = !model.props[type]
-    model.update()
-  }
 
   changeFontColor = (color) => {
     const { model } = this.props
@@ -123,41 +108,16 @@ class Properties extends Component {
           <Menu model={model} onSelect={this.select} />
         </div>
         <hr className={styles.divider} />
-        <HintCheckbox
-          label="Transparent Background"
-          checked={model.props.transparentBackground}
-          onChange={() => this.handleCheckControl('transparentBackground')}
-          hints={['make the background color transparent']}
-        />
-        {model.props.type === 'Gauge' ? (
-          <>
-            <div className="margin-top-10">
-              <HintCheckbox
-                label="Hide Label"
-                checked={model.props.hideLabel}
-                onChange={() => this.handleCheckControl('hideLabel')}
-                hints={['label are hidden']}
-              />
-            </div>
-            <div className="margin-top-10">
-              <HintCheckbox
-                label="Hide Markers"
-                checked={model.props.hideMarkers}
-                onChange={() => this.handleCheckControl('hideMarkers')}
-                hints={['markers are hidden']}
-              />
-            </div>
-            <div className="margin-top-10">
-              <HintCheckbox
-                label="Percentage"
-                checked={model.props.gaugePercentage}
-                onChange={() => this.handleCheckControl('gaugePercentage')}
-                hints={['shows value in percentage']}
-              />
-            </div>
-          </>
-
-        ) : null}
+        <div className="margin-top-10">
+          <label style={{ fontWeight: 'normal' }}>
+            <input
+              type="checkbox"
+              checked={model.props.transparentBackground || false}
+              onChange={this.changeTransparentBackground}
+            />
+            Transparent background
+          </label>
+        </div>
         <DataSource model={model} onSelect={this.update} onlyNumbers />
         <hr className={styles.divider} />
         <div className="margin-top-10 margin-bottom-10">

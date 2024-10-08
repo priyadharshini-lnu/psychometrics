@@ -1,8 +1,9 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import { ColorPicker } from '~/glint'
+import { ColorPicker, HintCheckbox } from '~/glint'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
+
 
 class Properties extends Component {
   static propTypes = {
@@ -51,6 +52,12 @@ class Properties extends Component {
     this.update()
   }
 
+  handleCheckControl = (type) => {
+    const { model } = this.props
+    model.props[type] = !model.props[type]
+    model.update()
+  }
+
   render () {
     const { model } = this.props
     const {
@@ -59,6 +66,7 @@ class Properties extends Component {
     } = model.props
     return (
       <div>
+
         <div className={styles.block}>
           Main Color
           <ColorPicker
@@ -73,6 +81,40 @@ class Properties extends Component {
             getValueInHexFormat
             value={speedometerBackgroundColor}
             onChange={color => this.changeColorProperty('speedometerBackgroundColor', color)}
+          />
+        </div>
+        <hr className={styles.divider} />
+
+        <div className="margin-top-10">
+          <HintCheckbox
+            label="Hide Label"
+            checked={model.props.hideLabel}
+            onChange={() => this.handleCheckControl('hideLabel')}
+            hints={['label are hidden']}
+          />
+        </div>
+        <div className="margin-top-10">
+          <HintCheckbox
+            label="Hide Markers"
+            checked={model.props.hideMarkers}
+            onChange={() => this.handleCheckControl('hideMarkers')}
+            hints={['markers are hidden']}
+          />
+        </div>
+        <div className="margin-top-10">
+          <HintCheckbox
+            label="Percentage"
+            checked={model.props.gaugePercentage}
+            onChange={() => this.handleCheckControl('gaugePercentage')}
+            hints={['shows value in percentage']}
+          />
+        </div>
+        <div className="margin-top-10">
+          <HintCheckbox
+            label="Rounded"
+            checked={model.props.rounded}
+            onChange={() => this.handleCheckControl('rounded')}
+            hints={['']}
           />
         </div>
         <hr className={styles.divider} />
@@ -102,7 +144,7 @@ class Properties extends Component {
         </div>
         <hr className={styles.divider} />
         <div className={styles.block}>
-          width
+          Width
           <ChoicesInput
             value={gaugeWidth}
             onChange={this.changeWidthValue}
