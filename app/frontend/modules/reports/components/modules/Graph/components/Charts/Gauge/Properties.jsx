@@ -62,7 +62,7 @@ class Properties extends Component {
     const { model } = this.props
     const {
       speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize, maxValue, gaugeWidth,
-      gaugeBorder,BorderColor
+      gaugeBorder, borderColor,
     } = model.props
     return (
       <div>
@@ -87,8 +87,8 @@ class Properties extends Component {
           Border Color
           <ColorPicker
             getValueInHexFormat
-            value={BorderColor} 
-            onChange={color => this.changeColorProperty('BorderColor', color)}
+            value={borderColor}
+            onChange={color => this.changeColorProperty('borderColor', color)}
           />
         </div>
         <hr className={styles.divider} />
@@ -122,7 +122,8 @@ class Properties extends Component {
             label="Rounded"
             checked={model.props.rounded}
             onChange={() => this.handleCheckControl('rounded')}
-            hints={model.props.rounded?[' It will hide label on the top of chart']:['It will show label on the top of chart']}
+            hints={model.props.rounded
+              ? [' It will hide label on the top of chart'] : ['It will show label on the top of chart']}
           />
         </div>
         <hr className={styles.divider} />
@@ -171,7 +172,7 @@ class Properties extends Component {
           />
         </div>
         <hr className={styles.divider} />
-        
+
       </div>
     )
   }

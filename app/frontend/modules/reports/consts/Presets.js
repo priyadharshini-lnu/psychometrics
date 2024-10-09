@@ -48,7 +48,7 @@ export default {
     speedometerSize: '100%',
     gaugeWidth: 70,
     gaugeBorder: 0,
-    BorderColor:'#639cd3'
+    borderColor: '#639cd3',
 
   },
   RadarA: {
