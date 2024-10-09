@@ -9,13 +9,14 @@ describe Api::V2::Administration::CampaignFactorValuesController, swagger_doc: '
   let!(:campaign) { create(:campaign) }
   let!(:campaign_assessor) { create(:assessor, user: assessor, campaign: campaign) }
   let(:user) { create(:user) }
+  let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let(:campaign_id) { campaign.id }
   let(:lead_assessment) { create(:assessment, category: :lead_assessor_form) }
   let!(:campaign_factor_group) { create(:campaign_factor_group, campaign_id: campaign_id) }
   let(:campaign_factor_group_id) { campaign_factor_group.id.to_s }
   let!(:campaign_factor) do
     factor = create(
-      :campaign_factor, name: 'Factor', campaign_factor_group_id: campaign_factor_group_id,
+      :campaign_factor, name: 'Factor', code: 'factor1', campaign_factor_group_id: campaign_factor_group_id,
       campaign_id: campaign_id, factor_type: :assessor_scoring
     )
     factor.campaign_factor_values.create!(campaign_id: campaign_id, numeric_value: 3, user_id: user.id)
@@ -23,10 +24,16 @@ describe Api::V2::Administration::CampaignFactorValuesController, swagger_doc: '
   end
   let!(:campaign_factor2) do
     create(
-      :campaign_factor, name: 'Factor2', campaign_factor_group_id: campaign_factor_group_id,
+      :campaign_factor, name: 'Factor2', code: 'factor2', campaign_factor_group_id: campaign_factor_group_id,
       campaign_id: campaign_id, factor_type: :assessor_scoring
     )
   end
+
+  let!(:campaign_factor_with_formula) do
+    create(:campaign_factor, campaign: campaign, output_type: :numeric,
+            factor_type: :formula, code: 'factor3', formula: 'return __factor1 + __factor2')
+  end
+
   let!(:campaign_assessments) do
     create(:campaign_assessor_assessment, campaign: campaign, assessment: lead_assessment)
     create(:campaign_assessment, campaign: campaign, assessment: lead_assessment)
@@ -120,10 +127,13 @@ describe Api::V2::Administration::CampaignFactorValuesController, swagger_doc: '
         run_test! do |_|
           factor_value = campaign_factor.campaign_factor_values.find_by(user_id: user.id)
           factor_value2 = campaign_factor2.campaign_factor_values.find_by(user_id: user.id)
+          calculated_factor = campaign_factor_with_formula.campaign_factor_values.find_by(user_id: user.id)
 
           expect(factor_value.numeric_value).to eq(4)
           expect(factor_value2).to be_present
           expect(factor_value2.numeric_value).to eq(2)
+
+          expect(calculated_factor.numeric_value).to eq(6)
         end
       end
     end
