@@ -619,6 +619,7 @@ en:
         subject: Download bulk reports
       new:
         header: Bulk Download
+      reports_unavailable: At the moment, no reports are available for download. Please ensure that the reports you are attempting to download are in an available state.
     cable:
       notification:
         assessment_factors: Factors are fetched
