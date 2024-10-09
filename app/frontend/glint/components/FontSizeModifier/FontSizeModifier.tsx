@@ -68,7 +68,8 @@ export const FontsizeModifier:FC<Props> = ({ step }) => {
         <Button
           aria-label={I18n.t('glint.fontsize_modifier.change_font')}
           type="link"
-          icon={<AccessibilityIcon style={{ fontSize: '1rem' }} />}
+          icon={<AccessibilityIcon />}
+          styles={{ icon: { verticalAlign: 'bottom' } }}
         />
       </Popover>
 
