@@ -62,7 +62,7 @@ class Properties extends Component {
     const { model } = this.props
     const {
       speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize, maxValue, gaugeWidth,
-      gaugeBorder,
+      gaugeBorder,BorderColor
     } = model.props
     return (
       <div>
@@ -83,6 +83,14 @@ class Properties extends Component {
             onChange={color => this.changeColorProperty('speedometerBackgroundColor', color)}
           />
         </div>
+        <div className={styles.block}>
+          Border Color
+          <ColorPicker
+            getValueInHexFormat
+            value={BorderColor} 
+            onChange={color => this.changeColorProperty('BorderColor', color)}
+          />
+        </div>
         <hr className={styles.divider} />
 
         <div className="margin-top-10">
@@ -90,7 +98,7 @@ class Properties extends Component {
             label="Hide Label"
             checked={model.props.hideLabel}
             onChange={() => this.handleCheckControl('hideLabel')}
-            hints={['label are hidden']}
+            hints={['It will show label on the top of chart', 'It will hide label on the top of chart']}
           />
         </div>
         <div className="margin-top-10">
@@ -98,7 +106,7 @@ class Properties extends Component {
             label="Hide Markers"
             checked={model.props.hideMarkers}
             onChange={() => this.handleCheckControl('hideMarkers')}
-            hints={['markers are hidden']}
+            hints={['It will show markers from the chart', 'It will hide markers from the chart']}
           />
         </div>
         <div className="margin-top-10">
@@ -106,7 +114,7 @@ class Properties extends Component {
             label="Percentage"
             checked={model.props.gaugePercentage}
             onChange={() => this.handleCheckControl('gaugePercentage')}
-            hints={['shows value in percentage']}
+            hints={['It will show default value', 'It will show value as percentage']}
           />
         </div>
         <div className="margin-top-10">
@@ -114,7 +122,7 @@ class Properties extends Component {
             label="Rounded"
             checked={model.props.rounded}
             onChange={() => this.handleCheckControl('rounded')}
-            hints={['shows rounded corners']}
+            hints={model.props.rounded?[' It will hide label on the top of chart']:['It will show label on the top of chart']}
           />
         </div>
         <hr className={styles.divider} />
@@ -163,6 +171,7 @@ class Properties extends Component {
           />
         </div>
         <hr className={styles.divider} />
+        
       </div>
     )
   }

@@ -49,6 +49,7 @@ export default function ChartOptions (model) {
         outerRadius: '95%',
         shape: 'arc',
         borderWidth: model.props.gaugeBorder,
+        borderColor: model.props.BorderColor,
       },
     },
   }
