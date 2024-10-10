@@ -28,4 +28,12 @@ class InnovationStylesFactor < ApplicationRecord
   def log_attribute_for_delete
     slice(:innovation_style_id, :factor_id, :predicate, :value)
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name predicate position weight created_at updated_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[factor]
+  end
 end

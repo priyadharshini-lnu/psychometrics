@@ -11,6 +11,8 @@ export const WorkshopInvitedSubjectTR = t.type({
   }),
   bookedWorkshopDateTime: t.union([t.string, t.null]),
   subjectWorkshopDateTime: t.union([t.string, t.null]),
+  bookedAt: t.union([t.string, t.null]),
+  workshopId: t.union([t.number, t.null]),
   workshopInviteId: t.number,
 })
 

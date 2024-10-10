@@ -1,0 +1,20 @@
+$(function () {
+  var $modalContainer = $('#modal-container');
+
+  if ($modalContainer.html().length)
+    return;
+
+  $modalContainer.html('<%= j render(partial: "modal", locals: { form: "translations", header: t("administration.#{i18n || resource_class.model_name.plural}.translations.header") }) %>');
+  var $modalBox = $modalContainer.find(".modal");
+
+  $modalBox.modal('show');
+  $modalBox.on('hidden.bs.modal', function (e) {
+    $(this).remove();
+  });
+
+// Reinit all plugins
+  $(document).trigger('initPlugins');
+  $('#export_translations').click(function() {
+    $modalBox.modal('hide');
+  })
+});

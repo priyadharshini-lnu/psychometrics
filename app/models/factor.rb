@@ -2,10 +2,13 @@
 
 class Factor < ApplicationRecord
   audited
+  extend Mobility
 
   include Copyable
   include RansackSearchableFields
   include ActiveStorageAttachable
+
+  translates :name, :description
 
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true
@@ -20,6 +23,7 @@ class Factor < ApplicationRecord
   has_many :innovation_styles_factors, dependent: :destroy
   has_many :aliases, class_name: 'FactorsAlias', dependent: :destroy
   has_many :campaign_factors, dependent: :restrict_with_error
+  has_many :user_assessment_factor_scores, dependent: :restrict_with_error
   has_many :factor_benchmark_scores, dependent: :destroy
 
   validates :name, :dimension, presence: true
@@ -87,6 +91,10 @@ class Factor < ApplicationRecord
     where(dimension_id: dimension_id)
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name scoring_strategy dimension_id created_at updated_at]
+  end
+
   #
   # Returns hash: ass_name
   #
@@ -96,10 +104,10 @@ class Factor < ApplicationRecord
 
   def clone_and_save
     @cloned_factor = deep_clone include: [:factors_sub_factors] do |original, kopy|
-      kopy.icon.attach(original.icon.blob) if original.is_a?(Factor)
+      kopy.copy_and_upload(original.icon, :icon) if original.is_a?(Factor) && original.icon&.attached?
     end
     @cloned_factor.gen_uniq_name
-    @cloned_factor.icon.attach(icon.blob) if icon.attached?
+    @cloned_factor.copy_and_upload(icon, :icon) if icon.attached?
     @cloned_factor.save ? @cloned_factor : nil
   end
 

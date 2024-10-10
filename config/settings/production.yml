@@ -1,6 +1,7 @@
 domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
 subdomain: <%= ENV["APP_SUB_DOMAIN"] %> # subdomain
-port: 
+port:
+# port: <%= ENV["PORT"] %> # Enable this line to run production in localhost
 protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>

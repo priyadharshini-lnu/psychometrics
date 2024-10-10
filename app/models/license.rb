@@ -30,6 +30,14 @@ class License < ApplicationRecord
 
   enum type: { common: 0, threesixty: 1, proctoring: 2 }, _prefix: :type
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[report_family]
+  end
+
   def used_overuse_number
     number >= used_number ? 0 : used_number - number
   end

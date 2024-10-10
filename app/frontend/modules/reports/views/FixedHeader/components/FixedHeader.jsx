@@ -229,7 +229,7 @@ export class FixedHeader extends Component {
             <Flex align="center">
               <Button type="link" href="/admin/reports">
                 <ArrowLeftOutlined />
-                Reprots List
+                Reports List
               </Button>
               <div className={styles.set}>
                 <a onClick={this.addTable}>

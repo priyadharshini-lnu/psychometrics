@@ -68,6 +68,10 @@ class Question < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name created_at updated_at]
+  end
+
   # Using for deep clone in Assessment model
   def set_assessment_id
     self.assessment_id = block.try(:assessment_id)

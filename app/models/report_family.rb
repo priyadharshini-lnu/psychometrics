@@ -12,4 +12,8 @@ class ReportFamily < ApplicationRecord
   has_many :clients, through: :licenses, source: :client
 
   validates :name, presence: true
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name]
+  end
 end

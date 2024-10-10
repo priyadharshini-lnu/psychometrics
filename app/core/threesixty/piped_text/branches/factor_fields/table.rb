@@ -26,18 +26,20 @@ module Threesixty
           end
 
           def factor_rows
-            factors.map do |factor|
-              <<~HTML.squish
-                <tr>
-                  <td>#{factor.name}</td>
-                  <td>#{factor.description}</td>
-                </tr>
-              HTML
+            Mobility.with_locale(I18n.locale) do
+              factors.map do |factor|
+                <<~HTML.squish
+                  <tr>
+                    <td>#{factor.name}</td>
+                    <td>#{factor.description}</td>
+                  </tr>
+                HTML
+              end
             end
           end
 
           def factors
-            context[:assessment].dimension.all_factors
+            context[:assessment].dimension.all_factors.includes(:translations).order(:name)
           end
         end
       end

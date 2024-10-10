@@ -25,6 +25,14 @@ class SmsInvite < ApplicationRecord
 
   delegate :email, to: :registered_user, allow_nil: true
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id first_name last_name status created_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[creator registered_user]
+  end
+
   def self.ransackable_scopes(_)
     %i[filterable_fields]
   end

@@ -10,6 +10,7 @@ module Auth
         required(:background_color).maybe(:str?)
         required(:login_box_position).maybe(:str?)
         required(:background).maybe(:str?)
+        required(:background_overlay).maybe(:str?)
         required(:saml_login_allowed).maybe(:bool?)
         required(:saml_enforced).maybe(:bool?)
         required(:require_mobile_number).maybe(:bool?)

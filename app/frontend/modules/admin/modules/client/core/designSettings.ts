@@ -42,6 +42,9 @@ export interface Files {
   background: {
     file?: File | UploadFile
   }
+  background_overlay: {
+    file?: File | UploadFile
+  }
   secondary_logo: {
     file?: File | UploadFile
   }

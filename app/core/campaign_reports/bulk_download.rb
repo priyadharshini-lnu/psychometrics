@@ -15,6 +15,10 @@ module CampaignReports
     end
 
     def call
+      unless user_reports_with_pdf.exists?
+        return broadcast :ok, { error_messages: [I18n.t('administration.bulk_reports.reports_unavailable')] }
+      end
+
       if Settings.features.zip_s3_files_lambda
         bulk_download_with_lambda
         broadcast :waiting
@@ -90,9 +94,7 @@ module CampaignReports
     end
 
     def user_reports_with_pdf
-      if user_reports.present?
-        user_reports.where(status: 'prepared').where.not(pdf: nil).includes(:user, :report)
-      else
+      if user_reports.nil?
         start_date = job_record.data['start_date']
         end_date = job_record.data['end_date']
 
@@ -100,9 +102,10 @@ module CampaignReports
                                                             { start_date: start_date,
                                                               end_date: end_date }).query.pluck(:id)
         UserReport.
-          joins(:pdf_file_attachment).
           includes(:user, :report).
           where(id: user_report_ids)
+      else
+        user_reports.where(status: 'prepared').includes(:user, :report)
       end
     end
   end

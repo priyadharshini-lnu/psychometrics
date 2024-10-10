@@ -34,7 +34,7 @@ module WebhookSubscriptions
     private
 
     def push_to_single_webhook
-      response = Administration::Webhooks::PushWebhook.call(webhook, event_as_json)
+      response = Administration::Webhooks::PushWebhook.call(webhook, event_as_json(webhook))
       response[:error] ? broadcast(:error, response[:error]) : broadcast(:ok)
     end
 

@@ -32,6 +32,14 @@ class CampaignAssessment < ApplicationRecord
   scope :preworks, -> { where(prework: true) }
   scope :workshop_activities, -> { where(workshop_activity: true) }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name category archived campaign_id workshop_activity]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[assessment]
+  end
+
   def validate_external_config
     return unless external_config.presence.is_a?(String)
 

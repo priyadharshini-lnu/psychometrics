@@ -97,4 +97,20 @@ describe CampaignFactors::CalculateAssessorScoringFactor do
       expect(campaign_factor_values[campaign_factor2].value).to eq(6.75)
     end
   end
+
+  context 'assessor_user_assessment with scoring not completed' do
+    let(:another_assessor_assessment) { create(:assessment, category: :assessor_form) }
+
+    let!(:third_assessor_user_assessment) do
+      create(:user_assessment, campaign: campaign, subject: user,
+        assessment: another_assessor_assessment, relationship: Relationship.assessor_relationship, status: :in_progress)
+    end
+
+    it 'calculate without breaking with scored data' do
+      campaign_factor_values = described_class.call!(campaign, user)
+
+      expect(campaign_factor_values[campaign_factor].value).to eq(2.5)
+      expect(campaign_factor_values[campaign_factor2].value).to eq(4.5)
+    end
+  end
 end

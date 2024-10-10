@@ -12,4 +12,8 @@ class IdpTemplate < ApplicationRecord
        _prefix: :available_development_actions
   enum suggested_development_actions_selection_type: { none: 0, all: 1, selected: 2 },
        _prefix: :suggested_development_actions
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name]
+  end
 end
