@@ -23,5 +23,5 @@ class Api::V2::Administration::WorkshopInviteResource < Api::V2::Administration:
     workshop_invited_subjects.count
   end
 
-  ransack_filters %i[campaign_id_eq translations_title_cont]
+  ransack_filters %i[campaign_id_eq title_cont]
 end

@@ -22,6 +22,10 @@ import { useMessageBus } from '~/hooks/useMessageBus'
 
 const { I18n } = window
 
+interface ScoringTableProps {
+  onSave: () => void
+}
+
 type DataType = {
   [key: string]: string | number | boolean | null;
 }
@@ -41,7 +45,7 @@ const processData = (dataWithAverages, averageRow, scoreRange, weightedAverageRo
   return baseData
 }
 
-const ScoringTable: React.FC = () => {
+const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
   const { campaignId, userId } = useParams() as { campaignId: string, userId: string }
   const { message } = App.useApp()
 
@@ -192,6 +196,9 @@ const ScoringTable: React.FC = () => {
       },
     ).catch(() => {}).then(() => {
       message.success(I18n.t('administration.scoring.final_score_updated_successfully'))
+      if (onSave) {
+        onSave()
+      }
     })
   }
 

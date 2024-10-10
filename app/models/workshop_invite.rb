@@ -28,4 +28,8 @@ class WorkshopInvite < ApplicationRecord
   def end_user_url
     Utility::Url.generate(:invites_url, subdomain: campaign.project.subdomain)
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id title campaign_id]
+  end
 end

@@ -20,6 +20,7 @@ interface Props {
 
 const LangDropdown: React.FC<Props> = ({ locales, currentLocale, onChange }) => {
   const [loading, setLoading] = useState(false)
+  const [openMenu, setOpenChange] = useState(false)
   const isMobile = useMedia({
     maxWidth: 600,
   })
@@ -40,9 +41,9 @@ const LangDropdown: React.FC<Props> = ({ locales, currentLocale, onChange }) => 
   return (
     <div>
       <Space>
-        <Dropdown menu={{ items: menuItems, onClick: onSelect }} trigger={['click']}>
-          <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-            <Flex align="center" gap={4} flex={0}>
+        <Dropdown onOpenChange={setOpenChange} menu={{ items: menuItems, onClick: onSelect }} trigger={['click']}>
+          <a aria-expanded={openMenu} href="" className={styles.link} onClick={e => e.preventDefault()}>
+            <Flex className={styles.container} align="center" gap={4} flex={0}>
               <LanguageIcon className={styles.icon} />
               {loading
                 ? <LoadingOutlined />

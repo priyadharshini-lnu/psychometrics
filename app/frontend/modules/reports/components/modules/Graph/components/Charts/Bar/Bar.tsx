@@ -143,6 +143,13 @@ export const Bar: React.FC<Props> = ({ factors, model, animation = false }) => {
               depth: model.props.graphicalRepresentation === '3D' ? 35 : 0,
             },
           },
+          xAxis: {
+            reversed: model.props.reverse && model.props.graphicalPosition === 'Horizontal',
+            opposite: model.props.reverse && model.props.graphicalPosition === 'Horizontal',
+          },
+          yAxis: {
+            reversed: model.props.reverse && model.props.graphicalPosition === 'Horizontal',
+          },
           series,
         },
       ),

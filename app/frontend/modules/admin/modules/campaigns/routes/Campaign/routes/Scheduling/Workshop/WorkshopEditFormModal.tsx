@@ -97,7 +97,7 @@ export const WorkshopEditFormModal: FC<Props> = ({
             <Input name="workshop_name" />
           </Form.Item>
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_rescheduling')}
+            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling')}
             name="allowLateCancellationAndRescheduling"
             rules={[{ required: true }]}
             valuePropName="checked"

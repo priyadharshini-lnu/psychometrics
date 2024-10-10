@@ -1,13 +1,14 @@
 import {
-  Button, Space, Tag, Typography, App,
+  Button, Space, Tag, Typography, App, Flex,
 } from 'antd'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import {
   PlusOutlined,
   CloseOutlined,
 } from '@ant-design/icons'
 import { ConnectedProps, connect } from 'react-redux'
+import React from 'react'
 import {
   WorkshopInvitedSubjectTR, WorkshopInvitedSubject,
 } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'
@@ -16,6 +17,7 @@ import { ResourceAvatar } from '~/glint'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { SubjectAddFormModal } from './SubjectAddFormModal'
+import dayjs from '~/utils/dayjs'
 
 const { I18n } = window
 const { Text } = Typography
@@ -35,8 +37,8 @@ const connector = connect(null, { openModal })
 type Props = ConnectedProps<typeof connector>
 
 export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
-  const { inviteId, campaignId } = useParams<{ inviteId: string, campaignId: string }>()
-
+  const { inviteId, campaignId, projectId } = useParams<{ inviteId: string, projectId: string, campaignId: string }>()
+  const assessmentCenterPath = `/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/assessment_center/`
   return (
     <>
       <Resource
@@ -64,7 +66,7 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
             title={I18n.t('administration.invited_subject.column.participant')}
             id="user.firstName"
             sorter
-            width="60%"
+            width="40%"
             render={(_, { user }) => (
               <Space>
                 <ResourceAvatar
@@ -79,6 +81,48 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
                 </Space>
               </Space>
             )}
+          />
+          <Resource.Column<WorkshopInvitedSubject>
+            title={I18n.t('common.column.details')}
+            id="details"
+            sorter
+            render={(_, subject) => {
+              const bookedAt = dayjs(subject.bookedAt)
+              const assessmentCenterBooked = dayjs(subject.subjectWorkshopDateTime)
+              if ((subject.status !== 'accepted'
+                      && subject.status !== 'rescheduled'
+              ) || (!bookedAt && !assessmentCenterBooked)) {
+                return (
+                  '-'
+                )
+              }
+              return (
+                <Flex vertical gap={8}>
+                  <Flex vertical>
+                    <Typography.Text strong>
+                      {I18n.t('administration.invited_subject.booked_at')}
+                    </Typography.Text>
+                    <Typography.Text>
+                      {`${bookedAt.format('DD MMM, HH:mm')} ${bookedAt.format(' (z)')}`}
+                    </Typography.Text>
+                  </Flex>
+                  <Flex vertical>
+                    <Typography.Text strong>
+                      {I18n.t('administration.invited_subject.assessment_center')}
+                    </Typography.Text>
+                    <Typography.Text>
+                      <Link
+                        to={`${assessmentCenterPath}${subject.workshopId}`}
+                        state={{ search: location.search }}
+                      >
+                        {`${assessmentCenterBooked.format('DD MMM, HH:mm')} 
+                      ${assessmentCenterBooked.format(' (z)')}`}
+                      </Link>
+                    </Typography.Text>
+                  </Flex>
+                </Flex>
+              )
+            }}
           />
           <Resource.Column<WorkshopInvitedSubject>
             id="status"

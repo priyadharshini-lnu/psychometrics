@@ -118,7 +118,12 @@ export const AssessmentCard: React.FC<Props> = ({
   const subtitleElement = (
     <Space direction="vertical">
       {
-        showDuration ? <TimerText text={isWorkshopActivity ? workshopActivityDurationText : timing} /> : null
+        showDuration ? (
+          <TimerText
+            textType="none"
+            text={isWorkshopActivity ? workshopActivityDurationText : timing}
+          />
+        ) : null
       }
       <StartTimeDisplay userAssessment={userAssessment} onCountdownFinish={() => setWithinActivityScheduleTime(true)} />
     </Space>

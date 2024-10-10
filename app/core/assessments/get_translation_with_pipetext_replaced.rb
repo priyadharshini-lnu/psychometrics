@@ -14,8 +14,10 @@ module Assessments
       translations = Translation.to_hash_for_assessment(assessment.id, locale)
       broadcast :ok, {} if translations.empty?
 
-      replace_pipetext_for_question(translations)
-      replace_pipetext_for_block(translations)
+      I18n.with_locale(locale) do
+        replace_pipetext_for_question(translations)
+        replace_pipetext_for_block(translations)
+      end
 
       broadcast :ok, translations
     end

@@ -10,6 +10,14 @@ class CampaignFactorValue < ApplicationRecord
 
   enum calculation_type: { auto: 0, manual: 1 }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id user_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[campaign_factor]
+  end
+
   def value
     if campaign_factor.numeric_output_type?
       numeric_value

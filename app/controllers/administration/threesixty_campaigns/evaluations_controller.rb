@@ -32,6 +32,7 @@ module Administration
 
         @assessment = ::AssessmentSerializer.new(
           context: {
+            selected_locale: @selected_locale,
             piped_text_context: piped_text_context,
             include: '**'
           }

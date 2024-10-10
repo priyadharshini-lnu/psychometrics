@@ -108,6 +108,10 @@ class Membership < ApplicationRecord
   }
   attr_accessor :through_registration
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name campaign_id project_id campaign_id client_id]
+  end
+
   # Save HRIS data from form
   def hris_data=(data)
     self.hris = {}

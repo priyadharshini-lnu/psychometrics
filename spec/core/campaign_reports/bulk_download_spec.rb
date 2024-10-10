@@ -8,6 +8,25 @@ describe CampaignReports::BulkDownload do
   let(:current_user) { create(:user) }
   let(:job_record) { create(:admin_job_record) }
   let(:campaign_reports) { create_list(:campaign_report, 2, campaign: campaign, report: report) }
+  let!(:user_reports_with_pdf) do
+    create_list(
+      :user_report,
+      2,
+      :with_pdf,
+      campaign: campaign,
+      report: report,
+      status: 'prepared'
+    )
+  end
+  let!(:assessments) do
+    user_reports_with_pdf.map do |user_report|
+      create(:user_assessment,
+             subject_id: user_report.user.id,
+             campaign_id: campaign.id,
+             assessment_id: user_report.report.assessment.id,
+             completed_at: 1.day.ago)
+    end
+  end
 
   it 'create bulk_download record' do
     expect do
@@ -36,29 +55,23 @@ describe CampaignReports::BulkDownload do
     described_class.call!(campaign_reports: campaign_reports, current_user: current_user, job_record: job_record)
   end
 
+  it 'returns error message if no user_reports with pdf' do
+    user_report = create(:user_report, campaign: campaign, report: report)
+
+    user_reports = UserReport.where(id: user_report.id)
+
+    expect(
+      described_class.call!(
+        user_reports: user_reports, current_user: current_user, job_record: job_record
+      )
+    ).to eq({ error_messages: [I18n.t('administration.bulk_reports.reports_unavailable')] })
+  end
+
   it 'calls download report for each user_report which have pdf' do
     start_date = 2.days.ago.utc.iso8601(3)
     end_date = 1.day.ago.utc.iso8601(3)
 
-    user_reports_with_pdf = create_list(
-      :user_report,
-      2,
-      :with_pdf,
-      campaign: campaign,
-      report: report,
-      pdf: File.open('spec/fixtures/files/reports/test.pdf'),
-      status: 'prepared'
-    )
-
     user_report_without_pdf = create(:user_report, campaign: campaign, report: report)
-
-    user_reports_with_pdf.each do |user_report|
-      create(:user_assessment,
-             subject_id: user_report.user.id,
-             campaign_id: campaign.id,
-             assessment_id: user_report.report.assessment.id,
-             completed_at: 1.day.ago)
-    end
 
     job_record.data['start_date'] = start_date
     job_record.data['end_date'] = end_date

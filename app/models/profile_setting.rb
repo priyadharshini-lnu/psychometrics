@@ -7,4 +7,8 @@ class ProfileSetting < ApplicationRecord
   has_many :profile_fields
   has_many :questions, through: :profile_fields
   validates :update_in, inclusion: { in: [1, 3, 6, 12] }, allow_nil: true
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id project_id]
+  end
 end

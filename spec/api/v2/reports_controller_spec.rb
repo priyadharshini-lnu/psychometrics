@@ -208,6 +208,7 @@ describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.js
   end
 
   path '/reports/{report_id}/copy' do
+    let!(:client) { create(:tenancy) }
     post 'Copy report' do
       operationId 'CopyReport'
       description 'Copy a Report'
@@ -226,12 +227,15 @@ describe Api::V2::Administration::ReportsController, swagger_doc: 'v2/swagger.js
             id: report.id.to_s,
             attributes: {
               name: 'Copy of First Report'
+            },
+            relationships: {
+              owner: { data: { type: 'clients', id: client.id } }
             }
           }
         }
       end
 
-      response '200', 'Report Coppied' do
+      response '200', 'Report Copied' do
         run_test! do |response|
           report_response = JSON.parse(response.body)['data']
           expect(report_response).to have_key('id')

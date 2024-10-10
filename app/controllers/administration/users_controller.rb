@@ -114,7 +114,7 @@ class Administration::UsersController < Administration::BaseController
                    elsif resource.assessors.exists?
                      assessors_dashboard_path
                    else
-                     administration_user_availabilities_path
+                     "#{admin_path}/user_availabilities"
                    end
     audit! :sign_in_as, current_user, payload: { sign_in_as: resource.email }
     sign_in(resource)

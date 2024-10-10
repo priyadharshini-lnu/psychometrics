@@ -36,7 +36,6 @@ const items = [
   },
 ]
 
-
 const connecter = connect((state: RootState) => ({
   assessorResult: getLeadAssessorResult(state.assessors.scoreModerate),
 }), {
@@ -46,6 +45,8 @@ interface Props extends ConnectedProps<typeof connecter> {}
 
 export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
   const [tab, setTab] = useState<string>()
+  const [refreshTab, setRefreshTab] = useState(false)
+
   const onChange = (key) => {
     setTab(key)
   }
@@ -54,13 +55,16 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
     setTab('')
   }
 
+  const handleSave = () => {
+    setRefreshTab(prev => !prev)
+  }
+
   const tabHeader = (title, withoutBorder = false) => tab && (
     <div className={cs(styles.tabheader, { [styles.withoutBorder]: withoutBorder })}>
       <div>{title}</div>
       <Button type="text" onClick={handleCloseTab}><CloseOutlined /></Button>
     </div>
   )
-
 
   return (
     <div>
@@ -77,13 +81,13 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult }) => {
       </div>
       <div className={styles.main}>
         <div className={styles.evaluation}>
-          <ScoringTable />
+          <ScoringTable onSave={handleSave} />
           <Evaluation />
         </div>
         {tab && (
           <>
             {tab === 'profile' && <Profile header={tabHeader} onClose={handleCloseTab} />}
-            {tab === 'overallScoring' && <OverallScoring header={tabHeader} />}
+            {tab === 'overallScoring' && <OverallScoring header={tabHeader} refresh={refreshTab} />}
             {tab === 'reports' && <Reports header={tabHeader} />}
             {tab === 'assessorEvaluations' && <AssessorEvaluations header={tabHeader} />}
           </>
