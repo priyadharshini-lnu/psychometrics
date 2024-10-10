@@ -1741,7 +1741,9 @@ CREATE TABLE public.dashboards (
     refresh_interval integer DEFAULT 15,
     image character varying,
     last_refreshed_at timestamp without time zone,
-    refresh_tried_at timestamp without time zone
+    refresh_tried_at timestamp without time zone,
+    dashboard_type integer DEFAULT 0 NOT NULL,
+    project_path character varying
 );
 
 
@@ -3127,6 +3129,35 @@ CREATE SEQUENCE public.mindmill_credentials_id_seq
 --
 
 ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_credentials.id;
+
+
+--
+-- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_factor_scores (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    scores jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_factor_scores AS
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    (user_assessment_factor_scores.scores ->> 'norm_score'::text) AS norm_score,
+    (user_assessment_factor_scores.scores ->> 'score'::text) AS score,
+    (user_assessment_factor_scores.scores ->> 'zscore'::text) AS zscore,
+    (user_assessment_factor_scores.scores ->> 'percentage'::text) AS percentage
+   FROM public.user_assessment_factor_scores;
 
 
 --
@@ -5360,20 +5391,6 @@ CREATE SEQUENCE public.translations_id_seq
 --
 
 ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
-
-
---
--- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_assessment_factor_scores (
-    id bigint NOT NULL,
-    user_assessment_id bigint NOT NULL,
-    factor_id bigint NOT NULL,
-    scores jsonb DEFAULT '{}'::jsonb,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
 
 
 --
@@ -14055,7 +14072,9 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241010122532'),
 ('20241008100312'),
+('20241007113728'),
 ('20240920142940'),
 ('20240920083324'),
 ('20240912114619'),
