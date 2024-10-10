@@ -98,7 +98,7 @@ class Properties extends Component {
             label="Hide Label"
             checked={model.props.hideLabel}
             onChange={() => this.handleCheckControl('hideLabel')}
-            hints={['It will show label on the top of chart', 'It will hide label on the top of chart']}
+            hints={['It will show rounded corners', 'It will show normal corners']}
           />
         </div>
         <div className="margin-top-10">
@@ -114,7 +114,7 @@ class Properties extends Component {
             label="Percentage"
             checked={model.props.gaugePercentage}
             onChange={() => this.handleCheckControl('gaugePercentage')}
-            hints={['It will show default value', 'It will show value as percentage']}
+            hints={['it will show value as score', ' It will show value as percentage score']}
           />
         </div>
         <div className="margin-top-10">
