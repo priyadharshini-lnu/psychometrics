@@ -1193,7 +1193,8 @@ en:
       continue: Continue
       notification: Your allocated time for this task "%{assessmentName}" was %{totalAssessmentTime}. Due to the overall elapsed time, you now have only %{remainingCampaignTime} as your adjusted time to complete this task.
     timer:
-      notification: You have %{minutes} minutes and %{seconds} seconds to complete
+      notification_hours: You have %{hours} hour left
+      notification_minutes: you have %{minutes} minutes left
   campaign_assessment:
     actions:
       export_completion_status: Export Completion Status

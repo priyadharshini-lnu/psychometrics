@@ -205,9 +205,9 @@ const EvaluationComponent = ({
                   />
                 </Button>
                 <CountdownTimer
-                  notificationPoints={[{ completionPercentage: 30, type: 'info' },
-                    { completionPercentage: 15, type: 'warning' },
-                    { completionPercentage: 5, type: 'error' }]}
+                  notificationPoints={[{ timeRemaining: 3600, type: 'info' },
+                    { timeRemaining: 1800, type: 'warning' },
+                    { timeRemaining: 900, type: 'error' }]}
                   seconds={secondsLeftFromNow(expiry_date)}
                   onFinish={() => markAssessmentTimedOut(preview)}
                 />

@@ -110,9 +110,12 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
     }
   }, [assessmentLoading, resultsLoading])
 
-  const notificationMessage = (minutes: number, seconds: number) => (
-    I18n.t('campaign.timer.notification', { minutes, seconds })
-  )
+  const notificationMessage = (minutes: number) => {
+    if (minutes >= 60) {
+      const hours = Math.floor(minutes / 60)
+      return I18n.t('campaign.timer.notification_hours', { hours })
+    } return I18n.t('campaign.timer.notification_minutes', { minutes })
+  }
 
   return (
     <>

@@ -100,13 +100,16 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
 
   const enableBackButton = !isProctored() || proctoringEnabled
   const notificationDurations: Notification[] = [
-    { completionPercentage: 50, type: 'info' },
-    { completionPercentage: 75, type: 'warning' },
-    { completionPercentage: 90, type: 'error' },
+    { timeRemaining: 3600, type: 'info' },
+    { timeRemaining: 1800, type: 'warning' },
+    { timeRemaining: 900, type: 'error' },
   ]
-  const notificationMessage = (minutes: number, seconds: number) => (
-    I18n.t('campaign.timer.notification', { minutes, seconds })
-  )
+  const notificationMessage = (minutes: number) => {
+    if (minutes >= 60) {
+      const hours = Math.floor(minutes / 60)
+      return I18n.t('campaign.timer.notification_hours', { hours })
+    } return I18n.t('campaign.timer.notification_minutes', { minutes })
+  }
 
   return (
 
