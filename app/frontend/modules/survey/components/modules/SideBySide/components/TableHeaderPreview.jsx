@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import cs from 'classnames'
+import { Row, Col } from 'antd'
 import styles from '../styles.less'
 
 const TableHeaderPreview = ({ model, I18n }) => {
@@ -26,16 +27,16 @@ const TableHeaderPreview = ({ model, I18n }) => {
           <th key={i} className={cs(styles.column, { invisible: columnsData[i].isHeaderHidden })}>
             {!columnsData[i].isHeaderHidden
             && (
-            <div className={styles.answers}>
+            <Row wrap={false} className={styles.answers}>
               {_.times(columnsData[i].answers, j => (
-                <div className={styles.answer} key={j}>
+                <Col span={Math.round(24 / columnsData[i].answers)} className={styles.answer} key={j}>
                   <span>
                     {I18n.tQuestion(model, `answersTexts${i + 1}_${j + 1}`, { answer: j, group: i })
                       || moduleConfig.defaultAnswerText(j + 1)}
                   </span>
-                </div>
+                </Col>
               ))}
-            </div>
+            </Row>
             )
           }
           </th>
