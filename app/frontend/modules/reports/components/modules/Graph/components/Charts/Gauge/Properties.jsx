@@ -98,7 +98,7 @@ class Properties extends Component {
             label="Hide Label"
             checked={model.props.hideLabel}
             onChange={() => this.handleCheckControl('hideLabel')}
-            hints={['It will show rounded corners', 'It will show normal corners']}
+            hints={['It will hide label on the top of chart', 'It will show label on the top of chart']}
           />
         </div>
         <div className="margin-top-10">
@@ -106,7 +106,7 @@ class Properties extends Component {
             label="Hide Markers"
             checked={model.props.hideMarkers}
             onChange={() => this.handleCheckControl('hideMarkers')}
-            hints={['It will show markers from the chart', 'It will hide markers from the chart']}
+            hints={['It will hide markers from the chart', 'It will show markers on the chart']}
           />
         </div>
         <div className="margin-top-10">
@@ -114,7 +114,7 @@ class Properties extends Component {
             label="Percentage"
             checked={model.props.gaugePercentage}
             onChange={() => this.handleCheckControl('gaugePercentage')}
-            hints={['it will show value as score', ' It will show value as percentage score']}
+            hints={['It will show value as score', ' It will show value as percentage score']}
           />
         </div>
         <div className="margin-top-10">
@@ -122,8 +122,7 @@ class Properties extends Component {
             label="Rounded"
             checked={model.props.rounded}
             onChange={() => this.handleCheckControl('rounded')}
-            hints={model.props.rounded
-              ? [' It will hide label on the top of chart'] : ['It will show label on the top of chart']}
+            hints={[' It will show rounded corners', 'It will show normal corners']}
           />
         </div>
         <hr className={styles.divider} />
