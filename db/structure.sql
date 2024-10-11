@@ -3153,10 +3153,10 @@ CREATE VIEW public.normalized_factor_scores AS
  SELECT user_assessment_factor_scores.id,
     user_assessment_factor_scores.factor_id,
     user_assessment_factor_scores.user_assessment_id,
-    (user_assessment_factor_scores.scores ->> 'norm_score'::text) AS norm_score,
-    (user_assessment_factor_scores.scores ->> 'score'::text) AS score,
-    (user_assessment_factor_scores.scores ->> 'zscore'::text) AS zscore,
-    (user_assessment_factor_scores.scores ->> 'percentage'::text) AS percentage
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
    FROM public.user_assessment_factor_scores;
 
 
@@ -14072,6 +14072,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241011121150'),
 ('20241010122532'),
 ('20241008100312'),
 ('20241007113728'),
