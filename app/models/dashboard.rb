@@ -27,4 +27,8 @@ class Dashboard < ApplicationRecord
   def self.ransackable_scopes(_)
     %i[preview_available]
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name campaign_id]
+  end
 end

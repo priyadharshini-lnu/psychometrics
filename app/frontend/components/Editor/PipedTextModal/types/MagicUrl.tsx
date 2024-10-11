@@ -37,7 +37,16 @@ const MagicUrl = ({ field: { getValue }, insert }) => {
         <Form.Item
           name="campaignId"
           label={I18n.t('administration.piped_text_modal.campaign_id')}
-          rules={[{ required: true, message: I18n.t('validations.blank') }]}
+          rules={[
+            ({ getFieldValue }) => ({
+              validator (_, value) {
+                if (!value && getFieldValue('assessmentId')) {
+                  return Promise.reject(new Error(I18n.t('validations.blank')))
+                }
+                return Promise.resolve()
+              },
+            }),
+          ]}
         >
           <InputNumber style={{ width: 200 }} />
         </Form.Item>

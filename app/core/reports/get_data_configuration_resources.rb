@@ -24,12 +24,13 @@ module Reports
     end
 
     def factor_names
+      # "as factor_name" is required to avoid reading from translatoins
       Factor.
         joins("LEFT JOIN factors_aliases ON factors_aliases.factor_id = factors.id AND report_id = #{report.id}").
-        select('factors.id, COALESCE(factors_aliases.name, factors.name) as name').
+        select('factors.id, COALESCE(factors_aliases.name, factors.name) as factor_name').
         where(id: all_factor_ids).
         each_with_object({}) do |factor, acc|
-          acc[factor.id] = factor.name
+          acc[factor.id] = factor.factor_name
         end
     end
 

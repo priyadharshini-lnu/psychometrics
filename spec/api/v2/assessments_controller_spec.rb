@@ -217,6 +217,44 @@ describe Api::V2::Administration::AssessmentsController, swagger_doc: 'v2/swagge
     end
   end
 
+  path '/assessments/{assessment_id}/copy' do
+    let!(:client) { create(:tenancy) }
+    post 'Copy Assessment' do
+      operationId 'CopyAssessment'
+      description 'Copy a Assessment'
+      tags 'Assessments'
+      consumes 'application/vnd.api+json'
+      security [basic: []]
+      parameter name: :assessment_id, in: :path, type: :string
+      parameter name: :body, in: :body
+
+      let(:assessment_id) { assessment.id }
+
+      let(:body) do
+        {
+          data: {
+            type: 'assessments',
+            id: assessment.id.to_s,
+            attributes: {
+              name: 'Copy of First Assessment'
+            },
+            relationships: {
+              owner: { data: { type: 'clients', id: client.id } }
+            }
+          }
+        }
+      end
+
+      response '200', 'Assessment Copied' do
+        run_test! do |response|
+          assessment_response = JSON.parse(response.body)['data']
+          expect(assessment_response).to have_key('id')
+          expect(assessment_response).to have_attribute(:name).with_value('Copy of First Assessment')
+        end
+      end
+    end
+  end
+
   describe 'taggable API endpoints' do
     include_examples 'taggable API endpoints', Assessment
   end

@@ -15,6 +15,14 @@ class Assessor < ApplicationRecord
                        query: "%#{query}%")
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id campaign_id last_name user_id created_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[user]
+  end
+
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields]
   end

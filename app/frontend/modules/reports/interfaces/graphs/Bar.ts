@@ -33,4 +33,5 @@ interface Props {
   hideMarkers:boolean
   gaugePercentage: boolean
   rounded: boolean
+  reverse: boolean
 }

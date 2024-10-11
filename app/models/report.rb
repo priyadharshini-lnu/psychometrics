@@ -139,6 +139,14 @@ class Report < ApplicationRecord
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name provider]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[assessments]
+  end
+
   def assessment_not_applicable?
     data_only? || provider_custom_upload?
   end

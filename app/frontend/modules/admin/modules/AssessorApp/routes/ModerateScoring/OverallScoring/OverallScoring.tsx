@@ -1,5 +1,5 @@
 import cs from 'classnames'
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import styles from './styles.less'
 import { useResources } from '~/hooks/useResources'
@@ -10,7 +10,7 @@ import {
 
 const { I18n } = window
 
-export const OverallScoring = ({ header }) => {
+export const OverallScoring = ({ header, refresh }) => {
   let parsedCampaignId
   const { campaignId, userId } = useParams() as { campaignId?: string, userId: string }
   if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
@@ -45,10 +45,18 @@ export const OverallScoring = ({ header }) => {
     },
   )
 
+  const fetchData = useCallback(async () => {
+    await fetchFactorGroups()
+    await fetchFactorScoreValues()
+  }, [fetchFactorGroups, fetchFactorScoreValues])
+
   useEffect(() => {
-    fetchFactorGroups()
-    fetchFactorScoreValues()
+    fetchData()
   }, [])
+
+  useEffect(() => {
+    fetchData()
+  }, [refresh])
 
   const campaignFactorValues = factorValues.reduce((acc, value) => ({ ...acc, [value.campaignFactorId]: value }), {})
 
@@ -58,10 +66,13 @@ export const OverallScoring = ({ header }) => {
       <div className={styles.content}>
         <div className={styles.factors}>
           {factorGroups.map(group => (
-            <div className={styles.group}>
+            <div className={styles.group} key={group.id}>
               <div className={styles.groupTitle}>{group.name}</div>
               {group.campaignFactors.map(factor => (
-                <div className={cs(styles.factor, { [styles.string]: factor.outputType === OutputType.string })}>
+                <div
+                  className={cs(styles.factor, { [styles.string]: factor.outputType === OutputType.string })}
+                  key={factor.id}
+                >
                   <div className={styles.factorName}>{factor.name}</div>
                   <div className={styles.value}>
                     {factor.outputType === OutputType.string

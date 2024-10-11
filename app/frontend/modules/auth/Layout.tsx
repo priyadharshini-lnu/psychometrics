@@ -43,6 +43,11 @@ export const LayoutComponent = ({ config }) => {
     bgStyles.backgroundSize = config.background_size || 'cover'
   }
 
+  const overlayStyles: CSSProperties = {}
+  if (config.background_overlay) {
+    overlayStyles.backgroundImage = `url(${config.background_overlay})`
+  }
+
   return (
     <DefaultAntThemeWrapper
       theme={{
@@ -96,7 +101,9 @@ export const LayoutComponent = ({ config }) => {
           lg={{ span: 16 }}
           style={bgStyles}
           className={styles.background}
-        />
+        >
+          <div className={styles.overlay} style={overlayStyles} />
+        </Col>
       </Row>
     </DefaultAntThemeWrapper>
   )

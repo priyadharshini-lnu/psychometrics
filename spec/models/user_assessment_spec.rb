@@ -373,6 +373,10 @@ status: :in_progress)
       )
     end
 
+    let!(:factors_scoring) do
+      FactoryBot.create(:factors_scoring, factor: factor1, assessment: assessor_user_assessment.assessment)
+    end
+
     it 'saves campaign factor values' do
       perform_enqueued_jobs do
         assessor_user_assessment.update!(status: :completed, score_calculated: true)

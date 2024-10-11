@@ -6,7 +6,15 @@ module Api
 
     def save_assessor_scoring_factor_value
       audit! :save_assessor_scoring_factor_value, campaign, payload: params[:data][:attributes], campaign: campaign
-      ::CampaignFactors::SaveAssessorScoringFactorValue.call!(campaign, params[:data][:attributes], current_user)
+
+      ::CampaignFactors::SaveAssessorScoringFactorValue.call!(campaign, params[:data][:attributes], current_user) do
+        on(:ok) do
+          user = User.find_by(id: params[:user_id])
+
+          audit! :campaign_scoring_rescore, user, payload: {}, campaign: campaign
+          ::CampaignScoring::Rescore.call!(campaign, user)
+        end
+      end
 
       head :ok
     end

@@ -56,7 +56,7 @@ export const StartsInTimer: FC<Props> = ({ campaign, fetchCampaigns, scheduledFo
       {campaign.timing && (
         <Descriptions size="small">
           <Descriptions.Item label={I18n.t('campaigns.card.duration')}>
-            <TimerText text={duration()} />
+            <TimerText textType="none" text={duration()} />
           </Descriptions.Item>
         </Descriptions>
       )}

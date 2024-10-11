@@ -2,7 +2,7 @@
 
 module Auth
   class ProjectConfigSerializer < Panko::Serializer
-    attributes :id, :background_color, :login_box_position, :background, :saml_login_allowed,
+    attributes :id, :background_color, :login_box_position, :background, :background_overlay, :saml_login_allowed,
                :saml_enforced, :client_logo, :secondary_logo, :primary_color,
                :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number,
                :magic_link_enabled, :disallow_password_login
@@ -28,6 +28,10 @@ module Auth
 
     def background
       design_setting.background&.url || fallback_background
+    end
+
+    def background_overlay
+      design_setting.background_overlay&.url
     end
 
     def saml_login_allowed

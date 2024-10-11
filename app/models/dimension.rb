@@ -27,6 +27,10 @@ class Dimension < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name created_at updated_at]
+  end
+
   def log_attribute_for_delete
     slice(:owner_id, :name)
   end
@@ -40,8 +44,14 @@ class Dimension < ApplicationRecord
       ],
       use_dictionary: true
     ) do |original, copied|
-      original.class.uploaders.each_key do |image_column|
-        copied.public_send("#{image_column}=", original.public_send(image_column))
+      original.class.reflect_on_all_attachments.map(&:name).each do |attachment_name|
+        attachment = original.public_send(attachment_name)
+        next unless attachment.attached?
+
+        copied.copy_and_upload(
+          attachment,
+          attachment_name
+        )
       end
     end
 

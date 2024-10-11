@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react'
+import React, { useEffect, FC, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { DownOutlined } from '@ant-design/icons'
@@ -36,6 +36,7 @@ const { useToken } = theme
 export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
   campaigns, fetchCampaigns, activeCampaignId, extra,
 }) => {
+  const [openMenu, setOpenMenu] = useState(false)
   const { token } = useToken()
   const navigate = useNavigate()
   const activeCampaign = campaigns.find(campaign => campaign.id === activeCampaignId)
@@ -91,8 +92,9 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
       }}
       trigger={['click']}
       className={styles.campaignDropdown}
+      onOpenChange={setOpenMenu}
     >
-      <a onClick={e => e.preventDefault()}>
+      <Button className="ps-0 pe-0" type="link" aria-expanded={openMenu}>
         <Row wrap={false}>
           <Col>{activeCampaign && activeCampaignName}</Col>
           <Col
@@ -103,7 +105,7 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
           </Col>
           <Col className={styles.dropdownIcon}><DownOutlined /></Col>
         </Row>
-      </a>
+      </Button>
     </Dropdown>
   ) : <Col style={{ fontSize: '20px' }} className={styles.campaignDropdown}>{activeCampaign && activeCampaignName}</Col>
   return (

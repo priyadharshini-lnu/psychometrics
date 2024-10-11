@@ -57,6 +57,7 @@ const axisDisplayOptions: AxisDisplayOptions [] = [
   { label: I18n.t('reports.builder.graph.properties.hideYAxisLine'), propName: 'yAxisLinesHide' },
   { label: I18n.t('reports.builder.graph.properties.hideXAxisTitle'), propName: 'xAxisLabelHide' },
   { label: I18n.t('reports.builder.graph.properties.hideYAxisTitle'), propName: 'yAxisLabelHide' },
+  { label: I18n.t('reports.builder.graph.properties.reverse'), propName: 'reverse' },
 ]
 
 const Properties: React.FC<Props> = ({ model, questions }: Props) => {
@@ -104,7 +105,6 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
     model.props[type] = e.target.checked
     update()
   }
-
   if (!model.props.source || !model.getSourceType()) {
     return null
   }
@@ -144,7 +144,10 @@ const Properties: React.FC<Props> = ({ model, questions }: Props) => {
       <MaxValueOptions value={model.props.maxValue || ''} changeHandler={changeMaxValue} />
       <AxisOptions
         model={model}
-        options={axisDisplayOptions}
+        options={axisDisplayOptions.filter(
+          option => option.propName !== 'reverse'
+            || model.props.graphicalPosition === 'Horizontal',
+        )}
         changeHandler={checkboxHandler}
       />
       <hr className={styles.divider} />

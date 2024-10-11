@@ -2,12 +2,13 @@
 
 module Reports
   class CopyReport < BaseCommand
-    private_attr_reader :report, :user, :new_report_name
+    private_attr_reader :report, :owner_id, :user, :new_report_name
 
-    def initialize(report_id, user, new_report_name: nil)
+    def initialize(report_id, user, owner_id = nil, new_report_name: nil)
       @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
       @user = user
       @new_report_name = new_report_name
+      @owner_id = owner_id || @report.owner_id
     end
 
     def call
@@ -15,6 +16,7 @@ module Reports
         new_report = report.clone
         new_report.name = new_report_name if new_report_name
         new_report.created_by = user
+        new_report.owner_id = owner_id
         new_report.save!
 
         copy_pages(report, new_report)

@@ -8,4 +8,8 @@ class CampaignTemplate < ApplicationRecord
   belongs_to :assessment
   belongs_to :report
   belongs_to :owner, class_name: 'Client'
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name]
+  end
 end

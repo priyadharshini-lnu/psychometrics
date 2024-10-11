@@ -589,6 +589,9 @@ Rails.application.routes.draw do
         get :copy
         get :sidebar
         patch :toggle_status
+        get :translations
+        post :export_translations
+        post :import_translations
       end
       ### FACTORS
       resources :factors do
