@@ -2756,7 +2756,10 @@ en:
       modals:
         delete_records:
           cancelText: Cancel
+          content: Are you sure you want to delete the selected {{count}} records?
           okText: Yes, delete
+          successMessage: "{{count}} records were deleted successfully."
+          title: Delete {{count}} records
         remove_columns:
           cancelText: Cancel
           okText: Yes, delete
