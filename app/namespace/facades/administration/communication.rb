@@ -24,12 +24,18 @@ module Facades
         form.client_id.present?
       end
 
+      def project_level_email?
+        %w[magic_link_email].include?(form.kind)
+      end
+
       def show_campaigns?
+        return false if project_level_email?
+
         show_projects? && form.project_id.present? && !form.project.end_level?
       end
 
       def show_recipients?
-        return false if workshop_communication?
+        return false if workshop_communication? || project_level_email?
 
         form.end_level_id.present?
       end
@@ -43,7 +49,7 @@ module Facades
       end
 
       def show_delivery_rules?
-        return false if workshop_communication?
+        return false if workshop_communication? || project_level_email?
 
         form.kind.present? &&
           %w[new_users new_assignment].exclude?(form.recipients) &&

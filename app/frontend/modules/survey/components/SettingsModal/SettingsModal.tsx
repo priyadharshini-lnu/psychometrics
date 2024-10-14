@@ -57,6 +57,10 @@ const SettingsModalComponent = ({
     updateExtra({ ...extra, timer })
   }
 
+  const updateExtraOptions = (name, value) => {
+    updateExtra({ ...extra, [name]: value })
+  }
+
   const handleToggleSingleQuestionPage = () => {
     if (hasRandomizedBlockWithMultiQuestionsPerPage) {
       const updatedBlocks = _.map(blocks, (block) => {
@@ -151,6 +155,24 @@ const SettingsModalComponent = ({
             </Col>
           </>
         )}
+        <Col span={24}>
+          <Space>
+            <Switch
+              checked={extra.disable_navigation_back}
+              onChange={() => updateExtraOptions('disable_navigation_back', !extra.disable_navigation_back)}
+            />
+            {I18n.t('administration.assessments.settings.disable_nav_btn')}
+          </Space>
+        </Col>
+        <Col span={24}>
+          <Space>
+            <Switch
+              checked={extra.disable_continue_to_dashboard}
+              onChange={() => updateExtraOptions('disable_continue_to_dashboard', !extra.disable_continue_to_dashboard)}
+            />
+            {I18n.t('administration.assessments.settings.disable_continue_to_dashboard')}
+          </Space>
+        </Col>
       </Row>
     </Modal>
   )

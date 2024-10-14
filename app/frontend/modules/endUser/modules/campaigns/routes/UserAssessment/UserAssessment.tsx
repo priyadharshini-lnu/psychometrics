@@ -73,6 +73,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     enableProgress,
     type,
     started,
+    extraOptions,
   },
   preview,
   markAssessmentTimedOut,
@@ -98,7 +99,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     navigate(`/campaigns/${campaignId}`)
   }
 
-  const enableBackButton = !isProctored() || proctoringEnabled
+  const enableBackButton = !extraOptions.disable_navigation_back && (!isProctored() || proctoringEnabled)
   const notificationDurations: Notification[] = [
     { timeRemaining: 3600, type: 'info' },
     { timeRemaining: 1800, type: 'warning' },

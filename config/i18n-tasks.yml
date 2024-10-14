@@ -125,6 +125,7 @@ ignore_unused:
   - 'assessments.actions.pending_tasks*'
   - 'validations.title.*'
   - 'time.formats.*'
+  - 'administration.imports.errors.translation.*'
 
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:

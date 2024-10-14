@@ -181,6 +181,7 @@ export interface DefaultState {
   evaluationSessionId: string | null
   invalidSession: boolean
   answersSaved: boolean
+  extraOptions: {}
 }
 
 export interface MediaResponse {
@@ -254,6 +255,7 @@ export interface InitData {
   isAssessor: boolean
   linked_questions: {[key:string]: number[]}
   evaluationSessionId: string
+  extra: {}
   campaign_factors_list: CampaignFactor[]
 }
 export interface Result {

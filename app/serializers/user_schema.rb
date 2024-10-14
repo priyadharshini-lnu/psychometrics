@@ -10,8 +10,8 @@ class UserSchema < BaseSchema
       required(:last_name).filled(:str?)
       required(:email).filled(:str?)
       required(:photo).maybe(:str?)
-      required(:age).maybe(:int?)
-      required(:gender).maybe(:str?)
+      optional(:age).maybe(:int?)
+      optional(:gender).maybe(:str?)
     end
   end
 end

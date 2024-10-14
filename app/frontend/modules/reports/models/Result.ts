@@ -50,6 +50,12 @@ const INDIVIDUAL_FILTER = {
   conditions: [{ type: 'RelationShip', props: { predicate: 'Is', value: 'Self' } }],
 }
 
+const ASSESSOR_FILTER = {
+  id: 'assessor',
+  name: 'assessor',
+  conditions: [{ type: 'RelationShip', props: { predicate: 'Is', value: 'Assessor' } }],
+}
+
 export default class Result<ExternalScoring = unknown> {
   // name: string
   user: object
@@ -145,7 +151,8 @@ export default class Result<ExternalScoring = unknown> {
     return this
   }
 
-  addIndividualFilter = (filters: Filter[] | null): Filter[] => filters?.concat(new Filter(INDIVIDUAL_FILTER)) || []
+  addIndividualFilter = (filters: Filter[] | null): Filter[] => filters
+    ?.concat(new Filter(INDIVIDUAL_FILTER)).concat(new Filter(ASSESSOR_FILTER)) || []
 
   initResultsByFilter = (results: RawResult[], filter: Filter): void => {
     const rawResults = results.filter(data => filter.correctByFilter(data))
@@ -194,9 +201,10 @@ export default class Result<ExternalScoring = unknown> {
     factorType: TopFactorType,
     minValue?,
     maxValue?,
+    relationship?,
   ): TopFactor[] => GetTopFactors.run(
     from, to, factorIds, factorType, this.resultsByFilter,
-    this.dimensionId, minValue ?? -Infinity, maxValue ?? Infinity,
+    this.dimensionId, minValue ?? -Infinity, maxValue ?? Infinity, relationship,
   )
 
   getBranchData = (filterId: string | null, branchName: string): ResultScoring => {

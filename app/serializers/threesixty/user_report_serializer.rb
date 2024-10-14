@@ -3,10 +3,14 @@
 module Threesixty
   class UserReportSerializer < Panko::Serializer
     attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status,
-               :evalaution_completed_for_subject, :report_data, :permissions, :campaign, :module_overrides, :options
+               :evalaution_completed_for_subject, :report_data, :permissions, :campaign, :module_overrides, :options,
+               :user
 
-    has_one :user, serializer: UserSerializer
     has_one :report, serializer: ReportSerializer
+
+    def user
+      ::Reports::UserSerializer.new(context: { campaign: object.campaign }).serialize(object.user)
+    end
 
     def campaign_id
       object.campaign.threesixty_campaign&.id || object.campaign_id
@@ -39,7 +43,7 @@ module Threesixty
     end
 
     def current_option
-      context[:options]
+      context[:current_option]
     end
 
     def options

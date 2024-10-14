@@ -6,6 +6,7 @@ import { ResetPassword } from './ResetPassword'
 import { SetPassword } from './SetPassword'
 import { TwoFactorAuth } from './TwoFactorAuth'
 import { Invitation } from './Invitation'
+import { MagicLink } from './MagicLink'
 
 const routes = [
   {
@@ -95,6 +96,14 @@ const routes = [
   {
     path: '/users/invitation/*',
     main: Invitation,
+  },
+  {
+    path: '/users/magic_links/sign_in',
+    main: MagicLink,
+  },
+  {
+    path: '/users/magic_links',
+    main: MagicLink,
   },
 ]
 

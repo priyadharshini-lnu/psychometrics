@@ -73,13 +73,13 @@ export const WorkshopPage: FC = () => {
   const cancellationTooltip = (workshop: Workshop) => {
     const date = dayjs(workshop.startTime).subtract(workshop.cancellationLeadTime, 's')
     return (I18n.t('administration.scheduling.info.cancellation_tooltip',
-      { date: `${date.format('DD/MM/YYYY HH:mm')} ${date.format(' (z)')}` }))
+      { date: `${date.format('DD/MM/YYYY hh:mm A')} ${date.format(' (z)')}` }))
   }
 
   const schedulingTooltip = (workshop: Workshop) => {
     const date = dayjs(workshop.startTime).subtract(workshop.schedulingLeadTime, 's')
     return (I18n.t('administration.scheduling.info.scheduling_tooltip',
-      { date: `${date.format('DD/MM/YYYY HH:mm')} ${date.format(' (z)')}` }))
+      { date: `${date.format('DD/MM/YYYY hh:mm A')} ${date.format(' (z)')}` }))
   }
 
   if (!workshop) {
@@ -185,7 +185,7 @@ export const WorkshopPage: FC = () => {
           </Descriptions.Item>
           <Descriptions.Item
             span={2}
-            label={I18n.t('administration.scheduling.info.late_cancellation_and_rescheduling')}
+            label={I18n.t('administration.scheduling.info.late_cancellation_and_scheduling')}
           >
             {workshop.allowLateCancellationAndRescheduling
               ? I18n.t('administration.scheduling.info.allowed')

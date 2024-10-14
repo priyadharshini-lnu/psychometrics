@@ -11,6 +11,10 @@ module AdminJobs
 
       bulk_report = result[:ok]
 
+      if bulk_report&.dig(:error_messages)&.present?
+        return broadcast :ok, { error_messages: bulk_report[:error_messages] }
+      end
+
       if bulk_report
         content = [
           content_tag(:div, I18n.t('admin_jobs.bulk_download_reports.content.title')),

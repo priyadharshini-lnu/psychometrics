@@ -8,7 +8,10 @@ describe CampaignScoring::Calculate do
   let(:factor) { create(:factor, dimension: assessment.dimension) }
   let(:question) { create(:question, assessment: assessment) }
   let(:user) { create(:user) }
+  let(:assessor) { create(:assessor) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
+  let!(:assessor_relationship) { create(:relationship, name: Relationship::ASSESSOR, type: :global) }
+  let!(:self_relationship) { create(:relationship, name: Relationship::SELF, type: :global) }
 
   describe 'calculate assessment factor_type' do
     let!(:users_result) do
@@ -494,7 +497,7 @@ describe CampaignScoring::Calculate do
     expect(values[score_and_label].label).to eq('Javascript')
   end
 
-  it 'can use user answers from user assessment' do
+  it 'can use user answers of type from user assessment' do
     answers = {}
     answers[question.id.to_s] = { 'dirty' => false,
                                   'answers' => [{ 'index' => 0, 'value' => 2.2 },
@@ -528,6 +531,34 @@ describe CampaignScoring::Calculate do
     expect(values[skill_score_from_json_path].value).to eq(2.2)
   end
 
+  it 'can use user answers of type from assessor assessment' do
+    answers = {}
+    answers[question.id.to_s] = { 'dirty' => false,
+                                  'answers' => [{ 'index' => 0, 'value' => 2.2 },
+                                                { 'index' => 1, 'value' => 'Javascript' }] }
+
+    create(
+      :users_result, campaign: campaign, assessment: assessment, relationship: assessor_relationship,
+      answers: answers, subject: user, evaluator: assessor.user, status: :completed, score_calculated: true
+    )
+
+    skill_score = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula', formula: "return assessment.form_answer(#{assessment.id}, #{question.id}, 0, 'Assessor')"
+    )
+
+    skill_score_from_json_path = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula',
+      formula: "return assessment.answer(#{assessment.id},  \"$.#{question.id}['answers'][0].value\", 'Assessor')"
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[skill_score].value).to eq(2.2)
+    expect(values[skill_score_from_json_path].value).to eq(2.2)
+  end
+
   it 'can fetch user feedback results from user assessment' do
     answers = {}
     answers[question.id.to_s] = { 'dirty' => false,
@@ -557,6 +588,30 @@ describe CampaignScoring::Calculate do
 
     expect(values[feedback_question1].value).to eq('Good')
     expect(values[feedback_question2].value).to eq(nil)
+  end
+
+  it 'can fetch user feedback results from assessor assessment' do
+    answers = {}
+    answers[question.id.to_s] = { 'dirty' => false,
+                                  'answers' => [
+                                    { 'code' => 'code1', 'value' => 'Good' },
+                                    { 'code' => 'code2' }
+                                  ] }
+
+    create(
+      :users_result, campaign: campaign, assessment: assessment, relationship: assessor_relationship,
+      answers: answers, subject: user, evaluator: assessor.user, status: :completed, score_calculated: true
+    )
+
+    feedback_question1 = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula', output_type: 'string',
+      formula: "return assessment.campaign_feedback_answer(#{assessment.id}, #{question.id}, 'code1', 'Assessor')"
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[feedback_question1].value).to eq('Good')
   end
 
   it 'skip calculation of external score factor type' do

@@ -1355,8 +1355,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    default_idp_template_id bigint,
-    practice_campaign boolean DEFAULT false
+    practice_campaign boolean DEFAULT false,
+    default_idp_template_id bigint
 );
 
 
@@ -1567,7 +1567,8 @@ CREATE TABLE public.communication_emails (
     sent_at timestamp without time zone,
     campaign_user_id bigint,
     workshop_id bigint,
-    workshop_invite_id bigint
+    workshop_invite_id bigint,
+    user_id bigint
 );
 
 
@@ -1740,7 +1741,9 @@ CREATE TABLE public.dashboards (
     refresh_interval integer DEFAULT 15,
     image character varying,
     last_refreshed_at timestamp without time zone,
-    refresh_tried_at timestamp without time zone
+    refresh_tried_at timestamp without time zone,
+    dashboard_type integer DEFAULT 0 NOT NULL,
+    project_path character varying
 );
 
 
@@ -3129,6 +3132,35 @@ ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_crede
 
 
 --
+-- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_assessment_factor_scores (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    scores jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_factor_scores AS
+ SELECT user_assessment_factor_scores.id,
+    user_assessment_factor_scores.factor_id,
+    user_assessment_factor_scores.user_assessment_id,
+    ((user_assessment_factor_scores.scores ->> 'norm_score'::text))::double precision AS norm_score,
+    ((user_assessment_factor_scores.scores ->> 'score'::text))::double precision AS score,
+    ((user_assessment_factor_scores.scores ->> 'zscore'::text))::double precision AS zscore,
+    ((user_assessment_factor_scores.scores ->> 'percentage'::text))::double precision AS percentage
+   FROM public.user_assessment_factor_scores;
+
+
+--
 -- Name: norms; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4342,7 +4374,9 @@ CREATE TABLE public.security_settings (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     tfa_enabled boolean DEFAULT false,
-    magic_link_expiry_in_seconds integer DEFAULT 604800 NOT NULL
+    magic_link_expiry_in_seconds integer DEFAULT 604800 NOT NULL,
+    magic_link_enabled boolean DEFAULT false,
+    disallow_password_login boolean DEFAULT false
 );
 
 
@@ -5360,20 +5394,6 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 
 --
--- Name: user_assessment_factor_scores; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_assessment_factor_scores (
-    id bigint NOT NULL,
-    user_assessment_id bigint NOT NULL,
-    factor_id bigint NOT NULL,
-    scores jsonb DEFAULT '{}'::jsonb,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
 -- Name: user_assessment_factor_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -5903,9 +5923,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
-    manager_id bigint,
     mobile_number character varying,
-    mobile_verified boolean DEFAULT false
+    mobile_verified boolean DEFAULT false,
+    manager_id bigint
 );
 
 
@@ -14052,7 +14072,12 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241011121150'),
+('20241010122532'),
 ('20241008100312'),
+('20241007113728'),
+('20240920142940'),
+('20240920083324'),
 ('20240912114619'),
 ('20240911121555'),
 ('20240910083932'),

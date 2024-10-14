@@ -11,9 +11,12 @@ class CommunicationEmailMailer < ApplicationMailer
     data[:user_url] = accept_invitation_url
     data[:user_link_qrcode] = accept_invitation_qrcode
     campaign_user = @communication_email.campaign_user
-    time_zone = campaign_user.campaign.time_zone
-    data[:schedule_start_date] = format_date(campaign_user&.schedule_start_date, time_zone)
-    data[:schedule_end_date] = format_date(campaign_user&.schedule_end_date, time_zone)
+    if campaign_user
+      time_zone = campaign_user.campaign.time_zone
+      data[:schedule_start_date] = format_date(campaign_user&.schedule_start_date, time_zone)
+      data[:schedule_end_date] = format_date(campaign_user&.schedule_end_date, time_zone)
+    end
+
     @body = Mustache.render(replace_new_piped_texts, data)
     subject = Mustache.render(@communication_email.communication.subject, data.slice(:first_name, :last_name))
 
@@ -37,7 +40,7 @@ class CommunicationEmailMailer < ApplicationMailer
       {
         workshop: @communication_email.workshop,
         workshop_invite: @communication_email.workshop_invite,
-        user: @communication_email.user
+        user: @communication_email.user || @communication_email.campaign_user&.user
       }.compact
     )
   end
@@ -48,16 +51,8 @@ class CommunicationEmailMailer < ApplicationMailer
     I18n.l date.in_time_zone(time_zone || Time.zone.name), format: :with_time_zone
   end
 
-  def entity
-    @entity ||= if @communication_email.membership_id
-                  Membership.join_user.find(@communication_email.membership_id)
-                else
-                  @communication_email.campaign_user
-                end
-  end
-
   def recipient
-    entity.user
+    @communication_email.user || @communication_email.campaign_user&.user
   end
 
   def accept_invitation_link
@@ -67,12 +62,12 @@ class CommunicationEmailMailer < ApplicationMailer
   def accept_invitation_url
     @accept_invitation_url ||=
       if recipient.invitation_accepted?
-        options = { domain: Settings.domain, subdomain: entity.project.subdomain }
+        options = { domain: Settings.domain, subdomain: recipient.project.subdomain }
         url_for([:root, options])
       else
         token = create_raw_invitation_token
         options = { id: @recipient_id, invitation_token: token, domain: Settings.domain,
-                    subdomain: entity.project.subdomain }
+                    subdomain: recipient.project.subdomain }
         url_for([:accept, recipient.role_scope, :invitation, options])
       end
   end

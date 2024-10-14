@@ -1,10 +1,10 @@
-import { denormalize } from 'normalizr'
 import { createSlice } from '@reduxjs/toolkit'
 import _ from 'lodash'
+import { denormalize } from 'normalizr'
 import { getIn } from '~/utils/immutable'
-import schema from '~/modules/survey/store/schema'
 import FlowElement from '~/modules/survey/models/FlowElement'
 import Flow from '~/modules/survey/models/Flow'
+import schema from '~/modules/survey/store/schema'
 
 export const INIT = 'survey/assessment/INIT'
 
@@ -107,7 +107,8 @@ const flow = createSlice({
   extraReducers: (builder) => {
     builder.addCase(INIT, (state, { data }) => {
       const { flow } = denormalize(data.result, schema, data.entities)
-      state.elements = _.map((flow?.elements || { elements: [] }).elements, (el, i) => new FlowElement(el, null, i))
+      const elements = flow?.elements || []
+      state.elements = _.map(elements, (el, i) => new FlowElement(el, null, i))
     })
   },
 })

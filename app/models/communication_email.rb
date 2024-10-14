@@ -4,10 +4,11 @@ class CommunicationEmail < ApplicationRecord
   belongs_to :membership, inverse_of: :communication_emails
   belongs_to :communication, inverse_of: :emails
   belongs_to :campaign_user
-  has_one :user, through: :campaign_user
+  belongs_to :user
   belongs_to :workshop
   belongs_to :workshop_invite
 
+  before_create :set_user_id
   after_commit :delivery_email, on: :create
 
   # I'm not certain this scope is used anymore
@@ -31,6 +32,10 @@ class CommunicationEmail < ApplicationRecord
   def params_for_set_job
     params = need_to_pass_wait_until? ? { wait_until: communication.delivery_at } : {}
     params.merge!({ queue: 'mailers_low_priority' })
+  end
+
+  def set_user_id
+    self.user_id = campaign_user.user_id if campaign_user_id.present? && user_id.blank?
   end
 
   def delivery_email

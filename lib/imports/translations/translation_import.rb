@@ -72,10 +72,18 @@ module Imports
       # rubocop:enable all
 
       def open_spreadsheet
-        case File.extname(file.original_filename)
-          when '.csv' then Roo::CSV.new(file.path)
-          when '.xlsx' then ::Roo::Excelx.new(file.path)
-          else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
+        if file.is_a?(ActionDispatch::Http::UploadedFile)
+          file_name = file.original_filename
+          file_location = file.path
+        else
+          file_name = file.filename.to_s
+          file_location = file.url
+        end
+
+        case File.extname(file_name)
+          when '.csv' then Roo::CSV.new(file_location)
+          when '.xlsx' then ::Roo::Excelx.new(file_location)
+          else raise t('administration.imports.errors.unknown_type', filename: file_name)
         end
       end
 

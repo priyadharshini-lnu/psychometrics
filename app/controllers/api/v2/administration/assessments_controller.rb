@@ -99,6 +99,13 @@ module Api
       jsonapi_render json: resource
     end
 
+    def external_scores
+      AdminJob.call(:super_admin_external_assessment_export, { assessment_id: params[:assessment_id].to_i },
+                    current_user)
+
+      jsonapi_render json: resource
+    end
+
     private
 
     def resource

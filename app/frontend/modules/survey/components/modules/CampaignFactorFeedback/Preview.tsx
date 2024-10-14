@@ -68,7 +68,10 @@ const PreviewComponent:FC<Props> = ({
                     <Space size="large" align="start" className="w-100" direction="horizontal">
                       <Space size={0} className="w-100" direction="vertical">
                         <label>
-                          {getSkillLabelText(model.props.skillLabel || 'Skill {{index}}', { index: index + 1 })}
+                          <SafeHTML
+                            html={getSkillLabelText(model.props.skillLabel || 'Skill {{index}}', { index: index + 1 })}
+                            config="adminRichText"
+                          />
                           {index >= +model.props.minFactors && !readOnly
                             ? (
                               <Button
@@ -82,8 +85,13 @@ const PreviewComponent:FC<Props> = ({
                             : null}
                         </label>
                         <Form.Item
-                          label={model.props.factorLabel
-                            || I18n.t('frontend.questions.campaign_factor_feedback.skill_factor')}
+                          label={(
+                            <SafeHTML
+                              html={model.props.factorLabel
+                              || I18n.t('frontend.questions.campaign_factor_feedback.skill_factor')}
+                              config="adminRichText"
+                            />
+                          )}
                           className="mb-2"
                           name={[field.name, 'code']}
                         >
@@ -95,8 +103,13 @@ const PreviewComponent:FC<Props> = ({
                           />
                         </Form.Item>
                         <Form.Item
-                          label={model.props.feedbackLabel
-                            || I18n.t('frontend.questions.campaign_factor_feedback.feedback')}
+                          label={(
+                            <SafeHTML
+                              html={model.props.feedbackLabel
+                                || I18n.t('frontend.questions.campaign_factor_feedback.feedback')}
+                              config="adminRichText"
+                            />
+                        )}
                           name={[field.name, 'value']}
                         >
                           <Input.TextArea

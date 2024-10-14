@@ -357,6 +357,8 @@ en:
       restore:
         successfully: Assessment %{name} was restored successfully.
       settings:
+        disable_continue_to_dashboard: Disable "Continue to Dashboard" Button
+        disable_nav_btn: Disable Navigation Back Button
         enable_back: Enable back button
         enable_progress: Enable progress bar
         enable_single_question_page: Show one question per page
@@ -617,6 +619,7 @@ en:
         subject: Download bulk reports
       new:
         header: Bulk Download
+      reports_unavailable: At the moment, no reports are available to download. Please confirm that the reports you want to download are available.
     cable:
       notification:
         assessment_factors: Factors are fetched
@@ -1327,6 +1330,7 @@ en:
           specific_datetime: Send at
         invitation: Invitation
         kind: Communication Types
+        magic_link_email: Magic Link Email
         new_assignment: New Assignment
         new_users: New Users
         other: Other
@@ -1631,6 +1635,10 @@ en:
       base:
         form:
           import: Import
+      errors:
+        translation:
+          error: "[Translation %{id}] %{error}"
+          invalid_format: Invalid File format
       form:
         description: Refer to the Export functionality to extract a template that can be used to Import here.
         import: Import
@@ -2420,7 +2428,7 @@ en:
         schedule_time: Schedule Time
       add_subject: Add subject
       assessment_center_form:
-        allow_late_cancellation_and_rescheduling: Allow late cancellation and rescheduling
+        allow_late_cancellation_and_scheduling: Allow late cancellation and scheduling
         assessor_ids_label: Assessors
         back: Back
         basic_info_panel:
@@ -2503,7 +2511,7 @@ en:
         date: Date & Time
         duration: Duration
         join_meeting: Join Room
-        late_cancellation_and_rescheduling: Late cancellation and rescheduling
+        late_cancellation_and_scheduling: Late cancellation and scheduling
         link: Meeting link
         managers: Center Managers
         none: None
@@ -2666,6 +2674,8 @@ en:
       attempts_to_lock: Attempts to lock
       auto_unlock_time: Auto unlock time
       disable_password_reuse: Disable password reuse
+      disallow_password_login: Disallow password login
+      enable_login_with_magic_link: Enable Login with magic link
       enforce_password_policy: Enforce password policy at next sign-in
       enforce_strong: Enforce strong password
       expiration: Password expiration
@@ -2746,7 +2756,10 @@ en:
       modals:
         delete_records:
           cancelText: Cancel
+          content: Are you sure you want to delete the selected {{count}} records?
           okText: Yes, delete
+          successMessage: "{{count}} records were deleted successfully."
+          title: Delete {{count}} records
         remove_columns:
           cancelText: Cancel
           okText: Yes, delete

@@ -10,6 +10,7 @@ interface UserAttributes {
   reset_password_token?: string
   sms_invite_code?: string
   invitation_token?: string
+  success?: boolean
 }
 
 type State = UserAttributes

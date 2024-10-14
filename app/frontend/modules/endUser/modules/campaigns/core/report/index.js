@@ -52,6 +52,7 @@ export const defaultState = {
 const HANDLERS = {
   [FETCH_REPORTS]: (state, action) => ({
     ...humps.camelizeKeys(action.response),
+    user: action.response.user,
     results: action.response.results,
     report: action.response.report,
     loaded: true,
