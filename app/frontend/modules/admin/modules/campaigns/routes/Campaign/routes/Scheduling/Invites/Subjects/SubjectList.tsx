@@ -90,7 +90,6 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal }) => {
               const bookedAt = dayjs(subject.bookedAt)
               const assessmentCenterBooked = dayjs(subject.subjectWorkshopDateTime)
               if ((subject.status !== 'accepted'
-                      && subject.status !== 'cancelled'
                       && subject.status !== 'rescheduled'
               ) || (!bookedAt && !assessmentCenterBooked)) {
                 return (

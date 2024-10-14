@@ -13,20 +13,29 @@ class ConditionList extends Component {
   }
 
   addCondition = () => {
-    const { model } = this.props
-    model.props.conditions.push(new FlowCondition({ prefix: 'And' }))
-    this.forceUpdate()
+    const { model, onUpdate } = this.props
+    onUpdate({
+      ...model,
+      props: { ...model.props, conditions: [...model.props.conditions, new FlowCondition({ prefix: 'And' })] },
+    })
   }
 
   removeCondition = (condition) => {
-    const { model, onRemove } = this.props
-    _.pull(model.props.conditions, condition)
-    if (model.props.conditions.length === 1) {
-      model.props.conditions[0].prefix = null
+    const { model, onRemove, onUpdate } = this.props
+    const newConditions = model.props.conditions.filter(c => c !== condition)
+
+    if (newConditions.length === 1) {
+      newConditions[0] = { ...newConditions[0], prefix: null }
     }
-    if (model.props.conditions.length === 0) {
+
+    onUpdate({
+      ...model,
+      props: { ...model.props, conditions: newConditions },
+    })
+    if (newConditions.length === 0) {
       onRemove()
     }
+
     this.forceUpdate()
   }
 

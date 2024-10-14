@@ -25,8 +25,8 @@ module CampaignUsers
       ranking_sql = if rank_column
                       <<~SQL.squish
                         CASE
-                          WHEN ct."#{rank_column}" IS NOT NULL THEN
-                            RANK() OVER (ORDER BY ct."#{rank_column}"::float DESC NULLS LAST)
+                          WHEN (ct."#{rank_column}"::json->>'value') IS NOT NULL THEN
+                            RANK() OVER (ORDER BY (ct."#{rank_column}"::json->>'value')::float DESC NULLS LAST)
                         END as stack_rank,
                       SQL
                     else

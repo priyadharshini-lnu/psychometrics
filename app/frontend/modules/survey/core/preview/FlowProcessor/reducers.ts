@@ -95,6 +95,7 @@ const defaultState: State = {
   evaluationSessionId: null,
   invalidSession: false,
   answersSaved: false,
+  extraOptions: {},
 }
 
 const HANDLERS = {
@@ -185,6 +186,7 @@ const HANDLERS = {
       otherPendingAssessmentCount: result.other_pending_assessments_count,
       linkedQuestions: data.linked_questions,
       evaluationSessionId: data.evaluationSessionId || result.evaluation_session_id,
+      extraOptions: data.extra || {},
       campaignFactorList: data.campaign_factors_list || [],
     }
   },

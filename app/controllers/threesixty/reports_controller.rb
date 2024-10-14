@@ -16,6 +16,7 @@ module Threesixty
       end
     end
 
+    # rubocop:disable Metrics/BlockLength
     def show
       authorize @user_report
       @user_report.threesixty_subject.evaluation_status_completed!
@@ -27,10 +28,16 @@ module Threesixty
             subject: @user_report.user,
             threesixty_campaign: @campaign
           }
-          render json: @user_report, report: @campaign.report,
-                 options: @campaign.option, results: results,
-                 piped_text_context: piped_text_context, threesixty_campaign: @campaign,
-                 include: '**'
+          render json: ::Threesixty::UserReportSerializer.new(
+            context: {
+              report: @user_report.report,
+              results: results,
+              piped_text_context: piped_text_context,
+              current_option: @campaign.option,
+              current_user: current_user,
+              threesixty_campaign: @campaign
+            }
+          ).serialize(@user_report)
         end
         format.pdf do
           @data = ::Reports::PrepareDataForReport.call!(
@@ -46,6 +53,7 @@ module Threesixty
         end
       end
     end
+    # rubocop:enable Metrics/BlockLength
 
     def update_status
       authorize @user_report
@@ -73,7 +81,7 @@ module Threesixty
           message: I18n.t('jobs.threesixty.reports.download.message'),
           description: I18n.t(
             'jobs.threesixty.reports.download.description',
-            url: @user_report.pdf.url
+            url: @user_report.pdf_download_url
           )
         }
       else

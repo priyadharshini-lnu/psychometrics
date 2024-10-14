@@ -58,6 +58,10 @@ module Api
       def export_normed_results?
         @user.is?(:superadmin)
       end
+
+      def external_scores?
+        @user.is?(:superadmin) && record.external?
+      end
     end
   end
 end

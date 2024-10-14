@@ -7,6 +7,8 @@ import {
   Radio,
   Checkbox,
   Select,
+  Row,
+  Col,
 } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
@@ -157,7 +159,8 @@ export class TableBodyPreview extends Component<Props> {
                     key={scalePoint}
                     className={`${styles.column} ps-2 pe-2 pt-2 pb-2`}
                   >
-                    <div
+                    <Row
+                      wrap={false}
                       className={`${styles.inputs} ${
                         isDropdown ? styles.dropdowns : ''
                       }`}
@@ -178,7 +181,7 @@ export class TableBodyPreview extends Component<Props> {
                         Array.from(
                           { length: data[scalePoint].answers },
                           (_, index) => (
-                            <div className={styles.input} key={index}>
+                            <Col span={Math.round(24 / data[scalePoint].answers)} className={styles.input} key={index}>
                               <InputTypeFields
                                 columnData={data[scalePoint]}
                                 answers={model.result.answers}
@@ -188,11 +191,11 @@ export class TableBodyPreview extends Component<Props> {
                                 readOnly={readOnly}
                                 onChange={this.handleAnswerChange}
                               />
-                            </div>
+                            </Col>
                           ),
                         )
                       )}
-                    </div>
+                    </Row>
                   </td>
                 )
               })}

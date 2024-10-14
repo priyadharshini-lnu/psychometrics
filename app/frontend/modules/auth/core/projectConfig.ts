@@ -20,6 +20,8 @@ interface State {
   success_color?: string,
   info_color?: string,
   background_size: BackgroundSize,
+  magic_link_enabled: boolean,
+  disallow_password_login: boolean,
 }
 
 export const defaultState: State = {
@@ -32,6 +34,8 @@ export const defaultState: State = {
   require_mobile_number: false,
   saml_enforced: false,
   background_size: 'cover',
+  magic_link_enabled: false,
+  disallow_password_login: false,
 }
 
 export default createReducer({}, defaultState)

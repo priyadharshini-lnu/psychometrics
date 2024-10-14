@@ -33,7 +33,7 @@ test('general state', () => {
 test('results by filter map', () => {
     const res = new Result(190)
     res.init(results, user, filters)
-    expect(_.keys(res.resultsByFilter)).toStrictEqual([FILTER_MANAGERS, OTHER, IS_NOT_PEER, 'individual'])
+    expect(_.keys(res.resultsByFilter)).toStrictEqual([FILTER_MANAGERS, OTHER, IS_NOT_PEER, 'individual', 'assessor'])
     expect(res.resultsByFilter[OTHER].rawResults.length).toStrictEqual(1)
     expect(res.resultsByFilter['individual'].rawResults.length).toStrictEqual(1)
     expect(res.resultsByFilter[IS_NOT_PEER].rawResults.length).toStrictEqual(2)

@@ -47,7 +47,8 @@ module UsersResults
         norm_id = user_assessment.applicable_norm_id || user_assessment_form_attributes[:norm_id]
         user_assessment.update!(completed_at: Time.zone.now, norm_id: norm_id)
 
-        users_result.answers = ::UsersResults::RemoveDirtyResults.call!(users_result.answers)
+        users_result.update!(answers: ::UsersResults::RemoveDirtyResults.call!(users_result.answers))
+
         ::UsersResults::SaveScoringWithCallbacksJob.perform_later(users_result, current_user)
         if threesixty_campaign
           user_assessment_attrs = { evaluator_nomination_status: :completed }
@@ -57,6 +58,7 @@ module UsersResults
           user_assessment.update!(user_assessment_attrs)
         end
       end
+
       if user_assessment.deemed_completed?
         user_assessment.update!(completed_at: Time.zone.now)
         users_result.progress = 100

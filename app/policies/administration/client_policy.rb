@@ -73,7 +73,7 @@ module Administration
       return true if @user.is?(:superadmin)
       return true if @user.is?(:client_admin) && @user.client_ids.include?(record.client.id)
 
-      @user.is?(:project_admin) && @user.client_ids.include?(record.id)
+      @user.is?(:project_admin, :campaign_admin) && @user.client_ids.include?(record.id)
     end
 
     def show?

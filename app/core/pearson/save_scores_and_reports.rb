@@ -30,7 +30,7 @@ module Pearson
         item['languageCode']&.split('-')&.first == user_report.report.default_language
       end
       report_item ||= report_items.first
-      user_report.attach_pdf!(report_item['url']) if report_item
+      user_report.attach_pdf!(report_item['url'], user_report.report_name_for_download) if report_item
 
       broadcast :ok
     end

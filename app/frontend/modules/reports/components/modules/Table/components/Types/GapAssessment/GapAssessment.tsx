@@ -1,12 +1,13 @@
-import { FC, lazy, Suspense } from 'react'
-import { Empty, Spin } from 'antd'
+import { FC } from 'react'
+import { Empty } from 'antd'
+
+import FactorType from './types/Factor'
+import QuestionType from './types/Question'
 
 import { PropertiesModel, GapType } from '~/modules/reports/interfaces/tables/Gap'
 
 import AppStore from '~/modules/reports/store/AppStore'
 
-const FactorType = lazy(() => import('./types/Factor'))
-const QuestionType = lazy(() => import('./types/Question'))
 
 interface Props {
   model: PropertiesModel
@@ -39,33 +40,31 @@ export const GapAssessment: FC<Props> = ({ model }) => {
 
   return (
     <div>
-      <Suspense fallback={<Spin />}>
-        {sourceType === 'Factor' && (
-          <FactorType
-            assessment_id={assessment_id}
-            gapType={gapType}
-            filters={[firstFilter, secondFilter]}
-            factorIds={factorIds}
-            hideValues={hideValues}
-            noOfItems={noOfItems}
-            gapCutoff={gapCutoff}
-            precision={precision}
-            showAllFactors={allFactors}
-          />
-        )}
-        {sourceType === 'Question' && (
-          <QuestionType
-            assessment_id={assessment_id}
-            gapType={gapType}
-            filters={[firstFilter, secondFilter]}
-            questionsChoices={questionsChoices}
-            hideValues={hideValues}
-            noOfItems={noOfItems}
-            gapCutoff={gapCutoff}
-            precision={precision}
-          />
-        )}
-      </Suspense>
+      {sourceType === 'Factor' && (
+        <FactorType
+          assessment_id={assessment_id}
+          gapType={gapType}
+          filters={[firstFilter, secondFilter]}
+          factorIds={factorIds}
+          hideValues={hideValues}
+          noOfItems={noOfItems}
+          gapCutoff={gapCutoff}
+          precision={precision}
+          showAllFactors={allFactors}
+        />
+      )}
+      {sourceType === 'Question' && (
+        <QuestionType
+          assessment_id={assessment_id}
+          gapType={gapType}
+          filters={[firstFilter, secondFilter]}
+          questionsChoices={questionsChoices}
+          hideValues={hideValues}
+          noOfItems={noOfItems}
+          gapCutoff={gapCutoff}
+          precision={precision}
+        />
+      )}
     </div>
   )
 }

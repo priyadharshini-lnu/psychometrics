@@ -177,7 +177,7 @@ class FactorsTable extends Component {
   }
 
   prepareRows () {
-    const { module, module: { props } } = this.props
+    const { module, assessments, module: { props } } = this.props
     const sourceFactors = _.get(props, ['source', 'factors'], [])
     const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
     const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
@@ -185,8 +185,11 @@ class FactorsTable extends Component {
       .map(f => f.id)
     if (ResultStore.realResults) {
       if (props.mode === 'topFactors') {
+        const { category } = assessments[module.assessment_id]
+        const relationship = category === 'assessor_form' ? 'assessor' : 'individual'
         this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(
-          props.minPosition, props.maxPosition, factorIds, TopFactorType.Any, scoreRangeMin, scoreRangeMax,
+          props.minPosition, props.maxPosition, factorIds,
+          TopFactorType.Any, scoreRangeMin, scoreRangeMax, relationship,
         )
       } else {
         const factorData = ResultStore.results[module.assessment_id].getTopFactors(0, factorIds.length, factorIds, TopFactorType.Any)

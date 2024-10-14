@@ -16,6 +16,8 @@ module SecuritySettings
     attribute :send_unlock_email, Boolean
     attribute :tfa_enabled, Boolean
     attribute :magic_link_expiry_in_seconds, Integer
+    attribute :magic_link_enabled, Boolean
+    attribute :disallow_password_login, Boolean
 
     validates :min_password_length, numericality: { greater_than_or_equal_to: 8, less_than_or_equal_to: 128 }
     validates :magic_link_expiry_in_seconds, presence: true

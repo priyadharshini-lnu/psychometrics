@@ -228,7 +228,7 @@ export const BasicInfoForm: React.FC<Props> = ({ initialValues, onNext, onCancel
             </Col>
           </Row>
           <Form.Item
-            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_rescheduling')}
+            label={I18n.t('administration.scheduling.assessment_center_form.allow_late_cancellation_and_scheduling')}
             {...fieldLayout}
             name="allow_late_cancellation_and_rescheduling"
             rules={[{ required: true }]}

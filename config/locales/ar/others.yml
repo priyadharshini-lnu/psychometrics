@@ -102,11 +102,17 @@ ar:
       description: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
       forgot_password: هل نسيت كلمة السر؟
       login_btn: تسجيل الدخول
+      magic_link_btn: أرسل لي رابط تسجيل الدخول عبر البريد الإلكتروني
       not_member: لم تسجل؟
       or: أو
       sso_btn: تسجيل الدخول باستخدام الدخول الموحد
       title: مرحباً
     logout: تسجيل خروج
+    magic_link:
+      description: يرجى إدخال عنوان بريدك الإلكتروني لتلقي رابط تسجيل الدخول
+      login_with_password: تسجيل الدخول باستخدام كلمة المرور
+      send_me_login_link: أرسل لي رابط تسجيل الدخول
+      success: لقد أرسلنا لك رابط تسجيل الدخول إلى '%{email}'. انقر على الرابط في البريد الإلكتروني الذي تلقيته لتسجيل الدخول
     mobile_number: رقم الجوال
     new_password: كلمة السر الجديدة
     otp:
@@ -484,6 +490,14 @@ ar:
         requested_cancellation: لقد تم طلب الإلغاء
         requested_rescheduling: لقد تم طلب إعادة الجدولة
     'yes': نعم
+  mailer:
+    magic_link:
+      body:
+        dear: عزيزي %{name}،
+        greetings: تحية طيبة وبعد،
+        instructions: انقر على الرابط أدناه لتسجيل الدخول إلى Lighthouse.
+        signin_link: رابط تسجيل الدخول
+      subject: رابط تسجيل الدخول إلى Lighthouse
   navigation:
     logout: تسجيل خروج
   profile:

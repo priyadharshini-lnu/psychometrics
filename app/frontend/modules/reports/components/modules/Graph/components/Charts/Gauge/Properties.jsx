@@ -1,8 +1,9 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
-import { ColorPicker } from '~/glint'
+import { ColorPicker, HintCheckbox } from '~/glint'
 import ChoicesInput from '~/modules/reports/components/ChoicesInput'
+
 
 class Properties extends Component {
   static propTypes = {
@@ -33,19 +34,39 @@ class Properties extends Component {
     this.update()
   }
 
+  changeWidthValue = (val) => {
+    const { model } = this.props
+    model.props.gaugeWidth = val
+    this.update()
+  }
+
+  changeBorderValue = (val) => {
+    const { model } = this.props
+    model.props.gaugeBorder = val
+    this.update()
+  }
+
   changeColorProperty = (propertyName, color) => {
     const { model } = this.props
     model.props[propertyName] = color
     this.update()
   }
 
+  handleCheckControl = (type) => {
+    const { model } = this.props
+    model.props[type] = !model.props[type]
+    model.update()
+  }
+
   render () {
     const { model } = this.props
     const {
-      speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize, maxValue,
+      speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize, maxValue, gaugeWidth,
+      gaugeBorder, borderColor,
     } = model.props
     return (
       <div>
+
         <div className={styles.block}>
           Main Color
           <ColorPicker
@@ -60,6 +81,48 @@ class Properties extends Component {
             getValueInHexFormat
             value={speedometerBackgroundColor}
             onChange={color => this.changeColorProperty('speedometerBackgroundColor', color)}
+          />
+        </div>
+        <div className={styles.block}>
+          Border Color
+          <ColorPicker
+            getValueInHexFormat
+            value={borderColor}
+            onChange={color => this.changeColorProperty('borderColor', color)}
+          />
+        </div>
+        <hr className={styles.divider} />
+
+        <div className="margin-top-10">
+          <HintCheckbox
+            label="Hide Label"
+            checked={model.props.hideLabel}
+            onChange={() => this.handleCheckControl('hideLabel')}
+            hints={['It will hide label on the top of chart', 'It will show label on the top of chart']}
+          />
+        </div>
+        <div className="margin-top-10">
+          <HintCheckbox
+            label="Hide Markers"
+            checked={model.props.hideMarkers}
+            onChange={() => this.handleCheckControl('hideMarkers')}
+            hints={['It will hide markers from the chart', 'It will show markers on the chart']}
+          />
+        </div>
+        <div className="margin-top-10">
+          <HintCheckbox
+            label="Percentage"
+            checked={model.props.gaugePercentage}
+            onChange={() => this.handleCheckControl('gaugePercentage')}
+            hints={['It will show value as score', ' It will show value as percentage score']}
+          />
+        </div>
+        <div className="margin-top-10">
+          <HintCheckbox
+            label="Rounded"
+            checked={model.props.rounded}
+            onChange={() => this.handleCheckControl('rounded')}
+            hints={[' It will show rounded corners', 'It will show normal corners']}
           />
         </div>
         <hr className={styles.divider} />
@@ -87,6 +150,28 @@ class Properties extends Component {
             maxValue={1000}
           />
         </div>
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          Width
+          <ChoicesInput
+            value={gaugeWidth}
+            onChange={this.changeWidthValue}
+            minValue={0}
+            maxValue={100}
+          />
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          Border
+          <ChoicesInput
+            value={gaugeBorder}
+            onChange={this.changeBorderValue}
+            minValue={0}
+            maxValue={1000}
+          />
+        </div>
+        <hr className={styles.divider} />
+
       </div>
     )
   }

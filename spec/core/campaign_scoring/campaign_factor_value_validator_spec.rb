@@ -23,7 +23,7 @@ RSpec.describe CampaignScoring::CampaignFactorValueValidator do
       end
     end
 
-    context 'when factor_value is a hash without :value key' do
+    context 'when factor_value is a hash without value as key' do
       let(:factor_value) { { label: 'Previous Score' } }
       let(:output_type) { 'numeric' }
 
@@ -32,6 +32,17 @@ RSpec.describe CampaignScoring::CampaignFactorValueValidator do
           subject.call
         end.to raise_error(CampaignScoring::Exceptions::WrongOutputType,
                            'Expected factor value with type Hash to have a key :value. Got nil')
+      end
+    end
+
+    context 'when factor_value is a hash with value nil' do
+      let(:factor_value) { { label: 'Previous Score', value: nil } }
+      let(:output_type) { 'numeric' }
+
+      it 'does not raise an error' do
+        expect do
+          subject.call
+        end.not_to raise_error
       end
     end
 

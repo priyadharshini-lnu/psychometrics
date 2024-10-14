@@ -14,6 +14,8 @@ module Auth
         required(:saml_login_allowed).maybe(:bool?)
         required(:saml_enforced).maybe(:bool?)
         required(:require_mobile_number).maybe(:bool?)
+        required(:disallow_password_login).maybe(:bool?)
+        required(:magic_link_enabled).maybe(:bool?)
         required(:client_logo).maybe(:str?)
         required(:secondary_logo).maybe(:str?)
         required(:primary_color).maybe(:str?)

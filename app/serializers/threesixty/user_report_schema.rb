@@ -28,7 +28,7 @@ module Threesixty
         required(:campaign).maybe do
           hash(Threesixty::CampaignDetailsSchema.schema(_, _))
         end
-        required(:user).hash(UserSchema.schema(_, _))
+        required(:user).hash(::Reports::UserSchema.schema(_, _))
       end
     end
   end

@@ -779,6 +779,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'users/sign_up/success', to: 'users/registrations#success'
     get 'users/sign_in_link', to: 'users/magic_links#sign_in_link'
+    get 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
+    post 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
   end
 
   devise_for :users,
@@ -1146,6 +1148,7 @@ Rails.application.routes.draw do
             get :export_raw_factor_scores
             get :export_raw_results
             get :export_normed_results
+            get :external_scores
           end
           jsonapi_resources :dimensions
           jsonapi_resources :tags

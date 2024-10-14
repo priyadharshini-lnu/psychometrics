@@ -35,6 +35,11 @@ html.body-full-height
     - if ["password_expired/show", "password_expired/update"].include?(action)
         javascript:
           #{("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe}
+    - if action == "magic_links/send_magic_link"
+        javascript:
+          #{@form ? ("__INITIAL_STATE__['user'] = " + @form.attributes.merge({success: @form.valid?}).to_json).html_safe : ''}
+          #{@form ? ("__INITIAL_STATE__['errors'] = " + @form.errors.messages.to_json).html_safe : ''}
+
     .main#devise
 
     = vite_javascript_tag 'entrypoints/user/login.jsx'

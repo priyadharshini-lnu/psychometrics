@@ -6,6 +6,7 @@ class Relationship < ApplicationRecord
   self.inheritance_column = :_type_disabled
 
   ASSESSOR = 'Assessor'
+  SELF = 'Self'
 
   belongs_to :campaign
   has_many :user_assessments, dependent: :restrict_with_exception
@@ -14,7 +15,7 @@ class Relationship < ApplicationRecord
   enum assign_type: { manual: 0, automatic: 1 }
 
   def self.self_relationship
-    Relationship.find_by(name: 'Self', type: :global)
+    Relationship.find_by(name: SELF, type: :global)
   end
 
   def self.manager_relationship

@@ -19,5 +19,9 @@ module Threesixty::EndUser
     def campaign_id
       object.campaign.threesixty_campaign.id
     end
+
+    def current_user
+      context[:scope]
+    end
   end
 end

@@ -10,9 +10,11 @@ module CampaignScoring
       @user = user
       @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
       @user_assessments = campaign.user_assessments.includes(:users_result).where(
-        subject_id: user.id,
-        evaluator_id: user.id
-      ).scored.index_by(&:assessment_id)
+        subject_id: user.id
+      ).scored.group_by(&:assessment_id).transform_values do |assessments|
+        assessments.group_by(&:relationship_id)
+      end
+
       @factor_values = {}
       @exceptions = {}
     end
@@ -87,13 +89,16 @@ module CampaignScoring
         'percentage_answered' => proc { |assessment_id, factor_id|
           assessment_factor_score(assessment_id, factor_id, 'percentage')
         },
-        'form_answer' => proc { |assessment_id, question_id, index_of_form_element|
-          form_answer(assessment_id, question_id, index_of_form_element)
+        'form_answer' => proc {
+          |assessment_id, question_id, index_of_form_element, relationship_name = Relationship::SELF|
+          form_answer(assessment_id, question_id, index_of_form_element, relationship_name)
         },
-        'campaign_feedback_answer' => proc { |assessment_id, question_id, code|
-          campaign_feedback_answer(assessment_id, question_id, code)
+        'campaign_feedback_answer' => proc { |assessment_id, question_id, code, relationship_name = Relationship::SELF|
+          campaign_feedback_answer(assessment_id, question_id, code, relationship_name)
         },
-        'answer' => proc { |assessment_id, json_path| answer_from_json_path(assessment_id, json_path) }
+        'answer' => proc { |assessment_id, json_path, relationship_name = Relationship::SELF|
+                      answer_from_json_path(assessment_id, json_path, relationship_name)
+                    }
       }
       lua.datasheet = {
         'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
@@ -113,38 +118,49 @@ module CampaignScoring
     end
 
     def assessment_factor_score(assessment_id, factor_id, score_type)
-      users_result = user_assessments[assessment_id.to_i]&.users_result
+      user_assessment = assessment_of_relationship(assessment_id, Relationship::SELF)
+      users_result = user_assessment&.users_result
       return nil unless users_result
 
       users_result.scoring&.dig(factor_id.to_i.to_s, score_type)
     end
 
-    def form_answer(assessment_id, question_id, index_of_form_element)
-      answers = answer_for_question(assessment_id, question_id)
+    def form_answer(assessment_id, question_id, index_of_form_element, relationship_name)
+      answers = answer_for_question(assessment_id, question_id, relationship_name)
       return nil unless answers
 
       answers.find { |answer| answer['index'] == index_of_form_element }&.dig('value')
     end
 
-    def campaign_feedback_answer(assessment_id, question_id, code)
-      answers = answer_for_question(assessment_id, question_id)
+    def campaign_feedback_answer(assessment_id, question_id, code, relationship_name)
+      answers = answer_for_question(assessment_id, question_id, relationship_name)
       return nil unless answers
 
       answers.find { |answer| answer['code'] == code }&.dig('value')
     end
 
-    def answer_from_json_path(assessment_id, json_path)
-      users_result = user_assessments[assessment_id.to_i]&.users_result
+    def answer_from_json_path(assessment_id, json_path, relationship_name)
+      user_assessment = assessment_of_relationship(assessment_id, relationship_name)
+
+      users_result = user_assessment&.users_result
       return nil unless users_result
 
       JsonPath.new(json_path).on(users_result.answers).first
     end
 
-    def answer_for_question(assessment_id, question_id)
-      users_result = user_assessments[assessment_id.to_i]&.users_result
+    def answer_for_question(assessment_id, question_id, relationship_name)
+      user_assessment = assessment_of_relationship(assessment_id, relationship_name)
+
+      users_result = user_assessment&.users_result
       return nil unless users_result
 
       users_result.answers&.dig(question_id.to_s, 'answers')
+    end
+
+    def assessment_of_relationship(assessment_id, relationship_name)
+      relationship = relationships.reverse.find { |r| r.name == relationship_name }
+
+      user_assessments.dig(assessment_id.to_i, relationship&.id)&.first
     end
 
     def campaign_scoring_variables_as_lua_table
@@ -189,6 +205,10 @@ module CampaignScoring
 
     def campaign_factors_sorted_by_formula_factors_at_end
       campaign.campaign_factors.not_external_score.partition { |cf| cf.factor_type != 'formula' }.flatten
+    end
+
+    def relationships
+      @relationships ||= Relationship.where(type: :global)
     end
   end
 end
