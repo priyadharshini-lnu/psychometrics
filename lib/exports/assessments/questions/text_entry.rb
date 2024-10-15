@@ -39,7 +39,7 @@ module Exports
 
         def self.email_type_answers(answers)
           EMAIL_QUESTION_FIELDS.each_with_object([]) do |email_field, data|
-            data << (answers[email_field].is_a?(Array) ? answers[email_field].join(', ') : answers[email_field])
+            data << (answers[email_field].is_a?(Array) ? answers[email_field].join(';') : answers[email_field])
           end
         end
 
@@ -61,7 +61,7 @@ module Exports
           form_types = question.props['formTypes'] || []
           Array.new(question.props['choices']) do |i|
             if form_types[i] && form_types[i]['name'] == 'MultiSelect' && form_answers[i].is_a?(Array)
-              form_answers[i].join(', ')
+              form_answers[i].join(';')
             else
               form_answers[i]
             end

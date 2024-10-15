@@ -51,7 +51,7 @@ module Exports
                                    answer = column_data.dig('answersTexts', value['index'])
 
                                    answer.presence || "Answer #{value['index'].to_i + 1}"
-                                 end.join(', ')
+                                 end.join(';')
                                end
             end
           end

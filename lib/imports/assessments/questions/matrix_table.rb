@@ -38,7 +38,7 @@ module Imports
             data.each_with_index do |scales, choice|
               next not_applicable[choice.to_s] = true if not_applicable_data?(question, scales)
 
-              scales.to_s.split(',').each do |scale|
+              scales.to_s.split(';').each do |scale|
                 answers << {
                   scale: (use_scoring && factors_scoring["#{choice}-#{scale}"]) || (scale.to_i - 1),
                   value: true,

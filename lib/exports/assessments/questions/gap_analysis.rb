@@ -17,7 +17,7 @@ module Exports
           answers = (answers || []).map do |answer|
             [
               (answer['scale'] + 1),
-              answer['values'].map { |v| v + 1 }.join(',')
+              answer['values'].map { |v| v + 1 }.join(';')
             ]
           end.flatten
           answers = Array.new(question_headers_except_duration_size(question)) { '' } if answers.empty?
