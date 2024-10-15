@@ -54,11 +54,11 @@ interface DisplayRecordValue {
 }
 
 const DisplayRecordValue: FC<DisplayRecordValue> = ({ record }) => {
-  if (record.type === 'Markdown') {
+  if (record.column_type === 'markdown') {
     return <ReactMarkdown>{`${record.value}`}</ReactMarkdown>
   }
 
-  if (record.type === 'HTML') {
+  if (record.column_type === 'html') {
     return <SafeHTML as="span" html={`${record.value}`} />
   }
 

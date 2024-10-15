@@ -24,25 +24,25 @@ module Sheets
 
     def create_column(name, column_type)
       is_email = name == Sheet::EMAIL_COLUMN
-      column = { name: name.chomp, type: column_type, visible_in_list: is_email }
+      column = {
+        name: name.chomp,
+        column_type: SheetColumn::COLUMN_TYPES[column_type],
+        visible_in_list: is_email
+      }
       column = column.merge(dashboard_use: is_email, accessor_access: is_email) if sheet_type == 'Datasheet'
       column
     end
 
     def create_and_update_sheet
-      @sheet ||= parent_resource.sheets.find_or_initialize_by(
+      @sheet ||= parent_resource.sheets.find_or_create_by(
         type: sheet_type
       )
 
       columns_in_file = form.parsed_file.second
-
-      columns_to_add = []
-      columns = sheet.columns || []
+      columns = sheet.sheet_columns || []
       columns_in_file.each do |name, type|
-        columns_to_add << create_column(name, type) unless columns.find { |c| c['name'] == name }
+        sheet.sheet_columns.create!(create_column(name, type)) unless columns.find_by(name: name)
       end
-
-      sheet.update!(columns: columns + columns_to_add)
     end
 
     def parse_file

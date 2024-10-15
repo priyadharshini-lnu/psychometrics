@@ -28,7 +28,8 @@ module Administration
             list: serialized_sheet_rows,
             permissions: permissions,
             total: sheet_rows.count,
-            columns: sheet.columns
+            columns: Panko::ArraySerializer.new(sheet.sheet_columns.order(:position),
+                                                each_serializer: ::Administration::SheetColumnSerializer).to_a
           }
         end
       end

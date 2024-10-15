@@ -4400,6 +4400,43 @@ ALTER SEQUENCE public.security_settings_id_seq OWNED BY public.security_settings
 
 
 --
+-- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_columns (
+    id bigint NOT NULL,
+    column_type integer,
+    name character varying,
+    "position" integer,
+    dashboard_use boolean DEFAULT false,
+    accessor_access boolean DEFAULT false,
+    visible_in_list boolean DEFAULT false,
+    sheet_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_columns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sheet_columns_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sheet_columns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sheet_columns_id_seq OWNED BY public.sheet_columns.id;
+
+
+--
 -- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7244,6 +7281,13 @@ ALTER TABLE ONLY public.security_settings ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: sheet_columns id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_columns ALTER COLUMN id SET DEFAULT nextval('public.sheet_columns_id_seq'::regclass);
+
+
+--
 -- Name: sheet_rows id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8569,6 +8613,14 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.security_settings
     ADD CONSTRAINT security_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sheet_columns sheet_columns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_columns
+    ADD CONSTRAINT sheet_columns_pkey PRIMARY KEY (id);
 
 
 --
@@ -10837,6 +10889,13 @@ CREATE INDEX index_saville_report_settings_on_report_id ON public.saville_report
 --
 
 CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.saville_user_assessments USING btree (user_assessment_id);
+
+
+--
+-- Name: index_sheet_columns_on_sheet_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheet_columns_on_sheet_id ON public.sheet_columns USING btree (sheet_id);
 
 
 --
@@ -13418,6 +13477,14 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
+-- Name: sheet_columns fk_rails_bcdb1073fb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_columns
+    ADD CONSTRAINT fk_rails_bcdb1073fb FOREIGN KEY (sheet_id) REFERENCES public.sheets(id);
+
+
+--
 -- Name: proctoring_sessions fk_rails_be5ab3be9f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14072,6 +14139,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241001103146'),
 ('20241011121150'),
 ('20241010122532'),
 ('20241008100312'),
@@ -14780,4 +14848,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

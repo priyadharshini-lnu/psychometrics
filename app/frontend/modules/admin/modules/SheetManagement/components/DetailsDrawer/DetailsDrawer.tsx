@@ -21,7 +21,7 @@ import {
 import { isRequestInProgress } from '~/core/request'
 
 import { DetailsSection, HeaderSection } from './Sections'
-import { SheetType } from '../../core/list'
+import { ColumnType, SheetType } from '../../core/list'
 
 const { I18n } = window
 
@@ -73,9 +73,9 @@ const DetailsDrawerComponent: FC<Props> = ({
     dataRecord: SheetDetail | undefined,
   ): DrawerDataRecord[] => {
     if (dataRecord) {
-      const drawerDataRecord = dataRecord.columns.map((column) => {
+      const drawerDataRecord = dataRecord.columns.map((column): DrawerDataRecord => {
         const value = dataRecord.record[column.name]
-        return { value, type: column.type, name: column.name }
+        return { value, column_type: column.column_type as ColumnType, name: column.name }
       })
 
       return drawerDataRecord

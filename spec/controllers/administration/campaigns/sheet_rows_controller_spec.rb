@@ -12,6 +12,16 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       { name: 'Description', type: 'HTML', accessor_access: true, dashboard_use: true, visible_in_list: true }
     ])
   end
+  let!(:columns) do
+    sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string',
+                                  accessor_access: true, dashboard_use: true, visible_in_list: true)
+    sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string',
+                                  accessor_access: true, dashboard_use: true, visible_in_list: true)
+    sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'markdown',
+                                  accessor_access: true, dashboard_use: true, visible_in_list: true)
+    sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Description', column_type: 'html',
+                                  accessor_access: true, dashboard_use: true, visible_in_list: true)
+  end
   let!(:sheet_row) do
     create(:sheet_row, sheet: sheet, email: 'james@cc.com',
             data: { 'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1' })
@@ -30,14 +40,14 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
       expect(parsed_response['columns']).to match_array(
         [
-          { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Name', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Profile', 'type' => 'Markdown', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Description', 'type' => 'HTML', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true }
+          { 'id' => 1, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
+          { 'id' => 2, 'name' => 'Name', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1  },
+          { 'id' => 3, 'name' => 'Profile', 'column_type' => 'markdown', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 2  },
+          { 'id' => 4, 'name' => 'Description', 'column_type' => 'html', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 3  }
         ]
       )
       expect(parsed_response['total']).to eq(2)
@@ -57,24 +67,29 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
         { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
         { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
       ])
+      project_sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string',
+                                    accessor_access: true, dashboard_use: true, visible_in_list: true)
+      project_sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string',
+                                    accessor_access: true, dashboard_use: true, visible_in_list: true)
+
       project_sheet_row = create(:sheet_row, sheet: project_sheet, email: sheet_row.email,
-        data: { 'Name' => 'James S' })
+      data: { 'Name' => 'James S' })
 
       get :show, params: { id: sheet_row.id, new_campaign_id: campaign.id, type: 'Datasheet' }, format: :json
       parsed_response = JSON.parse(response.body)
-
       # Campaign sheet record assertions
+
       expect(parsed_response[0]['type']).to eq('new_campaign')
       expect(parsed_response[0]['columns']).to match_array(
         [
-          { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Name', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Profile', 'type' => 'Markdown', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Description', 'type' => 'HTML', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true }
+          { 'id' => 5, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
+          { 'id' => 6, 'name' => 'Name', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1  },
+          { 'id' => 7, 'name' => 'Profile', 'column_type' => 'markdown', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 2  },
+          { 'id' => 8, 'name' => 'Description', 'column_type' => 'html', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 3  }
         ]
       )
       expect(parsed_response[0]['record']).to eq({
@@ -86,10 +101,10 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       expect(parsed_response[1]['type']).to eq('project')
       expect(parsed_response[1]['columns']).to match_array(
         [
-          { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Name', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true }
+          { 'id' => 9, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
+          { 'id' => 10, 'name' => 'Name', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1 }
         ]
       )
       expect(parsed_response[1]['record']).to eq({

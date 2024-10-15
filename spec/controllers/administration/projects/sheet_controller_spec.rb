@@ -9,6 +9,13 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
       name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true
     }])
   end
+  let!(:column1) do
+    create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string',
+            accessor_access: true, dashboard_use: true, visible_in_list: true)
+  end
+  let!(:columns) do
+    sheet.sheet_columns << column1
+  end
 
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
@@ -18,23 +25,18 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
       post :add_column, params: {
         project_id: project.id,
         column: {
-          name: 'test', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true
+          name: 'test', column_type: 'string', accessor_access: true, dashboard_use: true, visible_in_list: true
         }
       }, format: :json
 
-      expect(sheet.reload.columns).to eq([
-        { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-          'dashboard_use' => true, 'visible_in_list' => true },
-        { 'name' => 'test', 'type' => 'String', 'accessor_access' => true,
-          'dashboard_use' => true, 'visible_in_list' => true }
-      ])
+      expect(sheet.reload.sheet_columns.map(&:name)).to eq(%w[Email test])
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq([
-        { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-          'dashboard_use' => true, 'visible_in_list' => true },
-        { 'name' => 'test', 'type' => 'String', 'accessor_access' => true,
-          'dashboard_use' => true, 'visible_in_list' => true }
+        { 'id' => 1, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
+          'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
+        { 'id' => 2, 'name' => 'test', 'column_type' => 'string', 'accessor_access' => true,
+          'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1 }
       ])
     end
 
@@ -46,7 +48,7 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq({ 'errors' => { 'name' => ['is too long (maximum is 64 characters)'],
-                                                    'type' => ['is not included in the list'] } })
+                                                    'column_type' => ['is not included in the list'] } })
     end
   end
 
@@ -55,19 +57,17 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
       put :update_column, params: {
         project_id: project.id,
         column: {
-          name: 'Email', type: 'String', accessor_access: false, dashboard_use: true, visible_in_list: true
+          id: column1.id, name: 'Email', column_type: 'string',
+          accessor_access: false, dashboard_use: true, visible_in_list: true
         }
       }, format: :json
 
-      expect(sheet.reload.columns).to eq([
-        { 'name' => 'Email', 'type' => 'String', 'accessor_access' => false,
-          'dashboard_use' => true, 'visible_in_list' => true }
-      ])
+      expect(column1.reload.accessor_access).to eq(false)
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq([
-        { 'name' => 'Email', 'type' => 'String', 'accessor_access' => false,
-          'dashboard_use' => true, 'visible_in_list' => true }
+        { 'id' => column1.id, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => false,
+          'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 }
       ])
     end
   end
@@ -79,19 +79,26 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
         { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
         { name: 'Profile', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
       ])
+      col_name = create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string')
+      col_profile = create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'string')
+      sheet.sheet_columns << col_name
+      sheet.sheet_columns << col_profile
 
-      expect(sheet.columns.map { |c| c['name'] }).to eq(%w[Email Name Profile])
+      expect(sheet.sheet_columns.map(&:name)).to eq(%w[Email Name Profile])
 
       put :update_columns_order, params: {
         project_id: project.id,
         columns: [
-          { name: 'Email', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-          { name: 'Profile', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
-          { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
+          { id: column1.id, name: 'Email', column_type: 'string', accessor_access: true, dashboard_use: true,
+            visible_in_list: true },
+          { id: col_profile.id, name: 'Profile', column_type: 'string', accessor_access: true, dashboard_use: true,
+            visible_in_list: true },
+          { id: col_name.id, name: 'Name', column_type: 'string', accessor_access: true, dashboard_use: true,
+            visible_in_list: true }
         ]
       }
 
-      expect(sheet.reload.columns.map { |c| c['name'] }).to eq(%w[Email Profile Name])
+      expect(sheet.reload.sheet_columns.order(:position).map(&:name)).to eq(%w[Email Profile Name])
     end
   end
 
@@ -102,12 +109,17 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
         { name: 'Name', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true },
         { name: 'Profile', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
       ])
+      col_name = create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string')
+      col_profile = create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'string')
+      sheet.sheet_columns << col_name
+      sheet.sheet_columns << col_profile
+
       row = create(:sheet_row, sheet: sheet, email: 'james@cc.com',
         data: { 'Name' => 'James', 'Profile' => 'Software Engineer' })
 
       expect(row.data.keys).to eq(%w[Name Profile])
 
-      delete :remove_columns, params: { project_id: project.id, columns: ['Profile'] }, format: :json
+      delete :remove_columns, params: { project_id: project.id, column_ids: [col_profile.id] }, format: :json
 
       expect(row.reload.data.keys).to eq(['Name'])
     end

@@ -5,7 +5,8 @@ module Administration
     attributes :record, :type, :columns
 
     def columns
-      object.datasheet.columns
+      Panko::ArraySerializer.new(object.datasheet.sheet_columns.order(:position),
+                                 each_serializer: ::Administration::SheetColumnSerializer).to_a
     end
 
     def record

@@ -16,6 +16,14 @@ describe Sheets::CreateFlatSheetView do
         { name: 'E' * 65, type: 'String', dashboard_use: true }
       ])
     end
+    let!(:columns) do
+      create(:sheet_column, sheet: datasheet, name: 'Email', column_type: 'string', dashboard_use: true)
+      create(:sheet_column, sheet: datasheet, name: '1st.Name', column_type: 'string', dashboard_use: true)
+      create(:sheet_column, sheet: datasheet, name: 'EmployeeId', column_type: 'number', dashboard_use: true)
+      create(:sheet_column, sheet: datasheet, name: 'Profile', column_type: 'html', dashboard_use: true)
+      create(:sheet_column, sheet: datasheet, name: 'Experience', column_type: 'number', dashboard_use: false)
+      create(:sheet_column, sheet: datasheet, name: 'E' * 65, column_type: 'string', dashboard_use: true)
+    end
     let!(:sheet_row1) do
       create(:sheet_row, sheet: datasheet, email: 'james@cc.com',
               data: { '1st.Name' => 'James', 'EmployeeId' => 1, 'Profile' => 'ROR' })
@@ -59,6 +67,11 @@ describe Sheets::CreateFlatSheetView do
         { name: '1st.Name', type: 'String' },
         { name: 'EmployeeId', type: 'Number' }
       ])
+    end
+    let!(:columns) do
+      create(:sheet_column, sheet: accesssheet, name: 'Email', column_type: 'string')
+      create(:sheet_column, sheet: accesssheet, name: '1st.Name', column_type: 'string')
+      create(:sheet_column, sheet: accesssheet, name: 'EmployeeId', column_type: 'number')
     end
     let!(:sheet_row1) do
       create(:sheet_row, sheet: accesssheet, email: 'james@cc.com',

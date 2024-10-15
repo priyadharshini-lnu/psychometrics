@@ -26,28 +26,33 @@ export const SheetTR = t.intersection([
 export type Sheet = t.TypeOf<typeof SheetTR>
 
 export const ColumnTypeTR = t.keyof({
-  String: null,
-  Number: null,
-  Text: null,
-  HTML: null,
-  Markdown: null,
+  string: null,
+  number: null,
+  text: null,
+  html: null,
+  markdown: null,
 })
+
 export type ColumnType = t.TypeOf<typeof ColumnTypeTR>
 
 export const ColumnTR = t.type({
+  id: t.number,
+  position: t.number,
   name: t.string,
-  type: ColumnTypeTR,
+  column_type: t.string,
   dashboard_use: t.union([t.boolean, t.undefined]),
   accessor_access: t.union([t.boolean, t.undefined]),
   visible_in_list: t.boolean,
 })
 
 export interface Column {
+  id: number
+  position: number
   name: string | null
-  type: ColumnType
   dashboardUse?: boolean
   accessorAccess?: boolean
   visibleInList: boolean
+  columnType: ColumnType
 }
 
 const FetchResponseTR = t.type({

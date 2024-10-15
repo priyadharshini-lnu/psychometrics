@@ -42,10 +42,10 @@ module Sheets
     end
 
     def validate_column_types_matching
-      sheet.columns.each do |column|
-        type = columns[column['name']]
-        if type && type != column['type']
-          errors.add(:file, :column_type_mismatch, col: column['name'], type: column['type'], got: type)
+      sheet.sheet_columns.each do |column|
+        type = columns[column.name]
+        if type && type != column.humanize_type
+          errors.add(:file, :column_type_mismatch, col: column.name, type: column.humanize_type, got: type)
         end
       end
     end

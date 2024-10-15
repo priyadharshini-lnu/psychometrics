@@ -8,6 +8,11 @@ describe Sheets::Export do
                              { name: 'Profile', type: 'Text' },
                              { name: 'Empty', type: 'Number' }])
   end
+  let!(:columns) do
+    create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string')
+    create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'text')
+    create(:sheet_column, sheet: sheet, name: 'Empty', column_type: 'number')
+  end
   let!(:sheet_row) do
     create(:sheet_row, sheet: sheet, email: 'james@cc.com', data: { 'Profile' => 'carpenter' })
   end

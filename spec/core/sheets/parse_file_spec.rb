@@ -26,13 +26,13 @@ describe Sheets::ParseFile do
     [
       {
         'name' => 'Email',
-        'type' => 'Text',
+        'column_type' => 'text',
         'accessor_access' => true,
         'dashboard_use' => true,
         'visible_in_list' => true
       }, {
         'name' => 'key',
-        'type' => 'Text',
+        'column_type' => 'text',
         'accessor_access' => false,
         'dashboard_use' => false,
         'visible_in_list' => false
@@ -53,7 +53,9 @@ describe Sheets::ParseFile do
     expect { subject }.to change { Sheet.count }.from(0).to(1)
     sheet = project.sheets.first
     expect(sheet.project).to eq(project)
-    expect(sheet.columns).to eq(columns)
+    expect(sheet.sheet_columns.map do |c|
+             c.slice(:name, :column_type, :accessor_access, :dashboard_use, :visible_in_list)
+           end).to eq(columns)
   end
 
   it 'creates valid sheet row' do

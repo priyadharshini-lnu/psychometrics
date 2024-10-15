@@ -10,10 +10,14 @@ describe ::Sheets::DatasheetColumnForm do
         { name: 'Uniq', type: 'String', accessor_access: true, dashboard_use: true, visible_in_list: true }
       ])
     end
+    let!(:columns) do
+      create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string')
+      create(:sheet_column, sheet: sheet, name: 'Uniq', column_type: 'string')
+    end
 
     context 'validate column' do
       it '#column should be valid' do
-        form = described_class.new({ name: 'Name', type: 'String',
+        form = described_class.new({ name: 'Name', column_type: 'string',
                                      accessor_access: true, dashboard_use: true, visible_in_list: true })
 
         expect(form).to be_valid
@@ -22,7 +26,7 @@ describe ::Sheets::DatasheetColumnForm do
 
     context 'invalid column' do
       it 'should be invalid name' do
-        form = described_class.new({ name: 'E' * 65, type: 'String',
+        form = described_class.new({ name: 'E' * 65, column_type: 'string',
                                      accessor_access: true, dashboard_use: true, visible_in_list: true })
 
         expect(form).to be_invalid
@@ -30,16 +34,16 @@ describe ::Sheets::DatasheetColumnForm do
       end
 
       it 'should be invalid type' do
-        form = described_class.new({ name: 'Name', type: 'Type',
+        form = described_class.new({ name: 'Name', column_type: 'Type',
                                      accessor_access: true, dashboard_use: true, visible_in_list: true })
 
         expect(form).to be_invalid
-        expect(form.errors[:type]).to include('is not included in the list')
+        expect(form.errors[:column_type]).to include('is not included in the list')
       end
 
       it 'should be uniq name' do
         form = described_class.new(
-          name: 'Uniq', type: 'String',
+          name: 'Uniq', column_type: 'string',
           accessor_access: true, dashboard_use: true, visible_in_list: true
         ).with_context(sheet: sheet, form_type: :add)
 
