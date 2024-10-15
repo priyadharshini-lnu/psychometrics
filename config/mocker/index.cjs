@@ -12,6 +12,7 @@ function retrieveJSONFrom (jsonPath) {
 }
 
 let ParticipantData = retrieveJSONFrom('./responses/projectParticipants/participantsData.json')
+let NormsData = retrieveJSONFrom('./responses/norm/index.json')
 
 const proxy = {
   'GET /invites.json': (_, res) => {
@@ -28,6 +29,7 @@ const proxy = {
     const data = retrieveJSONFrom('./responses/client/index.json')
     return res.json(data)
   },
+
   'GET /campaigns/10146.json': (_, res) => {
     const data = retrieveJSONFrom('./responses/campaign/campaign_with_booking.json')
     // const data = retrieveJSONFrom('./responses/campaign/campaign_with_invite.json')
@@ -72,6 +74,42 @@ const proxy = {
     return res.json(resObj)
   },
   'GET /administration/projects/:projectId/participants/:participantId/reset_password': (_, res) => res.json('ok'),
+
+  'GET /api/v2/administration/norms': (_, res) => res.json(NormsData),
+
+  'GET /api/v2/administration/norms/:normId': (req, res) => {
+    const resObj = NormsData.list.find(norm => norm.id === parseInt(req.params.normId, 10))
+    return res.json(resObj)
+  },
+
+  'PUT /api/v2/administration/norms/:normId': (req, res) => {
+    const { assessmentId, normalizeNormScores } = req.body.resource
+    const updatedNormList = NormsData.list.map((norm) => {
+      if (norm.id === parseInt(req.params.normId, 10)) {
+        return {
+          ...norm, assessmentId, normalizeNormScores,
+        }
+      }
+      return norm
+    })
+    const updatedNormData = { total: updatedNormList.length, list: updatedNormList }
+    NormsData = updatedNormData
+    const resObj = NormsData.list.find(norm => norm.id === parseInt(req.params.normId, 10))
+
+    return res.json(resObj)
+  },
+
+  'DELETE /api/v2/administration/norms/:normId': (req, res) => {
+    const updatedNormList = NormsData.list.filter(
+      norm => norm.id !== parseInt(req.params.normId, 10),
+    )
+    const updatedNormData = { total: updatedNormList.length, list: updatedNormList }
+    NormsData = updatedNormData
+
+    const resObj = { id: parseInt(req.params.normId, 10) }
+
+    return res.json(resObj)
+  },
 }
 
 module.exports = delay(proxy, 3000)
