@@ -3,7 +3,7 @@ default: &default
   pool: 5
   timeout: 5000
 
-common: &common
+common: &test_defaults
   <<: *default
   host: localhost
   username: postgres
@@ -11,21 +11,21 @@ common: &common
 
 development:
   primary:
-    <<: *common
+    <<: *default
     database: psychometrics_development
 
   primary_replica:
-    <<: *common
+    <<: *default
     database: psychometrics_development
     replica: true
 
 test:
   primary:
-    <<: *common
+    <<: *test_defaults
     database: ci_test<%= ENV['TEST_ENV_NUMBER'] %>
 
   primary_replica:
-    <<: *common
+    <<: *test_defaults
     database: ci_test<%= ENV['TEST_ENV_NUMBER'] %>
     replica: true
 
