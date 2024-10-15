@@ -32,11 +32,18 @@ class CreateSheetColumns < ActiveRecord::Migration[7.1]
           columns.each.with_index do |column, i|
             sql = <<~SQL.squish
               INSERT INTO sheet_columns (column_type, name, position, sheet_id, dashboard_use, accessor_access, visible_in_list, created_at, updated_at)
-              VALUES (#{COLUMN_TYPES[column['type']] || 2}, '#{column['name']}', #{i}, #{sheet['id']},
-              #{column['dashboard_use'] || false}, #{column['accessor_access'] || false}, #{column['visible_in_list'] || false},
-              '#{sheet['created_at']}', '#{sheet['updated_at']}')
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             SQL
-            execute(sql)
+            exec_query(sql, 'SQL', [
+              COLUMN_TYPES[column['type']] || 2,
+              column['name'],
+              i,
+              sheet['id'],
+              column['dashboard_use'] || false ,
+              column['accessor_access'] || false,
+              column['visible_in_list'] || false,
+              sheet['created_at'], sheet['updated_at']
+            ])
           end
         end
 
