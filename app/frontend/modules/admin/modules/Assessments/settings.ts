@@ -15,6 +15,7 @@ const settings = {
     'iiht',
     'mindmill',
     'mettl',
+    'simulation',
   ],
 }
 

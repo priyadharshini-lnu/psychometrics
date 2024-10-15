@@ -18,6 +18,8 @@ module Api
           render_json_api_response(saville_assessments(search))
         when 'mettl'
           render_json_api_response(mettl_assessments(search))
+        when 'simulation'
+          render_json_api_response(simulation_assessments(search))
       end
     end
 
@@ -38,6 +40,12 @@ module Api
 
     def hogan_assessments(_search)
       Settings.providers.hogan.assessments.map do |a|
+        { id: a.id, name: a.name }
+      end
+    end
+
+    def simulation_assessments(_search)
+      Settings.providers.simulation.assessments.map do |a|
         { id: a.id, name: a.name }
       end
     end

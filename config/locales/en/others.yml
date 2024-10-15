@@ -854,6 +854,7 @@ en:
         pearson_assessment_name: Pearson Assessment Name
         pearson_norm_id: Pearson norm ID
         saville_assessment_name: Saville assessment Name
+        simulation_assessment_name: Simulation Assessment Name
     create: Create
     dashboard: Dashboard
     dictation:
@@ -890,6 +891,7 @@ en:
         pearson: Pearson
         psychometric: Psychometric
         saville: Saville
+        simulation: Simulation
         threesixty: 360 Campaign
       status:
         finished: Finished
@@ -902,6 +904,7 @@ en:
         mindmill: Mindmill
         pearson: Pearson Assessment
         saville: Saville Assessment
+        simulation: Simulation Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -1833,6 +1836,7 @@ en:
         unique_skill: Skill should be unique
       uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
       uniq?: should be unique
+      uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
       update_workshop:
         less_than_booked: The total seats must be greater than booked
       user_availability_date:

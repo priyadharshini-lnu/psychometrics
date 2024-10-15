@@ -116,6 +116,7 @@ export const TYPES = [
   'pearson',
   'saville',
   'mettl',
+  'simulation',
 ]
 
 export const Schema = {

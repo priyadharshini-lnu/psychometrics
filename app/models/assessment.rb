@@ -25,6 +25,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   IIHT = 'iiht'
   METTL = 'mettl'
   MEETING = 'meeting'
+  SIMULATION = 'simulation'
 
   CATEGORIES_TYPES = [
     PSYCHOMETRIC,
@@ -67,7 +68,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     pearson: PEARSON,
     iiht: IIHT,
     mettl: METTL,
-    meeting: MEETING
+    meeting: MEETING,
+    simulation: SIMULATION
   }.freeze
 
   # Assessments constant
@@ -78,7 +80,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     saville: 'Assessments::Saville',
     pearson: 'Assessments::Pearson',
     iiht: 'Assessments::Iiht',
-    mettl: 'Assessments::Mettl'
+    mettl: 'Assessments::Mettl',
+    simulation: 'Assessments::Simulation'
   }.freeze
 
   NON_USER_ASSESSMENT_CATEGORY = [
@@ -123,6 +126,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   has_many :pearson_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :iiht_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :mettl_user_assessments, through: :user_assessments, dependent: :restrict_with_error
+  has_many :simulation_user_assessments, through: :user_assessments, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
   has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
@@ -180,6 +184,7 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :pearson, -> { where(type: TYPES[:pearson]) }
   scope :iiht, -> { where(type: TYPES[:iiht]) }
   scope :mettl, -> { where(type: TYPES[:mettl]) }
+  scope :simulation, -> { where(type: TYPES[:simulation]) }
   scope :external, -> { where.has { type.in([TYPES[:mindmill], TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
@@ -234,6 +239,8 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
         PearsonAssessment.find_by(product_id: external_assessment_id)&.title
       when 'mettl'
         MettlAssessment.find_by(product_id: external_assessment_id)&.name
+      when 'simulation'
+        Settings.providers.simulation.assessments.find { |a| a.id.casecmp?(external_assessment_id) }&.name
       when 'iiht'
         Iiht::GetAssessments.call!(project).find do |a|
           a['assessmentIdNumber'].include?(external_assessment_id)
@@ -314,8 +321,12 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     type == TYPES[:mettl]
   end
 
+  def simulation?
+    type == TYPES[:simulation]
+  end
+
   def external?
-    mindmill? || hogan? || saville? || pearson? || iiht? || mettl?
+    mindmill? || hogan? || saville? || pearson? || iiht? || mettl? || simulation?
   end
 
   def internal?

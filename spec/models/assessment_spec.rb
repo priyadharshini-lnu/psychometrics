@@ -34,8 +34,22 @@ RSpec.describe Assessment, type: :model do
     end
   end
 
+  describe '#simulation' do
+    it 'returns true for simulation assessment' do
+      assessment = build(:assessment, type: Assessment::TYPES[:simulation])
+
+      expect(assessment.simulation?).to eq(true)
+    end
+
+    it 'returns false for non simulation assessment' do
+      assessment = build(:assessment, type: Assessment::TYPES[:common])
+
+      expect(assessment.simulation?).to eq(false)
+    end
+  end
+
   describe '#external?' do
-    external_types = %i[mindmill hogan saville pearson iiht mettl]
+    external_types = %i[mindmill hogan saville pearson iiht mettl simulation]
 
     external_types.each do |type|
       it "returns true for #{type} assessment" do
@@ -80,6 +94,14 @@ RSpec.describe Assessment, type: :model do
 
       it 'returns the assessment name' do
         expect(hogan_assessment.external_assessment_name).to eq('HPI')
+      end
+    end
+
+    context 'when assessment type is simulation' do
+      let(:simulation) { create(:assessment, :simulation, external_settings: { assessment_id: 'golf' }) }
+
+      it 'returns the assessment name' do
+        expect(simulation.external_assessment_name).to eq('Golf')
       end
     end
 

@@ -4542,6 +4542,38 @@ ALTER SEQUENCE public.shortened_urls_id_seq OWNED BY public.shortened_urls.id;
 
 
 --
+-- Name: simulation_user_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.simulation_user_assessments (
+    id bigint NOT NULL,
+    user_assessment_id bigint NOT NULL,
+    participant_id character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: simulation_user_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.simulation_user_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: simulation_user_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.simulation_user_assessments_id_seq OWNED BY public.simulation_user_assessments.id;
+
+
+--
 -- Name: skill_aliases; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7309,6 +7341,13 @@ ALTER TABLE ONLY public.shortened_urls ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: simulation_user_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simulation_user_assessments ALTER COLUMN id SET DEFAULT nextval('public.simulation_user_assessments_id_seq'::regclass);
+
+
+--
 -- Name: skill_aliases id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8645,6 +8684,14 @@ ALTER TABLE ONLY public.sheets
 
 ALTER TABLE ONLY public.shortened_urls
     ADD CONSTRAINT shortened_urls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: simulation_user_assessments simulation_user_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simulation_user_assessments
+    ADD CONSTRAINT simulation_user_assessments_pkey PRIMARY KEY (id);
 
 
 --
@@ -10955,6 +11002,13 @@ CREATE INDEX index_shortened_urls_on_url ON public.shortened_urls USING btree (u
 
 
 --
+-- Name: index_simulation_user_assessments_on_user_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_simulation_user_assessments_on_user_assessment_id ON public.simulation_user_assessments USING btree (user_assessment_id);
+
+
+--
 -- Name: index_skill_aliases_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12613,6 +12667,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: simulation_user_assessments fk_rails_4b5406d610; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.simulation_user_assessments
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+
+
+--
 -- Name: factor_benchmark_scores fk_rails_4ca0980ea6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14142,6 +14204,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241001103146'),
 ('20241011121150'),
 ('20241010122532'),
+('20241009075129'),
 ('20241008100312'),
 ('20241007113728'),
 ('20240920142940'),
