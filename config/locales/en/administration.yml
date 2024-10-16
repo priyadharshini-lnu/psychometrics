@@ -2078,6 +2078,18 @@ en:
       search_user: Search user
       send_email: Send email
     project_tabs:
+      assessments:
+        column:
+          name: Name
+          normalize_factor_scores: Normalize Factor Scores
+        delete:
+          content: Are you sure you want to delete assessment '%{name}'?
+          success: Assessment '%{name}' was deleted successfully.
+          title: Delete Assessment
+        form:
+          assessment_placeholder: Select Assessment
+          assessment_required: Assessment is required
+          normalize_factor_scores: Normalize Factor Scores
       design: Design
       general: General
       privacy: Privacy
@@ -2172,6 +2184,8 @@ en:
       send_email: Send email
     projects:
       addProject: Add Project
+      assessment_settings:
+        search: Search Assessment
       columns:
         project_number: Project Number
       design_settings:

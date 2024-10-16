@@ -1179,6 +1179,8 @@ as: :simulation_progress_notification
               post :send_test
             end
 
+            jsonapi_resources :project_assessments
+
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records
 

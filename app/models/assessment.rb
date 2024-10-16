@@ -194,9 +194,20 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   scope :with_category, lambda { |category|
     where(category: category)
   }
+  scope :owned_by_client_or_tte, lambda { |client_id|
+    where('owner_id IS NULL OR owner_id = ?', client_id)
+  }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name category archived]
+  end
+
+  def self.ransackable_scopes(_)
+    super.concat(%i[owned_by_client_or_tte])
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    super.concat(%i[owner])
   end
 
   after_commit :sync_translated_columns, on: %i[update create]

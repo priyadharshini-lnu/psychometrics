@@ -14,6 +14,7 @@ module AllowedPermissions
       integrations
       security
       webhooks
+      assessments
     ],
     'registration_settings' => %w[
       manage
@@ -79,6 +80,7 @@ module AllowedPermissions
       security
       webhooks
       privacy_settings
+      assessments
     ],
     'registration_settings' => %w[
       manage

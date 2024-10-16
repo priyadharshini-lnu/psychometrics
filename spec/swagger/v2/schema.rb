@@ -282,6 +282,18 @@ module Swagger
           WebhookListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Webhook::Schema.multiple_resource_response
           ),
+          ProjectAssessmentListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ProjectAssessment::Schema.multiple_resource_response
+          ),
+          ProjectAssessmentCreateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ProjectAssessment::Schema.create_request
+          ),
+          ProjectAssessmentResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ProjectAssessment::Schema.single_resource_response
+          ),
+          ProjectAssessmentUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ProjectAssessment::Schema.update_request
+          ),
           CampaignAssessorAssessmentListResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::CampaignAssessorAssessment::Schema.multiple_resource_response
           ),

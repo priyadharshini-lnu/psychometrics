@@ -8,6 +8,7 @@ import { Profile } from './Profile'
 import { SecuritySettings } from './Security'
 import { Privacy } from './Privacy'
 import { Registration } from './Registration'
+import { Assessments } from './Assessments'
 import { MettlScheduleRecords } from './MettlScheduleRecords'
 
 export const routes = [
@@ -54,5 +55,9 @@ export const routes = [
   {
     path: '/privacy',
     component: <Privacy />,
+  },
+  {
+    path: '/assessments',
+    component: <Assessments />,
   },
 ]

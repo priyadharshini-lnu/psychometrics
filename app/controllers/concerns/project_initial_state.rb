@@ -32,7 +32,8 @@ module ProjectInitialState
           context: {
             key_transform: :camel_lower
           }
-        ).serialize(project.security_setting)
+        ).serialize(project.security_setting),
+        clientId: project.client.id
       },
       config: {
         availableLocales: I18n.available_locales,
