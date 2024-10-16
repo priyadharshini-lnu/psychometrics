@@ -21,7 +21,7 @@ module Webhooks
     private
 
     def find_user_assessment_from_request
-      token = params[:token]
+      token = params[:jwt_token]
       decoded_token = JWT.decode(token, Settings.secrets.webhook_jwt_secret, true, { algorithm: 'HS256' })
       user_assessment_id = decoded_token&.dig(0, 'data')
 

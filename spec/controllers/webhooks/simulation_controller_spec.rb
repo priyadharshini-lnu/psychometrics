@@ -67,7 +67,7 @@ RSpec.describe Webhooks::SimulationController, type: :controller do
             userId: '22d87cc0-d911-4ca8-9913-1a48520b04c0',
             simulationId: '22d87cc0-d911-4ca8-9913-1a48520b04c0',
             timedOut: false,
-            token: jwt_token
+            jwt_token: jwt_token
           }.to_json
         end
 
@@ -102,7 +102,7 @@ RSpec.describe Webhooks::SimulationController, type: :controller do
           simulationId: '22d87cc0-d911-4ca8-9913-1a48520b04c0',
           timedOut: false,
           progress: 1,
-          token: 'invalid_token'
+          jwt_token: 'invalid_token'
         }.to_json
       end
 
