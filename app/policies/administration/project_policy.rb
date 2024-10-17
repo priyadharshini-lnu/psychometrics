@@ -38,6 +38,10 @@ module Administration
       has_permission?(:project_settings, :privacy_settings, project_id: project_id)
     end
 
+    def manage_project_assessments?
+      has_permission?(:project_settings, :assessments, project_id: project_id)
+    end
+
     private
 
     def can_manage_project?

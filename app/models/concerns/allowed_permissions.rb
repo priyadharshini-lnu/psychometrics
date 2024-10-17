@@ -80,7 +80,6 @@ module AllowedPermissions
       security
       webhooks
       privacy_settings
-      assessments
     ],
     'registration_settings' => %w[
       manage
