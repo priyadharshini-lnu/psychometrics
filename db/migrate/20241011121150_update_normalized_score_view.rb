@@ -2,7 +2,7 @@
 
 class UpdateNormalizedScoreView < ActiveRecord::Migration[7.1]
   def up
-    execute('DROP VIEW normalized_factor_scores')
+    execute('DROP VIEW IF EXISTS normalized_factor_scores')
     execute("
       CREATE OR REPLACE VIEW normalized_factor_scores AS
         SELECT user_assessment_factor_scores.id,
