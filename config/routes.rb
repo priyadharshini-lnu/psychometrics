@@ -313,6 +313,7 @@ Rails.application.routes.draw do
             get :norms
             post :update_norm
             post :update_mettl_schedule
+            put :update_content_variation
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
@@ -337,6 +338,7 @@ Rails.application.routes.draw do
             get :webhook_payload
             put :schedule_assessment
             put :toggle_require_scheduling
+            put :update_content_variation
           end
         end
 

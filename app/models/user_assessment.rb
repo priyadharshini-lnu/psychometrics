@@ -345,6 +345,13 @@ class UserAssessment < ApplicationRecord
     mettl_user_assessment.update!(mettl_schedule_record_id: mettl_schedule_record_id)
   end
 
+  def update_content_variation!(content_variation_id)
+    return unless not_started?
+    return unless simulation?
+
+    simulation_user_assessment.update!(content_variation_id: content_variation_id)
+  end
+
   private
 
   def saville_norm_name

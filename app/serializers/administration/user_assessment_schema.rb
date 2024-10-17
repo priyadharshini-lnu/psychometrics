@@ -14,6 +14,7 @@ module Administration
           required(:update_additional_time).maybe(:bool?)
           required(:update_norm).filled(:bool?)
           required(:update_mettl_schedule).filled(:bool?)
+          required(:update_content_variation).filled(:bool?)
           required(:rescore_response).filled(:bool?)
           required(:remove).filled(:bool?)
           required(:reset_progress).filled(:bool?)
@@ -38,6 +39,10 @@ module Administration
         required(:schedule_time).maybe(:str?)
         required(:require_scheduling).maybe(:bool?)
         required(:dimension_id).maybe(:int?)
+        required(:simulation_content_variations).maybe do
+          array(SimulationContentVariationSchema.schema(_, _))
+        end
+        required(:simulation_content_variation_id).maybe(:str?)
       end
     end
   end

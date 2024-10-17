@@ -62,6 +62,12 @@ module Administration
       )
     end
 
+    def update_content_variation?
+      @record.simulation? && @user.has_permission?(
+        :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     def update_prework?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id

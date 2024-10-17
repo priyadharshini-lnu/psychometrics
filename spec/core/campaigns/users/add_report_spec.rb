@@ -87,10 +87,19 @@ describe Campaigns::Users::AddReport do
 
   it 'create simulation_user_assessment if assessment is of type simulation' do
     assessment = create(:assessment, :simulation)
+    camapign_assessment = create(
+      :campaign_assessment,
+      campaign: campaign,
+      assessment: assessment,
+      external_config: { content_variation_id: 'starWars' }.to_json
+    )
     report = create(:report, assessments: [assessment])
     described_class.call!(campaign_user, report, assessments: report.assessments)
 
     expect(assessment.simulation_user_assessments.exists?).to eq(true)
+    expect(assessment.simulation_user_assessments.first.content_variation_id).to eq(
+      camapign_assessment.external_config['content_variation_id']
+    )
   end
 
   it 'create saville_user_assessment if assessment is of type saville' do

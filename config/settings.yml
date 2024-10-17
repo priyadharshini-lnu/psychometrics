@@ -1174,6 +1174,7 @@ providers:
           - en
       - id: golf-content-variations
         name: Content Variations
+        default_content_variation_id: starWars
         content_variations:
           - id: starWars
             name: Star Wars

@@ -38,7 +38,7 @@ module Simulation
     end
 
     def redirect_url
-      ::Simulation::GetAssessmentUrl.call!(simulation_user_assessment)
+      ::Simulation::GetAssessmentUrl.call!(user_assessment)
     end
 
     def campaign

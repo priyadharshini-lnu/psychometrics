@@ -194,5 +194,18 @@ RSpec.describe Assessment, type: :model do
         non_mettl_assessment.save!
       end
     end
+
+    describe '#simulation_settings' do
+      let(:external_assessment_id) { 'golf-content-variations' }
+      let(:assessment) do
+        create(:assessment, :simulation, external_settings: { assessment_id: external_assessment_id })
+      end
+
+      let(:simulation_settings) { { id: external_assessment_id, name: 'Simulation Assessment' } }
+
+      it 'returns the simulation settings' do
+        expect(assessment.simulation_settings.id).to eq(external_assessment_id)
+      end
+    end
   end
 end

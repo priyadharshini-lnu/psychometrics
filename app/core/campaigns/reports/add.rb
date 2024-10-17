@@ -42,6 +42,7 @@ module Campaigns
             attrs = { assessment: assessment, norm_id: assessment_params[:norm_id] }
             attrs[:external_norm_id] = assessment.external_settings[:norm_id] if assessment.has_external_norm?
             attrs[:mettl_schedule_record_id] = default_mettl_schedule_record_id(assessment) if assessment.mettl?
+            attrs[:external_config] = default_config_for_simulation(assessment) if assessment.simulation?
 
             camapign_assessment = campaign.campaign_assessments.
                                   create_with(attrs).find_or_create_by!(assessment: assessment)
@@ -103,6 +104,16 @@ module Campaigns
 
       def default_mettl_schedule_record_id(assessment)
         MettlScheduleRecord.parent_schedules.find_by(assessment_id: assessment.id)&.id
+      end
+
+      def default_config_for_simulation(assessment)
+        simulation_settings = assessment.simulation_settings
+
+        if simulation_settings && simulation_settings[:default_content_variation_id]
+          return { 'content_variation_id' => simulation_settings[:default_content_variation_id] }.to_json
+        end
+
+        nil
       end
     end
   end

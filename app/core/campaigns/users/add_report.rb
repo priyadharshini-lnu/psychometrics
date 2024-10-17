@@ -118,7 +118,7 @@ module Campaigns
         elsif assessment.mettl?
           create_mettl_assessment(user_assessment, existing_result, campaign_assessment)
         elsif assessment.simulation?
-          create_simulation_assessment(user_assessment, existing_result)
+          create_simulation_assessment(user_assessment, existing_result, campaign_assessment)
         end
       end
 
@@ -152,11 +152,13 @@ module Campaigns
         )
       end
 
-      def create_simulation_assessment(user_assessment, existing_result)
+      def create_simulation_assessment(user_assessment, existing_result, campaign_assessment)
         existing_simulation_user_assessment = existing_result&.simulation_user_assessment
+        content_variation_id = existing_simulation_user_assessment&.content_variation_id || campaign_assessment.external_config&.dig('content_variation_id')  # rubocop:disable Layout/LineLength
 
         user_assessment.create_simulation_user_assessment(
-          participant_id: existing_simulation_user_assessment&.participant_id
+          participant_id: existing_simulation_user_assessment&.participant_id,
+          content_variation_id: content_variation_id
         )
       end
 

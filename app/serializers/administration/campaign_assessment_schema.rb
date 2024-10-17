@@ -36,11 +36,17 @@ module Administration
           required(:schedule_assessment).filled(:bool?)
           required(:toggle_auto_assign).filled(:bool?)
           required(:update_mettl_schedule).filled(:bool?)
+          required(:update_content_variation).filled(:bool?)
+          required(:update_available_locales).filled(:bool?)
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)
         required(:all_locales).maybe(:array?).each(:str?)
-        required(:external_config).maybe(:hash?)
+        required(:external_config).hash do
+          optional(:duration).maybe(:int?)
+          optional(:passPercentage).maybe(:int?)
+          optional(:content_variation_id).maybe(:str?)
+        end
         required(:campaign_assessment_id).filled(:int?)
         required(:prework).filled(:bool?)
         required(:workshop_activity).filled(:bool?)
@@ -51,6 +57,9 @@ module Administration
         required(:mettl_schedule_name).maybe(:str?)
         required(:mettl_schedule_record_id).maybe(:str?)
         required(:dimension_id).maybe(:int?)
+        required(:simulation_content_variations).maybe do
+          array(SimulationContentVariationSchema.schema(_, _))
+        end
       end
     end
   end

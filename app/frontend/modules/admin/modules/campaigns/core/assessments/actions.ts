@@ -23,6 +23,7 @@ export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/assessments/TOGGLE_REQUIRE_SCH
 export const TOGGLE_AUTO_ASSIGN = 'campaigns/assessments/TOGGLE_AUTO_ASSIGN'
 
 export const UPDATE_METTL_SCHEDULE = 'campaigns/assessments/UPDATE_METTL_SCHEDULE'
+export const UPDATE_CONTENT_VARIATION = 'campaigns/assessments/UPDATE_CONTENT_VARIATION'
 
 export const UPDATE_PREWORK = 'campaigns/assessments/UPDATE_PREWORK'
 export const updatePrework = (campaignId: number, id: number, prework: boolean) => ({
@@ -173,6 +174,17 @@ export const updateMettlSchedule = (campaignId: number, assessmentId: number, bo
     loader: true,
   },
 })
+
+export const updateContentVariation = (campaignId: string, assessmentId: number, body) => ({
+  type: UPDATE_CONTENT_VARIATION,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_content_variation`,
+    body: { ...body, id: assessmentId },
+    loader: true,
+  },
+})
+
 
 const UpdateAssessorFormTR = t.type({
   assessorFormName: t.union([t.string, t.null]),

@@ -209,4 +209,61 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       expect(response).to have_http_status(:forbidden)
     end
   end
+
+  describe '[PUT] update_content_variation' do
+    let!(:assessment) { create(:assessment, type: Assessments::Simulation) }
+    let!(:campaign_assessment) { create(:campaign_assessment, assessment: assessment, campaign: campaign) }
+
+    let!(:user_assessment) do
+      create(:user_assessment, assessment: assessment, campaign: campaign, status: :not_started)
+    end
+    let!(:simulation_user_assessment) { create(:simulation_user_assessment, user_assessment: user_assessment) }
+
+    it 'with apply = false' do
+      put :update_content_variation, params: {
+        id: assessment.id,
+        new_campaign_id: campaign.id,
+        apply: false,
+        external_config: { 'content_variation_id' => 'starWars' }.to_json
+      }, as: :json
+
+      parsed_response = JSON.parse(response.body)
+
+      campaign_assessment.reload
+
+      expect(parsed_response).to eq('content_variation_id' => 'starWars')
+      expect(campaign_assessment.external_config['content_variation_id']).to eq('starWars')
+    end
+
+    it 'with apply = true' do
+      put :update_content_variation, params: {
+        id: assessment.id,
+        new_campaign_id: campaign.id,
+        apply: true,
+        external_config: { 'content_variation_id' => 'starWars' }.to_json
+      }, as: :json
+
+      parsed_response = JSON.parse(response.body)
+
+      campaign_assessment.reload
+
+      expect(parsed_response).to eq('content_variation_id' => 'starWars')
+      expect(campaign_assessment.external_config['content_variation_id']).to eq('starWars')
+      expect(simulation_user_assessment.reload.content_variation_id).to eq('starWars')
+    end
+
+    it 'does not update simulation user assessment record id if user assessment is not simulation' do
+      assessment.update!(type: Assessments::Hogan)
+
+      put :update_content_variation, params: {
+        id: assessment.id,
+        new_campaign_id: campaign.id,
+        apply: true,
+        external_config: { 'content_variation_id' => 'starWars' }.to_json
+      }, as: :json
+
+      expect(campaign_assessment.reload.external_config).to eq(nil)
+      expect(response).to have_http_status(:forbidden)
+    end
+  end
 end

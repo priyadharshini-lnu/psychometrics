@@ -273,6 +273,45 @@ status: :in_progress)
     end
   end
 
+  describe '#update_content_variation!' do
+    let!(:assessment) { create(:assessment, type: Assessments::Simulation) }
+    let!(:user_assessment) { create(:user_assessment, assessment: assessment) }
+    let!(:simulation_user_assessment) do
+      create(:simulation_user_assessment, user_assessment: user_assessment)
+    end
+    let(:content_variation_id) { 'spicyFood' }
+
+    context 'when user assessment is not started and is simulation type' do
+      it 'updates content variation id' do
+        user_assessment.update!(status: 'not_started')
+
+        user_assessment.update_content_variation!(content_variation_id)
+
+        expect(simulation_user_assessment.reload.content_variation_id).to eq(content_variation_id)
+      end
+    end
+
+    context 'when user assessment is not simulation type' do
+      it 'does not update content variation id' do
+        allow(user_assessment).to receive(:simulation?).and_return(false)
+
+        user_assessment.update_content_variation!(content_variation_id)
+
+        expect(simulation_user_assessment.reload.content_variation_id).not_to eq(content_variation_id)
+      end
+    end
+
+    context 'when user assessment is not started' do
+      it 'does not update content variation id' do
+        user_assessment.update!(status: 'completed')
+
+        user_assessment.update_content_variation!(content_variation_id)
+
+        expect(simulation_user_assessment.reload.content_variation_id).not_to eq(content_variation_id)
+      end
+    end
+  end
+
   describe 'Calculate and save campaign scoring' do
     let(:campaign) { create(:campaign) }
     let(:assessment) { create(:assessment) }

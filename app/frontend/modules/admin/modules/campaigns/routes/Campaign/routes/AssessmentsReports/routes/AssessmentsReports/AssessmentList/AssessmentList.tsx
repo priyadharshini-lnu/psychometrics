@@ -37,6 +37,7 @@ const AssessmentList: React.FC<Props> = ({
   updateWorkshopActivity,
   toggleRequireScheduling,
   toggleAutoAssign,
+  loadingUpdateMettlSchedule,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
 
@@ -127,9 +128,9 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.locales')}
             key="availableLocales"
             render={({
-              availableLocales, id, isExternal, allLocales,
+              availableLocales, id, isExternal, category, allLocales,
             }) => {
-              if (isExternal) {
+              if (isExternal && category !== 'simulation') {
                 return I18n.t('common.text.na')
               }
               if (!permissions.updateAvailableLocales) {
@@ -254,6 +255,7 @@ const AssessmentList: React.FC<Props> = ({
             assessment={drawerAssessment}
             campaignId={campaignId}
             updateMettlSchedule={updateMettlSchedule}
+            loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
           />
         ) : null}
       </Col>

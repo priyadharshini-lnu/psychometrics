@@ -4,10 +4,10 @@ module Simulation
   class GetAssessmentUrl < Base
     include Rails.application.routes.url_helpers
 
-    private_attr_reader :simulation_user_assessment
+    private_attr_reader :user_assessment
 
-    def initialize(simulation_user_assessment)
-      @simulation_user_assessment = simulation_user_assessment
+    def initialize(user_assessment)
+      @user_assessment = user_assessment
     end
 
     def call
@@ -38,6 +38,9 @@ module Simulation
         }
       }
 
+      payload[:modifiers][:contentId] = content_variation_id if content_variation_id.present?
+      payload[:modifiers][:languageRestrictions] = available_locales if available_locales.present?
+
       JWT.encode(payload, shared_secret, 'HS256')
     end
 
@@ -53,8 +56,16 @@ module Simulation
       credentials[:shared_secret]
     end
 
-    def user_assessment
-      @user_assessment ||= @simulation_user_assessment.user_assessment
+    def simulation_user_assessment
+      @simulation_user_assessment ||= user_assessment.simulation_user_assessment
+    end
+
+    def content_variation_id
+      simulation_user_assessment.content_variation_id
+    end
+
+    def available_locales
+      user_assessment.campaign_assessment.available_locales
     end
 
     def project
@@ -62,7 +73,7 @@ module Simulation
     end
 
     def participant_id
-      @participant_id ||= @simulation_user_assessment.participant_id
+      @participant_id ||= simulation_user_assessment.participant_id
     end
 
     def jwt_token

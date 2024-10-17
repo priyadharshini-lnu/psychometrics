@@ -4550,7 +4550,8 @@ CREATE TABLE public.simulation_user_assessments (
     user_assessment_id bigint NOT NULL,
     participant_id character varying,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    content_variation_id character varying
 );
 
 
@@ -14202,6 +14203,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241001103146'),
+('20241015071157'),
 ('20241011121150'),
 ('20241010122532'),
 ('20241009075129'),

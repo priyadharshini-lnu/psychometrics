@@ -275,6 +275,12 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
     end
   end
 
+  def simulation_settings
+    Settings.providers.simulation.assessments.find do |a|
+      a.id == external_assessment_id
+    end
+  end
+
   def external_assessment_id
     external_settings[:assessment_id]
   end
