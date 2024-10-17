@@ -127,6 +127,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       expect(parsed_response).to eq({
         'id' => sheet_row.id, 'Email' => 'mark@cc.com', 'Name' => 'Mark'
       })
+      expect(sheet_row.sheet_row_data.last.string_value).to eq('Mark')
     end
 
     it 'renders error if email is invalid' do
@@ -153,6 +154,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
       expect(parsed_response).to eq({
         'id' => sheet_row.id, 'Email' => 'james@cc.com', 'Name' => 'James Smith'
       })
+      expect(sheet_row.sheet_row_data.first.string_value).to eq('James Smith')
     end
   end
 
@@ -166,6 +168,7 @@ RSpec.describe Administration::Campaigns::SheetRowsController, type: :controller
 
       expect(SheetRow.find_by(id: sheet_row.id)).to eq(nil)
       expect(SheetRow.find_by(id: sheet_row2.id)).to eq(nil)
+      expect(SheetRowDatum.find_by(sheet_row_id: sheet_row.id)).to eq(nil)
     end
   end
 

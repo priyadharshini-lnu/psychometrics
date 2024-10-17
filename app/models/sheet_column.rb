@@ -11,6 +11,8 @@ class SheetColumn < ApplicationRecord
   }.freeze
 
   belongs_to :sheet
+  has_many :sheet_row_data, dependent: :destroy
+
   acts_as_list scope: :sheet, top_of_list: 0
   enum column_type: { email: 0, number: 1, string: 2, text: 3, markdown: 4, html: 5 }
 

@@ -30,12 +30,12 @@ RSpec.describe Administration::Projects::SheetsController, type: :controller do
       }, format: :json
 
       expect(sheet.reload.sheet_columns.map(&:name)).to eq(%w[Email test])
-
+      last_id = sheet.reload.sheet_columns.last.id
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq([
-        { 'id' => 1, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
+        { 'id' => column1.id, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
           'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
-        { 'id' => 2, 'name' => 'test', 'column_type' => 'string', 'accessor_access' => true,
+        { 'id' => last_id, 'name' => 'test', 'column_type' => 'string', 'accessor_access' => true,
           'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1 }
       ])
     end

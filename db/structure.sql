@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -642,16 +635,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -850,7 +843,8 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[]
+    files character varying[] DEFAULT '{}'::character varying[],
+    file character varying
 );
 
 
@@ -931,9 +925,9 @@ CREATE TABLE public.campaign_assessments (
     external_norm_id character varying,
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -1741,9 +1735,7 @@ CREATE TABLE public.dashboards (
     refresh_interval integer DEFAULT 15,
     image character varying,
     last_refreshed_at timestamp without time zone,
-    refresh_tried_at timestamp without time zone,
-    dashboard_type integer DEFAULT 0 NOT NULL,
-    project_path character varying
+    refresh_tried_at timestamp without time zone
 );
 
 
@@ -2870,7 +2862,7 @@ ALTER SEQUENCE public.media_responses_id_seq OWNED BY public.media_responses.id;
 --
 
 CREATE TABLE public.meeting_rooms (
-    id uuid DEFAULT gen_random_uuid() NOT NULL,
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     external_id character varying,
     meetable_type character varying,
@@ -4023,12 +4015,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
@@ -4437,6 +4429,40 @@ ALTER SEQUENCE public.sheet_columns_id_seq OWNED BY public.sheet_columns.id;
 
 
 --
+-- Name: sheet_row_data; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_row_data (
+    id bigint NOT NULL,
+    string_value text,
+    numeric_value double precision,
+    sheet_row_id bigint NOT NULL,
+    sheet_column_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sheet_row_data_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sheet_row_data_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sheet_row_data_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
+
+
+--
 -- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4446,7 +4472,8 @@ CREATE TABLE public.sheet_rows (
     email public.citext NOT NULL,
     data jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
 );
 
 
@@ -5199,8 +5226,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -6031,10 +6057,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -7318,6 +7344,13 @@ ALTER TABLE ONLY public.security_settings ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.sheet_columns ALTER COLUMN id SET DEFAULT nextval('public.sheet_columns_id_seq'::regclass);
+
+
+--
+-- Name: sheet_row_data id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_row_data ALTER COLUMN id SET DEFAULT nextval('public.sheet_row_data_id_seq'::regclass);
 
 
 --
@@ -8661,6 +8694,14 @@ ALTER TABLE ONLY public.security_settings
 
 ALTER TABLE ONLY public.sheet_columns
     ADD CONSTRAINT sheet_columns_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sheet_row_data sheet_row_data_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_row_data
+    ADD CONSTRAINT sheet_row_data_pkey PRIMARY KEY (id);
 
 
 --
@@ -10947,6 +10988,13 @@ CREATE INDEX index_sheet_columns_on_sheet_id ON public.sheet_columns USING btree
 
 
 --
+-- Name: index_sheet_row_data_on_sheet_row_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sheet_row_data_on_sheet_row_id ON public.sheet_row_data USING btree (sheet_row_id);
+
+
+--
 -- Name: index_sheet_rows_on_sheet_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -13076,6 +13124,14 @@ ALTER TABLE ONLY public.assigns
 
 
 --
+-- Name: sheet_row_data fk_rails_85fbb5163d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_row_data
+    ADD CONSTRAINT fk_rails_85fbb5163d FOREIGN KEY (sheet_row_id) REFERENCES public.sheet_rows(id) ON DELETE CASCADE;
+
+
+--
 -- Name: sms_invites fk_rails_860e8cda3d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -13900,6 +13956,14 @@ ALTER TABLE ONLY public.communication_emails
 
 
 --
+-- Name: sheet_row_data fk_rails_df2f5b23b1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sheet_row_data
+    ADD CONSTRAINT fk_rails_df2f5b23b1 FOREIGN KEY (sheet_column_id) REFERENCES public.sheet_columns(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14202,13 +14266,14 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
-('20241001103146'),
+('20241015064129'),
+('20241013183453'),
 ('20241015071157'),
 ('20241011121150'),
 ('20241010122532'),
 ('20241009075129'),
 ('20241008100312'),
-('20241007113728'),
+('20241001103146'),
 ('20240920142940'),
 ('20240920083324'),
 ('20240912114619'),

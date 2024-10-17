@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :sheet_row do
     sheet { nil }
     email { '' }
-    data { '' }
+    data { {} }
   end
 end
