@@ -10,10 +10,31 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
+-- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
 --
 
--- *not* creating schema, since initdb creates it
+CREATE SCHEMA c_10313;
+
+
+--
+-- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10463;
+
+
+--
+-- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10501;
+
+
+--
+-- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10542;
 
 
 --
@@ -97,6 +118,104 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
+
+--
+-- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sheet_rows (
+    id bigint NOT NULL,
+    sheet_id bigint,
+    email public.citext NOT NULL,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    migrated boolean DEFAULT false
+);
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
+--
+
+CREATE VIEW c_10313.datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
+    (sheet_rows.data ->> 'Position'::text) AS "Position",
+    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
+    (sheet_rows.data ->> 'Department'::text) AS "Department"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 69)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
+--
+
+CREATE VIEW c_10463.datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 65)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
+--
+
+CREATE VIEW c_10501.accesssheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
+    (sheet_rows.data ->> 'full name'::text) AS "full name",
+    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
+    (sheet_rows.data ->> 'roll number'::text) AS "roll number",
+    (sheet_rows.data ->> 'Position'::text) AS "Position",
+    (sheet_rows.data ->> 'Department'::text) AS "Department",
+    (sheet_rows.data ->> 'sample'::text) AS sample
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 61)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
+--
+
+CREATE VIEW c_10501.datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Department'::text) AS "Department",
+    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
+    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
+    (sheet_rows.data ->> 'Position'::text) AS "Position"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 62)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
+--
+
+CREATE VIEW c_10542.datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
+    (sheet_rows.data ->> 'Position'::text) AS "Position",
+    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
+    (sheet_rows.data ->> 'Department'::text) AS "Department",
+    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 70)
+  ORDER BY sheet_rows.id;
+
 
 --
 -- Name: active_storage_attachments; Type: TABLE; Schema: public; Owner: -
@@ -411,8 +530,8 @@ ALTER SEQUENCE public.api_keys_id_seq OWNED BY public.api_keys.id;
 CREATE TABLE public.ar_internal_metadata (
     key character varying NOT NULL,
     value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -481,8 +600,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -646,12 +765,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -874,6 +993,82 @@ ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
 
 
 --
+-- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10313_datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
+    (sheet_rows.data ->> 'Position'::text) AS "Position",
+    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
+    (sheet_rows.data ->> 'Department'::text) AS "Department"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 69)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10463_datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 65)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10501_datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Department'::text) AS "Department",
+    (sheet_rows.data ->> 'First Name'::text) AS "First Name",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
+    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
+    (sheet_rows.data ->> 'Position'::text) AS "Position"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 62)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10542_datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade",
+    (sheet_rows.data ->> 'Position'::text) AS "Position",
+    (sheet_rows.data ->> 'Last Name'::text) AS "Last Name",
+    (sheet_rows.data ->> 'Department'::text) AS "Department",
+    (sheet_rows.data ->> 'First Name'::text) AS "First Name"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 70)
+  ORDER BY sheet_rows.id;
+
+
+--
+-- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10543_datasheet AS
+ SELECT sheet_rows.id,
+    sheet_rows.email AS "Email",
+    (sheet_rows.data ->> 'Grade'::text) AS "Grade"
+   FROM public.sheet_rows
+  WHERE (sheet_rows.sheet_id = 72)
+  ORDER BY sheet_rows.id;
+
+
+--
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -927,13 +1122,13 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint
@@ -1355,8 +1550,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    practice_campaign boolean DEFAULT false,
-    default_idp_template_id bigint
+    default_idp_template_id bigint,
+    practice_campaign boolean DEFAULT false
 );
 
 
@@ -1741,9 +1936,7 @@ CREATE TABLE public.dashboards (
     refresh_interval integer DEFAULT 15,
     image character varying,
     last_refreshed_at timestamp without time zone,
-    refresh_tried_at timestamp without time zone,
-    dashboard_type integer DEFAULT 0 NOT NULL,
-    project_path character varying
+    refresh_tried_at timestamp without time zone
 );
 
 
@@ -4471,21 +4664,6 @@ ALTER SEQUENCE public.sheet_row_data_id_seq OWNED BY public.sheet_row_data.id;
 
 
 --
--- Name: sheet_rows; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sheet_rows (
-    id bigint NOT NULL,
-    sheet_id bigint,
-    email public.citext NOT NULL,
-    data jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    migrated boolean DEFAULT false
-);
-
-
---
 -- Name: sheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -5234,8 +5412,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -6028,9 +6205,9 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
+    manager_id bigint,
     mobile_number character varying,
-    mobile_verified boolean DEFAULT false,
-    manager_id bigint
+    mobile_verified boolean DEFAULT false
 );
 
 
@@ -6066,10 +6243,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -13713,7 +13890,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -14282,7 +14459,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241010122532'),
 ('20241009075129'),
 ('20241008100312'),
-('20241007113728'),
 ('20241001103146'),
 ('20240920142940'),
 ('20240920083324'),
