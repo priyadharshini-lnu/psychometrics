@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/react'
+import SentryRRWeb from '@sentry/rrweb'
 
 const initSentry = () => {
   const { sentryUrl, realEnv, currentUser } = window.PsyGlobalState
@@ -7,11 +8,7 @@ const initSentry = () => {
     dsn: sentryUrl,
     environment: realEnv,
     normalizeDepth: 4,
-    integrations: [
-      Sentry.replayIntegration({
-        maskAllText: true,
-        blockAllMedia: true,
-      })],
+    integrations: [new SentryRRWeb()],
     ignoreErrors: [
       'Existing connection must be closed before opening',
       'Non-Error promise rejection captured with value: undefined',
