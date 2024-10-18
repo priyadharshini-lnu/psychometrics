@@ -57,9 +57,7 @@ export default defineConfig({
     RubyPlugin(),
     react(),
     // visualizer({open: true}),
-    svgr({
-      exportAsDefault: false,
-    }),
+    svgr(),
     ...devPlugins,
     loadCssModulePlugin.default({
       include: (id) => {
@@ -122,6 +120,7 @@ export default defineConfig({
             }
             return 'vendors'
           }
+          return
 
           // if (id.includes('/glint/')) {
           //   return 'glint'
