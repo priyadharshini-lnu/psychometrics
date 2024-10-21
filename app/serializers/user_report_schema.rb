@@ -30,7 +30,9 @@ class UserReportSchema < BaseSchema
       required(:campaign_factor_results).array do
         hash do
           required(:code).filled(:str?)
-          required(:value).filled(:int?)
+          required(:value).maybe do
+            float? | str?
+          end
         end
       end
       required(:module_overrides).array(TextModuleOverrideSchema.schema(_, _))
