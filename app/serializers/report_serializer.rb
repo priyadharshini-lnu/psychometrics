@@ -199,6 +199,19 @@ class ReportSerializer < Panko::Serializer
     ).to_a
   end
 
+  def campaign_factors
+    return object.campaign_factors unless campaign
+
+    campaign.campaign_factors.map do |factor|
+      {
+        id: factor.id,
+        name: factor.name,
+        description: factor.description,
+        code: factor.code
+      }
+    end
+  end
+
   private
 
   def results
@@ -207,5 +220,9 @@ class ReportSerializer < Panko::Serializer
 
   def user_results
     context[:user_results]
+  end
+
+  def campaign
+    context&.dig(:campaign)
   end
 end

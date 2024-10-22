@@ -16,6 +16,7 @@ const CPIConditionCollection = function (attrs = {}, module) {
   this.baselineScore = attrs.baselineScore
   this.module = module
   this.factorId = attrs.factorId
+  this.campaignFactorCode = attrs.campaignFactorCode
   this.styles = attrs.styles || {}
   this.conditions = []
   if (attrs.conditions) {
@@ -41,6 +42,7 @@ _.extend(CPIConditionCollection.prototype, {
       color: this.color,
       baselineScore: this.baselineScore,
       factorId: this.factorId,
+      campaignFactorCode: this.campaignFactorCode,
       styles: this.styles,
       conditions: this.conditions,
     }

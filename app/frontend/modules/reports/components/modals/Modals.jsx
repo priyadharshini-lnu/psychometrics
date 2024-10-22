@@ -13,6 +13,7 @@ import DisplayLogic from './DisplayLogic'
 import PipedTextModal from './PipedTextModal'
 import { ReportSettings } from './ReportSettings'
 import RemapAssessment from './RemapAssessment'
+import CampaignFactorConditionModal from './CampaignFactorConditionModal'
 
 const MODALS = {
   filter: FilterModal,
@@ -29,6 +30,7 @@ const MODALS = {
   pipedText: PipedTextModal,
   reportSettings: ReportSettings,
   remapAssessment: RemapAssessment,
+  CampaignFactorCondition: CampaignFactorConditionModal,
 }
 
 

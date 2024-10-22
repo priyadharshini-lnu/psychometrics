@@ -35,6 +35,7 @@ module UserReports::PdfGeneration
             user_results: resource.user_results(view_report_as),
             view_report_as: view_report_as,
             current_user: current_user,
+            campaign: resource.campaign,
             include: '**'
           }
         ).serialize(resource)

@@ -25,6 +25,7 @@ const TABLE_TYPE_OPTIONS = [
   { value: 'PotentialKeyCareerTracks', label: 'Career - Key Tracks' },
   { value: 'StrengthClusters', label: 'Career - Strength Clusters' },
   { value: 'InnovationStyles', label: 'Innovation Styles' },
+  { value: 'CampaignFactorsTable', label: 'Campaign Factors' },
 ]
 
 class Properties extends Component {
@@ -46,6 +47,11 @@ class Properties extends Component {
     if (['FactorsTable', 'StrengthClusters'].includes(value)) {
       model.props.source = {
         factors: _.map(AppStore.subfactors[dimensionId], this.factor),
+      }
+    }
+    if (['CampaignFactorsTable'].includes(value)) {
+      model.props.source = {
+        campaignFactors: AppStore.report.campaignFactors,
       }
     }
     model.update()

@@ -1,0 +1,184 @@
+.table {
+  width: 100%;
+  color: #333333;
+  position: relative;
+  border-spacing: 0;
+  background: #FFFFFF;
+  font-size: 1em;
+  &.bordered {
+    border-radius: 12px;
+    border: 0.5px solid #0202020D;
+    box-shadow: 0px 0px 8px #0202020D;
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #ededed;
+    }
+    tr:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  th, td {
+    text-align: start;
+  }
+
+  th {
+    padding: 1.5em 1em 1em;
+    text-transform: uppercase;
+    overflow: hidden;
+    font-weight: normal;
+    &.rankOrder, &.score, &.benchmarks, &.filter  {
+      text-align: center;
+    }
+  }
+
+  td {
+    padding: 1em;
+    padding-bottom: 0;
+    text-align: start;
+    vertical-align: top;
+    white-space: normal;
+
+    &.score, &.rankOrder {
+      text-align: center;
+    }
+
+    &.rankOrder {
+      width: 2em;
+    }
+    .nameAndLabel {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .strength {
+      color: #333333;
+      font-weight: bold;
+      align-self: center;
+    }
+    .label {
+      color: white;
+      font-size: 0.9em;
+      padding: 0.3em 0.6em;
+      border-radius: 4px;
+      text-align: center;
+    }
+    &.description {
+      color: #7B7B7B;
+      display: flex;
+      ul, ol {
+        padding-inline-start: 1.4em;
+      }
+
+      .strengthsBlindspots {
+        display: flex;
+        flex-direction: row;
+
+        &>div {
+          width: calc(50% - 0.5em);
+        }
+        ul {
+          margin: 0 auto;
+
+          li {
+            position: relative;
+            vertical-align: top;
+            padding-bottom: 0.35em;
+          }
+        }
+
+        .strengths, .blindspots {
+          color: #7B7B7B;
+          font-style: italic;
+          flex: 1;
+        }
+        .strengths {
+          margin-inline-end: 0.6em;
+        }
+        .blindspots {
+          margin-inline-start: 0.6em;
+        }
+      }
+      .content {
+        flex: 1;
+      }
+    }
+
+    &.score {
+      width: 2em;
+      font-weight: bold;
+    }
+  }
+
+  &.default {
+    .strength {
+      font-size: 1.3em;
+    }
+    td {
+      &.score {
+        //width: 5em;
+        font-size: 1.25em;
+        &.bullet {
+          width: 9.5em;
+        }
+      }
+    }
+  }
+
+  &.compact {
+    th {
+      font-size: 1em;
+    }
+    &.strength {
+      font-weight: normal;
+    }
+    td {
+      padding: 0.35em 1em;
+      font-size: 1em;
+      &.score {
+        font-weight: normal;
+      }
+
+      &.strengthsBlindspots {
+        ul {
+          li {
+            padding: 0 0 0.5em 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 3em;
+  color: #51d0d4;
+
+  .text {
+    top: 0;
+    left: 0;
+    color: #FFFFFF;
+    position: absolute;
+    font-weight: 600;
+    transform: scale(.3) translateX(100%);
+  }
+}
+
+.bulletLabel {
+  font-size: 0.7em;
+  font-weight: normal;
+}
+
+body[data-locale="ar"] {
+  .table {
+    direction: rtl;
+
+    th {
+      text-align: right;
+    }
+  }
+}
