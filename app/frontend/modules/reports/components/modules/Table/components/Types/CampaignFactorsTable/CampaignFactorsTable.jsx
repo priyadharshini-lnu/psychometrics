@@ -211,7 +211,7 @@ class CampaignFactorsTable extends Component {
     const { fontFamily } = module.props.style
     return (
       this.campaignFactorsData.map((campaignfactor, i) => {
-        const conditions = _.filter(module.textConditions, { factorId: campaignfactor.id })
+        const conditions = _.filter(module.textConditions, { campaignFactorCode: campaignfactor.code })
         let conditionTitle = null
         let conditionText = null
         let conditionStrengths = null
