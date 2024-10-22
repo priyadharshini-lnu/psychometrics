@@ -10,13 +10,9 @@ RSpec.describe Administration::FactorsController, type: :controller do
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
-
   describe 'DELETE #destroy' do
     it 'destroys the requested factor' do
-      factor
-      expect {
-        delete :destroy, params: { id: factor.id, dimension_id: dimension.id }
-      }.to change(Factor, :count).by(-1)
+      expect(delete :destroy, params: { id: factor.id, dimension_id: dimension.id }).to change(Factor, :count).by(-1)
     end
 
     it 'includes factor name in flash message after deletion' do
