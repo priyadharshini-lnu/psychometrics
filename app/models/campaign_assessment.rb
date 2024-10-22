@@ -24,6 +24,7 @@ class CampaignAssessment < ApplicationRecord
            :saville?,
            :iiht?,
            :mettl?,
+           :simulation?,
            :has_external_norm?,
            :external_assessment_id,
            :assessor_form?,
@@ -91,6 +92,18 @@ class CampaignAssessment < ApplicationRecord
 
       MettlUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
         mettl_schedule_record_id: mettl_schedule_record_id
+      )
+    end
+  end
+
+  def update_content_variation!(external_config, apply_to_existing_users = false)
+    return unless simulation?
+
+    if update!(external_config: external_config) && apply_to_existing_users
+      not_started_assessments = user_assessments.where(status: :not_started).pluck(:id)
+
+      SimulationUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
+        content_variation_id: self.external_config['content_variation_id']
       )
     end
   end

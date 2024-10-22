@@ -70,9 +70,9 @@ WithNotification.args = {
   valueStyle: { fontSize: '14px' },
   prefix: <ClockCircleOutlined style={{ color: '#009ea7' }} />,
   notificationPoints: [
-    { completionPercentage: 40, type: 'info' },
-    { completionPercentage: 60, type: 'warning' },
-    { completionPercentage: 80, type: 'error' },
+    { timeRemaining: 3600, type: 'info' },
+    { timeRemaining: 1800, type: 'warning' },
+    { timeRemaining: 900, type: 'error' },
   ],
-  notificationTemplate: (minutes: number, seconds: number) => `${minutes} minutes and ${seconds} seconds left`,
+  notificationTemplate: (minutes: number) => `${minutes} minutes left`,
 }

@@ -131,13 +131,13 @@ class Campaign < ApplicationRecord
   end
 
   def datasheet_columns
-    project_datasheet_columns = project.datasheet&.columns || []
-    campaign_datasheet_columns = datasheet&.columns || []
-    column_names = (project_datasheet_columns + campaign_datasheet_columns).map { |c| c['name'] }.uniq
+    project_datasheet_columns = project.datasheet&.sheet_columns.to_a
+    campaign_datasheet_columns = datasheet&.sheet_columns.to_a
+    column_names = (project_datasheet_columns + campaign_datasheet_columns).map(&:name).uniq
     column_names.map do |column_name|
-      campaign_column = campaign_datasheet_columns.find { |col| col['name'] == column_name }
-      campaign_column || project_datasheet_columns.find { |col| col['name'] == column_name }
-    end
+      campaign_column = campaign_datasheet_columns.find { |dc| dc.name == column_name }
+      campaign_column || project_datasheet_columns.find { |dc| dc.name == column_name }
+    end.map { |c| { 'name' => c.name, 'type' => c.humanize_type } }
   end
 
   def assessor_assessments

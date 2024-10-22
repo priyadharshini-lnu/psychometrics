@@ -13,7 +13,8 @@ module Api
       'pearson' => Api::V2::Assessment::PearsonContract,
       'iiht' => Api::V2::Assessment::IihtContract,
       'mettl' => Api::V2::Assessment::MettlContract,
-      'saville' => Api::V2::Assessment::SavilleContract
+      'saville' => Api::V2::Assessment::SavilleContract,
+      'simulation' => Api::V2::Assessment::SimulationContract
     }.freeze
 
     def create_contract_based_on_assessment_type
@@ -94,6 +95,13 @@ module Api
 
     def export_raw_factor_scores
       AdminJob.call(:super_admin_assessment_raw_factor_export, { assessment_id: params[:assessment_id].to_i },
+                    current_user)
+
+      jsonapi_render json: resource
+    end
+
+    def external_scores
+      AdminJob.call(:super_admin_external_assessment_export, { assessment_id: params[:assessment_id].to_i },
                     current_user)
 
       jsonapi_render json: resource

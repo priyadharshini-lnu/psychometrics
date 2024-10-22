@@ -66,7 +66,8 @@ class UsersResultUpdateSerializer < Panko::Serializer
       subject: object.subject,
       threesixty_campaign: context[:threesixty_campaign],
       campaign: context[:campaign],
-      result: object
+      result: object,
+      assessment: object.assessment
     }
   end
 end

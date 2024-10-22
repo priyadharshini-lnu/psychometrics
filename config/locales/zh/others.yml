@@ -204,7 +204,8 @@ zh:
       continue: 继续
       notification: 你的任务“%{assessmentName}”的分配时间为 %{totalAssessmentTime}。由于总消耗时长，你现在只有 %{remainingCampaignTime} 的已调整时间来完成此任务。
     timer:
-      notification: 你有 %{minutes} 分 %{seconds} 秒来完成
+      notification_hours: 您還剩 %{hours} 小時
+      notification_minutes: 您還剩 %{minutes} 分鐘
   campaign_assessment:
     assessments_heading: 你的任务
     statuses:

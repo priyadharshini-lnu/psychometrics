@@ -57,7 +57,7 @@ const Module = function (attrs = {}, page) {
   } else {
     this.textConditions = []
   }
-  this.campaignFactorsList = AppStore.getAssessmentById(this.assessment_id).campaignFactorsList || []
+  this.campaignFactorsList = AppStore.getAssessmentById(this.assessment_id)?.campaignFactorsList || []
 }
 
 Module.prototype = new EventEmitter()

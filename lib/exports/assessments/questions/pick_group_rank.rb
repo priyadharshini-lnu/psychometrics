@@ -30,14 +30,14 @@ module Exports
                                next answer['choice'] + 1 unless export_with_labels
 
                                question.props.dig('choicesTexts', answer['choice'])
-                             end.join(', ')
+                             end.join(';')
           end
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
               parsed_result << (answers || []).
                                select { |answer| answer['scale'] == s && answer['choice'] == c }.
                                map { |a| a['value'] + 1 }.
-                               join(', ')
+                               join(';')
             end
           end
           parsed_result << get_duration(user_result, question)

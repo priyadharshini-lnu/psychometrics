@@ -131,7 +131,8 @@ pl:
       continue: Dalej
       notification: Twój czas przydzielony na to zadanie „%{assessmentName}” wynosił %{totalAssessmentTime}. Ze względu na ogólny czas, który upłynął, masz teraz tylko %{remainingCampaignTime} jako dostosowany czas na wykonanie tego zadania.
     timer:
-      notification: Masz %{minutes} minut i %{seconds} sekund na ukończenie
+      notification_hours: Pozostało Ci %{hours} godziny
+      notification_minutes: Masz %{minutes} minut i  na ukończenie
   campaign_assessment:
     assessments_heading: Twoje zadania
     statuses:

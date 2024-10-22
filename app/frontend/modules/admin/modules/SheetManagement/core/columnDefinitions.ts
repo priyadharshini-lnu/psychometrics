@@ -12,8 +12,10 @@ import {
 export type State = Column[]
 
 export const ColumnTR = t.type({
+  id: t.number,
+  position: t.number,
   name: t.union([t.string, t.null]),
-  type: ColumnTypeTR,
+  columnType: ColumnTypeTR,
   dashboardUse: t.union([t.boolean, t.undefined]),
   accessorAccess: t.union([t.boolean, t.undefined]),
   visibleInList: t.boolean,
@@ -116,7 +118,7 @@ export const removeColumns = (
   request: {
     typedResponse: ColumnsResponseTR,
     method: 'delete',
-    body: { columns, type },
+    body: { column_ids: columns, type },
     url: `/administration/${parentType}s/${parentId}/sheets/remove_columns`,
   },
 })

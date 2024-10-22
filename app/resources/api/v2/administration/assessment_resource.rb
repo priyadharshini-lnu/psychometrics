@@ -7,7 +7,7 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
              :tag_list
 
   ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq
-                     project_id_eq]
+                     project_id_eq owned_by_client_or_tte]
 
   add_tag_filter
 
@@ -122,7 +122,8 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
           @model,
           %w[manage
              export_raw_results
-             export_raw_factor_scores export_normed_results],
+             export_raw_factor_scores export_normed_results
+             external_scores],
           {
             project_id: Project.last.id
           }

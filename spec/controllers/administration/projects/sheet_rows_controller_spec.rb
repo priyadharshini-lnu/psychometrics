@@ -12,6 +12,18 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
       { name: 'Description', type: 'HTML', accessor_access: true, dashboard_use: true, visible_in_list: true }
     ])
   end
+  let!(:columns) do
+    [
+      create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string',
+                                  accessor_access: true, dashboard_use: true, visible_in_list: true),
+      create(:sheet_column, sheet: sheet, name: 'Name', column_type: 'string',
+                                    accessor_access: true, dashboard_use: true, visible_in_list: true),
+      create(:sheet_column, sheet: sheet, name: 'Profile', column_type: 'markdown',
+                                    accessor_access: true, dashboard_use: true, visible_in_list: true),
+      create(:sheet_column, sheet: sheet, name: 'Description', column_type: 'html',
+                                  accessor_access: true, dashboard_use: true, visible_in_list: true)
+    ]
+  end
   let!(:sheet_row) do
     create(:sheet_row, sheet: sheet, email: 'james@cc.com',
             data: { 'Name' => 'James', 'Profile' => 'Software Engineer', 'Description' => 'J1' })
@@ -30,14 +42,14 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
 
       expect(parsed_response['columns']).to match_array(
         [
-          { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Name', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Profile', 'type' => 'Markdown', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Description', 'type' => 'HTML', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true }
+          { 'id' => columns[0].id, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
+          { 'id' => columns[1].id, 'name' => 'Name', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1  },
+          { 'id' => columns[2].id, 'name' => 'Profile', 'column_type' => 'markdown', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 2  },
+          { 'id' => columns[3].id, 'name' => 'Description', 'column_type' => 'html', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 3  }
         ]
       )
       expect(parsed_response['total']).to eq(2)
@@ -58,14 +70,14 @@ RSpec.describe Administration::Projects::SheetRowsController, type: :controller 
       expect(parsed_response[0]['type']).to eq('project')
       expect(parsed_response[0]['columns']).to match_array(
         [
-          { 'name' => 'Email', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Name', 'type' => 'String', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Profile', 'type' => 'Markdown', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true },
-          { 'name' => 'Description', 'type' => 'HTML', 'accessor_access' => true,
-            'dashboard_use' => true, 'visible_in_list' => true }
+          { 'id' => columns[0].id, 'name' => 'Email', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 0 },
+          { 'id' => columns[1].id, 'name' => 'Name', 'column_type' => 'string', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 1  },
+          { 'id' => columns[2].id, 'name' => 'Profile', 'column_type' => 'markdown', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 2  },
+          { 'id' => columns[3].id, 'name' => 'Description', 'column_type' => 'html', 'accessor_access' => true,
+            'dashboard_use' => true, 'visible_in_list' => true, 'position' => 3  }
         ]
       )
       expect(parsed_response[0]['record']).to eq({

@@ -31,6 +31,7 @@ class Properties extends Component {
     this.forceUpdate()
   }
 
+
   changeFontColor = (color) => {
     const { model } = this.props
     model.props.style.fontColor = color.hex

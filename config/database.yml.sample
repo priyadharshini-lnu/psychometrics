@@ -3,20 +3,44 @@ default: &default
   pool: 5
   timeout: 5000
 
-development:
-  <<: *default
-  database: psychometrics_development
-
-test:
+common: &test_defaults
   <<: *default
   host: localhost
   username: postgres
   password: postgres
-  database: ci_test<%= ENV['TEST_ENV_NUMBER'] %>
+
+development:
+  primary:
+    <<: *default
+    database: psychometrics_development
+
+  primary_replica:
+    <<: *default
+    database: psychometrics_development
+    replica: true
+
+test:
+  primary:
+    <<: *test_defaults
+    database: ci_test<%= ENV['TEST_ENV_NUMBER'] %>
+
+  primary_replica:
+    <<: *test_defaults
+    database: ci_test<%= ENV['TEST_ENV_NUMBER'] %>
+    replica: true
 
 production:
-  <<: *default
-  url: <%= ENV['DATABASE_CONNECTION_POOL_URL'] || ENV['DATABASE_URL'] %>
-  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
-  prepared_statements: false
-  advisory_locks: false
+  primary:
+    <<: *default
+    url: <%= ENV['DATABASE_CONNECTION_POOL_URL'] || ENV['DATABASE_URL'] %>
+    pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+    prepared_statements: false
+    advisory_locks: false
+
+  primary_replica:
+    <<: *default
+    url: <%= ENV['ENV_REPLICA_DATABASE_URL'] ? ENV[ENV['ENV_REPLICA_DATABASE_URL']] : (ENV['DATABASE_CONNECTION_POOL_URL'] || ENV['DATABASE_URL']) %>
+    pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+    prepared_statements: false
+    advisory_locks: false
+    replica: true

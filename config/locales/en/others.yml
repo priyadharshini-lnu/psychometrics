@@ -798,6 +798,7 @@ en:
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Raw (without labels)
       extend_time: Extend time
+      external_scores_export: External Scores
       goto_dashboard: Click here to continue
       manage_mettl_schedule: Manage Mettle Schedule
       moderate: Moderate Scores
@@ -853,6 +854,7 @@ en:
         pearson_assessment_name: Pearson Assessment Name
         pearson_norm_id: Pearson norm ID
         saville_assessment_name: Saville assessment Name
+        simulation_assessment_name: Simulation Assessment Name
     create: Create
     dashboard: Dashboard
     dictation:
@@ -889,6 +891,7 @@ en:
         pearson: Pearson
         psychometric: Psychometric
         saville: Saville
+        simulation: Simulation
         threesixty: 360 Campaign
       status:
         finished: Finished
@@ -901,6 +904,7 @@ en:
         mindmill: Mindmill
         pearson: Pearson Assessment
         saville: Saville Assessment
+        simulation: Simulation Assessment
     flow:
       end_assessment_modal:
         custom_message: Custom end of assessment message
@@ -913,6 +917,7 @@ en:
       default: This is a timed activity, once you click Begin Assessment, you will have %{time} minutes to complete.
       title: Instructions
     messages:
+      external_scores_export_scheduled: Assessment Scores export job was scheduled successfully
       finish: "Thank you for your time. \nYour responses have now been recorded."
       norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
       raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
@@ -1200,7 +1205,8 @@ en:
       continue: Continue
       notification: Your allocated time for this task "%{assessmentName}" was %{totalAssessmentTime}. Due to the overall elapsed time, you now have only %{remainingCampaignTime} as your adjusted time to complete this task.
     timer:
-      notification: You have %{minutes} minutes and %{seconds} seconds to complete
+      notification_hours: You have %{hours} hour left
+      notification_minutes: you have %{minutes} minutes left
   campaign_assessment:
     actions:
       export_completion_status: Export Completion Status
@@ -1231,6 +1237,7 @@ en:
       norm: Norm
       norm_id: Norm ID
       prework: Prework
+      simulation_content_variation: Simulation Content Variation
       universal_link: Universal link
     drawer:
       mettl_schedule_name: Mettl Schedule Name
@@ -1277,6 +1284,10 @@ en:
         select_assessor: Select Assessor Form
         success_msg: Assessor Form was uploaded successfully
         title: Update Assessor Form
+        update: Update
+      update_content_variation:
+        select_schedule: Select Content Variation
+        success_msg: Simulation Content Variation was updated successfully
         update: Update
       update_external_config:
         text_placeholder: External json config
@@ -1830,6 +1841,7 @@ en:
         unique_skill: Skill should be unique
       uniq: This Mettl assessment is already present in the system. ID of this assessment is %{id}
       uniq?: should be unique
+      uniq_simulation: This Simulation assessment is already present in the system. ID of this assessment is %{id}
       update_workshop:
         less_than_booked: The total seats must be greater than booked
       user_availability_date:
@@ -2085,6 +2097,11 @@ en:
       last_week: Last Week
       today: Today
       yesterday: Yesterday
+    fontsize_modifier:
+      change_font: Change font size
+      decrease_font: Decrease font size
+      increase_font: Increase font size
+      reset_font: Reset font size
     input_duration:
       max_duration: Maximum duration is %{duration}
     schedule_availability:

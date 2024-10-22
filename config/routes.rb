@@ -313,6 +313,7 @@ Rails.application.routes.draw do
             get :norms
             post :update_norm
             post :update_mettl_schedule
+            put :update_content_variation
             put :update_assessor_form
             put :update_available_locales
             post :rescore_responses
@@ -337,6 +338,7 @@ Rails.application.routes.draw do
             get :webhook_payload
             put :schedule_assessment
             put :toggle_require_scheduling
+            put :update_content_variation
           end
         end
 
@@ -774,6 +776,8 @@ Rails.application.routes.draw do
     post '/:project_id/mettl/completion_notification', to: 'mettl#completion_notification',
                                                             as: :mettl_completion_notification
     post '/:project_id/mettl/results', to: 'mettl#results', as: :mettl_results_notification
+    post '/:project_id/simulation/progress_notification', to: 'simulation#progress_notification',
+as: :simulation_progress_notification
   end
 
   devise_scope :user do
@@ -893,6 +897,12 @@ Rails.application.routes.draw do
       end
 
       resources :mettl_user_assessments, only: [] do
+        member do
+          post :pass
+        end
+      end
+
+      resources :simulation_user_assessments, only: [] do
         member do
           post :pass
         end
@@ -1148,6 +1158,7 @@ Rails.application.routes.draw do
             get :export_raw_factor_scores
             get :export_raw_results
             get :export_normed_results
+            get :external_scores
           end
           jsonapi_resources :dimensions
           jsonapi_resources :tags
@@ -1169,6 +1180,8 @@ Rails.application.routes.draw do
             jsonapi_resources :webhooks do
               post :send_test
             end
+
+            jsonapi_resources :project_assessments
 
             jsonapi_resources :registration_settings, only: %i[index update]
             jsonapi_resources :mettl_schedule_records

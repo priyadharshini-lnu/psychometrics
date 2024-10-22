@@ -78,6 +78,10 @@ describe ::Sheets::SheetForm do
         create(:sheet, columns: [{ type: 'String', name: 'Email' },
                                  { type: 'String', name: 'test' }])
       end
+      let!(:columns) do
+        sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'Email', column_type: 'string')
+        sheet.sheet_columns << create(:sheet_column, sheet: sheet, name: 'test', column_type: 'string')
+      end
 
       it '#validate_presence_of' do
         allow(form).to receive(:file).and_return(nil)

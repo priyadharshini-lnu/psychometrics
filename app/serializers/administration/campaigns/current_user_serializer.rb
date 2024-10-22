@@ -24,7 +24,8 @@ module Administration
             'manage_project_smtp_settings',
             'manage_project_webhooks',
             %w[manage_project_general_settings update],
-            'manage_project_privacy_setting'
+            'manage_project_privacy_setting',
+            'manage_project_assessments'
           ],
           {
             project_id: context[:project_id],

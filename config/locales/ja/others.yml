@@ -207,7 +207,8 @@ ja:
       continue: 続行
       notification: このタスク「%{assessmentName}」に当てられた時間は%{totalAssessmentTime}でした。全体的な経過時間により、このタスクを完了するための調整後の時間は、%{remainingCampaignTime}しかありません。
     timer:
-      notification: 完了までの残り時間は%{minutes}分%{seconds}秒です
+      notification_hours: 残り時間は %{hours} 時間です
+      notification_minutes: 完了までの残り時間は%{minutes}分
   campaign_assessment:
     assessments_heading: あなたのタスク
     statuses:

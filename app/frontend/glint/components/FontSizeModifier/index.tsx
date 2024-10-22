@@ -1,0 +1,1 @@
+export { FontsizeModifier } from './FontSizeModifier'

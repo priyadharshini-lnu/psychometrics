@@ -25,7 +25,7 @@ module Imports
           data.each do |values|
             next not_applicable = true if not_applicable_data?(question, values)
 
-            values.to_s.split(',').each do |index|
+            values.to_s.split(';').each do |index|
               answers << {
                 index: (use_scoring && factors_scoring[index.to_i]) || (index.to_i - 1),
                 value: true

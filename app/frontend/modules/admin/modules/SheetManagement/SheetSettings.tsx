@@ -18,6 +18,7 @@ import { AddFieldDrawer } from './components/AddFieldDrawer'
 import { ParentResourceType } from './interfaces'
 import { EMAIL, Column, SheetType } from './core/list'
 import { get as getPermissions } from './core/permissions'
+import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
 
 const { I18n } = window
 
@@ -91,7 +92,8 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
       dataIndex: 'name',
     }, {
       title: 'Type',
-      dataIndex: 'type',
+      dataIndex: 'columnType',
+      render: (title, data) => toReadableString(data.columnType),
     },
     {
       title: 'Action',
@@ -209,7 +211,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
           <Table
             columns={columns}
             dataSource={dataSource}
-            rowKey={row => row.name || ''}
+            rowKey={row => (sort ? row.name || '' : row.id)}
             pagination={false}
             rowSelection={sort ? undefined : {
               selectedRowKeys,

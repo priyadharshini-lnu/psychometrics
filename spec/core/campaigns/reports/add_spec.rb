@@ -81,6 +81,16 @@ describe Campaigns::Reports::Add do
     expect(assessment.campaign_assessments.first.mettl_schedule_record_id).to eq(mettl_schedule_record.id)
   end
 
+  it 'saves external_config if campaign assessment is a simulation assessment' do
+    assessment = create(:assessment, :simulation, external_settings: { assessment_id: 'golf-content-variations' })
+
+    report = create(:report, assessments: [assessment])
+    form = Campaigns::Reports::Form.new(report_ids: report.id, report_access: { report.id.to_s => true })
+    described_class.call!(form, campaign, current_user)
+
+    expect(assessment.campaign_assessments.first.external_config['content_variation_id']).to eq('starWars')
+  end
+
   it "doesn't call Campaigns::Users::AddReport record for campaign_user if operation is 'skip_existing'" do
     create(:campaign_user, campaign: campaign)
     form.operation = 'skip_existing'

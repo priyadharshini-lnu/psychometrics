@@ -43,6 +43,12 @@ FactoryBot.define do
       type { ::Assessments::Mettl }
       external_settings { { assessment_id: 'assessmentId' } }
     end
+
+    trait :simulation do
+      category { Assessment::CATEGORIES[:simulation] }
+      type { ::Assessments::Simulation }
+      external_settings { { assessment_id: 'assessmentId' } }
+    end
   end
 
   factory :assessment_hogan, class: 'Assessments::Hogan' do

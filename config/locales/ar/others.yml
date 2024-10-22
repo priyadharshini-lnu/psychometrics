@@ -232,7 +232,8 @@ ar:
       continue: إستمرار
       notification: كان وقتك المخصص لهذه المهمة "%{assessmentName}" هو %{totalAssessmentTime} دقيقة فقط. نظراً للوقت المنقضي الإجمالي، لديك الآن %{remainingCampaignTime} دقيقة لإكمال هذه المهمة.
     timer:
-      notification: 'لديك %{minutes} و %{seconds} لإكمال التقييمات '
+      notification_hours: لديك %{hours}   لإكمال التقييمات
+      notification_minutes: لديك %{minutes}   لإكمال التقييمات
   campaign_assessment:
     assessments_heading: مهامك
     statuses:

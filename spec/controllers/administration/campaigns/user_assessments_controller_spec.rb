@@ -166,4 +166,55 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       expect(response).to have_http_status(:forbidden)
     end
   end
+
+  describe 'PUT update_content_variation' do
+    let!(:simulation_user_assessment) { create(:simulation_user_assessment, user_assessment: user_assessment) }
+
+    it 'updates content_variation_id in simulation user assessment' do
+      assessment.update!(type: Assessments::Simulation)
+      user_assessment.update!(status: 'not_started')
+
+      post :update_content_variation, params: {
+        content_variation_id: 'starWars',
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(simulation_user_assessment.reload.content_variation_id).to eq('starWars')
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'does not update content_variation_id if user assessment is completed' do
+      assessment.update!(type: Assessments::Simulation)
+      user_assessment.update!(status: 'completed')
+      original_content_variation_id = simulation_user_assessment.content_variation_id
+
+      post :update_mettl_schedule, params: {
+        content_variation_id: 'starWars',
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(simulation_user_assessment.reload.content_variation_id).to eq(original_content_variation_id)
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it 'does not update content_variation_id  if user assessment is not mettl' do
+      assessment.update!(type: Assessments::Hogan)
+      user_assessment.update!(status: 'not_started')
+      original_content_variation_id = simulation_user_assessment.content_variation_id
+
+      post :update_mettl_schedule, params: {
+        content_variation_id: 'starWars',
+        campaign_assessment_id: user_assessment.id,
+        new_campaign_id: campaign.id,
+        id: user_assessment.id
+      }, format: :json
+
+      expect(simulation_user_assessment.reload.content_variation_id).to eq(original_content_variation_id)
+      expect(response).to have_http_status(:forbidden)
+    end
+  end
 end

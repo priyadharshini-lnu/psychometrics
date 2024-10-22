@@ -87,7 +87,7 @@ const AddFieldDrawerComponent: FC<Props> = ({
   }
 
   const sheetColumnFormValues: Record<string, string | boolean | null> = {
-    type: 'String',
+    columnType: 'string',
     accessorAccess: true,
     dashboardUse: true,
     visibleInList: true,
@@ -136,13 +136,13 @@ const AddFieldDrawerComponent: FC<Props> = ({
         >
           <Input name="sheet_name" onChange={({ target: { value } }) => setName(value)} />
         </Form.Item>
-        <Form.Item label="Type" name="type" key="type">
+        <Form.Item label="Type" name="columnType" key="columnType">
           <Select placeholder="Select type...">
-            <Select.Option value="String">String</Select.Option>
-            <Select.Option value="Number">Number</Select.Option>
-            <Select.Option value="Text">Text</Select.Option>
-            <Select.Option value="HTML">HTML</Select.Option>
-            <Select.Option value="Markdown">Markdown</Select.Option>
+            <Select.Option value="string">String</Select.Option>
+            <Select.Option value="number">Number</Select.Option>
+            <Select.Option value="text">Text</Select.Option>
+            <Select.Option value="html">HTML</Select.Option>
+            <Select.Option value="markdown">Markdown</Select.Option>
           </Select>
         </Form.Item>
         {sheetType === SheetType.Datasheet

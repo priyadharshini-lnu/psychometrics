@@ -128,7 +128,7 @@ class UserReport < ApplicationRecord
           data_to_attach[:filename] = filename if filename
           pdf_file.attach(data_to_attach)
         end
-      when File
+      when File, ActionDispatch::Http::UploadedFile
         pdf_file.attach(
           io: data,
           filename: filename || File.basename(data),

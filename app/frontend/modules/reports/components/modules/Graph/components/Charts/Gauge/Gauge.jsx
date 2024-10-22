@@ -52,11 +52,12 @@ class Gauge extends Component {
         series: {
           colors: colorOverrides ? _.map(colorOverrides, 'color') : [props.speedometerMainColor],
           animation,
+          borderRadius: model.props.rounded ? '100%' : '0%',
         },
       },
       yAxis: {
         title: {
-          text: LookupSourceName.call(assessment, factor, model.getSourceType()),
+          text: model.props.hideLabel ? '' : LookupSourceName.call(assessment, factor, model.getSourceType()),
           y: props.labelVerticalPosition,
           style: {
             color,
@@ -79,10 +80,14 @@ class Gauge extends Component {
         },
       },
       series: [{
-        data: [_.round(series, 2)],
+        data: model.props.gaugePercentage
+          ? [_.round((series / (model.props.maxValue || 6)) * 100, model.props.precision ?? 2)]
+          : [_.round(series, model.props.precision ?? 2)],
+        radius: `${95 - ((100 - (model.props.gaugeWidth ?? 70)) / 100 * 29) / 2}%`,
+        innerRadius: `${66 + ((100 - (model.props.gaugeWidth ?? 70)) / 100 * 29) / 2}%`,
         dataLabels: {
           // eslint-disable-next-line max-len
-          format: `<div style="text-align:center"><span style="font-size:${parseInt(fontSize, 10) * 3}%;color:${color}">{y}</span>`,
+          format: `<div style="text-align:center"><span style="font-size:${parseInt(fontSize, 10) * 3}%;color:${color}">{y}${model.props.gaugePercentage ? '%' : ''}</span>`,
         },
       }],
     }))

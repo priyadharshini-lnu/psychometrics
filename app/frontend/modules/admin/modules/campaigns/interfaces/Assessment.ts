@@ -1,4 +1,11 @@
 import Norm from './Norm'
+import SimulationContentVariation from './SimulationContentVariation'
+
+interface ExternalConfig {
+  duration: number
+  passPercentage: number
+  contentVariationId: string | null
+}
 
 export default interface Assessment {
   id: number
@@ -16,6 +23,7 @@ export default interface Assessment {
   isExternal: boolean
   universalLink: string | null
   norms?: Norm[]
+  simulationContentVariations?: SimulationContentVariation[]
   iconUrl: string | null
   iconColor: string | null
   permissions: {
@@ -31,8 +39,10 @@ export default interface Assessment {
     scheduleAssessment: boolean
     toggleAutoAssign: boolean
     updateMettlSchedule: boolean
+    updateContentVariation: boolean
+    updateAvailableLocales: boolean
   },
-  externalConfig: object,
+  externalConfig: ExternalConfig,
   campaignAssessmentId: number
   scheduleTime: string
   autoAssign: boolean

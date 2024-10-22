@@ -1166,6 +1166,39 @@ providers:
             - id: '04'
               name: Completion_Time
               type: Percentile Scale
+  simulation:
+    assessments:
+      - id: golf
+        name: Golf
+        possible_languages:
+          - en
+      - id: golf-content-variations
+        name: Content Variations
+        default_content_variation_id: starWars
+        content_variations:
+          - id: starWars
+            name: Star Wars
+          - id: spicyFood
+            name: Spicy
+        possible_languages:
+          - en
+      - id: golf-demo
+        name: Golf Demo
+        possible_languages:
+          - en
+      - id: golf-multirole
+        name: Golf Multirole
+        possible_languages:
+          - en
+      - id: feature-showcase
+        name: Feature Showcase
+        possible_languages:
+          - en
+      - id: mte-apply
+        name: MTE Apply
+        possible_languages:
+          - en
+          - ar
   pearson:
     v2_assessments:
       - id: prd:bmct-ii:c916dfd8-d922-4fe3-b08f-6fead3c787c4

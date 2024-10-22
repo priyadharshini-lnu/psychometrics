@@ -282,6 +282,14 @@ const getActionsMenuProps = ({
     message.success(I18n.t('assessments.messages.raw_results_export_scheduled'))
   })
 
+  const exportExternalScores = () => resource.memberAction({
+    id: assessment.id,
+    action: 'external_scores',
+    method: 'get',
+  }).then(() => {
+    message.success(I18n.t('assessments.messages.external_scores_export_scheduled'))
+  })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'details') {
       return openDrawer(assessment)
@@ -312,6 +320,9 @@ const getActionsMenuProps = ({
     }
     if (key === 'export_normed_results') {
       return exportNormedResults()
+    }
+    if (key === 'external_scores') {
+      return exportExternalScores()
     }
   }
   const menuItems = [
@@ -412,6 +423,14 @@ const getActionsMenuProps = ({
       label: (
         <Button type="link" className="ps-0">
           {I18n.t('assessments.actions.export_normed')}
+        </Button>
+      ),
+    },
+    assessment.meta.permissions.externalScores && {
+      key: 'external_scores',
+      label: (
+        <Button type="link" className="ps-0">
+          {I18n.t('assessments.actions.external_scores_export')}
         </Button>
       ),
     },

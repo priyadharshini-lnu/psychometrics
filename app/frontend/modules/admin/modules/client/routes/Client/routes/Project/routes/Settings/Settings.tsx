@@ -90,6 +90,10 @@ export const SettingsComponent: FC<Props> = ({ currentUser }) => {
     key: '/privacy',
     label: I18n.t('administration.project_tabs.privacy'),
   })
+  permissions.manageProjectAssessments && menuItems.push({
+    key: '/assessments',
+    label: 'Assessments',
+  })
 
   return (
     <div>

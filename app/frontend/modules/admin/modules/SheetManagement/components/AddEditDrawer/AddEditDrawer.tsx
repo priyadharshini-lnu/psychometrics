@@ -119,7 +119,7 @@ const AddEditDrawerComponent: FC<Props> = ({
     if (isInEditMode) {
       await update(currentSheetRowId, parentResourceType, parentResourceId, sheetType, values).then(() => {
         message.success(I18n.t('administration.sheets.drawers.add_edit.success_message_edit'))
-        closeDrawer
+        closeDrawer()
       }).catch(setErrors)
     } else {
       add(parentResourceType, parentResourceId, sheetType, values).then(() => {
@@ -202,7 +202,7 @@ const AddEditDrawerComponent: FC<Props> = ({
                 name={field.name || ''}
                 key={field.name}
               >
-                <InputField type={field.type} />
+                <InputField type={field.columnType} />
               </Form.Item>
             ))}
         </Form>

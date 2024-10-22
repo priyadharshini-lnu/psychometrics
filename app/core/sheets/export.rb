@@ -9,10 +9,10 @@ module Sheets
     end
 
     def call
-      column_definition = datasheet.columns
+      column_definition = datasheet.sheet_columns
 
-      column_names = column_definition.map { |c| c['name'] }
-      coulmn_types = column_definition.map { |c| c['type'] }
+      column_names = column_definition.map(&:name)
+      coulmn_types = column_definition.map(&:humanize_type)
 
       result = Axlsx::Package.new do |package|
         package.workbook.add_worksheet(name: 'Datasheet') do |sheet|

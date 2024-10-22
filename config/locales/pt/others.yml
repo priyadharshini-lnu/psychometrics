@@ -204,7 +204,8 @@ pt:
       continue: Continuar
       notification: O tempo que lhe foi atribuído para esta tarefa "%{assessmentName}" foi de %{totalAssessmentTime}. Devido ao tempo total decorrido, agora tem apenas %{remainingCampaignTime} como tempo ajustado para concluir esta tarefa.
     timer:
-      notification: Tem %{minutes} minutos e %{seconds} segundos para concluir
+      notification_hours: Você tem %{hours} horas restantes
+      notification_minutes: você tem %{minutos} minutos restantes
   campaign_assessment:
     assessments_heading: As suas tarefas
     statuses:

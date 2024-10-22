@@ -24,7 +24,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { isProctored } from '~/utils/isProctored'
 import { Notification } from '~/glint/components/CountdownTimer'
 import {
-  PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon,
+  PageHeader as GlintPageHeader, CountdownTimer, MediaQueryContext, DirectionalNavigateBackIcon, FontsizeModifier,
 } from '~/glint'
 
 import styles from './UserAssessment.less'
@@ -101,13 +101,16 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
 
   const enableBackButton = !extraOptions.disable_navigation_back && (!isProctored() || proctoringEnabled)
   const notificationDurations: Notification[] = [
-    { completionPercentage: 50, type: 'info' },
-    { completionPercentage: 75, type: 'warning' },
-    { completionPercentage: 90, type: 'error' },
+    { timeRemaining: 3600, type: 'info' },
+    { timeRemaining: 1800, type: 'warning' },
+    { timeRemaining: 900, type: 'error' },
   ]
-  const notificationMessage = (minutes: number, seconds: number) => (
-    I18n.t('campaign.timer.notification', { minutes, seconds })
-  )
+  const notificationMessage = (minutes: number) => {
+    if (minutes >= 60) {
+      const hours = Math.floor(minutes / 60)
+      return I18n.t('campaign.timer.notification_hours', { hours })
+    } return I18n.t('campaign.timer.notification_minutes', { minutes })
+  }
 
   return (
 
@@ -148,7 +151,9 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
           </Space>
         </Col>
         <Col span={4} className="ta-e">
-          {availableTranslations
+          <Space>
+            <FontsizeModifier />
+            {availableTranslations
               && availableTranslations.length > 1
               && (
               <LangDropdownWithChangeUrl
@@ -157,6 +162,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               />
               )
             }
+          </Space>
         </Col>
       </GlintPageHeader>
 

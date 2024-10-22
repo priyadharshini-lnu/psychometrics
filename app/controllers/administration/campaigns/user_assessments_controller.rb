@@ -22,6 +22,14 @@ module Administration
         render json: { mettl_schedule_name: resource.mettl_user_assessment.schedule_name }
       end
 
+      def update_content_variation
+        resource.update_content_variation!(params[:content_variation_id])
+
+        audit! :update_content_variation, resource, campaign: resource.campaign
+
+        render json: { content_variation_id: resource.simulation_user_assessment.content_variation_id }
+      end
+
       def webhook_command
         @webhook_command ||= UserAssessments::Webhook.new(resource, params[:webhook_id])
       end

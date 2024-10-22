@@ -49,6 +49,29 @@ describe UsersResults::Recompute do
     end
   end
 
+  describe 'simulation user_assessment' do
+    let(:assessment) { create(:assessment, :simulation) }
+    let(:report) { create(:report, :internal, assessments: [assessment], provider: 'internal') }
+    let(:user_assessment) { create(:user_assessment, assessment: assessment) }
+    let!(:simulation_user_assessment) do
+      create(:simulation_user_assessment, user_assessment: user_assessment)
+    end
+
+    it 'call Simulation::SaveScoresAndReport' do
+      allow(user_assessment).to receive(:completed?).and_return(true)
+      expect(Simulation::SaveScoresAndReport).to receive(:call!).with(user_assessment)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+
+    it "doesn't call Simulation::SaveScoresAndReport if assessment is not_started" do
+      allow(user_assessment).to receive(:not_started?).and_return(true)
+      expect(Simulation::SaveScoresAndReport).to_not receive(:call!)
+
+      described_class.call!(user_assessment.users_result, user_assessment.user)
+    end
+  end
+
   describe 'pearson user_assessment' do
     let(:assessment) { create(:assessment, :pearson) }
     let(:report) { create(:report, :pearson, assessments: [assessment], provider: 'pearson') }

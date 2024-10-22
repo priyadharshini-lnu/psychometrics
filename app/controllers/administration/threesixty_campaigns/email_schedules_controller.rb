@@ -43,9 +43,9 @@ module Administration
       def show
         email_schedule = threesixty_campaign.email_schedules.find(params[:id])
 
-        recipients = ActiveModel::SerializableResource.
+        recipients = Panko::ArraySerializer.
                      new(email_schedule.recipients, each_serializer: UserSerializer).
-                     serializable_hash
+                     as_json
 
         render json: { email_schedule: email_schedule, recipients: recipients }
       end

@@ -24,6 +24,8 @@ module Administration
             broadcast(:ok, build_saville)
           when Assessment::TYPES[:common]
             broadcast(:ok, {})
+          when Assessment::TYPES[:simulation]
+            broadcast(:ok, build_simulation)
         end
       end
 
@@ -62,6 +64,10 @@ module Administration
       end
 
       def build_mettl
+        { assessment_id: raw_external_settings[:assessment_id] }
+      end
+
+      def build_simulation
         { assessment_id: raw_external_settings[:assessment_id] }
       end
     end

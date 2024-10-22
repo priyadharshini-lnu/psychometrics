@@ -5,6 +5,9 @@ class ApplicationRecord < ActiveRecord::Base
 
   self.abstract_class = true
 
+  # Automatic role switching is not enabled in application
+  connects_to database: { writing: :primary, reading: :primary_replica }
+
   before_save :sync_translated_columns
 
   def sync_translated_columns
@@ -19,5 +22,9 @@ class ApplicationRecord < ActiveRecord::Base
         # rubocop:enable Rails/ReadWriteAttribute
       end
     end
+  end
+
+  def self.read_from_replica(&)
+    connected_to(role: :reading, prevent_writes: true, &)
   end
 end

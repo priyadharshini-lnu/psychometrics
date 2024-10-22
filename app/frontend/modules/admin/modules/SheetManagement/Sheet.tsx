@@ -55,6 +55,7 @@ const { I18n } = window
 
 const connector = connect(
   (state: RootState) => ({
+    state,
     list: get(state),
     isListLoading: isRequestInProgress(state, FETCH_SHEET),
     total: getTotal(state),
@@ -101,7 +102,6 @@ const SheetComponent: FC<Props> = ({
 
   const [activeDrawerIs, setDrawerTo] = useState<DrawerModes>(DrawerModes.None)
   const [currentSheetRowId, setCurrentSheetId] = useState('')
-
   const allColumns = useMemo(
     () => columnDefinitions
       .map((filteredColumn) => {

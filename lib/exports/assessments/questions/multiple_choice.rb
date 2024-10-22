@@ -42,7 +42,7 @@ module Exports
             next answer['index'] + 1 unless export_with_labels
 
             question.props.dig('choicesTexts', answer['index'])
-          end.join(',')
+          end.join(';')
         end
 
         def self.question_id_header(question)

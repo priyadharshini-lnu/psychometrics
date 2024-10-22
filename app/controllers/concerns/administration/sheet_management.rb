@@ -10,14 +10,14 @@ module Administration
     end
 
     def get_columns
-      render json: sheet&.columns || []
+      render json: json_columns(sheet&.sheet_columns)
     end
 
     def add_column
       form = form_class.from_params(params[:column]).with_context(sheet: sheet, form_type: :add)
       if form.valid?
-        sheet.update!(columns: sheet.columns + [form.attributes])
-        render json: sheet.columns
+        sheet.sheet_columns.create!(form.attributes)
+        render json: json_columns(sheet&.sheet_columns)
       else
         render json: { errors: form.errors }, status: 422
       end
@@ -26,10 +26,8 @@ module Administration
     def update_column
       form = form_class.from_params(params[:column]).with_context(sheet: sheet)
       if form.valid?
-        sheet.update!(columns: sheet.columns.map do |col|
-          col['name'] == params[:column][:name] ? form.attributes : col
-        end)
-        render json: sheet.columns
+        sheet.sheet_columns.update(params[:column][:id], form.attributes)
+        render json: json_columns(sheet&.sheet_columns)
       else
         render json: { errors: form.errors }, status: 422
       end
@@ -38,18 +36,24 @@ module Administration
     def update_columns_order
       forms = params[:columns].map { |column| form_class.from_params(column).with_context(sheet: sheet) }
       if forms.all?(&:valid?)
-        sheet.update!(columns: forms.map(&:attributes))
-        render json: sheet.columns
+        Sheets::UpdateColumnPositions.call!(sheet, params[:columns])
+        render json: json_columns(sheet.sheet_columns)
       else
         render json: { errors: forms.map(&:errors).flatten }, status: 422
       end
     end
 
     def remove_columns
-      render json: Sheets::RemoveColumns.call!(sheet, params[:columns])
+      Sheets::RemoveColumns.call!(sheet, params[:column_ids])
+      render json: json_columns(sheet.sheet_columns)
     end
 
     private
+
+    def json_columns(columns)
+      Panko::ArraySerializer.new(columns.order(:position),
+                                 each_serializer: ::Administration::SheetColumnSerializer).to_a
+    end
 
     def form_class
       sheet.type == 'Accesssheet' ? Sheets::AccesssheetColumnForm : Sheets::DatasheetColumnForm

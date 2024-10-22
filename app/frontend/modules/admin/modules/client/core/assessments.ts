@@ -60,6 +60,7 @@ export const AssessmentTR = t.type({
       exportRawResults: t.boolean,
       exportRawFactorScores: t.boolean,
       exportNormedResults: t.boolean,
+      externalScores: t.boolean,
     }),
   }),
   linkedAssessment: t.union([
@@ -115,6 +116,7 @@ export const TYPES = [
   'pearson',
   'saville',
   'mettl',
+  'simulation',
 ]
 
 export const Schema = {
