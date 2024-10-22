@@ -30,6 +30,7 @@ import {
   GetOccupationByRank,
   GetQuestionScoringWithoutFactors,
   GetTopFactors,
+  GetTopCampaignFactors,
   SetDataSheet,
   SetReportData,
   SetEmbeddedData,
@@ -205,6 +206,16 @@ export default class Result<ExternalScoring = unknown> {
   ): TopFactor[] => GetTopFactors.run(
     from, to, factorIds, factorType, this.resultsByFilter,
     this.dimensionId, minValue ?? -Infinity, maxValue ?? Infinity, relationship,
+  )
+
+  getTopCampaignFactors = (
+    from: number,
+    to: number,
+    campaignFactorCodes: string[],
+    minValue?,
+    maxValue?,
+  ): { code: string, value: number }[] => GetTopCampaignFactors.run(
+    from, to, this.campaignFactorResults, campaignFactorCodes, minValue ?? -Infinity, maxValue ?? Infinity,
   )
 
   getBranchData = (filterId: string | null, branchName: string): ResultScoring => {

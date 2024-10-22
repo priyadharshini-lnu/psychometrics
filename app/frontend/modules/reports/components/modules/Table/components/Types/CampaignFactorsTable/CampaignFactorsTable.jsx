@@ -1,0 +1,439 @@
+/* eslint-disable max-len */
+import { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import _ from 'lodash'
+import cs from 'classnames'
+import ReactMarkdown from 'react-markdown'
+
+import ResultStore from '~/modules/reports/store/ResultStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
+import AppStore from '~/modules/reports/store/AppStore'
+import BulletGraph from '~/modules/reports/components/BulletGraph'
+import PieGraph from '~/modules/reports/components/PieGraph'
+import buildFakeData from './buildFakeData'
+
+import styles from './CampaignFactorsTable.less'
+
+const MockData = [
+  {
+    code: 'ambiguity',
+    name: 'Ambiguity',
+    label: 'High',
+    color: '#666666',
+    value: 65.8,
+    strategy: 0,
+    benchmarkScore: 70,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    strengths: `
+* Lorem ipsum dolor sit amet consectetur
+* Ipsum dolor sit amet, consectetur adipisicing elit
+    `,
+    blindspots: `
+* Lorem ipsum dolor sit amet consectetur adipisicing
+* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Ipsum dolor sit amet, consectetur adipisicing elit
+    `,
+  },
+  {
+    code: 'achievement',
+    name: 'Achievement',
+    label: 'Medium',
+    color: '#999999',
+    value: 35,
+    benchmarkScore: 50,
+    strategy: 1,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    strengths: `
+* Lorem ipsum dolor sit amet
+* Consectetur adipisicing elit
+* Ipsum dolor sit amet
+    `,
+    blindspots: `
+* Lorem ipsum dolor sit amet
+* Consectetur adipisicing elit
+    `,
+  },
+  {
+    code: 'accountability',
+    name: 'Accountability',
+    label: 'Medium',
+    color: '#999999',
+    value: 55,
+    benchmarkScore: 45,
+    strategy: 2,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    strengths: `
+* Lorem ipsum dolor sit amet consectetur adipisicing
+* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Ipsum dolor sit amet, consectetur adipisicing elit
+    `,
+    blindspots: `
+* Lorem ipsum dolor sit amet consectetur adipisicing
+* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Ipsum dolor sit amet, consectetur adipisicing elit
+    `,
+  },
+  {
+    id: 'ambition',
+    name: 'Ambition',
+    label: 'Low',
+    color: '#aaaaaa',
+    value: 0.75,
+    benchmarkScore: 2,
+    strategy: 3,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    strengths: `
+* Lorem ipsum dolor sit amet consectetur adipisicing
+* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Ipsum dolor sit amet, consectetur adipisicing elit
+    `,
+    blindspots: `
+* Lorem ipsum dolor sit amet consectetur adipisicing
+* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Ipsum dolor sit amet, consectetur adipisicing elit
+    `,
+  },
+  {
+    id: 'agility',
+    name: 'Agility',
+    label: 'High',
+    color: '#666666',
+    value: 95,
+    benchmarkScore: 80,
+    strategy: 0,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    strengths: `
+* Lorem ipsum dolor sit amet consectetur adipisicing
+* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Ipsum dolor sit amet, consectetur adipisicing elit
+    `,
+    blindspots: `
+* Lorem ipsum dolor sit amet consectetur adipisicing
+* Consectetur adipisicing elit, sed do eiusmod tempor incididunt
+* Ipsum dolor sit amet, consectetur adipisicing elit
+    `,
+  },
+]
+
+class CampaignFactorsTable extends Component {
+  static propTypes = {
+    module: PropTypes.object.isRequired,
+  }
+
+  getMockData (campaignFactors, size) {
+    const data = []
+    while (data.length < size && size > 0) {
+      const items = _.take(MockData, size - data.length)
+      data.push(...items)
+    }
+    return data.map((campaignFactor, i) => ({
+      ...campaignFactor,
+      ...campaignFactors[i],
+    }))
+  }
+
+  prepareRows () {
+    const { module, module: { props } } = this.props
+    const sourceCampaignFactors = _.get(props, ['source', 'campaignFactors'], [])
+    const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
+    const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
+    const campaignFactorCodes = sourceCampaignFactors.map(f => f.code)
+    if (ResultStore.realResults) {
+      if (props.mode === 'topFactors') {
+        this.campaignFactorsData = ResultStore.results[module.assessment_id].getTopCampaignFactors(
+          props.minPosition, props.maxPosition, campaignFactorCodes, scoreRangeMin, scoreRangeMax,
+        )
+      } else {
+        const factorData = ResultStore.results[module.assessment_id].getTopCampaignFactors(0, campaignFactorCodes.length, campaignFactorCodes)
+        this.campaignFactorsData = _.sortBy(factorData, f => campaignFactorCodes.indexOf(f.id))
+      }
+    } else {
+      // eslint-disable-next-line no-lonely-if
+      if (props.mode === 'topFactors') {
+        this.campaignFactorsData = this.getMockData(sourceCampaignFactors, props.maxPosition - props.minPosition + 1)
+      } else {
+        this.campaignFactorsData = this.getMockData(sourceCampaignFactors, campaignFactorCodes.length)
+      }
+    }
+    if (props.reverseOrder && props.mode === 'topFactors') {
+      this.campaignFactorsData.reverse()
+    }
+  }
+
+  getFilters = () => {
+    const { model } = this.props
+    const filterIds = model.props.filter
+    const filters = filterIds?.map(filterId => _.find(
+      AppStore.report.filters, { id: filterId },
+    )).filter(f => !_.isEmpty(f))
+
+    return filters || []
+  }
+
+
+  enhanceFiltersByValue = (factor) => {
+    const { model } = this.props
+    const precision = model.props.precision ?? 2
+    const filters = this.getFilters()
+    if (!ResultStore.realResults) {
+      const { milestones } = model.props
+      return buildFakeData({ filters, milestones, precision })
+    }
+
+    const enhancedFilters = filters.map((filter) => {
+      const scoring = _.get(ResultStore, [
+        'results',
+        model.assessment_id,
+        'resultsByFilter',
+        filter.id,
+        'scoring',
+        factor.id,
+      ])
+
+      if (!scoring) return { ...filter, value: 0 }
+      const nonZeroResults = _.filter(scoring.results, res => res.getValue())
+      const value = (_.round(_.meanBy(nonZeroResults, res => res.getValue()), precision))
+      return { ...filter, value }
+    })
+
+    return enhancedFilters
+  }
+
+  canShowRank () {
+    const { model: { props: { showRankOrder, mode } } } = this.props
+
+    return (mode !== 'orderedFactors' && showRankOrder)
+  }
+
+  renderFactors () {
+    const { model, module } = this.props
+    const { fontFamily } = module.props.style
+    return (
+      this.campaignFactorsData.map((campaignfactor, i) => {
+        const conditions = _.filter(module.textConditions, { factorId: campaignfactor.id })
+        let conditionTitle = null
+        let conditionText = null
+        let conditionStrengths = null
+        let conditionBlindspots = null
+        let conditionLabel = null
+        let conditionColor = null
+        let conditionBaselineScore = null
+        const campaignFactorValue = campaignfactor.value
+        if (ResultStore.realResults) {
+          for (let i = 0; i < conditions.length; i += 1) {
+            conditionTitle = _.invoke(conditions[i], 'getTextByCondition', campaignFactorValue,
+              _.indexOf(module.textConditions, conditions[i]), 'title')
+            conditionText = _.invoke(conditions[i], 'getTextByCondition', campaignFactorValue,
+              _.indexOf(module.textConditions, conditions[i]), 'text')
+            conditionStrengths = _.invoke(conditions[i], 'getTextByCondition', campaignFactorValue,
+              _.indexOf(module.textConditions, conditions[i]), 'strengths')
+            conditionBlindspots = _.invoke(conditions[i], 'getTextByCondition', campaignFactorValue,
+              _.indexOf(module.textConditions, conditions[i]), 'blindspots')
+            conditionLabel = _.invoke(conditions[i], 'getTextByCondition', campaignFactorValue,
+              _.indexOf(module.textConditions, conditions[i]), 'label')
+            conditionColor = _.invoke(conditions[i], 'getColorByCondition', campaignFactorValue)
+            conditionBaselineScore = _.invoke(conditions[i], 'getValueByCondition', campaignFactorValue, 'baselineScore')
+            if (conditionTitle || conditionText || conditionStrengths
+              || conditionBlindspots || conditionLabel || conditionColor
+              || conditionBaselineScore) {
+              break
+            }
+          }
+        } else {
+          conditionText = campaignfactor.description
+          conditionStrengths = campaignfactor.strengths
+          conditionBlindspots = campaignfactor.blindspots
+          conditionLabel = campaignfactor.label
+          conditionColor = campaignfactor.color
+          conditionBaselineScore = 3.5
+        }
+
+        conditionTitle = conditionTitle ?? I18nStore.tFactorName(campaignfactor)
+        conditionText = conditionText ?? I18nStore.tFactor(campaignfactor, 'description')
+        conditionColor = conditionColor ?? '#666666'
+
+        const {
+          tableStyle = 'default', minPosition, maxPosition, reverseOrder, source: { campaignFactors },
+          showDescription, showStrengthsBlindspots, showScore, showName, showLabel,
+          scoreProgressColor, scoreBackgroundColor, maxScoreValue, scorePosition = 'inline',
+          scoreDisplay = 'circular', scoreRanges = [], scoreLineColor, scoreBulletColor, precision,
+          showScoreText, scoreBulletGraphHeight,
+        } = model.props
+
+        const startRank = reverseOrder ? Math.max(1, campaignFactors.length - maxPosition + 1) : minPosition
+
+        const score = _.round(campaignFactorValue, 1)
+        const maxValue = maxScoreValue ?? (campaignfactor.strategy === 3 ? 100 : 5)
+        const percent = score * 100 / maxValue
+
+        const filters = this.getFilters()
+        const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
+        const resultsWithEnhancedWithFilters = this.enhanceFiltersByValue(campaignfactor)
+
+        const scoreUI = (
+          <>
+            {showScore && (
+              tableStyle === 'default' && scoreDisplay === 'circular' && (
+              <PieGraph
+                strokeWidth="10"
+                text={_.isNil(precision) ? score : _.round(score, precision)}
+                percent={Math.min(percent, 100)}
+                progressColor={scoreProgressColor}
+                backgroundColor={scoreBackgroundColor}
+              />
+              )
+            )}
+            {showScore && (
+              tableStyle === 'default' && scoreDisplay === 'bullet' && (
+              <BulletGraph
+                scoreRanges={scoreRanges}
+                baselineScore={conditionBaselineScore}
+                scorePercentage={percent}
+                lineColor={scoreLineColor}
+                bulletColor={scoreBulletColor}
+                showScoreText={showScoreText}
+                score={score}
+                scoreBulletGraphHeight={scoreBulletGraphHeight}
+              />
+              )
+            )}
+          </>
+        )
+
+        return (
+          <tr key={i}>
+            {this.canShowRank() && (
+              <td className={styles.rankOrder}>
+                <span className={tableStyle !== 'compact' ? cs(styles.star, 'icon-star') : ''}>
+                  <span className={styles.text} style={{ fontFamily }}>{startRank + i}</span>
+                </span>
+              </td>
+            )}
+            {(showName || showDescription || (showScore && scorePosition === 'block')) && (
+              <td className={styles.description}>
+                {(showName || showDescription || showStrengthsBlindspots || (showScore && scorePosition === 'block')) && (
+                  <div className={styles.content}>
+                    {showName && (
+                      <div className={styles.strength}>
+                        {_.isEmpty(conditionTitle) ? I18nStore.tFactor(campaignfactor, 'alias') : conditionTitle}
+                      </div>
+                    )}
+                    {scorePosition === 'block' && !showWithFilters ? scoreUI : null}
+                    {showDescription && (
+                      <ReactMarkdown className={cs(styles.text, 'mt4')}>
+                        {conditionText}
+                      </ReactMarkdown>
+                    )}
+                    {showStrengthsBlindspots && (
+                      <div className={cs(styles.strengthsBlindspots, 'mt8')}>
+                        <ReactMarkdown className={styles.strengths}>
+                          {conditionStrengths}
+                        </ReactMarkdown>
+                        <ReactMarkdown className={styles.blindspots}>
+                          {conditionBlindspots}
+                        </ReactMarkdown>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </td>
+            )}
+            {!showWithFilters && ((showScore && scorePosition === 'inline') || (showLabel && !showScore)) ? (
+              <td className={cs({
+                [styles.score]: showScore,
+                [styles.circular]: scoreDisplay === 'circular',
+                [styles.bullet]: scoreDisplay === 'bullet',
+              })}
+              >
+                {scoreUI}
+                {showScore && tableStyle === 'compact' && score}
+                {!showScore && showLabel && (
+                  <div className={styles.label} style={{ backgroundColor: conditionColor }}>{conditionLabel}</div>
+                )}
+              </td>
+            ) : null}
+
+            {showWithFilters && ((showScore) || (showLabel && !showScore)) ? (
+              resultsWithEnhancedWithFilters.map((filter, i) => (
+                <td
+                  key={i}
+                  className={cs(styles.score)}
+                >
+                  {filter.value.toFixed(precision)}
+                </td>
+              ))
+            ) : null}
+          </tr>
+        )
+      })
+    )
+  }
+
+  renderNoData () {
+    return (
+      <tr>
+        <td className={styles.description}>{I18nStore.t('reports.modules.factors_table.no_data')}</td>
+      </tr>
+    )
+  }
+
+  renderHeader (headerShown) {
+    if (!headerShown) {
+      return null
+    }
+
+    const { model } = this.props
+    const {
+      scorePosition = 'inline', showStrengthsBlindspots, showName, showDescription,
+    } = model.props
+    const filters = this.getFilters()
+    const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
+    return (
+      <thead>
+        <tr>
+          {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
+          {(showName || showDescription || showStrengthsBlindspots) ? (
+            <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
+          ) : null}
+          {model.props.showScore && scorePosition === 'inline' && !showWithFilters
+            ? <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th> : null}
+          {model.props.showScore && showWithFilters ? filters.map((filter, i) => (
+            <th key={i} className={styles.filter} scope="col">{filter.name}</th>
+          )) : null}
+          {model.props.showBenchmarks
+            ? <th className={styles.benchmarks} scope="col">{model.props.benchmarksLabel}</th>
+            : null}
+        </tr>
+      </thead>
+    )
+  }
+
+  render () {
+    const { module, model } = this.props
+    const { showBorder, backgroundColor } = model.props
+    const { fontSize, fontFamily } = module.props.style
+    const style = {
+      fontSize,
+      fontFamily,
+      backgroundColor: backgroundColor || false,
+    }
+    this.prepareRows()
+    const hasData = this.campaignFactorsData.length > 0
+    return (
+      <table className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })} style={style}>
+        {hasData && this.renderHeader(model.props.showHeader)}
+        <tbody>
+          {hasData ? this.renderFactors() : this.renderNoData()}
+        </tbody>
+      </table>
+    )
+  }
+}
+
+
+export default connect(
+  () => ({}),
+  {
+  },
+)(CampaignFactorsTable)

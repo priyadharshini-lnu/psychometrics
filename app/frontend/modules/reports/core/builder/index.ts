@@ -150,7 +150,6 @@ export const getSupportedDataConfiguration = (state) => {
 const HANDLERS = {
   [INIT]: (state: State, { data, campaignId }: InitType) => {
     const report = data.entities.report[data.result]
-
     return {
       ...state,
       ...report,

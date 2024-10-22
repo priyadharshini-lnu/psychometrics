@@ -63,7 +63,9 @@ class UserReportSerializer < Panko::Serializer
     ).includes(:campaign_factor).map do |cfv|
       {
         code: cfv.campaign_factor.code,
-        value: cfv.value
+        value: cfv.value,
+        name: cfv.campaign_factor.name,
+        description: cfv.campaign_factor.description
       }
     end
   end
@@ -117,7 +119,8 @@ class UserReportSerializer < Panko::Serializer
       context: {
         module_overrides: TextModuleOverride.where(user_report_id: object.id),
         user_results: results,
-        piped_text_context: context[:options]
+        piped_text_context: context[:options],
+        campaign: object.campaign
       }
     ).serialize(context[:report])
   end

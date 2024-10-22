@@ -46,7 +46,7 @@ const Module = function (attrs = {}, page) {
   this.setRelevantFactorsData()
   if (this.props.textConditions) {
     this.textConditions = _.map(this.props.textConditions, (cond) => {
-      if (_.includes(['FactorsTable', 'StrengthClusters'], this.props.type)
+      if (_.includes(['CampaignFactorsTable', 'FactorsTable', 'StrengthClusters'], this.props.type)
           || this.props.sourceType === 'ConditionalFactorOccupationText') {
         return new CPIConditionCollection(cond, this)
       } if (this.props.type === 'InnovationStyles') {
@@ -238,7 +238,7 @@ _.extend(Module.prototype, {
   },
 
   addConditionCollection (attrs) {
-    if (_.includes(['FactorsTable', 'StrengthClusters'], this.props.type)
+    if (_.includes(['CampaignFactorsTable', 'FactorsTable', 'StrengthClusters'], this.props.type)
       || this.props.sourceType === 'ConditionalFactorOccupationText') {
       this.textConditions.push(new CPIConditionCollection(attrs, this))
     } else if (this.props.type === 'InnovationStyles') {
