@@ -13,9 +13,9 @@ RSpec.describe Administration::FactorsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the requested factor' do
       factor
-      expect {
+      expect do
         delete :destroy, params: { id: factor.id, dimension_id: dimension.id }
-      }.to change(Factor, :count).by(-1)
+      end.to change(Factor, :count).by(-1)
     end
 
     it 'includes factor name in flash message after deletion' do
@@ -23,7 +23,7 @@ RSpec.describe Administration::FactorsController, type: :controller do
 
       delete :destroy, params: { id: factor.id, dimension_id: dimension.id }
 
-      expect(flash[:success]).to eq(I18n.t("administration.factors.destroy.successfully", name: factor_name))
+      expect(flash[:success]).to eq(I18n.t('administration.factors.destroy.successfully', name: factor_name))
     end
   end
 end
