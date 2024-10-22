@@ -12,16 +12,18 @@ RSpec.describe Administration::FactorsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested factor' do
-      expect(delete(:destroy, params: { id: factor.id, dimension_id: dimension.id })).to change(Factor, :count).by(-1)
+      factor
+      expect {
+        delete :destroy, params: { id: factor.id, dimension_id: dimension.id }
+      }.to change(Factor, :count).by(-1)
     end
 
     it 'includes factor name in flash message after deletion' do
-      request.env['HTTP_REFERER'] = '/previous_page'
       factor_name = factor.decorate.display_name
 
       delete :destroy, params: { id: factor.id, dimension_id: dimension.id }
 
-      expect(flash[:success]).to include(factor_name)
+      expect(flash[:success]).to eq(I18n.t("administration.factors.destroy.successfully", name: factor_name))
     end
   end
 end
