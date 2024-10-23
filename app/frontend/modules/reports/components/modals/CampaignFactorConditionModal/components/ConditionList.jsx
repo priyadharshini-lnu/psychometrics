@@ -36,8 +36,8 @@ class ConditionList extends Component {
       <div className={styles.logicList}>
         {_.map(conditions, (condition, i) => (
           <Condition
-            key={i}
-            model={model}
+          key={_.uniqueId()}    
+                  model={model}
             condition={condition}
             onAdd={this.addCondition}
             onRemove={this.removeCondition}

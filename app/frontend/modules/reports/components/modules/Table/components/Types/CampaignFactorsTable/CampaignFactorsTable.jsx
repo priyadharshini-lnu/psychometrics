@@ -133,10 +133,12 @@ class CampaignFactorsTable extends Component {
 
   prepareRows () {
     const { module, module: { props } } = this.props
+    console.log("cf table props ---", this.props)
     const sourceCampaignFactors = _.get(props, ['source', 'campaignFactors'], [])
     const scoreRangeMin = _.get(props, ['scoreRangeMin'], -Infinity)
     const scoreRangeMax = _.get(props, ['scoreRangeMax'], Infinity)
     const campaignFactorCodes = sourceCampaignFactors.map(f => f.code)
+    console.log("campaignFactorCodes", ResultStore)
     if (ResultStore.realResults) {
       if (props.mode === 'topFactors') {
         this.campaignFactorsData = ResultStore.results[module.assessment_id].getTopCampaignFactors(

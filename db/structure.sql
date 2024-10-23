@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1585,6 +1578,21 @@ ALTER SEQUENCE public.clients_reports_id_seq OWNED BY public.clients_reports.id;
 
 
 --
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.comments (
+    id integer NOT NULL,
+    text character varying,
+    created_by integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    commentable_id integer,
+    commentable_type character varying
+);
+
+
+--
 -- Name: communication_emails; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1771,9 +1779,7 @@ CREATE TABLE public.dashboards (
     refresh_interval integer DEFAULT 15,
     image character varying,
     last_refreshed_at timestamp without time zone,
-    refresh_tried_at timestamp without time zone,
-    dashboard_type integer DEFAULT 0 NOT NULL,
-    project_path character varying
+    refresh_tried_at timestamp without time zone
 );
 
 
@@ -14503,7 +14509,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241010122532'),
 ('20241009075129'),
 ('20241008100312'),
-('20241007113728'),
 ('20241001103146'),
 ('20240920142940'),
 ('20240920083324'),

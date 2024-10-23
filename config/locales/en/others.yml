@@ -2628,6 +2628,28 @@ en:
       load_from_pearson: Load from Pearson
       none_external: None - Use report builder
     modules:
+      campaign_factors_table:
+        add_condition: Add Condition
+        baseline_score: Baseline Score
+        blindspots: Blindspots
+        campaign_factor_conditions: Campaign Factor Conditions
+        cancel: Cancel
+        color: Color
+        delete: Delete
+        description: Description
+        equal_to: Equal To
+        greater_than: Greater Than
+        greater_than_or_equal_to: Greater Than Or Equal To
+        if: If
+        label: Label
+        less_than: Less Than
+        less_than_or_equal_to: Less Than or Equal To
+        no_conditions: No conditions
+        not_equal_to: Not Equal To
+        save: Save
+        strengths: Strengths
+        then_show_the_following_text: Then show the following text
+        title: Title
       common:
         all_factors: All factors
       factors_table:
