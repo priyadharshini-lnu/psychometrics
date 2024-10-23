@@ -98,7 +98,7 @@ export const UpdateContentVariationForm: React.FC<Props> = ({
     >
       <Form.Item name="contentVariationId" className="mbs">
         <Select
-          style={{ width: '300px' }}
+          style={{ width: '200px' }}
           placeholder={I18n.t('campaign_assessment.modals.update_content_variation.select_schedule')}
           showSearch
           optionFilterProp="label"
