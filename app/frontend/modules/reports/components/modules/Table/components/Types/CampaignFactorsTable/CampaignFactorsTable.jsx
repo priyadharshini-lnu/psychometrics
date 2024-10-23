@@ -222,7 +222,7 @@ class CampaignFactorsTable extends Component {
 
         const startRank = reverseOrder ? Math.max(1, campaignFactors.length - maxPosition + 1) : minPosition
 
-        const score = _.isNil(precision) ? score : _.round(score, precision)
+        const score = _.isNil(precision) ? campaignFactorValue : _.round(campaignFactorValue, precision)
         const maxValue = maxScoreValue ?? (campaignfactor.strategy === 3 ? 100 : 5)
         const percent = score * 100 / maxValue
         const scoreUI = (
