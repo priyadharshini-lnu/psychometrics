@@ -34,11 +34,16 @@ module ActiveStorageAttachable
     end
 
     def copy_and_upload(attachment, attribute)
-      send(attribute).attach(
-        io: StringIO.new(attachment.download),
-        filename: attachment.filename,
-        content_type: attachment.content_type
-      )
+      begin
+        file_content = attachment.download
+        send(attribute).attach(
+          io: StringIO.new(file_content),
+          filename: attachment.filename,
+          content_type: attachment.content_type
+        )
+      rescue ActiveStorage::FileNotFoundError => e
+        Rails.logger.error("ActiveStorage Error: #{e.message}")
+      end
     end
 
     after_create do
