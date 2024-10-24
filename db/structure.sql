@@ -14275,6 +14275,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241023071718'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),
