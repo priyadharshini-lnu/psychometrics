@@ -208,7 +208,8 @@ zh-HK:
       continue: 繼續
       notification: 您為此任務「%{assessmentName}」分配的時間為 %{totalAssessmentTime}。由於總耗時過長，您現在只有 %{remainingCampaignTime} 的已調整時間來完成這項任務。
     timer:
-      notification: 您有 %{minutes} 分 %{seconds} 秒完成
+      notification_hours: 您有 %{hours} 小時 完成
+      notification_minutes: 您有 %{minutes} 分 完成
   campaign_assessment:
     assessments_heading: 您的任務
     statuses:

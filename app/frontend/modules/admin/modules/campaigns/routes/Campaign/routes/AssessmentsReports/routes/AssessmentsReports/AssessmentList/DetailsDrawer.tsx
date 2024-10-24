@@ -9,6 +9,7 @@ import { MettlScheduleRecord } from '~/modules/admin/modules/client/core/mettlSc
 import { useResources } from '~/hooks/useResources'
 import { UpdateMettlScheduleForm } from './UpdateMettlScheduleForm'
 import MettlScheduleDetails from '../../../../../MettlScheduleDetails/MettlScheduleDetails'
+import { SimulationDetails } from './SimulationDetails'
 
 const { I18n } = window
 
@@ -17,8 +18,9 @@ interface Props {
   assessment: Assessment | undefined
   campaignId: string
   updateMettlSchedule: (
-    campaignId: number, assessmentId: number, body: {assessment: {id: string}}
-  ) => Promise<{ response: unknown; }>
+    campaignId: number, assessmentId: number, body: { assessment: { id: string } }
+  ) => Promise<{ response: unknown }>
+  loadingUpdateMettlSchedule: boolean
 }
 
 export const DetailsDrawer: FC<Props> = ({
@@ -26,6 +28,7 @@ export const DetailsDrawer: FC<Props> = ({
   assessment,
   campaignId,
   updateMettlSchedule,
+  loadingUpdateMettlSchedule,
 }) => {
   if (!assessment) {
     return null
@@ -62,7 +65,6 @@ export const DetailsDrawer: FC<Props> = ({
     getMettlScheduleRecord()
   }, [assessment.mettlScheduleRecordId])
 
-
   return (
     <Drawer
       title={I18n.t('campaign_assessment.drawer.title')}
@@ -75,7 +77,7 @@ export const DetailsDrawer: FC<Props> = ({
       <Row>
         <Descriptions
           layout="horizontal"
-          rootClassName="mb-6 w-100"
+          rootClassName="w-100"
           bordered
           column={1}
         >
@@ -111,28 +113,27 @@ export const DetailsDrawer: FC<Props> = ({
             {assessment.normId}
           </Descriptions.Item>
 
-          { mettlScheduleRecord && (
+          {mettlScheduleRecord && (
             <>
               <Descriptions.Item
                 label={I18n.t('campaign_assessment.drawer.mettl_schedule_name')}
                 key="schedule_name"
                 className="va-t"
               >
-                { !isFormVisible && (
-                <List size="small">
-                  <List.Item>
-                    {mettlScheduleRecord.scheduleName}
-                    {permissions.updateMettlSchedule && (
-                    <Button
-                      type="link"
-                      icon={<EditOutlined />}
-                      onClick={() => setIsFormVisible(!isFormVisible)}
-                    />
-                    )}
-                  </List.Item>
-
-                </List>
-                ) }
+                {!isFormVisible && (
+                  <List size="small">
+                    <List.Item>
+                      {mettlScheduleRecord.scheduleName}
+                      {permissions.updateMettlSchedule && (
+                        <Button
+                          type="link"
+                          icon={<EditOutlined />}
+                          onClick={() => setIsFormVisible(!isFormVisible)}
+                        />
+                      )}
+                    </List.Item>
+                  </List>
+                )}
 
                 {isFormVisible && (
                   <List size="small">
@@ -141,7 +142,7 @@ export const DetailsDrawer: FC<Props> = ({
                         campaignId={parseInt(campaignId, 10)}
                         assessment={assessment}
                         close={() => setIsFormVisible(false)}
-                        loading={false}
+                        loading={loadingUpdateMettlSchedule}
                         setMettlScheduleRecord={setMettlScheduleRecord}
                         updateMettlSchedule={updateMettlSchedule}
                         mettlScheduleRecord={mettlScheduleRecord}
@@ -155,6 +156,13 @@ export const DetailsDrawer: FC<Props> = ({
             </>
           )}
         </Descriptions>
+      </Row>
+      <Row>
+        <SimulationDetails
+          I18n={I18n}
+          assessment={assessment}
+          campaignId={campaignId}
+        />
       </Row>
     </Drawer>
   )

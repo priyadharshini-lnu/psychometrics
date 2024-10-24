@@ -3,7 +3,7 @@ import React, {
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Layout, Typography, Tabs,
+  Row, Col, Layout, Typography, Tabs, Space,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ import Report from '~/modules/reports/report'
 import { SubHeader } from '~/modules/endUser/modules/campaigns/components/SubHeader'
 import { isRequestInProgress } from '~/core/request'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
-import { MediaQueryContext, PageHeader } from '~/glint'
+import { MediaQueryContext, PageHeader, FontsizeModifier } from '~/glint'
 import { ReportList } from './ReportList'
 
 import styles from './styles.less'
@@ -57,7 +57,10 @@ const InsightsComponent: FC<Props> = ({
     <>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdownWithChangeLocale />
+          <Space>
+            <FontsizeModifier />
+            <LangDropdownWithChangeLocale />
+          </Space>
         </Col>
       </PageHeader>
       <Content className={styles.pageContent}>

@@ -41,8 +41,10 @@ describe ReportSerializer do
     describe 'threesixty report' do
       before do
         allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
-        create(:datasheet, columns: [{ name: 'field1', type: 'Text' }, { name: 'field2', type: 'Number' }],
+        datasheet = create(:datasheet, columns: [{ name: 'field1', type: 'Text' }, { name: 'field2', type: 'Number' }],
           project: campaign.project)
+        create(:sheet_column, sheet: datasheet, name: 'field1', column_type: 'text')
+        create(:sheet_column, sheet: datasheet, name: 'field2', column_type: 'number')
       end
 
       it {

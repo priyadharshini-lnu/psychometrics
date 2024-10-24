@@ -7,7 +7,7 @@ import styles from './styles.less'
 const { setTimeout, clearTimeout } = window
 
 export type Notification = {
-  completionPercentage: number
+  timeRemaining: number
   type: 'info' | 'warning' | 'error'
 }
 
@@ -16,7 +16,7 @@ type CountdownTimerProps = StatisticProps & {
   onFinish?: () => void
   notificationPoints?: Notification[]
   notificationDuration?: number
-  notificationTemplate?: (minutes: number, seconds: number) => string
+  notificationTemplate?: (minutes: number) => string
 }
 
 const SECONDS_PER_DAY = 60 * 60 * 24
@@ -62,7 +62,7 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
     const notifications = notificationPoints.map((notificationPoint) => {
       const className = notificationPoint.type === 'info'
         ? undefined : styles[`notification--${notificationPoint.type}`]
-      return notificationSetTimeout(notificationPoint.completionPercentage, seconds, className)
+      return notificationSetTimeout(notificationPoint.timeRemaining, seconds, className)
     })
 
     return () => {
@@ -75,23 +75,25 @@ export const CountdownTimer: FC<CountdownTimerProps> = ({
     newFormat !== timerFormat && setTimerFormat(newFormat)
   }
 
-  const notificationSetTimeout = (notificationPoint: number, seconds: number, className: string | undefined) => {
-    const remainingTimeInMilliseconds = seconds * 1000
-    const notificationRemainingTime = (seconds * 1000 * (100 - notificationPoint)) / 100
+  const notificationSetTimeout = (
+    timeRemaining: number,
+    totalSeconds: number,
+    className: string | undefined,
+  ) => {
+    const remainingTimeInMilliseconds = totalSeconds * 1000
+    const notificationTimeInMilliseconds = timeRemaining * 1000
 
-    if (remainingTimeInMilliseconds - notificationRemainingTime > 0) {
-      const minutes = Math.floor(notificationRemainingTime / 60000)
-      const seconds = Math.floor((notificationRemainingTime - minutes * 60000) / 1000)
-
+    if (remainingTimeInMilliseconds - notificationTimeInMilliseconds > 0) {
+      const minutes = Math.floor(timeRemaining / 60)
       return setTimeout(() => {
         if (notificationPoints.length) {
           antdNotification.warning({
-            message: notificationTemplate && notificationTemplate(minutes, seconds),
+            message: notificationTemplate && notificationTemplate(minutes),
             duration: notificationDuration,
             className,
           })
         }
-      }, remainingTimeInMilliseconds - notificationRemainingTime)
+      }, remainingTimeInMilliseconds - notificationTimeInMilliseconds)
     }
 
     return undefined

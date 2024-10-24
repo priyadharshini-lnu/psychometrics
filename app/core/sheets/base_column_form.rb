@@ -2,11 +2,12 @@
 
 module Sheets
   class BaseColumnForm < Rectify::Form
+    attribute :id, Integer
     attribute :name, String
-    attribute :type, String
+    attribute :column_type, String
     attribute :visible_in_list, Boolean
 
-    validates_inclusion_of :type, in: Sheet::ALL_COLUMN_TYPES
+    validates_inclusion_of :column_type, in: SheetColumn.column_types.keys
     validate :uniqueness_field_name, if: :sheet
 
     def uniqueness_field_name
@@ -14,7 +15,7 @@ module Sheets
     end
 
     def existing_column
-      sheet&.columns&.find { |f| f['name'] == name }
+      sheet.sheet_columns.find_by(name: name)
     end
 
     def sheet

@@ -29,6 +29,8 @@ import SingleValueScoring from './SingleValueScoring/SingleValueScoring'
 import SingleValueScoringProps from './SingleValueScoring/Properties'
 import FactorsTable from './FactorsTable/FactorsTable'
 import FactorsTableProps from './FactorsTable/Properties'
+import CampaignFactorsTable from './CampaignFactorsTable/CampaignFactorsTable'
+import CampaignFactorTableProps from './CampaignFactorsTable/Properties'
 import CPIOccupations from './CPIOccupations/CPIOccupations'
 import CPIOccupationsProps from './CPIOccupations/Properties'
 import PotentialCareerShort from './PotentialCareerShort/PotentialCareerShort'
@@ -59,6 +61,7 @@ export default {
   GapAssessmentScoring,
   SingleValueScoring,
   FactorsTable,
+  CampaignFactorsTable,
   CPIOccupations,
   PotentialCareerShort,
   PotentialCareerFull,
@@ -89,4 +92,5 @@ export const PropTypes = {
   StrengthClusters: StrengthClustersProps,
   PotentialKeyCareerTracks: PotentialKeyCareerTracksProps,
   InnovationStyles: InnovationStylesProps,
+  CampaignFactorsTable: CampaignFactorTableProps,
 }

@@ -43,7 +43,7 @@ module Imports
                            }
                          end
                        else
-                         data[index].to_s.split(',').map do |i|
+                         data[index].to_s.split(';').map do |i|
                            {
                              index: (use_scoring && factors_scoring["#{choice}-#{scale}-#{i}"]) || (i.to_i - 1),
                              value: true

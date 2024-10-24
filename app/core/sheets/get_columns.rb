@@ -11,9 +11,9 @@ module Sheets
     end
 
     def call
-      columns = datasheet.columns.select do |column|
-        next column['accessor_access'] if access_include?(:assessor)
-        next column['dashboard_use'] if access_include?(:dashboard)
+      columns = datasheet.sheet_columns.select do |column|
+        next column.accessor_access if access_include?(:assessor)
+        next column.dashboard_use if access_include?(:dashboard)
 
         true
       end

@@ -39,7 +39,9 @@ module UserReports
       ).includes(:campaign_factor).map do |cfv|
         {
           code: cfv.campaign_factor.code,
-          value: cfv.value
+          value: cfv.value,
+          name: cfv.campaign_factor.name,
+          description: cfv.campaign_factor.description
         }
       end
     end

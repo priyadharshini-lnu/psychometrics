@@ -4,7 +4,8 @@ module Administration
   class UserAssessmentSerializer < Panko::Serializer
     attributes :id, :permissions, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external, :has_external_norm, :schedule_time, :require_scheduling,
-               :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id
+               :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id, :simulation_content_variations,
+               :simulation_content_variation_id
 
     delegate :name, :category, :dimension_id, to: :assessment
 
@@ -18,6 +19,16 @@ module Administration
       return assessment.external_norms if assessment.has_external_norm?
 
       assessment.norms.map { |n| NormSerializer.new.serialize(n) }
+    end
+
+    def simulation_content_variations
+      assessment.simulation_settings&.content_variations || []
+    end
+
+    def simulation_content_variation_id
+      return nil unless object.simulation?
+
+      object.simulation_user_assessment.content_variation_id
     end
 
     def is_expired
@@ -49,6 +60,7 @@ module Administration
           'update_additional_time',
           'update_norm',
           'update_mettl_schedule',
+          'update_content_variation',
           'rescore_response',
           %w[remove destroy],
           'reset_progress',

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Layout, Alert, Row, Col, Card,
+  Layout, Alert, Row, Col, Card, Space,
 } from 'antd'
 import _ from 'lodash'
 
@@ -26,7 +26,7 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/nomination/selectors'
 import { SafeHTML } from '~/components/SafeHTML'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
-import { PageHeader as GlintHeader } from '~/glint'
+import { PageHeader as GlintHeader, FontsizeModifier } from '~/glint'
 import { NominationForm } from './NominationForm/NominationForm'
 import { NominationTable } from './NominationTable/NominationTable'
 import { NameModal } from './NominationForm/NameModal'
@@ -107,7 +107,10 @@ const NominationComponent = (props) => {
     <>
       <GlintHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdownWithChangeLocale />
+          <Space>
+            <FontsizeModifier />
+            <LangDropdownWithChangeLocale />
+          </Space>
         </Col>
       </GlintHeader>
       <Content className={styles.pageContent}>

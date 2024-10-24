@@ -33,7 +33,9 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/evaluation'
 import { markAssessmentTimedOut } from '~/modules/survey/core/preview/FlowProcessor/actions'
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
-import { CountdownTimer, PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from '~/glint'
+import {
+  CountdownTimer, PageHeader as GlintPageHeader, DirectionalNavigateBackIcon, FontsizeModifier,
+} from '~/glint'
 import { secondsLeftFromNow } from '~/utils/time'
 import { ResourcesTabs } from '../../components/ResourcesTabs'
 import styles from './Evaluation.less'
@@ -172,8 +174,9 @@ const EvaluationComponent = ({
     <>
       <GlintPageHeader>
         <Col flex="auto" className="ta-e">
-          <Space align="center" size="large" />
-          {availableTranslations
+          <Space>
+            <FontsizeModifier />
+            {availableTranslations
               && availableTranslations.length > 1
               && (
               <LangDropdownWithChangeUrl
@@ -182,6 +185,7 @@ const EvaluationComponent = ({
               />
               )
             }
+          </Space>
         </Col>
       </GlintPageHeader>
       <Content className={styles.pageContent}>
@@ -201,9 +205,9 @@ const EvaluationComponent = ({
                   />
                 </Button>
                 <CountdownTimer
-                  notificationPoints={[{ completionPercentage: 30, type: 'info' },
-                    { completionPercentage: 15, type: 'warning' },
-                    { completionPercentage: 5, type: 'error' }]}
+                  notificationPoints={[{ timeRemaining: 3600, type: 'info' },
+                    { timeRemaining: 1800, type: 'warning' },
+                    { timeRemaining: 900, type: 'error' }]}
                   seconds={secondsLeftFromNow(expiry_date)}
                   onFinish={() => markAssessmentTimedOut(preview)}
                 />

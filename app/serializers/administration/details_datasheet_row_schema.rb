@@ -9,8 +9,10 @@ module Administration
         required(:record).maybe(:hash?)
         required(:columns).array do
           schema do
+            required(:id).filled(:int?)
+            required(:position).filled(:int?)
             required(:name).filled(:str?)
-            required(:type).filled(:str?)
+            required(:column_type).filled(:str?)
             required(:dashboard_use).filled(:bool?)
             required(:accessor_access).filled(:bool?)
             required(:visible_in_list).filled(:bool?)

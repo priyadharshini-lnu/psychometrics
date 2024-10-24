@@ -84,3 +84,7 @@ export const getAssessmentFactors = (state: RootState, assessmentId: number) => 
 export const getFlatFactors = (state: RootState) => _.reduce(
   state.report.builder.factors, (result, value) => [...result, ...value], [],
 )
+
+export const getCampaignFactors = (state: RootState) => (
+  state.report.builder.campaign_factors || []
+)

@@ -39,6 +39,11 @@ module Administration
                       project_id: project_id) && record.assessment.mettl? && record.not_started?
     end
 
+    def update_content_variation?
+      has_permission?(:project_settings, :manage_users,
+                      project_id: project_id) && record.assessment.simulation? && record.not_started?
+    end
+
     def update_additional_time?
       !record&.assessment&.external? &&
         (@user.is?(:superadmin) || @user.has_permission?(

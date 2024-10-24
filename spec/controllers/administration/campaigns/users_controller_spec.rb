@@ -169,7 +169,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'remove' => policy.destroy?,
         'reset_progress' => policy.reset_progress?,
         'push_webhook' => true,
-        'update_mettl_schedule' => false
+        'update_mettl_schedule' => false,
+        'update_content_variation' => false
       },
       'norm_id' => nil,
       'additional_time' => nil,
@@ -181,7 +182,9 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'require_scheduling' => false,
       'mettl_schedule_name' => nil,
       'mettl_schedule_record_id' => nil,
-      'dimension_id' => assessment.dimension_id
+      'dimension_id' => assessment.dimension_id,
+      'simulation_content_variation_id' => nil,
+      'simulation_content_variations' => []
     })
   end
 end

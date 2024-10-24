@@ -24,7 +24,7 @@ module Imports
           # Shift only group data column (Example: ['1,2,3', '4,5'])
           groups = data.shift(question.props['scalePoints'].to_i)
           groups.each_with_index do |choices, scale|
-            choices.to_s.split(',').each_with_index do |choice, value|
+            choices.to_s.split(';').each_with_index do |choice, value|
               answers << {
                 scale: scale,
                 value: value,

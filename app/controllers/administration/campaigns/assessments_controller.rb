@@ -214,6 +214,15 @@ module Administration
         render json: { mettl_schedule_name: campaign_assessment.mettl_schedule_record&.schedule_name }
       end
 
+      def update_content_variation
+        campaign_assessment.update_content_variation!(params[:external_config],
+                                                      params[:apply])
+
+        audit! :update_content_variation, assessment, campaign: campaign
+
+        render json: { content_variation_id: campaign_assessment.external_config['content_variation_id'] }
+      end
+
       private
 
       def assessment

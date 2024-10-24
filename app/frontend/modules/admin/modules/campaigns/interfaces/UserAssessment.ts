@@ -1,5 +1,7 @@
 import Norm from './Norm'
 
+import SimulationContentVariation from './SimulationContentVariation'
+
 export default interface UserAssessment {
   id: number
   name: string
@@ -15,6 +17,8 @@ export default interface UserAssessment {
   norms?: Norm[]
   mettlScheduleRecordId?: string,
   reportIds: number[]
+  simulationContentVariations?: SimulationContentVariation[]
+  simulationContentVariationId: string | null
   permissions: {
     updateAdditionalTime: boolean
     resetResults: boolean
@@ -24,5 +28,6 @@ export default interface UserAssessment {
     resetProgress: boolean
     pushWebhook: boolean
     updateMettlSchedule: boolean
+    updateContentVariation: boolean
   }
 }

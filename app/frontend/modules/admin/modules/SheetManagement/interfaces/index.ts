@@ -17,5 +17,5 @@ export type ToggleDrawer = (mode: DrawerModes, id?: string) => void
 export type DrawerDataRecord = {
   name: string,
   value: string | number | null,
-  type: ColumnType
+  column_type: ColumnType
 }

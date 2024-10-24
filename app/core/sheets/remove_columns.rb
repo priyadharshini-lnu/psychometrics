@@ -2,21 +2,20 @@
 
 module Sheets
   class RemoveColumns < BaseCommand
-    private_attr_reader :sheet, :columns
+    private_attr_reader :sheet, :column_ids
 
-    def initialize(sheet, columns)
+    def initialize(sheet, column_ids)
       @sheet = sheet
-      @columns = columns
+      @column_ids = column_ids
     end
 
     def call
       transaction do
-        sheet.columns.reject! { |col| columns.include?(col['name']) }
-        sheet.save!
-        new_columns = columns.map { |c| ActiveRecord::Base.connection.quote_string(c) }.join("','")
-        sheet.rows.update_all("data = data - ARRAY['#{new_columns}']")
+        removed_columns = sheet.sheet_columns.where(id: column_ids).pluck(:name).join("','")
+        sheet.sheet_columns.where(id: column_ids).destroy_all
+        sheet.rows.update_all("data = data - ARRAY['#{ActiveRecord::Base.sanitize_sql(removed_columns)}']")
       end
-      broadcast :ok, sheet.columns
+      broadcast :ok
     end
   end
 end

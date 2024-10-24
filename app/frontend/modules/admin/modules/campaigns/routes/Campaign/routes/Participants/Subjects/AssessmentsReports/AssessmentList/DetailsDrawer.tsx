@@ -9,16 +9,18 @@ import { MettlScheduleRecord } from '~/modules/admin/modules/client/core/mettlSc
 import { useResources } from '~/hooks/useResources'
 import { UpdateMettlScheduleForm } from './UpdateMettlScheduleForm'
 import MettlScheduleDetails from '../../../../../MettlScheduleDetails/MettlScheduleDetails'
+import { SimulationDetails } from './SimulationDetails'
 
 const { I18n } = window
 
 interface Props {
   close: () => void
   assessment: UserAssessment | undefined
-  campaignId: number
+  campaignId: string
   updateMettlSchedule: (
     campaignId: number, campaignAssessmentId: number, body: {assessment: {id: string}}
   ) => Promise<{ response: unknown; }>
+  loadingUpdateMettlSchedule: boolean
 }
 
 export const DetailsDrawer: FC<Props> = ({
@@ -26,6 +28,7 @@ export const DetailsDrawer: FC<Props> = ({
   assessment,
   campaignId,
   updateMettlSchedule,
+  loadingUpdateMettlSchedule,
 }) => {
   if (!assessment) {
     return null
@@ -75,7 +78,7 @@ export const DetailsDrawer: FC<Props> = ({
       <Row>
         <Descriptions
           layout="horizontal"
-          rootClassName="mb-6 w-100"
+          rootClassName="w-100"
           bordered
           column={1}
         >
@@ -138,10 +141,10 @@ export const DetailsDrawer: FC<Props> = ({
                   <List size="small">
                     <List.Item>
                       <UpdateMettlScheduleForm
-                        campaignId={campaignId}
+                        campaignId={parseInt(campaignId, 10)}
                         assessment={assessment}
                         close={() => setIsFormVisible(false)}
-                        loading={false}
+                        loading={loadingUpdateMettlSchedule}
                         setMettlScheduleRecord={setMettlScheduleRecord}
                         updateMettlSchedule={updateMettlSchedule}
                         mettlScheduleRecord={mettlScheduleRecord}
@@ -155,6 +158,13 @@ export const DetailsDrawer: FC<Props> = ({
             </>
           )}
         </Descriptions>
+      </Row>
+      <Row>
+        <SimulationDetails
+          I18n={I18n}
+          assessment={assessment}
+          campaignId={campaignId}
+        />
       </Row>
     </Drawer>
   )

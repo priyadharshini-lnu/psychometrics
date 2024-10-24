@@ -48,7 +48,7 @@ module Imports
             answers[email_field] = if EMAIL_QUESTION_TEXT_FIELDS.include?(email_field)
                                      data[index]
                                    else
-                                     data[index] && data[index].split(', ')
+                                     data[index] && data[index].split(';')
                                    end
           end
           answers

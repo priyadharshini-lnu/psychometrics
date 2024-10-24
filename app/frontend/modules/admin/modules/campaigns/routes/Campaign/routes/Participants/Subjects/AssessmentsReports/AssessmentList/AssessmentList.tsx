@@ -46,6 +46,7 @@ const AssessmentList: React.FC<Props> = ({
   resetProgress,
   toggleRequireScheduling,
   updateMettlSchedule,
+  loadingUpdateMettlSchedule,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<UserAssessment | undefined>()
 
@@ -179,8 +180,9 @@ const AssessmentList: React.FC<Props> = ({
           <DetailsDrawer
             close={() => setDrawerAssessment(undefined)}
             assessment={drawerAssessment}
-            campaignId={parsedCampaignId}
+            campaignId={campaignId}
             updateMettlSchedule={updateMettlSchedule}
+            loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
           />
         ) : null}
       </Col>

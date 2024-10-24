@@ -6,6 +6,7 @@ import preview from '~/modules/survey/core/preview'
 import { reducer as projectAssessorsReducers } from '~/modules/admin/modules/client/core/assessors'
 import { reducer as projectParticipantsReducer } from '~/modules/admin/modules/client/core/participants'
 import { reducer as individualDashboardReducer } from '~/modules/admin/modules/IndividualDashboard/core'
+import { reducer as projectReducer } from '~/modules/admin/modules/client/core/projects'
 import connection from '~/core/connection'
 import config from '~/core/config'
 import currentUser from '~/core/currentUser'
@@ -74,6 +75,7 @@ const createRootReducer = () => combineReducers({
     assessors: projectAssessorsReducers,
     participants: projectParticipantsReducer,
     integrations: integrationsReducer,
+    clientId: projectReducer,
   }),
   ui: combineReducers({
     modals,

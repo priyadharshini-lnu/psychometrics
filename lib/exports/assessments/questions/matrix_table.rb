@@ -40,7 +40,7 @@ module Exports
                                next a['scale'] + 1 unless export_with_labels
 
                                question.props.dig('scalePointsTexts', a['scale'])
-                             end.join(',')
+                             end.join(';')
           end
           add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
         end

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Row, Steps, Result, Button, Layout, Col,
+  Row, Steps, Result, Button, Layout, Col, Space,
 } from 'antd'
 import qs from 'qs'
 import Cookies from 'js-cookie'
@@ -12,7 +12,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { fetch } from '~/modules/endUser/modules/campaigns/core/checkingWizard'
 import { Checks, Config } from '~/modules/endUser/modules/campaigns/core/checkingWizard/interfaces'
 import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
-import { MediaQueryContext, PageHeader as GlintPageHeader } from '~/glint'
+import { MediaQueryContext, PageHeader as GlintPageHeader, FontsizeModifier } from '~/glint'
 import styles from './styles.less'
 import { SystemCheck } from './SystemCheck'
 import { NetworkCheck } from './NetworkCheck'
@@ -126,7 +126,10 @@ const CheckingWizardComponent: React.FC<Props> = ({
     <>
       <GlintPageHeader>
         <Col flex="auto" span={24} className="ta-e">
-          <LangDropdownWithChangeLocale />
+          <Space>
+            <FontsizeModifier />
+            <LangDropdownWithChangeLocale />
+          </Space>
         </Col>
       </GlintPageHeader>
       {finish ? (

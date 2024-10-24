@@ -21,7 +21,7 @@ module Imports
             answers << {
               scale: scale - 1,
               choice: choice,
-              values: (values && values.to_s.split(',').map(&:to_i)) || []
+              values: (values && values.to_s.split(';').map(&:to_i)) || []
             }
           end
           return nil if answers.blank?

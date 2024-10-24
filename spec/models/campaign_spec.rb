@@ -8,28 +8,34 @@ describe Campaign, type: :model do
 
   describe '#datasheet_columns' do
     it 'returns campaign datasheet columns if there is not project datasheet' do
-      create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'String' }])
+      datasheet = create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'String' }])
+      create(:sheet_column, name: 'Name', column_type: 'string', sheet: datasheet)
 
       expect(campaign.datasheet_columns).to eq([{ 'name' => 'Name', 'type' => 'String' }])
     end
 
     it 'return project datsheet columns if there is no campaign datasheet' do
-      create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      datasheet = create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      create(:sheet_column, name: 'Name', column_type: 'string', sheet: datasheet)
 
       expect(campaign.datasheet_columns).to eq([{ 'name' => 'Name', 'type' => 'String' }])
     end
 
     it 'returns combined datasheet columns' do
-      create(:datasheet, campaign: campaign, columns: [{ name: 'Title', type: 'Text' }])
-      create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      c_datasheet = create(:datasheet, campaign: campaign, columns: [{ name: 'Title', type: 'Text' }])
+      p_datasheet = create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      create(:sheet_column, name: 'Title', column_type: 'text', sheet: c_datasheet)
+      create(:sheet_column, name: 'Name', column_type: 'string', sheet: p_datasheet)
 
       expect(campaign.datasheet_columns).to eq([{ 'name' => 'Name', 'type' => 'String' },
                                                 { 'name' => 'Title', 'type' => 'Text' }])
     end
 
     it 'returns combined datasheet columns with different types' do
-      create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'Text' }])
-      create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      c_datasheet = create(:datasheet, campaign: campaign, columns: [{ name: 'Name', type: 'Text' }])
+      p_datasheet = create(:datasheet, project: project, columns: [{ name: 'Name', type: 'String' }])
+      create(:sheet_column, name: 'Name', column_type: 'text', sheet: c_datasheet)
+      create(:sheet_column, name: 'Name', column_type: 'string', sheet: p_datasheet)
 
       expect(campaign.datasheet_columns).to eq([{ 'name' => 'Name', 'type' => 'Text' }])
     end
