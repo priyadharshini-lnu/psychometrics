@@ -1093,6 +1093,7 @@ as: :simulation_progress_notification
         namespace :administration do
           jsonapi_resources :clients do
             jsonapi_relationships
+            jsonapi_resources :client_privacy_settings, only: %i[index update]
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do
                 post :test_connection
