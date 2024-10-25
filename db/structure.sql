@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -3559,7 +3552,8 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_hogan boolean DEFAULT false,
     mask_identity_for_iiht boolean DEFAULT false,
     mask_identity_for_examus boolean DEFAULT false,
-    mask_identity_for_mettl boolean DEFAULT false
+    mask_identity_for_mettl boolean DEFAULT false,
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -12729,7 +12723,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
 
 
 --
@@ -14275,6 +14269,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241025042720'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),
