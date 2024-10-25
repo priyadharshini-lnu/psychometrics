@@ -18,7 +18,7 @@ export default {
       description: factor.description,
     }))
 
-    const sorted = _.orderBy(factors, ['value'])
+    const sorted = _.orderBy(factors, ['value'], ['desc'])
 
     return _(sorted)
       .filter(factor => _.inRange(factor.value, minValue, maxValue))
