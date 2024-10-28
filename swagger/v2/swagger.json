@@ -4134,6 +4134,66 @@
         }
       }
     },
+    "/clients/{client_id}/client_privacy_settings": {
+      "get": {
+        "summary": "Fetch Client Privacy Setting",
+        "operationId": "getClientPrivacySetting",
+        "description": "Retrieve the privacy settings for a specific client",
+        "tags": [
+          "ClientPrivacySetting"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "client_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter[client_id_eq]",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ClientPrivacySetting",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "client_privacy_setting",
+                          "attributes": {
+                            "disable_data_processing": false
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/ClientPrivacySettingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/clients/{client_id}/projects/": {
       "get": {
         "summary": "Project List",
