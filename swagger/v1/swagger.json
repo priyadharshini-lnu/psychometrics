@@ -616,6 +616,97 @@
         }
       }
     },
+    "/projects/{project_id}/users/{user_id}/campaigns/{campaign_id}": {
+      "patch": {
+        "summary": "Update user campaign",
+        "operationId": "UpdateUserCampaigns",
+        "description": "Updates campaigns for the user.",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "schedule_start_date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Start date and time for the campaign schedule",
+                  "example": null,
+                  "nullable": true
+                },
+                "schedule_end_date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "End date and time for the campaign schedule",
+                  "example": null,
+                  "nullable": true
+                }
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated campaign user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "content": {
+              "application/json": {
+                "examples": {
+                  "example_0": {
+                    "value": {
+                      "id": 14602,
+                      "first_name": "John",
+                      "last_name": "Doe",
+                      "email": "john.doe@example.com",
+                      "created_at": "2019-03-04T15:47:33.570+04:00",
+                      "updated_at": "2019-03-04T15:47:33.950+04:00",
+                      "campaign_ids": [
+                        510
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{project_id}/campaigns": {
       "post": {
         "summary": "Create a campaign",
@@ -2723,6 +2814,23 @@
             "new_evaluation"
           ],
           "description": "**copy_evaluation**: This will copy the responses if the user has previously\n              completed the assessment in different a campaign. Most recent response will be used\n              **new_evaluation**: This allows the user to sit an assessment even if the user has previously\n              completed the assessment in a different campaign.\n              "
+<<<<<<< Updated upstream
+=======
+        },
+        "schedule_start_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start date and time for the campaign schedule",
+          "example": null,
+          "nullable": true
+        },
+        "schedule_end_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End date and time for the campaign schedule",
+          "example": null,
+          "nullable": true
+>>>>>>> Stashed changes
         }
       }
     },
