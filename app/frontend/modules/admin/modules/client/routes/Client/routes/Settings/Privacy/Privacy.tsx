@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import { Row, Col, Form, Checkbox, Button, Skeleton } from 'antd'
-import _ from 'lodash'
+import {
+  Row, Col, Form, Checkbox, Button, Skeleton,
+} from 'antd'
 import { useParams } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
@@ -12,7 +13,9 @@ export const Privacy: React.FC = () => {
   const { clientId } = useParams() as { clientId: string }
   const [form] = Form.useForm()
 
-  const { data, fetch, updateResource, isLoading } = useResources<PrivacySettingsType>(
+  const {
+    data, fetch, updateResource, isLoading,
+  } = useResources<PrivacySettingsType>(
     'client_privacy_settings',
     {
       basePath: `clients/${clientId}`,
