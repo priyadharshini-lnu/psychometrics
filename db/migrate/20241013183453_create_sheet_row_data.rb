@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSheetRowData < ActiveRecord::Migration[7.1]
   def change
     create_table :sheet_row_data do |t|
