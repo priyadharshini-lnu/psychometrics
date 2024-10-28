@@ -262,7 +262,7 @@ en:
           title: Subjects
           upload: Upload
           upload_csv: Upload CSV
-        subjects_count_added: Subjects successfuly added
+        subjects_count_added: Subjects successfully added
         success:
           continue: Continue
           message: The task of sending the invitations has been queued; users will receive them shortly.
@@ -1519,7 +1519,7 @@ en:
         error: "'%{name}' factor was not copied"
         successfully: Factor '%{name}' was copied successfully.
       create:
-        successfully: "'%{name}' factor was created successfully."
+        successfully: "%{name} factor was created successfully."
       destroy:
         successfully: Factor "%{name}" was deleted successfully.
       edit:
@@ -1758,7 +1758,7 @@ en:
         webhookUrl: Webhook URL
         webhookUrls: Webhook URLs
       integrations: Integrations
-      load_mettl_success: Load mettl assessments job is successfuly enqueued
+      load_mettl_success: Load mettl assessments job is successfully enqueued
       modal:
         hogan:
           provider: Provider
