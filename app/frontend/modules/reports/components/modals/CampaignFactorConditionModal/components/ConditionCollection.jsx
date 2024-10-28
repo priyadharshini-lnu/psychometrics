@@ -62,7 +62,7 @@ export class ConditionCollection extends Component {
 
   changeColor = (color) => {
     const { model } = this.props
-    model.color = color
+    model.color = color 
     this.forceUpdate()
   }
 
@@ -166,8 +166,8 @@ export class ConditionCollection extends Component {
           <ColorPicker
             getValueInHexFormat
             colorPickerPosition="leftBottom"
-            value={model.color}
-            defaultColor='#000000ff'
+            value={model.color || 'transparent'}
+            
             onChange={
               this.changeColor
             }

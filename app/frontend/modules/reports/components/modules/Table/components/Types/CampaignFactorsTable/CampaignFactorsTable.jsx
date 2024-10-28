@@ -13,7 +13,7 @@ import PieGraph from '~/modules/reports/components/PieGraph'
 
 import styles from './CampaignFactorsTable.less'
 
-const MockData = [
+const campaignFactorMockData = [
   {
     code: 'ambiguity',
     name: 'Ambiguity',
@@ -119,10 +119,10 @@ class CampaignFactorsTable extends Component {
     module: PropTypes.object.isRequired,
   }
 
-  getMockData (campaignFactors, size) {
+  getCampaignFactorMockData (campaignFactors, size) {
     const data = []
     while (data.length < size && size > 0) {
-      const items = _.take(MockData, size - data.length)
+      const items = _.take(campaignFactorMockData, size - data.length)
       data.push(...items)
     }
     return data.map((campaignFactor, i) => ({
@@ -131,7 +131,7 @@ class CampaignFactorsTable extends Component {
     }))
   }
 
-  prepareRows () {
+  prepareCampaignFactorTableRows () {
     const { module, module: { props } } = this.props
     console.log("cf table props ---", this.props)
     const sourceCampaignFactors = _.get(props, ['source', 'campaignFactors'], [])
@@ -151,9 +151,9 @@ class CampaignFactorsTable extends Component {
     } else {
       // eslint-disable-next-line no-lonely-if
       if (props.mode === 'topFactors') {
-        this.campaignFactorsData = this.getMockData(sourceCampaignFactors, props.maxPosition - props.minPosition + 1)
+        this.campaignFactorsData = this.getCampaignFactorMockData(sourceCampaignFactors, props.maxPosition - props.minPosition + 1)
       } else {
-        this.campaignFactorsData = this.getMockData(sourceCampaignFactors, campaignFactorCodes.length)
+        this.campaignFactorsData = this.getCampaignFactorMockData(sourceCampaignFactors, campaignFactorCodes.length)
       }
     }
     if (props.reverseOrder && props.mode === 'topFactors') {
@@ -167,7 +167,7 @@ class CampaignFactorsTable extends Component {
     return (mode !== 'orderedFactors' && showRankOrder)
   }
 
-  renderFactors () {
+  renderCampaignFactors () {
     const { model, module } = this.props
     const { fontFamily } = module.props.style
     return (
@@ -358,13 +358,13 @@ class CampaignFactorsTable extends Component {
       fontFamily,
       backgroundColor: backgroundColor || false,
     }
-    this.prepareRows()
+    this.prepareCampaignFactorTableRows()
     const hasData = this.campaignFactorsData.length > 0
     return (
       <table className={cs(styles.table, styles[model.props.tableStyle || 'default'], { [styles.bordered]: showBorder })} style={style}>
         {hasData && this.renderHeader(model.props.showHeader)}
         <tbody>
-          {hasData ? this.renderFactors() : this.renderNoData()}
+          {hasData ? this.renderCampaignFactors() : this.renderNoData()}
         </tbody>
       </table>
     )

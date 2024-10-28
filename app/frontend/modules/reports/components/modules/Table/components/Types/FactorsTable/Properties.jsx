@@ -148,7 +148,7 @@ class Properties extends Component {
       { label: 'Top Factors', value: 'topFactors' },
       { label: 'Ordered Factors', value: 'orderedFactors' },
     ]
-
+    
     return (
       options.map((option, i) => (
         <label className={styles.inputLabel} key={i}>
@@ -157,7 +157,7 @@ class Properties extends Component {
             type="radio"
             name="mode"
             value={option.value}
-            checked={model.props.mode === option.value}
+            checked={model.props.mode === option.value || (!model.props.mode && option.value === 'topFactors')}
             onChange={this.changeMode}
           />
           {option.label}
