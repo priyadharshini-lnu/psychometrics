@@ -1519,7 +1519,7 @@ en:
         error: "'%{name}' factor was not copied"
         successfully: Factor '%{name}' was copied successfully.
       create:
-        successfully: "'%{name}' factor was created successfully."
+        successfully: "%{name} factor was created successfully."
       destroy:
         successfully: Factor "%{name}" was deleted successfully.
       edit:
