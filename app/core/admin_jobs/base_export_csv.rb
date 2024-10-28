@@ -6,6 +6,14 @@ module AdminJobs
     include ActionView::Context
 
     def call
+      if respond_to?(:disable_data_processing?) && disable_data_processing?
+        job_record.update!(
+          status: :completed,
+          error_messages: ['Data processing is disabled.']
+        )
+        return
+      end
+
       write_csv
       record.file.attach(
         io: File.open(file_path),

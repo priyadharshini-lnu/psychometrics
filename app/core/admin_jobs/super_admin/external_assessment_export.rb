@@ -38,6 +38,14 @@ module AdminJobs
       def assessment
         @assessment ||= Assessment.find_by(id: record.data['assessment_id'])
       end
+
+      def disable_data_processing?
+        client = assessment.owner
+        project = assessment.project
+
+        client&.client_privacy_setting&.disable_data_processing ||
+          project&.privacy_setting&.disable_data_processing
+      end
     end
   end
 end

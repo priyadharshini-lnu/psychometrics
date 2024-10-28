@@ -62,7 +62,7 @@ module AdminJobs
       end
 
       def records_for_export
-        project_ids = client.projects.pluck(:id)
+        project_ids = filtered_project_ids
         client_ids = [client.id, *project_ids]
         campaign_ids = Campaign.where(project_id: project_ids).pluck(:id)
         Membership.where(
@@ -79,6 +79,20 @@ module AdminJobs
 
       def file_name
         "admins-with-permissions-#{client.id}-#{record.id}.csv"
+      end
+
+      def disable_data_processing?
+        client.client_privacy_setting.disable_data_processing?
+      end
+
+      def filtered_project_ids
+        return [] if disable_data_processing?
+
+        @filtered_project_ids ||= Project.
+                                  where(tte_id: client.id).
+                                  joins(:privacy_setting).
+                                  where(privacy_settings: { disable_data_processing: false }).
+                                  pluck(:id)
       end
     end
   end
