@@ -338,7 +338,7 @@ en:
           upload: Upload
           upload_csv: Upload CSV
           upload_title: Import Subjects from CSV
-        subjects_count_added: Subjects successfuly added
+        subjects_count_added: Subjects successfully added
         success:
           continue: Continue
           message: The task of sending the invitations has been queued; users will receive them shortly.
