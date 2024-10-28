@@ -682,24 +682,38 @@
           "200": {
             "description": "Updated campaign user",
             "schema": {
-              "$ref": "#/definitions/User"
-            },
-            "content": {
-              "application/json": {
-                "examples": {
-                  "example_0": {
-                    "value": {
-                      "id": 14602,
-                      "first_name": "John",
-                      "last_name": "Doe",
-                      "email": "john.doe@example.com",
-                      "created_at": "2019-03-04T15:47:33.570+04:00",
-                      "updated_at": "2019-03-04T15:47:33.950+04:00",
-                      "campaign_ids": [
-                        510
-                      ]
-                    }
-                  }
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "description": "CampaignUser id",
+                  "example": 510
+                },
+                "schedule_start_date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Start date and time for the campaign schedule",
+                  "example": null,
+                  "nullable": true
+                },
+                "schedule_end_date": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "End date and time for the campaign schedule",
+                  "example": null,
+                  "nullable": true
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Created date and time",
+                  "example": "2019-03-04T15:47:33.570+04:00"
+                },
+                "updated_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Updated date and time",
+                  "example": "2019-03-04T15:47:33.570+04:00"
                 }
               }
             }
@@ -2814,23 +2828,6 @@
             "new_evaluation"
           ],
           "description": "**copy_evaluation**: This will copy the responses if the user has previously\n              completed the assessment in different a campaign. Most recent response will be used\n              **new_evaluation**: This allows the user to sit an assessment even if the user has previously\n              completed the assessment in a different campaign.\n              "
-<<<<<<< Updated upstream
-=======
-        },
-        "schedule_start_date": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Start date and time for the campaign schedule",
-          "example": null,
-          "nullable": true
-        },
-        "schedule_end_date": {
-          "type": "string",
-          "format": "date-time",
-          "description": "End date and time for the campaign schedule",
-          "example": null,
-          "nullable": true
->>>>>>> Stashed changes
         }
       }
     },
