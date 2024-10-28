@@ -51,7 +51,7 @@ describe Api::V2::Administration::ClientPrivacySettingsController, swagger_doc: 
 
       response '200', 'Client Privacy Setting updated successfully' do
         let(:client_id) { client.id }
-        let(:id) { client_privacy_setting.id }
+        let(:id) { client_privacy_setting.id.to_s }
         let(:body) do
           {
             data: {

@@ -4186,7 +4186,7 @@
                   }
                 },
                 "schema": {
-                  "$ref": "#/components/schemas/ClientPrivacySettingResponse"
+                  "$ref": "#/components/schemas/ClientPrivacySettingListResponse"
                 }
               }
             }
