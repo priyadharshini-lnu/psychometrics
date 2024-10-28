@@ -65,15 +65,23 @@ module AdminJobs
         project_ids = filtered_project_ids
         client_ids = [client.id, *project_ids]
         campaign_ids = Campaign.where(project_id: project_ids).pluck(:id)
+
+        project_admin_role = Membership.roles['project_admin']
+        client_admin_role = Membership.roles['client_admin']
+        campaign_admin_role = Membership.roles['campaign_admin']
+
         Membership.where(
-          %{
-            (
-              memberships.client_id IN (:client_ids) AND
-              memberships.role IN (#{Membership.roles['project_admin']}, #{Membership.roles['client_admin']})
-            )
-            OR (memberships.campaign_id IN (:campaign_ids) AND memberships.role = #{Membership.roles['campaign_admin']})
-          },
-          client_ids: client_ids, campaign_ids: campaign_ids
+          '(
+            memberships.client_id IN (:client_ids) AND
+            memberships.role IN (:project_admin_role, :client_admin_role)
+          ) OR (
+            memberships.campaign_id IN (:campaign_ids) AND memberships.role = :campaign_admin_role
+          )',
+          client_ids: client_ids,
+          campaign_ids: campaign_ids,
+          project_admin_role: project_admin_role,
+          client_admin_role: client_admin_role,
+          campaign_admin_role: campaign_admin_role
         ).includes(:user, :campaign, :client, :grants).find_each(batch_size: 100)
       end
 
