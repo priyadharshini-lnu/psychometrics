@@ -322,6 +322,7 @@ Rails.application.routes.draw do
             put :toggle_require_scheduling
             put :toggle_auto_assign
             put :schedule_assessment
+            post :normalize_factor_scores
           end
           collection do
             get :other
@@ -335,6 +336,7 @@ Rails.application.routes.draw do
             post :reset
             post :reset_progress
             post :update_additional_time
+            post :normalize_factor_scores
             get :webhook_payload
             put :schedule_assessment
             put :toggle_require_scheduling

@@ -39,6 +39,7 @@ export default interface Assessment {
     scheduleAssessment: boolean
     toggleAutoAssign: boolean
     updateMettlSchedule: boolean
+    normalizeFactorScores: boolean
     updateContentVariation: boolean
     updateAvailableLocales: boolean
   },

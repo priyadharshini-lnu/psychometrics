@@ -59,6 +59,7 @@ module AllowedPermissions
       finalize_scores
       external_score_import
       report_file_upload
+      normalize_factor_scores
     ],
     'assessors' => %w[view manage],
     'registration_codes' => %w[view manage],
@@ -118,6 +119,7 @@ module AllowedPermissions
       finalize_scores
       external_score_import
       report_file_upload
+      normalize_factor_scores
     ],
     'registration_codes' => %w[view manage],
     'communications' => %w[view manage],
@@ -160,6 +162,7 @@ module AllowedPermissions
       view_stats
       external_score_import
       report_file_upload
+      normalize_factor_scores
     ],
     'workshops' => %w[view manage],
     'idp_templates' => %w[view manage]
@@ -187,6 +190,7 @@ module AllowedPermissions
       bulk_regenerate_reports
       scores
       report_file_upload
+      normalize_factor_scores
     ]
   }.freeze
 

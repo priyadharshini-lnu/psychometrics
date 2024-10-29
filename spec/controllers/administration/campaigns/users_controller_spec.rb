@@ -170,6 +170,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         'reset_progress' => policy.reset_progress?,
         'push_webhook' => true,
         'update_mettl_schedule' => false,
+        'normalize_factor_scores' => policy.normalize_factor_scores?,
         'update_content_variation' => false
       },
       'norm_id' => nil,

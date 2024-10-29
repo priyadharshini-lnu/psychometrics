@@ -178,6 +178,7 @@ en:
             edit_report: Edit Report
             external_score_import: External Score Import
             finalize_scores: Finalize Scores
+            normalize_factor_scores: Normalize Factor Scores
             raw_responses: Raw Responses
             regenerate_report: Regenerate Report
             report_data: Report Data

@@ -46,6 +46,7 @@ const AssessmentList: React.FC<Props> = ({
   resetProgress,
   toggleRequireScheduling,
   updateMettlSchedule,
+  normalizeFactorScores,
   loadingUpdateMettlSchedule,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<UserAssessment | undefined>()
@@ -163,6 +164,7 @@ const AssessmentList: React.FC<Props> = ({
                     assessment,
                     remove: () => remove(parsedCampaignId, assessment.id),
                     resetProgress,
+                    normalizeFactorScores,
                     modal,
                     message,
                   })
@@ -197,6 +199,7 @@ interface ActionMenuData {
   projectId: number
   rescoreResponse(): void
   reset(campaignId: number, assessmentId: number): Promise<unknown>
+  normalizeFactorScores: Props['normalizeFactorScores']
   resetProgress: Props['resetProgress']
   remove(): void
   openModal(string, data?: {
@@ -214,7 +217,7 @@ interface ActionMenuData {
 
 const getActionsMenuProps = ({
   rescoreResponse, openModal, campaignId, userId, projectId, assessment, modal, message,
-  reset, remove, resetProgress,
+  reset, remove, resetProgress, normalizeFactorScores,
 }: ActionMenuData): MenuProps => {
   const { name, permissions } = assessment
 
@@ -235,6 +238,14 @@ const getActionsMenuProps = ({
           message.error(error, 5)
         }
       },
+    })
+  }
+
+  const handleNormalizeFactorScores = () => {
+    normalizeFactorScores(campaignId, assessment.id).then(() => {
+      message.success(
+        I18n.t('campaign_assessment.normalize_factor_scores.success'),
+      )
     })
   }
 
@@ -307,6 +318,11 @@ const getActionsMenuProps = ({
     label: 'Push Webhook',
   })
 
+  permissions.normalizeFactorScores && menuItems.push({
+    key: 'normalizeFactorScores',
+    label: 'Normalize Factor Scores',
+  })
+
   const handleMenuClick = ({ key }) => {
     if (key === 'reset') {
       return handleReset()
@@ -331,6 +347,9 @@ const getActionsMenuProps = ({
     }
     if (key === 'resetProgress') {
       return handleResetProgress()
+    }
+    if (key === 'normalizeFactorScores') {
+      return handleNormalizeFactorScores()
     }
   }
 

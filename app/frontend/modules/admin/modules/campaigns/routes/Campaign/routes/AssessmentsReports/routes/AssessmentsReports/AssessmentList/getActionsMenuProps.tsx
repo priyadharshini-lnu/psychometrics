@@ -32,13 +32,14 @@ export interface ActionMenuData {
   exportScoringResults: AssessmentListProps['exportScoringResults']
   exportNormedResults: AssessmentListProps['exportNormedResults']
   exportRawFactorScores: AssessmentListProps['exportRawFactorScores']
+  normalizeFactorScores?: AssessmentListProps['normalizeFactorScores']
   exportExternalResults: AssessmentListProps['exportExternalResults']
   updateExternalConfig?: AssessmentListProps['updateExternalConfig']
 }
 
 export const getActionsMenuProps = ({
   projectId, campaignId, assessment, openModal, rescoreResponses, exportRawResults,
-  exportScoringResults, exportNormedResults, exportRawFactorScores,
+  exportScoringResults, exportNormedResults, exportRawFactorScores, normalizeFactorScores,
   exportExternalResults, updateExternalConfig, optionsOverrides, message,
 }:ActionMenuData): MenuProps => {
   const { id, name, permissions } = assessment
@@ -77,6 +78,14 @@ export const getActionsMenuProps = ({
     exportExternalResults(campaignId, id).then(() => {
       message.success(I18n.t('campaign_assessment.messages.external_results_export_scheduled'))
     })
+  }
+
+  const handleNormalizeFactorScores = () => {
+    if (normalizeFactorScores) {
+      normalizeFactorScores(campaignId, id).then(() => {
+        message.success(I18n.t('campaign_assessment.messages.normalize_factor_scores_scheduled'))
+      })
+    }
   }
 
   const exportGroupItems: MenuItemType[] = []
@@ -137,6 +146,9 @@ export const getActionsMenuProps = ({
   permissions.rescoreResponses && menuItems.push(...rescoreMenuItems)
   permissions.updateExternalConfig && actions.updateExternalConfig && menuItems.push(...configMenuItems)
   permissions.scheduleAssessment && menuItems.push({ key: 'schedule', label: 'Schedule' })
+  permissions.normalizeFactorScores && menuItems.push(
+    { key: 'normalizeFactorScores', label: 'Normalize Factor Scores' },
+  )
   permissions.remove && actions.remove && menuItems.push(...removeMenuItems)
 
   const handleMenuClick = ({ key }) => {
@@ -175,6 +187,9 @@ export const getActionsMenuProps = ({
     }
     if (key === 'schedule') {
       return openModal('SchedulingCampaignAssessmentModal', { projectId, campaignId, assessment })
+    }
+    if (key === 'normalizeFactorScores') {
+      return handleNormalizeFactorScores()
     }
   }
 

@@ -30,6 +30,8 @@ class CampaignAssessment < ApplicationRecord
            :assessor_form?,
            to: :assessment
 
+  delegate :normalize_factor_scores?, to: :project_assessment, allow_nil: true
+
   scope :preworks, -> { where(prework: true) }
   scope :workshop_activities, -> { where(workshop_activity: true) }
 
@@ -110,6 +112,10 @@ class CampaignAssessment < ApplicationRecord
 
   def user_assessments
     UserAssessment.where(campaign_id: campaign_id, assessment_id: assessment_id)
+  end
+
+  def project_assessment
+    assessment.project_assessments.find_by(project_id: campaign.project_id)
   end
 
   def log_attributes

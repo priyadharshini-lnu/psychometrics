@@ -77,6 +77,10 @@ module Administration
         (@user.is?(:superadmin) || has_permission?(:results, :reset_progress))
     end
 
+    def normalize_factor_scores?
+      has_permission?(:results, :scores) && record.normalize_factor_scores?
+    end
+
     private
 
     def has_permission_to_reset_assessment?
