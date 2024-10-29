@@ -105,7 +105,7 @@ module Api
 
         if form.valid?
           campaign_user.update!(form.attributes_with_values)
-          audit! :api_update, campaign_user, payload: params, campaign: @campaign
+          audit! :update_campaign_user, campaign_user, payload: params, campaign: @campaign
           render json: Api::V1::CampaignUserSerializer.new.serialize(campaign_user)
         else
           render_validation_errors(form)
