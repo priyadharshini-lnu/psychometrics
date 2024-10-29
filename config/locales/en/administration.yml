@@ -148,6 +148,7 @@ en:
             manage: Manage
             view: View
           projectSettings:
+            assessments: Assessments
             design: Design
             integrations: Integrations
             privacy_settings: Privacy Settings
