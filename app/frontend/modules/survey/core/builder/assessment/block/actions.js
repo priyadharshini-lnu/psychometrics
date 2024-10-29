@@ -33,11 +33,17 @@ export const addQuestion = (block, data) => ({
 })
 
 export const insertBeforeQuestion = (block, question) => ({
-  type: INSERT_BEFORE_QUESTION, block, position: question.position, question: new Question({ block_id: block.id }),
+  type: INSERT_BEFORE_QUESTION,
+  block,
+  position: block.questions.findIndex(id => id === question.id),
+  question: new Question({ block_id: block.id }),
 })
 
 export const insertAfterQuestion = (block, question) => ({
-  type: INSERT_AFTER_QUESTION, block, position: question.position, question: new Question({ block_id: block.id }),
+  type: INSERT_AFTER_QUESTION,
+  block,
+  position: block.questions.findIndex(id => id === question.id),
+  question: new Question({ block_id: block.id }),
 })
 
 export const removeQuestion = (block, question) => ({
