@@ -206,6 +206,10 @@ module Administration
       can_manage_campaign_users?
     end
 
+    def update_campaign_user?
+      can_manage_campaign_users?
+    end
+
     def assessments_reports?
       can_manage_campaign?
     end

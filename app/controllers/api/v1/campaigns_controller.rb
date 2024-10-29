@@ -3,7 +3,8 @@
 module Api
   module V1
     class CampaignsController < Api::V1::BaseController
-      before_action :set_campaign, only: %i[show update duplicate assessments_reports get_assessments_reports]
+      before_action :set_campaign,
+                    only: %i[show update duplicate assessments_reports get_assessments_reports update_campaign_user]
       before_action :pundit_authorize
 
       def duplicate
@@ -99,6 +100,18 @@ module Api
         end
       end
 
+      def update_campaign_user
+        form = Api::V1::Users::CampaignUpdateForm.from_params(params)
+
+        if form.valid?
+          campaign_user.update!(form.attributes_with_values)
+          audit! :update_campaign_user, campaign_user, payload: params, campaign: @campaign
+          render json: Api::V1::CampaignUserSerializer.new.serialize(campaign_user)
+        else
+          render_validation_errors(form)
+        end
+      end
+
       private
 
       def set_campaign
@@ -126,6 +139,19 @@ module Api
           project_id: project.id,
           campaign_id: @campaign&.id
         )
+      end
+
+      def campaign_user
+        @campaign_user ||=
+          begin
+            cu = CampaignUser.find_by(user: user, campaign: @campaign)
+            unless cu
+              raise Api::Errors::ResourceNotFound,
+                    "User #{user&.id} does not belong to the campaign with id=#{@campaign.id}"
+            end
+
+            cu
+          end
       end
     end
   end

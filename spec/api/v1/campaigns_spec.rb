@@ -146,6 +146,7 @@ describe 'Campaigns' do
       end
     end
   end
+
   path '/projects/{project_id}/users/{user_id}/campaigns' do
     post 'Add user to campaigns' do
       operationId 'AddUserCampaigns'
@@ -188,6 +189,47 @@ assessments and reports.'
           expect(user).to have_key('first_name')
           expect(user).to have_key('last_name')
           expect(user['campaigns'].map { |c| c['id'] }).to contain_exactly(campaign.id, campaign_two.id)
+        end
+      end
+    end
+  end
+
+  path '/projects/{project_id}/users/{user_id}/campaigns/{id}' do
+    patch 'Update campaign user schedule' do
+      operationId 'UpdateCampaignUserSchedule'
+      description 'Updates the schedule start and end dates for a specific campaign assigned to a user'
+      tags 'Campaigns'
+      consumes 'application/json'
+      security [basic: []]
+
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :user_id, in: :path, type: :string
+      parameter name: :id, in: :path, type: :string
+      parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedCampaignUser' }, required: true
+
+      response '200', 'Campaign schedule updated' do
+        let(:user) { create(:user, project: project) }
+        let(:campaign) { create(:campaign, project: project, name: 'Super campaign', id: 1111) }
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:id) { campaign.id }
+        let(:schedule_start_date) { 2.days.from_now.beginning_of_day }
+        let(:schedule_end_date) { 3.days.from_now.beginning_of_day }
+        let(:body) do
+          {
+            schedule_start_date:,
+            schedule_end_date:
+          }
+        end
+
+        before do
+          create(:campaign_user, campaign: campaign, user: user)
+        end
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+          expect(Time.zone.parse(result['schedule_start_date'])).to be_within(1.second).of(schedule_start_date)
+          expect(Time.zone.parse(result['schedule_end_date'])).to be_within(1.second).of(schedule_end_date)
         end
       end
     end

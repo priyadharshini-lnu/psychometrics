@@ -1073,7 +1073,9 @@ as: :simulation_progress_notification
               get :search
             end
             post 'campaigns' => 'campaigns#assign_user'
-            resources :campaigns, only: %i[index]
+            resources :campaigns, only: %i[index] do
+              patch '/', action: :update_campaign_user, on: :member
+            end
             resources :assessments, only: %i[index update]
             resources :reports, only: %i[index update] do
               get :results, on: :member
