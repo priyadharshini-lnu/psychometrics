@@ -619,7 +619,7 @@
     "/projects/{project_id}/users/{user_id}/campaigns/{campaign_id}": {
       "patch": {
         "summary": "Update user campaign",
-        "operationId": "UpdateUserCampaigns",
+        "operationId": "UpdateCampaignUsers",
         "description": "Updates campaigns for the user.",
         "tags": [
           "Campaigns"
@@ -657,23 +657,7 @@
             "name": "body",
             "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "schedule_start_date": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "Start date and time for the campaign schedule",
-                  "example": null,
-                  "nullable": true
-                },
-                "schedule_end_date": {
-                  "type": "string",
-                  "format": "date-time",
-                  "description": "End date and time for the campaign schedule",
-                  "example": null,
-                  "nullable": true
-                }
-              }
+              "$ref": "#/definitions/UpdatedCampaignUser"
             },
             "required": true
           }
@@ -2920,6 +2904,25 @@
         "description": {
           "type": "string",
           "x-nullable": true
+        }
+      }
+    },
+    "UpdatedCampaignUser": {
+      "type": "object",
+      "properties": {
+        "schedule_start_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start date and time for the campaign schedule",
+          "example": null,
+          "nullable": true
+        },
+        "schedule_end_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End date and time for the campaign schedule",
+          "example": null,
+          "nullable": true
         }
       }
     },
