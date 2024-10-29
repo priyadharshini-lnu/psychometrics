@@ -67,6 +67,7 @@ module Administration
       has_permission_to_reset_assessment? &&
         (assessment.common? ||
           assessment.saville? ||
+          assessment.simulation? ||
           (assessment.mettl? && record.reset_count < UserAssessment::MAX_RESET_COUNT && record.completed?) ||
            (assessment.iiht? && record.completed?))
     end
