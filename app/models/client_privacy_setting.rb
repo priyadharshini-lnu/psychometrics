@@ -3,8 +3,6 @@
 class ClientPrivacySetting < ApplicationRecord
   audited
 
-  extend Mobility
-
   belongs_to :client
 
   validates :client, presence: true

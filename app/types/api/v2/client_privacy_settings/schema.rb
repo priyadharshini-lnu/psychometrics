@@ -7,7 +7,7 @@ class Api::V2::ClientPrivacySettings::Schema < Api::Base::Schema
 
   def self.attributes(_attribute, _)
     proc do
-      optional(:disable_data_processing).maybe(:bool)
+      required(:disable_data_processing).filled(:bool)
     end
   end
 end
