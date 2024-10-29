@@ -9,7 +9,7 @@ module Forms
 
       model :communication
 
-      properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :sub_campaign, :end_level,
+      properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :end_level,
                  :membership_ids, :kind, :delivery_rule, :delivery_at,
                  :assessment, :delivery_interval, :delivery_interval_number, :delivery_interval_period,
                  :user_ids, :stop_reminder_datetime, :assessment_completion_status_code, :delivery_delay_hours
@@ -19,7 +19,6 @@ module Forms
       property :client_id, type: Types::Params::Integer | Types::Params::Nil
       property :project_id, type: Types::Params::Integer | Types::Params::Nil
       property :campaign_id, type: Types::Params::Integer | Types::Params::Nil
-      property :sub_campaign_id, type: Types::Params::Integer | Types::Params::Nil
       property :end_level_id, type: Types::Params::Integer | Types::Params::Nil
       property :reminder_type, default: 'custom'
       property :stop_reminder, type: Types::Params::Bool | Types::Params::Nil
@@ -30,7 +29,6 @@ module Forms
 
       validates :project, presence: true, if: proc { project_id.present? }
       validates :campaign, presence: true, if: :campaign_validation_required?
-      validates :sub_campaign, presence: true, if: proc { sub_campaign_id.present? }
       validates :assessment_id, presence: true, if: proc { kind == 'completion' }
       validates :assessment, presence: true, if: proc { assessment_id.present? }
 
@@ -88,13 +86,7 @@ module Forms
       end
 
       def campaign
-        return Campaign.find_by(id: campaign_id) if project&.migrated? && campaign_id
-
-        Client.find_by(id: campaign_id)
-      end
-
-      def sub_campaign
-        Client.find_by(id: sub_campaign_id)
+        Campaign.find_by(id: campaign_id)
       end
 
       def assessment
@@ -102,18 +94,18 @@ module Forms
       end
 
       def end_level_id
-        sub_campaign_id || campaign_id || project_id || client_id
+        campaign_id || project_id || client_id
       end
 
       def end_level
-        sub_campaign || campaign || project || client
+        campaign || project || client
       end
 
       def prepopulate!(options)
         user = options[:current_user]
         self.client_id = owner_id if user.is?(:superadmin) && owner_id.present?
         self.owner_id = client_id unless user.is?(:superadmin)
-        self.end_level_id = sub_campaign_id || campaign_id || project_id || client_id
+        self.end_level_id = campaign_id || project_id || client_id
       end
 
       def stop_reminder_datetime
@@ -153,7 +145,7 @@ module Forms
       end
 
       def campaign_validation_required?
-        !project_level_communication? && (campaign_id.present? || project&.migrated?)
+        !project_level_communication? && campaign_id.present?
       end
 
       def specified_date_and_time_invitation?
