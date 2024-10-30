@@ -11,6 +11,8 @@ module Sheets
     end
 
     def call
+      return broadcast(:ok, []) unless datasheet
+
       columns = datasheet.sheet_columns.select do |column|
         next column.accessor_access if access_include?(:assessor)
         next column.dashboard_use if access_include?(:dashboard)
