@@ -58,10 +58,6 @@ class Library < ApplicationRecord
     %w[id name type created_at updated_at]
   end
 
-  def self.ransackable_associations(_auth_object = nil)
-    %w[parent]
-  end
-
   def log_attribute_for_delete
     slice(:name, :owner_id)
   end

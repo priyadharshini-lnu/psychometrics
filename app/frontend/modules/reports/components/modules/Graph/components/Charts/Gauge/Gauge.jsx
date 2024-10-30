@@ -88,7 +88,6 @@ class Gauge extends Component {
         dataLabels: {
           // eslint-disable-next-line max-len
           format: `<div style="text-align:center"><span style="font-size:${parseInt(fontSize, 10) * 3}%;color:${color}">{y}${model.props.gaugePercentage ? '%' : ''}</span>`,
-          y: model.props.valueVerticalPosition,
         },
       }],
     }))

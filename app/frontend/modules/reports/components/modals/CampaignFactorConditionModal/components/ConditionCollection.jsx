@@ -142,11 +142,11 @@ export class ConditionCollection extends Component {
         </div>
         <div>
           <strong>Label</strong>
-          <textarea
+          <input
+            type="text"
             className="form-control"
             value={model.label || ''}
             onChange={this.changeLabel}
-            style={{ width: '100%', display: 'inline-block' }}
           />
         </div>
         <div>

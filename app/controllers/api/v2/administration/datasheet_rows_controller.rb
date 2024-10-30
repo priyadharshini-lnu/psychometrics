@@ -11,7 +11,7 @@ module Api
       end
 
       datasheet = campaign.datasheet_data(user.email)
-      filtered_data = datasheet&.slice(*datasheet_columns.map(&:name))
+      filtered_data = datasheet&.slice(*datasheet_columns.map { |col| col['name'] })
       render json: filtered_data
     end
   end

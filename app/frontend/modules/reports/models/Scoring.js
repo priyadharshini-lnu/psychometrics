@@ -16,7 +16,7 @@ export default class Scoring {
   }
 
   getValueOrNaN () {
-    if (!_.isNumber(this.actualValue) && !_.isNumber(this.norm)) { return NaN }
+    if (!_.isNumber(this.actualValue)) { return NaN }
 
     return this.getValue()
   }

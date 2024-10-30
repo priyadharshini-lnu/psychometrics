@@ -21,7 +21,6 @@ module Psychometrics
     # NOTE: in rails 7 default image processor will be :vips
     config.active_storage.variant_processor = :mini_magick
     config.active_storage.track_variants = true
-    config.active_storage.service_urls_expire_in = 10.minutes
 
     # Configuration for the application, engines, and railties goes here.
     #

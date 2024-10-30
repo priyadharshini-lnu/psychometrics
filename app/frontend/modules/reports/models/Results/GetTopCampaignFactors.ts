@@ -18,10 +18,11 @@ export default {
       description: factor.description,
     }))
 
-    const sorted = _.orderBy(factors, ['value', 'name'], ['desc', 'asc'])
+    const sorted = _.orderBy(factors, ['value'])
 
     return _(sorted)
-      .filter((factor, index) => index + 1 >= from && index < to).value()
       .filter(factor => _.inRange(factor.value, minValue, maxValue))
+      .filter((factor, index) => index + 1 >= from && index < to)
+      .value()
   },
 }

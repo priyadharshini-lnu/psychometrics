@@ -61,9 +61,6 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
         filter: {
           factor_type_eq: 'assessor_scoring',
         },
-        page: {
-          size: 200,
-        },
       },
     },
   )
@@ -94,7 +91,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
           campaign_factor_factor_type_eq: 'assessor_scoring',
         },
         page: {
-          size: 200,
+          size: 50,
         },
       },
     },

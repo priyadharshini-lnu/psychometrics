@@ -55,7 +55,6 @@ const PreviewComponent:FC<Props> = ({
         labelWrap={false}
         rootClassName={styles.form}
         disabled={readOnly}
-        colon={false}
       >
         <Form.List
           name="factors"
@@ -69,24 +68,21 @@ const PreviewComponent:FC<Props> = ({
                     <Space size="large" align="start" className="w-100" direction="horizontal">
                       <Space size={0} className="w-100" direction="vertical">
                         <label>
-                          <Space>
-                            <SafeHTML
-                              html={getSkillLabelText(model.props.skillLabel
-                                || 'Skill {{index}}', { index: index + 1 })}
-                              config="adminRichText"
-                            />
-                            {index >= +model.props.minFactors && !readOnly
-                              ? (
-                                <Button
-                                  aria-description="remove"
-                                  danger
-                                  onClick={() => remove(index)}
-                                  type="link"
-                                  icon={<MinusCircleOutlined aria-label="" />}
-                                />
-                              )
-                              : null}
-                          </Space>
+                          <SafeHTML
+                            html={getSkillLabelText(model.props.skillLabel || 'Skill {{index}}', { index: index + 1 })}
+                            config="adminRichText"
+                          />
+                          {index >= +model.props.minFactors && !readOnly
+                            ? (
+                              <Button
+                                aria-description="remove"
+                                danger
+                                onClick={() => remove(index)}
+                                type="link"
+                                icon={<MinusCircleOutlined aria-label="" />}
+                              />
+                            )
+                            : null}
                         </label>
                         <Form.Item
                           label={(
