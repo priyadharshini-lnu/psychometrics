@@ -11,6 +11,7 @@ module Simulation
       end
 
       if simulation_user_assessment&.participant_id.present?
+        set_assessment_in_progress
         async_response.response_data = redirect_url
         return broadcast :ok, async_response
       end
@@ -30,11 +31,15 @@ module Simulation
 
     def start_user_assessment
       transaction do
-        user_assessment.update!(started_at: Time.zone.now) if user_assessment.started_at.nil?
-        user_assessment.in_progress!
+        set_assessment_in_progress
 
         ::Simulation::RegisterParticipant.call!(user_assessment)
       end
+    end
+
+    def set_assessment_in_progress
+      user_assessment.update!(started_at: Time.zone.now) if user_assessment.started_at.nil?
+      user_assessment.in_progress! unless user_assessment.in_progress?
     end
 
     def redirect_url
