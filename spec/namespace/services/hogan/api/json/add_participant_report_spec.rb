@@ -85,6 +85,44 @@ RSpec.describe Services::Hogan::Api::Json::AddParticipantReport, type: :service 
       }
     end
 
+    context 'when the response is an alert but text contains "already has report ID"' do
+      let(:response) do
+        {
+          body: {
+            'clientId' => 'xxx_client_id',
+            'groupName' => 'xxx_group_name',
+            'clientUserId' => 'xxx_client_user_id',
+            'participantId' => 'xxx_participant_id',
+            'empId' => 'xxx@xxx.com',
+            'messageType' => 'Alert',
+            'text' => 'Participant ID - xxx_participant_id already has report ID - xxx_report_id',
+            'hasSignature' => {
+              'createdBy' => 'AddParticipantReports',
+              'createdDate' => '2024-10-30T05:36:13.3460867-05:00',
+              'producedBy' => 'HAS Standard Webservices',
+              'requestedBy' => 'xxx_client_user_id',
+              'requestId' => nil
+            }
+          },
+          status: 200
+        }
+      end
+
+      it 'broadcasts :ok and creates a HoganLog' do
+        expect(service).to receive(:broadcast).with(:ok, response[:body])
+        service.call
+
+        expect(HoganLog).to have_received(:create!).with(
+          log_type: 'AddParticipantReport',
+          participant_id: context.participant_id,
+          group: context.group,
+          call_stack: anything,
+          meta: context.to_h,
+          response: response
+        )
+      end
+    end
+
     it 'broadcasts :error and creates a HoganLog' do
       expect(service).to receive(:broadcast).with(:error, response)
       service.call
