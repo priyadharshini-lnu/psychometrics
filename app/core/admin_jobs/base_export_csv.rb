@@ -7,7 +7,7 @@ module AdminJobs
 
     def call
       if respond_to?(:disable_data_processing?) && disable_data_processing?
-        job_record.complete!(['Data processing is disabled.'])
+        job_record.complete!([I18n.t('admin_jobs.super_admin.errors.data_processing_disabled')])
 
         return
       end

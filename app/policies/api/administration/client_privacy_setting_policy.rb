@@ -14,7 +14,7 @@ module Api
       private
 
       def manage_privacy_setting?
-        has_permission?(:project_settings, :privacy_settings, project_id: project_id)
+        user.is?(:superadmin)
       end
     end
   end
