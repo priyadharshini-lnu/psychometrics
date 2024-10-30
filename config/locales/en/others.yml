@@ -3321,6 +3321,8 @@ en:
       test_webhook:
         submit_button_name: Send Test
         title: Send Webhook Event Test
+    normalize_factor_scores:
+      no_scoring_data: Normalization of factor scores cannot be completed as no scoring data is available.
     progress_label: Assessment Progress
     questions:
       single_line_answer_label: Answer

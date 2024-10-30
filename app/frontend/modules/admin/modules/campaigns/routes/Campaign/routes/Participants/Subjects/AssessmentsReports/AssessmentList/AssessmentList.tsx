@@ -246,6 +246,8 @@ const getActionsMenuProps = ({
       message.success(
         I18n.t('campaign_assessment.normalize_factor_scores.success'),
       )
+    }).catch((error) => {
+      message.error(error)
     })
   }
 

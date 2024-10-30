@@ -113,10 +113,17 @@ module Administration
       end
 
       def normalize_factor_scores
-        UserAssessments::NormalizeFactorScores.call!(resource)
-        audit! :normalize_factor_scores, resource, campaign: resource.campaign
-
-        render json: :ok
+        UserAssessments::NormalizeFactorScores.call!(resource) do
+          on(:ok) do
+            audit! :normalize_factor_scores, resource, campaign: resource.campaign
+            return render json: :ok
+          end
+          on(:no_scoring_data) do
+            return render json: {
+              errors: [I18n.t('user_assessments.normalize_factor_scores.no_scoring_data')]
+            }, status: 422
+          end
+        end
       end
 
       def toggle_require_scheduling
