@@ -34,6 +34,8 @@ module SmtpSettings
     def apply_all_field_validation?
       return false unless enabled?
 
+      return false if from_email.present? && from_email_domain == Settings.domain
+
       %i[from_email host port].any? do |attribute|
         public_send(attribute).present?
       end
@@ -44,6 +46,12 @@ module SmtpSettings
       return attrs.except(*SMTP_AUTH_ATTRIBUTES) if use_sender_verification
 
       attrs
+    end
+
+    def from_email_domain
+      return unless from_email
+
+      from_email.split('@').last
     end
   end
 end
