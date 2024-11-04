@@ -62,23 +62,45 @@ module AdminJobs
       end
 
       def records_for_export
-        project_ids = client.projects.pluck(:id)
+        project_ids = filtered_project_ids
         client_ids = [client.id, *project_ids]
         campaign_ids = Campaign.where(project_id: project_ids).pluck(:id)
+
+        project_admin_role = Membership.roles['project_admin']
+        client_admin_role = Membership.roles['client_admin']
+        campaign_admin_role = Membership.roles['campaign_admin']
+
         Membership.where(
-          %{
-            (
-              memberships.client_id IN (:client_ids) AND
-              memberships.role IN (#{Membership.roles['project_admin']}, #{Membership.roles['client_admin']})
-            )
-            OR (memberships.campaign_id IN (:campaign_ids) AND memberships.role = #{Membership.roles['campaign_admin']})
-          },
-          client_ids: client_ids, campaign_ids: campaign_ids
+          '(
+            memberships.client_id IN (:client_ids) AND
+            memberships.role IN (:project_admin_role, :client_admin_role)
+          ) OR (
+            memberships.campaign_id IN (:campaign_ids) AND memberships.role = :campaign_admin_role
+          )',
+          client_ids: client_ids,
+          campaign_ids: campaign_ids,
+          project_admin_role: project_admin_role,
+          client_admin_role: client_admin_role,
+          campaign_admin_role: campaign_admin_role
         ).includes(:user, :campaign, :client, :grants).find_each(batch_size: 100)
       end
 
       def file_name
         "admins-with-permissions-#{client.id}-#{record.id}.csv"
+      end
+
+      def disable_data_processing?
+        client.client_privacy_setting.disable_data_processing?
+      end
+
+      def filtered_project_ids
+        return [] if disable_data_processing?
+
+        @filtered_project_ids ||= Project.
+                                  where(tte_id: client.id).
+                                  joins(:privacy_setting).
+                                  where(privacy_settings: { disable_data_processing: false }).
+                                  pluck(:id)
       end
     end
   end

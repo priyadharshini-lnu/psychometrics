@@ -767,6 +767,9 @@ en:
     more: More
     notifications: Notifications
     results: Results
+    super_admin:
+      errors:
+        data_processing_disabled: Data processing is disabled.
   anonym:
     close: Close
     continue: Continue

@@ -15,6 +15,7 @@ module AllowedPermissions
       security
       webhooks
       assessments
+      privacy_settings
     ],
     'registration_settings' => %w[
       manage
