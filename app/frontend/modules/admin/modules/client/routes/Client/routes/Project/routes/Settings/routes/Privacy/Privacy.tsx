@@ -156,6 +156,11 @@ export const Privacy: React.FC = () => {
                   </Col>
                 </Row>
               )}
+              <Form.Item name="disableDataProcessing" valuePropName="checked">
+                <Checkbox>
+                  {I18n.t('administration.projects.privacy_settings.disable_dp')}
+                </Checkbox>
+              </Form.Item>
               <Form.Item name="enablePrivacyLink" valuePropName="checked">
                 <Checkbox>
                   {I18n.t('administration.projects.privacy_settings.privacy_link')}

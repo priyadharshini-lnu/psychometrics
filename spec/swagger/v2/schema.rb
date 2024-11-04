@@ -270,6 +270,12 @@ module Swagger
           PrivacySettingUpdateRequest: Api::Base::GenerateSwagger.call!(
             Api::V2::PrivacySettings::Schema.update_request
           ),
+          ClientPrivacySettingListResponse: Api::Base::GenerateSwagger.call!(
+            Api::V2::ClientPrivacySettings::Schema.multiple_resource_response
+          ),
+          ClientPrivacySettingUpdateRequest: Api::Base::GenerateSwagger.call!(
+            Api::V2::ClientPrivacySettings::Schema.update_request
+          ),
           WebhookResponse: Api::Base::GenerateSwagger.call!(
             Api::V2::Webhook::Schema.single_resource_response
           ),

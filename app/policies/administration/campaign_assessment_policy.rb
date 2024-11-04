@@ -32,6 +32,12 @@ module Administration
       has_permission?(:project_settings, :manage_users, project_id: project_id) && @record.mettl?
     end
 
+    def normalize_factor_scores?
+      has_permission?(:results, :normalize_factor_scores) && (
+        @record.is_a?(CampaignAssessment) && @record&.normalize_factor_scores?
+      )
+    end
+
     def update_assessor_form?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :manage_users, project_id: project_id, campaign_id: campaign_id

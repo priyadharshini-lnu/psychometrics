@@ -17,7 +17,7 @@ module AdminJobs
       return {} unless campaign
 
       {
-        href: "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}",
+        href: build_campaign_url,
         label: campaign.name
       }
     end
@@ -56,6 +56,15 @@ module AdminJobs
 
     def client
       @client ||= Client.find_by(id: record.data['client_id'])
+    end
+
+    def build_campaign_url
+      if campaign.threesixty?
+        "/admin/clients/#{campaign.project.client.id}/projects/#{campaign.project_id}/" \
+          "threesixty_campaigns/#{campaign.threesixty_campaign.id}"
+      else
+        "/admin/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}"
+      end
     end
   end
 end

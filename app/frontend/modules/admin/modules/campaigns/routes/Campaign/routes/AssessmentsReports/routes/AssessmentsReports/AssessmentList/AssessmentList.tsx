@@ -37,6 +37,7 @@ const AssessmentList: React.FC<Props> = ({
   updateWorkshopActivity,
   toggleRequireScheduling,
   toggleAutoAssign,
+  normalizeFactorScores,
   loadingUpdateMettlSchedule,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<Assessment | undefined>()
@@ -235,6 +236,7 @@ const AssessmentList: React.FC<Props> = ({
                     exportScoringResults,
                     exportNormedResults,
                     exportRawFactorScores,
+                    normalizeFactorScores: () => normalizeFactorScores(parsedCampaignId, assessment.id),
                     exportExternalResults,
                     updateExternalConfig,
                     message,

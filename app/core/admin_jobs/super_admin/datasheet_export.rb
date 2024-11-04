@@ -43,8 +43,8 @@ module AdminJobs
 
       def records_for_export(limit = 1000, offset = 0)
         DatasheetRowQuery.new(
-          campaign_ids: campaign_ids,
-          project_ids: record.data['project_ids'],
+          campaign_ids: filtered_campaign_ids,
+          project_ids: filtered_project_ids,
           limit: limit,
           offset: offset
         ).query.to_a
@@ -55,11 +55,50 @@ module AdminJobs
       end
 
       def query_obj
-        @query_obj ||= DatasheetRowQuery.new(campaign_ids: campaign_ids, project_ids: record.data['project_ids'])
+        @query_obj ||= DatasheetRowQuery.new(
+          campaign_ids: filtered_campaign_ids,
+          project_ids: filtered_project_ids
+        )
       end
 
       def file_name
         "datasheet-export-#{record.id}.csv"
+      end
+
+      def filtered_campaign_ids
+        return [] unless campaign_ids
+
+        @filtered_campaign_ids ||=
+          if record.data['project_ids'].present?
+            Campaign.
+              where(id: campaign_ids, project_id: filtered_project_ids).
+              pluck(:id)
+          else
+            Campaign.
+              where(id: campaign_ids).
+              joins('LEFT JOIN clients ON campaigns.project_id = clients.id').
+              joins(join_clauses).where(privacy_conditions).pluck(:id)
+          end
+      end
+
+      def filtered_project_ids
+        return [] unless record.data['project_ids']
+
+        @filtered_project_ids ||= Project.where(id: record.data['project_ids']).
+                                  joins(join_clauses).
+                                  where(privacy_conditions).pluck(:id)
+      end
+
+      def join_clauses
+        <<-SQL.squish
+          LEFT JOIN clients parent_clients ON clients.ancestry = parent_clients.id::text
+          LEFT JOIN privacy_settings ON privacy_settings.project_id = clients.id
+          LEFT JOIN client_privacy_settings ON client_privacy_settings.client_id = parent_clients.id
+        SQL
+      end
+
+      def privacy_conditions
+        'privacy_settings.disable_data_processing = false AND client_privacy_settings.disable_data_processing = false'
       end
     end
   end

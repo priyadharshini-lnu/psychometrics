@@ -36,6 +36,7 @@ module Administration
           required(:schedule_assessment).filled(:bool?)
           required(:toggle_auto_assign).filled(:bool?)
           required(:update_mettl_schedule).filled(:bool?)
+          optional(:normalize_factor_scores).maybe(:bool?)
           required(:update_content_variation).filled(:bool?)
           required(:update_available_locales).filled(:bool?)
         end

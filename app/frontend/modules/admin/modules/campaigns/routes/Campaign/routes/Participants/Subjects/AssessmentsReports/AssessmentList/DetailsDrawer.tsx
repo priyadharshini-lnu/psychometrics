@@ -1,15 +1,11 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import {
-  Drawer, Row, Descriptions, Button, List,
+  Drawer, Row, Descriptions,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import { EditOutlined } from '@ant-design/icons'
 import UserAssessment from '~/modules/admin/modules/campaigns/interfaces/UserAssessment'
-import { MettlScheduleRecord } from '~/modules/admin/modules/client/core/mettlScheduleRecords'
-import { useResources } from '~/hooks/useResources'
-import { UpdateMettlScheduleForm } from './UpdateMettlScheduleForm'
-import MettlScheduleDetails from '../../../../../MettlScheduleDetails/MettlScheduleDetails'
 import { SimulationDetails } from './SimulationDetails'
+import { MettlScheduleRecordDetails } from './MettlScheduleRecordDetails'
 
 const { I18n } = window
 
@@ -34,37 +30,7 @@ export const DetailsDrawer: FC<Props> = ({
     return null
   }
 
-  const { permissions } = assessment
-  const [mettlScheduleRecord, setMettlScheduleRecord] = useState<MettlScheduleRecord>()
-  const [isFormVisible, setIsFormVisible] = useState(false)
-
   const { projectId } = useParams<{ projectId: string }>()
-  const {
-    memberAction,
-  } = useResources<MettlScheduleRecord>(
-    'mettl_schedule_records',
-    {
-      basePath: `projects/${projectId}`,
-      trackUrl: true,
-    },
-  )
-
-  const getMettlScheduleRecord = () => {
-    if (assessment.mettlScheduleRecordId) {
-      memberAction({
-        id: assessment.mettlScheduleRecordId,
-        method: 'get',
-        action: '',
-      }).then((response: MettlScheduleRecord) => {
-        setMettlScheduleRecord(response)
-      })
-    }
-  }
-
-  useEffect(() => {
-    getMettlScheduleRecord()
-  }, [assessment.mettlScheduleRecordId])
-
 
   return (
     <Drawer
@@ -113,53 +79,17 @@ export const DetailsDrawer: FC<Props> = ({
           >
             {assessment.normId}
           </Descriptions.Item>
-
-          { mettlScheduleRecord && (
-            <>
-              <Descriptions.Item
-                label={I18n.t('user_assessment.drawer.mettl_schedule_name')}
-                key="schedule_name"
-                className="va-t"
-              >
-                { !isFormVisible && (
-                <List size="small">
-                  <List.Item>
-                    {mettlScheduleRecord.scheduleName}
-                    {permissions.updateMettlSchedule && (
-                    <Button
-                      type="link"
-                      icon={<EditOutlined />}
-                      onClick={() => setIsFormVisible(!isFormVisible)}
-                    />
-                    )}
-                  </List.Item>
-
-                </List>
-                ) }
-
-                {isFormVisible && (
-                  <List size="small">
-                    <List.Item>
-                      <UpdateMettlScheduleForm
-                        campaignId={parseInt(campaignId, 10)}
-                        assessment={assessment}
-                        close={() => setIsFormVisible(false)}
-                        loading={loadingUpdateMettlSchedule}
-                        setMettlScheduleRecord={setMettlScheduleRecord}
-                        updateMettlSchedule={updateMettlSchedule}
-                        mettlScheduleRecord={mettlScheduleRecord}
-                      />
-                    </List.Item>
-                  </List>
-                )}
-
-                <MettlScheduleDetails mettlScheduleRecord={mettlScheduleRecord} />
-              </Descriptions.Item>
-            </>
-          )}
         </Descriptions>
-      </Row>
-      <Row>
+
+        <MettlScheduleRecordDetails
+          I18n={I18n}
+          assessment={assessment}
+          campaignId={campaignId}
+          projectId={projectId}
+          updateMettlSchedule={updateMettlSchedule}
+          loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
+        />
+
         <SimulationDetails
           I18n={I18n}
           assessment={assessment}

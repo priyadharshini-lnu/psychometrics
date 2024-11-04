@@ -13,7 +13,7 @@ AllCops:
     - db/seeds/**/*
     - bin/*
     # Exclude migration files from January to June 2024
-    - 'db/migrate/2024[0-1][0-6][0-3][0-9]*_*.rb'
+    - 'db/migrate/2024[0][0-6][0-3][0-9]*_*.rb'
     # Exclude all migration files from 2010 to 2023
     - 'db/migrate/201[0-9][0-9][0-9][0-9][0-9]*_*.rb'
     - 'db/migrate/202[0-3][0-9][0-9][0-9][0-9]*_*.rb'

@@ -1415,6 +1415,36 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 
 
 --
+-- Name: client_privacy_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.client_privacy_settings (
+    id bigint NOT NULL,
+    client_id bigint NOT NULL,
+    disable_data_processing boolean DEFAULT false
+);
+
+
+--
+-- Name: client_privacy_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.client_privacy_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: client_privacy_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.client_privacy_settings_id_seq OWNED BY public.client_privacy_settings.id;
+
+
+--
 -- Name: client_translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3550,7 +3580,8 @@ CREATE TABLE public.privacy_settings (
     mask_identity_for_hogan boolean DEFAULT false,
     mask_identity_for_iiht boolean DEFAULT false,
     mask_identity_for_examus boolean DEFAULT false,
-    mask_identity_for_mettl boolean DEFAULT false
+    mask_identity_for_mettl boolean DEFAULT false,
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -6786,6 +6817,13 @@ ALTER TABLE ONLY public.client_auditlog_export_settings ALTER COLUMN id SET DEFA
 
 
 --
+-- Name: client_privacy_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_privacy_settings ALTER COLUMN id SET DEFAULT nextval('public.client_privacy_settings_id_seq'::regclass);
+
+
+--
 -- Name: client_translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8029,6 +8067,14 @@ ALTER TABLE ONLY public.campaigns
 
 ALTER TABLE ONLY public.client_auditlog_export_settings
     ADD CONSTRAINT client_auditlog_export_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: client_privacy_settings client_privacy_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_privacy_settings
+    ADD CONSTRAINT client_privacy_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -9843,6 +9889,13 @@ CREATE INDEX index_campaigns_on_project_id ON public.campaigns USING btree (proj
 --
 
 CREATE INDEX index_client_auditlog_export_settings_on_client_id ON public.client_auditlog_export_settings USING btree (client_id);
+
+
+--
+-- Name: index_client_privacy_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_privacy_settings_on_client_id ON public.client_privacy_settings USING btree (client_id);
 
 
 --
@@ -12370,6 +12423,14 @@ ALTER TABLE ONLY public.skill_aliases
 
 
 --
+-- Name: client_privacy_settings fk_rails_21d818f4cd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.client_privacy_settings
+    ADD CONSTRAINT fk_rails_21d818f4cd FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12726,7 +12787,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
 
 
 --
@@ -14274,6 +14335,8 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241101110602'),
 ('20241023071718'),
+('20241025070422'),
+('20241025042720'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),

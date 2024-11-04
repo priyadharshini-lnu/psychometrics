@@ -6,6 +6,12 @@ module AdminJobs
     include ActionView::Context
 
     def call
+      if respond_to?(:disable_data_processing?) && disable_data_processing?
+        job_record.complete!([I18n.t('admin_jobs.super_admin.errors.data_processing_disabled')])
+
+        return
+      end
+
       directory = Rails.root.join('tmp', export_name, record.id.to_s)
       FileUtils.mkdir_p(directory)
       file_path = directory.join(file_name)

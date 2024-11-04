@@ -67,6 +67,7 @@ module Administration
       has_permission_to_reset_assessment? &&
         (assessment.common? ||
           assessment.saville? ||
+          assessment.simulation? ||
           (assessment.mettl? && record.reset_count < UserAssessment::MAX_RESET_COUNT && record.completed?) ||
            (assessment.iiht? && record.completed?))
     end
@@ -74,6 +75,10 @@ module Administration
     def reset_progress?
       !record.assessment.external? && !record.assessment.agile? && !record.not_started? &&
         (@user.is?(:superadmin) || has_permission?(:results, :reset_progress))
+    end
+
+    def normalize_factor_scores?
+      has_permission?(:results, :scores) && record.normalize_factor_scores?
     end
 
     private

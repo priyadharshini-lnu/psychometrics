@@ -20,6 +20,7 @@ module Administration
           required(:reset_progress).filled(:bool?)
           required(:push_webhook).filled(:bool?)
           required(:reset_results).filled(:bool?)
+          optional(:normalize_factor_scores).maybe(:bool?)
         end
         required(:assessment_id).filled(:int?)
         required(:name).filled(:str?)

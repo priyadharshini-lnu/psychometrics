@@ -322,6 +322,7 @@ Rails.application.routes.draw do
             put :toggle_require_scheduling
             put :toggle_auto_assign
             put :schedule_assessment
+            post :normalize_factor_scores
           end
           collection do
             get :other
@@ -335,6 +336,7 @@ Rails.application.routes.draw do
             post :reset
             post :reset_progress
             post :update_additional_time
+            post :normalize_factor_scores
             get :webhook_payload
             put :schedule_assessment
             put :toggle_require_scheduling
@@ -1073,7 +1075,9 @@ as: :simulation_progress_notification
               get :search
             end
             post 'campaigns' => 'campaigns#assign_user'
-            resources :campaigns, only: %i[index]
+            resources :campaigns, only: %i[index] do
+              patch '/', action: :update_campaign_user, on: :member
+            end
             resources :assessments, only: %i[index update]
             resources :reports, only: %i[index update] do
               get :results, on: :member
@@ -1093,6 +1097,7 @@ as: :simulation_progress_notification
         namespace :administration do
           jsonapi_resources :clients do
             jsonapi_relationships
+            jsonapi_resources :client_privacy_settings, only: %i[index update]
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do
                 post :test_connection

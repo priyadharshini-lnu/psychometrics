@@ -217,4 +217,47 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
       expect(response).to have_http_status(:forbidden)
     end
   end
+
+  describe 'POST normalize_factor_scores' do
+    let(:factor) { create(:factor) }
+    let!(:user_result_with_scoring) do
+      create(
+        :users_result,
+        subject: user,
+        evaluator: user,
+        campaign: campaign,
+        assessment: assessment,
+        scoring: { factor.id.to_s => { score: 2.3 } }
+      )
+    end
+    let!(:project_assessment) do
+      create(
+        :project_assessment,
+        project_id: user_result_with_scoring.campaign.project_id,
+        assessment_id: user_result_with_scoring.user_assessment.assessment_id,
+        normalize_factor_scores: true
+      )
+    end
+
+    it 'normalizes factor scores ' do
+      post :normalize_factor_scores, params: {
+        id: user_result_with_scoring.user_assessment.id,
+        new_campaign_id: campaign.id
+      }, format: :json
+
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'returns error if scoring for users_result is not present' do
+      post :normalize_factor_scores, params: {
+        id: user_assessment.id,
+        new_campaign_id: campaign.id
+      }, format: :json
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(JSON.parse(response.body)).to eq(
+        'errors' => [I18n.t('user_assessments.normalize_factor_scores.no_scoring_data')]
+      )
+    end
+  end
 end
