@@ -20,17 +20,21 @@ const { I18n } = window
 const { Option } = Select
 
 interface OwnProps {
-  close(): void;
-  campaignId: number;
-  assessment: Assessment;
-  mettlScheduleRecord: MettlScheduleRecord;
-  loading: boolean;
-  setMettlScheduleRecord(record: MettlScheduleRecord): void;
+  close(): void
+  campaignId: number
+  assessment: Assessment
+  mettlScheduleRecord: MettlScheduleRecord
+  loading: boolean
+  setMettlScheduleRecord(record: MettlScheduleRecord): void
+  updateMettlSchedule: (
+    campaignId: number, assessmentId: number, body: { assessment: { id: string } }
+  ) => Promise<{ response: unknown }>
+
 }
 
 type AssessmentIdProp = {
-  campaignAssessmentId?: number;
-};
+  campaignAssessmentId?: number
+}
 
 const connecter = connect(
   (state: RootState, props: AssessmentIdProp) => ({
@@ -42,9 +46,9 @@ const connecter = connect(
   },
 )
 
-export type PropsFromRedux = ConnectedProps<typeof connecter>;
+export type PropsFromRedux = ConnectedProps<typeof connecter>
 
-export type Props = OwnProps & PropsFromRedux;
+export type Props = OwnProps & PropsFromRedux
 
 export const UpdateMettlScheduleForm: React.FC<Props> = ({
   close, campaignId, loading, assessment, updateMettlSchedule, setMettlScheduleRecord, mettlScheduleRecord,
@@ -106,7 +110,7 @@ export const UpdateMettlScheduleForm: React.FC<Props> = ({
     >
       <Form.Item name="mettlScheduleRecordId" className="mbs">
         <Select
-          style={{ width: '300px' }}
+          style={{ width: '200px' }}
           placeholder={I18n.t('campaign_assessment.modals.update_mettl_schedule.select_schedule')}
           showSearch
           optionFilterProp="label"
@@ -124,7 +128,12 @@ export const UpdateMettlScheduleForm: React.FC<Props> = ({
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="apply" valuePropName="checked" className="mbl">
+      <Form.Item
+        name="apply"
+        valuePropName="checked"
+        className="mbl"
+        style={{ flex: 'auto' }}
+      >
         <Checkbox>{I18n.t('campaign_assessment.modals.update_norm.apply')}</Checkbox>
       </Form.Item>
       <Flex gap={20} justify="flex-end">

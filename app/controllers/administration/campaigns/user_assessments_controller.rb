@@ -112,6 +112,20 @@ module Administration
         ).serialize(resource.user)
       end
 
+      def normalize_factor_scores
+        UserAssessments::NormalizeFactorScores.call!(resource) do
+          on(:ok) do
+            audit! :normalize_factor_scores, resource, campaign: resource.campaign
+            return render json: :ok
+          end
+          on(:no_scoring_data) do
+            return render json: {
+              errors: [I18n.t('user_assessments.normalize_factor_scores.no_scoring_data')]
+            }, status: 422
+          end
+        end
+      end
+
       def toggle_require_scheduling
         attrs = { require_scheduling: params[:require_scheduling] }
         attrs[:schedule_time] = nil unless params[:require_scheduling]

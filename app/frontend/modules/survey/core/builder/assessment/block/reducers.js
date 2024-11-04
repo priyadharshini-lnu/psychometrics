@@ -33,12 +33,12 @@ const HANDLERS = {
   },
   [INSERT_BEFORE_QUESTION]: (state, { block, position, question }) => {
     const newBlock = _.clone(state[block.id])
-    newBlock.questions.splice(position - 1, 0, question.id)
+    newBlock.questions.splice(position, 0, question.id)
     return setIn(state, [block.id], newBlock)
   },
   [INSERT_AFTER_QUESTION]: (state, { block, position, question }) => {
     const newBlock = _.clone(state[block.id])
-    newBlock.questions.splice(position, 0, question.id)
+    newBlock.questions.splice(position + 1, 0, question.id)
     return setIn(state, [block.id], newBlock)
   },
   [REMOVE_QUESTION]: (state, { block, question }) => {

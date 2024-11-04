@@ -109,7 +109,7 @@ export const UpdateMettlScheduleForm: React.FC<Props> = ({
     >
       <Form.Item name="mettlScheduleRecordId" className="mbs">
         <Select
-          style={{ width: '300px' }}
+          style={{ width: '200px' }}
           placeholder={I18n.t('campaign_assessment.modals.update_mettl_schedule.select_schedule')}
           showSearch
           optionFilterProp="label"

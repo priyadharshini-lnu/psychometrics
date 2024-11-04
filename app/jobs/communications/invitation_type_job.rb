@@ -7,11 +7,7 @@ module Communications
     def perform(communication)
       memberships = fetch_memberships(communication)
       memberships.each do |membership|
-        if communication.project.migrated?
-          communication.emails.create(campaign_user_id: membership.id)
-        else
-          communication.emails.create(membership_id: membership.id)
-        end
+        communication.emails.create(campaign_user_id: membership.id)
       end
     end
 

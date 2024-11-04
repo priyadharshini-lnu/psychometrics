@@ -61,8 +61,8 @@ class Administration::FactorsController < Administration::BaseController
 
   # DELETE /administration/resources/1
   def destroy
-    resource.destroy
     audit! :delete, resource, payload: resource.try(:log_attribute_for_delete)
+    resource.destroy
     respond_to do |format|
       format.html do
         redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))

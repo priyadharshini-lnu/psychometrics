@@ -26,6 +26,7 @@ export const RESET_PROGRESS_OF_ASSESSMENT = 'campaigns/userAssessments/RESET_PRO
 export const GET_WEBHOOK_REQUEST_DATA = 'campaigns/userAssessments/GET_WEBHOOK_REQUEST_DATA'
 export const SCHEDULE_ASSESSMENT = 'campaigns/userAssessments/SCHEDULE_ASSESSMENT'
 export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/userAssessments/TOGGLE_REQUIRE_SCHEDULE'
+export const NORMALIZE_FACTOR_SCORES = 'campaigns/userAssessments/NORMALIZE_FACTOR_SCORES'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -146,6 +147,14 @@ export const resetProgress = (campaignId: number, userAssessmentId: number) => (
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${userAssessmentId}/reset_progress`,
+  },
+})
+
+export const normalizeFactorScores = (campaignId: number, userAssessmentId: number) => ({
+  type: NORMALIZE_FACTOR_SCORES,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${userAssessmentId}/normalize_factor_scores`,
   },
 })
 

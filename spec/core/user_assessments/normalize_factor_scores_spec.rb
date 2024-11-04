@@ -25,6 +25,14 @@ describe UserAssessments::NormalizeFactorScores do
     expect(UserAssessmentFactorScore.exists?(factor: factor)).to eq(false)
   end
 
+  it 'does not normalize score if user assessment does not have scoring data' do
+    factor = create(:factor)
+    user_result = create(:users_result)
+
+    described_class.call!(user_result.user_assessment)
+    expect(UserAssessmentFactorScore.exists?(factor: factor)).to eq(false)
+  end
+
   it 'normalizes different types of scores' do
     factors = create_list(:factor, 2)
     factor1_score = { 'score' => 2.3, 'norm_score' => 3, 'zscore' => 5.3, 'percentage' => 90 }

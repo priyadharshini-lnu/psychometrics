@@ -65,6 +65,7 @@ module Administration
           %w[remove destroy],
           'reset_progress',
           'push_webhook',
+          'normalize_factor_scores',
           %w[reset_results reset]
         ],
         {

@@ -7,8 +7,8 @@ class CreateSheetColumns < ActiveRecord::Migration[7.1]
     'String' => 2,
     'Text' => 3,
     'Markdown' => 4,
-    'HTML' => 5,
-  }
+    'HTML' => 5
+  }.freeze
 
   def change
     create_table :sheet_columns do |t|
@@ -26,7 +26,7 @@ class CreateSheetColumns < ActiveRecord::Migration[7.1]
     reversible do |dir|
       dir.up do
         ActiveRecord::Base.connection.execute('SELECT * from sheets').each do |sheet|
-          columns = JSON.load(sheet['columns'])
+          columns = JSON.load(sheet['columns']) # rubocop:disable CustomRubocops/AvoidActiveRecordInMigrations,Security/JSONLoad
           next unless columns
 
           columns.each.with_index do |column, i|
@@ -39,14 +39,13 @@ class CreateSheetColumns < ActiveRecord::Migration[7.1]
               column['name'],
               i,
               sheet['id'],
-              column['dashboard_use'] || false ,
+              column['dashboard_use'] || false,
               column['accessor_access'] || false,
               column['visible_in_list'] || false,
               sheet['created_at'], sheet['updated_at']
             ])
           end
         end
-
       end
       dir.down do
         execute('DELETE FROM sheet_columns')

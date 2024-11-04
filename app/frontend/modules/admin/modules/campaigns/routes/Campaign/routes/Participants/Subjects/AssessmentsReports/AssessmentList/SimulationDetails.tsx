@@ -1,7 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import {
-  Descriptions, Button,
-} from 'antd'
+import { Descriptions, Button } from 'antd'
 import { EditOutlined } from '@ant-design/icons'
 import UpdateContentVariationForm from './UpdateContentVariationForm'
 import SimulationContentVariation from '~/modules/admin/modules/campaigns/interfaces/SimulationContentVariation'
@@ -36,45 +34,45 @@ export const SimulationDetails: FC<Props> = ({
   }, [assessment])
 
   return (
-    <Descriptions
-      layout="horizontal"
-      rootClassName="w-100"
-      bordered
-      column={1}
-    >
-      {contentVariation && (
-      <Descriptions.Item
-        className="va-t w-30"
-        labelStyle={{ width: '40%' }}
-        contentStyle={{ width: '60%' }}
-        label={I18n.t('campaign_assessment.column.simulation_content_variation')}
-        key="simulation_content_variation"
-      >
-        {!isFormVisible && (
-          <>
-            {contentVariation.name}
-            {permissions.updateContentVariation && (
-            <Button
-              type="link"
-              icon={<EditOutlined />}
-              onClick={() => setIsFormVisible(!isFormVisible)}
-            />
+    <>
+      {contentVariation ? (
+        <Descriptions
+          layout="horizontal"
+          rootClassName="mb-6 w-100"
+          bordered
+          column={1}
+        >
+          <Descriptions.Item
+            className="va-t w-30"
+            labelStyle={{ width: '40%' }}
+            contentStyle={{ width: '60%' }}
+            label={I18n.t('campaign_assessment.column.simulation_content_variation')}
+            key="simulation_content_variation"
+          >
+            {!isFormVisible ? (
+              <>
+                {contentVariation.name}
+                {permissions.updateContentVariation && (
+                  <Button
+                    type="link"
+                    icon={<EditOutlined />}
+                    onClick={() => setIsFormVisible(true)}
+                  />
+                )}
+              </>
+            ) : (
+              <UpdateContentVariationForm
+                campaignId={campaignId}
+                userAssessmentId={assessment.id}
+                close={() => setIsFormVisible(false)}
+                contentVariation={contentVariation}
+                setContentVariation={setContentVariation}
+                simulationContentVariations={assessment.simulationContentVariations || []}
+              />
             )}
-          </>
-        )}
-
-        {isFormVisible && (
-        <UpdateContentVariationForm
-          campaignId={campaignId}
-          userAssessmentId={assessment.id}
-          close={() => setIsFormVisible(false)}
-          contentVariation={contentVariation}
-          setContentVariation={setContentVariation}
-          simulationContentVariations={assessment.simulationContentVariations || []}
-        />
-        )}
-      </Descriptions.Item>
-      )}
-    </Descriptions>
+          </Descriptions.Item>
+        </Descriptions>
+      ) : null}
+    </>
   )
 }

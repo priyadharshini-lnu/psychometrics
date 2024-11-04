@@ -28,6 +28,7 @@ export default interface UserAssessment {
     resetProgress: boolean
     pushWebhook: boolean
     updateMettlSchedule: boolean
+    normalizeFactorScores: boolean
     updateContentVariation: boolean
   }
 }

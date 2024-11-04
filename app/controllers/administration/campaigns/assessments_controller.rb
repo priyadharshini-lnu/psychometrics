@@ -57,6 +57,16 @@ module Administration
         head :ok
       end
 
+      def normalize_factor_scores
+        AdminJob.call(
+          :normalize_factor_scores,
+          { campaign_assessment_id: campaign_assessment.id },
+          current_user
+        )
+
+        head :ok
+      end
+
       def other
         excluded_assessment_ids = campaign.campaign_assessments.map(&:assessment_id)
         user_assessments = campaign.user_assessments.where.not(assessment_id: excluded_assessment_ids).

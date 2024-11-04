@@ -63,7 +63,7 @@ module Administration
       GetPermissionsHash.call!(
         Administration::CampaignAssessmentPolicy,
         current_user,
-        assessment,
+        object,
         [
           'import_results',
           'export_raw_results',
@@ -77,6 +77,7 @@ module Administration
           'schedule_assessment',
           'toggle_auto_assign',
           'update_mettl_schedule',
+          'normalize_factor_scores',
           'update_content_variation',
           'update_available_locales'
         ],
