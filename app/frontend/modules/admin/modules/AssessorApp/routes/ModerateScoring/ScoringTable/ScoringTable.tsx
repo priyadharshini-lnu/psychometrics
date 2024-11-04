@@ -61,6 +61,9 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
         filter: {
           factor_type_eq: 'assessor_scoring',
         },
+        page: {
+          size: 200,
+        },
       },
     },
   )
@@ -91,7 +94,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
           campaign_factor_factor_type_eq: 'assessor_scoring',
         },
         page: {
-          size: 50,
+          size: 200,
         },
       },
     },
@@ -106,6 +109,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
   })
 
   const [disabled, setDisabled] = useState<boolean>(true)
+  const [disabledSave, setDisabledSave] = useState<boolean>(false)
 
   useMessageBus('lead_assessor_assessment:status_change', (status) => {
     if (status === 'completed') {
@@ -181,6 +185,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
   }
 
   const handleSave = () => {
+    setDisabledSave(true)
     const scores = Object.keys(finalScores).map(key => ({
       campaign_factor_id: factorIdToIdMap[`factorId${key}`],
       score: Number(finalScores[key]),
@@ -198,7 +203,10 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
       message.success(I18n.t('administration.scoring.final_score_updated_successfully'))
       if (onSave) {
         onSave()
+        setDisabled(true)
       }
+    }).finally(() => {
+      setDisabledSave(false)
     })
   }
 
@@ -368,7 +376,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave }) => {
           </Button>
           <Button
             type="primary"
-            disabled={disabled}
+            disabled={disabled || disabledSave}
             onClick={handleSave}
           >
             {I18n.t('administration.common.save')}

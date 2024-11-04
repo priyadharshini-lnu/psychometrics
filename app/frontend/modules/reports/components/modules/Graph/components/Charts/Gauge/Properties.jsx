@@ -16,9 +16,10 @@ class Properties extends Component {
     this.forceUpdate()
   }
 
-  changeLabelPosition = (val) => {
+
+  handleValueControl = (type, val) => {
     const { model } = this.props
-    model.props.labelVerticalPosition = val
+    model.props[type] = val
     this.update()
   }
 
@@ -62,7 +63,7 @@ class Properties extends Component {
     const { model } = this.props
     const {
       speedometerBackgroundColor, speedometerMainColor, labelVerticalPosition, speedometerSize, maxValue, gaugeWidth,
-      gaugeBorder, borderColor,
+      gaugeBorder, borderColor, valueVerticalPosition,
     } = model.props
     return (
       <div>
@@ -130,7 +131,17 @@ class Properties extends Component {
           Label Vertical Position
           <ChoicesInput
             value={labelVerticalPosition}
-            onChange={this.changeLabelPosition}
+            onChange={val => this.handleValueControl('labelVerticalPosition', val)}
+            minValue={-200}
+            maxValue={200}
+          />
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.block}>
+          Value Vertical Position
+          <ChoicesInput
+            value={valueVerticalPosition}
+            onChange={val => this.handleValueControl('valueVerticalPosition', val)}
             minValue={-200}
             maxValue={200}
           />

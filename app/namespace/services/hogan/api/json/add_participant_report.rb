@@ -30,6 +30,13 @@ module Services
             success_response?(response) ? broadcast(:ok, response[:body]) : broadcast(:error, response)
           end
 
+          def success_response?(response)
+            response[:status] == 200 && (
+              response[:body]['messageType'] == 'Information' ||
+              (response[:body]['messageType'] == 'Alert' && response[:body]['text'].include?('already has report'))
+            )
+          end
+
           def add_hogan_logs(response)
             HoganLog.create!(
               log_type: 'AddParticipantReport',

@@ -97,7 +97,7 @@ export const UpdateContentVariationForm: React.FC<Props> = ({
     >
       <Form.Item name="contentVariationId" className="mbs">
         <Select
-          style={{ width: '300px' }}
+          style={{ width: '200px' }}
           placeholder={I18n.t('campaign_assessment.modals.update_content_variation.select_schedule')}
           showSearch
           optionFilterProp="label"
@@ -115,7 +115,12 @@ export const UpdateContentVariationForm: React.FC<Props> = ({
           ))}
         </Select>
       </Form.Item>
-      <Form.Item name="apply" valuePropName="checked" className="mbl">
+      <Form.Item
+        name="apply"
+        valuePropName="checked"
+        className="mbl"
+        style={{ flex: 'auto' }}
+      >
         <Checkbox>{I18n.t('campaign_assessment.modals.update_norm.apply')}</Checkbox>
       </Form.Item>
       <Flex gap={20} justify="flex-end">

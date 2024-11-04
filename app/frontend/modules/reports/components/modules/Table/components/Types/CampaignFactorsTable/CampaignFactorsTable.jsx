@@ -8,10 +8,8 @@ import ReactMarkdown from 'react-markdown'
 
 import ResultStore from '~/modules/reports/store/ResultStore'
 import I18nStore from '~/modules/reports/store/I18nStore'
-import AppStore from '~/modules/reports/store/AppStore'
 import BulletGraph from '~/modules/reports/components/BulletGraph'
 import PieGraph from '~/modules/reports/components/PieGraph'
-import buildFakeData from './buildFakeData'
 
 import styles from './CampaignFactorsTable.less'
 
@@ -21,7 +19,7 @@ const MockData = [
     name: 'Ambiguity',
     label: 'High',
     color: '#666666',
-    value: 65.8,
+    value: 65.8888,
     strategy: 0,
     benchmarkScore: 70,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -146,7 +144,7 @@ class CampaignFactorsTable extends Component {
         )
       } else {
         const factorData = ResultStore.results[module.assessment_id].getTopCampaignFactors(0, campaignFactorCodes.length, campaignFactorCodes)
-        this.campaignFactorsData = _.sortBy(factorData, f => campaignFactorCodes.indexOf(f.id))
+        this.campaignFactorsData = _.sortBy(factorData, f => campaignFactorCodes.indexOf(f.code))
       }
     } else {
       // eslint-disable-next-line no-lonely-if
@@ -161,45 +159,6 @@ class CampaignFactorsTable extends Component {
     }
   }
 
-  getFilters = () => {
-    const { model } = this.props
-    const filterIds = model.props.filter
-    const filters = filterIds?.map(filterId => _.find(
-      AppStore.report.filters, { id: filterId },
-    )).filter(f => !_.isEmpty(f))
-
-    return filters || []
-  }
-
-
-  enhanceFiltersByValue = (factor) => {
-    const { model } = this.props
-    const precision = model.props.precision ?? 2
-    const filters = this.getFilters()
-    if (!ResultStore.realResults) {
-      const { milestones } = model.props
-      return buildFakeData({ filters, milestones, precision })
-    }
-
-    const enhancedFilters = filters.map((filter) => {
-      const scoring = _.get(ResultStore, [
-        'results',
-        model.assessment_id,
-        'resultsByFilter',
-        filter.id,
-        'scoring',
-        factor.id,
-      ])
-
-      if (!scoring) return { ...filter, value: 0 }
-      const nonZeroResults = _.filter(scoring.results, res => res.getValue())
-      const value = (_.round(_.meanBy(nonZeroResults, res => res.getValue()), precision))
-      return { ...filter, value }
-    })
-
-    return enhancedFilters
-  }
-
   canShowRank () {
     const { model: { props: { showRankOrder, mode } } } = this.props
 
@@ -211,7 +170,7 @@ class CampaignFactorsTable extends Component {
     const { fontFamily } = module.props.style
     return (
       this.campaignFactorsData.map((campaignfactor, i) => {
-        const conditions = _.filter(module.textConditions, { factorId: campaignfactor.id })
+        const conditions = _.filter(module.textConditions, { campaignFactorCode: campaignfactor.code })
         let conditionTitle = null
         let conditionText = null
         let conditionStrengths = null
@@ -263,14 +222,9 @@ class CampaignFactorsTable extends Component {
 
         const startRank = reverseOrder ? Math.max(1, campaignFactors.length - maxPosition + 1) : minPosition
 
-        const score = _.round(campaignFactorValue, 1)
+        const score = _.isNil(precision) ? campaignFactorValue : _.round(campaignFactorValue, precision)
         const maxValue = maxScoreValue ?? (campaignfactor.strategy === 3 ? 100 : 5)
         const percent = score * 100 / maxValue
-
-        const filters = this.getFilters()
-        const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
-        const resultsWithEnhancedWithFilters = this.enhanceFiltersByValue(campaignfactor)
-
         const scoreUI = (
           <>
             {showScore && (
@@ -319,7 +273,7 @@ class CampaignFactorsTable extends Component {
                         {_.isEmpty(conditionTitle) ? I18nStore.tFactor(campaignfactor, 'alias') : conditionTitle}
                       </div>
                     )}
-                    {scorePosition === 'block' && !showWithFilters ? scoreUI : null}
+                    {scorePosition === 'block' ? scoreUI : null}
                     {showDescription && (
                       <ReactMarkdown className={cs(styles.text, 'mt4')}>
                         {conditionText}
@@ -339,7 +293,7 @@ class CampaignFactorsTable extends Component {
                 )}
               </td>
             )}
-            {!showWithFilters && ((showScore && scorePosition === 'inline') || (showLabel && !showScore)) ? (
+            {((showScore && scorePosition === 'inline') || (showLabel && !showScore)) ? (
               <td className={cs({
                 [styles.score]: showScore,
                 [styles.circular]: scoreDisplay === 'circular',
@@ -352,17 +306,6 @@ class CampaignFactorsTable extends Component {
                   <div className={styles.label} style={{ backgroundColor: conditionColor }}>{conditionLabel}</div>
                 )}
               </td>
-            ) : null}
-
-            {showWithFilters && ((showScore) || (showLabel && !showScore)) ? (
-              resultsWithEnhancedWithFilters.map((filter, i) => (
-                <td
-                  key={i}
-                  className={cs(styles.score)}
-                >
-                  {filter.value.toFixed(precision)}
-                </td>
-              ))
             ) : null}
           </tr>
         )
@@ -387,8 +330,6 @@ class CampaignFactorsTable extends Component {
     const {
       scorePosition = 'inline', showStrengthsBlindspots, showName, showDescription,
     } = model.props
-    const filters = this.getFilters()
-    const showWithFilters = (model.props.mode !== 'topFactors' && filters.length > 0)
     return (
       <thead>
         <tr>
@@ -396,11 +337,8 @@ class CampaignFactorsTable extends Component {
           {(showName || showDescription || showStrengthsBlindspots) ? (
             <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
           ) : null}
-          {model.props.showScore && scorePosition === 'inline' && !showWithFilters
+          {model.props.showScore && scorePosition === 'inline'
             ? <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th> : null}
-          {model.props.showScore && showWithFilters ? filters.map((filter, i) => (
-            <th key={i} className={styles.filter} scope="col">{filter.name}</th>
-          )) : null}
           {model.props.showBenchmarks
             ? <th className={styles.benchmarks} scope="col">{model.props.benchmarksLabel}</th>
             : null}

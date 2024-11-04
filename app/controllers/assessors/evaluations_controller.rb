@@ -32,7 +32,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
       user_info: {
         user: UserSerializer.new.serialize(user),
         datasheet_columns: datasheet_columns || [],
-        datasheet: datasheet&.slice(*datasheet_columns.map { |col| col['name'] }) || {}
+        datasheet: datasheet&.slice(*datasheet_columns.map(&:name)) || {}
       },
       assessor_assessments: Panko::ArraySerializer.new(
         @assessor_assessments,

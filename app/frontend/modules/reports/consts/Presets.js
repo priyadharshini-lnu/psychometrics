@@ -49,6 +49,7 @@ export default {
     gaugeWidth: 70,
     gaugeBorder: 0,
     borderColor: '#639cd3',
+    valueVerticalPosition: -50,
 
   },
   RadarA: {

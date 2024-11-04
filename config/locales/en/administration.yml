@@ -2779,7 +2779,10 @@ en:
           title: Delete {{count}} records
         remove_columns:
           cancelText: Cancel
+          content: Deleting a column ({{columns}}) will remove the data in this column for all rows
           okText: Yes, delete
+          successMessage: "{{count}} records deleted"
+          title: Delete columns
       tabs:
         rows: Rows
         settings: Settings
