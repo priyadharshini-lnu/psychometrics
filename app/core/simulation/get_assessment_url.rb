@@ -21,11 +21,13 @@ module Simulation
 
     def generate_jwt_token
       payload = {
+        name: user_assessment.subject.name,
         userId: participant_id,
         simulationId: participant_id,
         scenarioId: scenario_id,
         exp: 1.day.from_now.to_i,
         modifiers: {
+          returnUrl: return_url,
           webhookUrl: assessment_progress_notification_url,
           branding: {
             logo: project.design_setting.logo_url,
@@ -83,6 +85,16 @@ module Simulation
     def assessment_progress_notification_url
       Utility::Url.generate(
         :webhooks_simulation_progress_notification_url,
+        project_id: project.id,
+        subdomain: project.subdomain,
+        jwt_token: jwt_token
+      )
+    end
+
+    def return_url
+      Utility::Url.generate(
+        :redirect_simulation_user_assessment_url,
+        id: user_assessment.id,
         project_id: project.id,
         subdomain: project.subdomain,
         jwt_token: jwt_token

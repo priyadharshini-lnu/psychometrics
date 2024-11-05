@@ -907,6 +907,7 @@ as: :simulation_progress_notification
       resources :simulation_user_assessments, only: [] do
         member do
           post :pass
+          get :redirect
         end
       end
 
