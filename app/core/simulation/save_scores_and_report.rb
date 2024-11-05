@@ -4,14 +4,13 @@ module Simulation
   class SaveScoresAndReport < Base
     private_attr_reader :user_assessment, :retry_count
 
-    def initialize(user_assessment, retry_count: 0)
+    def initialize(user_assessment, decisions = nil, retry_count: 0)
       @user_assessment = user_assessment
       @retry_count = retry_count
+      @decisions = decisions
     end
 
     def call
-      decisions = Simulation::GetDecisions.call!(user_assessment)
-
       return retry_save_answers if decisions.blank?
 
       user_assessment.users_result.update(answers: decisions['decisions'])
@@ -36,6 +35,10 @@ module Simulation
 
     def generate_internal_reports
       ::UsersResults::GenerateReports.call(user_assessment.users_result, user_assessment.user)
+    end
+
+    def decisions
+      @decisions ||= Simulation::GetDecisions.call!(user_assessment)
     end
 
     def retry_save_answers

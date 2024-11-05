@@ -17,39 +17,39 @@ RSpec.describe Simulation::SaveScoresAndReport, type: :service do
   end
 
   describe '#call' do
-    context 'when decisions are present' do
-      let(:decisions) do
-        {
-          'userId' => '22d87cc0-d911-4ca8-9913-1a48520b04c0',
-          'decisions' => {
-            'wfra_labor' => 60_000,
-            'pitchSolution' => {
-              'rankings' => {
-                '1A' => 2,
-                '1B' => 3,
-                '1C' => 1,
-                '2C1' => 3,
-                '2C2' => 2,
-                '2C3' => 1,
-                '3I1' => 2,
-                '3I2' => 3,
-                '3I3' => 1
-              },
-              'takenOptions' => %w[
-                1C
-                2C3
-                3I3
-              ]
+    let(:decisions) do
+      {
+        'userId' => '22d87cc0-d911-4ca8-9913-1a48520b04c0',
+        'decisions' => {
+          'wfra_labor' => 60_000,
+          'pitchSolution' => {
+            'rankings' => {
+              '1A' => 2,
+              '1B' => 3,
+              '1C' => 1,
+              '2C1' => 3,
+              '2C2' => 2,
+              '2C3' => 1,
+              '3I1' => 2,
+              '3I2' => 3,
+              '3I3' => 1
             },
-            'communityNeeds' => %w[
-              restorationOfElectricity
-              accessToCleanDrinkingWater
-              supplyOfLuxuryFoodItems
+            'takenOptions' => %w[
+              1C
+              2C3
+              3I3
             ]
-          }
+          },
+          'communityNeeds' => %w[
+            restorationOfElectricity
+            accessToCleanDrinkingWater
+            supplyOfLuxuryFoodItems
+          ]
         }
-      end
+      }
+    end
 
+    context 'when decisions are present' do
       it 'updates the users_result answers' do
         service.call
 
@@ -86,6 +86,19 @@ RSpec.describe Simulation::SaveScoresAndReport, type: :service do
         expect(Simulation::SaveScoresAndReportJob).to have_received(:set).with(wait: 1.minute)
         expect(Simulation::SaveScoresAndReportJob).to have_received(:perform_later).with(user_assessment,
                                                                                          retry_count: 1)
+      end
+    end
+
+    context 'when decisions are passed to class' do
+      let(:service) { described_class.new(user_assessment, decisions) }
+
+      it 'updates the users_result answers without calling api' do
+        service.call
+
+        expect(Simulation::GetDecisions).not_to have_received(:call!)
+        expect(user_assessment.users_result.reload.answers).to eq(
+          decisions['decisions']
+        )
       end
     end
   end

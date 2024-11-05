@@ -13,7 +13,10 @@ module Webhooks
 
       update_user_assessment_progress(user_assessment, response) if response['progress']
 
-      Simulation::SaveScoresAndReportJob.perform_later(user_assessment) if user_assessment.completed?
+      if response['event'] == 'decisions_available'
+        Simulation::SaveScoresAndReport.call!(user_assessment, response)
+      end
+
       head :ok
     end
 
