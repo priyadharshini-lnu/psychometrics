@@ -1922,6 +1922,9 @@ en:
         updated_by: Updated by
       new:
         header: New norm
+      norms: Norms
+      remove:
+        confirm: Are you sure you want to delete the norm "%{name}"
       resource:
         confirmations:
           delete:
@@ -1937,6 +1940,10 @@ en:
           copy: Copy Norm
           delete: Delete Norm
           edit: Rename Norm
+      score_types:
+        five_scale: Five scale
+        norm_type: Norm type
+        percentage: Percentage
       sidebar:
         copy: Copy Norm
         destroy: Delete Norm
