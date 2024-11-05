@@ -10,21 +10,15 @@ module Simulation
     end
 
     def call
-      scores = Simulation::GetScores.call!(user_assessment)
+      decisions = Simulation::GetDecisions.call!(user_assessment)
 
-      return retry_save_score if scores.blank?
+      return retry_save_answers if decisions.blank?
 
-      external_results = {
-        meta_data: {
-          createdAt: parse_datetime(scores['createdAt'])
-        },
-        scores: scores['scores'].first
-      }
+      user_assessment.users_result.update(answers: decisions['decisions'])
 
-      user_assessment.users_result.update(external_results: external_results)
+      user_assessment.update(status: :completed) unless user_assessment.completed?
 
-      completed_at = parse_datetime(scores['createdAt'])
-      user_assessment.update(status: :completed, completed_at: completed_at) if completed_at
+      calculate_assessment_scores
       generate_internal_reports
 
       broadcast :ok
@@ -36,11 +30,15 @@ module Simulation
       datetime_str&.in_time_zone('UTC')
     end
 
+    def calculate_assessment_scores
+      UserAssessments::SaveScores.call!(user_assessment)
+    end
+
     def generate_internal_reports
       ::UsersResults::GenerateReports.call(user_assessment.users_result, user_assessment.user)
     end
 
-    def retry_save_score
+    def retry_save_answers
       Simulation::SaveScoresAndReportJob.
         set(wait: (2**retry_count).minute).
         perform_later(user_assessment, retry_count: retry_count + 1)
