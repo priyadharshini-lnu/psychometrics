@@ -80,6 +80,7 @@ export const NormsFormModal: React.FC<Props> = ({
           <Form.Item
             name="ownerId"
             label={I18n.t('common.column.owner')}
+            initialValue={norm?.owner?.id || null}
           >
             <Select
               showSearch
@@ -125,6 +126,7 @@ export const NormsFormModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select
+              disabled={!!norm}
               showSearch
               filterOption={false}
             >

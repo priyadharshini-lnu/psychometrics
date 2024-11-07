@@ -4,32 +4,41 @@ export const NormTR = t.type({
   id: t.string,
   name: t.string,
   disabled: t.boolean,
-  description: t.union([t.string, t.null]),
   createdAt: t.string,
   updatedAt: t.string,
   meta: t.type({
     permissions: t.type({
-      manage: t.boolean,
-      exportRawResults: t.boolean,
-      exportRawFactorScores: t.boolean,
-      exportNormedResults: t.boolean,
+      edit: t.boolean,
+      copy: t.boolean,
+      delete: t.boolean,
+      export: t.boolean,
+      editor: t.boolean,
     }),
   }),
 
-  dimension: t.type({
-    id: t.string,
-    name: t.string,
-  }),
+  dimension: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined,
+  ]),
 
-  owner: t.type({
-    id: t.string,
-    name: t.string,
-  }),
+  owner: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined,
+  ]),
 
-  updatedBy: t.type({
-    id: t.string,
-    name: t.string,
-  }),
+  updatedBy: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined,
+  ]),
 })
 
 export type Norm = t.TypeOf<typeof NormTR>

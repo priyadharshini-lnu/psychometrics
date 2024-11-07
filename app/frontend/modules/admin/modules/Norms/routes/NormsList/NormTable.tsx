@@ -66,37 +66,39 @@ const NormTable: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<Norm>
           title={I18n.t('common.column.dimension')}
           width={300}
-          id="dimension"
-          render={(_, { dimension }) => (
-            <Link to={`/administration/dimensions/${dimension.id}/factors`}>{dimension?.name}</Link>
+          id="dimension.name"
+          render={(_, { dimension }) => dimension?.id && (
+            <a href={`/administration/dimensions/${dimension.id}/factors`}>{dimension.name}</a>
           )}
           sorter
         />
         <Resource.Column<Norm>
           title={`${I18n.t('administration.campaigns.users.updated_by')}`}
-          id="updatedBy"
+          id="updated_by.name"
+          render={(_, { updatedBy }) => updatedBy?.name}
           width={300}
           sorter
-          render={(_, { updatedBy }) => updatedBy.name}
         />
         <Resource.Column<Norm>
           title={`${I18n.t('common.column.owner')}`}
-          id="owner"
+          id="owner.name"
           width={300}
           sorter
-          render={(_, { owner }) => (
-            <Link to={`/admin/clients/${owner.id}/projects`}>{owner?.name}</Link>
+          render={(_, { owner }) => owner?.id && (
+            <Link to={`/admin/clients/${owner.id}/projects`}>{owner.name}</Link>
           )}
         />
         <Resource.Column<Norm>
           title={`${I18n.t('common.column.created_at')}`}
           id="createdAt"
           width={300}
+          sorter
           render={(_, { createdAt }) => createdAt}
         />
         <Resource.Column<Norm>
           title={`${I18n.t('common.column.updated_at')}`}
           id="updatedAt"
+          sorter
           width={300}
           render={(_, { updatedAt }) => updatedAt}
         />
@@ -138,12 +140,21 @@ interface ActionMenuData {
 const getActionMenuProps = ({
   norm, updateResource, removeResource, openModal,
 }: ActionMenuData): MenuProps => {
-  const { id, name } = norm
+  const { id, name, meta: { permissions } } = norm
+
   const menuItems = [
-    { key: 'edit', label: I18n.t('common.actions.edit') },
-    { key: 'remove', label: I18n.t('common.actions.remove') },
-    { key: 'copy', label: I18n.t('common.actions.copy') },
-    { key: 'export_norm', label: I18n.t('administration.norms.sidebar.export') },
+    permissions.edit && { key: 'edit', label: I18n.t('common.actions.edit') },
+    permissions.delete && { key: 'remove', label: I18n.t('common.actions.remove') },
+    permissions.copy && { key: 'copy', label: I18n.t('common.actions.copy') },
+    permissions.export && { key: 'export_norm', label: I18n.t('administration.norms.sidebar.export') },
+    permissions.editor && {
+      key: 'norm_editor',
+      label: (
+        <a href={`/administration/norms/${norm.id}/editor`}>
+          {I18n.t('administration.norms.sidebar.editor')}
+        </a>
+      ),
+    },
   ]
 
   const handleMenuClick = ({ key }) => {

@@ -10,7 +10,11 @@ const NormsList: React.FC = () => {
   const baseApiConfig = {
     trackUrl: true,
     responseType: NormTR,
-    mocked: true,
+    apiConfig: {
+      include: ['dimension', 'updated_by', 'owner'],
+      fields: { dimensions: ['name'], users: ['name'] },
+      include_resource_meta: ['permissions'],
+    },
   }
 
   return (

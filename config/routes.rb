@@ -1166,6 +1166,9 @@ as: :simulation_progress_notification
             get :external_scores
           end
           jsonapi_resources :dimensions
+          jsonapi_resources :norms do
+            post :copy
+          end
           jsonapi_resources :tags
           jsonapi_resources :external_assessments
           jsonapi_resources :external_reports
