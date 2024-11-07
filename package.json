@@ -199,7 +199,7 @@
     "@types/react": "^18.2.64",
     "@types/react-color": "3.0.4",
     "@types/react-csv": "^1.1.10",
-    "@types/react-dom": "^18.2.21",
+    "@types/react-dom": "^18.2.24",
     "@types/react-select": "4.0.15",
     "@types/ua-parser-js": "^0.7.36",
     "@vitest/coverage-v8": "^2.1.4",
