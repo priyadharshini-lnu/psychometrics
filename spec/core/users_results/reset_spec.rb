@@ -87,6 +87,13 @@ describe UsersResults::Reset do
     subject
   end
 
+  it 'calls Simulation::ResetAssessment is it is a simulation assessment' do
+    allow(user_assessment.assessment).to receive(:simulation?).and_return(true)
+    expect(Simulation::ResetAssessment).to receive(:call!).with(user_assessment)
+
+    subject
+  end
+
   it 'calls Mettl::ResetCandidateAssessment is it is a mettl assessment and not reached max reset count' do
     allow(user_assessment.assessment).to receive(:mettl?).and_return(true)
     expect(Mettl::ResetCandidateAssessment).to receive(:call!).with(user_assessment)

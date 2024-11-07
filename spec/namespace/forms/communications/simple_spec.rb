@@ -7,14 +7,13 @@ RSpec.describe ::Forms::Communications::Simple do
   let(:superadmin) { create(:superadmin) }
   let(:client_admin) { create(:client_admin) }
   let(:project_admin) { create(:project_admin) }
-  let(:sub_campaign) { create(:sub_campaign) }
+  let(:campaign) { create(:campaign) }
   let(:valid_params) do
     {
-      owner_id: sub_campaign.client.id,
-      client_id: sub_campaign.client.id,
-      project_id: sub_campaign.project.id,
-      campaign_id: sub_campaign.campaign.id,
-      sub_campaign_id: sub_campaign.id,
+      owner_id: campaign.client.id,
+      client_id: campaign.client.id,
+      project_id: campaign.project.id,
+      campaign_id: campaign.id,
       kind: 'invitation',
       recipients: 'all',
       delivery_rule: 'send_now',
@@ -55,13 +54,8 @@ RSpec.describe ::Forms::Communications::Simple do
     valid_params.merge(campaign_id: -1)
   end
 
-  let(:params_with_invalid_sub_campaign_id) do
-    valid_params.merge(sub_campaign_id: -1)
-  end
-
   describe 'validation' do
     it 'should be valid with valid params' do
-      sub_campaign.project.update(migrated: false)
       form.prepopulate!(current_user: superadmin)
       expect(form.validate(valid_params)).to be_truthy
     end
@@ -105,18 +99,11 @@ RSpec.describe ::Forms::Communications::Simple do
       form.prepopulate!(current_user: superadmin)
       expect(form.validate(params_with_invalid_campaign_id)).to be_falsey
     end
-
-    it 'should not be valid with not existed sub_campaign' do
-      form.prepopulate!(current_user: superadmin)
-      expect(form.validate(params_with_invalid_sub_campaign_id)).to be_falsey
-    end
   end
 
   describe 'prepopulate!' do
-    let(:form_with_sub_campaign_id_end) do
-      ::Forms::Communications::Simple.new(Communication.new(
-                                            client_id: 10, project_id: 15, campaign_id: 20, sub_campaign_id: 30
-                                          ))
+    let(:form_with_campaign_id_end) do
+      ::Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15, campaign_id: 20))
     end
 
     context 'current_user is superadmin' do
@@ -130,36 +117,25 @@ RSpec.describe ::Forms::Communications::Simple do
 
     context 'current_user is client_admin' do
       it 'assign owner_id from client_id' do
-        form_with_sub_campaign_id_end.prepopulate!(current_user: client_admin)
-        expect(form_with_sub_campaign_id_end.owner_id).to eq(form_with_sub_campaign_id_end.client_id)
+        form_with_campaign_id_end.prepopulate!(current_user: client_admin)
+        expect(form_with_campaign_id_end.owner_id).to eq(form_with_campaign_id_end.client_id)
       end
     end
 
     context 'current_user is project_admin' do
       let(:form_campaign_id_end) do
-        ::Forms::Communications::Simple.new(Communication.new(
-                                              client_id: 10, project_id: 15, campaign_id: 20
-                                            ))
+        ::Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15, campaign_id: 20))
       end
       let(:form_project_id_end) do
-        ::Forms::Communications::Simple.new(Communication.new(
-                                              client_id: 10, project_id: 15
-                                            ))
+        ::Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15))
       end
       let(:form_client_id_end) do
-        ::Forms::Communications::Simple.new(Communication.new(
-                                              client_id: 10
-                                            ))
+        ::Forms::Communications::Simple.new(Communication.new(client_id: 10))
       end
 
       it 'assign owner_id from client_id' do
-        form_with_sub_campaign_id_end.prepopulate!(current_user: project_admin)
-        expect(form_with_sub_campaign_id_end.owner_id).to eq(form_with_sub_campaign_id_end.client_id)
-      end
-
-      it 'assign end_level_id from sub_campaign_id' do
-        form_with_sub_campaign_id_end.prepopulate!(current_user: project_admin)
-        expect(form_with_sub_campaign_id_end.end_level_id).to eq(form_with_sub_campaign_id_end.sub_campaign_id)
+        form_with_campaign_id_end.prepopulate!(current_user: project_admin)
+        expect(form_with_campaign_id_end.owner_id).to eq(form_with_campaign_id_end.client_id)
       end
 
       it 'assign end_level_id from campaign_id' do

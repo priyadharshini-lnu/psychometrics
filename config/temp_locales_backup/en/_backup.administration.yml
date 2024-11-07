@@ -338,7 +338,7 @@ en:
           upload: Upload
           upload_csv: Upload CSV
           upload_title: Import Subjects from CSV
-        subjects_count_added: Subjects successfuly added
+        subjects_count_added: Subjects successfully added
         success:
           continue: Continue
           message: The task of sending the invitations has been queued; users will receive them shortly.
@@ -665,7 +665,7 @@ en:
       search: Search
       search_campaign: Search by Campaign
       search_client: Search by Client
-      search_project: Search by Proejct
+      search_project: Search by Project
       search_record: Search by Record ID
       search_user: Search by User
       title: Audit Log Info

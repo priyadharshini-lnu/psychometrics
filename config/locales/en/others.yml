@@ -733,6 +733,7 @@ en:
         import_scoring_data: Import Scoring Data
         import_sms_invites: Import SMS Invite
         import_users: Import Users
+        normalize_factor_scores: Normalize Factor Scores
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         regenerate_threesixty_report: Regenerate Threesixty Report
@@ -766,6 +767,9 @@ en:
     more: More
     notifications: Notifications
     results: Results
+    super_admin:
+      errors:
+        data_processing_disabled: Data processing is disabled.
   anonym:
     close: Close
     continue: Continue
@@ -1247,6 +1251,7 @@ en:
       export_reports_and_assessments_statuses_scheduled: Export Reports and assessments job was scheduled successfully
       external_results_export_scheduled: External Assessment export job was scheduled successfully
       norm_results_export_scheduled: Assessment Normed Results export job was scheduled successfully
+      normalize_factor_scores_scheduled: Normalizing factor scores job was scheduled successfully.
       raw_factor_export_scheduled: Assessment Raw Factor export job was scheduled successfully
       raw_results_export_scheduled: Assessment Raw Results export job was scheduled successfully
       scoring_results_export_scheduled: Assessment Scoring Results export job was scheduled successfully
@@ -1314,6 +1319,9 @@ en:
         form:
           duration: Duration in minutes
         title: Duration for the workshop activity
+    normalize_factor_scores:
+      normalization_not_allowed: The normalization of factor scores is currently disabled for this assessment in the project settings. Please enable it to proceed.
+      success: Normalization of factor scores completed successfully
     scheduled_successfully: Assessment was scheduled successfully
     scheduling:
       update_exists: Override existing schedule
@@ -3316,6 +3324,8 @@ en:
       test_webhook:
         submit_button_name: Send Test
         title: Send Webhook Event Test
+    normalize_factor_scores:
+      no_scoring_data: Normalization of factor scores cannot be completed as no scoring data is available.
     progress_label: Assessment Progress
     questions:
       single_line_answer_label: Answer

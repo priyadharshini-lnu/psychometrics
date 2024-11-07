@@ -22,4 +22,8 @@ class MettlScheduleRecord < ApplicationRecord
   def self.ransackable_scopes(_auth_object = nil)
     %i[filterable_fields]
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[id name assessment_id]
+  end
 end

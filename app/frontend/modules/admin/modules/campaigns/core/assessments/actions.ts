@@ -23,6 +23,7 @@ export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/assessments/TOGGLE_REQUIRE_SCH
 export const TOGGLE_AUTO_ASSIGN = 'campaigns/assessments/TOGGLE_AUTO_ASSIGN'
 
 export const UPDATE_METTL_SCHEDULE = 'campaigns/assessments/UPDATE_METTL_SCHEDULE'
+export const NORMALIZE_FACTOR_SCORES = 'campaigns/assessments/NORMALIZE_FACTOR_SCORES'
 export const UPDATE_CONTENT_VARIATION = 'campaigns/assessments/UPDATE_CONTENT_VARIATION'
 
 export const UPDATE_PREWORK = 'campaigns/assessments/UPDATE_PREWORK'
@@ -256,6 +257,15 @@ export const exportExternalResults = (campaignId: number, assessmentId: number) 
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_external_results`,
+    loader: true,
+  },
+})
+
+export const normalizeFactorScores = (campaignId: number, assessmentId: number) => ({
+  type: NORMALIZE_FACTOR_SCORES,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/normalize_factor_scores`,
     loader: true,
   },
 })

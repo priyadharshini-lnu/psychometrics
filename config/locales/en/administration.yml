@@ -148,6 +148,7 @@ en:
             manage: Manage
             view: View
           projectSettings:
+            assessments: Assessments
             design: Design
             integrations: Integrations
             privacy_settings: Privacy Settings
@@ -178,6 +179,7 @@ en:
             edit_report: Edit Report
             external_score_import: External Score Import
             finalize_scores: Finalize Scores
+            normalize_factor_scores: Normalize Factor Scores
             raw_responses: Raw Responses
             regenerate_report: Regenerate Report
             report_data: Report Data
@@ -262,7 +264,7 @@ en:
           title: Subjects
           upload: Upload
           upload_csv: Upload CSV
-        subjects_count_added: Subjects successfuly added
+        subjects_count_added: Subjects successfully added
         success:
           continue: Continue
           message: The task of sending the invitations has been queued; users will receive them shortly.
@@ -502,7 +504,7 @@ en:
       search: Search
       search_campaign: Search by Campaign
       search_client: Search by Client
-      search_project: Search by Proejct
+      search_project: Search by Project
       search_record: Search by Record ID
       search_user: Search by User
       title: Audit Log Info
@@ -1519,7 +1521,7 @@ en:
         error: "'%{name}' factor was not copied"
         successfully: Factor '%{name}' was copied successfully.
       create:
-        successfully: "'%{name}' factor was created successfully."
+        successfully: "%{name} factor was created successfully."
       destroy:
         successfully: Factor "%{name}" was deleted successfully.
       edit:
@@ -1758,7 +1760,7 @@ en:
         webhookUrl: Webhook URL
         webhookUrls: Webhook URLs
       integrations: Integrations
-      load_mettl_success: Load mettl assessments job is successfuly enqueued
+      load_mettl_success: Load mettl assessments job is successfully enqueued
       modal:
         hogan:
           provider: Provider
@@ -2238,6 +2240,7 @@ en:
         visual_proctoring_enabled: Enable Visual Proctoring
         web_proctoring_enabled: Enable Web Proctoring
       privacy_settings:
+        disable_dp: Don’t allow further data processing
         dp_consent: Enable Data Processing consent
         dp_consent_custom: Customise Data Processing consent
         dp_consent_version: Policy Version

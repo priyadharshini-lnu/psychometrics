@@ -13,6 +13,7 @@ module UserAssessments
 
     def call
       return broadcast :non_normalizable_user_assessment unless user_assessment.normalize_factor_scores?
+      return broadcast :no_scoring_data if users_result.scoring.nil?
 
       ApplicationRecord.transaction do
         user_assessment_scores = users_result.scoring.map do |factor_id, scores|
