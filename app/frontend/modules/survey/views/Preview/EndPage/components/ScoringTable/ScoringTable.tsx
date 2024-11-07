@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Col, Row, Table } from 'antd'
 import { CSVLink } from 'react-csv/lib/index'
-import { LabelKeyObject } from 'react-csv/components/CommonPropTypes'
+import { CommonPropTypes } from 'react-csv/components/CommonPropTypes'
 import map from 'lodash/map'
 import find from 'lodash/find'
 import _ from 'lodash'
@@ -93,7 +93,7 @@ const TableHeader: FC<TableHeaderProps> = ({
   I18n,
   userAssessmentId,
 }) => {
-  const headers: LabelKeyObject[] = columns.map(column => ({
+  const headers: CommonPropTypes['headers'] = columns.map(column => ({
     label: column.title,
     key: column.key,
   }))
