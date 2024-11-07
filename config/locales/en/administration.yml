@@ -705,6 +705,8 @@ en:
         successfully: Client Tenancy %{name} was deleted successfully.
       edit:
         header: Edit Client
+      errors:
+        owner_invalid: Template owner must be the same as the owners of the assessment, report, and dimension
       form:
         assessment: Assessment
         assessment_placeholder: Select an assessment
