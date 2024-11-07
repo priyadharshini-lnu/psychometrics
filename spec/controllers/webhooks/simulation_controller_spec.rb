@@ -128,26 +128,6 @@ RSpec.describe Webhooks::SimulationController, type: :controller do
         end
       end
 
-      context 'when assessment is timed out' do
-        let(:json_payload) do
-          {
-            event: 'progress_update',
-            userId: '22d87cc0-d911-4ca8-9913-1a48520b04c0',
-            simulationId: '22d87cc0-d911-4ca8-9913-1a48520b04c0',
-            timedOut: true,
-            progress: 0.6,
-            token: jwt_token
-          }.to_json
-        end
-
-        it 'does update the user assessment as timed out' do
-          post :progress_notification, params: { project_id: project.id }, body: json_payload
-
-          expect(user_assessment.reload).to be_timed_out
-          expect(user_assessment.completion_reason).to eq('time_out_offline')
-        end
-      end
-
       it 'returns http status ok' do
         post :progress_notification, params: { project_id: project.id }, body: json_payload
         expect(response).to have_http_status(:ok)

@@ -35,15 +35,11 @@ module Webhooks
 
     def update_user_assessment_progress(user_assessment, response)
       progress = response['progress']
-      timed_out = response['timedOut']
 
       progress_percentage = (progress * 100).round
       user_assessment.users_result.update!(progress: progress_percentage)
 
-      unless user_assessment.completed?
-        user_assessment.complete! if progress_percentage == 100
-        user_assessment.update!(status: :timed_out, completion_reason: :time_out_offline) if timed_out
-      end
+      user_assessment.complete! if progress_percentage == 100 && !user_assessment.completed?
     end
   end
 end

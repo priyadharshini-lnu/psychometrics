@@ -31,7 +31,7 @@ module Simulation
           webhookUrl: assessment_progress_notification_url,
           branding: {
             logo: project.design_setting.logo_url,
-            primary: project.design_setting.primary_color,
+            # primary: project.design_setting.primary_color,
             theming: {
               navbarTheme: 'light'
             }
