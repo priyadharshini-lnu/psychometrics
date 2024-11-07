@@ -1914,10 +1914,10 @@
   dependencies:
     browserslist "*"
 
-"@types/caniuse-lite@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@types/caniuse-lite/-/caniuse-lite-1.0.1.tgz#368292d5d28268cb7917b9178fcdd500df22d64a"
-  integrity sha512-enW8d/vdojHAhr1C/0BqsNkhz/0ik2WCuAJIp9EClP+mHkR8xXBJ2OGeXHZ6cPqDjVKvWBRe9tY/Nr9r4yQSuA==
+"@types/caniuse-lite@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@types/caniuse-lite/-/caniuse-lite-1.0.5.tgz#ff8a3e037fa2991afa401f1f810340c4b13f432f"
+  integrity sha512-ff4yGviVi4PrDKkCZJixHjYrgQG3kv/peiSCBabyZR+fXezFTYuS4uVOiRRzRqVxCEZT3ityfuAPuYa0usobKw==
 
 "@types/classnames@^2.3.1":
   version "2.3.1"
