@@ -28,7 +28,7 @@ module Simulation
 
     def request_body
       {
-        organization: user_assessment.project.client.id.to_s
+        organization: user_assessment.project.id.to_s
       }
     end
   end

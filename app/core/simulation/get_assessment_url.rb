@@ -32,10 +32,9 @@ module Simulation
           branding: {
             logo: project.design_setting.logo_url,
             primary: project.design_setting.primary_color,
-            success: project.design_setting.success_color,
-            info: project.design_setting.info_color,
-            warning: project.design_setting.warning_color,
-            danger: project.design_setting.error_color
+            theming: {
+              navbarTheme: 'light'
+            }
           }
         }
       }
