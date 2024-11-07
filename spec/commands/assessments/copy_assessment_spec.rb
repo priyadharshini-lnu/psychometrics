@@ -133,10 +133,10 @@ describe Assessments::CopyAssessment do
     end
 
     it "doesn't copy empty skip_logic" do
-      og_skip_logic = assessment.questions[1].skip_logic
+      og_skip_logic = assessment.questions.order(:position)[1].skip_logic
       expect(og_skip_logic).to be_nil
 
-      co_skip_logic = copy.questions[1].skip_logic
+      co_skip_logic = copy.questions.order(:position)[1].skip_logic
       expect(co_skip_logic).to be_nil
     end
 
