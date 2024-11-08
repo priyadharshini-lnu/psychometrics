@@ -2,7 +2,7 @@
 
 class Api::V2::Administration::DashboardResource < Api::V2::Administration::BaseResource
   attributes :name, :enabled, :dataset_id, :report_id, :embed_token, :image_url, :image_name, :refresh_interval,
-             :capacity_id, :workspace_id
+             :capacity_id, :workspace_id, :dashboard_type, :project_path
 
   has_one :campaign
 
@@ -26,7 +26,9 @@ class Api::V2::Administration::DashboardResource < Api::V2::Administration::Base
   end
 
   def embed_token
-    PowerBi::GetEmbedToken.call!(dataset_id, report_id, { username: context[:user].email })
+    if @model.powerbi?
+      PowerBi::GetEmbedToken.call!(dataset_id, report_id, { username: context[:user].email })
+    end
   end
 
   def capacity_id

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  get 'oracle_dashboards', to: 'oracle_dashboards#show', as: :oracle_dashboards
+
   get '/oracle_proxy/*all' => 'oracle_proxy#all'
   options '/oracle_proxy/*all' => 'oracle_proxy#all'
   post '/oracle_proxy/*all' => 'oracle_proxy#all'
@@ -127,6 +129,8 @@ Rails.application.routes.draw do
   #
   namespace :administration do
     get 'user_availabilities', to: 'user_availabilities#index', as: :user_availabilities
+    get 'dashboards/:id/oracle_analytics_embed', to: 'dashboards#oracle_analytics_embed'
+
     get 'dashboards', to: 'dashboards#index', as: :dashboard
     get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
     post 'breadcrumbs', to: 'breadcrumbs#index'

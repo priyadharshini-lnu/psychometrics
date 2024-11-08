@@ -34,9 +34,12 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
   const {
     fetch, isRequestSuccessful, data,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })
+  const dashboard = data[0]
   const basePath = `/admin/projects/${projectId}/new_campaigns/${campaignId}/dashboard`
   const fetchSuccessful = isRequestSuccessful('fetch')
-  const dashboardPreviewAvailable = !_.isEmpty(data[0]?.reportId) && !_.isEmpty(data[0]?.datasetId)
+  const dashboardPreviewAvailable = dashboard?.dashboardType === 'powerbi'
+    ? (!_.isEmpty(dashboard?.reportId) && !_.isEmpty(dashboard?.datasetId))
+    : !_.isEmpty(dashboard?.projectPath)
   const dashboardInitialized = fetchSuccessful && data.length === 1
   const canManageDashboard = isSuperAdmin(currentUser)
   const loadingInProgress = !fetchSuccessful || campaignLoading
@@ -68,10 +71,9 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
     if (campaignPermissions.viewAccesssheetSettings) {
       accessiblePaths = [...accessiblePaths, `${basePath}/accesssheet_settings`]
     }
-
     if (accessiblePaths.includes(location.pathname)) { return }
     if (accessiblePaths[0]) navigate(accessiblePaths[0])
-  }, [data, fetchSuccessful, campaignPermissions, campaignLoading])
+  }, [data, fetchSuccessful, campaignPermissions, campaignLoading, loadingInProgress])
 
   if (loadingInProgress) return <Skeleton active />
 

@@ -1418,6 +1418,9 @@ en:
     create: Create
     dashboard:
       capacity_name: Capacity Name
+      dashboard_types:
+        oracle_analytics: Oracle Analytics
+        powerbi: PowerBi
       dashboards: Dashboards
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
@@ -1425,9 +1428,7 @@ en:
         embed_token_error_description: Please check if Dataset and Report Id in settings is correct.
         embed_token_error_title: Unable to generate Embed token.
       settings:
-        accesssheet_view_name: Accesssheet View Name
         capacity_id: Capacity Id
-        datasheet_view_name: Datasheet View Name
         details: Details
         refresh: Refresh
         workspace_id: Workspace id
@@ -1441,6 +1442,7 @@ en:
         dataset_id: Dataset Id
         enabled: Enabled
         image: Image
+        project_path: Project Path
         refresh_interval: Refresh Interval (minutes)
         report_id: Report Id
       image_upload_failed: Image upload failed.

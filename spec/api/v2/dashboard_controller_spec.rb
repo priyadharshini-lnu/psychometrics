@@ -26,6 +26,7 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
           data: {
             id: '770',
             attributes: {
+              dashboard_type: 'powerbi',
               name: 'New Dashboard',
               enabled: true,
               dataset_id: 'd_100',
@@ -71,6 +72,7 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
           data: {
             id: '770',
             attributes: {
+              dashboard_type: 'powerbi',
               name: 'New Dashboard',
               enabled: true,
               dataset_id: 'd_100',
@@ -118,6 +120,7 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
           type: 'dashboards',
           data: {
             attributes: {
+              dashboard_type: 'powerbi',
               name: 'New Dashboard',
               enabled: true,
               dataset_id: 'd_100',
@@ -137,7 +140,8 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
         let(:body) do
           jsonapi_resource_request(
             'dashboards',
-            { name: 'New Dashboard', enabled: true, dataset_id: 'd_100', report_id: 'r_100' },
+            { dashboard_type: 'powerbi', name: 'New Dashboard', enabled: true, dataset_id: 'd_100',
+              report_id: 'r_100' },
             { campaign: { id: campaign.id.to_s, type: 'campaigns' } }
           )
         end
@@ -175,6 +179,7 @@ describe Api::V2::Administration::DashboardsController, swagger_doc: 'v2/swagger
           data: {
             id: '770',
             attributes: {
+              dashboard_type: 'powerbi',
               name: 'New Dashboard',
               enabled: true,
               dataset_id: 'd_100',

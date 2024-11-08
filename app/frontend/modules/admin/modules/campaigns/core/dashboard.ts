@@ -13,6 +13,8 @@ export const DashboardTR = t.type({
   refreshInterval: t.union([t.number, t.undefined, t.null]),
   capacityId: t.union([t.undefined, t.null, t.string]),
   workspaceId: t.union([t.undefined, t.null, t.string]),
+  dashboardType: t.string,
+  projectPath: t.union([t.undefined, t.null, t.string]),
   campaign: t.union([
     t.type({
       id: t.string,

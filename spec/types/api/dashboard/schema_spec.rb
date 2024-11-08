@@ -6,7 +6,8 @@ RSpec.describe Api::V2::Dashboard::Schema do
   let(:valid_params) do
     jsonapi_resource_request(
       'dashboards',
-      { id: '1', name: 'New Dashboard', enabled: true, dataset_id: 'd_100', report_id: 'r_100' },
+      { id: '1', dashboard_type: 'powerbi', name: 'New Dashboard', enabled: true, dataset_id: 'd_100',
+        report_id: 'r_100' },
       { campaign: { id: '2', type: 'campaigns' } }
     )
   end

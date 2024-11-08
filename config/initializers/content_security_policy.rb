@@ -38,20 +38,25 @@ unless Rails.env.test?
 
     script_src = [
       :self, :unsafe_eval, :unsafe_inline, 'https://chatwoot.tte-work.com',
-      'https://svc.webspellchecker.net'
-    ]
+      'https://svc.webspellchecker.net', Settings.oac.base_embed_url
+    ].compact
 
     script_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
-    style_src = %i[
-      self unsafe_inline
-    ]
+    style_src = [
+      :self, :unsafe_inline, Settings.oac.base_embed_url
+    ].compact
     style_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
 
-    font_src = %i[
-      self data
-    ]
+    font_src = [
+      :self, :data, Settings.oac.base_embed_url
+    ].compact
     font_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
+
+    connect_src = [
+      :self, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
+      'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url
+    ].compact
 
     policy.default_src :self
     policy.font_src(*font_src)
@@ -61,10 +66,7 @@ unless Rails.env.test?
     policy.frame_src   '*'
     policy.script_src(*script_src)
     policy.style_src(*style_src)
-    policy.connect_src(
-      :self, 'https://chatwoot.tte-work.com', 'https://*.amazonaws.com',
-      'wss://*.amazonaws.com:8443'
-    )
+    policy.connect_src(*connect_src)
 
     if Rails.env.development?
       policy.script_src(*policy.script_src,
