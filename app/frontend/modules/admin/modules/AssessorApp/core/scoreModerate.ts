@@ -64,6 +64,7 @@ export interface State {
   userReports: null | UserReport[]
   mainReportId: null | number
   assessorResponses: {[id:number]: Result[]}
+  canModerateScore: boolean,
 }
 
 const defaultState: State = {
@@ -75,6 +76,7 @@ const defaultState: State = {
   userReports: null,
   mainReportId: null,
   loaded: false,
+  canModerateScore: false,
 }
 
 const FETCH_LEAD_ASSESSMENT = 'assessors/evaluating/FETCH_LEAD_ASSESSMENT'
@@ -86,6 +88,7 @@ export type FetchLeadAssessmentsType = ApiActionResponse<{
   lead_assessor_user_assessment_id: number
   lead_assessor_form: UserAssessment
   lead_assessor_result: Result
+  assessor_can_moderate_scores: boolean
 }>
 
 type FetchAssessorAssessmentsType = ApiActionResponse<{
@@ -151,6 +154,7 @@ const HANDLERS = {
     leadAssessorUserAssessmentId: response.lead_assessor_user_assessment_id,
     leadAssessorForm: response.lead_assessor_form,
     leadAssessorResult: response.lead_assessor_result,
+    canModerateScore: response.assessor_can_moderate_scores,
     loaded: true,
   }),
   [FETCH_ASSESSOR_ASSESSMENTS]: (state: State, { response }: FetchAssessorAssessmentsType) => ({
@@ -169,6 +173,7 @@ const HANDLERS = {
   }),
 }
 
+export const assessorCanModerateScore = state => state.canModerateScore
 export const getLeadAssessorForm = state => state.leadAssessorForm
 export const getLeadAssessorResult = state => state.leadAssessorResult
 export const getAssessorForm = (state, id) => state.assessorForms[id]

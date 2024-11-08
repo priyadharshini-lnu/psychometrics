@@ -92,7 +92,8 @@ const UserDetails: React.FC<Props> = (
                     {I18n.t('assessments.actions.moderate')}
                   </a>
                 </Button>
-                )}
+                )
+              }
             </Space>
           </Col>
         </Row>
