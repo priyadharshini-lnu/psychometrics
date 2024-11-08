@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1072,6 +1079,7 @@ CREATE TABLE public.campaign_factor_values (
 --
 -- Name: campaign_factor_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
+
 CREATE SEQUENCE public.campaign_factor_values_id_seq
     START WITH 1
     INCREMENT BY 1
@@ -1766,7 +1774,9 @@ CREATE TABLE public.dashboards (
     refresh_interval integer DEFAULT 15,
     image character varying,
     last_refreshed_at timestamp without time zone,
-    refresh_tried_at timestamp without time zone
+    refresh_tried_at timestamp without time zone,
+    dashboard_type integer DEFAULT 0 NOT NULL,
+    project_path character varying
 );
 
 
@@ -14336,9 +14346,9 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241101110602'),
-('20241023071718'),
 ('20241025070422'),
 ('20241025042720'),
+('20241023071718'),
 ('20241015071157'),
 ('20241015064129'),
 ('20241013183453'),
@@ -14346,6 +14356,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241010122532'),
 ('20241009075129'),
 ('20241008100312'),
+('20241007113728'),
 ('20241001103146'),
 ('20240920142940'),
 ('20240920083324'),
@@ -15051,3 +15062,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+
