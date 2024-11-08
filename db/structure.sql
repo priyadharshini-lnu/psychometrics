@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -1429,9 +1422,7 @@ ALTER SEQUENCE public.client_auditlog_export_settings_id_seq OWNED BY public.cli
 CREATE TABLE public.client_privacy_settings (
     id bigint NOT NULL,
     client_id bigint NOT NULL,
-    disable_data_processing boolean DEFAULT false,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    disable_data_processing boolean DEFAULT false
 );
 
 
@@ -3652,6 +3643,40 @@ CREATE SEQUENCE public.proctoring_sessions_id_seq
 --
 
 ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sessions.id;
+
+
+--
+-- Name: profile_field_values; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.profile_field_values (
+    id bigint NOT NULL,
+    numeric_value double precision,
+    string_value character varying,
+    user_profile_id bigint NOT NULL,
+    profile_field_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: profile_field_values_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.profile_field_values_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: profile_field_values_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.profile_field_values_id_seq OWNED BY public.profile_field_values.id;
 
 
 --
@@ -7242,6 +7267,13 @@ ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: profile_field_values id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values ALTER COLUMN id SET DEFAULT nextval('public.profile_field_values_id_seq'::regclass);
+
+
+--
 -- Name: profile_fields id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8567,6 +8599,14 @@ ALTER TABLE ONLY public.privacy_settings
 
 ALTER TABLE ONLY public.proctoring_sessions
     ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: profile_field_values profile_field_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values
+    ADD CONSTRAINT profile_field_values_pkey PRIMARY KEY (id);
 
 
 --
@@ -10800,6 +10840,20 @@ CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_
 
 
 --
+-- Name: index_profile_field_values_on_profile_field_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_field_values_on_profile_field_id ON public.profile_field_values USING btree (profile_field_id);
+
+
+--
+-- Name: index_profile_field_values_on_user_profile_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_profile_field_values_on_user_profile_id ON public.profile_field_values USING btree (user_profile_id);
+
+
+--
 -- Name: index_profile_fields_on_profile_setting_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12799,7 +12853,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id);
+    ADD CONSTRAINT fk_rails_4b5406d610 FOREIGN KEY (user_assessment_id) REFERENCES public.user_assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -13008,6 +13062,14 @@ ALTER TABLE ONLY public.webhook_subscriptions
 
 ALTER TABLE ONLY public.campaign_factor_values
     ADD CONSTRAINT fk_rails_6a0d5562d2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: profile_field_values fk_rails_6bc6ed19b8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values
+    ADD CONSTRAINT fk_rails_6bc6ed19b8 FOREIGN KEY (profile_field_id) REFERENCES public.profile_fields(id) ON DELETE CASCADE;
 
 
 --
@@ -13987,6 +14049,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 
 --
+-- Name: profile_field_values fk_rails_da47a0e23d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.profile_field_values
+    ADD CONSTRAINT fk_rails_da47a0e23d FOREIGN KEY (user_profile_id) REFERENCES public.user_profiles(id) ON DELETE CASCADE;
+
+
+--
 -- Name: user_availability_days fk_rails_dc0c48bc79; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14346,6 +14416,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20241101110602'),
+('20241030111222'),
 ('20241025070422'),
 ('20241025042720'),
 ('20241023071718'),
