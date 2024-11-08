@@ -66,6 +66,7 @@ export default defineConfig({
         const path = id.split('?').slice(0, 1).join('')
         if (path.endsWith('/ant.less')) { return false }
         if (path.endsWith('/globals.less')) { return false }
+        if (path.endsWith('/styles/global.less')) { return false }
         if (path.endsWith('/styles/common.less')) { return false }
         if (path.endsWith('/styles/utils.less')) { return false }
 
