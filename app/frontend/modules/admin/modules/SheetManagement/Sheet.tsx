@@ -15,7 +15,6 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 import { FixedType } from 'rc-table/lib/interface'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
-import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
 import {
   DrawerModes,
   ParentResourceType,
@@ -121,7 +120,7 @@ const SheetComponent: FC<Props> = ({
           }
         }
         return {
-          title: toReadableString(filteredColumn.name || ''),
+          title: filteredColumn.name || '',
           dataIndex: filteredColumn.name || '',
         }
       }),
