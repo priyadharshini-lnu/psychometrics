@@ -172,6 +172,7 @@ const EvaluationComponent = ({
   if (!loaded || error) { return null }
   return (
     <>
+      <title>{`${I18n.t('threesixty.evaluator')} ${I18n.t('threesixty.yourself')}`}</title>
       <GlintPageHeader>
         <Col flex="auto" className="ta-e">
           <Space>

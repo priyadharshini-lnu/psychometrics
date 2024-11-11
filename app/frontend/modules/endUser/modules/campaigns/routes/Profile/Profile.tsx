@@ -115,6 +115,7 @@ function ProfileComponent ({
 
   return (
     <>
+      <title>{`${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('campaign.details')}`}</title>
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
         <div className={styles.container}>

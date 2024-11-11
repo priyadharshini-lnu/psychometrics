@@ -14,7 +14,6 @@ import store from '~/modules/endUser/store'
 import { ResourcesTabs } from '~/modules/endUser/modules/campaigns/components/ResourcesTabs'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 import useAvoidMultipleEvaluation from '~/hooks/useAvoidMultipleEvaluation'
-
 import {
   fetchAssessment, validateSession, setInvalidated,
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
@@ -92,6 +91,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const { isMobile } = useContext(MediaQueryContext)
   const navigate = useNavigate()
   let progressBarProps:Pick<Readonly<ProgressProps>, 'type' | 'style'> = { type: 'line', style: { width: '200px' } }
+
   if (isMobile) { progressBarProps = { type: 'circle', style: { width: '50px' } } }
 
   const needsProctoring = proctoringEnabled && !prework && !isProctored()
@@ -115,6 +115,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   return (
 
     <>
+      <title>{ assessment.name || '' }</title>
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">

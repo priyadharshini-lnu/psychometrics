@@ -144,6 +144,7 @@ export const VideoCheck: React.FC<Props> = ({ nextStep }) => {
 
   return (
     <>
+      <title>{`${I18n.t('checking_wizard.video_check.title')}`}</title>
       <Col className={styles.container} lg={16} xs={24} sm={24}>
         <Card className={styles.card}>
           <h4>{I18n.t('checking_wizard.video_check.title')}</h4>

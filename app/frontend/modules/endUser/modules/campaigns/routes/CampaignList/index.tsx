@@ -9,7 +9,6 @@ import {
 import dayjs from '~/utils/dayjs'
 import { isRequestInProgress } from '~/core/request'
 import { Flash } from '~/components/Flash'
-
 import { ProfileCompletion } from '~/modules/endUser/modules/campaigns/components/ProfileCompletion'
 import { ProfileCardTitle } from '~/modules/endUser/modules/campaigns/components/ProfileCardTitle'
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -72,6 +71,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
 
   return (
     <>
+      <title>{`${I18n.t('campaign.dashboard_menu.home')}`}</title>
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
           <Space>
