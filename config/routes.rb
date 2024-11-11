@@ -537,6 +537,7 @@ Rails.application.routes.draw do
       member do
         get :export_threesixty_scores
         get :export_results
+        post :import_results
         get :export_completion_status
         delete :reset
         delete :reset_nominations

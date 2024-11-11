@@ -11,6 +11,8 @@ const RESCORE_ASSESSMENT = 'threeSixty/RESCORE_ASSESSMENT'
 const REGENERATE_REPORTS = 'threeSixty/REGENERATE_REPORTS'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
 const EXPORT_COMPLETION_STATUSES = 'threeSixty/EXPORT_COMPLETION_STATUSES'
+const EXPORT_RAW_RESULTS = 'threeSixty/EXPORT_RAW_RESULT'
+export const IMPORT_RAW_RESULTS = 'threeSixty/IMPORT_RAW_RESULTS'
 
 export const reset = (campaignId: number, removeLicenceUsage: boolean) => ({
   type: RESET,
@@ -54,11 +56,23 @@ export const exportCompletionStatuses = (campaignId: number) => ({
   },
 })
 
-export const exportRawResults = (campaignId: number) => ({
-  type: EXPORT_COMPLETION_STATUSES,
+export const exportRawResults = (campaignId: number, withLabels = false) => ({
+  type: EXPORT_RAW_RESULTS,
   request: {
     method: 'get',
     url: `/administration/threesixty_campaigns/${campaignId}/export_results`,
+    body: { withLabels },
+  },
+})
+
+export const importRawResults = (campaignId: number, body: Body) => ({
+  type: IMPORT_RAW_RESULTS,
+  request: {
+    method: 'post',
+    url: `/administration/threesixty_campaigns/${campaignId}/import_results`,
+    body,
+    loader: true,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

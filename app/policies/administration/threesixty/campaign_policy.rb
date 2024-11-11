@@ -88,6 +88,12 @@ module Administration::Threesixty
       has_permission?(:results, :raw_responses)
     end
 
+    def import_results?
+      @user.is?(:superadmin) || @user.has_permission?(
+        :results, :reset_responses, project_id: project_id, campaign_id: campaign_id
+      )
+    end
+
     def export_threesixty_scores?
       has_permission?(:results, :scores)
     end
