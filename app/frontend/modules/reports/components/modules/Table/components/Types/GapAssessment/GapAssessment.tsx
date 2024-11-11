@@ -4,7 +4,7 @@ import { Empty } from 'antd'
 import FactorType from './types/Factor'
 import QuestionType from './types/Question'
 
-import { PropertiesModel, GapType } from '~/modules/reports/interfaces/tables/Gap'
+import { PropertiesModel, GapType, TableStyleType } from '~/modules/reports/interfaces/tables/Gap'
 
 import AppStore from '~/modules/reports/store/AppStore'
 
@@ -17,7 +17,7 @@ export const GapAssessment: FC<Props> = ({ model }) => {
   const {
     props: {
       sourceType, filter, factorIds, questionsChoices, gapType = GapType.ALL, hideValues = false,
-      noOfItems, gapCutoff, precision, allFactors,
+      noOfItems, gapCutoff, precision, allFactors, tableStyle = TableStyleType.UNSTYLED,
     },
     assessment_id,
   } = model
@@ -45,6 +45,7 @@ export const GapAssessment: FC<Props> = ({ model }) => {
           assessment_id={assessment_id}
           gapType={gapType}
           filters={[firstFilter, secondFilter]}
+          tableStyle={tableStyle}
           factorIds={factorIds}
           hideValues={hideValues}
           noOfItems={noOfItems}
@@ -58,6 +59,7 @@ export const GapAssessment: FC<Props> = ({ model }) => {
           assessment_id={assessment_id}
           gapType={gapType}
           filters={[firstFilter, secondFilter]}
+          tableStyle={tableStyle}
           questionsChoices={questionsChoices}
           hideValues={hideValues}
           noOfItems={noOfItems}
