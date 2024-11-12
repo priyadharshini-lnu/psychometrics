@@ -1042,6 +1042,7 @@ en:
       description: Please fill all fields to crete a new password
       submit: Submit
       title: Renew your password
+    lighthouse_logo_alt_text: Lighthouse logo
     login:
       description: Please login with your personal account information
       forgot_password: Forgot Password?
@@ -2128,6 +2129,7 @@ en:
     views_container:
       aria_grid_view: Grid view
       aria_list_view: List view
+      aria_selected: Selected
   idp:
     actions: Actions
     board: Board
@@ -2436,6 +2438,8 @@ en:
     add_field: Add Field
     add_photo: Add Photo
     age: Age
+    aria_label_decrease_age: Decrease Age by 1
+    aria_label_increase_age: Increase Age by 1
     change_password: Change Password
     change_photo: Change Photo
     email: Email

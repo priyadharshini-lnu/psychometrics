@@ -3,9 +3,9 @@ import _ from 'lodash'
 import {
   Typography, Form, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
 } from 'antd'
-import { TeamOutlined, PlusOutlined, CloseOutlined } from '@ant-design/icons'
-
 import { useParams } from 'react-router-dom'
+import { TeamOutlined, PlusOutlined, CloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+
 import userPresenter from '~/presenters/user'
 import { relationshipWithoutSelf } from '~/core/relationship'
 import styles from './NominationForm.less'

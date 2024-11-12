@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Col, Button } from 'antd'
-import { RightOutlined, SafetyCertificateOutlined } from '@ant-design/icons'
+import { RightOutlined, SafetyCertificateOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import styles from '../CardStyles.less'
 
 interface Props {

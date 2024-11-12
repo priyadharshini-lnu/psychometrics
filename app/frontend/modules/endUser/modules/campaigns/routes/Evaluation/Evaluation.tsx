@@ -14,11 +14,11 @@ import {
   Modal,
   Watermark,
 } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
 import qs from 'qs'
 
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import userPresenter from '~/presenters/user'
 import statusPresenter from '~/presenters/status'
 import PassAssessment from '~/modules/survey/containers/AssessmentContainer'

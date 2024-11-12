@@ -112,6 +112,10 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     } return I18n.t('campaign.timer.notification_minutes', { minutes })
   }
 
+  const handleBackToAssessmentList = () => {
+    window.location.href = `/campaigns/${campaignId}`
+  }
+
   return (
 
     <>
@@ -178,19 +182,25 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
             <>
               <PageHeader
                 className={styles.campaignHeader}
-                onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
-                backIcon={enableBackButton
-                && (
-                <Button size="small" type="text" ghost aria-label={I18n.t('frontend.aria.back_to_tasks')}>
-                  <DirectionalNavigateBackIcon className={styles.backIcon} />
-                </Button>
-                )
-              }
                 ghost={false}
                 title={(
-                  <div className={styles.campaignDropdown}>
-                    {assessment.name}
-                  </div>
+                  <Space>
+                    {enableBackButton
+                      && (
+                      <Button
+                        onClick={handleBackToAssessmentList}
+                        size="small"
+                        type="text"
+                        ghost
+                        aria-label={I18n.t('frontend.aria.back_to_tasks')}
+                      >
+                        <DirectionalNavigateBackIcon className={styles.backIcon} />
+                      </Button>
+                      )}
+                    <h1 className={styles.campaignDropdown}>
+                      {assessment.name}
+                    </h1>
+                  </Space>
               )}
                 extra={type !== 'preview_block' && enableProgress && started && (
                 <Progress

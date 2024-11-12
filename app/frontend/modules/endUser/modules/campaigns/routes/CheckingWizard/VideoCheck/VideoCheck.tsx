@@ -5,10 +5,10 @@ import React, {
 import {
   Button, Card, Col, Space,
 } from 'antd'
-import { CheckOutlined, RightOutlined, RedoOutlined } from '@ant-design/icons'
 import { DirectUpload } from '@rails/activestorage'
 import axios from 'axios'
 import * as faceapi from 'face-api.js'
+import { CheckOutlined, RightOutlined, RedoOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { BROWSER_NAME } from '~/utils/uaParser'
 import { InitVideo } from './InitVideo'
 import { Progress } from '../Progress'

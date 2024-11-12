@@ -2,7 +2,7 @@ import { ConfigProvider } from 'antd'
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
 import { Locale } from 'antd/lib/locale'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { DefaultAntThemeWrapper } from '~/glint'
+import '~/styles/common.less'
 
 import { AuthLayout } from './Layout'
 
@@ -15,15 +15,13 @@ export const App = () => {
   const direction = I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'
 
   return (
-    <DefaultAntThemeWrapper>
-      <ConfigProvider locale={antdLocale as Locale} direction={direction}>
-        <Router>
-          <StyleProvider transformers={[px2rem]}>
-            <AuthLayout />
-          </StyleProvider>
-        </Router>
-      </ConfigProvider>
-    </DefaultAntThemeWrapper>
+    <ConfigProvider locale={antdLocale as Locale} direction={direction}>
+      <Router>
+        <StyleProvider transformers={[px2rem]}>
+          <AuthLayout />
+        </StyleProvider>
+      </Router>
+    </ConfigProvider>
   )
 }
 

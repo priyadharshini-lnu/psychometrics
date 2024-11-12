@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, App, Layout, InputNumber, Space, Progress, Button,
+  Col, Row, Typography, Form, Upload, Input, Select, Layout, InputNumber,
+  Space, Progress, Button, message,
 } from 'antd'
-import { PlusOutlined, EditOutlined } from '@ant-design/icons'
+import {
+  PlusOutlined, EditOutlined, UpOutlined, DownOutlined,
+} from '@ant-design/icons'
 import cs from 'classnames'
 import _ from 'lodash'
 import { RootState } from '~/modules/endUser/core/rootReducers'
@@ -55,7 +58,15 @@ function ProfileComponent ({
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
   const [errors, setErrors] = useState <Errors>({})
-  const { message } = App.useApp()
+  const messageContainerRef = useRef<HTMLDivElement>(null)
+
+  useLayoutEffect(() => {
+    message.config({ getContainer: () => messageContainerRef.current || document.body })
+
+    return () => {
+      message.destroy()
+    }
+  }, [])
 
   const uploadFile = (canvas) => {
     if (canvas) {
@@ -113,6 +124,12 @@ function ProfileComponent ({
     </Col>
   )
 
+  const languageOptions = locales.map(locale => ({
+    key: locale,
+    label: <span lang={locale}>{I18n.t(`languages_localized.${locale}`)}</span>,
+    value: locale,
+  }))
+
   return (
     <>
       <title>{`${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('campaign.details')}`}</title>
@@ -134,7 +151,7 @@ function ProfileComponent ({
           )}
           <Row gutter={[32, 32]}>
             <Col span={24}>
-              <Title level={3}>{I18n.t('profile.title')}</Title>
+              <Title className={styles.profileTitle} level={1}>{I18n.t('profile.title')}</Title>
               <Row gutter={64}>
                 {enabledFields.photo && (
                   <Col xs={24} sm={24} md={12} lg={8}>
@@ -184,7 +201,7 @@ function ProfileComponent ({
                           validateStatus={errors?.first_name ? 'error' : ''}
                           required
                         >
-                          <Input size="large" disabled={lockedFields.first_name} />
+                          <Input autoComplete="tte-profile-firstname" size="large" disabled={lockedFields.first_name} />
                         </Form.Item>
                       </Col>
                       <Col xs={24} sm={24} md={12}>
@@ -196,12 +213,12 @@ function ProfileComponent ({
                           validateStatus={errors?.last_name ? 'error' : ''}
                           required
                         >
-                          <Input size="large" disabled={lockedFields.last_name} />
+                          <Input autoComplete="tte-profile-lastname" size="large" disabled={lockedFields.last_name} />
                         </Form.Item>
                       </Col>
                     </Row>
                     <Form.Item name="email" label={I18n.t('profile.email')}>
-                      <Input size="large" disabled />
+                      <Input size="large" disabled autoComplete="tte-profile-email" />
                     </Form.Item>
                     <Row gutter={24}>
                       {enabledFields.age && (
@@ -218,6 +235,10 @@ function ProfileComponent ({
                               className={styles.numberInput}
                               size="large"
                               disabled={lockedFields.age}
+                              controls={{
+                                upIcon: <UpOutlined aria-label="Increase Age by 1" />,
+                                downIcon: <DownOutlined aria-label="Decrease Age by 1" />,
+                              }}
                             />
                           </Form.Item>
                         </Col>
@@ -248,13 +269,7 @@ function ProfileComponent ({
                       validateStatus={errors?.locale ? 'error' : ''}
                       required={requiredFields.locale}
                     >
-                      <Select size="large" disabled={lockedFields.locale}>
-                        {_.map(locales, locale => (
-                          <Select.Option key={locale} value={locale}>
-                            {I18n.t(`languages_localized.${locale}`)}
-                          </Select.Option>
-                        ))}
-                      </Select>
+                      <Select options={languageOptions} size="large" disabled={lockedFields.locale} />
                     </Form.Item>
                     <Row gutter={24} className={styles.customFields}>
                       {fields.map(field => isAvailable(field) && (
@@ -298,6 +313,7 @@ function ProfileComponent ({
             </Col>
           </Row>
         </div>
+        <div aria-live="polite" ref={messageContainerRef} />
       </Content>
     </>
 

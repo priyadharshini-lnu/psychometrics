@@ -3,9 +3,9 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Layout, Skeleton, Button, Tooltip,
 } from 'antd'
-import { DownloadOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
+import { DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { MediaQueryContext } from '~/glint'
 import bg from './media/Background2.png'
