@@ -154,7 +154,8 @@ module Campaigns
 
       def create_simulation_assessment(user_assessment, existing_result, campaign_assessment)
         existing_simulation_user_assessment = existing_result&.simulation_user_assessment
-        content_variation_id = existing_simulation_user_assessment&.content_variation_id || campaign_assessment&.external_config&.dig('content_variation_id')  # rubocop:disable Layout/LineLength
+        content_variation_id = existing_simulation_user_assessment&.content_variation_id ||
+                               default_content_variation_id(user_assessment, campaign_assessment)
 
         user_assessment.create_simulation_user_assessment(
           participant_id: existing_simulation_user_assessment&.participant_id,
@@ -173,6 +174,13 @@ module Campaigns
 
       def generate_report_pdf(user_report)
         ::UserReports::GenerateAndSavePdfJob.perform_later(user_report, user, options[:pdf_options] || {})
+      end
+
+      def default_content_variation_id(user_assessment, campaign_assessment)
+        simulation_settings = user_assessment.assessment.simulation_settings
+
+        campaign_assessment&.external_config&.dig('content_variation_id') ||
+          simulation_settings[:default_content_variation_id]
       end
     end
   end

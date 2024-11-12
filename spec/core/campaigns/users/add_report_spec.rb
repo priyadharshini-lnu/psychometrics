@@ -102,6 +102,18 @@ describe Campaigns::Users::AddReport do
     )
   end
 
+  it 'set default content_variation_id if assessment is of type simulation and campaign assessment nil' do
+    assessment = create(:assessment, :simulation, external_settings: { assessment_id: 'golf-content-variations' })
+
+    report = create(:report, assessments: [assessment])
+    described_class.call!(campaign_user, report, assessments: report.assessments)
+
+    expect(assessment.simulation_user_assessments.exists?).to eq(true)
+    expect(assessment.simulation_user_assessments.first.content_variation_id).to eq(
+      'starWars'
+    )
+  end
+
   it 'create saville_user_assessment if assessment is of type saville' do
     assessment = create(:assessment, :saville)
     report = create(:report, assessments: [assessment])
