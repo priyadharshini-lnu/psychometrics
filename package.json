@@ -55,8 +55,6 @@
     "@tensorflow/tfjs-core": "^4.20.0",
     "@thetalententerprise/interactive-assessments": "1.9.11",
     "@thetalententerprise/jsonapi-react": "0.0.31",
-    "@storybook/builder-vite": "^7.0.12",
-    "@thetalententerprise/interactive-assessments": "1.9.4",
     "@types/actioncable": "^5.2.11",
     "@types/lodash": "^4.14.184",
     "@types/lodash.set": "^4.3.9",
