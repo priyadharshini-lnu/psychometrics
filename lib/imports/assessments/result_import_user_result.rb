@@ -192,7 +192,8 @@ module Imports
           return
         end
 
-        user_assessment.users_result || user_assessment.users_result.new
+        user_assessment.users_result ||= UsersResult.new
+        user_assessment.users_result
       end
 
       def find_user_assessments(subject, evaluator)
