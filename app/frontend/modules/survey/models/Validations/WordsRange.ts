@@ -3,7 +3,7 @@ import wordsCount from 'words-count'
 import { Question } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 
 import { I18n } from '~/modules/survey/store/StoreWatchman'
-import { getAnswersByLength, getValidationKey } from '~/modules/survey/utils/question'
+import { getAnswersByLength, getValidationKey, isRichTextTextEntryQuestion } from '~/modules/survey/utils/question'
 
 class WordsRange {
   minLength: number
@@ -24,9 +24,13 @@ class WordsRange {
     this.question = question
   }
 
-  validate (answers: { message: string }) {
-    const shortestAnswerLength = wordsCount(getAnswersByLength(this.question, answers).shortest)
-    const longestAnswerLength = wordsCount(getAnswersByLength(this.question, answers).longest)
+  validate (answers: { message: string }, richTextEditorAnswerWordCount) {
+    let shortestAnswerLength = richTextEditorAnswerWordCount
+    let longestAnswerLength = richTextEditorAnswerWordCount
+    if (!isRichTextTextEntryQuestion(this.question)) {
+      shortestAnswerLength = wordsCount(getAnswersByLength(this.question, answers).shortest)
+      longestAnswerLength = wordsCount(getAnswersByLength(this.question, answers).longest)
+    }
 
     if (shortestAnswerLength < this.minLength || longestAnswerLength > this.maxLength) {
       return {
