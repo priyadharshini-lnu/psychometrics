@@ -132,7 +132,11 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   return (
     <Modal
       width="100%"
-      title={<Typography.Title level={3} style={{ margin: 0 }}>Add 360 campaign</Typography.Title>}
+      title={(
+        <Typography.Title level={3} style={{ margin: 0 }}>
+          {I18n.t('administration.campaigns.menus.add_multi_rater_campaign')}
+        </Typography.Title>
+      )}
       open
       onCancel={handleClose}
       footer={null}
