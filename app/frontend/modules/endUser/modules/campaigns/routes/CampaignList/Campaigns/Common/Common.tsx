@@ -13,6 +13,8 @@ export const Common = ({
   campaign, fetchCampaigns, campaignDisabled, scheduledForFuture,
 }) => {
   const navigate = useNavigate()
+  const titleId = `campaign-card-title-${campaign.id}`
+
   const handleClick = () => {
     navigate(`/campaigns/${campaign.id}`)
   }
@@ -24,18 +26,19 @@ export const Common = ({
   return (
     <Col lg={12} xs={24} sm={24} className={styles['campaign-container-card']}>
       <DetailsCard
-        title={<TruncatedTitle title={campaign.name} />}
+        title={<TruncatedTitle id={titleId} title={campaign.name} />}
+        titleId={titleId}
         status={<StatusText taskStatus={campaign.progressStatus} />}
         subtitle={
           <StartsInTimer campaign={campaign} fetchCampaigns={fetchCampaigns} scheduledForFuture={scheduledForFuture} />
         }
         description={campaign.description && <ViewMoreText maxTextLen={200} text={campaign.description} />}
         buttonText={I18n.t('campaign.dashboard_menu.tasks')}
-        buttonAriaDescription={I18n.t('frontend.aria.campaign_name_description', { campaignName: campaign.name })}
+        buttonId={`campaign-card-btn-${campaign.id}`}
         onButtonClick={handleClick}
         actionDisabled={campaignDisabled}
         secondaryBtnText={campaign.userReportsAvailable && I18n.t('campaign.insights_reports')}
-        secondaryBtnAriaDescription={I18n.t('frontend.aria.campaign_name_description', { campaignName: campaign.name })}
+        secondaryBtnId={`campaign-card-sec-btn-${campaign.id}`}
         onSecondaryBtnClick={handleSecondaryBtnClick}
       />
     </Col>

@@ -1,15 +1,15 @@
-import { FC } from 'react'
+import { FC, useContext } from 'react'
 
 import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import _ from 'lodash'
 import {
-  Layout, Row, Col, Alert, Button, Result, Typography, Space, App,
+  Row, Col, Alert, Button, Result, Typography, Space, App,
 } from 'antd'
+import cs from 'classnames'
 import {
   InfoCircleOutlined,
   PlayCircleOutlined, ClockCircleOutlined, CheckCircleOutlined, ReloadOutlined,
-} from '@ant-design/icons'
-import cs from 'classnames'
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
 
 import { STATUSES } from '~/constants/campaign'
@@ -25,7 +25,7 @@ import { acceptPolicy } from '~/modules/endUser/modules/campaigns/core/project'
 
 import { SafeHTML } from '~/components/SafeHTML'
 import { isProctored } from '~/utils/isProctored'
-import { ProgressStatus, DirectionalArrowIcon } from '~/glint'
+import { ProgressStatus, DirectionalArrowIcon, MediaQueryContext } from '~/glint'
 import { CampaignPageHeader } from './CampaignPageHeader'
 import { AssessmentsContainer } from './AssessmentsContainer'
 import { InstructionsPanel } from './InstructionsPanel'
@@ -56,9 +56,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type CommonComponentProps = PropsFromRedux
 
 const { Title } = Typography
-const { Content } = Layout
 const { I18n } = window
-
 
 const CommonComponent: FC<CommonComponentProps> = ({
   campaign,
@@ -69,6 +67,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   resetPracticeCampaign,
 }) => {
   const { modal, message } = App.useApp()
+  const { isMobile } = useContext(MediaQueryContext)
   const {
     isTimedCampaign,
     fixedTimed,
@@ -197,7 +196,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
   }
 
   const statusElement = (
-    <Row gutter={[64, 0]}>
+    <Row gutter={[isMobile ? 32 : 64, 0]}>
       <Col span={8}>
         <ProgressStatus
           theme="light"
@@ -230,7 +229,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
       {asyncLoading && <PageContentSkeleton />}
       {!asyncLoading
         && (
-          <Content>
+          <div>
             <CampaignPageHeader extra={statusElement} activeCampaignId={campaign.id} />
             <Row>
               <Col span={24}>
@@ -351,7 +350,7 @@ const CommonComponent: FC<CommonComponentProps> = ({
                 </div>
               </Col>
             </Row>
-          </Content>
+          </div>
         )
       }
     </>
