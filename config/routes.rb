@@ -547,6 +547,7 @@ Rails.application.routes.draw do
         delete :remove_user
         post :rescore_assessment
         post :regenerate_reports
+        post :bulk_download
       end
     end
 

@@ -1214,6 +1214,7 @@ en:
       notification_minutes: you have %{minutes} minutes left
   campaign_assessment:
     actions:
+      bulk_download: Bulk Download
       export_completion_status: Export Completion Status
       export_external: External
       export_normed: Normed Factor Scores
@@ -2211,6 +2212,7 @@ en:
     placeholder: Select a Idp Template
   jobs:
     threesixty:
+      bulk_downloads: Bulk Download job was scheduled successfully
       export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
       export_raw_results_scheduled: Raw Results export job was scheduled successfully
       export_scores_scheduled: Scores export job was scheduled successfully

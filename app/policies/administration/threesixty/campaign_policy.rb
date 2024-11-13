@@ -78,6 +78,10 @@ module Administration::Threesixty
       has_permission?(:results, :regenerate_report)
     end
 
+    def bulk_download?
+      has_permission?(:results, :bulk_download)
+    end
+
     alias bulk_regenerate_reports? regenerate_reports?
 
     def export_completion_status?

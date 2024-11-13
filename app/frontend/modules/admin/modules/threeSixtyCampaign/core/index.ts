@@ -9,6 +9,7 @@ const RESET = 'threeSixty/RESET'
 const RESET_NOMINATIONS = 'threeSixty/RESET_NOMINATIONS'
 const RESCORE_ASSESSMENT = 'threeSixty/RESCORE_ASSESSMENT'
 const REGENERATE_REPORTS = 'threeSixty/REGENERATE_REPORTS'
+const BULK_DOWNLOADS = 'threeSixty/BULK_DOWNLOADS'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
 const EXPORT_COMPLETION_STATUSES = 'threeSixty/EXPORT_COMPLETION_STATUSES'
 
@@ -42,6 +43,14 @@ export const regenerateReports = (campaignId: number) => ({
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/regenerate_reports`,
+  },
+})
+
+export const bulkDownloads = (campaignId: number) => ({
+  type: BULK_DOWNLOADS,
+  request: {
+    method: 'post',
+    url: `/administration/threesixty_campaigns/${campaignId}/bulk_download`,
   },
 })
 

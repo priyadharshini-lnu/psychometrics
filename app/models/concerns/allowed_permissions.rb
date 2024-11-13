@@ -61,6 +61,7 @@ module AllowedPermissions
       external_score_import
       report_file_upload
       normalize_factor_scores
+      bulk_download
     ],
     'assessors' => %w[view manage],
     'registration_codes' => %w[view manage],
