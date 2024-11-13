@@ -8,11 +8,20 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 const getCustomMenuProps = ({
   campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation,
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
-  handleExportThreeSixtyScores,
+  handleExportThreeSixtyScores, openModal,
 }) => {
   const handleMenuClick = ({ key }) => {
+    if (key === 'export_raw_labels') {
+      return handleExportRawResults(true)
+    }
+    if (key === 'export_raw') {
+      return handleExportRawResults(false)
+    }
     if (key === 'export_completion_status') {
       return onExport()
+    }
+    if (key === 'import_raw') {
+      return openModal('ImportRawModal', { campaignId })
     }
     if (key === 'reset_participant') {
       return resetCampaignWithConfirmation(campaignId)
@@ -26,18 +35,19 @@ const getCustomMenuProps = ({
     if (key === 'regenerate_reports') {
       return regenerateReports(campaignId)
     }
-    if (key === 'export_result') {
-      return handleExportRawResults(campaignId)
-    }
     if (key === 'export_360_scores') {
       return handleExportThreeSixtyScores(campaignId)
     }
   }
 
-  const menuItems = [
+  const exportGroupItems = [
     permissions.exportResults && {
-      key: 'export_result',
-      label: I18n.t('campaign_assessment.actions.export_result'),
+      key: 'export_raw_labels',
+      label: I18n.t('campaign_assessment.actions.export_raw_labels'),
+    },
+    permissions.exportResults && {
+      key: 'export_raw',
+      label: I18n.t('campaign_assessment.actions.export_raw_without_labels'),
     },
     permissions.exportCompletionStatus && {
       key: 'export_completion_status',
@@ -46,6 +56,26 @@ const getCustomMenuProps = ({
     permissions.exportThreesixtyScores && {
       key: 'export_360_scores',
       label: I18n.t('campaign_assessment.actions.export_scores'),
+    },
+  ]
+
+  const importGroupItems = [
+    permissions.importResults && { key: 'import_raw', label: I18n.t('campaign_assessment.actions.import_raw') },
+  ]
+
+
+  const menuItems = [
+    {
+      type: 'group',
+      key: 'export',
+      label: I18n.t('common.actions.export'),
+      children: exportGroupItems,
+    },
+    importGroupItems.length && {
+      type: 'group',
+      key: 'import',
+      label: I18n.t('common.actions.import'),
+      children: importGroupItems,
     },
     { type: 'divider' },
     permissions.resetAllParticipants && {
@@ -134,8 +164,8 @@ export default function ToolsDropdown ({
     })
   }
 
-  const handleExportRawResults = () => {
-    exportRawResults(campaignId).then(() => {
+  const handleExportRawResults = (withLabels) => {
+    exportRawResults(campaignId, withLabels).then(() => {
       message.success(I18n.t('jobs.threesixty.export_raw_results_scheduled'))
     })
   }

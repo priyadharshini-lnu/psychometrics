@@ -80,16 +80,23 @@ module Imports
           next unless user_result
 
           status = I18n.t('activerecord.attributes.users_result.statuses').key(data['status'])
+          started_at = parse_date(data['started_at'], index)
+          completed_at = parse_date(data['completed_at'], index)
+
+          validate_dates_by_status(status, started_at, completed_at, index)
+
+          next if errors.present?
+
           completion_reason = I18n.t('activerecord.attributes.users_result.completion_reasons').
                               key(data['completion_reason'])
 
           norm_data = parse_norm_data(data['norm'], user_result.assessment_id)
           user_result.user_assessment.update!(
-            completed_at: parse_date(data['completed_at'], index),
+            completed_at: completed_at,
             norm_id: norm_data[:id],
             status: status,
             completion_reason: completion_reason,
-            started_at: parse_date(data['started_at'], index)
+            started_at: started_at
           )
 
           parsed_questions = {}
@@ -143,7 +150,7 @@ module Imports
         case File.extname(file.filename.to_s)
           when '.csv' then Roo::CSV.new(file.url, csv_options: { converters: [:numeric] })
           when '.xlsx' then ::Roo::Excelx.new(file.url)
-          else raise t('administration.imports.errors.unknown_type', filename: file.url)
+          else raise I18n.t('administration.imports.errors.unknown_type', filename: file.url)
         end
       end
       # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
@@ -185,7 +192,8 @@ module Imports
           return
         end
 
-        user_assessment.users_result || user_assessment.users_result.new
+        user_assessment.users_result ||= UsersResult.new
+        user_assessment.users_result
       end
 
       def find_user_assessments(subject, evaluator)
@@ -219,6 +227,31 @@ module Imports
       rescue StandardError
         errors.add(:base, I18n.t('administration.imports.errors.result.error',
                                  row: index + SKIP_ROWS, error: "Invalid Date :#{date}"))
+      end
+
+      def validate_dates_by_status(status, started_at, completed_at, index) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+        case status
+          when :not_started
+            date_error(:dates_should_be_empty, index) if started_at.present? || completed_at.present?
+          when :in_progress
+            date_error(:started_at_required, index) if started_at.blank?
+            date_error(:completed_at_should_be_empty, index) if completed_at.present?
+          when :completed
+            if started_at.blank? || completed_at.blank?
+              date_error(:both_dates_required, index)
+            elsif completed_at <= started_at
+              date_error(:completed_at_should_be_after_started_at, index)
+            end
+        end
+
+        [started_at, completed_at].each do |date|
+          date_error(:dates_not_in_future, index) if date.present? && date > DateTime.current
+        end
+      end
+
+      def date_error(error_key, index)
+        error = I18n.t("administration.imports.errors.result.date_errors.#{error_key}")
+        errors.add(:base, I18n.t('administration.imports.errors.result.invalid_date', row: index + SKIP_ROWS, error:))
       end
     end
   end

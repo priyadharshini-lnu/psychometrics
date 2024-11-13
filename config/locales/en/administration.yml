@@ -1644,9 +1644,25 @@ en:
         form:
           import: Import
       errors:
+        invalid_format: Invalid File format
+        result:
+          date_errors:
+            both_dates_required: Both started_at and completed_at are required for completed status
+            completed_at_should_be_after_started_at: completed_at must be after started_at for completed status
+            completed_at_should_be_empty: completed_at should be empty for in_progress status
+            dates_not_in_future: Dates should not be in the future
+            dates_should_be_empty: Dates should be empty for not_started status
+            started_at_required: Valid started_at is required for in_progress status
+          invalid_assign: "[Row %{row}] Can't find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
+          invalid_date: "[Row %{row}] %{error}"
+          user:
+            record_not_found: Can't find existing user with email %{email}.
+          user_assessment:
+            record_not_found: Can't find record of assessment with id %{assessment_id} assigned to user .
         translation:
           error: "[Translation %{id}] %{error}"
           invalid_format: Invalid File format
+        unknown_type: 'Unknown file type: %{filename}'
       form:
         description: Refer to the Export functionality to extract a template that can be used to Import here.
         import: Import
