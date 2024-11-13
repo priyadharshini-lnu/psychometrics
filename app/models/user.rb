@@ -68,6 +68,7 @@ class User < ApplicationRecord
   devise :saml_authenticatable, :two_factor_authenticatable, :invitable, :database_authenticatable,
          :magic_link_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
          :secure_validatable, :password_archivable, :password_expirable, :lockable, :timeoutable,
+         :session_limitable,
          request_keys: { subdomain: false }
 
   attr_accessor :create_by_invite, :terms, :current_membership
