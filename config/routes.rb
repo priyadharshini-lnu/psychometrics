@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   get '/admin/*all', to: 'administration/app#dashboard'
   get '/global_config', to: 'apps#global_config'
+  get '/async_requests/status', to: 'async_requests#status'
 
   concern :media_uploades do
     member do
@@ -130,6 +131,7 @@ Rails.application.routes.draw do
   namespace :administration do
     get 'user_availabilities', to: 'user_availabilities#index', as: :user_availabilities
     get 'dashboards/:id/oracle_analytics_embed', to: 'dashboards#oracle_analytics_embed'
+    post 'dashboards/:id/get_embed_token', to: 'dashboards#get_embed_token'
 
     get 'dashboards', to: 'dashboards#index', as: :dashboard
     get 'dashboards/*all', to: 'dashboards#index', constraints: { all: /.*/ }
@@ -931,18 +933,6 @@ as: :simulation_progress_notification
           get :validate_session
           post :upload_user_verification_image_url
           put :user_verification_image_upload_callback
-        end
-      end
-
-      resource :async_requests, only: [] do
-        collection do
-          get :status
-        end
-      end
-
-      resource :async_requests, only: [] do
-        collection do
-          get :status
         end
       end
 

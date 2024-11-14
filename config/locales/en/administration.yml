@@ -1425,6 +1425,7 @@ en:
       dashboards: Dashboards
       get_started: Get Started
       initialize_msg: Initialize a Dashboard for this Campaign
+      loading_failed: Dashboard loading failed.
       preview:
         embed_token_error_description: Please check if Dataset and Report Id in settings is correct.
         embed_token_error_title: Unable to generate Embed token.

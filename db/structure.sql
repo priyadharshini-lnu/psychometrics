@@ -10,6 +10,13 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: public; Type: SCHEMA; Schema: -; Owner: -
+--
+
+-- *not* creating schema, since initdb creates it
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -3367,6 +3374,40 @@ CREATE SEQUENCE public.old_passwords_id_seq
 --
 
 ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
+
+
+--
+-- Name: oracle_credentials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.oracle_credentials (
+    id bigint NOT NULL,
+    idcs_user_id character varying NOT NULL,
+    idcs_user_name character varying NOT NULL,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    last_accessed_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: oracle_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.oracle_credentials_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: oracle_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.oracle_credentials_id_seq OWNED BY public.oracle_credentials.id;
 
 
 --
@@ -7212,6 +7253,13 @@ ALTER TABLE ONLY public.old_passwords ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: oracle_credentials id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.oracle_credentials ALTER COLUMN id SET DEFAULT nextval('public.oracle_credentials_id_seq'::regclass);
+
+
+--
 -- Name: pearson_assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8536,6 +8584,14 @@ ALTER TABLE ONLY public.occupations
 
 ALTER TABLE ONLY public.old_passwords
     ADD CONSTRAINT old_passwords_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: oracle_credentials oracle_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.oracle_credentials
+    ADD CONSTRAINT oracle_credentials_pkey PRIMARY KEY (id);
 
 
 --
@@ -10771,6 +10827,13 @@ CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree
 
 
 --
+-- Name: index_oracle_credentials_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_oracle_credentials_on_user_id ON public.oracle_credentials USING btree (user_id);
+
+
+--
 -- Name: index_password_archivable; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -12626,6 +12689,14 @@ ALTER TABLE ONLY public.memberships_admin_roles
 
 
 --
+-- Name: oracle_credentials fk_rails_30dd1b931a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.oracle_credentials
+    ADD CONSTRAINT fk_rails_30dd1b931a FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14416,6 +14487,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241108085232'),
+('20241106103020'),
 ('20241018100709'),
 ('20241101110602'),
 ('20241030111222'),

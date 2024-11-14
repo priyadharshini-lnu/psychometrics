@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 
 module OracleAnalytics
-  class GetEmbedToken < BaseCommand
-    private_attr_reader :current_user
-
-    def initialize(current_user)
-      @current_user = current_user
-    end
-
+  class GetEmbedToken < AsyncResponseRequest::AsyncRequestHandler
     def call
       conn = Faraday.new(url: config[:base_api_url]) do |faraday|
         faraday.request :url_encoded
@@ -20,16 +14,28 @@ module OracleAnalytics
         assertion: user_assertion_jwt,
         scope: config[:oauth_scope_for_embedding]
       })
+
       response_body = JSON.parse(response.body)
+
       if response.status != 200
         Rails.logger.error("Failed to generate OAC embed token. Error: #{response.body}")
         return broadcast :error, response_body
       end
 
-      broadcast :ok, response_body['access_token']
+      async_response.response_data = response_body['access_token']
+
+      broadcast(:ok, async_response)
     end
 
     private
+
+    def async_response
+      @async_response ||= AsyncResponseRequest::AsyncResponse.new(
+        processing_status: :completed,
+        response_type: :json,
+        response_data: {}
+      )
+    end
 
     def authorization_token
       token = "#{secrets[:client_id]}:#{secrets[:client_secret]}"
@@ -51,19 +57,40 @@ module OracleAnalytics
     def jwt_payload
       {
         exp: 8.hours.from_now.to_i,
-        sub: idcs_user_email,
+        sub: idcs_user_name,
         aud: 'https://identity.oraclecloud.com/',
         iss: secrets[:client_id],
         'oracle.oauth.sub.id_type': 'LDAP_UID',
-        prn: idcs_user_email,
+        prn: idcs_user_name,
         jti: secrets[:client_id],
         iat: Time.now.to_i,
         'oracle.oauth.prn.id_type': 'LDAP_UID'
       }
     end
 
-    def idcs_user_email
-      current_user.is?(:superadmin) ? config[:all_workbook_access_user_email] : current_user.email
+    def idcs_user_name
+      current_user.is?(:superadmin) ? config[:all_workbook_access_user_name] : current_user_idcs_user_name
+    end
+
+    def current_user_idcs_user_name
+      oracle_credential = current_user.oracle_credential || create_oracle_user
+
+      oracle_credential.update!(last_accessed_at: DateTime.current)
+
+      oracle_credential.idcs_user_name
+    end
+
+    def create_oracle_user
+      OracleAnalytics::CreateUser.call!(current_user) do |result|
+        result.on(:error) do |error|
+          Rails.logger.error("Failed to generate IDCS user for user ID #{current_user.id}. Error: #{error}")
+          broadcast :error, error
+        end
+
+        result.on(:ok) do |oracle_credential|
+          oracle_credential
+        end
+      end
     end
 
     def private_key

@@ -30,7 +30,9 @@ oac:
   base_embed_url: <%= ENV.fetch('OAC_EMBED_BASE_PATH', nil) %>
   base_api_url: <%= ENV.fetch('OAC_BASE_API_URL', nil) %>
   oauth_scope_for_embedding: <%= ENV.fetch('OAC_OAUTH_SCOPE_FOR_EMBEDDING', nil) %>
-  all_workbook_access_user_email: <%= ENV.fetch('OAC_ALL_WORKBOOK_ACCESS_USER_EMAIL', nil) %>
+  all_workbook_access_user_name: <%= ENV.fetch('OAC_ALL_WORKBOOK_ACCESS_USER_NAME', nil) %>
+  oac_default_user_email: <%= ENV.fetch('OAC_DEFAULT_USER_EMAIL', nil) %>
+  analytics_viewers_group_id: <%= ENV.fetch('OAC_ANALYTICS_VIEWERS_GROUP_ID', nil) %>
 storage:
   public_storage_service: <%= ENV.fetch('PUBLIC_BUCKET_STORAGE_SERVICE_KEY', nil) %>
   private_storage_service: <%= ENV.fetch('PRIVATE_BUCKET_STORAGE_SERVICE_KEY', nil) %>

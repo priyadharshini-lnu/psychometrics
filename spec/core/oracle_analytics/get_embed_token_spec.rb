@@ -18,18 +18,21 @@ describe OracleAnalytics::GetEmbedToken do
 
   it 'gets embed token for client_admin' do
     client_admin = create(:client_admin)
+    oracle_credential = create(:oracle_credential, user: client_admin)
+
     stub_request(:post, "#{config[:base_api_url]}/oauth2/v1/token").
       with(
         headers: { Authorization: "basic #{basic_auth_token}" },
         body: {
           grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-          assertion: oac_jwt(client_admin.email),
+          assertion: oac_jwt(oracle_credential.idcs_user_name),
           scope: config[:oauth_scope_for_embedding]
         }
       ).to_return({ body: { access_token: oac_returned_token }.to_json })
 
-    result = described_class.call!(client_admin)
-    expect(result).to eq(oac_returned_token)
+    result = described_class.call!({ current_user: client_admin })
+    expect(result.response_data).to eq(oac_returned_token)
+    expect(oracle_credential.last_accessed_at).to be_within(2.seconds).of(Time.zone.now)
   end
 
   it 'gets embed token for superadmin' do
@@ -39,13 +42,13 @@ describe OracleAnalytics::GetEmbedToken do
         headers: { Authorization: "basic #{basic_auth_token}" },
         body: {
           grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-          assertion: oac_jwt(config[:all_workbook_access_user_email]),
+          assertion: oac_jwt(config[:all_workbook_access_user_name]),
           scope: config[:oauth_scope_for_embedding]
         }
       ).to_return({ body: { access_token: oac_returned_token }.to_json })
 
-    result = described_class.call!(superadmin)
-    expect(result).to eq(oac_returned_token)
+    result = described_class.call!({ current_user: superadmin })
+    expect(result.response_data).to eq(oac_returned_token)
   end
 
   it 'returns error if request failed' do
@@ -54,19 +57,19 @@ describe OracleAnalytics::GetEmbedToken do
     stub_request(:post, "#{config[:base_api_url]}/oauth2/v1/token").
       to_return({ status: 404, body: error_response.to_json })
 
-    result = described_class.call(superadmin)
+    result = described_class.call({ current_user: superadmin })
     expect(result[:error]).to eq(error_response)
   end
 
-  def oac_jwt(email)
+  def oac_jwt(user_name)
     JWT.encode(
       {
         exp: 8.hours.from_now.to_i,
-        sub: email,
+        sub: user_name,
         aud: 'https://identity.oraclecloud.com/',
         iss: secrets[:client_id],
         'oracle.oauth.sub.id_type': 'LDAP_UID',
-        prn: email,
+        prn: user_name,
         jti: secrets[:client_id],
         iat: Time.now.to_i,
         'oracle.oauth.prn.id_type': 'LDAP_UID'
